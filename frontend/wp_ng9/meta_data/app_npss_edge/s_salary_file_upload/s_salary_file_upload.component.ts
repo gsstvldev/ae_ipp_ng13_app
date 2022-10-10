@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26351 
+Build ID        : 26363 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-10 14:3 PM 
+Modified Date   : 2022-Oct-10 14:36 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_salary_file_upload
@@ -12,13 +12,13 @@ Screen Name     : s_salary_file_upload
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {gms_cv_date_of_intimationService} from '../../../custom_widget/gms_cv_date_of_intimation/gms_cv_date_of_intimation.service'
+import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 
 @Component({
 	selector: 's_salary_file_upload',
 	templateUrl: './s_salary_file_upload.component.html',
 	styleUrls: ['./s_salary_file_upload.component.css'],
-	providers:[gms_cv_date_of_intimationService]
+	providers:[torus_cs_show_hideService]
 })
     
 // Start of class 
@@ -48,7 +48,7 @@ export class s_salary_file_uploadComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private gms_cv_date_of_intimationService:gms_cv_date_of_intimationService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
     
 	}
     
@@ -332,7 +332,7 @@ export class s_salary_file_uploadComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.gms_cv_date_of_intimationService.fn_gms_cv_date_of_intimation(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26351 
+Build ID        : 26363 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-10 14:3 PM 
+Modified Date   : 2022-Oct-10 14:36 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_salary_file_upload
@@ -19,7 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
-import {gms_cv_date_of_intimationModule} from '../../../custom_widget/gms_cv_date_of_intimation/gms_cv_date_of_intimation.module'
+import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -49,7 +49,7 @@ import { p_exchange_layoutsComponent } from './p_exchange_layouts/p_exchange_lay
     OverlayPanelModule,
     
     s_salary_file_uploadRoutingModule,
-    gms_cv_date_of_intimationModule
+    torus_cs_show_hideModule
   ],
   declarations: [s_salary_file_uploadComponent,p_exchange_queueComponent,f_navigationComponent,p_exchange_layoutsComponent,],
   providers:[AppHandlerService,ComponenthelperService]

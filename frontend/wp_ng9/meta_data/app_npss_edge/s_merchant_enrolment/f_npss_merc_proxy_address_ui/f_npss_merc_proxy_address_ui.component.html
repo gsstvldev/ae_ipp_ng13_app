@@ -1,0 +1,67 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_merc_proxy_address_ui="ngForm">
+<div id="RN01" class="row">
+	<div #npss_merc_proxy_address_ui_category id="RN01CN1" class="column col-md-3 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('category')" >
+				<cbo [ctrl_id]="'npss_merc_proxy_address_ui_category'" [comp_id]="comp_id" [ctrl]="ctrl.category" [model]="screen_instance[this.comp_id].f_npss_merc_proxy_address_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
+	</div>
+	<div  id="RN01CN2" class="column col-md-3 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('professional')" >
+				<txt [ctrl_id]="'npss_merc_proxy_address_ui_professional'" [comp_id]="comp_id" [ctrl]="ctrl.professional" [model]="screen_instance[this.comp_id].f_npss_merc_proxy_address_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN01CN3" class="column col-md-3 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('merc_category_code')" >
+				<txt [ctrl_id]="'npss_merc_proxy_address_ui_merc_category_code'" [comp_id]="comp_id" [ctrl]="ctrl.merc_category_code" [model]="screen_instance[this.comp_id].f_npss_merc_proxy_address_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN01CN4" class="column col-md-3 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('merchant')" >
+				<txt [ctrl_id]="'npss_merc_proxy_address_ui_merchant'" [comp_id]="comp_id" [ctrl]="ctrl.merchant" [model]="screen_instance[this.comp_id].f_npss_merc_proxy_address_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN01CN5" class="column col-md-3 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('merchant_tag')" >
+				<txt [ctrl_id]="'npss_merc_proxy_address_ui_merchant_tag'" [comp_id]="comp_id" [ctrl]="ctrl.merchant_tag" [model]="screen_instance[this.comp_id].f_npss_merc_proxy_address_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN11CN6" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('denomination')" >
+				<txt [ctrl_id]="'npss_merc_proxy_address_ui_denomination'" [comp_id]="comp_id" [ctrl]="ctrl.denomination" [model]="screen_instance[this.comp_id].f_npss_merc_proxy_address_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN11CN7" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('iban')" >
+				<txt [ctrl_id]="'npss_merc_proxy_address_ui_iban'" [comp_id]="comp_id" [ctrl]="ctrl.iban" [model]="screen_instance[this.comp_id].f_npss_merc_proxy_address_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN11CN8" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('participant_code')" >
+				<cbo [ctrl_id]="'npss_merc_proxy_address_ui_participant_code'" [comp_id]="comp_id" [ctrl]="ctrl.participant_code" [model]="screen_instance[this.comp_id].f_npss_merc_proxy_address_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
+	</div>
+</div>
+<div id="RN21" class="row">
+	<div  id="RN21CN9" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('poi')" >
+				<txt [ctrl_id]="'npss_merc_proxy_address_ui_poi'" [comp_id]="comp_id" [ctrl]="ctrl.poi" [model]="screen_instance[this.comp_id].f_npss_merc_proxy_address_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN21CN10" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('vat_id')" >
+				<txt [ctrl_id]="'npss_merc_proxy_address_ui_vat_id'" [comp_id]="comp_id" [ctrl]="ctrl.vat_id" [model]="screen_instance[this.comp_id].f_npss_merc_proxy_address_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN21CN11" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('phone_no')" >
+				<txt [ctrl_id]="'npss_merc_proxy_address_ui_phone_no'" [comp_id]="comp_id" [ctrl]="ctrl.phone_no" [model]="screen_instance[this.comp_id].f_npss_merc_proxy_address_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN21CN12" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('email_id')" >
+				<txt [ctrl_id]="'npss_merc_proxy_address_ui_email_id'" [comp_id]="comp_id" [ctrl]="ctrl.email_id" [model]="screen_instance[this.comp_id].f_npss_merc_proxy_address_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+ 		<div class="col-md-1 col-sm-0 col-xs-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.merchant_ui_back.show" >
+			<btn [ctrl_id]="'merchant_ui_back'" [comp_id]="comp_id" [ctrl]="screen_instance.merchant_ui_back" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.merchant_ui_back.show"></btn>
+		</div>
+		<div class="col-md-1 col-sm-0 col-xs-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.merchant_ui_clear.show" >
+			<btn [ctrl_id]="'merchant_ui_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.merchant_ui_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.merchant_ui_clear.show"></btn>
+		</div>
+		<div class="col-md-1 col-sm-0 col-xs-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.merchant_ui_save.show" >
+			<btn [ctrl_id]="'merchant_ui_save'" [comp_id]="comp_id" [ctrl]="screen_instance.merchant_ui_save" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.merchant_ui_save.show"></btn>
+		</div>
+		<div class="col-md-1 col-sm-0 col-xs-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.merchant_ui_edit.show" >
+			<btn [ctrl_id]="'merchant_ui_edit'" [comp_id]="comp_id" [ctrl]="screen_instance.merchant_ui_edit" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.merchant_ui_edit.show"></btn>
+		</div>
+		<div class="col-md-1 col-sm-0 col-xs-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.merchant_ui_delete.show" >
+			<btn [ctrl_id]="'merchant_ui_delete'" [comp_id]="comp_id" [ctrl]="screen_instance.merchant_ui_delete" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.merchant_ui_delete.show"></btn>
+		</div>
+	</div>
+
+</div>

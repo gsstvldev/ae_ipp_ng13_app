@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26345 
+Build ID        : 26346 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-10 8:10 AM 
+Modified Date   : 2022-Oct-10 11:0 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_enrolment

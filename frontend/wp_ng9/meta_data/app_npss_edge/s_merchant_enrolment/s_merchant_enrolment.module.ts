@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26345 
+Build ID        : 26346 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-10 8:10 AM 
+Modified Date   : 2022-Oct-10 11:0 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_enrolment
@@ -34,19 +34,19 @@ import { s_merchant_enrolmentRoutingModule } from './s_merchant_enrolment.routin
 import { p_list_layoutComponent } from './p_list_layout/p_list_layout.component'
 import { f_navigationComponent } from './f_navigation/f_navigation.component'
 import { p_data_entry_layoutComponent } from './p_data_entry_layout/p_data_entry_layout.component'
-import { f_merchant_uiComponent } from './f_merchant_ui/f_merchant_ui.component'
+import { f_npss_merc_proxy_address_uiComponent } from './f_npss_merc_proxy_address_ui/f_npss_merc_proxy_address_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_searchComponent } from './f_search/f_search.component'
+import { f_npss_address_srch_uiComponent } from './f_npss_address_srch_ui/f_npss_address_srch_ui.component'
 import { p_bank_layoutComponent } from './p_bank_layout/p_bank_layout.component'
-import { f_bank_uiComponent } from './f_bank_ui/f_bank_ui.component'
+import { f_npss_merc_proxy_banksComponent } from './f_npss_merc_proxy_banks/f_npss_merc_proxy_banks.component'
 import { p_shop_layoutComponent } from './p_shop_layout/p_shop_layout.component'
-import { f_shop_uiComponent } from './f_shop_ui/f_shop_ui.component'
+import { f_npss_merc_proxy_shop_uiComponent } from './f_npss_merc_proxy_shop_ui/f_npss_merc_proxy_shop_ui.component'
 import { p_phone_no_layoutComponent } from './p_phone_no_layout/p_phone_no_layout.component'
-import { f_phone_no_uiComponent } from './f_phone_no_ui/f_phone_no_ui.component'
+import { f_npss_phone_no_uiComponent } from './f_npss_phone_no_ui/f_npss_phone_no_ui.component'
 import { p_personal_date_layoutComponent } from './p_personal_date_layout/p_personal_date_layout.component'
-import { f_personal_data_uiComponent } from './f_personal_data_ui/f_personal_data_ui.component'
+import { f_npss_merchant_name_uiComponent } from './f_npss_merchant_name_ui/f_npss_merchant_name_ui.component'
 import { p_add_cash_layoutComponent } from './p_add_cash_layout/p_add_cash_layout.component'
-import { f_add_desk_uiComponent } from './f_add_desk_ui/f_add_desk_ui.component'
+import { f_npss_cash_desk_uiComponent } from './f_npss_cash_desk_ui/f_npss_cash_desk_ui.component'
 import { p_add_cash_list_layoutComponent } from './p_add_cash_list_layout/p_add_cash_list_layout.component'
 
 
@@ -64,7 +64,7 @@ import { p_add_cash_list_layoutComponent } from './p_add_cash_list_layout/p_add_
     s_merchant_enrolmentRoutingModule,
     
   ],
-  declarations: [s_merchant_enrolmentComponent,p_list_layoutComponent,f_navigationComponent,p_data_entry_layoutComponent,f_merchant_uiComponent,p_search_layoutComponent,f_searchComponent,p_bank_layoutComponent,f_bank_uiComponent,p_shop_layoutComponent,f_shop_uiComponent,p_phone_no_layoutComponent,f_phone_no_uiComponent,p_personal_date_layoutComponent,f_personal_data_uiComponent,p_add_cash_layoutComponent,f_add_desk_uiComponent,p_add_cash_list_layoutComponent,],
+  declarations: [s_merchant_enrolmentComponent,p_list_layoutComponent,f_navigationComponent,p_data_entry_layoutComponent,f_npss_merc_proxy_address_uiComponent,p_search_layoutComponent,f_npss_address_srch_uiComponent,p_bank_layoutComponent,f_npss_merc_proxy_banksComponent,p_shop_layoutComponent,f_npss_merc_proxy_shop_uiComponent,p_phone_no_layoutComponent,f_npss_phone_no_uiComponent,p_personal_date_layoutComponent,f_npss_merchant_name_uiComponent,p_add_cash_layoutComponent,f_npss_cash_desk_uiComponent,p_add_cash_list_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

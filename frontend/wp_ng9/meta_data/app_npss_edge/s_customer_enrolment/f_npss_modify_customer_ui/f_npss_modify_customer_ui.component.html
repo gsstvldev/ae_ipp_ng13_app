@@ -1,0 +1,16 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_modify_customer_ui="ngForm">
+<div id="RN01" class="row">
+	<div #npss_modify_customer_ui_customer id="RN01CN1" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('customer')" >
+				<txt [ctrl_id]="'npss_modify_customer_ui_customer'" [comp_id]="comp_id" [ctrl]="ctrl.customer" [model]="screen_instance[this.comp_id].f_npss_modify_customer_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'customer_edit_save'" [comp_id]="comp_id" [ctrl]="screen_instance.customer_edit_save" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.customer_edit_save.show"></btn>
+ 	</div>
+
+</div>

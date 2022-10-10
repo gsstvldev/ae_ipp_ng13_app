@@ -4,7 +4,7 @@
 	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_bank_details_ui="ngForm">
 <div id="RN01" class="row">
 	<div #bank_details_ui_bank_code id="RN01CN1" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('bank_code')" >
-				<txt [ctrl_id]="'bank_details_ui_bank_code'" [comp_id]="comp_id" [ctrl]="ctrl.bank_code" [model]="screen_instance[this.comp_id].f_bank_details_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+				<cbo [ctrl_id]="'bank_details_ui_bank_code'" [comp_id]="comp_id" [ctrl]="ctrl.bank_code" [model]="screen_instance[this.comp_id].f_bank_details_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
 	</div>
 </div>
 <div id="RN11" class="row">

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26348 
+Build ID        : 26357 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-10 10:59 AM 
+Modified Date   : 2022-Oct-10 14:1 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_enrolment
@@ -56,7 +56,7 @@ focustoelement(){
 		this.ctrl.bank_code.label_name = "Bank Code"
 		this.ctrl.bank_code.df_code = "DF_1304_1665385493572"
 		this.ctrl.bank_code.df_description = "Column Group 1"
-		this.ctrl.bank_code.uictrl_code = "TXT"
+		this.ctrl.bank_code.uictrl_code = "CBO"
 		this.ctrl.bank_code.target_column = "BANK_CODE"
 		this.ctrl.bank_code.data_type = "TEXT"
 		this.ctrl.bank_code.data_length = 32
@@ -73,7 +73,7 @@ focustoelement(){
 		this.ctrl.bank_code.placeholder = ""
 		this.ctrl.bank_code.dynamic_param = ""
 		this.ctrl.bank_code.style_code = ""
-		this.ctrl.bank_code.data_source = ""
+		this.ctrl.bank_code.data_source = {"ds_code":"UDS_1304_1665389079534","ds_description":"NPSS Participant code SQL","rows":[],"type":"DPS_TABLE","value_member":"SORT_CODE","display_member":"SYSTEM_NAME","first_record_display":"","column_list":"","order_by":"","target_table":"NPSS_VW_PARTICIPANT_CODE","context":"","filters":[{"filter_name":"Filter1","binding_name":"S_ID","id":"DF_1665389196469","binding_value":"SESSION_LEVEL.S_ID","source_name":"S_ID","source_value":"SESSION_LEVEL.S_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1665389196469","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"S_ID","binding_value":"SESSION_LEVEL.S_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"S_ID"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(S_ID = SESSION_LEVEL.S_ID AND TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"need_auto_first_record":true,"sel_columns":[]}
 		this.ctrl.bank_code.image_association = ""
 		this.ctrl.bank_code.show = true
 		this.ctrl.bank_code.sub_content = ""
@@ -85,6 +85,7 @@ focustoelement(){
 		this.ctrl.bank_code.ctrl_id = "bank_details_ui_bank_code"
 		this.ctrl.bank_details_ui_bank_code = {}
 		this.ctrl.bank_details_ui_bank_code.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_bank_details_ui.bank_code = {}
 	
 		//Properties of account_no
 		this.ctrl.account_no = {}
@@ -162,7 +163,7 @@ focustoelement(){
 		this.ctrl.bank_details_ui_is_default = {}
 		this.ctrl.bank_details_ui_is_default.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_bank_details_ui.model = {"BANK_CODE":"","ACCOUNT_NO":"","IS_DEFAULT":"false"}
-		this.screen_instance[this.comp_id].f_bank_details_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANK_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNT_NO"},{"CTLR_CODE":"CHK","DATA_TYPE":"TEXT","TARGET_COLUMN":"IS_DEFAULT"}]
+		this.screen_instance[this.comp_id].f_bank_details_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANK_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNT_NO"},{"CTLR_CODE":"CHK","DATA_TYPE":"TEXT","TARGET_COLUMN":"IS_DEFAULT"}]
 		this.screen_instance[this.comp_id].f_bank_details_ui.dt_code = "dt_1304_1665384453253"
 		this.screen_instance[this.comp_id].f_bank_details_ui.dtt_code = "dtt_1304_1665385314469"
 		this.screen_instance[this.comp_id].f_bank_details_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

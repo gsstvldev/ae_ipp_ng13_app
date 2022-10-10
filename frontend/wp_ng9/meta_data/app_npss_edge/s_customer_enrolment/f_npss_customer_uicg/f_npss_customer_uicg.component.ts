@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26348 
+Build ID        : 26357 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-10 10:59 AM 
+Modified Date   : 2022-Oct-10 14:1 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_enrolment
@@ -246,7 +246,7 @@ focustoelement(){
 		this.ctrl.participant_code.label_name = "Participant Code"
 		this.ctrl.participant_code.df_code = "DF_1304_1665384649010"
 		this.ctrl.participant_code.df_description = "Column Group 1"
-		this.ctrl.participant_code.uictrl_code = "TXT"
+		this.ctrl.participant_code.uictrl_code = "CBO"
 		this.ctrl.participant_code.target_column = "PARTICIPANT_CODE"
 		this.ctrl.participant_code.data_type = "TEXT"
 		this.ctrl.participant_code.data_length = 32
@@ -263,7 +263,7 @@ focustoelement(){
 		this.ctrl.participant_code.placeholder = ""
 		this.ctrl.participant_code.dynamic_param = ""
 		this.ctrl.participant_code.style_code = ""
-		this.ctrl.participant_code.data_source = ""
+		this.ctrl.participant_code.data_source = {"ds_code":"UDS_1304_1665389079534","ds_description":"NPSS Participant code SQL","rows":[],"type":"DPS_TABLE","value_member":"SORT_CODE","display_member":"SYSTEM_NAME","first_record_display":"","column_list":"","order_by":"","target_table":"NPSS_VW_PARTICIPANT_CODE","context":"","filters":[{"filter_name":"Filter1","binding_name":"S_ID","id":"DF_1665389196469","binding_value":"SESSION_LEVEL.S_ID","source_name":"S_ID","source_value":"SESSION_LEVEL.S_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1665389196469","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"S_ID","binding_value":"SESSION_LEVEL.S_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"S_ID"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(S_ID = SESSION_LEVEL.S_ID AND TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"need_auto_first_record":true,"sel_columns":[]}
 		this.ctrl.participant_code.image_association = ""
 		this.ctrl.participant_code.show = true
 		this.ctrl.participant_code.sub_content = ""
@@ -275,8 +275,9 @@ focustoelement(){
 		this.ctrl.participant_code.ctrl_id = "npss_customer_uicg_participant_code"
 		this.ctrl.npss_customer_uicg_participant_code = {}
 		this.ctrl.npss_customer_uicg_participant_code.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_customer_uicg.participant_code = {}
 		this.screen_instance[this.comp_id].f_npss_customer_uicg.model = {"CUSTOMER":"","EMIRATES_ID":"","PHONE_NO":"","EMAIL_ID":"","IBAN":"","PARTICIPANT_CODE":""}
-		this.screen_instance[this.comp_id].f_npss_customer_uicg.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EMIRATES_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PARTICIPANT_CODE"}]
+		this.screen_instance[this.comp_id].f_npss_customer_uicg.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EMIRATES_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"IBAN"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PARTICIPANT_CODE"}]
 		this.screen_instance[this.comp_id].f_npss_customer_uicg.dt_code = "dt_1304_1665384453253"
 		this.screen_instance[this.comp_id].f_npss_customer_uicg.dtt_code = "dtt_1304_1665384533560"
 		this.screen_instance[this.comp_id].f_npss_customer_uicg.controls = this.screen_instance[this.comp_id].form_instance.ctrl

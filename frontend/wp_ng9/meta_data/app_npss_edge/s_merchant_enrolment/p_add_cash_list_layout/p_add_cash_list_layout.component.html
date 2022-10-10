@@ -1,0 +1,20 @@
+<div class="p_add_cash_list_layout">
+ <!-- PROFILE HTML - p_add_cash_list_layout --> 
+<div id="R21" class="row">
+	<div id="R21C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+<div id="R21C1R0" class="row">
+	<div id="R21C1R0C1" class="column col-md-10 col-sm-6 col-xs-6 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" >
+		<div class="cash_desk_list"  [hidden]="!screen_instance['cash_desk_list'].show" >
+			<datatable [comp_id]="'cash_desk_list'" [screen_instance]="screen_instance" profile_name="p_add_cash_list_layout"></datatable>
+		</div>
+	</div>
+	<div id="R21C1R0C2" class="column col-md-10 col-sm-6 col-xs-6 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" >
+		<div class="add_desk_ui" >
+			<f_add_desk_ui [comp_id]="'add_desk_ui'" [screen_instance]="screen_instance" [hidden]="isHidden('add_desk_ui','f_add_desk_ui')" profile_name="p_add_cash_list_layout"></f_add_desk_ui >
+		</div>
+	</div>
+</div>
+	</div>
+</div>
+
+</div>

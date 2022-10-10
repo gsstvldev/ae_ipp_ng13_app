@@ -1,0 +1,13 @@
+{
+  "APP_ID": "215",
+  "APP_CODE": "NPSS",
+  "APPLICATION_DESCRIPTION": "NPSS EDGE",
+  "MENU_TYPE": "horizontal",
+  "APPLICATION_TYPE": "DESKTOP",
+  "APP_ICON_DATA": "",
+  "UI_TYPE": "angular9",
+  "APP_ROLES": "[{\"APPR_ID\" : \"697\",\"ROLE_CODE\" : \"SuperAdmin\",\"ROLE_DESCRIPTION\" : \"SuperAdmin\",\"IS_DEFAULT\" : \"\",\"MENU_TYPE\" : \"\"},{\"APPR_ID\" : \"699\",\"ROLE_CODE\" : \"RC_1304_1665385336678\",\"ROLE_DESCRIPTION\" : \"NPSS_ADMIN\",\"IS_DEFAULT\" : \"\",\"MENU_TYPE\" : \"horizontal\"}]",
+  "SYSTEM_TYPES": "[{\"CLIENT_ID\" : \"1304\",\"ST_ID\" : \"138\",\"CREATED_BY\" : \"\",\"CREATED_DATE\" : \"02/08/2018 07:32:56 +00:00\",\"DT_CODE\" : \"\",\"DTT_CODE\" : \"\",\"ICON_DATA\" : \"\",\"ICON_NAME\" : \"\",\"MODIFIED_BY\" : \"\",\"MODIFIED_DATE\" : \"\",\"ST_CATEGORY\" : \"\",\"ST_CODE\" : \"Torus\",\"ST_DESCRIPTION\" : \"Torus\",\"VERSION_NO\" : \"0\",\"WFT_CODE\" : \"\",\"TARGET_TABLE\" : \"\",\"EXTENDED_DT_CODE\" : \"\",\"EXTENDED_DTT_CODE\" : \"\"}]",
+  "SYSTEM_TYPE_APP_ROLES": "[]",
+  "TENANT_SYSTEM_TYPES": "[]"
+}

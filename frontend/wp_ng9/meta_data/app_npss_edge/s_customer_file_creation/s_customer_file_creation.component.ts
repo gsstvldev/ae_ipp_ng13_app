@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26351 
+Build ID        : 26370 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-10 14:3 PM 
+Modified Date   : 2022-Oct-11 4:41 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_file_creation
@@ -30,14 +30,14 @@ export class s_customer_file_creationComponent implements OnInit,AfterViewInit {
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
-	current_profile : string = "p_npss_layout"
+	current_profile : string = "p_ips_layout"
 	uicgc_1 : string = "navigation"
 	uicgc_3 : string = "transactions_list"
 	uicgc_9 : string = "search"
 	uicgc_20 : string = "queue"
 	uicgc_23 : string = "queue_search"
 	key_events : any = {}
-	btl_1408_1585747175326 : string = "p_npss_layout"
+	btl_1408_1585747175326 : string = "p_ips_layout"
 	btl_1408_1585633277240 : string = "p_search_layout"
 	forms : any = ["uicgc_9","uicgc_1"]
 	p_search_layout__spap_for_nav_search_showpopup : boolean = false

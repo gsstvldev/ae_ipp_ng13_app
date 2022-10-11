@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26370 
+Build ID        : 26375 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-11 4:41 AM 
+Modified Date   : 2022-Oct-11 7:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_enrolment
@@ -49,7 +49,7 @@ export class s_customer_enrolmentComponent implements OnInit,AfterViewInit {
 	btl_1408_1584360407011 : string = "p_search_layout"
 	btl_1408_1584360351180 : string = "p_data_entry_layout"
 	btl_1408_1584359909096 : string = "p_list_layout"
-	forms : any = ["uicgc_3","uicgc_9","uicgc_7","uicgc_10","uicgc_8","uicgc_4","uicgc_2"]
+	forms : any = ["uicgc_4","uicgc_3","uicgc_9","uicgc_7","uicgc_10","uicgc_8","uicgc_2"]
 	p_search_layout__spap_by_click_on_list_search_showpopup : boolean = false
 	p_customer_edit_layout__spap_for_modify_customer_data_showpopup : boolean = false
 	p_phone_no_edit_layout__spap_for_modify_phone_no_showpopup : boolean = false
@@ -292,12 +292,12 @@ export class s_customer_enrolmentComponent implements OnInit,AfterViewInit {
 		this.search.params = {}
 		this.search.datasource = {}
 		this.search.context_menu = []
-		this.search.views = {}
+		this.search.views = {"first":"DTT_1304_1665384533560","is_tab_mode":"N","dtt_1304_1665384533560":{"0":[{"dttv_id":"NPSS Customer SRCH","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"NPSS Cust Proxy Address"}]}}
 		this.search.onChangecomponent = new EventEmitter<any>()
 		this.search.show = true
 		this.search.dynamic_param = {}
-		this.search.f_search = {"show":true}
-		this.search.current_view = "f_search"
+		this.search.f_npss_customer_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.search.form_name = "f_npss_customer_srch"
 		
 		// "Search" Button of "Search" component
 		this.search_search.label_name = "Search"

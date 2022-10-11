@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26351 
+Build ID        : 26375 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-10 14:3 PM 
+Modified Date   : 2022-Oct-11 7:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_enrolment
@@ -108,13 +108,13 @@ focustoelement(){
 		this.ctrl.professional.currency_format = ""
 		this.ctrl.professional.data_scale = ""
 		this.ctrl.professional.hide_label = false
-		this.ctrl.professional.depends_on = ""
+		this.ctrl.professional.depends_on = "CATEGORY:Professional"
 		this.ctrl.professional.placeholder = ""
 		this.ctrl.professional.dynamic_param = ""
 		this.ctrl.professional.style_code = ""
 		this.ctrl.professional.data_source = ""
 		this.ctrl.professional.image_association = ""
-		this.ctrl.professional.show = true
+		this.ctrl.professional.show = false
 		this.ctrl.professional.sub_content = ""
 		this.ctrl.professional.required = false
 		this.ctrl.professional.vld_rules = []
@@ -146,13 +146,13 @@ focustoelement(){
 		this.ctrl.merc_category_code.currency_format = ""
 		this.ctrl.merc_category_code.data_scale = ""
 		this.ctrl.merc_category_code.hide_label = false
-		this.ctrl.merc_category_code.depends_on = ""
+		this.ctrl.merc_category_code.depends_on = "CATEGORY:Merchant"
 		this.ctrl.merc_category_code.placeholder = ""
 		this.ctrl.merc_category_code.dynamic_param = ""
 		this.ctrl.merc_category_code.style_code = ""
 		this.ctrl.merc_category_code.data_source = ""
 		this.ctrl.merc_category_code.image_association = ""
-		this.ctrl.merc_category_code.show = true
+		this.ctrl.merc_category_code.show = false
 		this.ctrl.merc_category_code.sub_content = ""
 		this.ctrl.merc_category_code.required = false
 		this.ctrl.merc_category_code.vld_rules = []
@@ -184,13 +184,13 @@ focustoelement(){
 		this.ctrl.merchant.currency_format = ""
 		this.ctrl.merchant.data_scale = ""
 		this.ctrl.merchant.hide_label = false
-		this.ctrl.merchant.depends_on = ""
+		this.ctrl.merchant.depends_on = "CATEGORY:Merchant"
 		this.ctrl.merchant.placeholder = ""
 		this.ctrl.merchant.dynamic_param = ""
 		this.ctrl.merchant.style_code = ""
 		this.ctrl.merchant.data_source = ""
 		this.ctrl.merchant.image_association = ""
-		this.ctrl.merchant.show = true
+		this.ctrl.merchant.show = false
 		this.ctrl.merchant.sub_content = ""
 		this.ctrl.merchant.required = false
 		this.ctrl.merchant.vld_rules = []
@@ -222,13 +222,13 @@ focustoelement(){
 		this.ctrl.merchant_tag.currency_format = ""
 		this.ctrl.merchant_tag.data_scale = ""
 		this.ctrl.merchant_tag.hide_label = false
-		this.ctrl.merchant_tag.depends_on = ""
+		this.ctrl.merchant_tag.depends_on = "CATEGORY:Merchant"
 		this.ctrl.merchant_tag.placeholder = ""
 		this.ctrl.merchant_tag.dynamic_param = ""
 		this.ctrl.merchant_tag.style_code = ""
 		this.ctrl.merchant_tag.data_source = ""
 		this.ctrl.merchant_tag.image_association = ""
-		this.ctrl.merchant_tag.show = true
+		this.ctrl.merchant_tag.show = false
 		this.ctrl.merchant_tag.sub_content = ""
 		this.ctrl.merchant_tag.required = false
 		this.ctrl.merchant_tag.vld_rules = []

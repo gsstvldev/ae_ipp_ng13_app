@@ -1,26 +1,26 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26370 
+Build ID        : 26378 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-11 4:41 AM 
+Modified Date   : 2022-Oct-11 9:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_customer_enrolment
-Form Name       : Search--------------------------------------------------------------------------- */
+Screen Name     : s_merchant_file_upload_pacs008
+Form Name       : Navigation--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_search',
-  templateUrl: './f_search.component.html',
-  styleUrls: ['./f_search.component.css'],
+  selector: 'f_navigation',
+  templateUrl: './f_navigation.component.html',
+  styleUrls: ['./f_navigation.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_searchComponent implements OnInit {
+export class f_navigationComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_searchComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_search[control]==undefined) {
-      this.screen_instance[this.comp_id].f_search[control] = {}
+    if(this.screen_instance[this.comp_id].f_navigation[control]==undefined) {
+      this.screen_instance[this.comp_id].f_navigation[control] = {}
     }
-    this.screen_instance[this.comp_id].f_search[control][property] = value;
+    this.screen_instance[this.comp_id].f_navigation[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

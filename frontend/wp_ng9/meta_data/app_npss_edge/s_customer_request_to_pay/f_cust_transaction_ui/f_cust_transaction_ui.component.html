@@ -1,0 +1,74 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_cust_transaction_ui="ngForm">
+<div id="RN01" class="row">
+	<div #cust_transaction_ui_memory51 id="RN01CN1" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory51')" >
+				<lbl [ctrl_id]="'cust_transaction_ui_memory51'" [comp_id]="comp_id" [ctrl]="ctrl.memory51" [model]="screen_instance[this.comp_id].f_cust_transaction_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></lbl>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN11CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('dbtr_acct_name')" >
+				<cbo [ctrl_id]="'cust_transaction_ui_dbtr_acct_name'" [comp_id]="comp_id" [ctrl]="ctrl.dbtr_acct_name" [model]="screen_instance[this.comp_id].f_cust_transaction_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
+	</div>
+	<div  id="RN11CN3" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('dbtr_phone_no')" >
+				<cbo [ctrl_id]="'cust_transaction_ui_dbtr_phone_no'" [comp_id]="comp_id" [ctrl]="ctrl.dbtr_phone_no" [model]="screen_instance[this.comp_id].f_cust_transaction_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
+	</div>
+</div>
+<div id="RN21" class="row">
+	<div  id="RN21CN4" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('dbtr_acct_balance')" >
+				<cur [ctrl_id]="'cust_transaction_ui_dbtr_acct_balance'" [comp_id]="comp_id" [ctrl]="ctrl.dbtr_acct_balance" [model]="screen_instance[this.comp_id].f_cust_transaction_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cur>
+	</div>
+	<div  id="RN21CN5" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('dbtr_sanction_limit')" >
+				<cur [ctrl_id]="'cust_transaction_ui_dbtr_sanction_limit'" [comp_id]="comp_id" [ctrl]="ctrl.dbtr_sanction_limit" [model]="screen_instance[this.comp_id].f_cust_transaction_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cur>
+	</div>
+</div>
+<div id="RN31" class="row">
+	<div  id="RN31CN6" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory52')" >
+				<lbl [ctrl_id]="'cust_transaction_ui_memory52'" [comp_id]="comp_id" [ctrl]="ctrl.memory52" [model]="screen_instance[this.comp_id].f_cust_transaction_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></lbl>
+	</div>
+</div>
+<div id="r4" class="row">
+	<div  id="RN101CN14" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cdtr_pmt_type')" >
+				<cbo [ctrl_id]="'cust_transaction_ui_cdtr_pmt_type'" [comp_id]="comp_id" [ctrl]="ctrl.cdtr_pmt_type" [model]="screen_instance[this.comp_id].f_cust_transaction_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
+	</div>
+</div>
+<div id="RN51" class="row">
+	<div  id="RN51CN8" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cdtr_phone_no')" >
+				<txt [ctrl_id]="'cust_transaction_ui_cdtr_phone_no'" [comp_id]="comp_id" [ctrl]="ctrl.cdtr_phone_no" [model]="screen_instance[this.comp_id].f_cust_transaction_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+<div id="RN61" class="row">
+	<div  id="RN61CN9" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cdtr_email_id')" >
+				<txt [ctrl_id]="'cust_transaction_ui_cdtr_email_id'" [comp_id]="comp_id" [ctrl]="ctrl.cdtr_email_id" [model]="screen_instance[this.comp_id].f_cust_transaction_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+<div id="RN71" class="row">
+	<div  id="RN71CN10" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cdtr_emirates')" >
+				<txt [ctrl_id]="'cust_transaction_ui_cdtr_emirates'" [comp_id]="comp_id" [ctrl]="ctrl.cdtr_emirates" [model]="screen_instance[this.comp_id].f_cust_transaction_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+<div id="RN81" class="row">
+	<div  id="RN81CN11" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cdtr_iban')" >
+				<txt [ctrl_id]="'cust_transaction_ui_cdtr_iban'" [comp_id]="comp_id" [ctrl]="ctrl.cdtr_iban" [model]="screen_instance[this.comp_id].f_cust_transaction_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+<div id="RN91" class="row">
+	<div  id="RN91CN12" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('intrbk_sttlm_amnt')" >
+				<cur [ctrl_id]="'cust_transaction_ui_intrbk_sttlm_amnt'" [comp_id]="comp_id" [ctrl]="ctrl.intrbk_sttlm_amnt" [model]="screen_instance[this.comp_id].f_cust_transaction_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cur>
+	</div>
+</div>
+<div id="RN101" class="row">
+	<div  id="RN101CN13" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('value_date')" >
+				<dtp [ctrl_id]="'cust_transaction_ui_value_date'" [comp_id]="comp_id" [ctrl]="ctrl.value_date" [model]="screen_instance[this.comp_id].f_cust_transaction_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></dtp>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'data_entry_ui_initiate_credit_transfer'" [comp_id]="comp_id" [ctrl]="screen_instance.data_entry_ui_initiate_credit_transfer" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.data_entry_ui_initiate_credit_transfer.show"></btn>
+		<btn [ctrl_id]="'data_entry_ui_value_date_trigger'" [comp_id]="comp_id" [ctrl]="screen_instance.data_entry_ui_value_date_trigger" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.data_entry_ui_value_date_trigger.show"></btn>
+		<btn [ctrl_id]="'data_entry_ui_show_payor_account_bal'" [comp_id]="comp_id" [ctrl]="screen_instance.data_entry_ui_show_payor_account_bal" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.data_entry_ui_show_payor_account_bal.show"></btn>
+ 	</div>
+
+</div>

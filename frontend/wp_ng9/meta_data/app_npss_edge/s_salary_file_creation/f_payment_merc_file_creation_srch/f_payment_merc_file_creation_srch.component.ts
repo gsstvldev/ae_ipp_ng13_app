@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26354 
+Build ID        : 26380 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-11 5:26 AM 
+Modified Date   : 2022-Oct-11 9:58 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_salary_file_creation
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of memory58
 		this.ctrl.memory58 = {}
 		this.ctrl.memory58.id = "RN01CN1"
-		this.ctrl.memory58.desc = "Createddate"
+		this.ctrl.memory58.desc = "Created date"
 		this.ctrl.memory58.visible = false
-		this.ctrl.memory58.label_name = "Createddate"
+		this.ctrl.memory58.label_name = "Created date"
 		this.ctrl.memory58.df_code = "DF_1304_1665386831744"
 		this.ctrl.memory58.df_description = "Column Group 2"
 		this.ctrl.memory58.uictrl_code = "DTP"

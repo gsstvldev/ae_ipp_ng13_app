@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26378 
+Build ID        : 26380 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-11 9:14 AM 
+Modified Date   : 2022-Oct-11 9:58 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_file_creation_pacs008
@@ -30,7 +30,7 @@ export class p_search_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.search.desc = "Batch-Tran Search"
+    	this.search.desc = "Search"
 		this.search.need_header = true
 	
 

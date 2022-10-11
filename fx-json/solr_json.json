@@ -1,9 +1,26 @@
 [{
-  $DQ$TRAN_INSERTION$DQ$: [],
-  $DQ$TRAN_DELETION$DQ$: [],
-  $DQ$ATMT_INSERTION$DQ$: []
-},{
-  $DQ$TRAN_INSERTION$DQ$: [],
+  $DQ$TRAN_INSERTION$DQ$: [
+    {
+      $DQ$NAME$DQ$: $DQ$CHANNEL_ID$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665384533560$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$CHANNEL_REFNO$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665384533560$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$CHANNEL_USERID$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665384533560$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$UUID$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665384533560$DQ$
+    }
+  ],
   $DQ$TRAN_DELETION$DQ$: [],
   $DQ$ATMT_INSERTION$DQ$: []
 }]

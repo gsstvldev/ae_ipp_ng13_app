@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26351 
+Build ID        : 26371 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-10 14:3 PM 
+Modified Date   : 2022-Oct-11 6:17 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_verify
@@ -35,7 +35,7 @@ import { s_merchant_verifyRoutingModule } from './s_merchant_verify.routing.modu
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigationComponent } from './f_navigation/f_navigation.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_dynamic_form_searchComponent } from './f_dynamic_form_search/f_dynamic_form_search.component'
+import { f_npss_address_srch_uiComponent } from './f_npss_address_srch_ui/f_npss_address_srch_ui.component'
 
 
 
@@ -52,7 +52,7 @@ import { f_dynamic_form_searchComponent } from './f_dynamic_form_search/f_dynami
     s_merchant_verifyRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_merchant_verifyComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_dynamic_form_searchComponent,],
+  declarations: [s_merchant_verifyComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_npss_address_srch_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

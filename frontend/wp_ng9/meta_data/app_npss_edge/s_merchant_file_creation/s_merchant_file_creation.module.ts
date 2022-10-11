@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26351 
+Build ID        : 26371 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-10 14:3 PM 
+Modified Date   : 2022-Oct-11 6:17 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_file_creation
@@ -31,11 +31,11 @@ import { s_merchant_file_creationRoutingModule } from './s_merchant_file_creatio
     
 
 
-import { p_npss_layoutComponent } from './p_npss_layout/p_npss_layout.component'
+import { p_ips_layoutComponent } from './p_ips_layout/p_ips_layout.component'
 import { f_navigationComponent } from './f_navigation/f_navigation.component'
 import { f_queue_searchComponent } from './f_queue_search/f_queue_search.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_searchComponent } from './f_search/f_search.component'
+import { f_npss_address_srch_uiComponent } from './f_npss_address_srch_ui/f_npss_address_srch_ui.component'
 
 
 
@@ -52,7 +52,7 @@ import { f_searchComponent } from './f_search/f_search.component'
     s_merchant_file_creationRoutingModule,
     
   ],
-  declarations: [s_merchant_file_creationComponent,p_npss_layoutComponent,f_navigationComponent,f_queue_searchComponent,p_search_layoutComponent,f_searchComponent,],
+  declarations: [s_merchant_file_creationComponent,p_ips_layoutComponent,f_navigationComponent,f_queue_searchComponent,p_search_layoutComponent,f_npss_address_srch_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26351 
+Build ID        : 26354 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-10 14:3 PM 
+Modified Date   : 2022-Oct-11 5:26 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_salary_file_creation
@@ -35,7 +35,7 @@ import { p_npss_layoutComponent } from './p_npss_layout/p_npss_layout.component'
 import { f_navigationComponent } from './f_navigation/f_navigation.component'
 import { f_queue_searchComponent } from './f_queue_search/f_queue_search.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_searchComponent } from './f_search/f_search.component'
+import { f_payment_merc_file_creation_srchComponent } from './f_payment_merc_file_creation_srch/f_payment_merc_file_creation_srch.component'
 
 
 
@@ -52,7 +52,7 @@ import { f_searchComponent } from './f_search/f_search.component'
     s_salary_file_creationRoutingModule,
     
   ],
-  declarations: [s_salary_file_creationComponent,p_npss_layoutComponent,f_navigationComponent,f_queue_searchComponent,p_search_layoutComponent,f_searchComponent,],
+  declarations: [s_salary_file_creationComponent,p_npss_layoutComponent,f_navigationComponent,f_queue_searchComponent,p_search_layoutComponent,f_payment_merc_file_creation_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

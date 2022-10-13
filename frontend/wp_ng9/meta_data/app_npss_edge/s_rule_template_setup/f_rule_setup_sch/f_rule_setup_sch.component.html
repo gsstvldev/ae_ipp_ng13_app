@@ -1,0 +1,24 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_rule_setup_sch="ngForm">
+<div id="RN01" class="row">
+	<div #rule_setup_sch_rule_code id="RN01CN1" class="column col-md-10 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('rule_code')" >
+				<cdn_ctrl [ctrl_id]="'rule_setup_sch_rule_code'" [comp_id]="comp_id" [ctrl]="ctrl.rule_code" [model]="screen_instance[this.comp_id].f_rule_setup_sch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN01CN2" class="column col-md-10 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('rule_name')" >
+				<cdn_ctrl [ctrl_id]="'rule_setup_sch_rule_name'" [comp_id]="comp_id" [ctrl]="ctrl.rule_name" [model]="screen_instance[this.comp_id].f_rule_setup_sch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+ 		<div class="col-md-2 col-sm-6 col-xs-6 col-md-offset-8 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.search_search.show" >
+			<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+		</div>
+		<div class="col-md-2 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.search_clear.show" >
+			<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		</div>
+	</div>
+
+</div>

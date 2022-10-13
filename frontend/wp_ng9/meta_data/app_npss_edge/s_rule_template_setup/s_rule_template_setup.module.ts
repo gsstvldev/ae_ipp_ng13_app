@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26431 
+Build ID        : 26432 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-13 9:46 AM 
+Modified Date   : 2022-Oct-13 10:44 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rule_template_setup

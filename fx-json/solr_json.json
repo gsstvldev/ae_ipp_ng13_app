@@ -1,26 +1,5 @@
 [{
-  $DQ$TRAN_INSERTION$DQ$: [
-    {
-      $DQ$NAME$DQ$: $DQ$NPSSRS_ID$DQ$,
-      $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
-      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665647734603$DQ$
-    },
-    {
-      $DQ$NAME$DQ$: $DQ$RULE_CODE$DQ$,
-      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665647734603$DQ$
-    },
-    {
-      $DQ$NAME$DQ$: $DQ$RULE_NAME$DQ$,
-      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665647734603$DQ$
-    },
-    {
-      $DQ$NAME$DQ$: $DQ$PARAM_SETUP$DQ$,
-      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665647734603$DQ$
-    }
-  ],
+  $DQ$TRAN_INSERTION$DQ$: [],
   $DQ$TRAN_DELETION$DQ$: [],
   $DQ$ATMT_INSERTION$DQ$: []
 }]

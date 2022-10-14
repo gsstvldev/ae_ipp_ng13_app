@@ -2,7 +2,7 @@
 	<p-tabPanel  header="{{'Payment' | translate}}" headerStyleClass="tab-comp__header {{screen_instance[comp_id].tab_profiles['p_form_layout']['showclass']}} {{screen_instance[comp_id].tab_profiles['p_form_layout']['dynamic_class']}}" [disabled]="screen_instance[comp_id].tab_profiles['p_form_layout']['disabled']" [ngClass]="getClass('p_form_layout')">
 		<p_form_layout [screen_instance]="screen_instance" ></p_form_layout>
 	</p-tabPanel>
-	<p-tabPanel  header="{{'Outward' | translate}}" headerStyleClass="tab-comp__header {{screen_instance[comp_id].tab_profiles['p_history_layout']['showclass']}} {{screen_instance[comp_id].tab_profiles['p_history_layout']['dynamic_class']}}" [disabled]="screen_instance[comp_id].tab_profiles['p_history_layout']['disabled']" [ngClass]="getClass('p_history_layout')">
+	<p-tabPanel  header="{{'History' | translate}}" headerStyleClass="tab-comp__header {{screen_instance[comp_id].tab_profiles['p_history_layout']['showclass']}} {{screen_instance[comp_id].tab_profiles['p_history_layout']['dynamic_class']}}" [disabled]="screen_instance[comp_id].tab_profiles['p_history_layout']['disabled']" [ngClass]="getClass('p_history_layout')">
 		<p_history_layout [screen_instance]="screen_instance" ></p_history_layout>
 	</p-tabPanel>
 </p-tabView>

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26449 
+Build ID        : 26448 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-14 13:40 PM 
+Modified Date   : 2022-Oct-14 14:20 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_transfer_outward

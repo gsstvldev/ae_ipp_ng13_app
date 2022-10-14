@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26449 
+Build ID        : 26448 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-14 13:40 PM 
+Modified Date   : 2022-Oct-14 14:19 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_transfer_inward
@@ -41,11 +41,11 @@ export class p_history_layoutComponent implements OnInit {
 		this.npss_ip_error_widget.desc = "npss_ip_error_widget"
 		this.npss_ip_error_widget.need_header = false
 		this.history_search.desc = "History Search"
-		this.history_search.need_header = ""
+		this.history_search.need_header = true
 		this.transactions.desc = "Transactions"
-		this.transactions.need_header = true
+		this.transactions.need_header = false
 		this.transaction_detail.desc = "Transaction Detail"
-		this.transaction_detail.need_header = true
+		this.transaction_detail.need_header = false
 		this.ip_cust__transactions.desc = "IP Cust  transactions"
 		this.ip_cust__transactions.need_header = ""
 		this.ip_transactions.desc = "IP Transactions"

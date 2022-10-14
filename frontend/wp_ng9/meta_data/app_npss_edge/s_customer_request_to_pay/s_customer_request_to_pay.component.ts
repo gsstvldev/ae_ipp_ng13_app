@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26449 
+Build ID        : 26448 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-14 13:40 PM 
+Modified Date   : 2022-Oct-14 14:20 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_request_to_pay
@@ -287,7 +287,7 @@ export class s_customer_request_to_payComponent implements OnInit,AfterViewInit 
 		this.payment_tabview.uictrl_code = "tabview"
 		this.payment_tabview.uicgc_desc = "Payment TabView"
 		this.payment_tabview.uicgc_code = "uicgc_4"
-		this.payment_tabview.params = [{"desc":"Payment","profile_code":"BTL_1408_1634824504003","id":1647332447829,"role_code":""},{"desc":"Outward","profile_code":"BTL_1408_1664944837564","id":1634879677420}]
+		this.payment_tabview.params = [{"desc":"Payment","profile_code":"BTL_1408_1634824504003","id":1647332447829,"role_code":""},{"desc":"History","profile_code":"BTL_1408_1664944837564","id":1634879677420}]
 		this.payment_tabview.datasource = {}
 		this.payment_tabview.context_menu = []
 		this.payment_tabview.views = {}
@@ -295,7 +295,7 @@ export class s_customer_request_to_payComponent implements OnInit,AfterViewInit 
 		this.payment_tabview.show = true
 		this.payment_tabview.dynamic_param = {}
 		this.payment_tabview.mode = "tab"
-		this.payment_tabview.tab_profiles = {"p_form_layout":{"header":"Payment","profile_code":"BTL_1408_1634824504003","index":0,"selected":false,"disabled":false,"show":true,"invalid":false,"dynamic_class":"","app_user_role":[],"component":["payment_form","payment_form_action"],"showclass":"show"},"p_history_layout":{"header":"Outward","profile_code":"BTL_1408_1664944837564","index":1,"selected":false,"disabled":false,"show":true,"invalid":false,"dynamic_class":"","app_user_role":[],"component":["uicgc_6"],"showclass":"show"}}
+		this.payment_tabview.tab_profiles = {"p_form_layout":{"header":"Payment","profile_code":"BTL_1408_1634824504003","index":0,"selected":false,"disabled":false,"show":true,"invalid":false,"dynamic_class":"","app_user_role":[],"component":["payment_form","payment_form_action"],"showclass":"show"},"p_history_layout":{"header":"History","profile_code":"BTL_1408_1664944837564","index":1,"selected":false,"disabled":false,"show":true,"invalid":false,"dynamic_class":"","app_user_role":[],"component":["uicgc_6"],"showclass":"show"}}
 		this.payment_tabview.activeindex = 0
 	
 		// Component level properties - "Dynamic Search" 
@@ -637,7 +637,7 @@ export class s_customer_request_to_payComponent implements OnInit,AfterViewInit 
 		this.transaction_detail.uictrl_code = "datatable"
 		this.transaction_detail.uicgc_desc = "Transaction Detail"
 		this.transaction_detail.uicgc_code = "uicgc_23"
-		this.transaction_detail.params = {}
+		this.transaction_detail.params = {"need_search":"N","need_pag_datatable":"Y"}
 		this.transaction_detail.datasource = {}
 		this.transaction_detail.context_menu = []
 		this.transaction_detail.views = {}

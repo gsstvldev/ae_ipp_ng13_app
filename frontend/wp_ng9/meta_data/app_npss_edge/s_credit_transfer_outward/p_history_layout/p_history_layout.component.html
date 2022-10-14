@@ -1,0 +1,25 @@
+<div class="p_history_layout">
+ <!-- PROFILE HTML - p_history_layout --> 
+<div id="R11" class="row">
+	<div id="R11C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="history_search" >
+			<f_npss_transaction_srch [comp_id]="'history_search'" [screen_instance]="screen_instance" [hidden]="isHidden('history_search','f_npss_transaction_srch')" profile_name="p_history_layout"></f_npss_transaction_srch >
+		</div>
+	</div>
+</div>
+<div id="R21" class="row">
+	<div id="R21C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="transactions"  [hidden]="!screen_instance['transactions'].show" >
+			<datatable [comp_id]="'transactions'" [screen_instance]="screen_instance" profile_name="p_history_layout"></datatable>
+		</div>
+	</div>
+</div>
+<div id="R31" class="row">
+	<div id="R31C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="transaction_detail"  [hidden]="!screen_instance['transaction_detail'].show" >
+			<datatable [comp_id]="'transaction_detail'" [screen_instance]="screen_instance" profile_name="p_history_layout"></datatable>
+		</div>
+	</div>
+</div>
+
+</div>

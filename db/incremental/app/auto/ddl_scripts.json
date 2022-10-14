@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_CUST_TRANSACTIONS add column PAYEE_ACCT_NAME CHARACTER VARYING(126), add column PAYEE_IBAN CHARACTER VARYING(64);","params" : [] }]

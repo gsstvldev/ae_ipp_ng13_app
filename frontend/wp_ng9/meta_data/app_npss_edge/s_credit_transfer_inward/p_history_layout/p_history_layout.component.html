@@ -1,0 +1,51 @@
+<div class="p_history_layout">
+ <!-- PROFILE HTML - p_history_layout --> 
+<div id="R51" class="row">
+	<div id="R51C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="ipsp_error_ip_widget"  [hidden]="!screen_instance['ipsp_error_ip_widget'].show" >
+			<torus_cs_show_hide [comp_id]="'ipsp_error_ip_widget'" [screen_instance]="screen_instance" profile_name="p_history_layout"></torus_cs_show_hide>
+		</div>
+	</div>
+</div>
+<div id="R41" class="row">
+	<div id="R41C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="ip_payment_form_action" >
+			<f_ip_payment_form_action [comp_id]="'ip_payment_form_action'" [screen_instance]="screen_instance" [hidden]="isHidden('ip_payment_form_action','f_ip_payment_form_action')" profile_name="p_history_layout"></f_ip_payment_form_action >
+		</div>
+	</div>
+</div>
+<div id="R11" class="row">
+	<div id="R11C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="history_search" >
+			<f_npss_transaction_srch [comp_id]="'history_search'" [screen_instance]="screen_instance" [hidden]="isHidden('history_search','f_npss_transaction_srch')" profile_name="p_history_layout"></f_npss_transaction_srch >
+		</div>
+	</div>
+</div>
+<div id="R21" class="row">
+	<div id="R21C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="transactions"  [hidden]="!screen_instance['transactions'].show" >
+			<datatable [comp_id]="'transactions'" [screen_instance]="screen_instance" profile_name="p_history_layout"></datatable>
+		</div>
+	</div>
+</div>
+<div id="R31" class="row">
+	<div id="R31C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="transaction_detail"  [hidden]="!screen_instance['transaction_detail'].show" >
+			<datatable [comp_id]="'transaction_detail'" [screen_instance]="screen_instance" profile_name="p_history_layout"></datatable>
+		</div>
+	</div>
+</div>
+<div id="R61" class="row">
+	<div id="R61C1" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="ip_cust__transactions"  [hidden]="!screen_instance['ip_cust__transactions'].show" >
+			<datatable [comp_id]="'ip_cust__transactions'" [screen_instance]="screen_instance" profile_name="p_history_layout"></datatable>
+		</div>
+	</div>
+	<div id="R61C2" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="ip_transactions"  [hidden]="!screen_instance['ip_transactions'].show" >
+			<datatable [comp_id]="'ip_transactions'" [screen_instance]="screen_instance" profile_name="p_history_layout"></datatable>
+		</div>
+	</div>
+</div>
+
+</div>

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26391 
+Build ID        : 26441 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-11 12:12 PM 
+Modified Date   : 2022-Oct-14 11:18 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_enrolment

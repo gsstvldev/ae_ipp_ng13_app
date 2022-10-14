@@ -1,32 +1,32 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26389 
+Build ID        : 26441 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-12 4:58 AM 
+Modified Date   : 2022-Oct-14 11:18 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_customer_request_to_pay
-Form Name       : Cust Transaction UI--------------------------------------------------------------------------- */
+Screen Name     : s_credit_transfer_outward
+Form Name       : OP Cust Transaction UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_cust_transaction_ui',
-  templateUrl: './f_cust_transaction_ui.component.html',
-  styleUrls: ['./f_cust_transaction_ui.component.css'],
+  selector: 'f_op_cust_transaction_ui',
+  templateUrl: './f_op_cust_transaction_ui.component.html',
+  styleUrls: ['./f_op_cust_transaction_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_cust_transaction_uiComponent implements OnInit {
+export class f_op_cust_transaction_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_cust_transaction_ui') form;
-  @ViewChild('cust_transaction_ui_memory51') element: ElementRef;
+  @ViewChild('f_op_cust_transaction_ui') form;
+  @ViewChild('op_cust_transaction_ui_memory51') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -81,15 +81,15 @@ focustoelement(){
 		this.ctrl.memory51.vld_rules = []
 		this.ctrl.memory51.targetcolumn_lower = "memory51"
 		this.ctrl.memory51.disabled = false
-		this.ctrl.memory51.view_name = "f_cust_transaction_ui"
-		this.ctrl.memory51.ctrl_id = "cust_transaction_ui_memory51"
-		this.ctrl.cust_transaction_ui_memory51 = {}
-		this.ctrl.cust_transaction_ui_memory51.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_cust_transaction_ui.memory51 = {}
+		this.ctrl.memory51.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.memory51.ctrl_id = "op_cust_transaction_ui_memory51"
+		this.ctrl.op_cust_transaction_ui_memory51 = {}
+		this.ctrl.op_cust_transaction_ui_memory51.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.memory51 = {}
 	
 		//Properties of dbtr_acct_name
 		this.ctrl.dbtr_acct_name = {}
-		this.ctrl.dbtr_acct_name.id = "RN11CN2"
+		this.ctrl.dbtr_acct_name.id = "RN11CN1"
 		this.ctrl.dbtr_acct_name.desc = "Customer Name"
 		this.ctrl.dbtr_acct_name.visible = true
 		this.ctrl.dbtr_acct_name.label_name = "Customer Name"
@@ -120,11 +120,11 @@ focustoelement(){
 		this.ctrl.dbtr_acct_name.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Select the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.dbtr_acct_name.targetcolumn_lower = "dbtr_acct_name"
 		this.ctrl.dbtr_acct_name.disabled = false
-		this.ctrl.dbtr_acct_name.view_name = "f_cust_transaction_ui"
-		this.ctrl.dbtr_acct_name.ctrl_id = "cust_transaction_ui_dbtr_acct_name"
-		this.ctrl.cust_transaction_ui_dbtr_acct_name = {}
-		this.ctrl.cust_transaction_ui_dbtr_acct_name.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_cust_transaction_ui.dbtr_acct_name = {}
+		this.ctrl.dbtr_acct_name.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.dbtr_acct_name.ctrl_id = "op_cust_transaction_ui_dbtr_acct_name"
+		this.ctrl.op_cust_transaction_ui_dbtr_acct_name = {}
+		this.ctrl.op_cust_transaction_ui_dbtr_acct_name.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.dbtr_acct_name = {}
 	
 		//Properties of dbtr_phone_no
 		this.ctrl.dbtr_phone_no = {}
@@ -159,11 +159,11 @@ focustoelement(){
 		this.ctrl.dbtr_phone_no.vld_rules = []
 		this.ctrl.dbtr_phone_no.targetcolumn_lower = "dbtr_phone_no"
 		this.ctrl.dbtr_phone_no.disabled = false
-		this.ctrl.dbtr_phone_no.view_name = "f_cust_transaction_ui"
-		this.ctrl.dbtr_phone_no.ctrl_id = "cust_transaction_ui_dbtr_phone_no"
-		this.ctrl.cust_transaction_ui_dbtr_phone_no = {}
-		this.ctrl.cust_transaction_ui_dbtr_phone_no.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_cust_transaction_ui.dbtr_phone_no = {}
+		this.ctrl.dbtr_phone_no.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.dbtr_phone_no.ctrl_id = "op_cust_transaction_ui_dbtr_phone_no"
+		this.ctrl.op_cust_transaction_ui_dbtr_phone_no = {}
+		this.ctrl.op_cust_transaction_ui_dbtr_phone_no.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.dbtr_phone_no = {}
 	
 		//Properties of dbtr_acct_balance
 		this.ctrl.dbtr_acct_balance = {}
@@ -198,10 +198,10 @@ focustoelement(){
 		this.ctrl.dbtr_acct_balance.vld_rules = []
 		this.ctrl.dbtr_acct_balance.targetcolumn_lower = "dbtr_acct_balance"
 		this.ctrl.dbtr_acct_balance.disabled = false
-		this.ctrl.dbtr_acct_balance.view_name = "f_cust_transaction_ui"
-		this.ctrl.dbtr_acct_balance.ctrl_id = "cust_transaction_ui_dbtr_acct_balance"
-		this.ctrl.cust_transaction_ui_dbtr_acct_balance = {}
-		this.ctrl.cust_transaction_ui_dbtr_acct_balance.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.dbtr_acct_balance.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.dbtr_acct_balance.ctrl_id = "op_cust_transaction_ui_dbtr_acct_balance"
+		this.ctrl.op_cust_transaction_ui_dbtr_acct_balance = {}
+		this.ctrl.op_cust_transaction_ui_dbtr_acct_balance.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of dbtr_sanction_limit
 		this.ctrl.dbtr_sanction_limit = {}
@@ -236,10 +236,10 @@ focustoelement(){
 		this.ctrl.dbtr_sanction_limit.vld_rules = []
 		this.ctrl.dbtr_sanction_limit.targetcolumn_lower = "dbtr_sanction_limit"
 		this.ctrl.dbtr_sanction_limit.disabled = false
-		this.ctrl.dbtr_sanction_limit.view_name = "f_cust_transaction_ui"
-		this.ctrl.dbtr_sanction_limit.ctrl_id = "cust_transaction_ui_dbtr_sanction_limit"
-		this.ctrl.cust_transaction_ui_dbtr_sanction_limit = {}
-		this.ctrl.cust_transaction_ui_dbtr_sanction_limit.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.dbtr_sanction_limit.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.dbtr_sanction_limit.ctrl_id = "op_cust_transaction_ui_dbtr_sanction_limit"
+		this.ctrl.op_cust_transaction_ui_dbtr_sanction_limit = {}
+		this.ctrl.op_cust_transaction_ui_dbtr_sanction_limit.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory52
 		this.ctrl.memory52 = {}
@@ -274,17 +274,17 @@ focustoelement(){
 		this.ctrl.memory52.vld_rules = []
 		this.ctrl.memory52.targetcolumn_lower = "memory52"
 		this.ctrl.memory52.disabled = false
-		this.ctrl.memory52.view_name = "f_cust_transaction_ui"
-		this.ctrl.memory52.ctrl_id = "cust_transaction_ui_memory52"
-		this.ctrl.cust_transaction_ui_memory52 = {}
-		this.ctrl.cust_transaction_ui_memory52.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_cust_transaction_ui.memory52 = {}
+		this.ctrl.memory52.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.memory52.ctrl_id = "op_cust_transaction_ui_memory52"
+		this.ctrl.op_cust_transaction_ui_memory52 = {}
+		this.ctrl.op_cust_transaction_ui_memory52.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.memory52 = {}
 	
 		//Properties of cdtr_pmt_type
 		this.ctrl.cdtr_pmt_type = {}
-		this.ctrl.cdtr_pmt_type.id = "RN101CN14"
+		this.ctrl.cdtr_pmt_type.id = "RN41CN7"
 		this.ctrl.cdtr_pmt_type.desc = "Payment Type"
-		this.ctrl.cdtr_pmt_type.visible = false
+		this.ctrl.cdtr_pmt_type.visible = true
 		this.ctrl.cdtr_pmt_type.label_name = "Payment Type"
 		this.ctrl.cdtr_pmt_type.df_code = "DF_1304_1665385905734"
 		this.ctrl.cdtr_pmt_type.df_description = "Column Group 1"
@@ -313,17 +313,17 @@ focustoelement(){
 		this.ctrl.cdtr_pmt_type.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Select the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.cdtr_pmt_type.targetcolumn_lower = "cdtr_pmt_type"
 		this.ctrl.cdtr_pmt_type.disabled = false
-		this.ctrl.cdtr_pmt_type.view_name = "f_cust_transaction_ui"
-		this.ctrl.cdtr_pmt_type.ctrl_id = "cust_transaction_ui_cdtr_pmt_type"
-		this.ctrl.cust_transaction_ui_cdtr_pmt_type = {}
-		this.ctrl.cust_transaction_ui_cdtr_pmt_type.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_cust_transaction_ui.cdtr_pmt_type = {}
+		this.ctrl.cdtr_pmt_type.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.cdtr_pmt_type.ctrl_id = "op_cust_transaction_ui_cdtr_pmt_type"
+		this.ctrl.op_cust_transaction_ui_cdtr_pmt_type = {}
+		this.ctrl.op_cust_transaction_ui_cdtr_pmt_type.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.cdtr_pmt_type = {}
 	
 		//Properties of cdtr_phone_no
 		this.ctrl.cdtr_phone_no = {}
-		this.ctrl.cdtr_phone_no.id = "RN51CN8"
+		this.ctrl.cdtr_phone_no.id = "RN41CN8"
 		this.ctrl.cdtr_phone_no.desc = "Phone No"
-		this.ctrl.cdtr_phone_no.visible = false
+		this.ctrl.cdtr_phone_no.visible = true
 		this.ctrl.cdtr_phone_no.label_name = "Phone No"
 		this.ctrl.cdtr_phone_no.df_code = "DF_1304_1665385905734"
 		this.ctrl.cdtr_phone_no.df_description = "Column Group 1"
@@ -352,16 +352,16 @@ focustoelement(){
 		this.ctrl.cdtr_phone_no.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.cdtr_phone_no.targetcolumn_lower = "cdtr_phone_no"
 		this.ctrl.cdtr_phone_no.disabled = false
-		this.ctrl.cdtr_phone_no.view_name = "f_cust_transaction_ui"
-		this.ctrl.cdtr_phone_no.ctrl_id = "cust_transaction_ui_cdtr_phone_no"
-		this.ctrl.cust_transaction_ui_cdtr_phone_no = {}
-		this.ctrl.cust_transaction_ui_cdtr_phone_no.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.cdtr_phone_no.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.cdtr_phone_no.ctrl_id = "op_cust_transaction_ui_cdtr_phone_no"
+		this.ctrl.op_cust_transaction_ui_cdtr_phone_no = {}
+		this.ctrl.op_cust_transaction_ui_cdtr_phone_no.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_email_id
 		this.ctrl.cdtr_email_id = {}
-		this.ctrl.cdtr_email_id.id = "RN61CN9"
+		this.ctrl.cdtr_email_id.id = "RN41CN9"
 		this.ctrl.cdtr_email_id.desc = "Email ID"
-		this.ctrl.cdtr_email_id.visible = false
+		this.ctrl.cdtr_email_id.visible = true
 		this.ctrl.cdtr_email_id.label_name = "Email ID"
 		this.ctrl.cdtr_email_id.df_code = "DF_1304_1665385905734"
 		this.ctrl.cdtr_email_id.df_description = "Column Group 1"
@@ -390,16 +390,16 @@ focustoelement(){
 		this.ctrl.cdtr_email_id.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.cdtr_email_id.targetcolumn_lower = "cdtr_email_id"
 		this.ctrl.cdtr_email_id.disabled = false
-		this.ctrl.cdtr_email_id.view_name = "f_cust_transaction_ui"
-		this.ctrl.cdtr_email_id.ctrl_id = "cust_transaction_ui_cdtr_email_id"
-		this.ctrl.cust_transaction_ui_cdtr_email_id = {}
-		this.ctrl.cust_transaction_ui_cdtr_email_id.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.cdtr_email_id.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.cdtr_email_id.ctrl_id = "op_cust_transaction_ui_cdtr_email_id"
+		this.ctrl.op_cust_transaction_ui_cdtr_email_id = {}
+		this.ctrl.op_cust_transaction_ui_cdtr_email_id.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_emirates
 		this.ctrl.cdtr_emirates = {}
-		this.ctrl.cdtr_emirates.id = "RN71CN10"
+		this.ctrl.cdtr_emirates.id = "RN41CN10"
 		this.ctrl.cdtr_emirates.desc = "Emirates"
-		this.ctrl.cdtr_emirates.visible = false
+		this.ctrl.cdtr_emirates.visible = true
 		this.ctrl.cdtr_emirates.label_name = "Emirates"
 		this.ctrl.cdtr_emirates.df_code = "DF_1304_1665385905734"
 		this.ctrl.cdtr_emirates.df_description = "Column Group 1"
@@ -428,16 +428,16 @@ focustoelement(){
 		this.ctrl.cdtr_emirates.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.cdtr_emirates.targetcolumn_lower = "cdtr_emirates"
 		this.ctrl.cdtr_emirates.disabled = false
-		this.ctrl.cdtr_emirates.view_name = "f_cust_transaction_ui"
-		this.ctrl.cdtr_emirates.ctrl_id = "cust_transaction_ui_cdtr_emirates"
-		this.ctrl.cust_transaction_ui_cdtr_emirates = {}
-		this.ctrl.cust_transaction_ui_cdtr_emirates.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.cdtr_emirates.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.cdtr_emirates.ctrl_id = "op_cust_transaction_ui_cdtr_emirates"
+		this.ctrl.op_cust_transaction_ui_cdtr_emirates = {}
+		this.ctrl.op_cust_transaction_ui_cdtr_emirates.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_iban
 		this.ctrl.cdtr_iban = {}
-		this.ctrl.cdtr_iban.id = "RN81CN11"
+		this.ctrl.cdtr_iban.id = "RN41CN11"
 		this.ctrl.cdtr_iban.desc = "IBAN"
-		this.ctrl.cdtr_iban.visible = false
+		this.ctrl.cdtr_iban.visible = true
 		this.ctrl.cdtr_iban.label_name = "IBAN"
 		this.ctrl.cdtr_iban.df_code = "DF_1304_1665385905734"
 		this.ctrl.cdtr_iban.df_description = "Column Group 1"
@@ -466,16 +466,16 @@ focustoelement(){
 		this.ctrl.cdtr_iban.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.cdtr_iban.targetcolumn_lower = "cdtr_iban"
 		this.ctrl.cdtr_iban.disabled = false
-		this.ctrl.cdtr_iban.view_name = "f_cust_transaction_ui"
-		this.ctrl.cdtr_iban.ctrl_id = "cust_transaction_ui_cdtr_iban"
-		this.ctrl.cust_transaction_ui_cdtr_iban = {}
-		this.ctrl.cust_transaction_ui_cdtr_iban.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.cdtr_iban.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.cdtr_iban.ctrl_id = "op_cust_transaction_ui_cdtr_iban"
+		this.ctrl.op_cust_transaction_ui_cdtr_iban = {}
+		this.ctrl.op_cust_transaction_ui_cdtr_iban.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of intrbk_sttlm_amnt
 		this.ctrl.intrbk_sttlm_amnt = {}
-		this.ctrl.intrbk_sttlm_amnt.id = "RN91CN12"
+		this.ctrl.intrbk_sttlm_amnt.id = "RN41CN12"
 		this.ctrl.intrbk_sttlm_amnt.desc = "Enter Amount"
-		this.ctrl.intrbk_sttlm_amnt.visible = false
+		this.ctrl.intrbk_sttlm_amnt.visible = true
 		this.ctrl.intrbk_sttlm_amnt.label_name = "Enter Amount"
 		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665385905734"
 		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
@@ -504,14 +504,90 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
 		this.ctrl.intrbk_sttlm_amnt.disabled = false
-		this.ctrl.intrbk_sttlm_amnt.view_name = "f_cust_transaction_ui"
-		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "cust_transaction_ui_intrbk_sttlm_amnt"
-		this.ctrl.cust_transaction_ui_intrbk_sttlm_amnt = {}
-		this.ctrl.cust_transaction_ui_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.intrbk_sttlm_amnt.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "op_cust_transaction_ui_intrbk_sttlm_amnt"
+		this.ctrl.op_cust_transaction_ui_intrbk_sttlm_amnt = {}
+		this.ctrl.op_cust_transaction_ui_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of payee_acct_name
+		this.ctrl.payee_acct_name = {}
+		this.ctrl.payee_acct_name.id = "RN41CN13"
+		this.ctrl.payee_acct_name.desc = "Name"
+		this.ctrl.payee_acct_name.visible = true
+		this.ctrl.payee_acct_name.label_name = "Name"
+		this.ctrl.payee_acct_name.df_code = "DF_1304_1665385905734"
+		this.ctrl.payee_acct_name.df_description = "Column Group 1"
+		this.ctrl.payee_acct_name.uictrl_code = "TXT"
+		this.ctrl.payee_acct_name.target_column = "PAYEE_ACCT_NAME"
+		this.ctrl.payee_acct_name.data_type = "TEXT"
+		this.ctrl.payee_acct_name.data_length = 126
+		this.ctrl.payee_acct_name.zone_df_code = "DF_1304_1665385905734"
+		this.ctrl.payee_acct_name.default_value = ""
+		this.ctrl.payee_acct_name.is_memory_ctrl = "N"
+		this.ctrl.payee_acct_name.field_coordinates = ""
+		this.ctrl.payee_acct_name.sub_details = ""
+		this.ctrl.payee_acct_name.accept_char = ""
+		this.ctrl.payee_acct_name.currency_format = ""
+		this.ctrl.payee_acct_name.data_scale = ""
+		this.ctrl.payee_acct_name.hide_label = false
+		this.ctrl.payee_acct_name.depends_on = ""
+		this.ctrl.payee_acct_name.placeholder = ""
+		this.ctrl.payee_acct_name.dynamic_param = ""
+		this.ctrl.payee_acct_name.style_code = ""
+		this.ctrl.payee_acct_name.data_source = ""
+		this.ctrl.payee_acct_name.image_association = ""
+		this.ctrl.payee_acct_name.show = true
+		this.ctrl.payee_acct_name.sub_content = ""
+		this.ctrl.payee_acct_name.required = false
+		this.ctrl.payee_acct_name.vld_rules = []
+		this.ctrl.payee_acct_name.targetcolumn_lower = "payee_acct_name"
+		this.ctrl.payee_acct_name.disabled = false
+		this.ctrl.payee_acct_name.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.payee_acct_name.ctrl_id = "op_cust_transaction_ui_payee_acct_name"
+		this.ctrl.op_cust_transaction_ui_payee_acct_name = {}
+		this.ctrl.op_cust_transaction_ui_payee_acct_name.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of payee_iban
+		this.ctrl.payee_iban = {}
+		this.ctrl.payee_iban.id = "RN41CN14"
+		this.ctrl.payee_iban.desc = "IBaN"
+		this.ctrl.payee_iban.visible = true
+		this.ctrl.payee_iban.label_name = "IBaN"
+		this.ctrl.payee_iban.df_code = "DF_1304_1665385905734"
+		this.ctrl.payee_iban.df_description = "Column Group 1"
+		this.ctrl.payee_iban.uictrl_code = "TXT"
+		this.ctrl.payee_iban.target_column = "PAYEE_IBAN"
+		this.ctrl.payee_iban.data_type = "TEXT"
+		this.ctrl.payee_iban.data_length = 64
+		this.ctrl.payee_iban.zone_df_code = "DF_1304_1665385905734"
+		this.ctrl.payee_iban.default_value = ""
+		this.ctrl.payee_iban.is_memory_ctrl = ""
+		this.ctrl.payee_iban.field_coordinates = ""
+		this.ctrl.payee_iban.sub_details = ""
+		this.ctrl.payee_iban.accept_char = ""
+		this.ctrl.payee_iban.currency_format = ""
+		this.ctrl.payee_iban.data_scale = ""
+		this.ctrl.payee_iban.hide_label = false
+		this.ctrl.payee_iban.depends_on = ""
+		this.ctrl.payee_iban.placeholder = ""
+		this.ctrl.payee_iban.dynamic_param = ""
+		this.ctrl.payee_iban.style_code = ""
+		this.ctrl.payee_iban.data_source = ""
+		this.ctrl.payee_iban.image_association = ""
+		this.ctrl.payee_iban.show = true
+		this.ctrl.payee_iban.sub_content = ""
+		this.ctrl.payee_iban.required = false
+		this.ctrl.payee_iban.vld_rules = []
+		this.ctrl.payee_iban.targetcolumn_lower = "payee_iban"
+		this.ctrl.payee_iban.disabled = false
+		this.ctrl.payee_iban.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.payee_iban.ctrl_id = "op_cust_transaction_ui_payee_iban"
+		this.ctrl.op_cust_transaction_ui_payee_iban = {}
+		this.ctrl.op_cust_transaction_ui_payee_iban.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of value_date
 		this.ctrl.value_date = {}
-		this.ctrl.value_date.id = "RN101CN13"
+		this.ctrl.value_date.id = "RN51CN15"
 		this.ctrl.value_date.desc = "Value Date"
 		this.ctrl.value_date.visible = false
 		this.ctrl.value_date.label_name = "Value Date"
@@ -542,15 +618,15 @@ focustoelement(){
 		this.ctrl.value_date.vld_rules = []
 		this.ctrl.value_date.targetcolumn_lower = "value_date"
 		this.ctrl.value_date.disabled = false
-		this.ctrl.value_date.view_name = "f_cust_transaction_ui"
-		this.ctrl.value_date.ctrl_id = "cust_transaction_ui_value_date"
-		this.ctrl.cust_transaction_ui_value_date = {}
-		this.ctrl.cust_transaction_ui_value_date.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_cust_transaction_ui.model = {"MEMORY51":"","DBTR_ACCT_NAME":"","DBTR_PHONE_NO":"","DBTR_ACCT_BALANCE":"","DBTR_SANCTION_LIMIT":"","MEMORY52":"","CDTR_PMT_TYPE":"","CDTR_PHONE_NO":"","CDTR_EMAIL_ID":"","CDTR_EMIRATES":"","CDTR_IBAN":"","INTRBK_STTLM_AMNT":"","VALUE_DATE":""}
-		this.screen_instance[this.comp_id].f_cust_transaction_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PHONE_NO"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"DBTR_ACCT_BALANCE"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"DBTR_SANCTION_LIMIT"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_PMT_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_EMIRATES"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"}]
-		this.screen_instance[this.comp_id].f_cust_transaction_ui.dt_code = "dt_1304_1665384453253"
-		this.screen_instance[this.comp_id].f_cust_transaction_ui.dtt_code = "dtt_1304_1665385772257"
-		this.screen_instance[this.comp_id].f_cust_transaction_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		this.ctrl.value_date.view_name = "f_op_cust_transaction_ui"
+		this.ctrl.value_date.ctrl_id = "op_cust_transaction_ui_value_date"
+		this.ctrl.op_cust_transaction_ui_value_date = {}
+		this.ctrl.op_cust_transaction_ui_value_date.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.model = {"MEMORY51":"","DBTR_ACCT_NAME":"","DBTR_PHONE_NO":"","DBTR_ACCT_BALANCE":"","DBTR_SANCTION_LIMIT":"","MEMORY52":"","CDTR_PMT_TYPE":"","CDTR_PHONE_NO":"","CDTR_EMAIL_ID":"","CDTR_EMIRATES":"","CDTR_IBAN":"","INTRBK_STTLM_AMNT":"","PAYEE_ACCT_NAME":"","PAYEE_IBAN":"","VALUE_DATE":""}
+		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PHONE_NO"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"DBTR_ACCT_BALANCE"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"DBTR_SANCTION_LIMIT"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_PMT_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_EMIRATES"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYEE_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYEE_IBAN"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"}]
+		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.dt_code = "dt_1304_1665384453253"
+		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.dtt_code = "dtt_1304_1665385772257"
+		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -597,10 +673,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_cust_transaction_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_cust_transaction_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_op_cust_transaction_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_op_cust_transaction_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_cust_transaction_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_op_cust_transaction_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

@@ -1,28 +1,30 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26389 
+Build ID        : 26441 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-12 4:58 AM 
+Modified Date   : 2022-Oct-14 11:18 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_customer_request_to_pay
-Profile Name    : Main Layout--------------------------------------------------------------------------- */
+Screen Name     : s_credit_transfer_outward
+Profile Name    : Form Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_main_layout',
-  templateUrl: './p_main_layout.component.html',
-  styleUrls: ['./p_main_layout.component.css']
+  selector: 'p_form_layout',
+  templateUrl: './p_form_layout.component.html',
+  styleUrls: ['./p_form_layout.component.css']
 })
 
 // Start of class 
-export class p_main_layoutComponent implements OnInit {
+export class p_form_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	data_entry_ui : any = {}
+  	payment_form : any = {}
+	payment_form_action : any = {}
+	ipsp_error_widget : any = {}
 
 
   // Constructor 
@@ -30,12 +32,16 @@ export class p_main_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.data_entry_ui.desc = "Data Entry UI"
-		this.data_entry_ui.need_header = ""
+    	this.payment_form.desc = "Payment Form"
+		this.payment_form.need_header = true
+		this.payment_form_action.desc = "Payment Form Action"
+		this.payment_form_action.need_header = true
+		this.ipsp_error_widget.desc = "ipsp_error_widget"
+		this.ipsp_error_widget.need_header = ""
 	
 
-    this.screen_instance['p_main_layout'] = {};
-    this.screen_instance['p_main_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_form_layout'] = {};
+    this.screen_instance['p_form_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

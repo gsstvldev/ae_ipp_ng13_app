@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26441 
+Build ID        : 26446 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-14 11:18 AM 
+Modified Date   : 2022-Oct-14 12:19 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_transfer_inward
@@ -31,7 +31,7 @@ export class s_credit_transfer_inwardComponent implements OnInit,AfterViewInit {
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
-	current_profile : string = "p_main_layout"
+	current_profile : string = "p_vertical_details_layout"
 	uicgc_1 : string = "payment_form"
 	uicgc_2 : string = "payment_form_action"
 	uicgc_3 : string = "transactions"

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26447 
+Build ID        : 26449 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-14 13:21 PM 
+Modified Date   : 2022-Oct-14 13:40 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_request_to_pay

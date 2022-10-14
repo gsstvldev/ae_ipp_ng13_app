@@ -31,7 +31,7 @@ export class npssp_cs_tran_insertService {
             'DBTR_ACCT_NAME': CtrlScope.DBTR_ACCT_NAME || '',
             'DBTR_PHONE_NO': CtrlScope.DBTR_PHONE_NO || '',
             'DBTR_ACCT_BALANCE': CtrlScope.DBTR_ACCT_BALANCE || '',
-            // 'DBTR_SANCTION_LIMIT': CtrlScope.DBTR_SANCTION_LIMIT || '',
+            // 'DBTR_SANCTION_ LIMIT': CtrlScope.DBTR_SANCTION_LIMIT || '',
             'CDTR_PMT_TYPE': CtrlScope.CDTR_PMT_TYPE || '',
             'CDTR_PHONE_NO': CtrlScope.CDTR_PHONE_NO || '',
             'CDTR_EMAIL_ID': CtrlScope.CDTR_EMAIL_ID || '',

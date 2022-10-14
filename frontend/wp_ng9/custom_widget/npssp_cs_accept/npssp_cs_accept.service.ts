@@ -28,7 +28,7 @@ export class npssp_cs_acceptService {
         .subscribe((res: any) => {
             var event
             if (res.data.status == "SUCCESS") {
-                //screenInstance.payment_form_action_verify_recipient_iban.show =  false
+                //screenInstance.payment_form_action_verify_recipient_iban.show =   false
                 //screenInstance.payment_form_action_accept.show = true
                  this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
               }else if(res.data.status == "FAILURE") {

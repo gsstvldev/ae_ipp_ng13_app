@@ -63,7 +63,7 @@ export class npssp_cs_initiate_crdt_transferService {
             .subscribe((res: any) => {
                 var event
                 if (res.data.status == "SUCCESS") {
-                    //screenInstance.payment_form_action_confirm_payment.show = false
+                    //screenInstance.payment_form_action_confirm_payment.show =  false
                    // screenInstance.payment_form_action_confirm.show = false
                     //screenInstance.payment_form_action_verify_recipient_iban.show = true
                      this.appHandler.callInternals(internals, screenInstance, "SUCCESS");

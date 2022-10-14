@@ -12,7 +12,7 @@ export class npssp_cs_verify_ibanService {
         private appHandler: AppHandlerService,
         private sessionHelper: SessionService,
         public dialogHelper: DialogService) { }
-    //Default calling function
+    //Default calling  function
     compID: any = "";
     fUICG: any = "";
     fn_npssp_cs_verify_iban(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){

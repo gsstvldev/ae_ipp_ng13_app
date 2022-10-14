@@ -39,7 +39,7 @@ export class npssp_cs_verify_recepient_ibanService {
     this.CallApiManagerTbl(ClientParams, internals, screenInstance)
     }
     //Custom validation logics
-    //Uncomment below lines when validation is required
+    //Uncomment below lines when validation is  required
     //fn_customValidation(projName,screenInstance,message,callback){
        // return callback();
     //}

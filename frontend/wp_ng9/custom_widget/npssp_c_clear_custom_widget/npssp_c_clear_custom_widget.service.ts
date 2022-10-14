@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class npssp_c_clear_custom_widgetService {
     constructor() { }
-    //Default calling function
+    //Default calling  function
     fn_npssp_c_clear_custom_widget(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
     var event = { eventId: "custom-connector", internals: internals,eventCode:"clear",screenInstance:screenInstance }
     if(screenInstance.wftpa_description == 's_credit_transfer_inward'){

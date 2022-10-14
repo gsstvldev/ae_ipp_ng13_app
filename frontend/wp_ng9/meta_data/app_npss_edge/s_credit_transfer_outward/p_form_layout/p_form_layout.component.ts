@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26446 
+Build ID        : 26447 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-14 12:19 PM 
+Modified Date   : 2022-Oct-14 13:21 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_transfer_outward
@@ -24,7 +24,7 @@ export class p_form_layoutComponent implements OnInit {
   // Variables 
   	payment_form : any = {}
 	payment_form_action : any = {}
-	ipsp_error_widget : any = {}
+	npss_op_error_widget : any = {}
 
 
   // Constructor 
@@ -36,8 +36,8 @@ export class p_form_layoutComponent implements OnInit {
 		this.payment_form.need_header = true
 		this.payment_form_action.desc = "Payment Form Action"
 		this.payment_form_action.need_header = true
-		this.ipsp_error_widget.desc = "ipsp_error_widget"
-		this.ipsp_error_widget.need_header = ""
+		this.npss_op_error_widget.desc = "ipsp_error_widget"
+		this.npss_op_error_widget.need_header = ""
 	
 
     this.screen_instance['p_form_layout'] = {};

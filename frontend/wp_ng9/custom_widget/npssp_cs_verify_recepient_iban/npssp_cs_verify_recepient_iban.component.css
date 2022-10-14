@@ -1,0 +1,11 @@
+/*CSS FILE*/
+/*CSS FILE*/
+
+.textarea{
+    width: 665px;
+    text-align:center;
+    padding-top: 50px;
+    font-weight: bold;
+    height: 100px;
+    overflow-y: hidden;
+}

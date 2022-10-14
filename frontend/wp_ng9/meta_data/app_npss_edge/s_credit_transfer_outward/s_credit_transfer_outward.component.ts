@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26446 
+Build ID        : 26447 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-14 12:19 PM 
+Modified Date   : 2022-Oct-14 13:21 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_transfer_outward
@@ -12,13 +12,18 @@ Screen Name     : s_credit_transfer_outward
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
+import {npssp_c_clear_custom_widgetService} from '../../../custom_widget/npssp_c_clear_custom_widget/npssp_c_clear_custom_widget.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npssp_cs_tran_insertService} from '../../../custom_widget/npssp_cs_tran_insert/npssp_cs_tran_insert.service'
+import {npssp_cs_initiate_crdt_transferService} from '../../../custom_widget/npssp_cs_initiate_crdt_transfer/npssp_cs_initiate_crdt_transfer.service'
+import {npssp_cs_show_account_balanceService} from '../../../custom_widget/npssp_cs_show_account_balance/npssp_cs_show_account_balance.service'
+import {npssp_cs_verify_ibanService} from '../../../custom_widget/npssp_cs_verify_iban/npssp_cs_verify_iban.service'
 
 @Component({
 	selector: 's_credit_transfer_outward',
 	templateUrl: './s_credit_transfer_outward.component.html',
 	styleUrls: ['./s_credit_transfer_outward.component.css'],
-	providers:[torus_cs_show_hideService]
+	providers:[npssp_c_clear_custom_widgetService,torus_cs_show_hideService,npssp_cs_tran_insertService,npssp_cs_initiate_crdt_transferService,npssp_cs_show_account_balanceService,npssp_cs_verify_ibanService]
 })
     
 // Start of class 
@@ -49,7 +54,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 	uicgc_18 : string = "approval_pending_list"
 	uicgc_19 : string = "navigation_ui"
 	uicgc_20 : string = "transaction_details_view"
-	uicgc_21 : string = "ipsp_error_widget"
+	uicgc_21 : string = "npss_op_error_widget"
 	uicgc_22 : string = "tree"
 	uicgc_23 : string = "transaction_detail"
 	uicgc_24 : string = "pacs008_ui"
@@ -115,7 +120,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 	navigation_ui : any = {}
 	navigation_ui_approve : any = {}
 	transaction_details_view : any = {}
-	ipsp_error_widget : any = {}
+	npss_op_error_widget : any = {}
 	tree : any = {}
 	transaction_detail : any = {}
 	pacs008_ui : any = {}
@@ -125,7 +130,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
+	constructor(private handler:AppHandlerService ,private npssp_c_clear_custom_widgetService:npssp_c_clear_custom_widgetService,private torus_cs_show_hideService:torus_cs_show_hideService,private npssp_cs_tran_insertService:npssp_cs_tran_insertService,private npssp_cs_initiate_crdt_transferService:npssp_cs_initiate_crdt_transferService,private npssp_cs_show_account_balanceService:npssp_cs_show_account_balanceService,private npssp_cs_verify_ibanService:npssp_cs_verify_ibanService) {
     
 	}
     
@@ -604,17 +609,17 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		this.transaction_details_view.show = true
 		this.transaction_details_view.dynamic_param = {}
 	
-		// Component level properties - "ipsp_error_widget" 
-		this.ipsp_error_widget.uictrl_code = "custom_widget"
-		this.ipsp_error_widget.uicgc_desc = "ipsp_error_widget"
-		this.ipsp_error_widget.uicgc_code = "uicgc_21"
-		this.ipsp_error_widget.params = {}
-		this.ipsp_error_widget.datasource = {}
-		this.ipsp_error_widget.context_menu = []
-		this.ipsp_error_widget.views = {}
-		this.ipsp_error_widget.onChangecomponent = new EventEmitter<any>()
-		this.ipsp_error_widget.show = true
-		this.ipsp_error_widget.dynamic_param = {}
+		// Component level properties - "npss_op_error_widget" 
+		this.npss_op_error_widget.uictrl_code = "custom_widget"
+		this.npss_op_error_widget.uicgc_desc = "npss_op_error_widget"
+		this.npss_op_error_widget.uicgc_code = "uicgc_21"
+		this.npss_op_error_widget.params = {}
+		this.npss_op_error_widget.datasource = {}
+		this.npss_op_error_widget.context_menu = []
+		this.npss_op_error_widget.views = {}
+		this.npss_op_error_widget.onChangecomponent = new EventEmitter<any>()
+		this.npss_op_error_widget.show = true
+		this.npss_op_error_widget.dynamic_param = {}
 	
 		// Component level properties - "Tree" 
 		this.tree.uictrl_code = "data_tree"
@@ -777,6 +782,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 	payment_form_action_confirm__action_button_click(){
 		this.payment_form_action_confirm__e_1664970022848()
 		this.payment_form_action_confirm__cc_for_tran_insert()
+		this.payment_form_action_confirm__cc_for_tran_insertion()
 	}
 
 	//Handler for INTERNAL event of "cc for tran insert"
@@ -1573,7 +1579,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npssp_c_clear_custom_widgetService.fn_npssp_c_clear_custom_widget(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1935,6 +1941,27 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		let data_source={}
 		try {
 			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "payment form action confirm"
+	payment_form_action_confirm__cc_for_tran_insertion() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="payment_form_action_confirm"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1665753411611"
+		let event_params={"caller_name":"payment_form_action_confirm__cc_for_tran_insertion","event_desc":"CC for tran insertion","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_action_confirm","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npssp_cs_tran_insertService.fn_npssp_cs_tran_insert(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2488,7 +2515,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npssp_cs_initiate_crdt_transferService.fn_npssp_cs_initiate_crdt_transfer(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2852,7 +2879,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npssp_cs_show_account_balanceService.fn_npssp_cs_show_account_balance(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -3132,7 +3159,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npssp_cs_verify_ibanService.fn_npssp_cs_verify_iban(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

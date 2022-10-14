@@ -1,0 +1,5 @@
+<p-tabView styleClass="tab-comp" (onChange)="handleChange($event)" (onOpen)="handleChange($event)" [activeIndex]="screen_instance[comp_id].activeindex">
+	<p-tabPanel  header="{{'Inward' | translate}}" headerStyleClass="tab-comp__header {{screen_instance[comp_id].tab_profiles['p_history_layout']['showclass']}} {{screen_instance[comp_id].tab_profiles['p_history_layout']['dynamic_class']}}" [disabled]="screen_instance[comp_id].tab_profiles['p_history_layout']['disabled']" [ngClass]="getClass('p_history_layout')">
+		<p_history_layout [screen_instance]="screen_instance" ></p_history_layout>
+	</p-tabPanel>
+</p-tabView>

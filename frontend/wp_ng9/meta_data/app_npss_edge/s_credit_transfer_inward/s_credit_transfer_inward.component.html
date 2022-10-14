@@ -1,7 +1,14 @@
 <div class="s_credit_transfer_inward">
+<p_main_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_layout')"></p_main_layout>
 
 <p-dialog header="{{'View Transaction Details' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_vertical_details_layout__spap_for_view_tran_details_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '900px','width': '1000px'}" [draggable]="true" [modal]="true">
 	<p_vertical_details_layout [screen_instance]="this" ></p_vertical_details_layout></p-dialog>
+
+<p-dialog header="{{'' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_pacs008_layout__spap_for_pacs008_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '550px','width': '800px'}" [draggable]="true" [modal]="true">
+	<p_pacs008_layout [screen_instance]="this" ></p_pacs008_layout></p-dialog>
+
+<p-dialog header="{{'' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_pacs002_layout___spap_for_view_pacs002_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '550px','width': '800px'}" [draggable]="true" [modal]="true">
+	<p_pacs002_layout_ [screen_instance]="this" ></p_pacs002_layout_></p-dialog>
 <app-dialog [screen_instance]="this" ></app-dialog>
 <div style="display:none">
 	<f_dynamic_search [comp_id]="'dynamic_search'" [screen_instance]="this" ></f_dynamic_search >

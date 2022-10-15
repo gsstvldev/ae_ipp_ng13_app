@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26450 
+Build ID        : 26451 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-15 11:55 AM 
+Modified Date   : 2022-Oct-15 12:27 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_request_to_pay
@@ -781,9 +781,10 @@ export class s_customer_request_to_payComponent implements OnInit,AfterViewInit 
 
 	//Handler for ACTION_BUTTON_CLICK event of "payment form action confirm"
 	payment_form_action_confirm__action_button_click(){
-		this.payment_form_action_confirm__e_1664970022848()
+		this.payment_form_action_confirm__he_from_confirm_to_back()
 		this.payment_form_action_confirm__cc_for_tran_insert()
 		this.payment_form_action_confirm__st_for_confirm_button_click()
+		this.payment_form_action_confirm__st_to_payment_form_on_button_click()
 	}
 
 	//Handler for INTERNAL event of "cc for tran insert"
@@ -935,6 +936,7 @@ export class s_customer_request_to_payComponent implements OnInit,AfterViewInit 
 	//Handler for ACTION_BUTTON_CLICK event of "payment form action verify sender balance"
 	payment_form_action_verify_sender_balance__action_button_click(){
 		this.payment_form_action_verify_sender_balance__cc_for_bind_payor_acct_balance_and_sanction_limit()
+		this.payment_form_action_verify_sender_balance__he_self_on_verify_sender_balance()
 	}
 
 	//Handler for INTERNAL event of "cc for bind payor acct balance and sanction limit"
@@ -1941,14 +1943,14 @@ export class s_customer_request_to_payComponent implements OnInit,AfterViewInit 
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "payment form action confirm"
-	payment_form_action_confirm__e_1664970022848() { 
+	payment_form_action_confirm__he_from_confirm_to_back() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="payment_form_action_confirm"
 		let destn_id="payment_form_action_back"
 		let parent_source_id=""
 		let event_code="e_1664970022848"
-		let event_params={"caller_name":"payment_form_action_confirm__e_1664970022848","event_desc":"E_1664970022848","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_action_confirm","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let event_params={"caller_name":"payment_form_action_confirm__he_from_confirm_to_back","event_desc":"HE from Confirm to Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_action_confirm","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -1991,6 +1993,27 @@ export class s_customer_request_to_payComponent implements OnInit,AfterViewInit 
 		let parent_source_id=""
 		let event_code="e_1665833968364"
 		let event_params={"caller_name":"payment_form_action_confirm__st_for_confirm_button_click","event_desc":"ST for Confirm button click","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_action_confirm","raiseparam":{"reset_selection":"Y","need_clear_value":"Y","no_change_status_on_modify":"N","release_lock":"Y","clear_cache":"Y"}}
+		let handler_code="save_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.save_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "payment form action confirm"
+	payment_form_action_confirm__st_to_payment_form_on_button_click() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="payment_form_action_confirm"
+		let destn_id="payment_form"
+		let parent_source_id=""
+		let event_code="e_1665836634815"
+		let event_params={"caller_name":"payment_form_action_confirm__st_to_payment_form_on_button_click","event_desc":"ST to Payment Form on Button Click","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_action_confirm","raiseparam":{"reset_selection":"Y","need_clear_value":"Y","no_change_status_on_modify":"N","release_lock":"Y","clear_cache":"Y"}}
 		let handler_code="save_tran"
 		let internals=""
 		let event_data={}
@@ -2915,6 +2938,27 @@ export class s_customer_request_to_payComponent implements OnInit,AfterViewInit 
 		let data_source={}
 		try {
 			this.npssp_cs_show_account_balanceService.fn_npssp_cs_show_account_balance(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "payment form action verify sender balance"
+	payment_form_action_verify_sender_balance__he_self_on_verify_sender_balance() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="payment_form_action_verify_sender_balance"
+		let destn_id="payment_form_action_verify_sender_balance"
+		let parent_source_id=""
+		let event_code="e_1665836709083"
+		let event_params={"caller_name":"payment_form_action_verify_sender_balance__he_self_on_verify_sender_balance","event_desc":"HE self on Verify Sender Balance","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_action_verify_sender_balance","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

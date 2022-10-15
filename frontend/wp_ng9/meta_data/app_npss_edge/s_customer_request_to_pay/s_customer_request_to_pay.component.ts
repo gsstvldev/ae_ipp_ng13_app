@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26448 
+Build ID        : 26450 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-14 14:20 PM 
+Modified Date   : 2022-Oct-15 11:55 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_request_to_pay
@@ -14,7 +14,6 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {npssp_c_clear_custom_widgetService} from '../../../custom_widget/npssp_c_clear_custom_widget/npssp_c_clear_custom_widget.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
-import {npssp_cs_tran_insertService} from '../../../custom_widget/npssp_cs_tran_insert/npssp_cs_tran_insert.service'
 import {npssp_cs_initiate_crdt_transferService} from '../../../custom_widget/npssp_cs_initiate_crdt_transfer/npssp_cs_initiate_crdt_transfer.service'
 import {npssp_cs_show_account_balanceService} from '../../../custom_widget/npssp_cs_show_account_balance/npssp_cs_show_account_balance.service'
 import {npssp_cs_verify_ibanService} from '../../../custom_widget/npssp_cs_verify_iban/npssp_cs_verify_iban.service'
@@ -23,7 +22,7 @@ import {npssp_cs_verify_ibanService} from '../../../custom_widget/npssp_cs_verif
 	selector: 's_customer_request_to_pay',
 	templateUrl: './s_customer_request_to_pay.component.html',
 	styleUrls: ['./s_customer_request_to_pay.component.css'],
-	providers:[npssp_c_clear_custom_widgetService,torus_cs_show_hideService,npssp_cs_tran_insertService,npssp_cs_initiate_crdt_transferService,npssp_cs_show_account_balanceService,npssp_cs_verify_ibanService]
+	providers:[npssp_c_clear_custom_widgetService,torus_cs_show_hideService,npssp_cs_initiate_crdt_transferService,npssp_cs_show_account_balanceService,npssp_cs_verify_ibanService]
 })
     
 // Start of class 
@@ -130,7 +129,7 @@ export class s_customer_request_to_payComponent implements OnInit,AfterViewInit 
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private npssp_c_clear_custom_widgetService:npssp_c_clear_custom_widgetService,private torus_cs_show_hideService:torus_cs_show_hideService,private npssp_cs_tran_insertService:npssp_cs_tran_insertService,private npssp_cs_initiate_crdt_transferService:npssp_cs_initiate_crdt_transferService,private npssp_cs_show_account_balanceService:npssp_cs_show_account_balanceService,private npssp_cs_verify_ibanService:npssp_cs_verify_ibanService) {
+	constructor(private handler:AppHandlerService ,private npssp_c_clear_custom_widgetService:npssp_c_clear_custom_widgetService,private torus_cs_show_hideService:torus_cs_show_hideService,private npssp_cs_initiate_crdt_transferService:npssp_cs_initiate_crdt_transferService,private npssp_cs_show_account_balanceService:npssp_cs_show_account_balanceService,private npssp_cs_verify_ibanService:npssp_cs_verify_ibanService) {
     
 	}
     
@@ -784,7 +783,7 @@ export class s_customer_request_to_payComponent implements OnInit,AfterViewInit 
 	payment_form_action_confirm__action_button_click(){
 		this.payment_form_action_confirm__e_1664970022848()
 		this.payment_form_action_confirm__cc_for_tran_insert()
-		this.payment_form_action_confirm__cc_for_tran_insertion()
+		this.payment_form_action_confirm__st_for_confirm_button_click()
 	}
 
 	//Handler for INTERNAL event of "cc for tran insert"
@@ -1984,20 +1983,20 @@ export class s_customer_request_to_payComponent implements OnInit,AfterViewInit 
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "payment form action confirm"
-	payment_form_action_confirm__cc_for_tran_insertion() { 
+	payment_form_action_confirm__st_for_confirm_button_click() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="payment_form_action_confirm"
-		let destn_id=""
+		let destn_id="payment_form_action"
 		let parent_source_id=""
-		let event_code="e_1665753411611"
-		let event_params={"caller_name":"payment_form_action_confirm__cc_for_tran_insertion","event_desc":"CC for tran insertion","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_action_confirm","raiseparam":{}}
-		let handler_code="custom_connectors"
+		let event_code="e_1665833968364"
+		let event_params={"caller_name":"payment_form_action_confirm__st_for_confirm_button_click","event_desc":"ST for Confirm button click","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_action_confirm","raiseparam":{"reset_selection":"Y","need_clear_value":"Y","no_change_status_on_modify":"N","release_lock":"Y","clear_cache":"Y"}}
+		let handler_code="save_tran"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.npssp_cs_tran_insertService.fn_npssp_cs_tran_insert(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.save_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

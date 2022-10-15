@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26448 
+Build ID        : 26450 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-14 14:20 PM 
+Modified Date   : 2022-Oct-15 11:55 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_request_to_pay
@@ -22,7 +22,6 @@ import { SharedModule } from '../../../shared/shared.module'
 import {npssp_cs_verify_ibanModule} from '../../../custom_widget/npssp_cs_verify_iban/npssp_cs_verify_iban.module'
 import {npssp_c_clear_custom_widgetModule} from '../../../custom_widget/npssp_c_clear_custom_widget/npssp_c_clear_custom_widget.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
-import {npssp_cs_tran_insertModule} from '../../../custom_widget/npssp_cs_tran_insert/npssp_cs_tran_insert.module'
 import {npssp_cs_initiate_crdt_transferModule} from '../../../custom_widget/npssp_cs_initiate_crdt_transfer/npssp_cs_initiate_crdt_transfer.module'
 import {npssp_cs_show_account_balanceModule} from '../../../custom_widget/npssp_cs_show_account_balance/npssp_cs_show_account_balance.module'
 
@@ -56,7 +55,7 @@ import { f_dynamic_searchComponent } from './f_dynamic_search/f_dynamic_search.c
     
     TabViewModule,
     s_customer_request_to_payRoutingModule,
-    npssp_cs_verify_ibanModule,npssp_c_clear_custom_widgetModule,torus_cs_show_hideModule,npssp_cs_tran_insertModule,npssp_cs_initiate_crdt_transferModule,npssp_cs_show_account_balanceModule
+    npssp_cs_verify_ibanModule,npssp_c_clear_custom_widgetModule,torus_cs_show_hideModule,npssp_cs_initiate_crdt_transferModule,npssp_cs_show_account_balanceModule
   ],
   declarations: [s_customer_request_to_payComponent,p_pacs008_layoutComponent,f_pacs008_uiComponent,f_dynamic_searchComponent,],
   providers:[AppHandlerService,ComponenthelperService]

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26448 
+Build ID        : 26450 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-14 14:20 PM 
+Modified Date   : 2022-Oct-15 11:55 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_transfer_outward
@@ -550,9 +550,9 @@ focustoelement(){
 		//Properties of payee_iban
 		this.ctrl.payee_iban = {}
 		this.ctrl.payee_iban.id = "RN41CN14"
-		this.ctrl.payee_iban.desc = "IBaN"
+		this.ctrl.payee_iban.desc = "IBAN"
 		this.ctrl.payee_iban.visible = true
-		this.ctrl.payee_iban.label_name = "IBaN"
+		this.ctrl.payee_iban.label_name = "IBAN"
 		this.ctrl.payee_iban.df_code = "DF_1304_1665385905734"
 		this.ctrl.payee_iban.df_description = "Column Group 1"
 		this.ctrl.payee_iban.uictrl_code = "TXT"
@@ -598,7 +598,7 @@ focustoelement(){
 		this.ctrl.value_date.data_type = "DATETIME"
 		this.ctrl.value_date.data_length = 0
 		this.ctrl.value_date.zone_df_code = "DF_1304_1665385905734"
-		this.ctrl.value_date.default_value = ""
+		this.ctrl.value_date.default_value = "setcurrentdate(),{}"
 		this.ctrl.value_date.is_memory_ctrl = ""
 		this.ctrl.value_date.field_coordinates = ""
 		this.ctrl.value_date.sub_details = ""
@@ -622,7 +622,7 @@ focustoelement(){
 		this.ctrl.value_date.ctrl_id = "op_cust_transaction_ui_value_date"
 		this.ctrl.op_cust_transaction_ui_value_date = {}
 		this.ctrl.op_cust_transaction_ui_value_date.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.model = {"MEMORY51":"","DBTR_ACCT_NAME":"","DBTR_PHONE_NO":"","DBTR_ACCT_BALANCE":"","DBTR_SANCTION_LIMIT":"","MEMORY52":"","CDTR_PMT_TYPE":"","CDTR_PHONE_NO":"","CDTR_EMAIL_ID":"","CDTR_EMIRATES":"","CDTR_IBAN":"","INTRBK_STTLM_AMNT":"","PAYEE_ACCT_NAME":"","PAYEE_IBAN":"","VALUE_DATE":""}
+		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.model = {"MEMORY51":"","DBTR_ACCT_NAME":"","DBTR_PHONE_NO":"","DBTR_ACCT_BALANCE":"","DBTR_SANCTION_LIMIT":"","MEMORY52":"","CDTR_PMT_TYPE":"","CDTR_PHONE_NO":"","CDTR_EMAIL_ID":"","CDTR_EMIRATES":"","CDTR_IBAN":"","INTRBK_STTLM_AMNT":"","PAYEE_ACCT_NAME":"","PAYEE_IBAN":"","VALUE_DATE":"setcurrentdate(),{}"}
 		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PHONE_NO"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"DBTR_ACCT_BALANCE"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"DBTR_SANCTION_LIMIT"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_PMT_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_EMIRATES"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYEE_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYEE_IBAN"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"}]
 		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.dt_code = "dt_1304_1665384453253"
 		this.screen_instance[this.comp_id].f_op_cust_transaction_ui.dtt_code = "dtt_1304_1665385772257"

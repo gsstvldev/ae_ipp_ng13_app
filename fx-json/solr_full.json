@@ -992,22 +992,22 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
-        $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
         $DQ$NAME$DQ$: $DQ$VALUE_DATE$DQ$,
         $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
-        $DQ$NAME$DQ$: $DQ$DBTR_ACCT_NO$DQ$,
+        $DQ$NAME$DQ$: $DQ$PROCESS_TYPE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
-        $DQ$NAME$DQ$: $DQ$DBTR_ACCT_NAME$DQ$,
+        $DQ$NAME$DQ$: $DQ$UETR$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
@@ -1023,6 +1023,46 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$DBTR_DOCUMENT_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CDTR_PHONE_NO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CDTR_EMAIL_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CDTR_DOCUMENT_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CDTR_IBAN$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$INTRBK_STTLM_AMNT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$DBTR_ACCT_NO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$DBTR_ACCT_NAME$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
@@ -1052,26 +1092,6 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
-        $DQ$NAME$DQ$: $DQ$CDTR_PHONE_NO$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$CDTR_EMAIL_ID$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$CDTR_DOCUMENT_ID$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$CDTR_IBAN$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
         $DQ$NAME$DQ$: $DQ$DR_SORT_CODE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
@@ -1084,11 +1104,6 @@
       {
         $DQ$NAME$DQ$: $DQ$INTRBK_STTLM_CUR$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$INTRBK_STTLM_AMNT$DQ$,
-        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
@@ -1147,22 +1162,12 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
-        $DQ$NAME$DQ$: $DQ$PAYMENT_TYPE$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
         $DQ$NAME$DQ$: $DQ$INSTRUMENT_TYPE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
         $DQ$NAME$DQ$: $DQ$CHARGE_BEARER$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$UETR$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
@@ -1177,17 +1182,7 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
-        $DQ$NAME$DQ$: $DQ$PROCESS_TYPE$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
         $DQ$NAME$DQ$: $DQ$DBTR_CUST_TYPE$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$CHANNEL_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
@@ -1213,6 +1208,81 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$CHANNEL_TRAN_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$TRAN_INFO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$INSTRUCTION_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$TRAN_REF_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CATEGORY_PURPOSE_PRTY$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$EXT_ORG_ID_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$ISSUER_TYPE_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$DBTR_BIRTH_DATE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$DBTR_CITY_BIRTH$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$DBTR_COUNTRY$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$EXT_PERSON_ID_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$EXT_ACCT_ID_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CR_ACCT_IDENTIFICATION$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CR_ACCT_ID_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$EXT_PURPOSE_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$EXT_PURPOSE_PRTY$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },

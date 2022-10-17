@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS alter column DR_SORT_CODE drop not null; update NPSS_TRANSACTIONS set DR_SORT_CODE=substr(DR_SORT_CODE,1,11); alter table NPSS_TRANSACTIONS alter column CR_SORT_CODE drop not null; update NPSS_TRANSACTIONS set CR_SORT_CODE=substr(CR_SORT_CODE,1,11);alter table NPSS_TRANSACTIONS alter column DR_SORT_CODE type CHARACTER VARYING(11),alter column CR_SORT_CODE type CHARACTER VARYING(11);","params" : [] }]
+[]

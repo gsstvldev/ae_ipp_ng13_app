@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26401 
+Build ID        : 26532 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-12 5:35 AM 
+Modified Date   : 2022-Oct-18 11:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_power_bi_dashboard
@@ -12,13 +12,13 @@ Screen Name     : s_power_bi_dashboard
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {torus_cs_power_bi_reportsService} from '../../../custom_widget/torus_cs_power_bi_reports/torus_cs_power_bi_reports.service'
 
 @Component({
 	selector: 's_power_bi_dashboard',
 	templateUrl: './s_power_bi_dashboard.component.html',
 	styleUrls: ['./s_power_bi_dashboard.component.css'],
-	providers:[torus_cs_show_hideService]
+	providers:[torus_cs_power_bi_reportsService]
 })
     
 // Start of class 
@@ -62,7 +62,7 @@ export class s_power_bi_dashboardComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_power_bi_reportsService:torus_cs_power_bi_reportsService) {
     
 	}
     
@@ -872,7 +872,7 @@ export class s_power_bi_dashboardComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.torus_cs_power_bi_reportsService.fn_torus_cs_power_bi_reports(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

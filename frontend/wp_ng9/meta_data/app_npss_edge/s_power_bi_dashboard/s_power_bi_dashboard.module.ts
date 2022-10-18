@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26401 
+Build ID        : 26532 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-12 5:35 AM 
+Modified Date   : 2022-Oct-18 11:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_power_bi_dashboard
@@ -19,7 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
-import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
+import {torus_cs_power_bi_reportsModule} from '../../../custom_widget/torus_cs_power_bi_reports/torus_cs_power_bi_reports.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -49,7 +49,7 @@ import { f_npss_power_reports_srchComponent } from './f_npss_power_reports_srch/
     OverlayPanelModule,
     
     s_power_bi_dashboardRoutingModule,
-    torus_cs_show_hideModule
+    torus_cs_power_bi_reportsModule
   ],
   declarations: [s_power_bi_dashboardComponent,p_power_dashboard_layoutComponent,p_search_layoutComponent,f_npss_power_reports_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]

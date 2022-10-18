@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26401 
+Build ID        : 26532 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-12 5:35 AM 
+Modified Date   : 2022-Oct-18 11:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_power_bi_dashboard

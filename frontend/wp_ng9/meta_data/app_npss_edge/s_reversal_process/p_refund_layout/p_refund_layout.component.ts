@@ -7,22 +7,24 @@ Modified Date   : 2022-Oct-18 5:43 AM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_process
-Profile Name    : Search Layout--------------------------------------------------------------------------- */
+Profile Name    : Refund Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_search_layout',
-  templateUrl: './p_search_layout.component.html',
-  styleUrls: ['./p_search_layout.component.css']
+  selector: 'p_refund_layout',
+  templateUrl: './p_refund_layout.component.html',
+  styleUrls: ['./p_refund_layout.component.css']
 })
 
 // Start of class 
-export class p_search_layoutComponent implements OnInit {
+export class p_refund_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	search : any = {}
+  	disable_refund_ui : any = {}
+	enable_refund_ui : any = {}
+	submit_ui : any = {}
 
 
   // Constructor 
@@ -30,12 +32,16 @@ export class p_search_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.search.desc = "Search"
-		this.search.need_header = ""
+    	this.disable_refund_ui.desc = "Disable Refund UI"
+		this.disable_refund_ui.need_header = ""
+		this.enable_refund_ui.desc = "Enable Refund UI"
+		this.enable_refund_ui.need_header = ""
+		this.submit_ui.desc = "Submit UI"
+		this.submit_ui.need_header = ""
 	
 
-    this.screen_instance['p_search_layout'] = {};
-    this.screen_instance['p_search_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_refund_layout'] = {};
+    this.screen_instance['p_refund_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

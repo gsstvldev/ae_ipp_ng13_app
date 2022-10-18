@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26515 
+Build ID        : 26518 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-18 5:21 AM 
+Modified Date   : 2022-Oct-18 5:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_process
@@ -289,6 +289,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 	page_load(){
 		this.page_load__cf_for_pl()
 		this.page_load__de_for_pl()
+		this.page_load__de_for_pl_to_refund()
 	}
 
 	//Handler for INTERNAL event of "cf for pl"
@@ -318,6 +319,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		this.transaction_list__ee_for_tl()
 		this.transaction_list__ssr_disable_reversal()
 		this.transaction_list__ssr_enable_reversal()
+		this.transaction_list__ee_for_tl_to_refund()
 	}
 
 	//Handler for INTERNAL event of "svm for tl"
@@ -351,6 +353,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_reversal__ee_bind_tran()
 		this.navigation_ui_reversal__ee_bind_tran_for_disable()
 		this.navigation_ui_reversal__disable_element()
+		this.navigation_ui_reversal__sp_for_reversals()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "submit ui back"
@@ -388,6 +391,27 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1666010372555"
 		let event_params={"caller_name":"page_load__de_for_pl","event_desc":"DE for PL","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_pl_to_refund() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_reversal"
+		let parent_source_id=""
+		let event_code="e_1666070429726"
+		let event_params={"caller_name":"page_load__de_for_pl_to_refund","event_desc":"DE for PL to refund","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -585,6 +609,27 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_tl_to_refund() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_reversal"
+		let parent_source_id=""
+		let event_code="e_1666070523850"
+		let event_params={"caller_name":"transaction_list__ee_for_tl_to_refund","event_desc":"EE for TL to Refund","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -859,6 +904,27 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui reversal"
+	navigation_ui_reversal__sp_for_reversals() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_reversal"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1666070453302"
+		let event_params={"caller_name":"navigation_ui_reversal__sp_for_reversals","event_desc":"SP for Reversals","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_reversal","raiseparam":{"profile_code":"BTL_1304_1666068179786"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

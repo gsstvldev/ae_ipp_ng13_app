@@ -1,32 +1,32 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26496 
+Build ID        : 26505 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-17 15:4 PM 
+Modified Date   : 2022-Oct-18 1:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_post_view_transactions
-Form Name       : NPSS POST Dashboard SRCH--------------------------------------------------------------------------- */
+Form Name       : NPSS HST Dashboard SRCH--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_post_dashboard_srch',
-  templateUrl: './f_npss_post_dashboard_srch.component.html',
-  styleUrls: ['./f_npss_post_dashboard_srch.component.css'],
+  selector: 'f_npss_hst_dashboard_srch',
+  templateUrl: './f_npss_hst_dashboard_srch.component.html',
+  styleUrls: ['./f_npss_hst_dashboard_srch.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_post_dashboard_srchComponent implements OnInit {
+export class f_npss_hst_dashboard_srchComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_post_dashboard_srch') form;
-  @ViewChild('npss_post_dashboard_srch_value_date') element: ElementRef;
+  @ViewChild('f_npss_hst_dashboard_srch') form;
+  @ViewChild('npss_hst_dashboard_srch_value_date') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -50,13 +50,13 @@ focustoelement(){
   
 		//Properties of value_date
 		this.ctrl.value_date = {}
-		this.ctrl.value_date.id = "f615d96a-0085-4454-bd44-2302e9ee43ab_1666009098411"
+		this.ctrl.value_date.id = "RN01CN1"
 		this.ctrl.value_date.desc = "Value Date"
 		this.ctrl.value_date.visible = true
 		this.ctrl.value_date.label_name = "Value Date"
 		this.ctrl.value_date.df_code = "DF_1304_1665901396659"
 		this.ctrl.value_date.df_description = "Column Group 1"
-		this.ctrl.value_date.uictrl_code = "DTP"
+		this.ctrl.value_date.uictrl_code = "CDN_DATE"
 		this.ctrl.value_date.target_column = "VALUE_DATE"
 		this.ctrl.value_date.data_type = "DATETIME"
 		this.ctrl.value_date.data_length = 0
@@ -82,14 +82,53 @@ focustoelement(){
 		this.ctrl.value_date.vld_rules = []
 		this.ctrl.value_date.targetcolumn_lower = "value_date"
 		this.ctrl.value_date.disabled = false
-		this.ctrl.value_date.view_name = "f_npss_post_dashboard_srch"
-		this.ctrl.value_date.ctrl_id = "npss_post_dashboard_srch_value_date"
-		this.ctrl.npss_post_dashboard_srch_value_date = {}
-		this.ctrl.npss_post_dashboard_srch_value_date.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.value_date.view_name = "f_npss_hst_dashboard_srch"
+		this.ctrl.value_date.ctrl_id = "npss_hst_dashboard_srch_value_date"
+		this.ctrl.npss_hst_dashboard_srch_value_date = {}
+		this.ctrl.npss_hst_dashboard_srch_value_date.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of intrbk_sttlm_amnt
+		this.ctrl.intrbk_sttlm_amnt = {}
+		this.ctrl.intrbk_sttlm_amnt.id = "RN41CN13"
+		this.ctrl.intrbk_sttlm_amnt.desc = "Amount"
+		this.ctrl.intrbk_sttlm_amnt.visible = true
+		this.ctrl.intrbk_sttlm_amnt.label_name = "Amount"
+		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
+		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
+		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CDN_CUR_CTRL"
+		this.ctrl.intrbk_sttlm_amnt.target_column = "INTRBK_STTLM_AMNT"
+		this.ctrl.intrbk_sttlm_amnt.data_type = "NUMBER"
+		this.ctrl.intrbk_sttlm_amnt.data_length = 19
+		this.ctrl.intrbk_sttlm_amnt.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.intrbk_sttlm_amnt.default_value = ""
+		this.ctrl.intrbk_sttlm_amnt.is_memory_ctrl = ""
+		this.ctrl.intrbk_sttlm_amnt.field_coordinates = ""
+		this.ctrl.intrbk_sttlm_amnt.sub_details = ""
+		this.ctrl.intrbk_sttlm_amnt.accept_char = ""
+		this.ctrl.intrbk_sttlm_amnt.currency_format = ""
+		this.ctrl.intrbk_sttlm_amnt.data_scale = "2"
+		this.ctrl.intrbk_sttlm_amnt.binding_name = "INTRBK_STTLM_AMNT"
+		this.ctrl.intrbk_sttlm_amnt.hide_label = false
+		this.ctrl.intrbk_sttlm_amnt.depends_on = ""
+		this.ctrl.intrbk_sttlm_amnt.placeholder = ""
+		this.ctrl.intrbk_sttlm_amnt.dynamic_param = ""
+		this.ctrl.intrbk_sttlm_amnt.style_code = ""
+		this.ctrl.intrbk_sttlm_amnt.data_source = ""
+		this.ctrl.intrbk_sttlm_amnt.image_association = ""
+		this.ctrl.intrbk_sttlm_amnt.show = true
+		this.ctrl.intrbk_sttlm_amnt.sub_content = ""
+		this.ctrl.intrbk_sttlm_amnt.required = false
+		this.ctrl.intrbk_sttlm_amnt.vld_rules = []
+		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
+		this.ctrl.intrbk_sttlm_amnt.disabled = false
+		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_hst_dashboard_srch"
+		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_hst_dashboard_srch_intrbk_sttlm_amnt"
+		this.ctrl.npss_hst_dashboard_srch_intrbk_sttlm_amnt = {}
+		this.ctrl.npss_hst_dashboard_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of process_type
 		this.ctrl.process_type = {}
-		this.ctrl.process_type.id = "be085ccf-e68e-4297-908e-635dec295851_1666009098411"
+		this.ctrl.process_type.id = "RN01CN1001"
 		this.ctrl.process_type.desc = "Process Type"
 		this.ctrl.process_type.visible = true
 		this.ctrl.process_type.label_name = "Process Type"
@@ -121,14 +160,14 @@ focustoelement(){
 		this.ctrl.process_type.vld_rules = []
 		this.ctrl.process_type.targetcolumn_lower = "process_type"
 		this.ctrl.process_type.disabled = false
-		this.ctrl.process_type.view_name = "f_npss_post_dashboard_srch"
-		this.ctrl.process_type.ctrl_id = "npss_post_dashboard_srch_process_type"
-		this.ctrl.npss_post_dashboard_srch_process_type = {}
-		this.ctrl.npss_post_dashboard_srch_process_type.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.process_type.view_name = "f_npss_hst_dashboard_srch"
+		this.ctrl.process_type.ctrl_id = "npss_hst_dashboard_srch_process_type"
+		this.ctrl.npss_hst_dashboard_srch_process_type = {}
+		this.ctrl.npss_hst_dashboard_srch_process_type.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of hdr_msg_id
 		this.ctrl.hdr_msg_id = {}
-		this.ctrl.hdr_msg_id.id = "c3cdcca8-f318-472d-8f6a-2f8a462f7b94_1666009098411"
+		this.ctrl.hdr_msg_id.id = "RN01CN2"
 		this.ctrl.hdr_msg_id.desc = "Message Id"
 		this.ctrl.hdr_msg_id.visible = true
 		this.ctrl.hdr_msg_id.label_name = "Message Id"
@@ -159,14 +198,14 @@ focustoelement(){
 		this.ctrl.hdr_msg_id.vld_rules = []
 		this.ctrl.hdr_msg_id.targetcolumn_lower = "hdr_msg_id"
 		this.ctrl.hdr_msg_id.disabled = false
-		this.ctrl.hdr_msg_id.view_name = "f_npss_post_dashboard_srch"
-		this.ctrl.hdr_msg_id.ctrl_id = "npss_post_dashboard_srch_hdr_msg_id"
-		this.ctrl.npss_post_dashboard_srch_hdr_msg_id = {}
-		this.ctrl.npss_post_dashboard_srch_hdr_msg_id.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.hdr_msg_id.view_name = "f_npss_hst_dashboard_srch"
+		this.ctrl.hdr_msg_id.ctrl_id = "npss_hst_dashboard_srch_hdr_msg_id"
+		this.ctrl.npss_hst_dashboard_srch_hdr_msg_id = {}
+		this.ctrl.npss_hst_dashboard_srch_hdr_msg_id.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of channel_id
 		this.ctrl.channel_id = {}
-		this.ctrl.channel_id.id = "b99172c7-98ca-4595-9415-4145699386ad_1666009098412"
+		this.ctrl.channel_id.id = "RN11CN3"
 		this.ctrl.channel_id.desc = "Channel Id"
 		this.ctrl.channel_id.visible = true
 		this.ctrl.channel_id.label_name = "Channel Id"
@@ -198,14 +237,14 @@ focustoelement(){
 		this.ctrl.channel_id.vld_rules = []
 		this.ctrl.channel_id.targetcolumn_lower = "channel_id"
 		this.ctrl.channel_id.disabled = false
-		this.ctrl.channel_id.view_name = "f_npss_post_dashboard_srch"
-		this.ctrl.channel_id.ctrl_id = "npss_post_dashboard_srch_channel_id"
-		this.ctrl.npss_post_dashboard_srch_channel_id = {}
-		this.ctrl.npss_post_dashboard_srch_channel_id.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.channel_id.view_name = "f_npss_hst_dashboard_srch"
+		this.ctrl.channel_id.ctrl_id = "npss_hst_dashboard_srch_channel_id"
+		this.ctrl.npss_hst_dashboard_srch_channel_id = {}
+		this.ctrl.npss_hst_dashboard_srch_channel_id.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of dbtr_phone_no
 		this.ctrl.dbtr_phone_no = {}
-		this.ctrl.dbtr_phone_no.id = "59cf528b-dc76-4666-b0f8-b1e7780dfeb5_1666009098412"
+		this.ctrl.dbtr_phone_no.id = "RN11CN4"
 		this.ctrl.dbtr_phone_no.desc = "Customer Phone No"
 		this.ctrl.dbtr_phone_no.visible = true
 		this.ctrl.dbtr_phone_no.label_name = "Customer Phone No"
@@ -237,14 +276,14 @@ focustoelement(){
 		this.ctrl.dbtr_phone_no.vld_rules = []
 		this.ctrl.dbtr_phone_no.targetcolumn_lower = "dbtr_phone_no"
 		this.ctrl.dbtr_phone_no.disabled = false
-		this.ctrl.dbtr_phone_no.view_name = "f_npss_post_dashboard_srch"
-		this.ctrl.dbtr_phone_no.ctrl_id = "npss_post_dashboard_srch_dbtr_phone_no"
-		this.ctrl.npss_post_dashboard_srch_dbtr_phone_no = {}
-		this.ctrl.npss_post_dashboard_srch_dbtr_phone_no.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.dbtr_phone_no.view_name = "f_npss_hst_dashboard_srch"
+		this.ctrl.dbtr_phone_no.ctrl_id = "npss_hst_dashboard_srch_dbtr_phone_no"
+		this.ctrl.npss_hst_dashboard_srch_dbtr_phone_no = {}
+		this.ctrl.npss_hst_dashboard_srch_dbtr_phone_no.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of dbtr_email_id
 		this.ctrl.dbtr_email_id = {}
-		this.ctrl.dbtr_email_id.id = "ef43c70f-92b7-4289-85fa-5ce6a537f996_1666009098412"
+		this.ctrl.dbtr_email_id.id = "RN11CN5"
 		this.ctrl.dbtr_email_id.desc = "Customer Email Id"
 		this.ctrl.dbtr_email_id.visible = true
 		this.ctrl.dbtr_email_id.label_name = "Customer Email Id"
@@ -276,14 +315,14 @@ focustoelement(){
 		this.ctrl.dbtr_email_id.vld_rules = []
 		this.ctrl.dbtr_email_id.targetcolumn_lower = "dbtr_email_id"
 		this.ctrl.dbtr_email_id.disabled = false
-		this.ctrl.dbtr_email_id.view_name = "f_npss_post_dashboard_srch"
-		this.ctrl.dbtr_email_id.ctrl_id = "npss_post_dashboard_srch_dbtr_email_id"
-		this.ctrl.npss_post_dashboard_srch_dbtr_email_id = {}
-		this.ctrl.npss_post_dashboard_srch_dbtr_email_id.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.dbtr_email_id.view_name = "f_npss_hst_dashboard_srch"
+		this.ctrl.dbtr_email_id.ctrl_id = "npss_hst_dashboard_srch_dbtr_email_id"
+		this.ctrl.npss_hst_dashboard_srch_dbtr_email_id = {}
+		this.ctrl.npss_hst_dashboard_srch_dbtr_email_id.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of dbtr_document_id
 		this.ctrl.dbtr_document_id = {}
-		this.ctrl.dbtr_document_id.id = "b5a1c8b9-252f-4e66-aa69-dbca47ee9e51_1666009098412"
+		this.ctrl.dbtr_document_id.id = "RN21CN6"
 		this.ctrl.dbtr_document_id.desc = "Customer Document Id"
 		this.ctrl.dbtr_document_id.visible = true
 		this.ctrl.dbtr_document_id.label_name = "Customer Document Id"
@@ -315,14 +354,14 @@ focustoelement(){
 		this.ctrl.dbtr_document_id.vld_rules = []
 		this.ctrl.dbtr_document_id.targetcolumn_lower = "dbtr_document_id"
 		this.ctrl.dbtr_document_id.disabled = false
-		this.ctrl.dbtr_document_id.view_name = "f_npss_post_dashboard_srch"
-		this.ctrl.dbtr_document_id.ctrl_id = "npss_post_dashboard_srch_dbtr_document_id"
-		this.ctrl.npss_post_dashboard_srch_dbtr_document_id = {}
-		this.ctrl.npss_post_dashboard_srch_dbtr_document_id.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.dbtr_document_id.view_name = "f_npss_hst_dashboard_srch"
+		this.ctrl.dbtr_document_id.ctrl_id = "npss_hst_dashboard_srch_dbtr_document_id"
+		this.ctrl.npss_hst_dashboard_srch_dbtr_document_id = {}
+		this.ctrl.npss_hst_dashboard_srch_dbtr_document_id.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_iban
 		this.ctrl.cdtr_iban = {}
-		this.ctrl.cdtr_iban.id = "e2ed76d6-1a09-4da1-b0ab-621664d15e5e_1666009098412"
+		this.ctrl.cdtr_iban.id = "RN21CN7"
 		this.ctrl.cdtr_iban.desc = "Customer IBAN"
 		this.ctrl.cdtr_iban.visible = true
 		this.ctrl.cdtr_iban.label_name = "Customer IBAN"
@@ -354,14 +393,14 @@ focustoelement(){
 		this.ctrl.cdtr_iban.vld_rules = []
 		this.ctrl.cdtr_iban.targetcolumn_lower = "cdtr_iban"
 		this.ctrl.cdtr_iban.disabled = false
-		this.ctrl.cdtr_iban.view_name = "f_npss_post_dashboard_srch"
-		this.ctrl.cdtr_iban.ctrl_id = "npss_post_dashboard_srch_cdtr_iban"
-		this.ctrl.npss_post_dashboard_srch_cdtr_iban = {}
-		this.ctrl.npss_post_dashboard_srch_cdtr_iban.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.cdtr_iban.view_name = "f_npss_hst_dashboard_srch"
+		this.ctrl.cdtr_iban.ctrl_id = "npss_hst_dashboard_srch_cdtr_iban"
+		this.ctrl.npss_hst_dashboard_srch_cdtr_iban = {}
+		this.ctrl.npss_hst_dashboard_srch_cdtr_iban.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_phone_no
 		this.ctrl.cdtr_phone_no = {}
-		this.ctrl.cdtr_phone_no.id = "3182fd61-4a80-4f3e-a44d-5e9a84c41b89_1666009098412"
+		this.ctrl.cdtr_phone_no.id = "RN21CN8"
 		this.ctrl.cdtr_phone_no.desc = "Beneficiary Phone No"
 		this.ctrl.cdtr_phone_no.visible = true
 		this.ctrl.cdtr_phone_no.label_name = "Beneficiary Phone No"
@@ -393,14 +432,14 @@ focustoelement(){
 		this.ctrl.cdtr_phone_no.vld_rules = []
 		this.ctrl.cdtr_phone_no.targetcolumn_lower = "cdtr_phone_no"
 		this.ctrl.cdtr_phone_no.disabled = false
-		this.ctrl.cdtr_phone_no.view_name = "f_npss_post_dashboard_srch"
-		this.ctrl.cdtr_phone_no.ctrl_id = "npss_post_dashboard_srch_cdtr_phone_no"
-		this.ctrl.npss_post_dashboard_srch_cdtr_phone_no = {}
-		this.ctrl.npss_post_dashboard_srch_cdtr_phone_no.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.cdtr_phone_no.view_name = "f_npss_hst_dashboard_srch"
+		this.ctrl.cdtr_phone_no.ctrl_id = "npss_hst_dashboard_srch_cdtr_phone_no"
+		this.ctrl.npss_hst_dashboard_srch_cdtr_phone_no = {}
+		this.ctrl.npss_hst_dashboard_srch_cdtr_phone_no.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_email_id
 		this.ctrl.cdtr_email_id = {}
-		this.ctrl.cdtr_email_id.id = "d01a6545-da05-4fc3-92bc-87000c39aeab_1666009098412"
+		this.ctrl.cdtr_email_id.id = "RN31CN9"
 		this.ctrl.cdtr_email_id.desc = "Beneficiary Email Id"
 		this.ctrl.cdtr_email_id.visible = true
 		this.ctrl.cdtr_email_id.label_name = "Beneficiary Email Id"
@@ -432,14 +471,14 @@ focustoelement(){
 		this.ctrl.cdtr_email_id.vld_rules = []
 		this.ctrl.cdtr_email_id.targetcolumn_lower = "cdtr_email_id"
 		this.ctrl.cdtr_email_id.disabled = false
-		this.ctrl.cdtr_email_id.view_name = "f_npss_post_dashboard_srch"
-		this.ctrl.cdtr_email_id.ctrl_id = "npss_post_dashboard_srch_cdtr_email_id"
-		this.ctrl.npss_post_dashboard_srch_cdtr_email_id = {}
-		this.ctrl.npss_post_dashboard_srch_cdtr_email_id.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.cdtr_email_id.view_name = "f_npss_hst_dashboard_srch"
+		this.ctrl.cdtr_email_id.ctrl_id = "npss_hst_dashboard_srch_cdtr_email_id"
+		this.ctrl.npss_hst_dashboard_srch_cdtr_email_id = {}
+		this.ctrl.npss_hst_dashboard_srch_cdtr_email_id.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_document_id
 		this.ctrl.cdtr_document_id = {}
-		this.ctrl.cdtr_document_id.id = "2b4f8aa0-f03d-4268-abb6-b5848e6c5b39_1666009098412"
+		this.ctrl.cdtr_document_id.id = "RN31CN10"
 		this.ctrl.cdtr_document_id.desc = "Beneficiary Document Id"
 		this.ctrl.cdtr_document_id.visible = true
 		this.ctrl.cdtr_document_id.label_name = "Beneficiary Document Id"
@@ -471,54 +510,15 @@ focustoelement(){
 		this.ctrl.cdtr_document_id.vld_rules = []
 		this.ctrl.cdtr_document_id.targetcolumn_lower = "cdtr_document_id"
 		this.ctrl.cdtr_document_id.disabled = false
-		this.ctrl.cdtr_document_id.view_name = "f_npss_post_dashboard_srch"
-		this.ctrl.cdtr_document_id.ctrl_id = "npss_post_dashboard_srch_cdtr_document_id"
-		this.ctrl.npss_post_dashboard_srch_cdtr_document_id = {}
-		this.ctrl.npss_post_dashboard_srch_cdtr_document_id.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of intrbk_sttlm_amnt
-		this.ctrl.intrbk_sttlm_amnt = {}
-		this.ctrl.intrbk_sttlm_amnt.id = "fcf1c12f-2d97-483d-896f-25f0e69eded5_1666009098412"
-		this.ctrl.intrbk_sttlm_amnt.desc = "Amount"
-		this.ctrl.intrbk_sttlm_amnt.visible = true
-		this.ctrl.intrbk_sttlm_amnt.label_name = "Amount"
-		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
-		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
-		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CUR"
-		this.ctrl.intrbk_sttlm_amnt.target_column = "INTRBK_STTLM_AMNT"
-		this.ctrl.intrbk_sttlm_amnt.data_type = "NUMBER"
-		this.ctrl.intrbk_sttlm_amnt.data_length = 19
-		this.ctrl.intrbk_sttlm_amnt.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.intrbk_sttlm_amnt.default_value = ""
-		this.ctrl.intrbk_sttlm_amnt.is_memory_ctrl = ""
-		this.ctrl.intrbk_sttlm_amnt.field_coordinates = ""
-		this.ctrl.intrbk_sttlm_amnt.sub_details = ""
-		this.ctrl.intrbk_sttlm_amnt.accept_char = ""
-		this.ctrl.intrbk_sttlm_amnt.currency_format = ""
-		this.ctrl.intrbk_sttlm_amnt.data_scale = "2"
-		this.ctrl.intrbk_sttlm_amnt.binding_name = "INTRBK_STTLM_AMNT"
-		this.ctrl.intrbk_sttlm_amnt.hide_label = false
-		this.ctrl.intrbk_sttlm_amnt.depends_on = ""
-		this.ctrl.intrbk_sttlm_amnt.placeholder = ""
-		this.ctrl.intrbk_sttlm_amnt.dynamic_param = ""
-		this.ctrl.intrbk_sttlm_amnt.style_code = ""
-		this.ctrl.intrbk_sttlm_amnt.data_source = ""
-		this.ctrl.intrbk_sttlm_amnt.image_association = ""
-		this.ctrl.intrbk_sttlm_amnt.show = true
-		this.ctrl.intrbk_sttlm_amnt.sub_content = ""
-		this.ctrl.intrbk_sttlm_amnt.required = false
-		this.ctrl.intrbk_sttlm_amnt.vld_rules = []
-		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
-		this.ctrl.intrbk_sttlm_amnt.disabled = false
-		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_post_dashboard_srch"
-		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_post_dashboard_srch_intrbk_sttlm_amnt"
-		this.ctrl.npss_post_dashboard_srch_intrbk_sttlm_amnt = {}
-		this.ctrl.npss_post_dashboard_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_post_dashboard_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","PROCESS_TYPE":"","HDR_MSG_ID":"","CHANNEL_ID":"","DBTR_PHONE_NO":"","DBTR_EMAIL_ID":"","DBTR_DOCUMENT_ID":"","CDTR_IBAN":"","CDTR_PHONE_NO":"","CDTR_EMAIL_ID":"","CDTR_DOCUMENT_ID":"","INTRBK_STTLM_AMNT":""}
-		this.screen_instance[this.comp_id].f_npss_post_dashboard_srch.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_DOCUMENT_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_DOCUMENT_ID"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
-		this.screen_instance[this.comp_id].f_npss_post_dashboard_srch.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_post_dashboard_srch.dtt_code = "dtt_1304_1665901217208"
-		this.screen_instance[this.comp_id].f_npss_post_dashboard_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		this.ctrl.cdtr_document_id.view_name = "f_npss_hst_dashboard_srch"
+		this.ctrl.cdtr_document_id.ctrl_id = "npss_hst_dashboard_srch_cdtr_document_id"
+		this.ctrl.npss_hst_dashboard_srch_cdtr_document_id = {}
+		this.ctrl.npss_hst_dashboard_srch_cdtr_document_id.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","INTRBK_STTLM_AMNT":"","PROCESS_TYPE":"","HDR_MSG_ID":"","CHANNEL_ID":"","DBTR_PHONE_NO":"","DBTR_EMAIL_ID":"","DBTR_DOCUMENT_ID":"","CDTR_IBAN":"","CDTR_PHONE_NO":"","CDTR_EMAIL_ID":"","CDTR_DOCUMENT_ID":""}
+		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_DOCUMENT_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_DOCUMENT_ID"}]
+		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.dtt_code = "dtt_1304_1665901217208"
+		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -565,10 +565,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_post_dashboard_srch[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_post_dashboard_srch[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_post_dashboard_srch[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

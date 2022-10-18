@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26496 
+Build ID        : 26505 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-17 15:4 PM 
+Modified Date   : 2022-Oct-18 1:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_hst_view_transactions
@@ -22,7 +22,7 @@ export class p_vertical_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	vertical_list : any = {}
+  	view_transaction_details : any = {}
 	back_ui : any = {}
 
 
@@ -31,8 +31,8 @@ export class p_vertical_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.vertical_list.desc = "Vertical List"
-		this.vertical_list.need_header = ""
+    	this.view_transaction_details.desc = "View Transaction Details"
+		this.view_transaction_details.need_header = true
 		this.back_ui.desc = "Back UI"
 		this.back_ui.need_header = ""
 	

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26496 
+Build ID        : 26505 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-17 15:4 PM 
+Modified Date   : 2022-Oct-18 1:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_hst_view_transactions
@@ -56,7 +56,7 @@ focustoelement(){
 		this.ctrl.value_date.label_name = "Value Date"
 		this.ctrl.value_date.df_code = "DF_1304_1665901396659"
 		this.ctrl.value_date.df_description = "Column Group 1"
-		this.ctrl.value_date.uictrl_code = "DTP"
+		this.ctrl.value_date.uictrl_code = "CDN_DATE"
 		this.ctrl.value_date.target_column = "VALUE_DATE"
 		this.ctrl.value_date.data_type = "DATETIME"
 		this.ctrl.value_date.data_length = 0
@@ -86,6 +86,45 @@ focustoelement(){
 		this.ctrl.value_date.ctrl_id = "npss_hst_dashboard_srch_value_date"
 		this.ctrl.npss_hst_dashboard_srch_value_date = {}
 		this.ctrl.npss_hst_dashboard_srch_value_date.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of intrbk_sttlm_amnt
+		this.ctrl.intrbk_sttlm_amnt = {}
+		this.ctrl.intrbk_sttlm_amnt.id = "RN41CN13"
+		this.ctrl.intrbk_sttlm_amnt.desc = "Amount"
+		this.ctrl.intrbk_sttlm_amnt.visible = true
+		this.ctrl.intrbk_sttlm_amnt.label_name = "Amount"
+		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
+		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
+		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CDN_CUR_CTRL"
+		this.ctrl.intrbk_sttlm_amnt.target_column = "INTRBK_STTLM_AMNT"
+		this.ctrl.intrbk_sttlm_amnt.data_type = "NUMBER"
+		this.ctrl.intrbk_sttlm_amnt.data_length = 19
+		this.ctrl.intrbk_sttlm_amnt.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.intrbk_sttlm_amnt.default_value = ""
+		this.ctrl.intrbk_sttlm_amnt.is_memory_ctrl = ""
+		this.ctrl.intrbk_sttlm_amnt.field_coordinates = ""
+		this.ctrl.intrbk_sttlm_amnt.sub_details = ""
+		this.ctrl.intrbk_sttlm_amnt.accept_char = ""
+		this.ctrl.intrbk_sttlm_amnt.currency_format = ""
+		this.ctrl.intrbk_sttlm_amnt.data_scale = "2"
+		this.ctrl.intrbk_sttlm_amnt.binding_name = "INTRBK_STTLM_AMNT"
+		this.ctrl.intrbk_sttlm_amnt.hide_label = false
+		this.ctrl.intrbk_sttlm_amnt.depends_on = ""
+		this.ctrl.intrbk_sttlm_amnt.placeholder = ""
+		this.ctrl.intrbk_sttlm_amnt.dynamic_param = ""
+		this.ctrl.intrbk_sttlm_amnt.style_code = ""
+		this.ctrl.intrbk_sttlm_amnt.data_source = ""
+		this.ctrl.intrbk_sttlm_amnt.image_association = ""
+		this.ctrl.intrbk_sttlm_amnt.show = true
+		this.ctrl.intrbk_sttlm_amnt.sub_content = ""
+		this.ctrl.intrbk_sttlm_amnt.required = false
+		this.ctrl.intrbk_sttlm_amnt.vld_rules = []
+		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
+		this.ctrl.intrbk_sttlm_amnt.disabled = false
+		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_hst_dashboard_srch"
+		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_hst_dashboard_srch_intrbk_sttlm_amnt"
+		this.ctrl.npss_hst_dashboard_srch_intrbk_sttlm_amnt = {}
+		this.ctrl.npss_hst_dashboard_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of process_type
 		this.ctrl.process_type = {}
@@ -475,47 +514,8 @@ focustoelement(){
 		this.ctrl.cdtr_document_id.ctrl_id = "npss_hst_dashboard_srch_cdtr_document_id"
 		this.ctrl.npss_hst_dashboard_srch_cdtr_document_id = {}
 		this.ctrl.npss_hst_dashboard_srch_cdtr_document_id.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of intrbk_sttlm_amnt
-		this.ctrl.intrbk_sttlm_amnt = {}
-		this.ctrl.intrbk_sttlm_amnt.id = "RN31CN11"
-		this.ctrl.intrbk_sttlm_amnt.desc = "Amount"
-		this.ctrl.intrbk_sttlm_amnt.visible = true
-		this.ctrl.intrbk_sttlm_amnt.label_name = "Amount"
-		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
-		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
-		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CUR"
-		this.ctrl.intrbk_sttlm_amnt.target_column = "INTRBK_STTLM_AMNT"
-		this.ctrl.intrbk_sttlm_amnt.data_type = "NUMBER"
-		this.ctrl.intrbk_sttlm_amnt.data_length = 19
-		this.ctrl.intrbk_sttlm_amnt.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.intrbk_sttlm_amnt.default_value = ""
-		this.ctrl.intrbk_sttlm_amnt.is_memory_ctrl = ""
-		this.ctrl.intrbk_sttlm_amnt.field_coordinates = ""
-		this.ctrl.intrbk_sttlm_amnt.sub_details = ""
-		this.ctrl.intrbk_sttlm_amnt.accept_char = ""
-		this.ctrl.intrbk_sttlm_amnt.currency_format = ""
-		this.ctrl.intrbk_sttlm_amnt.data_scale = "2"
-		this.ctrl.intrbk_sttlm_amnt.binding_name = "INTRBK_STTLM_AMNT"
-		this.ctrl.intrbk_sttlm_amnt.hide_label = false
-		this.ctrl.intrbk_sttlm_amnt.depends_on = ""
-		this.ctrl.intrbk_sttlm_amnt.placeholder = ""
-		this.ctrl.intrbk_sttlm_amnt.dynamic_param = ""
-		this.ctrl.intrbk_sttlm_amnt.style_code = ""
-		this.ctrl.intrbk_sttlm_amnt.data_source = ""
-		this.ctrl.intrbk_sttlm_amnt.image_association = ""
-		this.ctrl.intrbk_sttlm_amnt.show = true
-		this.ctrl.intrbk_sttlm_amnt.sub_content = ""
-		this.ctrl.intrbk_sttlm_amnt.required = false
-		this.ctrl.intrbk_sttlm_amnt.vld_rules = []
-		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
-		this.ctrl.intrbk_sttlm_amnt.disabled = false
-		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_hst_dashboard_srch"
-		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_hst_dashboard_srch_intrbk_sttlm_amnt"
-		this.ctrl.npss_hst_dashboard_srch_intrbk_sttlm_amnt = {}
-		this.ctrl.npss_hst_dashboard_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","PROCESS_TYPE":"","HDR_MSG_ID":"","CHANNEL_ID":"","DBTR_PHONE_NO":"","DBTR_EMAIL_ID":"","DBTR_DOCUMENT_ID":"","CDTR_IBAN":"","CDTR_PHONE_NO":"","CDTR_EMAIL_ID":"","CDTR_DOCUMENT_ID":"","INTRBK_STTLM_AMNT":""}
-		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_DOCUMENT_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_DOCUMENT_ID"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
+		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","INTRBK_STTLM_AMNT":"","PROCESS_TYPE":"","HDR_MSG_ID":"","CHANNEL_ID":"","DBTR_PHONE_NO":"","DBTR_EMAIL_ID":"","DBTR_DOCUMENT_ID":"","CDTR_IBAN":"","CDTR_PHONE_NO":"","CDTR_EMAIL_ID":"","CDTR_DOCUMENT_ID":""}
+		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_DOCUMENT_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_DOCUMENT_ID"}]
 		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

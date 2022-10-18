@@ -6,21 +6,21 @@ Modified By     : Admin
 Modified Date   : 2022-Oct-18 5:21 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_post_view_transactions
-Form Name       : Back UI--------------------------------------------------------------------------- */
+Screen Name     : s_reversal_process
+Form Name       : Navigation UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_back_ui',
-  templateUrl: './f_back_ui.component.html',
-  styleUrls: ['./f_back_ui.component.css'],
+  selector: 'f_navigation_ui',
+  templateUrl: './f_navigation_ui.component.html',
+  styleUrls: ['./f_navigation_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_back_uiComponent implements OnInit {
+export class f_navigation_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_back_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_back_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_back_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_navigation_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_navigation_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_back_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_navigation_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

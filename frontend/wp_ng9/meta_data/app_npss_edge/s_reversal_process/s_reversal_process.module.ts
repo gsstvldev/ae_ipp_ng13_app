@@ -6,7 +6,7 @@ Modified By     : Admin
 Modified Date   : 2022-Oct-18 5:21 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_hst_view_transactions
+Screen Name     : s_reversal_process
 --------------------------------------------------------------------------- */
 
 // Component Definition 
@@ -26,8 +26,8 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import { ComponenthelperService } from '../../../scripts/fx/componenthelper.service';
 
-import { s_hst_view_transactionsComponent } from './s_hst_view_transactions.component';
-import { s_hst_view_transactionsRoutingModule } from './s_hst_view_transactions.routing.module';
+import { s_reversal_processComponent } from './s_reversal_process.component';
+import { s_reversal_processRoutingModule } from './s_reversal_process.routing.module';
     
 
 
@@ -50,15 +50,15 @@ import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
     DialogModule,
     OverlayPanelModule,
     
-    s_hst_view_transactionsRoutingModule,
+    s_reversal_processRoutingModule,
     
   ],
-  declarations: [s_hst_view_transactionsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_hst_dashboard_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,],
+  declarations: [s_reversal_processComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_hst_dashboard_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 
 
 // Start of class 
-export class s_hst_view_transactionsModule { }
+export class s_reversal_processModule { }
 
 // End of class 

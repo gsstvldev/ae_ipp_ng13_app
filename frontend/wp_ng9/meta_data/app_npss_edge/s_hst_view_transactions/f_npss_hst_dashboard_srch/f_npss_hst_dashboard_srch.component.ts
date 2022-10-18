@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26508 
+Build ID        : 26515 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-18 2:50 AM 
+Modified Date   : 2022-Oct-18 5:21 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_hst_view_transactions
@@ -134,7 +134,7 @@ focustoelement(){
 		this.ctrl.process_type.label_name = "Process Type"
 		this.ctrl.process_type.df_code = "DF_1304_1665901396659"
 		this.ctrl.process_type.df_description = "Column Group 1"
-		this.ctrl.process_type.uictrl_code = "TXT"
+		this.ctrl.process_type.uictrl_code = "CBO"
 		this.ctrl.process_type.target_column = "PROCESS_TYPE"
 		this.ctrl.process_type.data_type = "TEXT"
 		this.ctrl.process_type.data_length = 2
@@ -152,7 +152,7 @@ focustoelement(){
 		this.ctrl.process_type.placeholder = ""
 		this.ctrl.process_type.dynamic_param = ""
 		this.ctrl.process_type.style_code = ""
-		this.ctrl.process_type.data_source = ""
+		this.ctrl.process_type.data_source = {"ds_code":"UDS_1304_1666069454473","ds_description":"NPSS Process Type CDB","rows":[],"type":"DPS_TABLE","value_member":"PROCESS_TYPE","display_member":"PROCESS_TYPE","first_record_display":"Select","column_list":"","order_by":"","target_table":"NPSS_VW_PROCESS_TYPE","context":"","filters":[],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[]},"query":"()"},"sel_columns":[]}
 		this.ctrl.process_type.image_association = ""
 		this.ctrl.process_type.show = true
 		this.ctrl.process_type.sub_content = ""
@@ -164,6 +164,7 @@ focustoelement(){
 		this.ctrl.process_type.ctrl_id = "npss_hst_dashboard_srch_process_type"
 		this.ctrl.npss_hst_dashboard_srch_process_type = {}
 		this.ctrl.npss_hst_dashboard_srch_process_type.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.process_type = {}
 	
 		//Properties of hdr_msg_id
 		this.ctrl.hdr_msg_id = {}
@@ -515,7 +516,7 @@ focustoelement(){
 		this.ctrl.npss_hst_dashboard_srch_cdtr_document_id = {}
 		this.ctrl.npss_hst_dashboard_srch_cdtr_document_id.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","INTRBK_STTLM_AMNT":"","PROCESS_TYPE":"","HDR_MSG_ID":"","CHANNEL_ID":"","DBTR_PHONE_NO":"","DBTR_EMAIL_ID":"","DBTR_DOCUMENT_ID":"","CDTR_IBAN":"","CDTR_PHONE_NO":"","CDTR_EMAIL_ID":"","CDTR_DOCUMENT_ID":""}
-		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_DOCUMENT_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_DOCUMENT_ID"}]
+		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_DOCUMENT_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_DOCUMENT_ID"}]
 		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_hst_dashboard_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

@@ -6,23 +6,24 @@ Modified By     : Admin
 Modified Date   : 2022-Oct-18 5:21 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_hst_view_transactions
-Profile Name    : Search Layout--------------------------------------------------------------------------- */
+Screen Name     : s_reversal_process
+Profile Name    : Vertical Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_search_layout',
-  templateUrl: './p_search_layout.component.html',
-  styleUrls: ['./p_search_layout.component.css']
+  selector: 'p_vertical_layout',
+  templateUrl: './p_vertical_layout.component.html',
+  styleUrls: ['./p_vertical_layout.component.css']
 })
 
 // Start of class 
-export class p_search_layoutComponent implements OnInit {
+export class p_vertical_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	search : any = {}
+  	view_transaction_details : any = {}
+	back_ui : any = {}
 
 
   // Constructor 
@@ -30,12 +31,14 @@ export class p_search_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.search.desc = "Search"
-		this.search.need_header = ""
+    	this.view_transaction_details.desc = "View Transaction Details"
+		this.view_transaction_details.need_header = true
+		this.back_ui.desc = "Back UI"
+		this.back_ui.need_header = ""
 	
 
-    this.screen_instance['p_search_layout'] = {};
-    this.screen_instance['p_search_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_vertical_layout'] = {};
+    this.screen_instance['p_vertical_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

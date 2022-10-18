@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26529 
+Build ID        : 26538 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-18 10:28 AM 
+Modified Date   : 2022-Oct-18 13:52 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_process
@@ -19,6 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
+import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -55,7 +56,7 @@ import { f_submit_uiComponent } from './f_submit_ui/f_submit_ui.component'
     OverlayPanelModule,
     
     s_reversal_processRoutingModule,
-    
+    torus_cs_show_hideModule
   ],
   declarations: [s_reversal_processComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_hst_dashboard_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_refund_layoutComponent,f_refund_uiComponent,f_refund_editable_uiComponent,f_submit_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

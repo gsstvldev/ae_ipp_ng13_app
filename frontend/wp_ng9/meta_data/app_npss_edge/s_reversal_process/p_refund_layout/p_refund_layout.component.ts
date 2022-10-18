@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26529 
+Build ID        : 26538 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-18 10:28 AM 
+Modified Date   : 2022-Oct-18 13:52 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_process
@@ -32,9 +32,9 @@ export class p_refund_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.disable_refund_ui.desc = "Disable Refund UI"
+    	this.disable_refund_ui.desc = "Disable Reversal  UI"
 		this.disable_refund_ui.need_header = ""
-		this.enable_refund_ui.desc = "Enable Refund UI"
+		this.enable_refund_ui.desc = "Enable Reversal  UI"
 		this.enable_refund_ui.need_header = ""
 		this.submit_ui.desc = "Submit UI"
 		this.submit_ui.need_header = ""

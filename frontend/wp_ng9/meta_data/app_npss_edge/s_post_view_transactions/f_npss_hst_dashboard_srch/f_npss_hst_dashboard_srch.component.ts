@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26520 
+Build ID        : 26529 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-18 6:23 AM 
+Modified Date   : 2022-Oct-18 10:27 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_post_view_transactions
@@ -152,7 +152,7 @@ focustoelement(){
 		this.ctrl.process_type.placeholder = ""
 		this.ctrl.process_type.dynamic_param = ""
 		this.ctrl.process_type.style_code = ""
-		this.ctrl.process_type.data_source = {"ds_code":"UDS_1304_1666069454473","ds_description":"NPSS Process Type CDB","rows":[],"type":"DPS_TABLE","value_member":"PROCESS_TYPE","display_member":"PROCESS_TYPE","first_record_display":"Select","column_list":"","order_by":"","target_table":"NPSS_VW_PROCESS_TYPE","context":"","filters":[],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[]},"query":"()"},"sel_columns":[]}
+		this.ctrl.process_type.data_source = {"ds_code":"UDS_1304_1666069454473","ds_description":"NPSS Process Type CDB","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"CD_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"SORT_ORDER ASC","target_table":"CORE_CODE_DESCRIPTIONS","context":"","filters":[{"filter_name":"Filter1","binding_name":"CD_CATEGORY","id":"DF_1666085228019","binding_value":"PROCESS_TYPE","source_name":"CD_CATEGORY","source_value":"PROCESS_TYPE","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1666085228019","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"PROCESS_TYPE","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"PROCESS_TYPE"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(CD_CATEGORY = PROCESS_TYPE AND TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
 		this.ctrl.process_type.image_association = ""
 		this.ctrl.process_type.show = true
 		this.ctrl.process_type.sub_content = ""

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26577 
+Build ID        : 26585 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-19 15:6 PM 
+Modified Date   : 2022-Oct-19 16:42 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_file_download
@@ -19,7 +19,6 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
-import {npss_c_trigger_exchange_componentModule} from '../../../custom_widget/npss_c_trigger_exchange_component/npss_c_trigger_exchange_component.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -49,7 +48,7 @@ import { p_exchange_layoutsComponent } from './p_exchange_layouts/p_exchange_lay
     OverlayPanelModule,
     
     s_customer_file_downloadRoutingModule,
-    npss_c_trigger_exchange_componentModule
+    
   ],
   declarations: [s_customer_file_downloadComponent,p_exchange_queueComponent,f_navigationComponent,p_exchange_layoutsComponent,],
   providers:[AppHandlerService,ComponenthelperService]

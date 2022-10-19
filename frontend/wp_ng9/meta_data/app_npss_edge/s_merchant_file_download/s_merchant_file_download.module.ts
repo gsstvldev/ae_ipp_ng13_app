@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26577 
+Build ID        : 26585 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-19 15:6 PM 
+Modified Date   : 2022-Oct-19 16:42 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_file_download
@@ -19,7 +19,6 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
-import {npss_c_trigger_exchange_componentModule} from '../../../custom_widget/npss_c_trigger_exchange_component/npss_c_trigger_exchange_component.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -48,7 +47,7 @@ import { f_navigationComponent } from './f_navigation/f_navigation.component'
     OverlayPanelModule,
     
     s_merchant_file_downloadRoutingModule,
-    npss_c_trigger_exchange_componentModule
+    
   ],
   declarations: [s_merchant_file_downloadComponent,p_exchange_layoutsComponent,f_navigationComponent,],
   providers:[AppHandlerService,ComponenthelperService]

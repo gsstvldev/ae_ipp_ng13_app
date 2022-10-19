@@ -6,21 +6,21 @@ Modified By     : Admin
 Modified Date   : 2022-Oct-19 16:42 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_rct_transaction_details
-Form Name       : Back UI--------------------------------------------------------------------------- */
+Screen Name     : s_customer_file_creation
+Form Name       : Search--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_back_ui',
-  templateUrl: './f_back_ui.component.html',
-  styleUrls: ['./f_back_ui.component.css'],
+  selector: 'f_search',
+  templateUrl: './f_search.component.html',
+  styleUrls: ['./f_search.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_back_uiComponent implements OnInit {
+export class f_searchComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_back_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_back_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_back_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_search[control]==undefined) {
+      this.screen_instance[this.comp_id].f_search[control] = {}
     }
-    this.screen_instance[this.comp_id].f_back_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_search[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26577 
+Build ID        : 26585 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-19 15:6 PM 
+Modified Date   : 2022-Oct-19 16:42 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_file_upload
@@ -12,13 +12,12 @@ Screen Name     : s_merchant_file_upload
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {npss_c_trigger_exchange_componentService} from '../../../custom_widget/npss_c_trigger_exchange_component/npss_c_trigger_exchange_component.service'
 
 @Component({
 	selector: 's_merchant_file_upload',
 	templateUrl: './s_merchant_file_upload.component.html',
 	styleUrls: ['./s_merchant_file_upload.component.css'],
-	providers:[npss_c_trigger_exchange_componentService]
+	providers:[]
 })
     
 // Start of class 
@@ -48,7 +47,7 @@ export class s_merchant_file_uploadComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private npss_c_trigger_exchange_componentService:npss_c_trigger_exchange_componentService) {
+	constructor(private handler:AppHandlerService ) {
     
 	}
     
@@ -130,11 +129,6 @@ export class s_merchant_file_uploadComponent implements OnInit,AfterViewInit {
 		this.queue__svm_by_click_on_queue()
 		this.queue__se_by_click_on_ql()
 		this.queue__ee_for_nav_continue()
-	}
-
-	//Handler for INTERNAL event of "svm by click on queue"
-	svm_by_click_on_queue__internal(parent_event_result){
-		this.svm_by_click_on_queue__trigger_exchange_ide_link(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation continue"
@@ -264,7 +258,7 @@ export class s_merchant_file_uploadComponent implements OnInit,AfterViewInit {
 		let event_code="e_1591784182177"
 		let event_params={"caller_name":"queue__svm_by_click_on_queue","event_desc":"SVM by click on queue","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
 		let handler_code="set_value_to_memory"
-		let internals="svm_by_click_on_queue__trigger_exchange_ide_link,"
+		let internals=""
 		let event_data={"queue":{"e_1591784182177":{"dts":{"dt_1304_1665384579126":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1591784182177","dt_code":"DT_1304_1665384579126","dtt_code":"","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"FFG_CODE","level":"MI_LEVEL","name":"MI_LEVEL_FFG_CODE","setd3name":"FFG_CODE"},{"type":"LOCAL","column_name":"GATEWAY_CODE","level":"MI_LEVEL","name":"MI_LEVEL_GATEWAY_CODE","setd3name":"GATEWAY_CODE"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1665384579126":{"dtt_1304_1665384653050":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665384579126","dtt_code":"DTT_1304_1665384653050","ds_eligible":"DS_1665465382526","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merc Exg File upload MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"process_status","alias_name":"","mq_id":"MQ_1665398141374","date_format":false},{"column_name":"status","alias_name":"","mq_id":"MQ_1665398141534","date_format":false},{"column_name":"count","alias_name":"","mq_id":"MQ_1665398141686","date_format":false},{"column_name":"queue_desc","alias_name":"","mq_id":"MQ_1665398141822","date_format":false}],"joins":[]},"eq_text":"select process_status,        status,        count(status) count,        dt_code,        dtt_code,        queue_desc,        q_sort_order,        qs_sort_order,        product_code,        ffg_code,        create_flag,        upload_flag,        download_flag,        gateway_code   from (select ccst.process_status,                ccst.status,                ccst.NPSSMPA_ID,                ccst.CATEGORY,                ccst.MERC_CATEGORY_CODE,                ccst.MERCHANT,                ccst.DENOMINATION,                ccst.PROFESSIONAL,                ccst.MERCHANT_TAG,                ccst.IBAN,                ccst.USER_ID,                ccst.PARTICIPANT_CODE,                ccst.POI,                ccst.VAT_ID,                ccst.IPP_ID,                ccst.created_date,                ccst.system_id,                ccst.created_by,                ccst.dt_code,                ccst.dtt_code,                ccst.created_by_name,                qr.role_id,                qr.vph_app_id,                qr.vph_app_code,                qr.queue_code,                pq.queue_desc,                pq.queue_code,                qr.sort_order as qs_sort_order,                pq.sort_order as q_sort_order,                CFP.FFG_CODE,                CFP.product_code,                CFP.create_flag,                CFP.upload_flag,                CFP.download_flag,                CFP.Gateway_Code,                pq.vph_app_id as pq_app_id,                cfp.vph_app_id as cfp_app_id,                CFP.screen_module as CFP_SM,                CFP.screen_menu_group as CFP_SMG,                CFP.screen_name as CFP_SN,                qr.Screen_Module as QR_SM,                qr.screen_menu_group as QR_SMG,                qr.screen_name as QR_SN           from NPSS_MERC_PROXY_ADDRESS ccst          inner join CORE_Q_STATUS_ROLES qr on ccst.status =                                               qr.process_queue_status          inner join CORE_APP_Q_SETUP pq on ccst.process_status =                                            pq.queue_code          inner join core_ffg_product_q CFP ON CFP.QUEUE_CODE =                                               ccst.process_status) vw $WHERE  group by q_sort_order,           process_status,           qs_sort_order,           status,           dt_code,           dtt_code,           queue_desc,           product_code,           ffg_code,           create_flag,           upload_flag,           download_flag,           gateway_code  order by q_sort_order, qs_sort_order"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merc Exg File upload MQ CCD","filter":[{"filter_name":"CFP_APP_ID","binding_name":"CFP_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"CFP_SM","binding_name":"CFP_SM","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"CFP_SMG","binding_name":"CFP_SMG","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"CFP_SN","binding_name":"CFP_SN","binding_value":"","source_name":"MENU_ITEM","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PQ_APP_ID","binding_name":"PQ_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PRODUCT_CODE","binding_name":"PRODUCT_CODE","binding_value":"","source_name":"ROOT_SCODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_SM","binding_name":"QR_SM","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_SMG","binding_name":"QR_SMG","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_SN","binding_name":"QR_SN","binding_value":"","source_name":"MENU_ITEM","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"UPLOAD_FLAG","binding_name":"UPLOAD_FLAG","binding_value":"","source_name":"YES","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"queue_desc","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"status","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"count","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -311,28 +305,6 @@ export class s_merchant_file_uploadComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "svm by click on queue"
-	svm_by_click_on_queue__trigger_exchange_ide_link(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="svm_by_click_on_queue"
-		let destn_id=""
-		let parent_source_id="queue"
-		let event_code="e_1641798979907"
-		let event_params={"caller_name":"svm_by_click_on_queue__trigger_exchange_ide_link","event_desc":"Trigger Exchange IDE link","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="custom_connectors"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_c_trigger_exchange_componentService.fn_npss_c_trigger_exchange_component(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

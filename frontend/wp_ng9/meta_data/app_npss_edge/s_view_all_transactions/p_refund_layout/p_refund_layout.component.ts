@@ -1,31 +1,30 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26546 
+Build ID        : 26543 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-19 4:49 AM 
+Modified Date   : 2022-Oct-19 7:47 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_reversal_process
-Profile Name    : Main Layout--------------------------------------------------------------------------- */
+Screen Name     : s_view_all_transactions
+Profile Name    : Refund Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_main_layout',
-  templateUrl: './p_main_layout.component.html',
-  styleUrls: ['./p_main_layout.component.css']
+  selector: 'p_refund_layout',
+  templateUrl: './p_refund_layout.component.html',
+  styleUrls: ['./p_refund_layout.component.css']
 })
 
 // Start of class 
-export class p_main_layoutComponent implements OnInit {
+export class p_refund_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	navigation_ui : any = {}
-	queue : any = {}
-	process_log_list : any = {}
-	transaction_list : any = {}
+  	disable_refund_ui : any = {}
+	enable_refund_ui : any = {}
+	submit_ui : any = {}
 
 
   // Constructor 
@@ -33,18 +32,16 @@ export class p_main_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.navigation_ui.desc = "Navigation UI"
-		this.navigation_ui.need_header = ""
-		this.queue.desc = "Queue"
-		this.queue.need_header = true
-		this.process_log_list.desc = "Process Log List"
-		this.process_log_list.need_header = true
-		this.transaction_list.desc = "Transaction List"
-		this.transaction_list.need_header = true
+    	this.disable_refund_ui.desc = "Disable Reversal  UI"
+		this.disable_refund_ui.need_header = ""
+		this.enable_refund_ui.desc = "Enable Reversal  UI"
+		this.enable_refund_ui.need_header = ""
+		this.submit_ui.desc = "Submit UI"
+		this.submit_ui.need_header = ""
 	
 
-    this.screen_instance['p_main_layout'] = {};
-    this.screen_instance['p_main_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_refund_layout'] = {};
+    this.screen_instance['p_refund_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

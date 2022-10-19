@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26546 
+Build ID        : 26547 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-19 4:49 AM 
+Modified Date   : 2022-Oct-19 7:47 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_process
@@ -31,7 +31,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
-	current_profile : string = "p_main_layout"
+	current_profile : string = "p_refund_layout"
 	uicgc_1 : string = "transaction_list"
 	uicgc_2 : string = "view_transaction_details"
 	uicgc_3 : string = "navigation_ui"
@@ -55,6 +55,8 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 	navigation_ui_search : any = {}
 	navigation_ui_view_detail : any = {}
 	navigation_ui_refund : any = {}
+	navigation_ui_retry : any = {}
+	navigation_ui_already_posted : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -141,6 +143,24 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_refund.dynamic_param = {}
 		this.navigation_ui_refund.role = []
 		this.navigation_ui_refund.action = ""
+		
+		// "Retry" Button of "Navigation UI" component
+		this.navigation_ui_retry.label_name = "Retry"
+		this.navigation_ui_retry.show = true
+		this.navigation_ui_retry.disabled = false
+		this.navigation_ui_retry.params = {"icon_only":false,"uicgcc_style":"fa fa-exchange"}
+		this.navigation_ui_retry.dynamic_param = {}
+		this.navigation_ui_retry.role = []
+		this.navigation_ui_retry.action = ""
+		
+		// "Already Posted" Button of "Navigation UI" component
+		this.navigation_ui_already_posted.label_name = "Already Posted"
+		this.navigation_ui_already_posted.show = true
+		this.navigation_ui_already_posted.disabled = false
+		this.navigation_ui_already_posted.params = {"icon_only":false,"uicgcc_style":"fa fa-bullhorn"}
+		this.navigation_ui_already_posted.dynamic_param = {}
+		this.navigation_ui_already_posted.role = []
+		this.navigation_ui_already_posted.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -313,7 +333,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 
 	//Handler for INTERNAL event of "ssp for search"
 	ssp_for_search__internal(parent_event_result){
-		this.ssp_for_search__brfq_for_queue_list(parent_event_result)
+		this.ssp_for_search__brfq_for_queue_list_via_search(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search clear"
@@ -473,7 +493,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		let event_code="e_1666010099913"
 		let event_params={"caller_name":"search_search__ssp_for_search","event_desc":"SSP for search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
 		let handler_code="set_search_params"
-		let internals="ssp_for_search__brfq_for_queue_list,"
+		let internals="ssp_for_search__brfq_for_queue_list_via_search,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -548,7 +568,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "ssp for search"
-	ssp_for_search__brfq_for_queue_list(parent_event_result) { 
+	ssp_for_search__brfq_for_queue_list_via_search(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
@@ -556,7 +576,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		let destn_id="queue"
 		let parent_source_id="search_search"
 		let event_code="e_1666099747624"
-		let event_params={"caller_name":"ssp_for_search__brfq_for_queue_list","event_desc":"BRFQ for Queue list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"ssp_for_search__brfq_for_queue_list_via_search","event_desc":"BRFQ for Queue list via search","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}

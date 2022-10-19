@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26378 
+Build ID        : 26577 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-11 9:14 AM 
+Modified Date   : 2022-Oct-19 15:6 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_file_download
@@ -12,13 +12,13 @@ Screen Name     : s_merchant_file_download
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_c_trigger_exchange_componentService} from '../../../custom_widget/npss_c_trigger_exchange_component/npss_c_trigger_exchange_component.service'
 
 @Component({
 	selector: 's_merchant_file_download',
 	templateUrl: './s_merchant_file_download.component.html',
 	styleUrls: ['./s_merchant_file_download.component.css'],
-	providers:[torus_cs_show_hideService]
+	providers:[npss_c_trigger_exchange_componentService]
 })
     
 // Start of class 
@@ -31,7 +31,7 @@ export class s_merchant_file_downloadComponent implements OnInit,AfterViewInit {
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
-	current_profile : string = "p_exchange_queue"
+	current_profile : string = "p_exchange_layouts"
 	uicgc_1 : string = "exchange_detail"
 	uicgc_2 : string = "queue"
 	uicgc_3 : string = "navigation"
@@ -48,7 +48,7 @@ export class s_merchant_file_downloadComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
+	constructor(private handler:AppHandlerService ,private npss_c_trigger_exchange_componentService:npss_c_trigger_exchange_componentService) {
     
 	}
     
@@ -332,7 +332,7 @@ export class s_merchant_file_downloadComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_c_trigger_exchange_componentService.fn_npss_c_trigger_exchange_component(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

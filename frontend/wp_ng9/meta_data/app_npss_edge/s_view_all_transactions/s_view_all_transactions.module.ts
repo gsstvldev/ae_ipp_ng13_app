@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26572 
+Build ID        : 26576 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-19 13:26 PM 
+Modified Date   : 2022-Oct-19 15:5 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_transactions
@@ -43,10 +43,10 @@ import { f_refund_uiComponent } from './f_refund_ui/f_refund_ui.component'
 import { f_enable_refund_uiComponent } from './f_enable_refund_ui/f_enable_refund_ui.component'
 import { f_submit_uiComponent } from './f_submit_ui/f_submit_ui.component'
 import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_request_layout.component'
-import { f_request_uiComponent } from './f_request_ui/f_request_ui.component'
+import { f_chart_request_uiComponent } from './f_chart_request_ui/f_chart_request_ui.component'
 import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
 import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
-import { f_response_uiComponent } from './f_response_ui/f_response_ui.component'
+import { f_chart_response_uiComponent } from './f_chart_response_ui/f_chart_response_ui.component'
 
 
 
@@ -63,7 +63,7 @@ import { f_response_uiComponent } from './f_response_ui/f_response_ui.component'
     s_view_all_transactionsRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_view_all_transactionsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_process_log_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_refund_layoutComponent,f_refund_uiComponent,f_enable_refund_uiComponent,f_submit_uiComponent,p_view_request_layoutComponent,f_request_uiComponent,p_view_history_layoutComponent,p_view_response_layoutComponent,f_response_uiComponent,],
+  declarations: [s_view_all_transactionsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_process_log_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_refund_layoutComponent,f_refund_uiComponent,f_enable_refund_uiComponent,f_submit_uiComponent,p_view_request_layoutComponent,f_chart_request_uiComponent,p_view_history_layoutComponent,p_view_response_layoutComponent,f_chart_response_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

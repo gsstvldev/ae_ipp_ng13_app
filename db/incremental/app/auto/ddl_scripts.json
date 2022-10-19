@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRN_PROCESS_LOG add column REQUEST_DATA_JSON CHARACTER VARYING(80000), add column RESPONSE_DATA_JSON CHARACTER VARYING(80000);","params" : [] }]
+[]

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26371 
+Build ID        : 26577 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-11 6:17 AM 
+Modified Date   : 2022-Oct-19 15:6 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_file_creation
@@ -19,6 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
+import {sprp_c_set_exg_additional_paramModule} from '../../../custom_widget/sprp_c_set_exg_additional_param/sprp_c_set_exg_additional_param.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -50,7 +51,7 @@ import { f_npss_address_srch_uiComponent } from './f_npss_address_srch_ui/f_npss
     OverlayPanelModule,
     
     s_merchant_file_creationRoutingModule,
-    
+    sprp_c_set_exg_additional_paramModule
   ],
   declarations: [s_merchant_file_creationComponent,p_ips_layoutComponent,f_navigationComponent,f_queue_searchComponent,p_search_layoutComponent,f_npss_address_srch_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

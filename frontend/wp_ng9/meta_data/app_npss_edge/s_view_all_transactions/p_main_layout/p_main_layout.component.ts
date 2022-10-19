@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26572 
+Build ID        : 26576 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-19 13:26 PM 
+Modified Date   : 2022-Oct-19 15:5 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_transactions
@@ -26,6 +26,7 @@ export class p_main_layoutComponent implements OnInit {
 	chart : any = {}
 	process_log_list : any = {}
 	transaction_list : any = {}
+	hidden_list : any = {}
 
 
   // Constructor 
@@ -41,6 +42,8 @@ export class p_main_layoutComponent implements OnInit {
 		this.process_log_list.need_header = true
 		this.transaction_list.desc = "Transaction List"
 		this.transaction_list.need_header = true
+		this.hidden_list.desc = "Hidden list"
+		this.hidden_list.need_header = ""
 	
 
     this.screen_instance['p_main_layout'] = {};

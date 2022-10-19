@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26371 
+Build ID        : 26577 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-11 6:17 AM 
+Modified Date   : 2022-Oct-19 15:6 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_file_creation
@@ -12,12 +12,13 @@ Screen Name     : s_merchant_file_creation
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
+import {sprp_c_set_exg_additional_paramService} from '../../../custom_widget/sprp_c_set_exg_additional_param/sprp_c_set_exg_additional_param.service'
 
 @Component({
 	selector: 's_merchant_file_creation',
 	templateUrl: './s_merchant_file_creation.component.html',
 	styleUrls: ['./s_merchant_file_creation.component.css'],
-	providers:[]
+	providers:[sprp_c_set_exg_additional_paramService]
 })
     
 // Start of class 
@@ -43,6 +44,7 @@ export class s_merchant_file_creationComponent implements OnInit,AfterViewInit {
 	p_search_layout__spap_for_nav_search_showpopup : boolean = false
 	navigation : any = {}
 	navigation_search : any = {}
+	navigation_create_trg : any = {}
 	navigation_create : any = {}
 	transactions_list : any = {}
 	search : any = {}
@@ -56,7 +58,7 @@ export class s_merchant_file_creationComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ) {
+	constructor(private handler:AppHandlerService ,private sprp_c_set_exg_additional_paramService:sprp_c_set_exg_additional_paramService) {
     
 	}
     
@@ -84,6 +86,15 @@ export class s_merchant_file_creationComponent implements OnInit,AfterViewInit {
 		this.navigation_search.dynamic_param = {}
 		this.navigation_search.role = []
 		this.navigation_search.action = ""
+		
+		// "Create trg" Button of "Navigation" component
+		this.navigation_create_trg.label_name = "Create trg"
+		this.navigation_create_trg.show = true
+		this.navigation_create_trg.disabled = false
+		this.navigation_create_trg.params = {"icon_only":false,"uicgcc_style":"fa fa-creative-commons"}
+		this.navigation_create_trg.dynamic_param = {}
+		this.navigation_create_trg.role = []
+		this.navigation_create_trg.action = ""
 		
 		// "Create" Button of "Navigation" component
 		this.navigation_create.label_name = "Create"
@@ -191,6 +202,7 @@ export class s_merchant_file_creationComponent implements OnInit,AfterViewInit {
 		this.page_load__cf_on_page_load()
 		this.page_load__he_for_nav_create()
 		this.page_load__tbc_for_search()
+		this.page_load__he_for_create()
 	}
 
 	//Handler for SELECTION_CHANGED event of "transactions list"
@@ -261,14 +273,24 @@ export class s_merchant_file_creationComponent implements OnInit,AfterViewInit {
 		this.queue_search_clear__cui_for_queue_srch()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation create"
-	navigation_create__action_button_click(){
-		this.navigation_create__efc_for_queue()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation create trg"
+	navigation_create_trg__action_button_click(){
+		this.navigation_create_trg__efc_for_queue()
 	}
 
 	//Handler for INTERNAL event of "efc for queue"
 	efc_for_queue__internal(parent_event_result){
 		this.efc_for_queue__rs_for_nav_create(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation create"
+	navigation_create__action_button_click(){
+		this.navigation_create__cc_for_create()
+	}
+
+	//Handler for INTERNAL event of "cc for create"
+	cc_for_create__internal(parent_event_result){
+		this.cc_for_create__tbc_for_create_trg(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -297,7 +319,7 @@ export class s_merchant_file_creationComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_create"
+		let destn_id="navigation_create_trg"
 		let parent_source_id=""
 		let event_code="e_1591627139925"
 		let event_params={"caller_name":"page_load__he_for_nav_create","event_desc":"HE for Nav Create","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -328,6 +350,27 @@ export class s_merchant_file_creationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_create() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_create"
+		let parent_source_id=""
+		let event_code="e_1665497289298"
+		let event_params={"caller_name":"page_load__he_for_create","event_desc":"HE for create","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -447,7 +490,7 @@ export class s_merchant_file_creationComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1605876075838"
-		let event_params={"caller_name":"navigation_search__spap_for_nav_search","event_desc":"SPAP for Nav Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_nav_search","selector":"p_search_layout","profile_code":"BTL_1408_1585633277240","window_title":"Search","window_height":700,"window_width":"500px","window_close_icon":"Y","eventdes":"spap_for_nav_search","eventcode":"E_1605876075838"}}
+		let event_params={"caller_name":"navigation_search__spap_for_nav_search","event_desc":"SPAP for Nav Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_nav_search","selector":"p_search_layout","profile_code":"BTL_1408_1585633277240","window_title":"Search","window_height":700,"window_width":"800px","window_close_icon":"Y","eventdes":"spap_for_nav_search","eventcode":"E_1605876075838"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}
@@ -595,8 +638,8 @@ export class s_merchant_file_creationComponent implements OnInit,AfterViewInit {
 		let source_id="queue"
 		let destn_id="navigation_create"
 		let parent_source_id=""
-		let event_code="e_1591625650903"
-		let event_params={"caller_name":"queue__se_for_nav_create","event_desc":"SE for Nav Create","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":""}}
+		let event_code="e_1665497158060"
+		let event_params={"caller_name":"queue__se_for_nav_create","event_desc":"SE for Nav Create","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -759,15 +802,15 @@ export class s_merchant_file_creationComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation create"
-	navigation_create__efc_for_queue() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation create trg"
+	navigation_create_trg__efc_for_queue() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_create"
+		let source_id="navigation_create_trg"
 		let destn_id="queue"
 		let parent_source_id=""
 		let event_code="e_1652707327149"
-		let event_params={"caller_name":"navigation_create__efc_for_queue","event_desc":"EFC for Queue","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_create","raiseparam":{"file_group_code":null,"hl_chaincode":"","hl_chaincode_function":"","hl_setup":""}}
+		let event_params={"caller_name":"navigation_create_trg__efc_for_queue","event_desc":"EFC for Queue","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_create_trg","raiseparam":{"file_group_code":null,"hl_chaincode":"","hl_chaincode_function":"","hl_setup":""}}
 		let handler_code="exg_file_creation"
 		let internals="efc_for_queue__rs_for_nav_create,"
 		let event_data={}
@@ -787,15 +830,58 @@ export class s_merchant_file_creationComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="efc_for_queue"
 		let destn_id=""
-		let parent_source_id="navigation_create"
+		let parent_source_id="navigation_create_trg"
 		let event_code="e_1652707405758"
-		let event_params={"caller_name":"efc_for_queue__rs_for_nav_create","event_desc":"RS for Nav Create","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_create","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"efc_for_queue__rs_for_nav_create","event_desc":"RS for Nav Create","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_create_trg","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
 			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation create"
+	navigation_create__cc_for_create() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_create"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1665497310415"
+		let event_params={"caller_name":"navigation_create__cc_for_create","event_desc":"CC for create","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_create","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_create__tbc_for_create_trg,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.sprp_c_set_exg_additional_paramService.fn_sprp_c_set_exg_additional_param(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for create"
+	cc_for_create__tbc_for_create_trg(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_create"
+		let destn_id="navigation_create_trg"
+		let parent_source_id="navigation_create"
+		let event_code="e_1665497354767"
+		let event_params={"caller_name":"cc_for_create__tbc_for_create_trg","event_desc":"TBC for create trg","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_create","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

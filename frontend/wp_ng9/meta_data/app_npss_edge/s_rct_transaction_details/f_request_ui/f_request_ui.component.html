@@ -1,0 +1,18 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_request_ui="ngForm">
+<div id="RN01" class="row">
+	<div #request_ui_memory10 id="RN01CN1" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory10')" >
+				<rich_txt [ctrl_id]="'request_ui_memory10'" [comp_id]="comp_id" [ctrl]="ctrl.memory10" [model]="screen_instance[this.comp_id].f_request_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></rich_txt>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+ 		<div class="col-md-1 col-sm-6 col-xs-6 col-md-offset-11 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.request_ui_back.show" >
+			<btn [ctrl_id]="'request_ui_back'" [comp_id]="comp_id" [ctrl]="screen_instance.request_ui_back" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.request_ui_back.show"></btn>
+		</div>
+	</div>
+
+</div>

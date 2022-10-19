@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26561 
+Build ID        : 26564 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-19 10:28 AM 
+Modified Date   : 2022-Oct-19 12:12 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_transactions
@@ -69,6 +69,7 @@ focustoelement(){
 		this.ctrl.uetr.currency_format = ""
 		this.ctrl.uetr.data_scale = ""
 		this.ctrl.uetr.binding_name = "UETR"
+		this.ctrl.uetr.hide_label = false
 		this.ctrl.uetr.depends_on = ""
 		this.ctrl.uetr.placeholder = ""
 		this.ctrl.uetr.dynamic_param = ""
@@ -107,6 +108,7 @@ focustoelement(){
 		this.ctrl.process_name.currency_format = ""
 		this.ctrl.process_name.data_scale = ""
 		this.ctrl.process_name.binding_name = "PROCESS_NAME"
+		this.ctrl.process_name.hide_label = false
 		this.ctrl.process_name.depends_on = ""
 		this.ctrl.process_name.placeholder = ""
 		this.ctrl.process_name.dynamic_param = ""
@@ -146,6 +148,7 @@ focustoelement(){
 		this.ctrl.processing_system.currency_format = ""
 		this.ctrl.processing_system.data_scale = ""
 		this.ctrl.processing_system.binding_name = "PROCESSING_SYSTEM"
+		this.ctrl.processing_system.hide_label = false
 		this.ctrl.processing_system.depends_on = ""
 		this.ctrl.processing_system.placeholder = ""
 		this.ctrl.processing_system.dynamic_param = ""
@@ -184,6 +187,7 @@ focustoelement(){
 		this.ctrl.memory9.currency_format = ""
 		this.ctrl.memory9.data_scale = ""
 		this.ctrl.memory9.binding_name = "CREATED_DATE"
+		this.ctrl.memory9.hide_label = false
 		this.ctrl.memory9.depends_on = ""
 		this.ctrl.memory9.placeholder = ""
 		this.ctrl.memory9.dynamic_param = ""

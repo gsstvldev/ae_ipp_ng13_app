@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26557 
+Build ID        : 26564 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-19 10:2 AM 
+Modified Date   : 2022-Oct-19 12:12 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_process
@@ -32,10 +32,21 @@ import { s_reversal_processRoutingModule } from './s_reversal_process.routing.mo
     
 
 
+import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
+import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
+import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
+import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { p_refund_layoutComponent } from './p_refund_layout/p_refund_layout.component'
 import { f_refund_uiComponent } from './f_refund_ui/f_refund_ui.component'
 import { f_refund_editable_uiComponent } from './f_refund_editable_ui/f_refund_editable_ui.component'
 import { f_submit_uiComponent } from './f_submit_ui/f_submit_ui.component'
+import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
+import { f_response_uiComponent } from './f_response_ui/f_response_ui.component'
+import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_request_layout.component'
+import { f_request_uiComponent } from './f_request_ui/f_request_ui.component'
+import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
+import { f_npss_hst_dashboard_srchComponent } from './f_npss_hst_dashboard_srch/f_npss_hst_dashboard_srch.component'
+import { p_vertical_layoutComponent } from './p_vertical_layout/p_vertical_layout.component'
 
 
 
@@ -52,7 +63,7 @@ import { f_submit_uiComponent } from './f_submit_ui/f_submit_ui.component'
     s_reversal_processRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_reversal_processComponent,p_refund_layoutComponent,f_refund_uiComponent,f_refund_editable_uiComponent,f_submit_uiComponent,],
+  declarations: [s_reversal_processComponent,p_view_history_layoutComponent,f_back_uiComponent,p_main_layoutComponent,f_navigation_uiComponent,p_refund_layoutComponent,f_refund_uiComponent,f_refund_editable_uiComponent,f_submit_uiComponent,p_view_response_layoutComponent,f_response_uiComponent,p_view_request_layoutComponent,f_request_uiComponent,p_search_layoutComponent,f_npss_hst_dashboard_srchComponent,p_vertical_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

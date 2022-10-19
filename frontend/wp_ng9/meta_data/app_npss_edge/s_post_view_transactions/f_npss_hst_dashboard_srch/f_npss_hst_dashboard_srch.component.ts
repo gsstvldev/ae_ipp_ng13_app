@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26541 
+Build ID        : 26564 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-18 14:34 PM 
+Modified Date   : 2022-Oct-19 12:12 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_post_view_transactions
@@ -187,6 +187,7 @@ focustoelement(){
 		this.ctrl.hdr_msg_id.currency_format = ""
 		this.ctrl.hdr_msg_id.data_scale = ""
 		this.ctrl.hdr_msg_id.binding_name = "HDR_MSG_ID"
+		this.ctrl.hdr_msg_id.hide_label = false
 		this.ctrl.hdr_msg_id.depends_on = ""
 		this.ctrl.hdr_msg_id.placeholder = ""
 		this.ctrl.hdr_msg_id.dynamic_param = ""

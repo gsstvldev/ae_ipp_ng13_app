@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26541 
+Build ID        : 26542 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-18 14:34 PM 
+Modified Date   : 2022-Oct-18 15:2 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_process
@@ -300,6 +300,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 	page_load(){
 		this.page_load__cf_for_pl()
 		this.page_load__cc_for_show_hide_queue()
+		this.page_load__de_for_vd()
 	}
 
 	//Handler for INTERNAL event of "cf for pl"
@@ -330,6 +331,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		this.transaction_list__svm_for_tl()
 		this.transaction_list__ssr_for_eer()
 		this.transaction_list__ssr_for_de()
+		this.transaction_list__ee_for_tl()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui search"
@@ -394,12 +396,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 
 	//Handler for INTERNAL event of "cc for show hide for process log list"
 	cc_for_show_hide_for_process_log_list__internal(parent_event_result){
-		this.cc_for_show_hide_for_process_log_list__ssp_for_progress_log_list(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "ssp for progress log list"
-	ssp_for_progress_log_list__internal(parent_event_result){
-		this.ssp_for_progress_log_list__brfq_for_transaction_list(parent_event_result)
+		this.cc_for_show_hide_for_process_log_list__brfq_for_transaction_list(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "brfq for transaction list"
@@ -443,6 +440,27 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_vd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_view_detail"
+		let parent_source_id=""
+		let event_code="e_1666105052637"
+		let event_params={"caller_name":"page_load__de_for_vd","event_desc":"DE for VD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -661,6 +679,27 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_tl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_view_detail"
+		let parent_source_id=""
+		let event_code="e_1666105066141"
+		let event_params={"caller_name":"transaction_list__ee_for_tl","event_desc":"EE for TL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui search"
 	navigation_ui_search__spap_for_search() { 
 		let Dest_Is_ctrl=true
@@ -669,7 +708,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1666010219246"
-		let event_params={"caller_name":"navigation_ui_search__spap_for_search","event_desc":"SPAP for search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_search","selector":"p_search_layout","profile_code":"BTL_1304_1666010003163","window_title":"Search","window_height":800,"window_width":"1200px","window_close_icon":"Y","eventdes":"spap_for_search","eventcode":"E_1666010219246"}}
+		let event_params={"caller_name":"navigation_ui_search__spap_for_search","event_desc":"SPAP for search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_search","selector":"p_search_layout","profile_code":"BTL_1304_1666010003163","window_title":"Search","window_height":400,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_search","eventcode":"E_1666010219246"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}
@@ -990,7 +1029,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		let event_code="e_1666099009714"
 		let event_params={"caller_name":"svm_for_progres_log_list__cc_for_show_hide_for_process_log_list","event_desc":"CC for show hide for process log list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals="cc_for_show_hide_for_process_log_list__ssp_for_progress_log_list,"
+		let internals="cc_for_show_hide_for_process_log_list__brfq_for_transaction_list,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -1002,37 +1041,15 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "cc for show hide for process log list"
-	cc_for_show_hide_for_process_log_list__ssp_for_progress_log_list(parent_event_result) { 
+	cc_for_show_hide_for_process_log_list__brfq_for_transaction_list(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="cc_for_show_hide_for_process_log_list"
-		let destn_id="search"
-		let parent_source_id="svm_for_progres_log_list"
-		let event_code="e_1666099061832"
-		let event_params={"caller_name":"cc_for_show_hide_for_process_log_list__ssp_for_progress_log_list","event_desc":"SSP for progress log list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="set_search_params"
-		let internals="ssp_for_progress_log_list__brfq_for_transaction_list,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "ssp for progress log list"
-	ssp_for_progress_log_list__brfq_for_transaction_list(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="ssp_for_progress_log_list"
 		let destn_id="transaction_list"
-		let parent_source_id="cc_for_show_hide_for_process_log_list"
-		let event_code="e_1666099110007"
-		let event_params={"caller_name":"ssp_for_progress_log_list__brfq_for_transaction_list","event_desc":"BRFQ for transaction list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let parent_source_id="svm_for_progres_log_list"
+		let event_code="e_1666105140236"
+		let event_params={"caller_name":"cc_for_show_hide_for_process_log_list__brfq_for_transaction_list","event_desc":"BRFQ for transaction list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_transaction_list__ssr_for_transaction_list,"
 		let event_data={}
@@ -1052,8 +1069,8 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_for_transaction_list"
 		let destn_id="transaction_list"
-		let parent_source_id="ssp_for_progress_log_list"
-		let event_code="e_1666099461071"
+		let parent_source_id="cc_for_show_hide_for_process_log_list"
+		let event_code="e_1666105159955"
 		let event_params={"caller_name":"brfq_for_transaction_list__ssr_for_transaction_list","event_desc":"SSR for Transaction list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""

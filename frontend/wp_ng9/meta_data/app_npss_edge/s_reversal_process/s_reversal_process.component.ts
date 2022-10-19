@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26547 
+Build ID        : 26557 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-19 7:47 AM 
+Modified Date   : 2022-Oct-19 10:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_process
@@ -327,8 +327,6 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 	search_search__action_button_click(){
 		this.search_search__ssp_for_search()
 		this.search_search__cp_for_search()
-		this.search_search__cui_by_navigation_search_to_pl()
-		this.search_search__cui_by_navigation_search_to_rr()
 	}
 
 	//Handler for INTERNAL event of "ssp for search"
@@ -519,48 +517,6 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.close_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "search search"
-	search_search__cui_by_navigation_search_to_pl() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="search_search"
-		let destn_id="process_log_list"
-		let parent_source_id=""
-		let event_code="e_1666075935764"
-		let event_params={"caller_name":"search_search__cui_by_navigation_search_to_pl","event_desc":"CUI by Navigation Search to PL","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"need_reset_key_column":"N"}}
-		let handler_code="clear_ui"
-		let internals=""
-		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_7","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1666070016177","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Process Log MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"NPSSTPL_ID","alias_name":"","mq_id":"MQ_1666051334258","date_format":false},{"column_name":"MSG_ID","alias_name":"","mq_id":"MQ_1666051334497","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1666051334710","date_format":false},{"column_name":"NPSSTRRD_REFNO","alias_name":"","mq_id":"MQ_1666051335092","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1666051335252","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1666051335440","date_format":false},{"column_name":"RESPONSE_CODE","alias_name":"","mq_id":"MQ_1666051335592","date_format":false},{"column_name":"PROCESS_REF_NO","alias_name":"","mq_id":"MQ_1666051336664","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1666051402210","date_format":true},{"column_name":"RETURN_DESCRIPTION","alias_name":"","mq_id":"MQ_1666051402389","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666103605986","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSTPL_ID,        MSG_ID,        UETR,        NPSSTRRD_REFNO,        PROCESS_NAME,        PROCESSING_SYSTEM,        RESPONSE_CODE,        PROCESS_REF_NO,        RESPONSE_DATA,        CREATED_DATE,        RETURN_DESCRIPTION,        PROCESS_STATUS,         STATUS   FROM (SELECT A.NPSSTPL_ID,                A.MSG_ID,                A.UETR,                A.NPSSTRRD_REFNO,                A.PROCESS_NAME,                A.PROCESSING_SYSTEM,                A.RESPONSE_CODE,                A.PROCESS_REF_NO,                A.RESPONSE_DATA,                A.CREATED_DATE,                R.RETURN_DESCRIPTION,                A.PROCESS_STATUS,                A.STATUS           FROM NPSS_TRN_PROCESS_LOG A           LEFT JOIN CORE_NC_RETURN_CODES R ON R.RETURN_CODE =                                               A.RESPONSE_CODE) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Process Log CCD","filter":[{"filter_name":"UETR","binding_name":"UETR","binding_value":"","source_name":"MI_LEVEL_UETR","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Clearing Sys Ref No","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Error Code","target_column":"RESPONSE_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Error Description","target_column":"RETURN_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Ref No","target_column":"PROCESS_REF_NO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Id","target_column":"MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
-		try {
-			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "search search"
-	search_search__cui_by_navigation_search_to_rr() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="search_search"
-		let destn_id="queue"
-		let parent_source_id=""
-		let event_code="e_1666075956131"
-		let event_params={"caller_name":"search_search__cui_by_navigation_search_to_rr","event_desc":"CUI by Navigation Search to RR","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"need_reset_key_column":"N"}}
-		let handler_code="clear_ui"
-		let internals=""
-		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665903906193":{"st_ds":{"default":{"uicgc_code":"UICGC_6","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665903906193","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1666070032985","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS REQ RESP Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"NPSSTRRD_ID","alias_name":"","mq_id":"MQ_1666052237026","date_format":false},{"column_name":"MSG_ID","alias_name":"","mq_id":"MQ_1666052237466","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1666052237650","date_format":false},{"column_name":"PARENT_NPSSTRRD_REFNO","alias_name":"","mq_id":"MQ_1666052237819","date_format":false},{"column_name":"NPSSTRRD_REFNO","alias_name":"","mq_id":"MQ_1666052238002","date_format":false},{"column_name":"PROCESS_CODE","alias_name":"","mq_id":"MQ_1666052238185","date_format":false},{"column_name":"PROCESS_DETAIL","alias_name":"","mq_id":"MQ_1666052238360","date_format":false},{"column_name":"EXHF_ID","alias_name":"","mq_id":"MQ_1666052238586","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1666052322511","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1666052322688","date_format":false},{"column_name":"MESSAGE_DESC","alias_name":"","mq_id":"MQ_1666052324967","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSTRRD_ID,  MSG_ID,  UETR,  PARENT_NPSSTRRD_REFNO,  NPSSTRRD_REFNO,  MESSAGE_DATA,  PROCESS_CODE,  PROCESS_DETAIL,  EXHF_ID,  CREATED_DATE,  PROCESS_NAME,  MESSAGE_DESC FROM (SELECT  A.NPSSTRRD_ID,  A.MSG_ID,  A.UETR,  A.PARENT_NPSSTRRD_REFNO,  A.NPSSTRRD_REFNO,  A.MESSAGE_DATA,  A.PROCESS_CODE,  A.PROCESS_DETAIL,  A.EXHF_ID,  A.CREATED_DATE,  A.PROCESS_NAME,  A.MESSAGE_DESC FROM  NPSS_TRN_REQ_RESP_DTLS A  LEFT JOIN CORE_RETURN_REASON_CODES E ON E.REASON_CODE = A.PROCESS_CODE ) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS REQ RESP Tran CCD","filter":[{"filter_name":"UETR","binding_name":"UETR","binding_value":"","source_name":"MI_LEVEL_UETR","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Clearing Sys Ref No","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Code","target_column":"PROCESS_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Detail","target_column":"PROCESS_DETAIL","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Id","target_column":"MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Desc","target_column":"MESSAGE_DESC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Batch Id","target_column":"EXHF_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
-		try {
-			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26542 
+Build ID        : 26546 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-18 15:2 PM 
+Modified Date   : 2022-Oct-19 4:49 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_process
@@ -118,7 +118,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		// "Search" Button of "Navigation UI" component
 		this.navigation_ui_search.label_name = "Search"
 		this.navigation_ui_search.show = true
-		this.navigation_ui_search.disabled = false
+		this.navigation_ui_search.disabled = true
 		this.navigation_ui_search.params = {"icon_only":false,"uicgcc_style":"fa fa-search"}
 		this.navigation_ui_search.dynamic_param = {}
 		this.navigation_ui_search.role = []
@@ -127,7 +127,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		// "View Detail" Button of "Navigation UI" component
 		this.navigation_ui_view_detail.label_name = "View Detail"
 		this.navigation_ui_view_detail.show = true
-		this.navigation_ui_view_detail.disabled = false
+		this.navigation_ui_view_detail.disabled = true
 		this.navigation_ui_view_detail.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
 		this.navigation_ui_view_detail.dynamic_param = {}
 		this.navigation_ui_view_detail.role = []
@@ -300,12 +300,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 	page_load(){
 		this.page_load__cf_for_pl()
 		this.page_load__cc_for_show_hide_queue()
-		this.page_load__de_for_vd()
-	}
-
-	//Handler for INTERNAL event of "cf for pl"
-	cf_for_pl__internal(parent_event_result){
-		this.cf_for_pl__tbc_from_page_load_to_search(parent_event_result)
+		this.page_load__brfq_frm_wf_master()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
@@ -367,6 +362,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 	//Handler for SELECTION_CHANGED event of "queue"
 	queue__selection_changed(){
 		this.queue__svm_for_process_log_list()
+		this.queue__ee_from_queue_to_search()
 	}
 
 	//Handler for INTERNAL event of "svm for process log list"
@@ -381,7 +377,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 
 	//Handler for INTERNAL event of "ssp for transaction list"
 	ssp_for_transaction_list__internal(parent_event_result){
-		this.ssp_for_transaction_list__brfq_for_transaction_list(parent_event_result)
+		this.ssp_for_transaction_list__brfq_for_pl_list(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "process log list"
@@ -414,7 +410,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		let event_code="e_1666010053082"
 		let event_params={"caller_name":"page_load__cf_for_pl","event_desc":"CF for PL","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""}}
 		let handler_code="create_form"
-		let internals="cf_for_pl__tbc_from_page_load_to_search,"
+		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
@@ -447,42 +443,20 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__de_for_vd() { 
+	page_load__brfq_frm_wf_master() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_detail"
+		let destn_id="queue"
 		let parent_source_id=""
-		let event_code="e_1666105052637"
-		let event_params={"caller_name":"page_load__de_for_vd","event_desc":"DE for VD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
-		let handler_code="disable_element"
+		let event_code="e_1666154151076"
+		let event_params={"caller_name":"page_load__brfq_frm_wf_master","event_desc":"BRFQ frm WF Master","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665903906193":{"st_ds":{"default":{"uicgc_code":"UICGC_6","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665903906193","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1666070032985","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS REQ RESP Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"NPSSTRRD_ID","alias_name":"","mq_id":"MQ_1666052237026","date_format":false},{"column_name":"MSG_ID","alias_name":"","mq_id":"MQ_1666052237466","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1666052237650","date_format":false},{"column_name":"PARENT_NPSSTRRD_REFNO","alias_name":"","mq_id":"MQ_1666052237819","date_format":false},{"column_name":"NPSSTRRD_REFNO","alias_name":"","mq_id":"MQ_1666052238002","date_format":false},{"column_name":"PROCESS_CODE","alias_name":"","mq_id":"MQ_1666052238185","date_format":false},{"column_name":"PROCESS_DETAIL","alias_name":"","mq_id":"MQ_1666052238360","date_format":false},{"column_name":"EXHF_ID","alias_name":"","mq_id":"MQ_1666052238586","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1666052322511","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1666052322688","date_format":false},{"column_name":"MESSAGE_DESC","alias_name":"","mq_id":"MQ_1666052324967","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSTRRD_ID,  MSG_ID,  UETR,  PARENT_NPSSTRRD_REFNO,  NPSSTRRD_REFNO,  MESSAGE_DATA,  PROCESS_CODE,  PROCESS_DETAIL,  EXHF_ID,  CREATED_DATE,  PROCESS_NAME,  MESSAGE_DESC FROM (SELECT  A.NPSSTRRD_ID,  A.MSG_ID,  A.UETR,  A.PARENT_NPSSTRRD_REFNO,  A.NPSSTRRD_REFNO,  A.MESSAGE_DATA,  A.PROCESS_CODE,  A.PROCESS_DETAIL,  A.EXHF_ID,  A.CREATED_DATE,  A.PROCESS_NAME,  A.MESSAGE_DESC FROM  NPSS_TRN_REQ_RESP_DTLS A  LEFT JOIN CORE_RETURN_REASON_CODES E ON E.REASON_CODE = A.PROCESS_CODE ) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS REQ RESP Tran CCD","filter":[{"filter_name":"UETR","binding_name":"UETR","binding_value":"","source_name":"MI_LEVEL_UETR","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Clearing Sys Ref No","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Code","target_column":"PROCESS_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Detail","target_column":"PROCESS_DETAIL","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Id","target_column":"MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Desc","target_column":"MESSAGE_DESC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Batch Id","target_column":"EXHF_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "cf for pl"
-	cf_for_pl__tbc_from_page_load_to_search(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cf_for_pl"
-		let destn_id="search_search"
-		let parent_source_id="page_load"
-		let event_code="e_1666053434315"
-		let event_params={"caller_name":"cf_for_pl__tbc_from_page_load_to_search","event_desc":"TBC from Page Load to Search","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="trigger_button_click"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -931,6 +905,27 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "queue"
+	queue__ee_from_queue_to_search() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="queue"
+		let destn_id="navigation_ui_search"
+		let parent_source_id=""
+		let event_code="e_1666154268260"
+		let event_params={"caller_name":"queue__ee_from_queue_to_search","event_desc":"EE from Queue to Search","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "svm for process log list"
 	svm_for_process_log_list__cc_forshow_hide__process_log_list(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -964,7 +959,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		let event_code="e_1666098015720"
 		let event_params={"caller_name":"cc_forshow_hide__process_log_list__ssp_for_transaction_list","event_desc":"SSP for Transaction list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="set_search_params"
-		let internals="ssp_for_transaction_list__brfq_for_transaction_list,"
+		let internals="ssp_for_transaction_list__brfq_for_pl_list,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -976,7 +971,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "ssp for transaction list"
-	ssp_for_transaction_list__brfq_for_transaction_list(parent_event_result) { 
+	ssp_for_transaction_list__brfq_for_pl_list(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
@@ -984,7 +979,7 @@ export class s_reversal_processComponent implements OnInit,AfterViewInit {
 		let destn_id="process_log_list"
 		let parent_source_id="cc_forshow_hide__process_log_list"
 		let event_code="e_1666098094877"
-		let event_params={"caller_name":"ssp_for_transaction_list__brfq_for_transaction_list","event_desc":"BRFQ for Transaction list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"ssp_for_transaction_list__brfq_for_pl_list","event_desc":"BRFQ for PL List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}

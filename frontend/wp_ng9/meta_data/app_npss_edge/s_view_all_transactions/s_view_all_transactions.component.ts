@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26564 
+Build ID        : 26572 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-19 12:12 PM 
+Modified Date   : 2022-Oct-19 13:26 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_transactions
@@ -43,12 +43,18 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 	uicgc_9 : string = "enable_refund_ui"
 	uicgc_10 : string = "submit_ui"
 	uicgc_11 : string = "chart"
+	uicgc_12 : string = "history_detail"
+	uicgc_14 : string = "request_ui"
+	uicgc_15 : string = "response_ui"
 	key_events : any = {}
+	btl_1304_1666182418244 : string = "p_view_request_layout"
+	btl_1304_1666182379741 : string = "p_view_response_layout"
+	btl_1304_1666182299071 : string = "p_view_history_layout"
 	btl_1304_1666068179786 : string = "p_refund_layout"
 	btl_1304_1666010003163 : string = "p_search_layout"
 	btl_1304_1666009903061 : string = "p_vertical_layout"
 	btl_1304_1666009819055 : string = "p_main_layout"
-	forms : any = ["uicgc_8","uicgc_4","uicgc_9","uicgc_10","uicgc_5","uicgc_3"]
+	forms : any = ["uicgc_8","uicgc_4","uicgc_14","uicgc_15","uicgc_5","uicgc_9","uicgc_10","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	transaction_list : any = {}
 	view_transaction_details : any = {}
@@ -56,6 +62,11 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 	navigation_ui_search : any = {}
 	navigation_ui_view_detail : any = {}
 	navigation_ui_refund : any = {}
+	navigation_ui_retry : any = {}
+	navigation_ui_already_posted : any = {}
+	navigation_ui_view_response : any = {}
+	navigation_ui_view_request : any = {}
+	navigation_ui_view_log_history : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -70,6 +81,11 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 	submit_ui_reject : any = {}
 	submit_ui_accept : any = {}
 	chart : any = {}
+	history_detail : any = {}
+	request_ui : any = {}
+	request_ui_back : any = {}
+	response_ui : any = {}
+	response_ui_back : any = {}
 
 
 	// Constructor 
@@ -143,6 +159,51 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_refund.dynamic_param = {}
 		this.navigation_ui_refund.role = []
 		this.navigation_ui_refund.action = ""
+		
+		// "Retry" Button of "Navigation UI" component
+		this.navigation_ui_retry.label_name = "Retry"
+		this.navigation_ui_retry.show = true
+		this.navigation_ui_retry.disabled = false
+		this.navigation_ui_retry.params = {"icon_only":false,"uicgcc_style":"fa fa-exchange"}
+		this.navigation_ui_retry.dynamic_param = {}
+		this.navigation_ui_retry.role = []
+		this.navigation_ui_retry.action = ""
+		
+		// "Already Posted" Button of "Navigation UI" component
+		this.navigation_ui_already_posted.label_name = "Already Posted"
+		this.navigation_ui_already_posted.show = true
+		this.navigation_ui_already_posted.disabled = false
+		this.navigation_ui_already_posted.params = {"icon_only":false,"uicgcc_style":"fa fa-bullhorn"}
+		this.navigation_ui_already_posted.dynamic_param = {}
+		this.navigation_ui_already_posted.role = []
+		this.navigation_ui_already_posted.action = ""
+		
+		// "View Response" Button of "Navigation UI" component
+		this.navigation_ui_view_response.label_name = "View Response"
+		this.navigation_ui_view_response.show = true
+		this.navigation_ui_view_response.disabled = false
+		this.navigation_ui_view_response.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_ui_view_response.dynamic_param = {}
+		this.navigation_ui_view_response.role = []
+		this.navigation_ui_view_response.action = ""
+		
+		// "View Request" Button of "Navigation UI" component
+		this.navigation_ui_view_request.label_name = "View Request"
+		this.navigation_ui_view_request.show = true
+		this.navigation_ui_view_request.disabled = false
+		this.navigation_ui_view_request.params = {"icon_only":false,"uicgcc_style":"fa fa-wrench"}
+		this.navigation_ui_view_request.dynamic_param = {}
+		this.navigation_ui_view_request.role = []
+		this.navigation_ui_view_request.action = ""
+		
+		// "View Log History" Button of "Navigation UI" component
+		this.navigation_ui_view_log_history.label_name = "View Log History"
+		this.navigation_ui_view_log_history.show = true
+		this.navigation_ui_view_log_history.disabled = false
+		this.navigation_ui_view_log_history.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
+		this.navigation_ui_view_log_history.dynamic_param = {}
+		this.navigation_ui_view_log_history.role = []
+		this.navigation_ui_view_log_history.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -297,12 +358,70 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		this.chart.uicgc_desc = "Chart"
 		this.chart.uicgc_code = "uicgc_11"
 		this.chart.params = {}
-		this.chart.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_11","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666173412932","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Chart Query MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1666173330632","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1666173330766","date_format":false}],"joins":[]},"eq_text":"SELECT KEY_COLUMN, COUNT(STATUS) AS KEY_VALUE,PROCESS_STATUS,STATUS   FROM (SELECT TO_DATE(TO_CHAR(T.CREATED_DATE, 'DD-MON-YY'), 'DD-MON-YY') CREATED_DATE,                T.STATUS AS KEY_COLUMN ,     T.STATUS,     T.PROCESS_STATUS,                T.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM           FROM NPSS_TRN_PROCESS_LOG T) VW  GROUP BY STATUS,KEY_COLUMN,PROCESS_STATUS,STATUS $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Chart CCD","filter":[],"databinding":[{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.chart.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_11","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666173412932","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Chart Query MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1666173330632","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1666173330766","date_format":false}],"joins":[]},"eq_text":"SELECT KEY_COLUMN, COUNT(STATUS) AS KEY_VALUE, PROCESS_STATUS, STATUS   FROM (SELECT T.CREATED_DATE,                T.STATUS AS KEY_COLUMN,                T.STATUS,                T.PROCESS_STATUS,                T.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM           FROM NPSS_TRN_PROCESS_LOG T) VW  GROUP BY STATUS, KEY_COLUMN, PROCESS_STATUS, STATUS $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Chart CCD","filter":[],"databinding":[{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.chart.context_menu = []
 		this.chart.views = {}
 		this.chart.onChangecomponent = new EventEmitter<any>()
 		this.chart.show = true
 		this.chart.dynamic_param = {}
+	
+		// Component level properties - "History Detail" 
+		this.history_detail.uictrl_code = "datatable"
+		this.history_detail.uicgc_desc = "History Detail"
+		this.history_detail.uicgc_code = "uicgc_12"
+		this.history_detail.params = {"need_search":"N"}
+		this.history_detail.datasource = {}
+		this.history_detail.context_menu = []
+		this.history_detail.views = {}
+		this.history_detail.onChangecomponent = new EventEmitter<any>()
+		this.history_detail.show = true
+		this.history_detail.dynamic_param = {}
+	
+		// Component level properties - "Request UI" 
+		this.request_ui.uictrl_code = "dynamic_ui"
+		this.request_ui.uicgc_desc = "Request UI"
+		this.request_ui.uicgc_code = "uicgc_14"
+		this.request_ui.params = {}
+		this.request_ui.datasource = {}
+		this.request_ui.context_menu = []
+		this.request_ui.views = {}
+		this.request_ui.onChangecomponent = new EventEmitter<any>()
+		this.request_ui.show = true
+		this.request_ui.dynamic_param = {}
+		this.request_ui.f_request_ui = {"show":true}
+		this.request_ui.current_view = "f_request_ui"
+		
+		// "Back" Button of "Request UI" component
+		this.request_ui_back.label_name = "Back"
+		this.request_ui_back.show = true
+		this.request_ui_back.disabled = false
+		this.request_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-fast-backward"}
+		this.request_ui_back.dynamic_param = {}
+		this.request_ui_back.role = []
+		this.request_ui_back.action = ""
+	
+		// Component level properties - "Response UI" 
+		this.response_ui.uictrl_code = "dynamic_ui"
+		this.response_ui.uicgc_desc = "Response UI"
+		this.response_ui.uicgc_code = "uicgc_15"
+		this.response_ui.params = {}
+		this.response_ui.datasource = {}
+		this.response_ui.context_menu = []
+		this.response_ui.views = {}
+		this.response_ui.onChangecomponent = new EventEmitter<any>()
+		this.response_ui.show = true
+		this.response_ui.dynamic_param = {}
+		this.response_ui.f_response_ui = {"show":true}
+		this.response_ui.current_view = "f_response_ui"
+		
+		// "Back" Button of "Response UI" component
+		this.response_ui_back.label_name = "Back"
+		this.response_ui_back.show = true
+		this.response_ui_back.disabled = false
+		this.response_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-fast-backward"}
+		this.response_ui_back.dynamic_param = {}
+		this.response_ui_back.role = []
+		this.response_ui_back.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -314,6 +433,9 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 	page_load(){
 		this.page_load__cf_for_pl()
 		this.page_load__cc_for_show_hide_queue()
+		this.page_load__de_for_view_log_history()
+		this.page_load__de_for_req_btn()
+		this.page_load__de_for_res_btn()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
@@ -396,6 +518,9 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 	//Handler for SELECTION_CHANGED event of "process log list"
 	process_log_list__selection_changed(){
 		this.process_log_list__svm_for_progres_log_list()
+		this.process_log_list__ee_for_req_btn()
+		this.process_log_list__ee_for_view_log_history()
+		this.process_log_list__ee_for_view_response_btn()
 	}
 
 	//Handler for INTERNAL event of "svm for progres log list"
@@ -426,6 +551,31 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "ssp for chart to srch"
 	ssp_for_chart_to_srch__internal(parent_event_result){
 		this.ssp_for_chart_to_srch__v(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view request"
+	navigation_ui_view_request__action_button_click(){
+		this.navigation_ui_view_request__sp_for_request()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view log history"
+	navigation_ui_view_log_history__action_button_click(){
+		this.navigation_ui_view_log_history__sp_for_view_log_history()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view response"
+	navigation_ui_view_response__action_button_click(){
+		this.navigation_ui_view_response__sp_for_response_btn()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "request ui back"
+	request_ui_back__action_button_click(){
+		this.request_ui_back__sp_for_req_back_btn()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "response ui back"
+	response_ui_back__action_button_click(){
+		this.response_ui_back__sp_for_res_back()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -464,6 +614,69 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_view_log_history() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_view_log_history"
+		let parent_source_id=""
+		let event_code="e_1666182520352"
+		let event_params={"caller_name":"page_load__de_for_view_log_history","event_desc":"DE for view log history","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_req_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_view_request"
+		let parent_source_id=""
+		let event_code="e_1666182675827"
+		let event_params={"caller_name":"page_load__de_for_req_btn","event_desc":"DE for req btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_res_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_view_response"
+		let parent_source_id=""
+		let event_code="e_1666182715893"
+		let event_params={"caller_name":"page_load__de_for_res_btn","event_desc":"DE for res btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -567,7 +780,7 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_11","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666173412932","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Chart Query MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1666173330632","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1666173330766","date_format":false}],"joins":[]},"eq_text":"SELECT KEY_COLUMN, COUNT(STATUS) AS KEY_VALUE,PROCESS_STATUS,STATUS   FROM (SELECT TO_DATE(TO_CHAR(T.CREATED_DATE, 'DD-MON-YY'), 'DD-MON-YY') CREATED_DATE,                T.STATUS AS KEY_COLUMN ,     T.STATUS,     T.PROCESS_STATUS,                T.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM           FROM NPSS_TRN_PROCESS_LOG T) VW  GROUP BY STATUS,KEY_COLUMN,PROCESS_STATUS,STATUS $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Chart CCD","filter":[],"databinding":[{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_11","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666173412932","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Chart Query MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1666173330632","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1666173330766","date_format":false}],"joins":[]},"eq_text":"SELECT KEY_COLUMN, COUNT(STATUS) AS KEY_VALUE, PROCESS_STATUS, STATUS   FROM (SELECT T.CREATED_DATE,                T.STATUS AS KEY_COLUMN,                T.STATUS,                T.PROCESS_STATUS,                T.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM           FROM NPSS_TRN_PROCESS_LOG T) VW  GROUP BY STATUS, KEY_COLUMN, PROCESS_STATUS, STATUS $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Chart CCD","filter":[],"databinding":[{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1020,6 +1233,69 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ee_for_req_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="navigation_ui_view_request"
+		let parent_source_id=""
+		let event_code="e_1666182784870"
+		let event_params={"caller_name":"process_log_list__ee_for_req_btn","event_desc":"EE for req btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ee_for_view_log_history() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="navigation_ui_view_log_history"
+		let parent_source_id=""
+		let event_code="e_1666182833773"
+		let event_params={"caller_name":"process_log_list__ee_for_view_log_history","event_desc":"EE for view log history","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ee_for_view_response_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="navigation_ui_view_response"
+		let parent_source_id=""
+		let event_code="e_1666184860757"
+		let event_params={"caller_name":"process_log_list__ee_for_view_response_btn","event_desc":"EE for view response btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "svm for progres log list"
 	svm_for_progres_log_list__cc_for_show_hide_for_process_log_list(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -1098,7 +1374,7 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_chart__ssp_for_chart_to_srch,"
 		let event_data={"chart":{"e_1666162470437":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_11","event_code":"E_1666162470437","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"BULK","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"},{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_11","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666173412932","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Chart Query MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1666173330632","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1666173330766","date_format":false}],"joins":[]},"eq_text":"SELECT KEY_COLUMN, COUNT(STATUS) AS KEY_VALUE,PROCESS_STATUS,STATUS   FROM (SELECT TO_DATE(TO_CHAR(T.CREATED_DATE, 'DD-MON-YY'), 'DD-MON-YY') CREATED_DATE,                T.STATUS AS KEY_COLUMN ,     T.STATUS,     T.PROCESS_STATUS,                T.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM           FROM NPSS_TRN_PROCESS_LOG T) VW  GROUP BY STATUS,KEY_COLUMN,PROCESS_STATUS,STATUS $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Chart CCD","filter":[],"databinding":[{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_11","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666173412932","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Chart Query MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1666173330632","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1666173330766","date_format":false}],"joins":[]},"eq_text":"SELECT KEY_COLUMN, COUNT(STATUS) AS KEY_VALUE, PROCESS_STATUS, STATUS   FROM (SELECT T.CREATED_DATE,                T.STATUS AS KEY_COLUMN,                T.STATUS,                T.PROCESS_STATUS,                T.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM           FROM NPSS_TRN_PROCESS_LOG T) VW  GROUP BY STATUS, KEY_COLUMN, PROCESS_STATUS, STATUS $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Chart CCD","filter":[],"databinding":[{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1145,6 +1421,111 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_7","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666164510110","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Process Log MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"NPSSTPL_ID","alias_name":"","mq_id":"MQ_1666051334258","date_format":false},{"column_name":"MSG_ID","alias_name":"","mq_id":"MQ_1666051334497","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1666051334710","date_format":false},{"column_name":"NPSSTRRD_REFNO","alias_name":"","mq_id":"MQ_1666051335092","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1666051335252","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1666051335440","date_format":false},{"column_name":"RESPONSE_CODE","alias_name":"","mq_id":"MQ_1666051335592","date_format":false},{"column_name":"PROCESS_REF_NO","alias_name":"","mq_id":"MQ_1666051336664","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1666051402210","date_format":true},{"column_name":"RETURN_DESCRIPTION","alias_name":"","mq_id":"MQ_1666051402389","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666103605986","date_format":false}],"joins":[]},"eq_text":"select  NPSSTPL_ID,  MSG_ID,  UETR,  NPSSTRRD_REFNO,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESPONSE_CODE,  PROCESS_REF_NO,  RESPONSE_DATA,  CREATED_DATE,  RETURN_DESCRIPTION,  PROCESS_STATUS,  STATUS,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON from  (  select   A.NPSSTPL_ID,   A.MSG_ID,   A.UETR,   A.NPSSTRRD_REFNO,   A.PROCESS_NAME,   A.PROCESSING_SYSTEM,   A.RESPONSE_CODE,   A.PROCESS_REF_NO,   A.RESPONSE_DATA,   A.CREATED_DATE,   R.RETURN_DESCRIPTION,   A.PROCESS_STATUS,   A.STATUS,   A.REQUEST_DATA_JSON,   A.RESPONSE_DATA_JSON  from   NPSS_TRN_PROCESS_LOG A  left join CORE_NC_RETURN_CODES R on   R.RETURN_CODE = A.RESPONSE_CODE WHERE R.STATUS = 'APPROVED'  order by   A.NPSSTPL_ID desc) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Process Log CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Date","target_column":"CREATED_DATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd-MM-yyyy HH:mm:ss\"","date_format":true},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Error Code","target_column":"RESPONSE_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Error Description","target_column":"RETURN_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Ref No","target_column":"PROCESS_REF_NO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Id","target_column":"MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view request"
+	navigation_ui_view_request__sp_for_request() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_request"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1666184977577"
+		let event_params={"caller_name":"navigation_ui_view_request__sp_for_request","event_desc":"SP for request","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_request","raiseparam":{"profile_code":"BTL_1304_1666182418244"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view log history"
+	navigation_ui_view_log_history__sp_for_view_log_history() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_log_history"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1666184938434"
+		let event_params={"caller_name":"navigation_ui_view_log_history__sp_for_view_log_history","event_desc":"SP for view log history","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_log_history","raiseparam":{"profile_code":"BTL_1304_1666182299071"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view response"
+	navigation_ui_view_response__sp_for_response_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_response"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1666185020313"
+		let event_params={"caller_name":"navigation_ui_view_response__sp_for_response_btn","event_desc":"SP for response btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_response","raiseparam":{"profile_code":"BTL_1304_1666182379741"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "request ui back"
+	request_ui_back__sp_for_req_back_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="request_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1666185153781"
+		let event_params={"caller_name":"request_ui_back__sp_for_req_back_btn","event_desc":"SP for req back btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"request_ui_back","raiseparam":{"profile_code":"BTL_1304_1666009819055"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "response ui back"
+	response_ui_back__sp_for_res_back() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="response_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1666185241057"
+		let event_params={"caller_name":"response_ui_back__sp_for_res_back","event_desc":"SP for res back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"response_ui_back","raiseparam":{"profile_code":"BTL_1304_1666009819055"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

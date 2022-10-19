@@ -1,4 +1,7 @@
 <div class="s_view_all_transactions">
+<p_view_request_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_request_layout')"></p_view_request_layout>
+<p_view_response_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_response_layout')"></p_view_response_layout>
+<p_view_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_history_layout')"></p_view_history_layout>
 <p_refund_layout [screen_instance]="this" [hidden]="!(current_profile=='p_refund_layout')"></p_refund_layout>
 <p_vertical_layout [screen_instance]="this" [hidden]="!(current_profile=='p_vertical_layout')"></p_vertical_layout>
 <p_main_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_layout')"></p_main_layout>

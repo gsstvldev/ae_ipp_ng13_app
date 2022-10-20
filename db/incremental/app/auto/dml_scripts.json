@@ -1,1 +1,1 @@
-[]
+[{ "key": "215~npss_interaction_logs_script", "target" : "APP_CCI_PROJECTS", "content" :"{ \"query\" : \"delete from app_cci_projects where app_id = ?  and project_name = ?;\", \"params\" : [$DQ$215$DQ$, $DQ$npss_interaction_logs_script$DQ$] }", "qry_type" : "D"  },{ "key": "215~npss_sql_cs_pt_transactions", "target" : "APP_CCI_PROJECTS", "content" :"{ \"query\" : \"delete from app_cci_projects where app_id = ?  and project_name = ?;\", \"params\" : [$DQ$215$DQ$, $DQ$npss_sql_cs_pt_transactions$DQ$] }", "qry_type" : "D"  }]

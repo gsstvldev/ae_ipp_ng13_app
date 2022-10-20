@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26598 
+Build ID        : 26588 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-20 7:52 AM 
+Modified Date   : 2022-Oct-20 17:9 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_process

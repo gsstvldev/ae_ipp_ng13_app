@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26590 
+Build ID        : 26598 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-20 7:2 AM 
+Modified Date   : 2022-Oct-20 7:52 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_transaction_details
@@ -208,7 +208,7 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.navigation_ui_view_log_history.label_name = "View Log History"
 		this.navigation_ui_view_log_history.show = true
 		this.navigation_ui_view_log_history.disabled = false
-		this.navigation_ui_view_log_history.params = {"icon_only":false,"uicgcc_style":""}
+		this.navigation_ui_view_log_history.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
 		this.navigation_ui_view_log_history.dynamic_param = {}
 		this.navigation_ui_view_log_history.role = []
 		this.navigation_ui_view_log_history.action = ""

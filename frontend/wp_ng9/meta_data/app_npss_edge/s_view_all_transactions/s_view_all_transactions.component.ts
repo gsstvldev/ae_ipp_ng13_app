@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26590 
+Build ID        : 26596 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-20 7:2 AM 
+Modified Date   : 2022-Oct-20 7:54 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_transactions
@@ -557,6 +557,7 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "svm for chart"
 	svm_for_chart__internal(parent_event_result){
 		this.svm_for_chart__ssp_for_chart_to_srch(parent_event_result)
+		this.svm_for_chart__tbc_for_tbc(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "ssp for chart to srch"
@@ -1380,7 +1381,7 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		let event_code="e_1666162470437"
 		let event_params={"caller_name":"chart__svm_for_chart","event_desc":"SVM for Chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"chart","raiseparam":{}}
 		let handler_code="set_value_to_memory"
-		let internals="svm_for_chart__ssp_for_chart_to_srch,"
+		let internals="svm_for_chart__ssp_for_chart_to_srch,svm_for_chart__tbc_for_tbc,"
 		let event_data={"chart":{"e_1666162470437":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_11","event_code":"E_1666162470437","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"BULK","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"},{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_11","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666173412932","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Chart Query MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1666173330632","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1666173330766","date_format":false}],"joins":[]},"eq_text":"select  KEY_COLUMN,  COUNT(STATUS) as KEY_VALUE,  PROCESS_STATUS,  STATUS from  (  select   T.CREATED_DATE,   T.STATUS as KEY_COLUMN,   T.STATUS,   T.PROCESS_STATUS,   T.UETR,   T.PROCESS_NAME,   T.PROCESSING_SYSTEM  from   NPSS_TRN_PROCESS_LOG T) VW $WHERE group by  STATUS,  KEY_COLUMN,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Chart CCD","filter":[],"databinding":[{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -1407,6 +1408,28 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "svm for chart"
+	svm_for_chart__tbc_for_tbc(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="svm_for_chart"
+		let destn_id="navigation_ui_trgr_disable_btn"
+		let parent_source_id="chart"
+		let event_code="e_1666252411148"
+		let event_params={"caller_name":"svm_for_chart__tbc_for_tbc","event_desc":"TBC for TBC","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"chart","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

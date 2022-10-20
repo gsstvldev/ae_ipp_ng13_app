@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class npss_c_trigger_exchange_componentService {
     constructor() { }
-    //Default calling function
+    //Default calling  function
     fn_npss_c_trigger_exchange_component(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
       let param: any = {};
     let event = { eventId: "getBasicInfo", param: param }

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26585 
+Build ID        : 26590 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-19 16:42 PM 
+Modified Date   : 2022-Oct-20 7:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_transactions
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of memory11
 		this.ctrl.memory11 = {}
 		this.ctrl.memory11.id = "RN01CN1"
-		this.ctrl.memory11.desc = "Response JSON"
+		this.ctrl.memory11.desc = "Response Data"
 		this.ctrl.memory11.visible = false
-		this.ctrl.memory11.label_name = "Response JSON"
+		this.ctrl.memory11.label_name = "Response Data"
 		this.ctrl.memory11.df_code = "DF_1304_1665905157963"
 		this.ctrl.memory11.df_description = "Column Group 1"
 		this.ctrl.memory11.uictrl_code = "RICH_TXT"

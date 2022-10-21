@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26441 
+Build ID        : 26605 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-14 11:18 AM 
+Modified Date   : 2022-Oct-21 14:27 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_enrolment
@@ -593,6 +593,7 @@ export class s_customer_enrolmentComponent implements OnInit,AfterViewInit {
 	search_search__action_button_click(){
 		this.search_search__ssp_on_search()
 		this.search_search__e_1587636808228()
+		this.search_search__e_1666267038802()
 	}
 
 	//Handler for INTERNAL event of "ssp on search"
@@ -1821,6 +1822,27 @@ export class s_customer_enrolmentComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.close_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "search search"
+	search_search__e_1666267038802() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="search_search"
+		let destn_id="bank_account_details"
+		let parent_source_id=""
+		let event_code="e_1666267038802"
+		let event_params={"caller_name":"search_search__e_1666267038802","event_desc":"E_1666267038802","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665384453253":{"dtt_1304_1665385314469":{"st_ds":{"default":{"uicgc_code":"UICGC_5","event_code":"DEFAULT","dt_code":"DT_1304_1665384453253","dt_desc":"Customer DTG","dtt_code":"DTT_1304_1665385314469","dtt_desc":"NPSS Cust Proxy Address","ds_eligible":"DS_1665387436513","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Bank MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"NPSSCPB_ID","alias_name":"","mq_id":"MQ_1665387234452","date_format":false},{"column_name":"BANK_CODE","alias_name":"","mq_id":"MQ_1665387235082","date_format":false},{"column_name":"BANK_NAME","alias_name":"","mq_id":"MQ_1665387235258","date_format":false},{"column_name":"ACCOUNT_NO","alias_name":"","mq_id":"MQ_1665387251594","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1665387251745","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1665387264698","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSCPB_ID,        NPSSCPA_ID,        BANK_CODE,        BANK_NAME,        ACCOUNT_NO,        STATUS,        PROCESS_STATUS,        DT_CODE,        DTT_CODE   FROM (SELECT NPSSCPB.NPSSCPB_ID,                NPSSCPB.NPSSCPA_ID,                NPSSCPB.BANK_CODE,                NPSSCPB.BANK_NAME,                NPSSCPB.ACCOUNT_NO,                NPSSCPB.STATUS,                NPSSCPB.PROCESS_STATUS,                NPSSCPB.DTT_CODE,                NPSSCPB.DT_CODE           FROM NPSS_CUST_PROXY_BANKS NPSSCPB) V $WHERE  ORDER BY NPSSCPB_ID"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Bank CCD","filter":[{"filter_name":"NPSSCPA_ID","binding_name":"NPSSCPA_ID","binding_value":"","source_name":"MI_LEVEL_NPSSCPA_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank Code","target_column":"BANK_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Bank Name","target_column":"BANK_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNT_NO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Status","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -7,26 +7,26 @@ Modified Date   : 2022-Oct-27 13:16 PM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
-Form Name       : NPSS PL RTN Reason UI--------------------------------------------------------------------------- */
+Form Name       : NPSS PL Change RTN Reason UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_pl_rtn_reason_ui',
-  templateUrl: './f_npss_pl_rtn_reason_ui.component.html',
-  styleUrls: ['./f_npss_pl_rtn_reason_ui.component.css'],
+  selector: 'f_npss_pl_change_rtn_reason_ui',
+  templateUrl: './f_npss_pl_change_rtn_reason_ui.component.html',
+  styleUrls: ['./f_npss_pl_change_rtn_reason_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_pl_rtn_reason_uiComponent implements OnInit {
+export class f_npss_pl_change_rtn_reason_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_pl_rtn_reason_ui') form;
-  @ViewChild('npss_pl_rtn_reason_ui_t24_return_code') element: ElementRef;
+  @ViewChild('f_npss_pl_change_rtn_reason_ui') form;
+  @ViewChild('npss_pl_change_rtn_reason_ui_t24_return_code') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -50,7 +50,7 @@ focustoelement(){
   
 		//Properties of t24_return_code
 		this.ctrl.t24_return_code = {}
-		this.ctrl.t24_return_code.id = "RN01CN1"
+		this.ctrl.t24_return_code.id = "998a0523-61f6-4489-87b4-e1d922b4b2e7_1666864646957"
 		this.ctrl.t24_return_code.desc = "T24 Return Reason"
 		this.ctrl.t24_return_code.visible = true
 		this.ctrl.t24_return_code.label_name = "T24 Return Reason"
@@ -81,15 +81,15 @@ focustoelement(){
 		this.ctrl.t24_return_code.vld_rules = []
 		this.ctrl.t24_return_code.targetcolumn_lower = "t24_return_code"
 		this.ctrl.t24_return_code.disabled = false
-		this.ctrl.t24_return_code.view_name = "f_npss_pl_rtn_reason_ui"
-		this.ctrl.t24_return_code.ctrl_id = "npss_pl_rtn_reason_ui_t24_return_code"
-		this.ctrl.npss_pl_rtn_reason_ui_t24_return_code = {}
-		this.ctrl.npss_pl_rtn_reason_ui_t24_return_code.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_pl_rtn_reason_ui.t24_return_code = {}
+		this.ctrl.t24_return_code.view_name = "f_npss_pl_change_rtn_reason_ui"
+		this.ctrl.t24_return_code.ctrl_id = "npss_pl_change_rtn_reason_ui_t24_return_code"
+		this.ctrl.npss_pl_change_rtn_reason_ui_t24_return_code = {}
+		this.ctrl.npss_pl_change_rtn_reason_ui_t24_return_code.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_pl_change_rtn_reason_ui.t24_return_code = {}
 	
 		//Properties of cbuae_return_code
 		this.ctrl.cbuae_return_code = {}
-		this.ctrl.cbuae_return_code.id = "RN11CN2"
+		this.ctrl.cbuae_return_code.id = "c394dc67-6924-4eef-8d73-8d0680584602_1666864646958"
 		this.ctrl.cbuae_return_code.desc = "CBUAE Return Reason"
 		this.ctrl.cbuae_return_code.visible = true
 		this.ctrl.cbuae_return_code.label_name = "CBUAE Return Reason"
@@ -120,16 +120,16 @@ focustoelement(){
 		this.ctrl.cbuae_return_code.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Select the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.cbuae_return_code.targetcolumn_lower = "cbuae_return_code"
 		this.ctrl.cbuae_return_code.disabled = false
-		this.ctrl.cbuae_return_code.view_name = "f_npss_pl_rtn_reason_ui"
-		this.ctrl.cbuae_return_code.ctrl_id = "npss_pl_rtn_reason_ui_cbuae_return_code"
-		this.ctrl.npss_pl_rtn_reason_ui_cbuae_return_code = {}
-		this.ctrl.npss_pl_rtn_reason_ui_cbuae_return_code.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_pl_rtn_reason_ui.cbuae_return_code = {}
-		this.screen_instance[this.comp_id].f_npss_pl_rtn_reason_ui.model = {"T24_RETURN_CODE":"","CBUAE_RETURN_CODE":""}
-		this.screen_instance[this.comp_id].f_npss_pl_rtn_reason_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"T24_RETURN_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CBUAE_RETURN_CODE"}]
-		this.screen_instance[this.comp_id].f_npss_pl_rtn_reason_ui.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_pl_rtn_reason_ui.dtt_code = "dtt_1304_1665905039255"
-		this.screen_instance[this.comp_id].f_npss_pl_rtn_reason_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		this.ctrl.cbuae_return_code.view_name = "f_npss_pl_change_rtn_reason_ui"
+		this.ctrl.cbuae_return_code.ctrl_id = "npss_pl_change_rtn_reason_ui_cbuae_return_code"
+		this.ctrl.npss_pl_change_rtn_reason_ui_cbuae_return_code = {}
+		this.ctrl.npss_pl_change_rtn_reason_ui_cbuae_return_code.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_pl_change_rtn_reason_ui.cbuae_return_code = {}
+		this.screen_instance[this.comp_id].f_npss_pl_change_rtn_reason_ui.model = {"T24_RETURN_CODE":"","CBUAE_RETURN_CODE":""}
+		this.screen_instance[this.comp_id].f_npss_pl_change_rtn_reason_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"T24_RETURN_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CBUAE_RETURN_CODE"}]
+		this.screen_instance[this.comp_id].f_npss_pl_change_rtn_reason_ui.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_npss_pl_change_rtn_reason_ui.dtt_code = "dtt_1304_1665905039255"
+		this.screen_instance[this.comp_id].f_npss_pl_change_rtn_reason_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -176,10 +176,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_pl_rtn_reason_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_pl_rtn_reason_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_pl_change_rtn_reason_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_pl_change_rtn_reason_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_pl_rtn_reason_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_pl_change_rtn_reason_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

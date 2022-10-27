@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26671 
+Build ID        : 26676 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-27 11:8 AM 
+Modified Date   : 2022-Oct-27 13:17 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_investigation
@@ -129,9 +129,9 @@ focustoelement(){
 		//Properties of cdtr_iban
 		this.ctrl.cdtr_iban = {}
 		this.ctrl.cdtr_iban.id = "RN01CN1"
-		this.ctrl.cdtr_iban.desc = "CreditorIBAN"
+		this.ctrl.cdtr_iban.desc = "Creditor IBAN"
 		this.ctrl.cdtr_iban.visible = true
-		this.ctrl.cdtr_iban.label_name = "CreditorIBAN"
+		this.ctrl.cdtr_iban.label_name = "Creditor IBAN"
 		this.ctrl.cdtr_iban.df_code = "DF_1304_1665901396659"
 		this.ctrl.cdtr_iban.df_description = "Column Group 1"
 		this.ctrl.cdtr_iban.uictrl_code = "TXT"
@@ -246,9 +246,9 @@ focustoelement(){
 		//Properties of cdtr_phone_no
 		this.ctrl.cdtr_phone_no = {}
 		this.ctrl.cdtr_phone_no.id = "RN11CN3"
-		this.ctrl.cdtr_phone_no.desc = "Creditor mobile"
+		this.ctrl.cdtr_phone_no.desc = "Creditor Mobile No"
 		this.ctrl.cdtr_phone_no.visible = true
-		this.ctrl.cdtr_phone_no.label_name = "Creditor mobile"
+		this.ctrl.cdtr_phone_no.label_name = "Creditor Mobile No"
 		this.ctrl.cdtr_phone_no.df_code = "DF_1304_1665901396659"
 		this.ctrl.cdtr_phone_no.df_description = "Column Group 1"
 		this.ctrl.cdtr_phone_no.uictrl_code = "TXT"

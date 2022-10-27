@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26671 
+Build ID        : 26678 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-27 11:8 AM 
+Modified Date   : 2022-Oct-27 13:16 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -39,6 +39,8 @@ import { f_npss_rct_reversal_uiComponent } from './f_npss_rct_reversal_ui/f_npss
 import { f_reversal_action_uiComponent } from './f_reversal_action_ui/f_reversal_action_ui.component'
 import { p_accept_layoutComponent } from './p_accept_layout/p_accept_layout.component'
 import { f_npss_pl_rtn_reason_uiComponent } from './f_npss_pl_rtn_reason_ui/f_npss_pl_rtn_reason_ui.component'
+import { p_change_return_layoutComponent } from './p_change_return_layout/p_change_return_layout.component'
+import { f_npss_pl_change_rtn_reason_uiComponent } from './f_npss_pl_change_rtn_reason_ui/f_npss_pl_change_rtn_reason_ui.component'
 
 
 
@@ -55,7 +57,7 @@ import { f_npss_pl_rtn_reason_uiComponent } from './f_npss_pl_rtn_reason_ui/f_np
     s_rct_reversalRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_rct_reversalComponent,p_main_layoutComponent,f_navigationComponent,p_accept_ui_layoutComponent,f_npss_rct_reversal_uiComponent,f_reversal_action_uiComponent,p_accept_layoutComponent,f_npss_pl_rtn_reason_uiComponent,],
+  declarations: [s_rct_reversalComponent,p_main_layoutComponent,f_navigationComponent,p_accept_ui_layoutComponent,f_npss_rct_reversal_uiComponent,f_reversal_action_uiComponent,p_accept_layoutComponent,f_npss_pl_rtn_reason_uiComponent,p_change_return_layoutComponent,f_npss_pl_change_rtn_reason_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

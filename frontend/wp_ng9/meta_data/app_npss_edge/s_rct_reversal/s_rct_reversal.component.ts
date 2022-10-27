@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26671 
+Build ID        : 26678 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-27 11:8 AM 
+Modified Date   : 2022-Oct-27 13:16 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -48,7 +48,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	btl_1304_1666856426885 : string = "p_main_layout"
 	forms : any = ["uicgc_9","uicgc_5","uicgc_6","uicgc_4","uicgc_3"]
 	p_accept_layout__spap_for_accept_showpopup : boolean = false
-	p_change_return_layout__e_1666862524143_showpopup : boolean = false
+	p_change_return_layout__crr_for_spap_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation : any = {}
@@ -58,6 +58,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	reversal_action_ui_accept : any = {}
 	reversal_action_ui_return : any = {}
 	reversal_action_ui_approve : any = {}
+	reversal_action_ui_back : any = {}
 	reversal_action_ui_change_return_reason : any = {}
 	reversal_action_ui_trigger_btn : any = {}
 	accept_ui : any = {}
@@ -81,7 +82,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.queue.uicgc_desc = "Queue"
 		this.queue.uicgc_code = "uicgc_1"
 		this.queue.params = {"need_pag_datatable":"Y","need_search":"N"}
-		this.queue.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666863057903","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666863141081","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666863141383","date_format":false},{"column_name":"TRAN_COUNT","alias_name":"","mq_id":"MQ_1666863141663","date_format":false},{"column_name":"QUEUE_DESC","alias_name":"","mq_id":"MQ_1666863142047","date_format":false}],"joins":[]},"eq_text":"SELECT PROCESS_STATUS,        STATUS,        COUNT(STATUS) TRAN_COUNT,        QUEUE_DESC,        Q_SORT_ORDER,        QS_SORT_ORDER   FROM (SELECT T.NPSST_ID,                T.VALUE_DATE,                T.PROCESS_TYPE,                T.UETR,                T.CHANNEL_ID,                T.DBTR_PHONE_NO,                T.DBTR_EMAIL_ID,                T.DBTR_DOCUMENT_ID,                T.CDTR_PHONE_NO,                T.CDTR_EMAIL_ID,                T.CDTR_DOCUMENT_ID,                T.CDTR_IBAN,                T.INTRBK_STTLM_AMNT,                T.HDR_MSG_ID,                T.PRODUCT_CODE,                T.DBTR_ACCT_NO,                T.DBTR_ACCT_NAME,                T.DBTR_IBAN,                T.BASE_CURRENCY,                T.BASE_AMOUNT,                T.CDTR_ACCT_NO,                T.CDTR_ACCT_NAME,                T.DR_SORT_CODE,                T.CR_SORT_CODE,                T.INTRBK_STTLM_CUR,                T.RATE_CODE,                T.EXCHANGE_RATE,                T.CATEGORY_PURPOSE,                T.HDR_CREATED_DATE,                T.HDR_TOTAL_RECORDS,                T.HDR_TOTAL_AMOUNT,                T.HDR_SETTLEMENT_DATE,                T.HDR_SETTLEMENT_METHOD,                T.HDR_CLEARING_SYSTEM,                T.PAYMENT_ENDTOEND_ID,                T.INSTRUMENT_TYPE,                T.CHARGE_BEARER,                T.MESSAGE_DATA,                T.EXHF_ID,                T.DBTR_CUST_TYPE,                T.CHANNEL_REFNO,                T.CHANNEL_USERID,                T.CHANNEL_PRODUCT,                T.CHANNEL_SUB_PRODUCT,                T.CHANNEL_TRAN_CODE,                T.TRAN_INFO,                T.INSTRUCTION_ID,                T.TRAN_REF_ID,          T.CATEGORY_PURPOSE_PRTY,          T.EXT_ORG_ID_CODE,          T.ISSUER_TYPE_CODE,          T.DBTR_BIRTH_DATE,          T.DBTR_CITY_BIRTH,          T.DBTR_COUNTRY,          T.EXT_PERSON_ID_CODE,          T.EXT_ACCT_ID_CODE,          T.CR_ACCT_IDENTIFICATION,          T.CR_ACCT_ID_CODE,          T.EXT_PURPOSE_CODE,          T.EXT_PURPOSE_PRTY,                T.PROCESS_STATUS,                T.TENANT_ID,                T.STATUS,                T.CREATED_DATE,                TS.TS_ID,                TS.LOCKED_BY,                TS.LOCKED_BY_NAME,                T.CREATED_BY,                T.CREATED_BY_NAME,                T.SYSTEM_ID,                QR.ROLE_ID,                QR.VPH_APP_ID AS QR_APP_ID,                QR.VPH_APP_CODE,                QR.QUEUE_CODE,                QR.SCREEN_NAME AS QR_SCREEN_NAME,                QR.SCREEN_MENU_GROUP AS QR_MENU_GROUP,                QR.SCREEN_MODULE AS QR_MODULE,                PQ.QUEUE_DESC,                PQ.QUEUE_CODE,                PQ.VPH_APP_ID AS Q_APP_ID,                QR.SORT_ORDER AS QS_SORT_ORDER,                PQ.SORT_ORDER AS Q_SORT_ORDER           FROM NPSS_TRANSACTIONS T          LEFT JOIN TRANSACTION_SET TS ON T.NPSST_ID = TS.TRN_ID                                       AND T.DTT_CODE = TS.DTT_CODE          INNER JOIN CORE_Q_STATUS_ROLES QR ON T.STATUS =                                               QR.PROCESS_QUEUE_STATUS                                           AND T.PROCESS_STATUS =                                               QR.QUEUE_CODE          INNER JOIN CORE_APP_Q_SETUP PQ ON T.PROCESS_STATUS = PQ.QUEUE_CODE) VM $WHERE  GROUP BY PROCESS_STATUS, STATUS, QUEUE_DESC, Q_SORT_ORDER, QS_SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Transaction Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"SCREEN_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"TRAN_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.queue.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666863057903","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666863141081","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666863141383","date_format":false},{"column_name":"TRAN_COUNT","alias_name":"","mq_id":"MQ_1666863141663","date_format":false},{"column_name":"QUEUE_DESC","alias_name":"","mq_id":"MQ_1666863142047","date_format":false}],"joins":[]},"eq_text":"SELECT PROCESS_STATUS,        STATUS,        COUNT(STATUS) TRAN_COUNT,        QUEUE_DESC,        Q_SORT_ORDER,        QS_SORT_ORDER   FROM (SELECT T.NPSST_ID,                T.VALUE_DATE,                T.PROCESS_TYPE,                T.UETR,                T.CHANNEL_ID,                T.DBTR_PHONE_NO,                T.DBTR_EMAIL_ID,                T.DBTR_DOCUMENT_ID,                T.CDTR_PHONE_NO,                T.CDTR_EMAIL_ID,                T.CDTR_DOCUMENT_ID,                T.CDTR_IBAN,                T.INTRBK_STTLM_AMNT,                T.HDR_MSG_ID,                T.PRODUCT_CODE,                T.DBTR_ACCT_NO,                T.DBTR_ACCT_NAME,                T.DBTR_IBAN,                T.BASE_CURRENCY,                T.BASE_AMOUNT,                T.CDTR_ACCT_NO,                T.CDTR_ACCT_NAME,                T.DR_SORT_CODE,                T.CR_SORT_CODE,                T.INTRBK_STTLM_CUR,                T.RATE_CODE,                T.EXCHANGE_RATE,                T.CATEGORY_PURPOSE,                T.HDR_CREATED_DATE,                T.HDR_TOTAL_RECORDS,                T.HDR_TOTAL_AMOUNT,                T.HDR_SETTLEMENT_DATE,                T.HDR_SETTLEMENT_METHOD,                T.HDR_CLEARING_SYSTEM,                T.PAYMENT_ENDTOEND_ID,                T.INSTRUMENT_TYPE,                T.CHARGE_BEARER,                T.MESSAGE_DATA,                T.EXHF_ID,                T.DBTR_CUST_TYPE,                T.CHANNEL_REFNO,                T.CHANNEL_USERID,                T.CHANNEL_PRODUCT,                T.CHANNEL_SUB_PRODUCT,                T.CHANNEL_TRAN_CODE,                T.TRAN_INFO,                T.INSTRUCTION_ID,                T.TRAN_REF_ID,          T.CATEGORY_PURPOSE_PRTY,          T.EXT_ORG_ID_CODE,          T.ISSUER_TYPE_CODE,          T.DBTR_BIRTH_DATE,          T.DBTR_CITY_BIRTH,          T.DBTR_COUNTRY,          T.EXT_PERSON_ID_CODE,          T.EXT_ACCT_ID_CODE,          T.CR_ACCT_IDENTIFICATION,          T.CR_ACCT_ID_CODE,          T.EXT_PURPOSE_CODE,          T.EXT_PURPOSE_PRTY,                T.PROCESS_STATUS,                T.TENANT_ID,                T.STATUS,                T.CREATED_DATE,                TS.TS_ID,                TS.LOCKED_BY,                TS.LOCKED_BY_NAME,                T.CREATED_BY,                T.CREATED_BY_NAME,                T.SYSTEM_ID,                QR.ROLE_ID,                QR.VPH_APP_ID AS QR_APP_ID,                QR.VPH_APP_CODE,                QR.QUEUE_CODE,                QR.SCREEN_NAME AS QR_SCREEN_NAME,                QR.SCREEN_MENU_GROUP AS QR_MENU_GROUP,                QR.SCREEN_MODULE AS QR_MODULE,                PQ.QUEUE_DESC,                PQ.QUEUE_CODE,                PQ.VPH_APP_ID AS Q_APP_ID,                QR.SORT_ORDER AS QS_SORT_ORDER,                PQ.SORT_ORDER AS Q_SORT_ORDER           FROM NPSS_TRANSACTIONS T          LEFT JOIN TRANSACTION_SET TS ON T.NPSST_ID = TS.TRN_ID                                       AND T.DTT_CODE = TS.DTT_CODE          INNER JOIN CORE_Q_STATUS_ROLES QR ON T.STATUS =                                               QR.PROCESS_QUEUE_STATUS                                           AND T.PROCESS_STATUS =                                               QR.QUEUE_CODE          INNER JOIN CORE_APP_Q_SETUP PQ ON T.PROCESS_STATUS = PQ.QUEUE_CODE) VM $WHERE  GROUP BY PROCESS_STATUS, STATUS, QUEUE_DESC, Q_SORT_ORDER, QS_SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Transaction Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"TRAN_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.queue.context_menu = []
 		this.queue.views = {}
 		this.queue.onChangecomponent = new EventEmitter<any>()
@@ -172,6 +173,15 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.reversal_action_ui_approve.dynamic_param = {}
 		this.reversal_action_ui_approve.role = []
 		this.reversal_action_ui_approve.action = ""
+		
+		// "Back" Button of "Reversal Action UI" component
+		this.reversal_action_ui_back.label_name = "Back"
+		this.reversal_action_ui_back.show = true
+		this.reversal_action_ui_back.disabled = false
+		this.reversal_action_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.reversal_action_ui_back.dynamic_param = {}
+		this.reversal_action_ui_back.role = []
+		this.reversal_action_ui_back.action = ""
 		
 		// "Change Return Reason" Button of "Reversal Action UI" component
 		this.reversal_action_ui_change_return_reason.label_name = "Change Return Reason"
@@ -288,12 +298,12 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 
 	//Handler for INTERNAL event of "create form"
 	create_form__internal(parent_event_result){
-		this.create_form__cc_for_sh_ide_for_cf(parent_event_result)
+		this.create_form__cc_for_sh_ide_for_cc(parent_event_result)
 	}
 
-	//Handler for INTERNAL event of "cc for sh ide for cf"
-	cc_for_sh_ide_for_cf__internal(parent_event_result){
-		this.cc_for_sh_ide_for_cf__brfq_for_sh_to_queue(parent_event_result)
+	//Handler for INTERNAL event of "cc for sh ide for cc"
+	cc_for_sh_ide_for_cc__internal(parent_event_result){
+		this.cc_for_sh_ide_for_cc__brfq_for_sh_to_queue(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "queue"
@@ -303,12 +313,12 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 
 	//Handler for INTERNAL event of "svm for queue"
 	svm_for_queue__internal(parent_event_result){
-		this.svm_for_queue__sh_for_tran_list_selection(parent_event_result)
+		this.svm_for_queue__sh_for_tran_list_selections(parent_event_result)
 	}
 
-	//Handler for INTERNAL event of "sh for tran list selection"
-	sh_for_tran_list_selection__internal(parent_event_result){
-		this.sh_for_tran_list_selection__brfq_for_tran_list(parent_event_result)
+	//Handler for INTERNAL event of "sh for tran list selections"
+	sh_for_tran_list_selections__internal(parent_event_result){
+		this.sh_for_tran_list_selections__brfq_for_tran_list(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "brfq for tran list"
@@ -320,6 +330,11 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	transaction_list__selection_changed(){
 		this.transaction_list__svm_for_transaction_list()
 		this.transaction_list__ssr_for_tran_list_to_reversal_ui()
+	}
+
+	//Handler for INTERNAL event of "svm for transaction list"
+	svm_for_transaction_list__internal(parent_event_result){
+		this.svm_for_transaction_list__cc_for_show_hide_in_tran_list(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
@@ -352,8 +367,12 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "change return ui save"
 	change_return_ui_save__action_button_click(){
-		this.change_return_ui_save__save_for_cr()
-		this.change_return_ui_save__e_1666862524143()
+		this.change_return_ui_save__ve_for_crrui()
+	}
+
+	//Handler for INTERNAL event of "ve for crrui"
+	ve_for_crrui__internal(parent_event_result){
+		this.ve_for_crrui__save_for_cr(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "save for cr"
@@ -371,6 +390,91 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.reversal_action_ui_trigger_btn__brfq_for_comment_list()
 	}
 
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui change return reason"
+	reversal_action_ui_change_return_reason__action_button_click(){
+		this.reversal_action_ui_change_return_reason__crr_for_spap()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui back"
+	reversal_action_ui_back__action_button_click(){
+		this.reversal_action_ui_back__rs_for_back_profile()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "accept ui save"
+	accept_ui_save__action_button_click(){
+		this.accept_ui_save__ve_for_accept()
+	}
+
+	//Handler for INTERNAL event of "ve for accept"
+	ve_for_accept__internal(parent_event_result){
+		this.ve_for_accept__cc_for_sh_ide(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "cc for sh ide"
+	cc_for_sh_ide__internal(parent_event_result){
+		this.cc_for_sh_ide__accept_info(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "accept info"
+	accept_info__internal(parent_event_result){
+		this.accept_info__accept_success_rs(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui reject"
+	reversal_action_ui_reject__action_button_click(){
+		this.reversal_action_ui_reject__cc_for_reject()
+	}
+
+	//Handler for INTERNAL event of "cc for reject"
+	cc_for_reject__internal(parent_event_result){
+		this.cc_for_reject__reject_info(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "reject info"
+	reject_info__internal(parent_event_result){
+		this.reject_info__rs_for_reject(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui approve"
+	reversal_action_ui_approve__action_button_click(){
+		this.reversal_action_ui_approve__cc_for_approve()
+	}
+
+	//Handler for INTERNAL event of "cc for approve"
+	cc_for_approve__internal(parent_event_result){
+		this.cc_for_approve__info_for_approve(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "info for approve"
+	info_for_approve__internal(parent_event_result){
+		this.info_for_approve__rs_for_approve(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui return"
+	reversal_action_ui_return__action_button_click(){
+		this.reversal_action_ui_return__cc_forreturn()
+	}
+
+	//Handler for INTERNAL event of "cc forreturn"
+	cc_forreturn__internal(parent_event_result){
+		this.cc_forreturn__return_info(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "return info"
+	return_info__internal(parent_event_result){
+		this.return_info__rs_for_return(parent_event_result)
+	}
+
+	//Handler for SELECTION_CHANGED event of "npss pl rtn reason ui t24 return code"
+	npss_pl_rtn_reason_ui_t24_return_code__selection_changed(){
+		this.npss_pl_rtn_reason_ui_t24_return_code__fcb_for_source__accept_ui()
+	}
+
+	//Handler for SELECTION_CHANGED event of "npss pl change rtn reason ui t24 return code"
+	npss_pl_change_rtn_reason_ui_t24_return_code__selection_changed(){
+		this.npss_pl_change_rtn_reason_ui_t24_return_code__fcb_for_source__change_return_ui()
+	}
+
 	//Handler for DPSINIT event of "page_load"
 	page_load__create_form() { 
 		let Dest_Is_ctrl=true
@@ -381,7 +485,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let event_code="e_1666856861235"
 		let event_params={"caller_name":"page_load__create_form","event_desc":"Create form","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""}}
 		let handler_code="create_form"
-		let internals="create_form__cc_for_sh_ide_for_cf,"
+		let internals="create_form__cc_for_sh_ide_for_cc,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -393,7 +497,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "create form"
-	create_form__cc_for_sh_ide_for_cf(parent_event_result) { 
+	create_form__cc_for_sh_ide_for_cc(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
@@ -401,9 +505,9 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="page_load"
 		let event_code="e_1666856875571"
-		let event_params={"caller_name":"create_form__cc_for_sh_ide_for_cf","event_desc":"CC for SH ide for CF","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"create_form__cc_for_sh_ide_for_cc","event_desc":"CC for SH ide for CC","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals="cc_for_sh_ide_for_cf__brfq_for_sh_to_queue,"
+		let internals="cc_for_sh_ide_for_cc__brfq_for_sh_to_queue,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -414,20 +518,20 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "cc for sh ide for cf"
-	cc_for_sh_ide_for_cf__brfq_for_sh_to_queue(parent_event_result) { 
+	//Handler for INTERNAL event of "cc for sh ide for cc"
+	cc_for_sh_ide_for_cc__brfq_for_sh_to_queue(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_for_sh_ide_for_cf"
+		let source_id="cc_for_sh_ide_for_cc"
 		let destn_id="queue"
 		let parent_source_id="create_form"
 		let event_code="e_1666856910263"
-		let event_params={"caller_name":"cc_for_sh_ide_for_cf__brfq_for_sh_to_queue","event_desc":"BRFQ for SH to Queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_sh_ide_for_cc__brfq_for_sh_to_queue","event_desc":"BRFQ for SH to Queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666863057903","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666863141081","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666863141383","date_format":false},{"column_name":"TRAN_COUNT","alias_name":"","mq_id":"MQ_1666863141663","date_format":false},{"column_name":"QUEUE_DESC","alias_name":"","mq_id":"MQ_1666863142047","date_format":false}],"joins":[]},"eq_text":"SELECT PROCESS_STATUS,        STATUS,        COUNT(STATUS) TRAN_COUNT,        QUEUE_DESC,        Q_SORT_ORDER,        QS_SORT_ORDER   FROM (SELECT T.NPSST_ID,                T.VALUE_DATE,                T.PROCESS_TYPE,                T.UETR,                T.CHANNEL_ID,                T.DBTR_PHONE_NO,                T.DBTR_EMAIL_ID,                T.DBTR_DOCUMENT_ID,                T.CDTR_PHONE_NO,                T.CDTR_EMAIL_ID,                T.CDTR_DOCUMENT_ID,                T.CDTR_IBAN,                T.INTRBK_STTLM_AMNT,                T.HDR_MSG_ID,                T.PRODUCT_CODE,                T.DBTR_ACCT_NO,                T.DBTR_ACCT_NAME,                T.DBTR_IBAN,                T.BASE_CURRENCY,                T.BASE_AMOUNT,                T.CDTR_ACCT_NO,                T.CDTR_ACCT_NAME,                T.DR_SORT_CODE,                T.CR_SORT_CODE,                T.INTRBK_STTLM_CUR,                T.RATE_CODE,                T.EXCHANGE_RATE,                T.CATEGORY_PURPOSE,                T.HDR_CREATED_DATE,                T.HDR_TOTAL_RECORDS,                T.HDR_TOTAL_AMOUNT,                T.HDR_SETTLEMENT_DATE,                T.HDR_SETTLEMENT_METHOD,                T.HDR_CLEARING_SYSTEM,                T.PAYMENT_ENDTOEND_ID,                T.INSTRUMENT_TYPE,                T.CHARGE_BEARER,                T.MESSAGE_DATA,                T.EXHF_ID,                T.DBTR_CUST_TYPE,                T.CHANNEL_REFNO,                T.CHANNEL_USERID,                T.CHANNEL_PRODUCT,                T.CHANNEL_SUB_PRODUCT,                T.CHANNEL_TRAN_CODE,                T.TRAN_INFO,                T.INSTRUCTION_ID,                T.TRAN_REF_ID,          T.CATEGORY_PURPOSE_PRTY,          T.EXT_ORG_ID_CODE,          T.ISSUER_TYPE_CODE,          T.DBTR_BIRTH_DATE,          T.DBTR_CITY_BIRTH,          T.DBTR_COUNTRY,          T.EXT_PERSON_ID_CODE,          T.EXT_ACCT_ID_CODE,          T.CR_ACCT_IDENTIFICATION,          T.CR_ACCT_ID_CODE,          T.EXT_PURPOSE_CODE,          T.EXT_PURPOSE_PRTY,                T.PROCESS_STATUS,                T.TENANT_ID,                T.STATUS,                T.CREATED_DATE,                TS.TS_ID,                TS.LOCKED_BY,                TS.LOCKED_BY_NAME,                T.CREATED_BY,                T.CREATED_BY_NAME,                T.SYSTEM_ID,                QR.ROLE_ID,                QR.VPH_APP_ID AS QR_APP_ID,                QR.VPH_APP_CODE,                QR.QUEUE_CODE,                QR.SCREEN_NAME AS QR_SCREEN_NAME,                QR.SCREEN_MENU_GROUP AS QR_MENU_GROUP,                QR.SCREEN_MODULE AS QR_MODULE,                PQ.QUEUE_DESC,                PQ.QUEUE_CODE,                PQ.VPH_APP_ID AS Q_APP_ID,                QR.SORT_ORDER AS QS_SORT_ORDER,                PQ.SORT_ORDER AS Q_SORT_ORDER           FROM NPSS_TRANSACTIONS T          LEFT JOIN TRANSACTION_SET TS ON T.NPSST_ID = TS.TRN_ID                                       AND T.DTT_CODE = TS.DTT_CODE          INNER JOIN CORE_Q_STATUS_ROLES QR ON T.STATUS =                                               QR.PROCESS_QUEUE_STATUS                                           AND T.PROCESS_STATUS =                                               QR.QUEUE_CODE          INNER JOIN CORE_APP_Q_SETUP PQ ON T.PROCESS_STATUS = PQ.QUEUE_CODE) VM $WHERE  GROUP BY PROCESS_STATUS, STATUS, QUEUE_DESC, Q_SORT_ORDER, QS_SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Transaction Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"SCREEN_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"TRAN_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666863057903","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666863141081","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666863141383","date_format":false},{"column_name":"TRAN_COUNT","alias_name":"","mq_id":"MQ_1666863141663","date_format":false},{"column_name":"QUEUE_DESC","alias_name":"","mq_id":"MQ_1666863142047","date_format":false}],"joins":[]},"eq_text":"SELECT PROCESS_STATUS,        STATUS,        COUNT(STATUS) TRAN_COUNT,        QUEUE_DESC,        Q_SORT_ORDER,        QS_SORT_ORDER   FROM (SELECT T.NPSST_ID,                T.VALUE_DATE,                T.PROCESS_TYPE,                T.UETR,                T.CHANNEL_ID,                T.DBTR_PHONE_NO,                T.DBTR_EMAIL_ID,                T.DBTR_DOCUMENT_ID,                T.CDTR_PHONE_NO,                T.CDTR_EMAIL_ID,                T.CDTR_DOCUMENT_ID,                T.CDTR_IBAN,                T.INTRBK_STTLM_AMNT,                T.HDR_MSG_ID,                T.PRODUCT_CODE,                T.DBTR_ACCT_NO,                T.DBTR_ACCT_NAME,                T.DBTR_IBAN,                T.BASE_CURRENCY,                T.BASE_AMOUNT,                T.CDTR_ACCT_NO,                T.CDTR_ACCT_NAME,                T.DR_SORT_CODE,                T.CR_SORT_CODE,                T.INTRBK_STTLM_CUR,                T.RATE_CODE,                T.EXCHANGE_RATE,                T.CATEGORY_PURPOSE,                T.HDR_CREATED_DATE,                T.HDR_TOTAL_RECORDS,                T.HDR_TOTAL_AMOUNT,                T.HDR_SETTLEMENT_DATE,                T.HDR_SETTLEMENT_METHOD,                T.HDR_CLEARING_SYSTEM,                T.PAYMENT_ENDTOEND_ID,                T.INSTRUMENT_TYPE,                T.CHARGE_BEARER,                T.MESSAGE_DATA,                T.EXHF_ID,                T.DBTR_CUST_TYPE,                T.CHANNEL_REFNO,                T.CHANNEL_USERID,                T.CHANNEL_PRODUCT,                T.CHANNEL_SUB_PRODUCT,                T.CHANNEL_TRAN_CODE,                T.TRAN_INFO,                T.INSTRUCTION_ID,                T.TRAN_REF_ID,          T.CATEGORY_PURPOSE_PRTY,          T.EXT_ORG_ID_CODE,          T.ISSUER_TYPE_CODE,          T.DBTR_BIRTH_DATE,          T.DBTR_CITY_BIRTH,          T.DBTR_COUNTRY,          T.EXT_PERSON_ID_CODE,          T.EXT_ACCT_ID_CODE,          T.CR_ACCT_IDENTIFICATION,          T.CR_ACCT_ID_CODE,          T.EXT_PURPOSE_CODE,          T.EXT_PURPOSE_PRTY,                T.PROCESS_STATUS,                T.TENANT_ID,                T.STATUS,                T.CREATED_DATE,                TS.TS_ID,                TS.LOCKED_BY,                TS.LOCKED_BY_NAME,                T.CREATED_BY,                T.CREATED_BY_NAME,                T.SYSTEM_ID,                QR.ROLE_ID,                QR.VPH_APP_ID AS QR_APP_ID,                QR.VPH_APP_CODE,                QR.QUEUE_CODE,                QR.SCREEN_NAME AS QR_SCREEN_NAME,                QR.SCREEN_MENU_GROUP AS QR_MENU_GROUP,                QR.SCREEN_MODULE AS QR_MODULE,                PQ.QUEUE_DESC,                PQ.QUEUE_CODE,                PQ.VPH_APP_ID AS Q_APP_ID,                QR.SORT_ORDER AS QS_SORT_ORDER,                PQ.SORT_ORDER AS Q_SORT_ORDER           FROM NPSS_TRANSACTIONS T          LEFT JOIN TRANSACTION_SET TS ON T.NPSST_ID = TS.TRN_ID                                       AND T.DTT_CODE = TS.DTT_CODE          INNER JOIN CORE_Q_STATUS_ROLES QR ON T.STATUS =                                               QR.PROCESS_QUEUE_STATUS                                           AND T.PROCESS_STATUS =                                               QR.QUEUE_CODE          INNER JOIN CORE_APP_Q_SETUP PQ ON T.PROCESS_STATUS = PQ.QUEUE_CODE) VM $WHERE  GROUP BY PROCESS_STATUS, STATUS, QUEUE_DESC, Q_SORT_ORDER, QS_SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Transaction Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"TRAN_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -446,9 +550,9 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let event_code="e_1666856944151"
 		let event_params={"caller_name":"queue__svm_for_queue","event_desc":"SVM for Queue","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
 		let handler_code="set_value_to_memory"
-		let internals="svm_for_queue__sh_for_tran_list_selection,"
+		let internals="svm_for_queue__sh_for_tran_list_selections,"
 		let event_data={"queue":{"e_1666856944151":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_1","event_code":"E_1666856944151","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"BULK","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"},{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666863057903","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666863141081","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666863141383","date_format":false},{"column_name":"TRAN_COUNT","alias_name":"","mq_id":"MQ_1666863141663","date_format":false},{"column_name":"QUEUE_DESC","alias_name":"","mq_id":"MQ_1666863142047","date_format":false}],"joins":[]},"eq_text":"SELECT PROCESS_STATUS,        STATUS,        COUNT(STATUS) TRAN_COUNT,        QUEUE_DESC,        Q_SORT_ORDER,        QS_SORT_ORDER   FROM (SELECT T.NPSST_ID,                T.VALUE_DATE,                T.PROCESS_TYPE,                T.UETR,                T.CHANNEL_ID,                T.DBTR_PHONE_NO,                T.DBTR_EMAIL_ID,                T.DBTR_DOCUMENT_ID,                T.CDTR_PHONE_NO,                T.CDTR_EMAIL_ID,                T.CDTR_DOCUMENT_ID,                T.CDTR_IBAN,                T.INTRBK_STTLM_AMNT,                T.HDR_MSG_ID,                T.PRODUCT_CODE,                T.DBTR_ACCT_NO,                T.DBTR_ACCT_NAME,                T.DBTR_IBAN,                T.BASE_CURRENCY,                T.BASE_AMOUNT,                T.CDTR_ACCT_NO,                T.CDTR_ACCT_NAME,                T.DR_SORT_CODE,                T.CR_SORT_CODE,                T.INTRBK_STTLM_CUR,                T.RATE_CODE,                T.EXCHANGE_RATE,                T.CATEGORY_PURPOSE,                T.HDR_CREATED_DATE,                T.HDR_TOTAL_RECORDS,                T.HDR_TOTAL_AMOUNT,                T.HDR_SETTLEMENT_DATE,                T.HDR_SETTLEMENT_METHOD,                T.HDR_CLEARING_SYSTEM,                T.PAYMENT_ENDTOEND_ID,                T.INSTRUMENT_TYPE,                T.CHARGE_BEARER,                T.MESSAGE_DATA,                T.EXHF_ID,                T.DBTR_CUST_TYPE,                T.CHANNEL_REFNO,                T.CHANNEL_USERID,                T.CHANNEL_PRODUCT,                T.CHANNEL_SUB_PRODUCT,                T.CHANNEL_TRAN_CODE,                T.TRAN_INFO,                T.INSTRUCTION_ID,                T.TRAN_REF_ID,          T.CATEGORY_PURPOSE_PRTY,          T.EXT_ORG_ID_CODE,          T.ISSUER_TYPE_CODE,          T.DBTR_BIRTH_DATE,          T.DBTR_CITY_BIRTH,          T.DBTR_COUNTRY,          T.EXT_PERSON_ID_CODE,          T.EXT_ACCT_ID_CODE,          T.CR_ACCT_IDENTIFICATION,          T.CR_ACCT_ID_CODE,          T.EXT_PURPOSE_CODE,          T.EXT_PURPOSE_PRTY,                T.PROCESS_STATUS,                T.TENANT_ID,                T.STATUS,                T.CREATED_DATE,                TS.TS_ID,                TS.LOCKED_BY,                TS.LOCKED_BY_NAME,                T.CREATED_BY,                T.CREATED_BY_NAME,                T.SYSTEM_ID,                QR.ROLE_ID,                QR.VPH_APP_ID AS QR_APP_ID,                QR.VPH_APP_CODE,                QR.QUEUE_CODE,                QR.SCREEN_NAME AS QR_SCREEN_NAME,                QR.SCREEN_MENU_GROUP AS QR_MENU_GROUP,                QR.SCREEN_MODULE AS QR_MODULE,                PQ.QUEUE_DESC,                PQ.QUEUE_CODE,                PQ.VPH_APP_ID AS Q_APP_ID,                QR.SORT_ORDER AS QS_SORT_ORDER,                PQ.SORT_ORDER AS Q_SORT_ORDER           FROM NPSS_TRANSACTIONS T          LEFT JOIN TRANSACTION_SET TS ON T.NPSST_ID = TS.TRN_ID                                       AND T.DTT_CODE = TS.DTT_CODE          INNER JOIN CORE_Q_STATUS_ROLES QR ON T.STATUS =                                               QR.PROCESS_QUEUE_STATUS                                           AND T.PROCESS_STATUS =                                               QR.QUEUE_CODE          INNER JOIN CORE_APP_Q_SETUP PQ ON T.PROCESS_STATUS = PQ.QUEUE_CODE) VM $WHERE  GROUP BY PROCESS_STATUS, STATUS, QUEUE_DESC, Q_SORT_ORDER, QS_SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Transaction Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"SCREEN_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"TRAN_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666863057903","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666863141081","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666863141383","date_format":false},{"column_name":"TRAN_COUNT","alias_name":"","mq_id":"MQ_1666863141663","date_format":false},{"column_name":"QUEUE_DESC","alias_name":"","mq_id":"MQ_1666863142047","date_format":false}],"joins":[]},"eq_text":"SELECT PROCESS_STATUS,        STATUS,        COUNT(STATUS) TRAN_COUNT,        QUEUE_DESC,        Q_SORT_ORDER,        QS_SORT_ORDER   FROM (SELECT T.NPSST_ID,                T.VALUE_DATE,                T.PROCESS_TYPE,                T.UETR,                T.CHANNEL_ID,                T.DBTR_PHONE_NO,                T.DBTR_EMAIL_ID,                T.DBTR_DOCUMENT_ID,                T.CDTR_PHONE_NO,                T.CDTR_EMAIL_ID,                T.CDTR_DOCUMENT_ID,                T.CDTR_IBAN,                T.INTRBK_STTLM_AMNT,                T.HDR_MSG_ID,                T.PRODUCT_CODE,                T.DBTR_ACCT_NO,                T.DBTR_ACCT_NAME,                T.DBTR_IBAN,                T.BASE_CURRENCY,                T.BASE_AMOUNT,                T.CDTR_ACCT_NO,                T.CDTR_ACCT_NAME,                T.DR_SORT_CODE,                T.CR_SORT_CODE,                T.INTRBK_STTLM_CUR,                T.RATE_CODE,                T.EXCHANGE_RATE,                T.CATEGORY_PURPOSE,                T.HDR_CREATED_DATE,                T.HDR_TOTAL_RECORDS,                T.HDR_TOTAL_AMOUNT,                T.HDR_SETTLEMENT_DATE,                T.HDR_SETTLEMENT_METHOD,                T.HDR_CLEARING_SYSTEM,                T.PAYMENT_ENDTOEND_ID,                T.INSTRUMENT_TYPE,                T.CHARGE_BEARER,                T.MESSAGE_DATA,                T.EXHF_ID,                T.DBTR_CUST_TYPE,                T.CHANNEL_REFNO,                T.CHANNEL_USERID,                T.CHANNEL_PRODUCT,                T.CHANNEL_SUB_PRODUCT,                T.CHANNEL_TRAN_CODE,                T.TRAN_INFO,                T.INSTRUCTION_ID,                T.TRAN_REF_ID,          T.CATEGORY_PURPOSE_PRTY,          T.EXT_ORG_ID_CODE,          T.ISSUER_TYPE_CODE,          T.DBTR_BIRTH_DATE,          T.DBTR_CITY_BIRTH,          T.DBTR_COUNTRY,          T.EXT_PERSON_ID_CODE,          T.EXT_ACCT_ID_CODE,          T.CR_ACCT_IDENTIFICATION,          T.CR_ACCT_ID_CODE,          T.EXT_PURPOSE_CODE,          T.EXT_PURPOSE_PRTY,                T.PROCESS_STATUS,                T.TENANT_ID,                T.STATUS,                T.CREATED_DATE,                TS.TS_ID,                TS.LOCKED_BY,                TS.LOCKED_BY_NAME,                T.CREATED_BY,                T.CREATED_BY_NAME,                T.SYSTEM_ID,                QR.ROLE_ID,                QR.VPH_APP_ID AS QR_APP_ID,                QR.VPH_APP_CODE,                QR.QUEUE_CODE,                QR.SCREEN_NAME AS QR_SCREEN_NAME,                QR.SCREEN_MENU_GROUP AS QR_MENU_GROUP,                QR.SCREEN_MODULE AS QR_MODULE,                PQ.QUEUE_DESC,                PQ.QUEUE_CODE,                PQ.VPH_APP_ID AS Q_APP_ID,                QR.SORT_ORDER AS QS_SORT_ORDER,                PQ.SORT_ORDER AS Q_SORT_ORDER           FROM NPSS_TRANSACTIONS T          LEFT JOIN TRANSACTION_SET TS ON T.NPSST_ID = TS.TRN_ID                                       AND T.DTT_CODE = TS.DTT_CODE          INNER JOIN CORE_Q_STATUS_ROLES QR ON T.STATUS =                                               QR.PROCESS_QUEUE_STATUS                                           AND T.PROCESS_STATUS =                                               QR.QUEUE_CODE          INNER JOIN CORE_APP_Q_SETUP PQ ON T.PROCESS_STATUS = PQ.QUEUE_CODE) VM $WHERE  GROUP BY PROCESS_STATUS, STATUS, QUEUE_DESC, Q_SORT_ORDER, QS_SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Transaction Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"TRAN_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -458,7 +562,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "svm for queue"
-	svm_for_queue__sh_for_tran_list_selection(parent_event_result) { 
+	svm_for_queue__sh_for_tran_list_selections(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
@@ -466,9 +570,9 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="queue"
 		let event_code="e_1666857830655"
-		let event_params={"caller_name":"svm_for_queue__sh_for_tran_list_selection","event_desc":"SH for Tran list selection","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"svm_for_queue__sh_for_tran_list_selections","event_desc":"SH for Tran list selections","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals="sh_for_tran_list_selection__brfq_for_tran_list,"
+		let internals="sh_for_tran_list_selections__brfq_for_tran_list,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -479,16 +583,16 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "sh for tran list selection"
-	sh_for_tran_list_selection__brfq_for_tran_list(parent_event_result) { 
+	//Handler for INTERNAL event of "sh for tran list selections"
+	sh_for_tran_list_selections__brfq_for_tran_list(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="sh_for_tran_list_selection"
+		let source_id="sh_for_tran_list_selections"
 		let destn_id="transaction_list"
 		let parent_source_id="svm_for_queue"
 		let event_code="e_1666857870892"
-		let event_params={"caller_name":"sh_for_tran_list_selection__brfq_for_tran_list","event_desc":"BRFQ for Tran list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"sh_for_tran_list_selections__brfq_for_tran_list","event_desc":"BRFQ for Tran list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_tran_list__sfr_for_tl,"
 		let event_data={}
@@ -508,7 +612,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_for_tran_list"
 		let destn_id="transaction_list"
-		let parent_source_id="sh_for_tran_list_selection"
+		let parent_source_id="sh_for_tran_list_selections"
 		let event_code="e_1666857915820"
 		let event_params={"caller_name":"brfq_for_tran_list__sfr_for_tl","event_desc":"SFR for TL","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
@@ -533,7 +637,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let event_code="e_1666857041976"
 		let event_params={"caller_name":"transaction_list__svm_for_transaction_list","event_desc":"SVM for Transaction List","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{}}
 		let handler_code="set_value_to_memory"
-		let internals=""
+		let internals="svm_for_transaction_list__cc_for_show_hide_in_tran_list,"
 		let event_data={"transaction_list":{"e_1666857041976":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1666857041976","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"NPSST_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSST_ID","setd3name":"NPSST_ID"},{"type":"LOCAL","column_name":"UETR","level":"MI_LEVEL","name":"MI_LEVEL_UETR","setd3name":"UETR"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666863233602","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS HST View Transaction MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"VALUE_DATE","alias_name":"","mq_id":"MQ_1666010726425","date_format":true},{"column_name":"CDTR_ACCT_NO","alias_name":"","mq_id":"MQ_1666014509621","date_format":false},{"column_name":"CDTR_ACCT_NAME","alias_name":"","mq_id":"MQ_1666014509797","date_format":false},{"column_name":"INTRBK_STTLM_AMNT","alias_name":"","mq_id":"MQ_1666014509965","date_format":false,"currency_format":true},{"column_name":"DBTR_ACCT_NO","alias_name":"","mq_id":"MQ_1666014510149","date_format":false},{"column_name":"DBTR_ACCT_NAME","alias_name":"","mq_id":"MQ_1666014510333","date_format":false},{"column_name":"DR_SORT_CODE","alias_name":"","mq_id":"MQ_1666014510501","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1666014510685","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1666014510861","date_format":false},{"column_name":"PROCESS_TYPE","alias_name":"","mq_id":"MQ_1666014600809","date_format":false},{"column_name":"HDR_MSG_ID","alias_name":"","mq_id":"MQ_1666014600993","date_format":false},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1666014601345","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1666014601513","date_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"","mq_id":"MQ_1666014601689","date_format":false},{"column_name":"DBTR_PHONE_NO","alias_name":"","mq_id":"MQ_1666014601849","date_format":false},{"column_name":"DBTR_EMAIL_ID","alias_name":"","mq_id":"MQ_1666014602009","date_format":false},{"column_name":"DBTR_DOCUMENT_ID","alias_name":"","mq_id":"MQ_1666014726127","date_format":false},{"column_name":"DBTR_IBAN","alias_name":"","mq_id":"MQ_1666014726294","date_format":false},{"column_name":"CDTR_PHONE_NO","alias_name":"","mq_id":"MQ_1666014726470","date_format":false},{"column_name":"CDTR_EMAIL_ID","alias_name":"","mq_id":"MQ_1666014726822","date_format":false},{"column_name":"CDTR_DOCUMENT_ID","alias_name":"","mq_id":"MQ_1666014758342","date_format":false},{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1666014758510","date_format":false},{"column_name":"EXHF_ID","alias_name":"","mq_id":"MQ_1666014789772","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666015556177","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666015557969","date_format":false},{"column_name":"NPSST_ID","alias_name":"","mq_id":"MQ_1666056821141","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1666178749368","date_format":true},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1666345094974","date_format":true}],"joins":[]},"eq_text":"SELECT NPSST_ID,        DATEMI,        VALUE_DATE,        CREATED_DATE,        CDTR_ACCT_NO,        CDTR_ACCT_NAME,        INTRBK_STTLM_AMNT,        INTRBK_STTLM_CUR,        DBTR_ACCT_NO,        DBTR_ACCT_NAME,        DR_SORT_CODE,        CR_SORT_CODE,        UETR,        HDR_MSG_ID,        PRODUCT_CODE,        CHANNEL_ID,        CHANNEL_REFNO,        CHANNEL_PRODUCT,        CHANNEL_SUB_PRODUCT,        CHANNEL_TRAN_CODE,        PROCESS_TYPE,        DBTR_PHONE_NO,        DBTR_EMAIL_ID,        DBTR_DOCUMENT_ID,        DBTR_IBAN,        CDTR_PHONE_NO,        CDTR_EMAIL_ID,        CDTR_DOCUMENT_ID,        CDTR_IBAN,        PAYMENT_ENDTOEND_ID,        EXHF_ID,        PROCESS_STATUS,        STATUS,        DT_CODE,        DTT_CODE,TS_ID,LOCKED_BY,LOCKED_BY_NAME,VERSION_NO   FROM (SELECT A.NPSST_ID,                A.VALUE_DATE,                A.CREATED_DATE,                TO_CHAR(A.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS') AS DATEMI,                A.CDTR_ACCT_NO,                A.CDTR_ACCT_NAME,                A.INTRBK_STTLM_AMNT,                A.INTRBK_STTLM_CUR,                A.DBTR_ACCT_NO,                A.DBTR_ACCT_NAME,                A.DR_SORT_CODE,                A.CR_SORT_CODE,                A.UETR,                A.HDR_MSG_ID,                A.PRODUCT_CODE,                A.CHANNEL_ID,                A.CHANNEL_REFNO,                A.CHANNEL_PRODUCT,                A.CHANNEL_SUB_PRODUCT,                A.CHANNEL_TRAN_CODE,                A.PROCESS_TYPE,                A.DBTR_PHONE_NO,                A.DBTR_EMAIL_ID,                A.DBTR_DOCUMENT_ID,                A.DBTR_IBAN,                A.CDTR_PHONE_NO,                A.CDTR_EMAIL_ID,                A.CDTR_DOCUMENT_ID,                A.CDTR_IBAN,                A.PAYMENT_ENDTOEND_ID,                A.EXHF_ID,                A.PROCESS_STATUS,                A.STATUS,                A.DT_CODE,                A.DTT_CODE,    A.VERSION_NO,         TS.TS_ID,         TS.LOCKED_BY,     TS.LOCKED_BY_NAME           FROM NPSS_TRANSACTIONS A           LEFT JOIN TRANSACTION_SET TS ON TS.TRN_ID = A.NPSST_ID AND TS.DTT_CODE = A.DTT_CODE          ORDER BY A.NPSST_ID DESC) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS HST View Transaction CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":true},{"header":"Amount","target_column":"INTRBK_STTLM_AMNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Cr IBAN","target_column":"CDTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E Ref ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing Sys Ref No","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -559,6 +663,28 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "svm for transaction list"
+	svm_for_transaction_list__cc_for_show_hide_in_tran_list(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="svm_for_transaction_list"
+		let destn_id=""
+		let parent_source_id="transaction_list"
+		let event_code="e_1666873459717"
+		let event_params={"caller_name":"svm_for_transaction_list__cc_for_show_hide_in_tran_list","event_desc":"CC for show hide in tran list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -659,7 +785,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1666857226486"
-		let event_params={"caller_name":"reversal_action_ui_accept__spap_for_accept","event_desc":"SPAP for Accept","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_accept","raiseparam":{"popup_category":"profile","variable":"p_accept_layout__spap_for_accept","selector":"p_accept_layout","profile_code":"BTL_1304_1666856778120","window_title":"Return Reason","window_height":500,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_accept","eventcode":"E_1666857226486"}}
+		let event_params={"caller_name":"reversal_action_ui_accept__spap_for_accept","event_desc":"SPAP for Accept","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_accept","raiseparam":{"popup_category":"profile","variable":"p_accept_layout__spap_for_accept","selector":"p_accept_layout","profile_code":"BTL_1304_1666856778120","window_title":"Return Reason","window_height":300,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_accept","eventcode":"E_1666857226486"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}
@@ -737,41 +863,42 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "change return ui save"
-	change_return_ui_save__save_for_cr() { 
+	change_return_ui_save__ve_for_crrui() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="change_return_ui_save"
 		let destn_id="change_return_ui"
 		let parent_source_id=""
-		let event_code="e_1666857433827"
-		let event_params={"caller_name":"change_return_ui_save__save_for_cr","event_desc":"Save for CR","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"change_return_ui_save","raiseparam":{"reset_selection":"Y","need_clear_value":"Y","no_change_status_on_modify":"N","release_lock":"Y","clear_cache":"Y"}}
-		let handler_code="save_tran"
-		let internals="save_for_cr__return_reason_info,"
+		let event_code="e_1666875197979"
+		let event_params={"caller_name":"change_return_ui_save__ve_for_crrui","event_desc":"VE for CRRUI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"change_return_ui_save","raiseparam":{}}
+		let handler_code="validate_elements"
+		let internals="ve_for_crrui__save_for_cr,"
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.save_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "change return ui save"
-	change_return_ui_save__e_1666862524143() { 
+	//Handler for INTERNAL event of "ve for crrui"
+	ve_for_crrui__save_for_cr(parent_event_result) { 
 		let Dest_Is_ctrl=true
-		
-		let source_id="change_return_ui_save"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1666862524143"
-		let event_params={"caller_name":"change_return_ui_save__e_1666862524143","event_desc":"E_1666862524143","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"change_return_ui_save","raiseparam":{"popup_category":"profile","variable":"p_change_return_layout__e_1666862524143","selector":"p_change_return_layout","profile_code":"BTL_1304_1666856823236","window_title":"Change Return Reason","window_height":500,"window_width":"600px","window_close_icon":"Y","eventdes":"e_1666862524143","eventcode":"E_1666862524143"}}
-		let handler_code="show_profile_as_popup"
-		let internals=""
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ve_for_crrui"
+		let destn_id="change_return_ui"
+		let parent_source_id="change_return_ui_save"
+		let event_code="e_1666875229752"
+		let event_params={"caller_name":"ve_for_crrui__save_for_cr","event_desc":"Save for CR","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"change_return_ui_save","raiseparam":{"reset_selection":"Y","need_clear_value":"Y","no_change_status_on_modify":"N","release_lock":"Y","clear_cache":"Y"},"parent_event_result":"SUCCESS"}
+		let handler_code="save_tran"
+		let internals="save_for_cr__return_reason_info,"
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.save_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -785,8 +912,8 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="save_for_cr"
 		let destn_id=""
-		let parent_source_id="change_return_ui_save"
-		let event_code="e_1666857468548"
+		let parent_source_id="ve_for_crrui"
+		let event_code="e_1666875247184"
 		let event_params={"caller_name":"save_for_cr__return_reason_info","event_desc":"Return Reason info","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been changed successfully","root_source_id":"change_return_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="return_reason_info__rs_for_crui,"
@@ -808,7 +935,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let source_id="return_reason_info"
 		let destn_id=""
 		let parent_source_id="save_for_cr"
-		let event_code="e_1666857502352"
+		let event_code="e_1666875275371"
 		let event_params={"caller_name":"return_reason_info__rs_for_crui","event_desc":"RS for CRUI","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"change_return_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
@@ -837,6 +964,372 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_8","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666863771649","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Comment MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"comment_text","alias_name":"","mq_id":"MQ_1666863666352","date_format":false}],"joins":[]},"eq_text":"SELECT comment_text   FROM (SELECT                t.tc_id,                t.comment_text,                t.dt_code,                t.dtt_code,                ts.ts_id,                ts.trn_id           FROM transaction_comments T          INNER JOIN transaction_set ts ON T.ts_id = ts.ts_id                                       AND ts.dtt_code = T.dtt_code) VW $WHERE ORDER BY tc_id DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Transaction Comment CCD","filter":[{"filter_name":"TRN_ID","binding_name":"TRN_ID","binding_value":"","source_name":"MI_LEVEL_NPSSTPL_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"","group_no":""}],"databinding":[{"header":"Comments","target_column":"comment_text","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui change return reason"
+	reversal_action_ui_change_return_reason__crr_for_spap() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="reversal_action_ui_change_return_reason"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1666875023412"
+		let event_params={"caller_name":"reversal_action_ui_change_return_reason__crr_for_spap","event_desc":"CRR For SPAP","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_change_return_reason","raiseparam":{"popup_category":"profile","variable":"p_change_return_layout__crr_for_spap","selector":"p_change_return_layout","profile_code":"BTL_1304_1666856823236","window_title":"Change Return Reason","window_height":300,"window_width":"600px","window_close_icon":"Y","eventdes":"crr_for_spap","eventcode":"E_1666875023412"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui back"
+	reversal_action_ui_back__rs_for_back_profile() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="reversal_action_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1666875137726"
+		let event_params={"caller_name":"reversal_action_ui_back__rs_for_back_profile","event_desc":"RS for back profile","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_back","raiseparam":{}}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "accept ui save"
+	accept_ui_save__ve_for_accept() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="accept_ui_save"
+		let destn_id="accept_ui"
+		let parent_source_id=""
+		let event_code="e_1666875170341"
+		let event_params={"caller_name":"accept_ui_save__ve_for_accept","event_desc":"VE for Accept","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"accept_ui_save","raiseparam":{}}
+		let handler_code="validate_elements"
+		let internals="ve_for_accept__cc_for_sh_ide,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ve for accept"
+	ve_for_accept__cc_for_sh_ide(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ve_for_accept"
+		let destn_id=""
+		let parent_source_id="accept_ui_save"
+		let event_code="e_1666875291197"
+		let event_params={"caller_name":"ve_for_accept__cc_for_sh_ide","event_desc":"CC for SH ide","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"accept_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals="cc_for_sh_ide__accept_info,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for sh ide"
+	cc_for_sh_ide__accept_info(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_sh_ide"
+		let destn_id=""
+		let parent_source_id="ve_for_accept"
+		let event_code="e_1666875316386"
+		let event_params={"caller_name":"cc_for_sh_ide__accept_info","event_desc":"Accept info","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been accepted successfully","root_source_id":"accept_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="accept_info__accept_success_rs,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "accept info"
+	accept_info__accept_success_rs(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="accept_info"
+		let destn_id=""
+		let parent_source_id="cc_for_sh_ide"
+		let event_code="e_1666875865234"
+		let event_params={"caller_name":"accept_info__accept_success_rs","event_desc":"Accept success RS","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"accept_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui reject"
+	reversal_action_ui_reject__cc_for_reject() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="reversal_action_ui_reject"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1666875373156"
+		let event_params={"caller_name":"reversal_action_ui_reject__cc_for_reject","event_desc":"CC For reject","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_reject","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_reject__reject_info,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for reject"
+	cc_for_reject__reject_info(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_reject"
+		let destn_id=""
+		let parent_source_id="reversal_action_ui_reject"
+		let event_code="e_1666875415919"
+		let event_params={"caller_name":"cc_for_reject__reject_info","event_desc":"Reject info","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been rejected successfully","root_source_id":"reversal_action_ui_reject","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="reject_info__rs_for_reject,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "reject info"
+	reject_info__rs_for_reject(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="reject_info"
+		let destn_id=""
+		let parent_source_id="cc_for_reject"
+		let event_code="e_1666875465706"
+		let event_params={"caller_name":"reject_info__rs_for_reject","event_desc":"RS for Reject","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_reject","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui approve"
+	reversal_action_ui_approve__cc_for_approve() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="reversal_action_ui_approve"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1666875519076"
+		let event_params={"caller_name":"reversal_action_ui_approve__cc_for_approve","event_desc":"CC for approve","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_approve","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_approve__info_for_approve,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for approve"
+	cc_for_approve__info_for_approve(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_approve"
+		let destn_id=""
+		let parent_source_id="reversal_action_ui_approve"
+		let event_code="e_1666875545933"
+		let event_params={"caller_name":"cc_for_approve__info_for_approve","event_desc":"info for approve","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been approved successfully","root_source_id":"reversal_action_ui_approve","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="info_for_approve__rs_for_approve,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "info for approve"
+	info_for_approve__rs_for_approve(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="info_for_approve"
+		let destn_id=""
+		let parent_source_id="cc_for_approve"
+		let event_code="e_1666875636739"
+		let event_params={"caller_name":"info_for_approve__rs_for_approve","event_desc":"RS for Approve","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_approve","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui return"
+	reversal_action_ui_return__cc_forreturn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="reversal_action_ui_return"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1666875671210"
+		let event_params={"caller_name":"reversal_action_ui_return__cc_forreturn","event_desc":"CC forReturn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_return","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_forreturn__return_info,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc forreturn"
+	cc_forreturn__return_info(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_forreturn"
+		let destn_id=""
+		let parent_source_id="reversal_action_ui_return"
+		let event_code="e_1666875696862"
+		let event_params={"caller_name":"cc_forreturn__return_info","event_desc":"Return info","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been returned successfully","root_source_id":"reversal_action_ui_return","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="return_info__rs_for_return,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "return info"
+	return_info__rs_for_return(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="return_info"
+		let destn_id=""
+		let parent_source_id="cc_forreturn"
+		let event_code="e_1666875726655"
+		let event_params={"caller_name":"return_info__rs_for_return","event_desc":"RS for return","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_return","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "npss pl rtn reason ui t24 return code"
+	npss_pl_rtn_reason_ui_t24_return_code__fcb_for_source__accept_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="npss_pl_rtn_reason_ui_t24_return_code"
+		let destn_id="npss_pl_rtn_reason_ui_cbuae_return_code"
+		let parent_source_id=""
+		let event_code="e_1666876334010"
+		let event_params={"source_comp_id":"accept_ui","source_ctrl_id":"t24_return_code","destn_comp_id":"accept_ui","destn_ctrl_id":"cbuae_return_code","caller_name":"npss_pl_rtn_reason_ui_t24_return_code__fcb_for_source__accept_ui","event_desc":"FCB for source","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_pl_rtn_reason_ui~uicgc_5~ui~df_1304_1665905157963~14","raiseparam":{"parentcolumn":"SOURCE_RETURN_CODE","need_selecteditem":"N"}}
+		let handler_code="filter_combo_binding"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.filter_combo_binding(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "npss pl change rtn reason ui t24 return code"
+	npss_pl_change_rtn_reason_ui_t24_return_code__fcb_for_source__change_return_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="npss_pl_change_rtn_reason_ui_t24_return_code"
+		let destn_id="npss_pl_change_rtn_reason_ui_cbuae_return_code"
+		let parent_source_id=""
+		let event_code="e_1666876517487"
+		let event_params={"source_comp_id":"change_return_ui","source_ctrl_id":"t24_return_code","destn_comp_id":"change_return_ui","destn_ctrl_id":"cbuae_return_code","caller_name":"npss_pl_change_rtn_reason_ui_t24_return_code__fcb_for_source__change_return_ui","event_desc":"FCB for Source","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_pl_change_rtn_reason_ui~uicgc_6~ui~df_1304_1665905157963~14","raiseparam":{"parentcolumn":"SOURCE_RETURN_CODE","need_selecteditem":"N"}}
+		let handler_code="filter_combo_binding"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.filter_combo_binding(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

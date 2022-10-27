@@ -1,30 +1,28 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26676 
+Build ID        : 26678 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-27 13:17 PM 
+Modified Date   : 2022-Oct-27 13:16 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_rct_transaction_details
-Profile Name    : Refund Layout--------------------------------------------------------------------------- */
+Screen Name     : s_rct_reversal
+Profile Name    : Change Return Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_refund_layout',
-  templateUrl: './p_refund_layout.component.html',
-  styleUrls: ['./p_refund_layout.component.css']
+  selector: 'p_change_return_layout',
+  templateUrl: './p_change_return_layout.component.html',
+  styleUrls: ['./p_change_return_layout.component.css']
 })
 
 // Start of class 
-export class p_refund_layoutComponent implements OnInit {
+export class p_change_return_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	disable_refund_ui : any = {}
-	enable_refund_ui : any = {}
-	submit_ui : any = {}
+  	change_return_ui : any = {}
 
 
   // Constructor 
@@ -32,16 +30,12 @@ export class p_refund_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.disable_refund_ui.desc = "Disable Refund UI"
-		this.disable_refund_ui.need_header = ""
-		this.enable_refund_ui.desc = "Enable Refund UI"
-		this.enable_refund_ui.need_header = ""
-		this.submit_ui.desc = "Submit UI"
-		this.submit_ui.need_header = ""
+    	this.change_return_ui.desc = "Change Return UI"
+		this.change_return_ui.need_header = ""
 	
 
-    this.screen_instance['p_refund_layout'] = {};
-    this.screen_instance['p_refund_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_change_return_layout'] = {};
+    this.screen_instance['p_change_return_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

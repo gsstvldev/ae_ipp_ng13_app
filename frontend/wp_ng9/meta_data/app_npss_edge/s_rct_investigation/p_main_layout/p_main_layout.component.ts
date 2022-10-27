@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26676 
+Build ID        : 26687 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-27 13:17 PM 
+Modified Date   : 2022-Oct-27 13:59 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_investigation
@@ -36,11 +36,11 @@ export class p_main_layoutComponent implements OnInit {
     	this.navigation_ui.desc = "Navigation UI"
 		this.navigation_ui.need_header = ""
 		this.queue.desc = "Queue"
-		this.queue.need_header = ""
+		this.queue.need_header = true
 		this.transaction_list.desc = "Transaction List"
-		this.transaction_list.need_header = ""
+		this.transaction_list.need_header = true
 		this.process_log_list.desc = "Process Log List"
-		this.process_log_list.need_header = ""
+		this.process_log_list.need_header = true
 	
 
     this.screen_instance['p_main_layout'] = {};

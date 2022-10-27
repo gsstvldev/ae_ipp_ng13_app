@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26682 
+Build ID        : 26685 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-27 13:37 PM 
+Modified Date   : 2022-Oct-27 14:8 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -57,11 +57,11 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	navigation : any = {}
 	navigation_review : any = {}
 	reversal_action_ui : any = {}
+	reversal_action_ui_back : any = {}
 	reversal_action_ui_reject : any = {}
 	reversal_action_ui_accept : any = {}
 	reversal_action_ui_return : any = {}
 	reversal_action_ui_approve : any = {}
-	reversal_action_ui_back : any = {}
 	reversal_action_ui_change_return_reason : any = {}
 	reversal_action_ui_trigger_btn : any = {}
 	accept_ui : any = {}
@@ -141,6 +141,15 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.reversal_action_ui.f_reversal_action_ui = {"show":true}
 		this.reversal_action_ui.current_view = "f_reversal_action_ui"
 		
+		// "Back" Button of "Reversal Action UI" component
+		this.reversal_action_ui_back.label_name = "Back"
+		this.reversal_action_ui_back.show = true
+		this.reversal_action_ui_back.disabled = false
+		this.reversal_action_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.reversal_action_ui_back.dynamic_param = {}
+		this.reversal_action_ui_back.role = []
+		this.reversal_action_ui_back.action = ""
+		
 		// "Reject" Button of "Reversal Action UI" component
 		this.reversal_action_ui_reject.label_name = "Reject"
 		this.reversal_action_ui_reject.show = true
@@ -176,15 +185,6 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.reversal_action_ui_approve.dynamic_param = {}
 		this.reversal_action_ui_approve.role = []
 		this.reversal_action_ui_approve.action = ""
-		
-		// "Back" Button of "Reversal Action UI" component
-		this.reversal_action_ui_back.label_name = "Back"
-		this.reversal_action_ui_back.show = true
-		this.reversal_action_ui_back.disabled = false
-		this.reversal_action_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
-		this.reversal_action_ui_back.dynamic_param = {}
-		this.reversal_action_ui_back.role = []
-		this.reversal_action_ui_back.action = ""
 		
 		// "Change Return Reason" Button of "Reversal Action UI" component
 		this.reversal_action_ui_change_return_reason.label_name = "Change Return Reason"
@@ -297,6 +297,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	// To handle page_load event
 	page_load(){
 		this.page_load__create_form()
+		this.page_load__de_for_crr()
 	}
 
 	//Handler for INTERNAL event of "create form"
@@ -361,6 +362,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	process_log_list__selection_changed(){
 		this.process_log_list__bind_tran_for_crui()
 		this.process_log_list__svm_for_process_log()
+		this.process_log_list__ee_for_crr()
 	}
 
 	//Handler for INTERNAL event of "svm for process log"
@@ -410,12 +412,12 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 
 	//Handler for INTERNAL event of "ve for accept"
 	ve_for_accept__internal(parent_event_result){
-		this.ve_for_accept__cc_for_sh_ide(parent_event_result)
+		this.ve_for_accept__cc_for_reversal_ide(parent_event_result)
 	}
 
-	//Handler for INTERNAL event of "cc for sh ide"
-	cc_for_sh_ide__internal(parent_event_result){
-		this.cc_for_sh_ide__accept_info(parent_event_result)
+	//Handler for INTERNAL event of "cc for reversal ide"
+	cc_for_reversal_ide__internal(parent_event_result){
+		this.cc_for_reversal_ide__accept_info(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "accept info"
@@ -493,6 +495,27 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_crr() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="reversal_action_ui_change_return_reason"
+		let parent_source_id=""
+		let event_code="e_1666879161968"
+		let event_params={"caller_name":"page_load__de_for_crr","event_desc":"DE for CRR","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -843,6 +866,27 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ee_for_crr() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="reversal_action_ui_change_return_reason"
+		let parent_source_id=""
+		let event_code="e_1666879201793"
+		let event_params={"caller_name":"process_log_list__ee_for_crr","event_desc":"EE For CRR","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "svm for process log"
 	svm_for_process_log__trigger_btn_click_for_process_log_to_tbc(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -895,7 +939,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let destn_id="change_return_ui"
 		let parent_source_id="change_return_ui_save"
 		let event_code="e_1666875229752"
-		let event_params={"caller_name":"ve_for_crrui__save_for_cr","event_desc":"Save for CR","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"change_return_ui_save","raiseparam":{"reset_selection":"Y","need_clear_value":"Y","no_change_status_on_modify":"N","release_lock":"Y","clear_cache":"Y"},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"ve_for_crrui__save_for_cr","event_desc":"Save for CR","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"change_return_ui_save","raiseparam":{"reset_selection":"Y","need_clear_value":"Y","no_change_status_on_modify":"Y","release_lock":"Y","clear_cache":"Y"},"parent_event_result":"SUCCESS"}
 		let handler_code="save_tran"
 		let internals="save_for_cr__return_reason_info,"
 		let event_data={}
@@ -1025,7 +1069,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let event_code="e_1666875170341"
 		let event_params={"caller_name":"accept_ui_save__ve_for_accept","event_desc":"VE for Accept","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"accept_ui_save","raiseparam":{}}
 		let handler_code="validate_elements"
-		let internals="ve_for_accept__cc_for_sh_ide,"
+		let internals="ve_for_accept__cc_for_reversal_ide,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -1037,7 +1081,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "ve for accept"
-	ve_for_accept__cc_for_sh_ide(parent_event_result) { 
+	ve_for_accept__cc_for_reversal_ide(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
@@ -1045,9 +1089,9 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="accept_ui_save"
 		let event_code="e_1666875291197"
-		let event_params={"caller_name":"ve_for_accept__cc_for_sh_ide","event_desc":"CC for SH ide","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"accept_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"ve_for_accept__cc_for_reversal_ide","event_desc":"CC for reversal ide","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"accept_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals="cc_for_sh_ide__accept_info,"
+		let internals="cc_for_reversal_ide__accept_info,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -1058,16 +1102,16 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "cc for sh ide"
-	cc_for_sh_ide__accept_info(parent_event_result) { 
+	//Handler for INTERNAL event of "cc for reversal ide"
+	cc_for_reversal_ide__accept_info(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_for_sh_ide"
+		let source_id="cc_for_reversal_ide"
 		let destn_id=""
 		let parent_source_id="ve_for_accept"
 		let event_code="e_1666875316386"
-		let event_params={"caller_name":"cc_for_sh_ide__accept_info","event_desc":"Accept info","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been accepted successfully","root_source_id":"accept_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_reversal_ide__accept_info","event_desc":"Accept info","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been accepted successfully","root_source_id":"accept_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="accept_info__accept_success_rs,"
 		let event_data={}
@@ -1087,7 +1131,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="accept_info"
 		let destn_id=""
-		let parent_source_id="cc_for_sh_ide"
+		let parent_source_id="cc_for_reversal_ide"
 		let event_code="e_1666875865234"
 		let event_params={"caller_name":"accept_info__accept_success_rs","event_desc":"Accept success RS","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"accept_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"

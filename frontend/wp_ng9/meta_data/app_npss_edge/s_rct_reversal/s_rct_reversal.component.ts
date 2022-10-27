@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26678 
+Build ID        : 26682 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-27 13:16 PM 
+Modified Date   : 2022-Oct-27 13:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -13,12 +13,15 @@ Screen Name     : s_rct_reversal
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_cs_reversal_acceptService} from '../../../custom_widget/npss_cs_reversal_accept/npss_cs_reversal_accept.service'
+import {npss_cs_reversal_rejectService} from '../../../custom_widget/npss_cs_reversal_reject/npss_cs_reversal_reject.service'
+import {npss_cs_return_pac_004Service} from '../../../custom_widget/npss_cs_return_pac_004/npss_cs_return_pac_004.service'
 
 @Component({
 	selector: 's_rct_reversal',
 	templateUrl: './s_rct_reversal.component.html',
 	styleUrls: ['./s_rct_reversal.component.css'],
-	providers:[torus_cs_show_hideService]
+	providers:[torus_cs_show_hideService,npss_cs_reversal_acceptService,npss_cs_reversal_rejectService,npss_cs_return_pac_004Service]
 })
     
 // Start of class 
@@ -71,7 +74,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_reversal_acceptService:npss_cs_reversal_acceptService,private npss_cs_reversal_rejectService:npss_cs_reversal_rejectService,private npss_cs_return_pac_004Service:npss_cs_return_pac_004Service) {
     
 	}
     
@@ -1048,7 +1051,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_reversal_acceptService.fn_npss_cs_reversal_accept(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1113,7 +1116,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_reversal_rejectService.fn_npss_cs_reversal_reject(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1243,7 +1246,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_return_pac_004Service.fn_npss_cs_return_pac_004(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26678 
+Build ID        : 26682 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-27 13:16 PM 
+Modified Date   : 2022-Oct-27 13:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -20,6 +20,9 @@ import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
+import {npss_cs_reversal_acceptModule} from '../../../custom_widget/npss_cs_reversal_accept/npss_cs_reversal_accept.module'
+import {npss_cs_reversal_rejectModule} from '../../../custom_widget/npss_cs_reversal_reject/npss_cs_reversal_reject.module'
+import {npss_cs_return_pac_004Module} from '../../../custom_widget/npss_cs_return_pac_004/npss_cs_return_pac_004.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -55,7 +58,7 @@ import { f_npss_pl_change_rtn_reason_uiComponent } from './f_npss_pl_change_rtn_
     OverlayPanelModule,
     
     s_rct_reversalRoutingModule,
-    torus_cs_show_hideModule
+    torus_cs_show_hideModule,npss_cs_reversal_acceptModule,npss_cs_reversal_rejectModule,npss_cs_return_pac_004Module
   ],
   declarations: [s_rct_reversalComponent,p_main_layoutComponent,f_navigationComponent,p_accept_ui_layoutComponent,f_npss_rct_reversal_uiComponent,f_reversal_action_uiComponent,p_accept_layoutComponent,f_npss_pl_rtn_reason_uiComponent,p_change_return_layoutComponent,f_npss_pl_change_rtn_reason_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

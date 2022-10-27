@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26391 
+Build ID        : 26537 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-11 12:12 PM 
+Modified Date   : 2022-Oct-27 11:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_verify
@@ -31,7 +31,7 @@ export class s_customer_verifyComponent implements OnInit,AfterViewInit {
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
-	current_profile : string = "p_main_layout"
+	current_profile : string = "p_search_layout"
 	uicgc_1 : string = "queue"
 	uicgc_2 : string = "transaction_list"
 	uicgc_4 : string = "navigation"

@@ -1497,6 +1497,16 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$DR_SORT_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$TRAN_REF_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
@@ -1533,11 +1543,6 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$CDTR_ACCT_NAME$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$DR_SORT_CODE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
@@ -1658,11 +1663,6 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$INSTRUCTION_ID$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$TRAN_REF_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },

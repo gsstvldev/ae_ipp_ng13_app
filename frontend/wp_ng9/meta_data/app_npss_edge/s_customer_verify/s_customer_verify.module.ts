@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26391 
+Build ID        : 26537 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-11 12:12 PM 
+Modified Date   : 2022-Oct-27 11:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_verify
@@ -32,8 +32,6 @@ import { s_customer_verifyRoutingModule } from './s_customer_verify.routing.modu
     
 
 
-import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
-import { f_navigationComponent } from './f_navigation/f_navigation.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
 import { f_npss_customer_srchComponent } from './f_npss_customer_srch/f_npss_customer_srch.component'
 
@@ -52,7 +50,7 @@ import { f_npss_customer_srchComponent } from './f_npss_customer_srch/f_npss_cus
     s_customer_verifyRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_customer_verifyComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_npss_customer_srchComponent,],
+  declarations: [s_customer_verifyComponent,p_search_layoutComponent,f_npss_customer_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

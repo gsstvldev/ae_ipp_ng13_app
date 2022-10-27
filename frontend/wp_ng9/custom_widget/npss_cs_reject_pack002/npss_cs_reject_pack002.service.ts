@@ -1,10 +1,10 @@
-
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+
 import { HttphelperService } from '../../scripts/fx/httphelper.service'; // for server call only use http services
 import { CoreService } from '../../scripts/fx/core.service'; //core services used for get screen values from memory variables
 import { AppHandlerService } from '../../scripts/fx/app.handler.service'; //Show for Dialog for Screen
@@ -13,7 +13,7 @@ import { SCOPE } from '../../scripts/fx/session.enum'; // get Scope for Session 
 import { DialogService } from '../../scripts/fx/dialog.service'; // Dialog box appear
                         
 @Injectable()
-export class npss_cs_reversal_rejectService {
+export class npss_cs_reject_pack002Service {
     constructor(private http: Http,
         private httpHelper: HttphelperService,
         private coreHelper: CoreService,
@@ -21,8 +21,8 @@ export class npss_cs_reversal_rejectService {
         private sessionHelper: SessionService,
         private dialogHelper: DialogService) { }
     //Default calling function
-    fn_npss_cs_reversal_reject(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
-      let App_Id = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");
+    fn_npss_cs_reject_pack002(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
+    let App_Id = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");
         let Product_Code;
         if (App_Id == "3") {
             Product_Code = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_CODE");
@@ -58,26 +58,21 @@ export class npss_cs_reversal_rejectService {
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
         ClientParams.SYSTEM_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_ID");
         ClientParams.SYSTEM_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_DESC");
-        ClientParams.client_code = client_code,
-        ClientParams.country_code = Country_Code,
         ClientParams.Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_NPSST_ID') || '';
-       // ClientParams.COMMENT = ''
-       // ClientParams.STPC_ID = ''
+        ClientParams.tpl_id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_NPSSTPL_ID') || '';
+       
         ClientParams.system_type = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "ST_CODE")
-        ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
-        ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
-        ClientParams.RULE_CODE = "RCT_IP_REV_REQ_REJECT";
-       this.CallUrlforGetparamvalue (ClientParams, screenInstance, internals);
+       
+     
+        ClientParams.RULE_CODE = "RCT_IP_REV_RJCT_PLACE_PACS002";
+         this.CallUrlforGetparamvalue (ClientParams, screenInstance, internals);
     }
-    CallUrlforGetparamvalue(ClientParams, screenInstance, internals) {
-        this.httpHelper.HttpPost('/microsvc/npss_cs_reversal_reject/', ClientParams)
+     CallUrlforGetparamvalue(ClientParams, screenInstance, internals) {
+        this.httpHelper.HttpPost('/microsvc/npss_cs_reject_pack002/', ClientParams)
             .subscribe((res: any) => {
-                if (res.data.status == "SUCCESS") {
+                if (res.data == "SUCCESS") {
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
-                   // var event = { eventId: "custom-connector", param: "SAVE_SUCCESS", internals: internals }
-                   
-                   // screenInstance["npss_op_error_widget"].onChangecomponent.emit(event)
-                } else if (res.data .status== "NO_STATUS_FOUND") {
+                  } else if (res.data == "NO_STATUS_FOUND") {
                     this.dialogHelper.ShowErrorDialog(res.data.data);
                     this.appHandler.callInternals(internals, screenInstance, "FAILURE");
                 } else {

@@ -297,6 +297,131 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665385772257$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$NPSSCP_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BANKUSERID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$GROUP_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BANK_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CUSTOMER_NAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$SURNAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$MOBILE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROXY_TYPE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROXY_VALUE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$EMAIL$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$DOCUMENT_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$EXHF_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_REFNO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_USERID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_PRODUCT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_SUB_PRODUCT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_TRAN_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846082411$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$NPSSMC_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666848298941$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666848298941$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BANKUSERID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666848298941$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CASHDESK_OVERLAY_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666848298941$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CASHDESK_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666848298941$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$EXHF_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666848298941$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NPSSTPL_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
@@ -365,6 +490,91 @@
         $DQ$NAME$DQ$: $DQ$REVERSAL_CODE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$NPSSSMTPL_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BANKUSERID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESS_NAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESSING_SYSTEM$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$RESULT_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$RESULT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$RESULT_MESSAGE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$RESULT_X_REQUEST_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESS_REF_NO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$REQUEST_DATA_JSON$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$RESPONSE_DATA_JSON$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_REFNO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_USERID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_PRODUCT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_SUB_PRODUCT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_TRAN_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847230281$DQ$
       },
       {
         $DQ$NAME$DQ$: $DQ$NPSSRS_ID$DQ$,
@@ -510,6 +720,131 @@
         $DQ$NAME$DQ$: $DQ$CASH_DESK_NAME$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665386514812$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$NPSSMP_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BANKUSERID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$GROUP_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BANK_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$MERCHANT_TAG$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$MERCHANT_NAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$SURNAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$DENOMINATION$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$VAT_NUMBER$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$MCC$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$MOBILE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROXY_TYPE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROXY_VALUE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$EMAIL$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$DOCUMENT_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_NAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$LOGO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$EXHF_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_USERID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_PRODUCT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_SUB_PRODUCT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_TRAN_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_REFNO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
       },
       {
         $DQ$NAME$DQ$: $DQ$NPSSMPS_ID$DQ$,
@@ -1012,6 +1347,86 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665384653050$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$NPSSMS_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BANKUSERID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$SHOP_NAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$SHOP_MID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$SHOP_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$SHOP_TYPE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$SHOP_MCC$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$SHOP_IBAN$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BUILDING$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$STREET$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CITY$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$POSTAL_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$COUNTY$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$COUNTRY$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$EXHF_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NPSST_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
@@ -1350,6 +1765,81 @@
         $DQ$NAME$DQ$: $DQ$EXHF_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665385314469$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$NPSSCA_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846862798$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846862798$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BANKUSERID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846862798$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$IBAN$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846862798$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CURRENCY$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846862798$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$INSTANT_PAYMENT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846862798$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$DEFAULT_ACCOUNT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846862798$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$EXHF_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846862798$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$NPSSMA_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847369565$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847369565$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BANKUSERID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847369565$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$IBAN$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847369565$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CURRENCY$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847369565$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$DEFAULT_ACCOUNT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847369565$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$EXHF_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847369565$DQ$
       }
     ],
     $DQ$TRAN_DELETION$DQ$: [],

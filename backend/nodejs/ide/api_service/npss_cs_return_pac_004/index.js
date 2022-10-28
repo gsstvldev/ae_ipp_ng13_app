@@ -8,7 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
 /*   Created By :   Siva Harish
-Created Date : 27/10/2022
+Created Date : 28/10/2022
 Modified By : 
 Modified Date : 
 Reason for : 
@@ -55,65 +55,76 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                             var TakeStsPsts = `select * from npss_transactions where npsst_id = '${params.Tran_Id}'`
                             var TakeReasonCode = `select cbuae_return_code from npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
                             var TakeFinalStatus = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.RULE_CODE}' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                            ExecuteQuery1(TakeStsPsts, function (arrresult) {
-                                try {
-                                    if (arrresult.length > 0) {
-                                        ExecuteQuery1(TakeStsPsts, function (arrReasoncode) {
-                                            if (arrReasoncode.length > 0) {
-                                                fn_callApi(arrresult, arrReasoncode, function (result) {
-                                                    // if(result == 'SUCCESS'){
-                                                    //     objresponse.status = 'SUCCESS';
-                                                    //     sendResponse(null, objresponse);
-                                                    // }else{
-                                                    //     objresponse.status = 'FAILURE';
-                                                    //     sendResponse(null, objresponse);
-                                                    // }
-                                                    if(result == 'SUCCESS'){
-                                                    ExecuteQuery1(TakeFinalStatus, function (arrStatus) {
-                                                        if (arrStatus.length > 0) {
-                                                            final_status = arrStatus[0].success_status
-                                                            final_process_status = arrStatus[0].success_process_status
-                                                            var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                            ExecuteQuery(UpdateTrnTble, function (arrReasoncode) {
-                                                                if (arrResult == 'SUCCESS') {
-                                                                   
-                                                                        objresponse.status = 'SUCCESS';
+                            var TakeapiUrl = `select api_url  from CORE_API_MASTER_RULE_SETUP where api_code =  'NPSS_RETURN_PACK004'`
+                            ExecuteQuery1(TakeapiUrl, function (arrUrl) {
+                                if (arrUrl.length > 0) {
+                                    ExecuteQuery1(TakeStsPsts, function (arrresult) {
+                                        try {
+                                            if (arrresult.length > 0) {
+                                                ExecuteQuery1(TakeReasonCode, function (arrReasoncode) {
+                                                    if (arrReasoncode.length > 0) {
+                                                        fn_callApi(arrresult, arrReasoncode,arrUrl, function (result) {
+
+                                                            if (result == 'SUCCESS') {
+                                                                ExecuteQuery1(TakeFinalStatus, function (arrStatus) {
+                                                                    if (arrStatus.length > 0) {
+                                                                        final_status = arrStatus[0].success_status
+                                                                        final_process_status = arrStatus[0].success_process_status
+                                                                        var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                        ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                            if (arrUpdTranTbl == 'SUCCESS') {
+
+                                                                                objresponse.status = 'SUCCESS';
+                                                                                sendResponse(null, objresponse);
+
+
+                                                                            } else {
+                                                                                objresponse.status = 'No Data Update In Transaction Table';
+                                                                                sendResponse(null, objresponse);
+
+                                                                            }
+                                                                        })
+                                                                    } else {
+                                                                        objresponse.status = 'No Rule Code Found';
                                                                         sendResponse(null, objresponse);
-                                                                   
-                                                                       
-                                                                } else {
-                                                                    objresponse.status = 'No Data Update In Tran Tbl';
-                                                                    sendResponse(null, objresponse);
-                                                                
-                                                                }
-                                                            })
-                                                        } else {
-                                                            objresponse.status = 'No Rule Code Found';
-                                                            sendResponse(null, objresponse);
-                                                        }
-                                                    })
-                                                }
+                                                                    }
+                                                                })
+                                                            } else {
+
+                                                                objresponse.status = result;
+                                                                sendResponse(null, objresponse);
+
+                                                            }
+                                                        })
+                                                    } else {
+                                                        objresponse.status = 'No Return Code Found';
+                                                        sendResponse(null, objresponse);
+                                                    }
                                                 })
+
+
+                                            } else {
+                                                objresponse.status = 'NO Data Found for Tran Id';
+                                                sendResponse(null, objresponse);
                                             }
-                                        })
 
-
-                                    } else {
-                                        objresponse.status = 'NO Data Found for Tran Id';
-                                        sendResponse(null, objresponse);
-                                    }
-
-                                } catch (error) {
-                                    sendResponse(error)
+                                        } catch (error) {
+                                            sendResponse(error)
+                                        }
+                                    })
+                                } else {
+                                    objresponse.status = 'Api Url Not Found';
+                                    sendResponse(null, objresponse);
                                 }
                             })
 
 
-                            function fn_callApi(arrresult, arrReasoncode, callbackapi) {
+
+                            function fn_callApi(arrresult, arrReasoncode,arrUrl, callbackapi) {
                                 try {
                                     var request = require('request');
                                     var apiURL =
-                                        apiURL = url; // apiURL + apiName
+                                        apiURL = arrUrl[0].api_url; // apiURL + apiName
                                     var options = {
                                         url: apiURL,
                                         timeout: 99999999,
@@ -153,6 +164,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                             reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
                                             sendResponse(error, null);
                                         } else {
+                                            console.log('API Response...................',responseBodyFromImagingService)
                                             console.log("------API CALL SUCCESS----");
                                             callbackapi(responseBodyFromImagingService)
                                         }

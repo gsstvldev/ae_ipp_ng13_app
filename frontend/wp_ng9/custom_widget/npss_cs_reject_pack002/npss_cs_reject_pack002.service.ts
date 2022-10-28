@@ -58,8 +58,8 @@ export class npss_cs_reject_pack002Service {
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
         ClientParams.SYSTEM_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_ID");
         ClientParams.SYSTEM_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_DESC");
-        ClientParams.Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_NPSST_ID') || '';
-        ClientParams.tpl_id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_NPSSTPL_ID') || '';
+        ClientParams.Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID") || '';
+        ClientParams.tpl_id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSTPL_ID") || '';
        
         ClientParams.system_type = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "ST_CODE")
        
@@ -70,15 +70,19 @@ export class npss_cs_reject_pack002Service {
      CallUrlforGetparamvalue(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_reject_pack002/', ClientParams)
             .subscribe((res: any) => {
-                if (res.data == "SUCCESS") {
+                if (res.data .status== "SUCCESS") {
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                   } else if (res.data == "NO_STATUS_FOUND") {
                     this.dialogHelper.ShowErrorDialog(res.data.data);
                     this.appHandler.callInternals(internals, screenInstance, "FAILURE");
-                } else {
+                } /*else if (res.data .status!== "SUCCESS"){
                     this.dialogHelper.ShowErrorDialog('Failure');
                     this.appHandler.callInternals(internals, screenInstance, "FAILURE");
-                }
+                }*/
+                 else {
+                    this.dialogHelper.ShowInfoDialog(res.data.status);
+                  
+              }
             });
     }
     //Custom validation logics

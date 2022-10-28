@@ -23,8 +23,8 @@ export class npss_cs_return_pac_004Service {
     //Default calling function
     fn_npss_cs_return_pac_004(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         var ClientParams: any = {}
-        ClientParams.Tran_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_NPSST_ID");
-        ClientParams.npsstpl_id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_NPSSTPL_ID");
+        ClientParams.Tran_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID");
+        ClientParams.npsstpl_id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSTPL_ID");
         ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS") || '';
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS") || '';
         ClientParams.Rule_Code = 'RCT_IP_REV_RETURN_PACS004'
@@ -43,8 +43,10 @@ export class npss_cs_return_pac_004Service {
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 }else if(res.data.status == 'No Rule Code Found' || res.data == 'No Rule Code Found'){
                     this.dialogHelper.ShowErrorDialog('No Rule Code Found')
-                } else {
-                    this.appHandler.callInternals(internals, screenInstance, "FAILURE");
+                } else if(res.data == "FAILURE" || res.data.status == 'FAILURE'){
+                     this.appHandler.callInternals(internals, screenInstance, "FAILURE");
+                }else {
+                    this.dialogHelper.ShowInfoDialog(res.data.status)
                 }
             });
     }

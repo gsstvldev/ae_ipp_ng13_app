@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26685 
+Build ID        : 26696 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-27 14:8 PM 
+Modified Date   : 2022-Oct-28 4:46 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -15,13 +15,14 @@ import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_reversal_acceptService} from '../../../custom_widget/npss_cs_reversal_accept/npss_cs_reversal_accept.service'
 import {npss_cs_reversal_rejectService} from '../../../custom_widget/npss_cs_reversal_reject/npss_cs_reversal_reject.service'
+import {npss_cs_reject_pack002Service} from '../../../custom_widget/npss_cs_reject_pack002/npss_cs_reject_pack002.service'
 import {npss_cs_return_pac_004Service} from '../../../custom_widget/npss_cs_return_pac_004/npss_cs_return_pac_004.service'
 
 @Component({
 	selector: 's_rct_reversal',
 	templateUrl: './s_rct_reversal.component.html',
 	styleUrls: ['./s_rct_reversal.component.css'],
-	providers:[torus_cs_show_hideService,npss_cs_reversal_acceptService,npss_cs_reversal_rejectService,npss_cs_return_pac_004Service]
+	providers:[torus_cs_show_hideService,npss_cs_reversal_acceptService,npss_cs_reversal_rejectService,npss_cs_reject_pack002Service,npss_cs_return_pac_004Service]
 })
     
 // Start of class 
@@ -74,7 +75,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_reversal_acceptService:npss_cs_reversal_acceptService,private npss_cs_reversal_rejectService:npss_cs_reversal_rejectService,private npss_cs_return_pac_004Service:npss_cs_return_pac_004Service) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_reversal_acceptService:npss_cs_reversal_acceptService,private npss_cs_reversal_rejectService:npss_cs_reversal_rejectService,private npss_cs_reject_pack002Service:npss_cs_reject_pack002Service,private npss_cs_return_pac_004Service:npss_cs_return_pac_004Service) {
     
 	}
     
@@ -345,6 +346,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	navigation_review__action_button_click(){
 		this.navigation_review__brfq_for_process_log()
 		this.navigation_review__bt_for_reversal_ui()
+		this.navigation_review__de_for_review()
 	}
 
 	//Handler for INTERNAL event of "brfq for process log"
@@ -442,12 +444,12 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui approve"
 	reversal_action_ui_approve__action_button_click(){
-		this.reversal_action_ui_approve__cc_for_approve()
+		this.reversal_action_ui_approve__cc_for_approves()
 	}
 
-	//Handler for INTERNAL event of "cc for approve"
-	cc_for_approve__internal(parent_event_result){
-		this.cc_for_approve__info_for_approve(parent_event_result)
+	//Handler for INTERNAL event of "cc for approves"
+	cc_for_approves__internal(parent_event_result){
+		this.cc_for_approves__info_for_approve(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "info for approve"
@@ -753,6 +755,27 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
+	navigation_review__de_for_review() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_review"
+		let destn_id="reversal_ui"
+		let parent_source_id=""
+		let event_code="e_1666931667370"
+		let event_params={"caller_name":"navigation_review__de_for_review","event_desc":"DE for Review","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_review","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1212,36 +1235,36 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui approve"
-	reversal_action_ui_approve__cc_for_approve() { 
+	reversal_action_ui_approve__cc_for_approves() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="reversal_action_ui_approve"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1666875519076"
-		let event_params={"caller_name":"reversal_action_ui_approve__cc_for_approve","event_desc":"CC for approve","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_approve","raiseparam":{}}
+		let event_params={"caller_name":"reversal_action_ui_approve__cc_for_approves","event_desc":"CC for approves","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_approve","raiseparam":{}}
 		let handler_code="custom_connectors"
-		let internals="cc_for_approve__info_for_approve,"
+		let internals="cc_for_approves__info_for_approve,"
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_reject_pack002Service.fn_npss_cs_reject_pack002(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
  		} 
 	} 
 
-	//Handler for INTERNAL event of "cc for approve"
-	cc_for_approve__info_for_approve(parent_event_result) { 
+	//Handler for INTERNAL event of "cc for approves"
+	cc_for_approves__info_for_approve(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_for_approve"
+		let source_id="cc_for_approves"
 		let destn_id=""
 		let parent_source_id="reversal_action_ui_approve"
 		let event_code="e_1666875545933"
-		let event_params={"caller_name":"cc_for_approve__info_for_approve","event_desc":"info for approve","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been approved successfully","root_source_id":"reversal_action_ui_approve","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_approves__info_for_approve","event_desc":"info for approve","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been approved successfully","root_source_id":"reversal_action_ui_approve","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="info_for_approve__rs_for_approve,"
 		let event_data={}
@@ -1261,7 +1284,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="info_for_approve"
 		let destn_id=""
-		let parent_source_id="cc_for_approve"
+		let parent_source_id="cc_for_approves"
 		let event_code="e_1666875636739"
 		let event_params={"caller_name":"info_for_approve__rs_for_approve","event_desc":"RS for Approve","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_approve","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"

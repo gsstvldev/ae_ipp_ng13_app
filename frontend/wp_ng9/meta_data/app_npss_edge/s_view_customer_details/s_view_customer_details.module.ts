@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26695 
+Build ID        : 26701 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-28 5:7 AM 
+Modified Date   : 2022-Oct-28 8:11 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_customer_details
@@ -33,6 +33,7 @@ import { s_view_customer_detailsRoutingModule } from './s_view_customer_details.
 
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigationComponent } from './f_navigation/f_navigation.component'
+import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
 import { p_view_account_layoutComponent } from './p_view_account_layout/p_view_account_layout.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
 import { f_npss_sm_cust_details_srchComponent } from './f_npss_sm_cust_details_srch/f_npss_sm_cust_details_srch.component'
@@ -52,7 +53,7 @@ import { f_npss_sm_cust_details_srchComponent } from './f_npss_sm_cust_details_s
     s_view_customer_detailsRoutingModule,
     
   ],
-  declarations: [s_view_customer_detailsComponent,p_main_layoutComponent,f_navigationComponent,p_view_account_layoutComponent,p_search_layoutComponent,f_npss_sm_cust_details_srchComponent,],
+  declarations: [s_view_customer_detailsComponent,p_main_layoutComponent,f_navigationComponent,f_back_uiComponent,p_view_account_layoutComponent,p_search_layoutComponent,f_npss_sm_cust_details_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

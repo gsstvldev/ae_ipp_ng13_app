@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26687 
+Build ID        : 26706 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-27 13:59 PM 
+Modified Date   : 2022-Oct-28 8:11 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_investigation
@@ -20,6 +20,7 @@ import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
+import {npss_cs_investigation_pac_028Module} from '../../../custom_widget/npss_cs_investigation_pac_028/npss_cs_investigation_pac_028.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -50,7 +51,7 @@ import { f_npss_investigation_srchComponent } from './f_npss_investigation_srch/
     OverlayPanelModule,
     
     s_rct_investigationRoutingModule,
-    torus_cs_show_hideModule
+    torus_cs_show_hideModule,npss_cs_investigation_pac_028Module
   ],
   declarations: [s_rct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_investigation_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]

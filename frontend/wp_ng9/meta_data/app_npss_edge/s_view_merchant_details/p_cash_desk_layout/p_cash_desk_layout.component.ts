@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26706 
+Build ID        : 26707 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-28 8:11 AM 
+Modified Date   : 2022-Oct-28 10:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -22,10 +22,10 @@ export class p_cash_desk_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	shop_detail : any = {}
+  	navigation : any = {}
+	shop_detail : any = {}
 	cash_desk_list : any = {}
 	cash_desk_detail : any = {}
-	back_ui : any = {}
 
 
   // Constructor 
@@ -33,14 +33,14 @@ export class p_cash_desk_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.shop_detail.desc = "Shop Detail"
+    	this.navigation.desc = "Navigation"
+		this.navigation.need_header = ""
+		this.shop_detail.desc = "Shop Detail"
 		this.shop_detail.need_header = true
 		this.cash_desk_list.desc = "Cash Desk List"
 		this.cash_desk_list.need_header = true
 		this.cash_desk_detail.desc = "Cash Desk Detail"
 		this.cash_desk_detail.need_header = true
-		this.back_ui.desc = "Back UI"
-		this.back_ui.need_header = ""
 	
 
     this.screen_instance['p_cash_desk_layout'] = {};

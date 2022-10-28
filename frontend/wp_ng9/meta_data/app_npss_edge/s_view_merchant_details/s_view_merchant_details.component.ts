@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26706 
+Build ID        : 26707 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-28 8:11 AM 
+Modified Date   : 2022-Oct-28 10:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -50,7 +50,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	btl_1304_1666887407266 : string = "p_search_layout"
 	btl_1304_1666886156572 : string = "p_view_account_layout"
 	btl_1304_1666886091955 : string = "p_main_layout"
-	forms : any = ["uicgc_7","uicgc_9","uicgc_8"]
+	forms : any = ["uicgc_7","uicgc_8"]
 	p_search_layout__sfap_for_search_showpopup : boolean = false
 	queue : any = {}
 	merchant_list : any = {}
@@ -63,6 +63,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	search_search : any = {}
 	navigation : any = {}
 	navigation_search : any = {}
+	navigation_back : any = {}
 	navigation_view_account_detail : any = {}
 	navigation_view_shop_detail : any = {}
 	navigation_view_cash_desk_detail : any = {}
@@ -209,6 +210,15 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_search.role = []
 		this.navigation_search.action = ""
 		
+		// "Back" Button of "Navigation" component
+		this.navigation_back.label_name = "Back"
+		this.navigation_back.show = true
+		this.navigation_back.disabled = false
+		this.navigation_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.navigation_back.dynamic_param = {}
+		this.navigation_back.role = []
+		this.navigation_back.action = ""
+		
 		// "View Account Detail" Button of "Navigation" component
 		this.navigation_view_account_detail.label_name = "View Account Detail"
 		this.navigation_view_account_detail.show = true
@@ -256,8 +266,6 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.back_ui.onChangecomponent = new EventEmitter<any>()
 		this.back_ui.show = true
 		this.back_ui.dynamic_param = {}
-		this.back_ui.f_back_ui = {"show":true}
-		this.back_ui.current_view = "f_back_ui"
 		
 		// "Back" Button of "Back UI" component
 		this.back_ui_back.label_name = "Back"
@@ -327,9 +335,9 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.page_load__cf_on_page_load()
 		this.page_load__brfq_on_page_load()
 		this.page_load__he_for_pl_trg()
-		this.page_load__trg_for_pl()
 		this.page_load__he_for_vcd_detail()
 		this.page_load__he_for_pl_to_vsd()
+		this.page_load__pl_to_back_hide()
 	}
 
 	//Handler for INTERNAL event of "brfq on page load"
@@ -364,6 +372,11 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.merchant_list__ee_for_view_detail_from_customer_list()
 	}
 
+	//Handler for INTERNAL event of "svm from customer list"
+	svm_from_customer_list__internal(parent_event_result){
+		this.svm_from_customer_list__trg_for_md(parent_event_result)
+	}
+
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__action_button_click(){
 		this.search_search__ssp_by_search_button()
@@ -391,6 +404,8 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_view_account_detail__se_for_vsd()
 		this.navigation_view_account_detail__he_for_vddd()
 		this.navigation_view_account_detail__se_for_vad_to_vcdd()
+		this.navigation_view_account_detail__se_for_back_btn()
+		this.navigation_view_account_detail__he_for_search()
 	}
 
 	//Handler for INTERNAL event of "brfq for account list"
@@ -424,11 +439,6 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.search_clear__cui_search()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
-	back_ui_back__action_button_click(){
-		this.back_ui_back__rs_for_back()
-	}
-
 	//Handler for SELECTION_CHANGED event of "merchant details"
 	merchant_details__selection_changed(){
 		this.merchant_details__svm_for_md()
@@ -459,6 +469,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_view_shop_detail__sp_for_vsd()
 		this.navigation_view_shop_detail__sh_for_vsd()
 		this.navigation_view_shop_detail__se_for_vcdd()
+		this.navigation_view_shop_detail__e_1666951850283()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation view cash desk detail"
@@ -467,6 +478,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_view_cash_desk_detail__sh__for_vcddetail()
 		this.navigation_view_cash_desk_detail__brfq_for_cash_detail()
 		this.navigation_view_cash_desk_detail__e_1666944430832()
+		this.navigation_view_cash_desk_detail__e_1666951863242()
 	}
 
 	//Handler for INTERNAL event of "brfq for cash detail"
@@ -492,6 +504,11 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "brfq for cdlist"
 	brfq_for_cdlist__internal(parent_event_result){
 		this.brfq_for_cdlist__sfr_for_cdlist(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation back"
+	navigation_back__action_button_click(){
+		this.navigation_back__rs_for_bck()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -558,27 +575,6 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__trg_for_pl() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_process_log_trg"
-		let parent_source_id=""
-		let event_code="e_1666936918126"
-		let event_params={"caller_name":"page_load__trg_for_pl","event_desc":"TRG for PL","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
-		let handler_code="trigger_button_click"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
 	page_load__he_for_vcd_detail() { 
 		let Dest_Is_ctrl=true
 		
@@ -608,6 +604,27 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1666943236812"
 		let event_params={"caller_name":"page_load__he_for_pl_to_vsd","event_desc":"HE for PL to VSD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__pl_to_back_hide() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_back"
+		let parent_source_id=""
+		let event_code="e_1666951391658"
+		let event_params={"caller_name":"page_load__pl_to_back_hide","event_desc":"PL to Back hide","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -760,7 +777,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let event_code="e_1666886672782"
 		let event_params={"caller_name":"merchant_list__svm_from_customer_list","event_desc":"SVM from Customer List","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant_list","raiseparam":{}}
 		let handler_code="set_value_to_memory"
-		let internals=""
+		let internals="svm_from_customer_list__trg_for_md,"
 		let event_data={"merchant_list":{"e_1666886672782":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1666886672782","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS Merchant Proxy DTG","dtt_desc":"NPSS Merchant Proxy","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"BANKUSERID","level":"MI_LEVEL","name":"MI_LEVEL_BANKUSERID","setd3name":"BANKUSERID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Proxy","ds_eligible":"DS_1666942281475","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666878546556","date_format":false},{"column_name":"MERCHANT_NAME","alias_name":"","mq_id":"MQ_1666878546755","date_format":false},{"column_name":"MERCHANT_TAG","alias_name":"","mq_id":"MQ_1666878547035","date_format":false},{"column_name":"MCC","alias_name":"","mq_id":"MQ_1666878547491","date_format":false},{"column_name":"MOBILE","alias_name":"","mq_id":"MQ_1666878578991","date_format":false},{"column_name":"DENOMINATION","alias_name":"","mq_id":"MQ_1666878579343","date_format":false},{"column_name":"VAT_NUMBER","alias_name":"","mq_id":"MQ_1666878595391","date_format":false},{"column_name":"SURNAME","alias_name":"","mq_id":"MQ_1666879178543","date_format":false},{"column_name":"GROUP_CODE","alias_name":"","mq_id":"MQ_1666879178805","date_format":false},{"column_name":"BANK_CODE","alias_name":"","mq_id":"MQ_1666879179269","date_format":false},{"column_name":"PROXY_TYPE","alias_name":"","mq_id":"MQ_1666879214612","date_format":false},{"column_name":"PROXY_VALUE","alias_name":"","mq_id":"MQ_1666879214956","date_format":false},{"column_name":"EMAIL","alias_name":"","mq_id":"MQ_1666879215132","date_format":false},{"column_name":"DOCUMENT_ID","alias_name":"","mq_id":"MQ_1666879215308","date_format":false},{"column_name":"CHANNEL_NAME","alias_name":"","mq_id":"MQ_1666879258954","date_format":false},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1666879259178","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1666879259474","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1666879260146","date_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"","mq_id":"MQ_1666879260394","date_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"","mq_id":"MQ_1666879260634","date_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"","mq_id":"MQ_1666879353178","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666881334242","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666881334807","date_format":false}],"joins":[]},"eq_text":"SELECT BANKUSERID,        MERCHANT_NAME,        MERCHANT_TAG,        MCC,        MOBILE,        DENOMINATION,        VAT_NUMBER,        SURNAME,        GROUP_CODE,        BANK_CODE,        PROXY_TYPE,        PROXY_VALUE,        EMAIL,        DOCUMENT_ID,        CHANNEL_NAME,        CHANNEL_ID,        CHANNEL_REFNO,        CHANNEL_USERID,        CHANNEL_PRODUCT,        CHANNEL_SUB_PRODUCT,        CHANNEL_TRAN_CODE,        CREATED_DATE,        STATUS,        PROCESS_STATUS,        TENANT_ID,        DTT_CODE,        DT_CODE   FROM (SELECT T.NPSSMP_ID,                T.BANKUSERID,                T.MERCHANT_NAME,                T.MERCHANT_TAG,                T.MCC,                T.MOBILE,                T.DENOMINATION,                T.VAT_NUMBER,                T.PRODUCT_CODE,                T.GROUP_CODE,                T.BANK_CODE,                T.SURNAME,                T.PROXY_TYPE,                T.PROXY_VALUE,                T.EMAIL,                T.DOCUMENT_ID,                T.CHANNEL_NAME,                T.LOGO,                T.EXHF_ID,                T.CHANNEL_ID,                T.CHANNEL_USERID,                T.CHANNEL_PRODUCT,                T.CHANNEL_SUB_PRODUCT,                T.CHANNEL_TRAN_CODE,                T.CHANNEL_REFNO,                T.CREATED_DATE,                T.STATUS,                T.PROCESS_STATUS,                T.TENANT_ID,                T.DTT_CODE,                T.DT_CODE           FROM NPSS_MERCHANT_PROXY T) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Details CCD","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Merchant Tag","target_column":"MERCHANT_TAG","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"MCC","target_column":"MCC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Denomination","target_column":"DENOMINATION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"VAT Number","target_column":"VAT_NUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -786,6 +803,28 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "svm from customer list"
+	svm_from_customer_list__trg_for_md(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="svm_from_customer_list"
+		let destn_id="navigation_process_log_trg"
+		let parent_source_id="merchant_list"
+		let event_code="e_1666949914797"
+		let event_params={"caller_name":"svm_from_customer_list__trg_for_md","event_desc":"TRG for MD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"merchant_list","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1066,6 +1105,48 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view account detail"
+	navigation_view_account_detail__se_for_back_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_account_detail"
+		let destn_id="navigation_back"
+		let parent_source_id=""
+		let event_code="e_1666951445498"
+		let event_params={"caller_name":"navigation_view_account_detail__se_for_back_btn","event_desc":"SE for Back btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_account_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view account detail"
+	navigation_view_account_detail__he_for_search() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_account_detail"
+		let destn_id="navigation_search"
+		let parent_source_id=""
+		let event_code="e_1666951592248"
+		let event_params={"caller_name":"navigation_view_account_detail__he_for_search","event_desc":"HE for Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_account_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "brfq for account list"
 	brfq_for_account_list__sfr_for_account_list(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -1210,27 +1291,6 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
-	back_ui_back__rs_for_back() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="back_ui_back"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1666940236582"
-		let event_params={"caller_name":"back_ui_back__rs_for_back","event_desc":"RS for back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"back_ui_back","raiseparam":{}}
-		let handler_code="refresh_screen"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1408,6 +1468,27 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view shop detail"
+	navigation_view_shop_detail__e_1666951850283() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_shop_detail"
+		let destn_id="navigation_back"
+		let parent_source_id=""
+		let event_code="e_1666951850283"
+		let event_params={"caller_name":"navigation_view_shop_detail__e_1666951850283","event_desc":"E_1666951850283","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_shop_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "navigation view cash desk detail"
 	navigation_view_cash_desk_detail__sp_for_vsd() { 
 		let Dest_Is_ctrl=true
@@ -1480,6 +1561,27 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1666944430832"
 		let event_params={"caller_name":"navigation_view_cash_desk_detail__e_1666944430832","event_desc":"E_1666944430832","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_cash_desk_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view cash desk detail"
+	navigation_view_cash_desk_detail__e_1666951863242() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_cash_desk_detail"
+		let destn_id="navigation_back"
+		let parent_source_id=""
+		let event_code="e_1666951863242"
+		let event_params={"caller_name":"navigation_view_cash_desk_detail__e_1666951863242","event_desc":"E_1666951863242","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_cash_desk_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -1594,6 +1696,27 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666848298941":{"st_ds":{"default":{"uicgc_code":"UICGC_12","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666848298941","dtt_desc":"NPSS Merchant Proxy","ds_eligible":"DS_1666942596756","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Cash Desk Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666882336815","date_format":false},{"column_name":"CASHDESK_ID","alias_name":"","mq_id":"MQ_1666882337070","date_format":false},{"column_name":"CASHDESK_OVERLAY_ID","alias_name":"","mq_id":"MQ_1666882337573","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666882360517","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666882360725","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1666882360901","date_format":true},{"column_name":"DTT_CODE","alias_name":"","mq_id":"MQ_1666882395708","date_format":false}],"joins":[]},"eq_text":"SELECT  BANKUSERID, CASHDESK_ID, CASHDESK_OVERLAY_ID,        CREATED_DATE,        STATUS,        PROCESS_STATUS,        TENANT_ID,        DTT_CODE,        DT_CODE   FROM (SELECT C.BANKUSERID,   C.CASHDESK_ID,   C.CASHDESK_OVERLAY_ID,                C.CREATED_DATE,                C.STATUS,                C.PROCESS_STATUS,                C.TENANT_ID,                C.DTT_CODE,                C.DT_CODE           FROM NPSS_MERCHANT_CASHDESK C) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Cash Desk Details CCD","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"","oprtr":"","data_type":"","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cash Desk ID","target_column":"CASHDESK_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation back"
+	navigation_back__rs_for_bck() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1666951518353"
+		let event_params={"caller_name":"navigation_back__rs_for_bck","event_desc":"RS for Bck","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_back","raiseparam":{}}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

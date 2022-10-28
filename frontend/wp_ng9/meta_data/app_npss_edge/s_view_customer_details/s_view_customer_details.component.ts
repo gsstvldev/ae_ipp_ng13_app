@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26701 
+Build ID        : 26707 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-28 8:11 AM 
+Modified Date   : 2022-Oct-28 10:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_customer_details
@@ -247,7 +247,6 @@ export class s_view_customer_detailsComponent implements OnInit,AfterViewInit {
 		this.page_load__cf_on_page_load()
 		this.page_load__brfq_on_page_load()
 		this.page_load__he_for_pl_trg()
-		this.page_load__trigger_bt_click()
 	}
 
 	//Handler for INTERNAL event of "brfq on page load"
@@ -280,6 +279,11 @@ export class s_view_customer_detailsComponent implements OnInit,AfterViewInit {
 	customer_list__selection_changed(){
 		this.customer_list__svm_from_customer_list()
 		this.customer_list__ee_for_view_detail_from_customer_list()
+	}
+
+	//Handler for INTERNAL event of "svm from customer list"
+	svm_from_customer_list__internal(parent_event_result){
+		this.svm_from_customer_list__trigger_btn_clicks(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
@@ -390,27 +394,6 @@ export class s_view_customer_detailsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__trigger_bt_click() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_process_log_trg"
-		let parent_source_id=""
-		let event_code="e_1666936783694"
-		let event_params={"caller_name":"page_load__trigger_bt_click","event_desc":"Trigger bt click","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
-		let handler_code="trigger_button_click"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -557,7 +540,7 @@ export class s_view_customer_detailsComponent implements OnInit,AfterViewInit {
 		let event_code="e_1666886672782"
 		let event_params={"caller_name":"customer_list__svm_from_customer_list","event_desc":"SVM from Customer List","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"customer_list","raiseparam":{}}
 		let handler_code="set_value_to_memory"
-		let internals=""
+		let internals="svm_from_customer_list__trigger_btn_clicks,"
 		let event_data={"customer_list":{"e_1666886672782":{"dts":{"dt_1304_1666846042955":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1666886672782","dt_code":"DT_1304_1666846042955","dtt_code":"","dt_desc":"NPSS Customer Proxy DTG","dtt_desc":"NPSS Customer Proxy","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"BANKUSERID","level":"MI_LEVEL","name":"MI_LEVEL_BANKUSERID","setd3name":"BANKUSERID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1666846042955":{"dtt_1304_1666846082411":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846042955","dt_desc":"NPSS Customer Proxy DTG","dtt_code":"DTT_1304_1666846082411","dtt_desc":"NPSS Customer Proxy","ds_eligible":"DS_1666931817713","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Customer Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666878433323","date_format":false},{"column_name":"CUSTOMER_NAME","alias_name":"","mq_id":"MQ_1666878433491","date_format":false},{"column_name":"SURNAME","alias_name":"","mq_id":"MQ_1666878433667","date_format":false},{"column_name":"MOBILE","alias_name":"","mq_id":"MQ_1666878433827","date_format":false},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1666878469369","date_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"","mq_id":"MQ_1666878469553","date_format":false},{"column_name":"GROUP_CODE","alias_name":"","mq_id":"MQ_1666878765095","date_format":false},{"column_name":"BANK_CODE","alias_name":"","mq_id":"MQ_1666878765271","date_format":false},{"column_name":"PROXY_TYPE","alias_name":"","mq_id":"MQ_1666878809814","date_format":false},{"column_name":"PROXY_VALUE","alias_name":"","mq_id":"MQ_1666878809982","date_format":false},{"column_name":"EMAIL","alias_name":"","mq_id":"MQ_1666878810195","date_format":false},{"column_name":"DOCUMENT_ID","alias_name":"","mq_id":"MQ_1666878839781","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1666878840140","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1666878840284","date_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"","mq_id":"MQ_1666878883828","date_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"","mq_id":"MQ_1666878898035","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSCP_ID,    PRODUCT_CODE, BANKUSERID, GROUP_CODE,    BANK_CODE,    CUSTOMER_NAME,    SURNAME,    MOBILE,    PROXY_TYPE,    PROXY_VALUE,    EMAIL,    DOCUMENT_ID,    EXHF_ID,    CHANNEL_ID,    CHANNEL_REFNO,    CHANNEL_USERID,    CHANNEL_PRODUCT,    CHANNEL_SUB_PRODUCT,    CHANNEL_TRAN_CODE,    NPSSCP_ID FROM     (                     SELECT     T.NPSSCP_ID,                      T.PROXY_TYPE,                                                                                                                                                                               T.MOBILE,                                T.SURNAME,                                T.CUSTOMER_NAME,                                T.BANK_CODE,                                T.GROUP_CODE,                                T.BANKUSERID,                                T.PRODUCT_CODE,                                T.PROXY_VALUE,                                T.EMAIL,                                T.DOCUMENT_ID,                                T.EXHF_ID,                                T.CHANNEL_ID,                                T.CHANNEL_REFNO,                                T.CHANNEL_USERID,                                T.CHANNEL_PRODUCT,                                T.CHANNEL_SUB_PRODUCT,                                T.CHANNEL_TRAN_CODE,                                                          T.PROCESS_STATUS,                                T.TENANT_ID,                                T.STATUS,                                T.CREATED_DATE,                                                                T.CREATED_BY,                                T.CREATED_BY_NAME,                                T.SYSTEM_ID                                                     FROM       NPSS_CUSTOMER_PROXY T)                                         VM $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Customer Details CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Customer Name","target_column":"CUSTOMER_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Surname","target_column":"SURNAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Channel Product","target_column":"CHANNEL_PRODUCT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -583,6 +566,28 @@ export class s_view_customer_detailsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "svm from customer list"
+	svm_from_customer_list__trigger_btn_clicks(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="svm_from_customer_list"
+		let destn_id="navigation_process_log_trg"
+		let parent_source_id="customer_list"
+		let event_code="e_1666949749904"
+		let event_params={"caller_name":"svm_from_customer_list__trigger_btn_clicks","event_desc":"Trigger btn clicks","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"customer_list","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

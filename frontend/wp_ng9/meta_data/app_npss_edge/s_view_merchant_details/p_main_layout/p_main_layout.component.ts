@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26706 
+Build ID        : 26707 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-28 8:11 AM 
+Modified Date   : 2022-Oct-28 10:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -37,7 +37,7 @@ export class p_main_layoutComponent implements OnInit {
 		this.navigation.need_header = ""
 		this.queue.desc = "Queue"
 		this.queue.need_header = true
-		this.merchant_list.desc = "Customer List"
+		this.merchant_list.desc = "Merchant List"
 		this.merchant_list.need_header = true
 		this.process_log_list.desc = "Process Log List"
 		this.process_log_list.need_header = true

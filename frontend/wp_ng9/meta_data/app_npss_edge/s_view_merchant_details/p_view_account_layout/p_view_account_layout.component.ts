@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26706 
+Build ID        : 26707 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-28 8:11 AM 
+Modified Date   : 2022-Oct-28 10:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -26,7 +26,6 @@ export class p_view_account_layoutComponent implements OnInit {
 	merchant_details : any = {}
 	account_list : any = {}
 	account_details : any = {}
-	back_ui : any = {}
 
 
   // Constructor 
@@ -36,14 +35,12 @@ export class p_view_account_layoutComponent implements OnInit {
   ngOnInit() {
     	this.navigation.desc = "Navigation"
 		this.navigation.need_header = ""
-		this.merchant_details.desc = "Customer Details"
+		this.merchant_details.desc = "Merchant Details"
 		this.merchant_details.need_header = true
 		this.account_list.desc = "Account List"
 		this.account_list.need_header = true
 		this.account_details.desc = "Account Details"
 		this.account_details.need_header = true
-		this.back_ui.desc = "Back UI"
-		this.back_ui.need_header = ""
 	
 
     this.screen_instance['p_view_account_layout'] = {};

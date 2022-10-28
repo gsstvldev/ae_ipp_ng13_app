@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26706 
+Build ID        : 26707 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-28 8:11 AM 
+Modified Date   : 2022-Oct-28 10:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -33,8 +33,8 @@ import { s_view_merchant_detailsRoutingModule } from './s_view_merchant_details.
 
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigationComponent } from './f_navigation/f_navigation.component'
-import { p_view_account_layoutComponent } from './p_view_account_layout/p_view_account_layout.component'
 import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
+import { p_view_account_layoutComponent } from './p_view_account_layout/p_view_account_layout.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
 import { f_npss_sm_merchant_details_srchComponent } from './f_npss_sm_merchant_details_srch/f_npss_sm_merchant_details_srch.component'
 import { p_view_shop_layoutComponent } from './p_view_shop_layout/p_view_shop_layout.component'
@@ -55,7 +55,7 @@ import { p_cash_desk_layoutComponent } from './p_cash_desk_layout/p_cash_desk_la
     s_view_merchant_detailsRoutingModule,
     
   ],
-  declarations: [s_view_merchant_detailsComponent,p_main_layoutComponent,f_navigationComponent,p_view_account_layoutComponent,f_back_uiComponent,p_search_layoutComponent,f_npss_sm_merchant_details_srchComponent,p_view_shop_layoutComponent,p_cash_desk_layoutComponent,],
+  declarations: [s_view_merchant_detailsComponent,p_main_layoutComponent,f_navigationComponent,f_back_uiComponent,p_view_account_layoutComponent,p_search_layoutComponent,f_npss_sm_merchant_details_srchComponent,p_view_shop_layoutComponent,p_cash_desk_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26707 
+Build ID        : 26715 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-28 10:14 AM 
+Modified Date   : 2022-Oct-28 13:55 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -299,6 +299,10 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	page_load(){
 		this.page_load__create_form()
 		this.page_load__de_for_crr()
+		this.page_load__de_for_reject()
+		this.page_load__de_for_return()
+		this.page_load__de_for_approve()
+		this.page_load__de_for_accept()
 	}
 
 	//Handler for INTERNAL event of "create form"
@@ -365,6 +369,10 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.process_log_list__bind_tran_for_crui()
 		this.process_log_list__svm_for_process_log()
 		this.process_log_list__ee_for_crr()
+		this.process_log_list__ee_for_accept()
+		this.process_log_list__ee_for_approve()
+		this.process_log_list__ee_for_reject()
+		this.process_log_list__ee_for_return()
 	}
 
 	//Handler for INTERNAL event of "svm for process log"
@@ -512,6 +520,90 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1666879161968"
 		let event_params={"caller_name":"page_load__de_for_crr","event_desc":"DE for CRR","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_reject() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="reversal_action_ui_reject"
+		let parent_source_id=""
+		let event_code="e_1666960296129"
+		let event_params={"caller_name":"page_load__de_for_reject","event_desc":"DE For Reject","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_return() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="reversal_action_ui_return"
+		let parent_source_id=""
+		let event_code="e_1666960339800"
+		let event_params={"caller_name":"page_load__de_for_return","event_desc":"DE for Return","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_approve() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="reversal_action_ui_approve"
+		let parent_source_id=""
+		let event_code="e_1666960399963"
+		let event_params={"caller_name":"page_load__de_for_approve","event_desc":"DE for Approve","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_accept() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="reversal_action_ui_accept"
+		let parent_source_id=""
+		let event_code="e_1666960452316"
+		let event_params={"caller_name":"page_load__de_for_accept","event_desc":"DE for Accept","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -898,6 +990,90 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1666879201793"
 		let event_params={"caller_name":"process_log_list__ee_for_crr","event_desc":"EE For CRR","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ee_for_accept() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="reversal_action_ui_accept"
+		let parent_source_id=""
+		let event_code="e_1666960496370"
+		let event_params={"caller_name":"process_log_list__ee_for_accept","event_desc":"EE for Accept","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ee_for_approve() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="reversal_action_ui_approve"
+		let parent_source_id=""
+		let event_code="e_1666960524747"
+		let event_params={"caller_name":"process_log_list__ee_for_approve","event_desc":"EE for Approve","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ee_for_reject() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="reversal_action_ui_reject"
+		let parent_source_id=""
+		let event_code="e_1666960556431"
+		let event_params={"caller_name":"process_log_list__ee_for_reject","event_desc":"EE for Reject","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ee_for_return() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="reversal_action_ui_return"
+		let parent_source_id=""
+		let event_code="e_1666960644352"
+		let event_params={"caller_name":"process_log_list__ee_for_return","event_desc":"EE for Return","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}

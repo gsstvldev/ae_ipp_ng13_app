@@ -112,7 +112,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
                                             "uetr": arrresult[0].uetr,
 
-                                            "txid": arrReasoncode[0].tran_ref_id
+                                            "txid": arrresult[0].tran_ref_id
 
                                         },
                                         headers: {

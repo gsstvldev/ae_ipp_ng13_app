@@ -727,27 +727,7 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
       },
       {
-        $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
-      },
-      {
         $DQ$NAME$DQ$: $DQ$BANKUSERID$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$GROUP_CODE$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$BANK_CODE$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$MERCHANT_TAG$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
       },
@@ -757,7 +737,17 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
       },
       {
-        $DQ$NAME$DQ$: $DQ$SURNAME$DQ$,
+        $DQ$NAME$DQ$: $DQ$MERCHANT_TAG$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$MCC$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$MOBILE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
       },
@@ -772,12 +762,22 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
       },
       {
-        $DQ$NAME$DQ$: $DQ$MCC$DQ$,
+        $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
       },
       {
-        $DQ$NAME$DQ$: $DQ$MOBILE$DQ$,
+        $DQ$NAME$DQ$: $DQ$GROUP_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BANK_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$SURNAME$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
       },

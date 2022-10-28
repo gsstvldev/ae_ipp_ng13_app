@@ -54,7 +54,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         try {
                             var TakeStsPsts = `select * from npss_transactions where npsst_id = '${params.Tran_Id}'`
                             var TakeReasonCode = `select cbuae_return_code from npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
-                            var TakeFinalStatus = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.RULE_CODE}' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
+                            var TakeFinalStatus = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.Rule_Code}' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                             var TakeapiUrl = `select api_url  from CORE_API_MASTER_RULE_SETUP where api_code =  'NPSS_RETURN_PACK004'`
                             ExecuteQuery1(TakeapiUrl, function (arrUrl) {
                                 if (arrUrl.length > 0) {

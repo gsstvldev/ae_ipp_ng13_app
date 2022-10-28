@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
     /*  Created By : Daseen
    Created Date : 28/10/2022
    Modified By : 
@@ -29,6 +30,7 @@ app.post('/', function(appRequest, appResponse, next) {
    var reqAsync = require('async');
    var success_process_status, success_status;
    var Id = params.Id;
+   var rule_code=params.RULE_CODE;
    var api_url;
    var mTranConn = "";
    var objresponse = {
@@ -55,9 +57,9 @@ app.post('/', function(appRequest, appResponse, next) {
                        var ApitrnId
                        var app_id
                        try {
-                           var urlqry = `select  api_url from core_api_master_rule_setup where api_code='${params.RULE_CODE}'`
+                           var urlqry = `select  api_url from core_api_master_rule_setup where api_code='NPSS_REJECT_PACK002'`
                            var seltranqry = `select * from npss_transactions where npsst_id='${params.Id}'`
-                           var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}`
+                           var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'`
                            var selplqry=`select tpl.cbuae_return_code,crn.return_description from npss_trn_process_log tpl inner join core_nc_return_codes crn on  tpl.cbuae_return_code=crn.return_code where npsstpl_id='${params.tpl_id}'`
 
 
@@ -72,7 +74,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                if (tranresult.length > 0) {
                                                    ExecuteQuery1(selplqry, function (tplresult) {
                                                        if (tplresult.length > 0) {
-                                                           fn_DoAPIServiceCall(tranresult,tplresult, api_url, function (apiresult) {
+                                                           fn_DoAPIServiceCall(tranresult,tplresult, api_url,rule_code, function (apiresult) {
                                                                if (apiresult === "SUCCESS") {
                                                                    var updtranqry = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
                                                                    ExecuteQuery(updtranqry, function (uptranresult) {
@@ -191,7 +193,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                    // Do API Call for Service 
-                   function fn_DoAPIServiceCall(tranresult, url, rule_code, callbackapi) {
+                   function fn_DoAPIServiceCall(tranresult, tplresult,url, rule_code, callbackapi) {
                        try {
                            var request = require('request');
                            var apiURL =
@@ -259,6 +261,7 @@ app.post('/', function(appRequest, appResponse, next) {
            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
        }
    })
+
 
 
 

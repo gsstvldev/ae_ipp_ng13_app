@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26721 
+Build ID        : 26725 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-28 14:2 PM 
+Modified Date   : 2022-Oct-29 10:27 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -63,7 +63,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	search_search : any = {}
 	navigation : any = {}
 	navigation_search : any = {}
-	navigation_back : any = {}
+	navigation_back_to_main : any = {}
 	navigation_view_account_detail : any = {}
 	navigation_view_shop_detail : any = {}
 	navigation_view_cash_desk_detail : any = {}
@@ -210,14 +210,14 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_search.role = []
 		this.navigation_search.action = ""
 		
-		// "Back" Button of "Navigation" component
-		this.navigation_back.label_name = "Back"
-		this.navigation_back.show = true
-		this.navigation_back.disabled = false
-		this.navigation_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
-		this.navigation_back.dynamic_param = {}
-		this.navigation_back.role = []
-		this.navigation_back.action = ""
+		// "Back to Main" Button of "Navigation" component
+		this.navigation_back_to_main.label_name = "Back to Main"
+		this.navigation_back_to_main.show = true
+		this.navigation_back_to_main.disabled = false
+		this.navigation_back_to_main.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.navigation_back_to_main.dynamic_param = {}
+		this.navigation_back_to_main.role = []
+		this.navigation_back_to_main.action = ""
 		
 		// "View Account Detail" Button of "Navigation" component
 		this.navigation_view_account_detail.label_name = "View Account Detail"
@@ -402,7 +402,6 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_view_account_detail__sp_for_vad()
 		this.navigation_view_account_detail__he_for_vad()
 		this.navigation_view_account_detail__se_for_vsd()
-		this.navigation_view_account_detail__he_for_vddd()
 		this.navigation_view_account_detail__se_for_vad_to_vcdd()
 		this.navigation_view_account_detail__se_for_back_btn()
 		this.navigation_view_account_detail__he_for_search()
@@ -469,7 +468,9 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_view_shop_detail__sp_for_vsd()
 		this.navigation_view_shop_detail__sh_for_vsd()
 		this.navigation_view_shop_detail__se_for_vcdd()
-		this.navigation_view_shop_detail__e_1666951850283()
+		this.navigation_view_shop_detail__se_view_shop_to_back()
+		this.navigation_view_shop_detail__se_view_shop_to_view_account()
+		this.navigation_view_shop_detail__he_view_shop_to_search()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation view cash desk detail"
@@ -477,8 +478,10 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_view_cash_desk_detail__sp_for_vsd()
 		this.navigation_view_cash_desk_detail__sh__for_vcddetail()
 		this.navigation_view_cash_desk_detail__brfq_for_cash_detail()
-		this.navigation_view_cash_desk_detail__e_1666944430832()
-		this.navigation_view_cash_desk_detail__e_1666951863242()
+		this.navigation_view_cash_desk_detail__se_for_case_desk_to_view_shop()
+		this.navigation_view_cash_desk_detail__se_for_case_desk_to_back()
+		this.navigation_view_cash_desk_detail__se_for_case_desk_to_view_account()
+		this.navigation_view_cash_desk_detail__he_view_cash_to_search()
 	}
 
 	//Handler for INTERNAL event of "brfq for cash detail"
@@ -506,9 +509,9 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.brfq_for_cdlist__sfr_for_cdlist(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation back"
-	navigation_back__action_button_click(){
-		this.navigation_back__rs_for_bck()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation back to main"
+	navigation_back_to_main__action_button_click(){
+		this.navigation_back_to_main__rs_for_bck()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -621,7 +624,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_back"
+		let destn_id="navigation_back_to_main"
 		let parent_source_id=""
 		let event_code="e_1666951391658"
 		let event_params={"caller_name":"page_load__pl_to_back_hide","event_desc":"PL to Back hide","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -1064,27 +1067,6 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation view account detail"
-	navigation_view_account_detail__he_for_vddd() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_view_account_detail"
-		let destn_id="navigation_view_cash_desk_detail"
-		let parent_source_id=""
-		let event_code="e_1666941870428"
-		let event_params={"caller_name":"navigation_view_account_detail__he_for_vddd","event_desc":"HE for VDDD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_account_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation view account detail"
 	navigation_view_account_detail__se_for_vad_to_vcdd() { 
 		let Dest_Is_ctrl=true
 		
@@ -1110,7 +1092,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_view_account_detail"
-		let destn_id="navigation_back"
+		let destn_id="navigation_back_to_main"
 		let parent_source_id=""
 		let event_code="e_1666951445498"
 		let event_params={"caller_name":"navigation_view_account_detail__se_for_back_btn","event_desc":"SE for Back btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_account_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
@@ -1469,20 +1451,62 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation view shop detail"
-	navigation_view_shop_detail__e_1666951850283() { 
+	navigation_view_shop_detail__se_view_shop_to_back() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_view_shop_detail"
-		let destn_id="navigation_back"
+		let destn_id="navigation_back_to_main"
 		let parent_source_id=""
 		let event_code="e_1666951850283"
-		let event_params={"caller_name":"navigation_view_shop_detail__e_1666951850283","event_desc":"E_1666951850283","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_shop_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_view_shop_detail__se_view_shop_to_back","event_desc":"SE View Shop to Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_shop_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
 			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view shop detail"
+	navigation_view_shop_detail__se_view_shop_to_view_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_shop_detail"
+		let destn_id="navigation_view_account_detail"
+		let parent_source_id=""
+		let event_code="e_1667038918755"
+		let event_params={"caller_name":"navigation_view_shop_detail__se_view_shop_to_view_account","event_desc":"SE View Shop to View Account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_shop_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view shop detail"
+	navigation_view_shop_detail__he_view_shop_to_search() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_shop_detail"
+		let destn_id="navigation_search"
+		let parent_source_id=""
+		let event_code="e_1667039091880"
+		let event_params={"caller_name":"navigation_view_shop_detail__he_view_shop_to_search","event_desc":"HE View Shop to Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_shop_detail","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1553,14 +1577,14 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation view cash desk detail"
-	navigation_view_cash_desk_detail__e_1666944430832() { 
+	navigation_view_cash_desk_detail__se_for_case_desk_to_view_shop() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_view_cash_desk_detail"
 		let destn_id="navigation_view_shop_detail"
 		let parent_source_id=""
 		let event_code="e_1666944430832"
-		let event_params={"caller_name":"navigation_view_cash_desk_detail__e_1666944430832","event_desc":"E_1666944430832","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_cash_desk_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_view_cash_desk_detail__se_for_case_desk_to_view_shop","event_desc":"SE for Case Desk to View Shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_cash_desk_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -1574,20 +1598,62 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation view cash desk detail"
-	navigation_view_cash_desk_detail__e_1666951863242() { 
+	navigation_view_cash_desk_detail__se_for_case_desk_to_back() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_view_cash_desk_detail"
-		let destn_id="navigation_back"
+		let destn_id="navigation_back_to_main"
 		let parent_source_id=""
 		let event_code="e_1666951863242"
-		let event_params={"caller_name":"navigation_view_cash_desk_detail__e_1666951863242","event_desc":"E_1666951863242","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_cash_desk_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_view_cash_desk_detail__se_for_case_desk_to_back","event_desc":"SE for Case Desk to Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_cash_desk_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
 			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view cash desk detail"
+	navigation_view_cash_desk_detail__se_for_case_desk_to_view_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_cash_desk_detail"
+		let destn_id="navigation_view_account_detail"
+		let parent_source_id=""
+		let event_code="e_1667038835040"
+		let event_params={"caller_name":"navigation_view_cash_desk_detail__se_for_case_desk_to_view_account","event_desc":"SE for Case Desk to View Account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_cash_desk_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view cash desk detail"
+	navigation_view_cash_desk_detail__he_view_cash_to_search() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_cash_desk_detail"
+		let destn_id="navigation_search"
+		let parent_source_id=""
+		let event_code="e_1667039025983"
+		let event_params={"caller_name":"navigation_view_cash_desk_detail__he_view_cash_to_search","event_desc":"HE View Cash to Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_cash_desk_detail","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1702,15 +1768,15 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation back"
-	navigation_back__rs_for_bck() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation back to main"
+	navigation_back_to_main__rs_for_bck() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_back"
+		let source_id="navigation_back_to_main"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1666951518353"
-		let event_params={"caller_name":"navigation_back__rs_for_bck","event_desc":"RS for Bck","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_back","raiseparam":{}}
+		let event_params={"caller_name":"navigation_back_to_main__rs_for_bck","event_desc":"RS for Bck","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_back_to_main","raiseparam":{}}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

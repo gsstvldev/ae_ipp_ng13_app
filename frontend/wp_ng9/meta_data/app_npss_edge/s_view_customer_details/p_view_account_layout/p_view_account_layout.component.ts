@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26721 
+Build ID        : 26718 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-28 14:2 PM 
+Modified Date   : 2022-Oct-29 5:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_customer_details
@@ -23,6 +23,7 @@ export class p_view_account_layoutComponent implements OnInit {
 
   // Variables 
   	customer_details : any = {}
+	back_ui : any = {}
 	account_list : any = {}
 	account_details : any = {}
 
@@ -34,6 +35,8 @@ export class p_view_account_layoutComponent implements OnInit {
   ngOnInit() {
     	this.customer_details.desc = "Customer Details"
 		this.customer_details.need_header = true
+		this.back_ui.desc = "Back UI"
+		this.back_ui.need_header = ""
 		this.account_list.desc = "Account List"
 		this.account_list.need_header = true
 		this.account_details.desc = "Account Details"

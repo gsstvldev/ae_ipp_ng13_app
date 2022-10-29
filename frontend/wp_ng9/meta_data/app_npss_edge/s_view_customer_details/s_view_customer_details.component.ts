@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26721 
+Build ID        : 26718 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-28 14:2 PM 
+Modified Date   : 2022-Oct-29 5:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_customer_details
@@ -44,7 +44,7 @@ export class s_view_customer_detailsComponent implements OnInit,AfterViewInit {
 	btl_1304_1666887407266 : string = "p_search_layout"
 	btl_1304_1666886156572 : string = "p_view_account_layout"
 	btl_1304_1666886091955 : string = "p_main_layout"
-	forms : any = ["uicgc_7","uicgc_8"]
+	forms : any = ["uicgc_7","uicgc_9","uicgc_8"]
 	p_search_layout__sfap_for_search_showpopup : boolean = false
 	queue : any = {}
 	customer_list : any = {}
@@ -226,6 +226,8 @@ export class s_view_customer_detailsComponent implements OnInit,AfterViewInit {
 		this.back_ui.onChangecomponent = new EventEmitter<any>()
 		this.back_ui.show = true
 		this.back_ui.dynamic_param = {}
+		this.back_ui.f_back_ui = {"show":true}
+		this.back_ui.current_view = "f_back_ui"
 		
 		// "Back" Button of "Back UI" component
 		this.back_ui_back.label_name = "Back"
@@ -335,6 +337,11 @@ export class s_view_customer_detailsComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "search clear"
 	search_clear__action_button_click(){
 		this.search_clear__cui_search()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
+	back_ui_back__action_button_click(){
+		this.back_ui_back__rs_for_back()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -906,6 +913,27 @@ export class s_view_customer_detailsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
+	back_ui_back__rs_for_back() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="back_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1667021280239"
+		let event_params={"caller_name":"back_ui_back__rs_for_back","event_desc":"RS for Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"back_ui_back","raiseparam":{}}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

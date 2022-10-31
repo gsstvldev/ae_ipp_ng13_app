@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26719 
+Build ID        : 26730 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-31 4:50 AM 
+Modified Date   : 2022-Oct-31 6:59 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_transfer_inward
@@ -40,13 +40,13 @@ import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { t_payment_tabviewComponent } from './t_payment_tabview/t_payment_tabview.component'
 import { p_history_layoutComponent } from './p_history_layout/p_history_layout.component'
 import { f_ip_payment_form_actionComponent } from './f_ip_payment_form_action/f_ip_payment_form_action.component'
-import { f_npss_transaction_srchComponent } from './f_npss_transaction_srch/f_npss_transaction_srch.component'
+import { f_history_searchComponent } from './f_history_search/f_history_search.component'
 import { f_dynamic_searchComponent } from './f_dynamic_search/f_dynamic_search.component'
 import { p_vertical_details_layoutComponent } from './p_vertical_details_layout/p_vertical_details_layout.component'
 import { p_pacs008_layoutComponent } from './p_pacs008_layout/p_pacs008_layout.component'
-import { f_npss_ip_pacs008Component } from './f_npss_ip_pacs008/f_npss_ip_pacs008.component'
+import { f_pacs008_uiComponent } from './f_pacs008_ui/f_pacs008_ui.component'
 import { p_pacs002_layout_Component } from './p_pacs002_layout_/p_pacs002_layout_.component'
-import { f_npss_ip_pacs002Component } from './f_npss_ip_pacs002/f_npss_ip_pacs002.component'
+import { f_pacs002_uiComponent } from './f_pacs002_ui/f_pacs002_ui.component'
 
 
 
@@ -64,7 +64,7 @@ import { f_npss_ip_pacs002Component } from './f_npss_ip_pacs002/f_npss_ip_pacs00
     s_credit_transfer_inwardRoutingModule,
     npssp_cs_verify_recepient_ibanModule,torus_cs_show_hideModule,npssp_c_clear_custom_widgetModule,npssp_cs_acceptModule
   ],
-  declarations: [s_credit_transfer_inwardComponent,p_main_layoutComponent,t_payment_tabviewComponent,p_history_layoutComponent,f_ip_payment_form_actionComponent,f_npss_transaction_srchComponent,f_dynamic_searchComponent,p_vertical_details_layoutComponent,p_pacs008_layoutComponent,f_npss_ip_pacs008Component,p_pacs002_layout_Component,f_npss_ip_pacs002Component,],
+  declarations: [s_credit_transfer_inwardComponent,p_main_layoutComponent,t_payment_tabviewComponent,p_history_layoutComponent,f_ip_payment_form_actionComponent,f_history_searchComponent,f_dynamic_searchComponent,p_vertical_details_layoutComponent,p_pacs008_layoutComponent,f_pacs008_uiComponent,p_pacs002_layout_Component,f_pacs002_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

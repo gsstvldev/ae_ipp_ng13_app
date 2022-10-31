@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26451 
+Build ID        : 26730 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-15 12:27 PM 
+Modified Date   : 2022-Oct-31 6:59 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_transfer_outward
@@ -31,7 +31,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
   	wftpa_description : string = "s_credit_transfer_outward"
 	wftpa_id : string = "WFT_NPSS_P_1304_1665742405403_0"
 	cg_code : string = "CG_1408_1652366314635"
-	key_column : any = {"dtt_1304_1665384533560":"NPSSCPA_ID","dtt_1304_1665385314469":"NPSSCPB_ID","dtt_1304_1665385772257":"NPSSCT_ID"}
+	key_column : any = {}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -69,7 +69,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 	btl_1408_1634880929213 : string = "p_main_layout"
 	btl_1408_1634880047100 : string = "p_failure_list_layout"
 	btl_1408_1634824504003 : string = "p_form_layout"
-	forms : any = ["uicgc_24","uicgc_25","uicgc_1","uicgc_6","uicgc_19","uicgc_10","uicgc_17","uicgc_9","uicgc_13","uicgc_2"]
+	forms : any = ["uicgc_24","uicgc_25","uicgc_6","uicgc_19","uicgc_10","uicgc_17","uicgc_9","uicgc_13","uicgc_1","uicgc_2"]
 	p_edit_layout__spap_for_view_failure_details_showpopup : boolean = false
 	p_vertical_details_layout__spap_for_view_tran_details_showpopup : boolean = false
 	p_pacs008_layout__spap_for_pacs008_showpopup : boolean = false
@@ -142,12 +142,12 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		this.payment_form.params = {}
 		this.payment_form.datasource = {}
 		this.payment_form.context_menu = []
-		this.payment_form.views = {"first":"DTT_1304_1665385772257","is_tab_mode":"N","dtt_1304_1665385772257":{"0":[{"dttv_id":"OP Cust Transaction UI","tab_order":0,"tab_name":"","uicgc_description":"Payment Form","role_description":"default","dtt_description":"NPSS Cust Transactions"}]}}
+		this.payment_form.views = {}
 		this.payment_form.onChangecomponent = new EventEmitter<any>()
 		this.payment_form.show = true
 		this.payment_form.dynamic_param = {}
-		this.payment_form.f_op_cust_transaction_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.payment_form.form_name = "f_op_cust_transaction_ui"
+		this.payment_form.f_payment_form = {"show":true}
+		this.payment_form.current_view = "f_payment_form"
 		
 		// "TBC1" Button of "Payment Form" component
 		this.payment_form_tbc1.label_name = "TBC1"
@@ -267,7 +267,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		this.transactions.uicgc_desc = "Transactions"
 		this.transactions.uicgc_code = "uicgc_3"
 		this.transactions.params = {"need_pag_datatable":"Y","need_search":"N","need_context_menu_actions":"N"}
-		this.transactions.datasource = {"default":{"dt_1304_1665384453253":{"dtt_1304_1665385772257":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665384453253","dt_desc":"Customer DTG","dtt_code":"DTT_1304_1665385772257","dtt_desc":"NPSS Cust Transactions","ds_eligible":"DS_1665742470444","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Transaction MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"TRNID","alias_name":"","mq_id":"MQ_1665734579675","date_format":false},{"column_name":"MSGID","alias_name":"","mq_id":"MQ_1665734580049","date_format":false},{"column_name":"PROCESSTYPE","alias_name":"","mq_id":"MQ_1665734580241","date_format":false},{"column_name":"PROCESS","alias_name":"","mq_id":"MQ_1665734580409","date_format":false},{"column_name":"LASTACCESSEDDATE","alias_name":"","mq_id":"MQ_1665734580577","date_format":true},{"column_name":"LASTACCESSEDDATEUTC","alias_name":"","mq_id":"MQ_1665734619329","date_format":true},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1665753803205","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1665753803476","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1665753803701","date_format":false},{"column_name":"PRODUCT","alias_name":"","mq_id":"MQ_1665753803868","date_format":false},{"column_name":"SUB_PRODUCT","alias_name":"","mq_id":"MQ_1665753846147","date_format":false},{"column_name":"TRANSACTION_CODE","alias_name":"","mq_id":"MQ_1665753846307","date_format":false},{"column_name":"PROCESSDATA","alias_name":"","mq_id":"MQ_1665753846491","date_format":false},{"column_name":"PRNT_MSG","alias_name":"","mq_id":"MQ_1665755731729","date_format":false}],"joins":[]},"eq_text":"SELECT TRNID, MSGID, PROCESSTYPE, PROCESS,        CHANNEL_ID,        CHANNEL_REFNO,        CHANNEL_USERID,        PRODUCT,        SUB_PRODUCT,        TRANSACTION_CODE,        LASTACCESSEDDATE,        LASTACCESSEDDATEUTC,        PROCESSDATA,         PRNT_MSG  FROM(SELECT A.TRNID,        A.MSGID,        A.PROCESSTYPE,        A.PROCESS,        A.CHANNEL_ID,        A.CHANNEL_REFNO,        A.CHANNEL_USERID,        A.PRODUCT,        A.SUB_PRODUCT,        A.TRANSACTION_CODE,        A.LASTACCESSEDDATE,        A.LASTACCESSEDDATEUTC,        A.PROCESSDATA,        CASE          WHEN (A.PARENT_MSGID = '0' OR A.PARENT_MSGID IS NULL) THEN           'NO_PRNTMSG'          ELSE           'PRNTMSG'        END AS PRNT_MSG   FROM NPSS_EDGE_PT_TRANSACTIONS A)V $WHERE  ORDER BY TRNID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"Transaction MQ CCD","filter":[{"filter_name":"PRNT_MSG","binding_name":"PRNT_MSG","binding_value":"","source_name":"NO_PRNTMSG","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESSTYPE","binding_name":"PROCESSTYPE","binding_value":"","source_name":"OUTWARD","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Tran ID","target_column":"TRNID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"MSGID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Type","target_column":"PROCESSTYPE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process","target_column":"PROCESS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Last Accessed Date","target_column":"LASTACCESSEDDATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		this.transactions.datasource = {}
 		this.transactions.context_menu = [{"label_name":"View","desc":"view","show":true,"disabled":false,"params":{"icon_only":true,"node_type":"","uicgcc_style":"fa fa-eye"},"dynamic_param":{}}]
 		this.transactions.views = {}
 		this.transactions.onChangecomponent = new EventEmitter<any>()
@@ -316,12 +316,12 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		this.history_search.params = {}
 		this.history_search.datasource = {}
 		this.history_search.context_menu = []
-		this.history_search.views = {"first":"DTT_1304_1665385772257","is_tab_mode":"N","dtt_1304_1665385772257":{"0":[{"dttv_id":"NPSS Transaction SRCH","tab_order":0,"tab_name":"","uicgc_description":"History Search","role_description":"default","dtt_description":"NPSS Cust Transactions"}]}}
+		this.history_search.views = {}
 		this.history_search.onChangecomponent = new EventEmitter<any>()
 		this.history_search.show = true
 		this.history_search.dynamic_param = {}
-		this.history_search.f_npss_transaction_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.history_search.form_name = "f_npss_transaction_srch"
+		this.history_search.f_history_search = {"show":true}
+		this.history_search.current_view = "f_history_search"
 		
 		// "Clear" Button of "History Search" component
 		this.history_search_clear.label_name = "Clear"
@@ -637,7 +637,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		this.transaction_detail.uicgc_desc = "Transaction Detail"
 		this.transaction_detail.uicgc_code = "uicgc_23"
 		this.transaction_detail.params = {"need_search":"N","need_pag_datatable":"Y"}
-		this.transaction_detail.datasource = {"default":{"dt_1304_1665384453253":{"dtt_1304_1665385772257":{"st_ds":{"default":{"uicgc_code":"UICGC_23","event_code":"DEFAULT","dt_code":"DT_1304_1665384453253","dt_desc":"Customer DTG","dtt_code":"DTT_1304_1665385772257","dtt_desc":"NPSS Cust Transactions","ds_eligible":"DS_1665742524291","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Transaction MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"TRNID","alias_name":"","mq_id":"MQ_1665734579675","date_format":false},{"column_name":"MSGID","alias_name":"","mq_id":"MQ_1665734580049","date_format":false},{"column_name":"PROCESSTYPE","alias_name":"","mq_id":"MQ_1665734580241","date_format":false},{"column_name":"PROCESS","alias_name":"","mq_id":"MQ_1665734580409","date_format":false},{"column_name":"LASTACCESSEDDATE","alias_name":"","mq_id":"MQ_1665734580577","date_format":true},{"column_name":"LASTACCESSEDDATEUTC","alias_name":"","mq_id":"MQ_1665734619329","date_format":true},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1665753803205","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1665753803476","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1665753803701","date_format":false},{"column_name":"PRODUCT","alias_name":"","mq_id":"MQ_1665753803868","date_format":false},{"column_name":"SUB_PRODUCT","alias_name":"","mq_id":"MQ_1665753846147","date_format":false},{"column_name":"TRANSACTION_CODE","alias_name":"","mq_id":"MQ_1665753846307","date_format":false},{"column_name":"PROCESSDATA","alias_name":"","mq_id":"MQ_1665753846491","date_format":false},{"column_name":"PRNT_MSG","alias_name":"","mq_id":"MQ_1665755731729","date_format":false}],"joins":[]},"eq_text":"SELECT TRNID, MSGID, PROCESSTYPE, PROCESS,        CHANNEL_ID,        CHANNEL_REFNO,        CHANNEL_USERID,        PRODUCT,        SUB_PRODUCT,        TRANSACTION_CODE,        LASTACCESSEDDATE,        LASTACCESSEDDATEUTC,        PROCESSDATA,         PRNT_MSG  FROM(SELECT A.TRNID,        A.MSGID,        A.PROCESSTYPE,        A.PROCESS,        A.CHANNEL_ID,        A.CHANNEL_REFNO,        A.CHANNEL_USERID,        A.PRODUCT,        A.SUB_PRODUCT,        A.TRANSACTION_CODE,        A.LASTACCESSEDDATE,        A.LASTACCESSEDDATEUTC,        A.PROCESSDATA,        CASE          WHEN (A.PARENT_MSGID = '0' OR A.PARENT_MSGID IS NULL) THEN           'NO_PRNTMSG'          ELSE           'PRNTMSG'        END AS PRNT_MSG   FROM NPSS_EDGE_PT_TRANSACTIONS A)V $WHERE  ORDER BY TRNID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"Transaction MQ CCD","filter":[{"filter_name":"MSGID","binding_name":"PARENT_MSGID","binding_value":"","source_name":"MI_LEVEL_MessageID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Tran ID","target_column":"TRNID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"MSGID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Type","target_column":"PROCESSTYPE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process","target_column":"PROCESS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Last Accessed Date","target_column":"LASTACCESSEDDATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		this.transaction_detail.datasource = {}
 		this.transaction_detail.context_menu = []
 		this.transaction_detail.views = {}
 		this.transaction_detail.onChangecomponent = new EventEmitter<any>()
@@ -651,12 +651,12 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		this.pacs008_ui.params = {}
 		this.pacs008_ui.datasource = {}
 		this.pacs008_ui.context_menu = []
-		this.pacs008_ui.views = {"first":"DTT_1304_1665385772257","is_tab_mode":"N","dtt_1304_1665385772257":{"0":[{"dttv_id":"OP Pacs008","tab_order":0,"tab_name":"","uicgc_description":"Pacs008 UI","role_description":"default","dtt_description":"NPSS Cust Transactions"}]}}
+		this.pacs008_ui.views = {}
 		this.pacs008_ui.onChangecomponent = new EventEmitter<any>()
 		this.pacs008_ui.show = true
 		this.pacs008_ui.dynamic_param = {}
-		this.pacs008_ui.f_op_pacs008 = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.pacs008_ui.form_name = "f_op_pacs008"
+		this.pacs008_ui.f_pacs008_ui = {"show":true}
+		this.pacs008_ui.current_view = "f_pacs008_ui"
 		
 		// "Close" Button of "Pacs008 UI" component
 		this.pacs008_ui_close.label_name = "Close"
@@ -674,12 +674,12 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		this.pacs002_ui.params = {}
 		this.pacs002_ui.datasource = {}
 		this.pacs002_ui.context_menu = []
-		this.pacs002_ui.views = {"first":"DTT_1304_1665385772257","is_tab_mode":"N","dtt_1304_1665385772257":{"0":[{"dttv_id":"OP Pacs002","tab_order":0,"tab_name":"","uicgc_description":"Pacs002 UI","role_description":"default","dtt_description":"NPSS Cust Transactions"}]}}
+		this.pacs002_ui.views = {}
 		this.pacs002_ui.onChangecomponent = new EventEmitter<any>()
 		this.pacs002_ui.show = true
 		this.pacs002_ui.dynamic_param = {}
-		this.pacs002_ui.f_op_pacs002 = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.pacs002_ui.form_name = "f_op_pacs002"
+		this.pacs002_ui.f_pacs002_ui = {"show":true}
+		this.pacs002_ui.current_view = "f_pacs002_ui"
 		
 		// "Close" Button of "Pacs002 UI" component
 		this.pacs002_ui_close.label_name = "Close"
@@ -1015,7 +1015,6 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 	//Handler for ACTION_BUTTON_CLICK event of "history search view pacs008"
 	history_search_view_pacs008__action_button_click(){
 		this.history_search_view_pacs008__spap_for_pacs008()
-		this.history_search_view_pacs008__bvm_for_pacs008__pacs008_ui()
 	}
 
 	//Handler for SELECTION_CHANGED event of "transaction detail"
@@ -1037,28 +1036,6 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 	//Handler for ACTION_BUTTON_CLICK event of "history search view pacs002"
 	history_search_view_pacs002__action_button_click(){
 		this.history_search_view_pacs002__spap_for_view_pacs002()
-		this.history_search_view_pacs002__bvm_for_pacs002__pacs002_ui()
-	}
-
-	//Handler for SELECTION_CHANGED event of "op cust transaction ui dbtr acct name"
-	op_cust_transaction_ui_dbtr_acct_name__selection_changed(){
-		this.op_cust_transaction_ui_dbtr_acct_name__svm_for_customer_name__payment_form()
-		this.op_cust_transaction_ui_dbtr_acct_name__fcb_for_account_name_to_phone__payment_form()
-	}
-
-	//Handler for ACTION_BUTTON_CLICK event of "payment form tbc controls"
-	payment_form_tbc_controls__action_button_click(){
-		this.payment_form_tbc_controls__de_for_ph_no_pl__payment_form()
-		this.payment_form_tbc_controls__he_for_dr_sanc_limt__payment_form()
-		this.payment_form_tbc_controls__he_for_value_date_behind__payment_form()
-		this.payment_form_tbc_controls__de_for_iban__payment_form()
-		this.payment_form_tbc_controls__de_for_aacount_name__payment_form()
-		this.payment_form_tbc_controls__de_for_dr_acct_balance__payment_form()
-	}
-
-	//Handler for SELECTION_CHANGED event of "op cust transaction ui cdtr pmt type"
-	op_cust_transaction_ui_cdtr_pmt_type__selection_changed(){
-		this.op_cust_transaction_ui_cdtr_pmt_type__show_hide_controls__payment_form()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1747,7 +1724,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		let handler_code="clear_ui"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665384453253":{"dtt_1304_1665385772257":{"st_ds":{"default":{"uicgc_code":"UICGC_23","event_code":"DEFAULT","dt_code":"DT_1304_1665384453253","dt_desc":"Customer DTG","dtt_code":"DTT_1304_1665385772257","dtt_desc":"NPSS Cust Transactions","ds_eligible":"DS_1665742524291","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Transaction MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"TRNID","alias_name":"","mq_id":"MQ_1665734579675","date_format":false},{"column_name":"MSGID","alias_name":"","mq_id":"MQ_1665734580049","date_format":false},{"column_name":"PROCESSTYPE","alias_name":"","mq_id":"MQ_1665734580241","date_format":false},{"column_name":"PROCESS","alias_name":"","mq_id":"MQ_1665734580409","date_format":false},{"column_name":"LASTACCESSEDDATE","alias_name":"","mq_id":"MQ_1665734580577","date_format":true},{"column_name":"LASTACCESSEDDATEUTC","alias_name":"","mq_id":"MQ_1665734619329","date_format":true},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1665753803205","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1665753803476","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1665753803701","date_format":false},{"column_name":"PRODUCT","alias_name":"","mq_id":"MQ_1665753803868","date_format":false},{"column_name":"SUB_PRODUCT","alias_name":"","mq_id":"MQ_1665753846147","date_format":false},{"column_name":"TRANSACTION_CODE","alias_name":"","mq_id":"MQ_1665753846307","date_format":false},{"column_name":"PROCESSDATA","alias_name":"","mq_id":"MQ_1665753846491","date_format":false},{"column_name":"PRNT_MSG","alias_name":"","mq_id":"MQ_1665755731729","date_format":false}],"joins":[]},"eq_text":"SELECT TRNID, MSGID, PROCESSTYPE, PROCESS,        CHANNEL_ID,        CHANNEL_REFNO,        CHANNEL_USERID,        PRODUCT,        SUB_PRODUCT,        TRANSACTION_CODE,        LASTACCESSEDDATE,        LASTACCESSEDDATEUTC,        PROCESSDATA,         PRNT_MSG  FROM(SELECT A.TRNID,        A.MSGID,        A.PROCESSTYPE,        A.PROCESS,        A.CHANNEL_ID,        A.CHANNEL_REFNO,        A.CHANNEL_USERID,        A.PRODUCT,        A.SUB_PRODUCT,        A.TRANSACTION_CODE,        A.LASTACCESSEDDATE,        A.LASTACCESSEDDATEUTC,        A.PROCESSDATA,        CASE          WHEN (A.PARENT_MSGID = '0' OR A.PARENT_MSGID IS NULL) THEN           'NO_PRNTMSG'          ELSE           'PRNTMSG'        END AS PRNT_MSG   FROM NPSS_EDGE_PT_TRANSACTIONS A)V $WHERE  ORDER BY TRNID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"Transaction MQ CCD","filter":[{"filter_name":"MSGID","binding_name":"PARENT_MSGID","binding_value":"","source_name":"MI_LEVEL_MessageID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Tran ID","target_column":"TRNID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"MSGID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Type","target_column":"PROCESSTYPE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process","target_column":"PROCESS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Last Accessed Date","target_column":"LASTACCESSEDDATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		let data_source={}
 		try {
 			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1769,7 +1746,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665384453253":{"dtt_1304_1665385772257":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665384453253","dt_desc":"Customer DTG","dtt_code":"DTT_1304_1665385772257","dtt_desc":"NPSS Cust Transactions","ds_eligible":"DS_1665742470444","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Transaction MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"TRNID","alias_name":"","mq_id":"MQ_1665734579675","date_format":false},{"column_name":"MSGID","alias_name":"","mq_id":"MQ_1665734580049","date_format":false},{"column_name":"PROCESSTYPE","alias_name":"","mq_id":"MQ_1665734580241","date_format":false},{"column_name":"PROCESS","alias_name":"","mq_id":"MQ_1665734580409","date_format":false},{"column_name":"LASTACCESSEDDATE","alias_name":"","mq_id":"MQ_1665734580577","date_format":true},{"column_name":"LASTACCESSEDDATEUTC","alias_name":"","mq_id":"MQ_1665734619329","date_format":true},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1665753803205","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1665753803476","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1665753803701","date_format":false},{"column_name":"PRODUCT","alias_name":"","mq_id":"MQ_1665753803868","date_format":false},{"column_name":"SUB_PRODUCT","alias_name":"","mq_id":"MQ_1665753846147","date_format":false},{"column_name":"TRANSACTION_CODE","alias_name":"","mq_id":"MQ_1665753846307","date_format":false},{"column_name":"PROCESSDATA","alias_name":"","mq_id":"MQ_1665753846491","date_format":false},{"column_name":"PRNT_MSG","alias_name":"","mq_id":"MQ_1665755731729","date_format":false}],"joins":[]},"eq_text":"SELECT TRNID, MSGID, PROCESSTYPE, PROCESS,        CHANNEL_ID,        CHANNEL_REFNO,        CHANNEL_USERID,        PRODUCT,        SUB_PRODUCT,        TRANSACTION_CODE,        LASTACCESSEDDATE,        LASTACCESSEDDATEUTC,        PROCESSDATA,         PRNT_MSG  FROM(SELECT A.TRNID,        A.MSGID,        A.PROCESSTYPE,        A.PROCESS,        A.CHANNEL_ID,        A.CHANNEL_REFNO,        A.CHANNEL_USERID,        A.PRODUCT,        A.SUB_PRODUCT,        A.TRANSACTION_CODE,        A.LASTACCESSEDDATE,        A.LASTACCESSEDDATEUTC,        A.PROCESSDATA,        CASE          WHEN (A.PARENT_MSGID = '0' OR A.PARENT_MSGID IS NULL) THEN           'NO_PRNTMSG'          ELSE           'PRNTMSG'        END AS PRNT_MSG   FROM NPSS_EDGE_PT_TRANSACTIONS A)V $WHERE  ORDER BY TRNID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"Transaction MQ CCD","filter":[{"filter_name":"PRNT_MSG","binding_name":"PRNT_MSG","binding_value":"","source_name":"NO_PRNTMSG","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESSTYPE","binding_name":"PROCESSTYPE","binding_value":"","source_name":"OUTWARD","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Tran ID","target_column":"TRNID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"MSGID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Type","target_column":"PROCESSTYPE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process","target_column":"PROCESS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Last Accessed Date","target_column":"LASTACCESSEDDATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		let data_source={}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1980,7 +1957,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		let event_params={"caller_name":"payment_form_action_confirm__st_to_payment_form_on_button_click","event_desc":"ST to Payment Form on Button Click","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_action_confirm","raiseparam":{"reset_selection":"Y","need_clear_value":"Y","no_change_status_on_modify":"N","release_lock":"Y","clear_cache":"Y"}}
 		let handler_code="save_tran"
 		let internals=""
-		let event_data={"payment_form":{"e_1665836634815":{"dts":{"dt_1304_1665384453253":{"dtts":{"":{"uicgc_code":"UICGC_1","event_code":"E_1665836634815","dt_code":"DT_1304_1665384453253","dtt_code":"","dt_desc":"Customer DTG","dtt_desc":"NPSS Cust Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[],"get_from_memory":[{"level":"SESSION_LEVEL","value":"ROOT_SCODE","tb_data":"Y","column":"PRODUCT_CODE","d3name":"PRODUCT_CODE"}],"set_event_context":null,"sec_value":null}}}}}}}}
+		let event_data={}
 		let data_source={}
 		try {
 			this.handler.save_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
@@ -2769,8 +2746,8 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		let event_params={"caller_name":"transactions__svm_for_view_transactionlist","event_desc":"SVM for view transactionlist","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transactions","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_view_transactionlist__brfq_from_hst_to_vertical,svm_for_view_transactionlist__brfq_for_tran_detail,"
-		let event_data={"transactions":{"e_1647260212080":{"dts":{"dt_1304_1665384453253":{"dtts":{"":{"uicgc_code":"UICGC_3","event_code":"E_1647260212080","dt_code":"DT_1304_1665384453253","dtt_code":"","dt_desc":"Customer DTG","dtt_desc":"NPSS Cust Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"TRNID","level":"MI_LEVEL","name":"MI_LEVEL_TRNID","setd3name":"TRNID"},{"type":"LOCAL","column_name":"PROCESSDATA","level":"MI_LEVEL","name":"MI_LEVEL_Pacs008_PROCESSDATA","setd3name":"PROCESSDATA"},{"type":"LOCAL","column_name":"MSGID","level":"MI_LEVEL","name":"MI_LEVEL_MessageID","setd3name":"MSGID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={"default":{"dt_1304_1665384453253":{"dtt_1304_1665385772257":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665384453253","dt_desc":"Customer DTG","dtt_code":"DTT_1304_1665385772257","dtt_desc":"NPSS Cust Transactions","ds_eligible":"DS_1665742470444","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Transaction MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"TRNID","alias_name":"","mq_id":"MQ_1665734579675","date_format":false},{"column_name":"MSGID","alias_name":"","mq_id":"MQ_1665734580049","date_format":false},{"column_name":"PROCESSTYPE","alias_name":"","mq_id":"MQ_1665734580241","date_format":false},{"column_name":"PROCESS","alias_name":"","mq_id":"MQ_1665734580409","date_format":false},{"column_name":"LASTACCESSEDDATE","alias_name":"","mq_id":"MQ_1665734580577","date_format":true},{"column_name":"LASTACCESSEDDATEUTC","alias_name":"","mq_id":"MQ_1665734619329","date_format":true},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1665753803205","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1665753803476","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1665753803701","date_format":false},{"column_name":"PRODUCT","alias_name":"","mq_id":"MQ_1665753803868","date_format":false},{"column_name":"SUB_PRODUCT","alias_name":"","mq_id":"MQ_1665753846147","date_format":false},{"column_name":"TRANSACTION_CODE","alias_name":"","mq_id":"MQ_1665753846307","date_format":false},{"column_name":"PROCESSDATA","alias_name":"","mq_id":"MQ_1665753846491","date_format":false},{"column_name":"PRNT_MSG","alias_name":"","mq_id":"MQ_1665755731729","date_format":false}],"joins":[]},"eq_text":"SELECT TRNID, MSGID, PROCESSTYPE, PROCESS,        CHANNEL_ID,        CHANNEL_REFNO,        CHANNEL_USERID,        PRODUCT,        SUB_PRODUCT,        TRANSACTION_CODE,        LASTACCESSEDDATE,        LASTACCESSEDDATEUTC,        PROCESSDATA,         PRNT_MSG  FROM(SELECT A.TRNID,        A.MSGID,        A.PROCESSTYPE,        A.PROCESS,        A.CHANNEL_ID,        A.CHANNEL_REFNO,        A.CHANNEL_USERID,        A.PRODUCT,        A.SUB_PRODUCT,        A.TRANSACTION_CODE,        A.LASTACCESSEDDATE,        A.LASTACCESSEDDATEUTC,        A.PROCESSDATA,        CASE          WHEN (A.PARENT_MSGID = '0' OR A.PARENT_MSGID IS NULL) THEN           'NO_PRNTMSG'          ELSE           'PRNTMSG'        END AS PRNT_MSG   FROM NPSS_EDGE_PT_TRANSACTIONS A)V $WHERE  ORDER BY TRNID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"Transaction MQ CCD","filter":[{"filter_name":"PRNT_MSG","binding_name":"PRNT_MSG","binding_value":"","source_name":"NO_PRNTMSG","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESSTYPE","binding_name":"PROCESSTYPE","binding_value":"","source_name":"OUTWARD","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Tran ID","target_column":"TRNID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"MSGID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Type","target_column":"PROCESSTYPE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process","target_column":"PROCESS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Last Accessed Date","target_column":"LASTACCESSEDDATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		let event_data={}
+		let data_source={}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -2835,7 +2812,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_tran_detail__sfr_for_tdl,"
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665384453253":{"dtt_1304_1665385772257":{"st_ds":{"default":{"uicgc_code":"UICGC_23","event_code":"DEFAULT","dt_code":"DT_1304_1665384453253","dt_desc":"Customer DTG","dtt_code":"DTT_1304_1665385772257","dtt_desc":"NPSS Cust Transactions","ds_eligible":"DS_1665742524291","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Transaction MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"TRNID","alias_name":"","mq_id":"MQ_1665734579675","date_format":false},{"column_name":"MSGID","alias_name":"","mq_id":"MQ_1665734580049","date_format":false},{"column_name":"PROCESSTYPE","alias_name":"","mq_id":"MQ_1665734580241","date_format":false},{"column_name":"PROCESS","alias_name":"","mq_id":"MQ_1665734580409","date_format":false},{"column_name":"LASTACCESSEDDATE","alias_name":"","mq_id":"MQ_1665734580577","date_format":true},{"column_name":"LASTACCESSEDDATEUTC","alias_name":"","mq_id":"MQ_1665734619329","date_format":true},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1665753803205","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1665753803476","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1665753803701","date_format":false},{"column_name":"PRODUCT","alias_name":"","mq_id":"MQ_1665753803868","date_format":false},{"column_name":"SUB_PRODUCT","alias_name":"","mq_id":"MQ_1665753846147","date_format":false},{"column_name":"TRANSACTION_CODE","alias_name":"","mq_id":"MQ_1665753846307","date_format":false},{"column_name":"PROCESSDATA","alias_name":"","mq_id":"MQ_1665753846491","date_format":false},{"column_name":"PRNT_MSG","alias_name":"","mq_id":"MQ_1665755731729","date_format":false}],"joins":[]},"eq_text":"SELECT TRNID, MSGID, PROCESSTYPE, PROCESS,        CHANNEL_ID,        CHANNEL_REFNO,        CHANNEL_USERID,        PRODUCT,        SUB_PRODUCT,        TRANSACTION_CODE,        LASTACCESSEDDATE,        LASTACCESSEDDATEUTC,        PROCESSDATA,         PRNT_MSG  FROM(SELECT A.TRNID,        A.MSGID,        A.PROCESSTYPE,        A.PROCESS,        A.CHANNEL_ID,        A.CHANNEL_REFNO,        A.CHANNEL_USERID,        A.PRODUCT,        A.SUB_PRODUCT,        A.TRANSACTION_CODE,        A.LASTACCESSEDDATE,        A.LASTACCESSEDDATEUTC,        A.PROCESSDATA,        CASE          WHEN (A.PARENT_MSGID = '0' OR A.PARENT_MSGID IS NULL) THEN           'NO_PRNTMSG'          ELSE           'PRNTMSG'        END AS PRNT_MSG   FROM NPSS_EDGE_PT_TRANSACTIONS A)V $WHERE  ORDER BY TRNID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"Transaction MQ CCD","filter":[{"filter_name":"MSGID","binding_name":"PARENT_MSGID","binding_value":"","source_name":"MI_LEVEL_MessageID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Tran ID","target_column":"TRNID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"MSGID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Type","target_column":"PROCESSTYPE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process","target_column":"PROCESS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Last Accessed Date","target_column":"LASTACCESSEDDATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		let data_source={}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -2857,7 +2834,7 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665384453253":{"dtt_1304_1665385772257":{"st_ds":{"default":{"uicgc_code":"UICGC_23","event_code":"DEFAULT","dt_code":"DT_1304_1665384453253","dt_desc":"Customer DTG","dtt_code":"DTT_1304_1665385772257","dtt_desc":"NPSS Cust Transactions","ds_eligible":"DS_1665742524291","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Transaction MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"TRNID","alias_name":"","mq_id":"MQ_1665734579675","date_format":false},{"column_name":"MSGID","alias_name":"","mq_id":"MQ_1665734580049","date_format":false},{"column_name":"PROCESSTYPE","alias_name":"","mq_id":"MQ_1665734580241","date_format":false},{"column_name":"PROCESS","alias_name":"","mq_id":"MQ_1665734580409","date_format":false},{"column_name":"LASTACCESSEDDATE","alias_name":"","mq_id":"MQ_1665734580577","date_format":true},{"column_name":"LASTACCESSEDDATEUTC","alias_name":"","mq_id":"MQ_1665734619329","date_format":true},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1665753803205","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1665753803476","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1665753803701","date_format":false},{"column_name":"PRODUCT","alias_name":"","mq_id":"MQ_1665753803868","date_format":false},{"column_name":"SUB_PRODUCT","alias_name":"","mq_id":"MQ_1665753846147","date_format":false},{"column_name":"TRANSACTION_CODE","alias_name":"","mq_id":"MQ_1665753846307","date_format":false},{"column_name":"PROCESSDATA","alias_name":"","mq_id":"MQ_1665753846491","date_format":false},{"column_name":"PRNT_MSG","alias_name":"","mq_id":"MQ_1665755731729","date_format":false}],"joins":[]},"eq_text":"SELECT TRNID, MSGID, PROCESSTYPE, PROCESS,        CHANNEL_ID,        CHANNEL_REFNO,        CHANNEL_USERID,        PRODUCT,        SUB_PRODUCT,        TRANSACTION_CODE,        LASTACCESSEDDATE,        LASTACCESSEDDATEUTC,        PROCESSDATA,         PRNT_MSG  FROM(SELECT A.TRNID,        A.MSGID,        A.PROCESSTYPE,        A.PROCESS,        A.CHANNEL_ID,        A.CHANNEL_REFNO,        A.CHANNEL_USERID,        A.PRODUCT,        A.SUB_PRODUCT,        A.TRANSACTION_CODE,        A.LASTACCESSEDDATE,        A.LASTACCESSEDDATEUTC,        A.PROCESSDATA,        CASE          WHEN (A.PARENT_MSGID = '0' OR A.PARENT_MSGID IS NULL) THEN           'NO_PRNTMSG'          ELSE           'PRNTMSG'        END AS PRNT_MSG   FROM NPSS_EDGE_PT_TRANSACTIONS A)V $WHERE  ORDER BY TRNID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"Transaction MQ CCD","filter":[{"filter_name":"MSGID","binding_name":"PARENT_MSGID","binding_value":"","source_name":"MI_LEVEL_MessageID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Tran ID","target_column":"TRNID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"MSGID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Type","target_column":"PROCESSTYPE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process","target_column":"PROCESS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Last Accessed Date","target_column":"LASTACCESSEDDATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		let data_source={}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -3273,27 +3250,6 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "history search view pacs008"
-	history_search_view_pacs008__bvm_for_pacs008__pacs008_ui() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="history_search_view_pacs008"
-		let destn_id="op_pacs008_memory64"
-		let parent_source_id=""
-		let event_code="e_1665742899963"
-		let event_params={"destn_comp_id":"pacs008_ui","destn_ctrl_id":"memory64","caller_name":"history_search_view_pacs008__bvm_for_pacs008__pacs008_ui","event_desc":"BVM for Pacs008","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"history_search_view_pacs008","raiseparam":{}}
-		let handler_code="bind_value_from_memory"
-		let internals=""
-		let event_data={"control":{"e_1665742899963":{"dts":{"dt_1304_1665384453253":{"dtts":{"dtt_1304_1665385772257":{"uicgc_code":"CONTROL","event_code":"E_1665742899963","dt_code":"DT_1304_1665384453253","dt_desc":"Customer DTG","dtt_code":"DTT_1304_1665385772257","dtt_desc":"NPSS Cust Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[],"get_from_memory":[{"level":"MI_LEVEL","value":"MI_LEVEL_Pacs008_PROCESSDATA","tb_data":"","column":"","d3name":""}],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={}
-		try {
-			this.handler.bind_value_from_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
 	//Handler for SELECTION_CHANGED event of "transaction detail"
 	transaction_detail__svm_for_view_transaction_dtl() { 
 		let Dest_Is_ctrl=true
@@ -3305,8 +3261,8 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		let event_params={"caller_name":"transaction_detail__svm_for_view_transaction_dtl","event_desc":"SVM for view transaction dtl","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_detail","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals=""
-		let event_data={"transaction_detail":{"e_1665483233272":{"dts":{"dt_1304_1665384453253":{"dtts":{"":{"uicgc_code":"UICGC_23","event_code":"E_1665483233272","dt_code":"DT_1304_1665384453253","dtt_code":"","dt_desc":"Customer DTG","dtt_desc":"NPSS Cust Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"PROCESSDATA","level":"MI_LEVEL","name":"MI_LEVEL_Pacs002_PROCESSDATA","setd3name":"PROCESSDATA"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={"default":{"dt_1304_1665384453253":{"dtt_1304_1665385772257":{"st_ds":{"default":{"uicgc_code":"UICGC_23","event_code":"DEFAULT","dt_code":"DT_1304_1665384453253","dt_desc":"Customer DTG","dtt_code":"DTT_1304_1665385772257","dtt_desc":"NPSS Cust Transactions","ds_eligible":"DS_1665742524291","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Transaction MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"TRNID","alias_name":"","mq_id":"MQ_1665734579675","date_format":false},{"column_name":"MSGID","alias_name":"","mq_id":"MQ_1665734580049","date_format":false},{"column_name":"PROCESSTYPE","alias_name":"","mq_id":"MQ_1665734580241","date_format":false},{"column_name":"PROCESS","alias_name":"","mq_id":"MQ_1665734580409","date_format":false},{"column_name":"LASTACCESSEDDATE","alias_name":"","mq_id":"MQ_1665734580577","date_format":true},{"column_name":"LASTACCESSEDDATEUTC","alias_name":"","mq_id":"MQ_1665734619329","date_format":true},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1665753803205","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1665753803476","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1665753803701","date_format":false},{"column_name":"PRODUCT","alias_name":"","mq_id":"MQ_1665753803868","date_format":false},{"column_name":"SUB_PRODUCT","alias_name":"","mq_id":"MQ_1665753846147","date_format":false},{"column_name":"TRANSACTION_CODE","alias_name":"","mq_id":"MQ_1665753846307","date_format":false},{"column_name":"PROCESSDATA","alias_name":"","mq_id":"MQ_1665753846491","date_format":false},{"column_name":"PRNT_MSG","alias_name":"","mq_id":"MQ_1665755731729","date_format":false}],"joins":[]},"eq_text":"SELECT TRNID, MSGID, PROCESSTYPE, PROCESS,        CHANNEL_ID,        CHANNEL_REFNO,        CHANNEL_USERID,        PRODUCT,        SUB_PRODUCT,        TRANSACTION_CODE,        LASTACCESSEDDATE,        LASTACCESSEDDATEUTC,        PROCESSDATA,         PRNT_MSG  FROM(SELECT A.TRNID,        A.MSGID,        A.PROCESSTYPE,        A.PROCESS,        A.CHANNEL_ID,        A.CHANNEL_REFNO,        A.CHANNEL_USERID,        A.PRODUCT,        A.SUB_PRODUCT,        A.TRANSACTION_CODE,        A.LASTACCESSEDDATE,        A.LASTACCESSEDDATEUTC,        A.PROCESSDATA,        CASE          WHEN (A.PARENT_MSGID = '0' OR A.PARENT_MSGID IS NULL) THEN           'NO_PRNTMSG'          ELSE           'PRNTMSG'        END AS PRNT_MSG   FROM NPSS_EDGE_PT_TRANSACTIONS A)V $WHERE  ORDER BY TRNID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"Transaction MQ CCD","filter":[{"filter_name":"MSGID","binding_name":"PARENT_MSGID","binding_value":"","source_name":"MI_LEVEL_MessageID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Tran ID","target_column":"TRNID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"MSGID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Type","target_column":"PROCESSTYPE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process","target_column":"PROCESS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Last Accessed Date","target_column":"LASTACCESSEDDATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		let event_data={}
+		let data_source={}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -3393,216 +3349,6 @@ export class s_credit_transfer_outwardComponent implements OnInit,AfterViewInit 
 		let data_source={}
 		try {
 			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "history search view pacs002"
-	history_search_view_pacs002__bvm_for_pacs002__pacs002_ui() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="history_search_view_pacs002"
-		let destn_id="op_pacs002_memory65"
-		let parent_source_id=""
-		let event_code="e_1665742819742"
-		let event_params={"destn_comp_id":"pacs002_ui","destn_ctrl_id":"memory65","caller_name":"history_search_view_pacs002__bvm_for_pacs002__pacs002_ui","event_desc":"BVM for Pacs002","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"history_search_view_pacs002","raiseparam":{}}
-		let handler_code="bind_value_from_memory"
-		let internals=""
-		let event_data={"control":{"e_1665742819742":{"dts":{"dt_1304_1665384453253":{"dtts":{"dtt_1304_1665385772257":{"uicgc_code":"CONTROL","event_code":"E_1665742819742","dt_code":"DT_1304_1665384453253","dt_desc":"Customer DTG","dtt_code":"DTT_1304_1665385772257","dtt_desc":"NPSS Cust Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[],"get_from_memory":[{"level":"MI_LEVEL","value":"MI_LEVEL_Pacs002_PROCESSDATA","tb_data":"","column":"","d3name":""}],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={}
-		try {
-			this.handler.bind_value_from_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "op cust transaction ui dbtr acct name"
-	op_cust_transaction_ui_dbtr_acct_name__svm_for_customer_name__payment_form() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="op_cust_transaction_ui_dbtr_acct_name"
-		let destn_id="op_cust_transaction_ui_dbtr_acct_name"
-		let parent_source_id=""
-		let event_code="e_1665745629649"
-		let event_params={"source_comp_id":"payment_form","source_ctrl_id":"dbtr_acct_name","destn_comp_id":"payment_form","destn_ctrl_id":"dbtr_acct_name","caller_name":"op_cust_transaction_ui_dbtr_acct_name__svm_for_customer_name__payment_form","event_desc":"SVM for Customer Name","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"op_cust_transaction_ui~uicgc_1~ui~df_1304_1665385905734~1","raiseparam":{}}
-		let handler_code="set_value_to_memory"
-		let internals=""
-		let event_data={"control":{"e_1665745629649":{"dts":{"dt_1304_1665384453253":{"dtts":{"dtt_1304_1665385772257":{"uicgc_code":"CONTROL","event_code":"E_1665745629649","dt_code":"DT_1304_1665384453253","dt_desc":"Customer DTG","dtt_code":"DTT_1304_1665385772257","dtt_desc":"NPSS Cust Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"CUSTOMER","level":"MI_LEVEL","name":"MI_LEVEL_CUSTOMER","setd3name":""}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={}
-		try {
-			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "op cust transaction ui dbtr acct name"
-	op_cust_transaction_ui_dbtr_acct_name__fcb_for_account_name_to_phone__payment_form() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="op_cust_transaction_ui_dbtr_acct_name"
-		let destn_id="op_cust_transaction_ui_dbtr_phone_no"
-		let parent_source_id=""
-		let event_code="e_1665745709632"
-		let event_params={"source_comp_id":"payment_form","source_ctrl_id":"dbtr_acct_name","destn_comp_id":"payment_form","destn_ctrl_id":"dbtr_phone_no","caller_name":"op_cust_transaction_ui_dbtr_acct_name__fcb_for_account_name_to_phone__payment_form","event_desc":"FCB for Account Name to Phone","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"op_cust_transaction_ui~uicgc_1~ui~df_1304_1665385905734~1","raiseparam":{"parentcolumn":"CUSTOMER","need_selecteditem":"Y"}}
-		let handler_code="filter_combo_binding"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.filter_combo_binding(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "payment form tbc controls"
-	payment_form_tbc_controls__de_for_ph_no_pl__payment_form() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="payment_form_tbc_controls"
-		let destn_id="op_cust_transaction_ui_dbtr_phone_no"
-		let parent_source_id=""
-		let event_code="e_1665745780901"
-		let event_params={"destn_comp_id":"payment_form","destn_ctrl_id":"dbtr_phone_no","caller_name":"payment_form_tbc_controls__de_for_ph_no_pl__payment_form","event_desc":"DE for ph no pl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_tbc_controls","raiseparam":{}}
-		let handler_code="disable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "payment form tbc controls"
-	payment_form_tbc_controls__he_for_dr_sanc_limt__payment_form() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="payment_form_tbc_controls"
-		let destn_id="op_cust_transaction_ui_dbtr_sanction_limit"
-		let parent_source_id=""
-		let event_code="e_1665745819380"
-		let event_params={"destn_comp_id":"payment_form","destn_ctrl_id":"dbtr_sanction_limit","caller_name":"payment_form_tbc_controls__he_for_dr_sanc_limt__payment_form","event_desc":"HE for dr sanc limt","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_tbc_controls","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "payment form tbc controls"
-	payment_form_tbc_controls__he_for_value_date_behind__payment_form() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="payment_form_tbc_controls"
-		let destn_id="op_cust_transaction_ui_value_date"
-		let parent_source_id=""
-		let event_code="e_1665745848499"
-		let event_params={"destn_comp_id":"payment_form","destn_ctrl_id":"value_date","caller_name":"payment_form_tbc_controls__he_for_value_date_behind__payment_form","event_desc":"HE for value date behind","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_tbc_controls","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "payment form tbc controls"
-	payment_form_tbc_controls__de_for_iban__payment_form() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="payment_form_tbc_controls"
-		let destn_id="op_cust_transaction_ui_payee_iban"
-		let parent_source_id=""
-		let event_code="e_1665745893963"
-		let event_params={"destn_comp_id":"payment_form","destn_ctrl_id":"payee_iban","caller_name":"payment_form_tbc_controls__de_for_iban__payment_form","event_desc":"DE for iban","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_tbc_controls","raiseparam":{}}
-		let handler_code="disable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "payment form tbc controls"
-	payment_form_tbc_controls__de_for_aacount_name__payment_form() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="payment_form_tbc_controls"
-		let destn_id="op_cust_transaction_ui_payee_acct_name"
-		let parent_source_id=""
-		let event_code="e_1665746051800"
-		let event_params={"destn_comp_id":"payment_form","destn_ctrl_id":"payee_acct_name","caller_name":"payment_form_tbc_controls__de_for_aacount_name__payment_form","event_desc":"DE for aacount name","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_tbc_controls","raiseparam":{}}
-		let handler_code="disable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "payment form tbc controls"
-	payment_form_tbc_controls__de_for_dr_acct_balance__payment_form() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="payment_form_tbc_controls"
-		let destn_id="op_cust_transaction_ui_dbtr_acct_balance"
-		let parent_source_id=""
-		let event_code="e_1665746076347"
-		let event_params={"destn_comp_id":"payment_form","destn_ctrl_id":"dbtr_acct_balance","caller_name":"payment_form_tbc_controls__de_for_dr_acct_balance__payment_form","event_desc":"DE for dr acct balance","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_form_tbc_controls","raiseparam":{}}
-		let handler_code="disable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "op cust transaction ui cdtr pmt type"
-	op_cust_transaction_ui_cdtr_pmt_type__show_hide_controls__payment_form() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="op_cust_transaction_ui_cdtr_pmt_type"
-		let destn_id="payment_form"
-		let parent_source_id=""
-		let event_code="e_1665746122271"
-		let event_params={"source_comp_id":"payment_form","source_ctrl_id":"cdtr_pmt_type","caller_name":"op_cust_transaction_ui_cdtr_pmt_type__show_hide_controls__payment_form","event_desc":"Show hide controls","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"op_cust_transaction_ui~uicgc_1~ui~df_1304_1665385905734~2","raiseparam":{}}
-		let handler_code="show_hide_controls"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.show_hide_controls(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

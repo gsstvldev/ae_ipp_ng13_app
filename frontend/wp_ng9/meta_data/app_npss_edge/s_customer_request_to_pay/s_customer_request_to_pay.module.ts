@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26732 
+Build ID        : 26739 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-31 6:59 AM 
+Modified Date   : 2022-Oct-31 10:26 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_request_to_pay
@@ -24,6 +24,7 @@ import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hid
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 
+import {TabViewModule} from 'primeng/tabview';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import { ComponenthelperService } from '../../../scripts/fx/componenthelper.service';
 
@@ -32,8 +33,8 @@ import { s_customer_request_to_payRoutingModule } from './s_customer_request_to_
     
 
 
-import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
-import { f_data_entry_uiComponent } from './f_data_entry_ui/f_data_entry_ui.component'
+import { p_qr_layoutComponent } from './p_qr_layout/p_qr_layout.component'
+import { f_dynamic_searchComponent } from './f_dynamic_search/f_dynamic_search.component'
 
 
 
@@ -47,10 +48,11 @@ import { f_data_entry_uiComponent } from './f_data_entry_ui/f_data_entry_ui.comp
     DialogModule,
     OverlayPanelModule,
     
+    TabViewModule,
     s_customer_request_to_payRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_customer_request_to_payComponent,p_main_layoutComponent,f_data_entry_uiComponent,],
+  declarations: [s_customer_request_to_payComponent,p_qr_layoutComponent,f_dynamic_searchComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

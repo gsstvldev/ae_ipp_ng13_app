@@ -1,4 +1,7 @@
 <div class="s_customer_request_to_pay">
-<p_main_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_layout')"></p_main_layout>
+<p_qr_layout [screen_instance]="this" [hidden]="!(current_profile=='p_qr_layout')"></p_qr_layout>
 <app-dialog [screen_instance]="this" ></app-dialog>
+<div style="display:none">
+	<f_dynamic_search [comp_id]="'dynamic_search'" [screen_instance]="this" ></f_dynamic_search >
+</div>
 </div>

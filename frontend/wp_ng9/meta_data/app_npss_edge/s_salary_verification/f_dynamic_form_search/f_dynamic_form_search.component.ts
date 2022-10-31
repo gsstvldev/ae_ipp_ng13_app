@@ -6,21 +6,21 @@ Modified By     : Admin
 Modified Date   : 2022-Oct-31 4:47 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_salary_file_creation
-Form Name       : Queue Search--------------------------------------------------------------------------- */
+Screen Name     : s_salary_verification
+Form Name       : Dynamic Form Search--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_queue_search',
-  templateUrl: './f_queue_search.component.html',
-  styleUrls: ['./f_queue_search.component.css'],
+  selector: 'f_dynamic_form_search',
+  templateUrl: './f_dynamic_form_search.component.html',
+  styleUrls: ['./f_dynamic_form_search.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_queue_searchComponent implements OnInit {
+export class f_dynamic_form_searchComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_queue_searchComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_queue_search[control]==undefined) {
-      this.screen_instance[this.comp_id].f_queue_search[control] = {}
+    if(this.screen_instance[this.comp_id].f_dynamic_form_search[control]==undefined) {
+      this.screen_instance[this.comp_id].f_dynamic_form_search[control] = {}
     }
-    this.screen_instance[this.comp_id].f_queue_search[control][property] = value;
+    this.screen_instance[this.comp_id].f_dynamic_form_search[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26450 
+Build ID        : 26719 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-15 11:55 AM 
+Modified Date   : 2022-Oct-31 4:50 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_transfer_inward
@@ -30,7 +30,7 @@ export class s_credit_transfer_inwardComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_credit_transfer_inward"
 	wftpa_id : string = "WFT_NPSS_P_1304_1665739115817_0"
 	cg_code : string = "CG_1408_1665648073132"
-	key_column : any = {"dtt_1304_1665384533560":"NPSSCPA_ID","dtt_1304_1665385314469":"NPSSCPB_ID","dtt_1304_1665385772257":"NPSSCT_ID"}
+	key_column : any = {"dtt_1304_1665385772257":"NPSSCT_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []

@@ -1,17 +1,7 @@
 <div class="s_customer_enrolment">
-<p_corp_virtual_acct_layout [screen_instance]="this" [hidden]="!(current_profile=='p_corp_virtual_acct_layout')"></p_corp_virtual_acct_layout>
-<p_corp_account__layout [screen_instance]="this" [hidden]="!(current_profile=='p_corp_account__layout')"></p_corp_account__layout>
-<p_data_entry_layout [screen_instance]="this" [hidden]="!(current_profile=='p_data_entry_layout')"></p_data_entry_layout>
-<p_list_layout [screen_instance]="this" [hidden]="!(current_profile=='p_list_layout')"></p_list_layout>
-
-<p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_by_click_on_list_search_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '400px','width': '650px'}" [draggable]="true" [modal]="true">
-	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>
 
 <p-dialog header="{{'Modify Personal Data' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_customer_edit_layout__spap_for_modify_customer_data_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '200px','width': '500px'}" [draggable]="true" [modal]="true">
 	<p_customer_edit_layout [screen_instance]="this" ></p_customer_edit_layout></p-dialog>
-
-<p-dialog header="{{'Modify Phone No' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_phone_no_edit_layout__spap_for_modify_phone_no_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '200px','width': '500px'}" [draggable]="true" [modal]="true">
-	<p_phone_no_edit_layout [screen_instance]="this" ></p_phone_no_edit_layout></p-dialog>
 <app-dialog [screen_instance]="this" ></app-dialog>
 <div style="display:none">
 	<datatable [comp_id]="'virtual_account_details'" [screen_instance]="this"></datatable>

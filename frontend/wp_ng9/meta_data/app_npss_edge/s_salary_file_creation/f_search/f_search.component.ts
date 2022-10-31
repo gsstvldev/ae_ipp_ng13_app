@@ -1,26 +1,26 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26605 
+Build ID        : 26712 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-21 14:27 PM 
+Modified Date   : 2022-Oct-31 4:47 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_customer_enrolment
-Form Name       : Corp Virtual Account UI--------------------------------------------------------------------------- */
+Screen Name     : s_salary_file_creation
+Form Name       : Search--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_corp_virtual_account_ui',
-  templateUrl: './f_corp_virtual_account_ui.component.html',
-  styleUrls: ['./f_corp_virtual_account_ui.component.css'],
+  selector: 'f_search',
+  templateUrl: './f_search.component.html',
+  styleUrls: ['./f_search.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_corp_virtual_account_uiComponent implements OnInit {
+export class f_searchComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_corp_virtual_account_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_corp_virtual_account_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_corp_virtual_account_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_search[control]==undefined) {
+      this.screen_instance[this.comp_id].f_search[control] = {}
     }
-    this.screen_instance[this.comp_id].f_corp_virtual_account_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_search[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

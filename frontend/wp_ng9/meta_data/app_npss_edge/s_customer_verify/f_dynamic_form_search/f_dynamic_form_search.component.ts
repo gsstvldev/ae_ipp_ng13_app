@@ -1,26 +1,26 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26605 
+Build ID        : 26711 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-21 14:27 PM 
+Modified Date   : 2022-Oct-31 4:47 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_customer_enrolment
-Form Name       : Navigation--------------------------------------------------------------------------- */
+Screen Name     : s_customer_verify
+Form Name       : Dynamic Form Search--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_navigation',
-  templateUrl: './f_navigation.component.html',
-  styleUrls: ['./f_navigation.component.css'],
+  selector: 'f_dynamic_form_search',
+  templateUrl: './f_dynamic_form_search.component.html',
+  styleUrls: ['./f_dynamic_form_search.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_navigationComponent implements OnInit {
+export class f_dynamic_form_searchComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_navigationComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_navigation[control]==undefined) {
-      this.screen_instance[this.comp_id].f_navigation[control] = {}
+    if(this.screen_instance[this.comp_id].f_dynamic_form_search[control]==undefined) {
+      this.screen_instance[this.comp_id].f_dynamic_form_search[control] = {}
     }
-    this.screen_instance[this.comp_id].f_navigation[control][property] = value;
+    this.screen_instance[this.comp_id].f_dynamic_form_search[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

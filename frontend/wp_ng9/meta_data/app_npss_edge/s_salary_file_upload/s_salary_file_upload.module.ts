@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26354 
+Build ID        : 26712 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-11 5:26 AM 
+Modified Date   : 2022-Oct-31 4:47 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_salary_file_upload
@@ -32,9 +32,8 @@ import { s_salary_file_uploadRoutingModule } from './s_salary_file_upload.routin
     
 
 
-import { p_exchange_queueComponent } from './p_exchange_queue/p_exchange_queue.component'
-import { f_navigationComponent } from './f_navigation/f_navigation.component'
 import { p_exchange_layoutsComponent } from './p_exchange_layouts/p_exchange_layouts.component'
+import { f_navigationComponent } from './f_navigation/f_navigation.component'
 
 
 
@@ -51,7 +50,7 @@ import { p_exchange_layoutsComponent } from './p_exchange_layouts/p_exchange_lay
     s_salary_file_uploadRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_salary_file_uploadComponent,p_exchange_queueComponent,f_navigationComponent,p_exchange_layoutsComponent,],
+  declarations: [s_salary_file_uploadComponent,p_exchange_layoutsComponent,f_navigationComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

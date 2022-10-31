@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26719 
+Build ID        : 26735 
 Modified By     : Admin 
-Modified Date   : 2022-Oct-31 4:50 AM 
+Modified Date   : 2022-Oct-31 7:24 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -231,7 +231,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		// "View Shop Detail" Button of "Navigation" component
 		this.navigation_view_shop_detail.label_name = "View Shop Detail"
 		this.navigation_view_shop_detail.show = true
-		this.navigation_view_shop_detail.disabled = false
+		this.navigation_view_shop_detail.disabled = true
 		this.navigation_view_shop_detail.params = {"icon_only":false,"uicgcc_style":"fa fa-shopping-cart"}
 		this.navigation_view_shop_detail.dynamic_param = {}
 		this.navigation_view_shop_detail.role = []
@@ -240,7 +240,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		// "View Cash Desk Detail" Button of "Navigation" component
 		this.navigation_view_cash_desk_detail.label_name = "View Cash Desk Detail"
 		this.navigation_view_cash_desk_detail.show = true
-		this.navigation_view_cash_desk_detail.disabled = false
+		this.navigation_view_cash_desk_detail.disabled = true
 		this.navigation_view_cash_desk_detail.params = {"icon_only":false,"uicgcc_style":"fa fa-money"}
 		this.navigation_view_cash_desk_detail.dynamic_param = {}
 		this.navigation_view_cash_desk_detail.role = []
@@ -335,8 +335,6 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.page_load__cf_on_page_load()
 		this.page_load__brfq_on_page_load()
 		this.page_load__he_for_pl_trg()
-		this.page_load__he_for_vcd_detail()
-		this.page_load__he_for_pl_to_vsd()
 		this.page_load__pl_to_back_hide()
 	}
 
@@ -349,6 +347,8 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	queue__selection_changed(){
 		this.queue__svm_from_queue()
 		this.queue__de_from_queue_to_view_detau()
+		this.queue__de_from_queue_to_cashdesk()
+		this.queue__de_from_queue_to_shop_dtl()
 	}
 
 	//Handler for INTERNAL event of "svm from queue"
@@ -370,6 +370,8 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	merchant_list__selection_changed(){
 		this.merchant_list__svm_from_customer_list()
 		this.merchant_list__ee_for_view_detail_from_customer_list()
+		this.merchant_list__ee_for_view_shop_dtl()
+		this.merchant_list__ee_for_view_cash_desk_dtl()
 	}
 
 	//Handler for INTERNAL event of "svm from customer list"
@@ -578,48 +580,6 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_vcd_detail() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_view_cash_desk_detail"
-		let parent_source_id=""
-		let event_code="e_1666943192180"
-		let event_params={"caller_name":"page_load__he_for_vcd_detail","event_desc":"HE for VCD Detail","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_pl_to_vsd() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_view_shop_detail"
-		let parent_source_id=""
-		let event_code="e_1666943236812"
-		let event_params={"caller_name":"page_load__he_for_pl_to_vsd","event_desc":"HE for PL to VSD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
 	page_load__pl_to_back_hide() { 
 		let Dest_Is_ctrl=true
 		
@@ -692,6 +652,48 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1666887155885"
 		let event_params={"caller_name":"queue__de_from_queue_to_view_detau","event_desc":"DE from queue to view detau","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "queue"
+	queue__de_from_queue_to_cashdesk() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="queue"
+		let destn_id="navigation_view_cash_desk_detail"
+		let parent_source_id=""
+		let event_code="e_1667200799702"
+		let event_params={"caller_name":"queue__de_from_queue_to_cashdesk","event_desc":"DE from queue to cashdesk","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "queue"
+	queue__de_from_queue_to_shop_dtl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="queue"
+		let destn_id="navigation_view_shop_detail"
+		let parent_source_id=""
+		let event_code="e_1667200844645"
+		let event_params={"caller_name":"queue__de_from_queue_to_shop_dtl","event_desc":"DE from queue to shop dtl","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -800,6 +802,48 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1666887045885"
 		let event_params={"caller_name":"merchant_list__ee_for_view_detail_from_customer_list","event_desc":"EE for View Detail from Customer List","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "merchant list"
+	merchant_list__ee_for_view_shop_dtl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="merchant_list"
+		let destn_id="navigation_view_shop_detail"
+		let parent_source_id=""
+		let event_code="e_1667200927683"
+		let event_params={"caller_name":"merchant_list__ee_for_view_shop_dtl","event_desc":"EE for view shop dtl","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "merchant list"
+	merchant_list__ee_for_view_cash_desk_dtl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="merchant_list"
+		let destn_id="navigation_view_cash_desk_detail"
+		let parent_source_id=""
+		let event_code="e_1667200979466"
+		let event_params={"caller_name":"merchant_list__ee_for_view_cash_desk_dtl","event_desc":"EE for view cash desk dtl","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}

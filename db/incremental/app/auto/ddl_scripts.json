@@ -1,1 +1,1 @@
-[{"query" : "drop table NPSS_CUST_TRANSACTIONS;","params" : [] },{"query" : "drop sequence seq_NPSS_CUST_TRANSACTIONS;","params" : [] }]
+[]

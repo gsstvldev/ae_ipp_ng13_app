@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column REMITTANCE_INFO CHARACTER VARYING(140);","params" : [] }]

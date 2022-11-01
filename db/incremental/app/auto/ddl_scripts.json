@@ -1,1 +1,1 @@
-[{"query" : "drop table NPSS_RULE_SETUP;","params" : [] },{"query" : "drop sequence seq_NPSS_RULE_SETUP;","params" : [] }]
+[]

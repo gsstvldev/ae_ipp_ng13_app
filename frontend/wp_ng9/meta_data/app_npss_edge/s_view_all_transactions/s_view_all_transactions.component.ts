@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26765 
+Build ID        : 26766 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-01 10:56 AM 
+Modified Date   : 2022-Nov-01 14:25 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_transactions
@@ -485,7 +485,6 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		this.page_load__de_for_req_btn()
 		this.page_load__de_for_res_btn()
 		this.page_load__hide_trigger_btn()
-		this.page_load__de_for_reset_btn()
 	}
 
 	//Handler for INTERNAL event of "cc for show hide queue"
@@ -556,7 +555,6 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		this.process_log_list__ee_for_req_btn()
 		this.process_log_list__ee_for_view_log_history()
 		this.process_log_list__ee_for_view_response_btn()
-		this.process_log_list__ee_for_reset_btn()
 		this.process_log_list__svm_for_pll__request_ui()
 		this.process_log_list__svm_for_response_json__response_ui()
 	}
@@ -782,27 +780,6 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__de_for_reset_btn() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_ui_reset"
-		let parent_source_id=""
-		let event_code="e_1667219304706"
-		let event_params={"caller_name":"page_load__de_for_reset_btn","event_desc":"DE for reset btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
-		let handler_code="disable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1346,27 +1323,6 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1666184860757"
 		let event_params={"caller_name":"process_log_list__ee_for_view_response_btn","event_desc":"EE for view response btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "process log list"
-	process_log_list__ee_for_reset_btn() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="process_log_list"
-		let destn_id="navigation_ui_reset"
-		let parent_source_id=""
-		let event_code="e_1667219371488"
-		let event_params={"caller_name":"process_log_list__ee_for_reset_btn","event_desc":"EE for reset btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}

@@ -98,7 +98,7 @@ try {
         }
         var temp = '(' + "'" + exhf_id.toString().split(',').join("','") + "'" + ')';
         console.log("condition forming=========================>", temp);
-        var dtt_select = "select ef.exhf_id,ts.dtt_code,ts.status,ts.process_status,ef.trn_id,ts.app_id from ex_file_trans ef inner join npss_transactions ts on ef.ts_id = ts.ts_id where ef.exhf_id in " + temp + "";
+        var dtt_select = "select ef.exhf_id,ts.dtt_code,ts.status,ts.process_status,ef.trn_id,ts.app_id from ex_file_trans ef inner join npss_transactions ts on ef.trn_id = ts.npsst_id where ef.exhf_id in " + temp + "";
         var file_status_update = "UPDATE ex_header_files SET FILE_STATUS = 'UPLOAD_MAIL_INITIATED',PRCT_ID ='" + PRCT_ID + "',MODIFIED_BY='" + modified_by + "',MODIFIED_DATE = '" + modified_date + "',MODIFIED_BY_NAME = '" + modified_name + "', MODIFIED_CLIENTIP = '" + session_info.CLIENTIP + "', MODIFIED_TZ = '" + session_info.CLIENTTZ + "', MODIFIED_TZ_OFFSET = '" + session_info.CLIENTTZ_OFFSET + "', MODIFIED_BY_SESSIONID = '" + session_info.SESSION_ID + "', MODIFIED_DATE_UTC = '" + reqDateFormatter.GetCurrentDateInUTC(headers, objLogInfo) + "' WHERE EXHF_ID in " + temp + "";
         ExecuteQuery(file_status_update, function (arrresult) { // Get Rule params based on product and event
             try {
@@ -111,6 +111,7 @@ try {
                                     var obj = {};
                                     allexhf_id.push(arrresult[i].exhf_id);
                                     if (arrresult[i].dtt_code == "DTT_1304_1665901217208") {
+                                        console.log('.............................Process DTT Code Successfully Verified')
                                         obj.product_code = prd_code;
                                         obj.app_name = app_name;
                                         obj.table = tblName;
@@ -158,9 +159,10 @@ try {
                                                                         if (error) {
                                                                             SendResponse("Update Failure");
                                                                         } else {
+                                                                            console.log('.............................Before Enter File Update Status')
                                                                             if (res === "SUCCESS") {
                                                               
-
+                                                                                console.log('.............................Tran Update Success')
                                                                                 SendResponse("SUCCESS");
                                                                             } else {
 
@@ -337,6 +339,7 @@ try {
     //function to perform file update for CCS, EFTC, EFTD and RTGS
     function fn_FileUpdate(arr, callback) {
         if (arr.length > 0) {
+            console.log('............................. Enter File Update Status')
             var finalip = [];
             var finalop = [];
             var isIPTranExists = false;
@@ -350,7 +353,7 @@ try {
 
      ipTranIDQry = "select t.npsst_id from npss_transactions t where t.npsst_id in (" + strTranIDQry + ") and t.process_type = 'IP'";
      opTranIDQry = "select t.npsst_id from npss_transactions t where t.npsst_id in (" + strTranIDQry + ") and t.process_type = 'OP'";
-      process_select = "select t.process_type,t.is_returned,t.npsst_id,t.status,t.process_status from npss_transactions t where t.npsst_id in (" + strTranIDQry + ")";
+      process_select = "select t.process_type,t.npsst_id,t.status,t.process_status from npss_transactions t where t.npsst_id in (" + strTranIDQry + ")";
     // ipTranIDQry = "select t." + arr[0].app_name + "t_id from " + arr[0].app_name + "_transactions t inner join " + arr[0].app_name + "_batches b on t." + arr[0].app_name + "b_id = b." + arr[0].app_name + "b_id where t." + arr[0].app_name + "t_id in (" + strTranIDQry + ") and b.process_type = 'IP'";
     // opTranIDQry = "select t." + arr[0].app_name + "t_id from " + arr[0].app_name + "_transactions t inner join " + arr[0].app_name + "_batches b on t." + arr[0].app_name + "b_id = b." + arr[0].app_name + "b_id where t." + arr[0].app_name + "t_id in (" + strTranIDQry + ") and b.process_type = 'OP'";
     // process_select = "select b.process_type,t." + arr[0].app_name + "t_id,t.status,t.process_status from " + arr[0].app_name + "_transactions t inner join " + arr[0].app_name + "_batches b on t." + arr[0].app_name + "b_id = b." + arr[0].app_name + "b_id where t." + arr[0].app_name + "t_id in (" + strTranIDQry + ")";
@@ -504,6 +507,7 @@ console.log("select_final result...............",arrresult)
     //common function to perform update on transaction tables
     function fn_UpdtStatus4Trns(arrTranDtls, status, process_status, tranIdSubQry, callbackUpdtStatus4Trns) {
         try {
+            console.log('.............................Entering fr_updtstatus4Trn Functions')
             var tran_update = "UPDATE " + arrTranDtls[0].table + " SET STATUS = '" + status + "',PRCT_ID ='" + PRCT_ID + "', PROCESS_STATUS = '" + process_status + "',MODIFIED_BY = '" + modified_by + "',MODIFIED_DATE = '" + modified_date + "',MODIFIED_BY_NAME ='" + modified_name + "', MODIFIED_CLIENTIP = '" + session_info.CLIENTIP + "', MODIFIED_TZ = '" + session_info.CLIENTTZ + "', MODIFIED_TZ_OFFSET = '" + session_info.CLIENTTZ_OFFSET + "', MODIFIED_BY_SESSIONID = '" + session_info.SESSION_ID + "', MODIFIED_DATE_UTC = '" + reqDateFormatter.GetCurrentDateInUTC(headers, objLogInfo) + "' WHERE " + arrTranDtls[0].key + " in (" + tranIdSubQry + ")";
            // var transet_update = "UPDATE transaction_set SET STATUS = '" + status + "',PRCT_ID ='" + PRCT_ID + "', PROCESS_STATUS = '" + process_status + "',MODIFIED_BY = '" + modified_by + "',MODIFIED_DATE = '" + modified_date + "',MODIFIED_BY_NAME ='" + modified_name + "',LOCKED_BY ='',LOCKED_BY_NAME ='', MODIFIED_CLIENTIP = '" + session_info.CLIENTIP + "', MODIFIED_TZ = '" + session_info.CLIENTTZ + "', MODIFIED_TZ_OFFSET = '" + session_info.CLIENTTZ_OFFSET + "', MODIFIED_BY_SESSIONID = '" + session_info.SESSION_ID + "', MODIFIED_DATE_UTC = '" + reqDateFormatter.GetCurrentDateInUTC(headers, objLogInfo) + "' WHERE TRN_ID in (" + tranIdSubQry + ") and APP_ID = '" + arrTranDtls[0].app_id + "'";
             var final_file_status_update = "UPDATE EX_HEADER_FILES SET FILE_STATUS = 'UPLOAD_COMPLETED', PRCT_ID ='" + PRCT_ID + "',MODIFIED_BY='" + modified_by + "',MODIFIED_DATE = '" + modified_date + "',MODIFIED_BY_NAME = '" + modified_name + "', MODIFIED_CLIENTIP = '" + session_info.CLIENTIP + "', MODIFIED_TZ = '" + session_info.CLIENTTZ + "', MODIFIED_TZ_OFFSET = '" + session_info.CLIENTTZ_OFFSET + "', MODIFIED_BY_SESSIONID = '" + session_info.SESSION_ID + "', MODIFIED_DATE_UTC = '" + reqDateFormatter.GetCurrentDateInUTC(headers, objLogInfo) + "' WHERE EXHF_ID in (select distinct eft.EXHF_ID FROM EX_FILE_TRANS eft INNER JOIN EX_HEADER_FILES EHF ON EHF.EXHF_ID = EFT.EXHF_ID WHERE EFT.DTT_CODE = '" + arrTranDtls[0].dtt_code + "' AND EHF.PRCT_ID = '" + PRCT_ID + "')";
@@ -516,6 +520,7 @@ console.log("select_final result...............",arrresult)
                                     ExecuteQuery(final_file_status_update, function (arrresult) { // Get Rule params based on product and event
                                         try {
                                             if (arrresult == "SUCCESS") { // check rule param record exists or not
+                                                console.log('.............................Leaving fr_updtstatus4Trn Functions')
                                                 callbackUpdtStatus4Trns(null, "SUCCESS");
                                             } else {
                                                 callbackUpdtStatus4Trns("No data found");

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26766 
+Build ID        : 26755 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-01 14:25 PM 
+Modified Date   : 2022-Nov-02 5:17 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_transactions
@@ -577,7 +577,7 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 	//Handler for SELECTION_CHANGED event of "group by status"
 	group_by_status__selection_changed(){
 		this.group_by_status__svm_for_chart_list()
-		this.group_by_status__e_1667226477378()
+		this.group_by_status__clcr_from_status_to_process_system()
 	}
 
 	//Handler for INTERNAL event of "svm for chart list"
@@ -630,7 +630,7 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 	//Handler for SELECTION_CHANGED event of "group by processing system"
 	group_by_processing_system__selection_changed(){
 		this.group_by_processing_system__svm_for_bar_chart()
-		this.group_by_processing_system__e_1667226600667()
+		this.group_by_processing_system__clcr_from_process_system_to_status()
 	}
 
 	//Handler for INTERNAL event of "svm for bar chart"
@@ -1465,20 +1465,20 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "group by status"
-	group_by_status__e_1667226477378() { 
+	group_by_status__clcr_from_status_to_process_system() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="group_by_status"
 		let destn_id="group_by_processing_system"
 		let parent_source_id=""
-		let event_code="e_1667226477378"
-		let event_params={"caller_name":"group_by_status__e_1667226477378","event_desc":"E_1667226477378","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"group_by_status","raiseparam":{"need_reset_key_column":"N"}}
-		let handler_code="clear_ui"
+		let event_code="e_1667365005630"
+		let event_params={"caller_name":"group_by_status__clcr_from_status_to_process_system","event_desc":"CLCR from status to Process System","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"group_by_status","raiseparam":{}}
+		let handler_code="clear"
 		let internals=""
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_17","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1667219954524","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"​NPSS TPL Chart Process Sys MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1667217730682","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1667217731104","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1667217731296","date_format":false}],"joins":[]},"eq_text":"SELECT   KEY_COLUMN,          COUNT(PROCESSING_SYSTEM) AS KEY_VALUE,          PROCESSING_SYSTEM FROM     (                 SELECT T.CREATED_DATE,                        T.STATUS,                        T.PROCESS_STATUS,                        T.UETR,                        T.PROCESS_NAME,                        T.PROCESSING_SYSTEM,                        T.PROCESSING_SYSTEM AS KEY_COLUMN,    T.ADDITIONAL_INFO                 FROM   NPSS_TRN_PROCESS_LOG T) VW $WHERE GROUP BY KEY_COLUMN,          PROCESSING_SYSTEM"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS TPL Chart Process Sys CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
-			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.clear(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1826,20 +1826,20 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "group by processing system"
-	group_by_processing_system__e_1667226600667() { 
+	group_by_processing_system__clcr_from_process_system_to_status() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="group_by_processing_system"
 		let destn_id="group_by_status"
 		let parent_source_id=""
-		let event_code="e_1667226600667"
-		let event_params={"caller_name":"group_by_processing_system__e_1667226600667","event_desc":"E_1667226600667","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"group_by_processing_system","raiseparam":{"need_reset_key_column":"N"}}
-		let handler_code="clear_ui"
+		let event_code="e_1667365046885"
+		let event_params={"caller_name":"group_by_processing_system__clcr_from_process_system_to_status","event_desc":"CLCR from Process System to Status","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"group_by_processing_system","raiseparam":{}}
+		let handler_code="clear"
 		let internals=""
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_11","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1666173412932","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS TPL Chart Status MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1667217406844","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1667217407003","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1667217407178","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1667217420369","date_format":false}],"joins":[]},"eq_text":"SELECT   KEY_COLUMN,          COUNT(STATUS) AS KEY_VALUE,          PROCESS_STATUS,          STATUS FROM     (                 SELECT T.CREATED_DATE,                        T.STATUS AS KEY_COLUMN,                        T.STATUS,                        T.PROCESS_STATUS,                        T.UETR,                        T.PROCESS_NAME,                        T.PROCESSING_SYSTEM,    T.ADDITIONAL_INFO                 FROM   NPSS_TRN_PROCESS_LOG T) VW $WHERE GROUP BY STATUS,          KEY_COLUMN,          PROCESS_STATUS,          STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS  TPL Chart Status CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
-			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.clear(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -1,12 +1,12 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26802 
+Build ID        : 26803 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-03 13:59 PM 
+Modified Date   : 2022-Nov-03 14:0 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_cbs_account_file_download
+Screen Name     : s_bct_file_upload
 --------------------------------------------------------------------------- */
 
 // Component Definition 
@@ -27,8 +27,8 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import { ComponenthelperService } from '../../../scripts/fx/componenthelper.service';
 
-import { s_cbs_account_file_downloadComponent } from './s_cbs_account_file_download.component';
-import { s_cbs_account_file_downloadRoutingModule } from './s_cbs_account_file_download.routing.module';
+import { s_bct_file_uploadComponent } from './s_bct_file_upload.component';
+import { s_bct_file_uploadRoutingModule } from './s_bct_file_upload.routing.module';
     
 
 
@@ -48,15 +48,15 @@ import { p_exchange_layoutsComponent } from './p_exchange_layouts/p_exchange_lay
     DialogModule,
     OverlayPanelModule,
     
-    s_cbs_account_file_downloadRoutingModule,
+    s_bct_file_uploadRoutingModule,
     npss_c_trigger_exchange_componentModule
   ],
-  declarations: [s_cbs_account_file_downloadComponent,p_exchange_queueComponent,f_navigationComponent,p_exchange_layoutsComponent,],
+  declarations: [s_bct_file_uploadComponent,p_exchange_queueComponent,f_navigationComponent,p_exchange_layoutsComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 
 
 // Start of class 
-export class s_cbs_account_file_downloadModule { }
+export class s_bct_file_uploadModule { }
 
 // End of class 

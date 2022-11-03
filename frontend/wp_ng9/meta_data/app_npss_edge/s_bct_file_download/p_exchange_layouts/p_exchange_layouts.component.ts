@@ -1,29 +1,29 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26802 
+Build ID        : 26803 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-03 13:59 PM 
+Modified Date   : 2022-Nov-03 14:0 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_cbs_account_file_download
-Profile Name    : Exchange Queue--------------------------------------------------------------------------- */
+Screen Name     : s_bct_file_download
+Profile Name    : Exchange Layouts--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_exchange_queue',
-  templateUrl: './p_exchange_queue.component.html',
-  styleUrls: ['./p_exchange_queue.component.css']
+  selector: 'p_exchange_layouts',
+  templateUrl: './p_exchange_layouts.component.html',
+  styleUrls: ['./p_exchange_layouts.component.css']
 })
 
 // Start of class 
-export class p_exchange_queueComponent implements OnInit {
+export class p_exchange_layoutsComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
   	navigation : any = {}
-	queue : any = {}
+	exchange_detail : any = {}
 
 
   // Constructor 
@@ -33,12 +33,12 @@ export class p_exchange_queueComponent implements OnInit {
   ngOnInit() {
     	this.navigation.desc = "Navigation"
 		this.navigation.need_header = ""
-		this.queue.desc = "Queue"
-		this.queue.need_header = true
+		this.exchange_detail.desc = "Exchange Detail"
+		this.exchange_detail.need_header = true
 	
 
-    this.screen_instance['p_exchange_queue'] = {};
-    this.screen_instance['p_exchange_queue']['checkHeader']=(component)=>{
+    this.screen_instance['p_exchange_layouts'] = {};
+    this.screen_instance['p_exchange_layouts']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

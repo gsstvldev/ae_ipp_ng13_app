@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26772 
+Build ID        : 26794 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-02 5:16 AM 
+Modified Date   : 2022-Nov-03 7:25 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -129,7 +129,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.merchant_details.views = {}
 		this.merchant_details.onChangecomponent = new EventEmitter<any>()
 		this.merchant_details.show = true
-		this.merchant_details.dynamic_param = {}
+		this.merchant_details.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
 	
 		// Component level properties - "Account List" 
 		this.account_list.uictrl_code = "datatable"
@@ -153,7 +153,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.account_details.views = {}
 		this.account_details.onChangecomponent = new EventEmitter<any>()
 		this.account_details.show = true
-		this.account_details.dynamic_param = {}
+		this.account_details.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -298,7 +298,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.shop_detail.views = {}
 		this.shop_detail.onChangecomponent = new EventEmitter<any>()
 		this.shop_detail.show = true
-		this.shop_detail.dynamic_param = {}
+		this.shop_detail.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
 	
 		// Component level properties - "Cash Desk List" 
 		this.cash_desk_list.uictrl_code = "datatable"
@@ -322,7 +322,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.cash_desk_detail.views = {}
 		this.cash_desk_detail.onChangecomponent = new EventEmitter<any>()
 		this.cash_desk_detail.show = true
-		this.cash_desk_detail.dynamic_param = {}
+		this.cash_desk_detail.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
 	}
 	// Methods
 	ngAfterViewInit() {

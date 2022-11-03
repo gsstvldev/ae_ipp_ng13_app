@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26779 
+Build ID        : 26796 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-02 11:58 AM 
+Modified Date   : 2022-Nov-03 7:28 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_transactions

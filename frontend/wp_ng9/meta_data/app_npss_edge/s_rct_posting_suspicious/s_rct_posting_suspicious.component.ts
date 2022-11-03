@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26788 
+Build ID        : 26790 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-03 6:10 AM 
+Modified Date   : 2022-Nov-03 7:25 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -47,7 +47,8 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
 	navigation_ui_call_enquiry : any = {}
-	navigation_ui_initial_enable : any = {}
+	navigation_ui_call_t24_posting : any = {}
+	navigation_ui_call_cc_posting : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -117,14 +118,23 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_call_enquiry.role = []
 		this.navigation_ui_call_enquiry.action = ""
 		
-		// "Initial Enable" Button of "Navigation UI" component
-		this.navigation_ui_initial_enable.label_name = "Initial Enable"
-		this.navigation_ui_initial_enable.show = true
-		this.navigation_ui_initial_enable.disabled = false
-		this.navigation_ui_initial_enable.params = {"icon_only":false,"uicgcc_style":"fa fa-ellipsis-h"}
-		this.navigation_ui_initial_enable.dynamic_param = {}
-		this.navigation_ui_initial_enable.role = []
-		this.navigation_ui_initial_enable.action = ""
+		// "Call T24 Posting" Button of "Navigation UI" component
+		this.navigation_ui_call_t24_posting.label_name = "Call T24 Posting"
+		this.navigation_ui_call_t24_posting.show = true
+		this.navigation_ui_call_t24_posting.disabled = false
+		this.navigation_ui_call_t24_posting.params = {"icon_only":false,"uicgcc_style":"fa fa-toggle-off"}
+		this.navigation_ui_call_t24_posting.dynamic_param = {}
+		this.navigation_ui_call_t24_posting.role = []
+		this.navigation_ui_call_t24_posting.action = ""
+		
+		// "Call CC Posting" Button of "Navigation UI" component
+		this.navigation_ui_call_cc_posting.label_name = "Call CC Posting"
+		this.navigation_ui_call_cc_posting.show = true
+		this.navigation_ui_call_cc_posting.disabled = false
+		this.navigation_ui_call_cc_posting.params = {"icon_only":false,"uicgcc_style":"fa fa-cc"}
+		this.navigation_ui_call_cc_posting.dynamic_param = {}
+		this.navigation_ui_call_cc_posting.role = []
+		this.navigation_ui_call_cc_posting.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -257,9 +267,9 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		this.process_log_list__svm_for_pl()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui initial enable"
-	navigation_ui_initial_enable__action_button_click(){
-		this.navigation_ui_initial_enable__cc_for_initial_enable()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui call t24 posting"
+	navigation_ui_call_t24_posting__action_button_click(){
+		this.navigation_ui_call_t24_posting__cc_for_initial_enable()
 	}
 
 	//Handler for INTERNAL event of "cc for initial enable"
@@ -285,6 +295,21 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "info for call enquiry"
 	info_for_call_enquiry__internal(parent_event_result){
 		this.info_for_call_enquiry__rs_for_call_enquiry(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui call cc posting"
+	navigation_ui_call_cc_posting__action_button_click(){
+		this.navigation_ui_call_cc_posting__cc_for_cc_posting()
+	}
+
+	//Handler for INTERNAL event of "cc for cc posting"
+	cc_for_cc_posting__internal(parent_event_result){
+		this.cc_for_cc_posting__info_for_cc_posting(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "info for cc posting"
+	info_for_cc_posting__internal(parent_event_result){
+		this.info_for_cc_posting__rs_for_cc_posting(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -736,15 +761,15 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui initial enable"
-	navigation_ui_initial_enable__cc_for_initial_enable() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui call t24 posting"
+	navigation_ui_call_t24_posting__cc_for_initial_enable() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_initial_enable"
+		let source_id="navigation_ui_call_t24_posting"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1666943031009"
-		let event_params={"caller_name":"navigation_ui_initial_enable__cc_for_initial_enable","event_desc":"CC for initial enable","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initial_enable","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_call_t24_posting__cc_for_initial_enable","event_desc":"CC for initial enable","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_call_t24_posting","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals="cc_for_initial_enable__info_for_initial_enable,"
 		let event_data={}
@@ -764,9 +789,9 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="cc_for_initial_enable"
 		let destn_id=""
-		let parent_source_id="navigation_ui_initial_enable"
+		let parent_source_id="navigation_ui_call_t24_posting"
 		let event_code="e_1666943220349"
-		let event_params={"caller_name":"cc_for_initial_enable__info_for_initial_enable","event_desc":"INFO for initial enable","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been initial enabled successfully","root_source_id":"navigation_ui_initial_enable","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_initial_enable__info_for_initial_enable","event_desc":"INFO for initial enable","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been initial enabled successfully","root_source_id":"navigation_ui_call_t24_posting","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="info_for_initial_enable__rs_for_initial_enable,"
 		let event_data={}
@@ -788,7 +813,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="cc_for_initial_enable"
 		let event_code="e_1666943300723"
-		let event_params={"caller_name":"info_for_initial_enable__rs_for_initial_enable","event_desc":"RS for initial enable","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initial_enable","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"info_for_initial_enable__rs_for_initial_enable","event_desc":"RS for initial enable","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_call_t24_posting","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}
@@ -854,6 +879,71 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let parent_source_id="cc_for_call_enquiry"
 		let event_code="e_1667455745847"
 		let event_params={"caller_name":"info_for_call_enquiry__rs_for_call_enquiry","event_desc":"RS for call enquiry","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_call_enquiry","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui call cc posting"
+	navigation_ui_call_cc_posting__cc_for_cc_posting() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_call_cc_posting"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1667458437435"
+		let event_params={"caller_name":"navigation_ui_call_cc_posting__cc_for_cc_posting","event_desc":"CC for cc posting","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_call_cc_posting","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_cc_posting__info_for_cc_posting,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for cc posting"
+	cc_for_cc_posting__info_for_cc_posting(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_cc_posting"
+		let destn_id=""
+		let parent_source_id="navigation_ui_call_cc_posting"
+		let event_code="e_1667458472219"
+		let event_params={"caller_name":"cc_for_cc_posting__info_for_cc_posting","event_desc":"INFO for cc posting","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"cc posting","root_source_id":"navigation_ui_call_cc_posting","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="info_for_cc_posting__rs_for_cc_posting,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "info for cc posting"
+	info_for_cc_posting__rs_for_cc_posting(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="info_for_cc_posting"
+		let destn_id=""
+		let parent_source_id="cc_for_cc_posting"
+		let event_code="e_1667458500738"
+		let event_params={"caller_name":"info_for_cc_posting__rs_for_cc_posting","event_desc":"RS for cc posting","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_call_cc_posting","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

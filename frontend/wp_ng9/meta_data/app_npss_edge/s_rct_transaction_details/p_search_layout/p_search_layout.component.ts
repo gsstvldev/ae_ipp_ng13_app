@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26765 
+Build ID        : 26796 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-01 10:56 AM 
+Modified Date   : 2022-Nov-03 7:28 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_transaction_details

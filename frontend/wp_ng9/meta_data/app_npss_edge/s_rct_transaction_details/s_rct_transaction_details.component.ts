@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26765 
+Build ID        : 26796 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-01 10:56 AM 
+Modified Date   : 2022-Nov-03 7:28 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_transaction_details
@@ -116,7 +116,7 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.view_transaction_details.views = {}
 		this.view_transaction_details.onChangecomponent = new EventEmitter<any>()
 		this.view_transaction_details.show = true
-		this.view_transaction_details.dynamic_param = {}
+		this.view_transaction_details.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
 	
 		// Component level properties - "Navigation UI" 
 		this.navigation_ui.uictrl_code = "dynamic_ui"

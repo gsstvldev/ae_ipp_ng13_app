@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26790 
+Build ID        : 26800 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-03 7:25 AM 
+Modified Date   : 2022-Nov-03 10:46 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -13,12 +13,13 @@ Screen Name     : s_rct_posting_suspicious
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_cs_posting_processService} from '../../../custom_widget/npss_cs_posting_process/npss_cs_posting_process.service'
 
 @Component({
 	selector: 's_rct_posting_suspicious',
 	templateUrl: './s_rct_posting_suspicious.component.html',
 	styleUrls: ['./s_rct_posting_suspicious.component.css'],
-	providers:[torus_cs_show_hideService]
+	providers:[torus_cs_show_hideService,npss_cs_posting_processService]
 })
     
 // Start of class 
@@ -56,7 +57,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_posting_processService:npss_cs_posting_processService) {
     
 	}
     
@@ -775,7 +776,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_posting_processService.fn_npss_cs_posting_process(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -791,7 +792,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="navigation_ui_call_t24_posting"
 		let event_code="e_1666943220349"
-		let event_params={"caller_name":"cc_for_initial_enable__info_for_initial_enable","event_desc":"INFO for initial enable","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been initial enabled successfully","root_source_id":"navigation_ui_call_t24_posting","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_initial_enable__info_for_initial_enable","event_desc":"INFO for initial enable","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been sent to T24 posting successfully","root_source_id":"navigation_ui_call_t24_posting","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="info_for_initial_enable__rs_for_initial_enable,"
 		let event_data={}
@@ -840,7 +841,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_posting_processService.fn_npss_cs_posting_process(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -856,7 +857,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="navigation_ui_call_enquiry"
 		let event_code="e_1667455638667"
-		let event_params={"caller_name":"cc_for_call_enquiry__info_for_call_enquiry","event_desc":"INFO for call enquiry","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Call Enquiry","root_source_id":"navigation_ui_call_enquiry","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_call_enquiry__info_for_call_enquiry","event_desc":"INFO for call enquiry","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been enquired successfully","root_source_id":"navigation_ui_call_enquiry","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="info_for_call_enquiry__rs_for_call_enquiry,"
 		let event_data={}
@@ -905,7 +906,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_posting_processService.fn_npss_cs_posting_process(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -921,7 +922,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="navigation_ui_call_cc_posting"
 		let event_code="e_1667458472219"
-		let event_params={"caller_name":"cc_for_cc_posting__info_for_cc_posting","event_desc":"INFO for cc posting","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"cc posting","root_source_id":"navigation_ui_call_cc_posting","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_cc_posting__info_for_cc_posting","event_desc":"INFO for cc posting","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been sent to Credit Card posting successfully","root_source_id":"navigation_ui_call_cc_posting","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="info_for_cc_posting__rs_for_cc_posting,"
 		let event_data={}

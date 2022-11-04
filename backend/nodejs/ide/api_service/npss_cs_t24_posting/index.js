@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+
 try {
     /*   Created By : Daseen
     Created Date :04-11-2022
@@ -52,7 +53,7 @@ try {
                         ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,
                         ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid
                         from npss_transactions ns where npsst_id = '${params.tran_id}'`;
-                        var TakenpsstrRefno = `select npsstrrd_refno from npss_trn_process_log ns where ns.uetr = '${params.uetr}' and ns.status = '${params.STATUS}' and ns.process_status = ''${params.ELIGIBLE_PROCESS_STATUS}'' `
+                        var TakenpsstrRefno = `select npsstrrd_refno from npss_trn_process_log ns where ns.uetr = '${params.uetr}' and ns.status = '${params.STATUS}' and ns.process_status = '${params.ELIGIBLE_PROCESS_STATUS}' `
                         var TakenpsstrRefno2 = `select npsstrrd_refno,npsstpl_id from npss_trn_process_log  where uetr= '${params.uetr}' order by npsstpl_id  desc`
                         ExecuteQuery1(take_api_url, function (arrurlResult) {
                             if (arrurlResult.length) {
@@ -135,7 +136,7 @@ try {
                                 var options = {
                                     url: apiURL,
                                     timeout: 18000000,
-                                    method: 'GET',
+                                    method: 'POST',
                                     json: {
                                         "batch_name": arrbatchname[0].param_detail,
                                         "data": {
@@ -251,6 +252,8 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
+
 
 
 

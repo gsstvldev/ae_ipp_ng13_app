@@ -1,0 +1,18 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_bct_response_ui="ngForm">
+<div id="1667544021780" class="row">
+	<div #npss_bct_response_ui_memory11 id="aec73f8f-2831-46d1-ad9d-4119b743a208_1667544021780" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory11')" >
+				<rich_txt [ctrl_id]="'npss_bct_response_ui_memory11'" [comp_id]="comp_id" [ctrl]="ctrl.memory11" [model]="screen_instance[this.comp_id].f_npss_bct_response_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></rich_txt>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+ 		<div class="col-md-1 col-sm-6 col-xs-6 col-md-offset-11 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.response_ui_back.show" >
+			<btn [ctrl_id]="'response_ui_back'" [comp_id]="comp_id" [ctrl]="screen_instance.response_ui_back" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.response_ui_back.show"></btn>
+		</div>
+	</div>
+
+</div>

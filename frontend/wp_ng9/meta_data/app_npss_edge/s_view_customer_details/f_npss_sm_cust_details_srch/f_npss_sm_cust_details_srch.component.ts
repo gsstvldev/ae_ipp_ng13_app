@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26747 
+Build ID        : 26822 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-04 7:52 AM 
+Modified Date   : 2022-Nov-04 12:50 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_customer_details
@@ -69,6 +69,7 @@ focustoelement(){
 		this.ctrl.bankuserid.currency_format = ""
 		this.ctrl.bankuserid.data_scale = ""
 		this.ctrl.bankuserid.binding_name = "BANKUSERID"
+		this.ctrl.bankuserid.hide_label = false
 		this.ctrl.bankuserid.depends_on = ""
 		this.ctrl.bankuserid.placeholder = ""
 		this.ctrl.bankuserid.dynamic_param = ""
@@ -107,6 +108,7 @@ focustoelement(){
 		this.ctrl.customer_name.currency_format = ""
 		this.ctrl.customer_name.data_scale = ""
 		this.ctrl.customer_name.binding_name = "CUSTOMER_NAME"
+		this.ctrl.customer_name.hide_label = false
 		this.ctrl.customer_name.depends_on = ""
 		this.ctrl.customer_name.placeholder = ""
 		this.ctrl.customer_name.dynamic_param = ""
@@ -145,6 +147,7 @@ focustoelement(){
 		this.ctrl.surname.currency_format = ""
 		this.ctrl.surname.data_scale = ""
 		this.ctrl.surname.binding_name = "SURNAME"
+		this.ctrl.surname.hide_label = false
 		this.ctrl.surname.depends_on = ""
 		this.ctrl.surname.placeholder = ""
 		this.ctrl.surname.dynamic_param = ""
@@ -183,6 +186,7 @@ focustoelement(){
 		this.ctrl.mobile.currency_format = ""
 		this.ctrl.mobile.data_scale = ""
 		this.ctrl.mobile.binding_name = "MOBILE"
+		this.ctrl.mobile.hide_label = false
 		this.ctrl.mobile.depends_on = ""
 		this.ctrl.mobile.placeholder = ""
 		this.ctrl.mobile.dynamic_param = ""
@@ -200,83 +204,45 @@ focustoelement(){
 		this.ctrl.npss_sm_cust_details_srch_mobile = {}
 		this.ctrl.npss_sm_cust_details_srch_mobile.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of channel_id
-		this.ctrl.channel_id = {}
-		this.ctrl.channel_id.id = "RN21CN5"
-		this.ctrl.channel_id.desc = "Channel ID"
-		this.ctrl.channel_id.visible = true
-		this.ctrl.channel_id.label_name = "Channel ID"
-		this.ctrl.channel_id.df_code = "DF_1304_1666846148448"
-		this.ctrl.channel_id.df_description = "Customer"
-		this.ctrl.channel_id.uictrl_code = "TXT"
-		this.ctrl.channel_id.target_column = "CHANNEL_ID"
-		this.ctrl.channel_id.data_type = "TEXT"
-		this.ctrl.channel_id.data_length = 128
-		this.ctrl.channel_id.zone_df_code = "DF_1304_1666846148448"
-		this.ctrl.channel_id.default_value = ""
-		this.ctrl.channel_id.is_memory_ctrl = ""
-		this.ctrl.channel_id.field_coordinates = ""
-		this.ctrl.channel_id.sub_details = ""
-		this.ctrl.channel_id.accept_char = ""
-		this.ctrl.channel_id.currency_format = ""
-		this.ctrl.channel_id.data_scale = ""
-		this.ctrl.channel_id.binding_name = "CHANNEL_ID"
-		this.ctrl.channel_id.depends_on = ""
-		this.ctrl.channel_id.placeholder = ""
-		this.ctrl.channel_id.dynamic_param = ""
-		this.ctrl.channel_id.style_code = ""
-		this.ctrl.channel_id.data_source = ""
-		this.ctrl.channel_id.image_association = ""
-		this.ctrl.channel_id.show = true
-		this.ctrl.channel_id.sub_content = ""
-		this.ctrl.channel_id.required = false
-		this.ctrl.channel_id.vld_rules = []
-		this.ctrl.channel_id.targetcolumn_lower = "channel_id"
-		this.ctrl.channel_id.disabled = false
-		this.ctrl.channel_id.view_name = "f_npss_sm_cust_details_srch"
-		this.ctrl.channel_id.ctrl_id = "npss_sm_cust_details_srch_channel_id"
-		this.ctrl.npss_sm_cust_details_srch_channel_id = {}
-		this.ctrl.npss_sm_cust_details_srch_channel_id.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of channel_product
-		this.ctrl.channel_product = {}
-		this.ctrl.channel_product.id = "RN21CN6"
-		this.ctrl.channel_product.desc = "Channel Product"
-		this.ctrl.channel_product.visible = true
-		this.ctrl.channel_product.label_name = "Channel Product"
-		this.ctrl.channel_product.df_code = "DF_1304_1666846148448"
-		this.ctrl.channel_product.df_description = "Customer"
-		this.ctrl.channel_product.uictrl_code = "TXT"
-		this.ctrl.channel_product.target_column = "CHANNEL_PRODUCT"
-		this.ctrl.channel_product.data_type = "TEXT"
-		this.ctrl.channel_product.data_length = 128
-		this.ctrl.channel_product.zone_df_code = "DF_1304_1666846148448"
-		this.ctrl.channel_product.default_value = ""
-		this.ctrl.channel_product.is_memory_ctrl = ""
-		this.ctrl.channel_product.field_coordinates = ""
-		this.ctrl.channel_product.sub_details = ""
-		this.ctrl.channel_product.accept_char = ""
-		this.ctrl.channel_product.currency_format = ""
-		this.ctrl.channel_product.data_scale = ""
-		this.ctrl.channel_product.binding_name = "CHANNEL_PRODUCT"
-		this.ctrl.channel_product.depends_on = ""
-		this.ctrl.channel_product.placeholder = ""
-		this.ctrl.channel_product.dynamic_param = ""
-		this.ctrl.channel_product.style_code = ""
-		this.ctrl.channel_product.data_source = ""
-		this.ctrl.channel_product.image_association = ""
-		this.ctrl.channel_product.show = true
-		this.ctrl.channel_product.sub_content = ""
-		this.ctrl.channel_product.required = false
-		this.ctrl.channel_product.vld_rules = []
-		this.ctrl.channel_product.targetcolumn_lower = "channel_product"
-		this.ctrl.channel_product.disabled = false
-		this.ctrl.channel_product.view_name = "f_npss_sm_cust_details_srch"
-		this.ctrl.channel_product.ctrl_id = "npss_sm_cust_details_srch_channel_product"
-		this.ctrl.npss_sm_cust_details_srch_channel_product = {}
-		this.ctrl.npss_sm_cust_details_srch_channel_product.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_sm_cust_details_srch.model = {"BANKUSERID":"","CUSTOMER_NAME":"","SURNAME":"","MOBILE":"","CHANNEL_ID":"","CHANNEL_PRODUCT":""}
-		this.screen_instance[this.comp_id].f_npss_sm_cust_details_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMER_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_PRODUCT"}]
+		//Properties of memory19
+		this.ctrl.memory19 = {}
+		this.ctrl.memory19.id = "RN21CN5"
+		this.ctrl.memory19.desc = "Created Date"
+		this.ctrl.memory19.visible = true
+		this.ctrl.memory19.label_name = "Created Date"
+		this.ctrl.memory19.df_code = "DF_1304_1666846148448"
+		this.ctrl.memory19.df_description = "Customer"
+		this.ctrl.memory19.uictrl_code = "CDN_DATE"
+		this.ctrl.memory19.target_column = "memory19"
+		this.ctrl.memory19.data_type = "DATETIME"
+		this.ctrl.memory19.data_length = 0
+		this.ctrl.memory19.zone_df_code = "DF_1304_1666846148448"
+		this.ctrl.memory19.default_value = "setcurrentdate(),{}"
+		this.ctrl.memory19.is_memory_ctrl = "Y"
+		this.ctrl.memory19.field_coordinates = ""
+		this.ctrl.memory19.sub_details = ""
+		this.ctrl.memory19.accept_char = ""
+		this.ctrl.memory19.currency_format = ""
+		this.ctrl.memory19.data_scale = ""
+		this.ctrl.memory19.binding_name = "CREATED_DATE"
+		this.ctrl.memory19.depends_on = ""
+		this.ctrl.memory19.placeholder = ""
+		this.ctrl.memory19.dynamic_param = ""
+		this.ctrl.memory19.style_code = ""
+		this.ctrl.memory19.data_source = ""
+		this.ctrl.memory19.image_association = ""
+		this.ctrl.memory19.show = true
+		this.ctrl.memory19.sub_content = ""
+		this.ctrl.memory19.required = false
+		this.ctrl.memory19.vld_rules = []
+		this.ctrl.memory19.targetcolumn_lower = "memory19"
+		this.ctrl.memory19.disabled = false
+		this.ctrl.memory19.view_name = "f_npss_sm_cust_details_srch"
+		this.ctrl.memory19.ctrl_id = "npss_sm_cust_details_srch_memory19"
+		this.ctrl.npss_sm_cust_details_srch_memory19 = {}
+		this.ctrl.npss_sm_cust_details_srch_memory19.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_sm_cust_details_srch.model = {"BANKUSERID":"","CUSTOMER_NAME":"","SURNAME":"","MOBILE":"","MEMORY19":"setcurrentdate(),{}"}
+		this.screen_instance[this.comp_id].f_npss_sm_cust_details_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMER_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"}]
 		this.screen_instance[this.comp_id].f_npss_sm_cust_details_srch.dt_code = "dt_1304_1666846042955"
 		this.screen_instance[this.comp_id].f_npss_sm_cust_details_srch.dtt_code = "dtt_1304_1666846082411"
 		this.screen_instance[this.comp_id].f_npss_sm_cust_details_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26747 
+Build ID        : 26822 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-04 7:52 AM 
+Modified Date   : 2022-Nov-04 12:50 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -69,6 +69,7 @@ focustoelement(){
 		this.ctrl.bankuserid.currency_format = ""
 		this.ctrl.bankuserid.data_scale = ""
 		this.ctrl.bankuserid.binding_name = "BANKUSERID"
+		this.ctrl.bankuserid.hide_label = false
 		this.ctrl.bankuserid.depends_on = ""
 		this.ctrl.bankuserid.placeholder = ""
 		this.ctrl.bankuserid.dynamic_param = ""
@@ -107,6 +108,7 @@ focustoelement(){
 		this.ctrl.merchant_name.currency_format = ""
 		this.ctrl.merchant_name.data_scale = ""
 		this.ctrl.merchant_name.binding_name = "MERCHANT_NAME"
+		this.ctrl.merchant_name.hide_label = false
 		this.ctrl.merchant_name.depends_on = ""
 		this.ctrl.merchant_name.placeholder = ""
 		this.ctrl.merchant_name.dynamic_param = ""
@@ -145,6 +147,7 @@ focustoelement(){
 		this.ctrl.merchant_tag.currency_format = ""
 		this.ctrl.merchant_tag.data_scale = ""
 		this.ctrl.merchant_tag.binding_name = "MERCHANT_TAG"
+		this.ctrl.merchant_tag.hide_label = false
 		this.ctrl.merchant_tag.depends_on = ""
 		this.ctrl.merchant_tag.placeholder = ""
 		this.ctrl.merchant_tag.dynamic_param = ""
@@ -183,6 +186,7 @@ focustoelement(){
 		this.ctrl.mcc.currency_format = ""
 		this.ctrl.mcc.data_scale = ""
 		this.ctrl.mcc.binding_name = "MCC"
+		this.ctrl.mcc.hide_label = false
 		this.ctrl.mcc.depends_on = ""
 		this.ctrl.mcc.placeholder = ""
 		this.ctrl.mcc.dynamic_param = ""
@@ -221,6 +225,7 @@ focustoelement(){
 		this.ctrl.mobile.currency_format = ""
 		this.ctrl.mobile.data_scale = ""
 		this.ctrl.mobile.binding_name = "MOBILE"
+		this.ctrl.mobile.hide_label = false
 		this.ctrl.mobile.depends_on = ""
 		this.ctrl.mobile.placeholder = ""
 		this.ctrl.mobile.dynamic_param = ""
@@ -259,6 +264,7 @@ focustoelement(){
 		this.ctrl.denomination.currency_format = ""
 		this.ctrl.denomination.data_scale = ""
 		this.ctrl.denomination.binding_name = "DENOMINATION"
+		this.ctrl.denomination.hide_label = false
 		this.ctrl.denomination.depends_on = ""
 		this.ctrl.denomination.placeholder = ""
 		this.ctrl.denomination.dynamic_param = ""
@@ -275,6 +281,44 @@ focustoelement(){
 		this.ctrl.denomination.ctrl_id = "npss_sm_merchant_details_srch_denomination"
 		this.ctrl.npss_sm_merchant_details_srch_denomination = {}
 		this.ctrl.npss_sm_merchant_details_srch_denomination.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of memory26
+		this.ctrl.memory26 = {}
+		this.ctrl.memory26.id = "RN41CN8"
+		this.ctrl.memory26.desc = "Created Date"
+		this.ctrl.memory26.visible = false
+		this.ctrl.memory26.label_name = "Created Date"
+		this.ctrl.memory26.df_code = "DF_1304_1666846276198"
+		this.ctrl.memory26.df_description = "Column Group 1"
+		this.ctrl.memory26.uictrl_code = "CDN_DATE"
+		this.ctrl.memory26.target_column = "memory26"
+		this.ctrl.memory26.data_type = "DATETIME"
+		this.ctrl.memory26.data_length = 0
+		this.ctrl.memory26.zone_df_code = "DF_1304_1666846276198"
+		this.ctrl.memory26.default_value = "setcurrentdate(),{}"
+		this.ctrl.memory26.is_memory_ctrl = "Y"
+		this.ctrl.memory26.field_coordinates = ""
+		this.ctrl.memory26.sub_details = ""
+		this.ctrl.memory26.accept_char = ""
+		this.ctrl.memory26.currency_format = ""
+		this.ctrl.memory26.data_scale = ""
+		this.ctrl.memory26.binding_name = "CREATED_DATE"
+		this.ctrl.memory26.depends_on = ""
+		this.ctrl.memory26.placeholder = ""
+		this.ctrl.memory26.dynamic_param = ""
+		this.ctrl.memory26.style_code = ""
+		this.ctrl.memory26.data_source = ""
+		this.ctrl.memory26.image_association = ""
+		this.ctrl.memory26.show = true
+		this.ctrl.memory26.sub_content = ""
+		this.ctrl.memory26.required = false
+		this.ctrl.memory26.vld_rules = []
+		this.ctrl.memory26.targetcolumn_lower = "memory26"
+		this.ctrl.memory26.disabled = false
+		this.ctrl.memory26.view_name = "f_npss_sm_merchant_details_srch"
+		this.ctrl.memory26.ctrl_id = "npss_sm_merchant_details_srch_memory26"
+		this.ctrl.npss_sm_merchant_details_srch_memory26 = {}
+		this.ctrl.npss_sm_merchant_details_srch_memory26.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of vat_number
 		this.ctrl.vat_number = {}
@@ -297,6 +341,7 @@ focustoelement(){
 		this.ctrl.vat_number.currency_format = ""
 		this.ctrl.vat_number.data_scale = ""
 		this.ctrl.vat_number.binding_name = "VAT_NUMBER"
+		this.ctrl.vat_number.hide_label = false
 		this.ctrl.vat_number.depends_on = ""
 		this.ctrl.vat_number.placeholder = ""
 		this.ctrl.vat_number.dynamic_param = ""
@@ -313,7 +358,7 @@ focustoelement(){
 		this.ctrl.vat_number.ctrl_id = "npss_sm_merchant_details_srch_vat_number"
 		this.ctrl.npss_sm_merchant_details_srch_vat_number = {}
 		this.ctrl.npss_sm_merchant_details_srch_vat_number.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_sm_merchant_details_srch.model = {"BANKUSERID":"","MERCHANT_NAME":"","MERCHANT_TAG":"","MCC":"","MOBILE":"","DENOMINATION":"","VAT_NUMBER":""}
+		this.screen_instance[this.comp_id].f_npss_sm_merchant_details_srch.model = {"BANKUSERID":"","MERCHANT_NAME":"","MERCHANT_TAG":"","MCC":"","MOBILE":"","DENOMINATION":"","MEMORY26":"setcurrentdate(),{}","VAT_NUMBER":""}
 		this.screen_instance[this.comp_id].f_npss_sm_merchant_details_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_TAG"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MCC"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DENOMINATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VAT_NUMBER"}]
 		this.screen_instance[this.comp_id].f_npss_sm_merchant_details_srch.dt_code = "dt_1304_1666846074129"
 		this.screen_instance[this.comp_id].f_npss_sm_merchant_details_srch.dtt_code = "dtt_1304_1666846129395"

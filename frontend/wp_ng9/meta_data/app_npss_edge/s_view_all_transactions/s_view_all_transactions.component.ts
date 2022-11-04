@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26809 
+Build ID        : 26817 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-04 6:59 AM 
+Modified Date   : 2022-Nov-04 10:26 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_transactions
@@ -62,15 +62,13 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 	view_transaction_details : any = {}
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
-	navigation_ui_view_detail : any = {}
 	navigation_ui_refund : any = {}
-	navigation_ui_retry : any = {}
-	navigation_ui_already_posted : any = {}
 	navigation_ui_view_response : any = {}
 	navigation_ui_view_request : any = {}
-	navigation_ui_reset : any = {}
 	navigation_ui_view_log_history : any = {}
+	navigation_ui_reset : any = {}
 	navigation_ui_trgr_disable_btn : any = {}
+	navigation_ui_view_detail : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -148,15 +146,6 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_search.role = []
 		this.navigation_ui_search.action = ""
 		
-		// "View Detail" Button of "Navigation UI" component
-		this.navigation_ui_view_detail.label_name = "View Detail"
-		this.navigation_ui_view_detail.show = true
-		this.navigation_ui_view_detail.disabled = true
-		this.navigation_ui_view_detail.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.navigation_ui_view_detail.dynamic_param = {}
-		this.navigation_ui_view_detail.role = []
-		this.navigation_ui_view_detail.action = ""
-		
 		// "Refund" Button of "Navigation UI" component
 		this.navigation_ui_refund.label_name = "Refund"
 		this.navigation_ui_refund.show = true
@@ -165,24 +154,6 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_refund.dynamic_param = {}
 		this.navigation_ui_refund.role = []
 		this.navigation_ui_refund.action = ""
-		
-		// "Retry" Button of "Navigation UI" component
-		this.navigation_ui_retry.label_name = "Retry"
-		this.navigation_ui_retry.show = true
-		this.navigation_ui_retry.disabled = false
-		this.navigation_ui_retry.params = {"icon_only":false,"uicgcc_style":"fa fa-exchange"}
-		this.navigation_ui_retry.dynamic_param = {}
-		this.navigation_ui_retry.role = []
-		this.navigation_ui_retry.action = ""
-		
-		// "Already Posted" Button of "Navigation UI" component
-		this.navigation_ui_already_posted.label_name = "Already Posted"
-		this.navigation_ui_already_posted.show = true
-		this.navigation_ui_already_posted.disabled = false
-		this.navigation_ui_already_posted.params = {"icon_only":false,"uicgcc_style":"fa fa-bullhorn"}
-		this.navigation_ui_already_posted.dynamic_param = {}
-		this.navigation_ui_already_posted.role = []
-		this.navigation_ui_already_posted.action = ""
 		
 		// "View Response" Button of "Navigation UI" component
 		this.navigation_ui_view_response.label_name = "View Response"
@@ -202,15 +173,6 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_request.role = []
 		this.navigation_ui_view_request.action = ""
 		
-		// "Reset" Button of "Navigation UI" component
-		this.navigation_ui_reset.label_name = "Reset"
-		this.navigation_ui_reset.show = true
-		this.navigation_ui_reset.disabled = false
-		this.navigation_ui_reset.params = {"icon_only":false,"uicgcc_style":"fa fa-recycle"}
-		this.navigation_ui_reset.dynamic_param = {}
-		this.navigation_ui_reset.role = []
-		this.navigation_ui_reset.action = ""
-		
 		// "View Log History" Button of "Navigation UI" component
 		this.navigation_ui_view_log_history.label_name = "View Log History"
 		this.navigation_ui_view_log_history.show = true
@@ -220,6 +182,15 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_log_history.role = []
 		this.navigation_ui_view_log_history.action = ""
 		
+		// "Reset" Button of "Navigation UI" component
+		this.navigation_ui_reset.label_name = "Reset"
+		this.navigation_ui_reset.show = true
+		this.navigation_ui_reset.disabled = false
+		this.navigation_ui_reset.params = {"icon_only":false,"uicgcc_style":"fa fa-recycle"}
+		this.navigation_ui_reset.dynamic_param = {}
+		this.navigation_ui_reset.role = []
+		this.navigation_ui_reset.action = ""
+		
 		// "Trgr Disable Btn" Button of "Navigation UI" component
 		this.navigation_ui_trgr_disable_btn.label_name = "Trgr Disable Btn"
 		this.navigation_ui_trgr_disable_btn.show = true
@@ -228,6 +199,15 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_trgr_disable_btn.dynamic_param = {}
 		this.navigation_ui_trgr_disable_btn.role = []
 		this.navigation_ui_trgr_disable_btn.action = ""
+		
+		// "View Detail" Button of "Navigation UI" component
+		this.navigation_ui_view_detail.label_name = "View Detail"
+		this.navigation_ui_view_detail.show = true
+		this.navigation_ui_view_detail.disabled = true
+		this.navigation_ui_view_detail.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_ui_view_detail.dynamic_param = {}
+		this.navigation_ui_view_detail.role = []
+		this.navigation_ui_view_detail.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -485,6 +465,7 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		this.page_load__de_for_req_btn()
 		this.page_load__de_for_res_btn()
 		this.page_load__hide_trigger_btn()
+		this.page_load__he_for_refund_btn()
 	}
 
 	//Handler for INTERNAL event of "cc for show hide queue"
@@ -773,6 +754,27 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1666246019332"
 		let event_params={"caller_name":"page_load__hide_trigger_btn","event_desc":"Hide Trigger btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_refund_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_refund"
+		let parent_source_id=""
+		let event_code="e_1667556219374"
+		let event_params={"caller_name":"page_load__he_for_refund_btn","event_desc":"HE for refund btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}

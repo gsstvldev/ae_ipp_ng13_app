@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26811 
+Build ID        : 26817 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-04 7:20 AM 
+Modified Date   : 2022-Nov-04 10:26 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -191,6 +191,9 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 	page_load(){
 		this.page_load__cf_for_pageload()
 		this.page_load__cc_for_show_hide_btn()
+		this.page_load__he_for_call_cc_posting()
+		this.page_load__he_for_call_enquiry()
+		this.page_load__he_for_call_t24_posting()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
@@ -349,6 +352,69 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_call_cc_posting() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_call_cc_posting"
+		let parent_source_id=""
+		let event_code="e_1667555913276"
+		let event_params={"caller_name":"page_load__he_for_call_cc_posting","event_desc":"HE for call cc posting","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_call_enquiry() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_call_enquiry"
+		let parent_source_id=""
+		let event_code="e_1667555947204"
+		let event_params={"caller_name":"page_load__he_for_call_enquiry","event_desc":"HE for call enquiry","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_call_t24_posting() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_call_t24_posting"
+		let parent_source_id=""
+		let event_code="e_1667555981812"
+		let event_params={"caller_name":"page_load__he_for_call_t24_posting","event_desc":"HE for call T24 posting","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26811 
+Build ID        : 26815 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-04 7:20 AM 
+Modified Date   : 2022-Nov-04 10:26 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_investigation
@@ -171,6 +171,7 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 	page_load(){
 		this.page_load__cf_for_pageload()
 		this.page_load__cc_for_show_hide_btn()
+		this.page_load__he_for_initiate()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
@@ -299,6 +300,27 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_initiate() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_initiate"
+		let parent_source_id=""
+		let event_code="e_1667555863965"
+		let event_params={"caller_name":"page_load__he_for_initiate","event_desc":"HE for initiate","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

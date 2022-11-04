@@ -57,7 +57,7 @@ app.post('/', function(appRequest, appResponse, next) {
                        var ApitrnId
                        var app_id
                        try {
-                           var urlqry = `select  api_url from core_api_master_rule_setup where api_code='NPSS_REJECT_PACK002'`
+                           var urlqry = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
                            var seltranqry = `select * from npss_transactions where npsst_id='${params.Id}'`
                            var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'`
                            var selplqry=`select tpl.cbuae_return_code,crn.return_description from npss_trn_process_log tpl inner join core_nc_return_codes crn on  tpl.cbuae_return_code=crn.return_code where npsstpl_id='${params.tpl_id}'`
@@ -69,7 +69,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                    success_status = result[0].success_status;
                                    ExecuteQuery1(urlqry, function (urlresult) {
                                        if (urlresult.length > 0) {
-                                           api_url = urlresult[0].api_url;
+                                           api_url = urlresult[0].param_detail;
                                            ExecuteQuery1(seltranqry, function (tranresult) {
                                                if (tranresult.length > 0) {
                                                    ExecuteQuery1(selplqry, function (tplresult) {

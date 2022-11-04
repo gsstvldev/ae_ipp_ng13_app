@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26817 
+Build ID        : 26825 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-04 10:26 AM 
+Modified Date   : 2022-Nov-04 13:39 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -13,13 +13,14 @@ Screen Name     : s_rct_posting_suspicious
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
-import {npss_cs_posting_processService} from '../../../custom_widget/npss_cs_posting_process/npss_cs_posting_process.service'
+import {npss_cs_t24_postingService} from '../../../custom_widget/npss_cs_t24_posting/npss_cs_t24_posting.service'
+import {npss_cs_cc_postingService} from '../../../custom_widget/npss_cs_cc_posting/npss_cs_cc_posting.service'
 
 @Component({
 	selector: 's_rct_posting_suspicious',
 	templateUrl: './s_rct_posting_suspicious.component.html',
 	styleUrls: ['./s_rct_posting_suspicious.component.css'],
-	providers:[torus_cs_show_hideService,npss_cs_posting_processService]
+	providers:[torus_cs_show_hideService,npss_cs_t24_postingService,npss_cs_cc_postingService]
 })
     
 // Start of class 
@@ -57,7 +58,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_posting_processService:npss_cs_posting_processService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_t24_postingService:npss_cs_t24_postingService,private npss_cs_cc_postingService:npss_cs_cc_postingService) {
     
 	}
     
@@ -842,7 +843,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_posting_processService.fn_npss_cs_posting_process(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_t24_postingService.fn_npss_cs_t24_posting(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -907,7 +908,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_posting_processService.fn_npss_cs_posting_process(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_cc_postingService.fn_npss_cs_cc_posting(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -972,7 +973,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_posting_processService.fn_npss_cs_posting_process(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_cc_postingService.fn_npss_cs_cc_posting(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

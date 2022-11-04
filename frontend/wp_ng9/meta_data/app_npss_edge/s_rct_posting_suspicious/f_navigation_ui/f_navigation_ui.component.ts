@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26817 
+Build ID        : 26825 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-04 10:26 AM 
+Modified Date   : 2022-Nov-04 13:39 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious

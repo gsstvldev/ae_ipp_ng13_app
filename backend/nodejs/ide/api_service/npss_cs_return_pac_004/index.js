@@ -55,7 +55,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                             var TakeStsPsts = `select * from npss_transactions where npsst_id = '${params.Tran_Id}'`
                             var TakeReasonCode = `select cbuae_return_code from npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
                             var TakeFinalStatus = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.Rule_Code}' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                            var TakeapiUrl = `select api_url  from CORE_API_MASTER_RULE_SETUP where api_code =  'NPSS_RETURN_PACK004'`
+                           var TakeapiUrl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_RETURN_PACK004' and param_code = 'URL'`
                             ExecuteQuery1(TakeapiUrl, function (arrUrl) {
                                 if (arrUrl.length > 0) {
                                     ExecuteQuery1(TakeStsPsts, function (arrresult) {
@@ -124,7 +124,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 try {
                                     var request = require('request');
                                     var apiURL =
-                                        apiURL = arrUrl[0].api_url; // apiURL + apiName
+                                        apiURL = arrUrl[0].param_detail; // apiURL + apiName
                                     var options = {
                                         url: apiURL,
                                         timeout: 99999999,

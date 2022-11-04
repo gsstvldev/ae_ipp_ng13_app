@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26809 
+Build ID        : 26814 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-04 6:59 AM 
+Modified Date   : 2022-Nov-04 7:52 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_transaction_details
@@ -31,7 +31,7 @@ export class s_bct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
-	current_profile : string = "p_view_history_layout"
+	current_profile : string = "p_main_layout"
 	uicgc_1 : string = "transaction_list"
 	uicgc_2 : string = "view_transaction_details"
 	uicgc_3 : string = "navigation_ui"

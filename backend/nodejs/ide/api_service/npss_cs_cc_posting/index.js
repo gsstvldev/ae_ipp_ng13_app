@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+
     
 
 try {
@@ -25,6 +26,7 @@ try {
     var params = appRequest.body.PARAMS; //  Client input fromm Server
     var headers = appRequest.headers; // header details 
     var objSessionLogInfo = null; // set value is null
+var xml2js = require('xml2js');
     var mTranConn = "";
     var addquery = "";
     
@@ -64,11 +66,20 @@ try {
                                 var url = arrurlResult[0].param_detail;
                                 ExecuteQuery1(take_api_params, function (arrprocesslog) {
                                     if (arrprocesslog.length) {
+console.log('................',arrprocesslog[0])
+                                        var lclinstrm
+                                        var parser = new xml2js.Parser({ strict: false, trim: true });
+                                        parser.parseString(arrprocesslog[0].message_data, function (err, result) {
+                                            
+                                             lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
+                                                                                                   
+                                        });
+console.log('................',lclinstrm)
                                         ExecuteQuery1(take_batch_name, function (arrbatchname) {
                                             if (arrbatchname.length) {
                                                 var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code from core_nc_cbs_accounts where alternate_account_id = '${arrprocesslog[0].cdtr_iban}'`
                                                 ExecuteQuery1(TakeAcctInf, function (arrActInf) {
-                                                    fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf, function (result) {
+                                                    fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf,lclinstrm, function (result) {
                                                         if (result) {
                                                             sendResponse(null, result)
                                                         } else {
@@ -109,7 +120,7 @@ try {
 
 
                         // Do API Call for Service 
-                        function fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf, callbackapi) {
+                        function fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf,lclinstrm, callbackapi) {
                             try {
                                 var apiName = 'NPSS CC posting'
                                 var request = require('request');
@@ -137,7 +148,7 @@ try {
                                                 "category_purpose_prty": arrprocesslog[0].category_purpose_prty,
                                                 "ext_purpose_code": arrprocesslog[0].ext_purpose_code,
                                                 "ext_purpose_prty": arrprocesslog[0].ext_purpose_prty,
-                                                "lclinstrm": arrprocesslog[0].lclinstrm,
+                                                "lclinstrm": lclinstrm,
                                                 "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur,
                                                 "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt,
                                                 "dbtr_iban": arrprocesslog[0].dbtr_iban,
@@ -246,6 +257,8 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
+
 
 
 

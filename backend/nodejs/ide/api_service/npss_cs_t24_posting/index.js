@@ -176,7 +176,9 @@ try {
                                                 "request_data_json": ""
                                             }
                                         }
-                                    }
+                                    },  headers: {
+                                              'Content-Type': 'application/json'
+                                            }
                                 }
 
 

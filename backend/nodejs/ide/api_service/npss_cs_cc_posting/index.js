@@ -138,6 +138,7 @@ try {
                                     timeout: 18000000,
                                     method: 'POST',
                                     json: {
+                                    "kafka_queue_name":arrbatchname[0].param_detail,
                                         "batch_name": arrbatchname[0].param_detail,
                                         "data": {
                                             "payload": {

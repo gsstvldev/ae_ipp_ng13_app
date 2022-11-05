@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26835 
+Build ID        : 26836 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-05 9:5 AM 
+Modified Date   : 2022-Nov-05 11:21 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -21,6 +21,7 @@ import { SharedModule } from '../../../shared/shared.module'
 
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_cs_t24_postingModule} from '../../../custom_widget/npss_cs_t24_posting/npss_cs_t24_posting.module'
+import {npss_cs_enquiryModule} from '../../../custom_widget/npss_cs_enquiry/npss_cs_enquiry.module'
 import {npss_cs_cc_postingModule} from '../../../custom_widget/npss_cs_cc_posting/npss_cs_cc_posting.module'
 
 import {DialogModule} from 'primeng/dialog';
@@ -52,7 +53,7 @@ import { f_npss_investigation_srchComponent } from './f_npss_investigation_srch/
     OverlayPanelModule,
     
     s_rct_posting_suspiciousRoutingModule,
-    torus_cs_show_hideModule,npss_cs_t24_postingModule,npss_cs_cc_postingModule
+    torus_cs_show_hideModule,npss_cs_t24_postingModule,npss_cs_enquiryModule,npss_cs_cc_postingModule
   ],
   declarations: [s_rct_posting_suspiciousComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_investigation_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]

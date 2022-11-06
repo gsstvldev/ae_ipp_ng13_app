@@ -7,10 +7,11 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 try {
     /*   Created By : Siva Harish
-    Created Date :5-11-2022
+    Created Date :6-11-2022
     Modified By : 
     Modified Date :     
     Reason for : 
@@ -24,6 +25,7 @@ try {
     var params = appRequest.body.PARAMS; //  Client input fromm Server
     var headers = appRequest.headers; // header details 
     var objSessionLogInfo = null; // set value is null
+    var xml2js = require('xml2js');
     var mTranConn = "";
     var addquery = "";
     var objresponse = {
@@ -61,9 +63,16 @@ try {
                                 ExecuteQuery1(take_api_params, function (arrprocesslog) {
 
                                     if (arrprocesslog.length) {
+                                     var lclinstrm
+                                        var parser = new xml2js.Parser({ strict: false, trim: true });
+                                        parser.parseString(arrprocesslog[0].message_data, function (err, result) {
+                                            
+                                             lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
+                                                                                                   
+                                        });
                                         ExecuteQuery1(take_batch_name, function (arrbatchname) {
                                             if (arrbatchname.length) {
-                                                fn_doapicall(url, arrprocesslog, arrbatchname, function (result) {
+                                                fn_doapicall(url, arrprocesslog, arrbatchname,lclinstrm, function (result) {
                                                     if (result) {
                                                         sendResponse(null, result)
                                                     } else {
@@ -103,7 +112,7 @@ try {
 
 
                         // Do API Call for Service 
-                        function fn_doapicall(url, arrprocesslog, arrbatchname,arrRefno, callbackapi) {
+                        function fn_doapicall(url, arrprocesslog, arrbatchname,lclinstrm, callbackapi) {
                             try {
                                 var apiName = 'NPSS Enquiry'
                                 var request = require('request');
@@ -131,7 +140,7 @@ try {
                                                 "category_purpose_prty": arrprocesslog[0].category_purpose_prty,
                                                 "ext_purpose_code": arrprocesslog[0].ext_purpose_code,
                                                 "ext_purpose_prty": arrprocesslog[0].ext_purpose_prty,
-                                                "lclinstrm": arrprocesslog[0].lclinstrm,
+                                                "lclinstrm": lclinstrm,
                                                 "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur,
                                                 "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt,
                                                 "dbtr_iban": arrprocesslog[0].dbtr_iban,
@@ -149,7 +158,8 @@ try {
                                                 "process": "",
                                                 "process_name": "CC Enquiry",
                                                 "cr_acct_identification": arrprocesslog[0].cr_acct_identification,
-                                                "cr_acct_id_code": arrprocesslog[0].cr_acct_id_code
+                                                "cr_acct_id_code": arrprocesslog[0].cr_acct_id_code,
+                                                "remittance_information":arrprocesslog[0].remittance_info
                                                
 
                                             }
@@ -232,6 +242,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_CUSTOMER_ACCOUNTS add column NPSSCP_ID INTEGER;","params" : [] },{"query" : "alter table NPSS_MERCHANT_ACCOUNTS add column NPSSMP_ID INTEGER;","params" : [] },{"query" : "alter table NPSS_MERCHANT_SHOPS add column NPSSMP_ID INTEGER;","params" : [] },{"query" : "alter table NPSS_MERCHANT_CASHDESK add column NPSSMS_ID INTEGER;","params" : [] }]

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26837 
+Build ID        : 26853 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-05 11:19 AM 
+Modified Date   : 2022-Nov-09 6:41 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_transaction_details
@@ -576,13 +576,13 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	}
 
 	//Handler for INTERNAL event of "svm for response json"
-	svm_for_response_json__internal(){
-		this.svm_for_response_json__bvm_for_response_json__response_ui()
+	svm_for_response_json__internal(parent_event_result){
+		this.svm_for_response_json__bvm_for_response_json__response_ui(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "svm for pll"
-	svm_for_pll__internal(){
-		this.svm_for_pll__bvm_for_rjson__request_ui()
+	svm_for_pll__internal(parent_event_result){
+		this.svm_for_pll__bvm_for_rjson__request_ui(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1811,14 +1811,15 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	} 
 
 	//Handler for INTERNAL event of "svm for response json"
-	svm_for_response_json__bvm_for_response_json__response_ui() { 
+	svm_for_response_json__bvm_for_response_json__response_ui(parent_event_result) { 
 		let Dest_Is_ctrl=true
-		
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
 		let source_id="svm_for_response_json"
 		let destn_id="response_ui_memory11"
 		let parent_source_id=""
 		let event_code="e_1666181314606"
-		let event_params={"destn_comp_id":"response_ui","destn_ctrl_id":"memory11","caller_name":"svm_for_response_json__bvm_for_response_json__response_ui","event_desc":"BVM for Response JSON","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{}}
+		let event_params={"destn_comp_id":"response_ui","destn_ctrl_id":"memory11","caller_name":"svm_for_response_json__bvm_for_response_json__response_ui","event_desc":"BVM for Response JSON","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_value_from_memory"
 		let internals=""
 		let event_data={"control":{"e_1666181314606":{"dts":{"dt_1304_1665901130705":{"dtts":{"dtt_1304_1665905039255":{"uicgc_code":"CONTROL","event_code":"E_1666181314606","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[],"get_from_memory":[{"level":"MI_LEVEL","value":"MI_LEVEL_RESPONSE_DATA_JSON","tb_data":"Y","column":"RESPONSE_DATA_JSON","d3name":""}],"set_event_context":null,"sec_value":null}}}}}}}}
@@ -1832,14 +1833,15 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	} 
 
 	//Handler for INTERNAL event of "svm for pll"
-	svm_for_pll__bvm_for_rjson__request_ui() { 
+	svm_for_pll__bvm_for_rjson__request_ui(parent_event_result) { 
 		let Dest_Is_ctrl=true
-		
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
 		let source_id="svm_for_pll"
 		let destn_id="request_ui_memory10"
 		let parent_source_id=""
 		let event_code="e_1666181091776"
-		let event_params={"destn_comp_id":"request_ui","destn_ctrl_id":"memory10","caller_name":"svm_for_pll__bvm_for_rjson__request_ui","event_desc":"BVM For RJSON","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{}}
+		let event_params={"destn_comp_id":"request_ui","destn_ctrl_id":"memory10","caller_name":"svm_for_pll__bvm_for_rjson__request_ui","event_desc":"BVM For RJSON","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_value_from_memory"
 		let internals=""
 		let event_data={"control":{"e_1666181091776":{"dts":{"dt_1304_1665901130705":{"dtts":{"dtt_1304_1665905039255":{"uicgc_code":"CONTROL","event_code":"E_1666181091776","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[],"get_from_memory":[{"level":"MI_LEVEL","value":"MI_LEVEL_REQUEST_DATA_JSON","tb_data":"Y","column":"REQUEST_DATA_JSON","d3name":""}],"set_event_context":null,"sec_value":null}}}}}}}}

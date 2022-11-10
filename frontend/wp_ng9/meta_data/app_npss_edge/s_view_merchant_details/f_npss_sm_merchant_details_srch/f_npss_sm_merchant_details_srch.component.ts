@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26843 
+Build ID        : 26864 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-07 10:43 AM 
+Modified Date   : 2022-Nov-10 13:34 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -303,6 +303,7 @@ focustoelement(){
 		this.ctrl.memory26.currency_format = ""
 		this.ctrl.memory26.data_scale = ""
 		this.ctrl.memory26.binding_name = "CREATED_DATE"
+		this.ctrl.memory26.hide_label = false
 		this.ctrl.memory26.depends_on = ""
 		this.ctrl.memory26.placeholder = ""
 		this.ctrl.memory26.dynamic_param = ""

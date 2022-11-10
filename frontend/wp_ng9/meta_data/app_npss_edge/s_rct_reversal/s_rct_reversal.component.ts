@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26837 
+Build ID        : 26864 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-05 11:19 AM 
+Modified Date   : 2022-Nov-10 13:33 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -303,6 +303,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.page_load__de_for_return()
 		this.page_load__de_for_approve()
 		this.page_load__de_for_accept()
+		this.page_load__he_for_review_btn()
 	}
 
 	//Handler for INTERNAL event of "create form"
@@ -615,6 +616,27 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_review_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_review"
+		let parent_source_id=""
+		let event_code="e_1667991462999"
+		let event_params={"caller_name":"page_load__he_for_review_btn","event_desc":"HE for review btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

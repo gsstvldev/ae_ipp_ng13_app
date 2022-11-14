@@ -667,17 +667,37 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
-        $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
         $DQ$NAME$DQ$: $DQ$DBTR_ACCT_NO$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$CDTR_ACCT_NO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$DBTR_ACCT_NAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CDTR_ACCT_NAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BASE_AMOUNT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PAYMENT_ENDTOEND_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
@@ -688,21 +708,6 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$BASE_CURRENCY$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$BASE_AMOUNT$DQ$,
-        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$CDTR_ACCT_NO$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$CDTR_ACCT_NAME$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
@@ -758,11 +763,6 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$HDR_CLEARING_SYSTEM$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$PAYMENT_ENDTOEND_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },

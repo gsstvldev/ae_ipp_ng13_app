@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26873 
+Build ID        : 26874 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-15 4:21 AM 
+Modified Date   : 2022-Nov-15 7:16 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_transaction_details
@@ -54,7 +54,7 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	btl_1304_1666009903061 : string = "p_vertical_layout"
 	btl_1304_1666009819055 : string = "p_main_layout"
 	forms : any = ["uicgc_8","uicgc_11","uicgc_4","uicgc_12","uicgc_9","uicgc_5","uicgc_10","uicgc_3"]
-	p_search_layout__spap_for_search_showpopup : boolean = false
+	p_search_layout__spap_for_searchs_showpopup : boolean = false
 	transaction_list : any = {}
 	view_transaction_details : any = {}
 	navigation_ui : any = {}
@@ -471,7 +471,7 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui search"
 	navigation_ui_search__action_button_click(){
-		this.navigation_ui_search__spap_for_search()
+		this.navigation_ui_search__spap_for_searchs()
 		this.navigation_ui_search__cui_for_navigation_search()
 	}
 
@@ -1091,14 +1091,14 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui search"
-	navigation_ui_search__spap_for_search() { 
+	navigation_ui_search__spap_for_searchs() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_ui_search"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1666010219246"
-		let event_params={"caller_name":"navigation_ui_search__spap_for_search","event_desc":"SPAP for search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_search","selector":"p_search_layout","profile_code":"BTL_1304_1666010003163","window_title":"Search","window_height":400,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_search","eventcode":"E_1666010219246"}}
+		let event_params={"caller_name":"navigation_ui_search__spap_for_searchs","event_desc":"SPAP for searchs","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_searchs","selector":"p_search_layout","profile_code":"BTL_1304_1666010003163","window_title":"Search","window_height":"","window_width":"auto","window_close_icon":"Y","eventdes":"spap_for_searchs","eventcode":"E_1666010219246"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}

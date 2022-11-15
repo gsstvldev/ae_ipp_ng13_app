@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26871 
+Build ID        : 26874 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-14 14:39 PM 
+Modified Date   : 2022-Nov-15 7:16 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -51,6 +51,8 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 	navigation_ui_search : any = {}
 	navigation_ui_call_enquiry : any = {}
 	navigation_ui_call_t24_posting : any = {}
+	navigation_ui_retry : any = {}
+	navigation_ui_already_post : any = {}
 	navigation_ui_call_cc_posting : any = {}
 	search : any = {}
 	search_search : any = {}
@@ -129,6 +131,24 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_call_t24_posting.dynamic_param = {}
 		this.navigation_ui_call_t24_posting.role = []
 		this.navigation_ui_call_t24_posting.action = ""
+		
+		// "Retry" Button of "Navigation UI" component
+		this.navigation_ui_retry.label_name = "Retry"
+		this.navigation_ui_retry.show = true
+		this.navigation_ui_retry.disabled = false
+		this.navigation_ui_retry.params = {"icon_only":false,"uicgcc_style":"fa fa-refresh"}
+		this.navigation_ui_retry.dynamic_param = {}
+		this.navigation_ui_retry.role = []
+		this.navigation_ui_retry.action = ""
+		
+		// "Already Post" Button of "Navigation UI" component
+		this.navigation_ui_already_post.label_name = "Already Post"
+		this.navigation_ui_already_post.show = true
+		this.navigation_ui_already_post.disabled = false
+		this.navigation_ui_already_post.params = {"icon_only":false,"uicgcc_style":"fa fa-gg"}
+		this.navigation_ui_already_post.dynamic_param = {}
+		this.navigation_ui_already_post.role = []
+		this.navigation_ui_already_post.action = ""
 		
 		// "Call CC Posting" Button of "Navigation UI" component
 		this.navigation_ui_call_cc_posting.label_name = "Call CC Posting"

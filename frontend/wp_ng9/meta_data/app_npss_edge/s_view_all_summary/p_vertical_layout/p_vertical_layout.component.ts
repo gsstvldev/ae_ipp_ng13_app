@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26870 
+Build ID        : 26884 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-15 10:11 AM 
+Modified Date   : 2022-Nov-15 10:49 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_summary
@@ -32,7 +32,7 @@ export class p_vertical_layoutComponent implements OnInit {
   // Page Init 
   ngOnInit() {
     	this.view_transaction_detail.desc = "View Transaction Detail"
-		this.view_transaction_detail.need_header = ""
+		this.view_transaction_detail.need_header = true
 		this.back_ui.desc = "Back UI"
 		this.back_ui.need_header = ""
 	

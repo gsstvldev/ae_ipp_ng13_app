@@ -1,0 +1,12 @@
+<div class="s_iban_transaction_details">
+<p_view_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_history_layout')"></p_view_history_layout>
+<p_view_response_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_response_layout')"></p_view_response_layout>
+<p_view_request_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_request_layout')"></p_view_request_layout>
+<p_refund_layout [screen_instance]="this" [hidden]="!(current_profile=='p_refund_layout')"></p_refund_layout>
+<p_vertical_layout [screen_instance]="this" [hidden]="!(current_profile=='p_vertical_layout')"></p_vertical_layout>
+<p_main_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_layout')"></p_main_layout>
+
+<p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_for_searchs_showpopup" [contentStyle]="{'overflow-y': 'auto','width': 'auto'}" [draggable]="true" [modal]="true">
+	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>
+<app-dialog [screen_instance]="this" ></app-dialog>
+</div>

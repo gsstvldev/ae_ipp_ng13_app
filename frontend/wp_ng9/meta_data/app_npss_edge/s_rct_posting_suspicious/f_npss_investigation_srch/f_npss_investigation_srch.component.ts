@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26839 
+Build ID        : 26871 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-14 10:32 AM 
+Modified Date   : 2022-Nov-14 14:39 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -321,45 +321,6 @@ focustoelement(){
 		this.ctrl.npss_investigation_srch_payment_endtoend_id = {}
 		this.ctrl.npss_investigation_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of cdtr_phone_no
-		this.ctrl.cdtr_phone_no = {}
-		this.ctrl.cdtr_phone_no.id = "RN11CN3"
-		this.ctrl.cdtr_phone_no.desc = "Creditor Mobile No"
-		this.ctrl.cdtr_phone_no.visible = true
-		this.ctrl.cdtr_phone_no.label_name = "Creditor Mobile No"
-		this.ctrl.cdtr_phone_no.df_code = "DF_1304_1665901396659"
-		this.ctrl.cdtr_phone_no.df_description = "Column Group 1"
-		this.ctrl.cdtr_phone_no.uictrl_code = "TXT"
-		this.ctrl.cdtr_phone_no.target_column = "CDTR_PHONE_NO"
-		this.ctrl.cdtr_phone_no.data_type = "TEXT"
-		this.ctrl.cdtr_phone_no.data_length = 64
-		this.ctrl.cdtr_phone_no.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.cdtr_phone_no.default_value = ""
-		this.ctrl.cdtr_phone_no.is_memory_ctrl = ""
-		this.ctrl.cdtr_phone_no.field_coordinates = ""
-		this.ctrl.cdtr_phone_no.sub_details = ""
-		this.ctrl.cdtr_phone_no.accept_char = ""
-		this.ctrl.cdtr_phone_no.currency_format = ""
-		this.ctrl.cdtr_phone_no.data_scale = ""
-		this.ctrl.cdtr_phone_no.binding_name = "CDTR_PHONE_NO"
-		this.ctrl.cdtr_phone_no.hide_label = false
-		this.ctrl.cdtr_phone_no.depends_on = ""
-		this.ctrl.cdtr_phone_no.placeholder = ""
-		this.ctrl.cdtr_phone_no.dynamic_param = ""
-		this.ctrl.cdtr_phone_no.style_code = ""
-		this.ctrl.cdtr_phone_no.data_source = ""
-		this.ctrl.cdtr_phone_no.image_association = ""
-		this.ctrl.cdtr_phone_no.show = true
-		this.ctrl.cdtr_phone_no.sub_content = ""
-		this.ctrl.cdtr_phone_no.required = false
-		this.ctrl.cdtr_phone_no.vld_rules = []
-		this.ctrl.cdtr_phone_no.targetcolumn_lower = "cdtr_phone_no"
-		this.ctrl.cdtr_phone_no.disabled = false
-		this.ctrl.cdtr_phone_no.view_name = "f_npss_investigation_srch"
-		this.ctrl.cdtr_phone_no.ctrl_id = "npss_investigation_srch_cdtr_phone_no"
-		this.ctrl.npss_investigation_srch_cdtr_phone_no = {}
-		this.ctrl.npss_investigation_srch_cdtr_phone_no.onChangecomponent = new EventEmitter<any>()
-	
 		//Properties of cdtr_acct_no
 		this.ctrl.cdtr_acct_no = {}
 		this.ctrl.cdtr_acct_no.id = "RN31CN7"
@@ -398,45 +359,6 @@ focustoelement(){
 		this.ctrl.cdtr_acct_no.ctrl_id = "npss_investigation_srch_cdtr_acct_no"
 		this.ctrl.npss_investigation_srch_cdtr_acct_no = {}
 		this.ctrl.npss_investigation_srch_cdtr_acct_no.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of cdtr_acct_name
-		this.ctrl.cdtr_acct_name = {}
-		this.ctrl.cdtr_acct_name.id = "RN31CN8"
-		this.ctrl.cdtr_acct_name.desc = "Cr Account Name"
-		this.ctrl.cdtr_acct_name.visible = true
-		this.ctrl.cdtr_acct_name.label_name = "Cr Account Name"
-		this.ctrl.cdtr_acct_name.df_code = "DF_1304_1665901396659"
-		this.ctrl.cdtr_acct_name.df_description = "Column Group 1"
-		this.ctrl.cdtr_acct_name.uictrl_code = "TXT"
-		this.ctrl.cdtr_acct_name.target_column = "CDTR_ACCT_NAME"
-		this.ctrl.cdtr_acct_name.data_type = "TEXT"
-		this.ctrl.cdtr_acct_name.data_length = 100
-		this.ctrl.cdtr_acct_name.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.cdtr_acct_name.default_value = ""
-		this.ctrl.cdtr_acct_name.is_memory_ctrl = ""
-		this.ctrl.cdtr_acct_name.field_coordinates = ""
-		this.ctrl.cdtr_acct_name.sub_details = ""
-		this.ctrl.cdtr_acct_name.accept_char = ""
-		this.ctrl.cdtr_acct_name.currency_format = ""
-		this.ctrl.cdtr_acct_name.data_scale = ""
-		this.ctrl.cdtr_acct_name.binding_name = "CDTR_ACCT_NAME"
-		this.ctrl.cdtr_acct_name.hide_label = false
-		this.ctrl.cdtr_acct_name.depends_on = ""
-		this.ctrl.cdtr_acct_name.placeholder = ""
-		this.ctrl.cdtr_acct_name.dynamic_param = ""
-		this.ctrl.cdtr_acct_name.style_code = ""
-		this.ctrl.cdtr_acct_name.data_source = ""
-		this.ctrl.cdtr_acct_name.image_association = ""
-		this.ctrl.cdtr_acct_name.show = true
-		this.ctrl.cdtr_acct_name.sub_content = ""
-		this.ctrl.cdtr_acct_name.required = false
-		this.ctrl.cdtr_acct_name.vld_rules = []
-		this.ctrl.cdtr_acct_name.targetcolumn_lower = "cdtr_acct_name"
-		this.ctrl.cdtr_acct_name.disabled = false
-		this.ctrl.cdtr_acct_name.view_name = "f_npss_investigation_srch"
-		this.ctrl.cdtr_acct_name.ctrl_id = "npss_investigation_srch_cdtr_acct_name"
-		this.ctrl.npss_investigation_srch_cdtr_acct_name = {}
-		this.ctrl.npss_investigation_srch_cdtr_acct_name.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of dbtr_acct_no
 		this.ctrl.dbtr_acct_no = {}
@@ -477,45 +399,6 @@ focustoelement(){
 		this.ctrl.npss_investigation_srch_dbtr_acct_no = {}
 		this.ctrl.npss_investigation_srch_dbtr_acct_no.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of dbtr_acct_name
-		this.ctrl.dbtr_acct_name = {}
-		this.ctrl.dbtr_acct_name.id = "RN41CN10"
-		this.ctrl.dbtr_acct_name.desc = "Dr Account Name"
-		this.ctrl.dbtr_acct_name.visible = true
-		this.ctrl.dbtr_acct_name.label_name = "Dr Account Name"
-		this.ctrl.dbtr_acct_name.df_code = "DF_1304_1665901396659"
-		this.ctrl.dbtr_acct_name.df_description = "Column Group 1"
-		this.ctrl.dbtr_acct_name.uictrl_code = "TXT"
-		this.ctrl.dbtr_acct_name.target_column = "DBTR_ACCT_NAME"
-		this.ctrl.dbtr_acct_name.data_type = "TEXT"
-		this.ctrl.dbtr_acct_name.data_length = 128
-		this.ctrl.dbtr_acct_name.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.dbtr_acct_name.default_value = ""
-		this.ctrl.dbtr_acct_name.is_memory_ctrl = ""
-		this.ctrl.dbtr_acct_name.field_coordinates = ""
-		this.ctrl.dbtr_acct_name.sub_details = ""
-		this.ctrl.dbtr_acct_name.accept_char = ""
-		this.ctrl.dbtr_acct_name.currency_format = ""
-		this.ctrl.dbtr_acct_name.data_scale = ""
-		this.ctrl.dbtr_acct_name.binding_name = "DBTR_ACCT_NAME"
-		this.ctrl.dbtr_acct_name.hide_label = false
-		this.ctrl.dbtr_acct_name.depends_on = ""
-		this.ctrl.dbtr_acct_name.placeholder = ""
-		this.ctrl.dbtr_acct_name.dynamic_param = ""
-		this.ctrl.dbtr_acct_name.style_code = ""
-		this.ctrl.dbtr_acct_name.data_source = ""
-		this.ctrl.dbtr_acct_name.image_association = ""
-		this.ctrl.dbtr_acct_name.show = true
-		this.ctrl.dbtr_acct_name.sub_content = ""
-		this.ctrl.dbtr_acct_name.required = false
-		this.ctrl.dbtr_acct_name.vld_rules = []
-		this.ctrl.dbtr_acct_name.targetcolumn_lower = "dbtr_acct_name"
-		this.ctrl.dbtr_acct_name.disabled = false
-		this.ctrl.dbtr_acct_name.view_name = "f_npss_investigation_srch"
-		this.ctrl.dbtr_acct_name.ctrl_id = "npss_investigation_srch_dbtr_acct_name"
-		this.ctrl.npss_investigation_srch_dbtr_acct_name = {}
-		this.ctrl.npss_investigation_srch_dbtr_acct_name.onChangecomponent = new EventEmitter<any>()
-	
 		//Properties of intrbk_sttlm_amnt
 		this.ctrl.intrbk_sttlm_amnt = {}
 		this.ctrl.intrbk_sttlm_amnt.id = "RN41CN12"
@@ -554,8 +437,8 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_investigation_srch_intrbk_sttlm_amnt"
 		this.ctrl.npss_investigation_srch_intrbk_sttlm_amnt = {}
 		this.ctrl.npss_investigation_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_investigation_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","UETR":"","MEMORY67":"","TRAN_REF_ID":"","PAYMENT_ENDTOEND_ID":"","CDTR_PHONE_NO":"","CDTR_ACCT_NO":"","CDTR_ACCT_NAME":"","DBTR_ACCT_NO":"","DBTR_ACCT_NAME":"","INTRBK_STTLM_AMNT":""}
-		this.screen_instance[this.comp_id].f_npss_investigation_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
+		this.screen_instance[this.comp_id].f_npss_investigation_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","UETR":"","MEMORY67":"","TRAN_REF_ID":"","PAYMENT_ENDTOEND_ID":"","CDTR_ACCT_NO":"","DBTR_ACCT_NO":"","INTRBK_STTLM_AMNT":""}
+		this.screen_instance[this.comp_id].f_npss_investigation_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
 		this.screen_instance[this.comp_id].f_npss_investigation_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_investigation_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_investigation_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

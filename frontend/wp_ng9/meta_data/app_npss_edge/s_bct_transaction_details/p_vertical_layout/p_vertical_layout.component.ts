@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26874 
+Build ID        : 26897 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-15 7:16 AM 
+Modified Date   : 2022-Nov-16 8:12 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_transaction_details
@@ -23,7 +23,7 @@ export class p_vertical_layoutComponent implements OnInit {
 
   // Variables 
   	view_transaction_details : any = {}
-	back_ui : any = {}
+	main_back_ui : any = {}
 
 
   // Constructor 
@@ -33,8 +33,8 @@ export class p_vertical_layoutComponent implements OnInit {
   ngOnInit() {
     	this.view_transaction_details.desc = "View Transaction Details"
 		this.view_transaction_details.need_header = true
-		this.back_ui.desc = "Back UI"
-		this.back_ui.need_header = ""
+		this.main_back_ui.desc = "Main Back UI"
+		this.main_back_ui.need_header = ""
 	
 
     this.screen_instance['p_vertical_layout'] = {};

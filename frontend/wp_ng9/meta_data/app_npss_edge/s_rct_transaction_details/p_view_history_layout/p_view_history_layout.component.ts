@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26874 
+Build ID        : 26897 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-15 7:16 AM 
+Modified Date   : 2022-Nov-16 8:12 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_transaction_details
@@ -22,8 +22,8 @@ export class p_view_history_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	history_detail : any = {}
-	back_ui : any = {}
+  	hst_process_log_to_main_back : any = {}
+	history_detail : any = {}
 
 
   // Constructor 
@@ -31,10 +31,10 @@ export class p_view_history_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.history_detail.desc = "History Detail"
+    	this.hst_process_log_to_main_back.desc = "HST Process Log to Main Back"
+		this.hst_process_log_to_main_back.need_header = ""
+		this.history_detail.desc = "History Detail"
 		this.history_detail.need_header = true
-		this.back_ui.desc = "Back UI"
-		this.back_ui.need_header = ""
 	
 
     this.screen_instance['p_view_history_layout'] = {};

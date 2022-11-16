@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS add column ACCP_DATE_TIME TIMESTAMP WITHOUT TIME ZONE;","params" : [] }]
+[]

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26823 
+Build ID        : 26915 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-16 10:55 AM 
+Modified Date   : 2022-Nov-16 14:42 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_summary
@@ -39,6 +39,16 @@ import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
 import { f_npss_investigation_srchComponent } from './f_npss_investigation_srch/f_npss_investigation_srch.component'
 import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
+import { f_process_log_uiComponent } from './f_process_log_ui/f_process_log_ui.component'
+import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_request_layout.component'
+import { f_npss_summary_request_uiComponent } from './f_npss_summary_request_ui/f_npss_summary_request_ui.component'
+import { f_single_back_uiComponent } from './f_single_back_ui/f_single_back_ui.component'
+import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
+import { f_npss_summary_response_uiComponent } from './f_npss_summary_response_ui/f_npss_summary_response_ui.component'
+import { p_view_message_list_layoutComponent } from './p_view_message_list_layout/p_view_message_list_layout.component'
+import { p_view_message_ui_layoutComponent } from './p_view_message_ui_layout/p_view_message_ui_layout.component'
+import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss_message_data_ui.component'
+import { f_message_back_uiComponent } from './f_message_back_ui/f_message_back_ui.component'
 
 
 
@@ -55,7 +65,7 @@ import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_h
     s_view_all_summaryRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_view_all_summaryComponent,p_main_layoutComponent,f_navigation_uiComponent,p_vertical_layoutComponent,f_back_uiComponent,p_search_layoutComponent,f_npss_investigation_srchComponent,p_view_history_layoutComponent,],
+  declarations: [s_view_all_summaryComponent,p_main_layoutComponent,f_navigation_uiComponent,p_vertical_layoutComponent,f_back_uiComponent,p_search_layoutComponent,f_npss_investigation_srchComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_request_layoutComponent,f_npss_summary_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_summary_response_uiComponent,p_view_message_list_layoutComponent,p_view_message_ui_layoutComponent,f_npss_message_data_uiComponent,f_message_back_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

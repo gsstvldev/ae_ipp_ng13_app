@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26823 
+Build ID        : 26915 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-16 10:55 AM 
+Modified Date   : 2022-Nov-16 14:42 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_summary
@@ -22,8 +22,8 @@ export class p_view_history_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	history_detail : any = {}
-	back_ui : any = {}
+  	process_log_ui : any = {}
+	history_detail : any = {}
 
 
   // Constructor 
@@ -31,10 +31,10 @@ export class p_view_history_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.history_detail.desc = "History Detail"
+    	this.process_log_ui.desc = "Process Log UI"
+		this.process_log_ui.need_header = ""
+		this.history_detail.desc = "History Detail"
 		this.history_detail.need_header = true
-		this.back_ui.desc = "Back UI"
-		this.back_ui.need_header = ""
 	
 
     this.screen_instance['p_view_history_layout'] = {};

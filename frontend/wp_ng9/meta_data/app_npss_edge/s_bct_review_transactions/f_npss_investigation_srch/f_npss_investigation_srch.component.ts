@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26900 
+Build ID        : 26823 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-16 8:42 AM 
+Modified Date   : 2022-Nov-16 10:55 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_transactions
@@ -304,6 +304,7 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.currency_format = ""
 		this.ctrl.payment_endtoend_id.data_scale = ""
 		this.ctrl.payment_endtoend_id.binding_name = "PAYMENT_ENDTOEND_ID"
+		this.ctrl.payment_endtoend_id.hide_label = false
 		this.ctrl.payment_endtoend_id.depends_on = ""
 		this.ctrl.payment_endtoend_id.placeholder = ""
 		this.ctrl.payment_endtoend_id.dynamic_param = ""

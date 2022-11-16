@@ -1,26 +1,26 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26781 
+Build ID        : 26882 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-16 6:23 AM 
+Modified Date   : 2022-Nov-16 6:20 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_view_all_summary
-Form Name       : Navigation UI--------------------------------------------------------------------------- */
+Screen Name     : s_iban_transaction_details
+Form Name       : HST Process Log Back--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_navigation_ui',
-  templateUrl: './f_navigation_ui.component.html',
-  styleUrls: ['./f_navigation_ui.component.css'],
+  selector: 'f_hst_process_log_back',
+  templateUrl: './f_hst_process_log_back.component.html',
+  styleUrls: ['./f_hst_process_log_back.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_navigation_uiComponent implements OnInit {
+export class f_hst_process_log_backComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_navigation_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_navigation_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_navigation_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_hst_process_log_back[control]==undefined) {
+      this.screen_instance[this.comp_id].f_hst_process_log_back[control] = {}
     }
-    this.screen_instance[this.comp_id].f_navigation_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_hst_process_log_back[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

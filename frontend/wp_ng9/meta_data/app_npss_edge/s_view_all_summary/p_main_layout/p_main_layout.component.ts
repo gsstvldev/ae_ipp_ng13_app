@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26890 
+Build ID        : 26781 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-15 14:47 PM 
+Modified Date   : 2022-Nov-16 6:23 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_summary
@@ -23,7 +23,8 @@ export class p_main_layoutComponent implements OnInit {
 
   // Variables 
   	navigation_ui : any = {}
-	summary_chart : any = {}
+	summary_tran_level_chart : any = {}
+	summary_status_level_chart : any = {}
 	transaction_list : any = {}
 
 
@@ -34,8 +35,10 @@ export class p_main_layoutComponent implements OnInit {
   ngOnInit() {
     	this.navigation_ui.desc = "Navigation UI"
 		this.navigation_ui.need_header = ""
-		this.summary_chart.desc = "Summary Chart"
-		this.summary_chart.need_header = true
+		this.summary_tran_level_chart.desc = "Summary Tran level Chart"
+		this.summary_tran_level_chart.need_header = true
+		this.summary_status_level_chart.desc = "Summary Status level Chart"
+		this.summary_status_level_chart.need_header = true
 		this.transaction_list.desc = "Transaction list"
 		this.transaction_list.need_header = true
 	

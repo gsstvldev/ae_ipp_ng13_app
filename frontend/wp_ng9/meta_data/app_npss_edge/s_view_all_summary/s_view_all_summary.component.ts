@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26890 
+Build ID        : 26781 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-15 14:47 PM 
+Modified Date   : 2022-Nov-16 6:23 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_summary
@@ -33,12 +33,13 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 	components : any = []
 	current_profile : string = "p_main_layout"
 	uicgc_1 : string = "back_ui"
-	uicgc_2 : string = "summary_chart"
+	uicgc_2 : string = "summary_tran_level_chart"
 	uicgc_3 : string = "navigation_ui"
 	uicgc_4 : string = "transaction_list"
 	uicgc_5 : string = "view_transaction_detail"
 	uicgc_7 : string = "search"
 	uicgc_8 : string = "history_detail"
+	uicgc_9 : string = "summary_status_level_chart"
 	key_events : any = {}
 	btl_1304_1668497379186 : string = "p_view_history_layout"
 	btl_1304_1668497253326 : string = "p_vertical_layout"
@@ -48,17 +49,19 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	back_ui : any = {}
 	back_ui_back : any = {}
-	summary_chart : any = {}
+	summary_tran_level_chart : any = {}
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
 	navigation_ui_view_detail : any = {}
 	navigation_ui_view_log_history : any = {}
+	navigation_ui_reset : any = {}
 	transaction_list : any = {}
 	view_transaction_detail : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
 	history_detail : any = {}
+	summary_status_level_chart : any = {}
 
 
 	// Constructor 
@@ -91,17 +94,17 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 		this.back_ui_back.role = []
 		this.back_ui_back.action = ""
 	
-		// Component level properties - "Summary Chart" 
-		this.summary_chart.uictrl_code = "chart"
-		this.summary_chart.uicgc_desc = "Summary Chart"
-		this.summary_chart.uicgc_code = "uicgc_2"
-		this.summary_chart.params = {}
-		this.summary_chart.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668504004768","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1668495396199","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1668495396703","date_format":false}],"joins":[]},"eq_text":"SELECT  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL,  SUM(KEY_VALUE) AS KEY_VALUE FROM  (  SELECT   KEY_COLUMN,   '' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'TOTAL' AS KEY_COLUMN,    1 AS SORT_ORDER,    STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'COMPLETED' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'COMPLETED' AS KEY_COLUMN,    2 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  WHERE   PROCESS_STATUS LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'INPROGRESS' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'INPROGRESS' AS KEY_COLUMN,    3 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT ) A  WHERE   PROCESS_STATUS NOT LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE )V $WHERE GROUP BY  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL  ORDER BY SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Chart CCD","filter":[],"databinding":[{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
-		this.summary_chart.context_menu = []
-		this.summary_chart.views = {}
-		this.summary_chart.onChangecomponent = new EventEmitter<any>()
-		this.summary_chart.show = true
-		this.summary_chart.dynamic_param = {}
+		// Component level properties - "Summary Tran level Chart" 
+		this.summary_tran_level_chart.uictrl_code = "chart"
+		this.summary_tran_level_chart.uicgc_desc = "Summary Tran level Chart"
+		this.summary_tran_level_chart.uicgc_code = "uicgc_2"
+		this.summary_tran_level_chart.params = {}
+		this.summary_tran_level_chart.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668504004768","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1668495396199","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1668495396703","date_format":false}],"joins":[]},"eq_text":"SELECT  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL,  SUM(KEY_VALUE) AS KEY_VALUE FROM  (  SELECT   KEY_COLUMN,   '' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'TOTAL' AS KEY_COLUMN,    1 AS SORT_ORDER,    STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'COMPLETED' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'COMPLETED' AS KEY_COLUMN,    2 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  WHERE   PROCESS_STATUS LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'INPROGRESS' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'INPROGRESS' AS KEY_COLUMN,    3 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT ) A  WHERE   PROCESS_STATUS NOT LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE )V $WHERE GROUP BY  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL  ORDER BY SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Chart CCD","filter":[{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.summary_tran_level_chart.context_menu = []
+		this.summary_tran_level_chart.views = {}
+		this.summary_tran_level_chart.onChangecomponent = new EventEmitter<any>()
+		this.summary_tran_level_chart.show = true
+		this.summary_tran_level_chart.dynamic_param = {}
 	
 		// Component level properties - "Navigation UI" 
 		this.navigation_ui.uictrl_code = "dynamic_ui"
@@ -143,6 +146,15 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_log_history.dynamic_param = {}
 		this.navigation_ui_view_log_history.role = []
 		this.navigation_ui_view_log_history.action = ""
+		
+		// "Reset" Button of "Navigation UI" component
+		this.navigation_ui_reset.label_name = "Reset"
+		this.navigation_ui_reset.show = true
+		this.navigation_ui_reset.disabled = false
+		this.navigation_ui_reset.params = {"icon_only":false,"uicgcc_style":"fa fa-recycle"}
+		this.navigation_ui_reset.dynamic_param = {}
+		this.navigation_ui_reset.role = []
+		this.navigation_ui_reset.action = ""
 	
 		// Component level properties - "Transaction list" 
 		this.transaction_list.uictrl_code = "datatable"
@@ -211,6 +223,18 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 		this.history_detail.onChangecomponent = new EventEmitter<any>()
 		this.history_detail.show = true
 		this.history_detail.dynamic_param = {}
+	
+		// Component level properties - "Summary Status level Chart" 
+		this.summary_status_level_chart.uictrl_code = "chart"
+		this.summary_status_level_chart.uicgc_desc = "Summary Status level Chart"
+		this.summary_status_level_chart.uicgc_code = "uicgc_9"
+		this.summary_status_level_chart.params = {}
+		this.summary_status_level_chart.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_9","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668579186742","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Status Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1668579722829","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1668579723012","date_format":false}],"joins":[]},"eq_text":"SELECT KEY_COLUMN,KEY_VALUE FROM (select KEY_COLUMN, COUNT(STATUS) as KEY_VALUE, STATUS   from (select NT.EXHF_ID,                NT.CDTR_IBAN,                NT.DBTR_IBAN,                NT.DBTR_PHONE_NO,                NT.CDTR_PHONE_NO,                NT.INTRBK_STTLM_AMNT,                NT.TRAN_REF_ID,          NT.CREATED_DATE,                NT.STATUS as KEY_COLUMN,          NT.STATUS,          NT.PROCESS_STATUS,   CASE    WHEN NT.PROCESS_STATUS  LIKE '%Completed'THEN 'COMPLETED'        ELSE 'INPROGRESS'    END AS TRAN_LEVEL,          NT.VALUE_DATE,                NT.DBTR_ACCT_NO,                NT.CDTR_ACCT_NO,                NT.PAYMENT_ENDTOEND_ID,                case                  when NT.EXHF_ID is null then                   'REAL_TIME'                  else                   'BULK'                end as MEM_PAYMENT_METHOD,                NT.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM,                T.ADDITIONAL_INFO           from  NPSS_TRANSACTIONS NT          inner join NPSS_TRN_PROCESS_LOG T on  T.UETR =NT.UETR) VW   group by STATUS, KEY_COLUMN, PROCESS_STATUS,TRAN_LEVEL  UNION ALL   select KEY_COLUMN, COUNT(STATUS) as KEY_VALUE, STATUS   from (select NT.EXHF_ID,                NT.CDTR_IBAN,                NT.DBTR_IBAN,                NT.DBTR_PHONE_NO,                NT.CDTR_PHONE_NO,                NT.INTRBK_STTLM_AMNT,                NT.TRAN_REF_ID,          NT.CREATED_DATE,                NT.STATUS as KEY_COLUMN,          NT.STATUS,          NT.PROCESS_STATUS,   'TOTAL' AS TRAN_LEVEL,          NT.VALUE_DATE,                NT.DBTR_ACCT_NO,                NT.CDTR_ACCT_NO,                NT.PAYMENT_ENDTOEND_ID,                case                  when NT.EXHF_ID is null then                   'REAL_TIME'                  else                   'BULK'                end as MEM_PAYMENT_METHOD,                NT.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM,                T.ADDITIONAL_INFO           from  NPSS_TRANSACTIONS NT          inner join NPSS_TRN_PROCESS_LOG T on  T.UETR =NT.UETR) VW   group by STATUS, KEY_COLUMN, PROCESS_STATUS,TRAN_LEVEL)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Status Chart CCD","filter":[{"filter_name":"TRAN_LEVEL","binding_name":"TRAN_LEVEL","binding_value":"","source_name":"MI_LEVEL_TRAN_LEVEL","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.summary_status_level_chart.context_menu = []
+		this.summary_status_level_chart.views = {}
+		this.summary_status_level_chart.onChangecomponent = new EventEmitter<any>()
+		this.summary_status_level_chart.show = true
+		this.summary_status_level_chart.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -240,11 +264,12 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "ssp for chart"
 	ssp_for_chart__internal(parent_event_result){
 		this.ssp_for_chart__brfq_for_chart(parent_event_result)
+		this.ssp_for_chart__brfq_for_sl_chart(parent_event_result)
 	}
 
-	//Handler for SELECTION_CHANGED event of "summary chart"
-	summary_chart__selection_changed(){
-		this.summary_chart__svm_for_chart()
+	//Handler for SELECTION_CHANGED event of "summary tran level chart"
+	summary_tran_level_chart__selection_changed(){
+		this.summary_tran_level_chart__svm_for_chart()
 	}
 
 	//Handler for INTERNAL event of "svm for chart"
@@ -255,6 +280,7 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "ssp for tran table"
 	ssp_for_tran_table__internal(parent_event_result){
 		this.ssp_for_tran_table__brfq_for_tran_list(parent_event_result)
+		this.ssp_for_tran_table__brfq_for_sl_chart(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "brfq for tran list"
@@ -296,6 +322,28 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 	navigation_ui_view_log_history__action_button_click(){
 		this.navigation_ui_view_log_history__brfq_for_hdl()
 		this.navigation_ui_view_log_history__sp_for_vlh()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui reset"
+	navigation_ui_reset__action_button_click(){
+		this.navigation_ui_reset__rs_for_reset_btn()
+	}
+
+	//Handler for SELECTION_CHANGED event of "summary status level chart"
+	summary_status_level_chart__selection_changed(){
+		this.summary_status_level_chart__svm_for_ssl_chart()
+		this.summary_status_level_chart__clear_for_stl_chart_to_ssl_chart()
+	}
+
+	//Handler for INTERNAL event of "svm for ssl chart"
+	svm_for_ssl_chart__internal(parent_event_result){
+		this.svm_for_ssl_chart__ssp_for_ssl_chart_to_stl_chart(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "ssp for ssl chart to stl chart"
+	ssp_for_ssl_chart_to_stl_chart__internal(parent_event_result){
+		this.ssp_for_ssl_chart_to_stl_chart__brfq_for_stl_chart(parent_event_result)
+		this.ssp_for_ssl_chart_to_stl_chart__brfq_for_tl_from_ssl_chart(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -393,7 +441,7 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 		let event_code="e_1668499262579"
 		let event_params={"caller_name":"search_search__ssp_for_chart","event_desc":"SSP for chart","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
 		let handler_code="set_search_params"
-		let internals="ssp_for_chart__brfq_for_chart,"
+		let internals="ssp_for_chart__brfq_for_chart,ssp_for_chart__brfq_for_sl_chart,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -452,14 +500,14 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="ssp_for_chart"
-		let destn_id="summary_chart"
+		let destn_id="summary_tran_level_chart"
 		let parent_source_id="search_search"
 		let event_code="e_1668499306411"
 		let event_params={"caller_name":"ssp_for_chart__brfq_for_chart","event_desc":"BRFQ for Chart","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"BAR","chart_label":"KEY_COLUMN","chart_series":"","chart_data":"KEY_VALUE","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668504004768","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1668495396199","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1668495396703","date_format":false}],"joins":[]},"eq_text":"SELECT  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL,  SUM(KEY_VALUE) AS KEY_VALUE FROM  (  SELECT   KEY_COLUMN,   '' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'TOTAL' AS KEY_COLUMN,    1 AS SORT_ORDER,    STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'COMPLETED' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'COMPLETED' AS KEY_COLUMN,    2 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  WHERE   PROCESS_STATUS LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'INPROGRESS' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'INPROGRESS' AS KEY_COLUMN,    3 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT ) A  WHERE   PROCESS_STATUS NOT LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE )V $WHERE GROUP BY  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL  ORDER BY SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Chart CCD","filter":[],"databinding":[{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668504004768","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1668495396199","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1668495396703","date_format":false}],"joins":[]},"eq_text":"SELECT  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL,  SUM(KEY_VALUE) AS KEY_VALUE FROM  (  SELECT   KEY_COLUMN,   '' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'TOTAL' AS KEY_COLUMN,    1 AS SORT_ORDER,    STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'COMPLETED' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'COMPLETED' AS KEY_COLUMN,    2 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  WHERE   PROCESS_STATUS LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'INPROGRESS' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'INPROGRESS' AS KEY_COLUMN,    3 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT ) A  WHERE   PROCESS_STATUS NOT LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE )V $WHERE GROUP BY  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL  ORDER BY SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Chart CCD","filter":[{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -468,19 +516,41 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "summary chart"
-	summary_chart__svm_for_chart() { 
+	//Handler for INTERNAL event of "ssp for chart"
+	ssp_for_chart__brfq_for_sl_chart(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ssp_for_chart"
+		let destn_id="summary_status_level_chart"
+		let parent_source_id="search_search"
+		let event_code="e_1668577895713"
+		let event_params={"caller_name":"ssp_for_chart__brfq_for_sl_chart","event_desc":"BRFQ for SL Chart","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"DOUGHNUT","chart_label":"KEY_COLUMN","chart_series":"","chart_data":"KEY_VALUE","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_9","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668579186742","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Status Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1668579722829","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1668579723012","date_format":false}],"joins":[]},"eq_text":"SELECT KEY_COLUMN,KEY_VALUE FROM (select KEY_COLUMN, COUNT(STATUS) as KEY_VALUE, STATUS   from (select NT.EXHF_ID,                NT.CDTR_IBAN,                NT.DBTR_IBAN,                NT.DBTR_PHONE_NO,                NT.CDTR_PHONE_NO,                NT.INTRBK_STTLM_AMNT,                NT.TRAN_REF_ID,          NT.CREATED_DATE,                NT.STATUS as KEY_COLUMN,          NT.STATUS,          NT.PROCESS_STATUS,   CASE    WHEN NT.PROCESS_STATUS  LIKE '%Completed'THEN 'COMPLETED'        ELSE 'INPROGRESS'    END AS TRAN_LEVEL,          NT.VALUE_DATE,                NT.DBTR_ACCT_NO,                NT.CDTR_ACCT_NO,                NT.PAYMENT_ENDTOEND_ID,                case                  when NT.EXHF_ID is null then                   'REAL_TIME'                  else                   'BULK'                end as MEM_PAYMENT_METHOD,                NT.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM,                T.ADDITIONAL_INFO           from  NPSS_TRANSACTIONS NT          inner join NPSS_TRN_PROCESS_LOG T on  T.UETR =NT.UETR) VW   group by STATUS, KEY_COLUMN, PROCESS_STATUS,TRAN_LEVEL  UNION ALL   select KEY_COLUMN, COUNT(STATUS) as KEY_VALUE, STATUS   from (select NT.EXHF_ID,                NT.CDTR_IBAN,                NT.DBTR_IBAN,                NT.DBTR_PHONE_NO,                NT.CDTR_PHONE_NO,                NT.INTRBK_STTLM_AMNT,                NT.TRAN_REF_ID,          NT.CREATED_DATE,                NT.STATUS as KEY_COLUMN,          NT.STATUS,          NT.PROCESS_STATUS,   'TOTAL' AS TRAN_LEVEL,          NT.VALUE_DATE,                NT.DBTR_ACCT_NO,                NT.CDTR_ACCT_NO,                NT.PAYMENT_ENDTOEND_ID,                case                  when NT.EXHF_ID is null then                   'REAL_TIME'                  else                   'BULK'                end as MEM_PAYMENT_METHOD,                NT.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM,                T.ADDITIONAL_INFO           from  NPSS_TRANSACTIONS NT          inner join NPSS_TRN_PROCESS_LOG T on  T.UETR =NT.UETR) VW   group by STATUS, KEY_COLUMN, PROCESS_STATUS,TRAN_LEVEL)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Status Chart CCD","filter":[{"filter_name":"TRAN_LEVEL","binding_name":"TRAN_LEVEL","binding_value":"","source_name":"MI_LEVEL_TRAN_LEVEL","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "summary tran level chart"
+	summary_tran_level_chart__svm_for_chart() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="summary_chart"
-		let destn_id="summary_chart"
+		let source_id="summary_tran_level_chart"
+		let destn_id="summary_tran_level_chart"
 		let parent_source_id=""
 		let event_code="e_1668499437603"
-		let event_params={"caller_name":"summary_chart__svm_for_chart","event_desc":"SVM for Chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"summary_chart","raiseparam":{}}
+		let event_params={"caller_name":"summary_tran_level_chart__svm_for_chart","event_desc":"SVM for Chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"summary_tran_level_chart","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_chart__ssp_for_tran_table,"
-		let event_data={"summary_chart":{"e_1668499437603":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1668499437603","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"TRAN_LEVEL","level":"MI_LEVEL","name":"MI_LEVEL_TRAN_LEVEL","setd3name":"TRAN_LEVEL"},{"type":"HARDCODED","column_name":"BULK","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668504004768","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1668495396199","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1668495396703","date_format":false}],"joins":[]},"eq_text":"SELECT  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL,  SUM(KEY_VALUE) AS KEY_VALUE FROM  (  SELECT   KEY_COLUMN,   '' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'TOTAL' AS KEY_COLUMN,    1 AS SORT_ORDER,    STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'COMPLETED' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'COMPLETED' AS KEY_COLUMN,    2 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  WHERE   PROCESS_STATUS LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'INPROGRESS' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'INPROGRESS' AS KEY_COLUMN,    3 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT ) A  WHERE   PROCESS_STATUS NOT LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE )V $WHERE GROUP BY  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL  ORDER BY SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Chart CCD","filter":[],"databinding":[{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let event_data={"summary_tran_level_chart":{"e_1668499437603":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1668499437603","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"TRAN_LEVEL","level":"MI_LEVEL","name":"MI_LEVEL_TRAN_LEVEL","setd3name":"TRAN_LEVEL"},{"type":"HARDCODED","column_name":"BULK","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668504004768","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1668495396199","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1668495396703","date_format":false}],"joins":[]},"eq_text":"SELECT  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL,  SUM(KEY_VALUE) AS KEY_VALUE FROM  (  SELECT   KEY_COLUMN,   '' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'TOTAL' AS KEY_COLUMN,    1 AS SORT_ORDER,    STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'COMPLETED' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'COMPLETED' AS KEY_COLUMN,    2 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  WHERE   PROCESS_STATUS LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'INPROGRESS' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'INPROGRESS' AS KEY_COLUMN,    3 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT ) A  WHERE   PROCESS_STATUS NOT LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE )V $WHERE GROUP BY  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL  ORDER BY SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Chart CCD","filter":[{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -496,11 +566,11 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="svm_for_chart"
 		let destn_id="search"
-		let parent_source_id="summary_chart"
+		let parent_source_id="summary_tran_level_chart"
 		let event_code="e_1668499470426"
-		let event_params={"caller_name":"svm_for_chart__ssp_for_tran_table","event_desc":"SSP for tran table","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"summary_chart","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"svm_for_chart__ssp_for_tran_table","event_desc":"SSP for tran table","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"summary_tran_level_chart","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="set_search_params"
-		let internals="ssp_for_tran_table__brfq_for_tran_list,"
+		let internals="ssp_for_tran_table__brfq_for_tran_list,ssp_for_tran_table__brfq_for_sl_chart,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -520,11 +590,33 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 		let destn_id="transaction_list"
 		let parent_source_id="svm_for_chart"
 		let event_code="e_1668499510201"
-		let event_params={"caller_name":"ssp_for_tran_table__brfq_for_tran_list","event_desc":"BRFQ for tran list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"summary_chart","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"ssp_for_tran_table__brfq_for_tran_list","event_desc":"BRFQ for tran list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"summary_tran_level_chart","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_tran_list__sfr_in_tran_list,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_4","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668504033744","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1668494778964","date_format":true},{"column_name":"INTRBK_STTLM_AMNT","alias_name":"","mq_id":"MQ_1668494779204","date_format":false,"currency_format":true},{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1668494779444","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1668494779924","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1668494894018","date_format":false},{"column_name":"CLRSYSREF","alias_name":"","mq_id":"MQ_1668494938279","date_format":false}],"joins":[]},"eq_text":"SELECT NPSST_ID,        TRAN_LEVEL,        MODIFIED_DATE_UTC,        DATEMI,        VALUE_DATE,        CREATED_DATE,        MODIFIED_DATE_UTC,        CDTR_ACCT_NO,        CDTR_ACCT_NAME,        INTRBK_STTLM_AMNT,        INTRBK_STTLM_CUR,        DBTR_ACCT_NO,        DBTR_ACCT_NAME,        DR_SORT_CODE,        CR_SORT_CODE,        UETR,        HDR_MSG_ID,        PRODUCT_CODE,        CHANNEL_ID,        CHANNEL_REFNO,        CHANNEL_PRODUCT,        CHANNEL_SUB_PRODUCT,        CHANNEL_TRAN_CODE,        PROCESS_TYPE,        DBTR_PHONE_NO,        DBTR_EMAIL_ID,        DBTR_DOCUMENT_ID,        DBTR_IBAN,        CDTR_PHONE_NO,        CDTR_EMAIL_ID,        CDTR_DOCUMENT_ID,        CDTR_IBAN,        CLRSYSREF,        PAYMENT_ENDTOEND_ID,        EXHF_ID,        PROCESS_STATUS,        STATUS,        DT_CODE,        DTT_CODE,        TENANT_ID,        TS_ID,        LOCKED_BY,        LOCKED_BY_NAME,        VERSION_NO,        MEM_PAYMENT_METHOD,        TRAN_REF_ID   FROM (SELECT A.NPSST_ID,                A.VALUE_DATE,                A.MODIFIED_DATE_UTC,                A.CREATED_DATE,                TO_CHAR(A.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS') AS DATEMI,                A.CDTR_ACCT_NO,                A.CDTR_ACCT_NAME,                A.INTRBK_STTLM_AMNT,                A.INTRBK_STTLM_CUR,                A.DBTR_ACCT_NO,                A.DBTR_ACCT_NAME,                A.DR_SORT_CODE,                A.CR_SORT_CODE,                A.UETR,                A.HDR_MSG_ID,                A.PRODUCT_CODE,                A.CHANNEL_ID,                A.CHANNEL_REFNO,                A.CHANNEL_PRODUCT,                A.CHANNEL_SUB_PRODUCT,                A.CHANNEL_TRAN_CODE,                A.PROCESS_TYPE,                A.DBTR_PHONE_NO,                A.DBTR_EMAIL_ID,                A.DBTR_DOCUMENT_ID,                A.DBTR_IBAN,                A.CDTR_PHONE_NO,                A.CDTR_EMAIL_ID,                A.CDTR_DOCUMENT_ID,                A.CDTR_IBAN,                A.CLRSYSREF,                A.PAYMENT_ENDTOEND_ID,                A.TRAN_REF_ID,                A.EXHF_ID,                A.REMITTANCE_INFO,                A.INWARD_FILE_NAME,                A.PROCESS_STATUS,                CASE                  WHEN A.PROCESS_STATUS LIKE '%COMPLETED' THEN                   'COMPLETED'                  ELSE                   'INPROGRESS'                END AS TRAN_LEVEL,                A.STATUS,                A.DT_CODE,                A.DTT_CODE,                A.TENANT_ID,                A.VERSION_NO,                TS.TS_ID,                TS.LOCKED_BY,                TS.LOCKED_BY_NAME,                CASE                  WHEN A.EXHF_ID IS NULL THEN                   'REAL_TIME'                  ELSE                   'BULK'                END AS MEM_PAYMENT_METHOD           FROM NPSS_TRANSACTIONS A           LEFT JOIN TRANSACTION_SET TS ON TS.TRN_ID = A.NPSST_ID                                       AND TS.DTT_CODE = A.DTT_CODE          ORDER BY A.NPSST_ID DESC) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Tran CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TRAN_LEVEL","binding_name":"TRAN_LEVEL","binding_value":"","source_name":"MI_LEVEL_TRAN_LEVEL","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":true},{"header":"Amount","target_column":"INTRBK_STTLM_AMNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Cr IBAN","target_column":"CDTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E Ref ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing Sys Ref No","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing Sys Ref","target_column":"CLRSYSREF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ssp for tran table"
+	ssp_for_tran_table__brfq_for_sl_chart(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ssp_for_tran_table"
+		let destn_id="summary_status_level_chart"
+		let parent_source_id="svm_for_chart"
+		let event_code="e_1668578086592"
+		let event_params={"caller_name":"ssp_for_tran_table__brfq_for_sl_chart","event_desc":"BRFQ for SL chart","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"summary_tran_level_chart","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"DOUGHNUT","chart_label":"KEY_COLUMN","chart_series":"","chart_data":"KEY_VALUE","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_9","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668579186742","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Status Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1668579722829","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1668579723012","date_format":false}],"joins":[]},"eq_text":"SELECT KEY_COLUMN,KEY_VALUE FROM (select KEY_COLUMN, COUNT(STATUS) as KEY_VALUE, STATUS   from (select NT.EXHF_ID,                NT.CDTR_IBAN,                NT.DBTR_IBAN,                NT.DBTR_PHONE_NO,                NT.CDTR_PHONE_NO,                NT.INTRBK_STTLM_AMNT,                NT.TRAN_REF_ID,          NT.CREATED_DATE,                NT.STATUS as KEY_COLUMN,          NT.STATUS,          NT.PROCESS_STATUS,   CASE    WHEN NT.PROCESS_STATUS  LIKE '%Completed'THEN 'COMPLETED'        ELSE 'INPROGRESS'    END AS TRAN_LEVEL,          NT.VALUE_DATE,                NT.DBTR_ACCT_NO,                NT.CDTR_ACCT_NO,                NT.PAYMENT_ENDTOEND_ID,                case                  when NT.EXHF_ID is null then                   'REAL_TIME'                  else                   'BULK'                end as MEM_PAYMENT_METHOD,                NT.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM,                T.ADDITIONAL_INFO           from  NPSS_TRANSACTIONS NT          inner join NPSS_TRN_PROCESS_LOG T on  T.UETR =NT.UETR) VW   group by STATUS, KEY_COLUMN, PROCESS_STATUS,TRAN_LEVEL  UNION ALL   select KEY_COLUMN, COUNT(STATUS) as KEY_VALUE, STATUS   from (select NT.EXHF_ID,                NT.CDTR_IBAN,                NT.DBTR_IBAN,                NT.DBTR_PHONE_NO,                NT.CDTR_PHONE_NO,                NT.INTRBK_STTLM_AMNT,                NT.TRAN_REF_ID,          NT.CREATED_DATE,                NT.STATUS as KEY_COLUMN,          NT.STATUS,          NT.PROCESS_STATUS,   'TOTAL' AS TRAN_LEVEL,          NT.VALUE_DATE,                NT.DBTR_ACCT_NO,                NT.CDTR_ACCT_NO,                NT.PAYMENT_ENDTOEND_ID,                case                  when NT.EXHF_ID is null then                   'REAL_TIME'                  else                   'BULK'                end as MEM_PAYMENT_METHOD,                NT.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM,                T.ADDITIONAL_INFO           from  NPSS_TRANSACTIONS NT          inner join NPSS_TRN_PROCESS_LOG T on  T.UETR =NT.UETR) VW   group by STATUS, KEY_COLUMN, PROCESS_STATUS,TRAN_LEVEL)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Status Chart CCD","filter":[{"filter_name":"TRAN_LEVEL","binding_name":"TRAN_LEVEL","binding_value":"","source_name":"MI_LEVEL_TRAN_LEVEL","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -542,7 +634,7 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 		let destn_id="transaction_list"
 		let parent_source_id="ssp_for_tran_table"
 		let event_code="e_1668510618167"
-		let event_params={"caller_name":"brfq_for_tran_list__sfr_in_tran_list","event_desc":"SFR in tran list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"summary_chart","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"brfq_for_tran_list__sfr_in_tran_list","event_desc":"SFR in tran list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"summary_tran_level_chart","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
@@ -801,6 +893,135 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui reset"
+	navigation_ui_reset__rs_for_reset_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_reset"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1668577560568"
+		let event_params={"caller_name":"navigation_ui_reset__rs_for_reset_btn","event_desc":"RS for reset btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_reset","raiseparam":{}}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "summary status level chart"
+	summary_status_level_chart__svm_for_ssl_chart() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="summary_status_level_chart"
+		let destn_id="summary_status_level_chart"
+		let parent_source_id=""
+		let event_code="e_1668578619665"
+		let event_params={"caller_name":"summary_status_level_chart__svm_for_ssl_chart","event_desc":"SVM for SSL Chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"summary_status_level_chart","raiseparam":{}}
+		let handler_code="set_value_to_memory"
+		let internals="svm_for_ssl_chart__ssp_for_ssl_chart_to_stl_chart,"
+		let event_data={"summary_status_level_chart":{"e_1668578619665":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_9","event_code":"E_1668578619665","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_9","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668579186742","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Status Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1668579722829","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1668579723012","date_format":false}],"joins":[]},"eq_text":"SELECT KEY_COLUMN,KEY_VALUE FROM (select KEY_COLUMN, COUNT(STATUS) as KEY_VALUE, STATUS   from (select NT.EXHF_ID,                NT.CDTR_IBAN,                NT.DBTR_IBAN,                NT.DBTR_PHONE_NO,                NT.CDTR_PHONE_NO,                NT.INTRBK_STTLM_AMNT,                NT.TRAN_REF_ID,          NT.CREATED_DATE,                NT.STATUS as KEY_COLUMN,          NT.STATUS,          NT.PROCESS_STATUS,   CASE    WHEN NT.PROCESS_STATUS  LIKE '%Completed'THEN 'COMPLETED'        ELSE 'INPROGRESS'    END AS TRAN_LEVEL,          NT.VALUE_DATE,                NT.DBTR_ACCT_NO,                NT.CDTR_ACCT_NO,                NT.PAYMENT_ENDTOEND_ID,                case                  when NT.EXHF_ID is null then                   'REAL_TIME'                  else                   'BULK'                end as MEM_PAYMENT_METHOD,                NT.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM,                T.ADDITIONAL_INFO           from  NPSS_TRANSACTIONS NT          inner join NPSS_TRN_PROCESS_LOG T on  T.UETR =NT.UETR) VW   group by STATUS, KEY_COLUMN, PROCESS_STATUS,TRAN_LEVEL  UNION ALL   select KEY_COLUMN, COUNT(STATUS) as KEY_VALUE, STATUS   from (select NT.EXHF_ID,                NT.CDTR_IBAN,                NT.DBTR_IBAN,                NT.DBTR_PHONE_NO,                NT.CDTR_PHONE_NO,                NT.INTRBK_STTLM_AMNT,                NT.TRAN_REF_ID,          NT.CREATED_DATE,                NT.STATUS as KEY_COLUMN,          NT.STATUS,          NT.PROCESS_STATUS,   'TOTAL' AS TRAN_LEVEL,          NT.VALUE_DATE,                NT.DBTR_ACCT_NO,                NT.CDTR_ACCT_NO,                NT.PAYMENT_ENDTOEND_ID,                case                  when NT.EXHF_ID is null then                   'REAL_TIME'                  else                   'BULK'                end as MEM_PAYMENT_METHOD,                NT.UETR,                T.PROCESS_NAME,                T.PROCESSING_SYSTEM,                T.ADDITIONAL_INFO           from  NPSS_TRANSACTIONS NT          inner join NPSS_TRN_PROCESS_LOG T on  T.UETR =NT.UETR) VW   group by STATUS, KEY_COLUMN, PROCESS_STATUS,TRAN_LEVEL)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Status Chart CCD","filter":[{"filter_name":"TRAN_LEVEL","binding_name":"TRAN_LEVEL","binding_value":"","source_name":"MI_LEVEL_TRAN_LEVEL","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "summary status level chart"
+	summary_status_level_chart__clear_for_stl_chart_to_ssl_chart() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="summary_status_level_chart"
+		let destn_id="summary_tran_level_chart"
+		let parent_source_id=""
+		let event_code="e_1668578974585"
+		let event_params={"caller_name":"summary_status_level_chart__clear_for_stl_chart_to_ssl_chart","event_desc":"CLEAR for STL chart to SSL Chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"summary_status_level_chart","raiseparam":{}}
+		let handler_code="clear"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668504004768","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1668495396199","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1668495396703","date_format":false}],"joins":[]},"eq_text":"SELECT  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL,  SUM(KEY_VALUE) AS KEY_VALUE FROM  (  SELECT   KEY_COLUMN,   '' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'TOTAL' AS KEY_COLUMN,    1 AS SORT_ORDER,    STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'COMPLETED' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'COMPLETED' AS KEY_COLUMN,    2 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  WHERE   PROCESS_STATUS LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'INPROGRESS' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'INPROGRESS' AS KEY_COLUMN,    3 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT ) A  WHERE   PROCESS_STATUS NOT LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE )V $WHERE GROUP BY  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL  ORDER BY SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Chart CCD","filter":[{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.clear(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "svm for ssl chart"
+	svm_for_ssl_chart__ssp_for_ssl_chart_to_stl_chart(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="svm_for_ssl_chart"
+		let destn_id="search"
+		let parent_source_id="summary_status_level_chart"
+		let event_code="e_1668578676683"
+		let event_params={"caller_name":"svm_for_ssl_chart__ssp_for_ssl_chart_to_stl_chart","event_desc":"SSP for SSL chart to STL chart","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"summary_status_level_chart","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="set_search_params"
+		let internals="ssp_for_ssl_chart_to_stl_chart__brfq_for_stl_chart,ssp_for_ssl_chart_to_stl_chart__brfq_for_tl_from_ssl_chart,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ssp for ssl chart to stl chart"
+	ssp_for_ssl_chart_to_stl_chart__brfq_for_stl_chart(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ssp_for_ssl_chart_to_stl_chart"
+		let destn_id="summary_tran_level_chart"
+		let parent_source_id="svm_for_ssl_chart"
+		let event_code="e_1668578806098"
+		let event_params={"caller_name":"ssp_for_ssl_chart_to_stl_chart__brfq_for_stl_chart","event_desc":"BRFQ for STL chart","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"summary_status_level_chart","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"BAR","chart_label":"KEY_COLUMN","chart_series":"","chart_data":"KEY_VALUE","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668504004768","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"KEY_COLUMN","alias_name":"","mq_id":"MQ_1668495396199","date_format":false},{"column_name":"KEY_VALUE","alias_name":"","mq_id":"MQ_1668495396703","date_format":false}],"joins":[]},"eq_text":"SELECT  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL,  SUM(KEY_VALUE) AS KEY_VALUE FROM  (  SELECT   KEY_COLUMN,   '' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'TOTAL' AS KEY_COLUMN,    1 AS SORT_ORDER,    STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'COMPLETED' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'COMPLETED' AS KEY_COLUMN,    2 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT) A  WHERE   PROCESS_STATUS LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE UNION ALL  SELECT   KEY_COLUMN,   'INPROGRESS' AS TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE,   SORT_ORDER,   COUNT(UETR) AS KEY_VALUE  FROM   (   SELECT    'INPROGRESS' AS KEY_COLUMN,    3 AS SORT_ORDER,    STATUS,    PROCESS_STATUS,    CASE     WHEN EXHF_ID IS NULL THEN 'REAL TIME'     ELSE 'BULK PAYMENTS'    END AS MEM_PAYMENT_METHOD,    UETR,    CREATED_DATE,    VALUE_DATE,    DBTR_ACCT_NO,    CDTR_ACCT_NO,    CDTR_IBAN,    DBTR_IBAN,    INTRBK_STTLM_AMNT,    PAYMENT_ENDTOEND_ID,    PROCESS_TYPE   FROM    NPSS_TRANSACTIONS NT ) A  WHERE   PROCESS_STATUS NOT LIKE '%Completed'  GROUP BY   SORT_ORDER,KEY_COLUMN,TRAN_LEVEL,   MEM_PAYMENT_METHOD,   UETR,   CREATED_DATE,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   DBTR_IBAN,   INTRBK_STTLM_AMNT,   PAYMENT_ENDTOEND_ID,   PROCESS_TYPE )V $WHERE GROUP BY  KEY_COLUMN,SORT_ORDER,TRAN_LEVEL  ORDER BY SORT_ORDER"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Chart CCD","filter":[{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"KEY_VALUE","target_column":"KEY_VALUE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"KEY_COLUMN","target_column":"KEY_COLUMN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ssp for ssl chart to stl chart"
+	ssp_for_ssl_chart_to_stl_chart__brfq_for_tl_from_ssl_chart(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ssp_for_ssl_chart_to_stl_chart"
+		let destn_id="transaction_list"
+		let parent_source_id="svm_for_ssl_chart"
+		let event_code="e_1668578825263"
+		let event_params={"caller_name":"ssp_for_ssl_chart_to_stl_chart__brfq_for_tl_from_ssl_chart","event_desc":"BRFQ for TL from SSL chart","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"summary_status_level_chart","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_4","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1668504033744","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Summary Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1668494778964","date_format":true},{"column_name":"INTRBK_STTLM_AMNT","alias_name":"","mq_id":"MQ_1668494779204","date_format":false,"currency_format":true},{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1668494779444","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1668494779924","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1668494894018","date_format":false},{"column_name":"CLRSYSREF","alias_name":"","mq_id":"MQ_1668494938279","date_format":false}],"joins":[]},"eq_text":"SELECT NPSST_ID,        TRAN_LEVEL,        MODIFIED_DATE_UTC,        DATEMI,        VALUE_DATE,        CREATED_DATE,        MODIFIED_DATE_UTC,        CDTR_ACCT_NO,        CDTR_ACCT_NAME,        INTRBK_STTLM_AMNT,        INTRBK_STTLM_CUR,        DBTR_ACCT_NO,        DBTR_ACCT_NAME,        DR_SORT_CODE,        CR_SORT_CODE,        UETR,        HDR_MSG_ID,        PRODUCT_CODE,        CHANNEL_ID,        CHANNEL_REFNO,        CHANNEL_PRODUCT,        CHANNEL_SUB_PRODUCT,        CHANNEL_TRAN_CODE,        PROCESS_TYPE,        DBTR_PHONE_NO,        DBTR_EMAIL_ID,        DBTR_DOCUMENT_ID,        DBTR_IBAN,        CDTR_PHONE_NO,        CDTR_EMAIL_ID,        CDTR_DOCUMENT_ID,        CDTR_IBAN,        CLRSYSREF,        PAYMENT_ENDTOEND_ID,        EXHF_ID,        PROCESS_STATUS,        STATUS,        DT_CODE,        DTT_CODE,        TENANT_ID,        TS_ID,        LOCKED_BY,        LOCKED_BY_NAME,        VERSION_NO,        MEM_PAYMENT_METHOD,        TRAN_REF_ID   FROM (SELECT A.NPSST_ID,                A.VALUE_DATE,                A.MODIFIED_DATE_UTC,                A.CREATED_DATE,                TO_CHAR(A.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS') AS DATEMI,                A.CDTR_ACCT_NO,                A.CDTR_ACCT_NAME,                A.INTRBK_STTLM_AMNT,                A.INTRBK_STTLM_CUR,                A.DBTR_ACCT_NO,                A.DBTR_ACCT_NAME,                A.DR_SORT_CODE,                A.CR_SORT_CODE,                A.UETR,                A.HDR_MSG_ID,                A.PRODUCT_CODE,                A.CHANNEL_ID,                A.CHANNEL_REFNO,                A.CHANNEL_PRODUCT,                A.CHANNEL_SUB_PRODUCT,                A.CHANNEL_TRAN_CODE,                A.PROCESS_TYPE,                A.DBTR_PHONE_NO,                A.DBTR_EMAIL_ID,                A.DBTR_DOCUMENT_ID,                A.DBTR_IBAN,                A.CDTR_PHONE_NO,                A.CDTR_EMAIL_ID,                A.CDTR_DOCUMENT_ID,                A.CDTR_IBAN,                A.CLRSYSREF,                A.PAYMENT_ENDTOEND_ID,                A.TRAN_REF_ID,                A.EXHF_ID,                A.REMITTANCE_INFO,                A.INWARD_FILE_NAME,                A.PROCESS_STATUS,                CASE                  WHEN A.PROCESS_STATUS LIKE '%COMPLETED' THEN                   'COMPLETED'                  ELSE                   'INPROGRESS'                END AS TRAN_LEVEL,                A.STATUS,                A.DT_CODE,                A.DTT_CODE,                A.TENANT_ID,                A.VERSION_NO,                TS.TS_ID,                TS.LOCKED_BY,                TS.LOCKED_BY_NAME,                CASE                  WHEN A.EXHF_ID IS NULL THEN                   'REAL_TIME'                  ELSE                   'BULK'                END AS MEM_PAYMENT_METHOD           FROM NPSS_TRANSACTIONS A           LEFT JOIN TRANSACTION_SET TS ON TS.TRN_ID = A.NPSST_ID                                       AND TS.DTT_CODE = A.DTT_CODE          ORDER BY A.NPSST_ID DESC) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Summary Tran CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TRAN_LEVEL","binding_name":"TRAN_LEVEL","binding_value":"","source_name":"MI_LEVEL_TRAN_LEVEL","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":true},{"header":"Amount","target_column":"INTRBK_STTLM_AMNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Cr IBAN","target_column":"CDTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E Ref ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing Sys Ref No","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing Sys Ref","target_column":"CLRSYSREF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

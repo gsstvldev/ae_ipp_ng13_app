@@ -1,26 +1,26 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26918 
+Build ID        : 26920 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-17 6:2 AM 
+Modified Date   : 2022-Nov-17 10:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_bct_transaction_details
-Form Name       : Message Detail Action--------------------------------------------------------------------------- */
+Screen Name     : s_view_all_transactions
+Form Name       : Message Back UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_message_detail_action',
-  templateUrl: './f_message_detail_action.component.html',
-  styleUrls: ['./f_message_detail_action.component.css'],
+  selector: 'f_message_back_ui',
+  templateUrl: './f_message_back_ui.component.html',
+  styleUrls: ['./f_message_back_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_message_detail_actionComponent implements OnInit {
+export class f_message_back_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_message_detail_actionComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_message_detail_action[control]==undefined) {
-      this.screen_instance[this.comp_id].f_message_detail_action[control] = {}
+    if(this.screen_instance[this.comp_id].f_message_back_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_message_back_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_message_detail_action[control][property] = value;
+    this.screen_instance[this.comp_id].f_message_back_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

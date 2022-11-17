@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26918 
+Build ID        : 26924 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-17 6:2 AM 
+Modified Date   : 2022-Nov-17 10:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_transaction_details
@@ -49,10 +49,6 @@ import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_r
 import { f_npss_bct_request_uiComponent } from './f_npss_bct_request_ui/f_npss_bct_request_ui.component'
 import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
 import { f_hst_process_log_to_main_backComponent } from './f_hst_process_log_to_main_back/f_hst_process_log_to_main_back.component'
-import { p_view_message_layoutComponent } from './p_view_message_layout/p_view_message_layout.component'
-import { f_message_detail_actionComponent } from './f_message_detail_action/f_message_detail_action.component'
-import { p_view_message_ui_layoutComponent } from './p_view_message_ui_layout/p_view_message_ui_layout.component'
-import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss_message_data_ui.component'
 
 
 
@@ -69,7 +65,7 @@ import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss
     s_bct_transaction_detailsRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_bct_transaction_detailsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_process_log_srchComponent,p_vertical_layoutComponent,f_main_back_uiComponent,p_refund_layoutComponent,f_refund_uiComponent,f_refund_editable_uiComponent,f_submit_uiComponent,p_view_response_layoutComponent,f_npss_bct_response_uiComponent,f_hst_process_log_backComponent,p_view_request_layoutComponent,f_npss_bct_request_uiComponent,p_view_history_layoutComponent,f_hst_process_log_to_main_backComponent,p_view_message_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_npss_message_data_uiComponent,],
+  declarations: [s_bct_transaction_detailsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_process_log_srchComponent,p_vertical_layoutComponent,f_main_back_uiComponent,p_refund_layoutComponent,f_refund_uiComponent,f_refund_editable_uiComponent,f_submit_uiComponent,p_view_response_layoutComponent,f_npss_bct_response_uiComponent,f_hst_process_log_backComponent,p_view_request_layoutComponent,f_npss_bct_request_uiComponent,p_view_history_layoutComponent,f_hst_process_log_to_main_backComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

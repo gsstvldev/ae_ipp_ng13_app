@@ -1,28 +1,29 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26918 
+Build ID        : 26920 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-17 6:2 AM 
+Modified Date   : 2022-Nov-17 10:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_bct_transaction_details
-Profile Name    : View Message UI Layout--------------------------------------------------------------------------- */
+Screen Name     : s_view_all_transactions
+Profile Name    : View Message List Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_view_message_ui_layout',
-  templateUrl: './p_view_message_ui_layout.component.html',
-  styleUrls: ['./p_view_message_ui_layout.component.css']
+  selector: 'p_view_message_list_layout',
+  templateUrl: './p_view_message_list_layout.component.html',
+  styleUrls: ['./p_view_message_list_layout.component.css']
 })
 
 // Start of class 
-export class p_view_message_ui_layoutComponent implements OnInit {
+export class p_view_message_list_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	message_detail_ui : any = {}
+  	message_detail_action : any = {}
+	message_detail : any = {}
 
 
   // Constructor 
@@ -30,12 +31,14 @@ export class p_view_message_ui_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.message_detail_ui.desc = "Message Detail UI"
-		this.message_detail_ui.need_header = ""
+    	this.message_detail_action.desc = "Message Detail Action"
+		this.message_detail_action.need_header = ""
+		this.message_detail.desc = "Message Detail"
+		this.message_detail.need_header = true
 	
 
-    this.screen_instance['p_view_message_ui_layout'] = {};
-    this.screen_instance['p_view_message_ui_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_view_message_list_layout'] = {};
+    this.screen_instance['p_view_message_list_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

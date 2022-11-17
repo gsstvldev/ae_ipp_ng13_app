@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26924 
+Build ID        : 26926 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-17 10:5 AM 
+Modified Date   : 2022-Nov-17 10:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_transaction_details
@@ -71,7 +71,6 @@ export class s_bct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	navigation_ui_view_response : any = {}
 	navigation_ui_view_request : any = {}
 	navigation_ui_view_log_history : any = {}
-	navigation_ui_view_message_details : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -200,15 +199,6 @@ export class s_bct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.navigation_ui_view_log_history.dynamic_param = {}
 		this.navigation_ui_view_log_history.role = []
 		this.navigation_ui_view_log_history.action = ""
-		
-		// "View Message Details" Button of "Navigation UI" component
-		this.navigation_ui_view_message_details.label_name = "View Message Details"
-		this.navigation_ui_view_message_details.show = true
-		this.navigation_ui_view_message_details.disabled = false
-		this.navigation_ui_view_message_details.params = {"icon_only":false,"uicgcc_style":"fa fa-eye-slash"}
-		this.navigation_ui_view_message_details.dynamic_param = {}
-		this.navigation_ui_view_message_details.role = []
-		this.navigation_ui_view_message_details.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"

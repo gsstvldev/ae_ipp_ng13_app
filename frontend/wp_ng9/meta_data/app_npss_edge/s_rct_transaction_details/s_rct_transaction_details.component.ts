@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26924 
+Build ID        : 26926 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-17 10:5 AM 
+Modified Date   : 2022-Nov-17 10:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_transaction_details
@@ -616,6 +616,7 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.queue__de_for_view_log_hstl_from_queue()
 		this.queue__de_for_view_reqfrom_queue()
 		this.queue__de_for_view_res_from_queue()
+		this.queue__de_from_queue_to_nuiviewmessagedetails()
 	}
 
 	//Handler for INTERNAL event of "svm for process log list"
@@ -1574,6 +1575,27 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let parent_source_id=""
 		let event_code="e_1666184200256"
 		let event_params={"caller_name":"queue__de_for_view_res_from_queue","event_desc":"DE for view res from queue","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "queue"
+	queue__de_from_queue_to_nuiviewmessagedetails() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="queue"
+		let destn_id="navigation_ui_view_message_details"
+		let parent_source_id=""
+		let event_code="e_1668681002307"
+		let event_params={"caller_name":"queue__de_from_queue_to_nuiviewmessagedetails","event_desc":"DE from Queue to NUIViewMessageDetails","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}

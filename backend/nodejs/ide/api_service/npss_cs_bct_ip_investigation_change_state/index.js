@@ -117,7 +117,12 @@ try {
                                 }
 
                                 if (params.s_paymentmethod) {
-                                    conditionObj["paymentmethod"] = "MEM_PAYMENT_METHOD ='" + params.s_paymentmethod + "'";
+                                    if(params.s_paymentmethod!="BULK"){
+                                    conditionObj["paymentmethod"] = "exhf_id =IS NULL";
+                                    }
+                                    else{
+                                        conditionObj["paymentmethod"] = "exhf_id = IS NOT NULL";
+                                    }
                                 }
                                 if (params.s_valuedatevalue) {
                                     conditionObj["valuedate"] = reqDateFormatter.GetSearchCriteriaForBusinessColumn(headers, objSessionLogInfo, 'VALUE_DATE', params.s_valuedatevalue, params.s_valuedatetovalue, params.s_valuedateop);

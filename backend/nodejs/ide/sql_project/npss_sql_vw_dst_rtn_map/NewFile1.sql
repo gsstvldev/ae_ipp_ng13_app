@@ -7,7 +7,8 @@ destination_system,
 destination_return_code,
 tenant_id,
 product_code,
-mapping_code 
+mapping_code,
+status
 from 
 (
 select
@@ -23,4 +24,4 @@ select
 from
 	core_nc_return_mapping a
 inner join core_nc_return_codes b on
-	b.return_code = a.destination_return_code) v
+	b.return_code = a.destination_return_code AND b.status = 'APPROVED') v

@@ -60,8 +60,8 @@ app.post('/', function(appRequest, appResponse, next) {
                            var urlqry = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
                            var seltranqry = `select * from npss_transactions where npsst_id='${params.Id}'`
                            var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'`
-                           var selplqry=`select tpl.cbuae_return_code,crn.return_description from npss_trn_process_log tpl inner join core_nc_return_codes crn on  tpl.cbuae_return_code=crn.return_code where npsstpl_id='${params.tpl_id}'`
-
+                          // var selplqry=`select tpl.cbuae_return_code,crn.return_description from npss_trn_process_log tpl inner join core_nc_return_codes crn on  tpl.cbuae_return_code=crn.return_code where npsstpl_id='${params.tpl_id}'`
+                          var selplqry=`select response_code,additional_info from npss_trn_process_log where npsstpl_id='${params.tpl_id}'`
 
                            ExecuteQuery1(ruleqry, function (result) {
                                if (result.length) {
@@ -212,8 +212,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                    "uetr": tranresult[0].uetr,
                                    "txid": tranresult[0].TRAN_REF_ID,
                                    "active_status": 'RJCT',
-                                   "rsn_code":tplresult[0].cbuae_return_code,
-                                   "rsn_additional_info":tplresult[0].return_description
+                                    "rsn_code":tplresult[0].response_code,
+                                   "rsn_additional_info":tplresult[0].additional_info
 
                                },
                                headers: {

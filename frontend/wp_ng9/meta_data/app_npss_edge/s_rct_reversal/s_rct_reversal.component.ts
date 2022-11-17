@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26938 
+Build ID        : 26945 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-17 13:46 PM 
+Modified Date   : 2022-Nov-17 14:43 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -14,15 +14,15 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_reversal_acceptService} from '../../../custom_widget/npss_cs_reversal_accept/npss_cs_reversal_accept.service'
-import {npss_cs_reversal_rejectService} from '../../../custom_widget/npss_cs_reversal_reject/npss_cs_reversal_reject.service'
 import {npss_cs_reject_pack002Service} from '../../../custom_widget/npss_cs_reject_pack002/npss_cs_reject_pack002.service'
 import {npss_cs_return_pac_004Service} from '../../../custom_widget/npss_cs_return_pac_004/npss_cs_return_pac_004.service'
+import {npss_cs_reversal_rejectService} from '../../../custom_widget/npss_cs_reversal_reject/npss_cs_reversal_reject.service'
 
 @Component({
 	selector: 's_rct_reversal',
 	templateUrl: './s_rct_reversal.component.html',
 	styleUrls: ['./s_rct_reversal.component.css'],
-	providers:[torus_cs_show_hideService,npss_cs_reversal_acceptService,npss_cs_reversal_rejectService,npss_cs_reject_pack002Service,npss_cs_return_pac_004Service]
+	providers:[torus_cs_show_hideService,npss_cs_reversal_acceptService,npss_cs_reject_pack002Service,npss_cs_return_pac_004Service,npss_cs_reversal_rejectService]
 })
     
 // Start of class 
@@ -45,14 +45,17 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	uicgc_7 : string = "process_log_list"
 	uicgc_8 : string = "comment_list"
 	uicgc_9 : string = "reversal_ui"
+	uicgc_10 : string = "error_code_ui"
 	key_events : any = {}
+	btl_1304_1668694521732 : string = "p_error_code_layout"
 	btl_1304_1666856823236 : string = "p_change_return_layout"
 	btl_1304_1666856778120 : string = "p_accept_layout"
 	btl_1304_1666856478860 : string = "p_accept_ui_layout"
 	btl_1304_1666856426885 : string = "p_main_layout"
-	forms : any = ["uicgc_9","uicgc_5","uicgc_6","uicgc_4","uicgc_3"]
+	forms : any = ["uicgc_9","uicgc_5","uicgc_10","uicgc_6","uicgc_4","uicgc_3"]
 	p_accept_layout__spap_for_accept_showpopup : boolean = false
 	p_change_return_layout__crr_for_spap_showpopup : boolean = false
+	p_error_code_layout__spap_for_error_code_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation : any = {}
@@ -72,10 +75,12 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	process_log_list : any = {}
 	comment_list : any = {}
 	reversal_ui : any = {}
+	error_code_ui : any = {}
+	error_code_ui_save : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_reversal_acceptService:npss_cs_reversal_acceptService,private npss_cs_reversal_rejectService:npss_cs_reversal_rejectService,private npss_cs_reject_pack002Service:npss_cs_reject_pack002Service,private npss_cs_return_pac_004Service:npss_cs_return_pac_004Service) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_reversal_acceptService:npss_cs_reversal_acceptService,private npss_cs_reject_pack002Service:npss_cs_reject_pack002Service,private npss_cs_return_pac_004Service:npss_cs_return_pac_004Service,private npss_cs_reversal_rejectService:npss_cs_reversal_rejectService) {
     
 	}
     
@@ -288,6 +293,29 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.reversal_ui.dynamic_param = {}
 		this.reversal_ui.f_npss_rct_reversal_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
 		this.reversal_ui.form_name = "f_npss_rct_reversal_ui"
+	
+		// Component level properties - "Error Code UI" 
+		this.error_code_ui.uictrl_code = "dynamic_ui"
+		this.error_code_ui.uicgc_desc = "Error Code UI"
+		this.error_code_ui.uicgc_code = "uicgc_10"
+		this.error_code_ui.params = {}
+		this.error_code_ui.datasource = {}
+		this.error_code_ui.context_menu = []
+		this.error_code_ui.views = {"first":"DTT_1304_1665905039255","is_tab_mode":"N","dtt_1304_1665905039255":{"0":[{"dttv_id":"NPSS Response Code UI","tab_order":0,"tab_name":"","uicgc_description":"Error Code UI","role_description":"default","dtt_description":"NPSS Trn Process Log"}]}}
+		this.error_code_ui.onChangecomponent = new EventEmitter<any>()
+		this.error_code_ui.show = true
+		this.error_code_ui.dynamic_param = {}
+		this.error_code_ui.f_npss_response_code_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.error_code_ui.form_name = "f_npss_response_code_ui"
+		
+		// "Save" Button of "Error Code UI" component
+		this.error_code_ui_save.label_name = "Save"
+		this.error_code_ui_save.show = true
+		this.error_code_ui_save.disabled = false
+		this.error_code_ui_save.params = {"icon_only":false,"uicgcc_style":"fa fa-floppy-o"}
+		this.error_code_ui_save.dynamic_param = {}
+		this.error_code_ui_save.role = []
+		this.error_code_ui_save.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -443,17 +471,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui reject"
 	reversal_action_ui_reject__action_button_click(){
-		this.reversal_action_ui_reject__cc_for_reject()
-	}
-
-	//Handler for INTERNAL event of "cc for reject"
-	cc_for_reject__internal(parent_event_result){
-		this.cc_for_reject__reject_info(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "reject info"
-	reject_info__internal(parent_event_result){
-		this.reject_info__rs_for_reject(parent_event_result)
+		this.reversal_action_ui_reject__spap_for_error_code()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui approve"
@@ -484,6 +502,21 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "return info"
 	return_info__internal(parent_event_result){
 		this.return_info__rs_for_return(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "error code ui save"
+	error_code_ui_save__action_button_click(){
+		this.error_code_ui_save__cc_for_reject_error_code()
+	}
+
+	//Handler for INTERNAL event of "cc for reject error code"
+	cc_for_reject_error_code__internal(parent_event_result){
+		this.cc_for_reject_error_code__infmsg_after_rejecr_error_code(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "infmsg after rejecr error code"
+	infmsg_after_rejecr_error_code__internal(parent_event_result){
+		this.infmsg_after_rejecr_error_code__rc_after_rejecr_error_code(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "npss pl rtn reason ui t24 return code"
@@ -1395,64 +1428,20 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui reject"
-	reversal_action_ui_reject__cc_for_reject() { 
+	reversal_action_ui_reject__spap_for_error_code() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="reversal_action_ui_reject"
 		let destn_id=""
 		let parent_source_id=""
-		let event_code="e_1666875373156"
-		let event_params={"caller_name":"reversal_action_ui_reject__cc_for_reject","event_desc":"CC For reject","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_reject","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals="cc_for_reject__reject_info,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_cs_reversal_rejectService.fn_npss_cs_reversal_reject(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "cc for reject"
-	cc_for_reject__reject_info(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_for_reject"
-		let destn_id=""
-		let parent_source_id="reversal_action_ui_reject"
-		let event_code="e_1666875415919"
-		let event_params={"caller_name":"cc_for_reject__reject_info","event_desc":"Reject info","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been rejected successfully","root_source_id":"reversal_action_ui_reject","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
-		let handler_code="info_msg"
-		let internals="reject_info__rs_for_reject,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "reject info"
-	reject_info__rs_for_reject(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="reject_info"
-		let destn_id=""
-		let parent_source_id="cc_for_reject"
-		let event_code="e_1666875465706"
-		let event_params={"caller_name":"reject_info__rs_for_reject","event_desc":"RS for Reject","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_reject","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="refresh_screen"
+		let event_code="e_1668694663530"
+		let event_params={"caller_name":"reversal_action_ui_reject__spap_for_error_code","event_desc":"SPAP for Error Code","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_reject","raiseparam":{"popup_category":"profile","variable":"p_error_code_layout__spap_for_error_code","selector":"p_error_code_layout","profile_code":"BTL_1304_1668694521732","window_title":"Error Details","window_height":300,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_error_code","eventcode":"E_1668694663530"}}
+		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1577,6 +1566,71 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let parent_source_id="cc_forreturn"
 		let event_code="e_1666875726655"
 		let event_params={"caller_name":"return_info__rs_for_return","event_desc":"RS for return","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_return","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "error code ui save"
+	error_code_ui_save__cc_for_reject_error_code() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="error_code_ui_save"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1668694301849"
+		let event_params={"caller_name":"error_code_ui_save__cc_for_reject_error_code","event_desc":"CC for Reject Error Code","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"error_code_ui_save","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_reject_error_code__infmsg_after_rejecr_error_code,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_reversal_rejectService.fn_npss_cs_reversal_reject(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for reject error code"
+	cc_for_reject_error_code__infmsg_after_rejecr_error_code(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_reject_error_code"
+		let destn_id=""
+		let parent_source_id="error_code_ui_save"
+		let event_code="e_1668694371650"
+		let event_params={"caller_name":"cc_for_reject_error_code__infmsg_after_rejecr_error_code","event_desc":"INFMSG after rejecr error code","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been rejected successfully","root_source_id":"error_code_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="infmsg_after_rejecr_error_code__rc_after_rejecr_error_code,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "infmsg after rejecr error code"
+	infmsg_after_rejecr_error_code__rc_after_rejecr_error_code(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="infmsg_after_rejecr_error_code"
+		let destn_id=""
+		let parent_source_id="cc_for_reject_error_code"
+		let event_code="e_1668694442059"
+		let event_params={"caller_name":"infmsg_after_rejecr_error_code__rc_after_rejecr_error_code","event_desc":"RC after rejecr error code","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"error_code_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

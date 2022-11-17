@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26938 
+Build ID        : 26949 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-17 13:46 PM 
+Modified Date   : 2022-Nov-17 15:5 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_transactions
@@ -743,6 +743,7 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_log_history__sp_for_view_log_history()
 		this.navigation_ui_view_log_history__brfq_for_hst_process_log_list()
 		this.navigation_ui_view_log_history__he_for_back_ui()
+		this.navigation_ui_view_log_history__se_for_vlh_to_plb()
 	}
 
 	//Handler for INTERNAL event of "brfq for hst process log list"
@@ -831,6 +832,7 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 	hst_process_log_to_main_back_ui_back__action_button_click(){
 		this.hst_process_log_to_main_back_ui_back__main_back_ui()
 		this.hst_process_log_to_main_back_ui_back__he_for_plb_to_bak()
+		this.hst_process_log_to_main_back_ui_back__se_for_back()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "hst process log to main back ui view response"
@@ -1969,6 +1971,27 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view log history"
+	navigation_ui_view_log_history__se_for_vlh_to_plb() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_log_history"
+		let destn_id="hst_process_log_back_ui_back"
+		let parent_source_id=""
+		let event_code="e_1668697413587"
+		let event_params={"caller_name":"navigation_ui_view_log_history__se_for_vlh_to_plb","event_desc":"SE for VLH to PLB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_log_history","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "brfq for hst process log list"
 	brfq_for_hst_process_log_list__sfr_for_hd(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -2557,6 +2580,27 @@ export class s_view_all_transactionsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "hst process log to main back ui back"
+	hst_process_log_to_main_back_ui_back__se_for_back() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="hst_process_log_to_main_back_ui_back"
+		let destn_id="main_back_ui_back"
+		let parent_source_id=""
+		let event_code="e_1668697200265"
+		let event_params={"caller_name":"hst_process_log_to_main_back_ui_back__se_for_back","event_desc":"SE for back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"hst_process_log_to_main_back_ui_back","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

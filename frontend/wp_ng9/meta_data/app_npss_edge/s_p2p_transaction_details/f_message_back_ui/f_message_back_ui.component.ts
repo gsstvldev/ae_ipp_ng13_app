@@ -1,26 +1,26 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26909 
+Build ID        : 26916 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-16 12:40 PM 
+Modified Date   : 2022-Nov-17 6:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2p_transaction_details
-Form Name       : Back UI--------------------------------------------------------------------------- */
+Form Name       : Message Back UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_back_ui',
-  templateUrl: './f_back_ui.component.html',
-  styleUrls: ['./f_back_ui.component.css'],
+  selector: 'f_message_back_ui',
+  templateUrl: './f_message_back_ui.component.html',
+  styleUrls: ['./f_message_back_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_back_uiComponent implements OnInit {
+export class f_message_back_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_back_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_back_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_back_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_message_back_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_message_back_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_back_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_message_back_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

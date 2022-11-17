@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26909 
+Build ID        : 26918 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-16 12:40 PM 
+Modified Date   : 2022-Nov-17 6:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_transaction_details
@@ -48,7 +48,10 @@ export class s_bct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	uicgc_14 : string = "message_detail"
 	uicgc_15 : string = "hst_process_log_back"
 	uicgc_16 : string = "hst_process_log_to_main_back"
+	uicgc_18 : string = "message_detail_ui"
+	uicgc_19 : string = "message_detail_action"
 	key_events : any = {}
+	btl_1304_1668660708683 : string = "p_view_message_ui_layout"
 	btl_1304_1668582802465 : string = "p_view_message_layout"
 	btl_1304_1666180789841 : string = "p_view_history_layout"
 	btl_1304_1666176371576 : string = "p_view_response_layout"
@@ -57,7 +60,7 @@ export class s_bct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	btl_1304_1666010003163 : string = "p_search_layout"
 	btl_1304_1666009903061 : string = "p_vertical_layout"
 	btl_1304_1666009819055 : string = "p_main_layout"
-	forms : any = ["uicgc_9","uicgc_4","uicgc_8","uicgc_11","uicgc_12","uicgc_5","uicgc_16","uicgc_15","uicgc_10","uicgc_3"]
+	forms : any = ["uicgc_9","uicgc_4","uicgc_18","uicgc_8","uicgc_11","uicgc_12","uicgc_19","uicgc_16","uicgc_5","uicgc_15","uicgc_10","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	transaction_list : any = {}
 	view_transaction_details : any = {}
@@ -92,6 +95,11 @@ export class s_bct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	hst_process_log_to_main_back_back : any = {}
 	hst_process_log_to_main_back_view_request : any = {}
 	hst_process_log_to_main_back_view_response : any = {}
+	message_detail_ui : any = {}
+	message_detail_ui_back : any = {}
+	message_detail_action : any = {}
+	message_detail_action_back : any = {}
+	message_detail_action_view_message_data : any = {}
 
 
 	// Constructor 
@@ -465,6 +473,61 @@ export class s_bct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.hst_process_log_to_main_back_view_response.dynamic_param = {}
 		this.hst_process_log_to_main_back_view_response.role = []
 		this.hst_process_log_to_main_back_view_response.action = ""
+	
+		// Component level properties - "Message Detail UI" 
+		this.message_detail_ui.uictrl_code = "dynamic_ui"
+		this.message_detail_ui.uicgc_desc = "Message Detail UI"
+		this.message_detail_ui.uicgc_code = "uicgc_18"
+		this.message_detail_ui.params = {}
+		this.message_detail_ui.datasource = {}
+		this.message_detail_ui.context_menu = []
+		this.message_detail_ui.views = {"first":"DTT_1304_1665903906193","is_tab_mode":"N","dtt_1304_1665903906193":{"0":[{"dttv_id":"NPSS Message Data UI","tab_order":0,"tab_name":"","uicgc_description":"Message Detail UI","role_description":"default","dtt_description":"NPSS TRN REQ RESP DTLS"}]}}
+		this.message_detail_ui.onChangecomponent = new EventEmitter<any>()
+		this.message_detail_ui.show = true
+		this.message_detail_ui.dynamic_param = {}
+		this.message_detail_ui.f_npss_message_data_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.message_detail_ui.form_name = "f_npss_message_data_ui"
+		
+		// "Back" Button of "Message Detail UI" component
+		this.message_detail_ui_back.label_name = "Back"
+		this.message_detail_ui_back.show = true
+		this.message_detail_ui_back.disabled = false
+		this.message_detail_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.message_detail_ui_back.dynamic_param = {}
+		this.message_detail_ui_back.role = []
+		this.message_detail_ui_back.action = ""
+	
+		// Component level properties - "Message Detail Action" 
+		this.message_detail_action.uictrl_code = "dynamic_ui"
+		this.message_detail_action.uicgc_desc = "Message Detail Action"
+		this.message_detail_action.uicgc_code = "uicgc_19"
+		this.message_detail_action.params = {}
+		this.message_detail_action.datasource = {}
+		this.message_detail_action.context_menu = []
+		this.message_detail_action.views = {}
+		this.message_detail_action.onChangecomponent = new EventEmitter<any>()
+		this.message_detail_action.show = true
+		this.message_detail_action.dynamic_param = {}
+		this.message_detail_action.f_message_detail_action = {"show":true}
+		this.message_detail_action.current_view = "f_message_detail_action"
+		
+		// "Back" Button of "Message Detail Action" component
+		this.message_detail_action_back.label_name = "Back"
+		this.message_detail_action_back.show = true
+		this.message_detail_action_back.disabled = false
+		this.message_detail_action_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.message_detail_action_back.dynamic_param = {}
+		this.message_detail_action_back.role = []
+		this.message_detail_action_back.action = ""
+		
+		// "View Message Data" Button of "Message Detail Action" component
+		this.message_detail_action_view_message_data.label_name = "View Message Data"
+		this.message_detail_action_view_message_data.show = true
+		this.message_detail_action_view_message_data.disabled = false
+		this.message_detail_action_view_message_data.params = {"icon_only":false,"uicgcc_style":"fa fa-css3"}
+		this.message_detail_action_view_message_data.dynamic_param = {}
+		this.message_detail_action_view_message_data.role = []
+		this.message_detail_action_view_message_data.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -513,7 +576,7 @@ export class s_bct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.transaction_list__ssr_for_de()
 		this.transaction_list__ee_for_tl()
 		this.transaction_list__ee_for_view_log_history()
-		this.transaction_list__e_1668585578100()
+		this.transaction_list__ee_from_trean_to_view_message()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui search"
@@ -645,9 +708,35 @@ export class s_bct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.navigation_ui_view_message__brfq_for_message_detail()
 	}
 
+	//Handler for INTERNAL event of "brfq for message detail"
+	brfq_for_message_detail__internal(parent_event_result){
+		this.brfq_for_message_detail__sfr_for_view_message_s(parent_event_result)
+	}
+
 	//Handler for ACTION_BUTTON_CLICK event of "hst process log to main back view response"
 	hst_process_log_to_main_back_view_response__action_button_click(){
 		this.hst_process_log_to_main_back_view_response__sp_from_plhst_to_res()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action back"
+	message_detail_action_back__action_button_click(){
+		this.message_detail_action_back__sp_from_mda_to_main()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message data"
+	message_detail_action_view_message_data__action_button_click(){
+		this.message_detail_action_view_message_data__sp_from_mdavmd_to_vmui()
+		this.message_detail_action_view_message_data__bt_for_message_data()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail ui back"
+	message_detail_ui_back__action_button_click(){
+		this.message_detail_ui_back__sp_from_vmuiback_to_vm()
+	}
+
+	//Handler for SELECTION_CHANGED event of "message detail"
+	message_detail__selection_changed(){
+		this.message_detail__ssr_for_message_ui()
 	}
 
 	//Handler for INTERNAL event of "svm for response json"
@@ -1157,14 +1246,14 @@ export class s_bct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	} 
 
 	//Handler for SELECTION_CHANGED event of "transaction list"
-	transaction_list__e_1668585578100() { 
+	transaction_list__ee_from_trean_to_view_message() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
 		let destn_id="navigation_ui_view_message"
 		let parent_source_id=""
 		let event_code="e_1668585578100"
-		let event_params={"caller_name":"transaction_list__e_1668585578100","event_desc":"E_1668585578100","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let event_params={"caller_name":"transaction_list__ee_from_trean_to_view_message","event_desc":"EE from trean to View Message","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
@@ -2118,11 +2207,33 @@ export class s_bct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let event_code="e_1668586217858"
 		let event_params={"caller_name":"navigation_ui_view_message__brfq_for_message_detail","event_desc":"BRFQ for Message Detail","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
 		let handler_code="bind_record_from_query"
-		let internals=""
+		let internals="brfq_for_message_detail__sfr_for_view_message_s,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665903906193":{"st_ds":{"default":{"uicgc_code":"UICGC_14","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665903906193","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1668586071730","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS REQ RESP MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_CODE","alias_name":"","mq_id":"MQ_1668573850306","date_format":false},{"column_name":"PROCESS_DETAIL","alias_name":"","mq_id":"MQ_1668573852117","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1668573852786","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1668573853731","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1668573854459","date_format":false},{"column_name":"NPSSTRRD_ID","alias_name":"","mq_id":"MQ_1668573869044","date_format":false},{"column_name":"MSG_ID","alias_name":"","mq_id":"MQ_1668573871186","date_format":false},{"column_name":"NPSSTRRD_REFNO","alias_name":"","mq_id":"MQ_1668573874178","date_format":false},{"column_name":"PARENT_NPSSTRRD_REFNO","alias_name":"","mq_id":"MQ_1668573876315","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1668573884586","date_format":false},{"column_name":"EXHF_ID","alias_name":"","mq_id":"MQ_1668573900766","date_format":false},{"column_name":"MESSAGE_DESC","alias_name":"","mq_id":"MQ_1668573911947","date_format":false},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1668573917043","date_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"","mq_id":"MQ_1668573918291","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1668573918796","date_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"","mq_id":"MQ_1668573919355","date_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"","mq_id":"MQ_1668573919955","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1668573925605","date_format":false},{"column_name":"CREATEDDATEMILISEC","alias_name":"","mq_id":"MQ_1668587107858","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSTRRD_ID, MSG_ID, UETR, PARENT_NPSSTRRD_REFNO, NPSSTRRD_REFNO, PROCESS_CODE, PROCESS_DETAIL, EXHF_ID, PROCESS_NAME, MESSAGE_DESC, CHANNEL_ID, CHANNEL_REFNO, CHANNEL_USERID, CHANNEL_PRODUCT, CHANNEL_SUB_PRODUCT, CHANNEL_TRAN_CODE, STATUS, PROCESS_STATUS,MESSAGE_DATA,CREATEDDATEMILISEC FROM (SELECT  NPSSTRRD.NPSSTRRD_ID,  NPSSTRRD.MSG_ID,  NPSSTRRD.UETR,  NPSSTRRD.PARENT_NPSSTRRD_REFNO,  NPSSTRRD.NPSSTRRD_REFNO,  NPSSTRRD.MESSAGE_DATA,  NPSSTRRD.PROCESS_CODE,  NPSSTRRD.PROCESS_DETAIL,  NPSSTRRD.EXHF_ID,  NPSSTRRD.PROCESS_NAME,  NPSSTRRD.MESSAGE_DESC,  NPSSTRRD.CHANNEL_ID,  NPSSTRRD.CHANNEL_REFNO,  NPSSTRRD.CHANNEL_USERID,  NPSSTRRD.CHANNEL_PRODUCT,  NPSSTRRD.CHANNEL_SUB_PRODUCT,  NPSSTRRD.CHANNEL_TRAN_CODE,  NPSSTRRD.CREATED_BY,  NPSSTRRD.CREATED_BY_NAME,  NPSSTRRD.CREATED_DATE,  NPSSTRRD.DT_CODE,  NPSSTRRD.DT_DESCRIPTION,  NPSSTRRD.DTT_CODE,  NPSSTRRD.DTT_DESCRIPTION,  NPSSTRRD.MODIFIED_BY,  NPSSTRRD.MODIFIED_BY_NAME,  NPSSTRRD.MODIFIED_DATE,  NPSSTRRD.STATUS,  NPSSTRRD.PROCESS_STATUS,  NPSSTRRD.SYSTEM_ID,  NPSSTRRD.SYSTEM_NAME,  NPSSTRRD.TENANT_ID,  NPSSTRRD.APP_ID,  NPSSTRRD.VERSION_NO,TO_CHAR(NPSSTRRD.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as CREATEDDATEMILISEC FROM  NPSS_TRN_REQ_RESP_DTLS NPSSTRRD) RR $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS REQ RES CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"UETR","binding_name":"UETR","binding_value":"","source_name":"MI_LEVEL_UETR","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Created Date & Time","target_column":"CREATEDDATEMILISEC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Desc","target_column":"MESSAGE_DESC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing Sys Ref No","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Detail","target_column":"PROCESS_DETAIL","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq for message detail"
+	brfq_for_message_detail__sfr_for_view_message_s(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_for_message_detail"
+		let destn_id="message_detail"
+		let parent_source_id="navigation_ui_view_message"
+		let event_code="e_1668661058006"
+		let event_params={"caller_name":"brfq_for_message_detail__sfr_for_view_message_s","event_desc":"SFR for View Message S","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665903906193":{"st_ds":{"default":{"uicgc_code":"UICGC_14","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665903906193","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1668586071730","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS REQ RESP MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_CODE","alias_name":"","mq_id":"MQ_1668573850306","date_format":false},{"column_name":"PROCESS_DETAIL","alias_name":"","mq_id":"MQ_1668573852117","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1668573852786","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1668573853731","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1668573854459","date_format":false},{"column_name":"NPSSTRRD_ID","alias_name":"","mq_id":"MQ_1668573869044","date_format":false},{"column_name":"MSG_ID","alias_name":"","mq_id":"MQ_1668573871186","date_format":false},{"column_name":"NPSSTRRD_REFNO","alias_name":"","mq_id":"MQ_1668573874178","date_format":false},{"column_name":"PARENT_NPSSTRRD_REFNO","alias_name":"","mq_id":"MQ_1668573876315","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1668573884586","date_format":false},{"column_name":"EXHF_ID","alias_name":"","mq_id":"MQ_1668573900766","date_format":false},{"column_name":"MESSAGE_DESC","alias_name":"","mq_id":"MQ_1668573911947","date_format":false},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1668573917043","date_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"","mq_id":"MQ_1668573918291","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1668573918796","date_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"","mq_id":"MQ_1668573919355","date_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"","mq_id":"MQ_1668573919955","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1668573925605","date_format":false},{"column_name":"CREATEDDATEMILISEC","alias_name":"","mq_id":"MQ_1668587107858","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSTRRD_ID, MSG_ID, UETR, PARENT_NPSSTRRD_REFNO, NPSSTRRD_REFNO, PROCESS_CODE, PROCESS_DETAIL, EXHF_ID, PROCESS_NAME, MESSAGE_DESC, CHANNEL_ID, CHANNEL_REFNO, CHANNEL_USERID, CHANNEL_PRODUCT, CHANNEL_SUB_PRODUCT, CHANNEL_TRAN_CODE, STATUS, PROCESS_STATUS,MESSAGE_DATA,CREATEDDATEMILISEC FROM (SELECT  NPSSTRRD.NPSSTRRD_ID,  NPSSTRRD.MSG_ID,  NPSSTRRD.UETR,  NPSSTRRD.PARENT_NPSSTRRD_REFNO,  NPSSTRRD.NPSSTRRD_REFNO,  NPSSTRRD.MESSAGE_DATA,  NPSSTRRD.PROCESS_CODE,  NPSSTRRD.PROCESS_DETAIL,  NPSSTRRD.EXHF_ID,  NPSSTRRD.PROCESS_NAME,  NPSSTRRD.MESSAGE_DESC,  NPSSTRRD.CHANNEL_ID,  NPSSTRRD.CHANNEL_REFNO,  NPSSTRRD.CHANNEL_USERID,  NPSSTRRD.CHANNEL_PRODUCT,  NPSSTRRD.CHANNEL_SUB_PRODUCT,  NPSSTRRD.CHANNEL_TRAN_CODE,  NPSSTRRD.CREATED_BY,  NPSSTRRD.CREATED_BY_NAME,  NPSSTRRD.CREATED_DATE,  NPSSTRRD.DT_CODE,  NPSSTRRD.DT_DESCRIPTION,  NPSSTRRD.DTT_CODE,  NPSSTRRD.DTT_DESCRIPTION,  NPSSTRRD.MODIFIED_BY,  NPSSTRRD.MODIFIED_BY_NAME,  NPSSTRRD.MODIFIED_DATE,  NPSSTRRD.STATUS,  NPSSTRRD.PROCESS_STATUS,  NPSSTRRD.SYSTEM_ID,  NPSSTRRD.SYSTEM_NAME,  NPSSTRRD.TENANT_ID,  NPSSTRRD.APP_ID,  NPSSTRRD.VERSION_NO,TO_CHAR(NPSSTRRD.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as CREATEDDATEMILISEC FROM  NPSS_TRN_REQ_RESP_DTLS NPSSTRRD) RR $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS REQ RES CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"UETR","binding_name":"UETR","binding_value":"","source_name":"MI_LEVEL_UETR","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Created Date & Time","target_column":"CREATEDDATEMILISEC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Desc","target_column":"MESSAGE_DESC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing Sys Ref No","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Detail","target_column":"PROCESS_DETAIL","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2144,6 +2255,111 @@ export class s_bct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action back"
+	message_detail_action_back__sp_from_mda_to_main() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_detail_action_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1668660857817"
+		let event_params={"caller_name":"message_detail_action_back__sp_from_mda_to_main","event_desc":"SP from MDA to Main","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_back","raiseparam":{"profile_code":"BTL_1304_1666009819055"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message data"
+	message_detail_action_view_message_data__sp_from_mdavmd_to_vmui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_detail_action_view_message_data"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1668660909653"
+		let event_params={"caller_name":"message_detail_action_view_message_data__sp_from_mdavmd_to_vmui","event_desc":"SP from MDAVMD to VMUI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message_data","raiseparam":{"profile_code":"BTL_1304_1668660708683"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message data"
+	message_detail_action_view_message_data__bt_for_message_data() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_detail_action_view_message_data"
+		let destn_id="message_detail_ui"
+		let parent_source_id=""
+		let event_code="e_1668661176825"
+		let event_params={"caller_name":"message_detail_action_view_message_data__bt_for_message_data","event_desc":"BT for Message Data","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message_data","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail ui back"
+	message_detail_ui_back__sp_from_vmuiback_to_vm() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_detail_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1668660998785"
+		let event_params={"caller_name":"message_detail_ui_back__sp_from_vmuiback_to_vm","event_desc":"SP from VMUIBACK to VM","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_ui_back","raiseparam":{"profile_code":"BTL_1304_1668582802465"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "message detail"
+	message_detail__ssr_for_message_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_detail"
+		let destn_id="message_detail_ui"
+		let parent_source_id=""
+		let event_code="e_1668661108189"
+		let event_params={"caller_name":"message_detail__ssr_for_message_ui","event_desc":"SSR for Message UI","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"message_detail","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

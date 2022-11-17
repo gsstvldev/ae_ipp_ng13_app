@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26909 
+Build ID        : 26916 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-16 12:40 PM 
+Modified Date   : 2022-Nov-17 6:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_iban_transaction_details
@@ -22,8 +22,8 @@ export class p_view_message_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	message_detail : any = {}
-	main_back_ui : any = {}
+  	message_detail_action : any = {}
+	message_detail : any = {}
 
 
   // Constructor 
@@ -31,10 +31,10 @@ export class p_view_message_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.message_detail.desc = "Message Detail"
+    	this.message_detail_action.desc = "Message Detail Action"
+		this.message_detail_action.need_header = ""
+		this.message_detail.desc = "Message Detail"
 		this.message_detail.need_header = true
-		this.main_back_ui.desc = "Main Back UI"
-		this.main_back_ui.need_header = ""
 	
 
     this.screen_instance['p_view_message_layout'] = {};

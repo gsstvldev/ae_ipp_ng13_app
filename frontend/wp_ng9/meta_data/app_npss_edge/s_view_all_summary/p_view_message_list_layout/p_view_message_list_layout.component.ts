@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26915 
+Build ID        : 26916 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-16 14:42 PM 
+Modified Date   : 2022-Nov-17 6:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_summary
@@ -22,7 +22,7 @@ export class p_view_message_list_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	back_ui : any = {}
+  	message_detail_action : any = {}
 	message_detail : any = {}
 
 
@@ -31,8 +31,8 @@ export class p_view_message_list_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.back_ui.desc = "Back UI"
-		this.back_ui.need_header = ""
+    	this.message_detail_action.desc = "Message Detail Action"
+		this.message_detail_action.need_header = ""
 		this.message_detail.desc = "Message Detail"
 		this.message_detail.need_header = ""
 	

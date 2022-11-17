@@ -1,2 +1,2 @@
 /* CSS */
-:host ::ng-deep .back_ui .row.dynamic_action_btn .btn { float: right; }
+:host ::ng-deep .message_detail_action .row.dynamic_action_btn .btn { float: right; }

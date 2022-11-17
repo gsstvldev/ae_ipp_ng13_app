@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26909 
+Build ID        : 26916 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-16 12:40 PM 
+Modified Date   : 2022-Nov-17 6:6 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2p_transaction_details
@@ -37,16 +37,23 @@ import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.comp
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
 import { f_npss_process_log_srchComponent } from './f_npss_process_log_srch/f_npss_process_log_srch.component'
 import { p_vertical_layoutComponent } from './p_vertical_layout/p_vertical_layout.component'
-import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
+import { f_main_back_uiComponent } from './f_main_back_ui/f_main_back_ui.component'
 import { p_refund_layoutComponent } from './p_refund_layout/p_refund_layout.component'
 import { f_disable_refund_uiComponent } from './f_disable_refund_ui/f_disable_refund_ui.component'
 import { f_enable_refund_uiComponent } from './f_enable_refund_ui/f_enable_refund_ui.component'
 import { f_submit_uiComponent } from './f_submit_ui/f_submit_ui.component'
 import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
 import { f_npss_p2p_response_uiComponent } from './f_npss_p2p_response_ui/f_npss_p2p_response_ui.component'
+import { f_hst_process_log_back_uiComponent } from './f_hst_process_log_back_ui/f_hst_process_log_back_ui.component'
 import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_request_layout.component'
 import { f_npss_p2p_request_uiComponent } from './f_npss_p2p_request_ui/f_npss_p2p_request_ui.component'
 import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
+import { f_hst_process_log_to_main_back_uiComponent } from './f_hst_process_log_to_main_back_ui/f_hst_process_log_to_main_back_ui.component'
+import { p_view_message_list_layoutComponent } from './p_view_message_list_layout/p_view_message_list_layout.component'
+import { f_message_detail_actionComponent } from './f_message_detail_action/f_message_detail_action.component'
+import { p_view_message_ui_layoutComponent } from './p_view_message_ui_layout/p_view_message_ui_layout.component'
+import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss_message_data_ui.component'
+import { f_message_back_uiComponent } from './f_message_back_ui/f_message_back_ui.component'
 
 
 
@@ -63,7 +70,7 @@ import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_h
     s_p2p_transaction_detailsRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_p2p_transaction_detailsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_process_log_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_refund_layoutComponent,f_disable_refund_uiComponent,f_enable_refund_uiComponent,f_submit_uiComponent,p_view_response_layoutComponent,f_npss_p2p_response_uiComponent,p_view_request_layoutComponent,f_npss_p2p_request_uiComponent,p_view_history_layoutComponent,],
+  declarations: [s_p2p_transaction_detailsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_process_log_srchComponent,p_vertical_layoutComponent,f_main_back_uiComponent,p_refund_layoutComponent,f_disable_refund_uiComponent,f_enable_refund_uiComponent,f_submit_uiComponent,p_view_response_layoutComponent,f_npss_p2p_response_uiComponent,f_hst_process_log_back_uiComponent,p_view_request_layoutComponent,f_npss_p2p_request_uiComponent,p_view_history_layoutComponent,f_hst_process_log_to_main_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_npss_message_data_uiComponent,f_message_back_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column DEPARTMENT_CODE CHARACTER VARYING(32);","params" : [] }]

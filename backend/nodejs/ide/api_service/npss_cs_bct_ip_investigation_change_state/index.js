@@ -118,10 +118,10 @@ try {
 
                                 if (params.s_paymentmethod) {
                                     if(params.s_paymentmethod!="BULK"){
-                                    conditionObj["paymentmethod"] = "exhf_id =IS NULL";
+                                    conditionObj["paymentmethod"] = "exhf_id IS NULL";
                                     }
                                     else{
-                                        conditionObj["paymentmethod"] = "exhf_id = IS NOT NULL";
+                                        conditionObj["paymentmethod"] = "exhf_id  IS NOT NULL";
                                     }
                                 }
                                 if (params.s_valuedatevalue) {

@@ -10,7 +10,7 @@ import { CoreService } from '../../scripts/fx/core.service'; //core services use
 import { AppHandlerService } from '../../scripts/fx/app.handler.service'; //Show for Dialog for Screen
 import { SessionService } from '../../scripts/fx/session.service'; // get Session information
 import { SCOPE } from '../../scripts/fx/session.enum'; // get Scope for Session level
-import { DialogService } from '../../scripts/fx/dialog.service'; // Dialog box appear
+import { DialogService } from '../../scripts/fx/dialog.service'; // Dialog box  appear
                         
 @Injectable()
 export class npss_cs_bct_already_postingService {

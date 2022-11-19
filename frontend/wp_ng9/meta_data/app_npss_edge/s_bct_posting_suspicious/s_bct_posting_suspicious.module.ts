@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26957 
+Build ID        : 26990 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-19 11:37 AM 
+Modified Date   : 2022-Nov-19 12:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_suspicious
@@ -40,7 +40,7 @@ import { s_bct_posting_suspiciousRoutingModule } from './s_bct_posting_suspiciou
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_npss_investigation_srchComponent } from './f_npss_investigation_srch/f_npss_investigation_srch.component'
+import { f_npss_tran_srchComponent } from './f_npss_tran_srch/f_npss_tran_srch.component'
 import { p_cbs_layoutComponent } from './p_cbs_layout/p_cbs_layout.component'
 import { f_npss_bct_ref_no_uiComponent } from './f_npss_bct_ref_no_ui/f_npss_bct_ref_no_ui.component'
 
@@ -59,7 +59,7 @@ import { f_npss_bct_ref_no_uiComponent } from './f_npss_bct_ref_no_ui/f_npss_bct
     s_bct_posting_suspiciousRoutingModule,
     torus_cs_show_hideModule,npss_cs_t24_postingModule,npss_cs_enquiryModule,npss_cs_cc_postingModule,npss_cs_bct_already_postingModule,npss_cs_bct_retryModule
   ],
-  declarations: [s_bct_posting_suspiciousComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_investigation_srchComponent,p_cbs_layoutComponent,f_npss_bct_ref_no_uiComponent,],
+  declarations: [s_bct_posting_suspiciousComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_tran_srchComponent,p_cbs_layoutComponent,f_npss_bct_ref_no_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

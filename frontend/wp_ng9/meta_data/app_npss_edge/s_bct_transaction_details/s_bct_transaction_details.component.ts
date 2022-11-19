@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26986 
+Build ID        : 26789 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-19 10:1 AM 
+Modified Date   : 2022-Nov-19 12:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_transaction_details
@@ -207,12 +207,12 @@ export class s_bct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.search.params = {}
 		this.search.datasource = {}
 		this.search.context_menu = []
-		this.search.views = {"first":"DTT_1304_1665905039255","is_tab_mode":"N","dtt_1304_1665905039255":{"0":[{"dttv_id":"NPSS Process log SRCH","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"NPSS Trn Process Log"}]}}
+		this.search.views = {"first":"DTT_1304_1665905039255","is_tab_mode":"N","dtt_1304_1665905039255":{"0":[{"dttv_id":"NPSS RCT Post PLOG srch","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"NPSS Trn Process Log"}]}}
 		this.search.onChangecomponent = new EventEmitter<any>()
 		this.search.show = true
 		this.search.dynamic_param = {}
-		this.search.f_npss_process_log_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.search.form_name = "f_npss_process_log_srch"
+		this.search.f_npss_rct_post_plog_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.search.form_name = "f_npss_rct_post_plog_srch"
 		
 		// "Search" Button of "Search" component
 		this.search_search.label_name = "Search"

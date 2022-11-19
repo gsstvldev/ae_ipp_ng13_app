@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26974 
+Build ID        : 26990 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-18 13:32 PM 
+Modified Date   : 2022-Nov-19 12:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_investigation
@@ -36,7 +36,7 @@ import { s_bct_investigationRoutingModule } from './s_bct_investigation.routing.
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_npss_investigation_srchComponent } from './f_npss_investigation_srch/f_npss_investigation_srch.component'
+import { f_npss_tran_srchComponent } from './f_npss_tran_srch/f_npss_tran_srch.component'
 
 
 
@@ -53,7 +53,7 @@ import { f_npss_investigation_srchComponent } from './f_npss_investigation_srch/
     s_bct_investigationRoutingModule,
     torus_cs_show_hideModule,npss_cs_bct_ip_investigation_change_stateModule
   ],
-  declarations: [s_bct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_investigation_srchComponent,],
+  declarations: [s_bct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_tran_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

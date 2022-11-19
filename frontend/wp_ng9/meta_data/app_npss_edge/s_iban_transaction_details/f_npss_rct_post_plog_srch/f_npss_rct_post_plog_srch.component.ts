@@ -1,32 +1,32 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26986 
+Build ID        : 26789 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-19 10:1 AM 
+Modified Date   : 2022-Nov-19 12:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_p2p_transaction_details
-Form Name       : NPSS Process log SRCH--------------------------------------------------------------------------- */
+Screen Name     : s_iban_transaction_details
+Form Name       : NPSS RCT Post PLOG srch--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_process_log_srch',
-  templateUrl: './f_npss_process_log_srch.component.html',
-  styleUrls: ['./f_npss_process_log_srch.component.css'],
+  selector: 'f_npss_rct_post_plog_srch',
+  templateUrl: './f_npss_rct_post_plog_srch.component.html',
+  styleUrls: ['./f_npss_rct_post_plog_srch.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_process_log_srchComponent implements OnInit {
+export class f_npss_rct_post_plog_srchComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_process_log_srch') form;
-  @ViewChild('npss_process_log_srch_memory18') element: ElementRef;
+  @ViewChild('f_npss_rct_post_plog_srch') form;
+  @ViewChild('npss_rct_post_plog_srch_memory18') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -50,7 +50,7 @@ focustoelement(){
   
 		//Properties of memory18
 		this.ctrl.memory18 = {}
-		this.ctrl.memory18.id = "RN31CN8"
+		this.ctrl.memory18.id = "2d2e05ac-5ece-4d1d-9ec8-b2be0491e67b_1668849760484"
 		this.ctrl.memory18.desc = "Value Date"
 		this.ctrl.memory18.visible = true
 		this.ctrl.memory18.label_name = "Value Date"
@@ -81,14 +81,14 @@ focustoelement(){
 		this.ctrl.memory18.vld_rules = []
 		this.ctrl.memory18.targetcolumn_lower = "memory18"
 		this.ctrl.memory18.disabled = false
-		this.ctrl.memory18.view_name = "f_npss_process_log_srch"
-		this.ctrl.memory18.ctrl_id = "npss_process_log_srch_memory18"
-		this.ctrl.npss_process_log_srch_memory18 = {}
-		this.ctrl.npss_process_log_srch_memory18.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.memory18.view_name = "f_npss_rct_post_plog_srch"
+		this.ctrl.memory18.ctrl_id = "npss_rct_post_plog_srch_memory18"
+		this.ctrl.npss_rct_post_plog_srch_memory18 = {}
+		this.ctrl.npss_rct_post_plog_srch_memory18.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory9
 		this.ctrl.memory9 = {}
-		this.ctrl.memory9.id = "RN31CN9"
+		this.ctrl.memory9.id = "1d59c8ef-6767-4201-8531-33f40d786f77_1668849760484"
 		this.ctrl.memory9.desc = "Created Date"
 		this.ctrl.memory9.visible = true
 		this.ctrl.memory9.label_name = "Created Date"
@@ -120,14 +120,14 @@ focustoelement(){
 		this.ctrl.memory9.vld_rules = []
 		this.ctrl.memory9.targetcolumn_lower = "memory9"
 		this.ctrl.memory9.disabled = false
-		this.ctrl.memory9.view_name = "f_npss_process_log_srch"
-		this.ctrl.memory9.ctrl_id = "npss_process_log_srch_memory9"
-		this.ctrl.npss_process_log_srch_memory9 = {}
-		this.ctrl.npss_process_log_srch_memory9.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.memory9.view_name = "f_npss_rct_post_plog_srch"
+		this.ctrl.memory9.ctrl_id = "npss_rct_post_plog_srch_memory9"
+		this.ctrl.npss_rct_post_plog_srch_memory9 = {}
+		this.ctrl.npss_rct_post_plog_srch_memory9.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory19
 		this.ctrl.memory19 = {}
-		this.ctrl.memory19.id = "RN21CN5"
+		this.ctrl.memory19.id = "4780b030-689c-4e95-810c-2bac7f06d098_1668849760485"
 		this.ctrl.memory19.desc = "Creditor IBAN"
 		this.ctrl.memory19.visible = true
 		this.ctrl.memory19.label_name = "Creditor IBAN"
@@ -158,14 +158,14 @@ focustoelement(){
 		this.ctrl.memory19.vld_rules = []
 		this.ctrl.memory19.targetcolumn_lower = "memory19"
 		this.ctrl.memory19.disabled = false
-		this.ctrl.memory19.view_name = "f_npss_process_log_srch"
-		this.ctrl.memory19.ctrl_id = "npss_process_log_srch_memory19"
-		this.ctrl.npss_process_log_srch_memory19 = {}
-		this.ctrl.npss_process_log_srch_memory19.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.memory19.view_name = "f_npss_rct_post_plog_srch"
+		this.ctrl.memory19.ctrl_id = "npss_rct_post_plog_srch_memory19"
+		this.ctrl.npss_rct_post_plog_srch_memory19 = {}
+		this.ctrl.npss_rct_post_plog_srch_memory19.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of uetr
 		this.ctrl.uetr = {}
-		this.ctrl.uetr.id = "RN01CN1"
+		this.ctrl.uetr.id = "79fe1420-8679-4818-8921-a5f8ce0318b7_1668849760485"
 		this.ctrl.uetr.desc = "Clearing sys ref number"
 		this.ctrl.uetr.visible = true
 		this.ctrl.uetr.label_name = "Clearing sys ref number"
@@ -197,53 +197,14 @@ focustoelement(){
 		this.ctrl.uetr.vld_rules = []
 		this.ctrl.uetr.targetcolumn_lower = "uetr"
 		this.ctrl.uetr.disabled = false
-		this.ctrl.uetr.view_name = "f_npss_process_log_srch"
-		this.ctrl.uetr.ctrl_id = "npss_process_log_srch_uetr"
-		this.ctrl.npss_process_log_srch_uetr = {}
-		this.ctrl.npss_process_log_srch_uetr.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of memory20
-		this.ctrl.memory20 = {}
-		this.ctrl.memory20.id = "RN21CN7"
-		this.ctrl.memory20.desc = "Payment Method"
-		this.ctrl.memory20.visible = true
-		this.ctrl.memory20.label_name = "Payment Method"
-		this.ctrl.memory20.df_code = "DF_1304_1665905157963"
-		this.ctrl.memory20.df_description = "Column Group 1"
-		this.ctrl.memory20.uictrl_code = "CBO"
-		this.ctrl.memory20.target_column = "memory20"
-		this.ctrl.memory20.data_type = "TEXT"
-		this.ctrl.memory20.data_length = 32
-		this.ctrl.memory20.zone_df_code = "DF_1304_1665905157963"
-		this.ctrl.memory20.default_value = ""
-		this.ctrl.memory20.is_memory_ctrl = "Y"
-		this.ctrl.memory20.field_coordinates = ""
-		this.ctrl.memory20.sub_details = ""
-		this.ctrl.memory20.accept_char = ""
-		this.ctrl.memory20.currency_format = ""
-		this.ctrl.memory20.data_scale = ""
-		this.ctrl.memory20.binding_name = "MEM_PAYMENT_METHOD"
-		this.ctrl.memory20.depends_on = ""
-		this.ctrl.memory20.placeholder = ""
-		this.ctrl.memory20.dynamic_param = ""
-		this.ctrl.memory20.style_code = ""
-		this.ctrl.memory20.data_source = {"ds_code":"UDS_1304_1668418325492","ds_description":"Payment Method CDB","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"CD_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CODE_DESCRIPTIONS","context":"","filters":[{"filter_name":"Filter1","binding_name":"CD_CATEGORY","id":"DF_1668418458191","binding_value":"MEM_PAYMENT_METHOD","source_name":"CD_CATEGORY","source_value":"MEM_PAYMENT_METHOD","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1668418458191","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"MEM_PAYMENT_METHOD","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","temp_value":"MEM_PAYMENT_METHOD","filter_values":"HARDCODED"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(CD_CATEGORY = MEM_PAYMENT_METHOD AND TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[]}
-		this.ctrl.memory20.image_association = ""
-		this.ctrl.memory20.show = true
-		this.ctrl.memory20.sub_content = ""
-		this.ctrl.memory20.required = false
-		this.ctrl.memory20.vld_rules = []
-		this.ctrl.memory20.targetcolumn_lower = "memory20"
-		this.ctrl.memory20.disabled = false
-		this.ctrl.memory20.view_name = "f_npss_process_log_srch"
-		this.ctrl.memory20.ctrl_id = "npss_process_log_srch_memory20"
-		this.ctrl.npss_process_log_srch_memory20 = {}
-		this.ctrl.npss_process_log_srch_memory20.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_process_log_srch.memory20 = {}
+		this.ctrl.uetr.view_name = "f_npss_rct_post_plog_srch"
+		this.ctrl.uetr.ctrl_id = "npss_rct_post_plog_srch_uetr"
+		this.ctrl.npss_rct_post_plog_srch_uetr = {}
+		this.ctrl.npss_rct_post_plog_srch_uetr.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory21
 		this.ctrl.memory21 = {}
-		this.ctrl.memory21.id = "RN21CN6"
+		this.ctrl.memory21.id = "be70727e-7695-4c4c-ada8-7d73ffbb73a5_1668849760485"
 		this.ctrl.memory21.desc = "Transaction Ref No"
 		this.ctrl.memory21.visible = true
 		this.ctrl.memory21.label_name = "Transaction Ref No"
@@ -274,14 +235,14 @@ focustoelement(){
 		this.ctrl.memory21.vld_rules = []
 		this.ctrl.memory21.targetcolumn_lower = "memory21"
 		this.ctrl.memory21.disabled = false
-		this.ctrl.memory21.view_name = "f_npss_process_log_srch"
-		this.ctrl.memory21.ctrl_id = "npss_process_log_srch_memory21"
-		this.ctrl.npss_process_log_srch_memory21 = {}
-		this.ctrl.npss_process_log_srch_memory21.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.memory21.view_name = "f_npss_rct_post_plog_srch"
+		this.ctrl.memory21.ctrl_id = "npss_rct_post_plog_srch_memory21"
+		this.ctrl.npss_rct_post_plog_srch_memory21 = {}
+		this.ctrl.npss_rct_post_plog_srch_memory21.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory22
 		this.ctrl.memory22 = {}
-		this.ctrl.memory22.id = "RN01CN10"
+		this.ctrl.memory22.id = "6177f9b8-0811-416a-a18e-2ba739f8ac11_1668849760485"
 		this.ctrl.memory22.desc = "E2E Ref ID"
 		this.ctrl.memory22.visible = true
 		this.ctrl.memory22.label_name = "E2E Ref ID"
@@ -312,14 +273,14 @@ focustoelement(){
 		this.ctrl.memory22.vld_rules = []
 		this.ctrl.memory22.targetcolumn_lower = "memory22"
 		this.ctrl.memory22.disabled = false
-		this.ctrl.memory22.view_name = "f_npss_process_log_srch"
-		this.ctrl.memory22.ctrl_id = "npss_process_log_srch_memory22"
-		this.ctrl.npss_process_log_srch_memory22 = {}
-		this.ctrl.npss_process_log_srch_memory22.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.memory22.view_name = "f_npss_rct_post_plog_srch"
+		this.ctrl.memory22.ctrl_id = "npss_rct_post_plog_srch_memory22"
+		this.ctrl.npss_rct_post_plog_srch_memory22 = {}
+		this.ctrl.npss_rct_post_plog_srch_memory22.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory23
 		this.ctrl.memory23 = {}
-		this.ctrl.memory23.id = "RN01CN11"
+		this.ctrl.memory23.id = "d0e858af-a7cf-4422-83f9-0af3db8e4344_1668849760485"
 		this.ctrl.memory23.desc = "Cr Account Number"
 		this.ctrl.memory23.visible = true
 		this.ctrl.memory23.label_name = "Cr Account Number"
@@ -350,14 +311,14 @@ focustoelement(){
 		this.ctrl.memory23.vld_rules = []
 		this.ctrl.memory23.targetcolumn_lower = "memory23"
 		this.ctrl.memory23.disabled = false
-		this.ctrl.memory23.view_name = "f_npss_process_log_srch"
-		this.ctrl.memory23.ctrl_id = "npss_process_log_srch_memory23"
-		this.ctrl.npss_process_log_srch_memory23 = {}
-		this.ctrl.npss_process_log_srch_memory23.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.memory23.view_name = "f_npss_rct_post_plog_srch"
+		this.ctrl.memory23.ctrl_id = "npss_rct_post_plog_srch_memory23"
+		this.ctrl.npss_rct_post_plog_srch_memory23 = {}
+		this.ctrl.npss_rct_post_plog_srch_memory23.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory24
 		this.ctrl.memory24 = {}
-		this.ctrl.memory24.id = "RN41CN13"
+		this.ctrl.memory24.id = "3af74f36-3020-47dd-a037-284a7d9064f4_1668849760485"
 		this.ctrl.memory24.desc = "Dr Account Number"
 		this.ctrl.memory24.visible = true
 		this.ctrl.memory24.label_name = "Dr Account Number"
@@ -388,14 +349,14 @@ focustoelement(){
 		this.ctrl.memory24.vld_rules = []
 		this.ctrl.memory24.targetcolumn_lower = "memory24"
 		this.ctrl.memory24.disabled = false
-		this.ctrl.memory24.view_name = "f_npss_process_log_srch"
-		this.ctrl.memory24.ctrl_id = "npss_process_log_srch_memory24"
-		this.ctrl.npss_process_log_srch_memory24 = {}
-		this.ctrl.npss_process_log_srch_memory24.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.memory24.view_name = "f_npss_rct_post_plog_srch"
+		this.ctrl.memory24.ctrl_id = "npss_rct_post_plog_srch_memory24"
+		this.ctrl.npss_rct_post_plog_srch_memory24 = {}
+		this.ctrl.npss_rct_post_plog_srch_memory24.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory25
 		this.ctrl.memory25 = {}
-		this.ctrl.memory25.id = "RN41CN14"
+		this.ctrl.memory25.id = "e177cc22-d2d9-4a01-9db7-032022d814eb_1668849760485"
 		this.ctrl.memory25.desc = "Transaction Amount"
 		this.ctrl.memory25.visible = true
 		this.ctrl.memory25.label_name = "Transaction Amount"
@@ -426,14 +387,14 @@ focustoelement(){
 		this.ctrl.memory25.vld_rules = []
 		this.ctrl.memory25.targetcolumn_lower = "memory25"
 		this.ctrl.memory25.disabled = false
-		this.ctrl.memory25.view_name = "f_npss_process_log_srch"
-		this.ctrl.memory25.ctrl_id = "npss_process_log_srch_memory25"
-		this.ctrl.npss_process_log_srch_memory25 = {}
-		this.ctrl.npss_process_log_srch_memory25.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.memory25.view_name = "f_npss_rct_post_plog_srch"
+		this.ctrl.memory25.ctrl_id = "npss_rct_post_plog_srch_memory25"
+		this.ctrl.npss_rct_post_plog_srch_memory25 = {}
+		this.ctrl.npss_rct_post_plog_srch_memory25.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of process_name
 		this.ctrl.process_name = {}
-		this.ctrl.process_name.id = "RN01CN2"
+		this.ctrl.process_name.id = "9b197d4d-4d43-45d4-a9d8-e059181b315f_1668849760485"
 		this.ctrl.process_name.desc = "Process Name"
 		this.ctrl.process_name.visible = true
 		this.ctrl.process_name.label_name = "Process Name"
@@ -465,15 +426,15 @@ focustoelement(){
 		this.ctrl.process_name.vld_rules = []
 		this.ctrl.process_name.targetcolumn_lower = "process_name"
 		this.ctrl.process_name.disabled = false
-		this.ctrl.process_name.view_name = "f_npss_process_log_srch"
-		this.ctrl.process_name.ctrl_id = "npss_process_log_srch_process_name"
-		this.ctrl.npss_process_log_srch_process_name = {}
-		this.ctrl.npss_process_log_srch_process_name.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_process_log_srch.process_name = {}
+		this.ctrl.process_name.view_name = "f_npss_rct_post_plog_srch"
+		this.ctrl.process_name.ctrl_id = "npss_rct_post_plog_srch_process_name"
+		this.ctrl.npss_rct_post_plog_srch_process_name = {}
+		this.ctrl.npss_rct_post_plog_srch_process_name.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.process_name = {}
 	
 		//Properties of processing_system
 		this.ctrl.processing_system = {}
-		this.ctrl.processing_system.id = "RN11CN3"
+		this.ctrl.processing_system.id = "2b78f8bd-2be0-48fb-9a3c-4e69a3fef50b_1668849760485"
 		this.ctrl.processing_system.desc = "Processing System"
 		this.ctrl.processing_system.visible = true
 		this.ctrl.processing_system.label_name = "Processing System"
@@ -505,15 +466,15 @@ focustoelement(){
 		this.ctrl.processing_system.vld_rules = []
 		this.ctrl.processing_system.targetcolumn_lower = "processing_system"
 		this.ctrl.processing_system.disabled = false
-		this.ctrl.processing_system.view_name = "f_npss_process_log_srch"
-		this.ctrl.processing_system.ctrl_id = "npss_process_log_srch_processing_system"
-		this.ctrl.npss_process_log_srch_processing_system = {}
-		this.ctrl.npss_process_log_srch_processing_system.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_process_log_srch.model = {"MEMORY18":"setcurrentdate(),{}","MEMORY9":"setcurrentdate(),{}","MEMORY19":"","UETR":"","MEMORY20":"","MEMORY21":"","MEMORY22":"","MEMORY23":"","MEMORY24":"","MEMORY25":"","PROCESS_NAME":"","PROCESSING_SYSTEM":""}
-		this.screen_instance[this.comp_id].f_npss_process_log_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"}]
-		this.screen_instance[this.comp_id].f_npss_process_log_srch.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_process_log_srch.dtt_code = "dtt_1304_1665905039255"
-		this.screen_instance[this.comp_id].f_npss_process_log_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		this.ctrl.processing_system.view_name = "f_npss_rct_post_plog_srch"
+		this.ctrl.processing_system.ctrl_id = "npss_rct_post_plog_srch_processing_system"
+		this.ctrl.npss_rct_post_plog_srch_processing_system = {}
+		this.ctrl.npss_rct_post_plog_srch_processing_system.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.model = {"MEMORY18":"setcurrentdate(),{}","MEMORY9":"setcurrentdate(),{}","MEMORY19":"","UETR":"","MEMORY21":"","MEMORY22":"","MEMORY23":"","MEMORY24":"","MEMORY25":"","PROCESS_NAME":"","PROCESSING_SYSTEM":""}
+		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"}]
+		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.dtt_code = "dtt_1304_1665905039255"
+		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -560,10 +521,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_process_log_srch[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_process_log_srch[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_process_log_srch[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

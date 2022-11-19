@@ -1,0 +1,51 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_tran_srch="ngForm">
+<div id="r0" class="row">
+	<div #npss_tran_srch_value_date id="2197a6ef-31d3-4e9a-bab4-6ab3497eb997_1668861142108" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('value_date')" >
+				<cdn_date [ctrl_id]="'npss_tran_srch_value_date'" [comp_id]="comp_id" [ctrl]="ctrl.value_date" [model]="screen_instance[this.comp_id].f_npss_tran_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
+	</div>
+	<div  id="3f37b75b-29a7-4dc0-9eb1-d3a7994f8e1e_1668861142108" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory63')" >
+				<cdn_date [ctrl_id]="'npss_tran_srch_memory63'" [comp_id]="comp_id" [ctrl]="ctrl.memory63" [model]="screen_instance[this.comp_id].f_npss_tran_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
+	</div>
+</div>
+<div id="r1" class="row">
+	<div  id="00be5a79-e186-496d-bc21-2a84568811f4_1668861142108" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cdtr_iban')" >
+				<txt [ctrl_id]="'npss_tran_srch_cdtr_iban'" [comp_id]="comp_id" [ctrl]="ctrl.cdtr_iban" [model]="screen_instance[this.comp_id].f_npss_tran_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="9e0906f2-a89d-4669-b784-c73f24b4ea9d_1668861142108" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('uetr')" >
+				<txt [ctrl_id]="'npss_tran_srch_uetr'" [comp_id]="comp_id" [ctrl]="ctrl.uetr" [model]="screen_instance[this.comp_id].f_npss_tran_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="85eec511-145a-423a-a94c-ed5d9c6d1d3b_1668861142108" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('tran_ref_id')" >
+				<txt [ctrl_id]="'npss_tran_srch_tran_ref_id'" [comp_id]="comp_id" [ctrl]="ctrl.tran_ref_id" [model]="screen_instance[this.comp_id].f_npss_tran_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+<div id="r2" class="row">
+	<div  id="2494964c-4012-4743-957d-b4a8676569ce_1668861142108" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('payment_endtoend_id')" >
+				<txt [ctrl_id]="'npss_tran_srch_payment_endtoend_id'" [comp_id]="comp_id" [ctrl]="ctrl.payment_endtoend_id" [model]="screen_instance[this.comp_id].f_npss_tran_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="d1e6bb2e-e913-4aec-b5a3-c2e0888e9ece_1668861142108" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cdtr_acct_no')" >
+				<txt [ctrl_id]="'npss_tran_srch_cdtr_acct_no'" [comp_id]="comp_id" [ctrl]="ctrl.cdtr_acct_no" [model]="screen_instance[this.comp_id].f_npss_tran_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="33ac940c-7246-45c0-9ab7-32553512a057_1668861142108" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('dbtr_acct_no')" >
+				<txt [ctrl_id]="'npss_tran_srch_dbtr_acct_no'" [comp_id]="comp_id" [ctrl]="ctrl.dbtr_acct_no" [model]="screen_instance[this.comp_id].f_npss_tran_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+<div id="1668861142108" class="row">
+	<div  id="fb95faed-313c-4dc3-9755-3cc36fb3170c_1668861142108" class="column col-md-8 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('intrbk_sttlm_amnt')" >
+				<cdn_cur_ctrl [ctrl_id]="'npss_tran_srch_intrbk_sttlm_amnt'" [comp_id]="comp_id" [ctrl]="ctrl.intrbk_sttlm_amnt" [model]="screen_instance[this.comp_id].f_npss_tran_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_cur_ctrl>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+ 		<div class="col-md-2 col-sm-6 col-xs-6 col-md-offset-8 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.search_search.show" >
+			<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+		</div>
+		<div class="col-md-2 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.search_clear.show" >
+			<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		</div>
+	</div>
+
+</div>

@@ -1,32 +1,32 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26957 
+Build ID        : 26990 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-19 11:37 AM 
+Modified Date   : 2022-Nov-19 12:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_bct_posting_suspicious
-Form Name       : NPSS Investigation srch--------------------------------------------------------------------------- */
+Screen Name     : s_bct_review_transactions
+Form Name       : NPSS Tran SRCH--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_investigation_srch',
-  templateUrl: './f_npss_investigation_srch.component.html',
-  styleUrls: ['./f_npss_investigation_srch.component.css'],
+  selector: 'f_npss_tran_srch',
+  templateUrl: './f_npss_tran_srch.component.html',
+  styleUrls: ['./f_npss_tran_srch.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_investigation_srchComponent implements OnInit {
+export class f_npss_tran_srchComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_investigation_srch') form;
-  @ViewChild('npss_investigation_srch_value_date') element: ElementRef;
+  @ViewChild('f_npss_tran_srch') form;
+  @ViewChild('npss_tran_srch_value_date') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -50,7 +50,7 @@ focustoelement(){
   
 		//Properties of value_date
 		this.ctrl.value_date = {}
-		this.ctrl.value_date.id = "RN01CN1001"
+		this.ctrl.value_date.id = "2197a6ef-31d3-4e9a-bab4-6ab3497eb997_1668861142108"
 		this.ctrl.value_date.desc = "Value Date"
 		this.ctrl.value_date.visible = true
 		this.ctrl.value_date.label_name = "Value Date"
@@ -82,14 +82,14 @@ focustoelement(){
 		this.ctrl.value_date.vld_rules = []
 		this.ctrl.value_date.targetcolumn_lower = "value_date"
 		this.ctrl.value_date.disabled = false
-		this.ctrl.value_date.view_name = "f_npss_investigation_srch"
-		this.ctrl.value_date.ctrl_id = "npss_investigation_srch_value_date"
-		this.ctrl.npss_investigation_srch_value_date = {}
-		this.ctrl.npss_investigation_srch_value_date.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.value_date.view_name = "f_npss_tran_srch"
+		this.ctrl.value_date.ctrl_id = "npss_tran_srch_value_date"
+		this.ctrl.npss_tran_srch_value_date = {}
+		this.ctrl.npss_tran_srch_value_date.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory63
 		this.ctrl.memory63 = {}
-		this.ctrl.memory63.id = "RN21CN5"
+		this.ctrl.memory63.id = "3f37b75b-29a7-4dc0-9eb1-d3a7994f8e1e_1668861142108"
 		this.ctrl.memory63.desc = "Created date"
 		this.ctrl.memory63.visible = true
 		this.ctrl.memory63.label_name = "Created date"
@@ -121,14 +121,14 @@ focustoelement(){
 		this.ctrl.memory63.vld_rules = []
 		this.ctrl.memory63.targetcolumn_lower = "memory63"
 		this.ctrl.memory63.disabled = false
-		this.ctrl.memory63.view_name = "f_npss_investigation_srch"
-		this.ctrl.memory63.ctrl_id = "npss_investigation_srch_memory63"
-		this.ctrl.npss_investigation_srch_memory63 = {}
-		this.ctrl.npss_investigation_srch_memory63.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.memory63.view_name = "f_npss_tran_srch"
+		this.ctrl.memory63.ctrl_id = "npss_tran_srch_memory63"
+		this.ctrl.npss_tran_srch_memory63 = {}
+		this.ctrl.npss_tran_srch_memory63.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_iban
 		this.ctrl.cdtr_iban = {}
-		this.ctrl.cdtr_iban.id = "RN01CN1"
+		this.ctrl.cdtr_iban.id = "00be5a79-e186-496d-bc21-2a84568811f4_1668861142108"
 		this.ctrl.cdtr_iban.desc = "Creditor IBAN"
 		this.ctrl.cdtr_iban.visible = true
 		this.ctrl.cdtr_iban.label_name = "Creditor IBAN"
@@ -160,14 +160,14 @@ focustoelement(){
 		this.ctrl.cdtr_iban.vld_rules = []
 		this.ctrl.cdtr_iban.targetcolumn_lower = "cdtr_iban"
 		this.ctrl.cdtr_iban.disabled = false
-		this.ctrl.cdtr_iban.view_name = "f_npss_investigation_srch"
-		this.ctrl.cdtr_iban.ctrl_id = "npss_investigation_srch_cdtr_iban"
-		this.ctrl.npss_investigation_srch_cdtr_iban = {}
-		this.ctrl.npss_investigation_srch_cdtr_iban.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.cdtr_iban.view_name = "f_npss_tran_srch"
+		this.ctrl.cdtr_iban.ctrl_id = "npss_tran_srch_cdtr_iban"
+		this.ctrl.npss_tran_srch_cdtr_iban = {}
+		this.ctrl.npss_tran_srch_cdtr_iban.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of uetr
 		this.ctrl.uetr = {}
-		this.ctrl.uetr.id = "RN11CN2"
+		this.ctrl.uetr.id = "9e0906f2-a89d-4669-b784-c73f24b4ea9d_1668861142108"
 		this.ctrl.uetr.desc = "Clearing sys ref number"
 		this.ctrl.uetr.visible = true
 		this.ctrl.uetr.label_name = "Clearing sys ref number"
@@ -199,54 +199,14 @@ focustoelement(){
 		this.ctrl.uetr.vld_rules = []
 		this.ctrl.uetr.targetcolumn_lower = "uetr"
 		this.ctrl.uetr.disabled = false
-		this.ctrl.uetr.view_name = "f_npss_investigation_srch"
-		this.ctrl.uetr.ctrl_id = "npss_investigation_srch_uetr"
-		this.ctrl.npss_investigation_srch_uetr = {}
-		this.ctrl.npss_investigation_srch_uetr.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of memory67
-		this.ctrl.memory67 = {}
-		this.ctrl.memory67.id = "RN51CN11"
-		this.ctrl.memory67.desc = "Payment Method"
-		this.ctrl.memory67.visible = true
-		this.ctrl.memory67.label_name = "Payment Method"
-		this.ctrl.memory67.df_code = "DF_1304_1665901396659"
-		this.ctrl.memory67.df_description = "Column Group 1"
-		this.ctrl.memory67.uictrl_code = "CBO"
-		this.ctrl.memory67.target_column = "memory67"
-		this.ctrl.memory67.data_type = "TEXT"
-		this.ctrl.memory67.data_length = 0
-		this.ctrl.memory67.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory67.default_value = ""
-		this.ctrl.memory67.is_memory_ctrl = "Y"
-		this.ctrl.memory67.field_coordinates = ""
-		this.ctrl.memory67.sub_details = ""
-		this.ctrl.memory67.accept_char = ""
-		this.ctrl.memory67.currency_format = ""
-		this.ctrl.memory67.data_scale = ""
-		this.ctrl.memory67.binding_name = "MEM_PAYMENT_METHOD"
-		this.ctrl.memory67.hide_label = false
-		this.ctrl.memory67.depends_on = ""
-		this.ctrl.memory67.placeholder = ""
-		this.ctrl.memory67.dynamic_param = ""
-		this.ctrl.memory67.style_code = ""
-		this.ctrl.memory67.data_source = {"ds_code":"UDS_1304_1668418325492","ds_description":"Payment Method CDB","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"CD_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CODE_DESCRIPTIONS","context":"","filters":[{"filter_name":"Filter1","binding_name":"CD_CATEGORY","id":"DF_1668418458191","binding_value":"MEM_PAYMENT_METHOD","source_name":"CD_CATEGORY","source_value":"MEM_PAYMENT_METHOD","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1668418458191","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"MEM_PAYMENT_METHOD","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","temp_value":"MEM_PAYMENT_METHOD","filter_values":"HARDCODED"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(CD_CATEGORY = MEM_PAYMENT_METHOD AND TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[]}
-		this.ctrl.memory67.image_association = ""
-		this.ctrl.memory67.show = true
-		this.ctrl.memory67.sub_content = ""
-		this.ctrl.memory67.required = false
-		this.ctrl.memory67.vld_rules = []
-		this.ctrl.memory67.targetcolumn_lower = "memory67"
-		this.ctrl.memory67.disabled = false
-		this.ctrl.memory67.view_name = "f_npss_investigation_srch"
-		this.ctrl.memory67.ctrl_id = "npss_investigation_srch_memory67"
-		this.ctrl.npss_investigation_srch_memory67 = {}
-		this.ctrl.npss_investigation_srch_memory67.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_investigation_srch.memory67 = {}
+		this.ctrl.uetr.view_name = "f_npss_tran_srch"
+		this.ctrl.uetr.ctrl_id = "npss_tran_srch_uetr"
+		this.ctrl.npss_tran_srch_uetr = {}
+		this.ctrl.npss_tran_srch_uetr.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of tran_ref_id
 		this.ctrl.tran_ref_id = {}
-		this.ctrl.tran_ref_id.id = "RN21CN6"
+		this.ctrl.tran_ref_id.id = "85eec511-145a-423a-a94c-ed5d9c6d1d3b_1668861142108"
 		this.ctrl.tran_ref_id.desc = "Transaction Ref No"
 		this.ctrl.tran_ref_id.visible = true
 		this.ctrl.tran_ref_id.label_name = "Transaction Ref No"
@@ -278,14 +238,14 @@ focustoelement(){
 		this.ctrl.tran_ref_id.vld_rules = []
 		this.ctrl.tran_ref_id.targetcolumn_lower = "tran_ref_id"
 		this.ctrl.tran_ref_id.disabled = false
-		this.ctrl.tran_ref_id.view_name = "f_npss_investigation_srch"
-		this.ctrl.tran_ref_id.ctrl_id = "npss_investigation_srch_tran_ref_id"
-		this.ctrl.npss_investigation_srch_tran_ref_id = {}
-		this.ctrl.npss_investigation_srch_tran_ref_id.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.tran_ref_id.view_name = "f_npss_tran_srch"
+		this.ctrl.tran_ref_id.ctrl_id = "npss_tran_srch_tran_ref_id"
+		this.ctrl.npss_tran_srch_tran_ref_id = {}
+		this.ctrl.npss_tran_srch_tran_ref_id.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of payment_endtoend_id
 		this.ctrl.payment_endtoend_id = {}
-		this.ctrl.payment_endtoend_id.id = "RN61CN13"
+		this.ctrl.payment_endtoend_id.id = "2494964c-4012-4743-957d-b4a8676569ce_1668861142108"
 		this.ctrl.payment_endtoend_id.desc = "E2E Ref ID"
 		this.ctrl.payment_endtoend_id.visible = true
 		this.ctrl.payment_endtoend_id.label_name = "E2E Ref ID"
@@ -317,14 +277,14 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.vld_rules = []
 		this.ctrl.payment_endtoend_id.targetcolumn_lower = "payment_endtoend_id"
 		this.ctrl.payment_endtoend_id.disabled = false
-		this.ctrl.payment_endtoend_id.view_name = "f_npss_investigation_srch"
-		this.ctrl.payment_endtoend_id.ctrl_id = "npss_investigation_srch_payment_endtoend_id"
-		this.ctrl.npss_investigation_srch_payment_endtoend_id = {}
-		this.ctrl.npss_investigation_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.payment_endtoend_id.view_name = "f_npss_tran_srch"
+		this.ctrl.payment_endtoend_id.ctrl_id = "npss_tran_srch_payment_endtoend_id"
+		this.ctrl.npss_tran_srch_payment_endtoend_id = {}
+		this.ctrl.npss_tran_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_acct_no
 		this.ctrl.cdtr_acct_no = {}
-		this.ctrl.cdtr_acct_no.id = "RN31CN7"
+		this.ctrl.cdtr_acct_no.id = "d1e6bb2e-e913-4aec-b5a3-c2e0888e9ece_1668861142108"
 		this.ctrl.cdtr_acct_no.desc = "Cr Account Number"
 		this.ctrl.cdtr_acct_no.visible = true
 		this.ctrl.cdtr_acct_no.label_name = "Cr Account Number"
@@ -356,14 +316,14 @@ focustoelement(){
 		this.ctrl.cdtr_acct_no.vld_rules = []
 		this.ctrl.cdtr_acct_no.targetcolumn_lower = "cdtr_acct_no"
 		this.ctrl.cdtr_acct_no.disabled = false
-		this.ctrl.cdtr_acct_no.view_name = "f_npss_investigation_srch"
-		this.ctrl.cdtr_acct_no.ctrl_id = "npss_investigation_srch_cdtr_acct_no"
-		this.ctrl.npss_investigation_srch_cdtr_acct_no = {}
-		this.ctrl.npss_investigation_srch_cdtr_acct_no.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.cdtr_acct_no.view_name = "f_npss_tran_srch"
+		this.ctrl.cdtr_acct_no.ctrl_id = "npss_tran_srch_cdtr_acct_no"
+		this.ctrl.npss_tran_srch_cdtr_acct_no = {}
+		this.ctrl.npss_tran_srch_cdtr_acct_no.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of dbtr_acct_no
 		this.ctrl.dbtr_acct_no = {}
-		this.ctrl.dbtr_acct_no.id = "RN41CN9"
+		this.ctrl.dbtr_acct_no.id = "33ac940c-7246-45c0-9ab7-32553512a057_1668861142108"
 		this.ctrl.dbtr_acct_no.desc = "Dr Account Number"
 		this.ctrl.dbtr_acct_no.visible = true
 		this.ctrl.dbtr_acct_no.label_name = "Dr Account Number"
@@ -395,14 +355,14 @@ focustoelement(){
 		this.ctrl.dbtr_acct_no.vld_rules = []
 		this.ctrl.dbtr_acct_no.targetcolumn_lower = "dbtr_acct_no"
 		this.ctrl.dbtr_acct_no.disabled = false
-		this.ctrl.dbtr_acct_no.view_name = "f_npss_investigation_srch"
-		this.ctrl.dbtr_acct_no.ctrl_id = "npss_investigation_srch_dbtr_acct_no"
-		this.ctrl.npss_investigation_srch_dbtr_acct_no = {}
-		this.ctrl.npss_investigation_srch_dbtr_acct_no.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.dbtr_acct_no.view_name = "f_npss_tran_srch"
+		this.ctrl.dbtr_acct_no.ctrl_id = "npss_tran_srch_dbtr_acct_no"
+		this.ctrl.npss_tran_srch_dbtr_acct_no = {}
+		this.ctrl.npss_tran_srch_dbtr_acct_no.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of intrbk_sttlm_amnt
 		this.ctrl.intrbk_sttlm_amnt = {}
-		this.ctrl.intrbk_sttlm_amnt.id = "RN41CN12"
+		this.ctrl.intrbk_sttlm_amnt.id = "fb95faed-313c-4dc3-9755-3cc36fb3170c_1668861142108"
 		this.ctrl.intrbk_sttlm_amnt.desc = "Transaction Amount"
 		this.ctrl.intrbk_sttlm_amnt.visible = true
 		this.ctrl.intrbk_sttlm_amnt.label_name = "Transaction Amount"
@@ -434,15 +394,15 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.vld_rules = []
 		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
 		this.ctrl.intrbk_sttlm_amnt.disabled = false
-		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_investigation_srch"
-		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_investigation_srch_intrbk_sttlm_amnt"
-		this.ctrl.npss_investigation_srch_intrbk_sttlm_amnt = {}
-		this.ctrl.npss_investigation_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_investigation_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","UETR":"","MEMORY67":"","TRAN_REF_ID":"","PAYMENT_ENDTOEND_ID":"","CDTR_ACCT_NO":"","DBTR_ACCT_NO":"","INTRBK_STTLM_AMNT":""}
-		this.screen_instance[this.comp_id].f_npss_investigation_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
-		this.screen_instance[this.comp_id].f_npss_investigation_srch.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_investigation_srch.dtt_code = "dtt_1304_1665901217208"
-		this.screen_instance[this.comp_id].f_npss_investigation_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_tran_srch"
+		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_tran_srch_intrbk_sttlm_amnt"
+		this.ctrl.npss_tran_srch_intrbk_sttlm_amnt = {}
+		this.ctrl.npss_tran_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_tran_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","UETR":"","TRAN_REF_ID":"","PAYMENT_ENDTOEND_ID":"","CDTR_ACCT_NO":"","DBTR_ACCT_NO":"","INTRBK_STTLM_AMNT":""}
+		this.screen_instance[this.comp_id].f_npss_tran_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
+		this.screen_instance[this.comp_id].f_npss_tran_srch.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_npss_tran_srch.dtt_code = "dtt_1304_1665901217208"
+		this.screen_instance[this.comp_id].f_npss_tran_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -489,10 +449,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_investigation_srch[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_investigation_srch[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_tran_srch[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_tran_srch[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_investigation_srch[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_tran_srch[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

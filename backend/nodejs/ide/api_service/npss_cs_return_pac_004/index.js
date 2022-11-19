@@ -149,7 +149,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                             "hdr_clearing_system": arrresult[0].hdr_clearing_system,
 
                                             "post_reason_code": arrReasoncode[0].cbuae_return_code,
-                                            "txid": arrresult[0].tran_ref_id
+                                            "tran_ref_id": arrresult[0].tran_ref_id
 
                                         },
                                         headers: {

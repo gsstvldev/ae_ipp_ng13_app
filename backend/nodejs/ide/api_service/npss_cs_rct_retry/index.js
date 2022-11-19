@@ -50,7 +50,7 @@ try {
                 reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
                     try {
 
-
+                        var PRCT_ID = prct_id
                         var finalstatusqry = `select eligible_status,eligible_process_status, success_process_status,success_status from core_nc_workflow_setup where rule_code='${params.api_code}'`;
 
                         ExecuteQuery1(finalstatusqry, function (arrResult) {

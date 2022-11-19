@@ -64,7 +64,7 @@ export class npss_cs_bct_retryService {
         this.httpHelper.HttpPost('/microsvc/npss_cs_bct_retry/', ClientParams)
             .subscribe((res: any) => {
                 console.log("Bulk Change Status Server Response", res);
-                if (res.data == "SUCCESS") {
+                if (res.data == "SUCCESS" || res.data.status == "SUCCESS") {
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 } else if (res.data == "FAILURE") {
                     this.appHandler.callInternals(internals, screenInstance, "FAILURE");

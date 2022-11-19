@@ -43,7 +43,7 @@ export class npss_cs_bct_already_postingService {
 
        
         var Ctrlscope = screenInstance["cbs_ref_ui"].f_npss_bct_ref_no_ui.model
-        var Refno = Ctrlscope.CBS_REFERENCE_NUMBER
+        var Refno = Ctrlscope.CBS_REF_NO
         let ClientParams: any = {};
         ClientParams.PROD_CODE = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "PRODUCT_CODE");
         ClientParams.AppId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");

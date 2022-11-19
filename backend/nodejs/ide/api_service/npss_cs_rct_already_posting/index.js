@@ -48,7 +48,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     var PRCT_ID = prct_id
                     try {
                                           
-                        var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'and eligible_process_status='${params.eligible_process_status}'and eligible_status='${params.eligible_status}'`
+                        var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'`
                         ExecuteQuery1(ruleqry, function (result) {
                             if (result.length) {
                                 success_process_status = result[0].success_process_status;
@@ -57,14 +57,10 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 ExecuteQuery(updtranqry, function (tranresult) {
                                     if (tranresult == 'SUCCESS') {
 
-                                        if(tranresult == 'SUCCESS'){
+                                      
                                             objresponse.status = 'SUCCESS';
                                             sendResponse(null, objresponse)
-                                        }else{
-                                            console.log("Error in update transaction");
-                                            objresponse.status = 'FAILURE';
-                                            sendResponse(null, objresponse)
-                                        }
+                                        
 
                                         
                                     }

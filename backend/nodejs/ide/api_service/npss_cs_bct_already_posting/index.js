@@ -7,8 +7,9 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 /*  Created By : Siva  Harish
-Created Date :18/11/2022
+Created Date :19/11/2022
 Modified By : 
 Modified Date : 
 Reason for : 
@@ -48,7 +49,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     var PRCT_ID = prct_id
                     try {
                                           
-                        var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'and eligible_process_status='${params.eligible_process_status}'and eligible_status='${params.eligible_status}'`
+                        var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'`
                         ExecuteQuery1(ruleqry, function (result) {
                             if (result.length) {
                                 success_process_status = result[0].success_process_status;
@@ -56,17 +57,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 var updtranqry = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',cbs_ref_no = '${params.Refno}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id='${params.Id}' `
                                 ExecuteQuery(updtranqry, function (tranresult) {
                                     if (tranresult == 'SUCCESS') {
-
-                                        if(tranresult == 'SUCCESS'){
-                                            objresponse.status = 'SUCCESS';
-                                            sendResponse(null, objresponse)
-                                        }else{
-                                            console.log("Error in update transaction");
-                                            objresponse.status = 'FAILURE';
-                                            sendResponse(null, objresponse)
-                                        }
-
-                                        
+                                          objresponse.status = 'SUCCESS';
+                                            sendResponse(null, objresponse)                                       
                                     }
                                     else {
                                         console.log("Error in update transaction");
@@ -150,6 +142,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 })
+
 
 
 

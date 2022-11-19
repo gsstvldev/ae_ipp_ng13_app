@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26957 
+Build ID        : 26989 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-19 11:37 AM 
+Modified Date   : 2022-Nov-19 11:55 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -1118,7 +1118,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1668850507353"
-		let event_params={"caller_name":"navigation_ui_already_posted__spap_for_cbs_ui","event_desc":"SPAP for CBS UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_already_posted","raiseparam":{"popup_category":"profile","variable":"p_cbs_layout__spap_for_cbs_ui","selector":"p_cbs_layout","profile_code":"BTL_1304_1668850424944","window_title":"","window_height":170,"window_width":"50px","window_close_icon":"Y","eventdes":"spap_for_cbs_ui","eventcode":"E_1668850507353"}}
+		let event_params={"caller_name":"navigation_ui_already_posted__spap_for_cbs_ui","event_desc":"SPAP for CBS UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_already_posted","raiseparam":{"popup_category":"profile","variable":"p_cbs_layout__spap_for_cbs_ui","selector":"p_cbs_layout","profile_code":"BTL_1304_1668850424944","window_title":"","window_height":170,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_cbs_ui","eventcode":"E_1668850507353"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}

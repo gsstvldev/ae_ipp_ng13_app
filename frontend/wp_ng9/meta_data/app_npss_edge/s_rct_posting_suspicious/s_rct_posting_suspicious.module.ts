@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26986 
+Build ID        : 26987 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-19 10:1 AM 
+Modified Date   : 2022-Nov-19 11:12 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -23,6 +23,8 @@ import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hid
 import {npss_cs_t24_postingModule} from '../../../custom_widget/npss_cs_t24_posting/npss_cs_t24_posting.module'
 import {npss_cs_enquiryModule} from '../../../custom_widget/npss_cs_enquiry/npss_cs_enquiry.module'
 import {npss_cs_cc_postingModule} from '../../../custom_widget/npss_cs_cc_posting/npss_cs_cc_posting.module'
+import {npss_cs_rct_already_postingModule} from '../../../custom_widget/npss_cs_rct_already_posting/npss_cs_rct_already_posting.module'
+import {npss_cs_rct_retryModule} from '../../../custom_widget/npss_cs_rct_retry/npss_cs_rct_retry.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -55,7 +57,7 @@ import { f_cbs_ref_uiComponent } from './f_cbs_ref_ui/f_cbs_ref_ui.component'
     OverlayPanelModule,
     
     s_rct_posting_suspiciousRoutingModule,
-    torus_cs_show_hideModule,npss_cs_t24_postingModule,npss_cs_enquiryModule,npss_cs_cc_postingModule
+    torus_cs_show_hideModule,npss_cs_t24_postingModule,npss_cs_enquiryModule,npss_cs_cc_postingModule,npss_cs_rct_already_postingModule,npss_cs_rct_retryModule
   ],
   declarations: [s_rct_posting_suspiciousComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_cbs_layoutComponent,f_cbs_ref_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

@@ -62,18 +62,19 @@ try {
                                 ExecuteQuery(updateQry, function (arrfinalResult) {
                                   
                                         if (arrfinalResult == "SUCCESS") {
-                                            sendResponse(null, arrfinalResult)
+                                           objresponse.status = 'SUCCESS';
+                                            sendResponse(null, objresponse) 
                                         }
                                         else {
-                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service.please check the log", result);
-                                            sendResponse('Error in transaction update', result);
+                                           objresponse.status = 'FAILURE';
+                                sendResponse(null, objresponse)
                                         }
                                     
                                 })
                             } else {
                                 console.log("No Data found in Rule Code");
-                                objresponse.status = "FAILURE"
-                                sendResponse(objresponse, null)
+                                objresponse.status = 'FAILURE';
+                                sendResponse(null, objresponse)
                             }
                         })
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26974 
+Build ID        : 26986 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-18 13:32 PM 
+Modified Date   : 2022-Nov-19 10:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_suspicious
@@ -1118,7 +1118,7 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1668775851671"
-		let event_params={"caller_name":"navigation_ui_already_posted__spap_for_already_posted","event_desc":"SPAP for Already posted","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_already_posted","raiseparam":{"popup_category":"profile","variable":"p_cbs_layout__spap_for_already_posted","selector":"p_cbs_layout","profile_code":"BTL_1304_1668776038878","window_title":"","window_height":"","window_width":"auto","window_close_icon":"Y","eventdes":"spap_for_already_posted","eventcode":"E_1668775851671"}}
+		let event_params={"caller_name":"navigation_ui_already_posted__spap_for_already_posted","event_desc":"SPAP for Already posted","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_already_posted","raiseparam":{"popup_category":"profile","variable":"p_cbs_layout__spap_for_already_posted","selector":"p_cbs_layout","profile_code":"BTL_1304_1668776038878","window_title":"","window_height":170,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_already_posted","eventcode":"E_1668775851671"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}
@@ -1161,7 +1161,7 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="cbs_ref_ui_save"
 		let event_code="e_1668776429509"
-		let event_params={"caller_name":"cc_for_cbs_save__info_for_cbs_save","event_desc":"INFO for cbs save","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been already posted successfully","root_source_id":"cbs_ref_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_cbs_save__info_for_cbs_save","event_desc":"INFO for cbs save","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been marked as already posted successfully","root_source_id":"cbs_ref_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="info_for_cbs_save__rs_for_cbs_save,"
 		let event_data={}
@@ -1226,7 +1226,7 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="navigation_ui_retry"
 		let event_code="e_1668776554547"
-		let event_params={"caller_name":"cc_for_retry_btn__info_for_retry_btn","event_desc":"INFO for retry btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been retried successfully","root_source_id":"navigation_ui_retry","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_retry_btn__info_for_retry_btn","event_desc":"INFO for retry btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been sent to posting successfully","root_source_id":"navigation_ui_retry","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="info_for_retry_btn__rs__for_retry_btn,"
 		let event_data={}

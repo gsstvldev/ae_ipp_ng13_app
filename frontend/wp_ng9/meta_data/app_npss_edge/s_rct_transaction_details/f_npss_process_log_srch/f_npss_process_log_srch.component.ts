@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26974 
+Build ID        : 26986 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-18 13:32 PM 
+Modified Date   : 2022-Nov-19 10:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_transaction_details
@@ -205,9 +205,9 @@ focustoelement(){
 		//Properties of memory20
 		this.ctrl.memory20 = {}
 		this.ctrl.memory20.id = "RN21CN7"
-		this.ctrl.memory20.desc = "Mem Payment Method"
+		this.ctrl.memory20.desc = "Payment Method"
 		this.ctrl.memory20.visible = true
-		this.ctrl.memory20.label_name = "Mem Payment Method"
+		this.ctrl.memory20.label_name = "Payment Method"
 		this.ctrl.memory20.df_code = "DF_1304_1665905157963"
 		this.ctrl.memory20.df_description = "Column Group 1"
 		this.ctrl.memory20.uictrl_code = "CBO"

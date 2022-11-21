@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26914 
+Build ID        : 27000 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-21 7:9 AM 
+Modified Date   : 2022-Nov-21 8:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -20,7 +20,7 @@ import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
-import {npss_cs_rct_retryModule} from '../../../custom_widget/npss_cs_rct_retry/npss_cs_rct_retry.module'
+import {npss_cs_rct_ipir_posting_failure_retryModule} from '../../../custom_widget/npss_cs_rct_ipir_posting_failure_retry/npss_cs_rct_ipir_posting_failure_retry.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -51,7 +51,7 @@ import { f_npss_rct_post_plog_srchComponent } from './f_npss_rct_post_plog_srch/
     OverlayPanelModule,
     
     s_rct_posting_failuresRoutingModule,
-    torus_cs_show_hideModule,npss_cs_rct_retryModule
+    torus_cs_show_hideModule,npss_cs_rct_ipir_posting_failure_retryModule
   ],
   declarations: [s_rct_posting_failuresComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]

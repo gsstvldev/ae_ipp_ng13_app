@@ -49,7 +49,8 @@ export class npss_cs_rct_retryService {
         ClientParams.SYSTEM_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_DESC");
         ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
-        ClientParams.Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_NPSST_ID') || '';
+        ClientParams.UETR = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_UETR') || '';
+        ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
         ClientParams.system = system
         ClientParams.api_code = "RCT_IPIR_SUSP_RETRY";
 

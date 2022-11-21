@@ -55,7 +55,7 @@ export class npss_cs_bct_ip_investigation_change_stateService {
 
 
         if (screenInstance.wftpa_description === "s_bct_investigation") {
-            search = screenInstance["search"].f_npss_investigation_srch.model;
+            search = screenInstance["search"].f_npss_tran_srch.model;
 
 
         }
@@ -67,7 +67,7 @@ export class npss_cs_bct_ip_investigation_change_stateService {
 
             "s_cdtr_iban": search.CDTR_IBAN,
             "s_uetr": search.UETR,
-            "s_paymentmethod": search.memory67,
+            
             "s_tran_ref_id": search.TRAN_REF_ID.value,
             "s_e2eref": search.PAYMENT_ENDTOEND_ID.value,
             "s_cdtr_acct_no": search.CDTR_ACCT_NO,

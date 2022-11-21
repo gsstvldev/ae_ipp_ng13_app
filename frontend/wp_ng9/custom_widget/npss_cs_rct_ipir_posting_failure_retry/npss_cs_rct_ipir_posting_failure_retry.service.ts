@@ -50,6 +50,7 @@ export class npss_cs_rct_ipir_posting_failure_retryService {
         ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
         ClientParams.Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_NPSST_ID') || '';
+        ClientParams.UETR = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_UETR') || '';
         ClientParams.system = system
         ClientParams.api_code = "RCT_IPIR_FAIL_RETRY";
 

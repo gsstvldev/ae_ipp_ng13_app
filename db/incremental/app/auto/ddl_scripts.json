@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column DBTR_PRVT_ID CHARACTER VARYING(35), add column DBTR_OTHER_ISSUER CHARACTER VARYING(35);","params" : [] }]

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27002 
+Build ID        : 27005 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-21 10:16 AM 
+Modified Date   : 2022-Nov-21 12:12 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -69,6 +69,7 @@ focustoelement(){
 		this.ctrl.memory18.currency_format = ""
 		this.ctrl.memory18.data_scale = ""
 		this.ctrl.memory18.binding_name = "VALUE_DATE"
+		this.ctrl.memory18.hide_label = false
 		this.ctrl.memory18.depends_on = ""
 		this.ctrl.memory18.placeholder = ""
 		this.ctrl.memory18.dynamic_param = ""
@@ -146,6 +147,7 @@ focustoelement(){
 		this.ctrl.memory19.currency_format = ""
 		this.ctrl.memory19.data_scale = ""
 		this.ctrl.memory19.binding_name = "CDTR_IBAN"
+		this.ctrl.memory19.hide_label = false
 		this.ctrl.memory19.depends_on = ""
 		this.ctrl.memory19.placeholder = ""
 		this.ctrl.memory19.dynamic_param = ""
@@ -223,6 +225,7 @@ focustoelement(){
 		this.ctrl.memory21.currency_format = ""
 		this.ctrl.memory21.data_scale = ""
 		this.ctrl.memory21.binding_name = "TRAN_REF_ID"
+		this.ctrl.memory21.hide_label = false
 		this.ctrl.memory21.depends_on = ""
 		this.ctrl.memory21.placeholder = ""
 		this.ctrl.memory21.dynamic_param = ""
@@ -261,6 +264,7 @@ focustoelement(){
 		this.ctrl.memory22.currency_format = ""
 		this.ctrl.memory22.data_scale = ""
 		this.ctrl.memory22.binding_name = "E2E_REF_ID"
+		this.ctrl.memory22.hide_label = false
 		this.ctrl.memory22.depends_on = ""
 		this.ctrl.memory22.placeholder = ""
 		this.ctrl.memory22.dynamic_param = ""
@@ -299,6 +303,7 @@ focustoelement(){
 		this.ctrl.memory23.currency_format = ""
 		this.ctrl.memory23.data_scale = ""
 		this.ctrl.memory23.binding_name = "CDTR_ACCT_NO"
+		this.ctrl.memory23.hide_label = false
 		this.ctrl.memory23.depends_on = ""
 		this.ctrl.memory23.placeholder = ""
 		this.ctrl.memory23.dynamic_param = ""
@@ -337,6 +342,7 @@ focustoelement(){
 		this.ctrl.memory24.currency_format = ""
 		this.ctrl.memory24.data_scale = ""
 		this.ctrl.memory24.binding_name = "DBTR_ACCT_NO"
+		this.ctrl.memory24.hide_label = false
 		this.ctrl.memory24.depends_on = ""
 		this.ctrl.memory24.placeholder = ""
 		this.ctrl.memory24.dynamic_param = ""
@@ -375,6 +381,7 @@ focustoelement(){
 		this.ctrl.memory25.currency_format = ""
 		this.ctrl.memory25.data_scale = "2"
 		this.ctrl.memory25.binding_name = "INTRBK_STTLM_AMNT"
+		this.ctrl.memory25.hide_label = false
 		this.ctrl.memory25.depends_on = ""
 		this.ctrl.memory25.placeholder = ""
 		this.ctrl.memory25.dynamic_param = ""

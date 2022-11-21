@@ -51,8 +51,8 @@ try {
                     try {
                  var PRCT_ID = prct_id
 
-                        var finalstatusqry = `select eligible_status,eligible_process_status, success_process_status,success_status from core_nc_workflow_setup where rule_code='${params.api_code}'`;
-
+                       // var finalstatusqry = `select eligible_status,eligible_process_status, success_process_status,success_status from core_nc_workflow_setup where rule_code='${params.api_code}'`;
+                        var finalstatusqry = `select eligible_status,eligible_process_status, success_process_status,success_status from core_nc_workflow_setup where rule_code='${params.api_code}' and status = '${params.eligible_status}' and process_status = '${params.eligible_process_status}'`;
                         ExecuteQuery1(finalstatusqry, function (arrResult) {
                             if (arrResult.length) {
                                 final_status = arrResult[0].success_status;

@@ -13,7 +13,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 try {
-    /*  Created By :  Daseen
+    /*  Created By :   Daseen
     Created Date :17/11/2022
     Modified By : 
     Modified Date : 
@@ -52,6 +52,7 @@ try {
                 mTranConn = pSession; //  assign connection     
                 reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
                     try {
+                          var PRCT_ID =  prct_id
 
 
                         var finalstatusqry = `select eligible_status,eligible_process_status, success_process_status,success_status from core_nc_workflow_setup where rule_code='${params.api_code}'`;
@@ -116,14 +117,14 @@ try {
                                     conditionObj["UETR"] = "UETR='" + params.s_uetr + "'";
                                 }
 
-                                if (params.s_paymentmethod) {
-                                    if(params.s_paymentmethod!="BULK"){
-                                    conditionObj["paymentmethod"] = "exhf_id IS NULL";
-                                    }
-                                    else{
-                                        conditionObj["paymentmethod"] = "exhf_id  IS NOT NULL";
-                                    }
-                                }
+                               //  if (params.s_paymentmethod) {
+                                 //   if(params.s_paymentmethod!="BULK"){
+                                 //   conditionObj["paymentmethod"] = "exhf_id IS NULL";
+                                //    }
+                               //     else{
+                                //        conditionObj["paymentmethod"] = "exhf_id  IS NOT NULL";
+                               //     }
+                             //   } 
                                 if (params.s_valuedatevalue) {
                                     conditionObj["valuedate"] = reqDateFormatter.GetSearchCriteriaForBusinessColumn(headers, objSessionLogInfo, 'VALUE_DATE', params.s_valuedatevalue, params.s_valuedatetovalue, params.s_valuedateop);
                                 }

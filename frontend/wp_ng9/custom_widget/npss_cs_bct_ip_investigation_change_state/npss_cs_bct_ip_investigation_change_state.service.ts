@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-//Uncomment below lines when it is  required
+//Uncomment below lines when it is required
 import { Http, Response, Headers, RequestOptions, HttpModule } from '@angular/http';
 //import { Observable } from 'rxjs/Observable';
 //import { HttpClient } from '@angular/common/http';
@@ -43,12 +43,13 @@ export class npss_cs_bct_ip_investigation_change_stateService {
 
         let ClientParams: any = {};
         ///  Prepare input for Server call
-       ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
+        ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
         ClientParams.SYSTEM_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_ID");
         ClientParams.SYSTEM_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_DESC");
-             ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
+        ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
+        ClientParams.Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID");
         ClientParams.system = system
         ClientParams.api_code = "BCT_IP_INVEST_INITIATE";
 
@@ -56,7 +57,12 @@ export class npss_cs_bct_ip_investigation_change_stateService {
         if (screenInstance.wftpa_description === "s_bct_investigation") {
             search = screenInstance["search"].f_npss_investigation_srch.model;
 
-        } searchParamObj = {
+
+        }
+
+
+
+        searchParamObj = {
 
 
             "s_cdtr_iban": search.CDTR_IBAN,
@@ -69,15 +75,15 @@ export class npss_cs_bct_ip_investigation_change_stateService {
             "s_tranamountop": search.INTRBK_STTLM_AMNT.operator,
             "s_tranamountvalue": search.INTRBK_STTLM_AMNT.value,
             "s_tranamounttovalue": search.INTRBK_STTLM_AMNT.tovalue,
-            
-            "s_createddatetovalue": search.memory63.tovalue,
+
+            "s_createddatetovalue":  this.convertDate(search.memory63.tovalue),
             "s_createddateop": search.memory63.operator,
-            "s_createddatefromvalue": search.memory63.value,
+            "s_createddatefromvalue": this.convertDate( search.memory63.value),
             "s_valuedate": search.VALUE_DATE,
             "s_valuedateop": search.VALUE_DATE.operator,
-            "s_valuedatetovalue": search.VALUE_DATE.tovalue,
-            "s_valuedatevalue": search.VALUE_DATE.value
-            
+            "s_valuedatetovalue":  this.convertDate(search.VALUE_DATE.tovalue),
+            "s_valuedatevalue": this.convertDate(search.VALUE_DATE.value)
+
 
         }
         console.log("Search Params", searchParamObj);
@@ -88,26 +94,40 @@ export class npss_cs_bct_ip_investigation_change_stateService {
         this.CallUrlWithData(ClientParams, screenInstance, internals);
 
     }
+    convertDate(datec) {
+        if (datec) {
+            var date = new Date(datec);
+            // Get year, month, and day part from the date
+            var year = date.toLocaleString("default", { year: "numeric" });
+            var month = date.toLocaleString("default", { month: "2-digit" });
+            var day = date.toLocaleString("default", { day: "2-digit" });
+            var tz = "T00:00:00.000Z"
+            var formattedDate = year + "-" + month + "-" + day + tz;
+            return formattedDate;
+        }
+        else {
+            return '';
+        }
+    }
+    CallUrlWithData(ClientParams, screenInstance, internals) {
+        this.httpHelper.HttpPost('/microsvc/npss_cs_bct_ip_investigation_change_state/', ClientParams)
+            .subscribe((res: any) => {
+                console.log("Bulk Change Status Server Response", res);
+                if (res.data == "SUCCESS") {
+                    this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
+                } else if (res.data == "FAILURE") {
+                    this.appHandler.callInternals(internals, screenInstance, "FAILURE");
+                } else {
+                    this.dialogHelper.ShowInfoDialog(res.data);
 
-CallUrlWithData(ClientParams, screenInstance, internals) {
-    this.httpHelper.HttpPost('/microsvc/npss_cs_bct_ip_investigation_change_state/', ClientParams)
-        .subscribe((res: any) => {
-            console.log("Bulk Change Status Server Response", res);
-            if (res.data == "SUCCESS") {
-                this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
-            } else if (res.data == "FAILURE") {
-                this.appHandler.callInternals(internals, screenInstance, "FAILURE");
-            }  else {
-                this.dialogHelper.ShowInfoDialog(res.data);
-
-            }
-        });
-}
+                }
+            });
+    }
 
     //Custom validation logics
     //Uncomment below lines when validation is required
     //fn_customValidation(projName,screenInstance,message,callback){
-       // return callback();
+    // return callback();
     //}
-//Service logics
+    //Service logics
 }

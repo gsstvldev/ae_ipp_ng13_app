@@ -49,7 +49,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     var PRCT_ID = prct_id
                     try {
                                           
-                        var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'`
+                        //var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'`
+                        var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}' and status = '${params.eligible_status}' and process_status = '${params.eligible_process_status}'`
                         ExecuteQuery1(ruleqry, function (result) {
                             if (result.length) {
                                 success_process_status = result[0].success_process_status;

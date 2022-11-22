@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26864 
+Build ID        : 27001 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-10 13:34 PM 
+Modified Date   : 2022-Nov-22 5:30 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -19,6 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
+import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -53,7 +54,7 @@ import { p_cash_desk_layoutComponent } from './p_cash_desk_layout/p_cash_desk_la
     OverlayPanelModule,
     
     s_view_merchant_detailsRoutingModule,
-    
+    torus_cs_show_hideModule
   ],
   declarations: [s_view_merchant_detailsComponent,p_main_layoutComponent,f_navigationComponent,f_back_uiComponent,p_view_account_layoutComponent,p_search_layoutComponent,f_npss_sm_merchant_details_srchComponent,p_view_shop_layoutComponent,p_cash_desk_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]

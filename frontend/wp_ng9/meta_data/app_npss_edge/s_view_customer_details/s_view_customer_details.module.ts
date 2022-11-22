@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26843 
+Build ID        : 27001 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-07 10:43 AM 
+Modified Date   : 2022-Nov-22 5:30 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_customer_details
@@ -19,6 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
+import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -51,7 +52,7 @@ import { f_npss_sm_cust_details_srchComponent } from './f_npss_sm_cust_details_s
     OverlayPanelModule,
     
     s_view_customer_detailsRoutingModule,
-    
+    torus_cs_show_hideModule
   ],
   declarations: [s_view_customer_detailsComponent,p_main_layoutComponent,f_navigationComponent,p_view_account_layoutComponent,f_back_uiComponent,p_search_layoutComponent,f_npss_sm_cust_details_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]

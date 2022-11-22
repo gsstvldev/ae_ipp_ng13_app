@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26864 
+Build ID        : 27001 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-10 13:34 PM 
+Modified Date   : 2022-Nov-22 5:30 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -12,12 +12,13 @@ Screen Name     : s_view_merchant_details
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
+import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 
 @Component({
 	selector: 's_view_merchant_details',
 	templateUrl: './s_view_merchant_details.component.html',
 	styleUrls: ['./s_view_merchant_details.component.css'],
-	providers:[]
+	providers:[torus_cs_show_hideService]
 })
     
 // Start of class 
@@ -77,7 +78,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
     
 	}
     
@@ -335,6 +336,11 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.page_load__cf_on_page_load()
 		this.page_load__he_for_pl_trg()
 		this.page_load__pl_to_back_hide()
+		this.page_load__cc_for_pl()
+		this.page_load__he_for_vcdd()
+		this.page_load__he_for_btm()
+		this.page_load__he_for_pl_to_vad()
+		this.page_load__he_for_vsd()
 	}
 
 	//Handler for INTERNAL event of "cf on page load"
@@ -554,6 +560,111 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1666951391658"
 		let event_params={"caller_name":"page_load__pl_to_back_hide","event_desc":"PL to Back hide","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__cc_for_pl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1669094660056"
+		let event_params={"caller_name":"page_load__cc_for_pl","event_desc":"CC for PL","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_vcdd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_view_cash_desk_detail"
+		let parent_source_id=""
+		let event_code="e_1669094830565"
+		let event_params={"caller_name":"page_load__he_for_vcdd","event_desc":"HE for VCDD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_btm() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_back_to_main"
+		let parent_source_id=""
+		let event_code="e_1669094840990"
+		let event_params={"caller_name":"page_load__he_for_btm","event_desc":"HE for BTM","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_pl_to_vad() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_view_account_detail"
+		let parent_source_id=""
+		let event_code="e_1669094851057"
+		let event_params={"caller_name":"page_load__he_for_pl_to_vad","event_desc":"HE for PL to VAD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_vsd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_view_shop_detail"
+		let parent_source_id=""
+		let event_code="e_1669094861653"
+		let event_params={"caller_name":"page_load__he_for_vsd","event_desc":"HE for VSD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}

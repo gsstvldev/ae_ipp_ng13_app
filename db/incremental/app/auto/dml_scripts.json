@@ -1,4 +1,4 @@
-[{
+[{ "key": "215~core_vw_validation_code", "target" : "APP_CCI_PROJECTS", "content" :"{ \"query\" : \"delete from app_cci_projects where app_id = ?  and project_name = ?;\", \"params\" : [$DQ$215$DQ$, $DQ$core_vw_validation_code$DQ$] }", "qry_type" : "D"  },{
   "key": "215~WFT_NPSS_P_1304_1666862798769_0",
   "target": "QRY_INFO",
   "content": "{ \"query\" : \" DELETE FROM QRY_INFO WHERE WFTPA_ID=? AND APP_ID=?\", \"params\" : [\"WFT_NPSS_P_1304_1666862798769_0\", \"215\"] }",

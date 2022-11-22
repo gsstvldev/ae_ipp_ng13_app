@@ -20,7 +20,7 @@ export class npss_cs_rct_already_postingService {
         private appHandler: AppHandlerService,
         private sessionHelper: SessionService,
         private dialogHelper: DialogService) { }
-    //Default calling function
+    //Default calling  function
     fn_npss_cs_rct_already_posting(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
         let App_Id = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");
         let Product_Code;

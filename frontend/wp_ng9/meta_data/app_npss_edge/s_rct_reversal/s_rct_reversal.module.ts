@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27033 
+Build ID        : 27037 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-23 7:38 AM 
+Modified Date   : 2022-Nov-23 11:49 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -47,6 +47,8 @@ import { p_change_return_layoutComponent } from './p_change_return_layout/p_chan
 import { f_npss_pl_change_rtn_reason_uiComponent } from './f_npss_pl_change_rtn_reason_ui/f_npss_pl_change_rtn_reason_ui.component'
 import { p_error_code_layoutComponent } from './p_error_code_layout/p_error_code_layout.component'
 import { f_npss_response_code_uiComponent } from './f_npss_response_code_ui/f_npss_response_code_ui.component'
+import { p_vertical_layoutComponent } from './p_vertical_layout/p_vertical_layout.component'
+import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
 
 
 
@@ -63,7 +65,7 @@ import { f_npss_response_code_uiComponent } from './f_npss_response_code_ui/f_np
     s_rct_reversalRoutingModule,
     torus_cs_show_hideModule,npss_cs_reversal_acceptModule,npss_cs_reject_pack002Module,npss_cs_return_pac_004Module,npss_cs_reversal_rejectModule
   ],
-  declarations: [s_rct_reversalComponent,p_main_layoutComponent,f_navigationComponent,p_accept_ui_layoutComponent,f_npss_rct_reversal_uiComponent,f_reversal_action_uiComponent,p_accept_layoutComponent,f_npss_pl_rtn_reason_uiComponent,p_change_return_layoutComponent,f_npss_pl_change_rtn_reason_uiComponent,p_error_code_layoutComponent,f_npss_response_code_uiComponent,],
+  declarations: [s_rct_reversalComponent,p_main_layoutComponent,f_navigationComponent,p_accept_ui_layoutComponent,f_npss_rct_reversal_uiComponent,f_reversal_action_uiComponent,p_accept_layoutComponent,f_npss_pl_rtn_reason_uiComponent,p_change_return_layoutComponent,f_npss_pl_change_rtn_reason_uiComponent,p_error_code_layoutComponent,f_npss_response_code_uiComponent,p_vertical_layoutComponent,f_back_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27033 
+Build ID        : 27038 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-23 7:38 AM 
+Modified Date   : 2022-Nov-23 11:47 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_failures
@@ -38,6 +38,8 @@ import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
 import { f_npss_tran_srchComponent } from './f_npss_tran_srch/f_npss_tran_srch.component'
+import { p_view_detail_layoutComponent } from './p_view_detail_layout/p_view_detail_layout.component'
+import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
 
 
 
@@ -54,7 +56,7 @@ import { f_npss_tran_srchComponent } from './f_npss_tran_srch/f_npss_tran_srch.c
     s_bct_posting_failuresRoutingModule,
     torus_cs_show_hideModule,npss_cs_bct_already_postingModule,npss_cs_bct_ipir_posting_failure_retryModule
   ],
-  declarations: [s_bct_posting_failuresComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_tran_srchComponent,],
+  declarations: [s_bct_posting_failuresComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_tran_srchComponent,p_view_detail_layoutComponent,f_back_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

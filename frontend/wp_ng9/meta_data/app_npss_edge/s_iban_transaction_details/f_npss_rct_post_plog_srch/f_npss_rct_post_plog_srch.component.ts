@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27005 
+Build ID        : 27024 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-21 12:12 PM 
+Modified Date   : 2022-Nov-23 5:16 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_iban_transaction_details
@@ -168,9 +168,9 @@ focustoelement(){
 		//Properties of uetr
 		this.ctrl.uetr = {}
 		this.ctrl.uetr.id = "79fe1420-8679-4818-8921-a5f8ce0318b7_1668849760485"
-		this.ctrl.uetr.desc = "Clearing sys ref number"
+		this.ctrl.uetr.desc = "UETR"
 		this.ctrl.uetr.visible = true
-		this.ctrl.uetr.label_name = "Clearing sys ref number"
+		this.ctrl.uetr.label_name = "UETR"
 		this.ctrl.uetr.df_code = "DF_1304_1665905157963"
 		this.ctrl.uetr.df_description = "Column Group 1"
 		this.ctrl.uetr.uictrl_code = "TXT"
@@ -242,6 +242,44 @@ focustoelement(){
 		this.ctrl.memory21.ctrl_id = "npss_rct_post_plog_srch_memory21"
 		this.ctrl.npss_rct_post_plog_srch_memory21 = {}
 		this.ctrl.npss_rct_post_plog_srch_memory21.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of memory27
+		this.ctrl.memory27 = {}
+		this.ctrl.memory27.id = "RN51CN12"
+		this.ctrl.memory27.desc = "Clearing System Ref No"
+		this.ctrl.memory27.visible = true
+		this.ctrl.memory27.label_name = "Clearing System Ref No"
+		this.ctrl.memory27.df_code = "DF_1304_1665905157963"
+		this.ctrl.memory27.df_description = "Column Group 1"
+		this.ctrl.memory27.uictrl_code = "TXT"
+		this.ctrl.memory27.target_column = "memory27"
+		this.ctrl.memory27.data_type = "TEXT"
+		this.ctrl.memory27.data_length = 0
+		this.ctrl.memory27.zone_df_code = "DF_1304_1665905157963"
+		this.ctrl.memory27.default_value = ""
+		this.ctrl.memory27.is_memory_ctrl = "Y"
+		this.ctrl.memory27.field_coordinates = ""
+		this.ctrl.memory27.sub_details = ""
+		this.ctrl.memory27.accept_char = ""
+		this.ctrl.memory27.currency_format = ""
+		this.ctrl.memory27.data_scale = ""
+		this.ctrl.memory27.binding_name = "CLRSYSREF"
+		this.ctrl.memory27.depends_on = ""
+		this.ctrl.memory27.placeholder = ""
+		this.ctrl.memory27.dynamic_param = ""
+		this.ctrl.memory27.style_code = ""
+		this.ctrl.memory27.data_source = ""
+		this.ctrl.memory27.image_association = ""
+		this.ctrl.memory27.show = true
+		this.ctrl.memory27.sub_content = ""
+		this.ctrl.memory27.required = false
+		this.ctrl.memory27.vld_rules = []
+		this.ctrl.memory27.targetcolumn_lower = "memory27"
+		this.ctrl.memory27.disabled = false
+		this.ctrl.memory27.view_name = "f_npss_rct_post_plog_srch"
+		this.ctrl.memory27.ctrl_id = "npss_rct_post_plog_srch_memory27"
+		this.ctrl.npss_rct_post_plog_srch_memory27 = {}
+		this.ctrl.npss_rct_post_plog_srch_memory27.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory22
 		this.ctrl.memory22 = {}
@@ -477,7 +515,7 @@ focustoelement(){
 		this.ctrl.processing_system.ctrl_id = "npss_rct_post_plog_srch_processing_system"
 		this.ctrl.npss_rct_post_plog_srch_processing_system = {}
 		this.ctrl.npss_rct_post_plog_srch_processing_system.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.model = {"MEMORY18":"setcurrentdate(),{}","MEMORY9":"setcurrentdate(),{}","MEMORY19":"","UETR":"","MEMORY21":"","MEMORY22":"","MEMORY23":"","MEMORY24":"","MEMORY25":"","PROCESS_NAME":"","PROCESSING_SYSTEM":""}
+		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.model = {"MEMORY18":"setcurrentdate(),{}","MEMORY9":"setcurrentdate(),{}","MEMORY19":"","UETR":"","MEMORY21":"","MEMORY27":"","MEMORY22":"","MEMORY23":"","MEMORY24":"","MEMORY25":"","PROCESS_NAME":"","PROCESSING_SYSTEM":""}
 		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"}]
 		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.dtt_code = "dtt_1304_1665905039255"

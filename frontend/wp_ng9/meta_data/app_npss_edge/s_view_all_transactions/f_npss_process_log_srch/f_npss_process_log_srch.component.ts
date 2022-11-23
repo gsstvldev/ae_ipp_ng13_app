@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27005 
+Build ID        : 27024 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-21 12:12 PM 
+Modified Date   : 2022-Nov-23 5:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_transactions
@@ -168,9 +168,9 @@ focustoelement(){
 		//Properties of uetr
 		this.ctrl.uetr = {}
 		this.ctrl.uetr.id = "RN01CN1"
-		this.ctrl.uetr.desc = "Clearing sys ref number"
+		this.ctrl.uetr.desc = "UETR"
 		this.ctrl.uetr.visible = true
-		this.ctrl.uetr.label_name = "Clearing sys ref number"
+		this.ctrl.uetr.label_name = "UETR"
 		this.ctrl.uetr.df_code = "DF_1304_1665905157963"
 		this.ctrl.uetr.df_description = "Column Group 1"
 		this.ctrl.uetr.uictrl_code = "TXT"
@@ -243,6 +243,44 @@ focustoelement(){
 		this.ctrl.npss_process_log_srch_memory20 = {}
 		this.ctrl.npss_process_log_srch_memory20.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_process_log_srch.memory20 = {}
+	
+		//Properties of memory27
+		this.ctrl.memory27 = {}
+		this.ctrl.memory27.id = "RN51CN14"
+		this.ctrl.memory27.desc = "Clearing System Ref No"
+		this.ctrl.memory27.visible = true
+		this.ctrl.memory27.label_name = "Clearing System Ref No"
+		this.ctrl.memory27.df_code = "DF_1304_1665905157963"
+		this.ctrl.memory27.df_description = "Column Group 1"
+		this.ctrl.memory27.uictrl_code = "TXT"
+		this.ctrl.memory27.target_column = "memory27"
+		this.ctrl.memory27.data_type = "TEXT"
+		this.ctrl.memory27.data_length = 0
+		this.ctrl.memory27.zone_df_code = "DF_1304_1665905157963"
+		this.ctrl.memory27.default_value = ""
+		this.ctrl.memory27.is_memory_ctrl = "Y"
+		this.ctrl.memory27.field_coordinates = ""
+		this.ctrl.memory27.sub_details = ""
+		this.ctrl.memory27.accept_char = ""
+		this.ctrl.memory27.currency_format = ""
+		this.ctrl.memory27.data_scale = ""
+		this.ctrl.memory27.binding_name = "CLRSYSREF"
+		this.ctrl.memory27.depends_on = ""
+		this.ctrl.memory27.placeholder = ""
+		this.ctrl.memory27.dynamic_param = ""
+		this.ctrl.memory27.style_code = ""
+		this.ctrl.memory27.data_source = ""
+		this.ctrl.memory27.image_association = ""
+		this.ctrl.memory27.show = true
+		this.ctrl.memory27.sub_content = ""
+		this.ctrl.memory27.required = false
+		this.ctrl.memory27.vld_rules = []
+		this.ctrl.memory27.targetcolumn_lower = "memory27"
+		this.ctrl.memory27.disabled = false
+		this.ctrl.memory27.view_name = "f_npss_process_log_srch"
+		this.ctrl.memory27.ctrl_id = "npss_process_log_srch_memory27"
+		this.ctrl.npss_process_log_srch_memory27 = {}
+		this.ctrl.npss_process_log_srch_memory27.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory21
 		this.ctrl.memory21 = {}
@@ -400,45 +438,6 @@ focustoelement(){
 		this.ctrl.npss_process_log_srch_memory24 = {}
 		this.ctrl.npss_process_log_srch_memory24.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of memory25
-		this.ctrl.memory25 = {}
-		this.ctrl.memory25.id = "RN41CN14"
-		this.ctrl.memory25.desc = "Transaction Amount"
-		this.ctrl.memory25.visible = true
-		this.ctrl.memory25.label_name = "Transaction Amount"
-		this.ctrl.memory25.df_code = "DF_1304_1665905157963"
-		this.ctrl.memory25.df_description = "Column Group 1"
-		this.ctrl.memory25.uictrl_code = "CDN_CUR_CTRL"
-		this.ctrl.memory25.target_column = "memory25"
-		this.ctrl.memory25.data_type = "NUMBER"
-		this.ctrl.memory25.data_length = 19
-		this.ctrl.memory25.zone_df_code = "DF_1304_1665905157963"
-		this.ctrl.memory25.default_value = ""
-		this.ctrl.memory25.is_memory_ctrl = "Y"
-		this.ctrl.memory25.field_coordinates = ""
-		this.ctrl.memory25.sub_details = ""
-		this.ctrl.memory25.accept_char = ""
-		this.ctrl.memory25.currency_format = ""
-		this.ctrl.memory25.data_scale = "2"
-		this.ctrl.memory25.binding_name = "INTRBK_STTLM_AMNT"
-		this.ctrl.memory25.hide_label = false
-		this.ctrl.memory25.depends_on = ""
-		this.ctrl.memory25.placeholder = ""
-		this.ctrl.memory25.dynamic_param = ""
-		this.ctrl.memory25.style_code = ""
-		this.ctrl.memory25.data_source = ""
-		this.ctrl.memory25.image_association = ""
-		this.ctrl.memory25.show = true
-		this.ctrl.memory25.sub_content = ""
-		this.ctrl.memory25.required = false
-		this.ctrl.memory25.vld_rules = []
-		this.ctrl.memory25.targetcolumn_lower = "memory25"
-		this.ctrl.memory25.disabled = false
-		this.ctrl.memory25.view_name = "f_npss_process_log_srch"
-		this.ctrl.memory25.ctrl_id = "npss_process_log_srch_memory25"
-		this.ctrl.npss_process_log_srch_memory25 = {}
-		this.ctrl.npss_process_log_srch_memory25.onChangecomponent = new EventEmitter<any>()
-	
 		//Properties of process_name
 		this.ctrl.process_name = {}
 		this.ctrl.process_name.id = "RN01CN2"
@@ -479,6 +478,45 @@ focustoelement(){
 		this.ctrl.npss_process_log_srch_process_name.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_process_log_srch.process_name = {}
 	
+		//Properties of memory25
+		this.ctrl.memory25 = {}
+		this.ctrl.memory25.id = "RN41CN14"
+		this.ctrl.memory25.desc = "Transaction Amount"
+		this.ctrl.memory25.visible = true
+		this.ctrl.memory25.label_name = "Transaction Amount"
+		this.ctrl.memory25.df_code = "DF_1304_1665905157963"
+		this.ctrl.memory25.df_description = "Column Group 1"
+		this.ctrl.memory25.uictrl_code = "CDN_CUR_CTRL"
+		this.ctrl.memory25.target_column = "memory25"
+		this.ctrl.memory25.data_type = "NUMBER"
+		this.ctrl.memory25.data_length = 19
+		this.ctrl.memory25.zone_df_code = "DF_1304_1665905157963"
+		this.ctrl.memory25.default_value = ""
+		this.ctrl.memory25.is_memory_ctrl = "Y"
+		this.ctrl.memory25.field_coordinates = ""
+		this.ctrl.memory25.sub_details = ""
+		this.ctrl.memory25.accept_char = ""
+		this.ctrl.memory25.currency_format = ""
+		this.ctrl.memory25.data_scale = "2"
+		this.ctrl.memory25.binding_name = "INTRBK_STTLM_AMNT"
+		this.ctrl.memory25.hide_label = false
+		this.ctrl.memory25.depends_on = ""
+		this.ctrl.memory25.placeholder = ""
+		this.ctrl.memory25.dynamic_param = ""
+		this.ctrl.memory25.style_code = ""
+		this.ctrl.memory25.data_source = ""
+		this.ctrl.memory25.image_association = ""
+		this.ctrl.memory25.show = true
+		this.ctrl.memory25.sub_content = ""
+		this.ctrl.memory25.required = false
+		this.ctrl.memory25.vld_rules = []
+		this.ctrl.memory25.targetcolumn_lower = "memory25"
+		this.ctrl.memory25.disabled = false
+		this.ctrl.memory25.view_name = "f_npss_process_log_srch"
+		this.ctrl.memory25.ctrl_id = "npss_process_log_srch_memory25"
+		this.ctrl.npss_process_log_srch_memory25 = {}
+		this.ctrl.npss_process_log_srch_memory25.onChangecomponent = new EventEmitter<any>()
+	
 		//Properties of processing_system
 		this.ctrl.processing_system = {}
 		this.ctrl.processing_system.id = "RN11CN3"
@@ -517,7 +555,7 @@ focustoelement(){
 		this.ctrl.processing_system.ctrl_id = "npss_process_log_srch_processing_system"
 		this.ctrl.npss_process_log_srch_processing_system = {}
 		this.ctrl.npss_process_log_srch_processing_system.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_process_log_srch.model = {"MEMORY18":"setcurrentdate(),{}","MEMORY9":"setcurrentdate(),{}","MEMORY19":"","UETR":"","MEMORY20":"","MEMORY21":"","MEMORY22":"","MEMORY23":"","MEMORY24":"","MEMORY25":"","PROCESS_NAME":"","PROCESSING_SYSTEM":""}
+		this.screen_instance[this.comp_id].f_npss_process_log_srch.model = {"MEMORY18":"setcurrentdate(),{}","MEMORY9":"setcurrentdate(),{}","MEMORY19":"","UETR":"","MEMORY20":"","MEMORY27":"","MEMORY21":"","MEMORY22":"","MEMORY23":"","MEMORY24":"","PROCESS_NAME":"","MEMORY25":"","PROCESSING_SYSTEM":""}
 		this.screen_instance[this.comp_id].f_npss_process_log_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"}]
 		this.screen_instance[this.comp_id].f_npss_process_log_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_process_log_srch.dtt_code = "dtt_1304_1665905039255"

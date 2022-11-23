@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -14,11 +15,11 @@ app.post('/', function(appRequest, appResponse, next) {
     try {
         /*   Created By : Daseen
         Created Date :04-11-2022
-        Modified By : Harish
-        Modified Date : 6/11/2022    
+        Modified By : Daseen
+        Modified Date : 23/11/2022    
         Reason for : 
         */
-        var serviceName = 'NPSS T24 Posting Suspicious';
+        var serviceName = 'NPSS CC Posting';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
         var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
         var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
@@ -27,7 +28,7 @@ app.post('/', function(appRequest, appResponse, next) {
         var params = appRequest.body.PARAMS; //  Client input fromm Server
         var headers = appRequest.headers; // header details 
         var objSessionLogInfo = null; // set value is null
-        var cvAcNum
+        var cvAcNum, sell_margin, sell_rate;
         var xml2js = require('xml2js');
         var mTranConn = "";
         var addquery = "";
@@ -56,10 +57,10 @@ app.post('/', function(appRequest, appResponse, next) {
                             var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL'`;
                             var take_batch_name = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='BATCH_NAME'`;
                             var take_api_params = `select  ns.remittance_info,ns.cr_acct_identification,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method,
-                        ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,
-                        ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,
-                        ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid
-                        from npss_transactions ns where npsst_id = '${params.tran_id}'`;
+                            ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,
+                            ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,
+                            ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm
+                            from npss_transactions ns  where npsst_id = '${params.tran_id}'`;
                             // var TakenpsstrRefno = `select npsstrrd_refno from npss_trn_process_log ns where ns.uetr = '${params.uetr}' and ns.status = '${params.STATUS}' and ns.process_status = '${params.ELIGIBLE_PROCESS_STATUS}' `
                             // var TakenpsstrRefno2 = `select npsstrrd_refno,npsstpl_id from npss_trn_process_log  where uetr= '${params.uetr}' order by npsstpl_id  desc`
                             ExecuteQuery1(take_api_url, function (arrurlResult) {
@@ -79,12 +80,32 @@ app.post('/', function(appRequest, appResponse, next) {
                                             console.log('................', lclinstrm)
                                             ExecuteQuery1(take_batch_name, function (arrbatchname) {
                                                 if (arrbatchname.length) {
-                                                    var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code from core_nc_cbs_accounts where alternate_account_id = '${arrprocesslog[0].cdtr_iban}'`
+                                                    var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
                                                     ExecuteQuery1(TakeAcctInf, function (arrActInf) {
                                                         if (arrActInf[0].alternate_account_type == '' || arrActInf[0].alternate_account_type != 'VA.BBAN' || arrActInf[0].alternate_account_type != 'VA.IBAN') {
                                                             cvAcNum = ''
                                                         } else {
                                                             cvAcNum = arrActInf[0].alternate_account_id.slice(-16)
+                                                        }
+                                                        if(arrActInf[0].currency=="AED"){
+                                                            sell_margin=""
+                                                             sell_rate=""
+                                                        }
+                                                        else{
+                                                            var seldetqry=`select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrActInf[0].customer_id}'`
+                                                            ExecuteQuery1(seldetqry, function (arrselldet) {
+                                                                if(arrselldet.length>0){
+                                                                    sell_margin=arrselldet[0].sell_margin
+                                                                    sell_rate=arrselldet[0].sell_rate
+                                                                   
+                                                                }
+                                                                else{
+                                                                    console.log("No Data found in Cust Special Rate table");
+                                                                 objresponse.status = "No Data found in Cust Special Rate table"
+                                                                 sendResponse(objresponse, null)
+                                                                }
+
+                                                            })
                                                         }
                                                         fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf, lclinstrm, function (result) {
                                                             if (result) {
@@ -94,6 +115,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 sendResponse(result, null);
                                                             }
                                                         })
+                                                        
                                                     })
 
 
@@ -147,6 +169,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "hdr_total_records": arrprocesslog[0].hdr_total_records,
                                                     "hdr_total_amount": arrprocesslog[0].hdr_total_amount,
                                                     "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date,
+                                                    "value_date": arrprocesslog[0].value_date,
+
                                                     "hdr_settlement_method": arrprocesslog[0].hdr_settlement_method,
                                                     "hdr_clearing_system": arrprocesslog[0].hdr_clearing_system,
                                                     "dr_sort_code": arrprocesslog[0].dr_sort_code,
@@ -159,22 +183,34 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur,
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt,
                                                     "dbtr_iban": arrprocesslog[0].dbtr_iban,
+                                                    "charge_code": "WAIVE",
+                                                    "ext_org_id_code": arrprocesslog[0].ext_org_id_code,
+
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban,
                                                     "dbtr_name": arrprocesslog[0].dbtr_acct_name,
                                                     "cdtr_name": arrprocesslog[0].cdtr_acct_name,
                                                     "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id,
+                                                    "accp_dt_tm":  arrprocesslog[0].accp_dt_tm,
+
                                                     "charge_bearer": arrprocesslog[0].charge_bearer,
-                                                    "txid": arrprocesslog[0].txid,
+                                                    "tran_ref_id": arrprocesslog[0].tran_ref_id,
                                                     "uetr": arrprocesslog[0].uetr,
                                                     "message_data": arrprocesslog[0].message_data,
+
                                                     "process_type": arrprocesslog[0].process_type,
                                                     "status": params.STATUS,
                                                     "process_status": params.ELIGIBLE_PROCESS_STATUS,
                                                     "process": "",
+                                                    "clrsysref":  arrprocesslog[0].clrsysref,
+                                                    "extIdentifier": arrprocesslog[0].clrsysref ? arrprocesslog[0].clrsysref:arrprocesslog[0].payment_endtoend_id,
+
                                                     "remittance_information": arrprocesslog[0].remittance_info,
                                                     "cr_acct_identification": arrprocesslog[0].cr_acct_identification,
                                                     "cr_acct_id_code": arrprocesslog[0].cr_acct_id_code,
                                                     "process_name": "CC Posting",
+                                                    "sell_margin":sell_margin || '',
+
+                                                    "sell_rate":sell_rate || ''
 
                                                 },
                                                 "AccountInformation": {
@@ -184,7 +220,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "currency": arrActInf[0].currency,
                                                     "alternate_account_type": arrActInf[0].alternate_account_type,
                                                     "alternate_account_id": arrActInf[0].alternate_account_id,
-                                                    "CR.VA.NUMBER":cvAcNum
+                                                    "CR.VA.NUMBER":cvAcNum,
+                                                    "curr_rate_segment":arrActInf[0].curr_rate_segment,
+                                                    "customer_id":arrActInf[0].customer_id,
+                                                    "account_officer":arrActInf[0].account_officer
                                                 }
                                             }
                                         }, headers: {
@@ -265,6 +304,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

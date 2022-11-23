@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27038 
+Build ID        : 27043 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-23 11:47 AM 
+Modified Date   : 2022-Nov-23 13:29 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_suspicious
@@ -59,7 +59,7 @@ focustoelement(){
 		this.ctrl.cbs_ref_no.uictrl_code = "TXT"
 		this.ctrl.cbs_ref_no.target_column = "CBS_REF_NO"
 		this.ctrl.cbs_ref_no.data_type = "TEXT"
-		this.ctrl.cbs_ref_no.data_length = 35
+		this.ctrl.cbs_ref_no.data_length = 40
 		this.ctrl.cbs_ref_no.zone_df_code = "DF_1304_1665901396659"
 		this.ctrl.cbs_ref_no.default_value = ""
 		this.ctrl.cbs_ref_no.is_memory_ctrl = ""

@@ -49,7 +49,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     mTranConn = pSession; //  assign connection     
                     reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
                         try {
-                            var routingsetup = `Select * from CORE_ROLE_LISTING_PARAMS where role_id = '${params.roleid}' and vph_app_name = '${params.AppCode}' and screen_name = '${params.screenname}'`;
+                            var routingsetup = `Select * from CORE_ROLE_LISTING_PARAMS where role_id = '${params.roleid}' and vph_app_code = '${params.AppCode}' and screen_name = '${params.screenname}'`;
                           
                             ExecuteQuery1(routingsetup, function (arrResult) {
                                 if (arrResult.length) {

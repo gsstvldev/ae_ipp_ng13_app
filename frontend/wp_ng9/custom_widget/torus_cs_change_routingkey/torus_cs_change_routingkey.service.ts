@@ -64,7 +64,7 @@ export class torus_cs_change_routingkeyService {
 //Service logics
 GetDataFromDb(ClientParams, screenInstance) {
     try {
-      this.httpHelper.HttpPost('/microsvc/torus_cs_show_hide/', ClientParams)
+      this.httpHelper.HttpPost('/microsvc/torus_cs_change_routingkey/', ClientParams)
         .subscribe((res: any) => {
          
             if (res.data.datafile) {

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27022 
+Build ID        : 27030 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-23 5:11 AM 
+Modified Date   : 2022-Nov-23 7:0 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_summary
@@ -12,13 +12,14 @@ Screen Name     : s_view_all_summary
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
+import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 
 @Component({
 	selector: 's_view_all_summary',
 	templateUrl: './s_view_all_summary.component.html',
 	styleUrls: ['./s_view_all_summary.component.css'],
-	providers:[torus_cs_show_hideService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService]
 })
     
 // Start of class 
@@ -93,7 +94,7 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService) {
     
 	}
     
@@ -454,16 +455,25 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
   
 	// To handle page_load event
 	page_load(){
-		this.page_load__cf_for_pl()
-		this.page_load__cc_for_showhide_in_pl()
 		this.page_load__de_for_vlh_from_pl()
 		this.page_load__he_for_pl_to_vm()
 		this.page_load__de_for_pl_to_vm()
+		this.page_load__pl_to_cc_for_routing_key()
 	}
 
-	//Handler for INTERNAL event of "cc for showhide in pl"
-	cc_for_showhide_in_pl__internal(parent_event_result){
-		this.cc_for_showhide_in_pl__trigger_btn_click_to_search(parent_event_result)
+	//Handler for INTERNAL event of "pl to cc for routing key"
+	pl_to_cc_for_routing_key__internal(parent_event_result){
+		this.pl_to_cc_for_routing_key__cf_for_pl(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "cf for pl"
+	cf_for_pl__internal(parent_event_result){
+		this.cf_for_pl__sh_ide_for_cf(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "sh ide for cf"
+	sh_ide_for_cf__internal(parent_event_result){
+		this.sh_ide_for_cf__trigger_btn_click_to_search(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
@@ -661,48 +671,6 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
 	}
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__cf_for_pl() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1668499053472"
-		let event_params={"caller_name":"page_load__cf_for_pl","event_desc":"CF for PL","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""}}
-		let handler_code="create_form"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__cc_for_showhide_in_pl() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1668499132242"
-		let event_params={"caller_name":"page_load__cc_for_showhide_in_pl","event_desc":"CC for showhide in PL","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals="cc_for_showhide_in_pl__trigger_btn_click_to_search,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
 	page_load__de_for_vlh_from_pl() { 
 		let Dest_Is_ctrl=true
 		
@@ -765,16 +733,81 @@ export class s_view_all_summaryComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "cc for showhide in pl"
-	cc_for_showhide_in_pl__trigger_btn_click_to_search(parent_event_result) { 
+	//Handler for DPSINIT event of "page_load"
+	page_load__pl_to_cc_for_routing_key() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1669186528334"
+		let event_params={"caller_name":"page_load__pl_to_cc_for_routing_key","event_desc":"PL to CC for routing key","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="pl_to_cc_for_routing_key__cf_for_pl,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_change_routingkeyService.fn_torus_cs_change_routingkey(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "pl to cc for routing key"
+	pl_to_cc_for_routing_key__cf_for_pl(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_for_showhide_in_pl"
-		let destn_id="search_search"
+		let source_id="pl_to_cc_for_routing_key"
+		let destn_id=""
 		let parent_source_id="page_load"
-		let event_code="e_1668499189463"
-		let event_params={"caller_name":"cc_for_showhide_in_pl__trigger_btn_click_to_search","event_desc":"Trigger btn click to search","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_code="e_1669186609403"
+		let event_params={"caller_name":"pl_to_cc_for_routing_key__cf_for_pl","event_desc":"CF for PL","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""},"parent_event_result":"SUCCESS"}
+		let handler_code="create_form"
+		let internals="cf_for_pl__sh_ide_for_cf,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cf for pl"
+	cf_for_pl__sh_ide_for_cf(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cf_for_pl"
+		let destn_id=""
+		let parent_source_id="pl_to_cc_for_routing_key"
+		let event_code="e_1669186627006"
+		let event_params={"caller_name":"cf_for_pl__sh_ide_for_cf","event_desc":"SH ide for CF","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals="sh_ide_for_cf__trigger_btn_click_to_search,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "sh ide for cf"
+	sh_ide_for_cf__trigger_btn_click_to_search(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="sh_ide_for_cf"
+		let destn_id="search_search"
+		let parent_source_id="cf_for_pl"
+		let event_code="e_1669186671868"
+		let event_params={"caller_name":"sh_ide_for_cf__trigger_btn_click_to_search","event_desc":"Trigger btn click to search","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="trigger_button_click"
 		let internals=""
 		let event_data={}

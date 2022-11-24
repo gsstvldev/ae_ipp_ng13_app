@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS alter column CBS_REF_NO type CHARACTER VARYING(40);","params" : [] },{"query" : "alter table NPSS_TRANSACTIONS add column MIDDLEWARE_REF_NO CHARACTER VARYING(40), add column CBS_POSTING_FLAG CHARACTER VARYING(10);","params" : [] }]
+[]

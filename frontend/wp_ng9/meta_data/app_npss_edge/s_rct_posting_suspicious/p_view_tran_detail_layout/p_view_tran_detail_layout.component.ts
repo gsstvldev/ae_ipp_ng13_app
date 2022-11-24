@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27043 
+Build ID        : 27050 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-23 13:29 PM 
+Modified Date   : 2022-Nov-24 4:21 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -22,8 +22,8 @@ export class p_view_tran_detail_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	view_dr_cr_tran_details : any = {}
-	view_payment_tran_details : any = {}
+  	view_payment_tran_details : any = {}
+	view_dr_cr_tran_details : any = {}
 	back_ui : any = {}
 
 
@@ -32,10 +32,10 @@ export class p_view_tran_detail_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.view_dr_cr_tran_details.desc = "View Dr Cr Tran Details"
-		this.view_dr_cr_tran_details.need_header = true
-		this.view_payment_tran_details.desc = "View Payment Tran Details"
+    	this.view_payment_tran_details.desc = "View Payment Tran Details"
 		this.view_payment_tran_details.need_header = true
+		this.view_dr_cr_tran_details.desc = "View Dr Cr Tran Details"
+		this.view_dr_cr_tran_details.need_header = true
 		this.back_ui.desc = "Back UI"
 		this.back_ui.need_header = ""
 	

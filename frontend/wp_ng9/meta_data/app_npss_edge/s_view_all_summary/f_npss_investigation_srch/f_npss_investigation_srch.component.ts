@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27043 
+Build ID        : 27052 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-23 13:29 PM 
+Modified Date   : 2022-Nov-24 7:53 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_summary
@@ -438,7 +438,47 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_investigation_srch_intrbk_sttlm_amnt"
 		this.ctrl.npss_investigation_srch_intrbk_sttlm_amnt = {}
 		this.ctrl.npss_investigation_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_investigation_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","UETR":"","MEMORY67":"","TRAN_REF_ID":"","PAYMENT_ENDTOEND_ID":"","CDTR_ACCT_NO":"","DBTR_ACCT_NO":"","INTRBK_STTLM_AMNT":""}
+	
+		//Properties of memory75
+		this.ctrl.memory75 = {}
+		this.ctrl.memory75.id = "RN41CN11"
+		this.ctrl.memory75.desc = "Status"
+		this.ctrl.memory75.visible = false
+		this.ctrl.memory75.label_name = "Status"
+		this.ctrl.memory75.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory75.df_description = "Column Group 1"
+		this.ctrl.memory75.uictrl_code = "CBO"
+		this.ctrl.memory75.target_column = "memory75"
+		this.ctrl.memory75.data_type = "TEXT"
+		this.ctrl.memory75.data_length = 0
+		this.ctrl.memory75.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory75.default_value = ""
+		this.ctrl.memory75.is_memory_ctrl = "Y"
+		this.ctrl.memory75.field_coordinates = ""
+		this.ctrl.memory75.sub_details = ""
+		this.ctrl.memory75.accept_char = ""
+		this.ctrl.memory75.currency_format = ""
+		this.ctrl.memory75.data_scale = ""
+		this.ctrl.memory75.binding_name = "STATUS"
+		this.ctrl.memory75.hide_label = false
+		this.ctrl.memory75.depends_on = ""
+		this.ctrl.memory75.placeholder = ""
+		this.ctrl.memory75.dynamic_param = ""
+		this.ctrl.memory75.style_code = ""
+		this.ctrl.memory75.data_source = {"ds_code":"UDS_1304_1669276117602","ds_description":"Status CDB","rows":[],"type":"DPS_TABLE","value_member":"STATUS","display_member":"STATUS","first_record_display":"","column_list":"","order_by":"","target_table":"NPSS_TRANSACTIONS","context":"","filters":[],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[]},"query":"()"},"sel_columns":[]}
+		this.ctrl.memory75.image_association = ""
+		this.ctrl.memory75.show = true
+		this.ctrl.memory75.sub_content = ""
+		this.ctrl.memory75.required = false
+		this.ctrl.memory75.vld_rules = []
+		this.ctrl.memory75.targetcolumn_lower = "memory75"
+		this.ctrl.memory75.disabled = false
+		this.ctrl.memory75.view_name = "f_npss_investigation_srch"
+		this.ctrl.memory75.ctrl_id = "npss_investigation_srch_memory75"
+		this.ctrl.npss_investigation_srch_memory75 = {}
+		this.ctrl.npss_investigation_srch_memory75.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_investigation_srch.memory75 = {}
+		this.screen_instance[this.comp_id].f_npss_investigation_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","UETR":"","MEMORY67":"","TRAN_REF_ID":"","PAYMENT_ENDTOEND_ID":"","CDTR_ACCT_NO":"","DBTR_ACCT_NO":"","INTRBK_STTLM_AMNT":"","MEMORY75":""}
 		this.screen_instance[this.comp_id].f_npss_investigation_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
 		this.screen_instance[this.comp_id].f_npss_investigation_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_investigation_srch.dtt_code = "dtt_1304_1665901217208"

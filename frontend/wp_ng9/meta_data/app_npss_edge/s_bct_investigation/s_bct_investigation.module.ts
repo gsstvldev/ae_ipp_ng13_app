@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26999 
+Build ID        : 27073 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-25 11:37 AM 
+Modified Date   : 2022-Nov-25 14:4 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_investigation
@@ -19,6 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
+import {torus_cs_change_routingkeyModule} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_cs_bct_ip_investigation_change_stateModule} from '../../../custom_widget/npss_cs_bct_ip_investigation_change_state/npss_cs_bct_ip_investigation_change_state.module'
 
@@ -60,7 +61,7 @@ import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/
     OverlayPanelModule,
     
     s_bct_investigationRoutingModule,
-    torus_cs_show_hideModule,npss_cs_bct_ip_investigation_change_stateModule
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_bct_ip_investigation_change_stateModule
   ],
   declarations: [s_bct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_tran_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

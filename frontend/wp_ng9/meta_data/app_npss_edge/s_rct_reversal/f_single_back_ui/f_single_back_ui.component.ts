@@ -1,26 +1,26 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26999 
+Build ID        : 27073 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-25 11:37 AM 
+Modified Date   : 2022-Nov-25 14:4 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
-Form Name       : Message Detail UI--------------------------------------------------------------------------- */
+Form Name       : Single Back UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_message_detail_ui',
-  templateUrl: './f_message_detail_ui.component.html',
-  styleUrls: ['./f_message_detail_ui.component.css'],
+  selector: 'f_single_back_ui',
+  templateUrl: './f_single_back_ui.component.html',
+  styleUrls: ['./f_single_back_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_message_detail_uiComponent implements OnInit {
+export class f_single_back_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_message_detail_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_message_detail_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_message_detail_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_single_back_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_single_back_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_message_detail_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_single_back_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

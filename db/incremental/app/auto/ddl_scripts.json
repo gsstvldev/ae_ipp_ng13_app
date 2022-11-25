@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column ACCOUNT_CURRENCY CHARACTER VARYING(3);","params" : [] }]

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27057 
+Build ID        : 26937 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-25 6:8 AM 
+Modified Date   : 2022-Nov-25 10:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_iban_transaction_details

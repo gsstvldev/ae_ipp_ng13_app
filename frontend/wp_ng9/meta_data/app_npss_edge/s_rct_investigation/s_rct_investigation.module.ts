@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27052 
+Build ID        : 26937 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-24 7:53 AM 
+Modified Date   : 2022-Nov-25 10:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_investigation
@@ -39,6 +39,15 @@ import { p_search_layoutComponent } from './p_search_layout/p_search_layout.comp
 import { f_npss_rct_post_plog_srchComponent } from './f_npss_rct_post_plog_srch/f_npss_rct_post_plog_srch.component'
 import { p_vertical_layoutComponent } from './p_vertical_layout/p_vertical_layout.component'
 import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
+import { p_view_message_list_layoutComponent } from './p_view_message_list_layout/p_view_message_list_layout.component'
+import { f_message_detail_actionComponent } from './f_message_detail_action/f_message_detail_action.component'
+import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
+import { f_process_log_uiComponent } from './f_process_log_ui/f_process_log_ui.component'
+import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
+import { f_response_uiComponent } from './f_response_ui/f_response_ui.component'
+import { f_single_back_uiComponent } from './f_single_back_ui/f_single_back_ui.component'
+import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_request_layout.component'
+import { f_request_uiComponent } from './f_request_ui/f_request_ui.component'
 
 
 
@@ -55,7 +64,7 @@ import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
     s_rct_investigationRoutingModule,
     torus_cs_show_hideModule,npss_cs_investigation_pac_028Module
   ],
-  declarations: [s_rct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,],
+  declarations: [s_rct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_response_uiComponent,f_single_back_uiComponent,p_view_request_layoutComponent,f_request_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

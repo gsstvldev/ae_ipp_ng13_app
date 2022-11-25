@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26937 
+Build ID        : 26999 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-25 10:14 AM 
+Modified Date   : 2022-Nov-25 11:37 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -38,6 +38,10 @@ import { s_rct_reversalRoutingModule } from './s_rct_reversal.routing.module';
 
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigationComponent } from './f_navigation/f_navigation.component'
+import { f_process_log_uiComponent } from './f_process_log_ui/f_process_log_ui.component'
+import { f_message_back_uiComponent } from './f_message_back_ui/f_message_back_ui.component'
+import { f_message_detail_actionComponent } from './f_message_detail_action/f_message_detail_action.component'
+import { f_message_detail_uiComponent } from './f_message_detail_ui/f_message_detail_ui.component'
 import { p_accept_ui_layoutComponent } from './p_accept_ui_layout/p_accept_ui_layout.component'
 import { f_npss_rct_reversal_uiComponent } from './f_npss_rct_reversal_ui/f_npss_rct_reversal_ui.component'
 import { f_reversal_action_uiComponent } from './f_reversal_action_ui/f_reversal_action_ui.component'
@@ -65,7 +69,7 @@ import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
     s_rct_reversalRoutingModule,
     torus_cs_show_hideModule,npss_cs_reversal_acceptModule,npss_cs_reject_pack002Module,npss_cs_return_pac_004Module,npss_cs_reversal_rejectModule
   ],
-  declarations: [s_rct_reversalComponent,p_main_layoutComponent,f_navigationComponent,p_accept_ui_layoutComponent,f_npss_rct_reversal_uiComponent,f_reversal_action_uiComponent,p_accept_layoutComponent,f_npss_pl_rtn_reason_uiComponent,p_change_return_layoutComponent,f_npss_pl_change_rtn_reason_uiComponent,p_error_code_layoutComponent,f_npss_response_code_uiComponent,p_vertical_layoutComponent,f_back_uiComponent,],
+  declarations: [s_rct_reversalComponent,p_main_layoutComponent,f_navigationComponent,f_process_log_uiComponent,f_message_back_uiComponent,f_message_detail_actionComponent,f_message_detail_uiComponent,p_accept_ui_layoutComponent,f_npss_rct_reversal_uiComponent,f_reversal_action_uiComponent,p_accept_layoutComponent,f_npss_pl_rtn_reason_uiComponent,p_change_return_layoutComponent,f_npss_pl_change_rtn_reason_uiComponent,p_error_code_layoutComponent,f_npss_response_code_uiComponent,p_vertical_layoutComponent,f_back_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

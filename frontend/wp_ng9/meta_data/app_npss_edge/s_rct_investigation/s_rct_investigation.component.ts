@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27063 
+Build ID        : 26999 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-25 10:24 AM 
+Modified Date   : 2022-Nov-25 11:37 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_investigation
@@ -274,7 +274,7 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 		this.view_payment_details.views = {}
 		this.view_payment_details.onChangecomponent = new EventEmitter<any>()
 		this.view_payment_details.show = true
-		this.view_payment_details.dynamic_param = {}
+		this.view_payment_details.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
 	
 		// Component level properties - "Message Detail" 
 		this.message_detail.uictrl_code = "datatable"

@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRN_PROCESS_LOG add column AMOUNT_CREDITED CHARACTER VARYING(32), add column AMT_CR_LOC_CUR NUMERIC(9,2), add column CHARGE_AMOUNT NUMERIC(9,2);","params" : [] }]

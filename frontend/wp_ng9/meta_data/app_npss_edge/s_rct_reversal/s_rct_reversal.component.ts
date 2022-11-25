@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26937 
+Build ID        : 26999 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-25 10:14 AM 
+Modified Date   : 2022-Nov-25 11:37 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -49,6 +49,12 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	uicgc_11 : string = "view_dr_cr_tran_details"
 	uicgc_12 : string = "back_ui"
 	uicgc_14 : string = "view_payment_tran_details"
+	uicgc_15 : string = "process_log_ui"
+	uicgc_16 : string = "history_detail"
+	uicgc_17 : string = "message_back_ui"
+	uicgc_18 : string = "message_detail"
+	uicgc_19 : string = "message_detail_action"
+	uicgc_20 : string = "message_detail_ui"
 	key_events : any = {}
 	btl_1304_1669202289940 : string = "p_vertical_layout"
 	btl_1304_1668694521732 : string = "p_error_code_layout"
@@ -65,6 +71,8 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	navigation : any = {}
 	navigation_review : any = {}
 	navigation_view_detail : any = {}
+	navigation_view_log_history : any = {}
+	navigation_view_message_details : any = {}
 	reversal_action_ui : any = {}
 	reversal_action_ui_back : any = {}
 	reversal_action_ui_reject : any = {}
@@ -86,6 +94,18 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	back_ui : any = {}
 	back_ui_back : any = {}
 	view_payment_tran_details : any = {}
+	process_log_ui : any = {}
+	process_log_ui_back : any = {}
+	process_log_ui_view_response : any = {}
+	process_log_ui_view_request : any = {}
+	history_detail : any = {}
+	message_back_ui : any = {}
+	message_back_ui_back : any = {}
+	message_detail : any = {}
+	message_detail_action : any = {}
+	message_detail_action_back : any = {}
+	message_detail_action_show_message : any = {}
+	message_detail_ui : any = {}
 
 
 	// Constructor 
@@ -150,6 +170,24 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.navigation_view_detail.dynamic_param = {}
 		this.navigation_view_detail.role = []
 		this.navigation_view_detail.action = ""
+		
+		// "View Log History" Button of "Navigation" component
+		this.navigation_view_log_history.label_name = "View Log History"
+		this.navigation_view_log_history.show = true
+		this.navigation_view_log_history.disabled = false
+		this.navigation_view_log_history.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
+		this.navigation_view_log_history.dynamic_param = {}
+		this.navigation_view_log_history.role = []
+		this.navigation_view_log_history.action = ""
+		
+		// "View Message Details" Button of "Navigation" component
+		this.navigation_view_message_details.label_name = "View Message Details"
+		this.navigation_view_message_details.show = true
+		this.navigation_view_message_details.disabled = false
+		this.navigation_view_message_details.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_view_message_details.dynamic_param = {}
+		this.navigation_view_message_details.role = []
+		this.navigation_view_message_details.action = ""
 	
 		// Component level properties - "Reversal Action UI" 
 		this.reversal_action_ui.uictrl_code = "dynamic_ui"
@@ -381,6 +419,132 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.view_payment_tran_details.onChangecomponent = new EventEmitter<any>()
 		this.view_payment_tran_details.show = true
 		this.view_payment_tran_details.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
+	
+		// Component level properties - "Process Log UI" 
+		this.process_log_ui.uictrl_code = "dynamic_ui"
+		this.process_log_ui.uicgc_desc = "Process Log UI"
+		this.process_log_ui.uicgc_code = "uicgc_15"
+		this.process_log_ui.params = {}
+		this.process_log_ui.datasource = {}
+		this.process_log_ui.context_menu = []
+		this.process_log_ui.views = {}
+		this.process_log_ui.onChangecomponent = new EventEmitter<any>()
+		this.process_log_ui.show = true
+		this.process_log_ui.dynamic_param = {}
+		
+		// "Back" Button of "Process Log UI" component
+		this.process_log_ui_back.label_name = "Back"
+		this.process_log_ui_back.show = true
+		this.process_log_ui_back.disabled = false
+		this.process_log_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-fast-backward"}
+		this.process_log_ui_back.dynamic_param = {}
+		this.process_log_ui_back.role = []
+		this.process_log_ui_back.action = ""
+		
+		// "View Response" Button of "Process Log UI" component
+		this.process_log_ui_view_response.label_name = "View Response"
+		this.process_log_ui_view_response.show = true
+		this.process_log_ui_view_response.disabled = true
+		this.process_log_ui_view_response.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.process_log_ui_view_response.dynamic_param = {}
+		this.process_log_ui_view_response.role = []
+		this.process_log_ui_view_response.action = ""
+		
+		// "View Request" Button of "Process Log UI" component
+		this.process_log_ui_view_request.label_name = "View Request"
+		this.process_log_ui_view_request.show = true
+		this.process_log_ui_view_request.disabled = true
+		this.process_log_ui_view_request.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.process_log_ui_view_request.dynamic_param = {}
+		this.process_log_ui_view_request.role = []
+		this.process_log_ui_view_request.action = ""
+	
+		// Component level properties - "History Detail" 
+		this.history_detail.uictrl_code = "datatable"
+		this.history_detail.uicgc_desc = "History Detail"
+		this.history_detail.uicgc_code = "uicgc_16"
+		this.history_detail.params = {"need_search":"N","need_pag_datatable":"Y"}
+		this.history_detail.datasource = {}
+		this.history_detail.context_menu = []
+		this.history_detail.views = {}
+		this.history_detail.onChangecomponent = new EventEmitter<any>()
+		this.history_detail.show = true
+		this.history_detail.dynamic_param = {}
+	
+		// Component level properties - "Message Back UI" 
+		this.message_back_ui.uictrl_code = "dynamic_ui"
+		this.message_back_ui.uicgc_desc = "Message Back UI"
+		this.message_back_ui.uicgc_code = "uicgc_17"
+		this.message_back_ui.params = {}
+		this.message_back_ui.datasource = {}
+		this.message_back_ui.context_menu = []
+		this.message_back_ui.views = {}
+		this.message_back_ui.onChangecomponent = new EventEmitter<any>()
+		this.message_back_ui.show = true
+		this.message_back_ui.dynamic_param = {}
+		
+		// "Back" Button of "Message Back UI" component
+		this.message_back_ui_back.label_name = "Back"
+		this.message_back_ui_back.show = true
+		this.message_back_ui_back.disabled = false
+		this.message_back_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-fast-backward"}
+		this.message_back_ui_back.dynamic_param = {}
+		this.message_back_ui_back.role = []
+		this.message_back_ui_back.action = ""
+	
+		// Component level properties - "Message Detail" 
+		this.message_detail.uictrl_code = "datatable"
+		this.message_detail.uicgc_desc = "Message Detail"
+		this.message_detail.uicgc_code = "uicgc_18"
+		this.message_detail.params = {"need_search":"N","need_pag_datatable":"Y"}
+		this.message_detail.datasource = {}
+		this.message_detail.context_menu = []
+		this.message_detail.views = {}
+		this.message_detail.onChangecomponent = new EventEmitter<any>()
+		this.message_detail.show = true
+		this.message_detail.dynamic_param = {}
+	
+		// Component level properties - "Message Detail Action" 
+		this.message_detail_action.uictrl_code = "dynamic_ui"
+		this.message_detail_action.uicgc_desc = "Message Detail Action"
+		this.message_detail_action.uicgc_code = "uicgc_19"
+		this.message_detail_action.params = {}
+		this.message_detail_action.datasource = {}
+		this.message_detail_action.context_menu = []
+		this.message_detail_action.views = {}
+		this.message_detail_action.onChangecomponent = new EventEmitter<any>()
+		this.message_detail_action.show = true
+		this.message_detail_action.dynamic_param = {}
+		
+		// "Back" Button of "Message Detail Action" component
+		this.message_detail_action_back.label_name = "Back"
+		this.message_detail_action_back.show = true
+		this.message_detail_action_back.disabled = false
+		this.message_detail_action_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.message_detail_action_back.dynamic_param = {}
+		this.message_detail_action_back.role = []
+		this.message_detail_action_back.action = ""
+		
+		// "Show Message" Button of "Message Detail Action" component
+		this.message_detail_action_show_message.label_name = "Show Message"
+		this.message_detail_action_show_message.show = true
+		this.message_detail_action_show_message.disabled = true
+		this.message_detail_action_show_message.params = {"icon_only":false,"uicgcc_style":"fa fa-css3"}
+		this.message_detail_action_show_message.dynamic_param = {}
+		this.message_detail_action_show_message.role = []
+		this.message_detail_action_show_message.action = ""
+	
+		// Component level properties - "Message Detail UI" 
+		this.message_detail_ui.uictrl_code = "dynamic_ui"
+		this.message_detail_ui.uicgc_desc = "Message Detail UI"
+		this.message_detail_ui.uicgc_code = "uicgc_20"
+		this.message_detail_ui.params = {}
+		this.message_detail_ui.datasource = {}
+		this.message_detail_ui.context_menu = []
+		this.message_detail_ui.views = {}
+		this.message_detail_ui.onChangecomponent = new EventEmitter<any>()
+		this.message_detail_ui.show = true
+		this.message_detail_ui.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {

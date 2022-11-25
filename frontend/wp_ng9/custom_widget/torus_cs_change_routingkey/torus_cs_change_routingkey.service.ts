@@ -82,18 +82,15 @@ GetDataFromDb(ClientParams, screenInstance) {
     }
   }
 
+
   setRoutingKey(Rows, screenInstance) {
  
-    var Jsonobj = {}   
+    var Jsonobj = {}
     for (let i = 0; i < Rows.length; i++) {
       if(Rows[i]['routing_key_name'] == null || Rows[i]['routing_key_name'] == ''){
         continue;
       }else{
-      if(Rows[i]['ui_component_name'] == null || Rows[i]['ui_component_name'] == ''){
-         Jsonobj[`${this.screenName}_empty`] = Rows[i]['routing_key_name']
-      }else{
-        Jsonobj[`${this.screenName}_${Rows[i]['ui_component_name']}`] = Rows[i]['routing_key_name']
-      }
+        Jsonobj[Rows[i]['ui_component_name']] = Rows[i]['routing_key_name']
       }
      
     }

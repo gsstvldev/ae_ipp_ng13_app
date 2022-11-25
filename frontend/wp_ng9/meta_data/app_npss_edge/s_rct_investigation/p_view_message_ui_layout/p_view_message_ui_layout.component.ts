@@ -6,25 +6,24 @@ Modified By     : Admin
 Modified Date   : 2022-Nov-25 10:24 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_rct_review_transactions
-Profile Name    : Vertical Layout--------------------------------------------------------------------------- */
+Screen Name     : s_rct_investigation
+Profile Name    : View Message UI Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_vertical_layout',
-  templateUrl: './p_vertical_layout.component.html',
-  styleUrls: ['./p_vertical_layout.component.css']
+  selector: 'p_view_message_ui_layout',
+  templateUrl: './p_view_message_ui_layout.component.html',
+  styleUrls: ['./p_view_message_ui_layout.component.css']
 })
 
 // Start of class 
-export class p_vertical_layoutComponent implements OnInit {
+export class p_view_message_ui_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	view_dr_cr_tran_details : any = {}
-	view_payment_tran_details : any = {}
-	main_back_ui : any = {}
+  	message_detail_ui : any = {}
+	message_back_ui : any = {}
 
 
   // Constructor 
@@ -32,16 +31,14 @@ export class p_vertical_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.view_dr_cr_tran_details.desc = "View Dr Cr Tran Details"
-		this.view_dr_cr_tran_details.need_header = true
-		this.view_payment_tran_details.desc = "View Payment Tran Details"
-		this.view_payment_tran_details.need_header = true
-		this.main_back_ui.desc = "Main Back UI"
-		this.main_back_ui.need_header = ""
+    	this.message_detail_ui.desc = "Message Detail UI"
+		this.message_detail_ui.need_header = ""
+		this.message_back_ui.desc = "Message Back UI"
+		this.message_back_ui.need_header = ""
 	
 
-    this.screen_instance['p_vertical_layout'] = {};
-    this.screen_instance['p_vertical_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_view_message_ui_layout'] = {};
+    this.screen_instance['p_view_message_ui_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

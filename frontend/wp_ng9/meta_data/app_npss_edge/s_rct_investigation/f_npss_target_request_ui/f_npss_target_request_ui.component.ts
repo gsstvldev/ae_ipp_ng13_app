@@ -6,7 +6,7 @@ Modified By     : Admin
 Modified Date   : 2022-Nov-25 10:24 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_rct_review_transactions
+Screen Name     : s_rct_investigation
 Form Name       : NPSS Target Request UI--------------------------------------------------------------------------- */
 
 // Component Definition 

@@ -102,8 +102,11 @@ GetDataFromDb(ClientParams, screenInstance) {
    
   }
   setDepartMentCode(depCode,screenInstance){
-    this.SessionSvc.SetVariable(SCOPE.SESSION_LEVEL,'Department_code', depCode[0].channel_department_code);
-   
+   if(depCode.length){
+      var code = depCode[0].channel_department_code || ''
+      this.SessionSvc.SetVariable(SCOPE.SESSION_LEVEL,'Department_code', code);
+    }
+      
     this.AppHandler.callInternals(this.Internals, screenInstance, "SUCCESS");
   }
 

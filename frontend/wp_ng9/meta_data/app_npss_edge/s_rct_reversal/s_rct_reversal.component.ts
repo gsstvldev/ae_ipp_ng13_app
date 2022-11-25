@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27057 
+Build ID        : 27068 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-25 6:8 AM 
+Modified Date   : 2022-Nov-25 8:12 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -601,6 +601,11 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	//Handler for SELECTION_CHANGED event of "npss pl rtn reason ui t24 return code"
 	npss_pl_rtn_reason_ui_t24_return_code__selection_changed(){
 		this.npss_pl_rtn_reason_ui_t24_return_code__fcb_for_source__accept_ui()
+	}
+
+	//Handler for SELECTION_CHANGED event of "npss pl change rtn reason ui t24 return code"
+	npss_pl_change_rtn_reason_ui_t24_return_code__selection_changed(){
+		this.npss_pl_change_rtn_reason_ui_t24_return_code__e_1669363813044__change_return_ui()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1852,6 +1857,27 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1666876334010"
 		let event_params={"source_comp_id":"accept_ui","source_ctrl_id":"t24_return_code","destn_comp_id":"accept_ui","destn_ctrl_id":"cbuae_return_code","caller_name":"npss_pl_rtn_reason_ui_t24_return_code__fcb_for_source__accept_ui","event_desc":"FCB for source","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_pl_rtn_reason_ui~uicgc_5~ui~df_1304_1665905157963~14","raiseparam":{"parentcolumn":"SOURCE_RETURN_CODE","need_selecteditem":"N"}}
+		let handler_code="filter_combo_binding"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.filter_combo_binding(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "npss pl change rtn reason ui t24 return code"
+	npss_pl_change_rtn_reason_ui_t24_return_code__e_1669363813044__change_return_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="npss_pl_change_rtn_reason_ui_t24_return_code"
+		let destn_id="npss_pl_change_rtn_reason_ui_cbuae_return_code"
+		let parent_source_id=""
+		let event_code="e_1669363813044"
+		let event_params={"source_comp_id":"change_return_ui","source_ctrl_id":"t24_return_code","destn_comp_id":"change_return_ui","destn_ctrl_id":"cbuae_return_code","caller_name":"npss_pl_change_rtn_reason_ui_t24_return_code__e_1669363813044__change_return_ui","event_desc":"E_1669363813044","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_pl_change_rtn_reason_ui~uicgc_6~ui~df_1304_1665905157963~14","raiseparam":{"parentcolumn":"SOURCE_RETURN_CODE","need_selecteditem":"Y"}}
 		let handler_code="filter_combo_binding"
 		let internals=""
 		let event_data={}

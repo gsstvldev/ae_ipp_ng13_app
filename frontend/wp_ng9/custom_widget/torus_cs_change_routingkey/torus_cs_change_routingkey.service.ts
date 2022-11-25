@@ -8,6 +8,7 @@ import { HttphelperService } from '../../scripts/fx/httphelper.service';
 import { CoreService } from '../../scripts/fx/core.service';
 import { SessionService } from '../../scripts/fx/session.service';
 import { AppHandlerService } from '../../scripts/fx/app.handler.service';
+import { SCOPE } from '../../scripts/fx/session.enum'; // get Scope for Session level
 //import 'rxjs/add/operator/map';
 //import 'rxjs/add/operator/catch';
                         
@@ -67,10 +68,12 @@ GetDataFromDb(ClientParams, screenInstance) {
       this.httpHelper.HttpPost('/microsvc/torus_cs_change_routingkey/', ClientParams)
         .subscribe((res: any) => {
          
-            if (res.data.datafile) {
-              let Rows = res.data.datafile;            
-              this.setRoutingKey(Rows, screenInstance);
-              this.AppHandler.callInternals(this.Internals, screenInstance, "SUCCESS");
+            if (res.data) {
+              let Rows = res.data;            
+              this.setRoutingKey(Rows.routingkey, screenInstance);
+              this.setDepartMentCode(Rows.Departmentcode, screenInstance)
+
+             
             }
           
         })
@@ -81,19 +84,28 @@ GetDataFromDb(ClientParams, screenInstance) {
 
   setRoutingKey(Rows, screenInstance) {
  
-    var Jsonobj = {}
+    var Jsonobj = {}   
     for (let i = 0; i < Rows.length; i++) {
       if(Rows[i]['routing_key_name'] == null || Rows[i]['routing_key_name'] == ''){
         continue;
       }else{
-        Jsonobj[Rows[i]['ui_component_name']] = Rows[i]['routing_key_name']
+      if(Rows[i]['ui_component_name'] == null || Rows[i]['ui_component_name'] == ''){
+         Jsonobj[`${this.screenName}_empty`] = Rows[i]['routing_key_name']
+      }else{
+        Jsonobj[`${this.screenName}_${Rows[i]['ui_component_name']}`] = Rows[i]['routing_key_name']
+      }
       }
      
     }
    
     this.SessionSvc.SetVariable('MI_LEVEL', 'CONTROLID', Jsonobj);
+   
   }
-
+  setDepartMentCode(depCode,screenInstance){
+    this.SessionSvc.SetVariable(SCOPE.SESSION_LEVEL,'Department_code', depCode[0].channel_department_code);
+   
+    this.AppHandler.callInternals(this.Internals, screenInstance, "SUCCESS");
+  }
 
 
 }

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27052 
+Build ID        : 27057 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-24 7:53 AM 
+Modified Date   : 2022-Nov-25 6:8 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_transactions
@@ -243,7 +243,7 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 		this.view_payment_tran_details.views = {}
 		this.view_payment_tran_details.onChangecomponent = new EventEmitter<any>()
 		this.view_payment_tran_details.show = true
-		this.view_payment_tran_details.dynamic_param = {}
+		this.view_payment_tran_details.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
 	}
 	// Methods
 	ngAfterViewInit() {

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27052 
+Build ID        : 27056 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-24 7:53 AM 
+Modified Date   : 2022-Nov-25 6:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -309,6 +309,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	transaction_list__selection_changed(){
 		this.transaction_list__svm_for_tl()
 		this.transaction_list__ee_for_back_in_vertical_tran()
+		this.transaction_list__ee_for_tran_to_vd()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui search"
@@ -698,6 +699,27 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1669202699210"
 		let event_params={"caller_name":"transaction_list__ee_for_back_in_vertical_tran","event_desc":"EE for Back in Vertical tran","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_tran_to_vd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_view_detail"
+		let parent_source_id=""
+		let event_code="e_1669284184598"
+		let event_params={"caller_name":"transaction_list__ee_for_tran_to_vd","event_desc":"EE for Tran to VD","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}

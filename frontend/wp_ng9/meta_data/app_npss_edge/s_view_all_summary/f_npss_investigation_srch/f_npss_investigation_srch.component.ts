@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27052 
+Build ID        : 27057 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-24 7:53 AM 
+Modified Date   : 2022-Nov-25 6:8 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_summary
@@ -447,7 +447,7 @@ focustoelement(){
 		this.ctrl.memory75.label_name = "Status"
 		this.ctrl.memory75.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory75.df_description = "Column Group 1"
-		this.ctrl.memory75.uictrl_code = "CBO"
+		this.ctrl.memory75.uictrl_code = "CBO_LIST"
 		this.ctrl.memory75.target_column = "memory75"
 		this.ctrl.memory75.data_type = "TEXT"
 		this.ctrl.memory75.data_length = 0
@@ -463,7 +463,7 @@ focustoelement(){
 		this.ctrl.memory75.hide_label = false
 		this.ctrl.memory75.depends_on = ""
 		this.ctrl.memory75.placeholder = ""
-		this.ctrl.memory75.dynamic_param = ""
+		this.ctrl.memory75.dynamic_param = {"mode":"Load On PageLoad","description_column":""}
 		this.ctrl.memory75.style_code = ""
 		this.ctrl.memory75.data_source = {"ds_code":"UDS_1304_1669276117602","ds_description":"Status CDB","rows":[],"type":"DPS_TABLE","value_member":"STATUS","display_member":"STATUS","first_record_display":"","column_list":"","order_by":"","target_table":"NPSS_TRANSACTIONS","context":"","filters":[],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[]},"query":"()"},"sel_columns":[]}
 		this.ctrl.memory75.image_association = ""

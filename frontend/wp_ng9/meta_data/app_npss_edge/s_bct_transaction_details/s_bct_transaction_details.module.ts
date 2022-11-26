@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26999 
+Build ID        : 27085 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-25 11:37 AM 
+Modified Date   : 2022-Nov-26 8:47 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_transaction_details
@@ -19,6 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
+import {torus_cs_change_routingkeyModule} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 
 import {DialogModule} from 'primeng/dialog';
@@ -63,7 +64,7 @@ import { f_hst_process_log_to_main_backComponent } from './f_hst_process_log_to_
     OverlayPanelModule,
     
     s_bct_transaction_detailsRoutingModule,
-    torus_cs_show_hideModule
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule
   ],
   declarations: [s_bct_transaction_detailsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_vertical_layoutComponent,f_main_back_uiComponent,p_refund_layoutComponent,f_refund_uiComponent,f_refund_editable_uiComponent,f_submit_uiComponent,p_view_response_layoutComponent,f_npss_bct_response_uiComponent,f_hst_process_log_backComponent,p_view_request_layoutComponent,f_npss_bct_request_uiComponent,p_view_history_layoutComponent,f_hst_process_log_to_main_backComponent,],
   providers:[AppHandlerService,ComponenthelperService]

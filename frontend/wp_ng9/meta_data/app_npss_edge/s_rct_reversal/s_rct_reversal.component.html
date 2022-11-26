@@ -1,8 +1,8 @@
 <div class="s_rct_reversal">
+<p_view_response_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_response_layout')"></p_view_response_layout>
 <p_view_message_ui_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_ui_layout')"></p_view_message_ui_layout>
 <p_view_message_list_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_list_layout')"></p_view_message_list_layout>
 <p_view_request_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_request_layout')"></p_view_request_layout>
-<p_view_response_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_response_layout')"></p_view_response_layout>
 <p_view_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_history_layout')"></p_view_history_layout>
 <p_vertical_layout [screen_instance]="this" [hidden]="!(current_profile=='p_vertical_layout')"></p_vertical_layout>
 <p_accept_ui_layout [screen_instance]="this" [hidden]="!(current_profile=='p_accept_ui_layout')"></p_accept_ui_layout>
@@ -19,6 +19,5 @@
 <app-dialog [screen_instance]="this" ></app-dialog>
 <div style="display:none">
 	<datatable [comp_id]="'comment_list'" [screen_instance]="this"></datatable>
-	<f_npss_target_response_ui [comp_id]="'response_ui'" [screen_instance]="this" ></f_npss_target_response_ui >
 </div>
 </div>

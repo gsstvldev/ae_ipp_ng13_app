@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27073 
+Build ID        : 27081 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-25 14:4 PM 
+Modified Date   : 2022-Nov-26 8:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -22,14 +22,20 @@ export class p_view_response_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  
+  	response_ui : any = {}
+	single_back_ui : any = {}
+
 
   // Constructor 
   constructor() { }
   
   // Page Init 
   ngOnInit() {
-    
+    	this.response_ui.desc = "Response UI"
+		this.response_ui.need_header = ""
+		this.single_back_ui.desc = "Single Back UI"
+		this.single_back_ui.need_header = ""
+	
 
     this.screen_instance['p_view_response_layout'] = {};
     this.screen_instance['p_view_response_layout']['checkHeader']=(component)=>{

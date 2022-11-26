@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27073 
+Build ID        : 27081 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-25 14:4 PM 
+Modified Date   : 2022-Nov-26 8:50 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_transactions
@@ -35,10 +35,14 @@ import { s_bct_review_transactionsRoutingModule } from './s_bct_review_transacti
 
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
+import { f_process_log_uiComponent } from './f_process_log_ui/f_process_log_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
 import { f_npss_tran_srchComponent } from './f_npss_tran_srch/f_npss_tran_srch.component'
 import { p_vertical_layoutComponent } from './p_vertical_layout/p_vertical_layout.component'
 import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
+import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
+import { p_view_message_list_layoutComponent } from './p_view_message_list_layout/p_view_message_list_layout.component'
+import { f_message_detail_actionComponent } from './f_message_detail_action/f_message_detail_action.component'
 
 
 
@@ -55,7 +59,7 @@ import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
     s_bct_review_transactionsRoutingModule,
     torus_cs_change_routingkeyModule,torus_cs_show_hideModule
   ],
-  declarations: [s_bct_review_transactionsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_tran_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,],
+  declarations: [s_bct_review_transactionsComponent,p_main_layoutComponent,f_navigation_uiComponent,f_process_log_uiComponent,p_search_layoutComponent,f_npss_tran_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

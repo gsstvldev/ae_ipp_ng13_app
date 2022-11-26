@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26999 
+Build ID        : 27085 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-25 11:37 AM 
+Modified Date   : 2022-Nov-26 8:47 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -19,6 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
+import {torus_cs_change_routingkeyModule} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_cs_t24_postingModule} from '../../../custom_widget/npss_cs_t24_posting/npss_cs_t24_posting.module'
 import {npss_cs_enquiryModule} from '../../../custom_widget/npss_cs_enquiry/npss_cs_enquiry.module'
@@ -59,7 +60,7 @@ import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
     OverlayPanelModule,
     
     s_rct_posting_suspiciousRoutingModule,
-    torus_cs_show_hideModule,npss_cs_t24_postingModule,npss_cs_enquiryModule,npss_cs_cc_postingModule,npss_cs_rct_already_postingModule,npss_cs_rct_retryModule
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_t24_postingModule,npss_cs_enquiryModule,npss_cs_cc_postingModule,npss_cs_rct_already_postingModule,npss_cs_rct_retryModule
   ],
   declarations: [s_rct_posting_suspiciousComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_cbs_layoutComponent,f_npss_bct_ref_no_uiComponent,p_view_tran_detail_layoutComponent,f_back_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

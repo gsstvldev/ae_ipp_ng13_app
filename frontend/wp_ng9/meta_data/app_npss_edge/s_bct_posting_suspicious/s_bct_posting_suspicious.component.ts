@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27093 
+Build ID        : 27092 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-26 15:5 PM 
+Modified Date   : 2022-Nov-27 13:29 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_suspicious
@@ -175,7 +175,7 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		// "View Log History" Button of "Navigation UI" component
 		this.navigation_ui_view_log_history.label_name = "View Log History"
 		this.navigation_ui_view_log_history.show = true
-		this.navigation_ui_view_log_history.disabled = false
+		this.navigation_ui_view_log_history.disabled = true
 		this.navigation_ui_view_log_history.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
 		this.navigation_ui_view_log_history.dynamic_param = {}
 		this.navigation_ui_view_log_history.role = []
@@ -184,7 +184,7 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		// "View Message Details" Button of "Navigation UI" component
 		this.navigation_ui_view_message_details.label_name = "View Message Details"
 		this.navigation_ui_view_message_details.show = true
-		this.navigation_ui_view_message_details.disabled = false
+		this.navigation_ui_view_message_details.disabled = true
 		this.navigation_ui_view_message_details.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
 		this.navigation_ui_view_message_details.dynamic_param = {}
 		this.navigation_ui_view_message_details.role = []
@@ -755,6 +755,7 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view log history"
 	navigation_ui_view_log_history__action_button_click(){
 		this.navigation_ui_view_log_history__brfq_for_hd()
+		this.navigation_ui_view_log_history__sp_for_vlh()
 	}
 
 	//Handler for INTERNAL event of "brfq for hd"
@@ -2020,6 +2021,27 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view log history"
+	navigation_ui_view_log_history__sp_for_vlh() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_log_history"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1669542960920"
+		let event_params={"caller_name":"navigation_ui_view_log_history__sp_for_vlh","event_desc":"sp for VLH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_log_history","raiseparam":{"profile_code":"BTL_1304_1669444552659"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "brfq for hd"
 	brfq_for_hd__sfr_for_hd(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -2176,7 +2198,7 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1669448894688"
-		let event_params={"caller_name":"message_detail_action_show_message__sp_for_vmd","event_desc":"SP for VMD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_show_message","raiseparam":{"profile_code":"BTL_1304_1669444705545"}}
+		let event_params={"caller_name":"message_detail_action_show_message__sp_for_vmd","event_desc":"SP for VMD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_show_message","raiseparam":{"profile_code":"BTL_1304_1669446303593"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2303,7 +2325,7 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1669449076305"
-		let event_params={"caller_name":"navigation_ui_view_message_details__sp_for_vmds","event_desc":"SP for VMDs","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_details","raiseparam":{"profile_code":"BTL_1304_1669446303593"}}
+		let event_params={"caller_name":"navigation_ui_view_message_details__sp_for_vmds","event_desc":"SP for VMDs","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_details","raiseparam":{"profile_code":"BTL_1304_1669444705545"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27093 
+Build ID        : 27092 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-26 15:5 PM 
+Modified Date   : 2022-Nov-27 13:29 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_transactions
@@ -50,6 +50,7 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 	uicgc_16 : string = "single_back_ui"
 	uicgc_17 : string = "process_log_ui"
 	uicgc_18 : string = "message_back_ui"
+	uicgc_19 : string = "hst_process_log_to_main_back"
 	key_events : any = {}
 	btl_1304_1669440055612 : string = "p_view_message_ui_layout"
 	btl_1304_1669439992265 : string = "p_view_message_list_layout"
@@ -59,7 +60,7 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 	btl_1304_1669203002341 : string = "p_vertical_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_15","uicgc_14","uicgc_4","uicgc_13","uicgc_18","uicgc_12","uicgc_16","uicgc_6","uicgc_3"]
+	forms : any = ["uicgc_15","uicgc_14","uicgc_4","uicgc_13","uicgc_18","uicgc_12","uicgc_16","uicgc_19","uicgc_6","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
@@ -95,6 +96,10 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 	process_log_ui_view_request : any = {}
 	message_back_ui : any = {}
 	message_back_ui_back : any = {}
+	hst_process_log_to_main_back : any = {}
+	hst_process_log_to_main_back_back : any = {}
+	hst_process_log_to_main_back_view_response : any = {}
+	hst_process_log_to_main_back_view_request : any = {}
 
 
 	// Constructor 
@@ -478,6 +483,47 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 		this.message_back_ui_back.dynamic_param = {}
 		this.message_back_ui_back.role = []
 		this.message_back_ui_back.action = ""
+	
+		// Component level properties - "HST Process Log to Main Back" 
+		this.hst_process_log_to_main_back.uictrl_code = "dynamic_ui"
+		this.hst_process_log_to_main_back.uicgc_desc = "HST Process Log to Main Back"
+		this.hst_process_log_to_main_back.uicgc_code = "uicgc_19"
+		this.hst_process_log_to_main_back.params = {}
+		this.hst_process_log_to_main_back.datasource = {}
+		this.hst_process_log_to_main_back.context_menu = []
+		this.hst_process_log_to_main_back.views = {}
+		this.hst_process_log_to_main_back.onChangecomponent = new EventEmitter<any>()
+		this.hst_process_log_to_main_back.show = true
+		this.hst_process_log_to_main_back.dynamic_param = {}
+		this.hst_process_log_to_main_back.f_hst_process_log_to_main_back = {"show":true}
+		this.hst_process_log_to_main_back.current_view = "f_hst_process_log_to_main_back"
+		
+		// "Back" Button of "HST Process Log to Main Back" component
+		this.hst_process_log_to_main_back_back.label_name = "Back"
+		this.hst_process_log_to_main_back_back.show = true
+		this.hst_process_log_to_main_back_back.disabled = false
+		this.hst_process_log_to_main_back_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.hst_process_log_to_main_back_back.dynamic_param = {}
+		this.hst_process_log_to_main_back_back.role = []
+		this.hst_process_log_to_main_back_back.action = ""
+		
+		// "View Response" Button of "HST Process Log to Main Back" component
+		this.hst_process_log_to_main_back_view_response.label_name = "View Response"
+		this.hst_process_log_to_main_back_view_response.show = true
+		this.hst_process_log_to_main_back_view_response.disabled = true
+		this.hst_process_log_to_main_back_view_response.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.hst_process_log_to_main_back_view_response.dynamic_param = {}
+		this.hst_process_log_to_main_back_view_response.role = []
+		this.hst_process_log_to_main_back_view_response.action = ""
+		
+		// "View Request" Button of "HST Process Log to Main Back" component
+		this.hst_process_log_to_main_back_view_request.label_name = "View Request"
+		this.hst_process_log_to_main_back_view_request.show = true
+		this.hst_process_log_to_main_back_view_request.disabled = true
+		this.hst_process_log_to_main_back_view_request.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.hst_process_log_to_main_back_view_request.dynamic_param = {}
+		this.hst_process_log_to_main_back_view_request.role = []
+		this.hst_process_log_to_main_back_view_request.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {

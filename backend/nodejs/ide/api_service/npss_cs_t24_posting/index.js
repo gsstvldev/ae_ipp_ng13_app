@@ -7,13 +7,14 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
+
 
 
 
 
     try {
-        /*   Created By : Daseen
+        /*   Created By :  Daseen
         Created Date :04-11-2022
         Modified By : Daseen
         Modified Date : 23/11/2022    
@@ -87,22 +88,64 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         } else {
                                                             cvAcNum = arrActInf[0].alternate_account_id.slice(-16)
                                                         }
-                                                        if(arrActInf[0].currency=="AED"){
-                                                            sell_margin=""
-                                                             sell_rate=""
+                                                        if (arrActInf[0].currency == "AED") {
+                                                            sell_margin = ""
+                                                            sell_rate = ""
                                                         }
-                                                        else{
-                                                            var seldetqry=`select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrActInf[0].customer_id}'`
+                                                        else {
+                                                            var seldetqry = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrActInf[0].customer_id}'`
+                                                            var arrInstlog=[];
                                                             ExecuteQuery1(seldetqry, function (arrselldet) {
-                                                                if(arrselldet.length>0){
-                                                                    sell_margin=arrselldet[0].sell_margin
-                                                                    sell_rate=arrselldet[0].sell_rate
-                                                                   
+                                                                if (arrselldet.length > 0) {
+                                                                    sell_margin = arrselldet[0].sell_margin
+                                                                    sell_rate = arrselldet[0].sell_rate
+                                                                    var objtrnprcslog = {};
+                                                                    objtrnprcslog.UETR = arrprocesslog[0].uetr;
+                                                                    objtrnprcslog.MSG_ID = arrprocesslog[0].hdr_msg_id;
+                                                                    objtrnprcslog.DT_CODE = "DT_1304_1665901130705";
+                                                                    objtrnprcslog.DTT_CODE = "DTT_1304_1665905039255";
+                                                                    objtrnprcslog.DT_DESCRIPTION = "Transaction";
+                                                                    objtrnprcslog.DTT_DESCRIPTION = "NPSS Trn Process Log";
+                                                                    objtrnprcslog.CREATED_BY = params.CREATED_BY;
+                                                                    objtrnprcslog.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                                                    objtrnprcslog.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                                                    objtrnprcslog.MODIFIED_BY = "";
+                                                                    objtrnprcslog.MODIFIED_BY_NAME = "";
+                                                                   // objtrnprcslog.MODIFIED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                                                    objtrnprcslog.SYSTEM_ID = params.SYSTEM_ID;
+                                                                    objtrnprcslog.SYSTEM_NAME = params.SYSTEM_NAME;
+                                                                    objtrnprcslog.PRCT_ID = prct_id;
+                                                                    objtrnprcslog.CREATED_BY_STS_ID = "";
+                                                                    objtrnprcslog.MODIFIED_BY_STS_ID = "";
+                                                                    objtrnprcslog.app_id = '215';
+                                                                    objtrnprcslog.tenant_id = objSessionLogInfo.TENANT_ID;
+                                                                    objtrnprcslog.created_clientip = objSessionLogInfo.CLIENTIP;
+                                                                    objtrnprcslog.created_tz = objSessionLogInfo.CLIENTTZ;
+                                                                    objtrnprcslog.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                                                    objtrnprcslog.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                                                    objtrnprcslog.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                                                    objtrnprcslog.routingkey = headers.routingkey;
+                                                                    arrInstlog.push(objtrnprcslog);
+                                                                    console.log(arrInstlog);
+                                                                    _BulkInsertProcessItem(arrInstlog, 'npss_trn_process_log', function callbackInsert(TranlogInsertRes) {
+                                                                        if (TranlogInsertRes.length > 0) {
+                                                                           
+                                                                            console.log("Trn Process Log insert success "+ arrprocesslog[0].uetr+' UETR');
+                                                                        } else {
+                                                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Trn Process Log insert not success", result);
+                                                                           
+                                                                        }
+                            
+                                                                    })
+
+
+
+
                                                                 }
-                                                                else{
+                                                                else {
                                                                     console.log("No Data found in Cust Special Rate table");
-                                                                 objresponse.status = "No Data found in Cust Special Rate table"
-                                                                 sendResponse(objresponse, null)
+                                                                    objresponse.status = "No Data found in Cust Special Rate table"
+                                                                    sendResponse(objresponse, null)
                                                                 }
 
                                                             })
@@ -115,7 +158,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 sendResponse(result, null);
                                                             }
                                                         })
-                                                        
+
                                                     })
 
 
@@ -190,7 +233,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "dbtr_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_name": arrprocesslog[0].cdtr_acct_name || '',
                                                     "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
-                                                    "accp_dt_tm":  arrprocesslog[0].accp_dt_tm || '',
+                                                    "accp_dt_tm": arrprocesslog[0].accp_dt_tm || '',
 
                                                     "charge_bearer": arrprocesslog[0].charge_bearer || '',
                                                     "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
@@ -201,16 +244,16 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "status": params.STATUS || '',
                                                     "process_status": params.ELIGIBLE_PROCESS_STATUS || '',
                                                     "process": "",
-                                                    "clrsysref":  arrprocesslog[0].clrsysref || '',
-                                                    "extIdentifier": arrprocesslog[0].clrsysref ? arrprocesslog[0].clrsysref:arrprocesslog[0].payment_endtoend_id,
+                                                    "clrsysref": arrprocesslog[0].clrsysref || '',
+                                                    "extIdentifier": arrprocesslog[0].clrsysref ? arrprocesslog[0].clrsysref : arrprocesslog[0].payment_endtoend_id,
 
                                                     "remittance_information": arrprocesslog[0].remittance_info || '',
                                                     "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
                                                     "cr_acct_id_code": arrprocesslog[0].cr_acct_id_code || '',
                                                     "process_name": "CC Posting",
-                                                    "sell_margin":sell_margin || '',
+                                                    "sell_margin": sell_margin || '',
 
-                                                    "sell_rate":sell_rate || ''
+                                                    "sell_rate": sell_rate || ''
 
                                                 },
                                                 "AccountInformation": {
@@ -220,10 +263,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "currency": arrActInf[0].currency || '',
                                                     "alternate_account_type": arrActInf[0].alternate_account_type || '',
                                                     "alternate_account_id": arrActInf[0].alternate_account_id || '',
-                                                    "CR.VA.NUMBER":cvAcNum || '',
-                                                    "curr_rate_segment":arrActInf[0].curr_rate_segment || '',
-                                                    "customer_id":arrActInf[0].customer_id || '',
-                                                    "account_officer":arrActInf[0].account_officer || ''
+                                                    "CR.VA.NUMBER": cvAcNum || '',
+                                                    "curr_rate_segment": arrActInf[0].curr_rate_segment || '',
+                                                    "customer_id": arrActInf[0].customer_id || '',
+                                                    "account_officer": arrActInf[0].account_officer || ''
                                                 }
                                             }
                                         }, headers: {
@@ -286,6 +329,30 @@ app.post('/', function(appRequest, appResponse, next) {
                                     reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
                                 }
                             }
+                            function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
+                                try {
+                                    reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
+                                        try {
+                                            if (error) {
+                                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
+                                                sendResponse(error)
+                                            } else {
+                                                if (result.length > 0) {
+                                                    callbackInsert(result);
+                                                } else {
+                                                    callbackInsert([]);
+                                                }
+                                            }
+                                        } catch (error) {
+                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
+                                            sendResponse(error)
+                                        }
+                                    });
+                                } catch (error) {
+                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
+                                    sendResponse(error)
+                                }
+                            }
                         } catch (error) {
                             sendResponse(error, null);
                         }
@@ -304,6 +371,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

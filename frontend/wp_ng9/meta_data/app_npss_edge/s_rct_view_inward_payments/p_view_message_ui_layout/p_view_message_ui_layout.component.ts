@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27105 
+Build ID        : 27115 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-28 14:6 PM 
+Modified Date   : 2022-Nov-28 15:6 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_inward_payments

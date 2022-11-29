@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27118 
+Build ID        : 27125 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-29 8:11 AM 
+Modified Date   : 2022-Nov-29 9:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_iban_view_transactions_group
@@ -38,7 +38,7 @@ import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.comp
 import { p_vertical_layoutComponent } from './p_vertical_layout/p_vertical_layout.component'
 import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_searchComponent } from './f_search/f_search.component'
+import { f_npss_rct_post_plog_srchComponent } from './f_npss_rct_post_plog_srch/f_npss_rct_post_plog_srch.component'
 import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
 import { f_process_log_uiComponent } from './f_process_log_ui/f_process_log_ui.component'
 import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_request_layout.component'
@@ -73,7 +73,7 @@ import { f_npss_target_main_page_response_uiComponent } from './f_npss_target_ma
     s_iban_view_transactions_groupRoutingModule,
     torus_cs_change_routingkeyModule,torus_cs_show_hideModule
   ],
-  declarations: [s_iban_view_transactions_groupComponent,p_main_layoutComponent,f_navigation_uiComponent,p_vertical_layoutComponent,f_back_uiComponent,p_search_layoutComponent,f_searchComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_npss_message_data_uiComponent,f_message_back_uiComponent,p_view_main_message_ui_layoutComponent,f_npss_main_page_message_detail_uiComponent,p_view_main_request_layoutComponent,f_npss_target_main_page_request_uiComponent,p_view_main_response_layoutComponent,f_npss_target_main_page_response_uiComponent,],
+  declarations: [s_iban_view_transactions_groupComponent,p_main_layoutComponent,f_navigation_uiComponent,p_vertical_layoutComponent,f_back_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_npss_message_data_uiComponent,f_message_back_uiComponent,p_view_main_message_ui_layoutComponent,f_npss_main_page_message_detail_uiComponent,p_view_main_request_layoutComponent,f_npss_target_main_page_request_uiComponent,p_view_main_response_layoutComponent,f_npss_target_main_page_response_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

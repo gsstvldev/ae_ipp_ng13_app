@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27106 
+Build ID        : 27138 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-29 8:14 AM 
+Modified Date   : 2022-Nov-29 13:41 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_transactions
@@ -52,15 +52,15 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 	uicgc_18 : string = "message_back_ui"
 	uicgc_19 : string = "hst_process_log_to_main_back"
 	key_events : any = {}
+	btl_1304_1669726500190 : string = "p_view_history_layout"
 	btl_1304_1669440055612 : string = "p_view_message_ui_layout"
 	btl_1304_1669439992265 : string = "p_view_message_list_layout"
 	btl_1304_1669439919903 : string = "p_view_request_layout"
 	btl_1304_1669439868237 : string = "p_view_response_layout"
-	btl_1304_1669439714203 : string = "p_view_history_layout"
 	btl_1304_1669203002341 : string = "p_vertical_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_15","uicgc_14","uicgc_4","uicgc_13","uicgc_18","uicgc_12","uicgc_16","uicgc_19","uicgc_6","uicgc_3"]
+	forms : any = ["uicgc_15","uicgc_14","uicgc_4","uicgc_13","uicgc_17","uicgc_18","uicgc_12","uicgc_16","uicgc_6","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
@@ -433,6 +433,8 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 		this.process_log_ui.onChangecomponent = new EventEmitter<any>()
 		this.process_log_ui.show = true
 		this.process_log_ui.dynamic_param = {}
+		this.process_log_ui.f_process_log_ui = {"show":true}
+		this.process_log_ui.current_view = "f_process_log_ui"
 		
 		// "Back" Button of "Process Log UI" component
 		this.process_log_ui_back.label_name = "Back"
@@ -495,8 +497,6 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 		this.hst_process_log_to_main_back.onChangecomponent = new EventEmitter<any>()
 		this.hst_process_log_to_main_back.show = true
 		this.hst_process_log_to_main_back.dynamic_param = {}
-		this.hst_process_log_to_main_back.f_hst_process_log_to_main_back = {"show":true}
-		this.hst_process_log_to_main_back.current_view = "f_hst_process_log_to_main_back"
 		
 		// "Back" Button of "HST Process Log to Main Back" component
 		this.hst_process_log_to_main_back_back.label_name = "Back"
@@ -713,8 +713,8 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 	}
 
 	//Handler for INTERNAL event of "brfq for hd"
-	brfq_for_hd__internal(){
-		this.brfq_for_hd__sfr_for_hd()
+	brfq_for_hd__internal(parent_event_result){
+		this.brfq_for_hd__sfr_for_hd(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "message detail"
@@ -1738,7 +1738,7 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1669440865700"
-		let event_params={"caller_name":"single_back_ui_back__sp_for_sb_back","event_desc":"SP for SB Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"single_back_ui_back","raiseparam":{"profile_code":"BTL_1304_1669439714203"}}
+		let event_params={"caller_name":"single_back_ui_back__sp_for_sb_back","event_desc":"SP for SB Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"single_back_ui_back","raiseparam":{"profile_code":"BTL_1304_1669726500190"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1759,7 +1759,7 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1669441286842"
-		let event_params={"caller_name":"navigation_ui_view_log_history__sp_for_vlh","event_desc":"SP for VLH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_log_history","raiseparam":{"profile_code":"BTL_1304_1669439714203"}}
+		let event_params={"caller_name":"navigation_ui_view_log_history__sp_for_vlh","event_desc":"SP for VLH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_log_history","raiseparam":{"profile_code":"BTL_1304_1669726500190"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1794,14 +1794,15 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 	} 
 
 	//Handler for INTERNAL event of "brfq for hd"
-	brfq_for_hd__sfr_for_hd() { 
+	brfq_for_hd__sfr_for_hd(parent_event_result) { 
 		let Dest_Is_ctrl=true
-		
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_for_hd"
 		let destn_id="history_detail"
 		let parent_source_id="navigation_ui_view_log_history"
 		let event_code="e_1669442447298"
-		let event_params={"caller_name":"brfq_for_hd__sfr_for_hd","event_desc":"SFR for HD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_log_history","raiseparam":{}}
+		let event_params={"caller_name":"brfq_for_hd__sfr_for_hd","event_desc":"SFR for HD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_log_history","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}

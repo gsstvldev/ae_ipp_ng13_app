@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27106 
+Build ID        : 27141 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-29 8:14 AM 
+Modified Date   : 2022-Nov-29 13:45 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_failures
@@ -70,7 +70,6 @@ export class s_bct_posting_failuresComponent implements OnInit,AfterViewInit {
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
 	navigation_ui_view_log_history : any = {}
-	navigation_ui_view_message_detail : any = {}
 	navigation_ui_view_detail : any = {}
 	navigation_ui_retry : any = {}
 	search : any = {}
@@ -163,15 +162,6 @@ export class s_bct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_log_history.dynamic_param = {}
 		this.navigation_ui_view_log_history.role = []
 		this.navigation_ui_view_log_history.action = ""
-		
-		// "View Message Detail" Button of "Navigation UI" component
-		this.navigation_ui_view_message_detail.label_name = "View Message Detail"
-		this.navigation_ui_view_message_detail.show = true
-		this.navigation_ui_view_message_detail.disabled = true
-		this.navigation_ui_view_message_detail.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.navigation_ui_view_message_detail.dynamic_param = {}
-		this.navigation_ui_view_message_detail.role = []
-		this.navigation_ui_view_message_detail.action = ""
 		
 		// "View Detail" Button of "Navigation UI" component
 		this.navigation_ui_view_detail.label_name = "View Detail"

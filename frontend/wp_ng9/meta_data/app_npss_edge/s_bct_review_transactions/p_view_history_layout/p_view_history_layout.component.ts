@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27106 
+Build ID        : 27138 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-29 8:14 AM 
+Modified Date   : 2022-Nov-29 13:41 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_transactions
@@ -22,7 +22,7 @@ export class p_view_history_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	hst_process_log_to_main_back : any = {}
+  	process_log_ui : any = {}
 	history_detail : any = {}
 
 
@@ -31,8 +31,8 @@ export class p_view_history_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.hst_process_log_to_main_back.desc = "HST Process Log to Main Back"
-		this.hst_process_log_to_main_back.need_header = ""
+    	this.process_log_ui.desc = "Process Log UI"
+		this.process_log_ui.need_header = ""
 		this.history_detail.desc = "History Detail"
 		this.history_detail.need_header = true
 	

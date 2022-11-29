@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27106 
+Build ID        : 27138 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-29 8:14 AM 
+Modified Date   : 2022-Nov-29 13:41 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_suspicious
@@ -75,7 +75,6 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 	navigation_ui_search : any = {}
 	navigation_ui_view_detail : any = {}
 	navigation_ui_view_log_history : any = {}
-	navigation_ui_view_message_details : any = {}
 	navigation_ui_call_enquiry : any = {}
 	navigation_ui_call_t24_posting : any = {}
 	navigation_ui_call_cc_posting : any = {}
@@ -180,15 +179,6 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_log_history.dynamic_param = {}
 		this.navigation_ui_view_log_history.role = []
 		this.navigation_ui_view_log_history.action = ""
-		
-		// "View Message Details" Button of "Navigation UI" component
-		this.navigation_ui_view_message_details.label_name = "View Message Details"
-		this.navigation_ui_view_message_details.show = true
-		this.navigation_ui_view_message_details.disabled = true
-		this.navigation_ui_view_message_details.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.navigation_ui_view_message_details.dynamic_param = {}
-		this.navigation_ui_view_message_details.role = []
-		this.navigation_ui_view_message_details.action = ""
 		
 		// "Call Enquiry" Button of "Navigation UI" component
 		this.navigation_ui_call_enquiry.label_name = "Call Enquiry"
@@ -770,11 +760,13 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "process log ui view request"
 	process_log_ui_view_request__action_button_click(){
 		this.process_log_ui_view_request__bt_for_res()
+		this.process_log_ui_view_request__sp_for_view_req_btn()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "process log ui view response"
 	process_log_ui_view_response__action_button_click(){
 		this.process_log_ui_view_response__bt_for_req()
+		this.process_log_ui_view_response__sp_for_view_res_btn()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "message detail action show message"
@@ -2074,6 +2066,27 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view request"
+	process_log_ui_view_request__sp_for_view_req_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_request"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1669729236812"
+		let event_params={"caller_name":"process_log_ui_view_request__sp_for_view_req_btn","event_desc":"sp for view req btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_request","raiseparam":{"profile_code":"BTL_1304_1669444638517"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "process log ui view response"
 	process_log_ui_view_response__bt_for_req() { 
 		let Dest_Is_ctrl=true
@@ -2089,6 +2102,27 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view response"
+	process_log_ui_view_response__sp_for_view_res_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_response"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1669729186741"
+		let event_params={"caller_name":"process_log_ui_view_response__sp_for_view_res_btn","event_desc":"sp for view res btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_response","raiseparam":{"profile_code":"BTL_1304_1669444593504"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

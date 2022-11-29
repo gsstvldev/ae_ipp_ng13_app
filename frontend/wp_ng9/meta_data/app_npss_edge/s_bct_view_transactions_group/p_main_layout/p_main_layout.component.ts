@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 26931 
+Build ID        : 27118 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-28 15:42 PM 
+Modified Date   : 2022-Nov-29 8:11 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_view_transactions_group
@@ -23,8 +23,8 @@ export class p_main_layoutComponent implements OnInit {
 
   // Variables 
   	navigation_ui : any = {}
-	status_by_group_list : any = {}
-	process_by_system_list : any = {}
+	status_by_group : any = {}
+	process_by_system : any = {}
 	summary_list : any = {}
 	transaction_list : any = {}
 
@@ -36,10 +36,10 @@ export class p_main_layoutComponent implements OnInit {
   ngOnInit() {
     	this.navigation_ui.desc = "Navigation UI"
 		this.navigation_ui.need_header = ""
-		this.status_by_group_list.desc = "Status by Group List"
-		this.status_by_group_list.need_header = true
-		this.process_by_system_list.desc = "Process by System List"
-		this.process_by_system_list.need_header = true
+		this.status_by_group.desc = "Status by Group"
+		this.status_by_group.need_header = true
+		this.process_by_system.desc = "Process by System"
+		this.process_by_system.need_header = true
 		this.summary_list.desc = "Summary List"
 		this.summary_list.need_header = true
 		this.transaction_list.desc = "Transaction list"

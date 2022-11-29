@@ -11,8 +11,8 @@ app.post('/', function(appRequest, appResponse, next) {
     
     /*  Created By : Daseen
    Created Date : 28/10/2022
-   Modified By : 
-   Modified Date : 
+   Modified By : Siva Harish
+   Modified Date : 29/11/2022
    Reason for : 
     
    */
@@ -212,6 +212,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                    "uetr": tranresult[0].uetr,
                                    "txid": tranresult[0].TRAN_REF_ID,
                                    "active_status": 'RJCT',
+                                   "clrsysref":tranresult[0].clrsysref,
                                     "rsn_code":tplresult[0].response_code,
                                    "rsn_additional_info":tplresult[0].additional_info
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27092 
+Build ID        : 27106 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-27 13:29 PM 
+Modified Date   : 2022-Nov-29 8:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_transactions
@@ -42,8 +42,6 @@ import { p_vertical_layoutComponent } from './p_vertical_layout/p_vertical_layou
 import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
 import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
 import { f_hst_process_log_to_main_backComponent } from './f_hst_process_log_to_main_back/f_hst_process_log_to_main_back.component'
-import { p_view_message_list_layoutComponent } from './p_view_message_list_layout/p_view_message_list_layout.component'
-import { f_message_detail_actionComponent } from './f_message_detail_action/f_message_detail_action.component'
 
 
 
@@ -60,7 +58,7 @@ import { f_message_detail_actionComponent } from './f_message_detail_action/f_me
     s_bct_review_transactionsRoutingModule,
     torus_cs_change_routingkeyModule,torus_cs_show_hideModule
   ],
-  declarations: [s_bct_review_transactionsComponent,p_main_layoutComponent,f_navigation_uiComponent,f_process_log_uiComponent,p_search_layoutComponent,f_npss_tran_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_hst_process_log_to_main_backComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,],
+  declarations: [s_bct_review_transactionsComponent,p_main_layoutComponent,f_navigation_uiComponent,f_process_log_uiComponent,p_search_layoutComponent,f_npss_tran_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_hst_process_log_to_main_backComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

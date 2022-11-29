@@ -1,0 +1,20 @@
+<div class="s_iban_view_transactions_group">
+<p_view_main_message_ui_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_main_message_ui_layout')"></p_view_main_message_ui_layout>
+<p_view_main_request_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_main_request_layout')"></p_view_main_request_layout>
+<p_view_main_response_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_main_response_layout')"></p_view_main_response_layout>
+<p_view_message_ui_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_ui_layout')"></p_view_message_ui_layout>
+<p_view_message_list_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_list_layout')"></p_view_message_list_layout>
+<p_view_request_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_request_layout')"></p_view_request_layout>
+<p_view_response_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_response_layout')"></p_view_response_layout>
+<p_view_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_history_layout')"></p_view_history_layout>
+<p_vertical_layout [screen_instance]="this" [hidden]="!(current_profile=='p_vertical_layout')"></p_vertical_layout>
+<p_main_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_layout')"></p_main_layout>
+
+<p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_for_search_showpopup" [contentStyle]="{'overflow-y': 'auto','width': 'auto'}" [draggable]="true" [modal]="true">
+	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>
+<app-dialog [screen_instance]="this" ></app-dialog>
+<div style="display:none">
+	<chart [comp_id]="'status_by_group_chart'" [screen_instance]="this"></chart>
+	<chart [comp_id]="'process_by_system_chart'" [screen_instance]="this"></chart>
+</div>
+</div>

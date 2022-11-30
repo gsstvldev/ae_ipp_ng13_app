@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27146 
+Build ID        : 27157 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-30 9:30 AM 
+Modified Date   : 2022-Nov-30 10:49 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_iban_view_transactions_group
@@ -80,7 +80,7 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 	navigation_ui_view_message_history : any = {}
 	navigation_ui_view_response : any = {}
 	navigation_ui_view_request : any = {}
-	navigation_ui_show_message : any = {}
+	navigation_ui_view_message : any = {}
 	navigation_ui_reset : any = {}
 	navigation_ui_trg_disable_view_data_ui : any = {}
 	transaction_list : any = {}
@@ -92,8 +92,8 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 	process_by_system_chart : any = {}
 	process_log_ui : any = {}
 	process_log_ui_back : any = {}
-	process_log_ui_view_request : any = {}
 	process_log_ui_view_response : any = {}
+	process_log_ui_view_request : any = {}
 	response_ui : any = {}
 	request_ui : any = {}
 	single_back_ui : any = {}
@@ -224,14 +224,14 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		this.navigation_ui_view_request.role = []
 		this.navigation_ui_view_request.action = ""
 		
-		// "Show Message" Button of "Navigation UI" component
-		this.navigation_ui_show_message.label_name = "Show Message"
-		this.navigation_ui_show_message.show = true
-		this.navigation_ui_show_message.disabled = true
-		this.navigation_ui_show_message.params = {"icon_only":false,"uicgcc_style":"fa fa-css3"}
-		this.navigation_ui_show_message.dynamic_param = {}
-		this.navigation_ui_show_message.role = []
-		this.navigation_ui_show_message.action = ""
+		// "View Message" Button of "Navigation UI" component
+		this.navigation_ui_view_message.label_name = "View Message"
+		this.navigation_ui_view_message.show = true
+		this.navigation_ui_view_message.disabled = true
+		this.navigation_ui_view_message.params = {"icon_only":false,"uicgcc_style":"fa fa-css3"}
+		this.navigation_ui_view_message.dynamic_param = {}
+		this.navigation_ui_view_message.role = []
+		this.navigation_ui_view_message.action = ""
 		
 		// "Reset" Button of "Navigation UI" component
 		this.navigation_ui_reset.label_name = "Reset"
@@ -354,15 +354,6 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		this.process_log_ui_back.role = []
 		this.process_log_ui_back.action = ""
 		
-		// "View Request" Button of "Process Log UI" component
-		this.process_log_ui_view_request.label_name = "View Request"
-		this.process_log_ui_view_request.show = true
-		this.process_log_ui_view_request.disabled = true
-		this.process_log_ui_view_request.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
-		this.process_log_ui_view_request.dynamic_param = {}
-		this.process_log_ui_view_request.role = []
-		this.process_log_ui_view_request.action = ""
-		
 		// "View Response" Button of "Process Log UI" component
 		this.process_log_ui_view_response.label_name = "View Response"
 		this.process_log_ui_view_response.show = true
@@ -371,6 +362,15 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		this.process_log_ui_view_response.dynamic_param = {}
 		this.process_log_ui_view_response.role = []
 		this.process_log_ui_view_response.action = ""
+		
+		// "View Request" Button of "Process Log UI" component
+		this.process_log_ui_view_request.label_name = "View Request"
+		this.process_log_ui_view_request.show = true
+		this.process_log_ui_view_request.disabled = true
+		this.process_log_ui_view_request.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.process_log_ui_view_request.dynamic_param = {}
+		this.process_log_ui_view_request.role = []
+		this.process_log_ui_view_request.action = ""
 	
 		// Component level properties - "Response UI" 
 		this.response_ui.uictrl_code = "dynamic_ui"
@@ -834,9 +834,9 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		this.ssp_for_ssl_chart_to_stl__brfq_from_searchs_to_summary_list(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui show message"
-	navigation_ui_show_message__action_button_click(){
-		this.navigation_ui_show_message__sp_for_show_message_main_layout()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message"
+	navigation_ui_view_message__action_button_click(){
+		this.navigation_ui_view_message__sp_for_show_message_main_layout()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view request"
@@ -1401,7 +1401,7 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_ui_show_message"
+		let destn_id="navigation_ui_view_message"
 		let parent_source_id=""
 		let event_code="e_1669552962439"
 		let event_params={"caller_name":"transaction_list__ee_from_tran_to_main_view_msg","event_desc":"EE from Tran to Main View MSG","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -2524,15 +2524,15 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui show message"
-	navigation_ui_show_message__sp_for_show_message_main_layout() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message"
+	navigation_ui_view_message__sp_for_show_message_main_layout() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_show_message"
+		let source_id="navigation_ui_view_message"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1669554563808"
-		let event_params={"caller_name":"navigation_ui_show_message__sp_for_show_message_main_layout","event_desc":"SP for Show Message Main Layout","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_show_message","raiseparam":{"profile_code":"BTL_1304_1669546352282"}}
+		let event_params={"caller_name":"navigation_ui_view_message__sp_for_show_message_main_layout","event_desc":"SP for Show Message Main Layout","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message","raiseparam":{"profile_code":"BTL_1304_1669546352282"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2636,7 +2636,7 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_ui_trg_disable_view_data_ui"
-		let destn_id="navigation_ui_show_message"
+		let destn_id="navigation_ui_view_message"
 		let parent_source_id=""
 		let event_code="e_1669552608498"
 		let event_params={"caller_name":"navigation_ui_trg_disable_view_data_ui__de_from_trg_to_view_message_on_main_page","event_desc":"DE from TRG to View Message on Main Page","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_disable_view_data_ui","raiseparam":{}}

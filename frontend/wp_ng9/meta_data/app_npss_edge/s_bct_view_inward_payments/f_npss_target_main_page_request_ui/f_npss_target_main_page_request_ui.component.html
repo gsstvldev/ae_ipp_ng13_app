@@ -1,0 +1,13 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_target_main_page_request_ui="ngForm">
+<div id="RN01" class="row">
+	<div #npss_target_main_page_request_ui_request_data_json id="RN01CN1" class="column col-md-10 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('request_data_json')" >
+				<rich_txt [ctrl_id]="'npss_target_main_page_request_ui_request_data_json'" [comp_id]="comp_id" [ctrl]="ctrl.request_data_json" [model]="screen_instance[this.comp_id].f_npss_target_main_page_request_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></rich_txt>
+	</div>
+</div>
+	</form>
+</fieldset >
+
+</div>

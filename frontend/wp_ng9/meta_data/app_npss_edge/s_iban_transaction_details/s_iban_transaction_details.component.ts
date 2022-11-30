@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27090 
+Build ID        : 27153 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-26 12:56 PM 
+Modified Date   : 2022-Nov-30 9:30 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_iban_transaction_details
@@ -68,12 +68,12 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 	view_dr_cr_tran_details : any = {}
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
-	navigation_ui_view_detail : any = {}
+	navigation_ui_view_tran : any = {}
 	navigation_ui_refund : any = {}
 	navigation_ui_view_response : any = {}
 	navigation_ui_view_request : any = {}
 	navigation_ui_view_log_history : any = {}
-	navigation_ui_view_message_details : any = {}
+	navigation_ui_view_message_history : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -102,7 +102,7 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 	message_back_ui_back : any = {}
 	message_detail_action : any = {}
 	message_detail_action_back : any = {}
-	message_detail_action_show_message : any = {}
+	message_detail_action_view_message : any = {}
 	view_payment_tran_details : any = {}
 
 
@@ -160,14 +160,14 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		this.navigation_ui_search.role = []
 		this.navigation_ui_search.action = ""
 		
-		// "View Detail" Button of "Navigation UI" component
-		this.navigation_ui_view_detail.label_name = "View Detail"
-		this.navigation_ui_view_detail.show = true
-		this.navigation_ui_view_detail.disabled = true
-		this.navigation_ui_view_detail.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.navigation_ui_view_detail.dynamic_param = {}
-		this.navigation_ui_view_detail.role = []
-		this.navigation_ui_view_detail.action = ""
+		// "View Tran" Button of "Navigation UI" component
+		this.navigation_ui_view_tran.label_name = "View Tran"
+		this.navigation_ui_view_tran.show = true
+		this.navigation_ui_view_tran.disabled = true
+		this.navigation_ui_view_tran.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_ui_view_tran.dynamic_param = {}
+		this.navigation_ui_view_tran.role = []
+		this.navigation_ui_view_tran.action = ""
 		
 		// "Refund" Button of "Navigation UI" component
 		this.navigation_ui_refund.label_name = "Refund"
@@ -205,14 +205,14 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		this.navigation_ui_view_log_history.role = []
 		this.navigation_ui_view_log_history.action = ""
 		
-		// "View Message Details" Button of "Navigation UI" component
-		this.navigation_ui_view_message_details.label_name = "View Message Details"
-		this.navigation_ui_view_message_details.show = true
-		this.navigation_ui_view_message_details.disabled = false
-		this.navigation_ui_view_message_details.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.navigation_ui_view_message_details.dynamic_param = {}
-		this.navigation_ui_view_message_details.role = []
-		this.navigation_ui_view_message_details.action = ""
+		// "View Message History" Button of "Navigation UI" component
+		this.navigation_ui_view_message_history.label_name = "View Message History"
+		this.navigation_ui_view_message_history.show = true
+		this.navigation_ui_view_message_history.disabled = false
+		this.navigation_ui_view_message_history.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_ui_view_message_history.dynamic_param = {}
+		this.navigation_ui_view_message_history.role = []
+		this.navigation_ui_view_message_history.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -538,14 +538,14 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		this.message_detail_action_back.role = []
 		this.message_detail_action_back.action = ""
 		
-		// "Show Message" Button of "Message Detail Action" component
-		this.message_detail_action_show_message.label_name = "Show Message"
-		this.message_detail_action_show_message.show = true
-		this.message_detail_action_show_message.disabled = false
-		this.message_detail_action_show_message.params = {"icon_only":false,"uicgcc_style":"fa fa-css3"}
-		this.message_detail_action_show_message.dynamic_param = {}
-		this.message_detail_action_show_message.role = []
-		this.message_detail_action_show_message.action = ""
+		// "View Message" Button of "Message Detail Action" component
+		this.message_detail_action_view_message.label_name = "View Message"
+		this.message_detail_action_view_message.show = true
+		this.message_detail_action_view_message.disabled = false
+		this.message_detail_action_view_message.params = {"icon_only":false,"uicgcc_style":"fa fa-css3"}
+		this.message_detail_action_view_message.dynamic_param = {}
+		this.message_detail_action_view_message.role = []
+		this.message_detail_action_view_message.action = ""
 	
 		// Component level properties - "View Payment Tran Details" 
 		this.view_payment_tran_details.uictrl_code = "datatable"
@@ -615,11 +615,11 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		this.navigation_ui_search__cui_for_navigation_search()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view detail"
-	navigation_ui_view_detail__action_button_click(){
-		this.navigation_ui_view_detail__sp_for_vl()
-		this.navigation_ui_view_detail__brfq_for_view_transaction_list()
-		this.navigation_ui_view_detail__brfq_for_payment_list()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view tran"
+	navigation_ui_view_tran__action_button_click(){
+		this.navigation_ui_view_tran__sp_for_vl()
+		this.navigation_ui_view_tran__brfq_for_view_transaction_list()
+		this.navigation_ui_view_tran__brfq_for_payment_list()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "main back ui back"
@@ -717,10 +717,10 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		this.brfq_for_hst_process_log_list__sfr_for_hd(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message details"
-	navigation_ui_view_message_details__action_button_click(){
-		this.navigation_ui_view_message_details__brfq_for_view_message()
-		this.navigation_ui_view_message_details__sp_for_vm()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message history"
+	navigation_ui_view_message_history__action_button_click(){
+		this.navigation_ui_view_message_history__brfq_for_view_message()
+		this.navigation_ui_view_message_history__sp_for_vm()
 	}
 
 	//Handler for INTERNAL event of "brfq for view message"
@@ -756,10 +756,10 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		this.message_back_ui_back__sp_for_mb()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "message detail action show message"
-	message_detail_action_show_message__action_button_click(){
-		this.message_detail_action_show_message__sp_for_vmd()
-		this.message_detail_action_show_message__bt_for_mdui()
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message"
+	message_detail_action_view_message__action_button_click(){
+		this.message_detail_action_view_message__sp_for_vmd()
+		this.message_detail_action_view_message__bt_for_mdui()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "message detail action back"
@@ -1015,7 +1015,7 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_detail"
+		let destn_id="navigation_ui_view_tran"
 		let parent_source_id=""
 		let event_code="e_1667554760539"
 		let event_params={"caller_name":"page_load__he_for__vd","event_desc":"HE for  VD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -1036,7 +1036,7 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_message_details"
+		let destn_id="navigation_ui_view_message_history"
 		let parent_source_id=""
 		let event_code="e_1668579367131"
 		let event_params={"caller_name":"page_load__de_for_message_btn","event_desc":"DE for message btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1057,7 +1057,7 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_message_details"
+		let destn_id="navigation_ui_view_message_history"
 		let parent_source_id=""
 		let event_code="e_1668663690044"
 		let event_params={"caller_name":"page_load__he_for_pl_to_vm","event_desc":"HE for PL to VM","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -1247,7 +1247,7 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_ui_view_detail"
+		let destn_id="navigation_ui_view_tran"
 		let parent_source_id=""
 		let event_code="e_1666105066141"
 		let event_params={"caller_name":"transaction_list__ee_for_tl","event_desc":"EE for TL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1289,7 +1289,7 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_ui_view_message_details"
+		let destn_id="navigation_ui_view_message_history"
 		let parent_source_id=""
 		let event_code="e_1668663766913"
 		let event_params={"caller_name":"transaction_list__ee_for_tl_to_vm","event_desc":"EE for TL to VM","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1347,15 +1347,15 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view detail"
-	navigation_ui_view_detail__sp_for_vl() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view tran"
+	navigation_ui_view_tran__sp_for_vl() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_detail"
+		let source_id="navigation_ui_view_tran"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1666010903736"
-		let event_params={"caller_name":"navigation_ui_view_detail__sp_for_vl","event_desc":"SP for VL","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_detail","raiseparam":{"profile_code":"BTL_1304_1666009903061"}}
+		let event_params={"caller_name":"navigation_ui_view_tran__sp_for_vl","event_desc":"SP for VL","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_tran","raiseparam":{"profile_code":"BTL_1304_1666009903061"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1368,15 +1368,15 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view detail"
-	navigation_ui_view_detail__brfq_for_view_transaction_list() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view tran"
+	navigation_ui_view_tran__brfq_for_view_transaction_list() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_detail"
+		let source_id="navigation_ui_view_tran"
 		let destn_id="view_dr_cr_tran_details"
 		let parent_source_id=""
 		let event_code="e_1666100915090"
-		let event_params={"caller_name":"navigation_ui_view_detail__brfq_for_view_transaction_list","event_desc":"BRFQ for view transaction list","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_detail","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let event_params={"caller_name":"navigation_ui_view_tran__brfq_for_view_transaction_list","event_desc":"BRFQ for view transaction list","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_tran","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
@@ -1389,15 +1389,15 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view detail"
-	navigation_ui_view_detail__brfq_for_payment_list() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view tran"
+	navigation_ui_view_tran__brfq_for_payment_list() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_detail"
+		let source_id="navigation_ui_view_tran"
 		let destn_id="view_payment_tran_details"
 		let parent_source_id=""
 		let event_code="e_1669284731539"
-		let event_params={"caller_name":"navigation_ui_view_detail__brfq_for_payment_list","event_desc":"BRFQ for payment list","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_detail","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let event_params={"caller_name":"navigation_ui_view_tran__brfq_for_payment_list","event_desc":"BRFQ for payment list","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_tran","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
@@ -1604,7 +1604,7 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		let Dest_Is_ctrl=true
 		
 		let source_id="queue"
-		let destn_id="navigation_ui_view_detail"
+		let destn_id="navigation_ui_view_tran"
 		let parent_source_id=""
 		let event_code="e_1666184023865"
 		let event_params={"caller_name":"queue__de_for_view_detail_from_queue","event_desc":"DE for view detail from queue","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
@@ -1688,7 +1688,7 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		let Dest_Is_ctrl=true
 		
 		let source_id="queue"
-		let destn_id="navigation_ui_view_message_details"
+		let destn_id="navigation_ui_view_message_history"
 		let parent_source_id=""
 		let event_code="e_1668663723033"
 		let event_params={"caller_name":"queue__queue_for_vm","event_desc":"Queue for VM","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
@@ -1838,7 +1838,7 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 		let Dest_Is_ctrl=true
 		
 		let source_id="process_log_list"
-		let destn_id="navigation_ui_view_message_details"
+		let destn_id="navigation_ui_view_message_history"
 		let parent_source_id=""
 		let event_code="e_1668579413837"
 		let event_params={"caller_name":"process_log_list__ee_for_message_btn","event_desc":"EE for message btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -2152,15 +2152,15 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message details"
-	navigation_ui_view_message_details__brfq_for_view_message() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message history"
+	navigation_ui_view_message_history__brfq_for_view_message() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_message_details"
+		let source_id="navigation_ui_view_message_history"
 		let destn_id="message_detail"
 		let parent_source_id=""
 		let event_code="e_1668575393032"
-		let event_params={"caller_name":"navigation_ui_view_message_details__brfq_for_view_message","event_desc":"BRFQ for View Message","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_details","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let event_params={"caller_name":"navigation_ui_view_message_history__brfq_for_view_message","event_desc":"BRFQ for View Message","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_history","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_view_message__sfr_for_md,"
 		let event_data={}
@@ -2173,15 +2173,15 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message details"
-	navigation_ui_view_message_details__sp_for_vm() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message history"
+	navigation_ui_view_message_history__sp_for_vm() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_message_details"
+		let source_id="navigation_ui_view_message_history"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1668577529790"
-		let event_params={"caller_name":"navigation_ui_view_message_details__sp_for_vm","event_desc":"SP for VM","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_details","raiseparam":{"profile_code":"BTL_1304_1668574916028"}}
+		let event_params={"caller_name":"navigation_ui_view_message_history__sp_for_vm","event_desc":"SP for VM","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_history","raiseparam":{"profile_code":"BTL_1304_1668574916028"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2201,9 +2201,9 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_for_view_message"
 		let destn_id="message_detail"
-		let parent_source_id="navigation_ui_view_message_details"
+		let parent_source_id="navigation_ui_view_message_history"
 		let event_code="e_1668660937055"
-		let event_params={"caller_name":"brfq_for_view_message__sfr_for_md","event_desc":"SFR for MD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_details","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"brfq_for_view_message__sfr_for_md","event_desc":"SFR for MD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_history","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
@@ -2384,15 +2384,15 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "message detail action show message"
-	message_detail_action_show_message__sp_for_vmd() { 
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message"
+	message_detail_action_view_message__sp_for_vmd() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="message_detail_action_show_message"
+		let source_id="message_detail_action_view_message"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1668660659984"
-		let event_params={"caller_name":"message_detail_action_show_message__sp_for_vmd","event_desc":"SP for VMD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_show_message","raiseparam":{"profile_code":"BTL_1304_1668659675674"}}
+		let event_params={"caller_name":"message_detail_action_view_message__sp_for_vmd","event_desc":"SP for VMD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message","raiseparam":{"profile_code":"BTL_1304_1668659675674"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2405,15 +2405,15 @@ export class s_iban_transaction_detailsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "message detail action show message"
-	message_detail_action_show_message__bt_for_mdui() { 
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message"
+	message_detail_action_view_message__bt_for_mdui() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="message_detail_action_show_message"
+		let source_id="message_detail_action_view_message"
 		let destn_id="message_detail_ui"
 		let parent_source_id=""
 		let event_code="e_1668661005297"
-		let event_params={"caller_name":"message_detail_action_show_message__bt_for_mdui","event_desc":"BT for MDUI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_show_message","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let event_params={"caller_name":"message_detail_action_view_message__bt_for_mdui","event_desc":"BT for MDUI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
 		let handler_code="bind_tran"
 		let internals=""
 		let event_data={}

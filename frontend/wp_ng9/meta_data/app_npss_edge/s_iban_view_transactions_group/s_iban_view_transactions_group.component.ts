@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27135 
+Build ID        : 27146 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-29 14:44 PM 
+Modified Date   : 2022-Nov-30 9:30 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_iban_view_transactions_group
@@ -75,9 +75,9 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 	status_by_group_chart : any = {}
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
-	navigation_ui_view_detail : any = {}
+	navigation_ui_view_tran : any = {}
 	navigation_ui_view_log_history : any = {}
-	navigation_ui_view_message_details : any = {}
+	navigation_ui_view_message_history : any = {}
 	navigation_ui_view_response : any = {}
 	navigation_ui_view_request : any = {}
 	navigation_ui_show_message : any = {}
@@ -104,7 +104,7 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 	message_back_ui_back : any = {}
 	message_detail_action : any = {}
 	message_detail_action_back : any = {}
-	message_detail_action_show_message : any = {}
+	message_detail_action_view_message : any = {}
 	summary_list : any = {}
 	view_payment_details : any = {}
 	status_by_group : any = {}
@@ -179,14 +179,14 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		this.navigation_ui_search.role = []
 		this.navigation_ui_search.action = ""
 		
-		// "View Detail" Button of "Navigation UI" component
-		this.navigation_ui_view_detail.label_name = "View Detail"
-		this.navigation_ui_view_detail.show = true
-		this.navigation_ui_view_detail.disabled = true
-		this.navigation_ui_view_detail.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.navigation_ui_view_detail.dynamic_param = {}
-		this.navigation_ui_view_detail.role = []
-		this.navigation_ui_view_detail.action = ""
+		// "View Tran" Button of "Navigation UI" component
+		this.navigation_ui_view_tran.label_name = "View Tran"
+		this.navigation_ui_view_tran.show = true
+		this.navigation_ui_view_tran.disabled = true
+		this.navigation_ui_view_tran.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_ui_view_tran.dynamic_param = {}
+		this.navigation_ui_view_tran.role = []
+		this.navigation_ui_view_tran.action = ""
 		
 		// "View Log History" Button of "Navigation UI" component
 		this.navigation_ui_view_log_history.label_name = "View Log History"
@@ -197,14 +197,14 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		this.navigation_ui_view_log_history.role = []
 		this.navigation_ui_view_log_history.action = ""
 		
-		// "View Message Details" Button of "Navigation UI" component
-		this.navigation_ui_view_message_details.label_name = "View Message Details"
-		this.navigation_ui_view_message_details.show = true
-		this.navigation_ui_view_message_details.disabled = false
-		this.navigation_ui_view_message_details.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.navigation_ui_view_message_details.dynamic_param = {}
-		this.navigation_ui_view_message_details.role = []
-		this.navigation_ui_view_message_details.action = ""
+		// "View Message History" Button of "Navigation UI" component
+		this.navigation_ui_view_message_history.label_name = "View Message History"
+		this.navigation_ui_view_message_history.show = true
+		this.navigation_ui_view_message_history.disabled = false
+		this.navigation_ui_view_message_history.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_ui_view_message_history.dynamic_param = {}
+		this.navigation_ui_view_message_history.role = []
+		this.navigation_ui_view_message_history.action = ""
 		
 		// "View Response" Button of "Navigation UI" component
 		this.navigation_ui_view_response.label_name = "View Response"
@@ -495,14 +495,14 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		this.message_detail_action_back.role = []
 		this.message_detail_action_back.action = ""
 		
-		// "Show Message" Button of "Message Detail Action" component
-		this.message_detail_action_show_message.label_name = "Show Message"
-		this.message_detail_action_show_message.show = true
-		this.message_detail_action_show_message.disabled = true
-		this.message_detail_action_show_message.params = {"icon_only":false,"uicgcc_style":"fa fa-css3"}
-		this.message_detail_action_show_message.dynamic_param = {}
-		this.message_detail_action_show_message.role = []
-		this.message_detail_action_show_message.action = ""
+		// "View Message" Button of "Message Detail Action" component
+		this.message_detail_action_view_message.label_name = "View Message"
+		this.message_detail_action_view_message.show = true
+		this.message_detail_action_view_message.disabled = true
+		this.message_detail_action_view_message.params = {"icon_only":false,"uicgcc_style":"fa fa-css3"}
+		this.message_detail_action_view_message.dynamic_param = {}
+		this.message_detail_action_view_message.role = []
+		this.message_detail_action_view_message.action = ""
 	
 		// Component level properties - "Summary List" 
 		this.summary_list.uictrl_code = "datatable"
@@ -660,11 +660,11 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		this.svm_for_tran_list__cc_from_transaction_list(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view detail"
-	navigation_ui_view_detail__action_button_click(){
-		this.navigation_ui_view_detail__sp_for_vl()
-		this.navigation_ui_view_detail__brfq_for_view_tl_cr_dr()
-		this.navigation_ui_view_detail__brfq_for_view_tl_payment()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view tran"
+	navigation_ui_view_tran__action_button_click(){
+		this.navigation_ui_view_tran__sp_for_vl()
+		this.navigation_ui_view_tran__brfq_for_view_tl_cr_dr()
+		this.navigation_ui_view_tran__brfq_for_view_tl_payment()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
@@ -733,10 +733,10 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		this.message_back_ui_back__sp_for_message_back()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message details"
-	navigation_ui_view_message_details__action_button_click(){
-		this.navigation_ui_view_message_details__sp_for_vm()
-		this.navigation_ui_view_message_details__brfq_for_vm()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message history"
+	navigation_ui_view_message_history__action_button_click(){
+		this.navigation_ui_view_message_history__sp_for_vm()
+		this.navigation_ui_view_message_history__brfq_for_vm()
 	}
 
 	//Handler for INTERNAL event of "brfq for vm"
@@ -744,10 +744,10 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		this.brfq_for_vm__sfr_for_md(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "message detail action show message"
-	message_detail_action_show_message__action_button_click(){
-		this.message_detail_action_show_message__sp_for_view_message_data()
-		this.message_detail_action_show_message__bt_for_mgsg()
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message"
+	message_detail_action_view_message__action_button_click(){
+		this.message_detail_action_view_message__sp_for_view_message_data()
+		this.message_detail_action_view_message__bt_for_mgsg()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "message detail action back"
@@ -826,6 +826,7 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 	//Handler for INTERNAL event of "cc for psl"
 	cc_for_psl__internal(parent_event_result){
 		this.cc_for_psl__ssp_for_ssl_chart_to_stl(parent_event_result)
+		this.cc_for_psl__cu_for_tl_from_psystem(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "ssp for ssl chart to stl"
@@ -891,7 +892,7 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_message_details"
+		let destn_id="navigation_ui_view_message_history"
 		let parent_source_id=""
 		let event_code="e_1668664191705"
 		let event_params={"caller_name":"page_load__he_for_pl_to_vm","event_desc":"HE for PL to VM","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -912,7 +913,7 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_message_details"
+		let destn_id="navigation_ui_view_message_history"
 		let parent_source_id=""
 		let event_code="e_1668664200948"
 		let event_params={"caller_name":"page_load__de_for_pl_to_vm","event_desc":"DE for PL to VM","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1104,7 +1105,7 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		let Dest_Is_ctrl=true
 		
 		let source_id="search_search"
-		let destn_id="navigation_ui_view_detail"
+		let destn_id="navigation_ui_view_tran"
 		let parent_source_id=""
 		let event_code="e_1668688551419"
 		let event_params={"caller_name":"search_search__de_from_search_to_view_detail","event_desc":"DE from search to View Detail","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
@@ -1146,7 +1147,7 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		let Dest_Is_ctrl=true
 		
 		let source_id="search_search"
-		let destn_id="navigation_ui_view_message_details"
+		let destn_id="navigation_ui_view_message_history"
 		let parent_source_id=""
 		let event_code="e_1668688691244"
 		let event_params={"caller_name":"search_search__de_from_search_to_view_message_details","event_desc":"DE from search to View Message Details","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
@@ -1232,7 +1233,7 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_ui_view_detail"
+		let destn_id="navigation_ui_view_tran"
 		let parent_source_id=""
 		let event_code="e_1668499588653"
 		let event_params={"caller_name":"transaction_list__ee_for_view_detail_btn","event_desc":"EE for view detail btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1295,7 +1296,7 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_ui_view_message_details"
+		let destn_id="navigation_ui_view_message_history"
 		let parent_source_id=""
 		let event_code="e_1668664267643"
 		let event_params={"caller_name":"transaction_list__ee_for_vm","event_desc":"EE For VM","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1459,15 +1460,15 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view detail"
-	navigation_ui_view_detail__sp_for_vl() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view tran"
+	navigation_ui_view_tran__sp_for_vl() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_detail"
+		let source_id="navigation_ui_view_tran"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1668506665505"
-		let event_params={"caller_name":"navigation_ui_view_detail__sp_for_vl","event_desc":"SP for vl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_detail","raiseparam":{"profile_code":"BTL_1304_1668497253326"}}
+		let event_params={"caller_name":"navigation_ui_view_tran__sp_for_vl","event_desc":"SP for vl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_tran","raiseparam":{"profile_code":"BTL_1304_1668497253326"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1480,15 +1481,15 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view detail"
-	navigation_ui_view_detail__brfq_for_view_tl_cr_dr() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view tran"
+	navigation_ui_view_tran__brfq_for_view_tl_cr_dr() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_detail"
+		let source_id="navigation_ui_view_tran"
 		let destn_id="view_dr_cr_details"
 		let parent_source_id=""
 		let event_code="e_1669205514500"
-		let event_params={"caller_name":"navigation_ui_view_detail__brfq_for_view_tl_cr_dr","event_desc":"BRFQ for view TL cr dr","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_detail","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let event_params={"caller_name":"navigation_ui_view_tran__brfq_for_view_tl_cr_dr","event_desc":"BRFQ for view TL cr dr","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_tran","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
@@ -1501,15 +1502,15 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view detail"
-	navigation_ui_view_detail__brfq_for_view_tl_payment() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view tran"
+	navigation_ui_view_tran__brfq_for_view_tl_payment() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_detail"
+		let source_id="navigation_ui_view_tran"
 		let destn_id="view_payment_details"
 		let parent_source_id=""
 		let event_code="e_1669205566102"
-		let event_params={"caller_name":"navigation_ui_view_detail__brfq_for_view_tl_payment","event_desc":"BRFQ for view TL payment","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_detail","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let event_params={"caller_name":"navigation_ui_view_tran__brfq_for_view_tl_payment","event_desc":"BRFQ for view TL payment","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_tran","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
@@ -1864,7 +1865,7 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		let Dest_Is_ctrl=true
 		
 		let source_id="message_detail"
-		let destn_id="message_detail_action_show_message"
+		let destn_id="message_detail_action_view_message"
 		let parent_source_id=""
 		let event_code="e_1668689068047"
 		let event_params={"caller_name":"message_detail__ee_from_message_detail_to_show_message","event_desc":"EE from Message Detail to Show Message","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"message_detail","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1901,15 +1902,15 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message details"
-	navigation_ui_view_message_details__sp_for_vm() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message history"
+	navigation_ui_view_message_history__sp_for_vm() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_message_details"
+		let source_id="navigation_ui_view_message_history"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1668664313560"
-		let event_params={"caller_name":"navigation_ui_view_message_details__sp_for_vm","event_desc":"SP for VM","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_details","raiseparam":{"profile_code":"BTL_1304_1668607321233"}}
+		let event_params={"caller_name":"navigation_ui_view_message_history__sp_for_vm","event_desc":"SP for VM","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_history","raiseparam":{"profile_code":"BTL_1304_1668607321233"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1922,15 +1923,15 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message details"
-	navigation_ui_view_message_details__brfq_for_vm() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message history"
+	navigation_ui_view_message_history__brfq_for_vm() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_message_details"
+		let source_id="navigation_ui_view_message_history"
 		let destn_id="message_detail"
 		let parent_source_id=""
 		let event_code="e_1668664760706"
-		let event_params={"caller_name":"navigation_ui_view_message_details__brfq_for_vm","event_desc":"BRFQ for VM","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_details","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let event_params={"caller_name":"navigation_ui_view_message_history__brfq_for_vm","event_desc":"BRFQ for VM","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_history","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_vm__sfr_for_md,"
 		let event_data={}
@@ -1950,9 +1951,9 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_for_vm"
 		let destn_id="message_detail"
-		let parent_source_id="navigation_ui_view_message_details"
+		let parent_source_id="navigation_ui_view_message_history"
 		let event_code="e_1668664772463"
-		let event_params={"caller_name":"brfq_for_vm__sfr_for_md","event_desc":"SFR for MD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_details","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"brfq_for_vm__sfr_for_md","event_desc":"SFR for MD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_history","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
@@ -1965,15 +1966,15 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "message detail action show message"
-	message_detail_action_show_message__sp_for_view_message_data() { 
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message"
+	message_detail_action_view_message__sp_for_view_message_data() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="message_detail_action_show_message"
+		let source_id="message_detail_action_view_message"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1668664376442"
-		let event_params={"caller_name":"message_detail_action_show_message__sp_for_view_message_data","event_desc":"SP for view message DATA","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_show_message","raiseparam":{"profile_code":"BTL_1304_1668608225654"}}
+		let event_params={"caller_name":"message_detail_action_view_message__sp_for_view_message_data","event_desc":"SP for view message DATA","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message","raiseparam":{"profile_code":"BTL_1304_1668608225654"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1986,15 +1987,15 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "message detail action show message"
-	message_detail_action_show_message__bt_for_mgsg() { 
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message"
+	message_detail_action_view_message__bt_for_mgsg() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="message_detail_action_show_message"
+		let source_id="message_detail_action_view_message"
 		let destn_id="message_detail_ui"
 		let parent_source_id=""
 		let event_code="e_1668664427773"
-		let event_params={"caller_name":"message_detail_action_show_message__bt_for_mgsg","event_desc":"BT for MGSG","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_show_message","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let event_params={"caller_name":"message_detail_action_view_message__bt_for_mgsg","event_desc":"BT for MGSG","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
 		let handler_code="bind_tran"
 		let internals=""
 		let event_data={}
@@ -2446,7 +2447,7 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		let event_code="e_1669460859790"
 		let event_params={"caller_name":"svm_for_process_system__cc_for_psl","event_desc":"CC for PSL","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_by_system","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals="cc_for_psl__ssp_for_ssl_chart_to_stl,"
+		let internals="cc_for_psl__ssp_for_ssl_chart_to_stl,cc_for_psl__cu_for_tl_from_psystem,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -2473,6 +2474,28 @@ export class s_iban_view_transactions_groupComponent implements OnInit,AfterView
 		let data_source={}
 		try {
 			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for psl"
+	cc_for_psl__cu_for_tl_from_psystem(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_psl"
+		let destn_id="transaction_list"
+		let parent_source_id="svm_for_process_system"
+		let event_code="e_1669786648582"
+		let event_params={"caller_name":"cc_for_psl__cu_for_tl_from_psystem","event_desc":"CU for TL from Psystem","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_by_system","raiseparam":{"need_reset_key_column":"N"},"parent_event_result":"SUCCESS"}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_4","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1669707528555","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Processlog LR MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"npsst_id","alias_name":"","mq_id":"MQ_1669178086386","date_format":false},{"column_name":"uetr","alias_name":"","mq_id":"MQ_1669178086562","date_format":false},{"column_name":"value_date","alias_name":"","mq_id":"MQ_1669178086753","date_format":true},{"column_name":"accp_date_time","alias_name":"","mq_id":"MQ_1669178086930","date_format":false},{"column_name":"created_date","alias_name":"","mq_id":"MQ_1669178147671","date_format":false},{"column_name":"exhf_id","alias_name":"","mq_id":"MQ_1669178153368","date_format":false},{"column_name":"cdtr_iban","alias_name":"","mq_id":"MQ_1669178153567","date_format":false},{"column_name":"tran_ref_id","alias_name":"","mq_id":"MQ_1669178153751","date_format":false},{"column_name":"payment_endtoend_id","alias_name":"","mq_id":"MQ_1669178153943","date_format":false},{"column_name":"clrsysref","alias_name":"","mq_id":"MQ_1669178154119","date_format":false},{"column_name":"cdtr_acct_no","alias_name":"","mq_id":"MQ_1669178191046","date_format":false},{"column_name":"dbtr_acct_no","alias_name":"","mq_id":"MQ_1669178191237","date_format":false},{"column_name":"intrbk_sttlm_amnt","alias_name":"","mq_id":"MQ_1669178191445","date_format":false,"currency_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1669178191661","date_format":false},{"column_name":"processing_system","alias_name":"","mq_id":"MQ_1669178227517","date_format":false},{"column_name":"process_status","alias_name":"","mq_id":"MQ_1669178227717","date_format":false},{"column_name":"Group_Name","alias_name":"","mq_id":"MQ_1669178227908","date_format":false},{"column_name":"Process_type","alias_name":"","mq_id":"MQ_1669178239274","date_format":false},{"column_name":"payment_mode","alias_name":"","mq_id":"MQ_1669178239466","date_format":false},{"column_name":"DEPARTMENT_CODE","alias_name":"","mq_id":"MQ_1669179866186","date_format":false},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1669179866480","date_format":false},{"column_name":"TENANT_ID","alias_name":"","mq_id":"MQ_1669180239582","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1669714936628","date_format":false},{"column_name":"DBTR_IBAN","alias_name":"","mq_id":"MQ_1669714936809","date_format":false},{"column_name":"DBTR_ACCT_NAME","alias_name":"","mq_id":"MQ_1669714937008","date_format":false},{"column_name":"MSG_ID","alias_name":"","mq_id":"MQ_1669714937193","date_format":false},{"column_name":"RR_MESSAGE_DESC","alias_name":"","mq_id":"MQ_1669714937383","date_format":false},{"column_name":"REVERSAL_DESCRIPTION","alias_name":"","mq_id":"MQ_1669714937535","date_format":false},{"column_name":"T24_RETURN_DESCRIPTION","alias_name":"","mq_id":"MQ_1669715028203","date_format":false},{"column_name":"CBUAE_RETURN_DESCRIPTION","alias_name":"","mq_id":"MQ_1669715028433","date_format":false},{"column_name":"ADDITIONAL_INFO","alias_name":"","mq_id":"MQ_1669715062065","date_format":false},{"column_name":"V_CODE","alias_name":"","mq_id":"MQ_1669715075448","date_format":false},{"column_name":"DBTR_PHONE_NO","alias_name":"","mq_id":"MQ_1669716335899","date_format":false},{"column_name":"DBTR_EMAIL_ID","alias_name":"","mq_id":"MQ_1669716336337","date_format":false},{"column_name":"DBTR_DOCUMENT_ID","alias_name":"","mq_id":"MQ_1669716336495","date_format":false},{"column_name":"DBTR_CUST_TYPE","alias_name":"","mq_id":"MQ_1669716336659","date_format":false},{"column_name":"DBTR_PRVT_ID","alias_name":"","mq_id":"MQ_1669716336826","date_format":false},{"column_name":"DBTR_OTHER_ISSUER","alias_name":"","mq_id":"MQ_1669716336982","date_format":false},{"column_name":"CDTR_ACCT_NAME","alias_name":"","mq_id":"MQ_1669716337154","date_format":false},{"column_name":"CDTR_PHONE_NO","alias_name":"","mq_id":"MQ_1669716337311","date_format":false},{"column_name":"CDTR_EMAIL_ID","alias_name":"","mq_id":"MQ_1669716337475","date_format":false},{"column_name":"CDTR_DOCUMENT_ID","alias_name":"","mq_id":"MQ_1669716337634","date_format":false},{"column_name":"DR_SORT_CODE","alias_name":"","mq_id":"MQ_1669716337798","date_format":false},{"column_name":"CR_SORT_CODE","alias_name":"","mq_id":"MQ_1669716337958","date_format":false},{"column_name":"CATEGORY_PURPOSE","alias_name":"","mq_id":"MQ_1669716338118","date_format":false},{"column_name":"CATEGORY_PURPOSE_PRTY","alias_name":"","mq_id":"MQ_1669716338271","date_format":false},{"column_name":"CR_ACCT_IDENTIFICATION","alias_name":"","mq_id":"MQ_1669716460635","date_format":false},{"column_name":"BASE_CURRENCY","alias_name":"","mq_id":"MQ_1669716460839","date_format":false},{"column_name":"BASE_AMOUNT","alias_name":"","mq_id":"MQ_1669716461033","date_format":false},{"column_name":"HDR_TOTAL_RECORDS","alias_name":"","mq_id":"MQ_1669716461209","date_format":false},{"column_name":"HDR_TOTAL_AMOUNT","alias_name":"","mq_id":"MQ_1669716488348","date_format":false,"currency_format":true},{"column_name":"HDR_CLEARING_SYSTEM","alias_name":"","mq_id":"MQ_1669716488527","date_format":false},{"column_name":"CHARGE_BEARER","alias_name":"","mq_id":"MQ_1669716488729","date_format":false},{"column_name":"REMITTANCE_INFO","alias_name":"","mq_id":"MQ_1669716578903","date_format":false},{"column_name":"ACCOUNT_CURRENCY","alias_name":"","mq_id":"MQ_1669716579064","date_format":false},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1669716579241","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1669716579389","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1669716601499","date_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"","mq_id":"MQ_1669716601675","date_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"","mq_id":"MQ_1669716623271","date_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"","mq_id":"MQ_1669716623501","date_format":false},{"column_name":"ISSUER_TYPE_CODE","alias_name":"","mq_id":"MQ_1669716639834","date_format":false},{"column_name":"INTRBK_STTLM_CUR","alias_name":"","mq_id":"MQ_1669718495740","date_format":false},{"column_name":"PROCESS_CODE","alias_name":"","mq_id":"MQ_1669719333386","date_format":false},{"column_name":"PROCESS_DETAIL","alias_name":"","mq_id":"MQ_1669719333580","date_format":false},{"column_name":"PROCESS_REF_NO","alias_name":"","mq_id":"MQ_1669719333798","date_format":false},{"column_name":"RESPONSE_CODE","alias_name":"","mq_id":"MQ_1669719336508","date_format":false},{"column_name":"CBS_REF_NO","alias_name":"","mq_id":"MQ_1669721618850","date_format":false},{"column_name":"CBS_POSTING_FLAG","alias_name":"","mq_id":"MQ_1669721627964","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSST_ID,  UETR,  VALUE_DATE,  ACCP_DATE_TIME,  CREATED_DATE,  DATEMI,  EXHF_ID,  CDTR_IBAN,  TENANT_ID,  TRAN_REF_ID,  DEPARTMENT_CODE,  PAYMENT_ENDTOEND_ID,  CLRSYSREF,  CDTR_ACCT_NO,  DBTR_ACCT_NO,  INTRBK_STTLM_CUR,  INTRBK_STTLM_AMNT,  STATUS,  PROCESSING_SYSTEM,  PROCESS_STATUS,  GROUP_NAME,  PROCESS_TYPE,  PAYMENT_MODE,  RULE_GROUP,  NPSSTPL_ID,  DT_CODE,  DTT_CODE,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  MSG_ID,  PROCESS_NAME,  T24_RETURN_CODE ,  CBUAE_RETURN_CODE ,  REVERSAL_CODE,  ADDITIONAL_INFO ,  V_CODE ,  AMOUNT_CREDITED,  AMT_CR_LOC_CUR ,  CHARGE_AMOUNT,  REVERSAL_DESCRIPTION,  T24_RETURN_DESCRIPTION,  CBUAE_RETURN_DESCRIPTION,  NPSSTRRD_ID,  RR_DT_CODE,  RR_DTT_CODE,  MESSAGE_DATA,  PROCESS_CODE,  PROCESS_DETAIL,  RR_PROCESS_NAME,  RR_MESSAGE_DESC,  DBTR_ACCT_NAME ,  DBTR_PHONE_NO ,  DBTR_EMAIL_ID ,  DBTR_DOCUMENT_ID,  DBTR_IBAN ,  DBTR_CUST_TYPE ,  DBTR_PRVT_ID ,  DBTR_OTHER_ISSUER ,  CDTR_ACCT_NAME ,  CDTR_PHONE_NO ,  CDTR_EMAIL_ID ,  CDTR_DOCUMENT_ID ,  DR_SORT_CODE ,  CR_SORT_CODE ,  CATEGORY_PURPOSE ,  CATEGORY_PURPOSE_PRTY ,  CR_ACCT_IDENTIFICATION ,  BASE_CURRENCY ,  BASE_AMOUNT ,  HDR_TOTAL_RECORDS ,  HDR_TOTAL_AMOUNT,  HDR_CLEARING_SYSTEM ,  CHARGE_BEARER ,  REMITTANCE_INFO ,  ACCOUNT_CURRENCY,  CHANNEL_ID ,  CHANNEL_REFNO ,  CHANNEL_USERID ,  CHANNEL_PRODUCT ,  CHANNEL_SUB_PRODUCT ,  CHANNEL_TRAN_CODE ,  ISSUER_TYPE_CODE,  PROCESS_REF_NO,  RESPONSE_CODE,  CBS_REF_NO,  CBS_POSTING_FLAG FROM  (  SELECT   NT.NPSST_ID,   NT.UETR,   NT.VALUE_DATE,   NT.ACCP_DATE_TIME,   NT.CREATED_DATE,   TO_CHAR(NT.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') AS DATEMI,   NT.DEPARTMENT_CODE,   NT.TENANT_ID,   NT.EXHF_ID,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.PAYMENT_ENDTOEND_ID,   NT.CLRSYSREF,   NT.CDTR_ACCT_NO,   NT.DBTR_ACCT_NO,   NT.INTRBK_STTLM_CUR,   NT.INTRBK_STTLM_AMNT,   NTPL.STATUS,   NTPL.PROCESSING_SYSTEM,   NTPL.PROCESS_STATUS,   NTPL.GROUP_NAME,   NTPL.PROCESS_TYPE,   NTPL.PAYMENT_MODE,   NTPL.RULE_GROUP,   NTPL.NPSSTPL_ID,   NTPL.DT_CODE,   NTPL.DTT_CODE,   NTPL.REQUEST_DATA_JSON,   NTPL.RESPONSE_DATA_JSON,   NTPL.MSG_ID,   NTPL.PROCESS_NAME,   NTPL.T24_RETURN_CODE ,   NTPL.CBUAE_RETURN_CODE ,   NTPL.REVERSAL_CODE ,   NTPL.ADDITIONAL_INFO ,   NTPL.V_CODE ,   NTPL.AMOUNT_CREDITED,   NTPL.AMT_CR_LOC_CUR ,   NTPL.CHARGE_AMOUNT,   NTPL.PROCESS_REF_NO,   NTPL.RESPONSE_CODE,   CONCAT(NTPL.REVERSAL_CODE, '-', CCD.CD_DESCRIPTION) AS REVERSAL_DESCRIPTION,   CONCAT(NTPL.T24_RETURN_CODE, '-', T24RC.RETURN_DESCRIPTION) AS T24_RETURN_DESCRIPTION,   CONCAT(NTPL.CBUAE_RETURN_CODE, '-', CBUAERC.RETURN_DESCRIPTION) AS CBUAE_RETURN_DESCRIPTION,   RR.NPSSTRRD_ID,   RR.RR_MSG_ID,   RR.PARENT_NPSSTRRD_REFNO,   RR.MESSAGE_DATA,   RR.PROCESS_CODE,   RR.PROCESS_DETAIL,   RR.NPSSTRRD_REFNO,   RR.RR_DT_CODE,   RR.RR_DTT_CODE,   RR.RR_PROCESS_NAME,   RR.RR_MESSAGE_DESC,   NT.DBTR_ACCT_NAME ,   NT.DBTR_PHONE_NO ,   NT.DBTR_EMAIL_ID ,   NT.DBTR_DOCUMENT_ID,   NT.DBTR_IBAN ,   NT.DBTR_CUST_TYPE ,   NT.DBTR_PRVT_ID ,   NT.DBTR_OTHER_ISSUER ,   NT.CDTR_ACCT_NAME ,   NT.CDTR_PHONE_NO ,   NT.CDTR_EMAIL_ID ,   NT.CDTR_DOCUMENT_ID ,   NT.DR_SORT_CODE ,   NT.CR_SORT_CODE ,   NT.CATEGORY_PURPOSE ,   NT.CATEGORY_PURPOSE_PRTY ,   NT.CR_ACCT_IDENTIFICATION ,   NT.BASE_CURRENCY ,   NT.BASE_AMOUNT ,   NT.HDR_TOTAL_RECORDS ,   NT.HDR_TOTAL_AMOUNT,   NT.HDR_CLEARING_SYSTEM ,   NT.CHARGE_BEARER ,   NT.REMITTANCE_INFO ,   NT.ACCOUNT_CURRENCY,   NT.CHANNEL_ID ,   NT.CHANNEL_REFNO ,   NT.CHANNEL_USERID ,   NT.CHANNEL_PRODUCT ,   NT.CHANNEL_SUB_PRODUCT ,   NT.CHANNEL_TRAN_CODE ,   NT.ISSUER_TYPE_CODE,   NT.CBS_REF_NO,   NT.CBS_POSTING_FLAG  FROM   NPSS_TRANSACTIONS NT  INNER JOIN (   SELECT    T.NPSSTPL_ID,    T.UETR,    T.STATUS,    T.PROCESSING_SYSTEM,    T.PROCESS_STATUS,    G.GROUP_NAME,    G.PROCESS_TYPE,    G.PAYMENT_MODE,    G.RULE_GROUP,    T.DT_CODE,    T.DTT_CODE,    T.REQUEST_DATA_JSON,    T.RESPONSE_DATA_JSON,    T.MSG_ID,    T.PROCESS_NAME,    T.T24_RETURN_CODE ,    T.CBUAE_RETURN_CODE ,    T.REVERSAL_CODE ,    T.ADDITIONAL_INFO ,    T.V_CODE,    T.AMOUNT_CREDITED,    T.AMT_CR_LOC_CUR,    T.CHARGE_AMOUNT,    T.PROCESS_REF_NO,    T.RESPONSE_CODE   FROM    (    SELECT     A.NPSSTPL_ID,     A.UETR,     A.STATUS,     A.PROCESSING_SYSTEM,     A.PROCESS_STATUS,     A.DT_CODE,     A.DTT_CODE,     A.REQUEST_DATA_JSON,     A.RESPONSE_DATA_JSON,     A.MSG_ID,     A.PROCESS_NAME,     A.T24_RETURN_CODE ,     A.CBUAE_RETURN_CODE ,     A.REVERSAL_CODE ,     A.ADDITIONAL_INFO ,     A.V_CODE ,     A.AMOUNT_CREDITED,     A.AMT_CR_LOC_CUR ,     A.CHARGE_AMOUNT,     A.PROCESS_REF_NO,     A.RESPONSE_CODE,     ROW_NUMBER() OVER(PARTITION BY A.UETR    ORDER BY     A.NPSSTPL_ID DESC) AS ROW_NUM    FROM     NPSS_TRN_PROCESS_LOG A ) T   INNER JOIN CORE_NC_STATUS_GROUP G ON    G.QUEUE_CODE = T.PROCESS_STATUS    AND G.PROCESS_QUEUE_STATUS = T.STATUS   WHERE    T.ROW_NUM = 1) NTPL ON   NT.UETR = NTPL.UETR  LEFT JOIN CORE_NC_CODE_DESCRIPTIONS CCD ON   CCD.CD_CODE = NTPL.REVERSAL_CODE   AND CCD.CD_CATEGORY = 'REVERSAL_REASON_IDENTIFIER_CODE'  LEFT JOIN CORE_NC_RETURN_CODES T24RC ON   T24RC.RETURN_CODE = NTPL.T24_RETURN_CODE   AND T24RC.PROCESSING_SYSTEM = 'T24'  LEFT JOIN CORE_NC_RETURN_CODES CBUAERC ON   CBUAERC.RETURN_CODE = NTPL.CBUAE_RETURN_CODE   AND CBUAERC.PROCESSING_SYSTEM = 'CBUAE'  LEFT JOIN (   SELECT    B.NPSSTRRD_ID ,    B.MSG_ID AS RR_MSG_ID,    B.PARENT_NPSSTRRD_REFNO ,    B.MESSAGE_DATA ,    B.PROCESS_CODE ,    B.PROCESS_DETAIL ,    B.NPSSTRRD_REFNO,    B.UETR,    B.DT_CODE AS RR_DT_CODE,    B.DTT_CODE AS RR_DTT_CODE,    B.PROCESS_NAME AS RR_PROCESS_NAME,    B.MESSAGE_DESC AS RR_MESSAGE_DESC,    ROW_NUMBER() OVER(PARTITION BY B.UETR   ORDER BY    B.NPSSTRRD_ID DESC) AS ROW_NUM   FROM    NPSS_TRN_REQ_RESP_DTLS B ) RR ON   RR.UETR = NT.UETR   AND RR.ROW_NUM = 1 ) V $WHERE ORDER BY  NPSST_ID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Tran processLog LR CCD","filter":[{"filter_name":"Department_code","binding_name":"Department_code","binding_value":"","source_name":"Department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"GROUP_NAME","binding_name":"GROUP_NAME","binding_value":"","source_name":"MI_LEVEL_GROUP_NAME","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"RULE_GROUP","binding_name":"RULE_GROUP","binding_value":"","source_name":"RCT_OP_AC_AC_IBAN","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"intrbk_sttlm_amnt","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Cr IBAN","target_column":"cdtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Department Code","target_column":"DEPARTMENT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E Ref ID","target_column":"payment_endtoend_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"UETR","target_column":"uetr","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing System Ref No","target_column":"clrsysref","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

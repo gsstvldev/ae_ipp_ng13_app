@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27135 
+Build ID        : 27153 
 Modified By     : Admin 
-Modified Date   : 2022-Nov-29 14:44 PM 
+Modified Date   : 2022-Nov-30 9:31 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_inward_payments
@@ -36,9 +36,9 @@ export class p_main_layoutComponent implements OnInit {
   ngOnInit() {
     	this.navigation_ui.desc = "Navigation UI"
 		this.navigation_ui.need_header = ""
-		this.status_by_group.desc = "Status Group Summary Chart"
+		this.status_by_group.desc = "Status by Group"
 		this.status_by_group.need_header = true
-		this.process_by_system.desc = "Process System Summary Chart"
+		this.process_by_system.desc = "Process by System"
 		this.process_by_system.need_header = true
 		this.summary_list.desc = "Summary List"
 		this.summary_list.need_header = true

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27159 
+Build ID        : 27163 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-01 6:33 AM 
+Modified Date   : 2022-Dec-01 9:34 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2p_view_outward_payments

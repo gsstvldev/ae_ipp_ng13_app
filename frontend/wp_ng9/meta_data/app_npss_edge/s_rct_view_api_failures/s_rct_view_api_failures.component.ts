@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27172 
+Build ID        : 27175 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-03 13:35 PM 
+Modified Date   : 2022-Dec-03 14:23 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_api_failures
@@ -269,21 +269,13 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view request"
 	navigation_ui_view_request__action_button_click(){
 		this.navigation_ui_view_request__bt_main_tran_to_main_req_ui()
-	}
-
-	//Handler for INTERNAL event of "bt main tran to main req ui"
-	bt_main_tran_to_main_req_ui__internal(parent_event_result){
-		this.bt_main_tran_to_main_req_ui__sp_to_main_req_ui(parent_event_result)
+		this.navigation_ui_view_request__sp_to_main_req_ui()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view response"
 	navigation_ui_view_response__action_button_click(){
 		this.navigation_ui_view_response__bt_main_tran_to_main_response_ui()
-	}
-
-	//Handler for INTERNAL event of "bt main tran to main response ui"
-	bt_main_tran_to_main_response_ui__internal(parent_event_result){
-		this.bt_main_tran_to_main_response_ui__sp_to_main_response_ui(parent_event_result)
+		this.navigation_ui_view_response__sp_to_main_response_ui()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui search"
@@ -313,6 +305,12 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "single back ui back"
 	single_back_ui_back__action_button_click(){
 		this.single_back_ui_back__sp_for_reqres()
+	}
+
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__selection_changed(){
+		this.process_log_list__ee__for_v_res()
+		this.process_log_list__ee_for_v_req()
 	}
 
 	//Handler for SELECTION_CHANGED event of "queue"
@@ -583,7 +581,7 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 		let event_code="e_1670064176026"
 		let event_params={"caller_name":"navigation_ui_view_request__bt_main_tran_to_main_req_ui","event_desc":"BT Main Tran to Main Req UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_request","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
 		let handler_code="bind_tran"
-		let internals="bt_main_tran_to_main_req_ui__sp_to_main_req_ui,"
+		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
@@ -594,16 +592,15 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "bt main tran to main req ui"
-	bt_main_tran_to_main_req_ui__sp_to_main_req_ui(parent_event_result) { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view request"
+	navigation_ui_view_request__sp_to_main_req_ui() { 
 		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="bt_main_tran_to_main_req_ui"
+		
+		let source_id="navigation_ui_view_request"
 		let destn_id=""
-		let parent_source_id="navigation_ui_view_request"
-		let event_code="e_1670064194682"
-		let event_params={"caller_name":"bt_main_tran_to_main_req_ui__sp_to_main_req_ui","event_desc":"SP to Main Req UI","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_request","raiseparam":{"profile_code":"BTL_1304_1670065285420"},"parent_event_result":"SUCCESS"}
+		let parent_source_id=""
+		let event_code="e_1670076510095"
+		let event_params={"caller_name":"navigation_ui_view_request__sp_to_main_req_ui","event_desc":"SP to Main Req UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_request","raiseparam":{"profile_code":"BTL_1304_1670065285420"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -626,7 +623,7 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 		let event_code="e_1670064254647"
 		let event_params={"caller_name":"navigation_ui_view_response__bt_main_tran_to_main_response_ui","event_desc":"BT Main Tran to Main Response UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_response","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
 		let handler_code="bind_tran"
-		let internals="bt_main_tran_to_main_response_ui__sp_to_main_response_ui,"
+		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
@@ -637,16 +634,15 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "bt main tran to main response ui"
-	bt_main_tran_to_main_response_ui__sp_to_main_response_ui(parent_event_result) { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view response"
+	navigation_ui_view_response__sp_to_main_response_ui() { 
 		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="bt_main_tran_to_main_response_ui"
+		
+		let source_id="navigation_ui_view_response"
 		let destn_id=""
-		let parent_source_id="navigation_ui_view_response"
-		let event_code="e_1670064277388"
-		let event_params={"caller_name":"bt_main_tran_to_main_response_ui__sp_to_main_response_ui","event_desc":"SP to Main Response UI","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_response","raiseparam":{"profile_code":"BTL_1304_1670065604508"},"parent_event_result":"SUCCESS"}
+		let parent_source_id=""
+		let event_code="e_1670076539084"
+		let event_params={"caller_name":"navigation_ui_view_response__sp_to_main_response_ui","event_desc":"SP to Main Response UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_response","raiseparam":{"profile_code":"BTL_1304_1670065604508"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -843,6 +839,48 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ee__for_v_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="navigation_ui_view_response"
+		let parent_source_id=""
+		let event_code="e_1670076236383"
+		let event_params={"caller_name":"process_log_list__ee__for_v_res","event_desc":"EE  for V Res","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ee_for_v_req() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="navigation_ui_view_request"
+		let parent_source_id=""
+		let event_code="e_1670076243751"
+		let event_params={"caller_name":"process_log_list__ee_for_v_req","event_desc":"EE For V REQ","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

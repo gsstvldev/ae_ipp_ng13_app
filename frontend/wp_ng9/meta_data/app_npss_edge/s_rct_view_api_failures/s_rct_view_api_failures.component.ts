@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27170 
+Build ID        : 27172 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-03 13:1 PM 
+Modified Date   : 2022-Dec-03 13:35 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_api_failures
@@ -259,6 +259,11 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "cc"
 	cc__internal(parent_event_result){
 		this.cc__cf_for_pageload(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "cf for pageload"
+	cf_for_pageload__internal(parent_event_result){
+		this.cf_for_pageload__tbc_for_search(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view request"
@@ -535,11 +540,33 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 		let event_code="e_1670063888699"
 		let event_params={"caller_name":"cc__cf_for_pageload","event_desc":"CF for Pageload","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""},"parent_event_result":"SUCCESS"}
 		let handler_code="create_form"
-		let internals=""
+		let internals="cf_for_pageload__tbc_for_search,"
 		let event_data={}
 		let data_source={}
 		try {
 			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cf for pageload"
+	cf_for_pageload__tbc_for_search(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cf_for_pageload"
+		let destn_id="search_search"
+		let parent_source_id="cc"
+		let event_code="e_1670074376870"
+		let event_params={"caller_name":"cf_for_pageload__tbc_for_search","event_desc":"TBC for Search","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

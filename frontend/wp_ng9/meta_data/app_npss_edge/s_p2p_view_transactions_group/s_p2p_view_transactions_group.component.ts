@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27166 
+Build ID        : 27170 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-03 6:44 AM 
+Modified Date   : 2022-Dec-03 13:1 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2p_view_transactions_group
@@ -56,6 +56,7 @@ export class s_p2p_view_transactions_groupComponent implements OnInit,AfterViewI
 	uicgc_22 : string = "main_response_ui"
 	uicgc_23 : string = "main_request_ui"
 	uicgc_24 : string = "main_message_detail_ui"
+	uicgc_25 : string = "group_detail"
 	key_events : any = {}
 	btl_1304_1669546352282 : string = "p_view_main_message_ui_layout"
 	btl_1304_1669546328915 : string = "p_view_main_request_layout"
@@ -112,6 +113,7 @@ export class s_p2p_view_transactions_groupComponent implements OnInit,AfterViewI
 	main_response_ui : any = {}
 	main_request_ui : any = {}
 	main_message_detail_ui : any = {}
+	group_detail : any = {}
 
 
 	// Constructor 
@@ -593,6 +595,18 @@ export class s_p2p_view_transactions_groupComponent implements OnInit,AfterViewI
 		this.main_message_detail_ui.dynamic_param = {}
 		this.main_message_detail_ui.f_npss_main_page_message_detail_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
 		this.main_message_detail_ui.form_name = "f_npss_main_page_message_detail_ui"
+	
+		// Component level properties - "Group Detail" 
+		this.group_detail.uictrl_code = "datatable"
+		this.group_detail.uicgc_desc = "Group Detail"
+		this.group_detail.uicgc_code = "uicgc_25"
+		this.group_detail.params = {"need_search":"N","need_pag_datatable":"Y"}
+		this.group_detail.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_25","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1670072438623","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Group Detail MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"QUEUE_CODE","alias_name":"","mq_id":"MQ_1670072175267","date_format":false},{"column_name":"PROCESS_QUEUE_STATUS","alias_name":"","mq_id":"MQ_1670072175755","date_format":false},{"column_name":"TENANT_ID","alias_name":"","mq_id":"MQ_1670072176075","date_format":false}],"joins":[]},"eq_text":"SELECT  QUEUE_CODE ,  PROCESS_QUEUE_STATUS ,  TENANT_ID ,  RULE_GROUP FROM  CORE_NC_STATUS_GROUP CNSG $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Group Detail CCD","filter":[{"filter_name":"RULE_GROUP","binding_name":"RULE_GROUP","binding_value":"","source_name":"RCT_OP_P2P_GROUP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Queue","target_column":"QUEUE_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"PROCESS_QUEUE_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.group_detail.context_menu = []
+		this.group_detail.views = {}
+		this.group_detail.onChangecomponent = new EventEmitter<any>()
+		this.group_detail.show = true
+		this.group_detail.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -639,6 +653,7 @@ export class s_p2p_view_transactions_groupComponent implements OnInit,AfterViewI
 		this.ssp_for_chart__brfq_from_search_to_summary_list(parent_event_result)
 		this.ssp_for_chart__brfq_status_by_grp()
 		this.ssp_for_chart__brfq_for_psl(parent_event_result)
+		this.ssp_for_chart__brfq_for_gdl(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "transaction list"
@@ -1047,7 +1062,7 @@ export class s_p2p_view_transactions_groupComponent implements OnInit,AfterViewI
 		let event_code="e_1668499262579"
 		let event_params={"caller_name":"search_search__ssp_for_chart","event_desc":"SSP for chart","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
 		let handler_code="set_search_params"
-		let internals="ssp_for_chart__brfq_from_search_to_summary_list,ssp_for_chart__brfq_status_by_grp,ssp_for_chart__brfq_for_psl,"
+		let internals="ssp_for_chart__brfq_from_search_to_summary_list,ssp_for_chart__brfq_status_by_grp,ssp_for_chart__brfq_for_psl,ssp_for_chart__brfq_for_gdl,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -1220,6 +1235,28 @@ export class s_p2p_view_transactions_groupComponent implements OnInit,AfterViewI
 		let internals=""
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_21","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1669704864826","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Row Processing System MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1669177940929","date_format":false},{"column_name":"PS_COUNT","alias_name":"","mq_id":"MQ_1669177941144","date_format":false}],"joins":[]},"eq_text":"SELECT  PROCESSING_SYSTEM,  COUNT(PROCESSING_SYSTEM) AS PS_COUNT FROM  (  SELECT   NT.NPSST_ID,   NT.UETR,   NT.VALUE_DATE,   NT.ACCP_DATE_TIME,   NT.CREATED_DATE,   NT.EXHF_ID,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.PAYMENT_ENDTOEND_ID,   NT.CLRSYSREF,   NT.CDTR_ACCT_NO,   NT.DBTR_ACCT_NO,   NT.INTRBK_STTLM_CUR,   NT.INTRBK_STTLM_AMNT,   NT.TENANT_ID,   NT.DEPARTMENT_CODE,   NTPL.STATUS,   NTPL.PROCESSING_SYSTEM,   NTPL.PROCESS_STATUS,   NTPL.GROUP_NAME,   NTPL.PROCESS_TYPE,   NTPL.PAYMENT_MODE,   NTPL.RULE_GROUP,   NTPL.NPSSTPL_ID,   NTPL.DT_CODE,   NTPL.DTT_CODE,   NTPL.REQUEST_DATA_JSON,   NTPL.RESPONSE_DATA_JSON,   NTPL.MSG_ID,   NTPL.PROCESS_NAME,   RR.NPSSTRRD_ID,   RR.RR_MSG_ID,   RR.PARENT_NPSSTRRD_REFNO,   RR.MESSAGE_DATA,   RR.PROCESS_CODE,   RR.PROCESS_DETAIL,   RR.NPSSTRRD_REFNO,   RR.RR_DT_CODE,   RR.RR_DTT_CODE,   RR.RR_PROCESS_NAME,   RR.RR_MESSAGE_DESC,   NT.DBTR_ACCT_NAME ,   NT.DBTR_PHONE_NO ,   NT.DBTR_EMAIL_ID ,   NT.DBTR_DOCUMENT_ID,   NT.DBTR_IBAN ,   NT.DBTR_CUST_TYPE ,   NT.DBTR_PRVT_ID ,   NT.DBTR_OTHER_ISSUER ,   NT.CDTR_ACCT_NAME ,   NT.CDTR_PHONE_NO ,   NT.CDTR_EMAIL_ID ,   NT.CDTR_DOCUMENT_ID ,   NT.DR_SORT_CODE ,   NT.CR_SORT_CODE ,   NT.CATEGORY_PURPOSE ,   NT.CATEGORY_PURPOSE_PRTY ,   NT.CR_ACCT_IDENTIFICATION ,   NT.BASE_CURRENCY ,   NT.BASE_AMOUNT ,   NT.HDR_TOTAL_RECORDS ,   NT.HDR_TOTAL_AMOUNT,   NT.HDR_CLEARING_SYSTEM ,   NT.CHARGE_BEARER ,   NT.REMITTANCE_INFO ,   NT.ACCOUNT_CURRENCY,   NT.CHANNEL_ID ,   NT.CHANNEL_REFNO ,   NT.CHANNEL_USERID ,   NT.CHANNEL_PRODUCT ,   NT.CHANNEL_SUB_PRODUCT ,   NT.CHANNEL_TRAN_CODE ,   NT.ISSUER_TYPE_CODE  FROM   NPSS_TRANSACTIONS NT  INNER JOIN (   SELECT    T.NPSSTPL_ID,    T.UETR,    T.STATUS,    T.PROCESSING_SYSTEM,    T.PROCESS_STATUS,    G.GROUP_NAME,    G.PROCESS_TYPE,    G.PAYMENT_MODE,    G.RULE_GROUP,    T.DT_CODE,    T.DTT_CODE,    T.REQUEST_DATA_JSON,    T.RESPONSE_DATA_JSON,    T.MSG_ID,    T.PROCESS_NAME   FROM    (    SELECT     A.NPSSTPL_ID,     A.UETR,     A.STATUS,     A.PROCESSING_SYSTEM,     A.PROCESS_NAME,     A.PROCESS_STATUS,     A.DT_CODE,     A.DTT_CODE,     A.REQUEST_DATA_JSON,     A.RESPONSE_DATA_JSON,     A.MSG_ID,     ROW_NUMBER() OVER(PARTITION BY A.UETR    ORDER BY     A.NPSSTPL_ID DESC) AS ROW_NUM    FROM     NPSS_TRN_PROCESS_LOG A) T   INNER JOIN CORE_NC_STATUS_GROUP G ON    G.QUEUE_CODE = T.PROCESS_STATUS    AND G.PROCESS_QUEUE_STATUS = T.STATUS   WHERE    T.ROW_NUM = 1) NTPL ON   NT.UETR = NTPL.UETR  LEFT JOIN (   SELECT    B.NPSSTRRD_ID ,    B.MSG_ID AS RR_MSG_ID,    B.PARENT_NPSSTRRD_REFNO ,    B.MESSAGE_DATA ,    B.PROCESS_CODE ,    B.PROCESS_DETAIL ,    B.NPSSTRRD_REFNO,    B.UETR,    B.DT_CODE AS RR_DT_CODE,    B.DTT_CODE AS RR_DTT_CODE,    B.PROCESS_NAME AS RR_PROCESS_NAME,    B.MESSAGE_DESC AS RR_MESSAGE_DESC,    ROW_NUMBER() OVER(PARTITION BY B.UETR   ORDER BY    B.NPSSTRRD_ID DESC) AS ROW_NUM   FROM    NPSS_TRN_REQ_RESP_DTLS B ) RR ON   RR.UETR = NT.UETR   AND RR.ROW_NUM = 1) V $WHERE GROUP BY  PROCESSING_SYSTEM"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Processing System LR Chart CCD","filter":[{"filter_name":"Department_code","binding_name":"Department_code","binding_value":"","source_name":"Department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"GROUP_NAME","binding_name":"GROUP_NAME","binding_value":"","source_name":"MI_LEVEL_GROUP_NAME","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"RULE_GROUP","binding_name":"RULE_GROUP","binding_value":"","source_name":"RCT_OP_P2P_GROUP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"PS Count","target_column":"PS_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ssp for chart"
+	ssp_for_chart__brfq_for_gdl(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ssp_for_chart"
+		let destn_id="group_detail"
+		let parent_source_id="search_search"
+		let event_code="e_1670072085648"
+		let event_params={"caller_name":"ssp_for_chart__brfq_for_gdl","event_desc":"BRFQ for GDL","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_25","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1670072438623","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Group Detail MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"QUEUE_CODE","alias_name":"","mq_id":"MQ_1670072175267","date_format":false},{"column_name":"PROCESS_QUEUE_STATUS","alias_name":"","mq_id":"MQ_1670072175755","date_format":false},{"column_name":"TENANT_ID","alias_name":"","mq_id":"MQ_1670072176075","date_format":false}],"joins":[]},"eq_text":"SELECT  QUEUE_CODE ,  PROCESS_QUEUE_STATUS ,  TENANT_ID ,  RULE_GROUP FROM  CORE_NC_STATUS_GROUP CNSG $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Group Detail CCD","filter":[{"filter_name":"RULE_GROUP","binding_name":"RULE_GROUP","binding_value":"","source_name":"RCT_OP_P2P_GROUP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Queue","target_column":"QUEUE_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"PROCESS_QUEUE_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {

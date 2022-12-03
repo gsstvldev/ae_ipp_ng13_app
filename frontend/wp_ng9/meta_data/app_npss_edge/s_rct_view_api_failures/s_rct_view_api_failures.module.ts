@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27168 
+Build ID        : 27170 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-03 11:38 AM 
+Modified Date   : 2022-Dec-03 13:1 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_api_failures
@@ -40,7 +40,7 @@ import { f_single_back_uiComponent } from './f_single_back_ui/f_single_back_ui.c
 import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
 import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/f_npss_target_response_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_npss_rct_post_plog_srchComponent } from './f_npss_rct_post_plog_srch/f_npss_rct_post_plog_srch.component'
+import { f_npss_api_process_log__srchComponent } from './f_npss_api_process_log__srch/f_npss_api_process_log__srch.component'
 
 
 
@@ -57,7 +57,7 @@ import { f_npss_rct_post_plog_srchComponent } from './f_npss_rct_post_plog_srch/
     s_rct_view_api_failuresRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_rct_view_api_failuresComponent,p_main_layoutComponent,f_navigation_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,],
+  declarations: [s_rct_view_api_failuresComponent,p_main_layoutComponent,f_navigation_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,p_search_layoutComponent,f_npss_api_process_log__srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

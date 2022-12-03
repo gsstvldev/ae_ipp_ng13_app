@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27166 
+Build ID        : 27170 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-03 6:44 AM 
+Modified Date   : 2022-Dec-03 13:1 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2p_view_transactions_group
@@ -25,6 +25,7 @@ export class p_main_layoutComponent implements OnInit {
   	navigation_ui : any = {}
 	status_by_group : any = {}
 	process_by_system : any = {}
+	group_detail : any = {}
 	summary_list : any = {}
 	transaction_list : any = {}
 
@@ -40,6 +41,8 @@ export class p_main_layoutComponent implements OnInit {
 		this.status_by_group.need_header = true
 		this.process_by_system.desc = "Process by System"
 		this.process_by_system.need_header = true
+		this.group_detail.desc = "Group Detail"
+		this.group_detail.need_header = true
 		this.summary_list.desc = "Summary List"
 		this.summary_list.need_header = true
 		this.transaction_list.desc = "Transaction list"

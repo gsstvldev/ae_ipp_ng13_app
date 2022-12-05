@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27186 
+Build ID        : 27191 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-05 13:45 PM 
+Modified Date   : 2022-Dec-05 15:3 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_view_inward_payments
@@ -645,6 +645,7 @@ export class s_bct_view_inward_paymentsComponent implements OnInit,AfterViewInit
 		this.transaction_list__ee_from_tran_to_main_view_req()
 		this.transaction_list__bt_main_tran_to_main_message_ui()
 		this.transaction_list__ee_from_tran_list_to_view_res_and_req()
+		this.transaction_list__ssr_for_bt_m_req()
 	}
 
 	//Handler for INTERNAL event of "svm for tran list"
@@ -1436,6 +1437,27 @@ export class s_bct_view_inward_paymentsComponent implements OnInit,AfterViewInit
 		let data_source={}
 		try {
 			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ssr_for_bt_m_req() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="main_request_ui"
+		let parent_source_id=""
+		let event_code="e_1670252543427"
+		let event_params={"caller_name":"transaction_list__ssr_for_bt_m_req","event_desc":"SSR for BT M REQ","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

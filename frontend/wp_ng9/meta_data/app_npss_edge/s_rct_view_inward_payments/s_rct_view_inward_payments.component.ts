@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27190 
+Build ID        : 27193 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-05 14:57 PM 
+Modified Date   : 2022-Dec-05 15:17 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_inward_payments
@@ -75,7 +75,6 @@ export class s_rct_view_inward_paymentsComponent implements OnInit,AfterViewInit
 	status_by_group : any = {}
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
-	navigation_ui_view_tran : any = {}
 	navigation_ui_view_log_history : any = {}
 	navigation_ui_view_message_history : any = {}
 	navigation_ui_view_response : any = {}
@@ -84,6 +83,7 @@ export class s_rct_view_inward_paymentsComponent implements OnInit,AfterViewInit
 	navigation_ui_view_message : any = {}
 	navigation_ui_reset : any = {}
 	navigation_ui_trg_disable_view_data_ui : any = {}
+	navigation_ui_view_tran : any = {}
 	transaction_list : any = {}
 	view_dr_cr_details : any = {}
 	search : any = {}
@@ -179,15 +179,6 @@ export class s_rct_view_inward_paymentsComponent implements OnInit,AfterViewInit
 		this.navigation_ui_search.role = []
 		this.navigation_ui_search.action = ""
 		
-		// "View Tran" Button of "Navigation UI" component
-		this.navigation_ui_view_tran.label_name = "View Tran"
-		this.navigation_ui_view_tran.show = true
-		this.navigation_ui_view_tran.disabled = true
-		this.navigation_ui_view_tran.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.navigation_ui_view_tran.dynamic_param = {}
-		this.navigation_ui_view_tran.role = []
-		this.navigation_ui_view_tran.action = ""
-		
 		// "View Log History" Button of "Navigation UI" component
 		this.navigation_ui_view_log_history.label_name = "View Log History"
 		this.navigation_ui_view_log_history.show = true
@@ -227,7 +218,7 @@ export class s_rct_view_inward_paymentsComponent implements OnInit,AfterViewInit
 		// "View Req and Res" Button of "Navigation UI" component
 		this.navigation_ui_view_req_and_res.label_name = "View Req and Res"
 		this.navigation_ui_view_req_and_res.show = true
-		this.navigation_ui_view_req_and_res.disabled = false
+		this.navigation_ui_view_req_and_res.disabled = true
 		this.navigation_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
 		this.navigation_ui_view_req_and_res.dynamic_param = {}
 		this.navigation_ui_view_req_and_res.role = []
@@ -259,6 +250,15 @@ export class s_rct_view_inward_paymentsComponent implements OnInit,AfterViewInit
 		this.navigation_ui_trg_disable_view_data_ui.dynamic_param = {}
 		this.navigation_ui_trg_disable_view_data_ui.role = []
 		this.navigation_ui_trg_disable_view_data_ui.action = ""
+		
+		// "View Tran" Button of "Navigation UI" component
+		this.navigation_ui_view_tran.label_name = "View Tran"
+		this.navigation_ui_view_tran.show = true
+		this.navigation_ui_view_tran.disabled = true
+		this.navigation_ui_view_tran.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_ui_view_tran.dynamic_param = {}
+		this.navigation_ui_view_tran.role = []
+		this.navigation_ui_view_tran.action = ""
 	
 		// Component level properties - "Transaction list" 
 		this.transaction_list.uictrl_code = "datatable"

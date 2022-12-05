@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27190 
+Build ID        : 27193 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-05 14:56 PM 
+Modified Date   : 2022-Dec-05 15:17 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_iban_view_outward_payments

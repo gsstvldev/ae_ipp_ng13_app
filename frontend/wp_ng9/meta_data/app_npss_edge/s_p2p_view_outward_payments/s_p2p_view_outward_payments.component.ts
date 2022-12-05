@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27184 
+Build ID        : 27190 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-05 13:53 PM 
+Modified Date   : 2022-Dec-05 14:56 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2p_view_outward_payments
@@ -80,10 +80,10 @@ export class s_p2p_view_outward_paymentsComponent implements OnInit,AfterViewIni
 	navigation_ui_view_message_history : any = {}
 	navigation_ui_view_response : any = {}
 	navigation_ui_view_request : any = {}
+	navigation_ui_view_req_and_res : any = {}
 	navigation_ui_view_message : any = {}
 	navigation_ui_reset : any = {}
 	navigation_ui_trg_disable_view_data_ui : any = {}
-	navigation_ui_view_req_and_res : any = {}
 	transaction_list : any = {}
 	view_dr_cr_details : any = {}
 	search : any = {}
@@ -224,6 +224,15 @@ export class s_p2p_view_outward_paymentsComponent implements OnInit,AfterViewIni
 		this.navigation_ui_view_request.role = []
 		this.navigation_ui_view_request.action = ""
 		
+		// "View Req and Res" Button of "Navigation UI" component
+		this.navigation_ui_view_req_and_res.label_name = "View Req and Res"
+		this.navigation_ui_view_req_and_res.show = true
+		this.navigation_ui_view_req_and_res.disabled = false
+		this.navigation_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.navigation_ui_view_req_and_res.dynamic_param = {}
+		this.navigation_ui_view_req_and_res.role = []
+		this.navigation_ui_view_req_and_res.action = ""
+		
 		// "View Message" Button of "Navigation UI" component
 		this.navigation_ui_view_message.label_name = "View Message"
 		this.navigation_ui_view_message.show = true
@@ -245,20 +254,11 @@ export class s_p2p_view_outward_paymentsComponent implements OnInit,AfterViewIni
 		// "TRG Disable View Data UI" Button of "Navigation UI" component
 		this.navigation_ui_trg_disable_view_data_ui.label_name = "TRG Disable View Data UI"
 		this.navigation_ui_trg_disable_view_data_ui.show = true
-		this.navigation_ui_trg_disable_view_data_ui.disabled = false
+		this.navigation_ui_trg_disable_view_data_ui.disabled = true
 		this.navigation_ui_trg_disable_view_data_ui.params = {"icon_only":false,"uicgcc_style":""}
 		this.navigation_ui_trg_disable_view_data_ui.dynamic_param = {}
 		this.navigation_ui_trg_disable_view_data_ui.role = []
 		this.navigation_ui_trg_disable_view_data_ui.action = ""
-		
-		// "View Req and Res" Button of "Navigation UI" component
-		this.navigation_ui_view_req_and_res.label_name = "View Req and Res"
-		this.navigation_ui_view_req_and_res.show = true
-		this.navigation_ui_view_req_and_res.disabled = false
-		this.navigation_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
-		this.navigation_ui_view_req_and_res.dynamic_param = {}
-		this.navigation_ui_view_req_and_res.role = []
-		this.navigation_ui_view_req_and_res.action = ""
 	
 		// Component level properties - "Transaction list" 
 		this.transaction_list.uictrl_code = "datatable"
@@ -670,6 +670,7 @@ export class s_p2p_view_outward_paymentsComponent implements OnInit,AfterViewIni
 		this.transaction_list__ee_from_tran_to_main_view_req()
 		this.transaction_list__bt_main_tran_to_main_message_ui()
 		this.transaction_list__ee_for_main__req_and_res()
+		this.transaction_list__ssr_for_vreq()
 	}
 
 	//Handler for INTERNAL event of "svm for tran list"
@@ -1595,6 +1596,27 @@ export class s_p2p_view_outward_paymentsComponent implements OnInit,AfterViewIni
 		let data_source={}
 		try {
 			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ssr_for_vreq() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="main_request_ui"
+		let parent_source_id=""
+		let event_code="e_1670252180661"
+		let event_params={"caller_name":"transaction_list__ssr_for_vreq","event_desc":"SSR for vreq","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

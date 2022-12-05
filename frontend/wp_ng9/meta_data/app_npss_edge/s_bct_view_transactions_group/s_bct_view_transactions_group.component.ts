@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27184 
+Build ID        : 27195 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-05 13:53 PM 
+Modified Date   : 2022-Dec-05 15:49 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_view_transactions_group
@@ -82,9 +82,9 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 	navigation_ui_view_log_history : any = {}
 	navigation_ui_view_response : any = {}
 	navigation_ui_view_request : any = {}
+	navigation_ui_view_req_and_res : any = {}
 	navigation_ui_reset : any = {}
 	navigation_ui_trg_disable_view_data_ui : any = {}
-	navigation_ui_view_req_and_res : any = {}
 	transaction_list : any = {}
 	view_dr_cr_details : any = {}
 	search : any = {}
@@ -219,6 +219,15 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 		this.navigation_ui_view_request.role = []
 		this.navigation_ui_view_request.action = ""
 		
+		// "View Req and Res" Button of "Navigation UI" component
+		this.navigation_ui_view_req_and_res.label_name = "View Req and Res"
+		this.navigation_ui_view_req_and_res.show = true
+		this.navigation_ui_view_req_and_res.disabled = true
+		this.navigation_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.navigation_ui_view_req_and_res.dynamic_param = {}
+		this.navigation_ui_view_req_and_res.role = []
+		this.navigation_ui_view_req_and_res.action = ""
+		
 		// "Reset" Button of "Navigation UI" component
 		this.navigation_ui_reset.label_name = "Reset"
 		this.navigation_ui_reset.show = true
@@ -236,15 +245,6 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 		this.navigation_ui_trg_disable_view_data_ui.dynamic_param = {}
 		this.navigation_ui_trg_disable_view_data_ui.role = []
 		this.navigation_ui_trg_disable_view_data_ui.action = ""
-		
-		// "View Req and Res" Button of "Navigation UI" component
-		this.navigation_ui_view_req_and_res.label_name = "View Req and Res"
-		this.navigation_ui_view_req_and_res.show = true
-		this.navigation_ui_view_req_and_res.disabled = true
-		this.navigation_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
-		this.navigation_ui_view_req_and_res.dynamic_param = {}
-		this.navigation_ui_view_req_and_res.role = []
-		this.navigation_ui_view_req_and_res.action = ""
 	
 		// Component level properties - "Transaction list" 
 		this.transaction_list.uictrl_code = "datatable"

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27177 
+Build ID        : 27184 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-03 15:28 PM 
+Modified Date   : 2022-Dec-05 13:53 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_investigation
@@ -32,9 +32,9 @@ export class p_vertical_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.view_dr_cr_details.desc = "View Dr Cr Details"
+    	this.view_dr_cr_details.desc = "View Dr Cr Tran Details"
 		this.view_dr_cr_details.need_header = true
-		this.view_payment_details.desc = "View Payment Details"
+		this.view_payment_details.desc = "View Payment Tran Details"
 		this.view_payment_details.need_header = true
 		this.back_ui.desc = "Back UI"
 		this.back_ui.need_header = ""

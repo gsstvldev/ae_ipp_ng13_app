@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27181 
+Build ID        : 27184 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-05 8:4 AM 
+Modified Date   : 2022-Dec-05 13:53 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_view_transactions_group

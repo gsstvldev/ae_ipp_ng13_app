@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27181 
+Build ID        : 27184 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-05 8:4 AM 
+Modified Date   : 2022-Dec-05 13:53 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_view_transactions_group
@@ -58,6 +58,8 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 	uicgc_24 : string = "main_message_detail_ui"
 	uicgc_25 : string = "group_detail"
 	key_events : any = {}
+	btl_1304_1670247427131 : string = "p_view_req_and_res__profile"
+	btl_1304_1670247363876 : string = "p_main_view_req_and_res_profile"
 	btl_1304_1669546352282 : string = "p_view_main_message_ui_layout"
 	btl_1304_1669546328915 : string = "p_view_main_request_layout"
 	btl_1304_1669546278315 : string = "p_view_main_response_layout"
@@ -69,7 +71,7 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 	btl_1304_1668497253326 : string = "p_vertical_layout"
 	btl_1304_1668497202456 : string = "p_search_layout"
 	btl_1304_1668497054916 : string = "p_main_layout"
-	forms : any = ["uicgc_7","uicgc_23","uicgc_22","uicgc_11","uicgc_12","uicgc_24","uicgc_1","uicgc_14","uicgc_16","uicgc_17","uicgc_13","uicgc_10","uicgc_3"]
+	forms : any = ["uicgc_7","uicgc_23","uicgc_22","uicgc_11","uicgc_12","uicgc_13","uicgc_1","uicgc_24","uicgc_14","uicgc_16","uicgc_17","uicgc_10","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	back_ui : any = {}
 	back_ui_back : any = {}
@@ -82,6 +84,7 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 	navigation_ui_view_request : any = {}
 	navigation_ui_reset : any = {}
 	navigation_ui_trg_disable_view_data_ui : any = {}
+	navigation_ui_view_req_and_res : any = {}
 	transaction_list : any = {}
 	view_dr_cr_details : any = {}
 	search : any = {}
@@ -93,6 +96,7 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 	process_log_ui_back : any = {}
 	process_log_ui_view_request : any = {}
 	process_log_ui_view_response : any = {}
+	process_log_ui_view_req_and_res : any = {}
 	response_ui : any = {}
 	request_ui : any = {}
 	single_back_ui : any = {}
@@ -232,6 +236,15 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 		this.navigation_ui_trg_disable_view_data_ui.dynamic_param = {}
 		this.navigation_ui_trg_disable_view_data_ui.role = []
 		this.navigation_ui_trg_disable_view_data_ui.action = ""
+		
+		// "View Req and Res" Button of "Navigation UI" component
+		this.navigation_ui_view_req_and_res.label_name = "View Req and Res"
+		this.navigation_ui_view_req_and_res.show = true
+		this.navigation_ui_view_req_and_res.disabled = true
+		this.navigation_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.navigation_ui_view_req_and_res.dynamic_param = {}
+		this.navigation_ui_view_req_and_res.role = []
+		this.navigation_ui_view_req_and_res.action = ""
 	
 		// Component level properties - "Transaction list" 
 		this.transaction_list.uictrl_code = "datatable"
@@ -353,6 +366,15 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 		this.process_log_ui_view_response.dynamic_param = {}
 		this.process_log_ui_view_response.role = []
 		this.process_log_ui_view_response.action = ""
+		
+		// "View Req and Res" Button of "Process Log UI" component
+		this.process_log_ui_view_req_and_res.label_name = "View Req and Res"
+		this.process_log_ui_view_req_and_res.show = true
+		this.process_log_ui_view_req_and_res.disabled = true
+		this.process_log_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.process_log_ui_view_req_and_res.dynamic_param = {}
+		this.process_log_ui_view_req_and_res.role = []
+		this.process_log_ui_view_req_and_res.action = ""
 	
 		// Component level properties - "Response UI" 
 		this.response_ui.uictrl_code = "dynamic_ui"
@@ -642,6 +664,7 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 		this.transaction_list__ee_from_tran_to_main_view_resp()
 		this.transaction_list__ee_from_tran_to_main_view_req()
 		this.transaction_list__bt_main_tran_to_main_message_ui()
+		this.transaction_list__e_1670247974332()
 	}
 
 	//Handler for INTERNAL event of "svm for tran list"
@@ -739,6 +762,7 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 		this.history_detail__ee_from_history_detail_to_view_reaponse()
 		this.history_detail__ssr_from_hd_to_req()
 		this.history_detail__ssr_from_hd_to_response()
+		this.history_detail__ee_for_vres_res()
 	}
 
 	//Handler for SELECTION_CHANGED event of "summary list"
@@ -788,6 +812,7 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 	//Handler for INTERNAL event of "ssp for tran table"
 	ssp_for_tran_table__internal(parent_event_result){
 		this.ssp_for_tran_table__brfq_from_group_list(parent_event_result)
+		this.ssp_for_tran_table__brfq_for_gdl(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "process by system"
@@ -809,7 +834,6 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 	//Handler for INTERNAL event of "ssp for ssl chart to stl"
 	ssp_for_ssl_chart_to_stl__internal(parent_event_result){
 		this.ssp_for_ssl_chart_to_stl__brfq_from_searchs_to_summary_list(parent_event_result)
-		this.ssp_for_ssl_chart_to_stl__brfq_for_gdl(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view request"
@@ -836,6 +860,21 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 	navigation_ui_trg_disable_view_data_ui__action_button_click(){
 		this.navigation_ui_trg_disable_view_data_ui__de_from_trg_to_view_req_on_main_page()
 		this.navigation_ui_trg_disable_view_data_ui__de_from_trg_to_view_response_on_main_page()
+		this.navigation_ui_trg_disable_view_data_ui__de_for_req_res()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
+	navigation_ui_view_req_and_res__action_button_click(){
+		this.navigation_ui_view_req_and_res__sp_for_v_req_and_v_res()
+		this.navigation_ui_view_req_and_res__ee_for_main_req()
+		this.navigation_ui_view_req_and_res__ee_for_main_res()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__action_button_click(){
+		this.process_log_ui_view_req_and_res__sp_req_and_res()
+		this.process_log_ui_view_req_and_res__bt_req()
+		this.process_log_ui_view_req_and_res__bt_res()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1299,6 +1338,27 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 		let data_source={}
 		try {
 			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__e_1670247974332() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_view_req_and_res"
+		let parent_source_id=""
+		let event_code="e_1670247974332"
+		let event_params={"caller_name":"transaction_list__e_1670247974332","event_desc":"E_1670247974332","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1916,6 +1976,27 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "history detail"
+	history_detail__ee_for_vres_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="history_detail"
+		let destn_id="process_log_ui_view_req_and_res"
+		let parent_source_id=""
+		let event_code="e_1670248200805"
+		let event_params={"caller_name":"history_detail__ee_for_vres_res","event_desc":"EE for VRES RES","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for SELECTION_CHANGED event of "summary list"
 	summary_list__svm_for_summary_list() { 
 		let Dest_Is_ctrl=true
@@ -2142,7 +2223,7 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 		let event_code="e_1669460437962"
 		let event_params={"caller_name":"cc_from_tran_level_sgl__ssp_for_tran_table","event_desc":"SSP for tran table","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"status_by_group","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="set_search_params"
-		let internals="ssp_for_tran_table__brfq_from_group_list,"
+		let internals="ssp_for_tran_table__brfq_from_group_list,ssp_for_tran_table__brfq_for_gdl,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -2189,6 +2270,28 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 		let internals=""
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1669647938467","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Tran Summary LR MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"GROUP_NAME","alias_name":"","mq_id":"MQ_1669187361763","date_format":false},{"column_name":"TOTAL_AMOUNT","alias_name":"","mq_id":"MQ_1669187362209","date_format":false},{"column_name":"TOTAL_TRAN_COUNT","alias_name":"","mq_id":"MQ_1669187362417","date_format":false},{"column_name":"INTRBK_STTLM_CUR","alias_name":"","mq_id":"MQ_1669529663983","date_format":false}],"joins":[]},"eq_text":"select  GROUP_NAME,  INTRBK_STTLM_CUR,  SUM(INTRBK_STTLM_AMNT) as TOTAL_AMOUNT,  COUNT(NPSST_ID) as TOTAL_TRAN_COUNT from  (  select   NT.NPSST_ID,   NT.UETR,   NT.VALUE_DATE,   NT.ACCP_DATE_TIME,   NT.CREATED_DATE,   TO_CHAR(NT.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   NT.TENANT_ID,   NT.DEPARTMENT_CODE,   NT.EXHF_ID,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.PAYMENT_ENDTOEND_ID,   NT.CLRSYSREF,   NT.CDTR_ACCT_NO,   NT.DBTR_ACCT_NO,   NT.INTRBK_STTLM_CUR,   NT.INTRBK_STTLM_AMNT,   NTPL.STATUS,   NTPL.PROCESSING_SYSTEM,   NTPL.PROCESS_STATUS,   NTPL.GROUP_NAME,   NTPL.PROCESS_TYPE,   NTPL.PAYMENT_MODE,   NTPL.RULE_GROUP,   NTPL.NPSSTPL_ID,   NTPL.DT_CODE,   NTPL.DTT_CODE,   NTPL.REQUEST_DATA_JSON,   NTPL.RESPONSE_DATA_JSON,   NTPL.MSG_ID,   NTPL.PROCESS_NAME,   RR.NPSSTRRD_ID,   RR.RR_MSG_ID,   RR.PARENT_NPSSTRRD_REFNO,   RR.MESSAGE_DATA,   RR.PROCESS_CODE,   RR.PROCESS_DETAIL,   RR.NPSSTRRD_REFNO,   RR.RR_DT_CODE,   RR.RR_DTT_CODE,   RR.RR_PROCESS_NAME,   RR.RR_MESSAGE_DESC,   NT.DBTR_ACCT_NAME ,   NT.DBTR_PHONE_NO ,   NT.DBTR_EMAIL_ID ,   NT.DBTR_DOCUMENT_ID,   NT.DBTR_IBAN ,   NT.DBTR_CUST_TYPE ,   NT.DBTR_PRVT_ID ,   NT.DBTR_OTHER_ISSUER ,   NT.CDTR_ACCT_NAME ,   NT.CDTR_PHONE_NO ,   NT.CDTR_EMAIL_ID ,   NT.CDTR_DOCUMENT_ID ,   NT.DR_SORT_CODE ,   NT.CR_SORT_CODE ,   NT.CATEGORY_PURPOSE ,   NT.CATEGORY_PURPOSE_PRTY ,   NT.CR_ACCT_IDENTIFICATION ,   NT.BASE_CURRENCY ,   NT.BASE_AMOUNT ,   NT.HDR_TOTAL_RECORDS ,   NT.HDR_TOTAL_AMOUNT,   NT.HDR_CLEARING_SYSTEM ,   NT.CHARGE_BEARER ,   NT.REMITTANCE_INFO ,   NT.ACCOUNT_CURRENCY,   NT.CHANNEL_ID ,   NT.CHANNEL_REFNO ,   NT.CHANNEL_USERID ,   NT.CHANNEL_PRODUCT ,   NT.CHANNEL_SUB_PRODUCT ,   NT.CHANNEL_TRAN_CODE ,   NT.ISSUER_TYPE_CODE  from   NPSS_TRANSACTIONS NT  inner join (   select    T.NPSSTPL_ID,    T.UETR,    T.STATUS,    T.PROCESSING_SYSTEM,    T.PROCESS_STATUS,    G.GROUP_NAME,    G.PROCESS_TYPE,    G.PAYMENT_MODE,    G.RULE_GROUP,    T.DT_CODE,    T.DTT_CODE,    T.REQUEST_DATA_JSON,    T.RESPONSE_DATA_JSON,    T.MSG_ID,    T.PROCESS_NAME   from    (    select     A.NPSSTPL_ID,     A.UETR,     A.STATUS,     A.PROCESSING_SYSTEM,     A.PROCESS_STATUS,     A.DT_CODE,     A.DTT_CODE,     A.REQUEST_DATA_JSON,     A.RESPONSE_DATA_JSON,     A.MSG_ID,     A.PROCESS_NAME,     row_number() over(partition by A.UETR    order by     A.NPSSTPL_ID desc) as ROW_NUM    from     NPSS_TRN_PROCESS_LOG A) T   inner join CORE_NC_STATUS_GROUP G on    G.QUEUE_CODE = T.PROCESS_STATUS    and G.PROCESS_QUEUE_STATUS = T.STATUS   where    T.ROW_NUM = 1) NTPL on   NT.UETR = NTPL.UETR  left join (   select    B.NPSSTRRD_ID ,    B.MSG_ID as RR_MSG_ID,    B.PARENT_NPSSTRRD_REFNO ,    B.MESSAGE_DATA ,    B.PROCESS_CODE ,    B.PROCESS_DETAIL ,    B.NPSSTRRD_REFNO,    B.UETR,    B.DT_CODE as RR_DT_CODE,    B.DTT_CODE as RR_DTT_CODE,    B.PROCESS_NAME as RR_PROCESS_NAME,    B.MESSAGE_DESC as RR_MESSAGE_DESC,    row_number() over(partition by B.UETR   order by    B.NPSSTRRD_ID desc) as ROW_NUM   from    NPSS_TRN_REQ_RESP_DTLS B ) RR on   RR.UETR = NT.UETR   and RR.ROW_NUM = 1) V $WHERE group by  GROUP_NAME,  INTRBK_STTLM_CUR"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Tran Summary LR CCD","filter":[{"filter_name":"Department_code","binding_name":"Department_code","binding_value":"","source_name":"Department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"GROUP_NAME","binding_name":"GROUP_NAME","binding_value":"","source_name":"MI_LEVEL_GROUP_NAME","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"RULE_GROUP","binding_name":"RULE_GROUP","binding_value":"","source_name":"BCT_INWARD_GROUP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Group Name","target_column":"GROUP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"INTRBK_STTLM_CUR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total Amount","target_column":"TOTAL_AMOUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total Tran Count","target_column":"TOTAL_TRAN_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ssp for tran table"
+	ssp_for_tran_table__brfq_for_gdl(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ssp_for_tran_table"
+		let destn_id="group_detail"
+		let parent_source_id="cc_from_tran_level_sgl"
+		let event_code="e_1670235501065"
+		let event_params={"caller_name":"ssp_for_tran_table__brfq_for_gdl","event_desc":"BRFQ for GDL","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"status_by_group","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_25","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1670075223070","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Group Detail MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"GROUP_NAME","alias_name":"","mq_id":"MQ_1670077142294","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1670221018088","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1670221026334","date_format":false},{"column_name":"TOTAL_TRAN_COUNT","alias_name":"","mq_id":"MQ_1670221037358","date_format":false},{"column_name":"TOTAL_AMOUNT","alias_name":"","mq_id":"MQ_1670221079732","date_format":false}],"joins":[]},"eq_text":"select  GROUP_NAME,  PROCESS_STATUS,  STATUS,  RULE_GROUP,  SUM(INTRBK_STTLM_AMNT) as TOTAL_AMOUNT,  COUNT(NPSST_ID) as TOTAL_TRAN_COUNT from  (  select   NT.NPSST_ID,   NT.UETR,   NT.VALUE_DATE,   NT.ACCP_DATE_TIME,   NT.CREATED_DATE,   TO_CHAR(NT.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   NT.TENANT_ID,   NT.DEPARTMENT_CODE,   NT.EXHF_ID,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.PAYMENT_ENDTOEND_ID,   NT.CLRSYSREF,   NT.CDTR_ACCT_NO,   NT.DBTR_ACCT_NO,   NT.INTRBK_STTLM_CUR,   NT.INTRBK_STTLM_AMNT,   NTPL.STATUS,   NTPL.PROCESSING_SYSTEM,   NTPL.PROCESS_STATUS,   NTPL.GROUP_NAME,   NTPL.PROCESS_TYPE,   NTPL.PAYMENT_MODE,   NTPL.RULE_GROUP,   NTPL.NPSSTPL_ID,   NTPL.DT_CODE,   NTPL.DTT_CODE,   NTPL.REQUEST_DATA_JSON,   NTPL.RESPONSE_DATA_JSON,   NTPL.MSG_ID,   NTPL.PROCESS_NAME,   RR.NPSSTRRD_ID,   RR.RR_MSG_ID,   RR.PARENT_NPSSTRRD_REFNO,   RR.MESSAGE_DATA,   RR.PROCESS_CODE,   RR.PROCESS_DETAIL,   RR.NPSSTRRD_REFNO,   RR.RR_DT_CODE,   RR.RR_DTT_CODE,   RR.RR_PROCESS_NAME,   RR.RR_MESSAGE_DESC,   NT.DBTR_ACCT_NAME ,   NT.DBTR_PHONE_NO ,   NT.DBTR_EMAIL_ID ,   NT.DBTR_DOCUMENT_ID,   NT.DBTR_IBAN ,   NT.DBTR_CUST_TYPE ,   NT.DBTR_PRVT_ID ,   NT.DBTR_OTHER_ISSUER ,   NT.CDTR_ACCT_NAME ,   NT.CDTR_PHONE_NO ,   NT.CDTR_EMAIL_ID ,   NT.CDTR_DOCUMENT_ID ,   NT.DR_SORT_CODE ,   NT.CR_SORT_CODE ,   NT.CATEGORY_PURPOSE ,   NT.CATEGORY_PURPOSE_PRTY ,   NT.CR_ACCT_IDENTIFICATION ,   NT.BASE_CURRENCY ,   NT.BASE_AMOUNT ,   NT.HDR_TOTAL_RECORDS ,   NT.HDR_TOTAL_AMOUNT,   NT.HDR_CLEARING_SYSTEM ,   NT.CHARGE_BEARER ,   NT.REMITTANCE_INFO ,   NT.ACCOUNT_CURRENCY,   NT.CHANNEL_ID ,   NT.CHANNEL_REFNO ,   NT.CHANNEL_USERID ,   NT.CHANNEL_PRODUCT ,   NT.CHANNEL_SUB_PRODUCT ,   NT.CHANNEL_TRAN_CODE ,   NT.ISSUER_TYPE_CODE  from   NPSS_TRANSACTIONS NT  inner join (   select    T.NPSSTPL_ID,    T.UETR,    T.STATUS,    T.PROCESSING_SYSTEM,    T.PROCESS_STATUS,    G.GROUP_NAME,    G.PROCESS_TYPE,    G.PAYMENT_MODE,    G.RULE_GROUP,    T.DT_CODE,    T.DTT_CODE,    T.REQUEST_DATA_JSON,    T.RESPONSE_DATA_JSON,    T.MSG_ID,    T.PROCESS_NAME   from    (    select     A.NPSSTPL_ID,     A.UETR,     A.STATUS,     A.PROCESSING_SYSTEM,     A.PROCESS_STATUS,     A.DT_CODE,     A.DTT_CODE,     A.REQUEST_DATA_JSON,     A.RESPONSE_DATA_JSON,     A.MSG_ID,     A.PROCESS_NAME,     row_number() over(partition by A.UETR    order by     A.NPSSTPL_ID desc) as ROW_NUM    from     NPSS_TRN_PROCESS_LOG A) T   inner join CORE_NC_STATUS_GROUP G on    G.QUEUE_CODE = T.PROCESS_STATUS    and G.PROCESS_QUEUE_STATUS = T.STATUS   where    T.ROW_NUM = 1) NTPL on   NT.UETR = NTPL.UETR  left join (   select    B.NPSSTRRD_ID ,    B.MSG_ID as RR_MSG_ID,    B.PARENT_NPSSTRRD_REFNO ,    B.MESSAGE_DATA ,    B.PROCESS_CODE ,    B.PROCESS_DETAIL ,    B.NPSSTRRD_REFNO,    B.UETR,    B.DT_CODE as RR_DT_CODE,    B.DTT_CODE as RR_DTT_CODE,    B.PROCESS_NAME as RR_PROCESS_NAME,    B.MESSAGE_DESC as RR_MESSAGE_DESC,    row_number() over(partition by B.UETR   order by    B.NPSSTRRD_ID desc) as ROW_NUM   from    NPSS_TRN_REQ_RESP_DTLS B ) RR on   RR.UETR = NT.UETR   and RR.ROW_NUM = 1) V     $WHERE group by  GROUP_NAME,  RULE_GROUP,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Group Detail CCD","filter":[{"filter_name":"GROUP_NAME","binding_name":"GROUP_NAME","binding_value":"","source_name":"MI_LEVEL_GROUP_NAME","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"RULE_GROUP","binding_name":"RULE_GROUP","binding_value":"","source_name":"BCT_INWARD_GROUP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Tran Count","target_column":"TOTAL_TRAN_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -2272,7 +2375,7 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 		let event_code="e_1669460927733"
 		let event_params={"caller_name":"cc_for_psl__ssp_for_ssl_chart_to_stl","event_desc":"SSP for SSL chart to STL","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_by_system","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="set_search_params"
-		let internals="ssp_for_ssl_chart_to_stl__brfq_from_searchs_to_summary_list,ssp_for_ssl_chart_to_stl__brfq_for_gdl,"
+		let internals="ssp_for_ssl_chart_to_stl__brfq_from_searchs_to_summary_list,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -2297,28 +2400,6 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 		let internals=""
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1669647938467","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Tran Summary LR MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"GROUP_NAME","alias_name":"","mq_id":"MQ_1669187361763","date_format":false},{"column_name":"TOTAL_AMOUNT","alias_name":"","mq_id":"MQ_1669187362209","date_format":false},{"column_name":"TOTAL_TRAN_COUNT","alias_name":"","mq_id":"MQ_1669187362417","date_format":false},{"column_name":"INTRBK_STTLM_CUR","alias_name":"","mq_id":"MQ_1669529663983","date_format":false}],"joins":[]},"eq_text":"select  GROUP_NAME,  INTRBK_STTLM_CUR,  SUM(INTRBK_STTLM_AMNT) as TOTAL_AMOUNT,  COUNT(NPSST_ID) as TOTAL_TRAN_COUNT from  (  select   NT.NPSST_ID,   NT.UETR,   NT.VALUE_DATE,   NT.ACCP_DATE_TIME,   NT.CREATED_DATE,   TO_CHAR(NT.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   NT.TENANT_ID,   NT.DEPARTMENT_CODE,   NT.EXHF_ID,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.PAYMENT_ENDTOEND_ID,   NT.CLRSYSREF,   NT.CDTR_ACCT_NO,   NT.DBTR_ACCT_NO,   NT.INTRBK_STTLM_CUR,   NT.INTRBK_STTLM_AMNT,   NTPL.STATUS,   NTPL.PROCESSING_SYSTEM,   NTPL.PROCESS_STATUS,   NTPL.GROUP_NAME,   NTPL.PROCESS_TYPE,   NTPL.PAYMENT_MODE,   NTPL.RULE_GROUP,   NTPL.NPSSTPL_ID,   NTPL.DT_CODE,   NTPL.DTT_CODE,   NTPL.REQUEST_DATA_JSON,   NTPL.RESPONSE_DATA_JSON,   NTPL.MSG_ID,   NTPL.PROCESS_NAME,   RR.NPSSTRRD_ID,   RR.RR_MSG_ID,   RR.PARENT_NPSSTRRD_REFNO,   RR.MESSAGE_DATA,   RR.PROCESS_CODE,   RR.PROCESS_DETAIL,   RR.NPSSTRRD_REFNO,   RR.RR_DT_CODE,   RR.RR_DTT_CODE,   RR.RR_PROCESS_NAME,   RR.RR_MESSAGE_DESC,   NT.DBTR_ACCT_NAME ,   NT.DBTR_PHONE_NO ,   NT.DBTR_EMAIL_ID ,   NT.DBTR_DOCUMENT_ID,   NT.DBTR_IBAN ,   NT.DBTR_CUST_TYPE ,   NT.DBTR_PRVT_ID ,   NT.DBTR_OTHER_ISSUER ,   NT.CDTR_ACCT_NAME ,   NT.CDTR_PHONE_NO ,   NT.CDTR_EMAIL_ID ,   NT.CDTR_DOCUMENT_ID ,   NT.DR_SORT_CODE ,   NT.CR_SORT_CODE ,   NT.CATEGORY_PURPOSE ,   NT.CATEGORY_PURPOSE_PRTY ,   NT.CR_ACCT_IDENTIFICATION ,   NT.BASE_CURRENCY ,   NT.BASE_AMOUNT ,   NT.HDR_TOTAL_RECORDS ,   NT.HDR_TOTAL_AMOUNT,   NT.HDR_CLEARING_SYSTEM ,   NT.CHARGE_BEARER ,   NT.REMITTANCE_INFO ,   NT.ACCOUNT_CURRENCY,   NT.CHANNEL_ID ,   NT.CHANNEL_REFNO ,   NT.CHANNEL_USERID ,   NT.CHANNEL_PRODUCT ,   NT.CHANNEL_SUB_PRODUCT ,   NT.CHANNEL_TRAN_CODE ,   NT.ISSUER_TYPE_CODE  from   NPSS_TRANSACTIONS NT  inner join (   select    T.NPSSTPL_ID,    T.UETR,    T.STATUS,    T.PROCESSING_SYSTEM,    T.PROCESS_STATUS,    G.GROUP_NAME,    G.PROCESS_TYPE,    G.PAYMENT_MODE,    G.RULE_GROUP,    T.DT_CODE,    T.DTT_CODE,    T.REQUEST_DATA_JSON,    T.RESPONSE_DATA_JSON,    T.MSG_ID,    T.PROCESS_NAME   from    (    select     A.NPSSTPL_ID,     A.UETR,     A.STATUS,     A.PROCESSING_SYSTEM,     A.PROCESS_STATUS,     A.DT_CODE,     A.DTT_CODE,     A.REQUEST_DATA_JSON,     A.RESPONSE_DATA_JSON,     A.MSG_ID,     A.PROCESS_NAME,     row_number() over(partition by A.UETR    order by     A.NPSSTPL_ID desc) as ROW_NUM    from     NPSS_TRN_PROCESS_LOG A) T   inner join CORE_NC_STATUS_GROUP G on    G.QUEUE_CODE = T.PROCESS_STATUS    and G.PROCESS_QUEUE_STATUS = T.STATUS   where    T.ROW_NUM = 1) NTPL on   NT.UETR = NTPL.UETR  left join (   select    B.NPSSTRRD_ID ,    B.MSG_ID as RR_MSG_ID,    B.PARENT_NPSSTRRD_REFNO ,    B.MESSAGE_DATA ,    B.PROCESS_CODE ,    B.PROCESS_DETAIL ,    B.NPSSTRRD_REFNO,    B.UETR,    B.DT_CODE as RR_DT_CODE,    B.DTT_CODE as RR_DTT_CODE,    B.PROCESS_NAME as RR_PROCESS_NAME,    B.MESSAGE_DESC as RR_MESSAGE_DESC,    row_number() over(partition by B.UETR   order by    B.NPSSTRRD_ID desc) as ROW_NUM   from    NPSS_TRN_REQ_RESP_DTLS B ) RR on   RR.UETR = NT.UETR   and RR.ROW_NUM = 1) V $WHERE group by  GROUP_NAME,  INTRBK_STTLM_CUR"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Tran Summary LR CCD","filter":[{"filter_name":"Department_code","binding_name":"Department_code","binding_value":"","source_name":"Department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"GROUP_NAME","binding_name":"GROUP_NAME","binding_value":"","source_name":"MI_LEVEL_GROUP_NAME","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"RULE_GROUP","binding_name":"RULE_GROUP","binding_value":"","source_name":"BCT_INWARD_GROUP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Group Name","target_column":"GROUP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"INTRBK_STTLM_CUR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total Amount","target_column":"TOTAL_AMOUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total Tran Count","target_column":"TOTAL_TRAN_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
-		try {
-			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "ssp for ssl chart to stl"
-	ssp_for_ssl_chart_to_stl__brfq_for_gdl(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="ssp_for_ssl_chart_to_stl"
-		let destn_id="group_detail"
-		let parent_source_id="cc_for_psl"
-		let event_code="e_1670223692806"
-		let event_params={"caller_name":"ssp_for_ssl_chart_to_stl__brfq_for_gdl","event_desc":"BRFQ for GDL","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_by_system","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
-		let handler_code="bind_record_from_query"
-		let internals=""
-		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_25","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1670075223070","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Group Detail MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"GROUP_NAME","alias_name":"","mq_id":"MQ_1670077142294","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1670221018088","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1670221026334","date_format":false},{"column_name":"TOTAL_TRAN_COUNT","alias_name":"","mq_id":"MQ_1670221037358","date_format":false},{"column_name":"TOTAL_AMOUNT","alias_name":"","mq_id":"MQ_1670221079732","date_format":false}],"joins":[]},"eq_text":"select  GROUP_NAME,  PROCESS_STATUS,  STATUS,  RULE_GROUP,  SUM(INTRBK_STTLM_AMNT) as TOTAL_AMOUNT,  COUNT(NPSST_ID) as TOTAL_TRAN_COUNT from  (  select   NT.NPSST_ID,   NT.UETR,   NT.VALUE_DATE,   NT.ACCP_DATE_TIME,   NT.CREATED_DATE,   TO_CHAR(NT.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   NT.TENANT_ID,   NT.DEPARTMENT_CODE,   NT.EXHF_ID,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.PAYMENT_ENDTOEND_ID,   NT.CLRSYSREF,   NT.CDTR_ACCT_NO,   NT.DBTR_ACCT_NO,   NT.INTRBK_STTLM_CUR,   NT.INTRBK_STTLM_AMNT,   NTPL.STATUS,   NTPL.PROCESSING_SYSTEM,   NTPL.PROCESS_STATUS,   NTPL.GROUP_NAME,   NTPL.PROCESS_TYPE,   NTPL.PAYMENT_MODE,   NTPL.RULE_GROUP,   NTPL.NPSSTPL_ID,   NTPL.DT_CODE,   NTPL.DTT_CODE,   NTPL.REQUEST_DATA_JSON,   NTPL.RESPONSE_DATA_JSON,   NTPL.MSG_ID,   NTPL.PROCESS_NAME,   RR.NPSSTRRD_ID,   RR.RR_MSG_ID,   RR.PARENT_NPSSTRRD_REFNO,   RR.MESSAGE_DATA,   RR.PROCESS_CODE,   RR.PROCESS_DETAIL,   RR.NPSSTRRD_REFNO,   RR.RR_DT_CODE,   RR.RR_DTT_CODE,   RR.RR_PROCESS_NAME,   RR.RR_MESSAGE_DESC,   NT.DBTR_ACCT_NAME ,   NT.DBTR_PHONE_NO ,   NT.DBTR_EMAIL_ID ,   NT.DBTR_DOCUMENT_ID,   NT.DBTR_IBAN ,   NT.DBTR_CUST_TYPE ,   NT.DBTR_PRVT_ID ,   NT.DBTR_OTHER_ISSUER ,   NT.CDTR_ACCT_NAME ,   NT.CDTR_PHONE_NO ,   NT.CDTR_EMAIL_ID ,   NT.CDTR_DOCUMENT_ID ,   NT.DR_SORT_CODE ,   NT.CR_SORT_CODE ,   NT.CATEGORY_PURPOSE ,   NT.CATEGORY_PURPOSE_PRTY ,   NT.CR_ACCT_IDENTIFICATION ,   NT.BASE_CURRENCY ,   NT.BASE_AMOUNT ,   NT.HDR_TOTAL_RECORDS ,   NT.HDR_TOTAL_AMOUNT,   NT.HDR_CLEARING_SYSTEM ,   NT.CHARGE_BEARER ,   NT.REMITTANCE_INFO ,   NT.ACCOUNT_CURRENCY,   NT.CHANNEL_ID ,   NT.CHANNEL_REFNO ,   NT.CHANNEL_USERID ,   NT.CHANNEL_PRODUCT ,   NT.CHANNEL_SUB_PRODUCT ,   NT.CHANNEL_TRAN_CODE ,   NT.ISSUER_TYPE_CODE  from   NPSS_TRANSACTIONS NT  inner join (   select    T.NPSSTPL_ID,    T.UETR,    T.STATUS,    T.PROCESSING_SYSTEM,    T.PROCESS_STATUS,    G.GROUP_NAME,    G.PROCESS_TYPE,    G.PAYMENT_MODE,    G.RULE_GROUP,    T.DT_CODE,    T.DTT_CODE,    T.REQUEST_DATA_JSON,    T.RESPONSE_DATA_JSON,    T.MSG_ID,    T.PROCESS_NAME   from    (    select     A.NPSSTPL_ID,     A.UETR,     A.STATUS,     A.PROCESSING_SYSTEM,     A.PROCESS_STATUS,     A.DT_CODE,     A.DTT_CODE,     A.REQUEST_DATA_JSON,     A.RESPONSE_DATA_JSON,     A.MSG_ID,     A.PROCESS_NAME,     row_number() over(partition by A.UETR    order by     A.NPSSTPL_ID desc) as ROW_NUM    from     NPSS_TRN_PROCESS_LOG A) T   inner join CORE_NC_STATUS_GROUP G on    G.QUEUE_CODE = T.PROCESS_STATUS    and G.PROCESS_QUEUE_STATUS = T.STATUS   where    T.ROW_NUM = 1) NTPL on   NT.UETR = NTPL.UETR  left join (   select    B.NPSSTRRD_ID ,    B.MSG_ID as RR_MSG_ID,    B.PARENT_NPSSTRRD_REFNO ,    B.MESSAGE_DATA ,    B.PROCESS_CODE ,    B.PROCESS_DETAIL ,    B.NPSSTRRD_REFNO,    B.UETR,    B.DT_CODE as RR_DT_CODE,    B.DTT_CODE as RR_DTT_CODE,    B.PROCESS_NAME as RR_PROCESS_NAME,    B.MESSAGE_DESC as RR_MESSAGE_DESC,    row_number() over(partition by B.UETR   order by    B.NPSSTRRD_ID desc) as ROW_NUM   from    NPSS_TRN_REQ_RESP_DTLS B ) RR on   RR.UETR = NT.UETR   and RR.ROW_NUM = 1) V     $WHERE group by  GROUP_NAME,  RULE_GROUP,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Group Detail CCD","filter":[{"filter_name":"GROUP_NAME","binding_name":"GROUP_NAME","binding_value":"","source_name":"MI_LEVEL_GROUP_NAME","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"RULE_GROUP","binding_name":"RULE_GROUP","binding_value":"","source_name":"BCT_INWARD_GROUP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Tran Count","target_column":"TOTAL_TRAN_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -2449,6 +2530,153 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg disable view data ui"
+	navigation_ui_trg_disable_view_data_ui__de_for_req_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_disable_view_data_ui"
+		let destn_id="navigation_ui_view_req_and_res"
+		let parent_source_id=""
+		let event_code="e_1670248278453"
+		let event_params={"caller_name":"navigation_ui_trg_disable_view_data_ui__de_for_req_res","event_desc":"DE for REQ RES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_disable_view_data_ui","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
+	navigation_ui_view_req_and_res__sp_for_v_req_and_v_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_req_and_res"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1670247669069"
+		let event_params={"caller_name":"navigation_ui_view_req_and_res__sp_for_v_req_and_v_res","event_desc":"SP for V Req and V Res","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1670247363876"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
+	navigation_ui_view_req_and_res__ee_for_main_req() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_req_and_res"
+		let destn_id="main_request_ui"
+		let parent_source_id=""
+		let event_code="e_1670247905403"
+		let event_params={"caller_name":"navigation_ui_view_req_and_res__ee_for_main_req","event_desc":"EE for Main REQ","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
+	navigation_ui_view_req_and_res__ee_for_main_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_req_and_res"
+		let destn_id="main_response_ui"
+		let parent_source_id=""
+		let event_code="e_1670247932591"
+		let event_params={"caller_name":"navigation_ui_view_req_and_res__ee_for_main_res","event_desc":"EE for Main RES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__sp_req_and_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1670248045076"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__sp_req_and_res","event_desc":"SP REQ and RES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1670247427131"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__bt_req() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id="request_ui"
+		let parent_source_id=""
+		let event_code="e_1670248076082"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_req","event_desc":"BT REQ","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__bt_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id="response_ui"
+		let parent_source_id=""
+		let event_code="e_1670248135784"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_res","event_desc":"BT RES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

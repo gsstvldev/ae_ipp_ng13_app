@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27177 
+Build ID        : 27184 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-03 15:29 PM 
+Modified Date   : 2022-Dec-05 13:53 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -60,6 +60,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	uicgc_24 : string = "request_ui"
 	uicgc_25 : string = "single_back_ui"
 	key_events : any = {}
+	btl_1304_1670243823771 : string = "p_view_req_and_res_profile"
 	btl_1304_1669438778345 : string = "p_view_response_layout"
 	btl_1304_1669378545899 : string = "p_view_message_ui_layout"
 	btl_1304_1669378450385 : string = "p_view_message_list_layout"
@@ -107,6 +108,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	process_log_ui_back : any = {}
 	process_log_ui_view_response : any = {}
 	process_log_ui_view_request : any = {}
+	process_log_ui_view_req_and_res : any = {}
 	history_detail : any = {}
 	message_back_ui : any = {}
 	message_back_ui_back : any = {}
@@ -473,6 +475,15 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.process_log_ui_view_request.dynamic_param = {}
 		this.process_log_ui_view_request.role = []
 		this.process_log_ui_view_request.action = ""
+		
+		// "View Req and Res" Button of "Process Log UI" component
+		this.process_log_ui_view_req_and_res.label_name = "View Req and Res"
+		this.process_log_ui_view_req_and_res.show = true
+		this.process_log_ui_view_req_and_res.disabled = true
+		this.process_log_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.process_log_ui_view_req_and_res.dynamic_param = {}
+		this.process_log_ui_view_req_and_res.role = []
+		this.process_log_ui_view_req_and_res.action = ""
 	
 		// Component level properties - "History Detail" 
 		this.history_detail.uictrl_code = "datatable"
@@ -881,6 +892,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.history_detail__ssr_for_req_ui()
 		this.history_detail__ee_for_view_res()
 		this.history_detail__ee_for_view_req()
+		this.history_detail__ee_for_vreq_vres()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation view log history"
@@ -915,6 +927,13 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	message_detail_action_view_message__action_button_click(){
 		this.message_detail_action_view_message__bt_for_mgsg()
 		this.message_detail_action_view_message__sp_for_view_message_data()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__action_button_click(){
+		this.process_log_ui_view_req_and_res__bt_req()
+		this.process_log_ui_view_req_and_res__bt_for_res()
+		this.process_log_ui_view_req_and_res__sp_for_v_req_and_v_res()
 	}
 
 	//Handler for SELECTION_CHANGED event of "npss pl rtn reason ui t24 return code"
@@ -2524,6 +2543,27 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "history detail"
+	history_detail__ee_for_vreq_vres() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="history_detail"
+		let destn_id="process_log_ui_view_req_and_res"
+		let parent_source_id=""
+		let event_code="e_1670244809778"
+		let event_params={"caller_name":"history_detail__ee_for_vreq_vres","event_desc":"EE for VReq Vres","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "navigation view log history"
 	navigation_view_log_history__brfq_for_hd() { 
 		let Dest_Is_ctrl=true
@@ -2724,6 +2764,69 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1669384100689"
 		let event_params={"caller_name":"message_detail_action_view_message__sp_for_view_message_data","event_desc":"SP for view message DATA","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message","raiseparam":{"profile_code":"BTL_1304_1669378545899"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__bt_req() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id="request_ui"
+		let parent_source_id=""
+		let event_code="e_1670244041861"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_req","event_desc":"BT REQ","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__bt_for_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id="response_ui"
+		let parent_source_id=""
+		let event_code="e_1670244091303"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_for_res","event_desc":"BT FOR RES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__sp_for_v_req_and_v_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1670244119210"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__sp_for_v_req_and_v_res","event_desc":"SP for V REQ and V RES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1670243823771"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27178 
+Build ID        : 27186 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-05 5:12 AM 
+Modified Date   : 2022-Dec-05 13:45 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_api_failures
@@ -40,6 +40,7 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 	uicgc_6 : string = "search"
 	uicgc_7 : string = "single_back_ui"
 	key_events : any = {}
+	btl_1304_1670245566284 : string = "p_view_main_req_and_res_layout"
 	btl_1304_1670065663363 : string = "p_search_layout"
 	btl_1304_1670065604508 : string = "p_view_response_layout"
 	btl_1304_1670065285420 : string = "p_view_request_layout"
@@ -50,6 +51,7 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 	navigation_ui_search : any = {}
 	navigation_ui_view_response : any = {}
 	navigation_ui_view_request : any = {}
+	navigation_ui_view_req_and_res : any = {}
 	process_log_list : any = {}
 	queue : any = {}
 	request_ui : any = {}
@@ -108,6 +110,15 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_request.dynamic_param = {}
 		this.navigation_ui_view_request.role = []
 		this.navigation_ui_view_request.action = ""
+		
+		// "View Req and Res" Button of "Navigation UI" component
+		this.navigation_ui_view_req_and_res.label_name = "View Req and Res"
+		this.navigation_ui_view_req_and_res.show = true
+		this.navigation_ui_view_req_and_res.disabled = true
+		this.navigation_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.navigation_ui_view_req_and_res.dynamic_param = {}
+		this.navigation_ui_view_req_and_res.role = []
+		this.navigation_ui_view_req_and_res.action = ""
 	
 		// Component level properties - "Process Log List" 
 		this.process_log_list.uictrl_code = "datatable"
@@ -234,6 +245,7 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 		this.queue__svm_for_queue()
 		this.queue__de_from_queue_for_view_res()
 		this.queue__de_from_queue_for_req()
+		this.queue__de_from_queue_to_view_req_and_res()
 	}
 
 	//Handler for INTERNAL event of "svm for queue"
@@ -312,6 +324,14 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 		this.process_log_list__ee_for_v_req()
 		this.process_log_list__ssr_for_req_ui()
 		this.process_log_list__ssr_for_res_ui()
+		this.process_log_list__ee_for_req_and_res_button()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
+	navigation_ui_view_req_and_res__action_button_click(){
+		this.navigation_ui_view_req_and_res__sp_for_view_main_req_and_res_layout()
+		this.navigation_ui_view_req_and_res__bt_from_view_req_and_res_to_req()
+		this.navigation_ui_view_req_and_res__bt_from_view_req_and_res_to_res()
 	}
 
 	//Handler for SELECTION_CHANGED event of "queue"
@@ -365,6 +385,27 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1670066031587"
 		let event_params={"caller_name":"queue__de_from_queue_for_req","event_desc":"de from queue for req","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "queue"
+	queue__de_from_queue_to_view_req_and_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="queue"
+		let destn_id="navigation_ui_view_req_and_res"
+		let parent_source_id=""
+		let event_code="e_1670245706474"
+		let event_params={"caller_name":"queue__de_from_queue_to_view_req_and_res","event_desc":"DE from Queue to View Req and Res","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -903,6 +944,90 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ee_for_req_and_res_button() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="navigation_ui_view_req_and_res"
+		let parent_source_id=""
+		let event_code="e_1670246342017"
+		let event_params={"caller_name":"process_log_list__ee_for_req_and_res_button","event_desc":"EE for REQ and RES button","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
+	navigation_ui_view_req_and_res__sp_for_view_main_req_and_res_layout() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_req_and_res"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1670246135536"
+		let event_params={"caller_name":"navigation_ui_view_req_and_res__sp_for_view_main_req_and_res_layout","event_desc":"SP for view main req and res layout","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1670245566284"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
+	navigation_ui_view_req_and_res__bt_from_view_req_and_res_to_req() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_req_and_res"
+		let destn_id="request_ui"
+		let parent_source_id=""
+		let event_code="e_1670246259231"
+		let event_params={"caller_name":"navigation_ui_view_req_and_res__bt_from_view_req_and_res_to_req","event_desc":"BT from View Req and Res to Req","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
+	navigation_ui_view_req_and_res__bt_from_view_req_and_res_to_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_req_and_res"
+		let destn_id="response_ui"
+		let parent_source_id=""
+		let event_code="e_1670246314873"
+		let event_params={"caller_name":"navigation_ui_view_req_and_res__bt_from_view_req_and_res_to_res","event_desc":"BT from View Req and Res to Res","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

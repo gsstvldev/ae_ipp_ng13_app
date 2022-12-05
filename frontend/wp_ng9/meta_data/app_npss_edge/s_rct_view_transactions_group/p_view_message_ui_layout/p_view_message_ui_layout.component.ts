@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27181 
+Build ID        : 27186 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-05 8:4 AM 
+Modified Date   : 2022-Dec-05 13:45 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_transactions_group
@@ -31,7 +31,7 @@ export class p_view_message_ui_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.message_detail_ui.desc = "Message UI"
+    	this.message_detail_ui.desc = "Message Detail UI"
 		this.message_detail_ui.need_header = ""
 		this.message_back_ui.desc = "Message Back UI"
 		this.message_back_ui.need_header = ""

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27177 
+Build ID        : 27184 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-03 15:28 PM 
+Modified Date   : 2022-Dec-05 13:53 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -53,6 +53,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	uicgc_17 : string = "single_back_ui"
 	uicgc_18 : string = "response_ui"
 	key_events : any = {}
+	btl_1304_1670245368385 : string = "p_view_req_and_res"
 	btl_1304_1669459620728 : string = "p_view_message_ui_layout"
 	btl_1304_1669459551241 : string = "p_view_message_list_layout"
 	btl_1304_1669459508394 : string = "p_view_request_layout"
@@ -62,7 +63,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_4","uicgc_14","uicgc_18","uicgc_6","uicgc_16","uicgc_12","uicgc_13","uicgc_17","uicgc_15","uicgc_8","uicgc_3"]
+	forms : any = ["uicgc_4","uicgc_14","uicgc_18","uicgc_6","uicgc_16","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
@@ -94,6 +95,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	process_log_ui_back : any = {}
 	process_log_ui_view_response : any = {}
 	process_log_ui_view_request : any = {}
+	process_log_ui_view_req_and_res : any = {}
 	request_ui : any = {}
 	single_back_ui : any = {}
 	single_back_ui_back : any = {}
@@ -437,6 +439,15 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.process_log_ui_view_request.dynamic_param = {}
 		this.process_log_ui_view_request.role = []
 		this.process_log_ui_view_request.action = ""
+		
+		// "View Req and Res" Button of "Process Log UI" component
+		this.process_log_ui_view_req_and_res.label_name = "View Req and Res"
+		this.process_log_ui_view_req_and_res.show = true
+		this.process_log_ui_view_req_and_res.disabled = true
+		this.process_log_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.process_log_ui_view_req_and_res.dynamic_param = {}
+		this.process_log_ui_view_req_and_res.role = []
+		this.process_log_ui_view_req_and_res.action = ""
 	
 		// Component level properties - "Request UI" 
 		this.request_ui.uictrl_code = "dynamic_ui"
@@ -646,6 +657,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.history_detail__ssr_for_res()
 		this.history_detail__ee_for_res()
 		this.history_detail__ee_for_req()
+		this.history_detail__ee_for_vreq_and_vres()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "process log ui view request"
@@ -692,6 +704,13 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	message_detail_action_view_message__action_button_click(){
 		this.message_detail_action_view_message__bt_for_md_ui()
 		this.message_detail_action_view_message__sp_for_view_message_data()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__action_button_click(){
+		this.process_log_ui_view_req_and_res__sp_for_vreq_and_vres()
+		this.process_log_ui_view_req_and_res__bt_req()
+		this.process_log_ui_view_req_and_res__bt_for_res()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1650,6 +1669,27 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "history detail"
+	history_detail__ee_for_vreq_and_vres() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="history_detail"
+		let destn_id="process_log_ui_view_req_and_res"
+		let parent_source_id=""
+		let event_code="e_1670245533168"
+		let event_params={"caller_name":"history_detail__ee_for_vreq_and_vres","event_desc":"EE for VREQ and VRES","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "process log ui view request"
 	process_log_ui_view_request__bt_for_req() { 
 		let Dest_Is_ctrl=true
@@ -1939,6 +1979,69 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__sp_for_vreq_and_vres() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1670245429553"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__sp_for_vreq_and_vres","event_desc":"SP for VREQ and VRES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1670245368385"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__bt_req() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id="request_ui"
+		let parent_source_id=""
+		let event_code="e_1670245582446"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_req","event_desc":"BT REQ","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__bt_for_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id="response_ui"
+		let parent_source_id=""
+		let event_code="e_1670245617283"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_for_res","event_desc":"BT for RES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

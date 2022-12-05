@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27177 
+Build ID        : 27184 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-03 15:28 PM 
+Modified Date   : 2022-Dec-05 13:53 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -57,6 +57,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 	uicgc_17 : string = "message_back_ui"
 	uicgc_18 : string = "history_detail"
 	key_events : any = {}
+	btl_1304_1670244292991 : string = "p_view_req_and_res_profile"
 	btl_1304_1669458494431 : string = "p_view_message_ui_layout"
 	btl_1304_1669458390905 : string = "p_view_message_list_layout"
 	btl_1304_1669458300218 : string = "p_view_request_layout"
@@ -66,7 +67,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_4","uicgc_11","uicgc_6","uicgc_12","uicgc_14","uicgc_17","uicgc_15","uicgc_10","uicgc_13","uicgc_7","uicgc_3"]
+	forms : any = ["uicgc_4","uicgc_11","uicgc_6","uicgc_12","uicgc_14","uicgc_10","uicgc_17","uicgc_15","uicgc_13","uicgc_7","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	p_cbs_layout__spap_for_cbs_ui_showpopup : boolean = false
 	queue : any = {}
@@ -99,6 +100,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 	process_log_ui_back : any = {}
 	process_log_ui_view_response : any = {}
 	process_log_ui_view_request : any = {}
+	process_log_ui_view_req_and_res : any = {}
 	message_detail_ui : any = {}
 	message_detail_action : any = {}
 	message_detail_action_back : any = {}
@@ -440,6 +442,15 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		this.process_log_ui_view_request.dynamic_param = {}
 		this.process_log_ui_view_request.role = []
 		this.process_log_ui_view_request.action = ""
+		
+		// "View Req and Res" Button of "Process Log UI" component
+		this.process_log_ui_view_req_and_res.label_name = "View Req and Res"
+		this.process_log_ui_view_req_and_res.show = true
+		this.process_log_ui_view_req_and_res.disabled = true
+		this.process_log_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.process_log_ui_view_req_and_res.dynamic_param = {}
+		this.process_log_ui_view_req_and_res.role = []
+		this.process_log_ui_view_req_and_res.action = ""
 	
 		// Component level properties - "Message Detail UI" 
 		this.message_detail_ui.uictrl_code = "dynamic_ui"
@@ -746,6 +757,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		this.history_detail__ee_from_history_detail_to_view_reaponse()
 		this.history_detail__ee_from_history_detail_to_view_req()
 		this.history_detail__ssr_from_hd_to_req()
+		this.history_detail__ee_for_vreq_vres()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "message back ui back"
@@ -812,6 +824,13 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "single back ui back"
 	single_back_ui_back__action_button_click(){
 		this.single_back_ui_back__sp_for_reqres()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__action_button_click(){
+		this.process_log_ui_view_req_and_res__bt_vreq()
+		this.process_log_ui_view_req_and_res__bt_vres()
+		this.process_log_ui_view_req_and_res__sp_for_vreq()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2095,6 +2114,27 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "history detail"
+	history_detail__ee_for_vreq_vres() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="history_detail"
+		let destn_id="process_log_ui_view_req_and_res"
+		let parent_source_id=""
+		let event_code="e_1670244586967"
+		let event_params={"caller_name":"history_detail__ee_for_vreq_vres","event_desc":"EE for VReq VRes","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "message back ui back"
 	message_back_ui_back__sp_for_message_back() { 
 		let Dest_Is_ctrl=true
@@ -2463,6 +2503,69 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1669460836168"
 		let event_params={"caller_name":"single_back_ui_back__sp_for_reqres","event_desc":"SP for REQ,RES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"single_back_ui_back","raiseparam":{"profile_code":"BTL_1304_1669457979784"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__bt_vreq() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id="request_ui"
+		let parent_source_id=""
+		let event_code="e_1670244422924"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_vreq","event_desc":"BT VReq","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__bt_vres() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id="response_ui"
+		let parent_source_id=""
+		let event_code="e_1670244485244"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_vres","event_desc":"BT VRES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__sp_for_vreq() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1670244529090"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__sp_for_vreq","event_desc":"SP for vreq","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1670244292991"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

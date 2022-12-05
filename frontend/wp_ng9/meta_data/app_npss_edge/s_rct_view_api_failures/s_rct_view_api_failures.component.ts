@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27177 
+Build ID        : 27178 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-03 15:28 PM 
+Modified Date   : 2022-Dec-05 5:12 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_api_failures
@@ -224,7 +224,7 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
   
 	// To handle page_load event
 	page_load(){
-		this.page_load__cc()
+		this.page_load__cc_for_sh_ide()
 		this.page_load__de_for_view_req()
 		this.page_load__de_for_view_response()
 	}
@@ -256,14 +256,14 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 		this.brfq_for_plog_list__ssf_for_plog_list(parent_event_result)
 	}
 
-	//Handler for INTERNAL event of "cc"
-	cc__internal(parent_event_result){
-		this.cc__cf_for_pageload(parent_event_result)
+	//Handler for INTERNAL event of "cc for sh ide"
+	cc_for_sh_ide__internal(parent_event_result){
+		this.cc_for_sh_ide__cf_for_cc(parent_event_result)
 	}
 
-	//Handler for INTERNAL event of "cf for pageload"
-	cf_for_pageload__internal(parent_event_result){
-		this.cf_for_pageload__tbc_for_search(parent_event_result)
+	//Handler for INTERNAL event of "cf for cc"
+	cf_for_cc__internal(parent_event_result){
+		this.cf_for_cc__tbc_for_search(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view request"
@@ -286,7 +286,6 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__action_button_click(){
-		this.search_search__cu_for_search()
 		this.search_search__cu_for_pl()
 		this.search_search__cp_after_search()
 		this.search_search__ssp_for_pl_queue()
@@ -311,6 +310,8 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 	process_log_list__selection_changed(){
 		this.process_log_list__ee__for_v_res()
 		this.process_log_list__ee_for_v_req()
+		this.process_log_list__ssr_for_req_ui()
+		this.process_log_list__ssr_for_res_ui()
 	}
 
 	//Handler for SELECTION_CHANGED event of "queue"
@@ -465,16 +466,16 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__cc() { 
+	page_load__cc_for_sh_ide() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1670063863836"
-		let event_params={"caller_name":"page_load__cc","event_desc":"cc","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let event_params={"caller_name":"page_load__cc_for_sh_ide","event_desc":"CC for SH ide","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="custom_connectors"
-		let internals="cc__cf_for_pageload,"
+		let internals="cc_for_sh_ide__cf_for_cc,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -527,18 +528,18 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "cc"
-	cc__cf_for_pageload(parent_event_result) { 
+	//Handler for INTERNAL event of "cc for sh ide"
+	cc_for_sh_ide__cf_for_cc(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc"
+		let source_id="cc_for_sh_ide"
 		let destn_id=""
 		let parent_source_id="page_load"
 		let event_code="e_1670063888699"
-		let event_params={"caller_name":"cc__cf_for_pageload","event_desc":"CF for Pageload","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_sh_ide__cf_for_cc","event_desc":"CF for CC","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""},"parent_event_result":"SUCCESS"}
 		let handler_code="create_form"
-		let internals="cf_for_pageload__tbc_for_search,"
+		let internals="cf_for_cc__tbc_for_search,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -549,16 +550,16 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "cf for pageload"
-	cf_for_pageload__tbc_for_search(parent_event_result) { 
+	//Handler for INTERNAL event of "cf for cc"
+	cf_for_cc__tbc_for_search(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cf_for_pageload"
+		let source_id="cf_for_cc"
 		let destn_id="search_search"
-		let parent_source_id="cc"
+		let parent_source_id="cc_for_sh_ide"
 		let event_code="e_1670074376870"
-		let event_params={"caller_name":"cf_for_pageload__tbc_for_search","event_desc":"TBC for Search","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cf_for_cc__tbc_for_search","event_desc":"TBC for Search","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="trigger_button_click"
 		let internals=""
 		let event_data={}
@@ -691,27 +692,6 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "search search"
-	search_search__cu_for_search() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="search_search"
-		let destn_id="search"
-		let parent_source_id=""
-		let event_code="e_1670064814904"
-		let event_params={"caller_name":"search_search__cu_for_search","event_desc":"CU for search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"need_reset_key_column":"N"}}
-		let handler_code="clear_ui"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -881,6 +861,48 @@ export class s_rct_view_api_failuresComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ssr_for_req_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="request_ui"
+		let parent_source_id=""
+		let event_code="e_1670216598809"
+		let event_params={"caller_name":"process_log_list__ssr_for_req_ui","event_desc":"SSR for Req UI","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ssr_for_res_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="response_ui"
+		let parent_source_id=""
+		let event_code="e_1670216628448"
+		let event_params={"caller_name":"process_log_list__ssr_for_res_ui","event_desc":"SSR for Res UI","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

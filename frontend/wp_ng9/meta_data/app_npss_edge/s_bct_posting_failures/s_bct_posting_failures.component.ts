@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27187 
+Build ID        : 27198 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-05 13:48 PM 
+Modified Date   : 2022-Dec-06 4:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_failures
@@ -70,8 +70,8 @@ export class s_bct_posting_failuresComponent implements OnInit,AfterViewInit {
 	transaction_list : any = {}
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
-	navigation_ui_view_log_history : any = {}
 	navigation_ui_view_tran : any = {}
+	navigation_ui_view_log_history : any = {}
 	navigation_ui_retry : any = {}
 	search : any = {}
 	search_search : any = {}
@@ -156,15 +156,6 @@ export class s_bct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_search.role = []
 		this.navigation_ui_search.action = ""
 		
-		// "View Log History" Button of "Navigation UI" component
-		this.navigation_ui_view_log_history.label_name = "View Log History"
-		this.navigation_ui_view_log_history.show = true
-		this.navigation_ui_view_log_history.disabled = true
-		this.navigation_ui_view_log_history.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
-		this.navigation_ui_view_log_history.dynamic_param = {}
-		this.navigation_ui_view_log_history.role = []
-		this.navigation_ui_view_log_history.action = ""
-		
 		// "View Tran" Button of "Navigation UI" component
 		this.navigation_ui_view_tran.label_name = "View Tran"
 		this.navigation_ui_view_tran.show = true
@@ -173,6 +164,15 @@ export class s_bct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_tran.dynamic_param = {}
 		this.navigation_ui_view_tran.role = []
 		this.navigation_ui_view_tran.action = ""
+		
+		// "View Log History" Button of "Navigation UI" component
+		this.navigation_ui_view_log_history.label_name = "View Log History"
+		this.navigation_ui_view_log_history.show = true
+		this.navigation_ui_view_log_history.disabled = true
+		this.navigation_ui_view_log_history.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
+		this.navigation_ui_view_log_history.dynamic_param = {}
+		this.navigation_ui_view_log_history.role = []
+		this.navigation_ui_view_log_history.action = ""
 		
 		// "Retry" Button of "Navigation UI" component
 		this.navigation_ui_retry.label_name = "Retry"

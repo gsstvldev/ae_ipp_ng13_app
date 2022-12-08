@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27235 
+Build ID        : 27243 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 12:14 PM 
+Modified Date   : 2022-Dec-08 12:56 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_simulator
@@ -35,6 +35,7 @@ import { s_rct_simulatorRoutingModule } from './s_rct_simulator.routing.module';
 import { p_mainlayoutComponent } from './p_mainlayout/p_mainlayout.component'
 import { f_npss_simulator_uiComponent } from './f_npss_simulator_ui/f_npss_simulator_ui.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
+import { f_triger_uiComponent } from './f_triger_ui/f_triger_ui.component'
 import { p_list_layoutComponent } from './p_list_layout/p_list_layout.component'
 import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
 
@@ -53,7 +54,7 @@ import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
     s_rct_simulatorRoutingModule,
     npss_cs_sim_pack_008Module
   ],
-  declarations: [s_rct_simulatorComponent,p_mainlayoutComponent,f_npss_simulator_uiComponent,f_navigation_uiComponent,p_list_layoutComponent,f_back_uiComponent,],
+  declarations: [s_rct_simulatorComponent,p_mainlayoutComponent,f_npss_simulator_uiComponent,f_navigation_uiComponent,f_triger_uiComponent,p_list_layoutComponent,f_back_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

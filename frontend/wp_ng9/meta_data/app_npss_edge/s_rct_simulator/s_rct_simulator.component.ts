@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27235 
+Build ID        : 27243 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 12:14 PM 
+Modified Date   : 2022-Dec-08 12:56 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_simulator
@@ -36,6 +36,7 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	uicgc_2 : string = "navigation_ui"
 	uicgc_3 : string = "list"
 	uicgc_4 : string = "back_ui"
+	uicgc_5 : string = "triger_ui"
 	key_events : any = {}
 	btl_1304_1670482144272 : string = "p_mainlayout"
 	btl_1304_1670481741540 : string = "p_list_layout"
@@ -47,6 +48,8 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	list : any = {}
 	back_ui : any = {}
 	back_ui_back : any = {}
+	triger_ui : any = {}
+	triger_ui_trig_btn : any = {}
 
 
 	// Constructor 
@@ -136,6 +139,27 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 		this.back_ui_back.dynamic_param = {}
 		this.back_ui_back.role = []
 		this.back_ui_back.action = ""
+	
+		// Component level properties - "Triger UI" 
+		this.triger_ui.uictrl_code = "dynamic_ui"
+		this.triger_ui.uicgc_desc = "Triger UI"
+		this.triger_ui.uicgc_code = "uicgc_5"
+		this.triger_ui.params = {}
+		this.triger_ui.datasource = {}
+		this.triger_ui.context_menu = []
+		this.triger_ui.views = {}
+		this.triger_ui.onChangecomponent = new EventEmitter<any>()
+		this.triger_ui.show = true
+		this.triger_ui.dynamic_param = {}
+		
+		// "Trig Btn" Button of "Triger UI" component
+		this.triger_ui_trig_btn.label_name = "Trig Btn"
+		this.triger_ui_trig_btn.show = true
+		this.triger_ui_trig_btn.disabled = false
+		this.triger_ui_trig_btn.params = {"icon_only":false,"uicgcc_style":""}
+		this.triger_ui_trig_btn.dynamic_param = {}
+		this.triger_ui_trig_btn.role = []
+		this.triger_ui_trig_btn.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -146,6 +170,7 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	// To handle page_load event
 	page_load(){
 		this.page_load__cr_for_pl()
+		this.page_load__tbc_for_trg_btn()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui create pacs008"
@@ -174,6 +199,21 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 		this.back_ui_back__sp_for_back_from_main()
 	}
 
+	//Handler for TEXT_CHANGED event of "npss simulator ui intrbk sttlm amnt"
+	npss_simulator_ui_intrbk_sttlm_amnt__text_changed(){
+		this.npss_simulator_ui_intrbk_sttlm_amnt__e_1670502154334__data_entry()
+	}
+
+	//Handler for INTERNAL event of "e 1670502154334"
+	e_1670502154334__internal(){
+		this.e_1670502154334__e_1670502173922__data_entry()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "triger ui trig btn"
+	triger_ui_trig_btn__action_button_click(){
+		this.triger_ui_trig_btn__de_for_trg_btn__data_entry()
+	}
+
 	//Handler for DPSINIT event of "page_load"
 	page_load__cr_for_pl() { 
 		let Dest_Is_ctrl=true
@@ -189,6 +229,27 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__tbc_for_trg_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="triger_ui_trig_btn"
+		let parent_source_id=""
+		let event_code="e_1670503112418"
+		let event_params={"caller_name":"page_load__tbc_for_trg_btn","event_desc":"TBC for Trg btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -317,6 +378,69 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for TEXT_CHANGED event of "npss simulator ui intrbk sttlm amnt"
+	npss_simulator_ui_intrbk_sttlm_amnt__e_1670502154334__data_entry() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="npss_simulator_ui_intrbk_sttlm_amnt"
+		let destn_id="npss_simulator_ui_intrbk_sttlm_amnt"
+		let parent_source_id=""
+		let event_code="e_1670502154334"
+		let event_params={"source_comp_id":"data_entry","source_ctrl_id":"intrbk_sttlm_amnt","destn_comp_id":"data_entry","destn_ctrl_id":"intrbk_sttlm_amnt","caller_name":"npss_simulator_ui_intrbk_sttlm_amnt__e_1670502154334__data_entry","event_desc":"E_1670502154334","event_type":"TEXT_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_simulator_ui~uicgc_1~ui~df_1304_1670492597353~17","raiseparam":{}}
+		let handler_code="set_value_to_memory"
+		let internals="e_1670502154334__e_1670502173922__data_entry,"
+		let event_data={"control":{"e_1670502154334":{"dts":{"dt_1304_1665901130705":{"dtts":{"dtt_1304_1670492310194":{"uicgc_code":"CONTROL","event_code":"E_1670502154334","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670492310194","dtt_desc":"NPSS API Sim Pacs008","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"INTRBK_STTLM_AMNT","level":"MI_LEVEL","name":"MI_LEVEL_INTRBK_STTLM_AMNT","setd3name":""}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let data_source={}
+		try {
+			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1670502154334"
+	e_1670502154334__e_1670502173922__data_entry() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="e_1670502154334"
+		let destn_id="npss_simulator_ui_hdr_total_amount"
+		let parent_source_id=""
+		let event_code="e_1670502173922"
+		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"hdr_total_amount","caller_name":"e_1670502154334__e_1670502173922__data_entry","event_desc":"E_1670502173922","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"npss_simulator_ui~uicgc_1~ui~df_1304_1670492597353~17","raiseparam":{}}
+		let handler_code="bind_value_from_memory"
+		let internals=""
+		let event_data={"control":{"e_1670502173922":{"dts":{"dt_1304_1665901130705":{"dtts":{"dtt_1304_1670492310194":{"uicgc_code":"CONTROL","event_code":"E_1670502173922","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670492310194","dtt_desc":"NPSS API Sim Pacs008","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[],"get_from_memory":[{"level":"MI_LEVEL","value":"MI_LEVEL_INTRBK_STTLM_AMNT","tb_data":"Y","column":"HDR_TOTAL_AMOUNT","d3name":""}],"set_event_context":null,"sec_value":null}}}}}}}}
+		let data_source={}
+		try {
+			this.handler.bind_value_from_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "triger ui trig btn"
+	triger_ui_trig_btn__de_for_trg_btn__data_entry() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="triger_ui_trig_btn"
+		let destn_id="npss_simulator_ui_hdr_total_amount"
+		let parent_source_id=""
+		let event_code="e_1670503191929"
+		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"hdr_total_amount","caller_name":"triger_ui_trig_btn__de_for_trg_btn__data_entry","event_desc":"DE for Trg btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"triger_ui_trig_btn","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

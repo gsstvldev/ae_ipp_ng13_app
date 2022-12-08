@@ -33,7 +33,7 @@
 				<txt [ctrl_id]="'npss_simulator_ui_dr_sort_code'" [comp_id]="comp_id" [ctrl]="ctrl.dr_sort_code" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
 	<div  id="RN11CN10" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cr_sort_code')" >
-				<txt [ctrl_id]="'npss_simulator_ui_cr_sort_code'" [comp_id]="comp_id" [ctrl]="ctrl.cr_sort_code" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+				<cbo [ctrl_id]="'npss_simulator_ui_cr_sort_code'" [comp_id]="comp_id" [ctrl]="ctrl.cr_sort_code" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
 	</div>
 	<div  id="RN11CN11" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('instruction_id')" >
 				<txt [ctrl_id]="'npss_simulator_ui_instruction_id'" [comp_id]="comp_id" [ctrl]="ctrl.instruction_id" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
@@ -158,11 +158,11 @@
 	<div  id="RN81CN77" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cbs_posting_flag')" >
 				<txt [ctrl_id]="'npss_simulator_ui_cbs_posting_flag'" [comp_id]="comp_id" [ctrl]="ctrl.cbs_posting_flag" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
-</div>
-<div id="RN61" class="row">
 	<div  id="RN61CN52" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('ext_purpose_prty')" >
 				<txt [ctrl_id]="'npss_simulator_ui_ext_purpose_prty'" [comp_id]="comp_id" [ctrl]="ctrl.ext_purpose_prty" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
+</div>
+<div id="RN61" class="row">
 	<div  id="RN61CN53" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('remittance_info')" >
 				<txt [ctrl_id]="'npss_simulator_ui_remittance_info'" [comp_id]="comp_id" [ctrl]="ctrl.remittance_info" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
@@ -201,6 +201,21 @@
 	</div>
 	<div  id="RN61CN65" class="column col-md-1 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('vatnarration')" >
 				<txt [ctrl_id]="'npss_simulator_ui_vatnarration'" [comp_id]="comp_id" [ctrl]="ctrl.vatnarration" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN81CN78" class="column col-md-1 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('vataccount')" >
+				<txt [ctrl_id]="'npss_simulator_ui_vataccount'" [comp_id]="comp_id" [ctrl]="ctrl.vataccount" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN61CN79" class="column col-md-1 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('exchangerate')" >
+				<txt [ctrl_id]="'npss_simulator_ui_exchangerate'" [comp_id]="comp_id" [ctrl]="ctrl.exchangerate" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN61CN80" class="column col-md-1 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('customerrate')" >
+				<txt [ctrl_id]="'npss_simulator_ui_customerrate'" [comp_id]="comp_id" [ctrl]="ctrl.customerrate" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN61CN81" class="column col-md-1 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('treasuryrate')" >
+				<txt [ctrl_id]="'npss_simulator_ui_treasuryrate'" [comp_id]="comp_id" [ctrl]="ctrl.treasuryrate" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN61CN82" class="column col-md-1 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('customerspread')" >
+				<txt [ctrl_id]="'npss_simulator_ui_customerspread'" [comp_id]="comp_id" [ctrl]="ctrl.customerspread" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
 </div>
 	</form>

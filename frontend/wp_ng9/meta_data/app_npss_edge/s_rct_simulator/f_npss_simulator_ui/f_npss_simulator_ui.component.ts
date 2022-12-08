@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27235 
+Build ID        : 27243 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 12:14 PM 
+Modified Date   : 2022-Dec-08 12:56 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_simulator
@@ -99,7 +99,7 @@ focustoelement(){
 		this.ctrl.hdr_created_date.data_type = "DATETIME"
 		this.ctrl.hdr_created_date.data_length = 0
 		this.ctrl.hdr_created_date.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.hdr_created_date.default_value = ""
+		this.ctrl.hdr_created_date.default_value = "setcurrentdate(),{}"
 		this.ctrl.hdr_created_date.is_memory_ctrl = ""
 		this.ctrl.hdr_created_date.field_coordinates = ""
 		this.ctrl.hdr_created_date.sub_details = ""
@@ -213,7 +213,7 @@ focustoelement(){
 		this.ctrl.hdr_settlement_date.data_type = "DATETIME"
 		this.ctrl.hdr_settlement_date.data_length = 0
 		this.ctrl.hdr_settlement_date.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.hdr_settlement_date.default_value = ""
+		this.ctrl.hdr_settlement_date.default_value = "setcurrentdate(),{}"
 		this.ctrl.hdr_settlement_date.is_memory_ctrl = ""
 		this.ctrl.hdr_settlement_date.field_coordinates = ""
 		this.ctrl.hdr_settlement_date.sub_details = ""
@@ -251,7 +251,7 @@ focustoelement(){
 		this.ctrl.value_date.data_type = "DATETIME"
 		this.ctrl.value_date.data_length = 0
 		this.ctrl.value_date.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.value_date.default_value = ""
+		this.ctrl.value_date.default_value = "setcurrentdate(),{}"
 		this.ctrl.value_date.is_memory_ctrl = ""
 		this.ctrl.value_date.field_coordinates = ""
 		this.ctrl.value_date.sub_details = ""
@@ -398,12 +398,12 @@ focustoelement(){
 		this.ctrl.cr_sort_code.label_name = "Beneficiary BIC"
 		this.ctrl.cr_sort_code.df_code = "DF_1304_1670492597353"
 		this.ctrl.cr_sort_code.df_description = "Column Group 1"
-		this.ctrl.cr_sort_code.uictrl_code = "TXT"
+		this.ctrl.cr_sort_code.uictrl_code = "CBO"
 		this.ctrl.cr_sort_code.target_column = "CR_SORT_CODE"
 		this.ctrl.cr_sort_code.data_type = "TEXT"
 		this.ctrl.cr_sort_code.data_length = 11
 		this.ctrl.cr_sort_code.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.cr_sort_code.default_value = "Receiver BIC"
+		this.ctrl.cr_sort_code.default_value = ""
 		this.ctrl.cr_sort_code.is_memory_ctrl = ""
 		this.ctrl.cr_sort_code.field_coordinates = ""
 		this.ctrl.cr_sort_code.sub_details = ""
@@ -415,7 +415,7 @@ focustoelement(){
 		this.ctrl.cr_sort_code.placeholder = ""
 		this.ctrl.cr_sort_code.dynamic_param = ""
 		this.ctrl.cr_sort_code.style_code = ""
-		this.ctrl.cr_sort_code.data_source = ""
+		this.ctrl.cr_sort_code.data_source = {"ds_code":"UDS_1304_1670483620977","ds_description":"NPSS Bank BIC CDB","rows":[],"type":"DPS_TABLE","value_member":"BIC_CODE","display_member":"BIC_CODE","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_MEMBER_BANKS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1670483970659","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"need_auto_first_record":true,"sel_columns":[]}
 		this.ctrl.cr_sort_code.image_association = ""
 		this.ctrl.cr_sort_code.show = true
 		this.ctrl.cr_sort_code.sub_content = ""
@@ -427,6 +427,7 @@ focustoelement(){
 		this.ctrl.cr_sort_code.ctrl_id = "npss_simulator_ui_cr_sort_code"
 		this.ctrl.npss_simulator_ui_cr_sort_code = {}
 		this.ctrl.npss_simulator_ui_cr_sort_code.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_simulator_ui.cr_sort_code = {}
 	
 		//Properties of instruction_id
 		this.ctrl.instruction_id = {}
@@ -1125,7 +1126,7 @@ focustoelement(){
 		this.ctrl.ext_acct_id_code.data_type = "TEXT"
 		this.ctrl.ext_acct_id_code.data_length = 4
 		this.ctrl.ext_acct_id_code.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.ext_acct_id_code.default_value = ""
+		this.ctrl.ext_acct_id_code.default_value = "AIIN"
 		this.ctrl.ext_acct_id_code.is_memory_ctrl = ""
 		this.ctrl.ext_acct_id_code.field_coordinates = ""
 		this.ctrl.ext_acct_id_code.sub_details = ""
@@ -1353,7 +1354,7 @@ focustoelement(){
 		this.ctrl.cr_acct_id_code.data_type = "TEXT"
 		this.ctrl.cr_acct_id_code.data_length = 4
 		this.ctrl.cr_acct_id_code.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.cr_acct_id_code.default_value = ""
+		this.ctrl.cr_acct_id_code.default_value = "AIIN"
 		this.ctrl.cr_acct_id_code.is_memory_ctrl = ""
 		this.ctrl.cr_acct_id_code.field_coordinates = ""
 		this.ctrl.cr_acct_id_code.sub_details = ""
@@ -1441,7 +1442,7 @@ focustoelement(){
 		this.ctrl.channel_id.placeholder = ""
 		this.ctrl.channel_id.dynamic_param = ""
 		this.ctrl.channel_id.style_code = ""
-		this.ctrl.channel_id.data_source = {"ds_code":"UDS_1304_1670498867574","ds_description":"Simulator SQL CDB","rows":[],"type":"DPS_TABLE","value_member":"S_ID","display_member":"S_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_SYSTEM_EXTN","context":"","filters":[{"filter_name":"Filter1","binding_name":"S_ID","id":"DF_1670499447668","binding_value":"SM","source_name":"S_ID","source_value":"SM","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1670499447668","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"S_ID","binding_value":"SM","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"SM"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(S_ID = SM AND TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
+		this.ctrl.channel_id.data_source = {"ds_code":"UDS_1304_1670498867574","ds_description":"Simulator SQL CDB","rows":[],"type":"DPS_TABLE","value_member":"S_CODE","display_member":"S_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_SYSTEM_EXTN","context":"","filters":[{"filter_name":"Filter1","binding_name":"ST_CODE","id":"DF_1670504175818","binding_value":"CH","source_name":"ST_CODE","source_value":"CH","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1670504175818","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"ST_CODE","binding_value":"CH","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"CH"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(ST_CODE = CH AND TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
 		this.ctrl.channel_id.image_association = ""
 		this.ctrl.channel_id.show = true
 		this.ctrl.channel_id.sub_content = ""
@@ -2366,8 +2367,198 @@ focustoelement(){
 		this.ctrl.vatnarration.ctrl_id = "npss_simulator_ui_vatnarration"
 		this.ctrl.npss_simulator_ui_vatnarration = {}
 		this.ctrl.npss_simulator_ui_vatnarration.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_simulator_ui.model = {"HDR_MSG_ID":"","HDR_CREATED_DATE":"","HDR_TOTAL_RECORDS":"1","HDR_TOTAL_AMOUNT":"","HDR_SETTLEMENT_DATE":"","VALUE_DATE":"","HDR_SETTLEMENT_METHOD":"CLRG","HDR_CLEARING_SYSTEM":"UAEIPP Core Service","DR_SORT_CODE":"Sender Bic","CR_SORT_CODE":"Receiver BIC","INSTRUCTION_ID":"","PAYMENT_ENDTOEND_ID":"","TRAN_REF_ID":"","UETR":"","INSTRUMENT_TYPE":"INST","CATEGORY_PURPOSE":"","CATEGORY_PURPOSE_PRTY":"","INTRBK_STTLM_AMNT":"","CHARGE_BEARER":"SLEV","DBTR_ACCT_NAME":"","EXT_ORG_ID_CODE":"","EXT_PERSON_ID_CODE":"","ISSUER_TYPE_CODE":"","DBTR_BIRTH_DATE":"","DBTR_COUNTRY":"","DBTR_DOCUMENT_ID":"","DBTR_IBAN":"","DBTR_ACCT_NO":"","EXT_ACCT_ID_CODE":"","DBTR_CUST_TYPE":"","CDTR_ACCT_NAME":"","CDTR_ACCT_NO":"","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","CR_ACCT_ID_CODE":"","EXT_PURPOSE_CODE":"","CHANNEL_ID":"","CHANNEL_REFNO":"","CHANNEL_USERID":"","CHANNEL_PRODUCT":"","CHANNEL_SUB_PRODUCT":"","CHANNEL_TRAN_CODE":"","MIDDLEWARE_REF_NO":"","CBS_REF_NO":"","DBTR_PRVT_ID":"","BASE_CURRENCY":"","CBS_POSTING_FLAG":"","EXT_PURPOSE_PRTY":"","REMITTANCE_INFO":"","INDIVIDUALIDENTIFICATIONCODE":"","OTHERACCOUNT":"","COMPANYCODE":"","CORETRANSACTIONTYPE":"","BENEFICIARYCUSTOMER":"","CHARGEACCOUNT":"","CHARGECODE":"","CHARGETYPE":"","CHARGEAMOUNT":"","CHARGENARRATION":"","VATAMOUNT":"","VATNARRATION":""}
-		this.screen_instance[this.comp_id].f_npss_simulator_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_ID"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"HDR_CREATED_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"HDR_TOTAL_RECORDS"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"HDR_TOTAL_AMOUNT"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"HDR_SETTLEMENT_DATE"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_SETTLEMENT_METHOD"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_CLEARING_SYSTEM"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DR_SORT_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_SORT_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INSTRUCTION_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INSTRUMENT_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CATEGORY_PURPOSE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CATEGORY_PURPOSE_PRTY"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGE_BEARER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_ORG_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PERSON_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"ISSUER_TYPE_CODE"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"DBTR_BIRTH_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_COUNTRY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_DOCUMENT_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_ACCT_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_CUST_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REFNO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_USERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_PRODUCT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_SUB_PRODUCT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_TRAN_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MIDDLEWARE_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CBS_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PRVT_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BASE_CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CBS_POSTING_FLAG"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_PRTY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"REMITTANCE_INFO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INDIVIDUALIDENTIFICATIONCODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"OTHERACCOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"COMPANYCODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CORETRANSACTIONTYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BENEFICIARYCUSTOMER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGEACCOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGECODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGETYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGEAMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGENARRATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VATAMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VATNARRATION"}]
+	
+		//Properties of vataccount
+		this.ctrl.vataccount = {}
+		this.ctrl.vataccount.id = "RN81CN78"
+		this.ctrl.vataccount.desc = "vataccount"
+		this.ctrl.vataccount.visible = true
+		this.ctrl.vataccount.label_name = "vataccount"
+		this.ctrl.vataccount.df_code = "DF_1304_1670492597353"
+		this.ctrl.vataccount.df_description = "Column Group 1"
+		this.ctrl.vataccount.uictrl_code = "TXT"
+		this.ctrl.vataccount.target_column = "VATACCOUNT"
+		this.ctrl.vataccount.data_type = "TEXT"
+		this.ctrl.vataccount.data_length = 20
+		this.ctrl.vataccount.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.vataccount.default_value = ""
+		this.ctrl.vataccount.is_memory_ctrl = ""
+		this.ctrl.vataccount.field_coordinates = ""
+		this.ctrl.vataccount.sub_details = ""
+		this.ctrl.vataccount.accept_char = ""
+		this.ctrl.vataccount.currency_format = ""
+		this.ctrl.vataccount.data_scale = ""
+		this.ctrl.vataccount.hide_label = false
+		this.ctrl.vataccount.depends_on = ""
+		this.ctrl.vataccount.placeholder = ""
+		this.ctrl.vataccount.dynamic_param = ""
+		this.ctrl.vataccount.style_code = ""
+		this.ctrl.vataccount.data_source = ""
+		this.ctrl.vataccount.image_association = ""
+		this.ctrl.vataccount.show = true
+		this.ctrl.vataccount.sub_content = ""
+		this.ctrl.vataccount.required = false
+		this.ctrl.vataccount.vld_rules = []
+		this.ctrl.vataccount.targetcolumn_lower = "vataccount"
+		this.ctrl.vataccount.disabled = false
+		this.ctrl.vataccount.view_name = "f_npss_simulator_ui"
+		this.ctrl.vataccount.ctrl_id = "npss_simulator_ui_vataccount"
+		this.ctrl.npss_simulator_ui_vataccount = {}
+		this.ctrl.npss_simulator_ui_vataccount.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of exchangerate
+		this.ctrl.exchangerate = {}
+		this.ctrl.exchangerate.id = "RN61CN79"
+		this.ctrl.exchangerate.desc = "exchangerate"
+		this.ctrl.exchangerate.visible = true
+		this.ctrl.exchangerate.label_name = "exchangerate"
+		this.ctrl.exchangerate.df_code = "DF_1304_1670492597353"
+		this.ctrl.exchangerate.df_description = "Column Group 1"
+		this.ctrl.exchangerate.uictrl_code = "TXT"
+		this.ctrl.exchangerate.target_column = "EXCHANGERATE"
+		this.ctrl.exchangerate.data_type = "TEXT"
+		this.ctrl.exchangerate.data_length = 20
+		this.ctrl.exchangerate.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.exchangerate.default_value = ""
+		this.ctrl.exchangerate.is_memory_ctrl = ""
+		this.ctrl.exchangerate.field_coordinates = ""
+		this.ctrl.exchangerate.sub_details = ""
+		this.ctrl.exchangerate.accept_char = ""
+		this.ctrl.exchangerate.currency_format = ""
+		this.ctrl.exchangerate.data_scale = ""
+		this.ctrl.exchangerate.hide_label = false
+		this.ctrl.exchangerate.depends_on = ""
+		this.ctrl.exchangerate.placeholder = ""
+		this.ctrl.exchangerate.dynamic_param = ""
+		this.ctrl.exchangerate.style_code = ""
+		this.ctrl.exchangerate.data_source = ""
+		this.ctrl.exchangerate.image_association = ""
+		this.ctrl.exchangerate.show = true
+		this.ctrl.exchangerate.sub_content = ""
+		this.ctrl.exchangerate.required = false
+		this.ctrl.exchangerate.vld_rules = []
+		this.ctrl.exchangerate.targetcolumn_lower = "exchangerate"
+		this.ctrl.exchangerate.disabled = false
+		this.ctrl.exchangerate.view_name = "f_npss_simulator_ui"
+		this.ctrl.exchangerate.ctrl_id = "npss_simulator_ui_exchangerate"
+		this.ctrl.npss_simulator_ui_exchangerate = {}
+		this.ctrl.npss_simulator_ui_exchangerate.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of customerrate
+		this.ctrl.customerrate = {}
+		this.ctrl.customerrate.id = "RN61CN80"
+		this.ctrl.customerrate.desc = "customerRate"
+		this.ctrl.customerrate.visible = true
+		this.ctrl.customerrate.label_name = "customerRate"
+		this.ctrl.customerrate.df_code = "DF_1304_1670492597353"
+		this.ctrl.customerrate.df_description = "Column Group 1"
+		this.ctrl.customerrate.uictrl_code = "TXT"
+		this.ctrl.customerrate.target_column = "CUSTOMERRATE"
+		this.ctrl.customerrate.data_type = "TEXT"
+		this.ctrl.customerrate.data_length = 20
+		this.ctrl.customerrate.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.customerrate.default_value = ""
+		this.ctrl.customerrate.is_memory_ctrl = ""
+		this.ctrl.customerrate.field_coordinates = ""
+		this.ctrl.customerrate.sub_details = ""
+		this.ctrl.customerrate.accept_char = ""
+		this.ctrl.customerrate.currency_format = ""
+		this.ctrl.customerrate.data_scale = ""
+		this.ctrl.customerrate.hide_label = false
+		this.ctrl.customerrate.depends_on = ""
+		this.ctrl.customerrate.placeholder = ""
+		this.ctrl.customerrate.dynamic_param = ""
+		this.ctrl.customerrate.style_code = ""
+		this.ctrl.customerrate.data_source = ""
+		this.ctrl.customerrate.image_association = ""
+		this.ctrl.customerrate.show = true
+		this.ctrl.customerrate.sub_content = ""
+		this.ctrl.customerrate.required = false
+		this.ctrl.customerrate.vld_rules = []
+		this.ctrl.customerrate.targetcolumn_lower = "customerrate"
+		this.ctrl.customerrate.disabled = false
+		this.ctrl.customerrate.view_name = "f_npss_simulator_ui"
+		this.ctrl.customerrate.ctrl_id = "npss_simulator_ui_customerrate"
+		this.ctrl.npss_simulator_ui_customerrate = {}
+		this.ctrl.npss_simulator_ui_customerrate.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of treasuryrate
+		this.ctrl.treasuryrate = {}
+		this.ctrl.treasuryrate.id = "RN61CN81"
+		this.ctrl.treasuryrate.desc = "treasuryRate"
+		this.ctrl.treasuryrate.visible = true
+		this.ctrl.treasuryrate.label_name = "treasuryRate"
+		this.ctrl.treasuryrate.df_code = "DF_1304_1670492597353"
+		this.ctrl.treasuryrate.df_description = "Column Group 1"
+		this.ctrl.treasuryrate.uictrl_code = "TXT"
+		this.ctrl.treasuryrate.target_column = "TREASURYRATE"
+		this.ctrl.treasuryrate.data_type = "TEXT"
+		this.ctrl.treasuryrate.data_length = 20
+		this.ctrl.treasuryrate.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.treasuryrate.default_value = ""
+		this.ctrl.treasuryrate.is_memory_ctrl = ""
+		this.ctrl.treasuryrate.field_coordinates = ""
+		this.ctrl.treasuryrate.sub_details = ""
+		this.ctrl.treasuryrate.accept_char = ""
+		this.ctrl.treasuryrate.currency_format = ""
+		this.ctrl.treasuryrate.data_scale = ""
+		this.ctrl.treasuryrate.hide_label = false
+		this.ctrl.treasuryrate.depends_on = ""
+		this.ctrl.treasuryrate.placeholder = ""
+		this.ctrl.treasuryrate.dynamic_param = ""
+		this.ctrl.treasuryrate.style_code = ""
+		this.ctrl.treasuryrate.data_source = ""
+		this.ctrl.treasuryrate.image_association = ""
+		this.ctrl.treasuryrate.show = true
+		this.ctrl.treasuryrate.sub_content = ""
+		this.ctrl.treasuryrate.required = false
+		this.ctrl.treasuryrate.vld_rules = []
+		this.ctrl.treasuryrate.targetcolumn_lower = "treasuryrate"
+		this.ctrl.treasuryrate.disabled = false
+		this.ctrl.treasuryrate.view_name = "f_npss_simulator_ui"
+		this.ctrl.treasuryrate.ctrl_id = "npss_simulator_ui_treasuryrate"
+		this.ctrl.npss_simulator_ui_treasuryrate = {}
+		this.ctrl.npss_simulator_ui_treasuryrate.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of customerspread
+		this.ctrl.customerspread = {}
+		this.ctrl.customerspread.id = "RN61CN82"
+		this.ctrl.customerspread.desc = "customerSpread"
+		this.ctrl.customerspread.visible = true
+		this.ctrl.customerspread.label_name = "customerSpread"
+		this.ctrl.customerspread.df_code = "DF_1304_1670492597353"
+		this.ctrl.customerspread.df_description = "Column Group 1"
+		this.ctrl.customerspread.uictrl_code = "TXT"
+		this.ctrl.customerspread.target_column = "CUSTOMERSPREAD"
+		this.ctrl.customerspread.data_type = "TEXT"
+		this.ctrl.customerspread.data_length = 20
+		this.ctrl.customerspread.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.customerspread.default_value = ""
+		this.ctrl.customerspread.is_memory_ctrl = ""
+		this.ctrl.customerspread.field_coordinates = ""
+		this.ctrl.customerspread.sub_details = ""
+		this.ctrl.customerspread.accept_char = ""
+		this.ctrl.customerspread.currency_format = ""
+		this.ctrl.customerspread.data_scale = ""
+		this.ctrl.customerspread.hide_label = false
+		this.ctrl.customerspread.depends_on = ""
+		this.ctrl.customerspread.placeholder = ""
+		this.ctrl.customerspread.dynamic_param = ""
+		this.ctrl.customerspread.style_code = ""
+		this.ctrl.customerspread.data_source = ""
+		this.ctrl.customerspread.image_association = ""
+		this.ctrl.customerspread.show = true
+		this.ctrl.customerspread.sub_content = ""
+		this.ctrl.customerspread.required = false
+		this.ctrl.customerspread.vld_rules = []
+		this.ctrl.customerspread.targetcolumn_lower = "customerspread"
+		this.ctrl.customerspread.disabled = false
+		this.ctrl.customerspread.view_name = "f_npss_simulator_ui"
+		this.ctrl.customerspread.ctrl_id = "npss_simulator_ui_customerspread"
+		this.ctrl.npss_simulator_ui_customerspread = {}
+		this.ctrl.npss_simulator_ui_customerspread.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_simulator_ui.model = {"HDR_MSG_ID":"","HDR_CREATED_DATE":"setcurrentdate(),{}","HDR_TOTAL_RECORDS":"1","HDR_TOTAL_AMOUNT":"","HDR_SETTLEMENT_DATE":"setcurrentdate(),{}","VALUE_DATE":"setcurrentdate(),{}","HDR_SETTLEMENT_METHOD":"CLRG","HDR_CLEARING_SYSTEM":"UAEIPP Core Service","DR_SORT_CODE":"Sender Bic","CR_SORT_CODE":"","INSTRUCTION_ID":"","PAYMENT_ENDTOEND_ID":"","TRAN_REF_ID":"","UETR":"","INSTRUMENT_TYPE":"INST","CATEGORY_PURPOSE":"","CATEGORY_PURPOSE_PRTY":"","INTRBK_STTLM_AMNT":"","CHARGE_BEARER":"SLEV","DBTR_ACCT_NAME":"","EXT_ORG_ID_CODE":"","EXT_PERSON_ID_CODE":"","ISSUER_TYPE_CODE":"","DBTR_BIRTH_DATE":"","DBTR_COUNTRY":"","DBTR_DOCUMENT_ID":"","DBTR_IBAN":"","DBTR_ACCT_NO":"","EXT_ACCT_ID_CODE":"AIIN","DBTR_CUST_TYPE":"","CDTR_ACCT_NAME":"","CDTR_ACCT_NO":"","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","CR_ACCT_ID_CODE":"AIIN","EXT_PURPOSE_CODE":"","CHANNEL_ID":"","CHANNEL_REFNO":"","CHANNEL_USERID":"","CHANNEL_PRODUCT":"","CHANNEL_SUB_PRODUCT":"","CHANNEL_TRAN_CODE":"","MIDDLEWARE_REF_NO":"","CBS_REF_NO":"","DBTR_PRVT_ID":"","BASE_CURRENCY":"","CBS_POSTING_FLAG":"","EXT_PURPOSE_PRTY":"","REMITTANCE_INFO":"","INDIVIDUALIDENTIFICATIONCODE":"","OTHERACCOUNT":"","COMPANYCODE":"","CORETRANSACTIONTYPE":"","BENEFICIARYCUSTOMER":"","CHARGEACCOUNT":"","CHARGECODE":"","CHARGETYPE":"","CHARGEAMOUNT":"","CHARGENARRATION":"","VATAMOUNT":"","VATNARRATION":"","VATACCOUNT":"","EXCHANGERATE":"","CUSTOMERRATE":"","TREASURYRATE":"","CUSTOMERSPREAD":""}
+		this.screen_instance[this.comp_id].f_npss_simulator_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_ID"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"HDR_CREATED_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"HDR_TOTAL_RECORDS"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"HDR_TOTAL_AMOUNT"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"HDR_SETTLEMENT_DATE"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_SETTLEMENT_METHOD"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_CLEARING_SYSTEM"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DR_SORT_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_SORT_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INSTRUCTION_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INSTRUMENT_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CATEGORY_PURPOSE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CATEGORY_PURPOSE_PRTY"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGE_BEARER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_ORG_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PERSON_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"ISSUER_TYPE_CODE"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"DBTR_BIRTH_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_COUNTRY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_DOCUMENT_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_ACCT_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_CUST_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REFNO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_USERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_PRODUCT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_SUB_PRODUCT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_TRAN_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MIDDLEWARE_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CBS_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PRVT_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BASE_CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CBS_POSTING_FLAG"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_PRTY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"REMITTANCE_INFO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INDIVIDUALIDENTIFICATIONCODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"OTHERACCOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"COMPANYCODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CORETRANSACTIONTYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BENEFICIARYCUSTOMER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGEACCOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGECODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGETYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGEAMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGENARRATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VATAMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VATNARRATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VATACCOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXCHANGERATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMERRATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TREASURYRATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMERSPREAD"}]
 		this.screen_instance[this.comp_id].f_npss_simulator_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_simulator_ui.dtt_code = "dtt_1304_1670492310194"
 		this.screen_instance[this.comp_id].f_npss_simulator_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

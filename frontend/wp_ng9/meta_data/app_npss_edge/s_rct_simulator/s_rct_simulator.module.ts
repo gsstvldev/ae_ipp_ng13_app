@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27232 
+Build ID        : 27235 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 11:25 AM 
+Modified Date   : 2022-Dec-08 12:14 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_simulator
@@ -19,7 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
-import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
+import {npss_cs_sim_pack_008Module} from '../../../custom_widget/npss_cs_sim_pack_008/npss_cs_sim_pack_008.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -33,7 +33,7 @@ import { s_rct_simulatorRoutingModule } from './s_rct_simulator.routing.module';
 
 
 import { p_mainlayoutComponent } from './p_mainlayout/p_mainlayout.component'
-import { f_data_entryComponent } from './f_data_entry/f_data_entry.component'
+import { f_npss_simulator_uiComponent } from './f_npss_simulator_ui/f_npss_simulator_ui.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { p_list_layoutComponent } from './p_list_layout/p_list_layout.component'
 import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
@@ -51,9 +51,9 @@ import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
     OverlayPanelModule,
     
     s_rct_simulatorRoutingModule,
-    torus_cs_show_hideModule
+    npss_cs_sim_pack_008Module
   ],
-  declarations: [s_rct_simulatorComponent,p_mainlayoutComponent,f_data_entryComponent,f_navigation_uiComponent,p_list_layoutComponent,f_back_uiComponent,],
+  declarations: [s_rct_simulatorComponent,p_mainlayoutComponent,f_npss_simulator_uiComponent,f_navigation_uiComponent,p_list_layoutComponent,f_back_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

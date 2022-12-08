@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27209 
+Build ID        : 27236 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-07 6:11 AM 
+Modified Date   : 2022-Dec-08 10:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_cbs_account_file_download
@@ -27,7 +27,7 @@ export class s_cbs_account_file_downloadComponent implements OnInit,AfterViewIni
   	wftpa_description : string = "s_cbs_account_file_download"
 	wftpa_id : string = "WFT_NPSS_P_1304_1667212878502_0"
 	cg_code : string = "CG_1408_1652104682877"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID"}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []

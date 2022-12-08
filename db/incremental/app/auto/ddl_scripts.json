@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column CPR_STATUS CHARACTER VARYING(16);","params" : [] }]

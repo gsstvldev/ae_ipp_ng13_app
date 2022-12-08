@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_API_SIM_PACS008 add column CLRSYSREF CHARACTER VARYING(35);","params" : [] },{"query" : "alter table NPSS_API_SIM_PACS008 drop column CLEARING_SYSTEM_REFERENCE;","params" : [] }]

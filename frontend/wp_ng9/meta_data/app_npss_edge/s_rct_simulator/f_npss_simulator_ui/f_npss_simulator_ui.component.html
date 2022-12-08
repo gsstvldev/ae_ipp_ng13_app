@@ -2,8 +2,28 @@
 	
 <fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
 	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_simulator_ui="ngForm">
+<div id="RN71" class="row">
+	<div #npss_simulator_ui_channel_id id="RN71CN66" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_id')" >
+				<cbo [ctrl_id]="'npss_simulator_ui_channel_id'" [comp_id]="comp_id" [ctrl]="ctrl.channel_id" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
+	</div>
+	<div  id="RN71CN67" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_refno')" >
+				<txt [ctrl_id]="'npss_simulator_ui_channel_refno'" [comp_id]="comp_id" [ctrl]="ctrl.channel_refno" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN71CN68" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_userid')" >
+				<txt [ctrl_id]="'npss_simulator_ui_channel_userid'" [comp_id]="comp_id" [ctrl]="ctrl.channel_userid" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN71CN69" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_product')" >
+				<txt [ctrl_id]="'npss_simulator_ui_channel_product'" [comp_id]="comp_id" [ctrl]="ctrl.channel_product" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN71CN70" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_sub_product')" >
+				<txt [ctrl_id]="'npss_simulator_ui_channel_sub_product'" [comp_id]="comp_id" [ctrl]="ctrl.channel_sub_product" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN71CN71" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_tran_code')" >
+				<txt [ctrl_id]="'npss_simulator_ui_channel_tran_code'" [comp_id]="comp_id" [ctrl]="ctrl.channel_tran_code" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
 <div id="RN01" class="row">
-	<div #npss_simulator_ui_hdr_msg_id id="RN01CN1" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('hdr_msg_id')" >
+	<div  id="RN01CN1" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('hdr_msg_id')" >
 				<txt [ctrl_id]="'npss_simulator_ui_hdr_msg_id'" [comp_id]="comp_id" [ctrl]="ctrl.hdr_msg_id" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
 	<div  id="RN01CN2" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('hdr_created_date')" >
@@ -30,7 +50,7 @@
 				<txt [ctrl_id]="'npss_simulator_ui_hdr_clearing_system'" [comp_id]="comp_id" [ctrl]="ctrl.hdr_clearing_system" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
 	<div  id="RN11CN9" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('dr_sort_code')" >
-				<txt [ctrl_id]="'npss_simulator_ui_dr_sort_code'" [comp_id]="comp_id" [ctrl]="ctrl.dr_sort_code" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+				<cbo [ctrl_id]="'npss_simulator_ui_dr_sort_code'" [comp_id]="comp_id" [ctrl]="ctrl.dr_sort_code" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
 	</div>
 	<div  id="RN11CN10" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cr_sort_code')" >
 				<cbo [ctrl_id]="'npss_simulator_ui_cr_sort_code'" [comp_id]="comp_id" [ctrl]="ctrl.cr_sort_code" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
@@ -106,40 +126,20 @@
 	<div  id="RN51CN42" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cdtr_acct_name')" >
 				<txt [ctrl_id]="'npss_simulator_ui_cdtr_acct_name'" [comp_id]="comp_id" [ctrl]="ctrl.cdtr_acct_name" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
-	<div  id="RN51CN43" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cdtr_acct_no')" >
-				<txt [ctrl_id]="'npss_simulator_ui_cdtr_acct_no'" [comp_id]="comp_id" [ctrl]="ctrl.cdtr_acct_no" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	<div  id="RN51CN49" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cr_acct_identification')" >
+				<txt [ctrl_id]="'npss_simulator_ui_cr_acct_identification'" [comp_id]="comp_id" [ctrl]="ctrl.cr_acct_identification" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
 	<div  id="RN51CN48" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cdtr_iban')" >
 				<txt [ctrl_id]="'npss_simulator_ui_cdtr_iban'" [comp_id]="comp_id" [ctrl]="ctrl.cdtr_iban" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
-	<div  id="RN51CN49" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cr_acct_identification')" >
-				<txt [ctrl_id]="'npss_simulator_ui_cr_acct_identification'" [comp_id]="comp_id" [ctrl]="ctrl.cr_acct_identification" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	<div  id="RN51CN43" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cdtr_acct_no')" >
+				<txt [ctrl_id]="'npss_simulator_ui_cdtr_acct_no'" [comp_id]="comp_id" [ctrl]="ctrl.cdtr_acct_no" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
 	<div  id="RN51CN50" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cr_acct_id_code')" >
 				<txt [ctrl_id]="'npss_simulator_ui_cr_acct_id_code'" [comp_id]="comp_id" [ctrl]="ctrl.cr_acct_id_code" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
 	<div  id="RN51CN51" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('ext_purpose_code')" >
 				<txt [ctrl_id]="'npss_simulator_ui_ext_purpose_code'" [comp_id]="comp_id" [ctrl]="ctrl.ext_purpose_code" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
-	</div>
-</div>
-<div id="RN71" class="row">
-	<div  id="RN71CN66" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_id')" >
-				<cbo [ctrl_id]="'npss_simulator_ui_channel_id'" [comp_id]="comp_id" [ctrl]="ctrl.channel_id" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
-	</div>
-	<div  id="RN71CN67" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_refno')" >
-				<txt [ctrl_id]="'npss_simulator_ui_channel_refno'" [comp_id]="comp_id" [ctrl]="ctrl.channel_refno" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
-	</div>
-	<div  id="RN71CN68" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_userid')" >
-				<txt [ctrl_id]="'npss_simulator_ui_channel_userid'" [comp_id]="comp_id" [ctrl]="ctrl.channel_userid" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
-	</div>
-	<div  id="RN71CN69" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_product')" >
-				<txt [ctrl_id]="'npss_simulator_ui_channel_product'" [comp_id]="comp_id" [ctrl]="ctrl.channel_product" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
-	</div>
-	<div  id="RN71CN70" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_sub_product')" >
-				<txt [ctrl_id]="'npss_simulator_ui_channel_sub_product'" [comp_id]="comp_id" [ctrl]="ctrl.channel_sub_product" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
-	</div>
-	<div  id="RN71CN71" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_tran_code')" >
-				<txt [ctrl_id]="'npss_simulator_ui_channel_tran_code'" [comp_id]="comp_id" [ctrl]="ctrl.channel_tran_code" [model]="screen_instance[this.comp_id].f_npss_simulator_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
 </div>
 <div id="RN81" class="row">

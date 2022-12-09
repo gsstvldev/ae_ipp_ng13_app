@@ -962,6 +962,41 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665903906193$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$NPSSCAPL_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESS_NAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESSING_SYSTEM$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$RESPONSE_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESS_REF_NO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$REQUEST_DATA_JSON$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$RESPONSE_DATA_JSON$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NPSSMS_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$

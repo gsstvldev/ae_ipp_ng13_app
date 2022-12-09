@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27265 
+Build ID        : 27267 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-09 10:42 AM 
+Modified Date   : 2022-Dec-09 16:7 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_simulator
@@ -722,7 +722,7 @@ focustoelement(){
 		this.ctrl.dr_sort_code.placeholder = ""
 		this.ctrl.dr_sort_code.dynamic_param = ""
 		this.ctrl.dr_sort_code.style_code = ""
-		this.ctrl.dr_sort_code.data_source = {"ds_code":"UDS_1304_1670508055643","ds_description":"NPSS Sender Bank BIC","rows":[],"type":"DPS_TABLE","value_member":"BIC_CODE","display_member":"BIC_CODE","first_record_display":"","column_list":"","order_by":"CREATED_DATE DESC","target_table":"CORE_MEMBER_BRANCHES","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1670573331658","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[],"need_first_item_selection":true,"has_parent":false}
+		this.ctrl.dr_sort_code.data_source = {"ds_code":"UDS_1304_1670483620977","ds_description":"NPSS Bank BIC CDB","rows":[],"type":"DPS_TABLE","value_member":"BIC_CODE","display_member":"BIC_CODE","first_record_display":"","column_list":"","order_by":"","target_table":"CORE_MEMBER_BANKS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1670589034839","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"need_auto_first_record":false,"sel_columns":[],"need_first_item_selection":true,"has_parent":false}
 		this.ctrl.dr_sort_code.image_association = ""
 		this.ctrl.dr_sort_code.show = true
 		this.ctrl.dr_sort_code.sub_content = ""
@@ -990,7 +990,7 @@ focustoelement(){
 		this.ctrl.cr_sort_code.placeholder = ""
 		this.ctrl.cr_sort_code.dynamic_param = ""
 		this.ctrl.cr_sort_code.style_code = ""
-		this.ctrl.cr_sort_code.data_source = {"ds_code":"UDS_1304_1670483620977","ds_description":"NPSS Bank BIC CDB","rows":[],"type":"DPS_TABLE","value_member":"BIC_CODE","display_member":"BIC_CODE","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_MEMBER_BANKS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1670483970659","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"need_auto_first_record":true,"sel_columns":[]}
+		this.ctrl.cr_sort_code.data_source = {"ds_code":"UDS_1304_1670508055643","ds_description":"NPSS Benif Bank BIC","rows":[],"type":"DPS_TABLE","value_member":"BIC_CODE","display_member":"BIC_CODE","first_record_display":"","column_list":"","order_by":"CREATED_DATE DESC","target_table":"CORE_MEMBER_BRANCHES","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1670589015127","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[],"need_first_item_selection":true,"has_parent":false}
 		this.ctrl.cr_sort_code.image_association = ""
 		this.ctrl.cr_sort_code.show = true
 		this.ctrl.cr_sort_code.sub_content = ""

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27251 
+Build ID        : 27259 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-09 8:10 AM 
+Modified Date   : 2022-Dec-09 9:23 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_time_out_transactions
@@ -21,6 +21,7 @@ import { SharedModule } from '../../../shared/shared.module'
 
 import {torus_cs_change_routingkeyModule} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
+import {npss_cs_bct_timeout_retryModule} from '../../../custom_widget/npss_cs_bct_timeout_retry/npss_cs_bct_timeout_retry.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -61,7 +62,7 @@ import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/
     OverlayPanelModule,
     
     s_bct_review_time_out_transactionsRoutingModule,
-    torus_cs_change_routingkeyModule,torus_cs_show_hideModule
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_bct_timeout_retryModule
   ],
   declarations: [s_bct_review_time_out_transactionsComponent,p_main_layoutComponent,f_navigation_uiComponent,f_hst_process_log_to_main_backComponent,p_search_layoutComponent,f_npss_tran_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

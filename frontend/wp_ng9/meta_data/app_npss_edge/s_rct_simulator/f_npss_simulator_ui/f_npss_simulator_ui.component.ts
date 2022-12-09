@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27246 
+Build ID        : 27252 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 15:46 PM 
+Modified Date   : 2022-Dec-09 6:33 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_simulator
@@ -26,7 +26,7 @@ export class f_npss_simulator_uiComponent implements OnInit {
   hasHeader:boolean;
   component_header:string;
   @ViewChild('f_npss_simulator_ui') form;
-  @ViewChild('npss_simulator_ui_channel_id') element: ElementRef;
+  @ViewChild('npss_simulator_ui_memory90') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -48,6 +48,45 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
+		//Properties of memory90
+		this.ctrl.memory90 = {}
+		this.ctrl.memory90.id = "RN91CN67"
+		this.ctrl.memory90.desc = "Channel Information"
+		this.ctrl.memory90.visible = false
+		this.ctrl.memory90.label_name = "Channel Information"
+		this.ctrl.memory90.df_code = "DF_1304_1670492597353"
+		this.ctrl.memory90.df_description = "Column Group 1"
+		this.ctrl.memory90.uictrl_code = "LBL"
+		this.ctrl.memory90.target_column = "memory90"
+		this.ctrl.memory90.data_type = "TEXT"
+		this.ctrl.memory90.data_length = 0
+		this.ctrl.memory90.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.memory90.default_value = ""
+		this.ctrl.memory90.is_memory_ctrl = "Y"
+		this.ctrl.memory90.field_coordinates = ""
+		this.ctrl.memory90.sub_details = ""
+		this.ctrl.memory90.accept_char = ""
+		this.ctrl.memory90.currency_format = ""
+		this.ctrl.memory90.data_scale = ""
+		this.ctrl.memory90.hide_label = false
+		this.ctrl.memory90.depends_on = ""
+		this.ctrl.memory90.placeholder = ""
+		this.ctrl.memory90.dynamic_param = ""
+		this.ctrl.memory90.style_code = ""
+		this.ctrl.memory90.data_source = ""
+		this.ctrl.memory90.image_association = ""
+		this.ctrl.memory90.show = true
+		this.ctrl.memory90.sub_content = ""
+		this.ctrl.memory90.required = false
+		this.ctrl.memory90.vld_rules = []
+		this.ctrl.memory90.targetcolumn_lower = "memory90"
+		this.ctrl.memory90.disabled = false
+		this.ctrl.memory90.view_name = "f_npss_simulator_ui"
+		this.ctrl.memory90.ctrl_id = "npss_simulator_ui_memory90"
+		this.ctrl.npss_simulator_ui_memory90 = {}
+		this.ctrl.npss_simulator_ui_memory90.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_simulator_ui.memory90 = {}
+	
 		//Properties of channel_id
 		this.ctrl.channel_id = {}
 		this.ctrl.channel_id.id = "RN71CN66"
@@ -73,7 +112,7 @@ focustoelement(){
 		this.ctrl.channel_id.placeholder = ""
 		this.ctrl.channel_id.dynamic_param = ""
 		this.ctrl.channel_id.style_code = ""
-		this.ctrl.channel_id.data_source = {"ds_code":"UDS_1304_1670498867574","ds_description":"Simulator SQL CDB","rows":[],"type":"DPS_TABLE","value_member":"S_CODE","display_member":"S_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_SYSTEM_EXTN","context":"","filters":[{"filter_name":"Filter1","binding_name":"ST_CODE","id":"DF_1670504175818","binding_value":"CH","source_name":"ST_CODE","source_value":"CH","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1670504175818","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"ST_CODE","binding_value":"CH","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"CH"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(ST_CODE = CH AND TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
+		this.ctrl.channel_id.data_source = {"ds_code":"UDS_1304_1670498867574","ds_description":"Simulator SQL CDB","rows":[],"type":"DPS_TABLE","value_member":"S_CODE","display_member":"S_DESCRIPTION","first_record_display":"","column_list":"","order_by":"CREATED_DATE  DESC","target_table":"CORE_SYSTEM_EXTN","context":"","filters":[{"filter_name":"Filter1","binding_name":"ST_CODE","id":"DF_1670561431386","binding_value":"CH","source_name":"ST_CODE","source_value":"CH","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1670561431386","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"ST_CODE","binding_value":"CH","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"CH"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(ST_CODE = CH AND TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[],"need_first_item_selection":true,"has_parent":false}
 		this.ctrl.channel_id.image_association = ""
 		this.ctrl.channel_id.show = true
 		this.ctrl.channel_id.sub_content = ""
@@ -581,6 +620,83 @@ focustoelement(){
 		this.ctrl.npss_simulator_ui_hdr_clearing_system = {}
 		this.ctrl.npss_simulator_ui_hdr_clearing_system.onChangecomponent = new EventEmitter<any>()
 	
+		//Properties of memory91
+		this.ctrl.memory91 = {}
+		this.ctrl.memory91.id = "RN111CN70"
+		this.ctrl.memory91.desc = "Sender Information"
+		this.ctrl.memory91.visible = false
+		this.ctrl.memory91.label_name = "Sender Information"
+		this.ctrl.memory91.df_code = "DF_1304_1670492597353"
+		this.ctrl.memory91.df_description = "Column Group 1"
+		this.ctrl.memory91.uictrl_code = "LBL"
+		this.ctrl.memory91.target_column = "memory91"
+		this.ctrl.memory91.data_type = "TEXT"
+		this.ctrl.memory91.data_length = 0
+		this.ctrl.memory91.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.memory91.default_value = ""
+		this.ctrl.memory91.is_memory_ctrl = "Y"
+		this.ctrl.memory91.field_coordinates = ""
+		this.ctrl.memory91.sub_details = ""
+		this.ctrl.memory91.accept_char = ""
+		this.ctrl.memory91.currency_format = ""
+		this.ctrl.memory91.data_scale = ""
+		this.ctrl.memory91.hide_label = false
+		this.ctrl.memory91.depends_on = ""
+		this.ctrl.memory91.placeholder = ""
+		this.ctrl.memory91.dynamic_param = ""
+		this.ctrl.memory91.style_code = ""
+		this.ctrl.memory91.data_source = ""
+		this.ctrl.memory91.image_association = ""
+		this.ctrl.memory91.show = true
+		this.ctrl.memory91.sub_content = ""
+		this.ctrl.memory91.required = false
+		this.ctrl.memory91.vld_rules = []
+		this.ctrl.memory91.targetcolumn_lower = "memory91"
+		this.ctrl.memory91.disabled = false
+		this.ctrl.memory91.view_name = "f_npss_simulator_ui"
+		this.ctrl.memory91.ctrl_id = "npss_simulator_ui_memory91"
+		this.ctrl.npss_simulator_ui_memory91 = {}
+		this.ctrl.npss_simulator_ui_memory91.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_simulator_ui.memory91 = {}
+	
+		//Properties of dbtr_acct_name
+		this.ctrl.dbtr_acct_name = {}
+		this.ctrl.dbtr_acct_name.id = "RN31CN25"
+		this.ctrl.dbtr_acct_name.desc = "Sender Customer Name (Dr)"
+		this.ctrl.dbtr_acct_name.visible = true
+		this.ctrl.dbtr_acct_name.label_name = "Sender Customer Name (Dr)"
+		this.ctrl.dbtr_acct_name.df_code = "DF_1304_1670492597353"
+		this.ctrl.dbtr_acct_name.df_description = "Column Group 1"
+		this.ctrl.dbtr_acct_name.uictrl_code = "TXT"
+		this.ctrl.dbtr_acct_name.target_column = "DBTR_ACCT_NAME"
+		this.ctrl.dbtr_acct_name.data_type = "TEXT"
+		this.ctrl.dbtr_acct_name.data_length = 128
+		this.ctrl.dbtr_acct_name.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.dbtr_acct_name.default_value = ""
+		this.ctrl.dbtr_acct_name.is_memory_ctrl = ""
+		this.ctrl.dbtr_acct_name.field_coordinates = ""
+		this.ctrl.dbtr_acct_name.sub_details = ""
+		this.ctrl.dbtr_acct_name.accept_char = ""
+		this.ctrl.dbtr_acct_name.currency_format = ""
+		this.ctrl.dbtr_acct_name.data_scale = ""
+		this.ctrl.dbtr_acct_name.hide_label = false
+		this.ctrl.dbtr_acct_name.depends_on = ""
+		this.ctrl.dbtr_acct_name.placeholder = ""
+		this.ctrl.dbtr_acct_name.dynamic_param = ""
+		this.ctrl.dbtr_acct_name.style_code = ""
+		this.ctrl.dbtr_acct_name.data_source = ""
+		this.ctrl.dbtr_acct_name.image_association = ""
+		this.ctrl.dbtr_acct_name.show = true
+		this.ctrl.dbtr_acct_name.sub_content = ""
+		this.ctrl.dbtr_acct_name.required = false
+		this.ctrl.dbtr_acct_name.vld_rules = []
+		this.ctrl.dbtr_acct_name.targetcolumn_lower = "dbtr_acct_name"
+		this.ctrl.dbtr_acct_name.disabled = false
+		this.ctrl.dbtr_acct_name.view_name = "f_npss_simulator_ui"
+		this.ctrl.dbtr_acct_name.ctrl_id = "npss_simulator_ui_dbtr_acct_name"
+		this.ctrl.npss_simulator_ui_dbtr_acct_name = {}
+		this.ctrl.npss_simulator_ui_dbtr_acct_name.onChangecomponent = new EventEmitter<any>()
+	
 		//Properties of dr_sort_code
 		this.ctrl.dr_sort_code = {}
 		this.ctrl.dr_sort_code.id = "RN11CN9"
@@ -606,7 +722,7 @@ focustoelement(){
 		this.ctrl.dr_sort_code.placeholder = ""
 		this.ctrl.dr_sort_code.dynamic_param = ""
 		this.ctrl.dr_sort_code.style_code = ""
-		this.ctrl.dr_sort_code.data_source = {"ds_code":"UDS_1304_1670508055643","ds_description":"NPSS Sender Bank BIC","rows":[],"type":"DPS_TABLE","value_member":"BIC_CODE","display_member":"BIC_CODE","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_SYSTEM_EXTN","context":"","filters":[],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[]},"query":"()"},"sel_columns":[]}
+		this.ctrl.dr_sort_code.data_source = {"ds_code":"UDS_1304_1670508055643","ds_description":"NPSS Sender Bank BIC","rows":[],"type":"DPS_TABLE","value_member":"BIC_CODE","display_member":"BIC_CODE","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_SYSTEM_EXTN","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1670560798646","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
 		this.ctrl.dr_sort_code.image_association = ""
 		this.ctrl.dr_sort_code.show = true
 		this.ctrl.dr_sort_code.sub_content = ""
@@ -619,6 +735,235 @@ focustoelement(){
 		this.ctrl.npss_simulator_ui_dr_sort_code = {}
 		this.ctrl.npss_simulator_ui_dr_sort_code.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_simulator_ui.dr_sort_code = {}
+	
+		//Properties of dbtr_iban
+		this.ctrl.dbtr_iban = {}
+		this.ctrl.dbtr_iban.id = "RN41CN38"
+		this.ctrl.dbtr_iban.desc = "Sender IBAN"
+		this.ctrl.dbtr_iban.visible = true
+		this.ctrl.dbtr_iban.label_name = "Sender IBAN"
+		this.ctrl.dbtr_iban.df_code = "DF_1304_1670492597353"
+		this.ctrl.dbtr_iban.df_description = "Column Group 1"
+		this.ctrl.dbtr_iban.uictrl_code = "TXT"
+		this.ctrl.dbtr_iban.target_column = "DBTR_IBAN"
+		this.ctrl.dbtr_iban.data_type = "TEXT"
+		this.ctrl.dbtr_iban.data_length = 64
+		this.ctrl.dbtr_iban.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.dbtr_iban.default_value = ""
+		this.ctrl.dbtr_iban.is_memory_ctrl = ""
+		this.ctrl.dbtr_iban.field_coordinates = ""
+		this.ctrl.dbtr_iban.sub_details = ""
+		this.ctrl.dbtr_iban.accept_char = ""
+		this.ctrl.dbtr_iban.currency_format = ""
+		this.ctrl.dbtr_iban.data_scale = ""
+		this.ctrl.dbtr_iban.hide_label = false
+		this.ctrl.dbtr_iban.depends_on = ""
+		this.ctrl.dbtr_iban.placeholder = ""
+		this.ctrl.dbtr_iban.dynamic_param = ""
+		this.ctrl.dbtr_iban.style_code = ""
+		this.ctrl.dbtr_iban.data_source = ""
+		this.ctrl.dbtr_iban.image_association = ""
+		this.ctrl.dbtr_iban.show = true
+		this.ctrl.dbtr_iban.sub_content = ""
+		this.ctrl.dbtr_iban.required = false
+		this.ctrl.dbtr_iban.vld_rules = []
+		this.ctrl.dbtr_iban.targetcolumn_lower = "dbtr_iban"
+		this.ctrl.dbtr_iban.disabled = false
+		this.ctrl.dbtr_iban.view_name = "f_npss_simulator_ui"
+		this.ctrl.dbtr_iban.ctrl_id = "npss_simulator_ui_dbtr_iban"
+		this.ctrl.npss_simulator_ui_dbtr_iban = {}
+		this.ctrl.npss_simulator_ui_dbtr_iban.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of dbtr_acct_no
+		this.ctrl.dbtr_acct_no = {}
+		this.ctrl.dbtr_acct_no.id = "RN41CN39"
+		this.ctrl.dbtr_acct_no.desc = "Sender Account No"
+		this.ctrl.dbtr_acct_no.visible = true
+		this.ctrl.dbtr_acct_no.label_name = "Sender Account No"
+		this.ctrl.dbtr_acct_no.df_code = "DF_1304_1670492597353"
+		this.ctrl.dbtr_acct_no.df_description = "Column Group 1"
+		this.ctrl.dbtr_acct_no.uictrl_code = "TXT"
+		this.ctrl.dbtr_acct_no.target_column = "DBTR_ACCT_NO"
+		this.ctrl.dbtr_acct_no.data_type = "TEXT"
+		this.ctrl.dbtr_acct_no.data_length = 20
+		this.ctrl.dbtr_acct_no.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.dbtr_acct_no.default_value = ""
+		this.ctrl.dbtr_acct_no.is_memory_ctrl = ""
+		this.ctrl.dbtr_acct_no.field_coordinates = ""
+		this.ctrl.dbtr_acct_no.sub_details = ""
+		this.ctrl.dbtr_acct_no.accept_char = ""
+		this.ctrl.dbtr_acct_no.currency_format = ""
+		this.ctrl.dbtr_acct_no.data_scale = ""
+		this.ctrl.dbtr_acct_no.hide_label = false
+		this.ctrl.dbtr_acct_no.depends_on = ""
+		this.ctrl.dbtr_acct_no.placeholder = ""
+		this.ctrl.dbtr_acct_no.dynamic_param = ""
+		this.ctrl.dbtr_acct_no.style_code = ""
+		this.ctrl.dbtr_acct_no.data_source = ""
+		this.ctrl.dbtr_acct_no.image_association = ""
+		this.ctrl.dbtr_acct_no.show = true
+		this.ctrl.dbtr_acct_no.sub_content = ""
+		this.ctrl.dbtr_acct_no.required = false
+		this.ctrl.dbtr_acct_no.vld_rules = []
+		this.ctrl.dbtr_acct_no.targetcolumn_lower = "dbtr_acct_no"
+		this.ctrl.dbtr_acct_no.disabled = false
+		this.ctrl.dbtr_acct_no.view_name = "f_npss_simulator_ui"
+		this.ctrl.dbtr_acct_no.ctrl_id = "npss_simulator_ui_dbtr_acct_no"
+		this.ctrl.npss_simulator_ui_dbtr_acct_no = {}
+		this.ctrl.npss_simulator_ui_dbtr_acct_no.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of ext_acct_id_code
+		this.ctrl.ext_acct_id_code = {}
+		this.ctrl.ext_acct_id_code.id = "RN41CN40"
+		this.ctrl.ext_acct_id_code.desc = "Ext Acct Code"
+		this.ctrl.ext_acct_id_code.visible = true
+		this.ctrl.ext_acct_id_code.label_name = "Ext Acct Code"
+		this.ctrl.ext_acct_id_code.df_code = "DF_1304_1670492597353"
+		this.ctrl.ext_acct_id_code.df_description = "Column Group 1"
+		this.ctrl.ext_acct_id_code.uictrl_code = "TXT"
+		this.ctrl.ext_acct_id_code.target_column = "EXT_ACCT_ID_CODE"
+		this.ctrl.ext_acct_id_code.data_type = "TEXT"
+		this.ctrl.ext_acct_id_code.data_length = 4
+		this.ctrl.ext_acct_id_code.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.ext_acct_id_code.default_value = "AIIN"
+		this.ctrl.ext_acct_id_code.is_memory_ctrl = ""
+		this.ctrl.ext_acct_id_code.field_coordinates = ""
+		this.ctrl.ext_acct_id_code.sub_details = ""
+		this.ctrl.ext_acct_id_code.accept_char = ""
+		this.ctrl.ext_acct_id_code.currency_format = ""
+		this.ctrl.ext_acct_id_code.data_scale = ""
+		this.ctrl.ext_acct_id_code.hide_label = false
+		this.ctrl.ext_acct_id_code.depends_on = ""
+		this.ctrl.ext_acct_id_code.placeholder = ""
+		this.ctrl.ext_acct_id_code.dynamic_param = ""
+		this.ctrl.ext_acct_id_code.style_code = ""
+		this.ctrl.ext_acct_id_code.data_source = ""
+		this.ctrl.ext_acct_id_code.image_association = ""
+		this.ctrl.ext_acct_id_code.show = true
+		this.ctrl.ext_acct_id_code.sub_content = ""
+		this.ctrl.ext_acct_id_code.required = false
+		this.ctrl.ext_acct_id_code.vld_rules = []
+		this.ctrl.ext_acct_id_code.targetcolumn_lower = "ext_acct_id_code"
+		this.ctrl.ext_acct_id_code.disabled = false
+		this.ctrl.ext_acct_id_code.view_name = "f_npss_simulator_ui"
+		this.ctrl.ext_acct_id_code.ctrl_id = "npss_simulator_ui_ext_acct_id_code"
+		this.ctrl.npss_simulator_ui_ext_acct_id_code = {}
+		this.ctrl.npss_simulator_ui_ext_acct_id_code.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of dbtr_cust_type
+		this.ctrl.dbtr_cust_type = {}
+		this.ctrl.dbtr_cust_type.id = "RN41CN41"
+		this.ctrl.dbtr_cust_type.desc = "Sender Customer Type"
+		this.ctrl.dbtr_cust_type.visible = true
+		this.ctrl.dbtr_cust_type.label_name = "Sender Customer Type"
+		this.ctrl.dbtr_cust_type.df_code = "DF_1304_1670492597353"
+		this.ctrl.dbtr_cust_type.df_description = "Column Group 1"
+		this.ctrl.dbtr_cust_type.uictrl_code = "TXT"
+		this.ctrl.dbtr_cust_type.target_column = "DBTR_CUST_TYPE"
+		this.ctrl.dbtr_cust_type.data_type = "TEXT"
+		this.ctrl.dbtr_cust_type.data_length = 4
+		this.ctrl.dbtr_cust_type.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.dbtr_cust_type.default_value = ""
+		this.ctrl.dbtr_cust_type.is_memory_ctrl = ""
+		this.ctrl.dbtr_cust_type.field_coordinates = ""
+		this.ctrl.dbtr_cust_type.sub_details = ""
+		this.ctrl.dbtr_cust_type.accept_char = ""
+		this.ctrl.dbtr_cust_type.currency_format = ""
+		this.ctrl.dbtr_cust_type.data_scale = ""
+		this.ctrl.dbtr_cust_type.hide_label = false
+		this.ctrl.dbtr_cust_type.depends_on = ""
+		this.ctrl.dbtr_cust_type.placeholder = ""
+		this.ctrl.dbtr_cust_type.dynamic_param = ""
+		this.ctrl.dbtr_cust_type.style_code = ""
+		this.ctrl.dbtr_cust_type.data_source = ""
+		this.ctrl.dbtr_cust_type.image_association = ""
+		this.ctrl.dbtr_cust_type.show = true
+		this.ctrl.dbtr_cust_type.sub_content = ""
+		this.ctrl.dbtr_cust_type.required = false
+		this.ctrl.dbtr_cust_type.vld_rules = []
+		this.ctrl.dbtr_cust_type.targetcolumn_lower = "dbtr_cust_type"
+		this.ctrl.dbtr_cust_type.disabled = false
+		this.ctrl.dbtr_cust_type.view_name = "f_npss_simulator_ui"
+		this.ctrl.dbtr_cust_type.ctrl_id = "npss_simulator_ui_dbtr_cust_type"
+		this.ctrl.npss_simulator_ui_dbtr_cust_type = {}
+		this.ctrl.npss_simulator_ui_dbtr_cust_type.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of memory92
+		this.ctrl.memory92 = {}
+		this.ctrl.memory92.id = "RN121CN76"
+		this.ctrl.memory92.desc = "Beneficiary Information"
+		this.ctrl.memory92.visible = false
+		this.ctrl.memory92.label_name = "Beneficiary Information"
+		this.ctrl.memory92.df_code = "DF_1304_1670492597353"
+		this.ctrl.memory92.df_description = "Column Group 1"
+		this.ctrl.memory92.uictrl_code = "LBL"
+		this.ctrl.memory92.target_column = "memory92"
+		this.ctrl.memory92.data_type = "TEXT"
+		this.ctrl.memory92.data_length = 0
+		this.ctrl.memory92.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.memory92.default_value = ""
+		this.ctrl.memory92.is_memory_ctrl = "Y"
+		this.ctrl.memory92.field_coordinates = ""
+		this.ctrl.memory92.sub_details = ""
+		this.ctrl.memory92.accept_char = ""
+		this.ctrl.memory92.currency_format = ""
+		this.ctrl.memory92.data_scale = ""
+		this.ctrl.memory92.hide_label = false
+		this.ctrl.memory92.depends_on = ""
+		this.ctrl.memory92.placeholder = ""
+		this.ctrl.memory92.dynamic_param = ""
+		this.ctrl.memory92.style_code = ""
+		this.ctrl.memory92.data_source = ""
+		this.ctrl.memory92.image_association = ""
+		this.ctrl.memory92.show = true
+		this.ctrl.memory92.sub_content = ""
+		this.ctrl.memory92.required = false
+		this.ctrl.memory92.vld_rules = []
+		this.ctrl.memory92.targetcolumn_lower = "memory92"
+		this.ctrl.memory92.disabled = false
+		this.ctrl.memory92.view_name = "f_npss_simulator_ui"
+		this.ctrl.memory92.ctrl_id = "npss_simulator_ui_memory92"
+		this.ctrl.npss_simulator_ui_memory92 = {}
+		this.ctrl.npss_simulator_ui_memory92.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_simulator_ui.memory92 = {}
+	
+		//Properties of cdtr_acct_name
+		this.ctrl.cdtr_acct_name = {}
+		this.ctrl.cdtr_acct_name.id = "RN51CN42"
+		this.ctrl.cdtr_acct_name.desc = "Beneficiary Name"
+		this.ctrl.cdtr_acct_name.visible = true
+		this.ctrl.cdtr_acct_name.label_name = "Beneficiary Name"
+		this.ctrl.cdtr_acct_name.df_code = "DF_1304_1670492597353"
+		this.ctrl.cdtr_acct_name.df_description = "Column Group 1"
+		this.ctrl.cdtr_acct_name.uictrl_code = "TXT"
+		this.ctrl.cdtr_acct_name.target_column = "CDTR_ACCT_NAME"
+		this.ctrl.cdtr_acct_name.data_type = "TEXT"
+		this.ctrl.cdtr_acct_name.data_length = 100
+		this.ctrl.cdtr_acct_name.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.cdtr_acct_name.default_value = ""
+		this.ctrl.cdtr_acct_name.is_memory_ctrl = ""
+		this.ctrl.cdtr_acct_name.field_coordinates = ""
+		this.ctrl.cdtr_acct_name.sub_details = ""
+		this.ctrl.cdtr_acct_name.accept_char = ""
+		this.ctrl.cdtr_acct_name.currency_format = ""
+		this.ctrl.cdtr_acct_name.data_scale = ""
+		this.ctrl.cdtr_acct_name.hide_label = false
+		this.ctrl.cdtr_acct_name.depends_on = ""
+		this.ctrl.cdtr_acct_name.placeholder = ""
+		this.ctrl.cdtr_acct_name.dynamic_param = ""
+		this.ctrl.cdtr_acct_name.style_code = ""
+		this.ctrl.cdtr_acct_name.data_source = ""
+		this.ctrl.cdtr_acct_name.image_association = ""
+		this.ctrl.cdtr_acct_name.show = true
+		this.ctrl.cdtr_acct_name.sub_content = ""
+		this.ctrl.cdtr_acct_name.required = false
+		this.ctrl.cdtr_acct_name.vld_rules = []
+		this.ctrl.cdtr_acct_name.targetcolumn_lower = "cdtr_acct_name"
+		this.ctrl.cdtr_acct_name.disabled = false
+		this.ctrl.cdtr_acct_name.view_name = "f_npss_simulator_ui"
+		this.ctrl.cdtr_acct_name.ctrl_id = "npss_simulator_ui_cdtr_acct_name"
+		this.ctrl.npss_simulator_ui_cdtr_acct_name = {}
+		this.ctrl.npss_simulator_ui_cdtr_acct_name.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cr_sort_code
 		this.ctrl.cr_sort_code = {}
@@ -658,6 +1003,159 @@ focustoelement(){
 		this.ctrl.npss_simulator_ui_cr_sort_code = {}
 		this.ctrl.npss_simulator_ui_cr_sort_code.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_simulator_ui.cr_sort_code = {}
+	
+		//Properties of cdtr_iban
+		this.ctrl.cdtr_iban = {}
+		this.ctrl.cdtr_iban.id = "RN51CN48"
+		this.ctrl.cdtr_iban.desc = "Beneficiary IBAN"
+		this.ctrl.cdtr_iban.visible = true
+		this.ctrl.cdtr_iban.label_name = "Beneficiary IBAN"
+		this.ctrl.cdtr_iban.df_code = "DF_1304_1670492597353"
+		this.ctrl.cdtr_iban.df_description = "Column Group 1"
+		this.ctrl.cdtr_iban.uictrl_code = "TXT"
+		this.ctrl.cdtr_iban.target_column = "CDTR_IBAN"
+		this.ctrl.cdtr_iban.data_type = "TEXT"
+		this.ctrl.cdtr_iban.data_length = 64
+		this.ctrl.cdtr_iban.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.cdtr_iban.default_value = ""
+		this.ctrl.cdtr_iban.is_memory_ctrl = ""
+		this.ctrl.cdtr_iban.field_coordinates = ""
+		this.ctrl.cdtr_iban.sub_details = ""
+		this.ctrl.cdtr_iban.accept_char = ""
+		this.ctrl.cdtr_iban.currency_format = ""
+		this.ctrl.cdtr_iban.data_scale = ""
+		this.ctrl.cdtr_iban.hide_label = false
+		this.ctrl.cdtr_iban.depends_on = ""
+		this.ctrl.cdtr_iban.placeholder = ""
+		this.ctrl.cdtr_iban.dynamic_param = ""
+		this.ctrl.cdtr_iban.style_code = ""
+		this.ctrl.cdtr_iban.data_source = ""
+		this.ctrl.cdtr_iban.image_association = ""
+		this.ctrl.cdtr_iban.show = true
+		this.ctrl.cdtr_iban.sub_content = ""
+		this.ctrl.cdtr_iban.required = false
+		this.ctrl.cdtr_iban.vld_rules = []
+		this.ctrl.cdtr_iban.targetcolumn_lower = "cdtr_iban"
+		this.ctrl.cdtr_iban.disabled = false
+		this.ctrl.cdtr_iban.view_name = "f_npss_simulator_ui"
+		this.ctrl.cdtr_iban.ctrl_id = "npss_simulator_ui_cdtr_iban"
+		this.ctrl.npss_simulator_ui_cdtr_iban = {}
+		this.ctrl.npss_simulator_ui_cdtr_iban.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of cr_acct_id_code
+		this.ctrl.cr_acct_id_code = {}
+		this.ctrl.cr_acct_id_code.id = "RN51CN50"
+		this.ctrl.cr_acct_id_code.desc = "Credit Card"
+		this.ctrl.cr_acct_id_code.visible = true
+		this.ctrl.cr_acct_id_code.label_name = "Credit Card"
+		this.ctrl.cr_acct_id_code.df_code = "DF_1304_1670492597353"
+		this.ctrl.cr_acct_id_code.df_description = "Column Group 1"
+		this.ctrl.cr_acct_id_code.uictrl_code = "TXT"
+		this.ctrl.cr_acct_id_code.target_column = "CR_ACCT_ID_CODE"
+		this.ctrl.cr_acct_id_code.data_type = "TEXT"
+		this.ctrl.cr_acct_id_code.data_length = 4
+		this.ctrl.cr_acct_id_code.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.cr_acct_id_code.default_value = "AIIN"
+		this.ctrl.cr_acct_id_code.is_memory_ctrl = ""
+		this.ctrl.cr_acct_id_code.field_coordinates = ""
+		this.ctrl.cr_acct_id_code.sub_details = ""
+		this.ctrl.cr_acct_id_code.accept_char = ""
+		this.ctrl.cr_acct_id_code.currency_format = ""
+		this.ctrl.cr_acct_id_code.data_scale = ""
+		this.ctrl.cr_acct_id_code.hide_label = false
+		this.ctrl.cr_acct_id_code.depends_on = ""
+		this.ctrl.cr_acct_id_code.placeholder = ""
+		this.ctrl.cr_acct_id_code.dynamic_param = ""
+		this.ctrl.cr_acct_id_code.style_code = ""
+		this.ctrl.cr_acct_id_code.data_source = ""
+		this.ctrl.cr_acct_id_code.image_association = ""
+		this.ctrl.cr_acct_id_code.show = true
+		this.ctrl.cr_acct_id_code.sub_content = ""
+		this.ctrl.cr_acct_id_code.required = false
+		this.ctrl.cr_acct_id_code.vld_rules = []
+		this.ctrl.cr_acct_id_code.targetcolumn_lower = "cr_acct_id_code"
+		this.ctrl.cr_acct_id_code.disabled = false
+		this.ctrl.cr_acct_id_code.view_name = "f_npss_simulator_ui"
+		this.ctrl.cr_acct_id_code.ctrl_id = "npss_simulator_ui_cr_acct_id_code"
+		this.ctrl.npss_simulator_ui_cr_acct_id_code = {}
+		this.ctrl.npss_simulator_ui_cr_acct_id_code.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of cdtr_acct_no
+		this.ctrl.cdtr_acct_no = {}
+		this.ctrl.cdtr_acct_no.id = "RN51CN43"
+		this.ctrl.cdtr_acct_no.desc = "Beneficiary Account No"
+		this.ctrl.cdtr_acct_no.visible = true
+		this.ctrl.cdtr_acct_no.label_name = "Beneficiary Account No"
+		this.ctrl.cdtr_acct_no.df_code = "DF_1304_1670492597353"
+		this.ctrl.cdtr_acct_no.df_description = "Column Group 1"
+		this.ctrl.cdtr_acct_no.uictrl_code = "TXT"
+		this.ctrl.cdtr_acct_no.target_column = "CDTR_ACCT_NO"
+		this.ctrl.cdtr_acct_no.data_type = "TEXT"
+		this.ctrl.cdtr_acct_no.data_length = 20
+		this.ctrl.cdtr_acct_no.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.cdtr_acct_no.default_value = ""
+		this.ctrl.cdtr_acct_no.is_memory_ctrl = ""
+		this.ctrl.cdtr_acct_no.field_coordinates = ""
+		this.ctrl.cdtr_acct_no.sub_details = ""
+		this.ctrl.cdtr_acct_no.accept_char = ""
+		this.ctrl.cdtr_acct_no.currency_format = ""
+		this.ctrl.cdtr_acct_no.data_scale = ""
+		this.ctrl.cdtr_acct_no.hide_label = false
+		this.ctrl.cdtr_acct_no.depends_on = ""
+		this.ctrl.cdtr_acct_no.placeholder = ""
+		this.ctrl.cdtr_acct_no.dynamic_param = ""
+		this.ctrl.cdtr_acct_no.style_code = ""
+		this.ctrl.cdtr_acct_no.data_source = ""
+		this.ctrl.cdtr_acct_no.image_association = ""
+		this.ctrl.cdtr_acct_no.show = true
+		this.ctrl.cdtr_acct_no.sub_content = ""
+		this.ctrl.cdtr_acct_no.required = false
+		this.ctrl.cdtr_acct_no.vld_rules = []
+		this.ctrl.cdtr_acct_no.targetcolumn_lower = "cdtr_acct_no"
+		this.ctrl.cdtr_acct_no.disabled = false
+		this.ctrl.cdtr_acct_no.view_name = "f_npss_simulator_ui"
+		this.ctrl.cdtr_acct_no.ctrl_id = "npss_simulator_ui_cdtr_acct_no"
+		this.ctrl.npss_simulator_ui_cdtr_acct_no = {}
+		this.ctrl.npss_simulator_ui_cdtr_acct_no.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of memory93
+		this.ctrl.memory93 = {}
+		this.ctrl.memory93.id = "RN141CN82"
+		this.ctrl.memory93.desc = "Other"
+		this.ctrl.memory93.visible = false
+		this.ctrl.memory93.label_name = "Other"
+		this.ctrl.memory93.df_code = "DF_1304_1670492597353"
+		this.ctrl.memory93.df_description = "Column Group 1"
+		this.ctrl.memory93.uictrl_code = "LBL"
+		this.ctrl.memory93.target_column = "memory93"
+		this.ctrl.memory93.data_type = "TEXT"
+		this.ctrl.memory93.data_length = 0
+		this.ctrl.memory93.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.memory93.default_value = ""
+		this.ctrl.memory93.is_memory_ctrl = "Y"
+		this.ctrl.memory93.field_coordinates = ""
+		this.ctrl.memory93.sub_details = ""
+		this.ctrl.memory93.accept_char = ""
+		this.ctrl.memory93.currency_format = ""
+		this.ctrl.memory93.data_scale = ""
+		this.ctrl.memory93.hide_label = false
+		this.ctrl.memory93.depends_on = ""
+		this.ctrl.memory93.placeholder = ""
+		this.ctrl.memory93.dynamic_param = ""
+		this.ctrl.memory93.style_code = ""
+		this.ctrl.memory93.data_source = ""
+		this.ctrl.memory93.image_association = ""
+		this.ctrl.memory93.show = true
+		this.ctrl.memory93.sub_content = ""
+		this.ctrl.memory93.required = false
+		this.ctrl.memory93.vld_rules = []
+		this.ctrl.memory93.targetcolumn_lower = "memory93"
+		this.ctrl.memory93.disabled = false
+		this.ctrl.memory93.view_name = "f_npss_simulator_ui"
+		this.ctrl.memory93.ctrl_id = "npss_simulator_ui_memory93"
+		this.ctrl.npss_simulator_ui_memory93 = {}
+		this.ctrl.npss_simulator_ui_memory93.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_simulator_ui.memory93 = {}
 	
 		//Properties of instruction_id
 		this.ctrl.instruction_id = {}
@@ -1001,44 +1499,6 @@ focustoelement(){
 		this.ctrl.npss_simulator_ui_charge_bearer = {}
 		this.ctrl.npss_simulator_ui_charge_bearer.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of dbtr_acct_name
-		this.ctrl.dbtr_acct_name = {}
-		this.ctrl.dbtr_acct_name.id = "RN31CN25"
-		this.ctrl.dbtr_acct_name.desc = "Sender Customer Name (Dr)"
-		this.ctrl.dbtr_acct_name.visible = true
-		this.ctrl.dbtr_acct_name.label_name = "Sender Customer Name (Dr)"
-		this.ctrl.dbtr_acct_name.df_code = "DF_1304_1670492597353"
-		this.ctrl.dbtr_acct_name.df_description = "Column Group 1"
-		this.ctrl.dbtr_acct_name.uictrl_code = "TXT"
-		this.ctrl.dbtr_acct_name.target_column = "DBTR_ACCT_NAME"
-		this.ctrl.dbtr_acct_name.data_type = "TEXT"
-		this.ctrl.dbtr_acct_name.data_length = 128
-		this.ctrl.dbtr_acct_name.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.dbtr_acct_name.default_value = ""
-		this.ctrl.dbtr_acct_name.is_memory_ctrl = ""
-		this.ctrl.dbtr_acct_name.field_coordinates = ""
-		this.ctrl.dbtr_acct_name.sub_details = ""
-		this.ctrl.dbtr_acct_name.accept_char = ""
-		this.ctrl.dbtr_acct_name.currency_format = ""
-		this.ctrl.dbtr_acct_name.data_scale = ""
-		this.ctrl.dbtr_acct_name.hide_label = false
-		this.ctrl.dbtr_acct_name.depends_on = ""
-		this.ctrl.dbtr_acct_name.placeholder = ""
-		this.ctrl.dbtr_acct_name.dynamic_param = ""
-		this.ctrl.dbtr_acct_name.style_code = ""
-		this.ctrl.dbtr_acct_name.data_source = ""
-		this.ctrl.dbtr_acct_name.image_association = ""
-		this.ctrl.dbtr_acct_name.show = true
-		this.ctrl.dbtr_acct_name.sub_content = ""
-		this.ctrl.dbtr_acct_name.required = false
-		this.ctrl.dbtr_acct_name.vld_rules = []
-		this.ctrl.dbtr_acct_name.targetcolumn_lower = "dbtr_acct_name"
-		this.ctrl.dbtr_acct_name.disabled = false
-		this.ctrl.dbtr_acct_name.view_name = "f_npss_simulator_ui"
-		this.ctrl.dbtr_acct_name.ctrl_id = "npss_simulator_ui_dbtr_acct_name"
-		this.ctrl.npss_simulator_ui_dbtr_acct_name = {}
-		this.ctrl.npss_simulator_ui_dbtr_acct_name.onChangecomponent = new EventEmitter<any>()
-	
 		//Properties of ext_org_id_code
 		this.ctrl.ext_org_id_code = {}
 		this.ctrl.ext_org_id_code.id = "RN31CN26"
@@ -1153,44 +1613,6 @@ focustoelement(){
 		this.ctrl.npss_simulator_ui_issuer_type_code = {}
 		this.ctrl.npss_simulator_ui_issuer_type_code.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of dbtr_birth_date
-		this.ctrl.dbtr_birth_date = {}
-		this.ctrl.dbtr_birth_date.id = "RN31CN29"
-		this.ctrl.dbtr_birth_date.desc = "Date of Birth"
-		this.ctrl.dbtr_birth_date.visible = true
-		this.ctrl.dbtr_birth_date.label_name = "Date of Birth"
-		this.ctrl.dbtr_birth_date.df_code = "DF_1304_1670492597353"
-		this.ctrl.dbtr_birth_date.df_description = "Column Group 1"
-		this.ctrl.dbtr_birth_date.uictrl_code = "DTP"
-		this.ctrl.dbtr_birth_date.target_column = "DBTR_BIRTH_DATE"
-		this.ctrl.dbtr_birth_date.data_type = "DATETIME"
-		this.ctrl.dbtr_birth_date.data_length = 0
-		this.ctrl.dbtr_birth_date.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.dbtr_birth_date.default_value = ""
-		this.ctrl.dbtr_birth_date.is_memory_ctrl = ""
-		this.ctrl.dbtr_birth_date.field_coordinates = ""
-		this.ctrl.dbtr_birth_date.sub_details = ""
-		this.ctrl.dbtr_birth_date.accept_char = ""
-		this.ctrl.dbtr_birth_date.currency_format = ""
-		this.ctrl.dbtr_birth_date.data_scale = ""
-		this.ctrl.dbtr_birth_date.hide_label = false
-		this.ctrl.dbtr_birth_date.depends_on = ""
-		this.ctrl.dbtr_birth_date.placeholder = ""
-		this.ctrl.dbtr_birth_date.dynamic_param = ""
-		this.ctrl.dbtr_birth_date.style_code = ""
-		this.ctrl.dbtr_birth_date.data_source = ""
-		this.ctrl.dbtr_birth_date.image_association = ""
-		this.ctrl.dbtr_birth_date.show = true
-		this.ctrl.dbtr_birth_date.sub_content = ""
-		this.ctrl.dbtr_birth_date.required = false
-		this.ctrl.dbtr_birth_date.vld_rules = []
-		this.ctrl.dbtr_birth_date.targetcolumn_lower = "dbtr_birth_date"
-		this.ctrl.dbtr_birth_date.disabled = false
-		this.ctrl.dbtr_birth_date.view_name = "f_npss_simulator_ui"
-		this.ctrl.dbtr_birth_date.ctrl_id = "npss_simulator_ui_dbtr_birth_date"
-		this.ctrl.npss_simulator_ui_dbtr_birth_date = {}
-		this.ctrl.npss_simulator_ui_dbtr_birth_date.onChangecomponent = new EventEmitter<any>()
-	
 		//Properties of dbtr_country
 		this.ctrl.dbtr_country = {}
 		this.ctrl.dbtr_country.id = "RN41CN31"
@@ -1267,195 +1689,43 @@ focustoelement(){
 		this.ctrl.npss_simulator_ui_dbtr_document_id = {}
 		this.ctrl.npss_simulator_ui_dbtr_document_id.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of dbtr_iban
-		this.ctrl.dbtr_iban = {}
-		this.ctrl.dbtr_iban.id = "RN41CN38"
-		this.ctrl.dbtr_iban.desc = "Sender IBAN"
-		this.ctrl.dbtr_iban.visible = true
-		this.ctrl.dbtr_iban.label_name = "Sender IBAN"
-		this.ctrl.dbtr_iban.df_code = "DF_1304_1670492597353"
-		this.ctrl.dbtr_iban.df_description = "Column Group 1"
-		this.ctrl.dbtr_iban.uictrl_code = "TXT"
-		this.ctrl.dbtr_iban.target_column = "DBTR_IBAN"
-		this.ctrl.dbtr_iban.data_type = "TEXT"
-		this.ctrl.dbtr_iban.data_length = 64
-		this.ctrl.dbtr_iban.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.dbtr_iban.default_value = ""
-		this.ctrl.dbtr_iban.is_memory_ctrl = ""
-		this.ctrl.dbtr_iban.field_coordinates = ""
-		this.ctrl.dbtr_iban.sub_details = ""
-		this.ctrl.dbtr_iban.accept_char = ""
-		this.ctrl.dbtr_iban.currency_format = ""
-		this.ctrl.dbtr_iban.data_scale = ""
-		this.ctrl.dbtr_iban.hide_label = false
-		this.ctrl.dbtr_iban.depends_on = ""
-		this.ctrl.dbtr_iban.placeholder = ""
-		this.ctrl.dbtr_iban.dynamic_param = ""
-		this.ctrl.dbtr_iban.style_code = ""
-		this.ctrl.dbtr_iban.data_source = ""
-		this.ctrl.dbtr_iban.image_association = ""
-		this.ctrl.dbtr_iban.show = true
-		this.ctrl.dbtr_iban.sub_content = ""
-		this.ctrl.dbtr_iban.required = false
-		this.ctrl.dbtr_iban.vld_rules = []
-		this.ctrl.dbtr_iban.targetcolumn_lower = "dbtr_iban"
-		this.ctrl.dbtr_iban.disabled = false
-		this.ctrl.dbtr_iban.view_name = "f_npss_simulator_ui"
-		this.ctrl.dbtr_iban.ctrl_id = "npss_simulator_ui_dbtr_iban"
-		this.ctrl.npss_simulator_ui_dbtr_iban = {}
-		this.ctrl.npss_simulator_ui_dbtr_iban.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of dbtr_acct_no
-		this.ctrl.dbtr_acct_no = {}
-		this.ctrl.dbtr_acct_no.id = "RN41CN39"
-		this.ctrl.dbtr_acct_no.desc = "Sender Account No"
-		this.ctrl.dbtr_acct_no.visible = true
-		this.ctrl.dbtr_acct_no.label_name = "Sender Account No"
-		this.ctrl.dbtr_acct_no.df_code = "DF_1304_1670492597353"
-		this.ctrl.dbtr_acct_no.df_description = "Column Group 1"
-		this.ctrl.dbtr_acct_no.uictrl_code = "TXT"
-		this.ctrl.dbtr_acct_no.target_column = "DBTR_ACCT_NO"
-		this.ctrl.dbtr_acct_no.data_type = "TEXT"
-		this.ctrl.dbtr_acct_no.data_length = 20
-		this.ctrl.dbtr_acct_no.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.dbtr_acct_no.default_value = ""
-		this.ctrl.dbtr_acct_no.is_memory_ctrl = ""
-		this.ctrl.dbtr_acct_no.field_coordinates = ""
-		this.ctrl.dbtr_acct_no.sub_details = ""
-		this.ctrl.dbtr_acct_no.accept_char = ""
-		this.ctrl.dbtr_acct_no.currency_format = ""
-		this.ctrl.dbtr_acct_no.data_scale = ""
-		this.ctrl.dbtr_acct_no.hide_label = false
-		this.ctrl.dbtr_acct_no.depends_on = ""
-		this.ctrl.dbtr_acct_no.placeholder = ""
-		this.ctrl.dbtr_acct_no.dynamic_param = ""
-		this.ctrl.dbtr_acct_no.style_code = ""
-		this.ctrl.dbtr_acct_no.data_source = ""
-		this.ctrl.dbtr_acct_no.image_association = ""
-		this.ctrl.dbtr_acct_no.show = true
-		this.ctrl.dbtr_acct_no.sub_content = ""
-		this.ctrl.dbtr_acct_no.required = false
-		this.ctrl.dbtr_acct_no.vld_rules = []
-		this.ctrl.dbtr_acct_no.targetcolumn_lower = "dbtr_acct_no"
-		this.ctrl.dbtr_acct_no.disabled = false
-		this.ctrl.dbtr_acct_no.view_name = "f_npss_simulator_ui"
-		this.ctrl.dbtr_acct_no.ctrl_id = "npss_simulator_ui_dbtr_acct_no"
-		this.ctrl.npss_simulator_ui_dbtr_acct_no = {}
-		this.ctrl.npss_simulator_ui_dbtr_acct_no.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of ext_acct_id_code
-		this.ctrl.ext_acct_id_code = {}
-		this.ctrl.ext_acct_id_code.id = "RN41CN40"
-		this.ctrl.ext_acct_id_code.desc = "Ext Acct Code"
-		this.ctrl.ext_acct_id_code.visible = true
-		this.ctrl.ext_acct_id_code.label_name = "Ext Acct Code"
-		this.ctrl.ext_acct_id_code.df_code = "DF_1304_1670492597353"
-		this.ctrl.ext_acct_id_code.df_description = "Column Group 1"
-		this.ctrl.ext_acct_id_code.uictrl_code = "TXT"
-		this.ctrl.ext_acct_id_code.target_column = "EXT_ACCT_ID_CODE"
-		this.ctrl.ext_acct_id_code.data_type = "TEXT"
-		this.ctrl.ext_acct_id_code.data_length = 4
-		this.ctrl.ext_acct_id_code.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.ext_acct_id_code.default_value = "AIIN"
-		this.ctrl.ext_acct_id_code.is_memory_ctrl = ""
-		this.ctrl.ext_acct_id_code.field_coordinates = ""
-		this.ctrl.ext_acct_id_code.sub_details = ""
-		this.ctrl.ext_acct_id_code.accept_char = ""
-		this.ctrl.ext_acct_id_code.currency_format = ""
-		this.ctrl.ext_acct_id_code.data_scale = ""
-		this.ctrl.ext_acct_id_code.hide_label = false
-		this.ctrl.ext_acct_id_code.depends_on = ""
-		this.ctrl.ext_acct_id_code.placeholder = ""
-		this.ctrl.ext_acct_id_code.dynamic_param = ""
-		this.ctrl.ext_acct_id_code.style_code = ""
-		this.ctrl.ext_acct_id_code.data_source = ""
-		this.ctrl.ext_acct_id_code.image_association = ""
-		this.ctrl.ext_acct_id_code.show = true
-		this.ctrl.ext_acct_id_code.sub_content = ""
-		this.ctrl.ext_acct_id_code.required = false
-		this.ctrl.ext_acct_id_code.vld_rules = []
-		this.ctrl.ext_acct_id_code.targetcolumn_lower = "ext_acct_id_code"
-		this.ctrl.ext_acct_id_code.disabled = false
-		this.ctrl.ext_acct_id_code.view_name = "f_npss_simulator_ui"
-		this.ctrl.ext_acct_id_code.ctrl_id = "npss_simulator_ui_ext_acct_id_code"
-		this.ctrl.npss_simulator_ui_ext_acct_id_code = {}
-		this.ctrl.npss_simulator_ui_ext_acct_id_code.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of dbtr_cust_type
-		this.ctrl.dbtr_cust_type = {}
-		this.ctrl.dbtr_cust_type.id = "RN41CN41"
-		this.ctrl.dbtr_cust_type.desc = "Sender Customer Type"
-		this.ctrl.dbtr_cust_type.visible = true
-		this.ctrl.dbtr_cust_type.label_name = "Sender Customer Type"
-		this.ctrl.dbtr_cust_type.df_code = "DF_1304_1670492597353"
-		this.ctrl.dbtr_cust_type.df_description = "Column Group 1"
-		this.ctrl.dbtr_cust_type.uictrl_code = "TXT"
-		this.ctrl.dbtr_cust_type.target_column = "DBTR_CUST_TYPE"
-		this.ctrl.dbtr_cust_type.data_type = "TEXT"
-		this.ctrl.dbtr_cust_type.data_length = 4
-		this.ctrl.dbtr_cust_type.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.dbtr_cust_type.default_value = ""
-		this.ctrl.dbtr_cust_type.is_memory_ctrl = ""
-		this.ctrl.dbtr_cust_type.field_coordinates = ""
-		this.ctrl.dbtr_cust_type.sub_details = ""
-		this.ctrl.dbtr_cust_type.accept_char = ""
-		this.ctrl.dbtr_cust_type.currency_format = ""
-		this.ctrl.dbtr_cust_type.data_scale = ""
-		this.ctrl.dbtr_cust_type.hide_label = false
-		this.ctrl.dbtr_cust_type.depends_on = ""
-		this.ctrl.dbtr_cust_type.placeholder = ""
-		this.ctrl.dbtr_cust_type.dynamic_param = ""
-		this.ctrl.dbtr_cust_type.style_code = ""
-		this.ctrl.dbtr_cust_type.data_source = ""
-		this.ctrl.dbtr_cust_type.image_association = ""
-		this.ctrl.dbtr_cust_type.show = true
-		this.ctrl.dbtr_cust_type.sub_content = ""
-		this.ctrl.dbtr_cust_type.required = false
-		this.ctrl.dbtr_cust_type.vld_rules = []
-		this.ctrl.dbtr_cust_type.targetcolumn_lower = "dbtr_cust_type"
-		this.ctrl.dbtr_cust_type.disabled = false
-		this.ctrl.dbtr_cust_type.view_name = "f_npss_simulator_ui"
-		this.ctrl.dbtr_cust_type.ctrl_id = "npss_simulator_ui_dbtr_cust_type"
-		this.ctrl.npss_simulator_ui_dbtr_cust_type = {}
-		this.ctrl.npss_simulator_ui_dbtr_cust_type.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of cdtr_acct_name
-		this.ctrl.cdtr_acct_name = {}
-		this.ctrl.cdtr_acct_name.id = "RN51CN42"
-		this.ctrl.cdtr_acct_name.desc = "Beneficiary Name"
-		this.ctrl.cdtr_acct_name.visible = true
-		this.ctrl.cdtr_acct_name.label_name = "Beneficiary Name"
-		this.ctrl.cdtr_acct_name.df_code = "DF_1304_1670492597353"
-		this.ctrl.cdtr_acct_name.df_description = "Column Group 1"
-		this.ctrl.cdtr_acct_name.uictrl_code = "TXT"
-		this.ctrl.cdtr_acct_name.target_column = "CDTR_ACCT_NAME"
-		this.ctrl.cdtr_acct_name.data_type = "TEXT"
-		this.ctrl.cdtr_acct_name.data_length = 100
-		this.ctrl.cdtr_acct_name.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.cdtr_acct_name.default_value = ""
-		this.ctrl.cdtr_acct_name.is_memory_ctrl = ""
-		this.ctrl.cdtr_acct_name.field_coordinates = ""
-		this.ctrl.cdtr_acct_name.sub_details = ""
-		this.ctrl.cdtr_acct_name.accept_char = ""
-		this.ctrl.cdtr_acct_name.currency_format = ""
-		this.ctrl.cdtr_acct_name.data_scale = ""
-		this.ctrl.cdtr_acct_name.hide_label = false
-		this.ctrl.cdtr_acct_name.depends_on = ""
-		this.ctrl.cdtr_acct_name.placeholder = ""
-		this.ctrl.cdtr_acct_name.dynamic_param = ""
-		this.ctrl.cdtr_acct_name.style_code = ""
-		this.ctrl.cdtr_acct_name.data_source = ""
-		this.ctrl.cdtr_acct_name.image_association = ""
-		this.ctrl.cdtr_acct_name.show = true
-		this.ctrl.cdtr_acct_name.sub_content = ""
-		this.ctrl.cdtr_acct_name.required = false
-		this.ctrl.cdtr_acct_name.vld_rules = []
-		this.ctrl.cdtr_acct_name.targetcolumn_lower = "cdtr_acct_name"
-		this.ctrl.cdtr_acct_name.disabled = false
-		this.ctrl.cdtr_acct_name.view_name = "f_npss_simulator_ui"
-		this.ctrl.cdtr_acct_name.ctrl_id = "npss_simulator_ui_cdtr_acct_name"
-		this.ctrl.npss_simulator_ui_cdtr_acct_name = {}
-		this.ctrl.npss_simulator_ui_cdtr_acct_name.onChangecomponent = new EventEmitter<any>()
+		//Properties of dbtr_birth_date
+		this.ctrl.dbtr_birth_date = {}
+		this.ctrl.dbtr_birth_date.id = "RN31CN29"
+		this.ctrl.dbtr_birth_date.desc = "Date of Birth"
+		this.ctrl.dbtr_birth_date.visible = true
+		this.ctrl.dbtr_birth_date.label_name = "Date of Birth"
+		this.ctrl.dbtr_birth_date.df_code = "DF_1304_1670492597353"
+		this.ctrl.dbtr_birth_date.df_description = "Column Group 1"
+		this.ctrl.dbtr_birth_date.uictrl_code = "DTP"
+		this.ctrl.dbtr_birth_date.target_column = "DBTR_BIRTH_DATE"
+		this.ctrl.dbtr_birth_date.data_type = "DATETIME"
+		this.ctrl.dbtr_birth_date.data_length = 0
+		this.ctrl.dbtr_birth_date.zone_df_code = "DF_1304_1670492597353"
+		this.ctrl.dbtr_birth_date.default_value = ""
+		this.ctrl.dbtr_birth_date.is_memory_ctrl = ""
+		this.ctrl.dbtr_birth_date.field_coordinates = ""
+		this.ctrl.dbtr_birth_date.sub_details = ""
+		this.ctrl.dbtr_birth_date.accept_char = ""
+		this.ctrl.dbtr_birth_date.currency_format = ""
+		this.ctrl.dbtr_birth_date.data_scale = ""
+		this.ctrl.dbtr_birth_date.hide_label = false
+		this.ctrl.dbtr_birth_date.depends_on = ""
+		this.ctrl.dbtr_birth_date.placeholder = ""
+		this.ctrl.dbtr_birth_date.dynamic_param = ""
+		this.ctrl.dbtr_birth_date.style_code = ""
+		this.ctrl.dbtr_birth_date.data_source = ""
+		this.ctrl.dbtr_birth_date.image_association = ""
+		this.ctrl.dbtr_birth_date.show = true
+		this.ctrl.dbtr_birth_date.sub_content = ""
+		this.ctrl.dbtr_birth_date.required = false
+		this.ctrl.dbtr_birth_date.vld_rules = []
+		this.ctrl.dbtr_birth_date.targetcolumn_lower = "dbtr_birth_date"
+		this.ctrl.dbtr_birth_date.disabled = false
+		this.ctrl.dbtr_birth_date.view_name = "f_npss_simulator_ui"
+		this.ctrl.dbtr_birth_date.ctrl_id = "npss_simulator_ui_dbtr_birth_date"
+		this.ctrl.npss_simulator_ui_dbtr_birth_date = {}
+		this.ctrl.npss_simulator_ui_dbtr_birth_date.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cr_acct_identification
 		this.ctrl.cr_acct_identification = {}
@@ -1494,120 +1764,6 @@ focustoelement(){
 		this.ctrl.cr_acct_identification.ctrl_id = "npss_simulator_ui_cr_acct_identification"
 		this.ctrl.npss_simulator_ui_cr_acct_identification = {}
 		this.ctrl.npss_simulator_ui_cr_acct_identification.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of cdtr_iban
-		this.ctrl.cdtr_iban = {}
-		this.ctrl.cdtr_iban.id = "RN51CN48"
-		this.ctrl.cdtr_iban.desc = "Beneficiary IBAN"
-		this.ctrl.cdtr_iban.visible = true
-		this.ctrl.cdtr_iban.label_name = "Beneficiary IBAN"
-		this.ctrl.cdtr_iban.df_code = "DF_1304_1670492597353"
-		this.ctrl.cdtr_iban.df_description = "Column Group 1"
-		this.ctrl.cdtr_iban.uictrl_code = "TXT"
-		this.ctrl.cdtr_iban.target_column = "CDTR_IBAN"
-		this.ctrl.cdtr_iban.data_type = "TEXT"
-		this.ctrl.cdtr_iban.data_length = 64
-		this.ctrl.cdtr_iban.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.cdtr_iban.default_value = ""
-		this.ctrl.cdtr_iban.is_memory_ctrl = ""
-		this.ctrl.cdtr_iban.field_coordinates = ""
-		this.ctrl.cdtr_iban.sub_details = ""
-		this.ctrl.cdtr_iban.accept_char = ""
-		this.ctrl.cdtr_iban.currency_format = ""
-		this.ctrl.cdtr_iban.data_scale = ""
-		this.ctrl.cdtr_iban.hide_label = false
-		this.ctrl.cdtr_iban.depends_on = ""
-		this.ctrl.cdtr_iban.placeholder = ""
-		this.ctrl.cdtr_iban.dynamic_param = ""
-		this.ctrl.cdtr_iban.style_code = ""
-		this.ctrl.cdtr_iban.data_source = ""
-		this.ctrl.cdtr_iban.image_association = ""
-		this.ctrl.cdtr_iban.show = true
-		this.ctrl.cdtr_iban.sub_content = ""
-		this.ctrl.cdtr_iban.required = false
-		this.ctrl.cdtr_iban.vld_rules = []
-		this.ctrl.cdtr_iban.targetcolumn_lower = "cdtr_iban"
-		this.ctrl.cdtr_iban.disabled = false
-		this.ctrl.cdtr_iban.view_name = "f_npss_simulator_ui"
-		this.ctrl.cdtr_iban.ctrl_id = "npss_simulator_ui_cdtr_iban"
-		this.ctrl.npss_simulator_ui_cdtr_iban = {}
-		this.ctrl.npss_simulator_ui_cdtr_iban.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of cdtr_acct_no
-		this.ctrl.cdtr_acct_no = {}
-		this.ctrl.cdtr_acct_no.id = "RN51CN43"
-		this.ctrl.cdtr_acct_no.desc = "Beneficiary Account No"
-		this.ctrl.cdtr_acct_no.visible = true
-		this.ctrl.cdtr_acct_no.label_name = "Beneficiary Account No"
-		this.ctrl.cdtr_acct_no.df_code = "DF_1304_1670492597353"
-		this.ctrl.cdtr_acct_no.df_description = "Column Group 1"
-		this.ctrl.cdtr_acct_no.uictrl_code = "TXT"
-		this.ctrl.cdtr_acct_no.target_column = "CDTR_ACCT_NO"
-		this.ctrl.cdtr_acct_no.data_type = "TEXT"
-		this.ctrl.cdtr_acct_no.data_length = 20
-		this.ctrl.cdtr_acct_no.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.cdtr_acct_no.default_value = ""
-		this.ctrl.cdtr_acct_no.is_memory_ctrl = ""
-		this.ctrl.cdtr_acct_no.field_coordinates = ""
-		this.ctrl.cdtr_acct_no.sub_details = ""
-		this.ctrl.cdtr_acct_no.accept_char = ""
-		this.ctrl.cdtr_acct_no.currency_format = ""
-		this.ctrl.cdtr_acct_no.data_scale = ""
-		this.ctrl.cdtr_acct_no.hide_label = false
-		this.ctrl.cdtr_acct_no.depends_on = ""
-		this.ctrl.cdtr_acct_no.placeholder = ""
-		this.ctrl.cdtr_acct_no.dynamic_param = ""
-		this.ctrl.cdtr_acct_no.style_code = ""
-		this.ctrl.cdtr_acct_no.data_source = ""
-		this.ctrl.cdtr_acct_no.image_association = ""
-		this.ctrl.cdtr_acct_no.show = true
-		this.ctrl.cdtr_acct_no.sub_content = ""
-		this.ctrl.cdtr_acct_no.required = false
-		this.ctrl.cdtr_acct_no.vld_rules = []
-		this.ctrl.cdtr_acct_no.targetcolumn_lower = "cdtr_acct_no"
-		this.ctrl.cdtr_acct_no.disabled = false
-		this.ctrl.cdtr_acct_no.view_name = "f_npss_simulator_ui"
-		this.ctrl.cdtr_acct_no.ctrl_id = "npss_simulator_ui_cdtr_acct_no"
-		this.ctrl.npss_simulator_ui_cdtr_acct_no = {}
-		this.ctrl.npss_simulator_ui_cdtr_acct_no.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of cr_acct_id_code
-		this.ctrl.cr_acct_id_code = {}
-		this.ctrl.cr_acct_id_code.id = "RN51CN50"
-		this.ctrl.cr_acct_id_code.desc = "Credit Card"
-		this.ctrl.cr_acct_id_code.visible = true
-		this.ctrl.cr_acct_id_code.label_name = "Credit Card"
-		this.ctrl.cr_acct_id_code.df_code = "DF_1304_1670492597353"
-		this.ctrl.cr_acct_id_code.df_description = "Column Group 1"
-		this.ctrl.cr_acct_id_code.uictrl_code = "TXT"
-		this.ctrl.cr_acct_id_code.target_column = "CR_ACCT_ID_CODE"
-		this.ctrl.cr_acct_id_code.data_type = "TEXT"
-		this.ctrl.cr_acct_id_code.data_length = 4
-		this.ctrl.cr_acct_id_code.zone_df_code = "DF_1304_1670492597353"
-		this.ctrl.cr_acct_id_code.default_value = "AIIN"
-		this.ctrl.cr_acct_id_code.is_memory_ctrl = ""
-		this.ctrl.cr_acct_id_code.field_coordinates = ""
-		this.ctrl.cr_acct_id_code.sub_details = ""
-		this.ctrl.cr_acct_id_code.accept_char = ""
-		this.ctrl.cr_acct_id_code.currency_format = ""
-		this.ctrl.cr_acct_id_code.data_scale = ""
-		this.ctrl.cr_acct_id_code.hide_label = false
-		this.ctrl.cr_acct_id_code.depends_on = ""
-		this.ctrl.cr_acct_id_code.placeholder = ""
-		this.ctrl.cr_acct_id_code.dynamic_param = ""
-		this.ctrl.cr_acct_id_code.style_code = ""
-		this.ctrl.cr_acct_id_code.data_source = ""
-		this.ctrl.cr_acct_id_code.image_association = ""
-		this.ctrl.cr_acct_id_code.show = true
-		this.ctrl.cr_acct_id_code.sub_content = ""
-		this.ctrl.cr_acct_id_code.required = false
-		this.ctrl.cr_acct_id_code.vld_rules = []
-		this.ctrl.cr_acct_id_code.targetcolumn_lower = "cr_acct_id_code"
-		this.ctrl.cr_acct_id_code.disabled = false
-		this.ctrl.cr_acct_id_code.view_name = "f_npss_simulator_ui"
-		this.ctrl.cr_acct_id_code.ctrl_id = "npss_simulator_ui_cr_acct_id_code"
-		this.ctrl.npss_simulator_ui_cr_acct_id_code = {}
-		this.ctrl.npss_simulator_ui_cr_acct_id_code.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of ext_purpose_code
 		this.ctrl.ext_purpose_code = {}
@@ -1916,9 +2072,9 @@ focustoelement(){
 		//Properties of individualidentificationcode
 		this.ctrl.individualidentificationcode = {}
 		this.ctrl.individualidentificationcode.id = "RN61CN54"
-		this.ctrl.individualidentificationcode.desc = "IndividualIdentificationCode"
+		this.ctrl.individualidentificationcode.desc = "Ind Identification Code"
 		this.ctrl.individualidentificationcode.visible = true
-		this.ctrl.individualidentificationcode.label_name = "IndividualIdentificationCode"
+		this.ctrl.individualidentificationcode.label_name = "Ind Identification Code"
 		this.ctrl.individualidentificationcode.df_code = "DF_1304_1670492597353"
 		this.ctrl.individualidentificationcode.df_description = "Column Group 1"
 		this.ctrl.individualidentificationcode.uictrl_code = "TXT"
@@ -1934,13 +2090,13 @@ focustoelement(){
 		this.ctrl.individualidentificationcode.currency_format = ""
 		this.ctrl.individualidentificationcode.data_scale = ""
 		this.ctrl.individualidentificationcode.hide_label = false
-		this.ctrl.individualidentificationcode.depends_on = "ALWAYSHIDE"
+		this.ctrl.individualidentificationcode.depends_on = ""
 		this.ctrl.individualidentificationcode.placeholder = ""
 		this.ctrl.individualidentificationcode.dynamic_param = ""
 		this.ctrl.individualidentificationcode.style_code = ""
 		this.ctrl.individualidentificationcode.data_source = ""
 		this.ctrl.individualidentificationcode.image_association = ""
-		this.ctrl.individualidentificationcode.show = false
+		this.ctrl.individualidentificationcode.show = true
 		this.ctrl.individualidentificationcode.sub_content = ""
 		this.ctrl.individualidentificationcode.required = false
 		this.ctrl.individualidentificationcode.vld_rules = []
@@ -1954,9 +2110,9 @@ focustoelement(){
 		//Properties of otheraccount
 		this.ctrl.otheraccount = {}
 		this.ctrl.otheraccount.id = "RN61CN55"
-		this.ctrl.otheraccount.desc = "otheraccount"
+		this.ctrl.otheraccount.desc = "Other Account"
 		this.ctrl.otheraccount.visible = true
-		this.ctrl.otheraccount.label_name = "otheraccount"
+		this.ctrl.otheraccount.label_name = "Other Account"
 		this.ctrl.otheraccount.df_code = "DF_1304_1670492597353"
 		this.ctrl.otheraccount.df_description = "Column Group 1"
 		this.ctrl.otheraccount.uictrl_code = "TXT"
@@ -1972,13 +2128,13 @@ focustoelement(){
 		this.ctrl.otheraccount.currency_format = ""
 		this.ctrl.otheraccount.data_scale = ""
 		this.ctrl.otheraccount.hide_label = false
-		this.ctrl.otheraccount.depends_on = "ALWAYSHIDE"
+		this.ctrl.otheraccount.depends_on = ""
 		this.ctrl.otheraccount.placeholder = ""
 		this.ctrl.otheraccount.dynamic_param = ""
 		this.ctrl.otheraccount.style_code = ""
 		this.ctrl.otheraccount.data_source = ""
 		this.ctrl.otheraccount.image_association = ""
-		this.ctrl.otheraccount.show = false
+		this.ctrl.otheraccount.show = true
 		this.ctrl.otheraccount.sub_content = ""
 		this.ctrl.otheraccount.required = false
 		this.ctrl.otheraccount.vld_rules = []
@@ -1992,9 +2148,9 @@ focustoelement(){
 		//Properties of companycode
 		this.ctrl.companycode = {}
 		this.ctrl.companycode.id = "RN61CN56"
-		this.ctrl.companycode.desc = "companyCode"
+		this.ctrl.companycode.desc = "Company Code"
 		this.ctrl.companycode.visible = true
-		this.ctrl.companycode.label_name = "companyCode"
+		this.ctrl.companycode.label_name = "Company Code"
 		this.ctrl.companycode.df_code = "DF_1304_1670492597353"
 		this.ctrl.companycode.df_description = "Column Group 1"
 		this.ctrl.companycode.uictrl_code = "TXT"
@@ -2010,13 +2166,13 @@ focustoelement(){
 		this.ctrl.companycode.currency_format = ""
 		this.ctrl.companycode.data_scale = ""
 		this.ctrl.companycode.hide_label = false
-		this.ctrl.companycode.depends_on = "ALWAYSHIDE"
+		this.ctrl.companycode.depends_on = ""
 		this.ctrl.companycode.placeholder = ""
 		this.ctrl.companycode.dynamic_param = ""
 		this.ctrl.companycode.style_code = ""
 		this.ctrl.companycode.data_source = ""
 		this.ctrl.companycode.image_association = ""
-		this.ctrl.companycode.show = false
+		this.ctrl.companycode.show = true
 		this.ctrl.companycode.sub_content = ""
 		this.ctrl.companycode.required = false
 		this.ctrl.companycode.vld_rules = []
@@ -2030,9 +2186,9 @@ focustoelement(){
 		//Properties of coretransactiontype
 		this.ctrl.coretransactiontype = {}
 		this.ctrl.coretransactiontype.id = "RN61CN57"
-		this.ctrl.coretransactiontype.desc = "coreTransactionType"
+		this.ctrl.coretransactiontype.desc = "Core Transaction Type"
 		this.ctrl.coretransactiontype.visible = true
-		this.ctrl.coretransactiontype.label_name = "coreTransactionType"
+		this.ctrl.coretransactiontype.label_name = "Core Transaction Type"
 		this.ctrl.coretransactiontype.df_code = "DF_1304_1670492597353"
 		this.ctrl.coretransactiontype.df_description = "Column Group 1"
 		this.ctrl.coretransactiontype.uictrl_code = "TXT"
@@ -2048,13 +2204,13 @@ focustoelement(){
 		this.ctrl.coretransactiontype.currency_format = ""
 		this.ctrl.coretransactiontype.data_scale = ""
 		this.ctrl.coretransactiontype.hide_label = false
-		this.ctrl.coretransactiontype.depends_on = "ALWAYSHIDE"
+		this.ctrl.coretransactiontype.depends_on = ""
 		this.ctrl.coretransactiontype.placeholder = ""
 		this.ctrl.coretransactiontype.dynamic_param = ""
 		this.ctrl.coretransactiontype.style_code = ""
 		this.ctrl.coretransactiontype.data_source = ""
 		this.ctrl.coretransactiontype.image_association = ""
-		this.ctrl.coretransactiontype.show = false
+		this.ctrl.coretransactiontype.show = true
 		this.ctrl.coretransactiontype.sub_content = ""
 		this.ctrl.coretransactiontype.required = false
 		this.ctrl.coretransactiontype.vld_rules = []
@@ -2068,9 +2224,9 @@ focustoelement(){
 		//Properties of beneficiarycustomer
 		this.ctrl.beneficiarycustomer = {}
 		this.ctrl.beneficiarycustomer.id = "RN61CN58"
-		this.ctrl.beneficiarycustomer.desc = "beneficiaryCustomer"
+		this.ctrl.beneficiarycustomer.desc = "Beneficiary Customer"
 		this.ctrl.beneficiarycustomer.visible = true
-		this.ctrl.beneficiarycustomer.label_name = "beneficiaryCustomer"
+		this.ctrl.beneficiarycustomer.label_name = "Beneficiary Customer"
 		this.ctrl.beneficiarycustomer.df_code = "DF_1304_1670492597353"
 		this.ctrl.beneficiarycustomer.df_description = "Column Group 1"
 		this.ctrl.beneficiarycustomer.uictrl_code = "TXT"
@@ -2086,13 +2242,13 @@ focustoelement(){
 		this.ctrl.beneficiarycustomer.currency_format = ""
 		this.ctrl.beneficiarycustomer.data_scale = ""
 		this.ctrl.beneficiarycustomer.hide_label = false
-		this.ctrl.beneficiarycustomer.depends_on = "ALWAYSHIDE"
+		this.ctrl.beneficiarycustomer.depends_on = ""
 		this.ctrl.beneficiarycustomer.placeholder = ""
 		this.ctrl.beneficiarycustomer.dynamic_param = ""
 		this.ctrl.beneficiarycustomer.style_code = ""
 		this.ctrl.beneficiarycustomer.data_source = ""
 		this.ctrl.beneficiarycustomer.image_association = ""
-		this.ctrl.beneficiarycustomer.show = false
+		this.ctrl.beneficiarycustomer.show = true
 		this.ctrl.beneficiarycustomer.sub_content = ""
 		this.ctrl.beneficiarycustomer.required = false
 		this.ctrl.beneficiarycustomer.vld_rules = []
@@ -2106,9 +2262,9 @@ focustoelement(){
 		//Properties of chargeaccount
 		this.ctrl.chargeaccount = {}
 		this.ctrl.chargeaccount.id = "RN61CN59"
-		this.ctrl.chargeaccount.desc = "chargeaccount"
+		this.ctrl.chargeaccount.desc = "Charge Account"
 		this.ctrl.chargeaccount.visible = true
-		this.ctrl.chargeaccount.label_name = "chargeaccount"
+		this.ctrl.chargeaccount.label_name = "Charge Account"
 		this.ctrl.chargeaccount.df_code = "DF_1304_1670492597353"
 		this.ctrl.chargeaccount.df_description = "Column Group 1"
 		this.ctrl.chargeaccount.uictrl_code = "TXT"
@@ -2124,13 +2280,13 @@ focustoelement(){
 		this.ctrl.chargeaccount.currency_format = ""
 		this.ctrl.chargeaccount.data_scale = ""
 		this.ctrl.chargeaccount.hide_label = false
-		this.ctrl.chargeaccount.depends_on = "ALWAYSHIDE"
+		this.ctrl.chargeaccount.depends_on = ""
 		this.ctrl.chargeaccount.placeholder = ""
 		this.ctrl.chargeaccount.dynamic_param = ""
 		this.ctrl.chargeaccount.style_code = ""
 		this.ctrl.chargeaccount.data_source = ""
 		this.ctrl.chargeaccount.image_association = ""
-		this.ctrl.chargeaccount.show = false
+		this.ctrl.chargeaccount.show = true
 		this.ctrl.chargeaccount.sub_content = ""
 		this.ctrl.chargeaccount.required = false
 		this.ctrl.chargeaccount.vld_rules = []
@@ -2144,9 +2300,9 @@ focustoelement(){
 		//Properties of chargecode
 		this.ctrl.chargecode = {}
 		this.ctrl.chargecode.id = "RN61CN60"
-		this.ctrl.chargecode.desc = "chargecode"
+		this.ctrl.chargecode.desc = "Charge Code"
 		this.ctrl.chargecode.visible = true
-		this.ctrl.chargecode.label_name = "chargecode"
+		this.ctrl.chargecode.label_name = "Charge Code"
 		this.ctrl.chargecode.df_code = "DF_1304_1670492597353"
 		this.ctrl.chargecode.df_description = "Column Group 1"
 		this.ctrl.chargecode.uictrl_code = "TXT"
@@ -2162,13 +2318,13 @@ focustoelement(){
 		this.ctrl.chargecode.currency_format = ""
 		this.ctrl.chargecode.data_scale = ""
 		this.ctrl.chargecode.hide_label = false
-		this.ctrl.chargecode.depends_on = "ALWAYSHIDE"
+		this.ctrl.chargecode.depends_on = ""
 		this.ctrl.chargecode.placeholder = ""
 		this.ctrl.chargecode.dynamic_param = ""
 		this.ctrl.chargecode.style_code = ""
 		this.ctrl.chargecode.data_source = ""
 		this.ctrl.chargecode.image_association = ""
-		this.ctrl.chargecode.show = false
+		this.ctrl.chargecode.show = true
 		this.ctrl.chargecode.sub_content = ""
 		this.ctrl.chargecode.required = false
 		this.ctrl.chargecode.vld_rules = []
@@ -2182,9 +2338,9 @@ focustoelement(){
 		//Properties of chargetype
 		this.ctrl.chargetype = {}
 		this.ctrl.chargetype.id = "RN61CN61"
-		this.ctrl.chargetype.desc = "chargetype"
+		this.ctrl.chargetype.desc = "Charge Type"
 		this.ctrl.chargetype.visible = true
-		this.ctrl.chargetype.label_name = "chargetype"
+		this.ctrl.chargetype.label_name = "Charge Type"
 		this.ctrl.chargetype.df_code = "DF_1304_1670492597353"
 		this.ctrl.chargetype.df_description = "Column Group 1"
 		this.ctrl.chargetype.uictrl_code = "TXT"
@@ -2200,13 +2356,13 @@ focustoelement(){
 		this.ctrl.chargetype.currency_format = ""
 		this.ctrl.chargetype.data_scale = ""
 		this.ctrl.chargetype.hide_label = false
-		this.ctrl.chargetype.depends_on = "ALWAYSHIDE"
+		this.ctrl.chargetype.depends_on = ""
 		this.ctrl.chargetype.placeholder = ""
 		this.ctrl.chargetype.dynamic_param = ""
 		this.ctrl.chargetype.style_code = ""
 		this.ctrl.chargetype.data_source = ""
 		this.ctrl.chargetype.image_association = ""
-		this.ctrl.chargetype.show = false
+		this.ctrl.chargetype.show = true
 		this.ctrl.chargetype.sub_content = ""
 		this.ctrl.chargetype.required = false
 		this.ctrl.chargetype.vld_rules = []
@@ -2220,9 +2376,9 @@ focustoelement(){
 		//Properties of chargeamount
 		this.ctrl.chargeamount = {}
 		this.ctrl.chargeamount.id = "RN61CN62"
-		this.ctrl.chargeamount.desc = "chargeamount"
+		this.ctrl.chargeamount.desc = "Charge Amount"
 		this.ctrl.chargeamount.visible = true
-		this.ctrl.chargeamount.label_name = "chargeamount"
+		this.ctrl.chargeamount.label_name = "Charge Amount"
 		this.ctrl.chargeamount.df_code = "DF_1304_1670492597353"
 		this.ctrl.chargeamount.df_description = "Column Group 1"
 		this.ctrl.chargeamount.uictrl_code = "TXT"
@@ -2238,13 +2394,13 @@ focustoelement(){
 		this.ctrl.chargeamount.currency_format = ""
 		this.ctrl.chargeamount.data_scale = ""
 		this.ctrl.chargeamount.hide_label = false
-		this.ctrl.chargeamount.depends_on = "ALWAYSHIDE"
+		this.ctrl.chargeamount.depends_on = ""
 		this.ctrl.chargeamount.placeholder = ""
 		this.ctrl.chargeamount.dynamic_param = ""
 		this.ctrl.chargeamount.style_code = ""
 		this.ctrl.chargeamount.data_source = ""
 		this.ctrl.chargeamount.image_association = ""
-		this.ctrl.chargeamount.show = false
+		this.ctrl.chargeamount.show = true
 		this.ctrl.chargeamount.sub_content = ""
 		this.ctrl.chargeamount.required = false
 		this.ctrl.chargeamount.vld_rules = []
@@ -2258,9 +2414,9 @@ focustoelement(){
 		//Properties of chargenarration
 		this.ctrl.chargenarration = {}
 		this.ctrl.chargenarration.id = "RN61CN63"
-		this.ctrl.chargenarration.desc = "chargenarration"
+		this.ctrl.chargenarration.desc = "Charge Narration"
 		this.ctrl.chargenarration.visible = true
-		this.ctrl.chargenarration.label_name = "chargenarration"
+		this.ctrl.chargenarration.label_name = "Charge Narration"
 		this.ctrl.chargenarration.df_code = "DF_1304_1670492597353"
 		this.ctrl.chargenarration.df_description = "Column Group 1"
 		this.ctrl.chargenarration.uictrl_code = "TXT"
@@ -2276,13 +2432,13 @@ focustoelement(){
 		this.ctrl.chargenarration.currency_format = ""
 		this.ctrl.chargenarration.data_scale = ""
 		this.ctrl.chargenarration.hide_label = false
-		this.ctrl.chargenarration.depends_on = "ALWAYSHIDE"
+		this.ctrl.chargenarration.depends_on = ""
 		this.ctrl.chargenarration.placeholder = ""
 		this.ctrl.chargenarration.dynamic_param = ""
 		this.ctrl.chargenarration.style_code = ""
 		this.ctrl.chargenarration.data_source = ""
 		this.ctrl.chargenarration.image_association = ""
-		this.ctrl.chargenarration.show = false
+		this.ctrl.chargenarration.show = true
 		this.ctrl.chargenarration.sub_content = ""
 		this.ctrl.chargenarration.required = false
 		this.ctrl.chargenarration.vld_rules = []
@@ -2296,9 +2452,9 @@ focustoelement(){
 		//Properties of vatamount
 		this.ctrl.vatamount = {}
 		this.ctrl.vatamount.id = "RN61CN64"
-		this.ctrl.vatamount.desc = "vatamount"
+		this.ctrl.vatamount.desc = "VAT Amount"
 		this.ctrl.vatamount.visible = true
-		this.ctrl.vatamount.label_name = "vatamount"
+		this.ctrl.vatamount.label_name = "VAT Amount"
 		this.ctrl.vatamount.df_code = "DF_1304_1670492597353"
 		this.ctrl.vatamount.df_description = "Column Group 1"
 		this.ctrl.vatamount.uictrl_code = "TXT"
@@ -2314,13 +2470,13 @@ focustoelement(){
 		this.ctrl.vatamount.currency_format = ""
 		this.ctrl.vatamount.data_scale = ""
 		this.ctrl.vatamount.hide_label = false
-		this.ctrl.vatamount.depends_on = "ALWAYSHIDE"
+		this.ctrl.vatamount.depends_on = ""
 		this.ctrl.vatamount.placeholder = ""
 		this.ctrl.vatamount.dynamic_param = ""
 		this.ctrl.vatamount.style_code = ""
 		this.ctrl.vatamount.data_source = ""
 		this.ctrl.vatamount.image_association = ""
-		this.ctrl.vatamount.show = false
+		this.ctrl.vatamount.show = true
 		this.ctrl.vatamount.sub_content = ""
 		this.ctrl.vatamount.required = false
 		this.ctrl.vatamount.vld_rules = []
@@ -2334,9 +2490,9 @@ focustoelement(){
 		//Properties of vatnarration
 		this.ctrl.vatnarration = {}
 		this.ctrl.vatnarration.id = "RN61CN65"
-		this.ctrl.vatnarration.desc = "vatnarration"
+		this.ctrl.vatnarration.desc = "VAT Narration"
 		this.ctrl.vatnarration.visible = true
-		this.ctrl.vatnarration.label_name = "vatnarration"
+		this.ctrl.vatnarration.label_name = "VAT Narration"
 		this.ctrl.vatnarration.df_code = "DF_1304_1670492597353"
 		this.ctrl.vatnarration.df_description = "Column Group 1"
 		this.ctrl.vatnarration.uictrl_code = "TXT"
@@ -2352,13 +2508,13 @@ focustoelement(){
 		this.ctrl.vatnarration.currency_format = ""
 		this.ctrl.vatnarration.data_scale = ""
 		this.ctrl.vatnarration.hide_label = false
-		this.ctrl.vatnarration.depends_on = "ALWAYSHIDE"
+		this.ctrl.vatnarration.depends_on = ""
 		this.ctrl.vatnarration.placeholder = ""
 		this.ctrl.vatnarration.dynamic_param = ""
 		this.ctrl.vatnarration.style_code = ""
 		this.ctrl.vatnarration.data_source = ""
 		this.ctrl.vatnarration.image_association = ""
-		this.ctrl.vatnarration.show = false
+		this.ctrl.vatnarration.show = true
 		this.ctrl.vatnarration.sub_content = ""
 		this.ctrl.vatnarration.required = false
 		this.ctrl.vatnarration.vld_rules = []
@@ -2372,9 +2528,9 @@ focustoelement(){
 		//Properties of vataccount
 		this.ctrl.vataccount = {}
 		this.ctrl.vataccount.id = "RN81CN78"
-		this.ctrl.vataccount.desc = "vataccount"
+		this.ctrl.vataccount.desc = "VAT Account"
 		this.ctrl.vataccount.visible = true
-		this.ctrl.vataccount.label_name = "vataccount"
+		this.ctrl.vataccount.label_name = "VAT Account"
 		this.ctrl.vataccount.df_code = "DF_1304_1670492597353"
 		this.ctrl.vataccount.df_description = "Column Group 1"
 		this.ctrl.vataccount.uictrl_code = "TXT"
@@ -2390,13 +2546,13 @@ focustoelement(){
 		this.ctrl.vataccount.currency_format = ""
 		this.ctrl.vataccount.data_scale = ""
 		this.ctrl.vataccount.hide_label = false
-		this.ctrl.vataccount.depends_on = "ALWAYSHIDE"
+		this.ctrl.vataccount.depends_on = ""
 		this.ctrl.vataccount.placeholder = ""
 		this.ctrl.vataccount.dynamic_param = ""
 		this.ctrl.vataccount.style_code = ""
 		this.ctrl.vataccount.data_source = ""
 		this.ctrl.vataccount.image_association = ""
-		this.ctrl.vataccount.show = false
+		this.ctrl.vataccount.show = true
 		this.ctrl.vataccount.sub_content = ""
 		this.ctrl.vataccount.required = false
 		this.ctrl.vataccount.vld_rules = []
@@ -2410,9 +2566,9 @@ focustoelement(){
 		//Properties of exchangerate
 		this.ctrl.exchangerate = {}
 		this.ctrl.exchangerate.id = "RN61CN79"
-		this.ctrl.exchangerate.desc = "exchangerate"
+		this.ctrl.exchangerate.desc = "Exchange Rate"
 		this.ctrl.exchangerate.visible = true
-		this.ctrl.exchangerate.label_name = "exchangerate"
+		this.ctrl.exchangerate.label_name = "Exchange Rate"
 		this.ctrl.exchangerate.df_code = "DF_1304_1670492597353"
 		this.ctrl.exchangerate.df_description = "Column Group 1"
 		this.ctrl.exchangerate.uictrl_code = "TXT"
@@ -2428,13 +2584,13 @@ focustoelement(){
 		this.ctrl.exchangerate.currency_format = ""
 		this.ctrl.exchangerate.data_scale = ""
 		this.ctrl.exchangerate.hide_label = false
-		this.ctrl.exchangerate.depends_on = "ALWAYSHIDE"
+		this.ctrl.exchangerate.depends_on = ""
 		this.ctrl.exchangerate.placeholder = ""
 		this.ctrl.exchangerate.dynamic_param = ""
 		this.ctrl.exchangerate.style_code = ""
 		this.ctrl.exchangerate.data_source = ""
 		this.ctrl.exchangerate.image_association = ""
-		this.ctrl.exchangerate.show = false
+		this.ctrl.exchangerate.show = true
 		this.ctrl.exchangerate.sub_content = ""
 		this.ctrl.exchangerate.required = false
 		this.ctrl.exchangerate.vld_rules = []
@@ -2448,9 +2604,9 @@ focustoelement(){
 		//Properties of customerrate
 		this.ctrl.customerrate = {}
 		this.ctrl.customerrate.id = "RN61CN80"
-		this.ctrl.customerrate.desc = "customerRate"
+		this.ctrl.customerrate.desc = "Customer Rate"
 		this.ctrl.customerrate.visible = true
-		this.ctrl.customerrate.label_name = "customerRate"
+		this.ctrl.customerrate.label_name = "Customer Rate"
 		this.ctrl.customerrate.df_code = "DF_1304_1670492597353"
 		this.ctrl.customerrate.df_description = "Column Group 1"
 		this.ctrl.customerrate.uictrl_code = "TXT"
@@ -2466,13 +2622,13 @@ focustoelement(){
 		this.ctrl.customerrate.currency_format = ""
 		this.ctrl.customerrate.data_scale = ""
 		this.ctrl.customerrate.hide_label = false
-		this.ctrl.customerrate.depends_on = "ALWAYSHIDE"
+		this.ctrl.customerrate.depends_on = ""
 		this.ctrl.customerrate.placeholder = ""
 		this.ctrl.customerrate.dynamic_param = ""
 		this.ctrl.customerrate.style_code = ""
 		this.ctrl.customerrate.data_source = ""
 		this.ctrl.customerrate.image_association = ""
-		this.ctrl.customerrate.show = false
+		this.ctrl.customerrate.show = true
 		this.ctrl.customerrate.sub_content = ""
 		this.ctrl.customerrate.required = false
 		this.ctrl.customerrate.vld_rules = []
@@ -2486,9 +2642,9 @@ focustoelement(){
 		//Properties of treasuryrate
 		this.ctrl.treasuryrate = {}
 		this.ctrl.treasuryrate.id = "RN61CN81"
-		this.ctrl.treasuryrate.desc = "treasuryRate"
+		this.ctrl.treasuryrate.desc = "Treasury Rate"
 		this.ctrl.treasuryrate.visible = true
-		this.ctrl.treasuryrate.label_name = "treasuryRate"
+		this.ctrl.treasuryrate.label_name = "Treasury Rate"
 		this.ctrl.treasuryrate.df_code = "DF_1304_1670492597353"
 		this.ctrl.treasuryrate.df_description = "Column Group 1"
 		this.ctrl.treasuryrate.uictrl_code = "TXT"
@@ -2504,13 +2660,13 @@ focustoelement(){
 		this.ctrl.treasuryrate.currency_format = ""
 		this.ctrl.treasuryrate.data_scale = ""
 		this.ctrl.treasuryrate.hide_label = false
-		this.ctrl.treasuryrate.depends_on = "ALWAYSHIDE"
+		this.ctrl.treasuryrate.depends_on = ""
 		this.ctrl.treasuryrate.placeholder = ""
 		this.ctrl.treasuryrate.dynamic_param = ""
 		this.ctrl.treasuryrate.style_code = ""
 		this.ctrl.treasuryrate.data_source = ""
 		this.ctrl.treasuryrate.image_association = ""
-		this.ctrl.treasuryrate.show = false
+		this.ctrl.treasuryrate.show = true
 		this.ctrl.treasuryrate.sub_content = ""
 		this.ctrl.treasuryrate.required = false
 		this.ctrl.treasuryrate.vld_rules = []
@@ -2524,9 +2680,9 @@ focustoelement(){
 		//Properties of customerspread
 		this.ctrl.customerspread = {}
 		this.ctrl.customerspread.id = "RN61CN82"
-		this.ctrl.customerspread.desc = "customerSpread"
+		this.ctrl.customerspread.desc = "Customer Spread"
 		this.ctrl.customerspread.visible = true
-		this.ctrl.customerspread.label_name = "customerSpread"
+		this.ctrl.customerspread.label_name = "Customer Spread"
 		this.ctrl.customerspread.df_code = "DF_1304_1670492597353"
 		this.ctrl.customerspread.df_description = "Column Group 1"
 		this.ctrl.customerspread.uictrl_code = "TXT"
@@ -2542,13 +2698,13 @@ focustoelement(){
 		this.ctrl.customerspread.currency_format = ""
 		this.ctrl.customerspread.data_scale = ""
 		this.ctrl.customerspread.hide_label = false
-		this.ctrl.customerspread.depends_on = "ALWAYSHIDE"
+		this.ctrl.customerspread.depends_on = ""
 		this.ctrl.customerspread.placeholder = ""
 		this.ctrl.customerspread.dynamic_param = ""
 		this.ctrl.customerspread.style_code = ""
 		this.ctrl.customerspread.data_source = ""
 		this.ctrl.customerspread.image_association = ""
-		this.ctrl.customerspread.show = false
+		this.ctrl.customerspread.show = true
 		this.ctrl.customerspread.sub_content = ""
 		this.ctrl.customerspread.required = false
 		this.ctrl.customerspread.vld_rules = []
@@ -2558,8 +2714,8 @@ focustoelement(){
 		this.ctrl.customerspread.ctrl_id = "npss_simulator_ui_customerspread"
 		this.ctrl.npss_simulator_ui_customerspread = {}
 		this.ctrl.npss_simulator_ui_customerspread.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_simulator_ui.model = {"CHANNEL_ID":"","CHANNEL_REFNO":"","CHANNEL_USERID":"","CHANNEL_PRODUCT":"","CHANNEL_SUB_PRODUCT":"","CHANNEL_TRAN_CODE":"","HDR_MSG_ID":"","HDR_CREATED_DATE":"setcurrentdate(),{}","HDR_TOTAL_RECORDS":"1","HDR_TOTAL_AMOUNT":"","HDR_SETTLEMENT_DATE":"setcurrentdate(),{}","VALUE_DATE":"setcurrentdate(),{}","HDR_SETTLEMENT_METHOD":"CLRG","HDR_CLEARING_SYSTEM":"UAEIPP Core Service","DR_SORT_CODE":"","CR_SORT_CODE":"","INSTRUCTION_ID":"","PAYMENT_ENDTOEND_ID":"","TRAN_REF_ID":"","UETR":"","INSTRUMENT_TYPE":"INST","CATEGORY_PURPOSE":"","CATEGORY_PURPOSE_PRTY":"","INTRBK_STTLM_AMNT":"","CHARGE_BEARER":"SLEV","DBTR_ACCT_NAME":"","EXT_ORG_ID_CODE":"","EXT_PERSON_ID_CODE":"","ISSUER_TYPE_CODE":"","DBTR_BIRTH_DATE":"","DBTR_COUNTRY":"","DBTR_DOCUMENT_ID":"","DBTR_IBAN":"","DBTR_ACCT_NO":"","EXT_ACCT_ID_CODE":"AIIN","DBTR_CUST_TYPE":"","CDTR_ACCT_NAME":"","CR_ACCT_IDENTIFICATION":"","CDTR_IBAN":"","CDTR_ACCT_NO":"","CR_ACCT_ID_CODE":"AIIN","EXT_PURPOSE_CODE":"","MIDDLEWARE_REF_NO":"","CBS_REF_NO":"","DBTR_PRVT_ID":"","BASE_CURRENCY":"","CBS_POSTING_FLAG":"","EXT_PURPOSE_PRTY":"","REMITTANCE_INFO":"","INDIVIDUALIDENTIFICATIONCODE":"","OTHERACCOUNT":"","COMPANYCODE":"","CORETRANSACTIONTYPE":"","BENEFICIARYCUSTOMER":"","CHARGEACCOUNT":"","CHARGECODE":"","CHARGETYPE":"","CHARGEAMOUNT":"","CHARGENARRATION":"","VATAMOUNT":"","VATNARRATION":"","VATACCOUNT":"","EXCHANGERATE":"","CUSTOMERRATE":"","TREASURYRATE":"","CUSTOMERSPREAD":""}
-		this.screen_instance[this.comp_id].f_npss_simulator_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REFNO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_USERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_PRODUCT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_SUB_PRODUCT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_TRAN_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_ID"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"HDR_CREATED_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"HDR_TOTAL_RECORDS"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"HDR_TOTAL_AMOUNT"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"HDR_SETTLEMENT_DATE"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_SETTLEMENT_METHOD"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_CLEARING_SYSTEM"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DR_SORT_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_SORT_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INSTRUCTION_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INSTRUMENT_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CATEGORY_PURPOSE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CATEGORY_PURPOSE_PRTY"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGE_BEARER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_ORG_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PERSON_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"ISSUER_TYPE_CODE"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"DBTR_BIRTH_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_COUNTRY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_DOCUMENT_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_ACCT_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_CUST_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MIDDLEWARE_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CBS_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PRVT_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BASE_CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CBS_POSTING_FLAG"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_PRTY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"REMITTANCE_INFO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INDIVIDUALIDENTIFICATIONCODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"OTHERACCOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"COMPANYCODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CORETRANSACTIONTYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BENEFICIARYCUSTOMER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGEACCOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGECODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGETYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGEAMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGENARRATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VATAMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VATNARRATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VATACCOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXCHANGERATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMERRATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TREASURYRATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMERSPREAD"}]
+		this.screen_instance[this.comp_id].f_npss_simulator_ui.model = {"MEMORY90":"","CHANNEL_ID":"","CHANNEL_REFNO":"","CHANNEL_USERID":"","CHANNEL_PRODUCT":"","CHANNEL_SUB_PRODUCT":"","CHANNEL_TRAN_CODE":"","HDR_MSG_ID":"","HDR_CREATED_DATE":"setcurrentdate(),{}","HDR_TOTAL_RECORDS":"1","HDR_TOTAL_AMOUNT":"","HDR_SETTLEMENT_DATE":"setcurrentdate(),{}","VALUE_DATE":"setcurrentdate(),{}","HDR_SETTLEMENT_METHOD":"CLRG","HDR_CLEARING_SYSTEM":"UAEIPP Core Service","MEMORY91":"","DBTR_ACCT_NAME":"","DR_SORT_CODE":"","DBTR_IBAN":"","DBTR_ACCT_NO":"","EXT_ACCT_ID_CODE":"AIIN","DBTR_CUST_TYPE":"","MEMORY92":"","CDTR_ACCT_NAME":"","CR_SORT_CODE":"","CDTR_IBAN":"","CR_ACCT_ID_CODE":"AIIN","CDTR_ACCT_NO":"","MEMORY93":"","INSTRUCTION_ID":"","PAYMENT_ENDTOEND_ID":"","TRAN_REF_ID":"","UETR":"","INSTRUMENT_TYPE":"INST","CATEGORY_PURPOSE":"","CATEGORY_PURPOSE_PRTY":"","INTRBK_STTLM_AMNT":"","CHARGE_BEARER":"SLEV","EXT_ORG_ID_CODE":"","EXT_PERSON_ID_CODE":"","ISSUER_TYPE_CODE":"","DBTR_COUNTRY":"","DBTR_DOCUMENT_ID":"","DBTR_BIRTH_DATE":"","CR_ACCT_IDENTIFICATION":"","EXT_PURPOSE_CODE":"","MIDDLEWARE_REF_NO":"","CBS_REF_NO":"","DBTR_PRVT_ID":"","BASE_CURRENCY":"","CBS_POSTING_FLAG":"","EXT_PURPOSE_PRTY":"","REMITTANCE_INFO":"","INDIVIDUALIDENTIFICATIONCODE":"","OTHERACCOUNT":"","COMPANYCODE":"","CORETRANSACTIONTYPE":"","BENEFICIARYCUSTOMER":"","CHARGEACCOUNT":"","CHARGECODE":"","CHARGETYPE":"","CHARGEAMOUNT":"","CHARGENARRATION":"","VATAMOUNT":"","VATNARRATION":"","VATACCOUNT":"","EXCHANGERATE":"","CUSTOMERRATE":"","TREASURYRATE":"","CUSTOMERSPREAD":""}
+		this.screen_instance[this.comp_id].f_npss_simulator_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REFNO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_USERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_PRODUCT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_SUB_PRODUCT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_TRAN_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_ID"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"HDR_CREATED_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"HDR_TOTAL_RECORDS"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"HDR_TOTAL_AMOUNT"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"HDR_SETTLEMENT_DATE"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_SETTLEMENT_METHOD"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_CLEARING_SYSTEM"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DR_SORT_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_ACCT_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_CUST_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_SORT_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INSTRUCTION_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INSTRUMENT_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CATEGORY_PURPOSE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CATEGORY_PURPOSE_PRTY"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGE_BEARER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_ORG_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PERSON_ID_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"ISSUER_TYPE_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_COUNTRY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_DOCUMENT_ID"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"DBTR_BIRTH_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MIDDLEWARE_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CBS_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PRVT_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BASE_CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CBS_POSTING_FLAG"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_PRTY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"REMITTANCE_INFO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INDIVIDUALIDENTIFICATIONCODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"OTHERACCOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"COMPANYCODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CORETRANSACTIONTYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BENEFICIARYCUSTOMER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGEACCOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGECODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGETYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGEAMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHARGENARRATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VATAMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VATNARRATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VATACCOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXCHANGERATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMERRATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TREASURYRATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMERSPREAD"}]
 		this.screen_instance[this.comp_id].f_npss_simulator_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_simulator_ui.dtt_code = "dtt_1304_1670492310194"
 		this.screen_instance[this.comp_id].f_npss_simulator_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

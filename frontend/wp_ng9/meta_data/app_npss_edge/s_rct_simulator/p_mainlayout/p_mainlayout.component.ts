@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27246 
+Build ID        : 27252 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 15:46 PM 
+Modified Date   : 2022-Dec-09 6:33 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_simulator
@@ -24,6 +24,7 @@ export class p_mainlayoutComponent implements OnInit {
   // Variables 
   	data_entry : any = {}
 	navigation_ui : any = {}
+	npss_sim_pack008 : any = {}
 
 
   // Constructor 
@@ -35,6 +36,8 @@ export class p_mainlayoutComponent implements OnInit {
 		this.data_entry.need_header = ""
 		this.navigation_ui.desc = "Navigation UI"
 		this.navigation_ui.need_header = ""
+		this.npss_sim_pack008.desc = "NPSS Sim pack008"
+		this.npss_sim_pack008.need_header = ""
 	
 
     this.screen_instance['p_mainlayout'] = {};

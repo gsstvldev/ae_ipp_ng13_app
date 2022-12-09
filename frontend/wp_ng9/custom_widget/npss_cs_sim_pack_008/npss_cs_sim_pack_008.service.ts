@@ -129,6 +129,10 @@ export class npss_cs_sim_pack_008Service {
             "CHANNEL_USERID": CtrlScope.CHANNEL_USERID || '',
             "CHANNEL_PRODUCT": CtrlScope.CHANNEL_PRODUCT || '',
             "SETTLEMENT_DATE": CtrlScope.HDR_SETTLEMENT_DATE || '',
+            "DR_SORT_CODE": CtrlScope.DR_SORT_CODE || '',
+            "CR_SORT_CODE": CtrlScope.CR_SORT_CODE || '',
+            "DBTR_ACCT_NO": CtrlScope.DBTR_ACCT_NO || '',
+            "CDTR_ACCT_NO": CtrlScope.CDTR_ACCT_NO || '',
             "hdr_msg_id": CtrlScope.HDR_MSG_ID || '',
             "hdr_created_date": CtrlScope.HDR_CREATED_DATE || '',
             "hdr_total_records": CtrlScope.HDR_TOTAL_RECORDS || '',
@@ -162,14 +166,14 @@ export class npss_cs_sim_pack_008Service {
     CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_sim_pack_008/', ClientParams)
             .subscribe((res: any) => {
-                this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
+                //this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 // console.log("Low Value btn Response", res);
-                if (res.data == "SUCCESS") {
-                    this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
-                   // this.dialogHelper.ShowInfoDialog(res.data.);
-                } else {
-                    this.appHandler.callInternals(internals, screenInstance, "FAILURE");
-                }
+               // if (res.data == "SUCCESS") {
+                   // this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
+                   this.dialogHelper.ShowInfoDialog(`${res.data['responseDescription']},${res.data['ipiReferenceNumber']}`);
+               // } else {
+                  //  this.appHandler.callInternals(internals, screenInstance, "FAILURE");
+                //}
             });
     }
     //Custom validation logics

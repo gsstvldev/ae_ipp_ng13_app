@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27246 
+Build ID        : 27252 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 15:46 PM 
+Modified Date   : 2022-Dec-09 6:33 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_simulator
@@ -37,6 +37,7 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	uicgc_3 : string = "list"
 	uicgc_4 : string = "back_ui"
 	uicgc_5 : string = "triger_ui"
+	uicgc_6 : string = "npss_sim_pack008"
 	key_events : any = {}
 	btl_1304_1670482144272 : string = "p_mainlayout"
 	btl_1304_1670481741540 : string = "p_list_layout"
@@ -49,6 +50,7 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	back_ui_back : any = {}
 	triger_ui : any = {}
 	triger_ui_trig_btn : any = {}
+	npss_sim_pack008 : any = {}
 
 
 	// Constructor 
@@ -150,6 +152,18 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 		this.triger_ui_trig_btn.dynamic_param = {}
 		this.triger_ui_trig_btn.role = []
 		this.triger_ui_trig_btn.action = ""
+	
+		// Component level properties - "NPSS Sim pack008" 
+		this.npss_sim_pack008.uictrl_code = "custom_widget"
+		this.npss_sim_pack008.uicgc_desc = "NPSS Sim pack008"
+		this.npss_sim_pack008.uicgc_code = "uicgc_6"
+		this.npss_sim_pack008.params = {}
+		this.npss_sim_pack008.datasource = {}
+		this.npss_sim_pack008.context_menu = []
+		this.npss_sim_pack008.views = {}
+		this.npss_sim_pack008.onChangecomponent = new EventEmitter<any>()
+		this.npss_sim_pack008.show = true
+		this.npss_sim_pack008.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {

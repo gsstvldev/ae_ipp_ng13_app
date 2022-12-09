@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27246 
+Build ID        : 27252 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 15:46 PM 
+Modified Date   : 2022-Dec-09 6:33 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_simulator

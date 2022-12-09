@@ -8,6 +8,8 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
+    
 
     /*  Created By : Daseen
     Created Date : 8-12-2022
@@ -27,6 +29,7 @@ app.post('/', function(appRequest, appResponse, next) {
     var objSessionLogInfo = null; // set value is null
     var reqAsync = require('async');
     var mTranConn = "";
+    var dob=params.DBTR_BIRTH_DATE;
     var objresponse = {
         'status': 'FAILURE',
         'data': '',
@@ -50,6 +53,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         var PRCT_ID = prct_id
                         var ApitrnId
                         var app_id
+                        console.log(dob.slice(0,10));
                         try {
                             var TakeExtraValue = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_SIM_PACK_008' and param_code='URL'`
                             // Take Value from API Manager Table
@@ -70,13 +74,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objCusTranInst.INSTRUMENT_TYPE = params.INSTRUMENT_TYPE;
                                         objCusTranInst.DBTR_PRVT_ID = params.DBTR_PRVT_ID;
                                       //  objCusTranInst.VALUE_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                                     objCusTranInst.HDR_TOTAL_RECORDS = params.HDR_TOTAL_RECORDS;
-                                     objCusTranInst.HDR_TOTAL_AMOUNT = params.HDR_TOTAL_AMOUNT
+                                     objCusTranInst.HDR_TOTAL_RECORDS = params.hdr_total_records;
+                                     objCusTranInst.HDR_TOTAL_AMOUNT = params.hdr_total_amount
                                      objCusTranInst.VALUE_DATE = reqDateFormatter.GetDateAt12AM(headers, objSessionLogInfo,params.VALUE_DATE )
                                      objCusTranInst.HDR_SETTLEMENT_DATE  = reqDateFormatter.GetDateAt12AM(headers, objSessionLogInfo,params.HDR_SETTLEMENT_DATE)
                                         objCusTranInst.EXT_ORG_ID_CODE = params.EXT_ORG_ID_CODE;
                                         objCusTranInst.ISSUER_TYPE_CODE = params.ISSUER_TYPE_CODE;
-                                        objCusTranInst.DBTR_BIRTH_DATE = params.DBTR_BIRTH_DATE
+                                        objCusTranInst.DBTR_BIRTH_DATE = dob.slice(0,10);
                                         objCusTranInst.DBTR_CITY_BIRTH = params.DBTR_CITY_BIRTH;
                                         objCusTranInst.DBTR_COUNTRY = params.DBTR_COUNTRY;
                                         objCusTranInst.DBTR_DOCUMENT_ID = params.DBTR_DOCUMENT_ID;
@@ -108,7 +112,27 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objCusTranInst.CUSTOMERSPREAD = params.CUSTOMERSPREAD;
                                         objCusTranInst.CBS_POSTING_FLAG = params.CBS_POSTING_FLAG;
                                         objCusTranInst.INTRBK_STTLM_AMNT = params.INTRBK_STTLM_AMNT;
-                                        objCusTranInst.TENANT_ID = params.TENANT_ID;
+                                        objCusTranInst.HDR_MSG_ID = params.hdr_msg_id;
+
+                                        objCusTranInst.HDR_CREATED_DATE = params.hdr_created_date;
+                                        objCusTranInst.HDR_SETTLEMENT_METHOD = params.hdr_settlement_method;
+                                        objCusTranInst.HDR_CLEARING_SYSTEM = params.hdr_clearing_system;
+                                        objCusTranInst.INSTRUCTION_ID = params.INSTRUCTION_ID;
+                                        objCusTranInst.UETR = params.UETR;
+                                        objCusTranInst.CATEGORY_PURPOSE_PRTY = params.CATEGORY_PURPOSE_PRTY;
+                                        objCusTranInst.EXT_PERSON_ID_CODE = params.EXT_PERSON_ID_CODE;
+                                        objCusTranInst.DBTR_CUST_TYPE = params.DBTR_CUST_TYPE;
+                                        objCusTranInst.CR_ACCT_IDENTIFICATION = params.CR_ACCT_IDENTIFICATION;
+                                        objCusTranInst.EXT_PURPOSE_CODE = params.EXT_PURPOSE_CODE;
+                                        objCusTranInst.EXT_PURPOSE_PRTY = params.EXT_PURPOSE_PRTY;
+                                        objCusTranInst.DBTR_CUST_TYPE = params.DBTR_CUST_TYPE;
+                                        objCusTranInst.CHANNEL_ID = params.CHANNEL_ID;
+                                        objCusTranInst.DR_SORT_CODE = params.DR_SORT_CODE;
+                                        objCusTranInst.CR_SORT_CODE = params.CR_SORT_CODE;
+                                        objCusTranInst.DBTR_ACCT_NO = params.DBTR_ACCT_NO; 
+                                        objCusTranInst.CDTR_ACCT_NO = params.CDTR_ACCT_NO; 
+                                        objCusTranInst.TRAN_REF_ID = params.TRAN_REF_ID;
+                                          objCusTranInst.TENANT_ID = params.TENANT_ID;
                                         objCusTranInst.APP_ID = '215'
                                         objCusTranInst.STATUS = 'Simulator_RCT_OP_Created'
                                         objCusTranInst.PROCESS_STATUS = 'SimulatorRCTOutwardCreated'
@@ -137,6 +161,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             if (CusTranInsertRes.length > 0) {
                                                 fn_doapicall(url, function (result) {
                                                     if (result) {
+                                                        result.status = 'SUCCESS'
                                                         sendResponse(null, result)
                                                     } else {
                                                         reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from API Service", result);
@@ -202,7 +227,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             "organizationId": params.DBTR_PRVT_ID,
                                             "organizationSchemeCode": params.EXT_ORG_ID_CODE,
                                             "orgIssuerCode": params.ISSUER_TYPE_CODE,
-                                            "BirthDate": params.DBTR_BIRTH_DATE,
+                                            "BirthDate": dob.slice(0,10),
                                             "cityOfBirth": params.DBTR_CITY_BIRTH,
                                             "countryOfBirth": params.DBTR_COUNTRY,
                                             "individualIdentification": params.DBTR_DOCUMENT_ID,
@@ -361,13 +386,6 @@ app.post('/', function(appRequest, appResponse, next) {
     reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
 }
     })
-
-
-
-
-
-
-
 
 
 

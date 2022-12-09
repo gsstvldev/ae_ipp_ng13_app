@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27236 
+Build ID        : 27262 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 10:10 AM 
+Modified Date   : 2022-Dec-09 10:50 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2p_transaction_details
@@ -75,8 +75,8 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 	navigation_ui_already_posted : any = {}
 	navigation_ui_view_response : any = {}
 	navigation_ui_view_request : any = {}
-	navigation_ui_view_log_history : any = {}
-	navigation_ui_view_message_history : any = {}
+	navigation_ui_view_process_log : any = {}
+	navigation_ui_view_message_log : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -226,23 +226,23 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.navigation_ui_view_request.role = []
 		this.navigation_ui_view_request.action = ""
 		
-		// "View Log History" Button of "Navigation UI" component
-		this.navigation_ui_view_log_history.label_name = "View Log History"
-		this.navigation_ui_view_log_history.show = true
-		this.navigation_ui_view_log_history.disabled = false
-		this.navigation_ui_view_log_history.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
-		this.navigation_ui_view_log_history.dynamic_param = {}
-		this.navigation_ui_view_log_history.role = []
-		this.navigation_ui_view_log_history.action = ""
+		// "View Process Log" Button of "Navigation UI" component
+		this.navigation_ui_view_process_log.label_name = "View Process Log"
+		this.navigation_ui_view_process_log.show = true
+		this.navigation_ui_view_process_log.disabled = false
+		this.navigation_ui_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
+		this.navigation_ui_view_process_log.dynamic_param = {}
+		this.navigation_ui_view_process_log.role = []
+		this.navigation_ui_view_process_log.action = ""
 		
-		// "View Message History" Button of "Navigation UI" component
-		this.navigation_ui_view_message_history.label_name = "View Message History"
-		this.navigation_ui_view_message_history.show = true
-		this.navigation_ui_view_message_history.disabled = false
-		this.navigation_ui_view_message_history.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.navigation_ui_view_message_history.dynamic_param = {}
-		this.navigation_ui_view_message_history.role = []
-		this.navigation_ui_view_message_history.action = ""
+		// "View Message Log" Button of "Navigation UI" component
+		this.navigation_ui_view_message_log.label_name = "View Message Log"
+		this.navigation_ui_view_message_log.show = true
+		this.navigation_ui_view_message_log.disabled = false
+		this.navigation_ui_view_message_log.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_ui_view_message_log.dynamic_param = {}
+		this.navigation_ui_view_message_log.role = []
+		this.navigation_ui_view_message_log.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -738,10 +738,10 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.navigation_ui_view_request__he_for_hst_plog_back_ui_back()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view log history"
-	navigation_ui_view_log_history__action_button_click(){
-		this.navigation_ui_view_log_history__sp_for_view_history()
-		this.navigation_ui_view_log_history__brfq_for_hst_process_log_list()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view process log"
+	navigation_ui_view_process_log__action_button_click(){
+		this.navigation_ui_view_process_log__sp_for_view_history()
+		this.navigation_ui_view_process_log__brfq_for_hst_process_log_list()
 	}
 
 	//Handler for INTERNAL event of "brfq for hst process log list"
@@ -754,10 +754,10 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.message_back_ui_back__sp_for_message_back()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message history"
-	navigation_ui_view_message_history__action_button_click(){
-		this.navigation_ui_view_message_history__brfq_for_md_from_vmd()
-		this.navigation_ui_view_message_history__sp_for_view_mgs_detail()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message log"
+	navigation_ui_view_message_log__action_button_click(){
+		this.navigation_ui_view_message_log__brfq_for_md_from_vmd()
+		this.navigation_ui_view_message_log__sp_for_view_mgs_detail()
 	}
 
 	//Handler for INTERNAL event of "brfq for md from vmd"
@@ -946,7 +946,7 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_log_history"
+		let destn_id="navigation_ui_view_process_log"
 		let parent_source_id=""
 		let event_code="e_1666184334443"
 		let event_params={"caller_name":"page_load__de_for_view_log_history","event_desc":"DE for view log history","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1009,7 +1009,7 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_log_history"
+		let destn_id="navigation_ui_view_process_log"
 		let parent_source_id=""
 		let event_code="e_1667554660009"
 		let event_params={"caller_name":"page_load__he_for_vlh","event_desc":"HE for VLH","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -1135,7 +1135,7 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_message_history"
+		let destn_id="navigation_ui_view_message_log"
 		let parent_source_id=""
 		let event_code="e_1668659099920"
 		let event_params={"caller_name":"page_load__he_for_vm","event_desc":"HE for VM","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -1156,7 +1156,7 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_message_history"
+		let destn_id="navigation_ui_view_message_log"
 		let parent_source_id=""
 		let event_code="e_1668663559368"
 		let event_params={"caller_name":"page_load__de_for_vm","event_desc":"DE for VM","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1367,7 +1367,7 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_ui_view_log_history"
+		let destn_id="navigation_ui_view_process_log"
 		let parent_source_id=""
 		let event_code="e_1666184379416"
 		let event_params={"caller_name":"transaction_list__ee_for_view_log_history","event_desc":"EE for view log history","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1388,7 +1388,7 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_ui_view_message_history"
+		let destn_id="navigation_ui_view_message_log"
 		let parent_source_id=""
 		let event_code="e_1668663626511"
 		let event_params={"caller_name":"transaction_list__ee_for_vm","event_desc":"EE for VM","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1724,7 +1724,7 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="queue"
-		let destn_id="navigation_ui_view_log_history"
+		let destn_id="navigation_ui_view_process_log"
 		let parent_source_id=""
 		let event_code="e_1666184079127"
 		let event_params={"caller_name":"queue__de_for_view_log_hstl_from_queue","event_desc":"DE for view log hstl from queue","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
@@ -1787,7 +1787,7 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="queue"
-		let destn_id="navigation_ui_view_message_history"
+		let destn_id="navigation_ui_view_message_log"
 		let parent_source_id=""
 		let event_code="e_1668663553032"
 		let event_params={"caller_name":"queue__de_for_queue_to_vm","event_desc":"DE for Queue to VM","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
@@ -2166,15 +2166,15 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view log history"
-	navigation_ui_view_log_history__sp_for_view_history() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view process log"
+	navigation_ui_view_process_log__sp_for_view_history() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_log_history"
+		let source_id="navigation_ui_view_process_log"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1666180988003"
-		let event_params={"caller_name":"navigation_ui_view_log_history__sp_for_view_history","event_desc":"SP for View History","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_log_history","raiseparam":{"profile_code":"BTL_1304_1666180789841"}}
+		let event_params={"caller_name":"navigation_ui_view_process_log__sp_for_view_history","event_desc":"SP for View History","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_process_log","raiseparam":{"profile_code":"BTL_1304_1666180789841"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2187,15 +2187,15 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view log history"
-	navigation_ui_view_log_history__brfq_for_hst_process_log_list() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view process log"
+	navigation_ui_view_process_log__brfq_for_hst_process_log_list() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_log_history"
+		let source_id="navigation_ui_view_process_log"
 		let destn_id="history_detail"
 		let parent_source_id=""
 		let event_code="e_1666181359734"
-		let event_params={"caller_name":"navigation_ui_view_log_history__brfq_for_hst_process_log_list","event_desc":"BRFQ for HST Process Log List","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_log_history","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let event_params={"caller_name":"navigation_ui_view_process_log__brfq_for_hst_process_log_list","event_desc":"BRFQ for HST Process Log List","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_process_log","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_hst_process_log_list__sfr_for_hd,"
 		let event_data={}
@@ -2215,9 +2215,9 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_for_hst_process_log_list"
 		let destn_id="history_detail"
-		let parent_source_id="navigation_ui_view_log_history"
+		let parent_source_id="navigation_ui_view_process_log"
 		let event_code="e_1668748638975"
-		let event_params={"caller_name":"brfq_for_hst_process_log_list__sfr_for_hd","event_desc":"SFR for HD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_log_history","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"brfq_for_hst_process_log_list__sfr_for_hd","event_desc":"SFR for HD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_process_log","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
@@ -2251,15 +2251,15 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message history"
-	navigation_ui_view_message_history__brfq_for_md_from_vmd() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message log"
+	navigation_ui_view_message_log__brfq_for_md_from_vmd() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_message_history"
+		let source_id="navigation_ui_view_message_log"
 		let destn_id="message_detail"
 		let parent_source_id=""
 		let event_code="e_1668604984044"
-		let event_params={"caller_name":"navigation_ui_view_message_history__brfq_for_md_from_vmd","event_desc":"BRFQ for MD from VMD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_history","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let event_params={"caller_name":"navigation_ui_view_message_log__brfq_for_md_from_vmd","event_desc":"BRFQ for MD from VMD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_log","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_md_from_vmd__sfr_for_md_from_vmd,"
 		let event_data={}
@@ -2272,15 +2272,15 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message history"
-	navigation_ui_view_message_history__sp_for_view_mgs_detail() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message log"
+	navigation_ui_view_message_log__sp_for_view_mgs_detail() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_message_history"
+		let source_id="navigation_ui_view_message_log"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1668605515977"
-		let event_params={"caller_name":"navigation_ui_view_message_history__sp_for_view_mgs_detail","event_desc":"SP for view mgs detail","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_history","raiseparam":{"profile_code":"BTL_1304_1668603914389"}}
+		let event_params={"caller_name":"navigation_ui_view_message_log__sp_for_view_mgs_detail","event_desc":"SP for view mgs detail","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_log","raiseparam":{"profile_code":"BTL_1304_1668603914389"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2300,9 +2300,9 @@ export class s_p2p_transaction_detailsComponent implements OnInit,AfterViewInit 
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_for_md_from_vmd"
 		let destn_id="message_detail"
-		let parent_source_id="navigation_ui_view_message_history"
+		let parent_source_id="navigation_ui_view_message_log"
 		let event_code="e_1668605001962"
-		let event_params={"caller_name":"brfq_for_md_from_vmd__sfr_for_md_from_vmd","event_desc":"SFR for MD from VMD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_history","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"brfq_for_md_from_vmd__sfr_for_md_from_vmd","event_desc":"SFR for MD from VMD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_log","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}

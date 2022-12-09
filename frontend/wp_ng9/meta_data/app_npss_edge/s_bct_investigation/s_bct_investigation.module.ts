@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27236 
+Build ID        : 27262 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 10:10 AM 
+Modified Date   : 2022-Dec-09 10:50 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_investigation
@@ -43,9 +43,9 @@ import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
 import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
 import { f_process_log_uiComponent } from './f_process_log_ui/f_process_log_ui.component'
 import { p_view_req_and_res_profileComponent } from './p_view_req_and_res_profile/p_view_req_and_res_profile.component'
+import { f_single_back_uiComponent } from './f_single_back_ui/f_single_back_ui.component'
 import { f_npss_target_request_uiComponent } from './f_npss_target_request_ui/f_npss_target_request_ui.component'
 import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/f_npss_target_response_ui.component'
-import { f_single_back_uiComponent } from './f_single_back_ui/f_single_back_ui.component'
 import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_request_layout.component'
 import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
 
@@ -64,7 +64,7 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     s_bct_investigationRoutingModule,
     torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_bct_ip_investigation_change_stateModule
   ],
-  declarations: [s_bct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_tran_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_req_and_res_profileComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,f_single_back_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
+  declarations: [s_bct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_tran_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_req_and_res_profileComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

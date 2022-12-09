@@ -41,7 +41,7 @@ export class npss_cs_bct_timeout_retryService {
             'Tran_Id': this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID")||'',
             'eligible_status': this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS")||'',
             'eligible_process_status': this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS")||'',
-            'Rule_Code': 'empr',
+            'Rule_Code': 'BCT_IP_TIMEOUT_RETRY',
             'Country_Code': Country_Code,
             'client_code': client_code,
             'TENANT_ID': this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID"),

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27259 
+Build ID        : 27263 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-09 9:23 AM 
+Modified Date   : 2022-Dec-09 10:50 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_time_out_transactions
@@ -1774,7 +1774,7 @@ export class s_bct_review_time_out_transactionsComponent implements OnInit,After
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1670301189868"
-		let event_params={"caller_name":"process_log_ui_view_req_and_res__sp_for_view_req_and_res","event_desc":"SP for View Req and Res","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"profile_code":""}}
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__sp_for_view_req_and_res","event_desc":"SP for View Req and Res","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1670300995298"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

@@ -132,6 +132,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objCusTranInst.DBTR_ACCT_NO = params.DBTR_ACCT_NO; 
                                         objCusTranInst.CDTR_ACCT_NO = params.CDTR_ACCT_NO; 
                                         objCusTranInst.TRAN_REF_ID = params.TRAN_REF_ID;
+                                        objCusTranInst.PAYMENT_ENDTOEND_ID = params.PAYMENT_ENDTOEND_ID; 
+                                        objCusTranInst.DBTR_IBAN = params.DBTR_IBAN;  
+                                        objCusTranInst.INTRBK_STTLM_CUR = params.INTRBK_STTLM_CUR;
                                           objCusTranInst.TENANT_ID = params.TENANT_ID;
                                         objCusTranInst.APP_ID = '215'
                                         objCusTranInst.STATUS = 'Simulator_RCT_OP_Created'

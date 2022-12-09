@@ -71,7 +71,7 @@ export class npss_cs_sim_pack_008Service {
 
 
 
-            'orderingCustomer_account': CtrlScope.DBTR_ACCT_NAME || '',
+            'orderingCustomer_account': CtrlScope.DBTR_ACCT_NO || '',
 
             'orderingCustomer_otheraccount': CtrlScope.OTHERACCOUNT || '',
 
@@ -87,7 +87,7 @@ export class npss_cs_sim_pack_008Service {
 
             'CORETRANSACTIONTYPE': CtrlScope.CORETRANSACTIONTYPE || '',
 
-            'beneficiaryCustomer_Account': CtrlScope.CDTR_IBAN || '',
+            'beneficiaryCustomer_Account': CtrlScope.CDTR_ACCT_NO || '',
             'beneficiaryCustomer_otherAccount': CtrlScope.OTHERACCOUNT || '',
 
             'beneficiaryCustomer_AccountName': CtrlScope.CDTR_ACCT_NAME || '',
@@ -141,8 +141,11 @@ export class npss_cs_sim_pack_008Service {
             "hdr_settlement_method": CtrlScope.HDR_SETTLEMENT_METHOD || '',
             "hdr_clearing_system": CtrlScope.HDR_CLEARING_SYSTEM || '',
             "INSTRUCTION_ID": CtrlScope.INSTRUCTION_ID || '',
-            "PAYMENT_ENDTOEND_ID": CtrlScope.INSTRUCTION_ID || '',
-            "TRAN_REF_ID": CtrlScope.INSTRUCTION_ID || '',
+            "PAYMENT_ENDTOEND_ID": CtrlScope.PAYMENT_ENDTOEND_ID || '',
+            "TRAN_REF_ID": CtrlScope.TRAN_REF_ID || '',
+            "DBTR_IBAN": CtrlScope.DBTR_IBAN || '', 
+            "INTRBK_STTLM_CUR": CtrlScope.INTRBK_STTLM_CUR || '', 
+             
             "UETR": CtrlScope.UETR || '',
             "CATEGORY_PURPOSE_PRTY": CtrlScope.CATEGORY_PURPOSE_PRTY || '',
             "EXT_PERSON_ID_CODE": CtrlScope.EXT_PERSON_ID_CODE || '',

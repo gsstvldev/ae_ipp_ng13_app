@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27236 
+Build ID        : 27247 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 10:10 AM 
+Modified Date   : 2022-Dec-09 7:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -81,8 +81,8 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	navigation : any = {}
 	navigation_review : any = {}
 	navigation_view_tran : any = {}
-	navigation_view_log_history : any = {}
-	navigation_view_message_history : any = {}
+	navigation_view_process_log : any = {}
+	navigation_view_message_log : any = {}
 	reversal_action_ui : any = {}
 	reversal_action_ui_back : any = {}
 	reversal_action_ui_reject : any = {}
@@ -186,23 +186,23 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.navigation_view_tran.role = []
 		this.navigation_view_tran.action = ""
 		
-		// "View Log History" Button of "Navigation" component
-		this.navigation_view_log_history.label_name = "View Log History"
-		this.navigation_view_log_history.show = true
-		this.navigation_view_log_history.disabled = false
-		this.navigation_view_log_history.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
-		this.navigation_view_log_history.dynamic_param = {}
-		this.navigation_view_log_history.role = []
-		this.navigation_view_log_history.action = ""
+		// "View Process Log" Button of "Navigation" component
+		this.navigation_view_process_log.label_name = "View Process Log"
+		this.navigation_view_process_log.show = true
+		this.navigation_view_process_log.disabled = false
+		this.navigation_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
+		this.navigation_view_process_log.dynamic_param = {}
+		this.navigation_view_process_log.role = []
+		this.navigation_view_process_log.action = ""
 		
-		// "View Message History" Button of "Navigation" component
-		this.navigation_view_message_history.label_name = "View Message History"
-		this.navigation_view_message_history.show = true
-		this.navigation_view_message_history.disabled = false
-		this.navigation_view_message_history.params = {"icon_only":true,"uicgcc_style":"fa fa-eye"}
-		this.navigation_view_message_history.dynamic_param = {}
-		this.navigation_view_message_history.role = []
-		this.navigation_view_message_history.action = ""
+		// "View Message Log" Button of "Navigation" component
+		this.navigation_view_message_log.label_name = "View Message Log"
+		this.navigation_view_message_log.show = true
+		this.navigation_view_message_log.disabled = false
+		this.navigation_view_message_log.params = {"icon_only":true,"uicgcc_style":"fa fa-eye"}
+		this.navigation_view_message_log.dynamic_param = {}
+		this.navigation_view_message_log.role = []
+		this.navigation_view_message_log.action = ""
 	
 		// Component level properties - "Reversal Action UI" 
 		this.reversal_action_ui.uictrl_code = "dynamic_ui"
@@ -895,10 +895,10 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.history_detail__ee_for_vreq_vres()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation view log history"
-	navigation_view_log_history__action_button_click(){
-		this.navigation_view_log_history__brfq_for_hd()
-		this.navigation_view_log_history__sp_for_vlh()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view process log"
+	navigation_view_process_log__action_button_click(){
+		this.navigation_view_process_log__brfq_for_hd()
+		this.navigation_view_process_log__sp_for_vlh()
 	}
 
 	//Handler for INTERNAL event of "brfq for hd"
@@ -906,10 +906,10 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.brfq_for_hd__sfr_for_hdl(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation view message history"
-	navigation_view_message_history__action_button_click(){
-		this.navigation_view_message_history__sp_for_vmd()
-		this.navigation_view_message_history__brfq_for_vm()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view message log"
+	navigation_view_message_log__action_button_click(){
+		this.navigation_view_message_log__sp_for_vmd()
+		this.navigation_view_message_log__brfq_for_vm()
 	}
 
 	//Handler for INTERNAL event of "brfq for vm"
@@ -1098,7 +1098,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_view_log_history"
+		let destn_id="navigation_view_process_log"
 		let parent_source_id=""
 		let event_code="e_1669382984565"
 		let event_params={"caller_name":"page_load__de_for_vlh_from_pl","event_desc":"DE for VLH from PL","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1119,7 +1119,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_view_message_history"
+		let destn_id="navigation_view_message_log"
 		let parent_source_id=""
 		let event_code="e_1669383277705"
 		let event_params={"caller_name":"page_load__he_for_pl_to_vm","event_desc":"HE for PL to VM","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -1398,7 +1398,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_view_log_history"
+		let destn_id="navigation_view_process_log"
 		let parent_source_id=""
 		let event_code="e_1669383029014"
 		let event_params={"caller_name":"transaction_list__ee_for_vlh","event_desc":"EE for VLH","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1419,7 +1419,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_view_message_history"
+		let destn_id="navigation_view_message_log"
 		let parent_source_id=""
 		let event_code="e_1669383855972"
 		let event_params={"caller_name":"transaction_list__ee_for_vm","event_desc":"EE For VM","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -2564,15 +2564,15 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation view log history"
-	navigation_view_log_history__brfq_for_hd() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view process log"
+	navigation_view_process_log__brfq_for_hd() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_view_log_history"
+		let source_id="navigation_view_process_log"
 		let destn_id="history_detail"
 		let parent_source_id=""
 		let event_code="e_1669382496358"
-		let event_params={"caller_name":"navigation_view_log_history__brfq_for_hd","event_desc":"BRFQ for HD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_log_history","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let event_params={"caller_name":"navigation_view_process_log__brfq_for_hd","event_desc":"BRFQ for HD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_process_log","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_hd__sfr_for_hdl,"
 		let event_data={}
@@ -2585,15 +2585,15 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation view log history"
-	navigation_view_log_history__sp_for_vlh() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view process log"
+	navigation_view_process_log__sp_for_vlh() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_view_log_history"
+		let source_id="navigation_view_process_log"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1669382872136"
-		let event_params={"caller_name":"navigation_view_log_history__sp_for_vlh","event_desc":"SP for VLH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_log_history","raiseparam":{"profile_code":"BTL_1304_1669377273486"}}
+		let event_params={"caller_name":"navigation_view_process_log__sp_for_vlh","event_desc":"SP for VLH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_process_log","raiseparam":{"profile_code":"BTL_1304_1669377273486"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2613,9 +2613,9 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_for_hd"
 		let destn_id="history_detail"
-		let parent_source_id="navigation_view_log_history"
+		let parent_source_id="navigation_view_process_log"
 		let event_code="e_1669382521620"
-		let event_params={"caller_name":"brfq_for_hd__sfr_for_hdl","event_desc":"SFR for HDL","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_view_log_history","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"brfq_for_hd__sfr_for_hdl","event_desc":"SFR for HDL","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_view_process_log","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
@@ -2628,15 +2628,15 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation view message history"
-	navigation_view_message_history__sp_for_vmd() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view message log"
+	navigation_view_message_log__sp_for_vmd() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_view_message_history"
+		let source_id="navigation_view_message_log"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1669383391305"
-		let event_params={"caller_name":"navigation_view_message_history__sp_for_vmd","event_desc":"SP for VMD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_message_history","raiseparam":{"profile_code":"BTL_1304_1669378450385"}}
+		let event_params={"caller_name":"navigation_view_message_log__sp_for_vmd","event_desc":"SP for VMD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_message_log","raiseparam":{"profile_code":"BTL_1304_1669378450385"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2649,15 +2649,15 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation view message history"
-	navigation_view_message_history__brfq_for_vm() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view message log"
+	navigation_view_message_log__brfq_for_vm() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_view_message_history"
+		let source_id="navigation_view_message_log"
 		let destn_id="message_detail"
 		let parent_source_id=""
 		let event_code="e_1669383745510"
-		let event_params={"caller_name":"navigation_view_message_history__brfq_for_vm","event_desc":"BRFQ for VM","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_message_history","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let event_params={"caller_name":"navigation_view_message_log__brfq_for_vm","event_desc":"BRFQ for VM","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_message_log","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_vm__sfr_for_md,"
 		let event_data={}
@@ -2677,9 +2677,9 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_for_vm"
 		let destn_id="message_detail"
-		let parent_source_id="navigation_view_message_history"
+		let parent_source_id="navigation_view_message_log"
 		let event_code="e_1669383777332"
-		let event_params={"caller_name":"brfq_for_vm__sfr_for_md","event_desc":"SFR for MD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_view_message_history","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"brfq_for_vm__sfr_for_md","event_desc":"SFR for MD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_view_message_log","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27236 
+Build ID        : 27251 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 10:10 AM 
+Modified Date   : 2022-Dec-09 8:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_transactions_group
@@ -22,9 +22,9 @@ export class p_view_main_req_and_res_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	main_request_ui : any = {}
+  	back_ui : any = {}
+	main_request_ui : any = {}
 	main_response_ui : any = {}
-	back_ui : any = {}
 
 
   // Constructor 
@@ -32,12 +32,12 @@ export class p_view_main_req_and_res_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.main_request_ui.desc = "Main Request UI"
+    	this.back_ui.desc = "Back UI"
+		this.back_ui.need_header = ""
+		this.main_request_ui.desc = "Main Request UI"
 		this.main_request_ui.need_header = ""
 		this.main_response_ui.desc = "Main Response UI"
 		this.main_response_ui.need_header = ""
-		this.back_ui.desc = "Back UI"
-		this.back_ui.need_header = ""
 	
 
     this.screen_instance['p_view_main_req_and_res_layout'] = {};

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27236 
+Build ID        : 27247 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 10:10 AM 
+Modified Date   : 2022-Dec-09 7:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_transactions
@@ -22,8 +22,8 @@ export class p_view_request_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	request_ui : any = {}
-	single_back_ui : any = {}
+  	single_back_ui : any = {}
+	request_ui : any = {}
 
 
   // Constructor 
@@ -31,10 +31,10 @@ export class p_view_request_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.request_ui.desc = "Request UI"
-		this.request_ui.need_header = ""
-		this.single_back_ui.desc = "Single Back UI"
+    	this.single_back_ui.desc = "Single Back UI"
 		this.single_back_ui.need_header = ""
+		this.request_ui.desc = "Request UI"
+		this.request_ui.need_header = ""
 	
 
     this.screen_instance['p_view_request_layout'] = {};

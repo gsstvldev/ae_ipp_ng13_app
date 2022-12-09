@@ -1,14 +1,18 @@
 /* CSS */
-:host ::ng-deep .data_entry #npss_simulator_ui_channel_information label{font-size:15px}
-:host ::ng-deep .data_entry #npss_simulator_ui_channel_information label:nth-child(3){color:black}
-:host ::ng-deep .data_entry #npss_simulator_ui_channel_information label{font-weight:bold;font-size:15px}
-:host ::ng-deep .data_entry #npss_simulator_ui_channel_information label:nth-child(3){color:black}
-:host ::ng-deep .data_entry #npss_simulator_ui_sender_information label{font-size:15px}
-:host ::ng-deep .data_entry #npss_simulator_ui_sender_information label:nth-child(3){color:black}
-:host ::ng-deep .data_entry #npss_simulator_ui_sender_information label{font-weight:bold;font-size:15px}
-:host ::ng-deep .data_entry #npss_simulator_ui_sender_information label:nth-child(3){color:black}
-:host ::ng-deep .data_entry #npss_simulator_ui_other label{font-size:15px}
-:host ::ng-deep .data_entry #npss_simulator_ui_other label:nth-child(3){color:black}
-:host ::ng-deep .data_entry #npss_simulator_ui_other label{font-weight:bold;font-size:15px}
-:host ::ng-deep .data_entry #npss_simulator_ui_other label:nth-child(3){color:black}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory90 label{font-size:18px}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory90 label:nth-child(3){color:black}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory90 label{font-weight:bold;font-size:15px}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory90 label:nth-child(3){color:black}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory91 label{font-size:18px}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory91 label:nth-child(3){color:black}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory91 label{font-weight:bold;font-size:15px}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory91 label:nth-child(3){color:black}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory92 label{font-size:18px}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory92 label:nth-child(3){color:black}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory92 label{font-weight:bold;font-size:15px}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory92 label:nth-child(3){color:black}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory93 label{font-size:18px}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory93 label:nth-child(3){color:black}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory93 label{font-weight:bold;font-size:15px}
+:host ::ng-deep .data_entry #npss_simulator_ui_memory93 label:nth-child(3){color:black}
 :host ::ng-deep .navigation_ui .row.dynamic_action_btn .btn { float: right; }

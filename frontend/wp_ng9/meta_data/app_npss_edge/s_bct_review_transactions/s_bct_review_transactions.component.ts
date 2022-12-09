@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27236 
+Build ID        : 27247 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-08 10:10 AM 
+Modified Date   : 2022-Dec-09 7:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_transactions
@@ -68,7 +68,7 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
 	navigation_ui_view_tran : any = {}
-	navigation_ui_view_log_history : any = {}
+	navigation_ui_view_process_log : any = {}
 	navigation_ui_validate : any = {}
 	navigation_ui_create : any = {}
 	navigation_ui_post : any = {}
@@ -166,14 +166,14 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 		this.navigation_ui_view_tran.role = []
 		this.navigation_ui_view_tran.action = ""
 		
-		// "View Log History" Button of "Navigation UI" component
-		this.navigation_ui_view_log_history.label_name = "View Log History"
-		this.navigation_ui_view_log_history.show = true
-		this.navigation_ui_view_log_history.disabled = false
-		this.navigation_ui_view_log_history.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
-		this.navigation_ui_view_log_history.dynamic_param = {}
-		this.navigation_ui_view_log_history.role = []
-		this.navigation_ui_view_log_history.action = ""
+		// "View Process Log" Button of "Navigation UI" component
+		this.navigation_ui_view_process_log.label_name = "View Process Log"
+		this.navigation_ui_view_process_log.show = true
+		this.navigation_ui_view_process_log.disabled = false
+		this.navigation_ui_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
+		this.navigation_ui_view_process_log.dynamic_param = {}
+		this.navigation_ui_view_process_log.role = []
+		this.navigation_ui_view_process_log.action = ""
 		
 		// "Validate" Button of "Navigation UI" component
 		this.navigation_ui_validate.label_name = "Validate"
@@ -707,10 +707,10 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 		this.single_back_ui_back__sp_for_sb_back()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view log history"
-	navigation_ui_view_log_history__action_button_click(){
-		this.navigation_ui_view_log_history__sp_for_vlh()
-		this.navigation_ui_view_log_history__brfq_for_hd()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view process log"
+	navigation_ui_view_process_log__action_button_click(){
+		this.navigation_ui_view_process_log__sp_for_vlh()
+		this.navigation_ui_view_process_log__brfq_for_hd()
 	}
 
 	//Handler for INTERNAL event of "brfq for hd"
@@ -867,7 +867,7 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_log_history"
+		let destn_id="navigation_ui_view_process_log"
 		let parent_source_id=""
 		let event_code="e_1669441236174"
 		let event_params={"caller_name":"page_load__de_for_vlh_from_pl","event_desc":"DE for VLH from PL","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1016,7 +1016,7 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="search_search"
-		let destn_id="navigation_ui_view_log_history"
+		let destn_id="navigation_ui_view_process_log"
 		let parent_source_id=""
 		let event_code="e_1669442393375"
 		let event_params={"caller_name":"search_search__de_from_search_to_view_log_hst","event_desc":"DE from search to View Log HST","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
@@ -1231,7 +1231,7 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_ui_view_log_history"
+		let destn_id="navigation_ui_view_process_log"
 		let parent_source_id=""
 		let event_code="e_1669442353115"
 		let event_params={"caller_name":"transaction_list__ee_for_vlh","event_desc":"EE for VLH","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1760,15 +1760,15 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view log history"
-	navigation_ui_view_log_history__sp_for_vlh() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view process log"
+	navigation_ui_view_process_log__sp_for_vlh() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_log_history"
+		let source_id="navigation_ui_view_process_log"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1669441286842"
-		let event_params={"caller_name":"navigation_ui_view_log_history__sp_for_vlh","event_desc":"SP for VLH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_log_history","raiseparam":{"profile_code":"BTL_1304_1669726500190"}}
+		let event_params={"caller_name":"navigation_ui_view_process_log__sp_for_vlh","event_desc":"SP for VLH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_process_log","raiseparam":{"profile_code":"BTL_1304_1669726500190"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1781,15 +1781,15 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view log history"
-	navigation_ui_view_log_history__brfq_for_hd() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view process log"
+	navigation_ui_view_process_log__brfq_for_hd() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_log_history"
+		let source_id="navigation_ui_view_process_log"
 		let destn_id="history_detail"
 		let parent_source_id=""
 		let event_code="e_1669442428026"
-		let event_params={"caller_name":"navigation_ui_view_log_history__brfq_for_hd","event_desc":"BRFQ for HD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_log_history","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let event_params={"caller_name":"navigation_ui_view_process_log__brfq_for_hd","event_desc":"BRFQ for HD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_process_log","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_hd__sfr_for_hd,"
 		let event_data={}
@@ -1809,9 +1809,9 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_for_hd"
 		let destn_id="history_detail"
-		let parent_source_id="navigation_ui_view_log_history"
+		let parent_source_id="navigation_ui_view_process_log"
 		let event_code="e_1669442447298"
-		let event_params={"caller_name":"brfq_for_hd__sfr_for_hd","event_desc":"SFR for HD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_log_history","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"brfq_for_hd__sfr_for_hd","event_desc":"SFR for HD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_process_log","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}

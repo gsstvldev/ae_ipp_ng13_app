@@ -1,1 +1,18 @@
 <!--HTML FILE-->
+<!--HTML FILE-->
+<!--HTML FILE-->
+
+<!--HTML FILE-->
+
+<p-dialog header="" [(visible)]="showPopup" [modal]="true" [responsive]="true" (onHide)="cancel()"
+    styleClass="comments__popup">
+    <section>
+        <div style="width:700px;">
+            <div class="col-md-12">
+                <div *ngFor='let successcase of popuparray' style="margin-left:50px">
+                    {{successcase.case}}
+                </div>
+            </div>
+        </div>
+    </section>
+</p-dialog>

@@ -143,9 +143,9 @@ export class npss_cs_sim_pack_008Service {
             "INSTRUCTION_ID": CtrlScope.INSTRUCTION_ID || '',
             "PAYMENT_ENDTOEND_ID": CtrlScope.PAYMENT_ENDTOEND_ID || '',
             "TRAN_REF_ID": CtrlScope.TRAN_REF_ID || '',
-            "DBTR_IBAN": CtrlScope.DBTR_IBAN || '', 
-            "INTRBK_STTLM_CUR": CtrlScope.INTRBK_STTLM_CUR || '', 
-             
+            "DBTR_IBAN": CtrlScope.DBTR_IBAN || '',
+            "INTRBK_STTLM_CUR": CtrlScope.INTRBK_STTLM_CUR || '',
+
             "UETR": CtrlScope.UETR || '',
             "CATEGORY_PURPOSE_PRTY": CtrlScope.CATEGORY_PURPOSE_PRTY || '',
             "EXT_PERSON_ID_CODE": CtrlScope.EXT_PERSON_ID_CODE || '',
@@ -169,14 +169,12 @@ export class npss_cs_sim_pack_008Service {
     CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_sim_pack_008/', ClientParams)
             .subscribe((res: any) => {
-                //this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
-                // console.log("Low Value btn Response", res);
-               // if (res.data == "SUCCESS") {
-                   // this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
-                   this.dialogHelper.ShowInfoDialog(`${res.data['responseDescription']},${res.data['ipiReferenceNumber']}`);
-               // } else {
-                  //  this.appHandler.callInternals(internals, screenInstance, "FAILURE");
-                //}
+                if (res.data.message) {
+                    console.log('sucess')
+                } else {
+                    var event = { eventId: "custom-connector", param: res.data, internals: internals }
+                    screenInstance["npss_sim_pack008"].onChangecomponent.emit(event);
+                }
             });
     }
     //Custom validation logics

@@ -6,15 +6,14 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
-
     
     
     
 
     /*  Created By : Daseen
     Created Date : 8-12-2022
-    Modified By : 
-    Modified Date : 
+    Modified By : sIVA hARISH
+    Modified Date : 9/12/2022
     Reason for : 
      
     */
@@ -164,7 +163,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             if (CusTranInsertRes.length > 0) {
                                                 fn_doapicall(url, function (result) {
                                                     if (result) {
-                                                        result.status = 'SUCCESS'
+                                                
                                                         sendResponse(null, result)
                                                     } else {
                                                         reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from API Service", result);
@@ -215,6 +214,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     var Date = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);      
                                     var splitdate = Date.split(' ')
                                     var formatdate = `${splitdate[0]}T${splitdate[1]}+00:00`
+                                    var valuedate = params.VALUE_DATE.split('T')[0].split('-')
+                                    valuedate = `${valuedate[2]}${valuedate[1]}${valuedate[0]}`
                                     var apiURL =
                                         apiURL = url // apiURL + apiName
                                     var options = {
@@ -231,7 +232,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             "organizationSchemeCode": params.EXT_ORG_ID_CODE,
                                             "orgIssuerCode": params.ISSUER_TYPE_CODE,
                                             "BirthDate": dob.slice(0,10),
-                                            "cityOfBirth": params.DBTR_CITY_BIRTH,
+                                            "cityOfBirth": 'Dubai',
                                             "countryOfBirth": params.DBTR_COUNTRY,
                                             "individualIdentification": params.DBTR_DOCUMENT_ID,
                                             "IndividualIdentificationCode": params.INDIVIDUALIDENTIFICATIONCODE,
@@ -243,7 +244,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 "AccountName": params.orderingCustomer_AccountName,
                                                 "companyCode": params.orderingCustomer_companyCode
                                             },
-                                            "valueDate": params.VALUE_DATE,
+                                            "valueDate": valuedate,
                                             "instructedAmount": params.INTRBK_STTLM_AMNT,
                                             "coreTransactionType": params.CORETRANSACTIONTYPE,
                                             "beneficiaryCustomer": {

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27247 
+Build ID        : 27272 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-09 7:51 AM 
+Modified Date   : 2022-Dec-09 14:1 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -22,9 +22,9 @@ export class p_vertical_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	view_dr_cr_details : any = {}
+  	back_ui : any = {}
+	view_dr_cr_details : any = {}
 	view_payment_details : any = {}
-	back_ui : any = {}
 
 
   // Constructor 
@@ -32,12 +32,12 @@ export class p_vertical_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.view_dr_cr_details.desc = "View Dr Cr Tran Details"
-		this.view_dr_cr_details.need_header = true
-		this.view_payment_details.desc = "View Payment Tran Details"
-		this.view_payment_details.need_header = true
-		this.back_ui.desc = "Back UI"
+    	this.back_ui.desc = "Back UI"
 		this.back_ui.need_header = ""
+		this.view_dr_cr_details.desc = "View Dr Cr Details"
+		this.view_dr_cr_details.need_header = true
+		this.view_payment_details.desc = "View Payment Details"
+		this.view_payment_details.need_header = true
 	
 
     this.screen_instance['p_vertical_layout'] = {};

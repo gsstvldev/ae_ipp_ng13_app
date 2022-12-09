@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27258 
+Build ID        : 27276 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-09 8:12 AM 
+Modified Date   : 2022-Dec-09 15:17 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2p_view_outward_payments
@@ -22,8 +22,8 @@ export class p_view_main_request_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	main_request_ui : any = {}
-	back_ui : any = {}
+  	back_ui : any = {}
+	main_request_ui : any = {}
 
 
   // Constructor 
@@ -31,10 +31,10 @@ export class p_view_main_request_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.main_request_ui.desc = "Main Request UI"
-		this.main_request_ui.need_header = ""
-		this.back_ui.desc = "Back UI"
+    	this.back_ui.desc = "Back UI"
 		this.back_ui.need_header = ""
+		this.main_request_ui.desc = "Main Request UI"
+		this.main_request_ui.need_header = ""
 	
 
     this.screen_instance['p_view_main_request_layout'] = {};

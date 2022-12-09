@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27247 
+Build ID        : 27272 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-09 7:51 AM 
+Modified Date   : 2022-Dec-09 14:1 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -32,7 +32,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_rct_reversal"
 	wftpa_id : string = "WFT_NPSS_P_1304_1666862675236_0"
 	cg_code : string = "CG_1304_1666855803455"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID"}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -199,7 +199,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.navigation_view_message_log.label_name = "View Message Log"
 		this.navigation_view_message_log.show = true
 		this.navigation_view_message_log.disabled = false
-		this.navigation_view_message_log.params = {"icon_only":true,"uicgcc_style":"fa fa-eye"}
+		this.navigation_view_message_log.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
 		this.navigation_view_message_log.dynamic_param = {}
 		this.navigation_view_message_log.role = []
 		this.navigation_view_message_log.action = ""
@@ -645,7 +645,6 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.page_load__he_for_review_btn()
 		this.page_load__he_for_vd()
 		this.page_load__de_for_vlh_from_pl()
-		this.page_load__he_for_pl_to_vm()
 		this.page_load__cc_for_routing_key()
 	}
 
@@ -1108,27 +1107,6 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_pl_to_vm() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_view_message_log"
-		let parent_source_id=""
-		let event_code="e_1669383277705"
-		let event_params={"caller_name":"page_load__he_for_pl_to_vm","event_desc":"HE for PL to VM","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

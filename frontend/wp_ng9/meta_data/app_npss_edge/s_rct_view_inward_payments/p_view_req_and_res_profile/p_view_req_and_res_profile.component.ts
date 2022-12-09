@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27258 
+Build ID        : 27276 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-09 8:12 AM 
+Modified Date   : 2022-Dec-09 15:17 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_inward_payments
@@ -22,9 +22,9 @@ export class p_view_req_and_res_profileComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	request_ui : any = {}
+  	single_back_ui : any = {}
+	request_ui : any = {}
 	response_ui : any = {}
-	single_back_ui : any = {}
 
 
   // Constructor 
@@ -32,12 +32,12 @@ export class p_view_req_and_res_profileComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.request_ui.desc = "Request UI"
+    	this.single_back_ui.desc = "Single Back UI"
+		this.single_back_ui.need_header = ""
+		this.request_ui.desc = "Request UI"
 		this.request_ui.need_header = false
 		this.response_ui.desc = "Response UI"
 		this.response_ui.need_header = ""
-		this.single_back_ui.desc = "Single Back UI"
-		this.single_back_ui.need_header = ""
 	
 
     this.screen_instance['p_view_req_and_res_profile'] = {};

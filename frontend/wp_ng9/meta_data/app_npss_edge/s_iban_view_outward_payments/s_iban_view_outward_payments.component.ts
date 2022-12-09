@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27258 
+Build ID        : 27276 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-09 8:12 AM 
+Modified Date   : 2022-Dec-09 15:17 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_iban_view_outward_payments
@@ -28,7 +28,7 @@ export class s_iban_view_outward_paymentsComponent implements OnInit,AfterViewIn
   	wftpa_description : string = "s_iban_view_outward_payments"
 	wftpa_id : string = "WFT_NPSS_P_1304_1669786991158_0"
 	cg_code : string = "CG_1304_1669177172525"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID"}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []

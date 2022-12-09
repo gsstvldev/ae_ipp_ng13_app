@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27247 
+Build ID        : 27272 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-09 7:51 AM 
+Modified Date   : 2022-Dec-09 14:1 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal

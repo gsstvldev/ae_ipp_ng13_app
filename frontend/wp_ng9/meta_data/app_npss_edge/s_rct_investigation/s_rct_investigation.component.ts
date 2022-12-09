@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27262 
+Build ID        : 27272 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-09 10:50 AM 
+Modified Date   : 2022-Dec-09 14:1 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_investigation
@@ -29,7 +29,7 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_rct_investigation"
 	wftpa_id : string = "WFT_NPSS_P_1304_1666862798769_0"
 	cg_code : string = "CG_1304_1666855849832"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID"}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -482,8 +482,6 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 	// To handle page_load event
 	page_load(){
 		this.page_load__he_for_initiate()
-		this.page_load__he_for_vd()
-		this.page_load__he_for_pl_to_vm()
 		this.page_load__de_for_pl_to_vm()
 		this.page_load__de_for_vlh_from_pl()
 		this.page_load__cc_for_routing_key()
@@ -702,48 +700,6 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1667555863965"
 		let event_params={"caller_name":"page_load__he_for_initiate","event_desc":"HE for initiate","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_vd() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_ui_view_tran"
-		let parent_source_id=""
-		let event_code="e_1669203335696"
-		let event_params={"caller_name":"page_load__he_for_vd","event_desc":"HE for VD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_pl_to_vm() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_ui_view_message_log"
-		let parent_source_id=""
-		let event_code="e_1669369700146"
-		let event_params={"caller_name":"page_load__he_for_pl_to_vm","event_desc":"HE for PL to VM","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}

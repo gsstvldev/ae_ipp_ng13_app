@@ -48,10 +48,10 @@ export class npss_cs_sim_pack_008Component implements OnInit {
            
             this.messagearray.push(event.param)
             var popobj = {}
-            for(let i =0; i < messagearray.length; i++){
+            for(let i =0; i < this.messagearray.length; i++){
                 for(let j=0; j < getkeyName.length; j++){
                     popobj = {}
-                    popobj['case'] = `${getkeyName[j]}: ${messagearray[i][getkeyName[j]]}`
+                    popobj['case'] = `${getkeyName[j]}: ${this.messagearray[i][getkeyName[j]]}`
                     this.popuparray.push(popobj)
                 }
             }

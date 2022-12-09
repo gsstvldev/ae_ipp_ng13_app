@@ -15,7 +15,7 @@ import { DialogService } from '../../scripts/fx/dialog.service'; // Dialog box a
 @Injectable()
 export class npss_cs_sim_pack_008Service {
     constructor(private http: Http,
-        private httpHelper: HttphelperService,
+         private httpHelper: HttphelperService,
         private coreHelper: CoreService,
         private appHandler: AppHandlerService,
         private sessionHelper: SessionService,

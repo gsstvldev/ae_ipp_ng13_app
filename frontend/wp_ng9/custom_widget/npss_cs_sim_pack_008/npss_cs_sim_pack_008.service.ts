@@ -71,7 +71,7 @@ export class npss_cs_sim_pack_008Service {
 
 
 
-            'orderingCustomer_account': CtrlScope.DBTR_ACCT_NO || '',
+            'orderingCustomer_account': CtrlScope.DBTR_IBAN  || '',
 
             'orderingCustomer_otheraccount': CtrlScope.OTHERACCOUNT || '',
 
@@ -87,7 +87,7 @@ export class npss_cs_sim_pack_008Service {
 
             'CORETRANSACTIONTYPE': CtrlScope.CORETRANSACTIONTYPE || '',
 
-            'beneficiaryCustomer_Account': CtrlScope.CDTR_ACCT_NO || '',
+            'beneficiaryCustomer_Account': CtrlScope.CDTR_IBAN || '',
             'beneficiaryCustomer_otherAccount': CtrlScope.OTHERACCOUNT || '',
 
             'beneficiaryCustomer_AccountName': CtrlScope.CDTR_ACCT_NAME || '',

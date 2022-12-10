@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27285 
+Build ID        : 27290 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 8:17 AM 
+Modified Date   : 2022-Dec-10 8:48 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_simulator
@@ -235,14 +235,14 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 
 	//Handler for SELECTION_CHANGED event of "list"
 	list__selection_changed(){
-		this.list__ssr()
 		this.list__e_1670660081756()
+		this.list__ssr()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "submit ui submit"
 	submit_ui_submit__action_button_click(){
-		this.submit_ui_submit__bt()
 		this.submit_ui_submit__sp()
+		this.submit_ui_submit__bt()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui back"
@@ -477,27 +477,6 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "list"
-	list__ssr() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_ui"
-		let parent_source_id=""
-		let event_code="e_1670659717548"
-		let event_params={"caller_name":"list__ssr","event_desc":"SSR","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{}}
-		let handler_code="set_selected_row"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
 	list__e_1670660081756() { 
 		let Dest_Is_ctrl=true
 		
@@ -518,21 +497,21 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "submit ui submit"
-	submit_ui_submit__bt() { 
+	//Handler for SELECTION_CHANGED event of "list"
+	list__ssr() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="submit_ui_submit"
-		let destn_id="navigation_ui"
+		let source_id="list"
+		let destn_id="data_entry"
 		let parent_source_id=""
-		let event_code="e_1670659733434"
-		let event_params={"caller_name":"submit_ui_submit__bt","event_desc":"BT","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"submit_ui_submit","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
-		let handler_code="bind_tran"
+		let event_code="e_1670662008964"
+		let event_params={"caller_name":"list__ssr","event_desc":"SSR","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{}}
+		let handler_code="set_selected_row"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -554,6 +533,27 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "submit ui submit"
+	submit_ui_submit__bt() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="submit_ui_submit"
+		let destn_id="data_entry"
+		let parent_source_id=""
+		let event_code="e_1670661991662"
+		let event_params={"caller_name":"submit_ui_submit__bt","event_desc":"BT","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"submit_ui_submit","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

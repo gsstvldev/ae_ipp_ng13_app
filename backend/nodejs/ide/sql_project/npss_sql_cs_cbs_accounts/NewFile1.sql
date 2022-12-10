@@ -42,7 +42,8 @@ Account_Postring_Type_Description character varying(256) COLLATE pg_catalog."def
 Account_Posting_Restrict_Type character varying(6) COLLATE pg_catalog."default",
 Customer_Posting_restriction_Description character varying(256) COLLATE pg_catalog."default",
 Customer_Posting_restrict_type character varying(6) COLLATE pg_catalog."default",
-productidentifier character varying(128) COLLATE pg_catalog."default"
+productidentifier character varying(128) COLLATE pg_catalog."default",
+issuer_type_code character varying(5) COLLATE pg_catalog."default"
 ) 
 TABLESPACE pg_default; 
 @SPL@

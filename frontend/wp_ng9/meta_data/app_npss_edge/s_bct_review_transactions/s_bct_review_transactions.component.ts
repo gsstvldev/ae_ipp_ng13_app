@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27247 
+Build ID        : 27279 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-09 7:51 AM 
+Modified Date   : 2022-Dec-10 5:31 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_transactions
@@ -28,7 +28,7 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
   	wftpa_description : string = "s_bct_review_transactions"
 	wftpa_id : string = "WFT_NPSS_P_1304_1667559977846_0"
 	cg_code : string = "CG_1304_1667558798645"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID"}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -2084,7 +2084,7 @@ export class s_bct_review_transactionsComponent implements OnInit,AfterViewInit 
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1670301189868"
-		let event_params={"caller_name":"process_log_ui_view_req_and_res__sp_for_view_req_and_res","event_desc":"SP for View Req and Res","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"profile_code":""}}
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__sp_for_view_req_and_res","event_desc":"SP for View Req and Res","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1670300995298"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

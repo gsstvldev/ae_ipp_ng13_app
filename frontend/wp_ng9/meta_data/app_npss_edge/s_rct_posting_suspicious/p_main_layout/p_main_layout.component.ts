@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27284 
+Build ID        : 27269 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 7:6 AM 
+Modified Date   : 2022-Dec-10 7:39 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -24,7 +24,6 @@ export class p_main_layoutComponent implements OnInit {
   // Variables 
   	navigation_ui : any = {}
 	queue : any = {}
-	process_log_list : any = {}
 	transaction_list : any = {}
 
 
@@ -37,8 +36,6 @@ export class p_main_layoutComponent implements OnInit {
 		this.navigation_ui.need_header = ""
 		this.queue.desc = "Queue"
 		this.queue.need_header = true
-		this.process_log_list.desc = "Process Log List"
-		this.process_log_list.need_header = true
 		this.transaction_list.desc = "Transaction List"
 		this.transaction_list.need_header = true
 	

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27284 
+Build ID        : 27269 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 7:6 AM 
+Modified Date   : 2022-Dec-10 7:39 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_inward_payments
@@ -438,46 +438,6 @@ focustoelement(){
 		this.ctrl.npss_rct_post_plog_srch_memory25 = {}
 		this.ctrl.npss_rct_post_plog_srch_memory25.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of process_name
-		this.ctrl.process_name = {}
-		this.ctrl.process_name.id = "9b197d4d-4d43-45d4-a9d8-e059181b315f_1668849760485"
-		this.ctrl.process_name.desc = "Process Name"
-		this.ctrl.process_name.visible = true
-		this.ctrl.process_name.label_name = "Process Name"
-		this.ctrl.process_name.df_code = "DF_1304_1665905157963"
-		this.ctrl.process_name.df_description = "Column Group 1"
-		this.ctrl.process_name.uictrl_code = "CBO"
-		this.ctrl.process_name.target_column = "PROCESS_NAME"
-		this.ctrl.process_name.data_type = "TEXT"
-		this.ctrl.process_name.data_length = 64
-		this.ctrl.process_name.zone_df_code = "DF_1304_1665905157963"
-		this.ctrl.process_name.default_value = ""
-		this.ctrl.process_name.is_memory_ctrl = ""
-		this.ctrl.process_name.field_coordinates = ""
-		this.ctrl.process_name.sub_details = ""
-		this.ctrl.process_name.accept_char = ""
-		this.ctrl.process_name.currency_format = ""
-		this.ctrl.process_name.data_scale = ""
-		this.ctrl.process_name.binding_name = "PROCESS_NAME"
-		this.ctrl.process_name.hide_label = false
-		this.ctrl.process_name.depends_on = ""
-		this.ctrl.process_name.placeholder = ""
-		this.ctrl.process_name.dynamic_param = ""
-		this.ctrl.process_name.style_code = ""
-		this.ctrl.process_name.data_source = {"ds_code":"UDS_1304_1666098232469","ds_description":"NPSS Process name CDB","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"CD_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CODE_DESCRIPTIONS","context":"","filters":[{"filter_name":"Filter1","binding_name":"CD_CATEGORY","id":"DF_1666098368356","binding_value":"PROCESS_NAME","source_name":"CD_CATEGORY","source_value":"PROCESS_NAME","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"PROCESS_NAME","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"PROCESS_NAME"}]},"query":"(CD_CATEGORY = PROCESS_NAME)"},"sel_columns":[]}
-		this.ctrl.process_name.image_association = ""
-		this.ctrl.process_name.show = true
-		this.ctrl.process_name.sub_content = ""
-		this.ctrl.process_name.required = false
-		this.ctrl.process_name.vld_rules = []
-		this.ctrl.process_name.targetcolumn_lower = "process_name"
-		this.ctrl.process_name.disabled = false
-		this.ctrl.process_name.view_name = "f_npss_rct_post_plog_srch"
-		this.ctrl.process_name.ctrl_id = "npss_rct_post_plog_srch_process_name"
-		this.ctrl.npss_rct_post_plog_srch_process_name = {}
-		this.ctrl.npss_rct_post_plog_srch_process_name.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.process_name = {}
-	
 		//Properties of processing_system
 		this.ctrl.processing_system = {}
 		this.ctrl.processing_system.id = "2b78f8bd-2be0-48fb-9a3c-4e69a3fef50b_1668849760485"
@@ -516,8 +476,8 @@ focustoelement(){
 		this.ctrl.processing_system.ctrl_id = "npss_rct_post_plog_srch_processing_system"
 		this.ctrl.npss_rct_post_plog_srch_processing_system = {}
 		this.ctrl.npss_rct_post_plog_srch_processing_system.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.model = {"MEMORY18":"setcurrentdate(),{}","MEMORY9":"setcurrentdate(),{}","MEMORY19":"","UETR":"","MEMORY21":"","MEMORY27":"","MEMORY22":"","MEMORY23":"","MEMORY24":"","MEMORY25":"","PROCESS_NAME":"","PROCESSING_SYSTEM":""}
-		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"}]
+		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.model = {"MEMORY18":"setcurrentdate(),{}","MEMORY9":"setcurrentdate(),{}","MEMORY19":"","UETR":"","MEMORY21":"","MEMORY27":"","MEMORY22":"","MEMORY23":"","MEMORY24":"","MEMORY25":"","PROCESSING_SYSTEM":""}
+		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"}]
 		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.dtt_code = "dtt_1304_1665905039255"
 		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

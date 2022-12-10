@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS add column PROCESSING_SYSTEM CHARACTER VARYING(64);","params" : [] }]
+[]

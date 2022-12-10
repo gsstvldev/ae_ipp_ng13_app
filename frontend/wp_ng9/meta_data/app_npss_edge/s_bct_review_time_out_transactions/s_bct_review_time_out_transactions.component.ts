@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27263 
+Build ID        : 27284 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-09 10:50 AM 
+Modified Date   : 2022-Dec-10 7:6 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_time_out_transactions
@@ -29,7 +29,7 @@ export class s_bct_review_time_out_transactionsComponent implements OnInit,After
   	wftpa_description : string = "s_bct_review_time_out_transactions"
 	wftpa_id : string = "WFT_NPSS_P_1304_1670569746242_0"
 	cg_code : string = "CG_1304_1670568859546"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID"}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27269 
+Build ID        : 27300 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 7:39 AM 
+Modified Date   : 2022-Dec-10 13:18 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_investigation
@@ -25,7 +25,6 @@ export class p_main_layoutComponent implements OnInit {
   	navigation_ui : any = {}
 	queue : any = {}
 	transaction_list : any = {}
-	process_log_list : any = {}
 
 
   // Constructor 
@@ -39,8 +38,6 @@ export class p_main_layoutComponent implements OnInit {
 		this.queue.need_header = true
 		this.transaction_list.desc = "Transaction List"
 		this.transaction_list.need_header = true
-		this.process_log_list.desc = "Process Log List"
-		this.process_log_list.need_header = true
 	
 
     this.screen_instance['p_main_layout'] = {};

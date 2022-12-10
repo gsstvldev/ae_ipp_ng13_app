@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27269 
+Build ID        : 27300 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 7:39 AM 
+Modified Date   : 2022-Dec-10 13:18 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_transactions
@@ -168,9 +168,9 @@ focustoelement(){
 		//Properties of uetr
 		this.ctrl.uetr = {}
 		this.ctrl.uetr.id = "9e0906f2-a89d-4669-b784-c73f24b4ea9d_1668861142108"
-		this.ctrl.uetr.desc = "Clearing sys ref number"
+		this.ctrl.uetr.desc = "UETR"
 		this.ctrl.uetr.visible = true
-		this.ctrl.uetr.label_name = "Clearing sys ref number"
+		this.ctrl.uetr.label_name = "UETR"
 		this.ctrl.uetr.df_code = "DF_1304_1665901396659"
 		this.ctrl.uetr.df_description = "Column Group 1"
 		this.ctrl.uetr.uictrl_code = "TXT"
@@ -398,8 +398,46 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_tran_srch_intrbk_sttlm_amnt"
 		this.ctrl.npss_tran_srch_intrbk_sttlm_amnt = {}
 		this.ctrl.npss_tran_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_tran_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","UETR":"","TRAN_REF_ID":"","PAYMENT_ENDTOEND_ID":"","CDTR_ACCT_NO":"","DBTR_ACCT_NO":"","INTRBK_STTLM_AMNT":""}
-		this.screen_instance[this.comp_id].f_npss_tran_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
+	
+		//Properties of processing_system
+		this.ctrl.processing_system = {}
+		this.ctrl.processing_system.id = "1668861142108CN10"
+		this.ctrl.processing_system.desc = "Processing System"
+		this.ctrl.processing_system.visible = true
+		this.ctrl.processing_system.label_name = "Processing System"
+		this.ctrl.processing_system.df_code = "DF_1304_1665901396659"
+		this.ctrl.processing_system.df_description = "Column Group 1"
+		this.ctrl.processing_system.uictrl_code = "CDN_CTRL"
+		this.ctrl.processing_system.target_column = "PROCESSING_SYSTEM"
+		this.ctrl.processing_system.data_type = "TEXT"
+		this.ctrl.processing_system.data_length = 64
+		this.ctrl.processing_system.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.processing_system.default_value = ""
+		this.ctrl.processing_system.is_memory_ctrl = ""
+		this.ctrl.processing_system.field_coordinates = ""
+		this.ctrl.processing_system.sub_details = ""
+		this.ctrl.processing_system.accept_char = ""
+		this.ctrl.processing_system.currency_format = ""
+		this.ctrl.processing_system.data_scale = ""
+		this.ctrl.processing_system.binding_name = "PROCESSING_SYSTEM"
+		this.ctrl.processing_system.depends_on = ""
+		this.ctrl.processing_system.placeholder = ""
+		this.ctrl.processing_system.dynamic_param = ""
+		this.ctrl.processing_system.style_code = ""
+		this.ctrl.processing_system.data_source = ""
+		this.ctrl.processing_system.image_association = ""
+		this.ctrl.processing_system.show = true
+		this.ctrl.processing_system.sub_content = ""
+		this.ctrl.processing_system.required = false
+		this.ctrl.processing_system.vld_rules = []
+		this.ctrl.processing_system.targetcolumn_lower = "processing_system"
+		this.ctrl.processing_system.disabled = false
+		this.ctrl.processing_system.view_name = "f_npss_tran_srch"
+		this.ctrl.processing_system.ctrl_id = "npss_tran_srch_processing_system"
+		this.ctrl.npss_tran_srch_processing_system = {}
+		this.ctrl.npss_tran_srch_processing_system.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_tran_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","UETR":"","TRAN_REF_ID":"","PAYMENT_ENDTOEND_ID":"","CDTR_ACCT_NO":"","DBTR_ACCT_NO":"","INTRBK_STTLM_AMNT":"","PROCESSING_SYSTEM":""}
+		this.screen_instance[this.comp_id].f_npss_tran_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"}]
 		this.screen_instance[this.comp_id].f_npss_tran_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_tran_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_tran_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

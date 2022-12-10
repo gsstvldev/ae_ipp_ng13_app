@@ -60,6 +60,7 @@ export class npss_cs_sim_pack_008Component implements OnInit {
     }
     cancel(){
         this.showPopup = false
+      this.popuparray = []
         this.messagearray = []
     }
 }

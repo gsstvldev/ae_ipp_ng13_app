@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27295 
+Build ID        : 27297 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 10:53 AM 
+Modified Date   : 2022-Dec-10 11:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_process_logs
@@ -390,6 +390,7 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view payments"
 	navigation_ui_view_payments__action_button_click(){
 		this.navigation_ui_view_payments__sp_for_searh()
+		this.navigation_ui_view_payments__cc_for_view_payment()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "payment srch search"
@@ -1133,6 +1134,27 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view payments"
+	navigation_ui_view_payments__cc_for_view_payment() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_payments"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1670672935829"
+		let event_params={"caller_name":"navigation_ui_view_payments__cc_for_view_payment","event_desc":"CC for View payment","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_payments","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_show_table_viewService.fn_npss_cs_show_table_view(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

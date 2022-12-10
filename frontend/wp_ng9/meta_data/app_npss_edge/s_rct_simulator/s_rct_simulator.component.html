@@ -1,7 +1,9 @@
 <div class="s_rct_simulator">
 <p_mainlayout [screen_instance]="this" [hidden]="!(current_profile=='p_mainlayout')"></p_mainlayout>
+<p_list_layout [screen_instance]="this" [hidden]="!(current_profile=='p_list_layout')"></p_list_layout>
 <app-dialog [screen_instance]="this" ></app-dialog>
 <div style="display:none">
+	<f_back_ui [comp_id]="'back_ui'" [screen_instance]="this" ></f_back_ui >
 	<f_triger_ui [comp_id]="'triger_ui'" [screen_instance]="this" ></f_triger_ui >
 </div>
 </div>

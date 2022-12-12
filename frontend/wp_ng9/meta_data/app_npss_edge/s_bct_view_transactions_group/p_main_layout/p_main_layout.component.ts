@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27300 
+Build ID        : 27309 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 13:18 PM 
+Modified Date   : 2022-Dec-12 8:3 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_view_transactions_group
@@ -37,11 +37,11 @@ export class p_main_layoutComponent implements OnInit {
   ngOnInit() {
     	this.navigation_ui.desc = "Navigation UI"
 		this.navigation_ui.need_header = ""
-		this.process_group.desc = "Status by Group"
+		this.process_group.desc = "Process Group"
 		this.process_group.need_header = true
-		this.processing_system.desc = "Process by System"
+		this.processing_system.desc = "Processing System"
 		this.processing_system.need_header = true
-		this.process_queue.desc = "Group Detail"
+		this.process_queue.desc = "Process Queue"
 		this.process_queue.need_header = true
 		this.summary_list.desc = "Summary List"
 		this.summary_list.need_header = true

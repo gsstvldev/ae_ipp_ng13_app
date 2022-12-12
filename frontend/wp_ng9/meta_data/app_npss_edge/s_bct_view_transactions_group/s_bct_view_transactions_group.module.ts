@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27300 
+Build ID        : 27309 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 13:18 PM 
+Modified Date   : 2022-Dec-12 8:3 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_view_transactions_group
@@ -33,10 +33,11 @@ import { s_bct_view_transactions_groupRoutingModule } from './s_bct_view_transac
     
 
 
-import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
+import { p_main_pspq_layoutComponent } from './p_main_pspq_layout/p_main_pspq_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { p_vertical_layoutComponent } from './p_vertical_layout/p_vertical_layout.component'
 import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
+import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
 import { f_npss_rct_post_plog_srchComponent } from './f_npss_rct_post_plog_srch/f_npss_rct_post_plog_srch.component'
 import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
@@ -68,7 +69,7 @@ import { p_view_req_and_res__profileComponent } from './p_view_req_and_res__prof
     s_bct_view_transactions_groupRoutingModule,
     torus_cs_change_routingkeyModule,torus_cs_show_hideModule
   ],
-  declarations: [s_bct_view_transactions_groupComponent,p_main_layoutComponent,f_navigation_uiComponent,p_vertical_layoutComponent,f_back_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,p_view_main_request_layoutComponent,f_npss_target_main_page_request_uiComponent,p_view_main_response_layoutComponent,f_npss_target_main_page_response_uiComponent,p_main_view_req_and_res_profileComponent,p_view_req_and_res__profileComponent,],
+  declarations: [s_bct_view_transactions_groupComponent,p_main_pspq_layoutComponent,f_navigation_uiComponent,p_vertical_layoutComponent,f_back_uiComponent,p_main_layoutComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,p_view_main_request_layoutComponent,f_npss_target_main_page_request_uiComponent,p_view_main_response_layoutComponent,f_npss_target_main_page_response_uiComponent,p_main_view_req_and_res_profileComponent,p_view_req_and_res__profileComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

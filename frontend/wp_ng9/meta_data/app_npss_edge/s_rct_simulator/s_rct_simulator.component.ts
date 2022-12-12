@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27307 
+Build ID        : 27310 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-12 6:48 AM 
+Modified Date   : 2022-Dec-12 8:3 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_simulator
@@ -35,8 +35,7 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	uicgc_1 : string = "data_entry"
 	uicgc_2 : string = "navigation_ui"
 	uicgc_3 : string = "list"
-	uicgc_4 : string = "back_ui"
-	uicgc_5 : string = "triger_ui"
+	uicgc_5 : string = "control_de_trig_ui"
 	uicgc_6 : string = "npss_sim_pack008"
 	uicgc_7 : string = "submit_ui"
 	key_events : any = {}
@@ -48,10 +47,8 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	navigation_ui_back : any = {}
 	navigation_ui_create_pacs008 : any = {}
 	list : any = {}
-	back_ui : any = {}
-	back_ui_back : any = {}
-	triger_ui : any = {}
-	triger_ui_trig_btn : any = {}
+	control_de_trig_ui : any = {}
+	control_de_trig_ui_trig_btn : any = {}
 	npss_sim_pack008 : any = {}
 	submit_ui : any = {}
 	submit_ui_submit : any = {}
@@ -122,47 +119,26 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 		this.list.show = true
 		this.list.dynamic_param = {}
 	
-		// Component level properties - "Back UI" 
-		this.back_ui.uictrl_code = "dynamic_ui"
-		this.back_ui.uicgc_desc = "Back UI"
-		this.back_ui.uicgc_code = "uicgc_4"
-		this.back_ui.params = {}
-		this.back_ui.datasource = {}
-		this.back_ui.context_menu = []
-		this.back_ui.views = {}
-		this.back_ui.onChangecomponent = new EventEmitter<any>()
-		this.back_ui.show = true
-		this.back_ui.dynamic_param = {}
+		// Component level properties - "Control DE Trig UI" 
+		this.control_de_trig_ui.uictrl_code = "dynamic_ui"
+		this.control_de_trig_ui.uicgc_desc = "Control DE Trig UI"
+		this.control_de_trig_ui.uicgc_code = "uicgc_5"
+		this.control_de_trig_ui.params = {}
+		this.control_de_trig_ui.datasource = {}
+		this.control_de_trig_ui.context_menu = []
+		this.control_de_trig_ui.views = {}
+		this.control_de_trig_ui.onChangecomponent = new EventEmitter<any>()
+		this.control_de_trig_ui.show = true
+		this.control_de_trig_ui.dynamic_param = {}
 		
-		// "Back" Button of "Back UI" component
-		this.back_ui_back.label_name = "Back"
-		this.back_ui_back.show = true
-		this.back_ui_back.disabled = false
-		this.back_ui_back.params = {"icon_only":false,"uicgcc_style":""}
-		this.back_ui_back.dynamic_param = {}
-		this.back_ui_back.role = []
-		this.back_ui_back.action = ""
-	
-		// Component level properties - "Triger UI" 
-		this.triger_ui.uictrl_code = "dynamic_ui"
-		this.triger_ui.uicgc_desc = "Triger UI"
-		this.triger_ui.uicgc_code = "uicgc_5"
-		this.triger_ui.params = {}
-		this.triger_ui.datasource = {}
-		this.triger_ui.context_menu = []
-		this.triger_ui.views = {}
-		this.triger_ui.onChangecomponent = new EventEmitter<any>()
-		this.triger_ui.show = true
-		this.triger_ui.dynamic_param = {}
-		
-		// "Trig Btn" Button of "Triger UI" component
-		this.triger_ui_trig_btn.label_name = "Trig Btn"
-		this.triger_ui_trig_btn.show = true
-		this.triger_ui_trig_btn.disabled = false
-		this.triger_ui_trig_btn.params = {"icon_only":false,"uicgcc_style":""}
-		this.triger_ui_trig_btn.dynamic_param = {}
-		this.triger_ui_trig_btn.role = []
-		this.triger_ui_trig_btn.action = ""
+		// "Trig Btn" Button of "Control DE Trig UI" component
+		this.control_de_trig_ui_trig_btn.label_name = "Trig Btn"
+		this.control_de_trig_ui_trig_btn.show = true
+		this.control_de_trig_ui_trig_btn.disabled = false
+		this.control_de_trig_ui_trig_btn.params = {"icon_only":false,"uicgcc_style":""}
+		this.control_de_trig_ui_trig_btn.dynamic_param = {}
+		this.control_de_trig_ui_trig_btn.role = []
+		this.control_de_trig_ui_trig_btn.action = ""
 	
 		// Component level properties - "NPSS Sim pack008" 
 		this.npss_sim_pack008.uictrl_code = "custom_widget"
@@ -228,11 +204,6 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 		this.info_for_pacs__rs_for_create_actions(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
-	back_ui_back__action_button_click(){
-		this.back_ui_back__sp_for_back_from_mains()
-	}
-
 	//Handler for SELECTION_CHANGED event of "list"
 	list__selection_changed(){
 		this.list__ee_for_list()
@@ -247,8 +218,8 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui back"
 	navigation_ui_back__action_button_click(){
-		this.navigation_ui_back__sp_for_list()
 		this.navigation_ui_back__de_for_back()
+		this.navigation_ui_back__sp_for_back_from_mains()
 	}
 
 	//Handler for TEXT_CHANGED event of "npss simulator ui intrbk sttlm amnt"
@@ -261,18 +232,18 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 		this.e_1670502154334__e_1670502173922__data_entry()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "triger ui trig btn"
-	triger_ui_trig_btn__action_button_click(){
-		this.triger_ui_trig_btn__de_for_trg_btn__data_entry()
-		this.triger_ui_trig_btn__de_for_noofrecords__data_entry()
-		this.triger_ui_trig_btn__e_1670507486189__data_entry()
-		this.triger_ui_trig_btn__e_1670507499045__data_entry()
-		this.triger_ui_trig_btn__e_1670507568848__data_entry()
-		this.triger_ui_trig_btn__e_1670507594875__data_entry()
-		this.triger_ui_trig_btn__e_1670507614530__data_entry()
-		this.triger_ui_trig_btn__e_1670507638487__data_entry()
-		this.triger_ui_trig_btn__e_1670508276543__data_entry()
-		this.triger_ui_trig_btn__e_1670508288401__data_entry()
+	//Handler for ACTION_BUTTON_CLICK event of "control de trig ui trig btn"
+	control_de_trig_ui_trig_btn__action_button_click(){
+		this.control_de_trig_ui_trig_btn__de_for_trg_btn__data_entry()
+		this.control_de_trig_ui_trig_btn__de_for_noofrecords__data_entry()
+		this.control_de_trig_ui_trig_btn__e_1670507486189__data_entry()
+		this.control_de_trig_ui_trig_btn__e_1670507499045__data_entry()
+		this.control_de_trig_ui_trig_btn__e_1670507568848__data_entry()
+		this.control_de_trig_ui_trig_btn__e_1670507594875__data_entry()
+		this.control_de_trig_ui_trig_btn__e_1670507614530__data_entry()
+		this.control_de_trig_ui_trig_btn__e_1670507638487__data_entry()
+		this.control_de_trig_ui_trig_btn__e_1670508276543__data_entry()
+		this.control_de_trig_ui_trig_btn__e_1670508288401__data_entry()
 	}
 
 	//Handler for SELECTION_CHANGED event of "npss simulator ui hdr created date"
@@ -332,7 +303,7 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="triger_ui_trig_btn"
+		let destn_id="control_de_trig_ui_trig_btn"
 		let parent_source_id=""
 		let event_code="e_1670503112418"
 		let event_params={"caller_name":"page_load__tbc_for_trg_btn","event_desc":"TBC for Trg btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -455,27 +426,6 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
-	back_ui_back__sp_for_back_from_mains() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="back_ui_back"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1670822077086"
-		let event_params={"caller_name":"back_ui_back__sp_for_back_from_mains","event_desc":"SP for back from Mains","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"back_ui_back","raiseparam":{}}
-		let handler_code="refresh_screen"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
 	//Handler for SELECTION_CHANGED event of "list"
 	list__ee_for_list() { 
 		let Dest_Is_ctrl=true
@@ -561,27 +511,6 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui back"
-	navigation_ui_back__sp_for_list() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_back"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1670659778626"
-		let event_params={"caller_name":"navigation_ui_back__sp_for_list","event_desc":"SP for LIST","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_back","raiseparam":{"profile_code":"BTL_1304_1670481741540"}}
-		let handler_code="show_profile"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui back"
 	navigation_ui_back__de_for_back() { 
 		let Dest_Is_ctrl=true
 		
@@ -596,6 +525,27 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui back"
+	navigation_ui_back__sp_for_back_from_mains() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1670831829767"
+		let event_params={"caller_name":"navigation_ui_back__sp_for_back_from_mains","event_desc":"SP for back from Mains","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_back","raiseparam":{}}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -644,15 +594,15 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "triger ui trig btn"
-	triger_ui_trig_btn__de_for_trg_btn__data_entry() { 
+	//Handler for ACTION_BUTTON_CLICK event of "control de trig ui trig btn"
+	control_de_trig_ui_trig_btn__de_for_trg_btn__data_entry() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="triger_ui_trig_btn"
+		let source_id="control_de_trig_ui_trig_btn"
 		let destn_id="npss_simulator_ui_hdr_total_amount"
 		let parent_source_id=""
 		let event_code="e_1670503191929"
-		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"hdr_total_amount","caller_name":"triger_ui_trig_btn__de_for_trg_btn__data_entry","event_desc":"DE for Trg btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"triger_ui_trig_btn","raiseparam":{}}
+		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"hdr_total_amount","caller_name":"control_de_trig_ui_trig_btn__de_for_trg_btn__data_entry","event_desc":"DE for Trg btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"control_de_trig_ui_trig_btn","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -665,15 +615,15 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "triger ui trig btn"
-	triger_ui_trig_btn__de_for_noofrecords__data_entry() { 
+	//Handler for ACTION_BUTTON_CLICK event of "control de trig ui trig btn"
+	control_de_trig_ui_trig_btn__de_for_noofrecords__data_entry() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="triger_ui_trig_btn"
+		let source_id="control_de_trig_ui_trig_btn"
 		let destn_id="npss_simulator_ui_hdr_total_records"
 		let parent_source_id=""
 		let event_code="e_1670507400992"
-		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"hdr_total_records","caller_name":"triger_ui_trig_btn__de_for_noofrecords__data_entry","event_desc":"DE FOR NOOFRECORDS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"triger_ui_trig_btn","raiseparam":{}}
+		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"hdr_total_records","caller_name":"control_de_trig_ui_trig_btn__de_for_noofrecords__data_entry","event_desc":"DE FOR NOOFRECORDS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"control_de_trig_ui_trig_btn","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -686,15 +636,15 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "triger ui trig btn"
-	triger_ui_trig_btn__e_1670507486189__data_entry() { 
+	//Handler for ACTION_BUTTON_CLICK event of "control de trig ui trig btn"
+	control_de_trig_ui_trig_btn__e_1670507486189__data_entry() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="triger_ui_trig_btn"
+		let source_id="control_de_trig_ui_trig_btn"
 		let destn_id="npss_simulator_ui_hdr_settlement_method"
 		let parent_source_id=""
 		let event_code="e_1670507486189"
-		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"hdr_settlement_method","caller_name":"triger_ui_trig_btn__e_1670507486189__data_entry","event_desc":"E_1670507486189","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"triger_ui_trig_btn","raiseparam":{}}
+		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"hdr_settlement_method","caller_name":"control_de_trig_ui_trig_btn__e_1670507486189__data_entry","event_desc":"E_1670507486189","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"control_de_trig_ui_trig_btn","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -707,15 +657,15 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "triger ui trig btn"
-	triger_ui_trig_btn__e_1670507499045__data_entry() { 
+	//Handler for ACTION_BUTTON_CLICK event of "control de trig ui trig btn"
+	control_de_trig_ui_trig_btn__e_1670507499045__data_entry() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="triger_ui_trig_btn"
+		let source_id="control_de_trig_ui_trig_btn"
 		let destn_id="npss_simulator_ui_hdr_clearing_system"
 		let parent_source_id=""
 		let event_code="e_1670507499045"
-		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"hdr_clearing_system","caller_name":"triger_ui_trig_btn__e_1670507499045__data_entry","event_desc":"E_1670507499045","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"triger_ui_trig_btn","raiseparam":{}}
+		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"hdr_clearing_system","caller_name":"control_de_trig_ui_trig_btn__e_1670507499045__data_entry","event_desc":"E_1670507499045","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"control_de_trig_ui_trig_btn","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -728,15 +678,15 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "triger ui trig btn"
-	triger_ui_trig_btn__e_1670507568848__data_entry() { 
+	//Handler for ACTION_BUTTON_CLICK event of "control de trig ui trig btn"
+	control_de_trig_ui_trig_btn__e_1670507568848__data_entry() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="triger_ui_trig_btn"
+		let source_id="control_de_trig_ui_trig_btn"
 		let destn_id="npss_simulator_ui_instrument_type"
 		let parent_source_id=""
 		let event_code="e_1670507568848"
-		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"instrument_type","caller_name":"triger_ui_trig_btn__e_1670507568848__data_entry","event_desc":"E_1670507568848","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"triger_ui_trig_btn","raiseparam":{}}
+		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"instrument_type","caller_name":"control_de_trig_ui_trig_btn__e_1670507568848__data_entry","event_desc":"E_1670507568848","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"control_de_trig_ui_trig_btn","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -749,15 +699,15 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "triger ui trig btn"
-	triger_ui_trig_btn__e_1670507594875__data_entry() { 
+	//Handler for ACTION_BUTTON_CLICK event of "control de trig ui trig btn"
+	control_de_trig_ui_trig_btn__e_1670507594875__data_entry() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="triger_ui_trig_btn"
+		let source_id="control_de_trig_ui_trig_btn"
 		let destn_id="npss_simulator_ui_charge_bearer"
 		let parent_source_id=""
 		let event_code="e_1670507594875"
-		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"charge_bearer","caller_name":"triger_ui_trig_btn__e_1670507594875__data_entry","event_desc":"E_1670507594875","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"triger_ui_trig_btn","raiseparam":{}}
+		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"charge_bearer","caller_name":"control_de_trig_ui_trig_btn__e_1670507594875__data_entry","event_desc":"E_1670507594875","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"control_de_trig_ui_trig_btn","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -770,15 +720,15 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "triger ui trig btn"
-	triger_ui_trig_btn__e_1670507614530__data_entry() { 
+	//Handler for ACTION_BUTTON_CLICK event of "control de trig ui trig btn"
+	control_de_trig_ui_trig_btn__e_1670507614530__data_entry() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="triger_ui_trig_btn"
+		let source_id="control_de_trig_ui_trig_btn"
 		let destn_id="npss_simulator_ui_ext_acct_id_code"
 		let parent_source_id=""
 		let event_code="e_1670507614530"
-		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"ext_acct_id_code","caller_name":"triger_ui_trig_btn__e_1670507614530__data_entry","event_desc":"E_1670507614530","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"triger_ui_trig_btn","raiseparam":{}}
+		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"ext_acct_id_code","caller_name":"control_de_trig_ui_trig_btn__e_1670507614530__data_entry","event_desc":"E_1670507614530","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"control_de_trig_ui_trig_btn","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -791,15 +741,15 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "triger ui trig btn"
-	triger_ui_trig_btn__e_1670507638487__data_entry() { 
+	//Handler for ACTION_BUTTON_CLICK event of "control de trig ui trig btn"
+	control_de_trig_ui_trig_btn__e_1670507638487__data_entry() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="triger_ui_trig_btn"
+		let source_id="control_de_trig_ui_trig_btn"
 		let destn_id="npss_simulator_ui_cr_acct_id_code"
 		let parent_source_id=""
 		let event_code="e_1670507638487"
-		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"cr_acct_id_code","caller_name":"triger_ui_trig_btn__e_1670507638487__data_entry","event_desc":"E_1670507638487","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"triger_ui_trig_btn","raiseparam":{}}
+		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"cr_acct_id_code","caller_name":"control_de_trig_ui_trig_btn__e_1670507638487__data_entry","event_desc":"E_1670507638487","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"control_de_trig_ui_trig_btn","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -812,15 +762,15 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "triger ui trig btn"
-	triger_ui_trig_btn__e_1670508276543__data_entry() { 
+	//Handler for ACTION_BUTTON_CLICK event of "control de trig ui trig btn"
+	control_de_trig_ui_trig_btn__e_1670508276543__data_entry() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="triger_ui_trig_btn"
+		let source_id="control_de_trig_ui_trig_btn"
 		let destn_id="npss_simulator_ui_value_date"
 		let parent_source_id=""
 		let event_code="e_1670508276543"
-		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"value_date","caller_name":"triger_ui_trig_btn__e_1670508276543__data_entry","event_desc":"E_1670508276543","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"triger_ui_trig_btn","raiseparam":{}}
+		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"value_date","caller_name":"control_de_trig_ui_trig_btn__e_1670508276543__data_entry","event_desc":"E_1670508276543","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"control_de_trig_ui_trig_btn","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -833,15 +783,15 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "triger ui trig btn"
-	triger_ui_trig_btn__e_1670508288401__data_entry() { 
+	//Handler for ACTION_BUTTON_CLICK event of "control de trig ui trig btn"
+	control_de_trig_ui_trig_btn__e_1670508288401__data_entry() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="triger_ui_trig_btn"
+		let source_id="control_de_trig_ui_trig_btn"
 		let destn_id="npss_simulator_ui_hdr_settlement_date"
 		let parent_source_id=""
 		let event_code="e_1670508288401"
-		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"hdr_settlement_date","caller_name":"triger_ui_trig_btn__e_1670508288401__data_entry","event_desc":"E_1670508288401","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"triger_ui_trig_btn","raiseparam":{}}
+		let event_params={"destn_comp_id":"data_entry","destn_ctrl_id":"hdr_settlement_date","caller_name":"control_de_trig_ui_trig_btn__e_1670508288401__data_entry","event_desc":"E_1670508288401","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"control_de_trig_ui_trig_btn","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}

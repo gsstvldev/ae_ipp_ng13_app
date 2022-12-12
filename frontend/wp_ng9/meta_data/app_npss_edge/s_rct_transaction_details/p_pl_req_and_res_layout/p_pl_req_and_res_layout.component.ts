@@ -1,28 +1,30 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27300 
+Build ID        : 27310 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 13:18 PM 
+Modified Date   : 2022-Dec-12 8:3 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_transaction_details
-Profile Name    : View Message UI Layout--------------------------------------------------------------------------- */
+Profile Name    : PL Req and Res Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_view_message_ui_layout',
-  templateUrl: './p_view_message_ui_layout.component.html',
-  styleUrls: ['./p_view_message_ui_layout.component.css']
+  selector: 'p_pl_req_and_res_layout',
+  templateUrl: './p_pl_req_and_res_layout.component.html',
+  styleUrls: ['./p_pl_req_and_res_layout.component.css']
 })
 
 // Start of class 
-export class p_view_message_ui_layoutComponent implements OnInit {
+export class p_pl_req_and_res_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	message_detail_ui : any = {}
+  	hst_process_log_back : any = {}
+	request_ui : any = {}
+	response_ui : any = {}
 
 
   // Constructor 
@@ -30,12 +32,16 @@ export class p_view_message_ui_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.message_detail_ui.desc = "Message Detail UI"
-		this.message_detail_ui.need_header = ""
+    	this.hst_process_log_back.desc = "HST Process Log Back"
+		this.hst_process_log_back.need_header = ""
+		this.request_ui.desc = "Request UI"
+		this.request_ui.need_header = ""
+		this.response_ui.desc = "Response UI"
+		this.response_ui.need_header = ""
 	
 
-    this.screen_instance['p_view_message_ui_layout'] = {};
-    this.screen_instance['p_view_message_ui_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_pl_req_and_res_layout'] = {};
+    this.screen_instance['p_pl_req_and_res_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

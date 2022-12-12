@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27300 
+Build ID        : 27310 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 13:18 PM 
+Modified Date   : 2022-Dec-12 8:3 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_transaction_details
@@ -35,6 +35,8 @@ import { s_rct_transaction_detailsRoutingModule } from './s_rct_transaction_deta
 
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
+import { f_request_uiComponent } from './f_request_ui/f_request_ui.component'
+import { f_response_uiComponent } from './f_response_ui/f_response_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
 import { f_npss_rct_post_plog_srchComponent } from './f_npss_rct_post_plog_srch/f_npss_rct_post_plog_srch.component'
 import { p_vertical_layoutComponent } from './p_vertical_layout/p_vertical_layout.component'
@@ -44,16 +46,17 @@ import { f_refund_uiComponent } from './f_refund_ui/f_refund_ui.component'
 import { f_refund_editable_uiComponent } from './f_refund_editable_ui/f_refund_editable_ui.component'
 import { f_submit_uiComponent } from './f_submit_ui/f_submit_ui.component'
 import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
-import { f_response_uiComponent } from './f_response_ui/f_response_ui.component'
+import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/f_npss_target_response_ui.component'
 import { f_hst_process_log_backComponent } from './f_hst_process_log_back/f_hst_process_log_back.component'
 import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_request_layout.component'
-import { f_request_uiComponent } from './f_request_ui/f_request_ui.component'
+import { f_npss_target_request_uiComponent } from './f_npss_target_request_ui/f_npss_target_request_ui.component'
 import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
 import { f_hst_process_log_to_main_backComponent } from './f_hst_process_log_to_main_back/f_hst_process_log_to_main_back.component'
 import { p_view_message_layoutComponent } from './p_view_message_layout/p_view_message_layout.component'
 import { f_message_detail_actionComponent } from './f_message_detail_action/f_message_detail_action.component'
-import { p_view_message_ui_layoutComponent } from './p_view_message_ui_layout/p_view_message_ui_layout.component'
+import { p_main_req_and_res_layoutComponent } from './p_main_req_and_res_layout/p_main_req_and_res_layout.component'
 import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss_message_data_ui.component'
+import { p_pl_req_and_res_layoutComponent } from './p_pl_req_and_res_layout/p_pl_req_and_res_layout.component'
 
 
 
@@ -70,7 +73,7 @@ import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss
     s_rct_transaction_detailsRoutingModule,
     torus_cs_change_routingkeyModule,torus_cs_show_hideModule
   ],
-  declarations: [s_rct_transaction_detailsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_vertical_layoutComponent,f_main_back_uiComponent,p_refund_layoutComponent,f_refund_uiComponent,f_refund_editable_uiComponent,f_submit_uiComponent,p_view_response_layoutComponent,f_response_uiComponent,f_hst_process_log_backComponent,p_view_request_layoutComponent,f_request_uiComponent,p_view_history_layoutComponent,f_hst_process_log_to_main_backComponent,p_view_message_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_npss_message_data_uiComponent,],
+  declarations: [s_rct_transaction_detailsComponent,p_main_layoutComponent,f_navigation_uiComponent,f_request_uiComponent,f_response_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_vertical_layoutComponent,f_main_back_uiComponent,p_refund_layoutComponent,f_refund_uiComponent,f_refund_editable_uiComponent,f_submit_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,f_hst_process_log_backComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,p_view_history_layoutComponent,f_hst_process_log_to_main_backComponent,p_view_message_layoutComponent,f_message_detail_actionComponent,p_main_req_and_res_layoutComponent,f_npss_message_data_uiComponent,p_pl_req_and_res_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27310 
+Build ID        : 27313 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-12 8:3 AM 
+Modified Date   : 2022-Dec-12 11:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2p_transaction_details
@@ -24,7 +24,7 @@ export class p_view_response_layoutComponent implements OnInit {
   // Variables 
   	response_ui : any = {}
 	main_back_ui : any = {}
-	hst_process_log_back_ui : any = {}
+	hst_process_log_back : any = {}
 
 
   // Constructor 
@@ -36,8 +36,8 @@ export class p_view_response_layoutComponent implements OnInit {
 		this.response_ui.need_header = ""
 		this.main_back_ui.desc = "Main Back UI"
 		this.main_back_ui.need_header = ""
-		this.hst_process_log_back_ui.desc = "HST Process Log Back UI"
-		this.hst_process_log_back_ui.need_header = ""
+		this.hst_process_log_back.desc = "HST Process Log Back"
+		this.hst_process_log_back.need_header = ""
 	
 
     this.screen_instance['p_view_response_layout'] = {};

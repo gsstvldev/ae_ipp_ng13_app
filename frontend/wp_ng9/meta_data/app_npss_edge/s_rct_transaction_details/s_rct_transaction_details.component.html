@@ -1,6 +1,7 @@
 <div class="s_rct_transaction_details">
+<p_view_message_detail_ui [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_detail_ui')"></p_view_message_detail_ui>
+<p_main_req_and_response_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_req_and_response_layout')"></p_main_req_and_response_layout>
 <p_pl_req_and_res_layout [screen_instance]="this" [hidden]="!(current_profile=='p_pl_req_and_res_layout')"></p_pl_req_and_res_layout>
-<p_main_req_and_res_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_req_and_res_layout')"></p_main_req_and_res_layout>
 <p_view_message_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_layout')"></p_view_message_layout>
 <p_view_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_history_layout')"></p_view_history_layout>
 <p_view_response_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_response_layout')"></p_view_response_layout>
@@ -12,8 +13,4 @@
 <p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_for_searchs_showpopup" [contentStyle]="{'overflow-y': 'auto','width': 'auto'}" [draggable]="true" [modal]="true">
 	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>
 <app-dialog [screen_instance]="this" ></app-dialog>
-<div style="display:none">
-	<f_request_ui [comp_id]="'main_request_ui'" [screen_instance]="this" ></f_request_ui >
-	<f_response_ui [comp_id]="'main_response_ui'" [screen_instance]="this" ></f_response_ui >
-</div>
 </div>

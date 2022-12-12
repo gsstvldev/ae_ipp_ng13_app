@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27310 
+Build ID        : 27312 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-12 8:3 AM 
+Modified Date   : 2022-Dec-12 10:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_transaction_details
@@ -50,13 +50,15 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	uicgc_15 : string = "hst_process_log_to_main_back"
 	uicgc_16 : string = "message_detail"
 	uicgc_17 : string = "message_detail_action"
-	uicgc_18 : string = "message_detail_ui"
+	uicgc_18 : string = "message_detailui"
 	uicgc_19 : string = "view_payment_tran_details"
 	uicgc_20 : string = "main_request_ui"
 	uicgc_21 : string = "main_response_ui"
+	uicgc_22 : string = "message_detail_back_ui"
 	key_events : any = {}
+	btl_1304_1670839439024 : string = "p_view_message_detail_ui"
+	btl_1304_1670838065512 : string = "p_main_req_and_response_layout"
 	btl_1304_1670831832470 : string = "p_pl_req_and_res_layout"
-	btl_1304_1668661525669 : string = "p_main_req_and_res_layout"
 	btl_1304_1668581358650 : string = "p_view_message_layout"
 	btl_1304_1666180789841 : string = "p_view_history_layout"
 	btl_1304_1666176371576 : string = "p_view_response_layout"
@@ -65,7 +67,7 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	btl_1304_1666010003163 : string = "p_search_layout"
 	btl_1304_1666009903061 : string = "p_vertical_layout"
 	btl_1304_1666009819055 : string = "p_main_layout"
-	forms : any = ["uicgc_18","uicgc_8","uicgc_12","uicgc_20","uicgc_4","uicgc_11","uicgc_9","uicgc_21","uicgc_14","uicgc_17","uicgc_15","uicgc_5","uicgc_10","uicgc_3"]
+	forms : any = ["uicgc_18","uicgc_8","uicgc_12","uicgc_20","uicgc_4","uicgc_11","uicgc_9","uicgc_21","uicgc_22","uicgc_14","uicgc_17","uicgc_15","uicgc_5","uicgc_10","uicgc_3"]
 	p_search_layout__spap_for_searchs_showpopup : boolean = false
 	transaction_list : any = {}
 	view_dr_cr_tran_details : any = {}
@@ -75,7 +77,7 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	navigation_ui_refund : any = {}
 	navigation_ui_view_response : any = {}
 	navigation_ui_view_request : any = {}
-	navigation_ui_view_req_and_ress : any = {}
+	navigation_ui_view_req_and_res : any = {}
 	navigation_ui_view_process_log : any = {}
 	navigation_ui_view_message_log : any = {}
 	search : any = {}
@@ -105,11 +107,12 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	message_detail_action : any = {}
 	message_detail_action_back : any = {}
 	message_detail_action_view_message : any = {}
-	message_detail_ui : any = {}
-	message_detail_ui_back : any = {}
+	message_detailui : any = {}
 	view_payment_tran_details : any = {}
 	main_request_ui : any = {}
 	main_response_ui : any = {}
+	message_detail_back_ui : any = {}
+	message_detail_back_ui_back : any = {}
 
 
 	// Constructor 
@@ -202,14 +205,14 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.navigation_ui_view_request.role = []
 		this.navigation_ui_view_request.action = ""
 		
-		// "View Req and Ress" Button of "Navigation UI" component
-		this.navigation_ui_view_req_and_ress.label_name = "View Req and Ress"
-		this.navigation_ui_view_req_and_ress.show = true
-		this.navigation_ui_view_req_and_ress.disabled = false
-		this.navigation_ui_view_req_and_ress.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
-		this.navigation_ui_view_req_and_ress.dynamic_param = {}
-		this.navigation_ui_view_req_and_ress.role = []
-		this.navigation_ui_view_req_and_ress.action = ""
+		// "View Req and Res" Button of "Navigation UI" component
+		this.navigation_ui_view_req_and_res.label_name = "View Req and Res"
+		this.navigation_ui_view_req_and_res.show = true
+		this.navigation_ui_view_req_and_res.disabled = true
+		this.navigation_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.navigation_ui_view_req_and_res.dynamic_param = {}
+		this.navigation_ui_view_req_and_res.role = []
+		this.navigation_ui_view_req_and_res.action = ""
 		
 		// "View Process Log" Button of "Navigation UI" component
 		this.navigation_ui_view_process_log.label_name = "View Process Log"
@@ -534,28 +537,19 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.message_detail_action_view_message.role = []
 		this.message_detail_action_view_message.action = ""
 	
-		// Component level properties - "Message Detail UI" 
-		this.message_detail_ui.uictrl_code = "dynamic_ui"
-		this.message_detail_ui.uicgc_desc = "Message Detail UI"
-		this.message_detail_ui.uicgc_code = "uicgc_18"
-		this.message_detail_ui.params = {}
-		this.message_detail_ui.datasource = {}
-		this.message_detail_ui.context_menu = []
-		this.message_detail_ui.views = {"first":"DTT_1304_1665903906193","is_tab_mode":"N","dtt_1304_1665903906193":{"0":[{"dttv_id":"NPSS Message Data UI","tab_order":0,"tab_name":"","uicgc_description":"Message Detail UI","role_description":"default","dtt_description":"NPSS TRN REQ RESP DTLS"}]}}
-		this.message_detail_ui.onChangecomponent = new EventEmitter<any>()
-		this.message_detail_ui.show = true
-		this.message_detail_ui.dynamic_param = {}
-		this.message_detail_ui.f_npss_message_data_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.message_detail_ui.form_name = "f_npss_message_data_ui"
-		
-		// "Back" Button of "Message Detail UI" component
-		this.message_detail_ui_back.label_name = "Back"
-		this.message_detail_ui_back.show = true
-		this.message_detail_ui_back.disabled = false
-		this.message_detail_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
-		this.message_detail_ui_back.dynamic_param = {}
-		this.message_detail_ui_back.role = []
-		this.message_detail_ui_back.action = ""
+		// Component level properties - "Message DetailUI" 
+		this.message_detailui.uictrl_code = "dynamic_ui"
+		this.message_detailui.uicgc_desc = "Message DetailUI"
+		this.message_detailui.uicgc_code = "uicgc_18"
+		this.message_detailui.params = {}
+		this.message_detailui.datasource = {}
+		this.message_detailui.context_menu = []
+		this.message_detailui.views = {"first":"DTT_1304_1665903906193","is_tab_mode":"N","dtt_1304_1665903906193":{"0":[{"dttv_id":"NPSS Message Data UI","tab_order":0,"tab_name":"","uicgc_description":"Message DetailUI","role_description":"default","dtt_description":"NPSS TRN REQ RESP DTLS"}]}}
+		this.message_detailui.onChangecomponent = new EventEmitter<any>()
+		this.message_detailui.show = true
+		this.message_detailui.dynamic_param = {}
+		this.message_detailui.f_npss_message_data_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.message_detailui.form_name = "f_npss_message_data_ui"
 	
 		// Component level properties - "View Payment Tran Details" 
 		this.view_payment_tran_details.uictrl_code = "datatable"
@@ -596,6 +590,29 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.main_response_ui.dynamic_param = {}
 		this.main_response_ui.f_response_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
 		this.main_response_ui.form_name = "f_response_ui"
+	
+		// Component level properties - "Message Detail back UI" 
+		this.message_detail_back_ui.uictrl_code = "dynamic_ui"
+		this.message_detail_back_ui.uicgc_desc = "Message Detail back UI"
+		this.message_detail_back_ui.uicgc_code = "uicgc_22"
+		this.message_detail_back_ui.params = {}
+		this.message_detail_back_ui.datasource = {}
+		this.message_detail_back_ui.context_menu = []
+		this.message_detail_back_ui.views = {}
+		this.message_detail_back_ui.onChangecomponent = new EventEmitter<any>()
+		this.message_detail_back_ui.show = true
+		this.message_detail_back_ui.dynamic_param = {}
+		this.message_detail_back_ui.f_message_detail_back_ui = {"show":true}
+		this.message_detail_back_ui.current_view = "f_message_detail_back_ui"
+		
+		// "Back" Button of "Message Detail back UI" component
+		this.message_detail_back_ui_back.label_name = "Back"
+		this.message_detail_back_ui_back.show = true
+		this.message_detail_back_ui_back.disabled = false
+		this.message_detail_back_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.message_detail_back_ui_back.dynamic_param = {}
+		this.message_detail_back_ui_back.role = []
+		this.message_detail_back_ui_back.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -804,11 +821,6 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.hst_process_log_back_back__sp_from_hstplbackt_to_view_history()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "message detail ui back"
-	message_detail_ui_back__action_button_click(){
-		this.message_detail_ui_back__sp_from_mduiback_to_vm()
-	}
-
 	//Handler for ACTION_BUTTON_CLICK event of "message detail action back"
 	message_detail_action_back__action_button_click(){
 		this.message_detail_action_back__sp_from_mdaback_to_main()
@@ -837,9 +849,9 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.history_detail__e_1668585161420__main_response_ui()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and ress"
-	navigation_ui_view_req_and_ress__action_button_click(){
-		this.navigation_ui_view_req_and_ress__sp_for_main_req_and_res()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
+	navigation_ui_view_req_and_res__action_button_click(){
+		this.navigation_ui_view_req_and_res__sp_for_main_req_and_res()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "hst process log to main back view req and res"
@@ -847,6 +859,11 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.hst_process_log_to_main_back_view_req_and_res__bt_for_req()
 		this.hst_process_log_to_main_back_view_req_and_res__bt_for_res()
 		this.hst_process_log_to_main_back_view_req_and_res__sp_for_req_and_res()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail back ui back"
+	message_detail_back_ui_back__action_button_click(){
+		this.message_detail_back_ui_back__sp_from_mdaback_to_veiw__messge()
 	}
 
 	//Handler for INTERNAL event of "svm for pll"
@@ -1465,7 +1482,7 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_ui_view_req_and_ress"
+		let destn_id="navigation_ui_view_req_and_res"
 		let parent_source_id=""
 		let event_code="e_1670828954899"
 		let event_params={"caller_name":"transaction_list__ee_for_res_req_fron_tran_list","event_desc":"EE for res req fron tran list","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -2581,27 +2598,6 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "message detail ui back"
-	message_detail_ui_back__sp_from_mduiback_to_vm() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="message_detail_ui_back"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1668661686029"
-		let event_params={"caller_name":"message_detail_ui_back__sp_from_mduiback_to_vm","event_desc":"SP from MDUIBACK to VM","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_ui_back","raiseparam":{"profile_code":"BTL_1304_1668581358650"}}
-		let handler_code="show_profile"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
 	//Handler for ACTION_BUTTON_CLICK event of "message detail action back"
 	message_detail_action_back__sp_from_mdaback_to_main() { 
 		let Dest_Is_ctrl=true
@@ -2631,7 +2627,7 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1668663240432"
-		let event_params={"caller_name":"message_detail_action_view_message__sp_for_message_detail_ui","event_desc":"SP for Message Detail UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message","raiseparam":{"profile_code":"BTL_1304_1668661525669"}}
+		let event_params={"caller_name":"message_detail_action_view_message__sp_for_message_detail_ui","event_desc":"SP for Message Detail UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message","raiseparam":{"profile_code":"BTL_1304_1670839439024"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2649,7 +2645,7 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="message_detail_action_view_message"
-		let destn_id="message_detail_ui"
+		let destn_id="message_detailui"
 		let parent_source_id=""
 		let event_code="e_1668663466170"
 		let event_params={"caller_name":"message_detail_action_view_message__bt_for_message_detail_ui","event_desc":"BT for Message Detail UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
@@ -2670,7 +2666,7 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="message_detail"
-		let destn_id="message_detail_ui"
+		let destn_id="message_detailui"
 		let parent_source_id=""
 		let event_code="e_1668663416979"
 		let event_params={"caller_name":"message_detail__ssr_for_message_detail_ui","event_desc":"SSR for Message Detail UI","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"message_detail","raiseparam":{}}
@@ -2854,15 +2850,15 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and ress"
-	navigation_ui_view_req_and_ress__sp_for_main_req_and_res() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
+	navigation_ui_view_req_and_res__sp_for_main_req_and_res() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_req_and_ress"
+		let source_id="navigation_ui_view_req_and_res"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1670829835886"
-		let event_params={"caller_name":"navigation_ui_view_req_and_ress__sp_for_main_req_and_res","event_desc":"SP for main req and res","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_ress","raiseparam":{"profile_code":"BTL_1304_1668661525669"}}
+		let event_params={"caller_name":"navigation_ui_view_req_and_res__sp_for_main_req_and_res","event_desc":"SP for main req and res","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1670838065512"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2926,6 +2922,27 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		let parent_source_id=""
 		let event_code="e_1670829801054"
 		let event_params={"caller_name":"hst_process_log_to_main_back_view_req_and_res__sp_for_req_and_res","event_desc":"SP for req and res","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"hst_process_log_to_main_back_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1670831832470"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail back ui back"
+	message_detail_back_ui_back__sp_from_mdaback_to_veiw__messge() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_detail_back_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1670839345637"
+		let event_params={"caller_name":"message_detail_back_ui_back__sp_from_mdaback_to_veiw__messge","event_desc":"SP from MDABACK to veiw  messge","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_back_ui_back","raiseparam":{"profile_code":"BTL_1304_1668581358650"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

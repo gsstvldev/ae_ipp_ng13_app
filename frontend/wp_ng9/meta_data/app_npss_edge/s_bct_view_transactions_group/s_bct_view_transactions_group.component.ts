@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27309 
+Build ID        : 27313 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-12 8:3 AM 
+Modified Date   : 2022-Dec-12 11:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_view_transactions_group
@@ -32,7 +32,7 @@ export class s_bct_view_transactions_groupComponent implements OnInit,AfterViewI
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
-	current_profile : string = "p_main_pspq_layout"
+	current_profile : string = "p_main_layout"
 	uicgc_1 : string = "back_ui"
 	uicgc_2 : string = "status_by_group_chart"
 	uicgc_3 : string = "navigation_ui"

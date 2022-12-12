@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27312 
+Build ID        : 27317 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-12 10:10 AM 
+Modified Date   : 2022-Dec-12 12:22 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_transaction_details
@@ -67,19 +67,19 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 	btl_1304_1666010003163 : string = "p_search_layout"
 	btl_1304_1666009903061 : string = "p_vertical_layout"
 	btl_1304_1666009819055 : string = "p_main_layout"
-	forms : any = ["uicgc_18","uicgc_8","uicgc_12","uicgc_20","uicgc_4","uicgc_11","uicgc_9","uicgc_21","uicgc_22","uicgc_14","uicgc_17","uicgc_15","uicgc_5","uicgc_10","uicgc_3"]
+	forms : any = ["uicgc_18","uicgc_8","uicgc_12","uicgc_20","uicgc_4","uicgc_11","uicgc_9","uicgc_21","uicgc_22","uicgc_5","uicgc_14","uicgc_17","uicgc_15","uicgc_10","uicgc_3"]
 	p_search_layout__spap_for_searchs_showpopup : boolean = false
 	transaction_list : any = {}
 	view_dr_cr_tran_details : any = {}
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
 	navigation_ui_view_tran : any = {}
-	navigation_ui_refund : any = {}
-	navigation_ui_view_response : any = {}
-	navigation_ui_view_request : any = {}
-	navigation_ui_view_req_and_res : any = {}
 	navigation_ui_view_process_log : any = {}
 	navigation_ui_view_message_log : any = {}
+	navigation_ui_view_req_and_res : any = {}
+	navigation_ui_view_response : any = {}
+	navigation_ui_view_request : any = {}
+	navigation_ui_refund : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -178,14 +178,32 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.navigation_ui_view_tran.role = []
 		this.navigation_ui_view_tran.action = ""
 		
-		// "Refund" Button of "Navigation UI" component
-		this.navigation_ui_refund.label_name = "Refund"
-		this.navigation_ui_refund.show = true
-		this.navigation_ui_refund.disabled = false
-		this.navigation_ui_refund.params = {"icon_only":false,"uicgcc_style":"fa fa-location-arrow"}
-		this.navigation_ui_refund.dynamic_param = {}
-		this.navigation_ui_refund.role = []
-		this.navigation_ui_refund.action = ""
+		// "View Process Log" Button of "Navigation UI" component
+		this.navigation_ui_view_process_log.label_name = "View Process Log"
+		this.navigation_ui_view_process_log.show = true
+		this.navigation_ui_view_process_log.disabled = false
+		this.navigation_ui_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
+		this.navigation_ui_view_process_log.dynamic_param = {}
+		this.navigation_ui_view_process_log.role = []
+		this.navigation_ui_view_process_log.action = ""
+		
+		// "View Message Log" Button of "Navigation UI" component
+		this.navigation_ui_view_message_log.label_name = "View Message Log"
+		this.navigation_ui_view_message_log.show = true
+		this.navigation_ui_view_message_log.disabled = false
+		this.navigation_ui_view_message_log.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_ui_view_message_log.dynamic_param = {}
+		this.navigation_ui_view_message_log.role = []
+		this.navigation_ui_view_message_log.action = ""
+		
+		// "View Req and Res" Button of "Navigation UI" component
+		this.navigation_ui_view_req_and_res.label_name = "View Req and Res"
+		this.navigation_ui_view_req_and_res.show = true
+		this.navigation_ui_view_req_and_res.disabled = true
+		this.navigation_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.navigation_ui_view_req_and_res.dynamic_param = {}
+		this.navigation_ui_view_req_and_res.role = []
+		this.navigation_ui_view_req_and_res.action = ""
 		
 		// "View Response" Button of "Navigation UI" component
 		this.navigation_ui_view_response.label_name = "View Response"
@@ -205,32 +223,14 @@ export class s_rct_transaction_detailsComponent implements OnInit,AfterViewInit 
 		this.navigation_ui_view_request.role = []
 		this.navigation_ui_view_request.action = ""
 		
-		// "View Req and Res" Button of "Navigation UI" component
-		this.navigation_ui_view_req_and_res.label_name = "View Req and Res"
-		this.navigation_ui_view_req_and_res.show = true
-		this.navigation_ui_view_req_and_res.disabled = true
-		this.navigation_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
-		this.navigation_ui_view_req_and_res.dynamic_param = {}
-		this.navigation_ui_view_req_and_res.role = []
-		this.navigation_ui_view_req_and_res.action = ""
-		
-		// "View Process Log" Button of "Navigation UI" component
-		this.navigation_ui_view_process_log.label_name = "View Process Log"
-		this.navigation_ui_view_process_log.show = true
-		this.navigation_ui_view_process_log.disabled = false
-		this.navigation_ui_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
-		this.navigation_ui_view_process_log.dynamic_param = {}
-		this.navigation_ui_view_process_log.role = []
-		this.navigation_ui_view_process_log.action = ""
-		
-		// "View Message Log" Button of "Navigation UI" component
-		this.navigation_ui_view_message_log.label_name = "View Message Log"
-		this.navigation_ui_view_message_log.show = true
-		this.navigation_ui_view_message_log.disabled = false
-		this.navigation_ui_view_message_log.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.navigation_ui_view_message_log.dynamic_param = {}
-		this.navigation_ui_view_message_log.role = []
-		this.navigation_ui_view_message_log.action = ""
+		// "Refund" Button of "Navigation UI" component
+		this.navigation_ui_refund.label_name = "Refund"
+		this.navigation_ui_refund.show = true
+		this.navigation_ui_refund.disabled = false
+		this.navigation_ui_refund.params = {"icon_only":false,"uicgcc_style":"fa fa-location-arrow"}
+		this.navigation_ui_refund.dynamic_param = {}
+		this.navigation_ui_refund.role = []
+		this.navigation_ui_refund.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"

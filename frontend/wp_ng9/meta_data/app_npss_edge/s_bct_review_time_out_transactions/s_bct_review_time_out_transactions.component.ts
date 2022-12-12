@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27311 
+Build ID        : 27319 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-12 11:7 AM 
+Modified Date   : 2022-Dec-12 12:27 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_time_out_transactions
@@ -530,6 +530,11 @@ export class s_bct_review_time_out_transactionsComponent implements OnInit,After
 		this.cf_for_pageload__show_hide(parent_event_result)
 	}
 
+	//Handler for INTERNAL event of "show hide"
+	show_hide__internal(parent_event_result){
+		this.show_hide__tbc_for_search(parent_event_result)
+	}
+
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__action_button_click(){
 		this.search_search__ssp_for_pl_queue()
@@ -801,11 +806,33 @@ export class s_bct_review_time_out_transactionsComponent implements OnInit,After
 		let event_code="e_1669384887999"
 		let event_params={"caller_name":"cf_for_pageload__show_hide","event_desc":"show hide","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals=""
+		let internals="show_hide__tbc_for_search,"
 		let event_data={}
 		let data_source={}
 		try {
 			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "show hide"
+	show_hide__tbc_for_search(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="show_hide"
+		let destn_id="search_search"
+		let parent_source_id="cf_for_pageload"
+		let event_code="e_1670847964652"
+		let event_params={"caller_name":"show_hide__tbc_for_search","event_desc":"TBC for search","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

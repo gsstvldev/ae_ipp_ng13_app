@@ -6,8 +6,8 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
-   /*  Created By :     Siva Harish
-Created Date : 
+     /*  Created By :     Siva Harish
+Created Date : 12/12/2022
 Modified By : 
 Modified Date : 
 Reason for : 
@@ -51,12 +51,17 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
             mTranConn = pSession; //  assign connection 
             //get prct id                              
             try {
-                var TakeresponseJson = `select response_data_json from npss_core_api_process_log where npsscapl_id = '${params.Id}'`
+                var TakeresponseJson = `select response_data_json from npss_core_api_process_log where ${reqDateFormatter.GetSearchCriteriaForBusinessColumn(headers, objSessionLogInfo, 'created_date', params.datefromValue, params.datetoValue,params.dateop)}`
                 //function to execute query 
                 ExecuteQuery1(TakeresponseJson, function (arrresult) {
                     if (arrresult.length) {
+                        var responsearray = []
                         objresponse.status = 'SUCCESS'
-                        objresponse.data = arrresult[0].response_data_json
+                        for(let i=0; i < arrresult.length; i++){
+                            responsearray.push(arrresult[i].response_data_json)
+                        }
+
+                        objresponse.data = responsearray
                         sendResponse(null, objresponse);
                     } else {
                         objresponse.status = 'No Data In Transaction Table';
@@ -121,7 +126,6 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 });
-
 
 
 });

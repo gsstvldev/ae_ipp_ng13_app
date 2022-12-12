@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27304 
+Build ID        : 27293 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 14:34 PM 
+Modified Date   : 2022-Dec-12 5:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_process_logs
@@ -41,7 +41,8 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
 	uicgc_6 : string = "search"
 	uicgc_7 : string = "single_back_ui"
 	uicgc_8 : string = "npss_show_table_view_cw"
-	uicgc_9 : string = "payment_srch"
+	uicgc_10 : string = "payment_search"
+	uicgc_11 : string = "payment_action"
 	key_events : any = {}
 	btl_1304_1670658590883 : string = "p_show_table_view_profile"
 	btl_1304_1670245566284 : string = "p_view_main_req_and_res_layout"
@@ -49,7 +50,7 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
 	btl_1304_1670065604508 : string = "p_view_response_layout"
 	btl_1304_1670065285420 : string = "p_view_request_layout"
 	btl_1304_1670064932934 : string = "p_main_layout"
-	forms : any = ["uicgc_6","uicgc_4","uicgc_5","uicgc_9","uicgc_7","uicgc_1"]
+	forms : any = ["uicgc_10","uicgc_4","uicgc_5","uicgc_11","uicgc_7","uicgc_6","uicgc_1"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
@@ -67,8 +68,10 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
 	single_back_ui : any = {}
 	single_back_ui_back : any = {}
 	npss_show_table_view_cw : any = {}
-	payment_srch : any = {}
-	payment_srch_search : any = {}
+	payment_search : any = {}
+	payment_action : any = {}
+	payment_action_search : any = {}
+	payment_action_back : any = {}
 
 
 	// Constructor 
@@ -131,7 +134,7 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
 		// "View Payments" Button of "Navigation UI" component
 		this.navigation_ui_view_payments.label_name = "View Payments"
 		this.navigation_ui_view_payments.show = true
-		this.navigation_ui_view_payments.disabled = false
+		this.navigation_ui_view_payments.disabled = true
 		this.navigation_ui_view_payments.params = {"icon_only":false,"uicgcc_style":"fa fa-paypal"}
 		this.navigation_ui_view_payments.dynamic_param = {}
 		this.navigation_ui_view_payments.role = []
@@ -196,12 +199,12 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
 		this.search.params = {}
 		this.search.datasource = {}
 		this.search.context_menu = []
-		this.search.views = {"first":"DTT_1304_1670589169341","is_tab_mode":"N","dtt_1304_1670589169341":{"0":[{"dttv_id":"NPSS API PLog SRCH","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"Core API Process Log"}]}}
+		this.search.views = {}
 		this.search.onChangecomponent = new EventEmitter<any>()
 		this.search.show = true
 		this.search.dynamic_param = {}
-		this.search.f_npss_api_plog_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.search.form_name = "f_npss_api_plog_srch"
+		this.search.f_search = {"show":true}
+		this.search.current_view = "f_search"
 		
 		// "Search" Button of "Search" component
 		this.search_search.label_name = "Search"
@@ -256,28 +259,51 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
 		this.npss_show_table_view_cw.show = true
 		this.npss_show_table_view_cw.dynamic_param = {}
 	
-		// Component level properties - "Payment Srch" 
-		this.payment_srch.uictrl_code = "dynamic_ui"
-		this.payment_srch.uicgc_desc = "Payment Srch"
-		this.payment_srch.uicgc_code = "uicgc_9"
-		this.payment_srch.params = {}
-		this.payment_srch.datasource = {}
-		this.payment_srch.context_menu = []
-		this.payment_srch.views = {}
-		this.payment_srch.onChangecomponent = new EventEmitter<any>()
-		this.payment_srch.show = true
-		this.payment_srch.dynamic_param = {}
-		this.payment_srch.f_payment_srch = {"show":true}
-		this.payment_srch.current_view = "f_payment_srch"
+		// Component level properties - "Payment Search" 
+		this.payment_search.uictrl_code = "dynamic_form_search"
+		this.payment_search.uicgc_desc = "Payment Search"
+		this.payment_search.uicgc_code = "uicgc_10"
+		this.payment_search.params = {}
+		this.payment_search.datasource = {}
+		this.payment_search.context_menu = []
+		this.payment_search.views = {"first":"DTT_1304_1670589169341","is_tab_mode":"N","dtt_1304_1670589169341":{"0":[{"dttv_id":"Created Date SRCH","tab_order":0,"tab_name":"","uicgc_description":"Payment Search","role_description":"default","dtt_description":"Core API Process Log"}]}}
+		this.payment_search.onChangecomponent = new EventEmitter<any>()
+		this.payment_search.show = true
+		this.payment_search.dynamic_param = {}
+		this.payment_search.f_created_date_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.payment_search.form_name = "f_created_date_srch"
+	
+		// Component level properties - "Payment Action" 
+		this.payment_action.uictrl_code = "dynamic_ui"
+		this.payment_action.uicgc_desc = "Payment Action"
+		this.payment_action.uicgc_code = "uicgc_11"
+		this.payment_action.params = {}
+		this.payment_action.datasource = {}
+		this.payment_action.context_menu = []
+		this.payment_action.views = {}
+		this.payment_action.onChangecomponent = new EventEmitter<any>()
+		this.payment_action.show = true
+		this.payment_action.dynamic_param = {}
+		this.payment_action.f_payment_action = {"show":true}
+		this.payment_action.current_view = "f_payment_action"
 		
-		// "Search" Button of "Payment Srch" component
-		this.payment_srch_search.label_name = "Search"
-		this.payment_srch_search.show = true
-		this.payment_srch_search.disabled = false
-		this.payment_srch_search.params = {"icon_only":false,"uicgcc_style":"fa fa-search-plus"}
-		this.payment_srch_search.dynamic_param = {}
-		this.payment_srch_search.role = []
-		this.payment_srch_search.action = ""
+		// "Search" Button of "Payment Action" component
+		this.payment_action_search.label_name = "Search"
+		this.payment_action_search.show = true
+		this.payment_action_search.disabled = false
+		this.payment_action_search.params = {"icon_only":false,"uicgcc_style":"fa fa-search"}
+		this.payment_action_search.dynamic_param = {}
+		this.payment_action_search.role = []
+		this.payment_action_search.action = ""
+		
+		// "Back" Button of "Payment Action" component
+		this.payment_action_back.label_name = "Back"
+		this.payment_action_back.show = true
+		this.payment_action_back.disabled = false
+		this.payment_action_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.payment_action_back.dynamic_param = {}
+		this.payment_action_back.role = []
+		this.payment_action_back.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -378,6 +404,7 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
 		this.process_log_list__ssr_for_res_ui()
 		this.process_log_list__ee_for_req_and_res_button()
 		this.process_log_list__svm_for_pll()
+		this.process_log_list__ee_for_vp()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
@@ -390,12 +417,16 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view payments"
 	navigation_ui_view_payments__action_button_click(){
 		this.navigation_ui_view_payments__sp_for_searh()
-		this.navigation_ui_view_payments__cc_for_view_payment()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "payment srch search"
-	payment_srch_search__action_button_click(){
-		this.payment_srch_search__cc_for_stv()
+	//Handler for ACTION_BUTTON_CLICK event of "payment action back"
+	payment_action_back__action_button_click(){
+		this.payment_action_back__rs_for_back()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "payment action search"
+	payment_action_search__action_button_click(){
+		this.payment_action_search__cc_for_stv()
 	}
 
 	//Handler for SELECTION_CHANGED event of "queue"
@@ -1056,6 +1087,27 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ee_for_vp() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="navigation_ui_view_payments"
+		let parent_source_id=""
+		let event_code="e_1670821968657"
+		let event_params={"caller_name":"process_log_list__ee_for_vp","event_desc":"EE for VP","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
 	navigation_ui_view_req_and_res__sp_for_view_main_req_and_res_layout() { 
 		let Dest_Is_ctrl=true
@@ -1140,36 +1192,36 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view payments"
-	navigation_ui_view_payments__cc_for_view_payment() { 
+	//Handler for ACTION_BUTTON_CLICK event of "payment action back"
+	payment_action_back__rs_for_back() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_payments"
+		let source_id="payment_action_back"
 		let destn_id=""
 		let parent_source_id=""
-		let event_code="e_1670672935829"
-		let event_params={"caller_name":"navigation_ui_view_payments__cc_for_view_payment","event_desc":"CC for View payment","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_payments","raiseparam":{}}
-		let handler_code="custom_connectors"
+		let event_code="e_1670819982061"
+		let event_params={"caller_name":"payment_action_back__rs_for_back","event_desc":"RS for Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_action_back","raiseparam":{}}
+		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_show_table_viewService.fn_npss_cs_show_table_view(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "payment srch search"
-	payment_srch_search__cc_for_stv() { 
+	//Handler for ACTION_BUTTON_CLICK event of "payment action search"
+	payment_action_search__cc_for_stv() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="payment_srch_search"
+		let source_id="payment_action_search"
 		let destn_id=""
 		let parent_source_id=""
-		let event_code="e_1670659381891"
-		let event_params={"caller_name":"payment_srch_search__cc_for_stv","event_desc":"CC FOR STV","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_srch_search","raiseparam":{}}
+		let event_code="e_1670820068026"
+		let event_params={"caller_name":"payment_action_search__cc_for_stv","event_desc":"CC FOR STV","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_action_search","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}

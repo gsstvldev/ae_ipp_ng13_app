@@ -6,21 +6,21 @@ Modified By     : Admin
 Modified Date   : 2022-Dec-12 5:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_rct_simulator
-Form Name       : Navigation UI--------------------------------------------------------------------------- */
+Screen Name     : s_view_process_logs
+Form Name       : Search--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_navigation_ui',
-  templateUrl: './f_navigation_ui.component.html',
-  styleUrls: ['./f_navigation_ui.component.css'],
+  selector: 'f_search',
+  templateUrl: './f_search.component.html',
+  styleUrls: ['./f_search.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_navigation_uiComponent implements OnInit {
+export class f_searchComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_navigation_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_navigation_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_navigation_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_search[control]==undefined) {
+      this.screen_instance[this.comp_id].f_search[control] = {}
     }
-    this.screen_instance[this.comp_id].f_navigation_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_search[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27304 
+Build ID        : 27293 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 14:34 PM 
+Modified Date   : 2022-Dec-12 5:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_process_logs
@@ -22,7 +22,8 @@ export class p_show_table_view_profileComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	payment_srch : any = {}
+  	payment_search : any = {}
+	payment_action : any = {}
 	npss_show_table_view_cw : any = {}
 
 
@@ -31,8 +32,10 @@ export class p_show_table_view_profileComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.payment_srch.desc = "Payment Srch"
-		this.payment_srch.need_header = ""
+    	this.payment_search.desc = "Payment Search"
+		this.payment_search.need_header = ""
+		this.payment_action.desc = "Payment Action"
+		this.payment_action.need_header = ""
 		this.npss_show_table_view_cw.desc = "NPSS Show Table View CW"
 		this.npss_show_table_view_cw.need_header = ""
 	

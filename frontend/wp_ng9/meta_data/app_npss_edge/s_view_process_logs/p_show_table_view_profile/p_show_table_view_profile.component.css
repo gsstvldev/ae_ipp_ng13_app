@@ -1,2 +1,2 @@
 /* CSS */
-:host ::ng-deep .payment_srch .row.dynamic_action_btn .btn { float: right; }
+:host ::ng-deep .payment_action .row.dynamic_action_btn .btn {margin-top: 4rem}

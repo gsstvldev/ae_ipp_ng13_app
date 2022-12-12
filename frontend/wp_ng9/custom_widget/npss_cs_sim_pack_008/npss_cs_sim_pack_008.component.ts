@@ -42,7 +42,14 @@ export class npss_cs_sim_pack_008Component implements OnInit {
 
     loadpopup(event){
         if(event.param.message){
-
+         var messageobj = {}
+            for(let k =0; k < event.param.message.length;k++){
+                messageobj = {}
+                messageobj['case'] = event.param.message[k]
+                this.popuparray.push(messageobj)
+            }
+            this.showPopup = true
+            
         }else{
             var getkeyName = Object.keys(event.param)
            

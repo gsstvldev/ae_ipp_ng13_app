@@ -170,7 +170,8 @@ export class npss_cs_sim_pack_008Service {
         this.httpHelper.HttpPost('/microsvc/npss_cs_sim_pack_008/', ClientParams)
             .subscribe((res: any) => {
                 if (res.data.message) {
-                    console.log('sucess')
+                   var event = { eventId: "custom-connector", param: res.data, internals: internals }
+                    screenInstance["npss_sim_pack008"].onChangecomponent.emit(event);
                 } else {
                     var event = { eventId: "custom-connector", param: res.data, internals: internals }
                     screenInstance["npss_sim_pack008"].onChangecomponent.emit(event);

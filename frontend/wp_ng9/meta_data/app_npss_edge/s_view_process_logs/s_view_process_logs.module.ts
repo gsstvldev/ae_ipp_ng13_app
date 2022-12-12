@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27304 
+Build ID        : 27293 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 14:34 PM 
+Modified Date   : 2022-Dec-12 5:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_process_logs
@@ -41,10 +41,11 @@ import { f_single_back_uiComponent } from './f_single_back_ui/f_single_back_ui.c
 import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
 import { f_npss_api_response_uiComponent } from './f_npss_api_response_ui/f_npss_api_response_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_npss_api_plog_srchComponent } from './f_npss_api_plog_srch/f_npss_api_plog_srch.component'
+import { f_searchComponent } from './f_search/f_search.component'
 import { p_view_main_req_and_res_layoutComponent } from './p_view_main_req_and_res_layout/p_view_main_req_and_res_layout.component'
 import { p_show_table_view_profileComponent } from './p_show_table_view_profile/p_show_table_view_profile.component'
-import { f_payment_srchComponent } from './f_payment_srch/f_payment_srch.component'
+import { f_created_date_srchComponent } from './f_created_date_srch/f_created_date_srch.component'
+import { f_payment_actionComponent } from './f_payment_action/f_payment_action.component'
 
 
 
@@ -61,7 +62,7 @@ import { f_payment_srchComponent } from './f_payment_srch/f_payment_srch.compone
     s_view_process_logsRoutingModule,
     npss_cs_show_table_viewModule,torus_cs_show_hideModule
   ],
-  declarations: [s_view_process_logsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_view_request_layoutComponent,f_npss_api_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_api_response_uiComponent,p_search_layoutComponent,f_npss_api_plog_srchComponent,p_view_main_req_and_res_layoutComponent,p_show_table_view_profileComponent,f_payment_srchComponent,],
+  declarations: [s_view_process_logsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_view_request_layoutComponent,f_npss_api_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_api_response_uiComponent,p_search_layoutComponent,f_searchComponent,p_view_main_req_and_res_layoutComponent,p_show_table_view_profileComponent,f_created_date_srchComponent,f_payment_actionComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

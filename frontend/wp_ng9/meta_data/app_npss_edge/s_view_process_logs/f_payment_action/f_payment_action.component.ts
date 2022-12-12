@@ -1,26 +1,26 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27304 
+Build ID        : 27293 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 14:34 PM 
+Modified Date   : 2022-Dec-12 5:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_process_logs
-Form Name       : Payment Srch--------------------------------------------------------------------------- */
+Form Name       : Payment Action--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_payment_srch',
-  templateUrl: './f_payment_srch.component.html',
-  styleUrls: ['./f_payment_srch.component.css'],
+  selector: 'f_payment_action',
+  templateUrl: './f_payment_action.component.html',
+  styleUrls: ['./f_payment_action.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_payment_srchComponent implements OnInit {
+export class f_payment_actionComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_payment_srchComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_payment_srch[control]==undefined) {
-      this.screen_instance[this.comp_id].f_payment_srch[control] = {}
+    if(this.screen_instance[this.comp_id].f_payment_action[control]==undefined) {
+      this.screen_instance[this.comp_id].f_payment_action[control] = {}
     }
-    this.screen_instance[this.comp_id].f_payment_srch[control][property] = value;
+    this.screen_instance[this.comp_id].f_payment_action[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

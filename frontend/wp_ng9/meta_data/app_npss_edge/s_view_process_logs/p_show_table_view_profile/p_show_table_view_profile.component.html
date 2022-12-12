@@ -1,10 +1,19 @@
 <div class="p_show_table_view_profile">
  <!-- PROFILE HTML - p_show_table_view_profile --> 
 <div id="R21" class="row">
-	<div id="R21C1" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-6 col-sm-offset-0 col-xs-offset-0" >
-		<div class="payment_srch" >
-			<f_payment_srch [comp_id]="'payment_srch'" [screen_instance]="screen_instance" [hidden]="isHidden('payment_srch','f_payment_srch')" profile_name="p_show_table_view_profile"></f_payment_srch >
+	<div id="R21C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+<div id="R21C1R0" class="row">
+	<div id="R21C1R0C1" class="column col-md-9 col-sm-6 col-xs-6 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" >
+		<div class="payment_search" >
+			<f_created_date_srch [comp_id]="'payment_search'" [screen_instance]="screen_instance" [hidden]="isHidden('payment_search','f_created_date_srch')" profile_name="p_show_table_view_profile"></f_created_date_srch >
 		</div>
+	</div>
+	<div id="R21C1R0C2" class="column col-md-2 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="payment_action" >
+			<f_payment_action [comp_id]="'payment_action'" [screen_instance]="screen_instance" [hidden]="isHidden('payment_action','f_payment_action')" profile_name="p_show_table_view_profile"></f_payment_action >
+		</div>
+	</div>
+</div>
 	</div>
 </div>
 <div id="R11" class="row">

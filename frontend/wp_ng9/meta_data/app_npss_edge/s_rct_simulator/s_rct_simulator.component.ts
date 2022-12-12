@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27290 
+Build ID        : 27293 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-10 8:48 AM 
+Modified Date   : 2022-Dec-12 5:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_simulator
@@ -462,14 +462,14 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 		let source_id="back_ui_back"
 		let destn_id=""
 		let parent_source_id=""
-		let event_code="e_1670481947338"
-		let event_params={"caller_name":"back_ui_back__sp_for_back_from_main","event_desc":"SP for back from Main","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"back_ui_back","raiseparam":{"profile_code":"BTL_1304_1670482144272"}}
-		let handler_code="show_profile"
+		let event_code="e_1670822077086"
+		let event_params={"caller_name":"back_ui_back__sp_for_back_from_main","event_desc":"SP for back from Main","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"back_ui_back","raiseparam":{}}
+		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

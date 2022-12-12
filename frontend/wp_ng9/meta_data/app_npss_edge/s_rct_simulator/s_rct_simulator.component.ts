@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27293 
+Build ID        : 27307 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-12 5:15 AM 
+Modified Date   : 2022-Dec-12 6:48 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_simulator
@@ -210,7 +210,7 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 		this.page_load__cr_for_pl()
 		this.page_load__tbc_for_trg_btn()
 		this.page_load__brfq_for_list()
-		this.page_load__e_1670660054070()
+		this.page_load__de_for_submit()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui create pacs008"
@@ -230,12 +230,12 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
 	back_ui_back__action_button_click(){
-		this.back_ui_back__sp_for_back_from_main()
+		this.back_ui_back__sp_for_back_from_mains()
 	}
 
 	//Handler for SELECTION_CHANGED event of "list"
 	list__selection_changed(){
-		this.list__e_1670660081756()
+		this.list__ee_for_list()
 		this.list__ssr()
 	}
 
@@ -248,7 +248,7 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui back"
 	navigation_ui_back__action_button_click(){
 		this.navigation_ui_back__sp_for_list()
-		this.navigation_ui_back__e_1670660070366()
+		this.navigation_ui_back__de_for_back()
 	}
 
 	//Handler for TEXT_CHANGED event of "npss simulator ui intrbk sttlm amnt"
@@ -370,14 +370,14 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__e_1670660054070() { 
+	page_load__de_for_submit() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
 		let destn_id="submit_ui_submit"
 		let parent_source_id=""
 		let event_code="e_1670660054070"
-		let event_params={"caller_name":"page_load__e_1670660054070","event_desc":"E_1670660054070","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let event_params={"caller_name":"page_load__de_for_submit","event_desc":"DE for submit","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -456,14 +456,14 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
-	back_ui_back__sp_for_back_from_main() { 
+	back_ui_back__sp_for_back_from_mains() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="back_ui_back"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1670822077086"
-		let event_params={"caller_name":"back_ui_back__sp_for_back_from_main","event_desc":"SP for back from Main","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"back_ui_back","raiseparam":{}}
+		let event_params={"caller_name":"back_ui_back__sp_for_back_from_mains","event_desc":"SP for back from Mains","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"back_ui_back","raiseparam":{}}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}
@@ -477,14 +477,14 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "list"
-	list__e_1670660081756() { 
+	list__ee_for_list() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="list"
 		let destn_id="submit_ui_submit"
 		let parent_source_id=""
 		let event_code="e_1670660081756"
-		let event_params={"caller_name":"list__e_1670660081756","event_desc":"E_1670660081756","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let event_params={"caller_name":"list__ee_for_list","event_desc":"EE for List","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
@@ -582,14 +582,14 @@ export class s_rct_simulatorComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui back"
-	navigation_ui_back__e_1670660070366() { 
+	navigation_ui_back__de_for_back() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_ui_back"
 		let destn_id="submit_ui_submit"
 		let parent_source_id=""
 		let event_code="e_1670660070366"
-		let event_params={"caller_name":"navigation_ui_back__e_1670660070366","event_desc":"E_1670660070366","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_back","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_back__de_for_back","event_desc":"DE for back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_back","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}

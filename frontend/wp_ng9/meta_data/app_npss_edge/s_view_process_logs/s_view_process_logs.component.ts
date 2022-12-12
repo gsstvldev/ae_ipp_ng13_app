@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27293 
+Build ID        : 27307 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-12 5:15 AM 
+Modified Date   : 2022-Dec-12 6:48 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_process_logs
@@ -50,7 +50,7 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
 	btl_1304_1670065604508 : string = "p_view_response_layout"
 	btl_1304_1670065285420 : string = "p_view_request_layout"
 	btl_1304_1670064932934 : string = "p_main_layout"
-	forms : any = ["uicgc_10","uicgc_4","uicgc_5","uicgc_11","uicgc_7","uicgc_6","uicgc_1"]
+	forms : any = ["uicgc_6","uicgc_10","uicgc_4","uicgc_5","uicgc_11","uicgc_7","uicgc_1"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
@@ -199,12 +199,12 @@ export class s_view_process_logsComponent implements OnInit,AfterViewInit {
 		this.search.params = {}
 		this.search.datasource = {}
 		this.search.context_menu = []
-		this.search.views = {}
+		this.search.views = {"first":"DTT_1304_1670589169341","is_tab_mode":"N","dtt_1304_1670589169341":{"0":[{"dttv_id":"NPSS API PLog SRCH","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"Core API Process Log"}]}}
 		this.search.onChangecomponent = new EventEmitter<any>()
 		this.search.show = true
 		this.search.dynamic_param = {}
-		this.search.f_search = {"show":true}
-		this.search.current_view = "f_search"
+		this.search.f_npss_api_plog_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.search.form_name = "f_npss_api_plog_srch"
 		
 		// "Search" Button of "Search" component
 		this.search_search.label_name = "Search"

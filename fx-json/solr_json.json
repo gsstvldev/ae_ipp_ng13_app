@@ -1,12 +1,17 @@
 [{
   $DQ$TRAN_INSERTION$DQ$: [
     {
-      $DQ$NAME$DQ$: $DQ$CPR_CR_FLAG$DQ$,
+      $DQ$NAME$DQ$: $DQ$CPR_CR_FILE_NAME$DQ$,
       $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
       $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
     },
     {
-      $DQ$NAME$DQ$: $DQ$CPR_DW_FLAG$DQ$,
+      $DQ$NAME$DQ$: $DQ$CPR_DW_FILE_NAME$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$CPR_REJECT_REASON$DQ$,
       $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
       $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
     }

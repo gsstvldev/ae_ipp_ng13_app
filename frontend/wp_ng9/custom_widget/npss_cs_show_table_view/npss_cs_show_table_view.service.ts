@@ -57,6 +57,7 @@ export class npss_cs_show_table_viewService {
     CallUrlforGetparamvalue(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_show_table_view/', ClientParams)
             .subscribe((res: any) => {
+                var event:any 
                 if (res.data.status == "SUCCESS") {                   
                     var responsearray = res.data.data
                     var formatarray = []
@@ -78,12 +79,18 @@ export class npss_cs_show_table_viewService {
                         formatarray.push(overall)
                     }
 
-                    var event = { eventId: "custom-connector", param: formatarray, internals: internals }
+                    event = { eventId: "custom-connector", param: formatarray, internals: internals }
                     screenInstance["npss_show_table_view_cw"].onChangecomponent.emit(event)
                 } else {
-                    this.dialogHelper.ShowErrorDialog('No Data in Table');
-                    this.appHandler.callInternals(internals, screenInstance, "FAILURE");
+                    
+                    event = { eventId: "custom-connector", param: '', internals: internals }
+                    screenInstance["npss_show_table_view_cw"].onChangecomponent.emit(event)
+                    
                 }
             });
+    }
+
+    showerrormsg(){
+        this.dialogHelper.ShowErrorDialog('No Data in Table');
     }
 }

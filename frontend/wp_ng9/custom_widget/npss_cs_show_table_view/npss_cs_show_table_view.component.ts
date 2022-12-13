@@ -24,6 +24,7 @@ import { SCOPE } from '../../scripts/fx/session.enum'; // get Scope for Session 
 export class npss_cs_show_table_viewComponent implements OnInit {
     @Input() screen_instance: any = {};
     @Input() comp_id: string;
+    showtable:boolean
     subscription: Subscription;
     tableheader = []
     tablerows = []
@@ -40,14 +41,25 @@ export class npss_cs_show_table_viewComponent implements OnInit {
     }
 
     Createtable(event) {
-        this.tablerows.push(event.param)
-        var headers =  Object.keys(event.param)
-
-        for (let i = 0; i < headers.length; i++) {
-            var obj = {}
-            obj['headers'] = headers[i]
-            this.tableheader.push(obj)
+        this.tablerows = []
+        this.tableheader = []
+        if(event.param.length > 0){
+            this.tablerows = event.param
+            var headers =  Object.keys(event.param[0])
+    
+            for (let i = 0; i < headers.length; i++) {
+                var obj = {}
+                obj['headers'] = headers[i]
+                this.tableheader.push(obj)
+            }
+            this.showtable = true
+        }else{
+            this.showtable = false
+            this.tablerows = []
+            this.tableheader = []
+            this._service.showerrormsg()
         }
+        
        
 
 

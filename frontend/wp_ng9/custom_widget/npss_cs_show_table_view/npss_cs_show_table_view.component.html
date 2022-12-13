@@ -1,5 +1,5 @@
 <!--HTML FILE-->
-<div class = "tablestyle">
+<div class = "tablestyle" *ngIf = "showtable">
 <p-table [columns]="tableheader" [value]="tablerows" [tableStyle]="{'min-width': '50rem'}">
     <ng-template pTemplate="header" let-columns>
         <tr>

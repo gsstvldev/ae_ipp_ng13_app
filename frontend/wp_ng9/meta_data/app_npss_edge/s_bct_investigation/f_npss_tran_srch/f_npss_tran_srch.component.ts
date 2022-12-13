@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27311 
+Build ID        : 27322 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-12 11:7 AM 
+Modified Date   : 2022-Dec-13 6:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_investigation
@@ -420,6 +420,7 @@ focustoelement(){
 		this.ctrl.processing_system.currency_format = ""
 		this.ctrl.processing_system.data_scale = ""
 		this.ctrl.processing_system.binding_name = "PROCESSING_SYSTEM"
+		this.ctrl.processing_system.hide_label = false
 		this.ctrl.processing_system.depends_on = ""
 		this.ctrl.processing_system.placeholder = ""
 		this.ctrl.processing_system.dynamic_param = ""

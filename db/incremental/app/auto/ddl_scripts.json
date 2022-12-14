@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRN_PROCESS_LOG add column BUY_CURRENCY CHARACTER VARYING(3), add column SELL_CURRENCY CHARACTER VARYING(3), add column DEALT_AMOUNT NUMERIC(19,2);","params" : [] }]
+[]

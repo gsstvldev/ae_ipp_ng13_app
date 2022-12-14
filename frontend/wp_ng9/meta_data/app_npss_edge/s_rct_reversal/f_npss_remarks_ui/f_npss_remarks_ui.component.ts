@@ -7,32 +7,32 @@ Modified Date   : 2022-Dec-14 14:4 PM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
-Form Name       : NPSS Message Data UI--------------------------------------------------------------------------- */
+Form Name       : NPSS Remarks UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_message_data_ui',
-  templateUrl: './f_npss_message_data_ui.component.html',
-  styleUrls: ['./f_npss_message_data_ui.component.css'],
+  selector: 'f_npss_remarks_ui',
+  templateUrl: './f_npss_remarks_ui.component.html',
+  styleUrls: ['./f_npss_remarks_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_message_data_uiComponent implements OnInit {
+export class f_npss_remarks_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_message_data_ui') form;
-  @ViewChild('npss_message_data_ui_message_data') element: ElementRef;
+  @ViewChild('f_npss_remarks_ui') form;
+  @ViewChild('npss_remarks_ui_remarks') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
 	ctrl : any = {}
 	dt_code : string = "dt_1304_1665901130705"
-	dtt_code : string = "dtt_1304_1665903906193"
+	dtt_code : string = "dtt_1304_1665901217208"
 
   
   // Constructor 
@@ -48,48 +48,48 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
-		//Properties of message_data
-		this.ctrl.message_data = {}
-		this.ctrl.message_data.id = "RN01CN1"
-		this.ctrl.message_data.desc = "Message Data"
-		this.ctrl.message_data.visible = false
-		this.ctrl.message_data.label_name = "Message Data"
-		this.ctrl.message_data.df_code = "DF_1304_1665904016567"
-		this.ctrl.message_data.df_description = "Column Group 1"
-		this.ctrl.message_data.uictrl_code = "RICH_TXT"
-		this.ctrl.message_data.target_column = "MESSAGE_DATA"
-		this.ctrl.message_data.data_type = "TEXT"
-		this.ctrl.message_data.data_length = 80000
-		this.ctrl.message_data.zone_df_code = "DF_1304_1665904016567"
-		this.ctrl.message_data.default_value = ""
-		this.ctrl.message_data.is_memory_ctrl = ""
-		this.ctrl.message_data.field_coordinates = ""
-		this.ctrl.message_data.sub_details = ""
-		this.ctrl.message_data.accept_char = ""
-		this.ctrl.message_data.currency_format = ""
-		this.ctrl.message_data.data_scale = ""
-		this.ctrl.message_data.hide_label = false
-		this.ctrl.message_data.depends_on = ""
-		this.ctrl.message_data.placeholder = ""
-		this.ctrl.message_data.dynamic_param = ""
-		this.ctrl.message_data.style_code = ""
-		this.ctrl.message_data.data_source = ""
-		this.ctrl.message_data.image_association = ""
-		this.ctrl.message_data.show = true
-		this.ctrl.message_data.sub_content = ""
-		this.ctrl.message_data.required = false
-		this.ctrl.message_data.vld_rules = []
-		this.ctrl.message_data.targetcolumn_lower = "message_data"
-		this.ctrl.message_data.disabled = false
-		this.ctrl.message_data.view_name = "f_npss_message_data_ui"
-		this.ctrl.message_data.ctrl_id = "npss_message_data_ui_message_data"
-		this.ctrl.npss_message_data_ui_message_data = {}
-		this.ctrl.npss_message_data_ui_message_data.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_message_data_ui.model = {"MESSAGE_DATA":""}
-		this.screen_instance[this.comp_id].f_npss_message_data_ui.Meta = [{"CTLR_CODE":"RICH_TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MESSAGE_DATA"}]
-		this.screen_instance[this.comp_id].f_npss_message_data_ui.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_message_data_ui.dtt_code = "dtt_1304_1665903906193"
-		this.screen_instance[this.comp_id].f_npss_message_data_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		//Properties of remarks
+		this.ctrl.remarks = {}
+		this.ctrl.remarks.id = "RN01CN1"
+		this.ctrl.remarks.desc = "Remarks"
+		this.ctrl.remarks.visible = false
+		this.ctrl.remarks.label_name = "Remarks"
+		this.ctrl.remarks.df_code = "DF_1304_1665901396659"
+		this.ctrl.remarks.df_description = "Column Group 1"
+		this.ctrl.remarks.uictrl_code = "TXT"
+		this.ctrl.remarks.target_column = "REMARKS"
+		this.ctrl.remarks.data_type = "TEXT"
+		this.ctrl.remarks.data_length = 256
+		this.ctrl.remarks.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.remarks.default_value = ""
+		this.ctrl.remarks.is_memory_ctrl = ""
+		this.ctrl.remarks.field_coordinates = ""
+		this.ctrl.remarks.sub_details = ""
+		this.ctrl.remarks.accept_char = ""
+		this.ctrl.remarks.currency_format = ""
+		this.ctrl.remarks.data_scale = ""
+		this.ctrl.remarks.hide_label = false
+		this.ctrl.remarks.depends_on = ""
+		this.ctrl.remarks.placeholder = ""
+		this.ctrl.remarks.dynamic_param = ""
+		this.ctrl.remarks.style_code = ""
+		this.ctrl.remarks.data_source = ""
+		this.ctrl.remarks.image_association = ""
+		this.ctrl.remarks.show = true
+		this.ctrl.remarks.sub_content = ""
+		this.ctrl.remarks.required = false
+		this.ctrl.remarks.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
+		this.ctrl.remarks.targetcolumn_lower = "remarks"
+		this.ctrl.remarks.disabled = false
+		this.ctrl.remarks.view_name = "f_npss_remarks_ui"
+		this.ctrl.remarks.ctrl_id = "npss_remarks_ui_remarks"
+		this.ctrl.npss_remarks_ui_remarks = {}
+		this.ctrl.npss_remarks_ui_remarks.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_remarks_ui.model = {"REMARKS":""}
+		this.screen_instance[this.comp_id].f_npss_remarks_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"REMARKS"}]
+		this.screen_instance[this.comp_id].f_npss_remarks_ui.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_npss_remarks_ui.dtt_code = "dtt_1304_1665901217208"
+		this.screen_instance[this.comp_id].f_npss_remarks_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -136,10 +136,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_message_data_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_message_data_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_remarks_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_remarks_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_message_data_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_remarks_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27344 
+Build ID        : 27347 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-14 13:16 PM 
+Modified Date   : 2022-Dec-14 14:12 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -445,6 +445,9 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.page_load__he_for_remove()
 		this.page_load__he_for_set_default()
 		this.page_load__he_for_block_unblk()
+		this.page_load__he_for_remove_btn()
+		this.page_load__he_for_set_default_btn()
+		this.page_load__he_for_block_unblock()
 	}
 
 	//Handler for INTERNAL event of "e 1670996967025"
@@ -940,6 +943,69 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1671021715640"
 		let event_params={"caller_name":"page_load__he_for_block_unblk","event_desc":"HE for block unblk","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_remove_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_remove"
+		let parent_source_id=""
+		let event_code="e_1671025520034"
+		let event_params={"caller_name":"page_load__he_for_remove_btn","event_desc":"HE for Remove btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_set_default_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_set_default"
+		let parent_source_id=""
+		let event_code="e_1671025574875"
+		let event_params={"caller_name":"page_load__he_for_set_default_btn","event_desc":"HE for set default btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_block_unblock() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_block_unblock"
+		let parent_source_id=""
+		let event_code="e_1671025627076"
+		let event_params={"caller_name":"page_load__he_for_block_unblock","event_desc":"HE for Block unblock","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -2295,7 +2361,7 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671021446968"
-		let event_params={"caller_name":"sub_navigation_ui_block_unblock__sp_for_block_unblock","event_desc":"SP for Block unblock","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_block_unblock","raiseparam":{"profile_code":""}}
+		let event_params={"caller_name":"sub_navigation_ui_block_unblock__sp_for_block_unblock","event_desc":"SP for Block unblock","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_block_unblock","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

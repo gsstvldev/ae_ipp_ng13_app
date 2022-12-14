@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27329 
+Build ID        : 27340 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-13 10:54 AM 
+Modified Date   : 2022-Dec-14 11:13 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -14,6 +14,7 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_cs_ip_rev_accept_inau_reserve_fundService} from '../../../custom_widget/npss_cs_ip_rev_accept_inau_reserve_fund/npss_cs_ip_rev_accept_inau_reserve_fund.service'
 import {npss_cs_reversal_acceptService} from '../../../custom_widget/npss_cs_reversal_accept/npss_cs_reversal_accept.service'
 import {npss_cs_reject_pack002Service} from '../../../custom_widget/npss_cs_reject_pack002/npss_cs_reject_pack002.service'
 import {npss_cs_return_pac_004Service} from '../../../custom_widget/npss_cs_return_pac_004/npss_cs_return_pac_004.service'
@@ -23,7 +24,7 @@ import {npss_cs_reversal_rejectService} from '../../../custom_widget/npss_cs_rev
 	selector: 's_rct_reversal',
 	templateUrl: './s_rct_reversal.component.html',
 	styleUrls: ['./s_rct_reversal.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_reversal_acceptService,npss_cs_reject_pack002Service,npss_cs_return_pac_004Service,npss_cs_reversal_rejectService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_ip_rev_accept_inau_reserve_fundService,npss_cs_reversal_acceptService,npss_cs_reject_pack002Service,npss_cs_return_pac_004Service,npss_cs_reversal_rejectService]
 })
     
 // Start of class 
@@ -124,7 +125,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_reversal_acceptService:npss_cs_reversal_acceptService,private npss_cs_reject_pack002Service:npss_cs_reject_pack002Service,private npss_cs_return_pac_004Service:npss_cs_return_pac_004Service,private npss_cs_reversal_rejectService:npss_cs_reversal_rejectService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_ip_rev_accept_inau_reserve_fundService:npss_cs_ip_rev_accept_inau_reserve_fundService,private npss_cs_reversal_acceptService:npss_cs_reversal_acceptService,private npss_cs_reject_pack002Service:npss_cs_reject_pack002Service,private npss_cs_return_pac_004Service:npss_cs_return_pac_004Service,private npss_cs_reversal_rejectService:npss_cs_reversal_rejectService) {
     
 	}
     
@@ -198,7 +199,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		// "View Message Log" Button of "Navigation" component
 		this.navigation_view_message_log.label_name = "View Message Log"
 		this.navigation_view_message_log.show = true
-		this.navigation_view_message_log.disabled = false
+		this.navigation_view_message_log.disabled = true
 		this.navigation_view_message_log.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
 		this.navigation_view_message_log.dynamic_param = {}
 		this.navigation_view_message_log.role = []
@@ -718,6 +719,17 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui accept"
 	reversal_action_ui_accept__action_button_click(){
 		this.reversal_action_ui_accept__spap_for_accept()
+		this.reversal_action_ui_accept__cc_for_accept_ide()
+	}
+
+	//Handler for INTERNAL event of "cc for accept ide"
+	cc_for_accept_ide__internal(parent_event_result){
+		this.cc_for_accept_ide__info_for_accept(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "info for accept"
+	info_for_accept__internal(parent_event_result){
+		this.info_for_accept__rs_for_accept(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "process log list"
@@ -1557,6 +1569,71 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui accept"
+	reversal_action_ui_accept__cc_for_accept_ide() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="reversal_action_ui_accept"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671015525556"
+		let event_params={"caller_name":"reversal_action_ui_accept__cc_for_accept_ide","event_desc":"CC for accept ide","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_accept","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_accept_ide__info_for_accept,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_ip_rev_accept_inau_reserve_fundService.fn_npss_cs_ip_rev_accept_inau_reserve_fund(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for accept ide"
+	cc_for_accept_ide__info_for_accept(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_accept_ide"
+		let destn_id=""
+		let parent_source_id="reversal_action_ui_accept"
+		let event_code="e_1671015572326"
+		let event_params={"caller_name":"cc_for_accept_ide__info_for_accept","event_desc":"INFO for Accept","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Fund has been reserved successfully","root_source_id":"reversal_action_ui_accept","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="info_for_accept__rs_for_accept,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "info for accept"
+	info_for_accept__rs_for_accept(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="info_for_accept"
+		let destn_id=""
+		let parent_source_id="cc_for_accept_ide"
+		let event_code="e_1671015662568"
+		let event_params={"caller_name":"info_for_accept__rs_for_accept","event_desc":"RS for Accept","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_accept","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

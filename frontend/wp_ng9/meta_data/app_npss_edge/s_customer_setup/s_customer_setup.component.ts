@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27339 
+Build ID        : 27341 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-14 10:20 AM 
+Modified Date   : 2022-Dec-14 10:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -443,6 +443,8 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 	navigation_ui_entrolment__action_button_click(){
 		this.navigation_ui_entrolment__sp_for_unen()
 		this.navigation_ui_entrolment__e_1671001614444()
+		this.navigation_ui_entrolment__cu_for_cust_dtl()
+		this.navigation_ui_entrolment__cu_for_account_dtl()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui change mobile no"
@@ -1224,6 +1226,48 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
+	navigation_ui_entrolment__cu_for_cust_dtl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_entrolment"
+		let destn_id="customer_detail"
+		let parent_source_id=""
+		let event_code="e_1671014985065"
+		let event_params={"caller_name":"navigation_ui_entrolment__cu_for_cust_dtl","event_desc":"CU for cust dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
+	navigation_ui_entrolment__cu_for_account_dtl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_entrolment"
+		let destn_id="account__detail"
+		let parent_source_id=""
+		let event_code="e_1671015020416"
+		let event_params={"caller_name":"navigation_ui_entrolment__cu_for_account_dtl","event_desc":"CU for Account Dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

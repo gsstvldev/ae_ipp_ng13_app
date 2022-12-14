@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27329 
+Build ID        : 27340 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-13 10:54 AM 
+Modified Date   : 2022-Dec-14 11:13 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -21,6 +21,7 @@ import { SharedModule } from '../../../shared/shared.module'
 
 import {torus_cs_change_routingkeyModule} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
+import {npss_cs_ip_rev_accept_inau_reserve_fundModule} from '../../../custom_widget/npss_cs_ip_rev_accept_inau_reserve_fund/npss_cs_ip_rev_accept_inau_reserve_fund.module'
 import {npss_cs_reversal_acceptModule} from '../../../custom_widget/npss_cs_reversal_accept/npss_cs_reversal_accept.module'
 import {npss_cs_reject_pack002Module} from '../../../custom_widget/npss_cs_reject_pack002/npss_cs_reject_pack002.module'
 import {npss_cs_return_pac_004Module} from '../../../custom_widget/npss_cs_return_pac_004/npss_cs_return_pac_004.module'
@@ -77,7 +78,7 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     OverlayPanelModule,
     
     s_rct_reversalRoutingModule,
-    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_reversal_acceptModule,npss_cs_reject_pack002Module,npss_cs_return_pac_004Module,npss_cs_reversal_rejectModule
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_ip_rev_accept_inau_reserve_fundModule,npss_cs_reversal_acceptModule,npss_cs_reject_pack002Module,npss_cs_return_pac_004Module,npss_cs_reversal_rejectModule
   ],
   declarations: [s_rct_reversalComponent,p_main_layoutComponent,f_navigationComponent,p_accept_ui_layoutComponent,f_npss_rct_reversal_uiComponent,f_reversal_action_uiComponent,p_accept_layoutComponent,f_npss_pl_rtn_reason_uiComponent,p_change_return_layoutComponent,f_npss_pl_change_rtn_reason_uiComponent,p_error_code_layoutComponent,f_npss_response_code_uiComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]

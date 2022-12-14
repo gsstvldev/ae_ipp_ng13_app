@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column REMARKS CHARACTER VARYING(256);","params" : [] }]

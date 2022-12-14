@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27341 
+Build ID        : 27344 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-14 10:51 AM 
+Modified Date   : 2022-Dec-14 13:16 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -170,7 +170,7 @@ focustoelement(){
 		this.ctrl.memory9.label_name = "BlockIBAN"
 		this.ctrl.memory9.df_code = "DF_1304_1666846901765"
 		this.ctrl.memory9.df_description = "Customer Accounts"
-		this.ctrl.memory9.uictrl_code = "TXT"
+		this.ctrl.memory9.uictrl_code = "MULTI_SELECT_CBO"
 		this.ctrl.memory9.target_column = "memory9"
 		this.ctrl.memory9.data_type = "TEXT"
 		this.ctrl.memory9.data_length = 35
@@ -187,7 +187,7 @@ focustoelement(){
 		this.ctrl.memory9.placeholder = ""
 		this.ctrl.memory9.dynamic_param = ""
 		this.ctrl.memory9.style_code = ""
-		this.ctrl.memory9.data_source = ""
+		this.ctrl.memory9.data_source = {"ds_code":"UDS_1304_1671023129157","ds_description":"NPSS Customer Ac IBAN CDB","rows":[],"type":"DPS_TABLE","value_member":"IBAN","display_member":"IBAN","first_record_display":"Select","column_list":"","order_by":"","target_table":"NPSS_CUSTOMER_ACCOUNTS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1671023228521","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[]}
 		this.ctrl.memory9.image_association = ""
 		this.ctrl.memory9.show = true
 		this.ctrl.memory9.sub_content = ""
@@ -199,6 +199,7 @@ focustoelement(){
 		this.ctrl.memory9.ctrl_id = "npss_customer_account_ui_memory9"
 		this.ctrl.npss_customer_account_ui_memory9 = {}
 		this.ctrl.npss_customer_account_ui_memory9.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_customer_account_ui.memory9 = {}
 	
 		//Properties of memory10
 		this.ctrl.memory10 = {}
@@ -208,7 +209,7 @@ focustoelement(){
 		this.ctrl.memory10.label_name = "UnblockIBAN"
 		this.ctrl.memory10.df_code = "DF_1304_1666846901765"
 		this.ctrl.memory10.df_description = "Customer Accounts"
-		this.ctrl.memory10.uictrl_code = "TXT"
+		this.ctrl.memory10.uictrl_code = "MULTI_SELECT_CBO"
 		this.ctrl.memory10.target_column = "memory10"
 		this.ctrl.memory10.data_type = "TEXT"
 		this.ctrl.memory10.data_length = 35
@@ -225,7 +226,7 @@ focustoelement(){
 		this.ctrl.memory10.placeholder = ""
 		this.ctrl.memory10.dynamic_param = ""
 		this.ctrl.memory10.style_code = ""
-		this.ctrl.memory10.data_source = ""
+		this.ctrl.memory10.data_source = {"ds_code":"UDS_1304_1671023129157","ds_description":"NPSS Customer Ac IBAN CDB","rows":[],"type":"DPS_TABLE","value_member":"IBAN","display_member":"IBAN","first_record_display":"Select","column_list":"","order_by":"","target_table":"NPSS_CUSTOMER_ACCOUNTS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1671023228521","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[]}
 		this.ctrl.memory10.image_association = ""
 		this.ctrl.memory10.show = true
 		this.ctrl.memory10.sub_content = ""
@@ -237,6 +238,7 @@ focustoelement(){
 		this.ctrl.memory10.ctrl_id = "npss_customer_account_ui_memory10"
 		this.ctrl.npss_customer_account_ui_memory10 = {}
 		this.ctrl.npss_customer_account_ui_memory10.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_customer_account_ui.memory10 = {}
 		this.screen_instance[this.comp_id].f_npss_customer_account_ui.model = {"IBAN":"","CURRENCY":"","INSTANT_PAYMENT":"","MEMORY9":"","MEMORY10":""}
 		this.screen_instance[this.comp_id].f_npss_customer_account_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INSTANT_PAYMENT"}]
 		this.screen_instance[this.comp_id].f_npss_customer_account_ui.dt_code = "dt_1304_1666846042955"

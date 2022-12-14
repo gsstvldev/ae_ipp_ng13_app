@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27341 
+Build ID        : 27344 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-14 10:51 AM 
+Modified Date   : 2022-Dec-14 13:16 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -25,6 +25,7 @@ export class p_main_layoutComponent implements OnInit {
   	navigation_ui : any = {}
 	queue : any = {}
 	customers : any = {}
+	sub_navigation_ui : any = {}
 	accounts : any = {}
 
 
@@ -39,6 +40,8 @@ export class p_main_layoutComponent implements OnInit {
 		this.queue.need_header = true
 		this.customers.desc = "Customers"
 		this.customers.need_header = true
+		this.sub_navigation_ui.desc = "Sub Navigation UI"
+		this.sub_navigation_ui.need_header = ""
 		this.accounts.desc = "Accounts"
 		this.accounts.need_header = true
 	

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27341 
+Build ID        : 27344 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-14 10:51 AM 
+Modified Date   : 2022-Dec-14 13:16 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -56,7 +56,7 @@ focustoelement(){
 		this.ctrl.channel_id.label_name = "Channel ID"
 		this.ctrl.channel_id.df_code = "DF_1304_1666846148448"
 		this.ctrl.channel_id.df_description = "Customer"
-		this.ctrl.channel_id.uictrl_code = "TXT"
+		this.ctrl.channel_id.uictrl_code = "CBO"
 		this.ctrl.channel_id.target_column = "CHANNEL_ID"
 		this.ctrl.channel_id.data_type = "TEXT"
 		this.ctrl.channel_id.data_length = 128
@@ -73,7 +73,7 @@ focustoelement(){
 		this.ctrl.channel_id.placeholder = ""
 		this.ctrl.channel_id.dynamic_param = ""
 		this.ctrl.channel_id.style_code = ""
-		this.ctrl.channel_id.data_source = ""
+		this.ctrl.channel_id.data_source = {"ds_code":"UDS_1304_1670498867574","ds_description":"Simulator SQL CDB","rows":[],"type":"DPS_TABLE","value_member":"S_CODE","display_member":"S_DESCRIPTION","first_record_display":"","column_list":"","order_by":"CREATED_DATE DESC","target_table":"CORE_SYSTEM_EXTN","context":"","filters":[{"filter_name":"Filter1","binding_name":"ST_CODE","id":"DF_1670573366636","binding_value":"CH","source_name":"ST_CODE","source_value":"CH","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1670573366636","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"ST_CODE","binding_value":"CH","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"CH"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(ST_CODE = CH AND TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[],"need_first_item_selection":true,"has_parent":false}
 		this.ctrl.channel_id.image_association = ""
 		this.ctrl.channel_id.show = true
 		this.ctrl.channel_id.sub_content = ""
@@ -85,6 +85,7 @@ focustoelement(){
 		this.ctrl.channel_id.ctrl_id = "npss_customer_proxy_ui_channel_id"
 		this.ctrl.npss_customer_proxy_ui_channel_id = {}
 		this.ctrl.npss_customer_proxy_ui_channel_id.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.channel_id = {}
 	
 		//Properties of bankuserid
 		this.ctrl.bankuserid = {}
@@ -314,7 +315,7 @@ focustoelement(){
 		this.ctrl.npss_customer_proxy_ui_proxy_value = {}
 		this.ctrl.npss_customer_proxy_ui_proxy_value.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.model = {"CHANNEL_ID":"","BANKUSERID":"","CUSTOMER_NAME":"","SURNAME":"","MOBILE":"","PROXY_TYPE":"","PROXY_VALUE":""}
-		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMER_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_VALUE"}]
+		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMER_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_VALUE"}]
 		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.dt_code = "dt_1304_1666846042955"
 		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.dtt_code = "dtt_1304_1666846082411"
 		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

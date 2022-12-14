@@ -8,16 +8,21 @@
 	</div>
 </div>
 <div id="R41" class="row">
-	<div id="R41C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+	<div id="R41C1" class="column col-md-2 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 		<div class="queue"  [hidden]="!screen_instance['queue'].show" >
 			<datatable [comp_id]="'queue'" [screen_instance]="screen_instance" profile_name="p_main_layout"></datatable>
+		</div>
+	</div>
+	<div id="R41C2" class="column col-md-10 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="customers"  [hidden]="!screen_instance['customers'].show" >
+			<datatable [comp_id]="'customers'" [screen_instance]="screen_instance" profile_name="p_main_layout"></datatable>
 		</div>
 	</div>
 </div>
 <div id="R21" class="row">
 	<div id="R21C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
-		<div class="customers"  [hidden]="!screen_instance['customers'].show" >
-			<datatable [comp_id]="'customers'" [screen_instance]="screen_instance" profile_name="p_main_layout"></datatable>
+		<div class="sub_navigation_ui" >
+			<f_sub_navigation_ui [comp_id]="'sub_navigation_ui'" [screen_instance]="screen_instance" [hidden]="isHidden('sub_navigation_ui','f_sub_navigation_ui')" profile_name="p_main_layout"></f_sub_navigation_ui >
 		</div>
 	</div>
 </div>

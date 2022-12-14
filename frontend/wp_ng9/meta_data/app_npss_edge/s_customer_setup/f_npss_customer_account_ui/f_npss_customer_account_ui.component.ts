@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27337 
+Build ID        : 27339 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-14 8:12 AM 
+Modified Date   : 2022-Dec-14 10:20 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup

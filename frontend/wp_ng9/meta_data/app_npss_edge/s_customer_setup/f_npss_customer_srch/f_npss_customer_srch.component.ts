@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27337 
+Build ID        : 27339 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-14 8:12 AM 
+Modified Date   : 2022-Dec-14 10:20 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -203,8 +203,47 @@ focustoelement(){
 		this.ctrl.mobile.ctrl_id = "npss_customer_srch_mobile"
 		this.ctrl.npss_customer_srch_mobile = {}
 		this.ctrl.npss_customer_srch_mobile.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_customer_srch.model = {"MEMORY19":"setcurrentdate(),{}","BANKUSERID":"","SURNAME":"","MOBILE":""}
-		this.screen_instance[this.comp_id].f_npss_customer_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"}]
+	
+		//Properties of customer_name
+		this.ctrl.customer_name = {}
+		this.ctrl.customer_name.id = "RN21CN7"
+		this.ctrl.customer_name.desc = "Customer Name"
+		this.ctrl.customer_name.visible = false
+		this.ctrl.customer_name.label_name = "Customer Name"
+		this.ctrl.customer_name.df_code = "DF_1304_1666846148448"
+		this.ctrl.customer_name.df_description = "Customer"
+		this.ctrl.customer_name.uictrl_code = "TXT"
+		this.ctrl.customer_name.target_column = "CUSTOMER_NAME"
+		this.ctrl.customer_name.data_type = "TEXT"
+		this.ctrl.customer_name.data_length = 50
+		this.ctrl.customer_name.zone_df_code = "DF_1304_1666846148448"
+		this.ctrl.customer_name.default_value = ""
+		this.ctrl.customer_name.is_memory_ctrl = ""
+		this.ctrl.customer_name.field_coordinates = ""
+		this.ctrl.customer_name.sub_details = ""
+		this.ctrl.customer_name.accept_char = ""
+		this.ctrl.customer_name.currency_format = ""
+		this.ctrl.customer_name.data_scale = ""
+		this.ctrl.customer_name.binding_name = "CUSTOMER_NAME"
+		this.ctrl.customer_name.hide_label = false
+		this.ctrl.customer_name.depends_on = ""
+		this.ctrl.customer_name.placeholder = ""
+		this.ctrl.customer_name.dynamic_param = ""
+		this.ctrl.customer_name.style_code = ""
+		this.ctrl.customer_name.data_source = ""
+		this.ctrl.customer_name.image_association = ""
+		this.ctrl.customer_name.show = true
+		this.ctrl.customer_name.sub_content = ""
+		this.ctrl.customer_name.required = true
+		this.ctrl.customer_name.vld_rules = []
+		this.ctrl.customer_name.targetcolumn_lower = "customer_name"
+		this.ctrl.customer_name.disabled = false
+		this.ctrl.customer_name.view_name = "f_npss_customer_srch"
+		this.ctrl.customer_name.ctrl_id = "npss_customer_srch_customer_name"
+		this.ctrl.npss_customer_srch_customer_name = {}
+		this.ctrl.npss_customer_srch_customer_name.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_customer_srch.model = {"MEMORY19":"setcurrentdate(),{}","BANKUSERID":"","SURNAME":"","MOBILE":"","CUSTOMER_NAME":""}
+		this.screen_instance[this.comp_id].f_npss_customer_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMER_NAME"}]
 		this.screen_instance[this.comp_id].f_npss_customer_srch.dt_code = "dt_1304_1666846042955"
 		this.screen_instance[this.comp_id].f_npss_customer_srch.dtt_code = "dtt_1304_1666846082411"
 		this.screen_instance[this.comp_id].f_npss_customer_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

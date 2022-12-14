@@ -1,31 +1,28 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27335 
+Build ID        : 27337 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-14 8:6 AM 
+Modified Date   : 2022-Dec-14 8:12 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_view_customer_details
-Profile Name    : Main Layout--------------------------------------------------------------------------- */
+Screen Name     : s_customer_setup
+Profile Name    : Search Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_main_layout',
-  templateUrl: './p_main_layout.component.html',
-  styleUrls: ['./p_main_layout.component.css']
+  selector: 'p_search_layout',
+  templateUrl: './p_search_layout.component.html',
+  styleUrls: ['./p_search_layout.component.css']
 })
 
 // Start of class 
-export class p_main_layoutComponent implements OnInit {
+export class p_search_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	navigation : any = {}
-	queue : any = {}
-	customer_list : any = {}
-	process_log_list : any = {}
+  	search : any = {}
 
 
   // Constructor 
@@ -33,18 +30,12 @@ export class p_main_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.navigation.desc = "Navigation"
-		this.navigation.need_header = ""
-		this.queue.desc = "Queue"
-		this.queue.need_header = true
-		this.customer_list.desc = "Customer List"
-		this.customer_list.need_header = true
-		this.process_log_list.desc = "Process Log List"
-		this.process_log_list.need_header = true
+    	this.search.desc = "Search"
+		this.search.need_header = ""
 	
 
-    this.screen_instance['p_main_layout'] = {};
-    this.screen_instance['p_main_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_search_layout'] = {};
+    this.screen_instance['p_search_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

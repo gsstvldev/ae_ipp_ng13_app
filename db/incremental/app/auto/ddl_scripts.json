@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS add column CPR_CR_FILE_NAME CHARACTER VARYING(128), add column CPR_DW_FILE_NAME CHARACTER VARYING(128), add column CPR_REJECT_REASON CHARACTER VARYING(256);","params" : [] }]
+[]

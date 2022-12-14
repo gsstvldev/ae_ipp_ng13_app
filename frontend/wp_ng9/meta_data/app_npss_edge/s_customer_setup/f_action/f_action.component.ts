@@ -1,26 +1,26 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27335 
+Build ID        : 27337 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-14 8:6 AM 
+Modified Date   : 2022-Dec-14 8:12 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_view_customer_details
-Form Name       : Back UI--------------------------------------------------------------------------- */
+Screen Name     : s_customer_setup
+Form Name       : Action--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_back_ui',
-  templateUrl: './f_back_ui.component.html',
-  styleUrls: ['./f_back_ui.component.css'],
+  selector: 'f_action',
+  templateUrl: './f_action.component.html',
+  styleUrls: ['./f_action.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_back_uiComponent implements OnInit {
+export class f_actionComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_back_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_back_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_back_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_action[control]==undefined) {
+      this.screen_instance[this.comp_id].f_action[control] = {}
     }
-    this.screen_instance[this.comp_id].f_back_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_action[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

@@ -1,0 +1,8 @@
+<div class="s_customer_setup">
+<p_action_layout [screen_instance]="this" [hidden]="!(current_profile=='p_action_layout')"></p_action_layout>
+<p_main_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_layout')"></p_main_layout>
+
+<p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__e_1670997070392_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '400px','width': '600px'}" [draggable]="true" [modal]="true">
+	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>
+<app-dialog [screen_instance]="this" ></app-dialog>
+</div>

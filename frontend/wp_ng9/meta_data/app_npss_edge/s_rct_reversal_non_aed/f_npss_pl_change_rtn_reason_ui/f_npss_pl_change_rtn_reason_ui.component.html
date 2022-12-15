@@ -1,0 +1,21 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_pl_change_rtn_reason_ui="ngForm">
+<div id="1666864646957" class="row">
+	<div #npss_pl_change_rtn_reason_ui_t24_return_code id="998a0523-61f6-4489-87b4-e1d922b4b2e7_1666864646957" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('t24_return_code')" >
+				<cbo_list [ctrl_id]="'npss_pl_change_rtn_reason_ui_t24_return_code'" [comp_id]="comp_id" [ctrl]="ctrl.t24_return_code" [model]="screen_instance[this.comp_id].f_npss_pl_change_rtn_reason_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo_list>
+	</div>
+</div>
+<div id="1666864646958" class="row">
+	<div  id="c394dc67-6924-4eef-8d73-8d0680584602_1666864646958" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cbuae_return_code')" >
+				<cbo_list [ctrl_id]="'npss_pl_change_rtn_reason_ui_cbuae_return_code'" [comp_id]="comp_id" [ctrl]="ctrl.cbuae_return_code" [model]="screen_instance[this.comp_id].f_npss_pl_change_rtn_reason_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo_list>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'change_return_ui_save'" [comp_id]="comp_id" [ctrl]="screen_instance.change_return_ui_save" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.change_return_ui_save.show"></btn>
+ 	</div>
+
+</div>

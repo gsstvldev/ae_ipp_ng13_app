@@ -216,7 +216,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                             "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
                                             "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
-                                            "charge_code": "WAIVE",
+                                           "charge_bearer": arrprocesslog[0].charge_bearer || '',
                                             "txid": arrprocesslog[0].tran_ref_id || '',
                                             "uetr": arrprocesslog[0].uetr || '',
                                             "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
@@ -224,8 +224,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                             "message_data": arrprocesslog[0].message_data || '',
 
                                             "process_type": arrprocesslog[0].process_type || '',
-                                            "status": params.STATUS || '',
-                                            "process_status": params.ELIGIBLE_PROCESS_STATUS || '',
+                                            "status": params.eligible_status || '',
+                                            "process_status": params.eligible_process_status || '',
                                             "clrsysref": arrprocesslog[0].clrsysref,
 
                                             "process": "",

@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS add column REVERSAL_AMOUNT NUMERIC(19,2);","params" : [] }]
+[]

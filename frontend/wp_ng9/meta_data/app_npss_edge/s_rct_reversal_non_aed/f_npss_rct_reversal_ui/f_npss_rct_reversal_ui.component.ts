@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27373 
+Build ID        : 27381 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-15 13:14 PM 
+Modified Date   : 2022-Dec-15 15:18 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -393,9 +393,9 @@ focustoelement(){
 		//Properties of intrbk_sttlm_amnt
 		this.ctrl.intrbk_sttlm_amnt = {}
 		this.ctrl.intrbk_sttlm_amnt.id = "RN31CN8"
-		this.ctrl.intrbk_sttlm_amnt.desc = "Reversal Amount"
+		this.ctrl.intrbk_sttlm_amnt.desc = "Inward Amount"
 		this.ctrl.intrbk_sttlm_amnt.visible = true
-		this.ctrl.intrbk_sttlm_amnt.label_name = "Reversal Amount"
+		this.ctrl.intrbk_sttlm_amnt.label_name = "Inward Amount"
 		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
 		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
 		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CUR"

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27373 
+Build ID        : 27381 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-15 13:14 PM 
+Modified Date   : 2022-Dec-15 15:18 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -16,14 +16,14 @@ import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_ip_rev_accept_inau_reserve_fundService} from '../../../custom_widget/npss_cs_ip_rev_accept_inau_reserve_fund/npss_cs_ip_rev_accept_inau_reserve_fund.service'
 import {npss_cs_reject_pack002Service} from '../../../custom_widget/npss_cs_reject_pack002/npss_cs_reject_pack002.service'
-import {npss_cs_return_pac_004Service} from '../../../custom_widget/npss_cs_return_pac_004/npss_cs_return_pac_004.service'
+import {npss_cs_ip_rev_ret_auth_pacs004Service} from '../../../custom_widget/npss_cs_ip_rev_ret_auth_pacs004/npss_cs_ip_rev_ret_auth_pacs004.service'
 import {npss_cs_ip_rev_reject_inau_reserve_fundService} from '../../../custom_widget/npss_cs_ip_rev_reject_inau_reserve_fund/npss_cs_ip_rev_reject_inau_reserve_fund.service'
 
 @Component({
 	selector: 's_rct_reversal_non_aed',
 	templateUrl: './s_rct_reversal_non_aed.component.html',
 	styleUrls: ['./s_rct_reversal_non_aed.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_ip_rev_accept_inau_reserve_fundService,npss_cs_reject_pack002Service,npss_cs_return_pac_004Service,npss_cs_ip_rev_reject_inau_reserve_fundService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_ip_rev_accept_inau_reserve_fundService,npss_cs_reject_pack002Service,npss_cs_ip_rev_ret_auth_pacs004Service,npss_cs_ip_rev_reject_inau_reserve_fundService]
 })
     
 // Start of class 
@@ -133,7 +133,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_ip_rev_accept_inau_reserve_fundService:npss_cs_ip_rev_accept_inau_reserve_fundService,private npss_cs_reject_pack002Service:npss_cs_reject_pack002Service,private npss_cs_return_pac_004Service:npss_cs_return_pac_004Service,private npss_cs_ip_rev_reject_inau_reserve_fundService:npss_cs_ip_rev_reject_inau_reserve_fundService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_ip_rev_accept_inau_reserve_fundService:npss_cs_ip_rev_accept_inau_reserve_fundService,private npss_cs_reject_pack002Service:npss_cs_reject_pack002Service,private npss_cs_ip_rev_ret_auth_pacs004Service:npss_cs_ip_rev_ret_auth_pacs004Service,private npss_cs_ip_rev_reject_inau_reserve_fundService:npss_cs_ip_rev_reject_inau_reserve_fundService) {
     
 	}
     
@@ -2318,7 +2318,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_return_pac_004Service.fn_npss_cs_return_pac_004(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_ip_rev_ret_auth_pacs004Service.fn_npss_cs_ip_rev_ret_auth_pacs004(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

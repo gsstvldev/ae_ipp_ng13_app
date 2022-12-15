@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27360 
+Build ID        : 27362 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-15 6:52 AM 
+Modified Date   : 2022-Dec-15 7:30 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -73,7 +73,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 	btl_1304_1666856778120 : string = "p_accept_layout"
 	btl_1304_1666856478860 : string = "p_accept_ui_layout"
 	btl_1304_1666856426885 : string = "p_main_layout"
-	forms : any = ["uicgc_10","uicgc_6","uicgc_5","uicgc_23","uicgc_9","uicgc_24","uicgc_25","uicgc_17","uicgc_20","uicgc_19","uicgc_15","uicgc_12","uicgc_26","uicgc_4","uicgc_3"]
+	forms : any = ["uicgc_10","uicgc_6","uicgc_5","uicgc_26","uicgc_23","uicgc_9","uicgc_24","uicgc_25","uicgc_17","uicgc_20","uicgc_19","uicgc_15","uicgc_12","uicgc_4","uicgc_3"]
 	p_accept_layout__spap_for_accept_showpopup : boolean = false
 	p_change_return_layout__crr_for_spap_showpopup : boolean = false
 	p_remarks_layout__spap_for_error_code_showpopup : boolean = false
@@ -648,12 +648,12 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		this.process_log_control_ui.params = {}
 		this.process_log_control_ui.datasource = {}
 		this.process_log_control_ui.context_menu = []
-		this.process_log_control_ui.views = {}
+		this.process_log_control_ui.views = {"first":"DTT_1304_1665905039255","is_tab_mode":"N","dtt_1304_1665905039255":{"0":[{"dttv_id":"NPSS Reversal PLog UI","tab_order":0,"tab_name":"","uicgc_description":"Process Log Control UI","role_description":"default","dtt_description":"NPSS Trn Process Log"}]}}
 		this.process_log_control_ui.onChangecomponent = new EventEmitter<any>()
 		this.process_log_control_ui.show = true
 		this.process_log_control_ui.dynamic_param = {}
-		this.process_log_control_ui.f_process_log_control_ui = {"show":true}
-		this.process_log_control_ui.current_view = "f_process_log_control_ui"
+		this.process_log_control_ui.f_npss_reversal_plog_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.process_log_control_ui.form_name = "f_npss_reversal_plog_ui"
 	}
 	// Methods
 	ngAfterViewInit() {

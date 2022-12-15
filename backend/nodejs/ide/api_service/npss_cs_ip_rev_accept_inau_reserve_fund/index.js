@@ -8,6 +8,8 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
 
+    
+
 
 
 
@@ -15,10 +17,10 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
     try {
-        /*   Created By :  Daseen
-        Created Date :14-12-2022
-        Modified By : 
-        Modified Date :    
+        /*   Created By :Daseen
+        Created Date :04-11-2022
+        Modified By : Daseen
+        Modified Date : 23/11/2022    
         Reason for : 
         */
         var serviceName = 'NPSS IP REV Accept INAU Reserve Fund';
@@ -69,26 +71,31 @@ app.post('/', function(appRequest, appResponse, next) {
                             ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,
                             ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,
                             ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm
-                            from npss_transactions ns  where npsst_id = '${params.tran_id}'`;
+                            from npss_transactions ns  where npsst_id = '${params.Tran_Id}'`;
                             // var TakenpsstrRefno = `select npsstrrd_refno from npss_trn_process_log ns where ns.uetr = '${params.uetr}' and ns.status = '${params.STATUS}' and ns.process_status = '${params.ELIGIBLE_PROCESS_STATUS}' `
                             // var TakenpsstrRefno2 = `select npsstrrd_refno,npsstpl_id from npss_trn_process_log  where uetr= '${params.uetr}' order by npsstpl_id  desc`
                             ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
                                 if (arrurlResult.length) {
                                     // var param_val = JSON.parse(arrurlResult[0].rule_param_value);
                                     // var url = arrurlResult[0].param_detail;
-                                    final_process_status = arrresult[0].success_process_status
-                                    final_status = arrresult[0].success_status
+                                    final_process_status = arrurlResult[0].success_process_status
+                                    final_status = arrurlResult[0].success_status
                                     ExecuteQuery1(take_api_params, function (arrprocesslog) {
                                         if (arrprocesslog.length) {
                                             console.log('................', arrprocesslog[0])
                                             var lclinstrm
+                                            if(arrprocesslog[0].message_data!==null){
+                                            
                                             var parser = new xml2js.Parser({ strict: false, trim: true });
                                             parser.parseString(arrprocesslog[0].message_data, function (err, result) {
 
                                                 lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
 
                                             });
-                                            console.log('................', lclinstrm)
+                                            console.log('................', lclinstrm)}
+                                            else{
+                                                lclinstrm=""  
+                                            }
                                             var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
                                             ExecuteQuery1(TakeAcctInf, function (arrActInf) {
                                                 if (arrActInf.length) {
@@ -98,7 +105,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                                             fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm, function (result) {
-                                                                if (result === "SUCCESS") {
+                                                                if (result === "SUCCESS" || result === "Success" ||result === "success") {
                                                                     console.log('API Call Success')
                                                                     var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                     var UpdateProcessLogTbl = `Update npss_trn_process_log set t24_return_code = '${params.T24_Return_Code}',cbuae_return_code = '${params.CBUAE_Return_Code}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsstpl_id = '${params.NPSSTPL_Id}'`
@@ -329,6 +336,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

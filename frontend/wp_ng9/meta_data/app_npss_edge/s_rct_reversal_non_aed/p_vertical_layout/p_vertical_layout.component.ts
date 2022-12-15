@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27381 
+Build ID        : 27377 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-15 15:18 PM 
+Modified Date   : 2022-Dec-15 15:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed

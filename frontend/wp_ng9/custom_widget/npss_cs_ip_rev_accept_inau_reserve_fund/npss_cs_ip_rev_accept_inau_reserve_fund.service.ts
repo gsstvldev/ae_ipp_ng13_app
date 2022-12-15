@@ -19,7 +19,7 @@ export class npss_cs_ip_rev_accept_inau_reserve_fundService {
         private sessionHelper: SessionService,
         private coreHelper: CoreService,
         public dialogHelper: DialogService) { }
-    //Default calling function
+    //Default calling  function
     fn_npss_cs_ip_rev_accept_inau_reserve_fund(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         var CtrlScope = screenInstance["accept_ui"].f_npss_pl_rtn_reason_ui.model
         var ClientParams: any = {}

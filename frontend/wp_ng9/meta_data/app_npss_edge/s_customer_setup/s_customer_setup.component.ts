@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27358 
+Build ID        : 27361 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-15 5:43 AM 
+Modified Date   : 2022-Dec-15 11:36 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -529,6 +529,7 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_entrolment__se_nav_entrol_to_action_entrol()
 		this.navigation_ui_entrolment__cu_for_cust_dtl()
 		this.navigation_ui_entrolment__cu_for_account_dtl()
+		this.navigation_ui_entrolment__cc_for_nav_entrol()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui change mobile no"
@@ -1556,6 +1557,27 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
+	navigation_ui_entrolment__cc_for_nav_entrol() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_entrolment"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671099422384"
+		let event_params={"caller_name":"navigation_ui_entrolment__cc_for_nav_entrol","event_desc":"CC for nav entrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRN_PROCESS_LOG add column EXCHANGE_RATE NUMERIC(19,6), add column CONTRA_AMOUNT NUMERIC(19,2);","params" : [] }]
+[{"query" : "alter table NPSS_TRANSACTIONS add column REVERSAL_AMOUNT NUMERIC(19,2);","params" : [] }]

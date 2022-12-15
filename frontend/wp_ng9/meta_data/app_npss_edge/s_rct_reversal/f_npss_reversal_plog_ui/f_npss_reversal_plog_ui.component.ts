@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27367 
+Build ID        : 27373 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-15 11:36 AM 
+Modified Date   : 2022-Dec-15 13:14 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -161,46 +161,8 @@ focustoelement(){
 		this.ctrl.charge_amount.ctrl_id = "npss_reversal_plog_ui_charge_amount"
 		this.ctrl.npss_reversal_plog_ui_charge_amount = {}
 		this.ctrl.npss_reversal_plog_ui_charge_amount.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of reversal_code
-		this.ctrl.reversal_code = {}
-		this.ctrl.reversal_code.id = "RN11CN3"
-		this.ctrl.reversal_code.desc = "Reversal Code"
-		this.ctrl.reversal_code.visible = false
-		this.ctrl.reversal_code.label_name = "Reversal Code"
-		this.ctrl.reversal_code.df_code = "DF_1304_1665905157963"
-		this.ctrl.reversal_code.df_description = "Column Group 1"
-		this.ctrl.reversal_code.uictrl_code = "TXT"
-		this.ctrl.reversal_code.target_column = "REVERSAL_CODE"
-		this.ctrl.reversal_code.data_type = "TEXT"
-		this.ctrl.reversal_code.data_length = 16
-		this.ctrl.reversal_code.zone_df_code = "DF_1304_1665905157963"
-		this.ctrl.reversal_code.default_value = ""
-		this.ctrl.reversal_code.is_memory_ctrl = ""
-		this.ctrl.reversal_code.field_coordinates = ""
-		this.ctrl.reversal_code.sub_details = ""
-		this.ctrl.reversal_code.accept_char = ""
-		this.ctrl.reversal_code.currency_format = ""
-		this.ctrl.reversal_code.data_scale = ""
-		this.ctrl.reversal_code.hide_label = false
-		this.ctrl.reversal_code.depends_on = ""
-		this.ctrl.reversal_code.placeholder = ""
-		this.ctrl.reversal_code.dynamic_param = ""
-		this.ctrl.reversal_code.style_code = ""
-		this.ctrl.reversal_code.data_source = ""
-		this.ctrl.reversal_code.image_association = ""
-		this.ctrl.reversal_code.show = true
-		this.ctrl.reversal_code.sub_content = ""
-		this.ctrl.reversal_code.required = false
-		this.ctrl.reversal_code.vld_rules = []
-		this.ctrl.reversal_code.targetcolumn_lower = "reversal_code"
-		this.ctrl.reversal_code.disabled = false
-		this.ctrl.reversal_code.view_name = "f_npss_reversal_plog_ui"
-		this.ctrl.reversal_code.ctrl_id = "npss_reversal_plog_ui_reversal_code"
-		this.ctrl.npss_reversal_plog_ui_reversal_code = {}
-		this.ctrl.npss_reversal_plog_ui_reversal_code.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.model = {"AMOUNT_CREDITED":"","AMT_CR_LOC_CUR":"","CHARGE_AMOUNT":"","REVERSAL_CODE":""}
-		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"AMOUNT_CREDITED"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMT_CR_LOC_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"REVERSAL_CODE"}]
+		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.model = {"AMOUNT_CREDITED":"","AMT_CR_LOC_CUR":"","CHARGE_AMOUNT":""}
+		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"AMOUNT_CREDITED"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMT_CR_LOC_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"}]
 		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.dtt_code = "dtt_1304_1665905039255"
 		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

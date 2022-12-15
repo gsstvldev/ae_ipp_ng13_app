@@ -60,7 +60,7 @@ app.post('/', function(appRequest, appResponse, next) {
                            var urlqry = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
                            var seltranqry = `select * from npss_transactions where npsst_id='${params.Id}'`
                            var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'`
-                          // var selplqry=`select tpl.cbuae_return_code,crn.return_description from npss_trn_process_log tpl inner join core_nc_return_codes crn on  tpl.cbuae_return_code=crn.return_code where npsstpl_id='${params.tpl_id}'`
+                          // var selplqry=`select tpl.cbuae_return_code,crn.return_description,tpl.npsstrrd_refno from npss_trn_process_log tpl inner join core_nc_return_codes crn on  tpl.cbuae_return_code=crn.return_code where npsstpl_id='${params.tpl_id}'`
                           var selplqry=`select response_code,additional_info from npss_trn_process_log where npsstpl_id='${params.tpl_id}'`
 
                            ExecuteQuery1(ruleqry, function (result) {
@@ -68,7 +68,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                    success_process_status = result[0].success_process_status;
                                    success_status = result[0].success_status;
                                    ExecuteQuery1(urlqry, function (urlresult) {
-                                       if (urlresult.length > 0) {
+                                       if (urlresult.length > 0) {     
                                            api_url = urlresult[0].param_detail;
                                            ExecuteQuery1(seltranqry, function (tranresult) {
                                                if (tranresult.length > 0) {
@@ -205,16 +205,17 @@ app.post('/', function(appRequest, appResponse, next) {
                                json: {
                                    "cr_sort_code": tranresult[0].cr_sort_code,
                                    "dr_sort_code": tranresult[0].dr_sort_code,
-                                   "hdr_msg_id": tranresult[0].hdr_msg_id,
+                                   "hdr_new_msg_id": tranresult[0].hdr_msg_id,
                                    "hdr_created_date": tranresult[0].hdr_created_date,
                                    "hdr_total_amount": tranresult[0].hdr_total_amount,
                                    "payment_endtoend_id": tranresult[0].payment_endtoend_id,
                                    "uetr": tranresult[0].uetr,
-                                   "txid": tranresult[0].TRAN_REF_ID,
+                                   "tran_ref_id": tranresult[0].tran_ref_id,
                                    "active_status": 'RJCT',
                                    "clrsysref":tranresult[0].clrsysref,
                                     "rsn_code":tplresult[0].response_code,
-                                   "rsn_additional_info":tplresult[0].additional_info
+                                   "rsn_additional_info":tplresult[0].additional_info,
+                                   "parent_npsstrrd_refno":tplresult[0].npsstrrd_refno
 
                                },
                                headers: {

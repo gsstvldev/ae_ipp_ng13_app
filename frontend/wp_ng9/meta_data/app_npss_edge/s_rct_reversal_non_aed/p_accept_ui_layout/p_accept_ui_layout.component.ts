@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27367 
+Build ID        : 27373 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-15 11:36 AM 
+Modified Date   : 2022-Dec-15 13:14 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -28,6 +28,7 @@ export class p_accept_ui_layoutComponent implements OnInit {
 	process_log_list : any = {}
 	reversal_action_ui : any = {}
 	t24_process_log : any = {}
+	deal_process_log : any = {}
 
 
   // Constructor 
@@ -47,6 +48,8 @@ export class p_accept_ui_layoutComponent implements OnInit {
 		this.reversal_action_ui.need_header = ""
 		this.t24_process_log.desc = "T24 Process log"
 		this.t24_process_log.need_header = ""
+		this.deal_process_log.desc = "Deal Process Log"
+		this.deal_process_log.need_header = ""
 	
 
     this.screen_instance['p_accept_ui_layout'] = {};

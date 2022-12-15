@@ -20,7 +20,7 @@ export class npss_cs_ip_rev_accept_inau_reserve_fundService {
         private coreHelper: CoreService,
         public dialogHelper: DialogService) { }
     //Default calling function
-    fn_npss_cs_ip_rev_accept_inau_reserve_fund(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
+    fn_npss_cs_ip_rev_accept_inau_reserve_fund(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         var CtrlScope = screenInstance["accept_ui"].f_npss_pl_rtn_reason_ui.model
         var ClientParams: any = {}
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
@@ -42,10 +42,26 @@ export class npss_cs_ip_rev_accept_inau_reserve_fundService {
             .subscribe((res: any) => {
                 if (res.data.status == "SUCCESS" || res.data == "SUCCESS") {
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
-                }else if(res.data.status == 'No Rule Code Found' || res.data == 'No Rule Code Found'){
-             this.dialogHelper.ShowErrorDialog('No Rule Code Found')
-                
-                }else {
+                } else if (res.data.status == 'No Rule Code Found' || res.data == 'No Rule Code Found') {
+                    this.dialogHelper.ShowErrorDialog('No Rule Code Found')
+
+                } else if (res.data.status == 'No Data found in System Setup table' || res.data == 'No Data found in System Setup table') {
+                    this.dialogHelper.ShowErrorDialog('"No Data found in System Setup table')
+
+                }
+                else if (res.data.status == 'No Data found in Transaction table' || res.data == 'No Data found in Transaction table') {
+                    this.dialogHelper.ShowErrorDialog('No Data found in Transaction table')
+
+                }
+                else if (res.data.status == 'No Data found in accounts table' || res.data == 'No Data found in accounts table') {
+                    this.dialogHelper.ShowErrorDialog('No Data found in accounts table')
+
+                }
+                else if (res.data.status == 'No Data found in workflow table' || res.data == 'No Data found in workflow table') {
+                    this.dialogHelper.ShowErrorDialog('No Data found in workflow table')
+
+                }
+                else {
                     this.appHandler.callInternals(internals, screenInstance, "FAILURE");
                 }
             });
@@ -53,7 +69,7 @@ export class npss_cs_ip_rev_accept_inau_reserve_fundService {
     //Custom validation logics
     //Uncomment below lines when validation is required
     //fn_customValidation(projName,screenInstance,message,callback){
-       // return callback();
+    // return callback();
     //}
-//Service logics
+    //Service logics
 }

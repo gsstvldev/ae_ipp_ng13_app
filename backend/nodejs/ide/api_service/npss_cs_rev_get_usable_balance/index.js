@@ -8,20 +8,11 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
-
-
-
-
-
-
-
-
-
-
-    try {
+    
+  try {
         /*   Created By :Daseen
         Created Date :16-12-2022
-        Modified By : 
+        Modified By : Siva Harish
         Modified Date : 
         Reason for : 
         */
@@ -102,7 +93,25 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         if (arrurl.length) {
                                                             var url = arrurl[0].param_detail;
 
+                                                            // ExecuteQuery1(Takecontraamount, function (arramount) {
+                                                            //     if(arramount.length){
+                                                            //         console.log('succ')
+                                                            //     }
+                                                            //     var contra_amount = arramount[0].contra_amount || ''
+                                                            //     var reversal_amount = arrprocesslog[0].reversal_amount || ''
+                                                            //     var amount
+                                                            //       if (contra_amount && reversal_amount) {
+                                                            //         if (Number(contra_amount) > Number(reversal_amount)) {
+                                                            //             amount = reversal_amount
+                                                            //         } else {
+                                                            //             amount = contra_amount
+                                                            //         }
+                                                            //     } else {
+                                                            //         amount = ''
+                                                            //     }
+                                                            // })
                                                             ExecuteQuery1(Takecontraamount, function (arramount) {
+        
                                                                 var contra_amount = arramount[0].contra_amount || ''
                                                                 var reversal_amount = arrprocesslog[0].reversal_amount || ''
                                                                 var amount
@@ -115,7 +124,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 } else {
                                                                     amount = ''
                                                                 }
-                                                            })
                                                             fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm,amount, function (result) {
                                                                 if (result ) {
                                                                     objresponse.status = 'SUCCESS';
@@ -128,6 +136,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     sendResponse(result, null);
                                                                 }
                                                             })
+                                                        })
                                                         }
                                                         else {
                                                             console.log("No Data found in workflow table");
@@ -243,7 +252,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             console.log('------------API JSON-------' + JSON.stringify(options));
                             reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
-                                if (error) {
+                            if (error) {
                                     reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
                                     sendResponse(error, null);
                                 } else {
@@ -302,6 +311,8 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
+
 
 
 

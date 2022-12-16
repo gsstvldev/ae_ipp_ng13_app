@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27398 
+Build ID        : 27405 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-16 11:49 AM 
+Modified Date   : 2022-Dec-16 13:22 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -64,7 +64,9 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	uicgc_26 : string = "process_log_control_ui"
 	uicgc_30 : string = "trig_action_for_list_ui"
 	uicgc_31 : string = "get_usable_balance_widget"
+	uicgc_32 : string = "cancel_return_ui"
 	key_events : any = {}
+	btl_1304_1671195425258 : string = "p_cancel_layout"
 	btl_1304_1670243823771 : string = "p_view_req_and_res_profile"
 	btl_1304_1669438778345 : string = "p_view_response_layout"
 	btl_1304_1669378545899 : string = "p_view_message_ui_layout"
@@ -77,10 +79,11 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	btl_1304_1666856778120 : string = "p_accept_layout"
 	btl_1304_1666856478860 : string = "p_accept_ui_layout"
 	btl_1304_1666856426885 : string = "p_main_layout"
-	forms : any = ["uicgc_9","uicgc_26","uicgc_5","uicgc_24","uicgc_6","uicgc_23","uicgc_20","uicgc_10","uicgc_25","uicgc_17","uicgc_19","uicgc_15","uicgc_12","uicgc_4","uicgc_3"]
+	forms : any = ["uicgc_32","uicgc_9","uicgc_26","uicgc_5","uicgc_24","uicgc_6","uicgc_23","uicgc_20","uicgc_10","uicgc_25","uicgc_17","uicgc_19","uicgc_15","uicgc_12","uicgc_4","uicgc_3"]
 	p_accept_layout__spap_for_accept_showpopup : boolean = false
 	p_change_return_layout__crr_for_spap_showpopup : boolean = false
 	p_remarks_layout__spap_for_error_code_showpopup : boolean = false
+	p_cancel_layout__spap_for_rau_cancel_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation : any = {}
@@ -95,6 +98,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	reversal_action_ui_return : any = {}
 	reversal_action_ui_approve : any = {}
 	reversal_action_ui_change_return_reason : any = {}
+	reversal_action_ui_cancel : any = {}
 	reversal_action_ui_trigger_btn : any = {}
 	accept_ui : any = {}
 	accept_ui_save : any = {}
@@ -131,6 +135,8 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	trig_action_for_list_ui_trg_queue : any = {}
 	trig_action_for_list_ui_trig_tran_list : any = {}
 	get_usable_balance_widget : any = {}
+	cancel_return_ui : any = {}
+	cancel_return_ui_save : any = {}
 
 
 	// Constructor 
@@ -281,6 +287,15 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.reversal_action_ui_change_return_reason.dynamic_param = {}
 		this.reversal_action_ui_change_return_reason.role = []
 		this.reversal_action_ui_change_return_reason.action = ""
+		
+		// "Cancel" Button of "Reversal Action UI" component
+		this.reversal_action_ui_cancel.label_name = "Cancel"
+		this.reversal_action_ui_cancel.show = true
+		this.reversal_action_ui_cancel.disabled = false
+		this.reversal_action_ui_cancel.params = {"icon_only":false,"uicgcc_style":""}
+		this.reversal_action_ui_cancel.dynamic_param = {}
+		this.reversal_action_ui_cancel.role = []
+		this.reversal_action_ui_cancel.action = ""
 		
 		// "Trigger btn" Button of "Reversal Action UI" component
 		this.reversal_action_ui_trigger_btn.label_name = "Trigger btn"
@@ -694,6 +709,29 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.get_usable_balance_widget.onChangecomponent = new EventEmitter<any>()
 		this.get_usable_balance_widget.show = true
 		this.get_usable_balance_widget.dynamic_param = {}
+	
+		// Component level properties - "Cancel Return UI" 
+		this.cancel_return_ui.uictrl_code = "dynamic_ui"
+		this.cancel_return_ui.uicgc_desc = "Cancel Return UI"
+		this.cancel_return_ui.uicgc_code = "uicgc_32"
+		this.cancel_return_ui.params = {}
+		this.cancel_return_ui.datasource = {}
+		this.cancel_return_ui.context_menu = []
+		this.cancel_return_ui.views = {"first":"DTT_1304_1665905039255","is_tab_mode":"N","dtt_1304_1665905039255":{"0":[{"dttv_id":"NPSS PL Change Cancel Reason UI","tab_order":0,"tab_name":"","uicgc_description":"Cancel Return UI","role_description":"default","dtt_description":"NPSS Trn Process Log"}]}}
+		this.cancel_return_ui.onChangecomponent = new EventEmitter<any>()
+		this.cancel_return_ui.show = true
+		this.cancel_return_ui.dynamic_param = {}
+		this.cancel_return_ui.f_npss_pl_change_cancel_reason_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.cancel_return_ui.form_name = "f_npss_pl_change_cancel_reason_ui"
+		
+		// "Save" Button of "Cancel Return UI" component
+		this.cancel_return_ui_save.label_name = "Save"
+		this.cancel_return_ui_save.show = true
+		this.cancel_return_ui_save.disabled = false
+		this.cancel_return_ui_save.params = {"icon_only":false,"uicgcc_style":"fa fa-floppy-o"}
+		this.cancel_return_ui_save.dynamic_param = {}
+		this.cancel_return_ui_save.role = []
+		this.cancel_return_ui_save.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -712,6 +750,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.page_load__he_for_vd()
 		this.page_load__de_for_vlh_from_pl()
 		this.page_load__cc_for_routing_key()
+		this.page_load__de_for_rau_cancel()
 	}
 
 	//Handler for INTERNAL event of "cc for routing key"
@@ -792,6 +831,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.process_log_list__ee_for_reject()
 		this.process_log_list__ee_for_return()
 		this.process_log_list__ssr_for_cru()
+		this.process_log_list__ee_for_rau_cancel()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "change return ui save"
@@ -1037,6 +1077,36 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.brfq_for_fh_tran__sfr_for_tran_fh(parent_event_result)
 	}
 
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui cancel"
+	reversal_action_ui_cancel__action_button_click(){
+		this.reversal_action_ui_cancel__spap_for_rau_cancel()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "cancel return ui save"
+	cancel_return_ui_save__action_button_click(){
+		this.cancel_return_ui_save__ve_for_cancel_ui()
+	}
+
+	//Handler for INTERNAL event of "ve for cancel ui"
+	ve_for_cancel_ui__internal(parent_event_result){
+		this.ve_for_cancel_ui__cc_for_cancel_btn(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "cc for cancel btn"
+	cc_for_cancel_btn__internal(){
+		this.cc_for_cancel_btn__im_for_cancel_btn()
+	}
+
+	//Handler for INTERNAL event of "im for cancel btn"
+	im_for_cancel_btn__internal(parent_event_result){
+		this.im_for_cancel_btn__rs_for_cancel_btn(parent_event_result)
+	}
+
+	//Handler for SELECTION_CHANGED event of "npss pl change cancel reason ui t24 return code"
+	npss_pl_change_cancel_reason_ui_t24_return_code__selection_changed(){
+		this.npss_pl_change_cancel_reason_ui_t24_return_code__e_1671196424802__cancel_return_ui()
+	}
+
 	//Handler for SELECTION_CHANGED event of "npss pl rtn reason ui t24 return code"
 	npss_pl_rtn_reason_ui_t24_return_code__selection_changed(){
 		this.npss_pl_rtn_reason_ui_t24_return_code__fcb_for_source__accept_ui()
@@ -1230,6 +1300,27 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.torus_cs_change_routingkeyService.fn_torus_cs_change_routingkey(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_rau_cancel() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="reversal_action_ui_cancel"
+		let parent_source_id=""
+		let event_code="e_1671195090885"
+		let event_params={"caller_name":"page_load__de_for_rau_cancel","event_desc":"DE for RAU Cancel","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1826,6 +1917,27 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process log list"
+	process_log_list__ee_for_rau_cancel() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_list"
+		let destn_id="reversal_action_ui_cancel"
+		let parent_source_id=""
+		let event_code="e_1671195126516"
+		let event_params={"caller_name":"process_log_list__ee_for_rau_cancel","event_desc":"EE for RAU Cancel","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -3172,6 +3284,134 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1666863233602","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Reversal Transaction MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1671020531499","date_format":false},{"column_name":"INTRBK_STTLM_AMNT","alias_name":"","mq_id":"MQ_1671020563113","date_format":false,"currency_format":true},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1671020567393","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1671020573899","date_format":false},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1671020604449","date_format":false},{"column_name":"DEPARTMENT_CODE","alias_name":"","mq_id":"MQ_1671020974992","date_format":false},{"column_name":"CLRSYSREF","alias_name":"","mq_id":"MQ_1671020996246","date_format":false},{"column_name":"REMARKS","alias_name":"","mq_id":"MQ_1671025906550","date_format":false},{"column_name":"INTRBK_STTLM_CUR","alias_name":"","mq_id":"MQ_1671030938331","date_format":false},{"column_name":"REVERSAL_AMOUNT","alias_name":"","mq_id":"MQ_1671108760508","date_format":false,"currency_format":true}],"joins":[]},"eq_text":"select  NPSST_ID,  DATEMI,  DEPARTMENT_CODE,  CHANNEL_ID,  CHANNEL_PRODUCT,  CHANNEL_REFNO,  INTRBK_STTLM_CUR,  INTRBK_STTLM_AMNT,  EXHF_ID,  MODIFIED_DATE_UTC,  ACCEPTED_DATE,  VALUE_DATE,  CREATED_DATE,  MODIFIED_DATE_UTC,  CDTR_ACCT_NO,  CDTR_ACCT_NAME,  DBTR_ACCT_NO,  DBTR_ACCT_NAME,  DR_SORT_CODE,  CR_SORT_CODE,  UETR,  REMITTANCE_INFO,  category_purpose,  issuer_type_code,  HDR_MSG_ID,  PRODUCT_CODE,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  PROCESS_TYPE,  DBTR_PHONE_NO,  DBTR_EMAIL_ID,  DBTR_DOCUMENT_ID,  DBTR_IBAN,  CDTR_PHONE_NO,  CDTR_EMAIL_ID,  CDTR_DOCUMENT_ID,  CDTR_IBAN,  CLRSYSREF,  PAYMENT_ENDTOEND_ID,  PROCESS_STATUS,  STATUS,  DT_CODE,  DTT_CODE,  TENANT_ID,  TS_ID,  LOCKED_BY,  LOCKED_BY_NAME,  VERSION_NO,  DBTR_PRVT_ID,  DBTR_OTHER_ISSUER,  TRAN_REF_ID,  PROCESSING_SYSTEM,  CURRENCY,  ALTERNATE_ACCOUNT_ID,  REMARKS,  REVERSAL_AMOUNT from  (  select   A.NPSST_ID,   A.VALUE_DATE,   A.MODIFIED_DATE_UTC,   A.CREATED_DATE,   TO_CHAR(A.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   A.CDTR_ACCT_NO,   A.CDTR_ACCT_NAME,   A.INTRBK_STTLM_AMNT,   A.INTRBK_STTLM_CUR,   A.DBTR_ACCT_NO,   A.DBTR_ACCT_NAME,   A.DR_SORT_CODE,   A.CR_SORT_CODE,   A.DEPARTMENT_CODE,   A.UETR,   a.category_purpose,   A.issuer_type_code,   A.HDR_MSG_ID,   A.PRODUCT_CODE,   A.CHANNEL_ID,   A.CHANNEL_REFNO,   A.CHANNEL_PRODUCT,   A.CHANNEL_SUB_PRODUCT,   A.CHANNEL_TRAN_CODE,   A.PROCESS_TYPE,   A.DBTR_PHONE_NO,   A.DBTR_EMAIL_ID,   A.DBTR_DOCUMENT_ID,   A.DBTR_IBAN,   A.CDTR_PHONE_NO,   A.CDTR_EMAIL_ID,   A.CDTR_DOCUMENT_ID,   A.CDTR_IBAN,   A.CLRSYSREF,   A.PAYMENT_ENDTOEND_ID,   A.TRAN_REF_ID,   A.ACCP_DATE_TIME,   TO_CHAR(A.ACCP_DATE_TIME, 'YYYY-MM-DD HH:MI:SS:MS AM') as ACCEPTED_DATE,   A.EXHF_ID,   A.REMITTANCE_INFO,   A.INWARD_FILE_NAME,   A.PROCESS_STATUS,   A.CBS_REF_NO,   A.STATUS,   A.DT_CODE,   A.DTT_CODE,   A.TENANT_ID,   A.VERSION_NO,   A.DBTR_PRVT_ID,   A.DBTR_OTHER_ISSUER,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   A.PROCESSING_SYSTEM,   CNCA.CURRENCY,   CNCA.ALTERNATE_ACCOUNT_ID,   A.REMARKS,   A.REVERSAL_AMOUNT  from   NPSS_TRANSACTIONS A  inner join <TRAN_DB>.CORE_NC_CBS_ACCOUNTS CNCA on   A.CDTR_IBAN = CNCA.ALTERNATE_ACCOUNT_ID  left join TRANSACTION_SET TS on   TS.TRN_ID = A.NPSST_ID   and TS.DTT_CODE = A.DTT_CODE  order by   A.NPSST_ID desc) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Reversal Transaction CCD","filter":[{"filter_name":"CURRENCY","binding_name":"CURRENCY","binding_value":"","source_name":"AED","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Department_code","binding_name":"Department_code","binding_value":"","source_name":"Department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Department Code","target_column":"DEPARTMENT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr Account Currency","target_column":"INTRBK_STTLM_CUR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Inward Amount","target_column":"INTRBK_STTLM_AMNT","alias_name":"","alignment":"Right","width":"","format":"","date_format":false,"currency_format":true},{"header":"Reversal Amount","target_column":"REVERSAL_AMOUNT","alias_name":"","alignment":"Right","width":"","format":"","date_format":false,"currency_format":true},{"header":"Cr IBAN","target_column":"CDTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E Ref ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing System Ref No","target_column":"CLRSYSREF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Remarks","target_column":"REMARKS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false,"dependson":""}]}}}}}}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui cancel"
+	reversal_action_ui_cancel__spap_for_rau_cancel() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="reversal_action_ui_cancel"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671195155853"
+		let event_params={"caller_name":"reversal_action_ui_cancel__spap_for_rau_cancel","event_desc":"SPAP for RAU Cancel","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_cancel","raiseparam":{"popup_category":"profile","variable":"p_cancel_layout__spap_for_rau_cancel","selector":"p_cancel_layout","profile_code":"BTL_1304_1671195425258","window_title":"Cancel Reason","window_height":300,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_rau_cancel","eventcode":"E_1671195155853"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cancel return ui save"
+	cancel_return_ui_save__ve_for_cancel_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cancel_return_ui_save"
+		let destn_id="cancel_return_ui"
+		let parent_source_id=""
+		let event_code="e_1671196302975"
+		let event_params={"caller_name":"cancel_return_ui_save__ve_for_cancel_ui","event_desc":"VE for cancel UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cancel_return_ui_save","raiseparam":{}}
+		let handler_code="validate_elements"
+		let internals="ve_for_cancel_ui__cc_for_cancel_btn,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ve for cancel ui"
+	ve_for_cancel_ui__cc_for_cancel_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ve_for_cancel_ui"
+		let destn_id=""
+		let parent_source_id="cancel_return_ui_save"
+		let event_code="e_1671196599243"
+		let event_params={"caller_name":"ve_for_cancel_ui__cc_for_cancel_btn","event_desc":"CC for Cancel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"cancel_return_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals="cc_for_cancel_btn__im_for_cancel_btn,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for cancel btn"
+	cc_for_cancel_btn__im_for_cancel_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cc_for_cancel_btn"
+		let destn_id=""
+		let parent_source_id="ve_for_cancel_ui"
+		let event_code="e_1671196638325"
+		let event_params={"caller_name":"cc_for_cancel_btn__im_for_cancel_btn","event_desc":"IM for cancel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"cancel_return_ui_save","raiseparam":{"info_msg":""}}
+		let handler_code="info_msg"
+		let internals="im_for_cancel_btn__rs_for_cancel_btn,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "im for cancel btn"
+	im_for_cancel_btn__rs_for_cancel_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="im_for_cancel_btn"
+		let destn_id=""
+		let parent_source_id="cc_for_cancel_btn"
+		let event_code="e_1671196665669"
+		let event_params={"caller_name":"im_for_cancel_btn__rs_for_cancel_btn","event_desc":"RS for cancel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"cancel_return_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "npss pl change cancel reason ui t24 return code"
+	npss_pl_change_cancel_reason_ui_t24_return_code__e_1671196424802__cancel_return_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="npss_pl_change_cancel_reason_ui_t24_return_code"
+		let destn_id="npss_pl_change_cancel_reason_ui_cbuae_return_code"
+		let parent_source_id=""
+		let event_code="e_1671196424802"
+		let event_params={"source_comp_id":"cancel_return_ui","source_ctrl_id":"t24_return_code","destn_comp_id":"cancel_return_ui","destn_ctrl_id":"cbuae_return_code","caller_name":"npss_pl_change_cancel_reason_ui_t24_return_code__e_1671196424802__cancel_return_ui","event_desc":"E_1671196424802","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_pl_change_cancel_reason_ui~uicgc_32~ui~df_1304_1665905157963~14","raiseparam":{"parentcolumn":"SOURCE_RETURN_CODE","need_selecteditem":"Y"}}
+		let handler_code="filter_combo_binding"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.filter_combo_binding(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

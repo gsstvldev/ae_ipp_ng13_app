@@ -38,10 +38,11 @@ export class npss_cs_rev_get_usable_balanceService {
     CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_rev_get_usable_balance/', ClientParams)
             .subscribe((res: any) => {
-                if (res.data.data || res.data) {
-                    console.log(res.data.data);
-                    this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
-                } else if (res.data.status == 'No Rule Code Found' || res.data == 'No Rule Code Found') {
+                if (res.data.status == 'SUCCESS') {
+                    var event = { eventId: "custom-connector", param: res.data.data, internals: internals }
+                    screenInstance["get_usable_balance_widget"].onChangecomponent.emit(event);
+                  
+                }  else if (res.data.status == 'No Rule Code Found' || res.data == 'No Rule Code Found') {
                     this.dialogHelper.ShowErrorDialog('No Rule Code Found')
 
                 } else if (res.data.status == 'No Data found in System Setup table' || res.data == 'No Data found in System Setup table') {

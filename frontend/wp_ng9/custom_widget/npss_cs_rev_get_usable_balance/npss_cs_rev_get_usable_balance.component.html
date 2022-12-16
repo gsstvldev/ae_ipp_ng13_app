@@ -1,1 +1,63 @@
 <!--HTML FILE-->
+<section>
+<div>
+    <div class="row custom-row">
+        <div class="col-md-5">
+            <label>PostingRestrictCode</label>
+        </div>
+        <div class="col-md-5 bank-textbox custom-md-textbox">
+            <input type="text" id="mdCustId"  name="mdCustId" [(ngModel)]="postingRestrictCode" [disabled]="pcode"> <!-- [(ngModel)]="mdCustId" name="mdCustId" #mdCustId="ngModel" [disabled]="mdCustId">-->
+            
+        </div>
+    </div>
+    <div class="row custom-row">
+        <div class="col-md-5">
+            <label>Isinactive</label>
+        </div>
+        <div class="col-md-5 bank-textbox custom-md-textbox">
+            <input type="text" id="mdPhone" name="mdPhone" [(ngModel)]="isinactive"  [disabled]="pactive"> <!-- [(ngModel)]="mdPhone" name="mdPhone" #mdPhone="ngModel" [disabled]="mdPhone">-->
+            
+        </div>
+    </div>
+     <div class="row custom-row">
+        <div class="col-md-5">
+            <label>Signname</label>
+        </div>
+        <div class="col-md-5 bank-textbox custom-md-textbox">
+            <input type="text" id="mdEmail" name="mdEmail" [(ngModel)]="signname" [disabled]="psignname"> <!-- [(ngModel)]="mdEmail" name="mdEmail" #mdEmail="ngModel" [disabled]="mdEmail">-->
+            
+        </div>
+    </div>
+    <div class="row custom-row">
+        <div class="col-md-5">
+            <label>Usablebalance</label>
+        </div>
+        <div class="col-md-5 bank-textbox custom-md-textbox">
+            <input type="text" id="mdBalAcc" name="mdBalAcc" [(ngModel)]="usablebalance" [disabled]="pusbalance" /> <!-- [(ngModel)]="mdBalAcc" name="mdBalAcc" #mdBalAcc="ngModel" [disabled]="mdBalAcc">-->
+        </div>
+    </div>
+    <div class="row custom-row">
+        <div class="col-md-5">
+            <label>Workingbalance</label>
+
+        </div>
+        <div class="col-md-5 bank-textbox custom-md-textbox">
+            <input type="text" id="mdAccStat" [(ngModel)]="workingbalance" name="mdAccStat" [disabled]="pworkbalance"> <!-- [(ngModel)]="mdAccStat" name="mdAccStat" #mdAccStat="ngModel" [disabled]="mdAccStat">-->
+        </div>
+    </div>
+
+    
+
+   
+    
+    <div class="row custom-row">
+        <div class="col-md-5">
+            <label>Raccountbalance</label>
+        </div>
+        <div class="col-md-5 bank-textbox custom-md-textbox">
+            <input type="text" id="mdShadBal"  name="mdShadBal" [(ngModel)]="raccountbalance" [disabled]="pracctbalance"> <!-- [(ngModel)]="mdShadBal" name="mdShadBal" #mdShadBal="ngModel" [disabled]="mdShadBal">-->
+        </div>
+    </div>
+   
+</div>
+</section>

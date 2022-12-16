@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27399 
+Build ID        : 27405 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-16 11:48 AM 
+Modified Date   : 2022-Dec-16 13:22 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of memory63
 		this.ctrl.memory63 = {}
 		this.ctrl.memory63.id = "RN01CN1"
-		this.ctrl.memory63.desc = "Transaction Date & Time"
+		this.ctrl.memory63.desc = "Created Date"
 		this.ctrl.memory63.visible = true
-		this.ctrl.memory63.label_name = "Transaction Date & Time"
+		this.ctrl.memory63.label_name = "Created Date"
 		this.ctrl.memory63.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory63.df_description = "Column Group 1"
 		this.ctrl.memory63.uictrl_code = "DTP"
@@ -225,6 +225,7 @@ focustoelement(){
 		this.ctrl.reversal_amount.currency_format = ""
 		this.ctrl.reversal_amount.data_scale = "2"
 		this.ctrl.reversal_amount.binding_name = "REVERSAL_AMOUNT"
+		this.ctrl.reversal_amount.hide_label = false
 		this.ctrl.reversal_amount.depends_on = ""
 		this.ctrl.reversal_amount.placeholder = ""
 		this.ctrl.reversal_amount.dynamic_param = ""

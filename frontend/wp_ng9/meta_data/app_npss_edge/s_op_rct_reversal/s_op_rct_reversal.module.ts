@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27399 
+Build ID        : 27405 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-16 11:48 AM 
+Modified Date   : 2022-Dec-16 13:22 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -46,12 +46,12 @@ import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_h
 import { f_process_log_uiComponent } from './f_process_log_ui/f_process_log_ui.component'
 import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
 import { f_single_back_uiComponent } from './f_single_back_ui/f_single_back_ui.component'
-import { f_response_uiComponent } from './f_response_ui/f_response_ui.component'
+import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/f_npss_target_response_ui.component'
 import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_request_layout.component'
-import { f_request_uiComponent } from './f_request_ui/f_request_ui.component'
+import { f_npss_target_request_uiComponent } from './f_npss_target_request_ui/f_npss_target_request_ui.component'
 import { p_view_message_ui_layoutComponent } from './p_view_message_ui_layout/p_view_message_ui_layout.component'
 import { f_message_back_uiComponent } from './f_message_back_ui/f_message_back_ui.component'
-import { f_message_detail_uiComponent } from './f_message_detail_ui/f_message_detail_ui.component'
+import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss_message_data_ui.component'
 import { p_view_req_and_res_profileComponent } from './p_view_req_and_res_profile/p_view_req_and_res_profile.component'
 import { p_initate_layoutComponent } from './p_initate_layout/p_initate_layout.component'
 import { f_npss_op_reversal_uiComponent } from './f_npss_op_reversal_ui/f_npss_op_reversal_ui.component'
@@ -71,7 +71,7 @@ import { f_npss_op_reversal_uiComponent } from './f_npss_op_reversal_ui/f_npss_o
     s_op_rct_reversalRoutingModule,
     torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_reversal_initiateModule
   ],
-  declarations: [s_op_rct_reversalComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_op_reversal_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_single_back_uiComponent,f_response_uiComponent,p_view_request_layoutComponent,f_request_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_message_detail_uiComponent,p_view_req_and_res_profileComponent,p_initate_layoutComponent,f_npss_op_reversal_uiComponent,],
+  declarations: [s_op_rct_reversalComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_op_reversal_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_single_back_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,p_initate_layoutComponent,f_npss_op_reversal_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

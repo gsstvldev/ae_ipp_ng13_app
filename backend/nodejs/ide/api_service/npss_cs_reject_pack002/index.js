@@ -59,7 +59,7 @@ app.post('/', function(appRequest, appResponse, next) {
                        try {
                            var urlqry = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
                            var seltranqry = `select * from npss_transactions where npsst_id='${params.Id}'`
-                           var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'`
+                           var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                           // var selplqry=`select tpl.cbuae_return_code,crn.return_description,tpl.npsstrrd_refno from npss_trn_process_log tpl inner join core_nc_return_codes crn on  tpl.cbuae_return_code=crn.return_code where npsstpl_id='${params.tpl_id}'`
                           var selplqry=`select response_code,additional_info from npss_trn_process_log where npsstpl_id='${params.tpl_id}'`
 

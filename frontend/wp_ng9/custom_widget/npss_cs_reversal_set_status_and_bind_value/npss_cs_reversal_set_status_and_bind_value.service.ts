@@ -41,8 +41,16 @@ export class npss_cs_reversal_set_status_and_bind_valueService {
         this.httpHelper.HttpPost('/microsvc/npss_cs_reversal_set_status_and_bind_value/', ClientParam)
             .subscribe((res: any) => {
                 if (res.data.status == "SUCCESS") {
-                    if (res.data.data.status && res.data.data.process_status) {
+                    // if (res.data.data.status && res.data.data.process_status) {
+                    //     this.coreHelper.set_value_to_memory("MEMORY_VARIABLES", "MI_LEVEL_REVPL_STATUS", res.data.data.status);
+                    //     this.coreHelper.set_value_to_memory("MEMORY_VARIABLES", "MI_LEVEL_REVPL_PROCESSSTATUS", res.data.data.process_status);
+                    // }
+                     if (res.data.data.status && res.data.data.process_status) {
                         this.coreHelper.set_value_to_memory("MEMORY_VARIABLES", "MI_LEVEL_REVPL_STATUS", res.data.data.status);
+                        this.coreHelper.set_value_to_memory("MEMORY_VARIABLES", "MI_LEVEL_REVPL_PROCESSSTATUS", res.data.data.process_status);
+                    }else if(res.data.data.status != '' && res.data.data.process_status == ''){
+                        this.coreHelper.set_value_to_memory("MEMORY_VARIABLES", "MI_LEVEL_REVPL_STATUS", res.data.data.status);
+                    }else if(res.data.data.status == '' && res.data.data.process_status != ''){
                         this.coreHelper.set_value_to_memory("MEMORY_VARIABLES", "MI_LEVEL_REVPL_PROCESSSTATUS", res.data.data.process_status);
                     }
                     var CtrlScope = screenInstance['process_log_control_ui'].f_npss_reversal_plog_ui.model

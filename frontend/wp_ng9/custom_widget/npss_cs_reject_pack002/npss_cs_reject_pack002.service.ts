@@ -62,7 +62,8 @@ export class npss_cs_reject_pack002Service {
         ClientParams.tpl_id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSTPL_ID") || '';
        
         ClientParams.system_type = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "ST_CODE")
-       
+        ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS") || '';
+        ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS") || '';
      
         ClientParams.RULE_CODE = "RCT_IP_REV_RJCT_PLACE_PACS002";
          this.CallUrlforGetparamvalue (ClientParams, screenInstance, internals);

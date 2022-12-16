@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27405 
+Build ID        : 27409 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-16 13:22 PM 
+Modified Date   : 2022-Dec-16 14:45 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -90,9 +90,9 @@ focustoelement(){
 		//Properties of cdtr_iban
 		this.ctrl.cdtr_iban = {}
 		this.ctrl.cdtr_iban.id = "RN01CN2"
-		this.ctrl.cdtr_iban.desc = "Cdtr IBAN"
+		this.ctrl.cdtr_iban.desc = "Cr IBAN"
 		this.ctrl.cdtr_iban.visible = true
-		this.ctrl.cdtr_iban.label_name = "Cdtr IBAN"
+		this.ctrl.cdtr_iban.label_name = "Cr IBAN"
 		this.ctrl.cdtr_iban.df_code = "DF_1304_1665901396659"
 		this.ctrl.cdtr_iban.df_description = "Column Group 1"
 		this.ctrl.cdtr_iban.uictrl_code = "TXT"
@@ -286,9 +286,9 @@ focustoelement(){
 		//Properties of memory75
 		this.ctrl.memory75 = {}
 		this.ctrl.memory75.id = "RN11CN10"
-		this.ctrl.memory75.desc = "Trn status"
+		this.ctrl.memory75.desc = "Status"
 		this.ctrl.memory75.visible = true
-		this.ctrl.memory75.label_name = "Trn status"
+		this.ctrl.memory75.label_name = "Status"
 		this.ctrl.memory75.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory75.df_description = "Column Group 1"
 		this.ctrl.memory75.uictrl_code = "CBO"

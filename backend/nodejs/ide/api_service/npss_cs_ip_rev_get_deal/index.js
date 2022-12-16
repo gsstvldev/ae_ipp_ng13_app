@@ -166,6 +166,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "process_type": "IP",
                                         "process": "",
+                                        "uetr":params.UETR,
                                         "deal_process": "GetDeal"
                                                                          
 

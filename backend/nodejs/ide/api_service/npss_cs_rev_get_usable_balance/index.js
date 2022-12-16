@@ -61,13 +61,13 @@ app.post('/', function(appRequest, appResponse, next) {
                             //  var take_status = `Select success_process_status,success_status from core_nc_workflow_setup where rule_code='RCT_IP_REV_REQ_ACCEPT'`;
                             //var take_batch_name = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='BATCH_NAME'`;
                             var take_api_params = `select  ns.remittance_info,ns.cr_acct_identification,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method,
-                            ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,
+                            ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,ns.intrbk_sttlm_amnt,
                             ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,
                             ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm
                             from npss_transactions ns  where npsst_id = '${params.Tran_Id}'`;
                             // var TakenpsstrRefno = `select npsstrrd_refno from npss_trn_process_log ns where ns.uetr = '${params.uetr}' and ns.status = '${params.STATUS}' and ns.process_status = '${params.ELIGIBLE_PROCESS_STATUS}' `
                             // var TakenpsstrRefno2 = `select npsstrrd_refno,npsstpl_id from npss_trn_process_log  where uetr= '${params.uetr}' order by npsstpl_id  desc`
-                            var Takecontraamount = `select contra_amount from npss_trn_process_log where npsstpl_id = '${params.NPSSTPL_Id}'`
+                           // var Takecontraamount = `select contra_amount from npss_trn_process_log where npsstpl_id = '${params.NPSSTPL_Id}'`
                             
                                     ExecuteQuery1(take_api_params, function (arrprocesslog) {
                                         if (arrprocesslog.length) {
@@ -110,21 +110,21 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             //         amount = ''
                                                             //     }
                                                             // })
-                                                            ExecuteQuery1(Takecontraamount, function (arramount) {
+                                                           // ExecuteQuery1(Takecontraamount, function (arramount) {
         
-                                                                var contra_amount = arramount[0].contra_amount || ''
-                                                                var reversal_amount = arrprocesslog[0].reversal_amount || ''
-                                                                var amount
-                                                                  if (contra_amount && reversal_amount) {
-                                                                    if (Number(contra_amount) > Number(reversal_amount)) {
-                                                                        amount = reversal_amount
-                                                                    } else {
-                                                                        amount = contra_amount
-                                                                    }
-                                                                } else {
-                                                                    amount = ''
-                                                                }
-                                                            fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm,amount, function (result) {
+                                                                // var contra_amount = arramount[0].contra_amount || ''
+                                                                // var reversal_amount = arrprocesslog[0].reversal_amount || ''
+                                                                // var amount
+                                                                //   if (contra_amount && reversal_amount) {
+                                                                //     if (Number(contra_amount) > Number(reversal_amount)) {
+                                                                //         amount = reversal_amount
+                                                                //     } else {
+                                                                //         amount = contra_amount
+                                                                //     }
+                                                                // } else {
+                                                                //     amount = ''
+                                                                // }
+                                                            fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm, function (result) {
                                                                 if (result ) {
                                                                     objresponse.status = 'SUCCESS';
                                                                     objresponse.data=result;
@@ -136,7 +136,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     sendResponse(result, null);
                                                                 }
                                                             })
-                                                        })
+                                                        //})
                                                         }
                                                         else {
                                                             console.log("No Data found in workflow table");
@@ -208,7 +208,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         //"ext_purpose_prty": arrprocesslog[0].ext_purpose_prty || '',
                                         "lclinstrm": lclinstrm || '',
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
-                                        "intrbk_sttlm_amnt": amount || '',
+                                        "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',

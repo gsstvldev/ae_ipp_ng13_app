@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27405 
+Build ID        : 27409 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-16 13:22 PM 
+Modified Date   : 2022-Dec-16 14:45 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -292,7 +292,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.reversal_action_ui_cancel.label_name = "Cancel"
 		this.reversal_action_ui_cancel.show = true
 		this.reversal_action_ui_cancel.disabled = false
-		this.reversal_action_ui_cancel.params = {"icon_only":false,"uicgcc_style":""}
+		this.reversal_action_ui_cancel.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
 		this.reversal_action_ui_cancel.dynamic_param = {}
 		this.reversal_action_ui_cancel.role = []
 		this.reversal_action_ui_cancel.action = ""
@@ -1093,8 +1093,8 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	}
 
 	//Handler for INTERNAL event of "cc for cancel btn"
-	cc_for_cancel_btn__internal(){
-		this.cc_for_cancel_btn__im_for_cancel_btn()
+	cc_for_cancel_btn__internal(parent_event_result){
+		this.cc_for_cancel_btn__im_for_cancel_btn(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "im for cancel btn"
@@ -3347,7 +3347,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_ip_rev_accept_inau_reserve_fundService.fn_npss_cs_ip_rev_accept_inau_reserve_fund(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -3355,14 +3355,15 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "cc for cancel btn"
-	cc_for_cancel_btn__im_for_cancel_btn() { 
+	cc_for_cancel_btn__im_for_cancel_btn(parent_event_result) { 
 		let Dest_Is_ctrl=true
-		
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
 		let source_id="cc_for_cancel_btn"
 		let destn_id=""
 		let parent_source_id="ve_for_cancel_ui"
 		let event_code="e_1671196638325"
-		let event_params={"caller_name":"cc_for_cancel_btn__im_for_cancel_btn","event_desc":"IM for cancel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"cancel_return_ui_save","raiseparam":{"info_msg":""}}
+		let event_params={"caller_name":"cc_for_cancel_btn__im_for_cancel_btn","event_desc":"IM for cancel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Accepted request has been cancelled successfully.","root_source_id":"cancel_return_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="im_for_cancel_btn__rs_for_cancel_btn,"
 		let event_data={}

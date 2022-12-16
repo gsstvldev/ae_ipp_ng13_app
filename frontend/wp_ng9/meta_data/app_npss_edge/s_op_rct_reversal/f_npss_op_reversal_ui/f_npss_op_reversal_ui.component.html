@@ -3,13 +3,13 @@
 <fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
 	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_op_reversal_ui="ngForm">
 <div id="RN01" class="row">
-	<div #npss_op_reversal_ui_intrbk_sttlm_amnt id="RN01CN3" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('intrbk_sttlm_amnt')" >
+	<div #npss_op_reversal_ui_intrbk_sttlm_amnt id="RN01CN3" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('intrbk_sttlm_amnt')" >
 				<cur [ctrl_id]="'npss_op_reversal_ui_intrbk_sttlm_amnt'" [comp_id]="comp_id" [ctrl]="ctrl.intrbk_sttlm_amnt" [model]="screen_instance[this.comp_id].f_npss_op_reversal_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cur>
 	</div>
-	<div  id="RN01CN1" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('reversal_amount')" >
+	<div  id="RN01CN1" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('reversal_amount')" >
 				<txt [ctrl_id]="'npss_op_reversal_ui_reversal_amount'" [comp_id]="comp_id" [ctrl]="ctrl.reversal_amount" [model]="screen_instance[this.comp_id].f_npss_op_reversal_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
-	<div  id="RN01CN2" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory87')" >
+	<div  id="RN01CN2" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory87')" >
 				<cbo [ctrl_id]="'npss_op_reversal_ui_memory87'" [comp_id]="comp_id" [ctrl]="ctrl.memory87" [model]="screen_instance[this.comp_id].f_npss_op_reversal_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
 	</div>
 </div>

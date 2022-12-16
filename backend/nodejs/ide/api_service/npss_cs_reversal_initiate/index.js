@@ -59,8 +59,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 if (arrrule.length > 0) {
                                     success_process_status = result[0].success_process_status;
                                     success_status = result[0].success_status;
-                                      success_process_status = 'ibs success'
-                                   success_status = 'ibs failure'
+                                    
 
 
                                     var TakedatafrmTrn = `select hdr_msg_id,uetr,tran_ref_id from npss_transactions where npsst_id = '${params.Tran_Id}'`

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27409 
+Build ID        : 27412 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-16 14:45 PM 
+Modified Date   : 2022-Dec-16 16:13 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -21,12 +21,13 @@ import {npss_cs_reject_pack002Service} from '../../../custom_widget/npss_cs_reje
 import {npss_cs_ip_rev_ret_auth_pacs004Service} from '../../../custom_widget/npss_cs_ip_rev_ret_auth_pacs004/npss_cs_ip_rev_ret_auth_pacs004.service'
 import {npss_cs_ip_rev_reject_inau_reserve_fundService} from '../../../custom_widget/npss_cs_ip_rev_reject_inau_reserve_fund/npss_cs_ip_rev_reject_inau_reserve_fund.service'
 import {npss_cs_ip_rev_get_dealService} from '../../../custom_widget/npss_cs_ip_rev_get_deal/npss_cs_ip_rev_get_deal.service'
+import {npss_cs_reversal_cancelService} from '../../../custom_widget/npss_cs_reversal_cancel/npss_cs_reversal_cancel.service'
 
 @Component({
 	selector: 's_rct_reversal_non_aed',
 	templateUrl: './s_rct_reversal_non_aed.component.html',
 	styleUrls: ['./s_rct_reversal_non_aed.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_reversal_set_status_and_bind_valueService,npss_cs_rev_get_usable_balanceService,npss_cs_ip_rev_accept_inau_reserve_fundService,npss_cs_reject_pack002Service,npss_cs_ip_rev_ret_auth_pacs004Service,npss_cs_ip_rev_reject_inau_reserve_fundService,npss_cs_ip_rev_get_dealService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_reversal_set_status_and_bind_valueService,npss_cs_rev_get_usable_balanceService,npss_cs_ip_rev_accept_inau_reserve_fundService,npss_cs_reject_pack002Service,npss_cs_ip_rev_ret_auth_pacs004Service,npss_cs_ip_rev_reject_inau_reserve_fundService,npss_cs_ip_rev_get_dealService,npss_cs_reversal_cancelService]
 })
     
 // Start of class 
@@ -140,7 +141,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_reversal_set_status_and_bind_valueService:npss_cs_reversal_set_status_and_bind_valueService,private npss_cs_rev_get_usable_balanceService:npss_cs_rev_get_usable_balanceService,private npss_cs_ip_rev_accept_inau_reserve_fundService:npss_cs_ip_rev_accept_inau_reserve_fundService,private npss_cs_reject_pack002Service:npss_cs_reject_pack002Service,private npss_cs_ip_rev_ret_auth_pacs004Service:npss_cs_ip_rev_ret_auth_pacs004Service,private npss_cs_ip_rev_reject_inau_reserve_fundService:npss_cs_ip_rev_reject_inau_reserve_fundService,private npss_cs_ip_rev_get_dealService:npss_cs_ip_rev_get_dealService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_reversal_set_status_and_bind_valueService:npss_cs_reversal_set_status_and_bind_valueService,private npss_cs_rev_get_usable_balanceService:npss_cs_rev_get_usable_balanceService,private npss_cs_ip_rev_accept_inau_reserve_fundService:npss_cs_ip_rev_accept_inau_reserve_fundService,private npss_cs_reject_pack002Service:npss_cs_reject_pack002Service,private npss_cs_ip_rev_ret_auth_pacs004Service:npss_cs_ip_rev_ret_auth_pacs004Service,private npss_cs_ip_rev_reject_inau_reserve_fundService:npss_cs_ip_rev_reject_inau_reserve_fundService,private npss_cs_ip_rev_get_dealService:npss_cs_ip_rev_get_dealService,private npss_cs_reversal_cancelService:npss_cs_reversal_cancelService) {
     
 	}
     
@@ -807,6 +808,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		this.navigation_review__de_for_pl_ui()
 		this.navigation_review__cc_for_status_set_value()
 		this.navigation_review__cc_for_get_usable_balance()
+		this.navigation_review__de_for_deal_ui()
 	}
 
 	//Handler for INTERNAL event of "cc for status set value"
@@ -1701,6 +1703,27 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.npss_cs_rev_get_usable_balanceService.fn_npss_cs_rev_get_usable_balance(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
+	navigation_review__de_for_deal_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_review"
+		let destn_id="deal_ui"
+		let parent_source_id=""
+		let event_code="e_1671202559300"
+		let event_params={"caller_name":"navigation_review__de_for_deal_ui","event_desc":"DE for Deal UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_review","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -3169,7 +3192,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_ip_rev_accept_inau_reserve_fundService.fn_npss_cs_ip_rev_accept_inau_reserve_fund(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_reversal_cancelService.fn_npss_cs_reversal_cancel(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

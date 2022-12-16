@@ -171,7 +171,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     // Do API Call for Service 
                     function fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm,amount, callbackapi) {
                         try {
-                            var apiName = NPSS Get Usable Amount'
+                            var apiName = 'NPSS Get Usable Amount'
                             var request = require('request');
                             var apiURL =
                                 apiURL = url // apiURL + apiName

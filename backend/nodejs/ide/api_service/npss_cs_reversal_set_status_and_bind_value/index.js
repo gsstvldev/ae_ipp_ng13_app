@@ -6,10 +6,6 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
-
-
-
-
 try {
     /*   Created By : Siva Harish M
     Created Date :16-12-2022
@@ -34,7 +30,7 @@ try {
 
     var objresponse = {
         'status': 'FAILURE',
-        'data': '',
+        'data': {},
         'msg': ''
     }; // Response to Client
     // Assign function for loginformation and session info
@@ -68,10 +64,19 @@ try {
                                     try {
                                         if (arrdata.length > 0) {
                                             var paramdata = JSON.parse(arrdata[0].param_value)
-                                            var status1 = paramdata["General"]["subgroup"][0]["status"]
-                                            var process_status1 = paramdata["General"]["subgroup"][0]["process_status"]
-                                            var processingData1 = paramdata["General"]["subgroup"][0]["processing_system"]
-                                            var getdetails = `Select amount_credited ,amt_cr_loc_cur ,charge_amount  from npss_trn_process_log where uetr = '${params.uetr}' and status = '${status1}' and process_status = '${process_status1}' and processing_system= '${processingData1}'`
+                                            var formdataquery = {}
+                                            var subqueryformation = ''
+                                             formdataquery['status'] = paramdata["General"]["subgroup"][0]["status"] || ''
+                                             formdataquery['process_status'] = paramdata["General"]["subgroup"][0]["process_status"] || ''
+                                             formdataquery['processing_system'] = paramdata["General"]["subgroup"][0]["processing_system"] || ''
+                                             for(let i in formdataquery){
+                                                if(formdataquery[i] != ''){
+                                                    subqueryformation += ` and  ${i} = '${formdataquery[i]}' `
+                                                }
+                                             }
+                                           
+                                           
+                                            var getdetails = `Select amount_credited ,amt_cr_loc_cur ,charge_amount  from npss_trn_process_log where uetr = '${params.uetr}' ${subqueryformation}`
                                             ExecuteQuery1(getdetails, function (arrparamdata) {
                                                 if (arrparamdata.length > 0) {
                                                     var amount_credited = arrparamdata[0].amount_credited
@@ -80,10 +85,17 @@ try {
                                                     if (params.serviceName == 's_rct_reversal_non_aed' && params.roleId == '708') {
                                                         ExecuteQuery1(getcltDtl, function (arrfulldata) {
                                                             if (arrfulldata.length > 0) {
+                                                                var dataform = {}
+                                                                var formsub = ''
                                                                 var param = JSON.parse(arrfulldata[0].param_value)
-                                                                var getstatus = paramValue["General"]["subgroup"][0]["status"]
-                                                                var get_process_status = paramValue["General"]["subgroup"][0]["process_status"]
-                                                                var getparamfullDeyails = `select exchange_rate ,contra_amount ,sell_currency ,buy_currency ,dealt_amount  from npss_trn_process_log  where uetr = '${params.uetr}' and status = '${getstatus}' and process_status = '${getstatus}'`
+                                                                dataform['status'] = paramValue["General"]["subgroup"][0]["status"]
+                                                                dataform['process_status'] = paramValue["General"]["subgroup"][0]["process_status"]
+                                                                for(let i in dataform){
+                                                                    if(dataform[i] != ''){
+                                                                        formsub += ` and  ${i} = '${dataform[i]}' `
+                                                                    }
+                                                                 }
+                                                                var getparamfullDeyails = `select exchange_rate ,contra_amount ,sell_currency ,buy_currency ,dealt_amount  from npss_trn_process_log  where uetr = '${params.uetr}' ${formsub}`
                                                                 ExecuteQuery1(getparamfullDeyails, function (arrgetparamfullDtls) {
                                                                     if (arrgetparamfullDtls.length > 0) {
                                                                         objresponse.status = 'SUCCESS'
@@ -97,17 +109,17 @@ try {
                                                                         objresponse.data.sell_currency = arrgetparamfullDtls[0].sell_currency
                                                                         objresponse.data.buy_currency = arrgetparamfullDtls[0].buy_currency
                                                                         objresponse.data.dealt_amount = arrgetparamfullDtls[0].dealt_amount
-                                                                        SendResponse(null, objresponse)
+                                                                        sendResponse(null, objresponse)
                                                                     } else {
                                                                         objresponse.status = 'FAILURE'
                                                                         objresponse.data.msg = 'No exchange_rate ,contra_amount etc found in npss_trn_process_log'
-                                                                        SendResponse(null, objresponse)
+                                                                        sendResponse(null, objresponse)
                                                                     }
                                                                 })
                                                             } else {
                                                                 objresponse.status = 'FAILURE'
                                                                 objresponse.data.msg = 'No data found in npss_trn_process_log'
-                                                                SendResponse(null, objresponse)
+                                                                sendResponse(null, objresponse)
                                                             }
 
                                                         })
@@ -119,12 +131,12 @@ try {
                                                         objresponse.data.amount_credited = amount_credited
                                                         objresponse.data.amt_cr_loc_cur = amt_cr_loc_cur
                                                         objresponse.data.charge_amount = charge_amount
-                                                        SendResponse(null, objresponse)
+                                                        sendResponse(null, objresponse)
                                                     }
                                                 } else {
                                                     objresponse.status = 'FAILURE'
                                                     objresponse.data.msg = 'No data found in npss_trn_process_log'
-                                                    SendResponse(null, objresponse)
+                                                    sendResponse(null, objresponse)
                                                 }
 
 
@@ -134,7 +146,7 @@ try {
 
                                             objresponse.status = 'FAILURE'
                                             objresponse.data.msg = 'No rule found in REVERSAL PSPL STATUS'
-                                            SendResponse(null, objresponse)
+                                            sendResponse(null, objresponse)
                                         }
 
 
@@ -148,7 +160,7 @@ try {
                             } else {
                                 objresponse.status = 'FAILURE'
                                 objresponse.data.msg = 'No rule found in REVERSAL PL STATUS'
-                                SendResponse(null, objresponse)
+                                sendResponse(null, objresponse)
                             }
                         } catch (error) {
                             reqInstanceHelper.PrintInfo(serviceName, 'Exception occured ' + error, objLogInfo);
@@ -215,16 +227,6 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

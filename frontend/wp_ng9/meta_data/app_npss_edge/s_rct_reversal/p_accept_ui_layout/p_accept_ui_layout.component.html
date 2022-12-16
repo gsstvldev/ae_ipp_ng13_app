@@ -1,16 +1,21 @@
 <div class="p_accept_ui_layout">
  <!-- PROFILE HTML - p_accept_ui_layout --> 
 <div id="R21" class="row">
-	<div id="R21C1" class="column col-md-10 col-sm-6 col-xs-6 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" >
+	<div id="R21C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 		<div class="reversal_ui" >
 			<f_npss_rct_reversal_ui [comp_id]="'reversal_ui'" [screen_instance]="screen_instance" [hidden]="isHidden('reversal_ui','f_npss_rct_reversal_ui')" profile_name="p_accept_ui_layout"></f_npss_rct_reversal_ui >
 		</div>
 	</div>
 </div>
 <div id="R31" class="row">
-	<div id="R31C1" class="column col-md-10 col-sm-6 col-xs-6 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" >
+	<div id="R31C1" class="column col-md-8 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 		<div class="process_log_control_ui" >
 			<f_npss_reversal_plog_ui [comp_id]="'process_log_control_ui'" [screen_instance]="screen_instance" [hidden]="isHidden('process_log_control_ui','f_npss_reversal_plog_ui')" profile_name="p_accept_ui_layout"></f_npss_reversal_plog_ui >
+		</div>
+	</div>
+	<div id="R31C2" class="column col-md-4 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="get_usable_balance_widget"  [hidden]="!screen_instance['get_usable_balance_widget'].show" >
+			<npss_cs_rev_get_usable_balance [comp_id]="'get_usable_balance_widget'" [screen_instance]="screen_instance" profile_name="p_accept_ui_layout"></npss_cs_rev_get_usable_balance>
 		</div>
 	</div>
 </div>
@@ -30,13 +35,6 @@
 		</div>
 	</div>
 </div>
-	</div>
-</div>
-<div id="R41" class="row">
-	<div id="R41C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
-		<div class="t24_posting_process_log"  [hidden]="!screen_instance['t24_posting_process_log'].show" >
-			<datatable [comp_id]="'t24_posting_process_log'" [screen_instance]="screen_instance" profile_name="p_accept_ui_layout"></datatable>
-		</div>
 	</div>
 </div>
 

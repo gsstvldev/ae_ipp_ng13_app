@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27377 
+Build ID        : 27389 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-15 15:37 PM 
+Modified Date   : 2022-Dec-16 6:59 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -89,9 +89,9 @@ focustoelement(){
 		//Properties of cdtr_iban
 		this.ctrl.cdtr_iban = {}
 		this.ctrl.cdtr_iban.id = "RN11CN3"
-		this.ctrl.cdtr_iban.desc = "Cr Account No"
+		this.ctrl.cdtr_iban.desc = "Cr IBAN"
 		this.ctrl.cdtr_iban.visible = true
-		this.ctrl.cdtr_iban.label_name = "Cr Account No"
+		this.ctrl.cdtr_iban.label_name = "Cr IBAN"
 		this.ctrl.cdtr_iban.df_code = "DF_1304_1665901396659"
 		this.ctrl.cdtr_iban.df_description = "Column Group 1"
 		this.ctrl.cdtr_iban.uictrl_code = "TXT"
@@ -123,6 +123,44 @@ focustoelement(){
 		this.ctrl.cdtr_iban.ctrl_id = "npss_rct_reversal_ui_cdtr_iban"
 		this.ctrl.npss_rct_reversal_ui_cdtr_iban = {}
 		this.ctrl.npss_rct_reversal_ui_cdtr_iban.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of cr_acct_identification
+		this.ctrl.cr_acct_identification = {}
+		this.ctrl.cr_acct_identification.id = "RN01CN13"
+		this.ctrl.cr_acct_identification.desc = "CR Account No"
+		this.ctrl.cr_acct_identification.visible = true
+		this.ctrl.cr_acct_identification.label_name = "CR Account No"
+		this.ctrl.cr_acct_identification.df_code = "DF_1304_1665901396659"
+		this.ctrl.cr_acct_identification.df_description = "Column Group 1"
+		this.ctrl.cr_acct_identification.uictrl_code = "TXT"
+		this.ctrl.cr_acct_identification.target_column = "CR_ACCT_IDENTIFICATION"
+		this.ctrl.cr_acct_identification.data_type = "TEXT"
+		this.ctrl.cr_acct_identification.data_length = 34
+		this.ctrl.cr_acct_identification.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.cr_acct_identification.default_value = ""
+		this.ctrl.cr_acct_identification.is_memory_ctrl = ""
+		this.ctrl.cr_acct_identification.field_coordinates = ""
+		this.ctrl.cr_acct_identification.sub_details = ""
+		this.ctrl.cr_acct_identification.accept_char = ""
+		this.ctrl.cr_acct_identification.currency_format = ""
+		this.ctrl.cr_acct_identification.data_scale = ""
+		this.ctrl.cr_acct_identification.hide_label = false
+		this.ctrl.cr_acct_identification.depends_on = ""
+		this.ctrl.cr_acct_identification.placeholder = ""
+		this.ctrl.cr_acct_identification.dynamic_param = ""
+		this.ctrl.cr_acct_identification.style_code = ""
+		this.ctrl.cr_acct_identification.data_source = ""
+		this.ctrl.cr_acct_identification.image_association = ""
+		this.ctrl.cr_acct_identification.show = true
+		this.ctrl.cr_acct_identification.sub_content = ""
+		this.ctrl.cr_acct_identification.required = false
+		this.ctrl.cr_acct_identification.vld_rules = []
+		this.ctrl.cr_acct_identification.targetcolumn_lower = "cr_acct_identification"
+		this.ctrl.cr_acct_identification.disabled = false
+		this.ctrl.cr_acct_identification.view_name = "f_npss_rct_reversal_ui"
+		this.ctrl.cr_acct_identification.ctrl_id = "npss_rct_reversal_ui_cr_acct_identification"
+		this.ctrl.npss_rct_reversal_ui_cr_acct_identification = {}
+		this.ctrl.npss_rct_reversal_ui_cr_acct_identification.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_acct_name
 		this.ctrl.cdtr_acct_name = {}
@@ -465,8 +503,8 @@ focustoelement(){
 		this.ctrl.reversal_amount.ctrl_id = "npss_rct_reversal_ui_reversal_amount"
 		this.ctrl.npss_rct_reversal_ui_reversal_amount = {}
 		this.ctrl.npss_rct_reversal_ui_reversal_amount.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.model = {"VALUE_DATE":"","CDTR_IBAN":"","CDTR_ACCT_NAME":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","UETR":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":""}
-		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"}]
+		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.model = {"VALUE_DATE":"","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","CDTR_ACCT_NAME":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","UETR":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":""}
+		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"}]
 		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

@@ -92,7 +92,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             else {
                                                 lclinstrm = ""
                                             }
-                                            var takereturncode =  `select cbuae_return_code  from npss_trn_process_log  where  status = 'IP_RCT_RR_RETURN_READY' and process_status = 'RCTInwardReturnReady'`;
+                                            var takereturncode =  `select cbuae_return_code  from npss_trn_process_log  where  status = 'IP_RCT_RR_RETURN_READY'`;
                                             var TakeprssRefno = `select process_ref_no  from npss_trn_process_log  where uetr = '${params.uetr}' and status = 'IP_RCT_REV_INAU_POSTING_SUCCESS' and process_status = 'RCTRevINAUPostingSuccess'`;
                                             var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
                                             ExecuteQuery1(TakeprssRefno,function(arrprssRefno){
@@ -513,9 +513,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 timeout: 18000000,
                                 method: 'POST',
                                 json: {
-
-
-                                    "payload": {
+                                   
                                         "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
                                         "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
@@ -525,58 +523,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
                                         "uetr": arrprocesslog[0].uetr,
                                         "hdr_clearing_system": arrprocesslog[0].hdr_clearing_system || '',
-                                        "txid": arrprocesslog[0].tran_ref_id || '',
+                                        "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
                                         "post_reason_code": arrreturncode[0].cbuae_return_code
 
-                                        /*  "hdr_total_records": arrprocesslog[0].hdr_total_records || '',
-                                         
-                                         "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date || '',
-                                         "hdr_settlement_method": arrprocesslog[0].hdr_settlement_method || '',
-                                        
-                                        
-                                         "category_purpose": arrprocesslog[0].category_purpose || '',
-                                         "category_purpose_prty": arrprocesslog[0].category_purpose_prty || '',
-                                         "ext_purpose_code": arrprocesslog[0].ext_purpose_code || '',
-                                         //"value_date": arrprocesslog[0].value_date || '',
-                                         //"ext_purpose_prty": arrprocesslog[0].ext_purpose_prty || '',
-                                         "lclinstrm": lclinstrm || '',
-                                         
-                                         "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
-                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
-                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
-                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
-                                        
-                                         "charge_bearer": arrprocesslog[0].charge_bearer || '',
-                                         
-                                         "uetr": arrprocesslog[0].uetr || '',
-                                         "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
-                                         "cr_acct_id_code": arrprocesslog[0].cr_acct_id_code || '',
-                                         "message_data": arrprocesslog[0].message_data || '',
- 
-                                         "process_type": arrprocesslog[0].process_type || '',
-                                         "status": params.STATUS || '',
-                                         "process_status": params.ELIGIBLE_PROCESS_STATUS || '',
-                                         "clrsysref": arrprocesslog[0].clrsysref,
- 
-                                         "process": "",
-                                         "remittance_information": arrprocesslog[0].remittance_info || '',
-                                         "posting_ref_no":arrprssRefno[0].process_ref_no||'' */
-
-
-                                    }/* ,
-                                    "AccountInformation": {
-                                        "account_number": arrActInf[0].account_number || '',
-                                        "company_code": arrActInf[0].company_code || '',
-                                        "inactive_marker": arrActInf[0].inactive_marker || '',
-                                        "currency": arrActInf[0].currency || '',
-                                        "alternate_account_type": "OLD.IBAN",
-                                        "alternate_account_id": arrActInf[0].alternate_account_id || ''
-                                        /*  "CR.VA.NUMBER": cvAcNum || '',
-                                         "curr_rate_segment": arrActInf[0].curr_rate_segment || '',
-                                         "customer_id": arrActInf[0].customer_id || '',
-                                         "account_officer": arrActInf[0].account_officer || ' '
-                                    } */
                                 },
                                 headers: {
                                     'Content-Type': 'application/json'

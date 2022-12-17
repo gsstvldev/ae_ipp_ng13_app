@@ -73,9 +73,11 @@ export class npss_cs_reversal_set_status_and_bind_valueService {
                     }
 
                 }
-                else {
+                else if(res.data.status == 'FAILURE') {
                     this.dialogHelper.ShowInfoDialog(res.data.data.msg);
 
+                }else{
+                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 }
             });
     }

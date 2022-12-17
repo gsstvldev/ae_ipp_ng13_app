@@ -7,11 +7,12 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
     try {
         /*   Created By : Siva Harish M
         Created Date :16-12-2022
         Modified By :
-        Modified Date :
+        Modified Date :17/12/2022
      
         Reason for : 
         */
@@ -112,7 +113,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             objresponse.data.dealt_amount = arrgetparamfullDtls[0].dealt_amount
                                                                             sendResponse(null, objresponse)
                                                                         } else {
-                                                                            objresponse.status = 'FAILURE'
+                                                                            objresponse.status = 'NOFAILURE'
                                                                             objresponse.data.msg = 'No exchange_rate ,contra_amount etc found in npss_trn_process_log'
                                                                             sendResponse(null, objresponse)
                                                                         }
@@ -135,9 +136,53 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             sendResponse(null, objresponse)
                                                         }
                                                     } else {
-                                                        objresponse.status = 'FAILURE'
-                                                        objresponse.data.msg = 'No data found in npss_trn_process_log'
-                                                        sendResponse(null, objresponse)
+                                                        if (params.screenName == 's_rct_reversal_non_aed' && params.roleId == '708') {
+                                                            ExecuteQuery1(getcltDtl, function (arrfulldata) {
+                                                                if (arrfulldata.length > 0) {
+                                                                    var dataform = {}
+                                                                    var formsub = ''
+                                                                    var param = JSON.parse(arrfulldata[0].param_value)
+                                                                    dataform['status'] = param["General"]["subgroup"][0]["status"]
+                                                                    dataform['process_status'] = param["General"]["subgroup"][0]["process_status"]
+                                                                    for(let i in dataform){
+                                                                        if(dataform[i] != ''){
+                                                                            formsub += ` and  ${i} = '${dataform[i]}' `
+                                                                        }
+                                                                     }
+                                                                    var getparamfullDeyails = `select exchange_rate ,contra_amount ,sell_currency ,buy_currency ,dealt_amount  from npss_trn_process_log  where uetr = '${params.uetr}' ${formsub}`
+                                                                    ExecuteQuery1(getparamfullDeyails, function (arrgetparamfullDtls) {
+                                                                        if (arrgetparamfullDtls.length > 0) {
+                                                                            objresponse.status = 'SUCCESS'
+                                                                            objresponse.data.status = rulestatus
+                                                                            objresponse.data.process_status = process_status
+                                                                            objresponse.data.amount_credited = amount_credited
+                                                                            objresponse.data.amt_cr_loc_cur = amt_cr_loc_cur
+                                                                            objresponse.data.charge_amount = charge_amount
+                                                                            objresponse.data.exchange_rate = arrgetparamfullDtls[0].exchange_rate
+                                                                            objresponse.data.contra_amount = arrgetparamfullDtls[0].contra_amount
+                                                                            objresponse.data.sell_currency = arrgetparamfullDtls[0].sell_currency
+                                                                            objresponse.data.buy_currency = arrgetparamfullDtls[0].buy_currency
+                                                                            objresponse.data.dealt_amount = arrgetparamfullDtls[0].dealt_amount
+                                                                            sendResponse(null, objresponse)
+                                                                        } else {
+                                                                            objresponse.status = 'NOFAILURE'
+                                                                            objresponse.data.msg = 'No exchange_rate ,contra_amount etc found in npss_trn_process_log'
+                                                                            sendResponse(null, objresponse)
+                                                                        }
+                                                                    })
+                                                                } else {
+                                                                    objresponse.status = 'FAILURE'
+                                                                    objresponse.data.msg = 'No data found in npss_trn_process_log'
+                                                                    sendResponse(null, objresponse)
+                                                                }
+    
+                                                            })
+    
+                                                        }else{
+                                                            objresponse.status = 'NOFAILURE'
+                                                            objresponse.data.msg = 'No credit,charge amount found'
+                                                            sendResponse(null, objresponse)
+                                                        }
                                                     }
     
     
@@ -231,6 +276,7 @@ app.post('/', function(appRequest, appResponse, next) {
     
     
     
+
 
 
 });

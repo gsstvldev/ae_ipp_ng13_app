@@ -1,0 +1,32 @@
+<div class="p_action_layout">
+ <!-- PROFILE HTML - p_action_layout --> 
+<div id="R41" class="row">
+	<div id="R41C1" class="column col-md-10 col-sm-6 col-xs-6 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" >
+		<div class="customer_detail" >
+			<f_customer_detail [comp_id]="'customer_detail'" [screen_instance]="screen_instance" [hidden]="isHidden('customer_detail','f_customer_detail')" profile_name="p_action_layout"></f_customer_detail >
+		</div>
+	</div>
+</div>
+<div id="R21" class="row">
+	<div id="R21C1" class="column col-md-10 col-sm-6 col-xs-6 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" >
+		<div class="account__detail" >
+			<f_account__detail [comp_id]="'account__detail'" [screen_instance]="screen_instance" [hidden]="isHidden('account__detail','f_account__detail')" profile_name="p_action_layout"></f_account__detail >
+		</div>
+	</div>
+</div>
+<div id="R31" class="row">
+	<div id="R31C1" class="column col-md-10 col-sm-6 col-xs-6 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" >
+		<div class="action" >
+			<f_action [comp_id]="'action'" [screen_instance]="screen_instance" [hidden]="isHidden('action','f_action')" profile_name="p_action_layout"></f_action >
+		</div>
+	</div>
+</div>
+<div id="R41" class="row">
+	<div id="R41C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="customer_setup_widget"  [hidden]="!screen_instance['customer_setup_widget'].show" >
+			<npss_cs_change_customer_mobile [comp_id]="'customer_setup_widget'" [screen_instance]="screen_instance" profile_name="p_action_layout"></npss_cs_change_customer_mobile>
+		</div>
+	</div>
+</div>
+
+</div>

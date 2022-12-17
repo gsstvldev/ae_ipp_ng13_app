@@ -15,7 +15,7 @@ app.post('/', function(appRequest, appResponse, next) {
         Modified Date : 17/12/2022    
         Reason for : 
         */
-        var serviceName = 'NPSS IP REV Ret Auth PACS004';
+           var serviceName = 'NPSS IP REV Ret Auth PACS004';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
         var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
         var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 

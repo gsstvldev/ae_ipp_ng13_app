@@ -57,9 +57,9 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         ExecuteQuery1(ruleqry, function (arrrule) {
                             try {
                                 if (arrrule.length > 0) {
-                                    success_process_status = result[0].success_process_status;
-                                    success_status = result[0].success_status;
-                                    var TakedatafrmTrn = `select * from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                                    success_process_status = arrrule[0].success_process_status;
+                                    success_status = arrrule[0].success_status;
+                                    var TakedatafrmTrn = `select * from npss_transactions where npsst_id = '${params.Id}'`
 
                                     ExecuteQuery1(TakedatafrmTrn, function (arrdata) {
                                         if (arrdata.length > 0) {

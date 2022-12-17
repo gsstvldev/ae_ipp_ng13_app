@@ -76,7 +76,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                     objCusTranInst.PROCESS_STATUS = success_process_status;
                                     objCusTranInst.STATUS = success_status;
                                     objCusTranInst.TENANT_ID = params.TENANT_ID;
-                                    objCusTranInst.T24_RETURN_CODE = params.T24_Return_code;
+                                    objCusTranInst.T24_RETURN_CODE = params.T24_RETURN_CODE;
                                     objCusTranInst.CBUAE_RETURN_CODE = params.CBUAE_RETURN_CODE;
                                     objCusTranInst.APP_ID = '215'
                                     objCusTranInst.DT_CODE = 'DT_1304_1665901130705'

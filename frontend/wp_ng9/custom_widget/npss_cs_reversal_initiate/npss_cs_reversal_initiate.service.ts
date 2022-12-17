@@ -49,8 +49,8 @@ export class npss_cs_reversal_initiateService {
     CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_reversal_initiate/', ClientParams)
             .subscribe((res: any) => {
-                if (res.data.status) {
-                    console.log(res.data.data);
+                if (res.data.status=='SUCCESS'||res.data.data.status=='SUCCESS') {
+                    
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 }
                 else {

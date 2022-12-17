@@ -62,7 +62,8 @@ export class npss_cs_rev_get_usable_balanceService {
 
                 }
                 else {
-                    this.appHandler.callInternals(internals, screenInstance, "FAILURE");
+                    var event = { eventId: "custom-connector", param: "", internals: internals }
+                    screenInstance["get_usable_balance_widget"].onChangecomponent.emit(event);
                 }
             });
     }

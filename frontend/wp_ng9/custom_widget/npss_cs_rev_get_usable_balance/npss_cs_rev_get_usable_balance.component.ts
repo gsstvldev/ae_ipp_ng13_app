@@ -44,7 +44,12 @@ export class npss_cs_rev_get_usable_balanceComponent implements OnInit {
         if (this.screen_instance[this.comp_id].onChangecomponent) {
             this.subscription = this.screen_instance[this.comp_id].onChangecomponent.subscribe({
                 next: (event: any) => {
-                    this.loadwidget(event)
+                    if(event.param == ""){
+                        this.clearwidget()
+                    }else{
+                        this.loadwidget(event) 
+                    }
+                   
                     
                 }
             })
@@ -68,5 +73,14 @@ export class npss_cs_rev_get_usable_balanceComponent implements OnInit {
             this.workingbalance = ''
             this.raccountbalance = ''
         }
+    }
+    
+    clearwidget(){
+         this.postingRestrictCode = ''
+            this.isinactive = ''
+            this.signname = ''
+            this.usablebalance = ''
+            this.workingbalance = ''
+            this.raccountbalance = ''
     }
 }

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27409 
+Build ID        : 27417 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-16 14:45 PM 
+Modified Date   : 2022-Dec-17 5:8 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -26,7 +26,7 @@ export class f_npss_op_reversal_srchComponent implements OnInit {
   hasHeader:boolean;
   component_header:string;
   @ViewChild('f_npss_op_reversal_srch') form;
-  @ViewChild('npss_op_reversal_srch_memory63') element: ElementRef;
+  @ViewChild('npss_op_reversal_srch_memory89') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -48,44 +48,43 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
-		//Properties of memory63
-		this.ctrl.memory63 = {}
-		this.ctrl.memory63.id = "RN01CN1"
-		this.ctrl.memory63.desc = "Created Date"
-		this.ctrl.memory63.visible = true
-		this.ctrl.memory63.label_name = "Created Date"
-		this.ctrl.memory63.df_code = "DF_1304_1665901396659"
-		this.ctrl.memory63.df_description = "Column Group 1"
-		this.ctrl.memory63.uictrl_code = "DTP"
-		this.ctrl.memory63.target_column = "memory63"
-		this.ctrl.memory63.data_type = "DATETIME"
-		this.ctrl.memory63.data_length = 0
-		this.ctrl.memory63.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory63.default_value = "setcurrentdate(),{}"
-		this.ctrl.memory63.is_memory_ctrl = "Y"
-		this.ctrl.memory63.field_coordinates = ""
-		this.ctrl.memory63.sub_details = ""
-		this.ctrl.memory63.accept_char = ""
-		this.ctrl.memory63.currency_format = ""
-		this.ctrl.memory63.data_scale = ""
-		this.ctrl.memory63.binding_name = "CREATED_DATE"
-		this.ctrl.memory63.hide_label = false
-		this.ctrl.memory63.depends_on = ""
-		this.ctrl.memory63.placeholder = ""
-		this.ctrl.memory63.dynamic_param = ""
-		this.ctrl.memory63.style_code = ""
-		this.ctrl.memory63.data_source = ""
-		this.ctrl.memory63.image_association = ""
-		this.ctrl.memory63.show = true
-		this.ctrl.memory63.sub_content = ""
-		this.ctrl.memory63.required = false
-		this.ctrl.memory63.vld_rules = []
-		this.ctrl.memory63.targetcolumn_lower = "memory63"
-		this.ctrl.memory63.disabled = false
-		this.ctrl.memory63.view_name = "f_npss_op_reversal_srch"
-		this.ctrl.memory63.ctrl_id = "npss_op_reversal_srch_memory63"
-		this.ctrl.npss_op_reversal_srch_memory63 = {}
-		this.ctrl.npss_op_reversal_srch_memory63.onChangecomponent = new EventEmitter<any>()
+		//Properties of memory89
+		this.ctrl.memory89 = {}
+		this.ctrl.memory89.id = "RN01CN1"
+		this.ctrl.memory89.desc = "Created Date"
+		this.ctrl.memory89.visible = true
+		this.ctrl.memory89.label_name = "Created Date"
+		this.ctrl.memory89.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory89.df_description = "Column Group 1"
+		this.ctrl.memory89.uictrl_code = "DTP"
+		this.ctrl.memory89.target_column = "memory89"
+		this.ctrl.memory89.data_type = "DATETIME"
+		this.ctrl.memory89.data_length = 0
+		this.ctrl.memory89.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory89.default_value = "setcurrentdate(),{}"
+		this.ctrl.memory89.is_memory_ctrl = "Y"
+		this.ctrl.memory89.field_coordinates = ""
+		this.ctrl.memory89.sub_details = ""
+		this.ctrl.memory89.accept_char = ""
+		this.ctrl.memory89.currency_format = ""
+		this.ctrl.memory89.data_scale = ""
+		this.ctrl.memory89.binding_name = "CREATED_DATE"
+		this.ctrl.memory89.depends_on = ""
+		this.ctrl.memory89.placeholder = ""
+		this.ctrl.memory89.dynamic_param = ""
+		this.ctrl.memory89.style_code = ""
+		this.ctrl.memory89.data_source = ""
+		this.ctrl.memory89.image_association = ""
+		this.ctrl.memory89.show = true
+		this.ctrl.memory89.sub_content = ""
+		this.ctrl.memory89.required = false
+		this.ctrl.memory89.vld_rules = [{"type":"FDV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"Invalid Date","custom_val_message":"","expression":"futuredate","project_code":"","project_name":"","cv_event":""},{"type":"PDV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"Invalid Date","custom_val_message":"","expression":"previousdate","project_code":"","project_name":"","cv_event":""}]
+		this.ctrl.memory89.targetcolumn_lower = "memory89"
+		this.ctrl.memory89.disabled = false
+		this.ctrl.memory89.view_name = "f_npss_op_reversal_srch"
+		this.ctrl.memory89.ctrl_id = "npss_op_reversal_srch_memory89"
+		this.ctrl.npss_op_reversal_srch_memory89 = {}
+		this.ctrl.npss_op_reversal_srch_memory89.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_iban
 		this.ctrl.cdtr_iban = {}
@@ -322,7 +321,7 @@ focustoelement(){
 		this.ctrl.npss_op_reversal_srch_memory75 = {}
 		this.ctrl.npss_op_reversal_srch_memory75.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.memory75 = {}
-		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.model = {"MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","UETR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","MEMORY75":""}
+		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.model = {"MEMORY89":"setcurrentdate(),{}","CDTR_IBAN":"","UETR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","MEMORY75":""}
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"}]
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.dtt_code = "dtt_1304_1665901217208"

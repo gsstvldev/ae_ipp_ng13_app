@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27409 
+Build ID        : 27417 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-16 14:45 PM 
+Modified Date   : 2022-Dec-17 5:8 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -526,11 +526,16 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__action_button_click(){
-		this.search_search__ssp_for_pl_queue()
 		this.search_search__cp_after_search()
 		this.search_search__cu_for_tl()
 		this.search_search__de_from_search_to_view_message_details()
 		this.search_search__de_from_search_to_view_log_hst()
+		this.search_search__validate_ele()
+	}
+
+	//Handler for INTERNAL event of "validate ele"
+	validate_ele__internal(parent_event_result){
+		this.validate_ele__ssp_for_pl_queue(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "ssp for pl queue"
@@ -897,27 +902,6 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
-	search_search__ssp_for_pl_queue() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="search_search"
-		let destn_id="search"
-		let parent_source_id=""
-		let event_code="e_1666857137821"
-		let event_params={"caller_name":"search_search__ssp_for_pl_queue","event_desc":"SSP for PL Queue","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
-		let handler_code="set_search_params"
-		let internals="ssp_for_pl_queue__brfq_for_queue,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__cp_after_search() { 
 		let Dest_Is_ctrl=true
 		
@@ -1001,6 +985,49 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "search search"
+	search_search__validate_ele() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="search_search"
+		let destn_id="search"
+		let parent_source_id=""
+		let event_code="e_1671252440816"
+		let event_params={"caller_name":"search_search__validate_ele","event_desc":"Validate Ele","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
+		let handler_code="validate_elements"
+		let internals="validate_ele__ssp_for_pl_queue,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "validate ele"
+	validate_ele__ssp_for_pl_queue(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="validate_ele"
+		let destn_id="search"
+		let parent_source_id="search_search"
+		let event_code="e_1671252454654"
+		let event_params={"caller_name":"validate_ele__ssp_for_pl_queue","event_desc":"SSP for PL Queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="set_search_params"
+		let internals="ssp_for_pl_queue__brfq_for_queue,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "ssp for pl queue"
 	ssp_for_pl_queue__brfq_for_queue(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -1008,8 +1035,8 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="ssp_for_pl_queue"
 		let destn_id="queue"
-		let parent_source_id="search_search"
-		let event_code="e_1666857183261"
+		let parent_source_id="validate_ele"
+		let event_code="e_1671252481010"
 		let event_params={"caller_name":"ssp_for_pl_queue__brfq_for_queue","event_desc":"BRFQ for Queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_queue__sfr_for_queue,"
@@ -1031,7 +1058,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		let source_id="brfq_for_queue"
 		let destn_id="queue"
 		let parent_source_id="ssp_for_pl_queue"
-		let event_code="e_1671185728693"
+		let event_code="e_1671252500241"
 		let event_params={"caller_name":"brfq_for_queue__sfr_for_queue","event_desc":"SFR for queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""

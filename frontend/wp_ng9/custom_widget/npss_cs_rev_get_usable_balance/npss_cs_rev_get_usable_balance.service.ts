@@ -38,8 +38,9 @@ export class npss_cs_rev_get_usable_balanceService {
     CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_rev_get_usable_balance/', ClientParams)
             .subscribe((res: any) => {
+                var event:any
                 if (res.data.status == 'SUCCESS') {
-                    var event = { eventId: "custom-connector", param: res.data.data, internals: internals }
+                  event = { eventId: "custom-connector", param: res.data.data, internals: internals }
                     screenInstance["get_usable_balance_widget"].onChangecomponent.emit(event);
                   
                 }  else if (res.data.status == 'No Rule Code Found' || res.data == 'No Rule Code Found') {
@@ -62,7 +63,7 @@ export class npss_cs_rev_get_usable_balanceService {
 
                 }
                 else {
-                    var event = { eventId: "custom-connector", param: "", internals: internals }
+                     event = { eventId: "custom-connector", param: "", internals: internals }
                     screenInstance["get_usable_balance_widget"].onChangecomponent.emit(event);
                 }
             });

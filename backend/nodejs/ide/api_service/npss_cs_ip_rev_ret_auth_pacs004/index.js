@@ -451,6 +451,21 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
                         });
                     }
+                        //Execute Query for common
+                            function ExecuteQuery(query, callback) {
+                                reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
+                                    try {
+                                        if (error) {
+                                            sendResponse(error)
+                                        } else {
+                                            callback("SUCCESS");
+
+                                        }
+                                    } catch (error) {
+                                        sendResponse(error)
+                                    }
+                                });
+                            }
 
                     //Send Response Function Definition
                     function sendResponse(error, response) {

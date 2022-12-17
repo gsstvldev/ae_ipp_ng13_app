@@ -7,7 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
+
 
 
 
@@ -66,18 +67,18 @@ app.post('/', function(appRequest, appResponse, next) {
                             var final_status
                             var final_process_status
                             var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL'`;
-                           // var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_IP_REV_REQ_ACCEPT' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
+                            // var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_IP_REV_REQ_ACCEPT' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                             var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_IP_REV_REQ_ACCEPT'`
                             //  var take_status = `Select success_process_status,success_status from core_nc_workflow_setup where rule_code='RCT_IP_REV_REQ_ACCEPT'`;
                             //var take_batch_name = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='BATCH_NAME'`;
                             var take_api_params = `select  ns.remittance_info,ns.cr_acct_identification,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method,
                             ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,
-                            ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,
+                            ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt,
                             ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm
                             from npss_transactions ns  where npsst_id = '${params.Tran_Id}'`;
                             // var TakenpsstrRefno = `select npsstrrd_refno from npss_trn_process_log ns where ns.uetr = '${params.uetr}' and ns.status = '${params.STATUS}' and ns.process_status = '${params.ELIGIBLE_PROCESS_STATUS}' `
                             // var TakenpsstrRefno2 = `select npsstrrd_refno,npsstpl_id from npss_trn_process_log  where uetr= '${params.uetr}' order by npsstpl_id  desc`
-                            var Takecontraamount = `select contra_amount from npss_trn_process_log where npsstpl_id = '${params.NPSSTPL_Id}'`
+
                             ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
                                 if (arrurlResult.length) {
                                     // var param_val = JSON.parse(arrurlResult[0].rule_param_value);
@@ -107,50 +108,82 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     ExecuteQuery1(take_api_url, function (arrurl) {
                                                         if (arrurl.length) {
                                                             var url = arrurl[0].param_detail;
-
-                                                            ExecuteQuery1(Takecontraamount, function (arramount) {
-                                                                var contra_amount = arramount[0].contra_amount || ''
-                                                                var reversal_amount = arrprocesslog[0].reversal_amount || ''
-                                                                var amount
-                                                                  if (contra_amount && reversal_amount) {
-                                                                    if (Number(contra_amount) > Number(reversal_amount)) {
-                                                                        amount = reversal_amount
-                                                                    } else {
-                                                                        amount = contra_amount
-                                                                    }
-                                                                } else {
-                                                                    amount = ''
-                                                                }
-                                                           
-                                                            fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm,amount, function (result) {
-                                                                if (result === "SUCCESS" || result === "Success" || result === "success") {
-                                                                    console.log('API Call Success')
-                                                                    var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                                    var UpdateProcessLogTbl = `Update npss_trn_process_log set t24_return_code = '${params.T24_Return_Code}',cbuae_return_code = '${params.CBUAE_Return_Code}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsstpl_id = '${params.NPSSTPL_Id}'`
-                                                                    ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                        if (arrUpdTranTbl == 'SUCCESS') {
-                                                                            ExecuteQuery(UpdateProcessLogTbl, function (arrUpdPrcsTbl) {
-                                                                                if (arrUpdPrcsTbl == 'SUCCESS') {
-                                                                                    objresponse.status = 'SUCCESS';
-                                                                                    sendResponse(null, objresponse);
-                                                                                } else {
-                                                                                    objresponse.status = 'No Data Updated in Processlog Table';
-                                                                                    sendResponse(null, objresponse);
-
-                                                                                }
-                                                                            })
+                                                            var amount
+                                                            if (params.screenName == 's_rct_reversal_non_aed') {
+                                                                var Takecontraamount = `select contra_amount from npss_trn_process_log where npsstpl_id = '${params.NPSSTPL_Id}'`
+                                                                ExecuteQuery1(Takecontraamount, function (arramount) {
+                                                                    var contra_amount = arramount[0].contra_amount || ''
+                                                                    var reversal_amount = arrprocesslog[0].reversal_amount || ''
+                                                                  
+                                                                    if (contra_amount && reversal_amount) {
+                                                                        if (Number(contra_amount) > Number(reversal_amount)) {
+                                                                            amount = reversal_amount
                                                                         } else {
-                                                                            objresponse.status = 'No Data Updated in Transaction Table';
-                                                                            sendResponse(null, objresponse);
-
+                                                                            amount = contra_amount
                                                                         }
-                                                                    })
+                                                                    } else {
+                                                                        objresponse.status = 'FAILURE'
+                                                               objresponse.data = 'Contra or Reversal Amount is Missing'
+                                                               sendResponse(null,objresponse)
+                                                                    }
+                                                                })
+                                                            } else {
+                                                                var intblkamt = arrprocesslog[0].intrbk_sttlm_amnt
+                                                                var reversalAmt = arrprocesslog[0].reversal_amount
+                                                                if (Number(reversalAmt) > Number(intblkamt)) {
+                                                                    objresponse.status = 'FAILURE'
+                                                                    objresponse.data = 'Reversal Amount is greater than Inter Bulk Settlement Amount'
+                                                                    sendResponse(null,objresponse)
                                                                 } else {
-                                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
-                                                                    sendResponse(result, null);
+                                                                    amount = reversalAmt
                                                                 }
-                                                            })
-                                                        })
+
+
+                                                            }
+
+                                                            // ExecuteQuery1(Takecontraamount, function (arramount) {
+                                                            //     var contra_amount = arramount[0].contra_amount || ''
+                                                            //     var reversal_amount = arrprocesslog[0].reversal_amount || ''
+                                                            //     var amount
+                                                            //     if (contra_amount && reversal_amount) {
+                                                            //         if (Number(contra_amount) > Number(reversal_amount)) {
+                                                            //             amount = reversal_amount
+                                                            //         } else {
+                                                            //             amount = contra_amount
+                                                            //         }
+                                                            //     } else {
+                                                            //         amount = ''
+                                                            //     }
+
+                                                                fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm, amount, function (result) {
+                                                                    if (result === "SUCCESS" || result === "Success" || result === "success") {
+                                                                        console.log('API Call Success')
+                                                                        var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                        var UpdateProcessLogTbl = `Update npss_trn_process_log set t24_return_code = '${params.T24_Return_Code}',cbuae_return_code = '${params.CBUAE_Return_Code}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsstpl_id = '${params.NPSSTPL_Id}'`
+                                                                        ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                            if (arrUpdTranTbl == 'SUCCESS') {
+                                                                                ExecuteQuery(UpdateProcessLogTbl, function (arrUpdPrcsTbl) {
+                                                                                    if (arrUpdPrcsTbl == 'SUCCESS') {
+                                                                                        objresponse.status = 'SUCCESS';
+                                                                                        sendResponse(null, objresponse);
+                                                                                    } else {
+                                                                                        objresponse.status = 'No Data Updated in Processlog Table';
+                                                                                        sendResponse(null, objresponse);
+
+                                                                                    }
+                                                                                })
+                                                                            } else {
+                                                                                objresponse.status = 'No Data Updated in Transaction Table';
+                                                                                sendResponse(null, objresponse);
+
+                                                                            }
+                                                                        })
+                                                                    } else {
+                                                                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
+                                                                        sendResponse(result, null);
+                                                                    }
+                                                                })
+                                                           // })
                                                         }
                                                         else {
                                                             console.log("No Data found in workflow table");
@@ -199,7 +232,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     // Do API Call for Service 
-                    function fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm,amount, callbackapi) {
+                    function fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm, amount, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Accept INAU Reserve Fund'
                             var request = require('request');
@@ -297,8 +330,9 @@ app.post('/', function(appRequest, appResponse, next) {
                             reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
-                                    sendResponse(error, null);
+                                     reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
+                                     sendResponse(error, null);
+                                   
                                 } else {
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
                                     console.log("------API CALL SUCCESS----");
@@ -330,6 +364,23 @@ app.post('/', function(appRequest, appResponse, next) {
                         });
                     }
 
+
+                    //Execute Query for common
+                    function ExecuteQuery(query, callback) {
+                        reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
+                            try {
+                                if (error) {
+                                    sendResponse(error)
+                                } else {
+                                    callback("SUCCESS");
+
+                                }
+                            } catch (error) {
+                                sendResponse(error)
+                            }
+                        });
+                    }
+
                     //Send Response Function Definition
                     function sendResponse(error, response) {
                         try {
@@ -355,6 +406,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

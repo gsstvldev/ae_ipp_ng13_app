@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27417 
+Build ID        : 27421 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-17 5:8 AM 
+Modified Date   : 2022-Dec-17 6:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -69,6 +69,7 @@ focustoelement(){
 		this.ctrl.memory89.currency_format = ""
 		this.ctrl.memory89.data_scale = ""
 		this.ctrl.memory89.binding_name = "CREATED_DATE"
+		this.ctrl.memory89.hide_label = false
 		this.ctrl.memory89.depends_on = ""
 		this.ctrl.memory89.placeholder = ""
 		this.ctrl.memory89.dynamic_param = ""
@@ -78,7 +79,7 @@ focustoelement(){
 		this.ctrl.memory89.show = true
 		this.ctrl.memory89.sub_content = ""
 		this.ctrl.memory89.required = false
-		this.ctrl.memory89.vld_rules = [{"type":"FDV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"Invalid Date","custom_val_message":"","expression":"futuredate","project_code":"","project_name":"","cv_event":""},{"type":"PDV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"Invalid Date","custom_val_message":"","expression":"previousdate","project_code":"","project_name":"","cv_event":""}]
+		this.ctrl.memory89.vld_rules = [{"type":"FDV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"Please select current date","custom_val_message":"","expression":"futuredate","project_code":"","project_name":"","cv_event":""},{"type":"PDV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"Please select current date","custom_val_message":"","expression":"previousdate","project_code":"","project_name":"","cv_event":""},{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Please select current date","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.memory89.targetcolumn_lower = "memory89"
 		this.ctrl.memory89.disabled = false
 		this.ctrl.memory89.view_name = "f_npss_op_reversal_srch"

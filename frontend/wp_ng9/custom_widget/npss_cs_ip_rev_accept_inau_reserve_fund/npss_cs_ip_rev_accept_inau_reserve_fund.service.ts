@@ -35,7 +35,7 @@ export class npss_cs_ip_rev_accept_inau_reserve_fundService {
         ClientParams.AppId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");
         ClientParams.TENANT_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
         ClientParams.RULE_CODE = 'RCT_IP_REV_REQ_ACCEPT'
-        Clientparam.screenName = screenInstance.wftpa_description
+        ClientParams.screenName = screenInstance.wftpa_description
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     CallUrlWithData(ClientParams, screenInstance, internals) {

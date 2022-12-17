@@ -148,7 +148,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 else {
                                                                     console.log("No Data found in workflow table");
                                                                     objresponse.status = "No Data found in workflow table"
-                                                                    sendResponse(objresponse, null)
+                                                                   sendResponse(null,objresponse)
                                                                 }
                                                             })
                                                         }
@@ -172,7 +172,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         else {
                                             console.log("No Data found in Transaction table");
                                             objresponse.status = "No Data found in Transaction table"
-                                            sendResponse(objresponse, null)
+                                           sendResponse(null,objresponse)
                                         }
 
                                     })
@@ -180,7 +180,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 else{
                                     console.log("No Data found in Rule table");
                                     objresponse.status = "No Data found in Rule table"
-                                    sendResponse(objresponse, null)
+                                   sendResponse(null,objresponse)
                                 }
                             })
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27421 
+Build ID        : 27425 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-17 6:1 AM 
+Modified Date   : 2022-Dec-17 7:35 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -545,7 +545,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "brfq for queue"
 	brfq_for_queue__internal(parent_event_result){
 		this.brfq_for_queue__sfr_for_queue(parent_event_result)
-		this.brfq_for_queue__close_popup(parent_event_result)
+		this.brfq_for_queue__close_popups(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "queue"
@@ -1018,7 +1018,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		let event_code="e_1671252481010"
 		let event_params={"caller_name":"ssp_for_pl_queue__brfq_for_queue","event_desc":"BRFQ for Queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals="brfq_for_queue__sfr_for_queue,brfq_for_queue__close_popup,"
+		let internals="brfq_for_queue__sfr_for_queue,brfq_for_queue__close_popups,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1671187481122","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reversal Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1671186151268","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671186151686","date_format":false}],"joins":[]},"eq_text":"SELECT  DISTINCT PROCESS_STATUS,  STATUS FROM  (  SELECT   NT.CREATED_DATE,   NT.STATUS,   NT.PROCESS_STATUS,   NT.UETR,   NT.PROCESSING_SYSTEM,   NT.TENANT_ID,   NT.MODIFIED_DATE,   NT.MODIFIED_DATE_UTC,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   NT.CREATED_BY,   NT.CREATED_BY_NAME,   NT.SYSTEM_ID,   QR.ROLE_ID,   QR.VPH_APP_ID AS QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME AS QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP AS QR_MENU_GROUP,   QR.SCREEN_MODULE AS QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID AS Q_APP_ID,   QR.SORT_ORDER AS QS_SORT_ORDER,   PQ.SORT_ORDER AS Q_SORT_ORDER,   NT.DEPARTMENT_CODE,   NT.VALUE_DATE,   NT.DBTR_ACCT_NO,   NT.CDTR_ACCT_NO,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.INTRBK_STTLM_AMNT,   NT.REVERSAL_AMOUNT,   NTPL.REVERSAL_CODE  FROM   NPSS_TRANSACTIONS NT  LEFT JOIN NPSS_TRN_PROCESS_LOG NTPL ON NTPL.UETR = NT.UETR AND NT.STATUS = NTPL.STATUS  LEFT JOIN TRANSACTION_SET TS ON   NT.NPSST_ID = TS.TRN_ID   AND NT.DTT_CODE = TS.DTT_CODE  INNER JOIN <TRAN_DB>.CORE_Q_STATUS_ROLES QR ON   NT.STATUS = QR.PROCESS_QUEUE_STATUS   AND NT.PROCESS_STATUS = QR.QUEUE_CODE  INNER JOIN <TRAN_DB>.CORE_APP_Q_SETUP PQ ON   NT.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reversal Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"Department_code","binding_name":"Department_code","binding_value":"","source_name":"Department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"","oprtr":"","data_type":"","conj_operator":"","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -1052,7 +1052,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "brfq for queue"
-	brfq_for_queue__close_popup(parent_event_result) { 
+	brfq_for_queue__close_popups(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
@@ -1060,7 +1060,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="ssp_for_pl_queue"
 		let event_code="e_1671256646953"
-		let event_params={"popup_info":{"context":""},"caller_name":"brfq_for_queue__close_popup","event_desc":"Close popup","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"popup_info":{"context":""},"caller_name":"brfq_for_queue__close_popups","event_desc":"Close popups","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="close_popup"
 		let internals=""
 		let event_data={}

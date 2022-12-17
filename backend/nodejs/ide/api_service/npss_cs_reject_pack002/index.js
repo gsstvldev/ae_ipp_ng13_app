@@ -61,7 +61,7 @@ app.post('/', function(appRequest, appResponse, next) {
                            var seltranqry = `select * from npss_transactions where npsst_id='${params.Id}'`
                            var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                           // var selplqry=`select tpl.cbuae_return_code,crn.return_description,tpl.npsstrrd_refno from npss_trn_process_log tpl inner join core_nc_return_codes crn on  tpl.cbuae_return_code=crn.return_code where npsstpl_id='${params.tpl_id}'`
-                          var selplqry=`select response_code,additional_info from npss_trn_process_log where npsstpl_id='${params.tpl_id}'`
+                          var selplqry=`select CBUAE_RETURN_CODE from npss_trn_process_log where status = 'IP_RCT_REV_REQ_REJECTED'`
 
                            ExecuteQuery1(ruleqry, function (result) {
                                if (result.length) {
@@ -205,7 +205,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                json: {
                                    "cr_sort_code": tranresult[0].cr_sort_code,
                                    "dr_sort_code": tranresult[0].dr_sort_code,
-                                   "hdr_new_msg_id": tranresult[0].hdr_msg_id,
+                                   "hdr_msg_id": tranresult[0].hdr_msg_id,
                                    "hdr_created_date": tranresult[0].hdr_created_date,
                                    "hdr_total_amount": tranresult[0].hdr_total_amount,
                                    "payment_endtoend_id": tranresult[0].payment_endtoend_id,
@@ -213,8 +213,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                    "tran_ref_id": tranresult[0].tran_ref_id,
                                    "active_status": 'RJCT',
                                    "clrsysref":tranresult[0].clrsysref,
-                                    "rsn_code":tplresult[0].response_code,
-                                   "rsn_additional_info":tplresult[0].additional_info,
+                                    "rsn_code":tplresult[0].cbuae_return_code, 
+                                   
                                    "parent_npsstrrd_refno":tplresult[0].npsstrrd_refno
 
                                },

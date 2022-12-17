@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27434 
+Build ID        : 27437 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-17 12:56 PM 
+Modified Date   : 2022-Dec-17 13:27 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -66,6 +66,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	uicgc_30 : string = "trig_action_for_list_ui"
 	uicgc_31 : string = "get_usable_balance_widget"
 	uicgc_32 : string = "cancel_return_ui"
+	uicgc_33 : string = "reject_ui"
 	key_events : any = {}
 	btl_1304_1671280977095 : string = "p_fh_review_layout"
 	btl_1304_1671195425258 : string = "p_cancel_layout"
@@ -81,10 +82,10 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	btl_1304_1666856778120 : string = "p_accept_layout"
 	btl_1304_1666856478860 : string = "p_fab_review_layout"
 	btl_1304_1666856426885 : string = "p_main_layout"
-	forms : any = ["uicgc_32","uicgc_9","uicgc_26","uicgc_5","uicgc_24","uicgc_6","uicgc_23","uicgc_20","uicgc_10","uicgc_4","uicgc_25","uicgc_17","uicgc_19","uicgc_15","uicgc_12","uicgc_3"]
+	forms : any = ["uicgc_32","uicgc_9","uicgc_26","uicgc_5","uicgc_24","uicgc_6","uicgc_23","uicgc_20","uicgc_33","uicgc_10","uicgc_4","uicgc_25","uicgc_17","uicgc_19","uicgc_15","uicgc_12","uicgc_3"]
 	p_accept_layout__spap_for_accept_showpopup : boolean = false
 	p_change_return_layout__crr_for_spap_showpopup : boolean = false
-	p_remarks_layout__spap_for_error_code_showpopup : boolean = false
+	p_remarks_layout__spap_for_reject_code_showpopup : boolean = false
 	p_cancel_layout__spap_for_rau_cancel_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
@@ -139,6 +140,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	get_usable_balance_widget : any = {}
 	cancel_return_ui : any = {}
 	cancel_return_ui_save : any = {}
+	reject_ui : any = {}
 
 
 	// Constructor 
@@ -734,6 +736,20 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.cancel_return_ui_save.dynamic_param = {}
 		this.cancel_return_ui_save.role = []
 		this.cancel_return_ui_save.action = ""
+	
+		// Component level properties - "Reject UI" 
+		this.reject_ui.uictrl_code = "dynamic_ui"
+		this.reject_ui.uicgc_desc = "Reject UI"
+		this.reject_ui.uicgc_code = "uicgc_33"
+		this.reject_ui.params = {}
+		this.reject_ui.datasource = {}
+		this.reject_ui.context_menu = []
+		this.reject_ui.views = {"first":"DTT_1304_1665905039255","is_tab_mode":"N","dtt_1304_1665905039255":{"0":[{"dttv_id":"NPSS Reject UI","tab_order":0,"tab_name":"","uicgc_description":"Reject UI","role_description":"default","dtt_description":"NPSS Trn Process Log"}]}}
+		this.reject_ui.onChangecomponent = new EventEmitter<any>()
+		this.reject_ui.show = true
+		this.reject_ui.dynamic_param = {}
+		this.reject_ui.f_npss_reject_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.reject_ui.form_name = "f_npss_reject_ui"
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -898,7 +914,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui reject"
 	reversal_action_ui_reject__action_button_click(){
-		this.reversal_action_ui_reject__spap_for_error_code()
+		this.reversal_action_ui_reject__spap_for_reject_code()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui approve"
@@ -1121,6 +1137,11 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	//Handler for SELECTION_CHANGED event of "npss pl change rtn reason ui t24 return code"
 	npss_pl_change_rtn_reason_ui_t24_return_code__selection_changed(){
 		this.npss_pl_change_rtn_reason_ui_t24_return_code__e_1669363813044__change_return_ui()
+	}
+
+	//Handler for SELECTION_CHANGED event of "npss reject ui t24 return code"
+	npss_reject_ui_t24_return_code__selection_changed(){
+		this.npss_reject_ui_t24_return_code__fcb_for_t24__reject_ui()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2253,14 +2274,14 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui reject"
-	reversal_action_ui_reject__spap_for_error_code() { 
+	reversal_action_ui_reject__spap_for_reject_code() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="reversal_action_ui_reject"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1668694663530"
-		let event_params={"caller_name":"reversal_action_ui_reject__spap_for_error_code","event_desc":"SPAP for Error Code","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_reject","raiseparam":{"popup_category":"profile","variable":"p_remarks_layout__spap_for_error_code","selector":"p_remarks_layout","profile_code":"BTL_1304_1668694521732","window_title":"Remark Details","window_height":300,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_error_code","eventcode":"E_1668694663530"}}
+		let event_params={"caller_name":"reversal_action_ui_reject__spap_for_reject_code","event_desc":"SPAP for Reject Code","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_reject","raiseparam":{"popup_category":"profile","variable":"p_remarks_layout__spap_for_reject_code","selector":"p_remarks_layout","profile_code":"BTL_1304_1668694521732","window_title":"Remark Details","window_height":300,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_reject_code","eventcode":"E_1668694663530"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}
@@ -3499,6 +3520,27 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1669363813044"
 		let event_params={"source_comp_id":"change_return_ui","source_ctrl_id":"t24_return_code","destn_comp_id":"change_return_ui","destn_ctrl_id":"cbuae_return_code","caller_name":"npss_pl_change_rtn_reason_ui_t24_return_code__e_1669363813044__change_return_ui","event_desc":"E_1669363813044","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_pl_change_rtn_reason_ui~uicgc_6~ui~df_1304_1665905157963~14","raiseparam":{"parentcolumn":"SOURCE_RETURN_CODE","need_selecteditem":"Y"}}
+		let handler_code="filter_combo_binding"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.filter_combo_binding(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "npss reject ui t24 return code"
+	npss_reject_ui_t24_return_code__fcb_for_t24__reject_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="npss_reject_ui_t24_return_code"
+		let destn_id="npss_reject_ui_cbuae_return_code"
+		let parent_source_id=""
+		let event_code="e_1671282710967"
+		let event_params={"source_comp_id":"reject_ui","source_ctrl_id":"t24_return_code","destn_comp_id":"reject_ui","destn_ctrl_id":"cbuae_return_code","caller_name":"npss_reject_ui_t24_return_code__fcb_for_t24__reject_ui","event_desc":"FCB for T24","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_reject_ui~uicgc_33~ui~df_1304_1665905157963~14","raiseparam":{"parentcolumn":"SOURCE_RETURN_CODE","need_selecteditem":"Y"}}
 		let handler_code="filter_combo_binding"
 		let internals=""
 		let event_data={}

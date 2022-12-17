@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27424 
+Build ID        : 27427 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-17 7:32 AM 
+Modified Date   : 2022-Dec-17 13:20 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -22,7 +22,8 @@ export class p_remarks_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	remarks_ui : any = {}
+  	reject_ui : any = {}
+	remarks_ui : any = {}
 
 
   // Constructor 
@@ -30,7 +31,9 @@ export class p_remarks_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.remarks_ui.desc = "Remarks UI"
+    	this.reject_ui.desc = "Reject UI"
+		this.reject_ui.need_header = ""
+		this.remarks_ui.desc = "Remarks UI"
 		this.remarks_ui.need_header = ""
 	
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27429 
+Build ID        : 27433 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-17 11:37 AM 
+Modified Date   : 2022-Dec-17 13:11 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -39,10 +39,10 @@ import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { f_sub_navigation_uiComponent } from './f_sub_navigation_ui/f_sub_navigation_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_searchComponent } from './f_search/f_search.component'
+import { f_npss_merchant_srchComponent } from './f_npss_merchant_srch/f_npss_merchant_srch.component'
 import { p_action_layoutComponent } from './p_action_layout/p_action_layout.component'
-import { f_customer_detailComponent } from './f_customer_detail/f_customer_detail.component'
-import { f_account__detailComponent } from './f_account__detail/f_account__detail.component'
+import { f_npss_merchant_uiComponent } from './f_npss_merchant_ui/f_npss_merchant_ui.component'
+import { f_npss_mer_account_uiComponent } from './f_npss_mer_account_ui/f_npss_mer_account_ui.component'
 import { f_actionComponent } from './f_action/f_action.component'
 
 
@@ -60,7 +60,7 @@ import { f_actionComponent } from './f_action/f_action.component'
     s_merchant_setupRoutingModule,
     npss_cs_change_customer_mobileModule,torus_cs_show_hideModule,npss_c_btn_enb_disbModule,npss_cs_customer_enrolmentModule
   ],
-  declarations: [s_merchant_setupComponent,p_main_layoutComponent,f_navigation_uiComponent,f_sub_navigation_uiComponent,p_search_layoutComponent,f_searchComponent,p_action_layoutComponent,f_customer_detailComponent,f_account__detailComponent,f_actionComponent,],
+  declarations: [s_merchant_setupComponent,p_main_layoutComponent,f_navigation_uiComponent,f_sub_navigation_uiComponent,p_search_layoutComponent,f_npss_merchant_srchComponent,p_action_layoutComponent,f_npss_merchant_uiComponent,f_npss_mer_account_uiComponent,f_actionComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

@@ -39,7 +39,11 @@ export class npss_cs_ip_rev_get_dealService {
         this.httpHelper.HttpPost('/microsvc/npss_cs_ip_rev_get_deal/', ClientParams)
             .subscribe((res: any) => {
                 if (res.data.status == 'SUCCESS') {
-                    var response = res.data.data;
+                      var dat =res.data.data;
+                   var dat1 =dat.replace(/(\n)/g,"")
+                 
+                var response =JSON.parse(dat1)
+                  
                     console.log(res.data.data);
                 var ctrlscope= screenInstance['deal_ui'].f_npss_reversal_deal_plog_ui.model;
                 ctrlscope.BUY_CURRENCY = response.buy_currency

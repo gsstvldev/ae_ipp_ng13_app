@@ -520,7 +520,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 json: {
                                    
                                      "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
-                          "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
+                              "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
                    "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                "intrbk_sttlm_amnt":arrprocesslog[0].intrbk_sttlm_amnt || '',
                  "dr_sort_code": arrprocesslog[0].dr_sort_code || '',

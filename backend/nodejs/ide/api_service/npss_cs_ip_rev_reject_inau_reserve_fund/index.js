@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+
 /*  Created By : Siva Harish
 Created Date :14/12/2022
 Modified By : 
@@ -100,7 +101,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                     objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                     objCusTranInst.routingkey = headers.routingkey;
                                     arrCusTranInst.push(objCusTranInst)
-                                })
+                                
                                
                                 _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
                                     if (CusTranInsertRes.length > 0) {
@@ -119,6 +120,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                         })
                                     }
                                 })
+})
                                
                             }
                             else {
@@ -163,6 +165,30 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 }
                             });
                         }
+ function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
+                                try {
+                                    reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
+                                        try {
+                                            if (error) {
+                                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
+                                                sendResponse(error)
+                                            } else {
+                                                if (result.length > 0) {
+                                                    callbackInsert(result);
+                                                } else {
+                                                    callbackInsert([]);
+                                                }
+                                            }
+                                        } catch (error) {
+                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
+                                            sendResponse(error)
+                                        }
+                                    });
+                                } catch (error) {
+                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
+                                    sendResponse(error)
+                                }
+                            }
 
                         
 
@@ -197,6 +223,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 })
+
+
 
 
 

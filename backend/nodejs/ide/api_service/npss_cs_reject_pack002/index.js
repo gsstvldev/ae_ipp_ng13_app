@@ -210,7 +210,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                    "hdr_total_amount": tranresult[0].hdr_total_amount,
                                    "payment_endtoend_id": tranresult[0].payment_endtoend_id,
                                    "uetr": tranresult[0].uetr,
-                                   "tran_ref_id": tranresult[0].tran_ref_id,
+                                    "tran_ref_id": tranresult[0].tran_ref_id,
                                    "active_status": 'RJCT',
                                    "clrsysref":tranresult[0].clrsysref,
                                     "rsn_code":tplresult[0].cbuae_return_code, 

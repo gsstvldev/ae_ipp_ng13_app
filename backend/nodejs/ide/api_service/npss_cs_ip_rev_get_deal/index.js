@@ -180,7 +180,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "alternate_account_type":  arrActInf[0].alternate_account_type ||'',
                                         "alternate_account_id": arrActInf[0].alternate_account_id || '',
                                         "account_officer":arrActInf[0].account_officer || '',
-                                        "curr_rate_segment": arrActInf[0].curr_rate_segment || '',
+                                         "curr_rate_segment": arrActInf[0].curr_rate_segment || '',
                                         "customer_id": arrActInf[0].customer_id || ''
                                     }
                                 },

@@ -29,7 +29,7 @@ export class npss_cs_rev_get_usable_balanceService {
         ClientParams.NPSSTPL_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSTPL_ID");
         ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
-        ClientParams.PROD_CODE = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "PRODUCT_CODE");
+          ClientParams.PROD_CODE = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "PRODUCT_CODE");
         ClientParams.AppId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");
         ClientParams.TENANT_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
         ClientParams.RULE_CODE = 'NPSS_REVERSE_USABLE_BALANCE'
@@ -39,8 +39,16 @@ export class npss_cs_rev_get_usable_balanceService {
         this.httpHelper.HttpPost('/microsvc/npss_cs_rev_get_usable_balance/', ClientParams)
             .subscribe((res: any) => {
                 var event:any
-                if (res.data.status == 'SUCCESS') {
-                  event = { eventId: "custom-connector", param: res.data.data, internals: internals }
+                if (res.data.status=="SUCCESS") {
+                    //var dat="{  \"status\": \"SUCCESS\",  \"response\": {    \"applicationArea\": {      \"correlationId\": \"string\",      \"countryOfOrigin\": \"AE\",      \"transactionDateTime\": \"25-Jun-2019T12:30:45AM\",      \"transactionId\": \"A91225DDFGH\",      \"senderId\": \"FABMW\",      \"transactionTimeZone\": \"\"    },    \"responseStatus\": {      \"status\": \"SUCCESS\",      \"statusMessage\": \"SUCCESS\",      \"errorDetails\": [        {          \"errorCode\": \"SYS001\",          \"errorDesc\": \"Errormessage\"        }      ],      \"metaData\": {        \"dateFormat\": \"string\"      }    },    \"dataArea\": {      \"customerNumber\": \"\",      \"customerName\": \"ImranMalik\",      \"postingRestrictCode\": \"91\",      \"accountBlockCode\": \"\",      \"isInactive\": \"N\",      \"signature\": \"string\",      \"mandate\": \"string\",      \"signeeName\": \"ImranMalik\",      \"signeeType\": \"string\",      \"description\": \"string\",      \"signExpiryDate\": \"2022-12-16\",      \"usableBalance\": 8500,      \"workingBalance\": 8000,      \"raAccountBalance\": \"8000\"    }  }}";
+                   //var dat ="{\n  \"status\": \"SUCCESS\",\n  \"response\": {\n    \"applicationArea\": {\n      \"correlationId\": \"string\",\n      \"countryOfOrigin\": \"AE\",\n      \"transactionDateTime\": \"25-Jun-2019T12:30:45AM\",\n      \"transactionId\": \"A91225DDFGH\",\n      \"senderId\": \"FABMW\",\n      \"transactionTimeZone\": \"\"\n    },\n    \"responseStatus\": {\n      \"status\": \"SUCCESS\",\n      \"statusMessage\": \"SUCCESS\",\n      \"errorDetails\": [\n        {\n          \"errorCode\": \"SYS001\",\n          \"errorDesc\": \"Errormessage\"\n        }\n      ],\n      \"metaData\": {\n        \"dateFormat\": \"string\"\n      }\n    },\n    \"dataArea\": {\n      \"customerNumber\": \"\",\n      \"customerName\": \"ImranMalik\",\n      \"postingRestrictCode\": \"91\",\n      \"accountBlockCode\": \"\",\n      \"isInactive\": \"N\",\n      \"signature\": \"string\",\n      \"mandate\": \"string\",\n      \"signeeName\": \"ImranMalik\",\n      \"signeeType\": \"string\",\n      \"description\": \"string\",\n      \"signExpiryDate\": \"2022-12-16\",\n      \"usableBalance\": 8500,\n      \"workingBalance\": 8000,\n      \"raAccountBalance\": \"8000\"\n    }\n  }\n}";
+                   // var dat1=JSON.stringify(dat);
+                   var dat =res.data.data;
+                   var dat1 =dat.replace(/(\n)/g,"")
+                  // var t=s.replace(/(\n)/g,"")
+                var e=JSON.parse(dat1)
+                  //event = { eventId: "custom-connector", param: res.data.data, internals: internals }
+                  event = { eventId: "custom-connector", param: e, internals: internals }
                     screenInstance["get_usable_balance_widget"].onChangecomponent.emit(event);
                   
                 }  else if (res.data.status == 'No Rule Code Found' || res.data == 'No Rule Code Found') {

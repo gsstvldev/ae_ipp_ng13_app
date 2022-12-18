@@ -12,7 +12,7 @@ app.post('/', function(appRequest, appResponse, next) {
         /*   Created By :Daseen
         Created Date :04-11-2022
         Modified By : Siva Harish
-        Modified Date : 17/12/2022    
+        Modified Date : 18/12/2022    
         Reason for : 
         */
            var serviceName = 'NPSS IP REV Ret Auth PACS004';
@@ -519,18 +519,21 @@ app.post('/', function(appRequest, appResponse, next) {
                                 method: 'POST',
                                 json: {
                                    
-                                     "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
-                              "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
-                   "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
-               "intrbk_sttlm_amnt":arrprocesslog[0].intrbk_sttlm_amnt || '',
-                 "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
-            "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
-         "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
-        "uetr": arrprocesslog[0].uetr,
-        "hdr_clearing_system": arrprocesslog[0].hdr_clearing_system || '',
-       "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
-       "post_reason_code": arrreturncode[0].cbuae_return_code || '',
-           "clrsysref":arrprocesslog[0].clrsysref 
+                               "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
+                               "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date || '',
+                                 "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
+                                 "hdr_settlement_method":arrprocesslog[0].hdr_settlement_method || '',
+                              "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
+                               "intrbk_sttlm_amnt":arrprocesslog[0].intrbk_sttlm_amnt || '',
+                              "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
+                              "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
+                               "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
+                                "uetr": arrprocesslog[0].uetr,
+                                   "hdr_clearing_system": arrprocesslog[0].hdr_clearing_system || '',
+                                    "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
+                                  "post_reason_code": arrreturncode[0].cbuae_return_code || '',
+                                    "clrsysref":arrprocesslog[0].clrsysref 
+                                    
 
                                 },
                                 headers: {

@@ -14,7 +14,7 @@ try {
    Modified Date : 17/11/2022    
     Modified By : Siva Harish
    Modified Date : 19/11/2022    
-       Reason for : Changing query for rulecode and changes for finance house
+          Reason for : Changing query for rulecode and changes for finance house
    */
    var serviceName = 'NPSS IP REV Accept INAU Reserve Fund';
    var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        

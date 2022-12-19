@@ -14,7 +14,7 @@ Modified By : sIVA hARISH
 Modified Date : 17/12/2022
 Modified By : sIVA hARISH
 Modified Date : 19/12/2022
-   Reason for : Changes For Finance House & query changes for taking status and remove api name
+      Reason for : Changes For Finance House & query changes for taking status and remove api name
  
 */
 var serviceName = 'NPSS Reversal Cancel';
@@ -49,7 +49,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                sendResponse(error);
             } else {
                var PRCT_ID = prct_id
-               var success_process_status
+                var success_process_status
                var success_status
                try {
                   var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
@@ -189,7 +189,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                   }else{
                      var TakedatafrmTrn = `select * from npss_transactions where npsst_id = '${params.Id}'`
                      ExecuteQuery1(TakedatafrmTrn, function (arrdata) {
-                        if (arrdata.length > 0) {
+                           if (arrdata.length > 0) {
                            var Takeurl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
                            ExecuteQuery1(Takeurl, function (arrgeturl) {
                               fn_DoAPIServiceCall(arrdata, arrgeturl, function (getresult) {

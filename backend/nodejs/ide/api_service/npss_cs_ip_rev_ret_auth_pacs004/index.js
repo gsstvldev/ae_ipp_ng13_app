@@ -57,7 +57,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         var PRCT_ID = prct_id
                         var ApitrnId
                         var app_id
-                        var final_status
+                          var final_status
                         var final_process_status
                         var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_AUTH_PACS004' and param_code='URL'`;
                         var take_return_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL'`;
@@ -317,7 +317,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             if (arrurlResult.length) {
                               
                                 final_process_status = arrurlResult[0].success_process_status
-                                final_status = arrurlResult[0].success_status
+                                    final_status = arrurlResult[0].success_status
                                 ExecuteQuery1(take_api_params, function (arrprocesslog) {
                                     if (arrprocesslog.length) {
                                         console.log('................', arrprocesslog[0])

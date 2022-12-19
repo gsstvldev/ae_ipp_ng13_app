@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27435 
+Build ID        : 27443 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-17 14:16 PM 
+Modified Date   : 2022-Dec-19 5:59 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -23,6 +23,11 @@ import {npss_cs_change_customer_mobileModule} from '../../../custom_widget/npss_
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_c_btn_enb_disbModule} from '../../../custom_widget/npss_c_btn_enb_disb/npss_c_btn_enb_disb.module'
 import {npss_cs_customer_enrolmentModule} from '../../../custom_widget/npss_cs_customer_enrolment/npss_cs_customer_enrolment.module'
+import {npss_cs_remove_customer_bank_accountsModule} from '../../../custom_widget/npss_cs_remove_customer_bank_accounts/npss_cs_remove_customer_bank_accounts.module'
+import {npss_cs_add_customer_bank_accountsModule} from '../../../custom_widget/npss_cs_add_customer_bank_accounts/npss_cs_add_customer_bank_accounts.module'
+import {npss_cs_blockunblock_customer_bankaccountModule} from '../../../custom_widget/npss_cs_blockunblock_customer_bankaccount/npss_cs_blockunblock_customer_bankaccount.module'
+import {npss_cs_update_customer_personal_dataModule} from '../../../custom_widget/npss_cs_update_customer_personal_data/npss_cs_update_customer_personal_data.module'
+import {npss_cs_unenrolment_customerModule} from '../../../custom_widget/npss_cs_unenrolment_customer/npss_cs_unenrolment_customer.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -58,7 +63,7 @@ import { f_actionComponent } from './f_action/f_action.component'
     OverlayPanelModule,
     
     s_customer_setupRoutingModule,
-    npss_cs_change_customer_mobileModule,torus_cs_show_hideModule,npss_c_btn_enb_disbModule,npss_cs_customer_enrolmentModule
+    npss_cs_change_customer_mobileModule,torus_cs_show_hideModule,npss_c_btn_enb_disbModule,npss_cs_customer_enrolmentModule,npss_cs_remove_customer_bank_accountsModule,npss_cs_add_customer_bank_accountsModule,npss_cs_blockunblock_customer_bankaccountModule,npss_cs_update_customer_personal_dataModule,npss_cs_unenrolment_customerModule
   ],
   declarations: [s_customer_setupComponent,p_main_layoutComponent,f_navigation_uiComponent,f_sub_navigation_uiComponent,p_search_layoutComponent,f_npss_customer_srchComponent,p_action_layoutComponent,f_npss_customer_proxy_uiComponent,f_npss_customer_account_uiComponent,f_actionComponent,],
   providers:[AppHandlerService,ComponenthelperService]

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27435 
+Build ID        : 27443 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-17 14:16 PM 
+Modified Date   : 2022-Dec-19 5:59 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -16,12 +16,17 @@ import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hi
 import {npss_c_btn_enb_disbService} from '../../../custom_widget/npss_c_btn_enb_disb/npss_c_btn_enb_disb.service'
 import {npss_cs_change_customer_mobileService} from '../../../custom_widget/npss_cs_change_customer_mobile/npss_cs_change_customer_mobile.service'
 import {npss_cs_customer_enrolmentService} from '../../../custom_widget/npss_cs_customer_enrolment/npss_cs_customer_enrolment.service'
+import {npss_cs_remove_customer_bank_accountsService} from '../../../custom_widget/npss_cs_remove_customer_bank_accounts/npss_cs_remove_customer_bank_accounts.service'
+import {npss_cs_add_customer_bank_accountsService} from '../../../custom_widget/npss_cs_add_customer_bank_accounts/npss_cs_add_customer_bank_accounts.service'
+import {npss_cs_blockunblock_customer_bankaccountService} from '../../../custom_widget/npss_cs_blockunblock_customer_bankaccount/npss_cs_blockunblock_customer_bankaccount.service'
+import {npss_cs_update_customer_personal_dataService} from '../../../custom_widget/npss_cs_update_customer_personal_data/npss_cs_update_customer_personal_data.service'
+import {npss_cs_unenrolment_customerService} from '../../../custom_widget/npss_cs_unenrolment_customer/npss_cs_unenrolment_customer.service'
 
 @Component({
 	selector: 's_customer_setup',
 	templateUrl: './s_customer_setup.component.html',
 	styleUrls: ['./s_customer_setup.component.css'],
-	providers:[torus_cs_show_hideService,npss_c_btn_enb_disbService,npss_cs_change_customer_mobileService,npss_cs_customer_enrolmentService]
+	providers:[torus_cs_show_hideService,npss_c_btn_enb_disbService,npss_cs_change_customer_mobileService,npss_cs_customer_enrolmentService,npss_cs_remove_customer_bank_accountsService,npss_cs_add_customer_bank_accountsService,npss_cs_blockunblock_customer_bankaccountService,npss_cs_update_customer_personal_dataService,npss_cs_unenrolment_customerService]
 })
     
 // Start of class 
@@ -86,7 +91,7 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_btn_enb_disbService:npss_c_btn_enb_disbService,private npss_cs_change_customer_mobileService:npss_cs_change_customer_mobileService,private npss_cs_customer_enrolmentService:npss_cs_customer_enrolmentService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_btn_enb_disbService:npss_c_btn_enb_disbService,private npss_cs_change_customer_mobileService:npss_cs_change_customer_mobileService,private npss_cs_customer_enrolmentService:npss_cs_customer_enrolmentService,private npss_cs_remove_customer_bank_accountsService:npss_cs_remove_customer_bank_accountsService,private npss_cs_add_customer_bank_accountsService:npss_cs_add_customer_bank_accountsService,private npss_cs_blockunblock_customer_bankaccountService:npss_cs_blockunblock_customer_bankaccountService,private npss_cs_update_customer_personal_dataService:npss_cs_update_customer_personal_dataService,private npss_cs_unenrolment_customerService:npss_cs_unenrolment_customerService) {
     
 	}
     
@@ -627,6 +632,11 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.sub_navigation_ui_remove__cc_for_enable_disable_for_remove()
 	}
 
+	//Handler for INTERNAL event of "cc for enable disable for remove"
+	cc_for_enable_disable_for_remove__internal(parent_event_result){
+		this.cc_for_enable_disable_for_remove__cc_for_remove_account(parent_event_result)
+	}
+
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui set default"
 	sub_navigation_ui_set_default__action_button_click(){
 		this.sub_navigation_ui_set_default__cc_for_enable_disable_for_set_default()
@@ -651,6 +661,26 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_block_unblock_account__sp_for_nav_block()
 		this.navigation_ui_block_unblock_account__cc_for_nav_block()
 		this.navigation_ui_block_unblock_account__se_for_nav_block()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action add account"
+	action_add_account__action_button_click(){
+		this.action_add_account__cc_for_add_account()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action block unblock"
+	action_block_unblock__action_button_click(){
+		this.action_block_unblock__cc_for_block_unblock()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action update personal data"
+	action_update_personal_data__action_button_click(){
+		this.action_update_personal_data__cc_for_update_personal()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action unenrol"
+	action_unenrol__action_button_click(){
+		this.action_unenrol__cc_for_unenrol()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2313,11 +2343,33 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let event_code="e_1671021559328"
 		let event_params={"caller_name":"sub_navigation_ui_remove__cc_for_enable_disable_for_remove","event_desc":"CC for enable disable for remove","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_remove","raiseparam":{}}
 		let handler_code="custom_connectors"
-		let internals=""
+		let internals="cc_for_enable_disable_for_remove__cc_for_remove_account,"
 		let event_data={}
 		let data_source={}
 		try {
 			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for enable disable for remove"
+	cc_for_enable_disable_for_remove__cc_for_remove_account(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_enable_disable_for_remove"
+		let destn_id=""
+		let parent_source_id="sub_navigation_ui_remove"
+		let event_code="e_1671429247156"
+		let event_params={"caller_name":"cc_for_enable_disable_for_remove__cc_for_remove_account","event_desc":"CC for remove account","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_remove","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_remove_customer_bank_accountsService.fn_npss_cs_remove_customer_bank_accounts(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2528,6 +2580,90 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action add account"
+	action_add_account__cc_for_add_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_add_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671428574446"
+		let event_params={"caller_name":"action_add_account__cc_for_add_account","event_desc":"CC for Add account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_add_account","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_add_customer_bank_accountsService.fn_npss_cs_add_customer_bank_accounts(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action block unblock"
+	action_block_unblock__cc_for_block_unblock() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_block_unblock"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671428620890"
+		let event_params={"caller_name":"action_block_unblock__cc_for_block_unblock","event_desc":"CC for Block unblock","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_block_unblock","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_blockunblock_customer_bankaccountService.fn_npss_cs_blockunblock_customer_bankaccount(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action update personal data"
+	action_update_personal_data__cc_for_update_personal() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_update_personal_data"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671428965413"
+		let event_params={"caller_name":"action_update_personal_data__cc_for_update_personal","event_desc":"CC for update personal","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_update_personal_data","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_update_customer_personal_dataService.fn_npss_cs_update_customer_personal_data(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action unenrol"
+	action_unenrol__cc_for_unenrol() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_unenrol"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671429006252"
+		let event_params={"caller_name":"action_unenrol__cc_for_unenrol","event_desc":"CC for unenrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_unenrol","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_unenrolment_customerService.fn_npss_cs_unenrolment_customer(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

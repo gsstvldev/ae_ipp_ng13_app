@@ -1,0 +1,37 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_merchant_setup_srch="ngForm">
+<div id="RN01" class="row">
+	<div #npss_merchant_setup_srch_memory26 id="RN01CN1" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory26')" >
+				<cdn_date [ctrl_id]="'npss_merchant_setup_srch_memory26'" [comp_id]="comp_id" [ctrl]="ctrl.memory26" [model]="screen_instance[this.comp_id].f_npss_merchant_setup_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN11CN5" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('bankuserid')" >
+				<txt [ctrl_id]="'npss_merchant_setup_srch_bankuserid'" [comp_id]="comp_id" [ctrl]="ctrl.bankuserid" [model]="screen_instance[this.comp_id].f_npss_merchant_setup_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+<div id="RN21" class="row">
+	<div  id="RN21CN6" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('merchant_name')" >
+				<cdn_ctrl [ctrl_id]="'npss_merchant_setup_srch_merchant_name'" [comp_id]="comp_id" [ctrl]="ctrl.merchant_name" [model]="screen_instance[this.comp_id].f_npss_merchant_setup_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN31" class="row">
+	<div  id="RN31CN7" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('surname')" >
+				<txt [ctrl_id]="'npss_merchant_setup_srch_surname'" [comp_id]="comp_id" [ctrl]="ctrl.surname" [model]="screen_instance[this.comp_id].f_npss_merchant_setup_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+<div id="RN41" class="row">
+	<div  id="RN41CN8" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('mobile')" >
+				<txt [ctrl_id]="'npss_merchant_setup_srch_mobile'" [comp_id]="comp_id" [ctrl]="ctrl.mobile" [model]="screen_instance[this.comp_id].f_npss_merchant_setup_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+ 	</div>
+
+</div>

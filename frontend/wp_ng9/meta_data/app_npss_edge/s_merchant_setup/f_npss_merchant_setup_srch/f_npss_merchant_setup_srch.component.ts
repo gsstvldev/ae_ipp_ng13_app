@@ -1,32 +1,32 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27445 
+Build ID        : 27446 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-19 7:38 AM 
+Modified Date   : 2022-Dec-19 9:55 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
-Form Name       : NPSS Merchant SRCH--------------------------------------------------------------------------- */
+Form Name       : NPSS Merchant Setup SRCH--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_merchant_srch',
-  templateUrl: './f_npss_merchant_srch.component.html',
-  styleUrls: ['./f_npss_merchant_srch.component.css'],
+  selector: 'f_npss_merchant_setup_srch',
+  templateUrl: './f_npss_merchant_setup_srch.component.html',
+  styleUrls: ['./f_npss_merchant_setup_srch.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_merchant_srchComponent implements OnInit {
+export class f_npss_merchant_setup_srchComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_merchant_srch') form;
-  @ViewChild('npss_merchant_srch_memory26') element: ElementRef;
+  @ViewChild('f_npss_merchant_setup_srch') form;
+  @ViewChild('npss_merchant_setup_srch_memory26') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -50,7 +50,7 @@ focustoelement(){
   
 		//Properties of memory26
 		this.ctrl.memory26 = {}
-		this.ctrl.memory26.id = "RN21CN5"
+		this.ctrl.memory26.id = "RN01CN1"
 		this.ctrl.memory26.desc = "Createddate"
 		this.ctrl.memory26.visible = false
 		this.ctrl.memory26.label_name = "Createddate"
@@ -82,16 +82,16 @@ focustoelement(){
 		this.ctrl.memory26.vld_rules = []
 		this.ctrl.memory26.targetcolumn_lower = "memory26"
 		this.ctrl.memory26.disabled = false
-		this.ctrl.memory26.view_name = "f_npss_merchant_srch"
-		this.ctrl.memory26.ctrl_id = "npss_merchant_srch_memory26"
-		this.ctrl.npss_merchant_srch_memory26 = {}
-		this.ctrl.npss_merchant_srch_memory26.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.memory26.view_name = "f_npss_merchant_setup_srch"
+		this.ctrl.memory26.ctrl_id = "npss_merchant_setup_srch_memory26"
+		this.ctrl.npss_merchant_setup_srch_memory26 = {}
+		this.ctrl.npss_merchant_setup_srch_memory26.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of bankuserid
 		this.ctrl.bankuserid = {}
-		this.ctrl.bankuserid.id = "RN01CN1"
+		this.ctrl.bankuserid.id = "RN11CN5"
 		this.ctrl.bankuserid.desc = "Bank User ID"
-		this.ctrl.bankuserid.visible = true
+		this.ctrl.bankuserid.visible = false
 		this.ctrl.bankuserid.label_name = "Bank User ID"
 		this.ctrl.bankuserid.df_code = "DF_1304_1666846276198"
 		this.ctrl.bankuserid.df_description = "Column Group 1"
@@ -121,16 +121,16 @@ focustoelement(){
 		this.ctrl.bankuserid.vld_rules = []
 		this.ctrl.bankuserid.targetcolumn_lower = "bankuserid"
 		this.ctrl.bankuserid.disabled = false
-		this.ctrl.bankuserid.view_name = "f_npss_merchant_srch"
-		this.ctrl.bankuserid.ctrl_id = "npss_merchant_srch_bankuserid"
-		this.ctrl.npss_merchant_srch_bankuserid = {}
-		this.ctrl.npss_merchant_srch_bankuserid.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.bankuserid.view_name = "f_npss_merchant_setup_srch"
+		this.ctrl.bankuserid.ctrl_id = "npss_merchant_setup_srch_bankuserid"
+		this.ctrl.npss_merchant_setup_srch_bankuserid = {}
+		this.ctrl.npss_merchant_setup_srch_bankuserid.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of merchant_name
 		this.ctrl.merchant_name = {}
-		this.ctrl.merchant_name.id = "RN11CN6"
+		this.ctrl.merchant_name.id = "RN21CN6"
 		this.ctrl.merchant_name.desc = "Merchant Name"
-		this.ctrl.merchant_name.visible = true
+		this.ctrl.merchant_name.visible = false
 		this.ctrl.merchant_name.label_name = "Merchant Name"
 		this.ctrl.merchant_name.df_code = "DF_1304_1666846276198"
 		this.ctrl.merchant_name.df_description = "Column Group 1"
@@ -160,20 +160,20 @@ focustoelement(){
 		this.ctrl.merchant_name.vld_rules = []
 		this.ctrl.merchant_name.targetcolumn_lower = "merchant_name"
 		this.ctrl.merchant_name.disabled = false
-		this.ctrl.merchant_name.view_name = "f_npss_merchant_srch"
-		this.ctrl.merchant_name.ctrl_id = "npss_merchant_srch_merchant_name"
-		this.ctrl.npss_merchant_srch_merchant_name = {}
-		this.ctrl.npss_merchant_srch_merchant_name.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.merchant_name.view_name = "f_npss_merchant_setup_srch"
+		this.ctrl.merchant_name.ctrl_id = "npss_merchant_setup_srch_merchant_name"
+		this.ctrl.npss_merchant_setup_srch_merchant_name = {}
+		this.ctrl.npss_merchant_setup_srch_merchant_name.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of surname
 		this.ctrl.surname = {}
-		this.ctrl.surname.id = "RN11CN2"
+		this.ctrl.surname.id = "RN31CN7"
 		this.ctrl.surname.desc = "Surname"
-		this.ctrl.surname.visible = true
+		this.ctrl.surname.visible = false
 		this.ctrl.surname.label_name = "Surname"
 		this.ctrl.surname.df_code = "DF_1304_1666846276198"
 		this.ctrl.surname.df_description = "Column Group 1"
-		this.ctrl.surname.uictrl_code = "CDN_CTRL"
+		this.ctrl.surname.uictrl_code = "TXT"
 		this.ctrl.surname.target_column = "SURNAME"
 		this.ctrl.surname.data_type = "TEXT"
 		this.ctrl.surname.data_length = 50
@@ -181,33 +181,37 @@ focustoelement(){
 		this.ctrl.surname.default_value = ""
 		this.ctrl.surname.is_memory_ctrl = ""
 		this.ctrl.surname.field_coordinates = ""
+		this.ctrl.surname.sub_details = ""
 		this.ctrl.surname.accept_char = ""
 		this.ctrl.surname.currency_format = ""
 		this.ctrl.surname.data_scale = ""
+		this.ctrl.surname.binding_name = "SURNAME"
+		this.ctrl.surname.depends_on = ""
+		this.ctrl.surname.placeholder = ""
+		this.ctrl.surname.dynamic_param = ""
 		this.ctrl.surname.style_code = ""
+		this.ctrl.surname.data_source = ""
 		this.ctrl.surname.image_association = ""
 		this.ctrl.surname.show = true
 		this.ctrl.surname.sub_content = ""
 		this.ctrl.surname.required = false
 		this.ctrl.surname.vld_rules = []
 		this.ctrl.surname.targetcolumn_lower = "surname"
-		this.ctrl.surname.data_source = ""
-		this.ctrl.surname.sub_details = ""
 		this.ctrl.surname.disabled = false
-		this.ctrl.surname.view_name = "f_npss_merchant_srch"
-		this.ctrl.surname.ctrl_id = "npss_merchant_srch_surname"
-		this.ctrl.npss_merchant_srch_surname = {}
-		this.ctrl.npss_merchant_srch_surname.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.surname.view_name = "f_npss_merchant_setup_srch"
+		this.ctrl.surname.ctrl_id = "npss_merchant_setup_srch_surname"
+		this.ctrl.npss_merchant_setup_srch_surname = {}
+		this.ctrl.npss_merchant_setup_srch_surname.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of mobile
 		this.ctrl.mobile = {}
-		this.ctrl.mobile.id = "RN11CN3"
+		this.ctrl.mobile.id = "RN41CN8"
 		this.ctrl.mobile.desc = "Mobile"
-		this.ctrl.mobile.visible = true
+		this.ctrl.mobile.visible = false
 		this.ctrl.mobile.label_name = "Mobile"
 		this.ctrl.mobile.df_code = "DF_1304_1666846276198"
 		this.ctrl.mobile.df_description = "Column Group 1"
-		this.ctrl.mobile.uictrl_code = "CDN_CTRL"
+		this.ctrl.mobile.uictrl_code = "TXT"
 		this.ctrl.mobile.target_column = "MOBILE"
 		this.ctrl.mobile.data_type = "TEXT"
 		this.ctrl.mobile.data_length = 30
@@ -233,15 +237,15 @@ focustoelement(){
 		this.ctrl.mobile.vld_rules = []
 		this.ctrl.mobile.targetcolumn_lower = "mobile"
 		this.ctrl.mobile.disabled = false
-		this.ctrl.mobile.view_name = "f_npss_merchant_srch"
-		this.ctrl.mobile.ctrl_id = "npss_merchant_srch_mobile"
-		this.ctrl.npss_merchant_srch_mobile = {}
-		this.ctrl.npss_merchant_srch_mobile.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_merchant_srch.model = {"MEMORY26":"setcurrentdate(),{}","BANKUSERID":"","MERCHANT_NAME":"","SURNAME":"","MOBILE":""}
-		this.screen_instance[this.comp_id].f_npss_merchant_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"}]
-		this.screen_instance[this.comp_id].f_npss_merchant_srch.dt_code = "dt_1304_1666846074129"
-		this.screen_instance[this.comp_id].f_npss_merchant_srch.dtt_code = "dtt_1304_1666846129395"
-		this.screen_instance[this.comp_id].f_npss_merchant_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		this.ctrl.mobile.view_name = "f_npss_merchant_setup_srch"
+		this.ctrl.mobile.ctrl_id = "npss_merchant_setup_srch_mobile"
+		this.ctrl.npss_merchant_setup_srch_mobile = {}
+		this.ctrl.npss_merchant_setup_srch_mobile.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_merchant_setup_srch.model = {"MEMORY26":"setcurrentdate(),{}","BANKUSERID":"","MERCHANT_NAME":"","SURNAME":"","MOBILE":""}
+		this.screen_instance[this.comp_id].f_npss_merchant_setup_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"}]
+		this.screen_instance[this.comp_id].f_npss_merchant_setup_srch.dt_code = "dt_1304_1666846074129"
+		this.screen_instance[this.comp_id].f_npss_merchant_setup_srch.dtt_code = "dtt_1304_1666846129395"
+		this.screen_instance[this.comp_id].f_npss_merchant_setup_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -288,10 +292,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_merchant_srch[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_merchant_srch[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_merchant_setup_srch[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_merchant_setup_srch[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_merchant_srch[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_merchant_setup_srch[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

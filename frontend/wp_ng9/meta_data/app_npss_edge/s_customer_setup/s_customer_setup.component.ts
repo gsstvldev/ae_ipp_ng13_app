@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27443 
+Build ID        : 27394 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-19 5:59 AM 
+Modified Date   : 2022-Dec-19 7:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -472,21 +472,21 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
-	search_search__action_button_click(){
-		this.search_search__ssp_for_queue()
+	search_search__action_button_click(peventcontext){
 		this.search_search__close_popp()
 		this.search_search__cu_for_accounts()
 		this.search_search__cu_for_customer()
+		this.search_search__ssp_for_queue(peventcontext)
 	}
 
 	//Handler for INTERNAL event of "ssp for queue"
 	ssp_for_queue__internal(parent_event_result){
-		this.ssp_for_queue__queue_brfq(parent_event_result)
+		this.ssp_for_queue__brfq_for_queue(parent_event_result)
 	}
 
-	//Handler for INTERNAL event of "queue brfq"
-	queue_brfq__internal(parent_event_result){
-		this.queue_brfq__queue_sfr(parent_event_result)
+	//Handler for INTERNAL event of "brfq for queue"
+	brfq_for_queue__internal(parent_event_result){
+		this.brfq_for_queue__sfr_in_queue(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "customers"
@@ -1148,27 +1148,6 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
-	search_search__ssp_for_queue() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="search_search"
-		let destn_id="search"
-		let parent_source_id=""
-		let event_code="e_1670997344004"
-		let event_params={"caller_name":"search_search__ssp_for_queue","event_desc":"SSP for queue","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
-		let handler_code="set_search_params"
-		let internals="ssp_for_queue__queue_brfq,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__close_popp() { 
 		let Dest_Is_ctrl=true
 		
@@ -1231,18 +1210,40 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "search search"
+	search_search__ssp_for_queue(peventcontext) { 
+		let Dest_Is_ctrl=true
+		let eventcontext =["SSP for Search btn"]
+		if(eventcontext.indexOf(peventcontext)==-1) return true;
+		let source_id="search_search"
+		let destn_id="search"
+		let parent_source_id=""
+		let event_code="e_1671434185326"
+		let event_params={"caller_name":"search_search__ssp_for_queue","event_desc":"SSP for Queue","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SSP for Search btn","root_source_id":"search_search","raiseparam":{},"eventcontext":["SSP for Search btn"]}
+		let handler_code="set_search_params"
+		let internals="ssp_for_queue__brfq_for_queue,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "ssp for queue"
-	ssp_for_queue__queue_brfq(parent_event_result) { 
+	ssp_for_queue__brfq_for_queue(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="ssp_for_queue"
 		let destn_id="queue"
 		let parent_source_id="search_search"
-		let event_code="e_1671004153046"
-		let event_params={"caller_name":"ssp_for_queue__queue_brfq","event_desc":"Queue BRFQ","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let event_code="e_1671434203293"
+		let event_params={"caller_name":"ssp_for_queue__brfq_for_queue","event_desc":"BRFQ for Queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals="queue_brfq__queue_sfr,"
+		let internals="brfq_for_queue__sfr_in_queue,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1666846042955":{"dtt_1304_1666846082411":{"st_ds":{"default":{"uicgc_code":"UICGC_10","event_code":"DEFAULT","dt_code":"DT_1304_1666846042955","dt_desc":"NPSS Customer Proxy DTG","dtt_code":"DTT_1304_1666846082411","dtt_desc":"NPSS Customer Proxy","ds_eligible":"DS_1671004022989","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Customer Setup Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671019973873","date_format":false}],"joins":[]},"eq_text":"select  distinct STATUS from  (  select   T.NPSSCP_ID,   T.PROXY_TYPE,   T.MOBILE,   T.SURNAME,   T.CUSTOMER_NAME,   T.BANK_CODE,   T.GROUP_CODE,   T.BANKUSERID,   T.PRODUCT_CODE,   T.PROXY_VALUE,   T.EMAIL,   T.DOCUMENT_ID,   T.EXHF_ID,   T.CHANNEL_ID,   T.CHANNEL_REFNO,   T.CHANNEL_USERID,   T.CHANNEL_PRODUCT,   T.CHANNEL_SUB_PRODUCT,   T.CHANNEL_TRAN_CODE,   T.PROCESS_STATUS,   T.TENANT_ID,   T.STATUS,   T.CREATED_DATE,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   T.CREATED_BY,   T.CREATED_BY_NAME,   T.SYSTEM_ID  from   NPSS_CUSTOMER_PROXY T  left join TRANSACTION_SET TS on   T.NPSSCP_ID = TS.TRN_ID   and T.DTT_CODE = TS.DTT_CODE) VM $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Customer Setup Queue CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -1253,16 +1254,16 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "queue brfq"
-	queue_brfq__queue_sfr(parent_event_result) { 
+	//Handler for INTERNAL event of "brfq for queue"
+	brfq_for_queue__sfr_in_queue(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="queue_brfq"
+		let source_id="brfq_for_queue"
 		let destn_id="queue"
 		let parent_source_id="ssp_for_queue"
-		let event_code="e_1671004181293"
-		let event_params={"caller_name":"queue_brfq__queue_sfr","event_desc":"Queue SFR","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_code="e_1671434228361"
+		let event_params={"caller_name":"brfq_for_queue__sfr_in_queue","event_desc":"SFR in queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}

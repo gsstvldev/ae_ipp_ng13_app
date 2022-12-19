@@ -7,20 +7,20 @@ Modified Date   : 2022-Dec-19 7:38 AM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
-Form Name       : Navigation UI--------------------------------------------------------------------------- */
+Form Name       : Shop Detail--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_navigation_ui',
-  templateUrl: './f_navigation_ui.component.html',
-  styleUrls: ['./f_navigation_ui.component.css'],
+  selector: 'f_shop_detail',
+  templateUrl: './f_shop_detail.component.html',
+  styleUrls: ['./f_shop_detail.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_navigation_uiComponent implements OnInit {
+export class f_shop_detailComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_navigation_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_navigation_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_navigation_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_shop_detail[control]==undefined) {
+      this.screen_instance[this.comp_id].f_shop_detail[control] = {}
     }
-    this.screen_instance[this.comp_id].f_navigation_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_shop_detail[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

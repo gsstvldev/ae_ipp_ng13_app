@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27443 
+Build ID        : 27445 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-19 5:59 AM 
+Modified Date   : 2022-Dec-19 7:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -24,7 +24,7 @@ export class p_main_layoutComponent implements OnInit {
   // Variables 
   	navigation_ui : any = {}
 	queue : any = {}
-	customers : any = {}
+	merchant : any = {}
 	sub_navigation_ui : any = {}
 	accounts : any = {}
 
@@ -38,8 +38,8 @@ export class p_main_layoutComponent implements OnInit {
 		this.navigation_ui.need_header = ""
 		this.queue.desc = "Queue"
 		this.queue.need_header = true
-		this.customers.desc = "Customers"
-		this.customers.need_header = true
+		this.merchant.desc = "Merchant"
+		this.merchant.need_header = true
 		this.sub_navigation_ui.desc = "Sub Navigation UI"
 		this.sub_navigation_ui.need_header = ""
 		this.accounts.desc = "Accounts"

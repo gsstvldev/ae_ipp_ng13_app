@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27443 
+Build ID        : 27445 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-19 5:59 AM 
+Modified Date   : 2022-Dec-19 7:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -36,20 +36,21 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	components : any = []
 	current_profile : string = "p_main_layout"
 	uicgc_1 : string = "navigation_ui"
-	uicgc_2 : string = "customers"
+	uicgc_2 : string = "merchant"
 	uicgc_3 : string = "accounts"
-	uicgc_4 : string = "customer_detail"
+	uicgc_4 : string = "merchant_detail"
 	uicgc_6 : string = "search"
 	uicgc_7 : string = "account__detail"
 	uicgc_8 : string = "action"
 	uicgc_9 : string = "customer_setup_widget"
 	uicgc_10 : string = "queue"
 	uicgc_11 : string = "sub_navigation_ui"
+	uicgc_12 : string = "shop_detail"
 	key_events : any = {}
 	btl_1304_1670997076000 : string = "p_search_layout"
 	btl_1304_1670996891370 : string = "p_action_layout"
 	btl_1304_1670996775588 : string = "p_main_layout"
-	forms : any = ["uicgc_4","uicgc_7","uicgc_6","uicgc_8","uicgc_1","uicgc_11"]
+	forms : any = ["uicgc_4","uicgc_7","uicgc_6","uicgc_12","uicgc_8","uicgc_1","uicgc_11"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
@@ -61,9 +62,9 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	navigation_ui_add_bank_account : any = {}
 	navigation_ui_tri_btn1 : any = {}
 	navigation_ui_trg_btn2 : any = {}
-	customers : any = {}
+	merchant : any = {}
 	accounts : any = {}
-	customer_detail : any = {}
+	merchant_detail : any = {}
 	search : any = {}
 	search_clear : any = {}
 	search_search : any = {}
@@ -83,6 +84,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	sub_navigation_ui_block_unblocks : any = {}
 	sub_navigation_ui_set_default : any = {}
 	sub_navigation_ui_add_bank_accountss : any = {}
+	shop_detail : any = {}
 
 
 	// Constructor 
@@ -187,17 +189,17 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_trg_btn2.role = []
 		this.navigation_ui_trg_btn2.action = ""
 	
-		// Component level properties - "Customers" 
-		this.customers.uictrl_code = "datatable"
-		this.customers.uicgc_desc = "Customers"
-		this.customers.uicgc_code = "uicgc_2"
-		this.customers.params = {"need_search":"N","need_pag_datatable":"Y"}
-		this.customers.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Proxy","ds_eligible":"DS_1671276266014","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_PROXY ~NPSSMP","category":"NPSS_MERCHANT_PROXY","loc":"253.99675934606216 386.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"merchant_name_checked":true,"merchant_tag_checked":true,"mcc_checked":true,"mobile_checked":true,"denomination_checked":true,"vat_number_checked":true,"product_code_checked":true,"group_code_checked":true,"surname_checked":true,"bank_code_checked":true,"proxy_value_checked":true,"proxy_type_checked":true,"email_checked":true,"document_id_checked":true,"channel_name_checked":true,"exhf_id_checked":true,"logo_checked":true,"channel_id_checked":true,"channel_userid_checked":true,"channel_product_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true,"channel_refno_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_TAG","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MCC","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DENOMINATION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VAT_NUMBER","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"LOGO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_PROXY ","alias_name":"NPSSMP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,MERCHANT_NAME,MERCHANT_TAG,MCC,MOBILE,DENOMINATION,VAT_NUMBER,PRODUCT_CODE,GROUP_CODE,BANK_CODE,SURNAME,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,CHANNEL_NAME,LOGO,EXHF_ID,CHANNEL_ID,CHANNEL_USERID,CHANNEL_PRODUCT,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CHANNEL_REFNO,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMP.NPSSMP_ID,NPSSMP.BANKUSERID,NPSSMP.MERCHANT_NAME,NPSSMP.MERCHANT_TAG,NPSSMP.MCC,NPSSMP.MOBILE,NPSSMP.DENOMINATION,NPSSMP.VAT_NUMBER,NPSSMP.PRODUCT_CODE,NPSSMP.GROUP_CODE,NPSSMP.BANK_CODE,NPSSMP.SURNAME,NPSSMP.PROXY_TYPE,NPSSMP.PROXY_VALUE,NPSSMP.EMAIL,NPSSMP.DOCUMENT_ID,NPSSMP.CHANNEL_NAME,NPSSMP.LOGO,NPSSMP.EXHF_ID,NPSSMP.CHANNEL_ID,NPSSMP.CHANNEL_USERID,NPSSMP.CHANNEL_PRODUCT,NPSSMP.CHANNEL_SUB_PRODUCT,NPSSMP.CHANNEL_TRAN_CODE,NPSSMP.CHANNEL_REFNO,NPSSMP.CREATED_BY,NPSSMP.CREATED_BY_NAME,NPSSMP.CREATED_BY_STS_ID,NPSSMP.CREATED_DATE,NPSSMP.DT_CODE,NPSSMP.DT_DESCRIPTION,NPSSMP.DTT_CODE,NPSSMP.DTT_DESCRIPTION,NPSSMP.MODIFIED_BY,NPSSMP.MODIFIED_BY_NAME,NPSSMP.MODIFIED_BY_STS_ID,NPSSMP.MODIFIED_DATE,NPSSMP.PRCT_ID,NPSSMP.STATUS,NPSSMP.PROCESS_STATUS,NPSSMP.SYSTEM_ID,NPSSMP.SYSTEM_NAME,NPSSMP.TENANT_ID,NPSSMP.APP_ID,NPSSMP.VERSION_NO FROM NPSS_MERCHANT_PROXY  NPSSMP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchat Tag","target_column":"MERCHANT_TAG","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
-		this.customers.context_menu = []
-		this.customers.views = {}
-		this.customers.onChangecomponent = new EventEmitter<any>()
-		this.customers.show = true
-		this.customers.dynamic_param = {}
+		// Component level properties - "Merchant" 
+		this.merchant.uictrl_code = "datatable"
+		this.merchant.uicgc_desc = "Merchant"
+		this.merchant.uicgc_code = "uicgc_2"
+		this.merchant.params = {"need_search":"N","need_pag_datatable":"Y"}
+		this.merchant.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Proxy","ds_eligible":"DS_1671276266014","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_PROXY ~NPSSMP","category":"NPSS_MERCHANT_PROXY","loc":"253.99675934606216 386.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"merchant_name_checked":true,"merchant_tag_checked":true,"mcc_checked":true,"mobile_checked":true,"denomination_checked":true,"vat_number_checked":true,"product_code_checked":true,"group_code_checked":true,"surname_checked":true,"bank_code_checked":true,"proxy_value_checked":true,"proxy_type_checked":true,"email_checked":true,"document_id_checked":true,"channel_name_checked":true,"exhf_id_checked":true,"logo_checked":true,"channel_id_checked":true,"channel_userid_checked":true,"channel_product_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true,"channel_refno_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_TAG","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MCC","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DENOMINATION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VAT_NUMBER","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"LOGO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_PROXY ","alias_name":"NPSSMP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,MERCHANT_NAME,MERCHANT_TAG,MCC,MOBILE,DENOMINATION,VAT_NUMBER,PRODUCT_CODE,GROUP_CODE,BANK_CODE,SURNAME,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,CHANNEL_NAME,LOGO,EXHF_ID,CHANNEL_ID,CHANNEL_USERID,CHANNEL_PRODUCT,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CHANNEL_REFNO,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMP.NPSSMP_ID,NPSSMP.BANKUSERID,NPSSMP.MERCHANT_NAME,NPSSMP.MERCHANT_TAG,NPSSMP.MCC,NPSSMP.MOBILE,NPSSMP.DENOMINATION,NPSSMP.VAT_NUMBER,NPSSMP.PRODUCT_CODE,NPSSMP.GROUP_CODE,NPSSMP.BANK_CODE,NPSSMP.SURNAME,NPSSMP.PROXY_TYPE,NPSSMP.PROXY_VALUE,NPSSMP.EMAIL,NPSSMP.DOCUMENT_ID,NPSSMP.CHANNEL_NAME,NPSSMP.LOGO,NPSSMP.EXHF_ID,NPSSMP.CHANNEL_ID,NPSSMP.CHANNEL_USERID,NPSSMP.CHANNEL_PRODUCT,NPSSMP.CHANNEL_SUB_PRODUCT,NPSSMP.CHANNEL_TRAN_CODE,NPSSMP.CHANNEL_REFNO,NPSSMP.CREATED_BY,NPSSMP.CREATED_BY_NAME,NPSSMP.CREATED_BY_STS_ID,NPSSMP.CREATED_DATE,NPSSMP.DT_CODE,NPSSMP.DT_DESCRIPTION,NPSSMP.DTT_CODE,NPSSMP.DTT_DESCRIPTION,NPSSMP.MODIFIED_BY,NPSSMP.MODIFIED_BY_NAME,NPSSMP.MODIFIED_BY_STS_ID,NPSSMP.MODIFIED_DATE,NPSSMP.PRCT_ID,NPSSMP.STATUS,NPSSMP.PROCESS_STATUS,NPSSMP.SYSTEM_ID,NPSSMP.SYSTEM_NAME,NPSSMP.TENANT_ID,NPSSMP.APP_ID,NPSSMP.VERSION_NO FROM NPSS_MERCHANT_PROXY  NPSSMP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchat Tag","target_column":"MERCHANT_TAG","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		this.merchant.context_menu = []
+		this.merchant.views = {}
+		this.merchant.onChangecomponent = new EventEmitter<any>()
+		this.merchant.show = true
+		this.merchant.dynamic_param = {}
 	
 		// Component level properties - "Accounts" 
 		this.accounts.uictrl_code = "datatable"
@@ -211,19 +213,19 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.accounts.show = true
 		this.accounts.dynamic_param = {}
 	
-		// Component level properties - "Customer Detail" 
-		this.customer_detail.uictrl_code = "dynamic_ui"
-		this.customer_detail.uicgc_desc = "Customer Detail"
-		this.customer_detail.uicgc_code = "uicgc_4"
-		this.customer_detail.params = {}
-		this.customer_detail.datasource = {}
-		this.customer_detail.context_menu = []
-		this.customer_detail.views = {"first":"DTT_1304_1666846129395","is_tab_mode":"N","dtt_1304_1666846129395":{"0":[{"dttv_id":"NPSS Merchant UI","tab_order":0,"tab_name":"","uicgc_description":"Customer Detail","role_description":"default","dtt_description":"NPSS Merchant Proxy"}]}}
-		this.customer_detail.onChangecomponent = new EventEmitter<any>()
-		this.customer_detail.show = true
-		this.customer_detail.dynamic_param = {}
-		this.customer_detail.f_npss_merchant_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.customer_detail.form_name = "f_npss_merchant_ui"
+		// Component level properties - "Merchant Detail" 
+		this.merchant_detail.uictrl_code = "dynamic_ui"
+		this.merchant_detail.uicgc_desc = "Merchant Detail"
+		this.merchant_detail.uicgc_code = "uicgc_4"
+		this.merchant_detail.params = {}
+		this.merchant_detail.datasource = {}
+		this.merchant_detail.context_menu = []
+		this.merchant_detail.views = {"first":"DTT_1304_1666846129395","is_tab_mode":"N","dtt_1304_1666846129395":{"0":[{"dttv_id":"NPSS Merchant UI","tab_order":0,"tab_name":"","uicgc_description":"Merchant Detail","role_description":"default","dtt_description":"NPSS Merchant Proxy"}]}}
+		this.merchant_detail.onChangecomponent = new EventEmitter<any>()
+		this.merchant_detail.show = true
+		this.merchant_detail.dynamic_param = {}
+		this.merchant_detail.f_npss_merchant_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.merchant_detail.form_name = "f_npss_merchant_ui"
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -421,6 +423,20 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.sub_navigation_ui_add_bank_accountss.dynamic_param = {}
 		this.sub_navigation_ui_add_bank_accountss.role = []
 		this.sub_navigation_ui_add_bank_accountss.action = ""
+	
+		// Component level properties - "Shop Detail" 
+		this.shop_detail.uictrl_code = "dynamic_ui"
+		this.shop_detail.uicgc_desc = "Shop Detail"
+		this.shop_detail.uicgc_code = "uicgc_12"
+		this.shop_detail.params = {}
+		this.shop_detail.datasource = {}
+		this.shop_detail.context_menu = []
+		this.shop_detail.views = {}
+		this.shop_detail.onChangecomponent = new EventEmitter<any>()
+		this.shop_detail.show = true
+		this.shop_detail.dynamic_param = {}
+		this.shop_detail.f_shop_detail = {"show":true}
+		this.shop_detail.current_view = "f_shop_detail"
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -468,27 +484,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__action_button_click(){
-		this.search_search__ssp_for_queue()
 		this.search_search__close_popp()
 		this.search_search__cu_for_accounts()
 		this.search_search__cu_for_customer()
+		this.search_search__ssp_for_search_btn()
 	}
 
-	//Handler for INTERNAL event of "ssp for queue"
-	ssp_for_queue__internal(parent_event_result){
-		this.ssp_for_queue__queue_brfq(parent_event_result)
+	//Handler for INTERNAL event of "ssp for search btn"
+	ssp_for_search_btn__internal(parent_event_result){
+		this.ssp_for_search_btn__brfq_for_queue(parent_event_result)
 	}
 
-	//Handler for INTERNAL event of "queue brfq"
-	queue_brfq__internal(parent_event_result){
-		this.queue_brfq__queue_sfr(parent_event_result)
+	//Handler for INTERNAL event of "brfq for queue"
+	brfq_for_queue__internal(parent_event_result){
+		this.brfq_for_queue__sfr_for_queue(parent_event_result)
 	}
 
-	//Handler for SELECTION_CHANGED event of "customers"
-	customers__selection_changed(){
-		this.customers__svmfor_cpl()
-		this.customers__ssr_for_customer_to_cust_detail()
-		this.customers__tbc_for_cpl()
+	//Handler for SELECTION_CHANGED event of "merchant"
+	merchant__selection_changed(){
+		this.merchant__svmfor_cpl()
+		this.merchant__ssr_for_customer_to_cust_detail()
+		this.merchant__tbc_for_cpl()
 	}
 
 	//Handler for INTERNAL event of "svmfor cpl"
@@ -1116,27 +1132,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
-	search_search__ssp_for_queue() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="search_search"
-		let destn_id="search"
-		let parent_source_id=""
-		let event_code="e_1670997344004"
-		let event_params={"caller_name":"search_search__ssp_for_queue","event_desc":"SSP for queue","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
-		let handler_code="set_search_params"
-		let internals="ssp_for_queue__queue_brfq,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__close_popp() { 
 		let Dest_Is_ctrl=true
 		
@@ -1183,7 +1178,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="search_search"
-		let destn_id="customers"
+		let destn_id="merchant"
 		let parent_source_id=""
 		let event_code="e_1671013056752"
 		let event_params={"caller_name":"search_search__cu_for_customer","event_desc":"CU for customer","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"need_reset_key_column":"N"}}
@@ -1199,18 +1194,39 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "ssp for queue"
-	ssp_for_queue__queue_brfq(parent_event_result) { 
+	//Handler for ACTION_BUTTON_CLICK event of "search search"
+	search_search__ssp_for_search_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="search_search"
+		let destn_id="search"
+		let parent_source_id=""
+		let event_code="e_1671434442714"
+		let event_params={"caller_name":"search_search__ssp_for_search_btn","event_desc":"SSP for Search btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
+		let handler_code="set_search_params"
+		let internals="ssp_for_search_btn__brfq_for_queue,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ssp for search btn"
+	ssp_for_search_btn__brfq_for_queue(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="ssp_for_queue"
+		let source_id="ssp_for_search_btn"
 		let destn_id="queue"
 		let parent_source_id="search_search"
-		let event_code="e_1671004153046"
-		let event_params={"caller_name":"ssp_for_queue__queue_brfq","event_desc":"Queue BRFQ","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let event_code="e_1671434486233"
+		let event_params={"caller_name":"ssp_for_search_btn__brfq_for_queue","event_desc":"BRFQ for queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals="queue_brfq__queue_sfr,"
+		let internals="brfq_for_queue__sfr_for_queue,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_10","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Proxy","ds_eligible":"DS_1671276345803","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Setup Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671275017464","date_format":false}],"joins":[]},"eq_text":"select  distinct STATUS from  (  select   T.NPSSMP_ID,   T.BANKUSERID,   T.MERCHANT_NAME,   T.MERCHANT_TAG,   T.MCC,   T.MOBILE,   T.DENOMINATION,   T.VAT_NUMBER,   T.PRODUCT_CODE,   T.GROUP_CODE,   T.BANK_CODE,   T.SURNAME,   T.PROXY_TYPE,   T.PROXY_VALUE,   T.EMAIL,   T.DOCUMENT_ID,   T.CHANNEL_NAME,   T.LOGO,   T.EXHF_ID,   T.CHANNEL_ID,   T.CHANNEL_USERID,   T.CHANNEL_PRODUCT,   T.CHANNEL_SUB_PRODUCT,   T.CHANNEL_TRAN_CODE,   T.CHANNEL_REFNO,   T.PROCESS_STATUS,   T.TENANT_ID,   T.STATUS,   T.CREATED_DATE,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   T.CREATED_BY,   T.CREATED_BY_NAME,   T.SYSTEM_ID  from   npss_merchant_proxy T  left join TRANSACTION_SET TS on   T.NPSSMP_ID = TS.TRN_ID   and T.DTT_CODE = TS.DTT_CODE) VM $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Setup Queue CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -1221,16 +1237,16 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "queue brfq"
-	queue_brfq__queue_sfr(parent_event_result) { 
+	//Handler for INTERNAL event of "brfq for queue"
+	brfq_for_queue__sfr_for_queue(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="queue_brfq"
+		let source_id="brfq_for_queue"
 		let destn_id="queue"
-		let parent_source_id="ssp_for_queue"
-		let event_code="e_1671004181293"
-		let event_params={"caller_name":"queue_brfq__queue_sfr","event_desc":"Queue SFR","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let parent_source_id="ssp_for_search_btn"
+		let event_code="e_1671434523033"
+		let event_params={"caller_name":"brfq_for_queue__sfr_for_queue","event_desc":"SFR for Queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
@@ -1243,18 +1259,18 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "customers"
-	customers__svmfor_cpl() { 
+	//Handler for SELECTION_CHANGED event of "merchant"
+	merchant__svmfor_cpl() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="customers"
-		let destn_id="customers"
+		let source_id="merchant"
+		let destn_id="merchant"
 		let parent_source_id=""
 		let event_code="e_1670997376364"
-		let event_params={"caller_name":"customers__svmfor_cpl","event_desc":"SVMfor CPL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"customers","raiseparam":{}}
+		let event_params={"caller_name":"merchant__svmfor_cpl","event_desc":"SVMfor CPL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals="svmfor_cpl__cc_for_customer_show_hide,"
-		let event_data={"customers":{"e_1670997376364":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1670997376364","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS Merchant Proxy DTG","dtt_desc":"NPSS Merchant Proxy","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"BANKUSERID","level":"MI_LEVEL","name":"MI_LEVEL_BANKUSERID","setd3name":"BANKUSERID"},{"type":"LOCAL","column_name":"NPSSMP_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSMP_ID","setd3name":"NPSSMP_ID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let event_data={"merchant":{"e_1670997376364":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1670997376364","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS Merchant Proxy DTG","dtt_desc":"NPSS Merchant Proxy","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"BANKUSERID","level":"MI_LEVEL","name":"MI_LEVEL_BANKUSERID","setd3name":"BANKUSERID"},{"type":"LOCAL","column_name":"NPSSMP_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSMP_ID","setd3name":"NPSSMP_ID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Proxy","ds_eligible":"DS_1671276266014","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_PROXY ~NPSSMP","category":"NPSS_MERCHANT_PROXY","loc":"253.99675934606216 386.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"merchant_name_checked":true,"merchant_tag_checked":true,"mcc_checked":true,"mobile_checked":true,"denomination_checked":true,"vat_number_checked":true,"product_code_checked":true,"group_code_checked":true,"surname_checked":true,"bank_code_checked":true,"proxy_value_checked":true,"proxy_type_checked":true,"email_checked":true,"document_id_checked":true,"channel_name_checked":true,"exhf_id_checked":true,"logo_checked":true,"channel_id_checked":true,"channel_userid_checked":true,"channel_product_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true,"channel_refno_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_TAG","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MCC","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DENOMINATION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VAT_NUMBER","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"LOGO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_PROXY ","alias_name":"NPSSMP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,MERCHANT_NAME,MERCHANT_TAG,MCC,MOBILE,DENOMINATION,VAT_NUMBER,PRODUCT_CODE,GROUP_CODE,BANK_CODE,SURNAME,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,CHANNEL_NAME,LOGO,EXHF_ID,CHANNEL_ID,CHANNEL_USERID,CHANNEL_PRODUCT,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CHANNEL_REFNO,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMP.NPSSMP_ID,NPSSMP.BANKUSERID,NPSSMP.MERCHANT_NAME,NPSSMP.MERCHANT_TAG,NPSSMP.MCC,NPSSMP.MOBILE,NPSSMP.DENOMINATION,NPSSMP.VAT_NUMBER,NPSSMP.PRODUCT_CODE,NPSSMP.GROUP_CODE,NPSSMP.BANK_CODE,NPSSMP.SURNAME,NPSSMP.PROXY_TYPE,NPSSMP.PROXY_VALUE,NPSSMP.EMAIL,NPSSMP.DOCUMENT_ID,NPSSMP.CHANNEL_NAME,NPSSMP.LOGO,NPSSMP.EXHF_ID,NPSSMP.CHANNEL_ID,NPSSMP.CHANNEL_USERID,NPSSMP.CHANNEL_PRODUCT,NPSSMP.CHANNEL_SUB_PRODUCT,NPSSMP.CHANNEL_TRAN_CODE,NPSSMP.CHANNEL_REFNO,NPSSMP.CREATED_BY,NPSSMP.CREATED_BY_NAME,NPSSMP.CREATED_BY_STS_ID,NPSSMP.CREATED_DATE,NPSSMP.DT_CODE,NPSSMP.DT_DESCRIPTION,NPSSMP.DTT_CODE,NPSSMP.DTT_DESCRIPTION,NPSSMP.MODIFIED_BY,NPSSMP.MODIFIED_BY_NAME,NPSSMP.MODIFIED_BY_STS_ID,NPSSMP.MODIFIED_DATE,NPSSMP.PRCT_ID,NPSSMP.STATUS,NPSSMP.PROCESS_STATUS,NPSSMP.SYSTEM_ID,NPSSMP.SYSTEM_NAME,NPSSMP.TENANT_ID,NPSSMP.APP_ID,NPSSMP.VERSION_NO FROM NPSS_MERCHANT_PROXY  NPSSMP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchat Tag","target_column":"MERCHANT_TAG","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
@@ -1264,15 +1280,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "customers"
-	customers__ssr_for_customer_to_cust_detail() { 
+	//Handler for SELECTION_CHANGED event of "merchant"
+	merchant__ssr_for_customer_to_cust_detail() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="customers"
-		let destn_id="customer_detail"
+		let source_id="merchant"
+		let destn_id="merchant_detail"
 		let parent_source_id=""
 		let event_code="e_1670998482087"
-		let event_params={"caller_name":"customers__ssr_for_customer_to_cust_detail","event_desc":"SSR for customer to cust detail","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"customers","raiseparam":{}}
+		let event_params={"caller_name":"merchant__ssr_for_customer_to_cust_detail","event_desc":"SSR for customer to cust detail","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant","raiseparam":{}}
 		let handler_code="set_selected_row"
 		let internals=""
 		let event_data={}
@@ -1285,15 +1301,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "customers"
-	customers__tbc_for_cpl() { 
+	//Handler for SELECTION_CHANGED event of "merchant"
+	merchant__tbc_for_cpl() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="customers"
+		let source_id="merchant"
 		let destn_id="navigation_ui_tri_btn1"
 		let parent_source_id=""
 		let event_code="e_1671000312847"
-		let event_params={"caller_name":"customers__tbc_for_cpl","event_desc":"TBC for CPL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"customers","raiseparam":{}}
+		let event_params={"caller_name":"merchant__tbc_for_cpl","event_desc":"TBC for CPL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant","raiseparam":{}}
 		let handler_code="trigger_button_click"
 		let internals=""
 		let event_data={}
@@ -1313,9 +1329,9 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="svmfor_cpl"
 		let destn_id=""
-		let parent_source_id="customers"
+		let parent_source_id="merchant"
 		let event_code="e_1671005066084"
-		let event_params={"caller_name":"svmfor_cpl__cc_for_customer_show_hide","event_desc":"CC for customer show hide","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"customers","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"svmfor_cpl__cc_for_customer_show_hide","event_desc":"CC for customer show hide","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"merchant","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
 		let internals="cc_for_customer_show_hide__brfq_for_accounts,"
 		let event_data={}
@@ -1337,7 +1353,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let destn_id="accounts"
 		let parent_source_id="svmfor_cpl"
 		let event_code="e_1671005084059"
-		let event_params={"caller_name":"cc_for_customer_show_hide__brfq_for_accounts","event_desc":"BRFQ for accounts","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"customers","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_customer_show_hide__brfq_for_accounts","event_desc":"BRFQ for accounts","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"merchant","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_accounts__sfr_for_accounts,"
 		let event_data={}
@@ -1359,7 +1375,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let destn_id="accounts"
 		let parent_source_id="cc_for_customer_show_hide"
 		let event_code="e_1671005095983"
-		let event_params={"caller_name":"brfq_for_accounts__sfr_for_accounts","event_desc":"SFR for accounts","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"customers","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"brfq_for_accounts__sfr_for_accounts","event_desc":"SFR for accounts","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"merchant","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
@@ -1419,7 +1435,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_ui_tri_btn1"
-		let destn_id="customer_detail"
+		let destn_id="merchant_detail"
 		let parent_source_id=""
 		let event_code="e_1670997537441"
 		let event_params={"caller_name":"navigation_ui_tri_btn1__trg_btn1_for_bt","event_desc":"Trg btn1 for BT","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_tri_btn1","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
@@ -1482,7 +1498,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_ui_entrolment"
-		let destn_id="customer_detail"
+		let destn_id="merchant_detail"
 		let parent_source_id=""
 		let event_code="e_1671014985065"
 		let event_params={"caller_name":"navigation_ui_entrolment__cu_for_cust_dtl","event_desc":"CU for cust dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{"need_reset_key_column":"N"}}
@@ -2158,7 +2174,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="ssp_for_queue_to_cl"
-		let destn_id="customers"
+		let destn_id="merchant"
 		let parent_source_id="sh_ide_connected_in_queue_ssp"
 		let event_code="e_1671004587452"
 		let event_params={"caller_name":"ssp_for_queue_to_cl__brfq_for_queue_to_customers","event_desc":"BRFQ for Queue to Customers","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
@@ -2180,7 +2196,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_for_queue_to_customers"
-		let destn_id="customers"
+		let destn_id="merchant"
 		let parent_source_id="ssp_for_queue_to_cl"
 		let event_code="e_1671004604522"
 		let event_params={"caller_name":"brfq_for_queue_to_customers__sfr_for_customers","event_desc":"SFR for customers","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{},"parent_event_result":"SUCCESS"}

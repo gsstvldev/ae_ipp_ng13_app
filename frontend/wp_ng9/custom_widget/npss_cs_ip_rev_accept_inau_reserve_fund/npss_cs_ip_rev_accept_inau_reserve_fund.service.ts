@@ -63,7 +63,7 @@ export class npss_cs_ip_rev_accept_inau_reserve_fundService {
 
                 }
                 else {
-                  this.dialogHelper.ShowErrorDialog(res.data.data)
+                  this.dialogHelper.ShowErrorDialog(res.data.status)
                 }
             });
     }

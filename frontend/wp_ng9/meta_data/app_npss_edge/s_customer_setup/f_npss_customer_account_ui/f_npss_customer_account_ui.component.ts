@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27455 
+Build ID        : 27457 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-19 10:45 AM 
+Modified Date   : 2022-Dec-20 7:36 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -239,7 +239,45 @@ focustoelement(){
 		this.ctrl.npss_customer_account_ui_memory10 = {}
 		this.ctrl.npss_customer_account_ui_memory10.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_customer_account_ui.memory10 = {}
-		this.screen_instance[this.comp_id].f_npss_customer_account_ui.model = {"IBAN":"","CURRENCY":"","INSTANT_PAYMENT":"","MEMORY9":"","MEMORY10":""}
+	
+		//Properties of memory11
+		this.ctrl.memory11 = {}
+		this.ctrl.memory11.id = "RN11CN6"
+		this.ctrl.memory11.desc = "Accounts"
+		this.ctrl.memory11.visible = true
+		this.ctrl.memory11.label_name = "Accounts"
+		this.ctrl.memory11.df_code = "DF_1304_1666846901765"
+		this.ctrl.memory11.df_description = "Customer Accounts"
+		this.ctrl.memory11.uictrl_code = "TXT"
+		this.ctrl.memory11.target_column = "memory11"
+		this.ctrl.memory11.data_type = "TEXT"
+		this.ctrl.memory11.data_length = 0
+		this.ctrl.memory11.zone_df_code = "DF_1304_1666846901765"
+		this.ctrl.memory11.default_value = ""
+		this.ctrl.memory11.is_memory_ctrl = "Y"
+		this.ctrl.memory11.field_coordinates = ""
+		this.ctrl.memory11.sub_details = ""
+		this.ctrl.memory11.accept_char = ""
+		this.ctrl.memory11.currency_format = ""
+		this.ctrl.memory11.data_scale = ""
+		this.ctrl.memory11.hide_label = false
+		this.ctrl.memory11.depends_on = ""
+		this.ctrl.memory11.placeholder = ""
+		this.ctrl.memory11.dynamic_param = ""
+		this.ctrl.memory11.style_code = ""
+		this.ctrl.memory11.data_source = ""
+		this.ctrl.memory11.image_association = ""
+		this.ctrl.memory11.show = true
+		this.ctrl.memory11.sub_content = ""
+		this.ctrl.memory11.required = false
+		this.ctrl.memory11.vld_rules = []
+		this.ctrl.memory11.targetcolumn_lower = "memory11"
+		this.ctrl.memory11.disabled = false
+		this.ctrl.memory11.view_name = "f_npss_customer_account_ui"
+		this.ctrl.memory11.ctrl_id = "npss_customer_account_ui_memory11"
+		this.ctrl.npss_customer_account_ui_memory11 = {}
+		this.ctrl.npss_customer_account_ui_memory11.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_customer_account_ui.model = {"IBAN":"","CURRENCY":"","INSTANT_PAYMENT":"","MEMORY9":"","MEMORY10":"","MEMORY11":""}
 		this.screen_instance[this.comp_id].f_npss_customer_account_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INSTANT_PAYMENT"}]
 		this.screen_instance[this.comp_id].f_npss_customer_account_ui.dt_code = "dt_1304_1666846042955"
 		this.screen_instance[this.comp_id].f_npss_customer_account_ui.dtt_code = "dtt_1304_1666846862798"

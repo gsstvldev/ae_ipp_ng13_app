@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27455 
+Build ID        : 27457 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-19 10:45 AM 
+Modified Date   : 2022-Dec-20 7:36 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -247,7 +247,7 @@ focustoelement(){
 		this.ctrl.proxy_type.label_name = "Type"
 		this.ctrl.proxy_type.df_code = "DF_1304_1666846148448"
 		this.ctrl.proxy_type.df_description = "Customer"
-		this.ctrl.proxy_type.uictrl_code = "TXT"
+		this.ctrl.proxy_type.uictrl_code = "CBO"
 		this.ctrl.proxy_type.target_column = "PROXY_TYPE"
 		this.ctrl.proxy_type.data_type = "TEXT"
 		this.ctrl.proxy_type.data_length = 50
@@ -264,7 +264,7 @@ focustoelement(){
 		this.ctrl.proxy_type.placeholder = ""
 		this.ctrl.proxy_type.dynamic_param = ""
 		this.ctrl.proxy_type.style_code = ""
-		this.ctrl.proxy_type.data_source = ""
+		this.ctrl.proxy_type.data_source = {"ds_code":"UDS_1304_1671512109095","ds_description":"NPSS Cust Proxy Type CDB","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"CD_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CODE_DESCRIPTIONS","context":"","filters":[{"filter_name":"Filter1","binding_name":"CD_CATEGORY","id":"DF_1671513401875","binding_value":"CUSTOMER_PROXY_TYPE","source_name":"CD_CATEGORY","source_value":"CUSTOMER_PROXY_TYPE","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"STATUS","id":"DF_1671513401875","binding_value":"APPROVED","source_name":"STATUS","source_value":"APPROVED","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter3","binding_name":"TENANT_ID","id":"DF_1671513401875","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"CUSTOMER_PROXY_TYPE","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"CUSTOMER_PROXY_TYPE"},{"operators":"=","data_type":"TEXT","binding_name":"STATUS","binding_value":"APPROVED","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"APPROVED"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":3,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(CD_CATEGORY = CUSTOMER_PROXY_TYPE AND STATUS = APPROVED AND TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[]}
 		this.ctrl.proxy_type.image_association = ""
 		this.ctrl.proxy_type.show = true
 		this.ctrl.proxy_type.sub_content = ""
@@ -276,6 +276,7 @@ focustoelement(){
 		this.ctrl.proxy_type.ctrl_id = "npss_customer_proxy_ui_proxy_type"
 		this.ctrl.npss_customer_proxy_ui_proxy_type = {}
 		this.ctrl.npss_customer_proxy_ui_proxy_type.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.proxy_type = {}
 	
 		//Properties of proxy_value
 		this.ctrl.proxy_value = {}
@@ -315,7 +316,7 @@ focustoelement(){
 		this.ctrl.npss_customer_proxy_ui_proxy_value = {}
 		this.ctrl.npss_customer_proxy_ui_proxy_value.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.model = {"CHANNEL_ID":"","BANKUSERID":"","CUSTOMER_NAME":"","SURNAME":"","MOBILE":"","PROXY_TYPE":"","PROXY_VALUE":""}
-		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMER_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_VALUE"}]
+		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMER_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_VALUE"}]
 		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.dt_code = "dt_1304_1666846042955"
 		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.dtt_code = "dtt_1304_1666846082411"
 		this.screen_instance[this.comp_id].f_npss_customer_proxy_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

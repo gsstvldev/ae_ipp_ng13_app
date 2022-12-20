@@ -30,9 +30,11 @@ export class npss_c_btn_enb_disbService {
         if (btnName == 'ENTROLMENT') {
             CtrlScope1.memory9.show = false //hide block/unblock dorpdown
             CtrlScope1.memory10.show = false //hide block/unblock dorpdown
+            CtrlScope1.memory11.show = false //hide block/unblock dorpdown
         }else if(btnName == 'BLOCK UNBLOCK ACCOUNT'){
             CtrlScope1.memory9.show = true //show block/unblock dorpdown
             CtrlScope1.memory10.show = true //show block/unblock dorpdown
+            CtrlScope1.memory11.show = false
             CtrlScope1.iban.show = false
             CtrlScope1.currency.show = false
             CtrlScope1.instant_payment.show = false
@@ -46,6 +48,7 @@ export class npss_c_btn_enb_disbService {
         }else if(btnName == 'CHANGE MOBILE NO'){
             CtrlScope1.memory9.show = false //show block/unblock dorpdown
             CtrlScope1.memory10.show = false //show block/unblock dorpdown
+            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope1.instant_payment.disabled = true
@@ -59,6 +62,7 @@ export class npss_c_btn_enb_disbService {
         }else if(btnName == 'UPDATE PERSONAL'){
             CtrlScope1.memory9.show = false //show block/unblock dorpdown
             CtrlScope1.memory10.show = false //show block/unblock dorpdown
+            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope1.instant_payment.disabled = true
@@ -73,6 +77,7 @@ export class npss_c_btn_enb_disbService {
         else if(btnName == 'UNENTROLMENT'){
             CtrlScope1.memory9.show = false //show block/unblock dorpdown
             CtrlScope1.memory10.show = false //show block/unblock dorpdown
+            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope1.instant_payment.disabled = true
@@ -86,9 +91,24 @@ export class npss_c_btn_enb_disbService {
         }else if(btnName == 'ADD BANK ACCOUNT'){
             CtrlScope1.memory9.show = false //show block/unblock dorpdown
             CtrlScope1.memory10.show = false //show block/unblock dorpdown
+            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = false
             CtrlScope1.currency.disabled = false
             CtrlScope1.instant_payment.disabled = false
+            CtrlScope.bankuserid.disabled = true
+            CtrlScope.channel_id.disabled = true
+            CtrlScope.customer_name.disabled = true
+            CtrlScope.mobile.disabled = true
+            CtrlScope.proxy_type.disabled = true
+            CtrlScope.proxy_value.disabled = true
+            CtrlScope.surname.disabled = true
+        }else if(btnName == 'REMOVE BANK ACCOUNT'){
+            CtrlScope1.memory9.show = false //show block/unblock dorpdown
+            CtrlScope1.memory10.show = false //show block/unblock dorpdown
+            CtrlScope1.memory11.show = true
+            CtrlScope1.iban.show = false
+            CtrlScope1.currency.show = false
+            CtrlScope1.instant_payment.show = false
             CtrlScope.bankuserid.disabled = true
             CtrlScope.channel_id.disabled = true
             CtrlScope.customer_name.disabled = true

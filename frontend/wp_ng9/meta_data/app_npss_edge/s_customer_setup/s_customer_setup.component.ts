@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27455 
+Build ID        : 27457 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-19 10:45 AM 
+Modified Date   : 2022-Dec-20 7:36 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -16,17 +16,17 @@ import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hi
 import {npss_c_btn_enb_disbService} from '../../../custom_widget/npss_c_btn_enb_disb/npss_c_btn_enb_disb.service'
 import {npss_cs_change_customer_mobileService} from '../../../custom_widget/npss_cs_change_customer_mobile/npss_cs_change_customer_mobile.service'
 import {npss_cs_customer_enrolmentService} from '../../../custom_widget/npss_cs_customer_enrolment/npss_cs_customer_enrolment.service'
-import {npss_cs_remove_customer_bank_accountsService} from '../../../custom_widget/npss_cs_remove_customer_bank_accounts/npss_cs_remove_customer_bank_accounts.service'
 import {npss_cs_add_customer_bank_accountsService} from '../../../custom_widget/npss_cs_add_customer_bank_accounts/npss_cs_add_customer_bank_accounts.service'
 import {npss_cs_blockunblock_customer_bankaccountService} from '../../../custom_widget/npss_cs_blockunblock_customer_bankaccount/npss_cs_blockunblock_customer_bankaccount.service'
 import {npss_cs_update_customer_personal_dataService} from '../../../custom_widget/npss_cs_update_customer_personal_data/npss_cs_update_customer_personal_data.service'
 import {npss_cs_unenrolment_customerService} from '../../../custom_widget/npss_cs_unenrolment_customer/npss_cs_unenrolment_customer.service'
+import {npss_cs_remove_customer_bank_accountsService} from '../../../custom_widget/npss_cs_remove_customer_bank_accounts/npss_cs_remove_customer_bank_accounts.service'
 
 @Component({
 	selector: 's_customer_setup',
 	templateUrl: './s_customer_setup.component.html',
 	styleUrls: ['./s_customer_setup.component.css'],
-	providers:[torus_cs_show_hideService,npss_c_btn_enb_disbService,npss_cs_change_customer_mobileService,npss_cs_customer_enrolmentService,npss_cs_remove_customer_bank_accountsService,npss_cs_add_customer_bank_accountsService,npss_cs_blockunblock_customer_bankaccountService,npss_cs_update_customer_personal_dataService,npss_cs_unenrolment_customerService]
+	providers:[torus_cs_show_hideService,npss_c_btn_enb_disbService,npss_cs_change_customer_mobileService,npss_cs_customer_enrolmentService,npss_cs_add_customer_bank_accountsService,npss_cs_blockunblock_customer_bankaccountService,npss_cs_update_customer_personal_dataService,npss_cs_unenrolment_customerService,npss_cs_remove_customer_bank_accountsService]
 })
     
 // Start of class 
@@ -35,7 +35,7 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_customer_setup"
 	wftpa_id : string = "WFT_NPSS_P_1304_1670997175701_0"
 	cg_code : string = "CG_1304_1670995429283"
-	key_column : any = {"dtt_1304_1666846082411":"NPSSCP_ID","dtt_1304_1666846862798":"NPSSCA_ID"}
+	key_column : any = {"dtt_1304_1666847230281":"NPSSSMTPL_ID","dtt_1304_1666846082411":"NPSSCP_ID","dtt_1304_1666846862798":"NPSSCA_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -50,11 +50,18 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 	uicgc_9 : string = "customer_setup_widget"
 	uicgc_10 : string = "queue"
 	uicgc_11 : string = "sub_navigation_ui"
+	uicgc_12 : string = "history_detail"
+	uicgc_13 : string = "process_log_ui"
+	uicgc_14 : string = "single_back_ui"
+	uicgc_15 : string = "request_ui"
+	uicgc_16 : string = "response_ui"
 	key_events : any = {}
+	btl_1304_1671514785051 : string = "p_view_req_and_res_profile"
+	btl_1304_1671514726628 : string = "p_view_history_layout"
 	btl_1304_1670997076000 : string = "p_search_layout"
 	btl_1304_1670996891370 : string = "p_action_layout"
 	btl_1304_1670996775588 : string = "p_main_layout"
-	forms : any = ["uicgc_7","uicgc_6","uicgc_4","uicgc_8","uicgc_1","uicgc_11"]
+	forms : any = ["uicgc_15","uicgc_7","uicgc_6","uicgc_16","uicgc_4","uicgc_14","uicgc_13","uicgc_8","uicgc_1","uicgc_11"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
@@ -64,7 +71,9 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 	navigation_ui_change_mobile_no : any = {}
 	navigation_ui_block_unblock_account : any = {}
 	navigation_ui_add_bank_account : any = {}
+	navigation_ui_remove_bank_account : any = {}
 	navigation_ui_tri_btn1 : any = {}
+	navigation_ui_view_process_log : any = {}
 	navigation_ui_trg_btn2 : any = {}
 	customers : any = {}
 	accounts : any = {}
@@ -81,17 +90,25 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 	action_unenrol : any = {}
 	action_add_account : any = {}
 	action_block_unblock : any = {}
+	action_remove_account : any = {}
 	customer_setup_widget : any = {}
 	queue : any = {}
 	sub_navigation_ui : any = {}
-	sub_navigation_ui_remove : any = {}
 	sub_navigation_ui_block_unblocks : any = {}
 	sub_navigation_ui_set_default : any = {}
 	sub_navigation_ui_add_bank_accountss : any = {}
+	history_detail : any = {}
+	process_log_ui : any = {}
+	process_log_ui_back : any = {}
+	process_log_ui_view_req_and_res : any = {}
+	single_back_ui : any = {}
+	single_back_ui_back : any = {}
+	request_ui : any = {}
+	response_ui : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_btn_enb_disbService:npss_c_btn_enb_disbService,private npss_cs_change_customer_mobileService:npss_cs_change_customer_mobileService,private npss_cs_customer_enrolmentService:npss_cs_customer_enrolmentService,private npss_cs_remove_customer_bank_accountsService:npss_cs_remove_customer_bank_accountsService,private npss_cs_add_customer_bank_accountsService:npss_cs_add_customer_bank_accountsService,private npss_cs_blockunblock_customer_bankaccountService:npss_cs_blockunblock_customer_bankaccountService,private npss_cs_update_customer_personal_dataService:npss_cs_update_customer_personal_dataService,private npss_cs_unenrolment_customerService:npss_cs_unenrolment_customerService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_btn_enb_disbService:npss_c_btn_enb_disbService,private npss_cs_change_customer_mobileService:npss_cs_change_customer_mobileService,private npss_cs_customer_enrolmentService:npss_cs_customer_enrolmentService,private npss_cs_add_customer_bank_accountsService:npss_cs_add_customer_bank_accountsService,private npss_cs_blockunblock_customer_bankaccountService:npss_cs_blockunblock_customer_bankaccountService,private npss_cs_update_customer_personal_dataService:npss_cs_update_customer_personal_dataService,private npss_cs_unenrolment_customerService:npss_cs_unenrolment_customerService,private npss_cs_remove_customer_bank_accountsService:npss_cs_remove_customer_bank_accountsService) {
     
 	}
     
@@ -174,6 +191,15 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_add_bank_account.role = []
 		this.navigation_ui_add_bank_account.action = ""
 		
+		// "Remove Bank Account" Button of "Navigation UI" component
+		this.navigation_ui_remove_bank_account.label_name = "Remove Bank Account"
+		this.navigation_ui_remove_bank_account.show = true
+		this.navigation_ui_remove_bank_account.disabled = false
+		this.navigation_ui_remove_bank_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.navigation_ui_remove_bank_account.dynamic_param = {}
+		this.navigation_ui_remove_bank_account.role = []
+		this.navigation_ui_remove_bank_account.action = ""
+		
 		// "Tri Btn1" Button of "Navigation UI" component
 		this.navigation_ui_tri_btn1.label_name = "Tri Btn1"
 		this.navigation_ui_tri_btn1.show = true
@@ -182,6 +208,15 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_tri_btn1.dynamic_param = {}
 		this.navigation_ui_tri_btn1.role = []
 		this.navigation_ui_tri_btn1.action = ""
+		
+		// "View Process Log" Button of "Navigation UI" component
+		this.navigation_ui_view_process_log.label_name = "View Process Log"
+		this.navigation_ui_view_process_log.show = true
+		this.navigation_ui_view_process_log.disabled = true
+		this.navigation_ui_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
+		this.navigation_ui_view_process_log.dynamic_param = {}
+		this.navigation_ui_view_process_log.role = []
+		this.navigation_ui_view_process_log.action = ""
 		
 		// "Trg Btn2" Button of "Navigation UI" component
 		this.navigation_ui_trg_btn2.label_name = "Trg Btn2"
@@ -352,6 +387,15 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.action_block_unblock.dynamic_param = {}
 		this.action_block_unblock.role = []
 		this.action_block_unblock.action = ""
+		
+		// "Remove Account" Button of "Action" component
+		this.action_remove_account.label_name = "Remove Account"
+		this.action_remove_account.show = true
+		this.action_remove_account.disabled = false
+		this.action_remove_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.action_remove_account.dynamic_param = {}
+		this.action_remove_account.role = []
+		this.action_remove_account.action = ""
 	
 		// Component level properties - "Customer Setup Widget" 
 		this.customer_setup_widget.uictrl_code = "custom_widget"
@@ -391,15 +435,6 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.sub_navigation_ui.f_sub_navigation_ui = {"show":true}
 		this.sub_navigation_ui.current_view = "f_sub_navigation_ui"
 		
-		// "Remove" Button of "Sub Navigation UI" component
-		this.sub_navigation_ui_remove.label_name = "Remove"
-		this.sub_navigation_ui_remove.show = true
-		this.sub_navigation_ui_remove.disabled = true
-		this.sub_navigation_ui_remove.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
-		this.sub_navigation_ui_remove.dynamic_param = {}
-		this.sub_navigation_ui_remove.role = []
-		this.sub_navigation_ui_remove.action = ""
-		
 		// "Block Unblocks" Button of "Sub Navigation UI" component
 		this.sub_navigation_ui_block_unblocks.label_name = "Block Unblocks"
 		this.sub_navigation_ui_block_unblocks.show = true
@@ -426,6 +461,101 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.sub_navigation_ui_add_bank_accountss.dynamic_param = {}
 		this.sub_navigation_ui_add_bank_accountss.role = []
 		this.sub_navigation_ui_add_bank_accountss.action = ""
+	
+		// Component level properties - "History Detail" 
+		this.history_detail.uictrl_code = "datatable"
+		this.history_detail.uicgc_desc = "History Detail"
+		this.history_detail.uicgc_code = "uicgc_12"
+		this.history_detail.params = {"need_search":"N","need_pag_datatable":"Y"}
+		this.history_detail.datasource = {"default":{"dt_1304_1666847145490":{"dtt_1304_1666847230281":{"st_ds":{"default":{"uicgc_code":"UICGC_12","event_code":"DEFAULT","dt_code":"DT_1304_1666847145490","dt_desc":"NPSS Customer Proxy DTG","dtt_code":"DTT_1304_1666847230281","dtt_desc":"NPSS Customer Proxy","ds_eligible":"DS_1671521364681","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM HST Plog MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1671521093141","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1671521093317","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1671521093493","date_format":false},{"column_name":"RESULT_CODE","alias_name":"","mq_id":"MQ_1671521093669","date_format":false},{"column_name":"RESULT_MESSAGE","alias_name":"","mq_id":"MQ_1671521093853","date_format":false},{"column_name":"process_ref_no","alias_name":"","mq_id":"MQ_1671521134065","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSSMTPL_ID,  BANKUSERID,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESULT_CODE,  RESULT,  RESULT_MESSAGE,  RESULT_X_REQUEST_ID,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  CHANNEL_ID,  CHANNEL_REFNO,  CHANNEL_USERID,  CHANNEL_PRODUCT,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  DTT_CODE,  TENANT_ID,  DT_CODE FROM  (  SELECT   NSTPL.NPSSSMTPL_ID,  NSTPL.BANKUSERID,  NSTPL.PROCESS_NAME,  NSTPL.PROCESSING_SYSTEM,  NSTPL.RESULT_CODE,  NSTPL.RESULT,  NSTPL.RESULT_MESSAGE,  NSTPL.RESULT_X_REQUEST_ID,  NSTPL.PROCESS_REF_NO,  NSTPL.REQUEST_DATA_JSON,  NSTPL.RESPONSE_DATA_JSON,  NSTPL.CHANNEL_ID,  NSTPL.CHANNEL_REFNO,  NSTPL.CHANNEL_USERID,  NSTPL.CHANNEL_PRODUCT,  NSTPL.CHANNEL_SUB_PRODUCT,  NSTPL.CHANNEL_TRAN_CODE,  NSTPL.DTT_CODE,  NSTPL.TENANT_ID,  NSTPL.DT_CODE  FROM   NPSS_SM_TRN_PROCESS_LOG NSTPL    ORDER BY NPSSSMTPL_ID) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM HST Plog MQ CCD","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Code","target_column":"RESULT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Message","target_column":"RESULT_MESSAGE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Ref No","target_column":"process_ref_no","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.history_detail.context_menu = []
+		this.history_detail.views = {}
+		this.history_detail.onChangecomponent = new EventEmitter<any>()
+		this.history_detail.show = true
+		this.history_detail.dynamic_param = {}
+	
+		// Component level properties - "Process Log UI" 
+		this.process_log_ui.uictrl_code = "dynamic_ui"
+		this.process_log_ui.uicgc_desc = "Process Log UI"
+		this.process_log_ui.uicgc_code = "uicgc_13"
+		this.process_log_ui.params = {}
+		this.process_log_ui.datasource = {}
+		this.process_log_ui.context_menu = []
+		this.process_log_ui.views = {}
+		this.process_log_ui.onChangecomponent = new EventEmitter<any>()
+		this.process_log_ui.show = true
+		this.process_log_ui.dynamic_param = {}
+		this.process_log_ui.f_process_log_ui = {"show":true}
+		this.process_log_ui.current_view = "f_process_log_ui"
+		
+		// "Back" Button of "Process Log UI" component
+		this.process_log_ui_back.label_name = "Back"
+		this.process_log_ui_back.show = true
+		this.process_log_ui_back.disabled = false
+		this.process_log_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-fast-backward"}
+		this.process_log_ui_back.dynamic_param = {}
+		this.process_log_ui_back.role = []
+		this.process_log_ui_back.action = ""
+		
+		// "View Req and Res" Button of "Process Log UI" component
+		this.process_log_ui_view_req_and_res.label_name = "View Req and Res"
+		this.process_log_ui_view_req_and_res.show = true
+		this.process_log_ui_view_req_and_res.disabled = true
+		this.process_log_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.process_log_ui_view_req_and_res.dynamic_param = {}
+		this.process_log_ui_view_req_and_res.role = []
+		this.process_log_ui_view_req_and_res.action = ""
+	
+		// Component level properties - "Single Back UI" 
+		this.single_back_ui.uictrl_code = "dynamic_ui"
+		this.single_back_ui.uicgc_desc = "Single Back UI"
+		this.single_back_ui.uicgc_code = "uicgc_14"
+		this.single_back_ui.params = {}
+		this.single_back_ui.datasource = {}
+		this.single_back_ui.context_menu = []
+		this.single_back_ui.views = {}
+		this.single_back_ui.onChangecomponent = new EventEmitter<any>()
+		this.single_back_ui.show = true
+		this.single_back_ui.dynamic_param = {}
+		this.single_back_ui.f_single_back_ui = {"show":true}
+		this.single_back_ui.current_view = "f_single_back_ui"
+		
+		// "Back" Button of "Single Back UI" component
+		this.single_back_ui_back.label_name = "Back"
+		this.single_back_ui_back.show = true
+		this.single_back_ui_back.disabled = false
+		this.single_back_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-fast-backward"}
+		this.single_back_ui_back.dynamic_param = {}
+		this.single_back_ui_back.role = []
+		this.single_back_ui_back.action = ""
+	
+		// Component level properties - "Request UI" 
+		this.request_ui.uictrl_code = "dynamic_ui"
+		this.request_ui.uicgc_desc = "Request UI"
+		this.request_ui.uicgc_code = "uicgc_15"
+		this.request_ui.params = {}
+		this.request_ui.datasource = {}
+		this.request_ui.context_menu = []
+		this.request_ui.views = {"first":"DTT_1304_1666847230281","is_tab_mode":"N","dtt_1304_1666847230281":{"0":[{"dttv_id":"NPSS SM Request UI","tab_order":0,"tab_name":"","uicgc_description":"Request UI","role_description":"default","dtt_description":"NPSS SM Trn Process Log"}]}}
+		this.request_ui.onChangecomponent = new EventEmitter<any>()
+		this.request_ui.show = true
+		this.request_ui.dynamic_param = {}
+		this.request_ui.f_npss_sm_request_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.request_ui.form_name = "f_npss_sm_request_ui"
+	
+		// Component level properties - "Response UI" 
+		this.response_ui.uictrl_code = "dynamic_ui"
+		this.response_ui.uicgc_desc = "Response UI"
+		this.response_ui.uicgc_code = "uicgc_16"
+		this.response_ui.params = {}
+		this.response_ui.datasource = {}
+		this.response_ui.context_menu = []
+		this.response_ui.views = {"first":"DTT_1304_1666847230281","is_tab_mode":"N","dtt_1304_1666847230281":{"0":[{"dttv_id":"NPSS SM Response UI","tab_order":0,"tab_name":"","uicgc_description":"Response UI","role_description":"default","dtt_description":"NPSS SM Trn Process Log"}]}}
+		this.response_ui.onChangecomponent = new EventEmitter<any>()
+		this.response_ui.show = true
+		this.response_ui.dynamic_param = {}
+		this.response_ui.f_npss_sm_response_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.response_ui.form_name = "f_npss_sm_response_ui"
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -447,12 +577,13 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.page_load__he_for_trg_btn1()
 		this.page_load__he_for_action_add_account()
 		this.page_load__he_for_add_account()
-		this.page_load__de_for_remove()
 		this.page_load__de_for_set_default()
 		this.page_load__he_for_block_unblk()
 		this.page_load__he_for_block_unblock()
 		this.page_load__de_for_nav_block()
 		this.page_load__de_for_nav_add_acc()
+		this.page_load__de_for_remove_account()
+		this.page_load__he_for_ac_remove_account()
 	}
 
 	//Handler for INTERNAL event of "cf for pl"
@@ -568,11 +699,11 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.accounts__ee_for_nav_unentrol()
 		this.accounts__svm_for_accounts()
 		this.accounts__ee_for_add_count()
-		this.accounts__ee_for_remove()
 		this.accounts__ee_for_set_default()
 		this.accounts__ee_for_block_unblk()
 		this.accounts__ee_for_nav_block()
 		this.accounts__ee_for_nav_add_ac()
+		this.accounts__ee_for_remove_account()
 	}
 
 	//Handler for INTERNAL event of "svm for accounts"
@@ -627,16 +758,6 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.sub_navigation_ui_add_bank_accountss__cc_for_enab_desable_for_add_account()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui remove"
-	sub_navigation_ui_remove__action_button_click(){
-		this.sub_navigation_ui_remove__cc_for_enable_disable_for_remove()
-	}
-
-	//Handler for INTERNAL event of "cc for enable disable for remove"
-	cc_for_enable_disable_for_remove__internal(parent_event_result){
-		this.cc_for_enable_disable_for_remove__cc_for_remove_account(parent_event_result)
-	}
-
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui set default"
 	sub_navigation_ui_set_default__action_button_click(){
 		this.sub_navigation_ui_set_default__cc_for_enable_disable_for_set_default()
@@ -681,6 +802,52 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "action unenrol"
 	action_unenrol__action_button_click(){
 		this.action_unenrol__cc_for_unenrol()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view process log"
+	navigation_ui_view_process_log__action_button_click(){
+		this.navigation_ui_view_process_log__sp_for_view_process_log()
+		this.navigation_ui_view_process_log__brfq_for_history_detaail()
+	}
+
+	//Handler for INTERNAL event of "brfq for history detaail"
+	brfq_for_history_detaail__internal(parent_event_result){
+		this.brfq_for_history_detaail__sfr_for_history_detail(parent_event_result)
+	}
+
+	//Handler for SELECTION_CHANGED event of "history detail"
+	history_detail__selection_changed(){
+		this.history_detail__ssr_for_req()
+		this.history_detail__ssr_for_res()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__action_button_click(){
+		this.process_log_ui_view_req_and_res__bt_for_res()
+		this.process_log_ui_view_req_and_res__bt_for_req()
+		this.process_log_ui_view_req_and_res__sp_for_req_and_res()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui back"
+	process_log_ui_back__action_button_click(){
+		this.process_log_ui_back__e_1671515425817()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "single back ui back"
+	single_back_ui_back__action_button_click(){
+		this.single_back_ui_back__sp_for_sbu_back()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove bank account"
+	navigation_ui_remove_bank_account__action_button_click(){
+		this.navigation_ui_remove_bank_account__cc_for_remove_enab_disab()
+		this.navigation_ui_remove_bank_account__sp_for_remove_account()
+		this.navigation_ui_remove_bank_account__se_for_a_remove_account()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action remove account"
+	action_remove_account__action_button_click(){
+		this.action_remove_account__cc_for_remove_account()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -936,27 +1103,6 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__de_for_remove() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="sub_navigation_ui_remove"
-		let parent_source_id=""
-		let event_code="e_1671021691214"
-		let event_params={"caller_name":"page_load__de_for_remove","event_desc":"DE for Remove","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
-		let handler_code="disable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
 	page_load__de_for_set_default() { 
 		let Dest_Is_ctrl=true
 		
@@ -1055,6 +1201,48 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_remove_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_remove_bank_account"
+		let parent_source_id=""
+		let event_code="e_1671516472107"
+		let event_params={"caller_name":"page_load__de_for_remove_account","event_desc":"DE for Remove account","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_ac_remove_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_remove_account"
+		let parent_source_id=""
+		let event_code="e_1671516796546"
+		let event_params={"caller_name":"page_load__he_for_ac_remove_account","event_desc":"HE for AC Remove account","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1286,7 +1474,7 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let event_params={"caller_name":"customers__svmfor_cpl","event_desc":"SVMfor CPL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"customers","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals="svmfor_cpl__cc_for_customer_show_hide,"
-		let event_data={"customers":{"e_1670997376364":{"dts":{"dt_1304_1666846042955":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1670997376364","dt_code":"DT_1304_1666846042955","dtt_code":"","dt_desc":"NPSS Customer Proxy DTG","dtt_desc":"NPSS Customer Proxy","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"BANKUSERID","level":"MI_LEVEL","name":"MI_LEVEL_BANKUSERID","setd3name":"BANKUSERID"},{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"NPSSCP_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSCP_ID","setd3name":"NPSSCP_ID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let event_data={"customers":{"e_1670997376364":{"dts":{"dt_1304_1666846042955":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1670997376364","dt_code":"DT_1304_1666846042955","dtt_code":"","dt_desc":"NPSS Customer Proxy DTG","dtt_desc":"NPSS Customer Proxy","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"BANKUSERID","level":"MI_LEVEL","name":"MI_LEVEL_BANKUSERID","setd3name":"BANKUSERID"},{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"NPSSCP_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSCP_ID","setd3name":"NPSSCP_ID"},{"type":"LOCAL","column_name":"CHANNEL_ID","level":"MI_LEVEL","name":"MI_LEVEL_CHANNEL_ID","setd3name":"CHANNEL_ID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1666846042955":{"dtt_1304_1666846082411":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846042955","dt_desc":"NPSS Customer Proxy DTG","dtt_code":"DTT_1304_1666846082411","dtt_desc":"NPSS Customer Proxy","ds_eligible":"DS_1670998440500","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Customer Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_CUSTOMER_PROXY ~NPSSCP","category":"NPSS_CUSTOMER_PROXY","loc":"292.99675934606216 422.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npsscp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"customer_name_checked":true,"surname_checked":true,"channel_id_checked":true,"channel_product_checked":true,"mobile_checked":true,"product_code_checked":true,"group_code_checked":true,"bank_code_checked":true,"proxy_type_checked":true,"proxy_value_checked":true,"email_checked":true,"document_id_checked":true,"exhf_id_checked":true,"channel_refno_checked":true,"channel_userid_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846082411"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSCP_ID","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"CUSTOMER_NAME","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSCP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSCP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_CUSTOMER_PROXY ","alias_name":"NPSSCP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSCP_ID,BANKUSERID,CUSTOMER_NAME,SURNAME,CHANNEL_ID,CHANNEL_PRODUCT,MOBILE,PRODUCT_CODE,GROUP_CODE,BANK_CODE,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,EXHF_ID,CHANNEL_REFNO,CHANNEL_USERID,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSCP.NPSSCP_ID,NPSSCP.BANKUSERID,NPSSCP.CUSTOMER_NAME,NPSSCP.SURNAME,NPSSCP.CHANNEL_ID,NPSSCP.CHANNEL_PRODUCT,NPSSCP.MOBILE,NPSSCP.PRODUCT_CODE,NPSSCP.GROUP_CODE,NPSSCP.BANK_CODE,NPSSCP.PROXY_TYPE,NPSSCP.PROXY_VALUE,NPSSCP.EMAIL,NPSSCP.DOCUMENT_ID,NPSSCP.EXHF_ID,NPSSCP.CHANNEL_REFNO,NPSSCP.CHANNEL_USERID,NPSSCP.CHANNEL_SUB_PRODUCT,NPSSCP.CHANNEL_TRAN_CODE,NPSSCP.CREATED_BY,NPSSCP.CREATED_BY_NAME,NPSSCP.CREATED_BY_STS_ID,NPSSCP.CREATED_DATE,NPSSCP.DT_CODE,NPSSCP.DT_DESCRIPTION,NPSSCP.DTT_CODE,NPSSCP.DTT_DESCRIPTION,NPSSCP.MODIFIED_BY,NPSSCP.MODIFIED_BY_NAME,NPSSCP.MODIFIED_BY_STS_ID,NPSSCP.MODIFIED_DATE,NPSSCP.PRCT_ID,NPSSCP.STATUS,NPSSCP.PROCESS_STATUS,NPSSCP.SYSTEM_ID,NPSSCP.SYSTEM_NAME,NPSSCP.TENANT_ID,NPSSCP.APP_ID,NPSSCP.VERSION_NO FROM NPSS_CUSTOMER_PROXY  NPSSCP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Customer Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSCP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSCP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSCP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Name","target_column":"CUSTOMER_NAME","alias_name":"NPSSCP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Surname","target_column":"SURNAME","alias_name":"NPSSCP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"MOBILE","target_column":"MOBILE","alias_name":"NPSSCP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSCP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSCP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
@@ -1972,27 +2160,6 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "accounts"
-	accounts__ee_for_remove() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="accounts"
-		let destn_id="sub_navigation_ui_remove"
-		let parent_source_id=""
-		let event_code="e_1671021804376"
-		let event_params={"caller_name":"accounts__ee_for_remove","event_desc":"EE for remove","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "accounts"
 	accounts__ee_for_set_default() { 
 		let Dest_Is_ctrl=true
 		
@@ -2064,6 +2231,27 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1671028389125"
 		let event_params={"caller_name":"accounts__ee_for_nav_add_ac","event_desc":"EE for nav add ac","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "accounts"
+	accounts__ee_for_remove_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="accounts"
+		let destn_id="navigation_ui_remove_bank_account"
+		let parent_source_id=""
+		let event_code="e_1671516552170"
+		let event_params={"caller_name":"accounts__ee_for_remove_account","event_desc":"EE for Remove account","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
@@ -2327,49 +2515,6 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui remove"
-	sub_navigation_ui_remove__cc_for_enable_disable_for_remove() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="sub_navigation_ui_remove"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1671021559328"
-		let event_params={"caller_name":"sub_navigation_ui_remove__cc_for_enable_disable_for_remove","event_desc":"CC for enable disable for remove","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_remove","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals="cc_for_enable_disable_for_remove__cc_for_remove_account,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "cc for enable disable for remove"
-	cc_for_enable_disable_for_remove__cc_for_remove_account(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_for_enable_disable_for_remove"
-		let destn_id=""
-		let parent_source_id="sub_navigation_ui_remove"
-		let event_code="e_1671429247156"
-		let event_params={"caller_name":"cc_for_enable_disable_for_remove__cc_for_remove_account","event_desc":"CC for remove account","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_remove","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="custom_connectors"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_cs_remove_customer_bank_accountsService.fn_npss_cs_remove_customer_bank_accounts(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2664,6 +2809,301 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.npss_cs_unenrolment_customerService.fn_npss_cs_unenrolment_customer(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view process log"
+	navigation_ui_view_process_log__sp_for_view_process_log() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_process_log"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671514942287"
+		let event_params={"caller_name":"navigation_ui_view_process_log__sp_for_view_process_log","event_desc":"SP for view process log","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_process_log","raiseparam":{"profile_code":"BTL_1304_1671514726628"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view process log"
+	navigation_ui_view_process_log__brfq_for_history_detaail() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_view_process_log"
+		let destn_id="history_detail"
+		let parent_source_id=""
+		let event_code="e_1671515019557"
+		let event_params={"caller_name":"navigation_ui_view_process_log__brfq_for_history_detaail","event_desc":"BRFQ for History detaail","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_process_log","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let handler_code="bind_record_from_query"
+		let internals="brfq_for_history_detaail__sfr_for_history_detail,"
+		let event_data={}
+		let data_source={"default":{"dt_1304_1666847145490":{"dtt_1304_1666847230281":{"st_ds":{"default":{"uicgc_code":"UICGC_12","event_code":"DEFAULT","dt_code":"DT_1304_1666847145490","dt_desc":"NPSS Customer Proxy DTG","dtt_code":"DTT_1304_1666847230281","dtt_desc":"NPSS Customer Proxy","ds_eligible":"DS_1671521364681","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM HST Plog MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1671521093141","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1671521093317","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1671521093493","date_format":false},{"column_name":"RESULT_CODE","alias_name":"","mq_id":"MQ_1671521093669","date_format":false},{"column_name":"RESULT_MESSAGE","alias_name":"","mq_id":"MQ_1671521093853","date_format":false},{"column_name":"process_ref_no","alias_name":"","mq_id":"MQ_1671521134065","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSSMTPL_ID,  BANKUSERID,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESULT_CODE,  RESULT,  RESULT_MESSAGE,  RESULT_X_REQUEST_ID,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  CHANNEL_ID,  CHANNEL_REFNO,  CHANNEL_USERID,  CHANNEL_PRODUCT,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  DTT_CODE,  TENANT_ID,  DT_CODE FROM  (  SELECT   NSTPL.NPSSSMTPL_ID,  NSTPL.BANKUSERID,  NSTPL.PROCESS_NAME,  NSTPL.PROCESSING_SYSTEM,  NSTPL.RESULT_CODE,  NSTPL.RESULT,  NSTPL.RESULT_MESSAGE,  NSTPL.RESULT_X_REQUEST_ID,  NSTPL.PROCESS_REF_NO,  NSTPL.REQUEST_DATA_JSON,  NSTPL.RESPONSE_DATA_JSON,  NSTPL.CHANNEL_ID,  NSTPL.CHANNEL_REFNO,  NSTPL.CHANNEL_USERID,  NSTPL.CHANNEL_PRODUCT,  NSTPL.CHANNEL_SUB_PRODUCT,  NSTPL.CHANNEL_TRAN_CODE,  NSTPL.DTT_CODE,  NSTPL.TENANT_ID,  NSTPL.DT_CODE  FROM   NPSS_SM_TRN_PROCESS_LOG NSTPL    ORDER BY NPSSSMTPL_ID) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM HST Plog MQ CCD","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Code","target_column":"RESULT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Message","target_column":"RESULT_MESSAGE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Ref No","target_column":"process_ref_no","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq for history detaail"
+	brfq_for_history_detaail__sfr_for_history_detail(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_for_history_detaail"
+		let destn_id="history_detail"
+		let parent_source_id="navigation_ui_view_process_log"
+		let event_code="e_1671515060941"
+		let event_params={"caller_name":"brfq_for_history_detaail__sfr_for_history_detail","event_desc":"SFR for history detail","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_process_log","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1666847145490":{"dtt_1304_1666847230281":{"st_ds":{"default":{"uicgc_code":"UICGC_12","event_code":"DEFAULT","dt_code":"DT_1304_1666847145490","dt_desc":"NPSS Customer Proxy DTG","dtt_code":"DTT_1304_1666847230281","dtt_desc":"NPSS Customer Proxy","ds_eligible":"DS_1671521364681","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM HST Plog MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1671521093141","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1671521093317","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1671521093493","date_format":false},{"column_name":"RESULT_CODE","alias_name":"","mq_id":"MQ_1671521093669","date_format":false},{"column_name":"RESULT_MESSAGE","alias_name":"","mq_id":"MQ_1671521093853","date_format":false},{"column_name":"process_ref_no","alias_name":"","mq_id":"MQ_1671521134065","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSSMTPL_ID,  BANKUSERID,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESULT_CODE,  RESULT,  RESULT_MESSAGE,  RESULT_X_REQUEST_ID,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  CHANNEL_ID,  CHANNEL_REFNO,  CHANNEL_USERID,  CHANNEL_PRODUCT,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  DTT_CODE,  TENANT_ID,  DT_CODE FROM  (  SELECT   NSTPL.NPSSSMTPL_ID,  NSTPL.BANKUSERID,  NSTPL.PROCESS_NAME,  NSTPL.PROCESSING_SYSTEM,  NSTPL.RESULT_CODE,  NSTPL.RESULT,  NSTPL.RESULT_MESSAGE,  NSTPL.RESULT_X_REQUEST_ID,  NSTPL.PROCESS_REF_NO,  NSTPL.REQUEST_DATA_JSON,  NSTPL.RESPONSE_DATA_JSON,  NSTPL.CHANNEL_ID,  NSTPL.CHANNEL_REFNO,  NSTPL.CHANNEL_USERID,  NSTPL.CHANNEL_PRODUCT,  NSTPL.CHANNEL_SUB_PRODUCT,  NSTPL.CHANNEL_TRAN_CODE,  NSTPL.DTT_CODE,  NSTPL.TENANT_ID,  NSTPL.DT_CODE  FROM   NPSS_SM_TRN_PROCESS_LOG NSTPL    ORDER BY NPSSSMTPL_ID) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM HST Plog MQ CCD","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Code","target_column":"RESULT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Message","target_column":"RESULT_MESSAGE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Ref No","target_column":"process_ref_no","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "history detail"
+	history_detail__ssr_for_req() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="history_detail"
+		let destn_id="request_ui"
+		let parent_source_id=""
+		let event_code="e_1671515194515"
+		let event_params={"caller_name":"history_detail__ssr_for_req","event_desc":"SSR for REQ","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "history detail"
+	history_detail__ssr_for_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="history_detail"
+		let destn_id="response_ui"
+		let parent_source_id=""
+		let event_code="e_1671515211810"
+		let event_params={"caller_name":"history_detail__ssr_for_res","event_desc":"SSR for RES","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__bt_for_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id="response_ui"
+		let parent_source_id=""
+		let event_code="e_1671515259649"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_for_res","event_desc":"BT for RES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__bt_for_req() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id="request_ui"
+		let parent_source_id=""
+		let event_code="e_1671515268440"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_for_req","event_desc":"BT for REQ","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__sp_for_req_and_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671515299634"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__sp_for_req_and_res","event_desc":"SP for REQ and RES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1671514785051"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui back"
+	process_log_ui_back__e_1671515425817() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671515425817"
+		let event_params={"caller_name":"process_log_ui_back__e_1671515425817","event_desc":"E_1671515425817","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_back","raiseparam":{"profile_code":"BTL_1304_1670996775588"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "single back ui back"
+	single_back_ui_back__sp_for_sbu_back() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="single_back_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671515437731"
+		let event_params={"caller_name":"single_back_ui_back__sp_for_sbu_back","event_desc":"SP for SBU Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"single_back_ui_back","raiseparam":{"profile_code":"BTL_1304_1671514726628"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove bank account"
+	navigation_ui_remove_bank_account__cc_for_remove_enab_disab() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_remove_bank_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671516660958"
+		let event_params={"caller_name":"navigation_ui_remove_bank_account__cc_for_remove_enab_disab","event_desc":"CC for remove enab disab","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_bank_account","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove bank account"
+	navigation_ui_remove_bank_account__sp_for_remove_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_remove_bank_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671516729572"
+		let event_params={"caller_name":"navigation_ui_remove_bank_account__sp_for_remove_account","event_desc":"SP for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_bank_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove bank account"
+	navigation_ui_remove_bank_account__se_for_a_remove_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_remove_bank_account"
+		let destn_id="action_remove_account"
+		let parent_source_id=""
+		let event_code="e_1671516831749"
+		let event_params={"caller_name":"navigation_ui_remove_bank_account__se_for_a_remove_account","event_desc":"SE for A Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_bank_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action remove account"
+	action_remove_account__cc_for_remove_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_remove_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671516873352"
+		let event_params={"caller_name":"action_remove_account__cc_for_remove_account","event_desc":"CC for remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_remove_account","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_remove_customer_bank_accountsService.fn_npss_cs_remove_customer_bank_accounts(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

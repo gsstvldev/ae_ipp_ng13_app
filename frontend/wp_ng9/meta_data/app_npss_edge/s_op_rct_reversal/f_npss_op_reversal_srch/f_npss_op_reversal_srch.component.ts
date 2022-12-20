@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27468 
+Build ID        : 27469 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-20 12:2 PM 
+Modified Date   : 2022-Dec-20 12:25 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -56,7 +56,7 @@ focustoelement(){
 		this.ctrl.value_date.label_name = "Value Date"
 		this.ctrl.value_date.df_code = "DF_1304_1665901396659"
 		this.ctrl.value_date.df_description = "Column Group 1"
-		this.ctrl.value_date.uictrl_code = "DTP"
+		this.ctrl.value_date.uictrl_code = "CDN_DATE"
 		this.ctrl.value_date.target_column = "VALUE_DATE"
 		this.ctrl.value_date.data_type = "DATETIME"
 		this.ctrl.value_date.data_length = 0
@@ -95,7 +95,7 @@ focustoelement(){
 		this.ctrl.memory63.label_name = "Created Date"
 		this.ctrl.memory63.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory63.df_description = "Column Group 1"
-		this.ctrl.memory63.uictrl_code = "DTP"
+		this.ctrl.memory63.uictrl_code = "CDN_DATE"
 		this.ctrl.memory63.target_column = "memory63"
 		this.ctrl.memory63.data_type = "DATETIME"
 		this.ctrl.memory63.data_length = 0
@@ -362,7 +362,7 @@ focustoelement(){
 		this.ctrl.npss_op_reversal_srch_memory75.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.memory75 = {}
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.model = {"VALUE_DATE":"","MEMORY63":"","CDTR_IBAN":"","UETR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","MEMORY75":""}
-		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"}]
+		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"}]
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27457 
+Build ID        : 27461 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-20 7:36 AM 
+Modified Date   : 2022-Dec-20 8:8 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -626,6 +626,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.merchant__svmfor_cpl()
 		this.merchant__ssr_for_customer_to_cust_detail()
 		this.merchant__tbc_for_cpl()
+		this.merchant__ee_for_vpl()
 	}
 
 	//Handler for INTERNAL event of "svmfor cpl"
@@ -1493,6 +1494,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "merchant"
+	merchant__ee_for_vpl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="merchant"
+		let destn_id="navigation_ui_view_process_log"
+		let parent_source_id=""
+		let event_code="e_1671523276382"
+		let event_params={"caller_name":"merchant__ee_for_vpl","event_desc":"EE FOR VPL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

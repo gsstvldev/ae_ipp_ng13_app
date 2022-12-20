@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27457 
+Build ID        : 27462 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-20 7:36 AM 
+Modified Date   : 2022-Dec-20 8:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -625,8 +625,10 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.customers__svmfor_cpl()
 		this.customers__ssr_for_customer_to_cust_detail()
 		this.customers__tbc_for_cpl()
+		this.customers__ee_for_vplog()
 		this.customers__e_1671023511080__account__detail()
 		this.customers__e_1671023523592__account__detail()
+		this.customers__npsscp_id__account__detail()
 	}
 
 	//Handler for INTERNAL event of "svmfor cpl"
@@ -819,6 +821,7 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 	history_detail__selection_changed(){
 		this.history_detail__ssr_for_req()
 		this.history_detail__ssr_for_res()
+		this.history_detail__ee_for_req_and_res()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
@@ -1527,6 +1530,27 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "customers"
+	customers__ee_for_vplog() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="customers"
+		let destn_id="navigation_ui_view_process_log"
+		let parent_source_id=""
+		let event_code="e_1671523181977"
+		let event_params={"caller_name":"customers__ee_for_vplog","event_desc":"EE for VPLOG","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"customers","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "customers"
 	customers__e_1671023511080__account__detail() { 
 		let Dest_Is_ctrl=true
 		
@@ -1556,6 +1580,27 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1671023523592"
 		let event_params={"destn_comp_id":"account__detail","destn_ctrl_id":"memory10","caller_name":"customers__e_1671023523592__account__detail","event_desc":"E_1671023523592","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"customers","raiseparam":{"parentcolumn":"NPSSCP_ID","need_selecteditem":"N"}}
+		let handler_code="filter_combo_binding"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.filter_combo_binding(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "customers"
+	customers__npsscp_id__account__detail() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="customers"
+		let destn_id="npss_customer_account_ui_memory11"
+		let parent_source_id=""
+		let event_code="e_1671522553360"
+		let event_params={"destn_comp_id":"account__detail","destn_ctrl_id":"memory11","caller_name":"customers__npsscp_id__account__detail","event_desc":"NPSSCP_ID","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"customers","raiseparam":{"parentcolumn":"NPSSCP_ID","need_selecteditem":"N"}}
 		let handler_code="filter_combo_binding"
 		let internals=""
 		let event_data={}
@@ -2915,6 +2960,27 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "history detail"
+	history_detail__ee_for_req_and_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="history_detail"
+		let destn_id="process_log_ui_view_req_and_res"
+		let parent_source_id=""
+		let event_code="e_1671523298536"
+		let event_params={"caller_name":"history_detail__ee_for_req_and_res","event_desc":"EE for req and res","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

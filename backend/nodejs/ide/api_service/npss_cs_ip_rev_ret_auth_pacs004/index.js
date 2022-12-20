@@ -15,8 +15,12 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified By : Siva Harish
     Modified Date : 18/12/2022    
      Modified By : Siva Harish
-    Modified Date : 19/12/2022  
+    Modified Date : 19/12/2022
+     Modified By : Siva Harish
+    Modified Date : 20/12/2022  
     Reason for : For Finance House 
+    Reason for : Handling Failure response for auth 004
+     Reason for : Taking Contra amount using accept success status for non aed 20/12/2022 10:40am
     */
        var serviceName = 'NPSS IP REV Ret Auth PACS004';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -101,7 +105,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     if (arrActInf.length) {
                                                         var amount
                                                         if (params.screenName == 's_rct_reversal_non_aed') {
-                                                            var Takecontraamount = `select contra_amount from npss_trn_process_log where npsstpl_id = '${params.NPSSTPL_Id}'`
+                                                            var Takecontraamount = `select contra_amount from npss_trn_process_log where status = 'IP_RCT_RR_RETURN_READY'`
                                                             ExecuteQuery1(Takecontraamount, function (arramount) {
                                                                 var contra_amount = arramount[0].contra_amount || ''
                                                                 var reversal_amount = arrprocesslog[0].reversal_amount || ''
@@ -166,10 +170,21 @@ app.post('/', function(appRequest, appResponse, next) {
         
                                                                                     })
                                                                                 } else {
-                                                                                    console.log("First api calll not success");
-                                                                                    objresponse.status = "FAILURE"
-                                                                                    objresponse.errdata = "First api call not success"
-                                                                                   sendResponse(null, objresponse)
+                                                                                    var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`          
+                                                                                    ExecuteQuery1(Takeuetr, function (arruetr) {
+                                                                                       var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_AUTH_POSTING_FAILURE'`
+                                                                                       ExecuteQuery1(TakeFailureresult, function (arrFail) {
+                                                                                          if (arrFail.length) {
+                                                                                            objresponse.status = "FAILURE"
+                                                                                             objresponse.errdata = 'Failure Error Code - '+arrFail[0].cbuae_return_code
+                                                                                             sendResponse(null, objresponse);
+                                                                                          } else {
+                                                                                            objresponse.status = "FAILURE"
+                                                                                             objresponse.errdata = 'Auth Pac004 Api Call Failure No Error Code Found'
+                                                                                             sendResponse(null, objresponse);
+                                                                                          }
+                                                                                       })
+                                                                                    })
                                                                                 }
                                                                             })
                                                                         }
@@ -250,10 +265,21 @@ app.post('/', function(appRequest, appResponse, next) {
         
                                                                                     })
                                                                                 } else {
-                                                                                    console.log("First api calll not success");
-                                                                                    objresponse.status = "FAILURE"
-                                                                                    objresponse.errdata = "First api call not success"
-                                                                                   sendResponse(null, objresponse)
+                                                                                    var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`          
+                                                                                    ExecuteQuery1(Takeuetr, function (arruetr) {
+                                                                                       var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_AUTH_POSTING_FAILURE'`
+                                                                                       ExecuteQuery1(TakeFailureresult, function (arrFail) {
+                                                                                          if (arrFail.length) {
+                                                                                            objresponse.status = "FAILURE"
+                                                                                             objresponse.errdata = 'Failure Error Code - '+arrFail[0].cbuae_return_code
+                                                                                             sendResponse(null, objresponse);
+                                                                                          } else {
+                                                                                            objresponse.status = "FAILURE"
+                                                                                             objresponse.errdata = 'Auth Pac004 Api Call Failure No Error Code Found'
+                                                                                             sendResponse(null, objresponse);
+                                                                                          }
+                                                                                       })
+                                                                                    })
                                                                                 }
                                                                             })
                                                                         }

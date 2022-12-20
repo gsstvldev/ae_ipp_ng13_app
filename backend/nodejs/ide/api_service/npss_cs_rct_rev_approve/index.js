@@ -11,8 +11,9 @@ try {
     /*   Created By :Daseen
     Created Date :16-12-2022
     Modified By : 
-    Modified Date : 17/12/2022
-    Reason for : 
+    Modified Date : 20/12/2022
+    Reason for : Changing Update Query Position for FAB
+   Adding Query Position for FAB
     */
     var serviceName = 'NPSS RCT Outward Reversal Approve';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -63,9 +64,7 @@ try {
                             ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,
                             ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm
                             from npss_transactions ns  where npsst_id = '${params.Tran_Id}'`;
-                        // var TakenpsstrRefno = `select npsstrrd_refno from npss_trn_process_log ns where ns.uetr = '${params.uetr}' and ns.status = '${params.STATUS}' and ns.process_status = '${params.ELIGIBLE_PROCESS_STATUS}' `
-                        // var TakenpsstrRefno2 = `select npsstrrd_refno,npsstpl_id from npss_trn_process_log  where uetr= '${params.uetr}' order by npsstpl_id  desc`
-                        var Takecontraamount = `select contra_amount from npss_trn_process_log where npsstpl_id = '${params.NPSSTPL_Id}'`
+                       
                         ExecuteQuery1(take_status, function (arrrule) {
 
                             if (arrrule.length > 0) {
@@ -112,37 +111,57 @@ try {
                                         arrCusTranInst.push(objCusTranInst)
                                         _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
                                             if (CusTranInsertRes.length > 0) {
-                                                var UpdateTrnTbl = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Tran_Id}' `
-                                                ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
-                                                    if (uptranresult == 'SUCCESS') {
-                                                        ExecuteQuery1(take_api_url, function (arrurl) {
-                                                            if (arrurl.length) {
-                                                                var url = arrurl[0].param_detail;
+                                                
+                                                //ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
+                                                   //if (uptranresult == 'SUCCESS') {
+                                                    var TakepostRefno = `select process_ref_no from npss_trn_process_log where uetr = '${arrprocesslog[0].uetr}' and process_name = 'Receive pacs002' and status in ('OP_AC_STATUS_ACCEPTED','OP_P2P_STATUS_ACCEPTED', 'OP_P2B_STATUS_ACCEPTED')`
+                                                    ExecuteQuery1(TakepostRefno, function (arrpostrefno) {
+                                                        if(arrpostrefno.length > 0){
+                                                            ExecuteQuery1(take_api_url, function (arrurl) {
+                                                                if (arrurl.length) {
+                                                                    var url = arrurl[0].param_detail;
+                                                                    fn_doapicall(url, arrprocesslog,arrpostrefno, function (result) {
+                                                                        if (result == 'SUCCESS') {
+                                                                            var UpdateTrnTbl = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Tran_Id}'`
+                                                                            ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
+                                                                                if (uptranresult == 'SUCCESS') {
+                                                                                    objresponse.status = 'SUCCESS';
+                                                                                    objresponse.data = result;
+                                                                                    sendResponse(null, objresponse);
+    
+                                                                                }else{
+                                                                                    objresponse.status = 'Update Fail in npss tran';
+                                                                                    objresponse.data = result;
+                                                                                    sendResponse(null, objresponse);
+                                                                                }
+                                                                           
+                                                                            })
+                                                                        }
+    
+    
+                                                                        else {
+                                                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
+    
+                                                                            sendResponse(result, null);
+                                                                        }
+                                                                    })
+                                                                }
+                                                                else {
+                                                                    console.log("No Data found in workflow table");
+                                                                    objresponse.status = "No Data found in workflow table"
+                                                                    sendResponse(null, objresponse)
+                                                                }
+                                                            })
 
-
-                                                                fn_doapicall(url, arrprocesslog, function (result) {
-                                                                    if (result == 'SUCCESS') {
-                                                                        objresponse.status = 'SUCCESS';
-                                                                        objresponse.data = result;
-                                                                        sendResponse(null, objresponse);
-                                                                    }
-
-
-                                                                    else {
-                                                                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
-
-                                                                        sendResponse(result, null);
-                                                                    }
-                                                                })
-                                                            }
-                                                            else {
-                                                                console.log("No Data found in workflow table");
-                                                                objresponse.status = "No Data found in workflow table"
-                                                                sendResponse(null, objresponse)
-                                                            }
-                                                        })
-                                                    }
-                                                })
+                                                        }else{
+                                                            objresponse.status = "No Post Ref no is found"
+                                                            sendResponse(null, objresponse)
+                                                        }
+                                                   
+                                                    })
+                                                        
+                                                   // }
+                                               // })
 
                                             } else {
                                                 objresponse.status = 'FAILURE';
@@ -177,7 +196,7 @@ try {
 
                 })
                 // Do API Call for Service 
-                function fn_doapicall(url, arrprocesslog, callbackapi) {
+                function fn_doapicall(url, arrprocesslog,arrpostrefno, callbackapi) {
                     try {
                         var apiName = 'RCT_OP_REV_APPROVE'
                         var request = require('request');
@@ -195,7 +214,7 @@ try {
                                 "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
                                 "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
                                 "uetr": arrprocesslog[0].uetr || '',
-                                "clrsysref": arrprocesslog[0].clrsysref,
+                                "clrsysref": arrpostrefno[0].process_ref_no,
                                 "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                 "reversal_amount": arrprocesslog[0].reversal_amount || '',
                                 "reversal_code": params.REVERSAL_CODE || '',

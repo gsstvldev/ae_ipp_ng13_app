@@ -28,7 +28,7 @@ export class npss_cs_rct_rev_approveService {
       ClientParams.UETR = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_UETR");
         ClientParams.Tran_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID");
         ClientParams.NPSSTPL_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSTPL_ID");
-        ClientParams. REVERSAL_CODE= this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_REVERSAL_CODE");
+        ClientParams.REVERSAL_CODE= this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_REVERSAL_CODE");
         ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
         ClientParams.PROD_CODE = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "PRODUCT_CODE");

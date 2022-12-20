@@ -15,6 +15,7 @@ Modified Date : 17/12/2022
 Modified By : sIVA hARISH
 Modified Date : 19/12/2022
       Reason for : Changes For Finance House & query changes for taking status and remove api name
+       Reason for : Handling Failure for unfreeze posting
  
 */
 var serviceName = 'NPSS Reversal Cancel';
@@ -142,9 +143,24 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                })
                                                             })
                                                          } else {
-                                                            objresponse.status = 'Fail From T24 Unfreeze Posting';
-                                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
-                                                            sendResponse(null, objresponse)
+                                                            // objresponse.status = 'Fail From T24 Unfreeze Posting';
+                                                            // reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
+                                                            // sendResponse(null, objresponse)
+                                                            var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Id}'`          
+                                                            ExecuteQuery1(Takeuetr, function (arruetr) {
+                                                               var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_UNFR_POSTING_FAILURE'`
+                                                               ExecuteQuery1(TakeFailureresult, function (arrFail) {
+                                                                  if (arrFail.length) {
+                                                                    
+                                                                     objresponse.status = 'Failure Error Code - '+arrFail[0].cbuae_return_code
+                                                                     sendResponse(null, objresponse);
+                                                                  } else {
+                                                                   
+                                                                     objresponse.status = 'Fail From T24 Unfreeze Posting No Error Code Found'
+                                                                     sendResponse(null, objresponse);
+                                                                  }
+                                                               })
+                                                            })
                                                          }
                                                       })
                                                    })
@@ -186,7 +202,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                            sendResponse(error)
                         }
                      });
-                  }else{
+                  }else{ //for finance house
                      var TakedatafrmTrn = `select * from npss_transactions where npsst_id = '${params.Id}'`
                      ExecuteQuery1(TakedatafrmTrn, function (arrdata) {
                            if (arrdata.length > 0) {

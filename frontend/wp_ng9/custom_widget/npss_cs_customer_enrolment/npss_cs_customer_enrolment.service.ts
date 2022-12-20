@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-//Uncomment below lines when it is required
+//Uncomment below lines when it  is required
 import { Http, Response, Headers, RequestOptions, HttpModule } from '@angular/http';
 //import { Observable } from 'rxjs/Observable';
 //import { HttpClient } from '@angular/common/http';
@@ -40,7 +40,7 @@ export class npss_cs_customer_enrolmentService {
         }
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
-    //Custom validation logics
+    //Custom validation  logics
     //Uncomment below lines when validation is required
     //fn_customValidation(projName,screenInstance,message,callback){
     // return callback();

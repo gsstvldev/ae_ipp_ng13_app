@@ -42,29 +42,56 @@ export class npss_cs_change_customer_mobileComponent implements OnInit {
     }
 
     loadpopup(event){
-        if(event.param.message){
-         var messageobj = {}
-            for(let k =0; k < event.param.message.length;k++){
-                messageobj = {}
-                messageobj['case'] = event.param.message[k]
-                this.popuparray.push(messageobj)
-            }
-            this.showPopup = true
-            
-        }else{
-            var getkeyName = Object.keys(event.param)
-           
-            this.messagearray.push(event.param)
-            var popobj = {}
-            for(let i =0; i < this.messagearray.length; i++){
-                for(let j=0; j < getkeyName.length; j++){
-                    popobj = {}
-                    popobj['case'] = `${getkeyName[j]}: ${this.messagearray[i][getkeyName[j]]}`
-                    this.popuparray.push(popobj)
+        var data=event.param;
+        var messgaeobj = {}
+       
+        
+         for (let i in data) {
+                    if (typeof data[i] == 'object') {
+                        if (data[i].length > 0) {
+                            for (let k = 0; k < data[i].length; k++) {
+                                var keys = Object.keys(data[i][k])
+                                for (let h = 0; h < keys.length; h++) {
+                                    if(typeof data[i][k][keys[h]] == 'object' ){
+                                        if (data[i][k][keys[h]].length > 0) {
+                                            for(let g =0; g < data[i][k][keys[h]].length; g++){
+                                                var msgkey = Object.keys(data[i][k][keys[h]][g])
+                                                for(let u =0; u < msgkey.length ; u++){
+                                                    messgaeobj = {}
+                                                    messgaeobj['msg'] = msgkey[u] + ':' + data[i][k][keys[h]][g][msgkey[u]]
+                                                    this.messagearray.push(messgaeobj)
+                                                }
+                                            }
+                                           
+                                        }
+                                    }
+                                     else {
+                                        messgaeobj = {}
+                                        messgaeobj['msg'] = keys[h] + ':' + data[i][k][keys[h]]
+                                        this.messagearray.push(messgaeobj)
+                                    }
+        
+                                }
+                            }
+        
+                        } else {
+                            var keyvalue = Object.keys(data[i])
+                            for (let j = 0; j < keyvalue.length; j++) {
+                                messgaeobj = {}
+                                messgaeobj['msg'] = keyvalue[j] + ':' + data[i][keyvalue[j]]
+                                this.messagearray.push(messgaeobj)
+                            }
+                        }
+        
+                    } else {
+                        messgaeobj = {}
+                        
+                        messgaeobj['msg'] = i + ':' + data[i]
+                        this.messagearray.push(messgaeobj)
+                    }
                 }
-            }
-            this.showPopup = true
-        }
+                this.showPopup = true
+        
     }
     cancel(){
         this.showPopup = false

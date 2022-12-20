@@ -219,8 +219,8 @@ try {
                                 "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                 "reversal_amount": arrprocesslog[0].reversal_amount || '',
                                 "reversal_code": params.REVERSAL_CODE || '',
-                                "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
-                                "intrbk_sttlm_dt": arrprocesslog[0].hdr_settlement_date || ''
+                                  "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
+                                  "intrbk_sttlm_dt": arrprocesslog[0].hdr_settlement_date || ''
 
 
 

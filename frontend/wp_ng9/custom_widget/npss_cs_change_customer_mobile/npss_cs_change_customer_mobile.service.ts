@@ -24,10 +24,10 @@ export class npss_cs_change_customer_mobileService {
     fn_npss_cs_change_customer_mobile(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
         let ClientParams: any = {};
         
-        let dr_phoneno=screenInstance["customer_detail"].f_npss_customer_proxy_ui.model.MOBILE; 
+        let mobile=screenInstance["customer_detail"].f_npss_customer_proxy_ui.model.MOBILE; 
         let channel_id=screenInstance["customer_detail"].f_npss_customer_proxy_ui.model.CHANNEL_ID; 
         let bankUserId=screenInstance["customer_detail"].f_npss_customer_proxy_ui.model.BANKUSERID; 
-        ClientParams.dr_phoneno=dr_phoneno;
+        ClientParams.mobile=mobile;
         ClientParams.channel_id=channel_id;
         ClientParams.bankUserId=bankUserId;
         
@@ -40,32 +40,15 @@ export class npss_cs_change_customer_mobileService {
         this.httpHelper.HttpPost('/microsvc/npss_cs_change_customer_mobile/', ClientParams)
             .subscribe((res: any) => {
                 console.log("Change Mobile Number Server Response", res);
-                let CtrlScope = screenInstance["payment_form"].f_op_cust_transaction_ui.model;
-                if (res.data.res ) {
-
-                    
-                    //let data = res.data.balanceInquiryResponse.ibanBalance;
-                  
-                    //CtrlScope.DBTR_ACCT_BALANCE = data;
-                   // screenInstance.payment_form_action_verify_credit_transfer.show =  true;
-                  // screenInstance.payment_form_action_confirm_payment.show = true
-                   // screenInstance.data_entry_ui_show_payor_account_bal.show = false;
-                   // this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
-                 
-                   var event = { eventId: "custom-connector", param: res.data.res, internals: internals,errormsg: '201 - 000 - Account balance has been verified successfully' }
-                   screenInstance["customer_setup_widget"].onChangecomponent.emit(event);
-                   
-                  // this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
-                }else if(res.data.status == 'No Data For this payee Number' || res.data.status == 'No Data For this payor Number' || res.data.status == 'No URL found in Rule code'){
-                     event = { eventId: "custom-connector", param: ClientParams, internals: internals,errormsg: res.data.status }
-                    screenInstance["npss_op_error_widget"].onChangecomponent.emit(event);
-                } else {
-                    
-                     event = { eventId: "custom-connector", param: ClientParams, internals: internals,errormsg:res.data.statuscode +'-'+ res.data.outcome + '- '+res.data.errorMsg }
-                    screenInstance["npss_op_error_widget"].onChangecomponent.emit(event);
-                   //this.dialogHelper.ShowErrorDialog(res.data.errorMsg);
-
-                }
+                var event
+                if(res.data.status == 'SUCCESS'){ 
+                            
+                    event = { eventId: "custom-connector", param:res.data.data , idename:"Changemobile", internals: internals }
+                screenInstance["customer_setup_widget"].onChangecomponent.emit(event);
+            } else {
+                this.dialogHelper.ShowInfoDialog(res.data.status)
+               
+            }
             });
     }
     }

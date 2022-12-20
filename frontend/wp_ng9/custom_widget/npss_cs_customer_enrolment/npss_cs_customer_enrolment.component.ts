@@ -11,7 +11,11 @@ import { npss_cs_customer_enrolmentService } from './npss_cs_customer_enrolment.
 export class npss_cs_customer_enrolmentComponent implements OnInit {
     @Input() screen_instance: any = {};
     @Input() comp_id: string;
+   
     constructor(private _service:npss_cs_customer_enrolmentService) { }
     ngOnInit() {
+        
     }
+
+    
 }

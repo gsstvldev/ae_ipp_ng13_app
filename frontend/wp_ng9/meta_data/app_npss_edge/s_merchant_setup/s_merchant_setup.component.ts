@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27461 
+Build ID        : 27465 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-20 8:8 AM 
+Modified Date   : 2022-Dec-21 6:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -14,14 +14,20 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_c_btn_enb_disbService} from '../../../custom_widget/npss_c_btn_enb_disb/npss_c_btn_enb_disb.service'
-import {npss_cs_change_customer_mobileService} from '../../../custom_widget/npss_cs_change_customer_mobile/npss_cs_change_customer_mobile.service'
-import {npss_cs_customer_enrolmentService} from '../../../custom_widget/npss_cs_customer_enrolment/npss_cs_customer_enrolment.service'
+import {npss_cs_mch_change_mobileService} from '../../../custom_widget/npss_cs_mch_change_mobile/npss_cs_mch_change_mobile.service'
+import {npss_cs_mch_enrolmentService} from '../../../custom_widget/npss_cs_mch_enrolment/npss_cs_mch_enrolment.service'
+import {npss_cs_mch_unblock_bank_accountService} from '../../../custom_widget/npss_cs_mch_unblock_bank_account/npss_cs_mch_unblock_bank_account.service'
+import {npss_cs_mch_remove_bank_accountsService} from '../../../custom_widget/npss_cs_mch_remove_bank_accounts/npss_cs_mch_remove_bank_accounts.service'
+import {npss_cs_mch_disableService} from '../../../custom_widget/npss_cs_mch_disable/npss_cs_mch_disable.service'
+import {npss_cs_mch_update_personal_dataService} from '../../../custom_widget/npss_cs_mch_update_personal_data/npss_cs_mch_update_personal_data.service'
+import {npss_cs_mch_add_bank_accountsService} from '../../../custom_widget/npss_cs_mch_add_bank_accounts/npss_cs_mch_add_bank_accounts.service'
+import {npss_cs_mch_block_bank_accountService} from '../../../custom_widget/npss_cs_mch_block_bank_account/npss_cs_mch_block_bank_account.service'
 
 @Component({
 	selector: 's_merchant_setup',
 	templateUrl: './s_merchant_setup.component.html',
 	styleUrls: ['./s_merchant_setup.component.css'],
-	providers:[torus_cs_show_hideService,npss_c_btn_enb_disbService,npss_cs_change_customer_mobileService,npss_cs_customer_enrolmentService]
+	providers:[torus_cs_show_hideService,npss_c_btn_enb_disbService,npss_cs_mch_change_mobileService,npss_cs_mch_enrolmentService,npss_cs_mch_unblock_bank_accountService,npss_cs_mch_remove_bank_accountsService,npss_cs_mch_disableService,npss_cs_mch_update_personal_dataService,npss_cs_mch_add_bank_accountsService,npss_cs_mch_block_bank_accountService]
 })
     
 // Start of class 
@@ -42,7 +48,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	uicgc_6 : string = "search"
 	uicgc_7 : string = "account__detail"
 	uicgc_8 : string = "action"
-	uicgc_9 : string = "customer_setup_widget"
+	uicgc_9 : string = "merchant_setup_widget"
 	uicgc_10 : string = "queue"
 	uicgc_11 : string = "sub_navigation_ui"
 	uicgc_12 : string = "shop_detail"
@@ -51,25 +57,35 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	uicgc_15 : string = "response_ui"
 	uicgc_16 : string = "request_ui"
 	uicgc_17 : string = "single_back_ui"
+	uicgc_18 : string = "shop"
+	uicgc_19 : string = "cash_desk"
+	uicgc_20 : string = "cash_desk_detail"
+	uicgc_21 : string = "shop_action"
+	uicgc_22 : string = "cash_desk_action"
 	key_events : any = {}
 	btl_1304_1671515720595 : string = "p_view_req_and_res_profile"
 	btl_1304_1671514266975 : string = "p_view_history_layout"
 	btl_1304_1670997076000 : string = "p_search_layout"
 	btl_1304_1670996891370 : string = "p_action_layout"
 	btl_1304_1670996775588 : string = "p_main_layout"
-	forms : any = ["uicgc_4","uicgc_7","uicgc_15","uicgc_6","uicgc_12","uicgc_16","uicgc_17","uicgc_13","uicgc_8","uicgc_1","uicgc_11"]
+	forms : any = ["uicgc_4","uicgc_7","uicgc_15","uicgc_6","uicgc_12","uicgc_16","uicgc_20","uicgc_17","uicgc_13","uicgc_8","uicgc_1","uicgc_11","uicgc_21","uicgc_22"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
-	navigation_ui_view_process_log : any = {}
 	navigation_ui_entrolment : any = {}
-	navigation_ui_unentrolment : any = {}
+	navigation_ui_disable_merchant : any = {}
 	navigation_ui_update_personal : any = {}
 	navigation_ui_change_mobile_no : any = {}
-	navigation_ui_block_unblock_account : any = {}
+	navigation_ui_update_mcc : any = {}
 	navigation_ui_add_bank_account : any = {}
+	navigation_ui_block_account : any = {}
+	navigation_ui_view_process_log : any = {}
+	navigation_ui_unblock_account : any = {}
+	navigation_ui_remove_bank_account : any = {}
 	navigation_ui_tri_btn1 : any = {}
 	navigation_ui_trg_btn2 : any = {}
+	navigation_ui_tri_btn3 : any = {}
+	navigation_ui_tri_btn4 : any = {}
 	merchant : any = {}
 	accounts : any = {}
 	merchant_detail : any = {}
@@ -79,13 +95,24 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	account__detail : any = {}
 	action : any = {}
 	action_back : any = {}
-	action_enrol : any = {}
-	action_change_mobile_number : any = {}
-	action_update_personal_data : any = {}
-	action_unenrol : any = {}
+	action_disable : any = {}
+	action_update_personal : any = {}
+	action_update_mcc : any = {}
+	action_change_mobile_no : any = {}
 	action_add_account : any = {}
-	action_block_unblock : any = {}
-	customer_setup_widget : any = {}
+	action_block : any = {}
+	action_unblock : any = {}
+	action_remove : any = {}
+	action_enrol : any = {}
+	action_enroll_shop : any = {}
+	action_update_shop : any = {}
+	action_disable_shop : any = {}
+	action_set_shop_account : any = {}
+	action_remove_shop : any = {}
+	action_enroll_cash_desk : any = {}
+	action_update_cash_desk : any = {}
+	action_disable_cash_desk : any = {}
+	merchant_setup_widget : any = {}
 	queue : any = {}
 	sub_navigation_ui : any = {}
 	sub_navigation_ui_remove : any = {}
@@ -101,10 +128,23 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	request_ui : any = {}
 	single_back_ui : any = {}
 	single_back_ui_back : any = {}
+	shop : any = {}
+	cash_desk : any = {}
+	cash_desk_detail : any = {}
+	shop_action : any = {}
+	shop_action_enrolment_shop : any = {}
+	shop_action_update_shop : any = {}
+	shop_action_disable_shop : any = {}
+	shop_action_set_shop_bank_account : any = {}
+	shop_action_remove_shop_account : any = {}
+	cash_desk_action : any = {}
+	cash_desk_action_enrolment_cash_desk : any = {}
+	cash_desk_action_update_cash_desk : any = {}
+	cash_desk_action_disable_cash_desk : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_btn_enb_disbService:npss_c_btn_enb_disbService,private npss_cs_change_customer_mobileService:npss_cs_change_customer_mobileService,private npss_cs_customer_enrolmentService:npss_cs_customer_enrolmentService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_btn_enb_disbService:npss_c_btn_enb_disbService,private npss_cs_mch_change_mobileService:npss_cs_mch_change_mobileService,private npss_cs_mch_enrolmentService:npss_cs_mch_enrolmentService,private npss_cs_mch_unblock_bank_accountService:npss_cs_mch_unblock_bank_accountService,private npss_cs_mch_remove_bank_accountsService:npss_cs_mch_remove_bank_accountsService,private npss_cs_mch_disableService:npss_cs_mch_disableService,private npss_cs_mch_update_personal_dataService:npss_cs_mch_update_personal_dataService,private npss_cs_mch_add_bank_accountsService:npss_cs_mch_add_bank_accountsService,private npss_cs_mch_block_bank_accountService:npss_cs_mch_block_bank_accountService) {
     
 	}
     
@@ -133,15 +173,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_search.role = []
 		this.navigation_ui_search.action = ""
 		
-		// "View Process Log" Button of "Navigation UI" component
-		this.navigation_ui_view_process_log.label_name = "View Process Log"
-		this.navigation_ui_view_process_log.show = true
-		this.navigation_ui_view_process_log.disabled = false
-		this.navigation_ui_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
-		this.navigation_ui_view_process_log.dynamic_param = {}
-		this.navigation_ui_view_process_log.role = []
-		this.navigation_ui_view_process_log.action = ""
-		
 		// "Entrolment" Button of "Navigation UI" component
 		this.navigation_ui_entrolment.label_name = "Entrolment"
 		this.navigation_ui_entrolment.show = true
@@ -151,14 +182,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_entrolment.role = []
 		this.navigation_ui_entrolment.action = ""
 		
-		// "Unentrolment" Button of "Navigation UI" component
-		this.navigation_ui_unentrolment.label_name = "Unentrolment"
-		this.navigation_ui_unentrolment.show = true
-		this.navigation_ui_unentrolment.disabled = true
-		this.navigation_ui_unentrolment.params = {"icon_only":false,"uicgcc_style":"fa fa-file-zip-o"}
-		this.navigation_ui_unentrolment.dynamic_param = {}
-		this.navigation_ui_unentrolment.role = []
-		this.navigation_ui_unentrolment.action = ""
+		// "Disable Merchant" Button of "Navigation UI" component
+		this.navigation_ui_disable_merchant.label_name = "Disable Merchant"
+		this.navigation_ui_disable_merchant.show = true
+		this.navigation_ui_disable_merchant.disabled = true
+		this.navigation_ui_disable_merchant.params = {"icon_only":false,"uicgcc_style":"fa fa-file-zip-o"}
+		this.navigation_ui_disable_merchant.dynamic_param = {}
+		this.navigation_ui_disable_merchant.role = []
+		this.navigation_ui_disable_merchant.action = ""
 		
 		// "Update Personal" Button of "Navigation UI" component
 		this.navigation_ui_update_personal.label_name = "Update Personal"
@@ -178,14 +209,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_change_mobile_no.role = []
 		this.navigation_ui_change_mobile_no.action = ""
 		
-		// "Block Unblock Account" Button of "Navigation UI" component
-		this.navigation_ui_block_unblock_account.label_name = "Block Unblock Account"
-		this.navigation_ui_block_unblock_account.show = true
-		this.navigation_ui_block_unblock_account.disabled = true
-		this.navigation_ui_block_unblock_account.params = {"icon_only":false,"uicgcc_style":"fa fa-check-circle"}
-		this.navigation_ui_block_unblock_account.dynamic_param = {}
-		this.navigation_ui_block_unblock_account.role = []
-		this.navigation_ui_block_unblock_account.action = ""
+		// "Update Mcc" Button of "Navigation UI" component
+		this.navigation_ui_update_mcc.label_name = "Update Mcc"
+		this.navigation_ui_update_mcc.show = true
+		this.navigation_ui_update_mcc.disabled = true
+		this.navigation_ui_update_mcc.params = {"icon_only":false,"uicgcc_style":"fa fa-chevron-circle-up"}
+		this.navigation_ui_update_mcc.dynamic_param = {}
+		this.navigation_ui_update_mcc.role = []
+		this.navigation_ui_update_mcc.action = ""
 		
 		// "Add Bank Account" Button of "Navigation UI" component
 		this.navigation_ui_add_bank_account.label_name = "Add Bank Account"
@@ -195,6 +226,42 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_add_bank_account.dynamic_param = {}
 		this.navigation_ui_add_bank_account.role = []
 		this.navigation_ui_add_bank_account.action = ""
+		
+		// "Block Account" Button of "Navigation UI" component
+		this.navigation_ui_block_account.label_name = "Block Account"
+		this.navigation_ui_block_account.show = true
+		this.navigation_ui_block_account.disabled = true
+		this.navigation_ui_block_account.params = {"icon_only":false,"uicgcc_style":"fa fa-ban"}
+		this.navigation_ui_block_account.dynamic_param = {}
+		this.navigation_ui_block_account.role = []
+		this.navigation_ui_block_account.action = ""
+		
+		// "View Process Log" Button of "Navigation UI" component
+		this.navigation_ui_view_process_log.label_name = "View Process Log"
+		this.navigation_ui_view_process_log.show = true
+		this.navigation_ui_view_process_log.disabled = false
+		this.navigation_ui_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
+		this.navigation_ui_view_process_log.dynamic_param = {}
+		this.navigation_ui_view_process_log.role = []
+		this.navigation_ui_view_process_log.action = ""
+		
+		// "Unblock Account" Button of "Navigation UI" component
+		this.navigation_ui_unblock_account.label_name = "Unblock Account"
+		this.navigation_ui_unblock_account.show = true
+		this.navigation_ui_unblock_account.disabled = true
+		this.navigation_ui_unblock_account.params = {"icon_only":false,"uicgcc_style":"fa fa-check-circle"}
+		this.navigation_ui_unblock_account.dynamic_param = {}
+		this.navigation_ui_unblock_account.role = []
+		this.navigation_ui_unblock_account.action = ""
+		
+		// "Remove Bank Account" Button of "Navigation UI" component
+		this.navigation_ui_remove_bank_account.label_name = "Remove Bank Account"
+		this.navigation_ui_remove_bank_account.show = true
+		this.navigation_ui_remove_bank_account.disabled = true
+		this.navigation_ui_remove_bank_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.navigation_ui_remove_bank_account.dynamic_param = {}
+		this.navigation_ui_remove_bank_account.role = []
+		this.navigation_ui_remove_bank_account.action = ""
 		
 		// "Tri Btn1" Button of "Navigation UI" component
 		this.navigation_ui_tri_btn1.label_name = "Tri Btn1"
@@ -213,13 +280,31 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_trg_btn2.dynamic_param = {}
 		this.navigation_ui_trg_btn2.role = []
 		this.navigation_ui_trg_btn2.action = ""
+		
+		// "Tri Btn3" Button of "Navigation UI" component
+		this.navigation_ui_tri_btn3.label_name = "Tri Btn3"
+		this.navigation_ui_tri_btn3.show = true
+		this.navigation_ui_tri_btn3.disabled = false
+		this.navigation_ui_tri_btn3.params = {"icon_only":false,"uicgcc_style":""}
+		this.navigation_ui_tri_btn3.dynamic_param = {}
+		this.navigation_ui_tri_btn3.role = []
+		this.navigation_ui_tri_btn3.action = ""
+		
+		// "Tri Btn4" Button of "Navigation UI" component
+		this.navigation_ui_tri_btn4.label_name = "Tri Btn4"
+		this.navigation_ui_tri_btn4.show = true
+		this.navigation_ui_tri_btn4.disabled = false
+		this.navigation_ui_tri_btn4.params = {"icon_only":false,"uicgcc_style":""}
+		this.navigation_ui_tri_btn4.dynamic_param = {}
+		this.navigation_ui_tri_btn4.role = []
+		this.navigation_ui_tri_btn4.action = ""
 	
 		// Component level properties - "Merchant" 
 		this.merchant.uictrl_code = "datatable"
 		this.merchant.uicgc_desc = "Merchant"
 		this.merchant.uicgc_code = "uicgc_2"
 		this.merchant.params = {"need_search":"N","need_pag_datatable":"Y"}
-		this.merchant.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276266014","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_PROXY ~NPSSMP","category":"NPSS_MERCHANT_PROXY","loc":"253.99675934606216 386.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"merchant_name_checked":true,"merchant_tag_checked":true,"mcc_checked":true,"mobile_checked":true,"denomination_checked":true,"vat_number_checked":true,"product_code_checked":true,"group_code_checked":true,"surname_checked":true,"bank_code_checked":true,"proxy_value_checked":true,"proxy_type_checked":true,"email_checked":true,"document_id_checked":true,"channel_name_checked":true,"exhf_id_checked":true,"logo_checked":true,"channel_id_checked":true,"channel_userid_checked":true,"channel_product_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true,"channel_refno_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_TAG","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MCC","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DENOMINATION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VAT_NUMBER","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"LOGO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_PROXY ","alias_name":"NPSSMP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,MERCHANT_NAME,MERCHANT_TAG,MCC,MOBILE,DENOMINATION,VAT_NUMBER,PRODUCT_CODE,GROUP_CODE,BANK_CODE,SURNAME,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,CHANNEL_NAME,LOGO,EXHF_ID,CHANNEL_ID,CHANNEL_USERID,CHANNEL_PRODUCT,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CHANNEL_REFNO,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMP.NPSSMP_ID,NPSSMP.BANKUSERID,NPSSMP.MERCHANT_NAME,NPSSMP.MERCHANT_TAG,NPSSMP.MCC,NPSSMP.MOBILE,NPSSMP.DENOMINATION,NPSSMP.VAT_NUMBER,NPSSMP.PRODUCT_CODE,NPSSMP.GROUP_CODE,NPSSMP.BANK_CODE,NPSSMP.SURNAME,NPSSMP.PROXY_TYPE,NPSSMP.PROXY_VALUE,NPSSMP.EMAIL,NPSSMP.DOCUMENT_ID,NPSSMP.CHANNEL_NAME,NPSSMP.LOGO,NPSSMP.EXHF_ID,NPSSMP.CHANNEL_ID,NPSSMP.CHANNEL_USERID,NPSSMP.CHANNEL_PRODUCT,NPSSMP.CHANNEL_SUB_PRODUCT,NPSSMP.CHANNEL_TRAN_CODE,NPSSMP.CHANNEL_REFNO,NPSSMP.CREATED_BY,NPSSMP.CREATED_BY_NAME,NPSSMP.CREATED_BY_STS_ID,NPSSMP.CREATED_DATE,NPSSMP.DT_CODE,NPSSMP.DT_DESCRIPTION,NPSSMP.DTT_CODE,NPSSMP.DTT_DESCRIPTION,NPSSMP.MODIFIED_BY,NPSSMP.MODIFIED_BY_NAME,NPSSMP.MODIFIED_BY_STS_ID,NPSSMP.MODIFIED_DATE,NPSSMP.PRCT_ID,NPSSMP.STATUS,NPSSMP.PROCESS_STATUS,NPSSMP.SYSTEM_ID,NPSSMP.SYSTEM_NAME,NPSSMP.TENANT_ID,NPSSMP.APP_ID,NPSSMP.VERSION_NO FROM NPSS_MERCHANT_PROXY  NPSSMP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchat Tag","target_column":"MERCHANT_TAG","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		this.merchant.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276266014","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_PROXY ~NPSSMP","category":"NPSS_MERCHANT_PROXY","loc":"253.99675934606216 386.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"merchant_name_checked":true,"merchant_tag_checked":true,"mcc_checked":true,"mobile_checked":true,"denomination_checked":true,"vat_number_checked":true,"product_code_checked":true,"group_code_checked":true,"surname_checked":true,"bank_code_checked":true,"proxy_value_checked":true,"proxy_type_checked":true,"email_checked":true,"document_id_checked":true,"channel_name_checked":true,"exhf_id_checked":true,"logo_checked":true,"channel_id_checked":true,"channel_userid_checked":true,"channel_product_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true,"channel_refno_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_TAG","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MCC","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DENOMINATION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VAT_NUMBER","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"LOGO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_PROXY ","alias_name":"NPSSMP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,MERCHANT_NAME,MERCHANT_TAG,MCC,MOBILE,DENOMINATION,VAT_NUMBER,PRODUCT_CODE,GROUP_CODE,BANK_CODE,SURNAME,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,CHANNEL_NAME,LOGO,EXHF_ID,CHANNEL_ID,CHANNEL_USERID,CHANNEL_PRODUCT,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CHANNEL_REFNO,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMP.NPSSMP_ID,NPSSMP.BANKUSERID,NPSSMP.MERCHANT_NAME,NPSSMP.MERCHANT_TAG,NPSSMP.MCC,NPSSMP.MOBILE,NPSSMP.DENOMINATION,NPSSMP.VAT_NUMBER,NPSSMP.PRODUCT_CODE,NPSSMP.GROUP_CODE,NPSSMP.BANK_CODE,NPSSMP.SURNAME,NPSSMP.PROXY_TYPE,NPSSMP.PROXY_VALUE,NPSSMP.EMAIL,NPSSMP.DOCUMENT_ID,NPSSMP.CHANNEL_NAME,NPSSMP.LOGO,NPSSMP.EXHF_ID,NPSSMP.CHANNEL_ID,NPSSMP.CHANNEL_USERID,NPSSMP.CHANNEL_PRODUCT,NPSSMP.CHANNEL_SUB_PRODUCT,NPSSMP.CHANNEL_TRAN_CODE,NPSSMP.CHANNEL_REFNO,NPSSMP.CREATED_BY,NPSSMP.CREATED_BY_NAME,NPSSMP.CREATED_BY_STS_ID,NPSSMP.CREATED_DATE,NPSSMP.DT_CODE,NPSSMP.DT_DESCRIPTION,NPSSMP.DTT_CODE,NPSSMP.DTT_DESCRIPTION,NPSSMP.MODIFIED_BY,NPSSMP.MODIFIED_BY_NAME,NPSSMP.MODIFIED_BY_STS_ID,NPSSMP.MODIFIED_DATE,NPSSMP.PRCT_ID,NPSSMP.STATUS,NPSSMP.PROCESS_STATUS,NPSSMP.SYSTEM_ID,NPSSMP.SYSTEM_NAME,NPSSMP.TENANT_ID,NPSSMP.APP_ID,NPSSMP.VERSION_NO FROM NPSS_MERCHANT_PROXY  NPSSMP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchat Tag","target_column":"MERCHANT_TAG","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
 		this.merchant.context_menu = []
 		this.merchant.views = {}
 		this.merchant.onChangecomponent = new EventEmitter<any>()
@@ -231,7 +316,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.accounts.uicgc_desc = "Accounts"
 		this.accounts.uicgc_code = "uicgc_3"
 		this.accounts.params = {"need_search":"N","need_pag_datatable":"Y"}
-		this.accounts.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666847369565":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666847369565","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276169608","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Account AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_ACCOUNTS ~NPSSMA","category":"NPSS_MERCHANT_ACCOUNTS","loc":"-203.00324065393784 189.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssma_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"iban_checked":true,"currency_checked":true,"default_account_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMA_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"IBAN","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CURRENCY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMA","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_ACCOUNTS ","alias_name":"NPSSMA","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMA_ID,PRODUCT_CODE,BANKUSERID,IBAN,CURRENCY,DEFAULT_ACCOUNT,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMA.NPSSMA_ID,NPSSMA.PRODUCT_CODE,NPSSMA.BANKUSERID,NPSSMA.IBAN,NPSSMA.CURRENCY,NPSSMA.DEFAULT_ACCOUNT,NPSSMA.EXHF_ID,NPSSMA.NPSSMP_ID,NPSSMA.CREATED_BY,NPSSMA.CREATED_BY_NAME,NPSSMA.CREATED_BY_STS_ID,NPSSMA.CREATED_DATE,NPSSMA.DT_CODE,NPSSMA.DT_DESCRIPTION,NPSSMA.DTT_CODE,NPSSMA.DTT_DESCRIPTION,NPSSMA.MODIFIED_BY,NPSSMA.MODIFIED_BY_NAME,NPSSMA.MODIFIED_BY_STS_ID,NPSSMA.MODIFIED_DATE,NPSSMA.PRCT_ID,NPSSMA.STATUS,NPSSMA.PROCESS_STATUS,NPSSMA.SYSTEM_ID,NPSSMA.SYSTEM_NAME,NPSSMA.TENANT_ID,NPSSMA.APP_ID,NPSSMA.VERSION_NO FROM NPSS_MERCHANT_ACCOUNTS  NPSSMA)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Account AQ","filter":[{"filter_name":"NPSSMP_ID","binding_name":"NPSSMP_ID","binding_value":"","source_name":"MI_LEVEL_NPSSMP_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"IBAN","target_column":"IBAN","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Default Account","target_column":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		this.accounts.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666847369565":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847369565","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276169608","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Account AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_ACCOUNTS ~NPSSMA","category":"NPSS_MERCHANT_ACCOUNTS","loc":"-203.00324065393784 189.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssma_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"iban_checked":true,"currency_checked":true,"default_account_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMA_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"IBAN","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CURRENCY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMA","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_ACCOUNTS ","alias_name":"NPSSMA","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMA_ID,PRODUCT_CODE,BANKUSERID,IBAN,CURRENCY,DEFAULT_ACCOUNT,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMA.NPSSMA_ID,NPSSMA.PRODUCT_CODE,NPSSMA.BANKUSERID,NPSSMA.IBAN,NPSSMA.CURRENCY,NPSSMA.DEFAULT_ACCOUNT,NPSSMA.EXHF_ID,NPSSMA.NPSSMP_ID,NPSSMA.CREATED_BY,NPSSMA.CREATED_BY_NAME,NPSSMA.CREATED_BY_STS_ID,NPSSMA.CREATED_DATE,NPSSMA.DT_CODE,NPSSMA.DT_DESCRIPTION,NPSSMA.DTT_CODE,NPSSMA.DTT_DESCRIPTION,NPSSMA.MODIFIED_BY,NPSSMA.MODIFIED_BY_NAME,NPSSMA.MODIFIED_BY_STS_ID,NPSSMA.MODIFIED_DATE,NPSSMA.PRCT_ID,NPSSMA.STATUS,NPSSMA.PROCESS_STATUS,NPSSMA.SYSTEM_ID,NPSSMA.SYSTEM_NAME,NPSSMA.TENANT_ID,NPSSMA.APP_ID,NPSSMA.VERSION_NO FROM NPSS_MERCHANT_ACCOUNTS  NPSSMA)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Account AQ","filter":[{"filter_name":"NPSSMP_ID","binding_name":"NPSSMP_ID","binding_value":"","source_name":"MI_LEVEL_NPSSMP_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"IBAN","target_column":"IBAN","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Default Account","target_column":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
 		this.accounts.context_menu = []
 		this.accounts.views = {}
 		this.accounts.onChangecomponent = new EventEmitter<any>()
@@ -321,41 +406,41 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_back.role = []
 		this.action_back.action = ""
 		
-		// "Enrol" Button of "Action" component
-		this.action_enrol.label_name = "Enrol"
-		this.action_enrol.show = true
-		this.action_enrol.disabled = false
-		this.action_enrol.params = {"icon_only":false,"uicgcc_style":"fa fa-file-word-o"}
-		this.action_enrol.dynamic_param = {}
-		this.action_enrol.role = []
-		this.action_enrol.action = ""
+		// "Disable" Button of "Action" component
+		this.action_disable.label_name = "Disable"
+		this.action_disable.show = true
+		this.action_disable.disabled = false
+		this.action_disable.params = {"icon_only":false,"uicgcc_style":"fa fa-file-text-o"}
+		this.action_disable.dynamic_param = {}
+		this.action_disable.role = []
+		this.action_disable.action = ""
 		
-		// "Change Mobile Number" Button of "Action" component
-		this.action_change_mobile_number.label_name = "Change Mobile Number"
-		this.action_change_mobile_number.show = true
-		this.action_change_mobile_number.disabled = false
-		this.action_change_mobile_number.params = {"icon_only":false,"uicgcc_style":"fa fa-mobile-phone"}
-		this.action_change_mobile_number.dynamic_param = {}
-		this.action_change_mobile_number.role = []
-		this.action_change_mobile_number.action = ""
+		// "Update Personal" Button of "Action" component
+		this.action_update_personal.label_name = "Update Personal"
+		this.action_update_personal.show = true
+		this.action_update_personal.disabled = false
+		this.action_update_personal.params = {"icon_only":false,"uicgcc_style":"fa fa-stack-exchange"}
+		this.action_update_personal.dynamic_param = {}
+		this.action_update_personal.role = []
+		this.action_update_personal.action = ""
 		
-		// "Update Personal Data" Button of "Action" component
-		this.action_update_personal_data.label_name = "Update Personal Data"
-		this.action_update_personal_data.show = true
-		this.action_update_personal_data.disabled = false
-		this.action_update_personal_data.params = {"icon_only":false,"uicgcc_style":"fa fa-stack-exchange"}
-		this.action_update_personal_data.dynamic_param = {}
-		this.action_update_personal_data.role = []
-		this.action_update_personal_data.action = ""
+		// "Update MCC" Button of "Action" component
+		this.action_update_mcc.label_name = "Update MCC"
+		this.action_update_mcc.show = true
+		this.action_update_mcc.disabled = false
+		this.action_update_mcc.params = {"icon_only":false,"uicgcc_style":"fa fa-chevron-circle-up"}
+		this.action_update_mcc.dynamic_param = {}
+		this.action_update_mcc.role = []
+		this.action_update_mcc.action = ""
 		
-		// "Unenrol" Button of "Action" component
-		this.action_unenrol.label_name = "Unenrol"
-		this.action_unenrol.show = true
-		this.action_unenrol.disabled = false
-		this.action_unenrol.params = {"icon_only":false,"uicgcc_style":"fa fa-file-text-o"}
-		this.action_unenrol.dynamic_param = {}
-		this.action_unenrol.role = []
-		this.action_unenrol.action = ""
+		// "Change Mobile No" Button of "Action" component
+		this.action_change_mobile_no.label_name = "Change Mobile No"
+		this.action_change_mobile_no.show = true
+		this.action_change_mobile_no.disabled = false
+		this.action_change_mobile_no.params = {"icon_only":false,"uicgcc_style":"fa fa-mobile-phone"}
+		this.action_change_mobile_no.dynamic_param = {}
+		this.action_change_mobile_no.role = []
+		this.action_change_mobile_no.action = ""
 		
 		// "Add Account" Button of "Action" component
 		this.action_add_account.label_name = "Add Account"
@@ -366,33 +451,132 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_add_account.role = []
 		this.action_add_account.action = ""
 		
-		// "Block Unblock" Button of "Action" component
-		this.action_block_unblock.label_name = "Block Unblock"
-		this.action_block_unblock.show = true
-		this.action_block_unblock.disabled = false
-		this.action_block_unblock.params = {"icon_only":false,"uicgcc_style":"fa fa-check-circle"}
-		this.action_block_unblock.dynamic_param = {}
-		this.action_block_unblock.role = []
-		this.action_block_unblock.action = ""
+		// "Block" Button of "Action" component
+		this.action_block.label_name = "Block"
+		this.action_block.show = true
+		this.action_block.disabled = false
+		this.action_block.params = {"icon_only":false,"uicgcc_style":"fa fa-ban"}
+		this.action_block.dynamic_param = {}
+		this.action_block.role = []
+		this.action_block.action = ""
+		
+		// "Unblock" Button of "Action" component
+		this.action_unblock.label_name = "Unblock"
+		this.action_unblock.show = true
+		this.action_unblock.disabled = false
+		this.action_unblock.params = {"icon_only":false,"uicgcc_style":"fa fa-check-circle"}
+		this.action_unblock.dynamic_param = {}
+		this.action_unblock.role = []
+		this.action_unblock.action = ""
+		
+		// "Remove" Button of "Action" component
+		this.action_remove.label_name = "Remove"
+		this.action_remove.show = true
+		this.action_remove.disabled = false
+		this.action_remove.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.action_remove.dynamic_param = {}
+		this.action_remove.role = []
+		this.action_remove.action = ""
+		
+		// "Enrol" Button of "Action" component
+		this.action_enrol.label_name = "Enrol"
+		this.action_enrol.show = true
+		this.action_enrol.disabled = false
+		this.action_enrol.params = {"icon_only":false,"uicgcc_style":"fa fa-file-word-o"}
+		this.action_enrol.dynamic_param = {}
+		this.action_enrol.role = []
+		this.action_enrol.action = ""
+		
+		// "Enroll Shop" Button of "Action" component
+		this.action_enroll_shop.label_name = "Enroll Shop"
+		this.action_enroll_shop.show = true
+		this.action_enroll_shop.disabled = false
+		this.action_enroll_shop.params = {"icon_only":false,"uicgcc_style":"fa fa-file-word-o"}
+		this.action_enroll_shop.dynamic_param = {}
+		this.action_enroll_shop.role = []
+		this.action_enroll_shop.action = ""
+		
+		// "Update Shop" Button of "Action" component
+		this.action_update_shop.label_name = "Update Shop"
+		this.action_update_shop.show = true
+		this.action_update_shop.disabled = false
+		this.action_update_shop.params = {"icon_only":false,"uicgcc_style":"fa fa-user-o"}
+		this.action_update_shop.dynamic_param = {}
+		this.action_update_shop.role = []
+		this.action_update_shop.action = ""
+		
+		// "Disable Shop" Button of "Action" component
+		this.action_disable_shop.label_name = "Disable Shop"
+		this.action_disable_shop.show = true
+		this.action_disable_shop.disabled = false
+		this.action_disable_shop.params = {"icon_only":false,"uicgcc_style":"fa fa-file-zip-o"}
+		this.action_disable_shop.dynamic_param = {}
+		this.action_disable_shop.role = []
+		this.action_disable_shop.action = ""
+		
+		// "Set Shop Account" Button of "Action" component
+		this.action_set_shop_account.label_name = "Set Shop Account"
+		this.action_set_shop_account.show = true
+		this.action_set_shop_account.disabled = false
+		this.action_set_shop_account.params = {"icon_only":false,"uicgcc_style":"fa fa-plus"}
+		this.action_set_shop_account.dynamic_param = {}
+		this.action_set_shop_account.role = []
+		this.action_set_shop_account.action = ""
+		
+		// "Remove Shop" Button of "Action" component
+		this.action_remove_shop.label_name = "Remove Shop"
+		this.action_remove_shop.show = true
+		this.action_remove_shop.disabled = false
+		this.action_remove_shop.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.action_remove_shop.dynamic_param = {}
+		this.action_remove_shop.role = []
+		this.action_remove_shop.action = ""
+		
+		// "Enroll Cash Desk" Button of "Action" component
+		this.action_enroll_cash_desk.label_name = "Enroll Cash Desk"
+		this.action_enroll_cash_desk.show = true
+		this.action_enroll_cash_desk.disabled = false
+		this.action_enroll_cash_desk.params = {"icon_only":false,"uicgcc_style":""}
+		this.action_enroll_cash_desk.dynamic_param = {}
+		this.action_enroll_cash_desk.role = []
+		this.action_enroll_cash_desk.action = ""
+		
+		// "Update Cash Desk" Button of "Action" component
+		this.action_update_cash_desk.label_name = "Update Cash Desk"
+		this.action_update_cash_desk.show = true
+		this.action_update_cash_desk.disabled = false
+		this.action_update_cash_desk.params = {"icon_only":false,"uicgcc_style":"fa fa-user-o"}
+		this.action_update_cash_desk.dynamic_param = {}
+		this.action_update_cash_desk.role = []
+		this.action_update_cash_desk.action = ""
+		
+		// "Disable Cash Desk" Button of "Action" component
+		this.action_disable_cash_desk.label_name = "Disable Cash Desk"
+		this.action_disable_cash_desk.show = true
+		this.action_disable_cash_desk.disabled = false
+		this.action_disable_cash_desk.params = {"icon_only":false,"uicgcc_style":"fa fa-file-zip-o"}
+		this.action_disable_cash_desk.dynamic_param = {}
+		this.action_disable_cash_desk.role = []
+		this.action_disable_cash_desk.action = ""
 	
-		// Component level properties - "Customer Setup Widget" 
-		this.customer_setup_widget.uictrl_code = "custom_widget"
-		this.customer_setup_widget.uicgc_desc = "Customer Setup Widget"
-		this.customer_setup_widget.uicgc_code = "uicgc_9"
-		this.customer_setup_widget.params = {}
-		this.customer_setup_widget.datasource = {}
-		this.customer_setup_widget.context_menu = []
-		this.customer_setup_widget.views = {}
-		this.customer_setup_widget.onChangecomponent = new EventEmitter<any>()
-		this.customer_setup_widget.show = true
-		this.customer_setup_widget.dynamic_param = {}
+		// Component level properties - "Merchant Setup Widget" 
+		this.merchant_setup_widget.uictrl_code = "custom_widget"
+		this.merchant_setup_widget.uicgc_desc = "Merchant Setup Widget"
+		this.merchant_setup_widget.uicgc_code = "uicgc_9"
+		this.merchant_setup_widget.params = {}
+		this.merchant_setup_widget.datasource = {}
+		this.merchant_setup_widget.context_menu = []
+		this.merchant_setup_widget.views = {}
+		this.merchant_setup_widget.onChangecomponent = new EventEmitter<any>()
+		this.merchant_setup_widget.show = true
+		this.merchant_setup_widget.dynamic_param = {}
 	
 		// Component level properties - "Queue" 
 		this.queue.uictrl_code = "datatable"
 		this.queue.uicgc_desc = "Queue"
 		this.queue.uicgc_code = "uicgc_10"
 		this.queue.params = {"need_search":"N","need_pag_datatable":"Y"}
-		this.queue.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_10","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276345803","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Setup Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671275017464","date_format":false}],"joins":[]},"eq_text":"select  distinct STATUS from  (  select   T.NPSSMP_ID,   T.BANKUSERID,   T.MERCHANT_NAME,   T.MERCHANT_TAG,   T.MCC,   T.MOBILE,   T.DENOMINATION,   T.VAT_NUMBER,   T.PRODUCT_CODE,   T.GROUP_CODE,   T.BANK_CODE,   T.SURNAME,   T.PROXY_TYPE,   T.PROXY_VALUE,   T.EMAIL,   T.DOCUMENT_ID,   T.CHANNEL_NAME,   T.LOGO,   T.EXHF_ID,   T.CHANNEL_ID,   T.CHANNEL_USERID,   T.CHANNEL_PRODUCT,   T.CHANNEL_SUB_PRODUCT,   T.CHANNEL_TRAN_CODE,   T.CHANNEL_REFNO,   T.PROCESS_STATUS,   T.TENANT_ID,   T.STATUS,   T.CREATED_DATE,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   T.CREATED_BY,   T.CREATED_BY_NAME,   T.SYSTEM_ID  from   npss_merchant_proxy T  left join TRANSACTION_SET TS on   T.NPSSMP_ID = TS.TRN_ID   and T.DTT_CODE = TS.DTT_CODE) VM $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Setup Queue CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.queue.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_10","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276345803","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Setup Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671275017464","date_format":false}],"joins":[]},"eq_text":"select  distinct STATUS from  (  select   T.NPSSMP_ID,   T.BANKUSERID,   T.MERCHANT_NAME,   T.MERCHANT_TAG,   T.MCC,   T.MOBILE,   T.DENOMINATION,   T.VAT_NUMBER,   T.PRODUCT_CODE,   T.GROUP_CODE,   T.BANK_CODE,   T.SURNAME,   T.PROXY_TYPE,   T.PROXY_VALUE,   T.EMAIL,   T.DOCUMENT_ID,   T.CHANNEL_NAME,   T.LOGO,   T.EXHF_ID,   T.CHANNEL_ID,   T.CHANNEL_USERID,   T.CHANNEL_PRODUCT,   T.CHANNEL_SUB_PRODUCT,   T.CHANNEL_TRAN_CODE,   T.CHANNEL_REFNO,   T.PROCESS_STATUS,   T.TENANT_ID,   T.STATUS,   T.CREATED_DATE,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   T.CREATED_BY,   T.CREATED_BY_NAME,   T.SYSTEM_ID  from   npss_merchant_proxy T  left join TRANSACTION_SET TS on   T.NPSSMP_ID = TS.TRN_ID   and T.DTT_CODE = TS.DTT_CODE) VM $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Setup Queue CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.queue.context_menu = []
 		this.queue.views = {}
 		this.queue.onChangecomponent = new EventEmitter<any>()
@@ -500,7 +684,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.history_detail.uicgc_desc = "History Detail"
 		this.history_detail.uicgc_code = "uicgc_14"
 		this.history_detail.params = {"need_search":"N"}
-		this.history_detail.datasource = {"default":{"dt_1304_1666847145490":{"dtt_1304_1666847230281":{"st_ds":{"default":{"uicgc_code":"UICGC_14","event_code":"DEFAULT","dt_code":"DT_1304_1666847145490","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666847230281","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671521464798","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM HST Plog MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1671521093141","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1671521093317","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1671521093493","date_format":false},{"column_name":"RESULT_CODE","alias_name":"","mq_id":"MQ_1671521093669","date_format":false},{"column_name":"RESULT_MESSAGE","alias_name":"","mq_id":"MQ_1671521093853","date_format":false},{"column_name":"process_ref_no","alias_name":"","mq_id":"MQ_1671521134065","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSSMTPL_ID,  BANKUSERID,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESULT_CODE,  RESULT,  RESULT_MESSAGE,  RESULT_X_REQUEST_ID,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  CHANNEL_ID,  CHANNEL_REFNO,  CHANNEL_USERID,  CHANNEL_PRODUCT,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  DTT_CODE,  TENANT_ID,  DT_CODE FROM  (  SELECT   NSTPL.NPSSSMTPL_ID,  NSTPL.BANKUSERID,  NSTPL.PROCESS_NAME,  NSTPL.PROCESSING_SYSTEM,  NSTPL.RESULT_CODE,  NSTPL.RESULT,  NSTPL.RESULT_MESSAGE,  NSTPL.RESULT_X_REQUEST_ID,  NSTPL.PROCESS_REF_NO,  NSTPL.REQUEST_DATA_JSON,  NSTPL.RESPONSE_DATA_JSON,  NSTPL.CHANNEL_ID,  NSTPL.CHANNEL_REFNO,  NSTPL.CHANNEL_USERID,  NSTPL.CHANNEL_PRODUCT,  NSTPL.CHANNEL_SUB_PRODUCT,  NSTPL.CHANNEL_TRAN_CODE,  NSTPL.DTT_CODE,  NSTPL.TENANT_ID,  NSTPL.DT_CODE  FROM   NPSS_SM_TRN_PROCESS_LOG NSTPL    ORDER BY NPSSSMTPL_ID) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM HST Plog MQ CCD","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Code","target_column":"RESULT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Message","target_column":"RESULT_MESSAGE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Ref No","target_column":"process_ref_no","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.history_detail.datasource = {"default":{"dt_1304_1666847145490":{"dtt_1304_1666847230281":{"st_ds":{"default":{"uicgc_code":"UICGC_14","event_code":"DEFAULT","dt_code":"DT_1304_1666847145490","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847230281","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671521464798","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM HST Plog MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1671521093141","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1671521093317","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1671521093493","date_format":false},{"column_name":"RESULT_CODE","alias_name":"","mq_id":"MQ_1671521093669","date_format":false},{"column_name":"RESULT_MESSAGE","alias_name":"","mq_id":"MQ_1671521093853","date_format":false},{"column_name":"process_ref_no","alias_name":"","mq_id":"MQ_1671521134065","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSSMTPL_ID,  BANKUSERID,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESULT_CODE,  RESULT,  RESULT_MESSAGE,  RESULT_X_REQUEST_ID,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  CHANNEL_ID,  CHANNEL_REFNO,  CHANNEL_USERID,  CHANNEL_PRODUCT,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  DTT_CODE,  TENANT_ID,  DT_CODE FROM  (  SELECT   NSTPL.NPSSSMTPL_ID,  NSTPL.BANKUSERID,  NSTPL.PROCESS_NAME,  NSTPL.PROCESSING_SYSTEM,  NSTPL.RESULT_CODE,  NSTPL.RESULT,  NSTPL.RESULT_MESSAGE,  NSTPL.RESULT_X_REQUEST_ID,  NSTPL.PROCESS_REF_NO,  NSTPL.REQUEST_DATA_JSON,  NSTPL.RESPONSE_DATA_JSON,  NSTPL.CHANNEL_ID,  NSTPL.CHANNEL_REFNO,  NSTPL.CHANNEL_USERID,  NSTPL.CHANNEL_PRODUCT,  NSTPL.CHANNEL_SUB_PRODUCT,  NSTPL.CHANNEL_TRAN_CODE,  NSTPL.DTT_CODE,  NSTPL.TENANT_ID,  NSTPL.DT_CODE  FROM   NPSS_SM_TRN_PROCESS_LOG NSTPL    ORDER BY NPSSSMTPL_ID) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM HST Plog MQ CCD","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Code","target_column":"RESULT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Message","target_column":"RESULT_MESSAGE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Ref No","target_column":"process_ref_no","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.history_detail.context_menu = []
 		this.history_detail.views = {}
 		this.history_detail.onChangecomponent = new EventEmitter<any>()
@@ -557,6 +741,144 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.single_back_ui_back.dynamic_param = {}
 		this.single_back_ui_back.role = []
 		this.single_back_ui_back.action = ""
+	
+		// Component level properties - "Shop" 
+		this.shop.uictrl_code = "datatable"
+		this.shop.uicgc_desc = "Shop"
+		this.shop.uicgc_code = "uicgc_18"
+		this.shop.params = {"need_search":"N","need_pag_datatable":"Y"}
+		this.shop.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671605466279","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Shop AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_SHOPS ~NPSSMS","category":"NPSS_MERCHANT_SHOPS","loc":"304.99675934606216 359.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssms_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"shop_name_checked":true,"shop_mid_checked":true,"shop_id_checked":true,"shop_type_checked":true,"shop_mcc_checked":true,"shop_iban_checked":true,"building_checked":true,"street_checked":true,"city_checked":true,"postal_code_checked":true,"county_checked":true,"country_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565","DTT_1304_1666847660575"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_MID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_TYPE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_MCC","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_IBAN","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"BUILDING","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"STREET","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CITY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"POSTAL_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"COUNTY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"COUNTRY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMS","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_SHOPS ","alias_name":"NPSSMS","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMS_ID,PRODUCT_CODE,BANKUSERID,SHOP_NAME,SHOP_MID,SHOP_ID,SHOP_TYPE,SHOP_MCC,SHOP_IBAN,BUILDING,STREET,CITY,POSTAL_CODE,COUNTY,COUNTRY,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMS.NPSSMS_ID,NPSSMS.PRODUCT_CODE,NPSSMS.BANKUSERID,NPSSMS.SHOP_NAME,NPSSMS.SHOP_MID,NPSSMS.SHOP_ID,NPSSMS.SHOP_TYPE,NPSSMS.SHOP_MCC,NPSSMS.SHOP_IBAN,NPSSMS.BUILDING,NPSSMS.STREET,NPSSMS.CITY,NPSSMS.POSTAL_CODE,NPSSMS.COUNTY,NPSSMS.COUNTRY,NPSSMS.EXHF_ID,NPSSMS.NPSSMP_ID,NPSSMS.CREATED_BY,NPSSMS.CREATED_BY_NAME,NPSSMS.CREATED_BY_STS_ID,NPSSMS.CREATED_DATE,NPSSMS.DT_CODE,NPSSMS.DT_DESCRIPTION,NPSSMS.DTT_CODE,NPSSMS.DTT_DESCRIPTION,NPSSMS.MODIFIED_BY,NPSSMS.MODIFIED_BY_NAME,NPSSMS.MODIFIED_BY_STS_ID,NPSSMS.MODIFIED_DATE,NPSSMS.PRCT_ID,NPSSMS.STATUS,NPSSMS.PROCESS_STATUS,NPSSMS.SYSTEM_ID,NPSSMS.SYSTEM_NAME,NPSSMS.TENANT_ID,NPSSMS.APP_ID,NPSSMS.VERSION_NO FROM NPSS_MERCHANT_SHOPS  NPSSMS)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Shop AQ CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		this.shop.context_menu = []
+		this.shop.views = {}
+		this.shop.onChangecomponent = new EventEmitter<any>()
+		this.shop.show = true
+		this.shop.dynamic_param = {}
+	
+		// Component level properties - "Cash Desk" 
+		this.cash_desk.uictrl_code = "datatable"
+		this.cash_desk.uicgc_desc = "Cash Desk"
+		this.cash_desk.uicgc_code = "uicgc_19"
+		this.cash_desk.params = {"need_search":"N","need_pag_datatable":"Y"}
+		this.cash_desk.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666848298941":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666848298941","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671605524923","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Cash desk  AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_CASHDESK ~NPSSMC","category":"NPSS_MERCHANT_CASHDESK","loc":"-169.00324065393784 108.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmc_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"cashdesk_overlay_id_checked":true,"cashdesk_id_checked":true,"exhf_id_checked":true,"npssms_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565","DTT_1304_1666847660575","DTT_1304_1666848298941"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMC_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CASHDESK_OVERLAY_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CASHDESK_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"NPSSMS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMC","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_CASHDESK ","alias_name":"NPSSMC","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMC_ID,PRODUCT_CODE,BANKUSERID,CASHDESK_OVERLAY_ID,CASHDESK_ID,EXHF_ID,NPSSMS_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMC.NPSSMC_ID,NPSSMC.PRODUCT_CODE,NPSSMC.BANKUSERID,NPSSMC.CASHDESK_OVERLAY_ID,NPSSMC.CASHDESK_ID,NPSSMC.EXHF_ID,NPSSMC.NPSSMS_ID,NPSSMC.CREATED_BY,NPSSMC.CREATED_BY_NAME,NPSSMC.CREATED_BY_STS_ID,NPSSMC.CREATED_DATE,NPSSMC.DT_CODE,NPSSMC.DT_DESCRIPTION,NPSSMC.DTT_CODE,NPSSMC.DTT_DESCRIPTION,NPSSMC.MODIFIED_BY,NPSSMC.MODIFIED_BY_NAME,NPSSMC.MODIFIED_BY_STS_ID,NPSSMC.MODIFIED_DATE,NPSSMC.PRCT_ID,NPSSMC.STATUS,NPSSMC.PROCESS_STATUS,NPSSMC.SYSTEM_ID,NPSSMC.SYSTEM_NAME,NPSSMC.TENANT_ID,NPSSMC.APP_ID,NPSSMC.VERSION_NO FROM NPSS_MERCHANT_CASHDESK  NPSSMC)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant CashDesk AQ CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Cash Desk ID","target_column":"CASHDESK_ID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Cash Desk Overlay ID","target_column":"CASHDESK_OVERLAY_ID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		this.cash_desk.context_menu = []
+		this.cash_desk.views = {}
+		this.cash_desk.onChangecomponent = new EventEmitter<any>()
+		this.cash_desk.show = true
+		this.cash_desk.dynamic_param = {}
+	
+		// Component level properties - "Cash Desk Detail" 
+		this.cash_desk_detail.uictrl_code = "dynamic_ui"
+		this.cash_desk_detail.uicgc_desc = "Cash Desk Detail"
+		this.cash_desk_detail.uicgc_code = "uicgc_20"
+		this.cash_desk_detail.params = {}
+		this.cash_desk_detail.datasource = {}
+		this.cash_desk_detail.context_menu = []
+		this.cash_desk_detail.views = {"first":"DTT_1304_1666848298941","is_tab_mode":"N","dtt_1304_1666848298941":{"0":[{"dttv_id":"NPSS Cash Desk UI","tab_order":0,"tab_name":"","uicgc_description":"Cash Desk Detail","role_description":"default","dtt_description":"NPSS Merchant Cashdesk"}]}}
+		this.cash_desk_detail.onChangecomponent = new EventEmitter<any>()
+		this.cash_desk_detail.show = true
+		this.cash_desk_detail.dynamic_param = {}
+		this.cash_desk_detail.f_npss_cash_desk_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.cash_desk_detail.form_name = "f_npss_cash_desk_ui"
+	
+		// Component level properties - "Shop Action" 
+		this.shop_action.uictrl_code = "dynamic_ui"
+		this.shop_action.uicgc_desc = "Shop Action"
+		this.shop_action.uicgc_code = "uicgc_21"
+		this.shop_action.params = {}
+		this.shop_action.datasource = {}
+		this.shop_action.context_menu = []
+		this.shop_action.views = {}
+		this.shop_action.onChangecomponent = new EventEmitter<any>()
+		this.shop_action.show = true
+		this.shop_action.dynamic_param = {}
+		this.shop_action.f_shop_action = {"show":true}
+		this.shop_action.current_view = "f_shop_action"
+		
+		// "Enrolment Shop" Button of "Shop Action" component
+		this.shop_action_enrolment_shop.label_name = "Enrolment Shop"
+		this.shop_action_enrolment_shop.show = true
+		this.shop_action_enrolment_shop.disabled = true
+		this.shop_action_enrolment_shop.params = {"icon_only":false,"uicgcc_style":"fa fa-file-archive-o"}
+		this.shop_action_enrolment_shop.dynamic_param = {}
+		this.shop_action_enrolment_shop.role = []
+		this.shop_action_enrolment_shop.action = ""
+		
+		// "Update Shop" Button of "Shop Action" component
+		this.shop_action_update_shop.label_name = "Update Shop"
+		this.shop_action_update_shop.show = true
+		this.shop_action_update_shop.disabled = true
+		this.shop_action_update_shop.params = {"icon_only":false,"uicgcc_style":"fa fa-user-o"}
+		this.shop_action_update_shop.dynamic_param = {}
+		this.shop_action_update_shop.role = []
+		this.shop_action_update_shop.action = ""
+		
+		// "Disable Shop" Button of "Shop Action" component
+		this.shop_action_disable_shop.label_name = "Disable Shop"
+		this.shop_action_disable_shop.show = true
+		this.shop_action_disable_shop.disabled = true
+		this.shop_action_disable_shop.params = {"icon_only":false,"uicgcc_style":"fa fa-file-zip-o"}
+		this.shop_action_disable_shop.dynamic_param = {}
+		this.shop_action_disable_shop.role = []
+		this.shop_action_disable_shop.action = ""
+		
+		// "Set Shop Bank Account" Button of "Shop Action" component
+		this.shop_action_set_shop_bank_account.label_name = "Set Shop Bank Account"
+		this.shop_action_set_shop_bank_account.show = true
+		this.shop_action_set_shop_bank_account.disabled = true
+		this.shop_action_set_shop_bank_account.params = {"icon_only":false,"uicgcc_style":"fa fa-plus"}
+		this.shop_action_set_shop_bank_account.dynamic_param = {}
+		this.shop_action_set_shop_bank_account.role = []
+		this.shop_action_set_shop_bank_account.action = ""
+		
+		// "Remove Shop Account" Button of "Shop Action" component
+		this.shop_action_remove_shop_account.label_name = "Remove Shop Account"
+		this.shop_action_remove_shop_account.show = true
+		this.shop_action_remove_shop_account.disabled = true
+		this.shop_action_remove_shop_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.shop_action_remove_shop_account.dynamic_param = {}
+		this.shop_action_remove_shop_account.role = []
+		this.shop_action_remove_shop_account.action = ""
+	
+		// Component level properties - "Cash Desk Action" 
+		this.cash_desk_action.uictrl_code = "dynamic_ui"
+		this.cash_desk_action.uicgc_desc = "Cash Desk Action"
+		this.cash_desk_action.uicgc_code = "uicgc_22"
+		this.cash_desk_action.params = {}
+		this.cash_desk_action.datasource = {}
+		this.cash_desk_action.context_menu = []
+		this.cash_desk_action.views = {}
+		this.cash_desk_action.onChangecomponent = new EventEmitter<any>()
+		this.cash_desk_action.show = true
+		this.cash_desk_action.dynamic_param = {}
+		this.cash_desk_action.f_cash_desk_action = {"show":true}
+		this.cash_desk_action.current_view = "f_cash_desk_action"
+		
+		// "Enrolment Cash Desk" Button of "Cash Desk Action" component
+		this.cash_desk_action_enrolment_cash_desk.label_name = "Enrolment Cash Desk"
+		this.cash_desk_action_enrolment_cash_desk.show = true
+		this.cash_desk_action_enrolment_cash_desk.disabled = false
+		this.cash_desk_action_enrolment_cash_desk.params = {"icon_only":false,"uicgcc_style":"fa fa-file-word-o"}
+		this.cash_desk_action_enrolment_cash_desk.dynamic_param = {}
+		this.cash_desk_action_enrolment_cash_desk.role = []
+		this.cash_desk_action_enrolment_cash_desk.action = ""
+		
+		// "Update Cash Desk" Button of "Cash Desk Action" component
+		this.cash_desk_action_update_cash_desk.label_name = "Update Cash Desk"
+		this.cash_desk_action_update_cash_desk.show = true
+		this.cash_desk_action_update_cash_desk.disabled = true
+		this.cash_desk_action_update_cash_desk.params = {"icon_only":false,"uicgcc_style":"fa fa-user-o"}
+		this.cash_desk_action_update_cash_desk.dynamic_param = {}
+		this.cash_desk_action_update_cash_desk.role = []
+		this.cash_desk_action_update_cash_desk.action = ""
+		
+		// "Disable Cash Desk" Button of "Cash Desk Action" component
+		this.cash_desk_action_disable_cash_desk.label_name = "Disable Cash Desk"
+		this.cash_desk_action_disable_cash_desk.show = true
+		this.cash_desk_action_disable_cash_desk.disabled = true
+		this.cash_desk_action_disable_cash_desk.params = {"icon_only":false,"uicgcc_style":"fa fa-file-zip-o"}
+		this.cash_desk_action_disable_cash_desk.dynamic_param = {}
+		this.cash_desk_action_disable_cash_desk.role = []
+		this.cash_desk_action_disable_cash_desk.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -585,6 +907,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.page_load__de_for_nav_block()
 		this.page_load__de_for_nav_add_acc()
 		this.page_load__de_for_vpl_from_pl()
+		this.page_load__de_for_unblock_btn()
+		this.page_load__he_for_unblock_btn()
+		this.page_load__de_for_update_mcc_btn()
+		this.page_load__he_for_update_mcc_btn()
+		this.page_load__he_for_remove_account()
+		this.page_load__he_for_enroll_cd()
+		this.page_load__he_for_disable_cd()
+		this.page_load__he_for_update_cd()
 	}
 
 	//Handler for INTERNAL event of "cf for pl"
@@ -675,11 +1005,11 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_change_mobile_no__cc_for_mobile_enab_disab()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unentrolment"
-	navigation_ui_unentrolment__action_button_click(){
-		this.navigation_ui_unentrolment__sp_for_unentrol()
-		this.navigation_ui_unentrolment__se_for_nav_to_action_unentrol()
-		this.navigation_ui_unentrolment__cc_for_unentrol_enab_disab()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable merchant"
+	navigation_ui_disable_merchant__action_button_click(){
+		this.navigation_ui_disable_merchant__sp_for_unentrol()
+		this.navigation_ui_disable_merchant__se_for_nav_to_action_unentrol()
+		this.navigation_ui_disable_merchant__cc_for_unentrol_enab_disab()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui update personal"
@@ -704,6 +1034,10 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.accounts__ee_for_block_unblk()
 		this.accounts__ee_for_nav_block()
 		this.accounts__ee_for_nav_add_ac()
+		this.accounts__ee_for_unblock_btn()
+		this.accounts__ee_for_update_mcc_btn()
+		this.accounts__ee_for_remove_account()
+		this.accounts__brfq_for_shop()
 	}
 
 	//Handler for INTERNAL event of "svm for accounts"
@@ -711,9 +1045,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.svm_for_accounts__cc_for_acc_show_hide(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "action change mobile number"
-	action_change_mobile_number__action_button_click(){
-		this.action_change_mobile_number__cc_for_change_mob_no()
+	//Handler for INTERNAL event of "brfq for shop"
+	brfq_for_shop__internal(parent_event_result){
+		this.brfq_for_shop__sfr_for_shop(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action change mobile no"
+	action_change_mobile_no__action_button_click(){
+		this.action_change_mobile_no__cc_for_change_mob_no()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "action back"
@@ -782,11 +1121,11 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_add_bank_account__se_for_nav_add_acc()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block unblock account"
-	navigation_ui_block_unblock_account__action_button_click(){
-		this.navigation_ui_block_unblock_account__sp_for_nav_block()
-		this.navigation_ui_block_unblock_account__cc_for_nav_block()
-		this.navigation_ui_block_unblock_account__se_for_nav_block()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block account"
+	navigation_ui_block_account__action_button_click(){
+		this.navigation_ui_block_account__sp_for_nav_block()
+		this.navigation_ui_block_account__cc_for_nav_block()
+		this.navigation_ui_block_account__se_for_nav_block()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view process log"
@@ -824,6 +1163,115 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.history_detail__ssr_from_hd_to_req()
 	}
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unblock account"
+	navigation_ui_unblock_account__action_button_click(){
+		this.navigation_ui_unblock_account__se_for_unblock_btn()
+		this.navigation_ui_unblock_account__sp_for_unblock_btn()
+		this.navigation_ui_unblock_account__cc_for_unblock_btn_enab_disab()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action unblock"
+	action_unblock__action_button_click(){
+		this.action_unblock__cc_for_unblock_btn()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui update mcc"
+	navigation_ui_update_mcc__action_button_click(){
+		this.navigation_ui_update_mcc__se_for_update_mcc_btn()
+		this.navigation_ui_update_mcc__sp_for_update_mcc()
+		this.navigation_ui_update_mcc__cc_for_update_mcc_en_di()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action update mcc"
+	action_update_mcc__action_button_click(){
+		this.action_update_mcc__cc_for_update_mcc()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove bank account"
+	navigation_ui_remove_bank_account__action_button_click(){
+		this.navigation_ui_remove_bank_account__se_for_remove_account()
+		this.navigation_ui_remove_bank_account__sp_for_remove_account()
+		this.navigation_ui_remove_bank_account__cc_for_remove_account_en_di()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action remove"
+	action_remove__action_button_click(){
+		this.action_remove__cc_for_remove_account()
+	}
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__selection_changed(){
+		this.shop__brfq_for_cashdesk()
+	}
+
+	//Handler for INTERNAL event of "brfq for cashdesk"
+	brfq_for_cashdesk__internal(parent_event_result){
+		this.brfq_for_cashdesk__sfr_for_cashdesk(parent_event_result)
+	}
+
+	//Handler for SELECTION_CHANGED event of "cash desk"
+	cash_desk__selection_changed(){
+		this.cash_desk__ee_for_disable_cd()
+		this.cash_desk__ee_for_entrol_cd()
+		this.cash_desk__ee_for_update_cd()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action disable cash desk"
+	cash_desk_action_disable_cash_desk__action_button_click(){
+		this.cash_desk_action_disable_cash_desk__sp_for_disable_cd()
+		this.cash_desk_action_disable_cash_desk__cc__for_disable_cd_ena_dis()
+		this.cash_desk_action_disable_cash_desk__se_for_disable_cd()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action enrolment cash desk"
+	cash_desk_action_enrolment_cash_desk__action_button_click(){
+		this.cash_desk_action_enrolment_cash_desk__sp_for_enroll_cd()
+		this.cash_desk_action_enrolment_cash_desk__cc__for_enroll_cd_ena_dis()
+		this.cash_desk_action_enrolment_cash_desk__se_for_enroll_cd()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action update cash desk"
+	cash_desk_action_update_cash_desk__action_button_click(){
+		this.cash_desk_action_update_cash_desk__sp_for_update_cd()
+		this.cash_desk_action_update_cash_desk__cc__for_update_cd_ena_dis()
+		this.cash_desk_action_update_cash_desk__se_for_update_cd()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action enroll cash desk"
+	action_enroll_cash_desk__action_button_click(){
+		this.action_enroll_cash_desk__cc_for_enroll_cd()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action update cash desk"
+	action_update_cash_desk__action_button_click(){
+		this.action_update_cash_desk__cc__for_update_cd()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action disable cash desk"
+	action_disable_cash_desk__action_button_click(){
+		this.action_disable_cash_desk__cc__for_disable_cd()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action disable"
+	action_disable__action_button_click(){
+		this.action_disable__cc_for_disable()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action update personal"
+	action_update_personal__action_button_click(){
+		this.action_update_personal__cc_for_update_perosal()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action add account"
+	action_add_account__action_button_click(){
+		this.action_add_account__cc_for_add_acoount_btn()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action block"
+	action_block__action_button_click(){
+		this.action_block__cc_for_block_account()
+	}
+
 	//Handler for DPSINIT event of "page_load"
 	page_load__cf_for_pl() { 
 		let Dest_Is_ctrl=true
@@ -850,7 +1298,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="action_change_mobile_number"
+		let destn_id="action_change_mobile_no"
 		let parent_source_id=""
 		let event_code="e_1670996990729"
 		let event_params={"caller_name":"page_load__he_for_action_change_mob","event_desc":"HE for action change mob","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -892,7 +1340,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="action_update_personal_data"
+		let destn_id="action_update_personal"
 		let parent_source_id=""
 		let event_code="e_1670997004020"
 		let event_params={"caller_name":"page_load__he_for_update_personal_data","event_desc":"HE for Update personal data","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -913,7 +1361,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="action_unenrol"
+		let destn_id="action_disable"
 		let parent_source_id=""
 		let event_code="e_1670997015088"
 		let event_params={"caller_name":"page_load__he_for_action_unentrol","event_desc":"HE for action unentrol","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -934,7 +1382,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_unentrolment"
+		let destn_id="navigation_ui_disable_merchant"
 		let parent_source_id=""
 		let event_code="e_1670997270095"
 		let event_params={"caller_name":"page_load__de_for_un_entrol","event_desc":"DE for Un Entrol","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1144,7 +1592,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="action_block_unblock"
+		let destn_id="action_block"
 		let parent_source_id=""
 		let event_code="e_1671025627076"
 		let event_params={"caller_name":"page_load__he_for_block_unblock","event_desc":"HE for Block unblock","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -1165,7 +1613,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_block_unblock_account"
+		let destn_id="navigation_ui_block_account"
 		let parent_source_id=""
 		let event_code="e_1671028314499"
 		let event_params={"caller_name":"page_load__de_for_nav_block","event_desc":"DE for nav block","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1217,6 +1665,174 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_unblock_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_unblock_account"
+		let parent_source_id=""
+		let event_code="e_1671598877588"
+		let event_params={"caller_name":"page_load__de_for_unblock_btn","event_desc":"DE for unblock btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_unblock_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_unblock"
+		let parent_source_id=""
+		let event_code="e_1671598890233"
+		let event_params={"caller_name":"page_load__he_for_unblock_btn","event_desc":"HE for unblock btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_update_mcc_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_update_mcc"
+		let parent_source_id=""
+		let event_code="e_1671599264162"
+		let event_params={"caller_name":"page_load__de_for_update_mcc_btn","event_desc":"DE for Update MCC btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_update_mcc_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_update_mcc"
+		let parent_source_id=""
+		let event_code="e_1671599283401"
+		let event_params={"caller_name":"page_load__he_for_update_mcc_btn","event_desc":"HE for Update MCC btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_remove_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_remove"
+		let parent_source_id=""
+		let event_code="e_1671599674558"
+		let event_params={"caller_name":"page_load__he_for_remove_account","event_desc":"HE for Remove account","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_enroll_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_enroll_cash_desk"
+		let parent_source_id=""
+		let event_code="e_1671604627015"
+		let event_params={"caller_name":"page_load__he_for_enroll_cd","event_desc":"HE for Enroll CD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_disable_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_disable_cash_desk"
+		let parent_source_id=""
+		let event_code="e_1671604672206"
+		let event_params={"caller_name":"page_load__he_for_disable_cd","event_desc":"HE for Disable CD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_update_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_update_cash_desk"
+		let parent_source_id=""
+		let event_code="e_1671604706574"
+		let event_params={"caller_name":"page_load__he_for_update_cd","event_desc":"HE for Update CD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1342,7 +1958,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="clear_ui"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847369565":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666847369565","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276169608","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Account AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_ACCOUNTS ~NPSSMA","category":"NPSS_MERCHANT_ACCOUNTS","loc":"-203.00324065393784 189.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssma_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"iban_checked":true,"currency_checked":true,"default_account_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMA_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"IBAN","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CURRENCY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMA","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_ACCOUNTS ","alias_name":"NPSSMA","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMA_ID,PRODUCT_CODE,BANKUSERID,IBAN,CURRENCY,DEFAULT_ACCOUNT,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMA.NPSSMA_ID,NPSSMA.PRODUCT_CODE,NPSSMA.BANKUSERID,NPSSMA.IBAN,NPSSMA.CURRENCY,NPSSMA.DEFAULT_ACCOUNT,NPSSMA.EXHF_ID,NPSSMA.NPSSMP_ID,NPSSMA.CREATED_BY,NPSSMA.CREATED_BY_NAME,NPSSMA.CREATED_BY_STS_ID,NPSSMA.CREATED_DATE,NPSSMA.DT_CODE,NPSSMA.DT_DESCRIPTION,NPSSMA.DTT_CODE,NPSSMA.DTT_DESCRIPTION,NPSSMA.MODIFIED_BY,NPSSMA.MODIFIED_BY_NAME,NPSSMA.MODIFIED_BY_STS_ID,NPSSMA.MODIFIED_DATE,NPSSMA.PRCT_ID,NPSSMA.STATUS,NPSSMA.PROCESS_STATUS,NPSSMA.SYSTEM_ID,NPSSMA.SYSTEM_NAME,NPSSMA.TENANT_ID,NPSSMA.APP_ID,NPSSMA.VERSION_NO FROM NPSS_MERCHANT_ACCOUNTS  NPSSMA)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Account AQ","filter":[{"filter_name":"NPSSMP_ID","binding_name":"NPSSMP_ID","binding_value":"","source_name":"MI_LEVEL_NPSSMP_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"IBAN","target_column":"IBAN","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Default Account","target_column":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847369565":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847369565","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276169608","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Account AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_ACCOUNTS ~NPSSMA","category":"NPSS_MERCHANT_ACCOUNTS","loc":"-203.00324065393784 189.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssma_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"iban_checked":true,"currency_checked":true,"default_account_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMA_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"IBAN","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CURRENCY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMA","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_ACCOUNTS ","alias_name":"NPSSMA","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMA_ID,PRODUCT_CODE,BANKUSERID,IBAN,CURRENCY,DEFAULT_ACCOUNT,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMA.NPSSMA_ID,NPSSMA.PRODUCT_CODE,NPSSMA.BANKUSERID,NPSSMA.IBAN,NPSSMA.CURRENCY,NPSSMA.DEFAULT_ACCOUNT,NPSSMA.EXHF_ID,NPSSMA.NPSSMP_ID,NPSSMA.CREATED_BY,NPSSMA.CREATED_BY_NAME,NPSSMA.CREATED_BY_STS_ID,NPSSMA.CREATED_DATE,NPSSMA.DT_CODE,NPSSMA.DT_DESCRIPTION,NPSSMA.DTT_CODE,NPSSMA.DTT_DESCRIPTION,NPSSMA.MODIFIED_BY,NPSSMA.MODIFIED_BY_NAME,NPSSMA.MODIFIED_BY_STS_ID,NPSSMA.MODIFIED_DATE,NPSSMA.PRCT_ID,NPSSMA.STATUS,NPSSMA.PROCESS_STATUS,NPSSMA.SYSTEM_ID,NPSSMA.SYSTEM_NAME,NPSSMA.TENANT_ID,NPSSMA.APP_ID,NPSSMA.VERSION_NO FROM NPSS_MERCHANT_ACCOUNTS  NPSSMA)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Account AQ","filter":[{"filter_name":"NPSSMP_ID","binding_name":"NPSSMP_ID","binding_value":"","source_name":"MI_LEVEL_NPSSMP_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"IBAN","target_column":"IBAN","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Default Account","target_column":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
 		try {
 			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1363,7 +1979,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="clear_ui"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276266014","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_PROXY ~NPSSMP","category":"NPSS_MERCHANT_PROXY","loc":"253.99675934606216 386.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"merchant_name_checked":true,"merchant_tag_checked":true,"mcc_checked":true,"mobile_checked":true,"denomination_checked":true,"vat_number_checked":true,"product_code_checked":true,"group_code_checked":true,"surname_checked":true,"bank_code_checked":true,"proxy_value_checked":true,"proxy_type_checked":true,"email_checked":true,"document_id_checked":true,"channel_name_checked":true,"exhf_id_checked":true,"logo_checked":true,"channel_id_checked":true,"channel_userid_checked":true,"channel_product_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true,"channel_refno_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_TAG","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MCC","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DENOMINATION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VAT_NUMBER","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"LOGO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_PROXY ","alias_name":"NPSSMP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,MERCHANT_NAME,MERCHANT_TAG,MCC,MOBILE,DENOMINATION,VAT_NUMBER,PRODUCT_CODE,GROUP_CODE,BANK_CODE,SURNAME,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,CHANNEL_NAME,LOGO,EXHF_ID,CHANNEL_ID,CHANNEL_USERID,CHANNEL_PRODUCT,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CHANNEL_REFNO,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMP.NPSSMP_ID,NPSSMP.BANKUSERID,NPSSMP.MERCHANT_NAME,NPSSMP.MERCHANT_TAG,NPSSMP.MCC,NPSSMP.MOBILE,NPSSMP.DENOMINATION,NPSSMP.VAT_NUMBER,NPSSMP.PRODUCT_CODE,NPSSMP.GROUP_CODE,NPSSMP.BANK_CODE,NPSSMP.SURNAME,NPSSMP.PROXY_TYPE,NPSSMP.PROXY_VALUE,NPSSMP.EMAIL,NPSSMP.DOCUMENT_ID,NPSSMP.CHANNEL_NAME,NPSSMP.LOGO,NPSSMP.EXHF_ID,NPSSMP.CHANNEL_ID,NPSSMP.CHANNEL_USERID,NPSSMP.CHANNEL_PRODUCT,NPSSMP.CHANNEL_SUB_PRODUCT,NPSSMP.CHANNEL_TRAN_CODE,NPSSMP.CHANNEL_REFNO,NPSSMP.CREATED_BY,NPSSMP.CREATED_BY_NAME,NPSSMP.CREATED_BY_STS_ID,NPSSMP.CREATED_DATE,NPSSMP.DT_CODE,NPSSMP.DT_DESCRIPTION,NPSSMP.DTT_CODE,NPSSMP.DTT_DESCRIPTION,NPSSMP.MODIFIED_BY,NPSSMP.MODIFIED_BY_NAME,NPSSMP.MODIFIED_BY_STS_ID,NPSSMP.MODIFIED_DATE,NPSSMP.PRCT_ID,NPSSMP.STATUS,NPSSMP.PROCESS_STATUS,NPSSMP.SYSTEM_ID,NPSSMP.SYSTEM_NAME,NPSSMP.TENANT_ID,NPSSMP.APP_ID,NPSSMP.VERSION_NO FROM NPSS_MERCHANT_PROXY  NPSSMP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchat Tag","target_column":"MERCHANT_TAG","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276266014","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_PROXY ~NPSSMP","category":"NPSS_MERCHANT_PROXY","loc":"253.99675934606216 386.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"merchant_name_checked":true,"merchant_tag_checked":true,"mcc_checked":true,"mobile_checked":true,"denomination_checked":true,"vat_number_checked":true,"product_code_checked":true,"group_code_checked":true,"surname_checked":true,"bank_code_checked":true,"proxy_value_checked":true,"proxy_type_checked":true,"email_checked":true,"document_id_checked":true,"channel_name_checked":true,"exhf_id_checked":true,"logo_checked":true,"channel_id_checked":true,"channel_userid_checked":true,"channel_product_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true,"channel_refno_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_TAG","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MCC","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DENOMINATION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VAT_NUMBER","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"LOGO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_PROXY ","alias_name":"NPSSMP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,MERCHANT_NAME,MERCHANT_TAG,MCC,MOBILE,DENOMINATION,VAT_NUMBER,PRODUCT_CODE,GROUP_CODE,BANK_CODE,SURNAME,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,CHANNEL_NAME,LOGO,EXHF_ID,CHANNEL_ID,CHANNEL_USERID,CHANNEL_PRODUCT,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CHANNEL_REFNO,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMP.NPSSMP_ID,NPSSMP.BANKUSERID,NPSSMP.MERCHANT_NAME,NPSSMP.MERCHANT_TAG,NPSSMP.MCC,NPSSMP.MOBILE,NPSSMP.DENOMINATION,NPSSMP.VAT_NUMBER,NPSSMP.PRODUCT_CODE,NPSSMP.GROUP_CODE,NPSSMP.BANK_CODE,NPSSMP.SURNAME,NPSSMP.PROXY_TYPE,NPSSMP.PROXY_VALUE,NPSSMP.EMAIL,NPSSMP.DOCUMENT_ID,NPSSMP.CHANNEL_NAME,NPSSMP.LOGO,NPSSMP.EXHF_ID,NPSSMP.CHANNEL_ID,NPSSMP.CHANNEL_USERID,NPSSMP.CHANNEL_PRODUCT,NPSSMP.CHANNEL_SUB_PRODUCT,NPSSMP.CHANNEL_TRAN_CODE,NPSSMP.CHANNEL_REFNO,NPSSMP.CREATED_BY,NPSSMP.CREATED_BY_NAME,NPSSMP.CREATED_BY_STS_ID,NPSSMP.CREATED_DATE,NPSSMP.DT_CODE,NPSSMP.DT_DESCRIPTION,NPSSMP.DTT_CODE,NPSSMP.DTT_DESCRIPTION,NPSSMP.MODIFIED_BY,NPSSMP.MODIFIED_BY_NAME,NPSSMP.MODIFIED_BY_STS_ID,NPSSMP.MODIFIED_DATE,NPSSMP.PRCT_ID,NPSSMP.STATUS,NPSSMP.PROCESS_STATUS,NPSSMP.SYSTEM_ID,NPSSMP.SYSTEM_NAME,NPSSMP.TENANT_ID,NPSSMP.APP_ID,NPSSMP.VERSION_NO FROM NPSS_MERCHANT_PROXY  NPSSMP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchat Tag","target_column":"MERCHANT_TAG","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
 		try {
 			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1406,7 +2022,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_queue__sfr_for_queue,"
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_10","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276345803","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Setup Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671275017464","date_format":false}],"joins":[]},"eq_text":"select  distinct STATUS from  (  select   T.NPSSMP_ID,   T.BANKUSERID,   T.MERCHANT_NAME,   T.MERCHANT_TAG,   T.MCC,   T.MOBILE,   T.DENOMINATION,   T.VAT_NUMBER,   T.PRODUCT_CODE,   T.GROUP_CODE,   T.BANK_CODE,   T.SURNAME,   T.PROXY_TYPE,   T.PROXY_VALUE,   T.EMAIL,   T.DOCUMENT_ID,   T.CHANNEL_NAME,   T.LOGO,   T.EXHF_ID,   T.CHANNEL_ID,   T.CHANNEL_USERID,   T.CHANNEL_PRODUCT,   T.CHANNEL_SUB_PRODUCT,   T.CHANNEL_TRAN_CODE,   T.CHANNEL_REFNO,   T.PROCESS_STATUS,   T.TENANT_ID,   T.STATUS,   T.CREATED_DATE,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   T.CREATED_BY,   T.CREATED_BY_NAME,   T.SYSTEM_ID  from   npss_merchant_proxy T  left join TRANSACTION_SET TS on   T.NPSSMP_ID = TS.TRN_ID   and T.DTT_CODE = TS.DTT_CODE) VM $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Setup Queue CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_10","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276345803","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Setup Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671275017464","date_format":false}],"joins":[]},"eq_text":"select  distinct STATUS from  (  select   T.NPSSMP_ID,   T.BANKUSERID,   T.MERCHANT_NAME,   T.MERCHANT_TAG,   T.MCC,   T.MOBILE,   T.DENOMINATION,   T.VAT_NUMBER,   T.PRODUCT_CODE,   T.GROUP_CODE,   T.BANK_CODE,   T.SURNAME,   T.PROXY_TYPE,   T.PROXY_VALUE,   T.EMAIL,   T.DOCUMENT_ID,   T.CHANNEL_NAME,   T.LOGO,   T.EXHF_ID,   T.CHANNEL_ID,   T.CHANNEL_USERID,   T.CHANNEL_PRODUCT,   T.CHANNEL_SUB_PRODUCT,   T.CHANNEL_TRAN_CODE,   T.CHANNEL_REFNO,   T.PROCESS_STATUS,   T.TENANT_ID,   T.STATUS,   T.CREATED_DATE,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   T.CREATED_BY,   T.CREATED_BY_NAME,   T.SYSTEM_ID  from   npss_merchant_proxy T  left join TRANSACTION_SET TS on   T.NPSSMP_ID = TS.TRN_ID   and T.DTT_CODE = TS.DTT_CODE) VM $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Setup Queue CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1428,7 +2044,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_10","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276345803","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Setup Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671275017464","date_format":false}],"joins":[]},"eq_text":"select  distinct STATUS from  (  select   T.NPSSMP_ID,   T.BANKUSERID,   T.MERCHANT_NAME,   T.MERCHANT_TAG,   T.MCC,   T.MOBILE,   T.DENOMINATION,   T.VAT_NUMBER,   T.PRODUCT_CODE,   T.GROUP_CODE,   T.BANK_CODE,   T.SURNAME,   T.PROXY_TYPE,   T.PROXY_VALUE,   T.EMAIL,   T.DOCUMENT_ID,   T.CHANNEL_NAME,   T.LOGO,   T.EXHF_ID,   T.CHANNEL_ID,   T.CHANNEL_USERID,   T.CHANNEL_PRODUCT,   T.CHANNEL_SUB_PRODUCT,   T.CHANNEL_TRAN_CODE,   T.CHANNEL_REFNO,   T.PROCESS_STATUS,   T.TENANT_ID,   T.STATUS,   T.CREATED_DATE,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   T.CREATED_BY,   T.CREATED_BY_NAME,   T.SYSTEM_ID  from   npss_merchant_proxy T  left join TRANSACTION_SET TS on   T.NPSSMP_ID = TS.TRN_ID   and T.DTT_CODE = TS.DTT_CODE) VM $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Setup Queue CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_10","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276345803","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Setup Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671275017464","date_format":false}],"joins":[]},"eq_text":"select  distinct STATUS from  (  select   T.NPSSMP_ID,   T.BANKUSERID,   T.MERCHANT_NAME,   T.MERCHANT_TAG,   T.MCC,   T.MOBILE,   T.DENOMINATION,   T.VAT_NUMBER,   T.PRODUCT_CODE,   T.GROUP_CODE,   T.BANK_CODE,   T.SURNAME,   T.PROXY_TYPE,   T.PROXY_VALUE,   T.EMAIL,   T.DOCUMENT_ID,   T.CHANNEL_NAME,   T.LOGO,   T.EXHF_ID,   T.CHANNEL_ID,   T.CHANNEL_USERID,   T.CHANNEL_PRODUCT,   T.CHANNEL_SUB_PRODUCT,   T.CHANNEL_TRAN_CODE,   T.CHANNEL_REFNO,   T.PROCESS_STATUS,   T.TENANT_ID,   T.STATUS,   T.CREATED_DATE,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   T.CREATED_BY,   T.CREATED_BY_NAME,   T.SYSTEM_ID  from   npss_merchant_proxy T  left join TRANSACTION_SET TS on   T.NPSSMP_ID = TS.TRN_ID   and T.DTT_CODE = TS.DTT_CODE) VM $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Setup Queue CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1448,8 +2064,8 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_params={"caller_name":"merchant__svmfor_cpl","event_desc":"SVMfor CPL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals="svmfor_cpl__cc_for_customer_show_hide,"
-		let event_data={"merchant":{"e_1670997376364":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1670997376364","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS SM Process Log DTG","dtt_desc":"NPSS SM Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"BANKUSERID","level":"MI_LEVEL","name":"MI_LEVEL_BANKUSERID","setd3name":"BANKUSERID"},{"type":"LOCAL","column_name":"NPSSMP_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSMP_ID","setd3name":"NPSSMP_ID"},{"type":"LOCAL","column_name":"CHANNEL_ID","level":"MI_LEVEL","name":"MI_LEVEL_CHANNEL_ID","setd3name":"CHANNEL_ID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276266014","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_PROXY ~NPSSMP","category":"NPSS_MERCHANT_PROXY","loc":"253.99675934606216 386.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"merchant_name_checked":true,"merchant_tag_checked":true,"mcc_checked":true,"mobile_checked":true,"denomination_checked":true,"vat_number_checked":true,"product_code_checked":true,"group_code_checked":true,"surname_checked":true,"bank_code_checked":true,"proxy_value_checked":true,"proxy_type_checked":true,"email_checked":true,"document_id_checked":true,"channel_name_checked":true,"exhf_id_checked":true,"logo_checked":true,"channel_id_checked":true,"channel_userid_checked":true,"channel_product_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true,"channel_refno_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_TAG","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MCC","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DENOMINATION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VAT_NUMBER","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"LOGO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_PROXY ","alias_name":"NPSSMP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,MERCHANT_NAME,MERCHANT_TAG,MCC,MOBILE,DENOMINATION,VAT_NUMBER,PRODUCT_CODE,GROUP_CODE,BANK_CODE,SURNAME,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,CHANNEL_NAME,LOGO,EXHF_ID,CHANNEL_ID,CHANNEL_USERID,CHANNEL_PRODUCT,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CHANNEL_REFNO,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMP.NPSSMP_ID,NPSSMP.BANKUSERID,NPSSMP.MERCHANT_NAME,NPSSMP.MERCHANT_TAG,NPSSMP.MCC,NPSSMP.MOBILE,NPSSMP.DENOMINATION,NPSSMP.VAT_NUMBER,NPSSMP.PRODUCT_CODE,NPSSMP.GROUP_CODE,NPSSMP.BANK_CODE,NPSSMP.SURNAME,NPSSMP.PROXY_TYPE,NPSSMP.PROXY_VALUE,NPSSMP.EMAIL,NPSSMP.DOCUMENT_ID,NPSSMP.CHANNEL_NAME,NPSSMP.LOGO,NPSSMP.EXHF_ID,NPSSMP.CHANNEL_ID,NPSSMP.CHANNEL_USERID,NPSSMP.CHANNEL_PRODUCT,NPSSMP.CHANNEL_SUB_PRODUCT,NPSSMP.CHANNEL_TRAN_CODE,NPSSMP.CHANNEL_REFNO,NPSSMP.CREATED_BY,NPSSMP.CREATED_BY_NAME,NPSSMP.CREATED_BY_STS_ID,NPSSMP.CREATED_DATE,NPSSMP.DT_CODE,NPSSMP.DT_DESCRIPTION,NPSSMP.DTT_CODE,NPSSMP.DTT_DESCRIPTION,NPSSMP.MODIFIED_BY,NPSSMP.MODIFIED_BY_NAME,NPSSMP.MODIFIED_BY_STS_ID,NPSSMP.MODIFIED_DATE,NPSSMP.PRCT_ID,NPSSMP.STATUS,NPSSMP.PROCESS_STATUS,NPSSMP.SYSTEM_ID,NPSSMP.SYSTEM_NAME,NPSSMP.TENANT_ID,NPSSMP.APP_ID,NPSSMP.VERSION_NO FROM NPSS_MERCHANT_PROXY  NPSSMP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchat Tag","target_column":"MERCHANT_TAG","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		let event_data={"merchant":{"e_1670997376364":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1670997376364","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS Merchant Proxy DTG","dtt_desc":"NPSS Merchant Cashdesk","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"BANKUSERID","level":"MI_LEVEL","name":"MI_LEVEL_BANKUSERID","setd3name":"BANKUSERID"},{"type":"LOCAL","column_name":"NPSSMP_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSMP_ID","setd3name":"NPSSMP_ID"},{"type":"LOCAL","column_name":"CHANNEL_ID","level":"MI_LEVEL","name":"MI_LEVEL_CHANNEL_ID","setd3name":"CHANNEL_ID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276266014","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_PROXY ~NPSSMP","category":"NPSS_MERCHANT_PROXY","loc":"253.99675934606216 386.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"merchant_name_checked":true,"merchant_tag_checked":true,"mcc_checked":true,"mobile_checked":true,"denomination_checked":true,"vat_number_checked":true,"product_code_checked":true,"group_code_checked":true,"surname_checked":true,"bank_code_checked":true,"proxy_value_checked":true,"proxy_type_checked":true,"email_checked":true,"document_id_checked":true,"channel_name_checked":true,"exhf_id_checked":true,"logo_checked":true,"channel_id_checked":true,"channel_userid_checked":true,"channel_product_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true,"channel_refno_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_TAG","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MCC","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DENOMINATION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VAT_NUMBER","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"LOGO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_PROXY ","alias_name":"NPSSMP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,MERCHANT_NAME,MERCHANT_TAG,MCC,MOBILE,DENOMINATION,VAT_NUMBER,PRODUCT_CODE,GROUP_CODE,BANK_CODE,SURNAME,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,CHANNEL_NAME,LOGO,EXHF_ID,CHANNEL_ID,CHANNEL_USERID,CHANNEL_PRODUCT,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CHANNEL_REFNO,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMP.NPSSMP_ID,NPSSMP.BANKUSERID,NPSSMP.MERCHANT_NAME,NPSSMP.MERCHANT_TAG,NPSSMP.MCC,NPSSMP.MOBILE,NPSSMP.DENOMINATION,NPSSMP.VAT_NUMBER,NPSSMP.PRODUCT_CODE,NPSSMP.GROUP_CODE,NPSSMP.BANK_CODE,NPSSMP.SURNAME,NPSSMP.PROXY_TYPE,NPSSMP.PROXY_VALUE,NPSSMP.EMAIL,NPSSMP.DOCUMENT_ID,NPSSMP.CHANNEL_NAME,NPSSMP.LOGO,NPSSMP.EXHF_ID,NPSSMP.CHANNEL_ID,NPSSMP.CHANNEL_USERID,NPSSMP.CHANNEL_PRODUCT,NPSSMP.CHANNEL_SUB_PRODUCT,NPSSMP.CHANNEL_TRAN_CODE,NPSSMP.CHANNEL_REFNO,NPSSMP.CREATED_BY,NPSSMP.CREATED_BY_NAME,NPSSMP.CREATED_BY_STS_ID,NPSSMP.CREATED_DATE,NPSSMP.DT_CODE,NPSSMP.DT_DESCRIPTION,NPSSMP.DTT_CODE,NPSSMP.DTT_DESCRIPTION,NPSSMP.MODIFIED_BY,NPSSMP.MODIFIED_BY_NAME,NPSSMP.MODIFIED_BY_STS_ID,NPSSMP.MODIFIED_DATE,NPSSMP.PRCT_ID,NPSSMP.STATUS,NPSSMP.PROCESS_STATUS,NPSSMP.SYSTEM_ID,NPSSMP.SYSTEM_NAME,NPSSMP.TENANT_ID,NPSSMP.APP_ID,NPSSMP.VERSION_NO FROM NPSS_MERCHANT_PROXY  NPSSMP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchat Tag","target_column":"MERCHANT_TAG","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1556,7 +2172,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_accounts__sfr_for_accounts,"
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847369565":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666847369565","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276169608","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Account AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_ACCOUNTS ~NPSSMA","category":"NPSS_MERCHANT_ACCOUNTS","loc":"-203.00324065393784 189.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssma_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"iban_checked":true,"currency_checked":true,"default_account_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMA_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"IBAN","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CURRENCY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMA","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_ACCOUNTS ","alias_name":"NPSSMA","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMA_ID,PRODUCT_CODE,BANKUSERID,IBAN,CURRENCY,DEFAULT_ACCOUNT,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMA.NPSSMA_ID,NPSSMA.PRODUCT_CODE,NPSSMA.BANKUSERID,NPSSMA.IBAN,NPSSMA.CURRENCY,NPSSMA.DEFAULT_ACCOUNT,NPSSMA.EXHF_ID,NPSSMA.NPSSMP_ID,NPSSMA.CREATED_BY,NPSSMA.CREATED_BY_NAME,NPSSMA.CREATED_BY_STS_ID,NPSSMA.CREATED_DATE,NPSSMA.DT_CODE,NPSSMA.DT_DESCRIPTION,NPSSMA.DTT_CODE,NPSSMA.DTT_DESCRIPTION,NPSSMA.MODIFIED_BY,NPSSMA.MODIFIED_BY_NAME,NPSSMA.MODIFIED_BY_STS_ID,NPSSMA.MODIFIED_DATE,NPSSMA.PRCT_ID,NPSSMA.STATUS,NPSSMA.PROCESS_STATUS,NPSSMA.SYSTEM_ID,NPSSMA.SYSTEM_NAME,NPSSMA.TENANT_ID,NPSSMA.APP_ID,NPSSMA.VERSION_NO FROM NPSS_MERCHANT_ACCOUNTS  NPSSMA)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Account AQ","filter":[{"filter_name":"NPSSMP_ID","binding_name":"NPSSMP_ID","binding_value":"","source_name":"MI_LEVEL_NPSSMP_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"IBAN","target_column":"IBAN","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Default Account","target_column":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847369565":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847369565","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276169608","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Account AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_ACCOUNTS ~NPSSMA","category":"NPSS_MERCHANT_ACCOUNTS","loc":"-203.00324065393784 189.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssma_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"iban_checked":true,"currency_checked":true,"default_account_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMA_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"IBAN","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CURRENCY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMA","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_ACCOUNTS ","alias_name":"NPSSMA","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMA_ID,PRODUCT_CODE,BANKUSERID,IBAN,CURRENCY,DEFAULT_ACCOUNT,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMA.NPSSMA_ID,NPSSMA.PRODUCT_CODE,NPSSMA.BANKUSERID,NPSSMA.IBAN,NPSSMA.CURRENCY,NPSSMA.DEFAULT_ACCOUNT,NPSSMA.EXHF_ID,NPSSMA.NPSSMP_ID,NPSSMA.CREATED_BY,NPSSMA.CREATED_BY_NAME,NPSSMA.CREATED_BY_STS_ID,NPSSMA.CREATED_DATE,NPSSMA.DT_CODE,NPSSMA.DT_DESCRIPTION,NPSSMA.DTT_CODE,NPSSMA.DTT_DESCRIPTION,NPSSMA.MODIFIED_BY,NPSSMA.MODIFIED_BY_NAME,NPSSMA.MODIFIED_BY_STS_ID,NPSSMA.MODIFIED_DATE,NPSSMA.PRCT_ID,NPSSMA.STATUS,NPSSMA.PROCESS_STATUS,NPSSMA.SYSTEM_ID,NPSSMA.SYSTEM_NAME,NPSSMA.TENANT_ID,NPSSMA.APP_ID,NPSSMA.VERSION_NO FROM NPSS_MERCHANT_ACCOUNTS  NPSSMA)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Account AQ","filter":[{"filter_name":"NPSSMP_ID","binding_name":"NPSSMP_ID","binding_value":"","source_name":"MI_LEVEL_NPSSMP_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"IBAN","target_column":"IBAN","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Default Account","target_column":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1578,7 +2194,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847369565":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666847369565","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276169608","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Account AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_ACCOUNTS ~NPSSMA","category":"NPSS_MERCHANT_ACCOUNTS","loc":"-203.00324065393784 189.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssma_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"iban_checked":true,"currency_checked":true,"default_account_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMA_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"IBAN","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CURRENCY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMA","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_ACCOUNTS ","alias_name":"NPSSMA","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMA_ID,PRODUCT_CODE,BANKUSERID,IBAN,CURRENCY,DEFAULT_ACCOUNT,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMA.NPSSMA_ID,NPSSMA.PRODUCT_CODE,NPSSMA.BANKUSERID,NPSSMA.IBAN,NPSSMA.CURRENCY,NPSSMA.DEFAULT_ACCOUNT,NPSSMA.EXHF_ID,NPSSMA.NPSSMP_ID,NPSSMA.CREATED_BY,NPSSMA.CREATED_BY_NAME,NPSSMA.CREATED_BY_STS_ID,NPSSMA.CREATED_DATE,NPSSMA.DT_CODE,NPSSMA.DT_DESCRIPTION,NPSSMA.DTT_CODE,NPSSMA.DTT_DESCRIPTION,NPSSMA.MODIFIED_BY,NPSSMA.MODIFIED_BY_NAME,NPSSMA.MODIFIED_BY_STS_ID,NPSSMA.MODIFIED_DATE,NPSSMA.PRCT_ID,NPSSMA.STATUS,NPSSMA.PROCESS_STATUS,NPSSMA.SYSTEM_ID,NPSSMA.SYSTEM_NAME,NPSSMA.TENANT_ID,NPSSMA.APP_ID,NPSSMA.VERSION_NO FROM NPSS_MERCHANT_ACCOUNTS  NPSSMA)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Account AQ","filter":[{"filter_name":"NPSSMP_ID","binding_name":"NPSSMP_ID","binding_value":"","source_name":"MI_LEVEL_NPSSMP_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"IBAN","target_column":"IBAN","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Default Account","target_column":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847369565":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847369565","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276169608","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Account AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_ACCOUNTS ~NPSSMA","category":"NPSS_MERCHANT_ACCOUNTS","loc":"-203.00324065393784 189.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssma_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"iban_checked":true,"currency_checked":true,"default_account_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMA_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"IBAN","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CURRENCY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMA","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_ACCOUNTS ","alias_name":"NPSSMA","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMA_ID,PRODUCT_CODE,BANKUSERID,IBAN,CURRENCY,DEFAULT_ACCOUNT,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMA.NPSSMA_ID,NPSSMA.PRODUCT_CODE,NPSSMA.BANKUSERID,NPSSMA.IBAN,NPSSMA.CURRENCY,NPSSMA.DEFAULT_ACCOUNT,NPSSMA.EXHF_ID,NPSSMA.NPSSMP_ID,NPSSMA.CREATED_BY,NPSSMA.CREATED_BY_NAME,NPSSMA.CREATED_BY_STS_ID,NPSSMA.CREATED_DATE,NPSSMA.DT_CODE,NPSSMA.DT_DESCRIPTION,NPSSMA.DTT_CODE,NPSSMA.DTT_DESCRIPTION,NPSSMA.MODIFIED_BY,NPSSMA.MODIFIED_BY_NAME,NPSSMA.MODIFIED_BY_STS_ID,NPSSMA.MODIFIED_DATE,NPSSMA.PRCT_ID,NPSSMA.STATUS,NPSSMA.PROCESS_STATUS,NPSSMA.SYSTEM_ID,NPSSMA.SYSTEM_NAME,NPSSMA.TENANT_ID,NPSSMA.APP_ID,NPSSMA.VERSION_NO FROM NPSS_MERCHANT_ACCOUNTS  NPSSMA)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Account AQ","filter":[{"filter_name":"NPSSMP_ID","binding_name":"NPSSMP_ID","binding_value":"","source_name":"MI_LEVEL_NPSSMP_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"IBAN","target_column":"IBAN","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Default Account","target_column":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1781,7 +2397,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_ui_change_mobile_no"
-		let destn_id="action_change_mobile_number"
+		let destn_id="action_change_mobile_no"
 		let parent_source_id=""
 		let event_code="e_1670997921388"
 		let event_params={"caller_name":"navigation_ui_change_mobile_no__se_for_nav_mob_to_action","event_desc":"SE for nav mob to action","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_change_mobile_no","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
@@ -1818,15 +2434,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unentrolment"
-	navigation_ui_unentrolment__sp_for_unentrol() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable merchant"
+	navigation_ui_disable_merchant__sp_for_unentrol() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_unentrolment"
+		let source_id="navigation_ui_disable_merchant"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1670997993994"
-		let event_params={"caller_name":"navigation_ui_unentrolment__sp_for_unentrol","event_desc":"SP for Unentrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unentrolment","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"navigation_ui_disable_merchant__sp_for_unentrol","event_desc":"SP for Unentrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_disable_merchant","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1839,15 +2455,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unentrolment"
-	navigation_ui_unentrolment__se_for_nav_to_action_unentrol() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable merchant"
+	navigation_ui_disable_merchant__se_for_nav_to_action_unentrol() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_unentrolment"
-		let destn_id="action_unenrol"
+		let source_id="navigation_ui_disable_merchant"
+		let destn_id="action_disable"
 		let parent_source_id=""
 		let event_code="e_1670998007874"
-		let event_params={"caller_name":"navigation_ui_unentrolment__se_for_nav_to_action_unentrol","event_desc":"SE for nav to action unentrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unentrolment","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_ui_disable_merchant__se_for_nav_to_action_unentrol","event_desc":"SE for nav to action unentrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_disable_merchant","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -1860,15 +2476,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unentrolment"
-	navigation_ui_unentrolment__cc_for_unentrol_enab_disab() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable merchant"
+	navigation_ui_disable_merchant__cc_for_unentrol_enab_disab() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_unentrolment"
+		let source_id="navigation_ui_disable_merchant"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671005294412"
-		let event_params={"caller_name":"navigation_ui_unentrolment__cc_for_unentrol_enab_disab","event_desc":"CC for unentrol enab disab","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unentrolment","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_disable_merchant__cc_for_unentrol_enab_disab","event_desc":"CC for unentrol enab disab","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_disable_merchant","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -1907,7 +2523,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_ui_update_personal"
-		let destn_id="action_update_personal_data"
+		let destn_id="action_update_personal"
 		let parent_source_id=""
 		let event_code="e_1670998079496"
 		let event_params={"caller_name":"navigation_ui_update_personal__se_for_nav_to_action_add_account","event_desc":"SE for nav to action add account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_update_personal","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
@@ -2054,7 +2670,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="navigation_ui_unentrolment"
+		let destn_id="navigation_ui_disable_merchant"
 		let parent_source_id=""
 		let event_code="e_1671000475768"
 		let event_params={"caller_name":"accounts__ee_for_nav_unentrol","event_desc":"EE for nav unentrol","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -2081,8 +2697,8 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_params={"caller_name":"accounts__svm_for_accounts","event_desc":"SVM for Accounts","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_accounts__cc_for_acc_show_hide,"
-		let event_data={"accounts":{"e_1671012456913":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGC_3","event_code":"E_1671012456913","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS SM Process Log DTG","dtt_desc":"NPSS SM Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847369565":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666847369565","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276169608","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Account AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_ACCOUNTS ~NPSSMA","category":"NPSS_MERCHANT_ACCOUNTS","loc":"-203.00324065393784 189.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssma_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"iban_checked":true,"currency_checked":true,"default_account_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMA_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"IBAN","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CURRENCY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMA","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_ACCOUNTS ","alias_name":"NPSSMA","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMA_ID,PRODUCT_CODE,BANKUSERID,IBAN,CURRENCY,DEFAULT_ACCOUNT,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMA.NPSSMA_ID,NPSSMA.PRODUCT_CODE,NPSSMA.BANKUSERID,NPSSMA.IBAN,NPSSMA.CURRENCY,NPSSMA.DEFAULT_ACCOUNT,NPSSMA.EXHF_ID,NPSSMA.NPSSMP_ID,NPSSMA.CREATED_BY,NPSSMA.CREATED_BY_NAME,NPSSMA.CREATED_BY_STS_ID,NPSSMA.CREATED_DATE,NPSSMA.DT_CODE,NPSSMA.DT_DESCRIPTION,NPSSMA.DTT_CODE,NPSSMA.DTT_DESCRIPTION,NPSSMA.MODIFIED_BY,NPSSMA.MODIFIED_BY_NAME,NPSSMA.MODIFIED_BY_STS_ID,NPSSMA.MODIFIED_DATE,NPSSMA.PRCT_ID,NPSSMA.STATUS,NPSSMA.PROCESS_STATUS,NPSSMA.SYSTEM_ID,NPSSMA.SYSTEM_NAME,NPSSMA.TENANT_ID,NPSSMA.APP_ID,NPSSMA.VERSION_NO FROM NPSS_MERCHANT_ACCOUNTS  NPSSMA)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Account AQ","filter":[{"filter_name":"NPSSMP_ID","binding_name":"NPSSMP_ID","binding_value":"","source_name":"MI_LEVEL_NPSSMP_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"IBAN","target_column":"IBAN","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Default Account","target_column":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		let event_data={"accounts":{"e_1671012456913":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGC_3","event_code":"E_1671012456913","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS Merchant Proxy DTG","dtt_desc":"NPSS Merchant Cashdesk","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847369565":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847369565","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276169608","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Account AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_ACCOUNTS ~NPSSMA","category":"NPSS_MERCHANT_ACCOUNTS","loc":"-203.00324065393784 189.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssma_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"iban_checked":true,"currency_checked":true,"default_account_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMA_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"IBAN","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CURRENCY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMA","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_ACCOUNTS ","alias_name":"NPSSMA","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMA_ID,PRODUCT_CODE,BANKUSERID,IBAN,CURRENCY,DEFAULT_ACCOUNT,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMA.NPSSMA_ID,NPSSMA.PRODUCT_CODE,NPSSMA.BANKUSERID,NPSSMA.IBAN,NPSSMA.CURRENCY,NPSSMA.DEFAULT_ACCOUNT,NPSSMA.EXHF_ID,NPSSMA.NPSSMP_ID,NPSSMA.CREATED_BY,NPSSMA.CREATED_BY_NAME,NPSSMA.CREATED_BY_STS_ID,NPSSMA.CREATED_DATE,NPSSMA.DT_CODE,NPSSMA.DT_DESCRIPTION,NPSSMA.DTT_CODE,NPSSMA.DTT_DESCRIPTION,NPSSMA.MODIFIED_BY,NPSSMA.MODIFIED_BY_NAME,NPSSMA.MODIFIED_BY_STS_ID,NPSSMA.MODIFIED_DATE,NPSSMA.PRCT_ID,NPSSMA.STATUS,NPSSMA.PROCESS_STATUS,NPSSMA.SYSTEM_ID,NPSSMA.SYSTEM_NAME,NPSSMA.TENANT_ID,NPSSMA.APP_ID,NPSSMA.VERSION_NO FROM NPSS_MERCHANT_ACCOUNTS  NPSSMA)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Account AQ","filter":[{"filter_name":"NPSSMP_ID","binding_name":"NPSSMP_ID","binding_value":"","source_name":"MI_LEVEL_NPSSMP_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"IBAN","target_column":"IBAN","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Default Account","target_column":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -2180,7 +2796,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="navigation_ui_block_unblock_account"
+		let destn_id="navigation_ui_block_account"
 		let parent_source_id=""
 		let event_code="e_1671028378551"
 		let event_params={"caller_name":"accounts__ee_for_nav_block","event_desc":"EE for nav block","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -2217,6 +2833,90 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "accounts"
+	accounts__ee_for_unblock_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="accounts"
+		let destn_id="navigation_ui_unblock_account"
+		let parent_source_id=""
+		let event_code="e_1671598984269"
+		let event_params={"caller_name":"accounts__ee_for_unblock_btn","event_desc":"EE for unblock btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "accounts"
+	accounts__ee_for_update_mcc_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="accounts"
+		let destn_id="navigation_ui_update_mcc"
+		let parent_source_id=""
+		let event_code="e_1671599356728"
+		let event_params={"caller_name":"accounts__ee_for_update_mcc_btn","event_desc":"EE for Update MCC btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "accounts"
+	accounts__ee_for_remove_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="accounts"
+		let destn_id="navigation_ui_remove_bank_account"
+		let parent_source_id=""
+		let event_code="e_1671599628864"
+		let event_params={"caller_name":"accounts__ee_for_remove_account","event_desc":"EE for Remove account","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "accounts"
+	accounts__brfq_for_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="accounts"
+		let destn_id="shop"
+		let parent_source_id=""
+		let event_code="e_1671603328942"
+		let event_params={"caller_name":"accounts__brfq_for_shop","event_desc":"BRFQ for Shop","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let handler_code="bind_record_from_query"
+		let internals="brfq_for_shop__sfr_for_shop,"
+		let event_data={}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671605466279","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Shop AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_SHOPS ~NPSSMS","category":"NPSS_MERCHANT_SHOPS","loc":"304.99675934606216 359.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssms_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"shop_name_checked":true,"shop_mid_checked":true,"shop_id_checked":true,"shop_type_checked":true,"shop_mcc_checked":true,"shop_iban_checked":true,"building_checked":true,"street_checked":true,"city_checked":true,"postal_code_checked":true,"county_checked":true,"country_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565","DTT_1304_1666847660575"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_MID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_TYPE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_MCC","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_IBAN","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"BUILDING","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"STREET","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CITY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"POSTAL_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"COUNTY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"COUNTRY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMS","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_SHOPS ","alias_name":"NPSSMS","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMS_ID,PRODUCT_CODE,BANKUSERID,SHOP_NAME,SHOP_MID,SHOP_ID,SHOP_TYPE,SHOP_MCC,SHOP_IBAN,BUILDING,STREET,CITY,POSTAL_CODE,COUNTY,COUNTRY,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMS.NPSSMS_ID,NPSSMS.PRODUCT_CODE,NPSSMS.BANKUSERID,NPSSMS.SHOP_NAME,NPSSMS.SHOP_MID,NPSSMS.SHOP_ID,NPSSMS.SHOP_TYPE,NPSSMS.SHOP_MCC,NPSSMS.SHOP_IBAN,NPSSMS.BUILDING,NPSSMS.STREET,NPSSMS.CITY,NPSSMS.POSTAL_CODE,NPSSMS.COUNTY,NPSSMS.COUNTRY,NPSSMS.EXHF_ID,NPSSMS.NPSSMP_ID,NPSSMS.CREATED_BY,NPSSMS.CREATED_BY_NAME,NPSSMS.CREATED_BY_STS_ID,NPSSMS.CREATED_DATE,NPSSMS.DT_CODE,NPSSMS.DT_DESCRIPTION,NPSSMS.DTT_CODE,NPSSMS.DTT_DESCRIPTION,NPSSMS.MODIFIED_BY,NPSSMS.MODIFIED_BY_NAME,NPSSMS.MODIFIED_BY_STS_ID,NPSSMS.MODIFIED_DATE,NPSSMS.PRCT_ID,NPSSMS.STATUS,NPSSMS.PROCESS_STATUS,NPSSMS.SYSTEM_ID,NPSSMS.SYSTEM_NAME,NPSSMS.TENANT_ID,NPSSMS.APP_ID,NPSSMS.VERSION_NO FROM NPSS_MERCHANT_SHOPS  NPSSMS)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Shop AQ CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "svm for accounts"
 	svm_for_accounts__cc_for_acc_show_hide(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -2239,21 +2939,43 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "action change mobile number"
-	action_change_mobile_number__cc_for_change_mob_no() { 
+	//Handler for INTERNAL event of "brfq for shop"
+	brfq_for_shop__sfr_for_shop(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_for_shop"
+		let destn_id="shop"
+		let parent_source_id="accounts"
+		let event_code="e_1671603355550"
+		let event_params={"caller_name":"brfq_for_shop__sfr_for_shop","event_desc":"SFR for Shop","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671605466279","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Shop AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_SHOPS ~NPSSMS","category":"NPSS_MERCHANT_SHOPS","loc":"304.99675934606216 359.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssms_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"shop_name_checked":true,"shop_mid_checked":true,"shop_id_checked":true,"shop_type_checked":true,"shop_mcc_checked":true,"shop_iban_checked":true,"building_checked":true,"street_checked":true,"city_checked":true,"postal_code_checked":true,"county_checked":true,"country_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565","DTT_1304_1666847660575"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_MID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_TYPE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_MCC","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_IBAN","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"BUILDING","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"STREET","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CITY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"POSTAL_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"COUNTY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"COUNTRY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMS","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_SHOPS ","alias_name":"NPSSMS","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMS_ID,PRODUCT_CODE,BANKUSERID,SHOP_NAME,SHOP_MID,SHOP_ID,SHOP_TYPE,SHOP_MCC,SHOP_IBAN,BUILDING,STREET,CITY,POSTAL_CODE,COUNTY,COUNTRY,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMS.NPSSMS_ID,NPSSMS.PRODUCT_CODE,NPSSMS.BANKUSERID,NPSSMS.SHOP_NAME,NPSSMS.SHOP_MID,NPSSMS.SHOP_ID,NPSSMS.SHOP_TYPE,NPSSMS.SHOP_MCC,NPSSMS.SHOP_IBAN,NPSSMS.BUILDING,NPSSMS.STREET,NPSSMS.CITY,NPSSMS.POSTAL_CODE,NPSSMS.COUNTY,NPSSMS.COUNTRY,NPSSMS.EXHF_ID,NPSSMS.NPSSMP_ID,NPSSMS.CREATED_BY,NPSSMS.CREATED_BY_NAME,NPSSMS.CREATED_BY_STS_ID,NPSSMS.CREATED_DATE,NPSSMS.DT_CODE,NPSSMS.DT_DESCRIPTION,NPSSMS.DTT_CODE,NPSSMS.DTT_DESCRIPTION,NPSSMS.MODIFIED_BY,NPSSMS.MODIFIED_BY_NAME,NPSSMS.MODIFIED_BY_STS_ID,NPSSMS.MODIFIED_DATE,NPSSMS.PRCT_ID,NPSSMS.STATUS,NPSSMS.PROCESS_STATUS,NPSSMS.SYSTEM_ID,NPSSMS.SYSTEM_NAME,NPSSMS.TENANT_ID,NPSSMS.APP_ID,NPSSMS.VERSION_NO FROM NPSS_MERCHANT_SHOPS  NPSSMS)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Shop AQ CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action change mobile no"
+	action_change_mobile_no__cc_for_change_mob_no() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="action_change_mobile_number"
+		let source_id="action_change_mobile_no"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671001415349"
-		let event_params={"caller_name":"action_change_mobile_number__cc_for_change_mob_no","event_desc":"CC for change mob no","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_change_mobile_number","raiseparam":{}}
+		let event_params={"caller_name":"action_change_mobile_no__cc_for_change_mob_no","event_desc":"CC for change mob no","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_change_mobile_no","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_change_customer_mobileService.fn_npss_cs_change_customer_mobile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_mch_change_mobileService.fn_npss_cs_mch_change_mobile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2295,7 +3017,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_customer_enrolmentService.fn_npss_cs_customer_enrolment(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_mch_enrolmentService.fn_npss_cs_mch_enrolment(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2313,8 +3035,8 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_params={"caller_name":"queue__svm_for_queue","event_desc":"SVM for QUEUE","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_queue__sh_ide_connected_in_queue_ssp,"
-		let event_data={"queue":{"e_1671004187469":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGC_10","event_code":"E_1671004187469","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS SM Process Log DTG","dtt_desc":"NPSS SM Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"BULK","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"},{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_10","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276345803","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Setup Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671275017464","date_format":false}],"joins":[]},"eq_text":"select  distinct STATUS from  (  select   T.NPSSMP_ID,   T.BANKUSERID,   T.MERCHANT_NAME,   T.MERCHANT_TAG,   T.MCC,   T.MOBILE,   T.DENOMINATION,   T.VAT_NUMBER,   T.PRODUCT_CODE,   T.GROUP_CODE,   T.BANK_CODE,   T.SURNAME,   T.PROXY_TYPE,   T.PROXY_VALUE,   T.EMAIL,   T.DOCUMENT_ID,   T.CHANNEL_NAME,   T.LOGO,   T.EXHF_ID,   T.CHANNEL_ID,   T.CHANNEL_USERID,   T.CHANNEL_PRODUCT,   T.CHANNEL_SUB_PRODUCT,   T.CHANNEL_TRAN_CODE,   T.CHANNEL_REFNO,   T.PROCESS_STATUS,   T.TENANT_ID,   T.STATUS,   T.CREATED_DATE,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   T.CREATED_BY,   T.CREATED_BY_NAME,   T.SYSTEM_ID  from   npss_merchant_proxy T  left join TRANSACTION_SET TS on   T.NPSSMP_ID = TS.TRN_ID   and T.DTT_CODE = TS.DTT_CODE) VM $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Setup Queue CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let event_data={"queue":{"e_1671004187469":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGC_10","event_code":"E_1671004187469","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS Merchant Proxy DTG","dtt_desc":"NPSS Merchant Cashdesk","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"BULK","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"},{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_10","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276345803","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Setup Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671275017464","date_format":false}],"joins":[]},"eq_text":"select  distinct STATUS from  (  select   T.NPSSMP_ID,   T.BANKUSERID,   T.MERCHANT_NAME,   T.MERCHANT_TAG,   T.MCC,   T.MOBILE,   T.DENOMINATION,   T.VAT_NUMBER,   T.PRODUCT_CODE,   T.GROUP_CODE,   T.BANK_CODE,   T.SURNAME,   T.PROXY_TYPE,   T.PROXY_VALUE,   T.EMAIL,   T.DOCUMENT_ID,   T.CHANNEL_NAME,   T.LOGO,   T.EXHF_ID,   T.CHANNEL_ID,   T.CHANNEL_USERID,   T.CHANNEL_PRODUCT,   T.CHANNEL_SUB_PRODUCT,   T.CHANNEL_TRAN_CODE,   T.CHANNEL_REFNO,   T.PROCESS_STATUS,   T.TENANT_ID,   T.STATUS,   T.CREATED_DATE,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   T.CREATED_BY,   T.CREATED_BY_NAME,   T.SYSTEM_ID  from   npss_merchant_proxy T  left join TRANSACTION_SET TS on   T.NPSSMP_ID = TS.TRN_ID   and T.DTT_CODE = TS.DTT_CODE) VM $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Setup Queue CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -2380,7 +3102,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_queue_to_customers__sfr_for_customers,"
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276266014","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_PROXY ~NPSSMP","category":"NPSS_MERCHANT_PROXY","loc":"253.99675934606216 386.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"merchant_name_checked":true,"merchant_tag_checked":true,"mcc_checked":true,"mobile_checked":true,"denomination_checked":true,"vat_number_checked":true,"product_code_checked":true,"group_code_checked":true,"surname_checked":true,"bank_code_checked":true,"proxy_value_checked":true,"proxy_type_checked":true,"email_checked":true,"document_id_checked":true,"channel_name_checked":true,"exhf_id_checked":true,"logo_checked":true,"channel_id_checked":true,"channel_userid_checked":true,"channel_product_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true,"channel_refno_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_TAG","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MCC","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DENOMINATION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VAT_NUMBER","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"LOGO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_PROXY ","alias_name":"NPSSMP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,MERCHANT_NAME,MERCHANT_TAG,MCC,MOBILE,DENOMINATION,VAT_NUMBER,PRODUCT_CODE,GROUP_CODE,BANK_CODE,SURNAME,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,CHANNEL_NAME,LOGO,EXHF_ID,CHANNEL_ID,CHANNEL_USERID,CHANNEL_PRODUCT,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CHANNEL_REFNO,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMP.NPSSMP_ID,NPSSMP.BANKUSERID,NPSSMP.MERCHANT_NAME,NPSSMP.MERCHANT_TAG,NPSSMP.MCC,NPSSMP.MOBILE,NPSSMP.DENOMINATION,NPSSMP.VAT_NUMBER,NPSSMP.PRODUCT_CODE,NPSSMP.GROUP_CODE,NPSSMP.BANK_CODE,NPSSMP.SURNAME,NPSSMP.PROXY_TYPE,NPSSMP.PROXY_VALUE,NPSSMP.EMAIL,NPSSMP.DOCUMENT_ID,NPSSMP.CHANNEL_NAME,NPSSMP.LOGO,NPSSMP.EXHF_ID,NPSSMP.CHANNEL_ID,NPSSMP.CHANNEL_USERID,NPSSMP.CHANNEL_PRODUCT,NPSSMP.CHANNEL_SUB_PRODUCT,NPSSMP.CHANNEL_TRAN_CODE,NPSSMP.CHANNEL_REFNO,NPSSMP.CREATED_BY,NPSSMP.CREATED_BY_NAME,NPSSMP.CREATED_BY_STS_ID,NPSSMP.CREATED_DATE,NPSSMP.DT_CODE,NPSSMP.DT_DESCRIPTION,NPSSMP.DTT_CODE,NPSSMP.DTT_DESCRIPTION,NPSSMP.MODIFIED_BY,NPSSMP.MODIFIED_BY_NAME,NPSSMP.MODIFIED_BY_STS_ID,NPSSMP.MODIFIED_DATE,NPSSMP.PRCT_ID,NPSSMP.STATUS,NPSSMP.PROCESS_STATUS,NPSSMP.SYSTEM_ID,NPSSMP.SYSTEM_NAME,NPSSMP.TENANT_ID,NPSSMP.APP_ID,NPSSMP.VERSION_NO FROM NPSS_MERCHANT_PROXY  NPSSMP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchat Tag","target_column":"MERCHANT_TAG","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276266014","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_PROXY ~NPSSMP","category":"NPSS_MERCHANT_PROXY","loc":"253.99675934606216 386.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"merchant_name_checked":true,"merchant_tag_checked":true,"mcc_checked":true,"mobile_checked":true,"denomination_checked":true,"vat_number_checked":true,"product_code_checked":true,"group_code_checked":true,"surname_checked":true,"bank_code_checked":true,"proxy_value_checked":true,"proxy_type_checked":true,"email_checked":true,"document_id_checked":true,"channel_name_checked":true,"exhf_id_checked":true,"logo_checked":true,"channel_id_checked":true,"channel_userid_checked":true,"channel_product_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true,"channel_refno_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_TAG","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MCC","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DENOMINATION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VAT_NUMBER","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"LOGO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_PROXY ","alias_name":"NPSSMP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,MERCHANT_NAME,MERCHANT_TAG,MCC,MOBILE,DENOMINATION,VAT_NUMBER,PRODUCT_CODE,GROUP_CODE,BANK_CODE,SURNAME,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,CHANNEL_NAME,LOGO,EXHF_ID,CHANNEL_ID,CHANNEL_USERID,CHANNEL_PRODUCT,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CHANNEL_REFNO,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMP.NPSSMP_ID,NPSSMP.BANKUSERID,NPSSMP.MERCHANT_NAME,NPSSMP.MERCHANT_TAG,NPSSMP.MCC,NPSSMP.MOBILE,NPSSMP.DENOMINATION,NPSSMP.VAT_NUMBER,NPSSMP.PRODUCT_CODE,NPSSMP.GROUP_CODE,NPSSMP.BANK_CODE,NPSSMP.SURNAME,NPSSMP.PROXY_TYPE,NPSSMP.PROXY_VALUE,NPSSMP.EMAIL,NPSSMP.DOCUMENT_ID,NPSSMP.CHANNEL_NAME,NPSSMP.LOGO,NPSSMP.EXHF_ID,NPSSMP.CHANNEL_ID,NPSSMP.CHANNEL_USERID,NPSSMP.CHANNEL_PRODUCT,NPSSMP.CHANNEL_SUB_PRODUCT,NPSSMP.CHANNEL_TRAN_CODE,NPSSMP.CHANNEL_REFNO,NPSSMP.CREATED_BY,NPSSMP.CREATED_BY_NAME,NPSSMP.CREATED_BY_STS_ID,NPSSMP.CREATED_DATE,NPSSMP.DT_CODE,NPSSMP.DT_DESCRIPTION,NPSSMP.DTT_CODE,NPSSMP.DTT_DESCRIPTION,NPSSMP.MODIFIED_BY,NPSSMP.MODIFIED_BY_NAME,NPSSMP.MODIFIED_BY_STS_ID,NPSSMP.MODIFIED_DATE,NPSSMP.PRCT_ID,NPSSMP.STATUS,NPSSMP.PROCESS_STATUS,NPSSMP.SYSTEM_ID,NPSSMP.SYSTEM_NAME,NPSSMP.TENANT_ID,NPSSMP.APP_ID,NPSSMP.VERSION_NO FROM NPSS_MERCHANT_PROXY  NPSSMP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchat Tag","target_column":"MERCHANT_TAG","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -2402,7 +3124,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671276266014","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_PROXY ~NPSSMP","category":"NPSS_MERCHANT_PROXY","loc":"253.99675934606216 386.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"merchant_name_checked":true,"merchant_tag_checked":true,"mcc_checked":true,"mobile_checked":true,"denomination_checked":true,"vat_number_checked":true,"product_code_checked":true,"group_code_checked":true,"surname_checked":true,"bank_code_checked":true,"proxy_value_checked":true,"proxy_type_checked":true,"email_checked":true,"document_id_checked":true,"channel_name_checked":true,"exhf_id_checked":true,"logo_checked":true,"channel_id_checked":true,"channel_userid_checked":true,"channel_product_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true,"channel_refno_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_TAG","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MCC","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DENOMINATION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VAT_NUMBER","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"LOGO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_PROXY ","alias_name":"NPSSMP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,MERCHANT_NAME,MERCHANT_TAG,MCC,MOBILE,DENOMINATION,VAT_NUMBER,PRODUCT_CODE,GROUP_CODE,BANK_CODE,SURNAME,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,CHANNEL_NAME,LOGO,EXHF_ID,CHANNEL_ID,CHANNEL_USERID,CHANNEL_PRODUCT,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CHANNEL_REFNO,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMP.NPSSMP_ID,NPSSMP.BANKUSERID,NPSSMP.MERCHANT_NAME,NPSSMP.MERCHANT_TAG,NPSSMP.MCC,NPSSMP.MOBILE,NPSSMP.DENOMINATION,NPSSMP.VAT_NUMBER,NPSSMP.PRODUCT_CODE,NPSSMP.GROUP_CODE,NPSSMP.BANK_CODE,NPSSMP.SURNAME,NPSSMP.PROXY_TYPE,NPSSMP.PROXY_VALUE,NPSSMP.EMAIL,NPSSMP.DOCUMENT_ID,NPSSMP.CHANNEL_NAME,NPSSMP.LOGO,NPSSMP.EXHF_ID,NPSSMP.CHANNEL_ID,NPSSMP.CHANNEL_USERID,NPSSMP.CHANNEL_PRODUCT,NPSSMP.CHANNEL_SUB_PRODUCT,NPSSMP.CHANNEL_TRAN_CODE,NPSSMP.CHANNEL_REFNO,NPSSMP.CREATED_BY,NPSSMP.CREATED_BY_NAME,NPSSMP.CREATED_BY_STS_ID,NPSSMP.CREATED_DATE,NPSSMP.DT_CODE,NPSSMP.DT_DESCRIPTION,NPSSMP.DTT_CODE,NPSSMP.DTT_DESCRIPTION,NPSSMP.MODIFIED_BY,NPSSMP.MODIFIED_BY_NAME,NPSSMP.MODIFIED_BY_STS_ID,NPSSMP.MODIFIED_DATE,NPSSMP.PRCT_ID,NPSSMP.STATUS,NPSSMP.PROCESS_STATUS,NPSSMP.SYSTEM_ID,NPSSMP.SYSTEM_NAME,NPSSMP.TENANT_ID,NPSSMP.APP_ID,NPSSMP.VERSION_NO FROM NPSS_MERCHANT_PROXY  NPSSMP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchat Tag","target_column":"MERCHANT_TAG","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276266014","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Proxy AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_PROXY ~NPSSMP","category":"NPSS_MERCHANT_PROXY","loc":"253.99675934606216 386.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmp_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"bankuserid_checked":true,"merchant_name_checked":true,"merchant_tag_checked":true,"mcc_checked":true,"mobile_checked":true,"denomination_checked":true,"vat_number_checked":true,"product_code_checked":true,"group_code_checked":true,"surname_checked":true,"bank_code_checked":true,"proxy_value_checked":true,"proxy_type_checked":true,"email_checked":true,"document_id_checked":true,"channel_name_checked":true,"exhf_id_checked":true,"logo_checked":true,"channel_id_checked":true,"channel_userid_checked":true,"channel_product_checked":true,"channel_sub_product_checked":true,"channel_tran_code_checked":true,"channel_refno_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MERCHANT_TAG","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MCC","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MOBILE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DENOMINATION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VAT_NUMBER","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"GROUP_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"BANK_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SURNAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_TYPE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROXY_VALUE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EMAIL","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DOCUMENT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"LOGO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_USERID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMP","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMP","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_PROXY ","alias_name":"NPSSMP","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,MERCHANT_NAME,MERCHANT_TAG,MCC,MOBILE,DENOMINATION,VAT_NUMBER,PRODUCT_CODE,GROUP_CODE,BANK_CODE,SURNAME,PROXY_TYPE,PROXY_VALUE,EMAIL,DOCUMENT_ID,CHANNEL_NAME,LOGO,EXHF_ID,CHANNEL_ID,CHANNEL_USERID,CHANNEL_PRODUCT,CHANNEL_SUB_PRODUCT,CHANNEL_TRAN_CODE,CHANNEL_REFNO,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMP.NPSSMP_ID,NPSSMP.BANKUSERID,NPSSMP.MERCHANT_NAME,NPSSMP.MERCHANT_TAG,NPSSMP.MCC,NPSSMP.MOBILE,NPSSMP.DENOMINATION,NPSSMP.VAT_NUMBER,NPSSMP.PRODUCT_CODE,NPSSMP.GROUP_CODE,NPSSMP.BANK_CODE,NPSSMP.SURNAME,NPSSMP.PROXY_TYPE,NPSSMP.PROXY_VALUE,NPSSMP.EMAIL,NPSSMP.DOCUMENT_ID,NPSSMP.CHANNEL_NAME,NPSSMP.LOGO,NPSSMP.EXHF_ID,NPSSMP.CHANNEL_ID,NPSSMP.CHANNEL_USERID,NPSSMP.CHANNEL_PRODUCT,NPSSMP.CHANNEL_SUB_PRODUCT,NPSSMP.CHANNEL_TRAN_CODE,NPSSMP.CHANNEL_REFNO,NPSSMP.CREATED_BY,NPSSMP.CREATED_BY_NAME,NPSSMP.CREATED_BY_STS_ID,NPSSMP.CREATED_DATE,NPSSMP.DT_CODE,NPSSMP.DT_DESCRIPTION,NPSSMP.DTT_CODE,NPSSMP.DTT_DESCRIPTION,NPSSMP.MODIFIED_BY,NPSSMP.MODIFIED_BY_NAME,NPSSMP.MODIFIED_BY_STS_ID,NPSSMP.MODIFIED_DATE,NPSSMP.PRCT_ID,NPSSMP.STATUS,NPSSMP.PROCESS_STATUS,NPSSMP.SYSTEM_ID,NPSSMP.SYSTEM_NAME,NPSSMP.TENANT_ID,NPSSMP.APP_ID,NPSSMP.VERSION_NO FROM NPSS_MERCHANT_PROXY  NPSSMP)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Proxy AQ CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"CHANNEL_ID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Created Date","target_column":"CREATED_DATE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":true,"currency_format":false},{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Merchat Tag","target_column":"MERCHANT_TAG","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Type","target_column":"PROXY_TYPE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Value","target_column":"PROXY_VALUE","alias_name":"NPSSMP","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -2563,7 +3285,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="sub_navigation_ui_block_unblocks"
-		let destn_id="action_block_unblock"
+		let destn_id="action_block"
 		let parent_source_id=""
 		let event_code="e_1671022112556"
 		let event_params={"caller_name":"sub_navigation_ui_block_unblocks__se_for_block_unblk","event_desc":"SE for block unblk","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_block_unblocks","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
@@ -2642,15 +3364,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block unblock account"
-	navigation_ui_block_unblock_account__sp_for_nav_block() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block account"
+	navigation_ui_block_account__sp_for_nav_block() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_block_unblock_account"
+		let source_id="navigation_ui_block_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671028145631"
-		let event_params={"caller_name":"navigation_ui_block_unblock_account__sp_for_nav_block","event_desc":"SP for nav block","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_block_unblock_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"navigation_ui_block_account__sp_for_nav_block","event_desc":"SP for nav block","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_block_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2663,15 +3385,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block unblock account"
-	navigation_ui_block_unblock_account__cc_for_nav_block() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block account"
+	navigation_ui_block_account__cc_for_nav_block() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_block_unblock_account"
+		let source_id="navigation_ui_block_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671028240797"
-		let event_params={"caller_name":"navigation_ui_block_unblock_account__cc_for_nav_block","event_desc":"CC for nav block","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_block_unblock_account","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_block_account__cc_for_nav_block","event_desc":"CC for nav block","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_block_account","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -2684,15 +3406,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block unblock account"
-	navigation_ui_block_unblock_account__se_for_nav_block() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block account"
+	navigation_ui_block_account__se_for_nav_block() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_block_unblock_account"
-		let destn_id="action_block_unblock"
+		let source_id="navigation_ui_block_account"
+		let destn_id="action_block"
 		let parent_source_id=""
 		let event_code="e_1671028489443"
-		let event_params={"caller_name":"navigation_ui_block_unblock_account__se_for_nav_block","event_desc":"SE for nav block","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_block_unblock_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_ui_block_account__se_for_nav_block","event_desc":"SE for nav block","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_block_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -2738,7 +3460,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_hdl__sfr_for_history_detail,"
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666847145490":{"dtt_1304_1666847230281":{"st_ds":{"default":{"uicgc_code":"UICGC_14","event_code":"DEFAULT","dt_code":"DT_1304_1666847145490","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666847230281","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671521464798","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM HST Plog MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1671521093141","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1671521093317","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1671521093493","date_format":false},{"column_name":"RESULT_CODE","alias_name":"","mq_id":"MQ_1671521093669","date_format":false},{"column_name":"RESULT_MESSAGE","alias_name":"","mq_id":"MQ_1671521093853","date_format":false},{"column_name":"process_ref_no","alias_name":"","mq_id":"MQ_1671521134065","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSSMTPL_ID,  BANKUSERID,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESULT_CODE,  RESULT,  RESULT_MESSAGE,  RESULT_X_REQUEST_ID,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  CHANNEL_ID,  CHANNEL_REFNO,  CHANNEL_USERID,  CHANNEL_PRODUCT,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  DTT_CODE,  TENANT_ID,  DT_CODE FROM  (  SELECT   NSTPL.NPSSSMTPL_ID,  NSTPL.BANKUSERID,  NSTPL.PROCESS_NAME,  NSTPL.PROCESSING_SYSTEM,  NSTPL.RESULT_CODE,  NSTPL.RESULT,  NSTPL.RESULT_MESSAGE,  NSTPL.RESULT_X_REQUEST_ID,  NSTPL.PROCESS_REF_NO,  NSTPL.REQUEST_DATA_JSON,  NSTPL.RESPONSE_DATA_JSON,  NSTPL.CHANNEL_ID,  NSTPL.CHANNEL_REFNO,  NSTPL.CHANNEL_USERID,  NSTPL.CHANNEL_PRODUCT,  NSTPL.CHANNEL_SUB_PRODUCT,  NSTPL.CHANNEL_TRAN_CODE,  NSTPL.DTT_CODE,  NSTPL.TENANT_ID,  NSTPL.DT_CODE  FROM   NPSS_SM_TRN_PROCESS_LOG NSTPL    ORDER BY NPSSSMTPL_ID) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM HST Plog MQ CCD","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Code","target_column":"RESULT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Message","target_column":"RESULT_MESSAGE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Ref No","target_column":"process_ref_no","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666847145490":{"dtt_1304_1666847230281":{"st_ds":{"default":{"uicgc_code":"UICGC_14","event_code":"DEFAULT","dt_code":"DT_1304_1666847145490","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847230281","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671521464798","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM HST Plog MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1671521093141","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1671521093317","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1671521093493","date_format":false},{"column_name":"RESULT_CODE","alias_name":"","mq_id":"MQ_1671521093669","date_format":false},{"column_name":"RESULT_MESSAGE","alias_name":"","mq_id":"MQ_1671521093853","date_format":false},{"column_name":"process_ref_no","alias_name":"","mq_id":"MQ_1671521134065","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSSMTPL_ID,  BANKUSERID,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESULT_CODE,  RESULT,  RESULT_MESSAGE,  RESULT_X_REQUEST_ID,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  CHANNEL_ID,  CHANNEL_REFNO,  CHANNEL_USERID,  CHANNEL_PRODUCT,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  DTT_CODE,  TENANT_ID,  DT_CODE FROM  (  SELECT   NSTPL.NPSSSMTPL_ID,  NSTPL.BANKUSERID,  NSTPL.PROCESS_NAME,  NSTPL.PROCESSING_SYSTEM,  NSTPL.RESULT_CODE,  NSTPL.RESULT,  NSTPL.RESULT_MESSAGE,  NSTPL.RESULT_X_REQUEST_ID,  NSTPL.PROCESS_REF_NO,  NSTPL.REQUEST_DATA_JSON,  NSTPL.RESPONSE_DATA_JSON,  NSTPL.CHANNEL_ID,  NSTPL.CHANNEL_REFNO,  NSTPL.CHANNEL_USERID,  NSTPL.CHANNEL_PRODUCT,  NSTPL.CHANNEL_SUB_PRODUCT,  NSTPL.CHANNEL_TRAN_CODE,  NSTPL.DTT_CODE,  NSTPL.TENANT_ID,  NSTPL.DT_CODE  FROM   NPSS_SM_TRN_PROCESS_LOG NSTPL    ORDER BY NPSSSMTPL_ID) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM HST Plog MQ CCD","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Code","target_column":"RESULT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Message","target_column":"RESULT_MESSAGE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Ref No","target_column":"process_ref_no","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -2760,7 +3482,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666847145490":{"dtt_1304_1666847230281":{"st_ds":{"default":{"uicgc_code":"UICGC_14","event_code":"DEFAULT","dt_code":"DT_1304_1666847145490","dt_desc":"NPSS SM Process Log DTG","dtt_code":"DTT_1304_1666847230281","dtt_desc":"NPSS SM Trn Process Log","ds_eligible":"DS_1671521464798","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM HST Plog MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1671521093141","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1671521093317","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1671521093493","date_format":false},{"column_name":"RESULT_CODE","alias_name":"","mq_id":"MQ_1671521093669","date_format":false},{"column_name":"RESULT_MESSAGE","alias_name":"","mq_id":"MQ_1671521093853","date_format":false},{"column_name":"process_ref_no","alias_name":"","mq_id":"MQ_1671521134065","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSSMTPL_ID,  BANKUSERID,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESULT_CODE,  RESULT,  RESULT_MESSAGE,  RESULT_X_REQUEST_ID,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  CHANNEL_ID,  CHANNEL_REFNO,  CHANNEL_USERID,  CHANNEL_PRODUCT,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  DTT_CODE,  TENANT_ID,  DT_CODE FROM  (  SELECT   NSTPL.NPSSSMTPL_ID,  NSTPL.BANKUSERID,  NSTPL.PROCESS_NAME,  NSTPL.PROCESSING_SYSTEM,  NSTPL.RESULT_CODE,  NSTPL.RESULT,  NSTPL.RESULT_MESSAGE,  NSTPL.RESULT_X_REQUEST_ID,  NSTPL.PROCESS_REF_NO,  NSTPL.REQUEST_DATA_JSON,  NSTPL.RESPONSE_DATA_JSON,  NSTPL.CHANNEL_ID,  NSTPL.CHANNEL_REFNO,  NSTPL.CHANNEL_USERID,  NSTPL.CHANNEL_PRODUCT,  NSTPL.CHANNEL_SUB_PRODUCT,  NSTPL.CHANNEL_TRAN_CODE,  NSTPL.DTT_CODE,  NSTPL.TENANT_ID,  NSTPL.DT_CODE  FROM   NPSS_SM_TRN_PROCESS_LOG NSTPL    ORDER BY NPSSSMTPL_ID) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM HST Plog MQ CCD","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Code","target_column":"RESULT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Message","target_column":"RESULT_MESSAGE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Ref No","target_column":"process_ref_no","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666847145490":{"dtt_1304_1666847230281":{"st_ds":{"default":{"uicgc_code":"UICGC_14","event_code":"DEFAULT","dt_code":"DT_1304_1666847145490","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847230281","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671521464798","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM HST Plog MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1671521093141","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1671521093317","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1671521093493","date_format":false},{"column_name":"RESULT_CODE","alias_name":"","mq_id":"MQ_1671521093669","date_format":false},{"column_name":"RESULT_MESSAGE","alias_name":"","mq_id":"MQ_1671521093853","date_format":false},{"column_name":"process_ref_no","alias_name":"","mq_id":"MQ_1671521134065","date_format":false}],"joins":[]},"eq_text":"SELECT  NPSSSMTPL_ID,  BANKUSERID,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESULT_CODE,  RESULT,  RESULT_MESSAGE,  RESULT_X_REQUEST_ID,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  CHANNEL_ID,  CHANNEL_REFNO,  CHANNEL_USERID,  CHANNEL_PRODUCT,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  DTT_CODE,  TENANT_ID,  DT_CODE FROM  (  SELECT   NSTPL.NPSSSMTPL_ID,  NSTPL.BANKUSERID,  NSTPL.PROCESS_NAME,  NSTPL.PROCESSING_SYSTEM,  NSTPL.RESULT_CODE,  NSTPL.RESULT,  NSTPL.RESULT_MESSAGE,  NSTPL.RESULT_X_REQUEST_ID,  NSTPL.PROCESS_REF_NO,  NSTPL.REQUEST_DATA_JSON,  NSTPL.RESPONSE_DATA_JSON,  NSTPL.CHANNEL_ID,  NSTPL.CHANNEL_REFNO,  NSTPL.CHANNEL_USERID,  NSTPL.CHANNEL_PRODUCT,  NSTPL.CHANNEL_SUB_PRODUCT,  NSTPL.CHANNEL_TRAN_CODE,  NSTPL.DTT_CODE,  NSTPL.TENANT_ID,  NSTPL.DT_CODE  FROM   NPSS_SM_TRN_PROCESS_LOG NSTPL    ORDER BY NPSSSMTPL_ID) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM HST Plog MQ CCD","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Code","target_column":"RESULT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Result Message","target_column":"RESULT_MESSAGE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Ref No","target_column":"process_ref_no","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -2931,6 +3653,700 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unblock account"
+	navigation_ui_unblock_account__se_for_unblock_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_unblock_account"
+		let destn_id="action_unblock"
+		let parent_source_id=""
+		let event_code="e_1671599038697"
+		let event_params={"caller_name":"navigation_ui_unblock_account__se_for_unblock_btn","event_desc":"SE for unblock btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unblock_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unblock account"
+	navigation_ui_unblock_account__sp_for_unblock_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_unblock_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671599065667"
+		let event_params={"caller_name":"navigation_ui_unblock_account__sp_for_unblock_btn","event_desc":"SP for unblock btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unblock_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unblock account"
+	navigation_ui_unblock_account__cc_for_unblock_btn_enab_disab() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_unblock_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671599127880"
+		let event_params={"caller_name":"navigation_ui_unblock_account__cc_for_unblock_btn_enab_disab","event_desc":"CC for unblock btn enab disab","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unblock_account","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action unblock"
+	action_unblock__cc_for_unblock_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_unblock"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671599185796"
+		let event_params={"caller_name":"action_unblock__cc_for_unblock_btn","event_desc":"CC for unblock btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_unblock","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_mch_unblock_bank_accountService.fn_npss_cs_mch_unblock_bank_account(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui update mcc"
+	navigation_ui_update_mcc__se_for_update_mcc_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_update_mcc"
+		let destn_id="action_update_mcc"
+		let parent_source_id=""
+		let event_code="e_1671599324098"
+		let event_params={"caller_name":"navigation_ui_update_mcc__se_for_update_mcc_btn","event_desc":"SE for Update MCC btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_update_mcc","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui update mcc"
+	navigation_ui_update_mcc__sp_for_update_mcc() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_update_mcc"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671599376123"
+		let event_params={"caller_name":"navigation_ui_update_mcc__sp_for_update_mcc","event_desc":"SP for update mcc","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_update_mcc","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui update mcc"
+	navigation_ui_update_mcc__cc_for_update_mcc_en_di() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_update_mcc"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671599385272"
+		let event_params={"caller_name":"navigation_ui_update_mcc__cc_for_update_mcc_en_di","event_desc":"CC for update mcc EN DI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_update_mcc","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action update mcc"
+	action_update_mcc__cc_for_update_mcc() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_update_mcc"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671599477829"
+		let event_params={"caller_name":"action_update_mcc__cc_for_update_mcc","event_desc":"CC for update mcc","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_update_mcc","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove bank account"
+	navigation_ui_remove_bank_account__se_for_remove_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_remove_bank_account"
+		let destn_id="action_remove"
+		let parent_source_id=""
+		let event_code="e_1671599696745"
+		let event_params={"caller_name":"navigation_ui_remove_bank_account__se_for_remove_account","event_desc":"SE for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_bank_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove bank account"
+	navigation_ui_remove_bank_account__sp_for_remove_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_remove_bank_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671599737816"
+		let event_params={"caller_name":"navigation_ui_remove_bank_account__sp_for_remove_account","event_desc":"SP for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_bank_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove bank account"
+	navigation_ui_remove_bank_account__cc_for_remove_account_en_di() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_remove_bank_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671599748710"
+		let event_params={"caller_name":"navigation_ui_remove_bank_account__cc_for_remove_account_en_di","event_desc":"CC for Remove account EN DI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_bank_account","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action remove"
+	action_remove__cc_for_remove_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_remove"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671599756492"
+		let event_params={"caller_name":"action_remove__cc_for_remove_account","event_desc":"CC for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_remove","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_mch_remove_bank_accountsService.fn_npss_cs_mch_remove_bank_accounts(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__brfq_for_cashdesk() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="cash_desk"
+		let parent_source_id=""
+		let event_code="e_1671603402215"
+		let event_params={"caller_name":"shop__brfq_for_cashdesk","event_desc":"BRFQ for Cashdesk","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let handler_code="bind_record_from_query"
+		let internals="brfq_for_cashdesk__sfr_for_cashdesk,"
+		let event_data={}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666848298941":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666848298941","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671605524923","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Cash desk  AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_CASHDESK ~NPSSMC","category":"NPSS_MERCHANT_CASHDESK","loc":"-169.00324065393784 108.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmc_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"cashdesk_overlay_id_checked":true,"cashdesk_id_checked":true,"exhf_id_checked":true,"npssms_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565","DTT_1304_1666847660575","DTT_1304_1666848298941"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMC_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CASHDESK_OVERLAY_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CASHDESK_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"NPSSMS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMC","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_CASHDESK ","alias_name":"NPSSMC","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMC_ID,PRODUCT_CODE,BANKUSERID,CASHDESK_OVERLAY_ID,CASHDESK_ID,EXHF_ID,NPSSMS_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMC.NPSSMC_ID,NPSSMC.PRODUCT_CODE,NPSSMC.BANKUSERID,NPSSMC.CASHDESK_OVERLAY_ID,NPSSMC.CASHDESK_ID,NPSSMC.EXHF_ID,NPSSMC.NPSSMS_ID,NPSSMC.CREATED_BY,NPSSMC.CREATED_BY_NAME,NPSSMC.CREATED_BY_STS_ID,NPSSMC.CREATED_DATE,NPSSMC.DT_CODE,NPSSMC.DT_DESCRIPTION,NPSSMC.DTT_CODE,NPSSMC.DTT_DESCRIPTION,NPSSMC.MODIFIED_BY,NPSSMC.MODIFIED_BY_NAME,NPSSMC.MODIFIED_BY_STS_ID,NPSSMC.MODIFIED_DATE,NPSSMC.PRCT_ID,NPSSMC.STATUS,NPSSMC.PROCESS_STATUS,NPSSMC.SYSTEM_ID,NPSSMC.SYSTEM_NAME,NPSSMC.TENANT_ID,NPSSMC.APP_ID,NPSSMC.VERSION_NO FROM NPSS_MERCHANT_CASHDESK  NPSSMC)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant CashDesk AQ CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Cash Desk ID","target_column":"CASHDESK_ID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Cash Desk Overlay ID","target_column":"CASHDESK_OVERLAY_ID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq for cashdesk"
+	brfq_for_cashdesk__sfr_for_cashdesk(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_for_cashdesk"
+		let destn_id="cash_desk"
+		let parent_source_id="shop"
+		let event_code="e_1671603423518"
+		let event_params={"caller_name":"brfq_for_cashdesk__sfr_for_cashdesk","event_desc":"SFR for Cashdesk","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666848298941":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666848298941","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671605524923","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Cash desk  AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_CASHDESK ~NPSSMC","category":"NPSS_MERCHANT_CASHDESK","loc":"-169.00324065393784 108.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmc_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"cashdesk_overlay_id_checked":true,"cashdesk_id_checked":true,"exhf_id_checked":true,"npssms_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565","DTT_1304_1666847660575","DTT_1304_1666848298941"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMC_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CASHDESK_OVERLAY_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CASHDESK_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"NPSSMS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMC","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_CASHDESK ","alias_name":"NPSSMC","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMC_ID,PRODUCT_CODE,BANKUSERID,CASHDESK_OVERLAY_ID,CASHDESK_ID,EXHF_ID,NPSSMS_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMC.NPSSMC_ID,NPSSMC.PRODUCT_CODE,NPSSMC.BANKUSERID,NPSSMC.CASHDESK_OVERLAY_ID,NPSSMC.CASHDESK_ID,NPSSMC.EXHF_ID,NPSSMC.NPSSMS_ID,NPSSMC.CREATED_BY,NPSSMC.CREATED_BY_NAME,NPSSMC.CREATED_BY_STS_ID,NPSSMC.CREATED_DATE,NPSSMC.DT_CODE,NPSSMC.DT_DESCRIPTION,NPSSMC.DTT_CODE,NPSSMC.DTT_DESCRIPTION,NPSSMC.MODIFIED_BY,NPSSMC.MODIFIED_BY_NAME,NPSSMC.MODIFIED_BY_STS_ID,NPSSMC.MODIFIED_DATE,NPSSMC.PRCT_ID,NPSSMC.STATUS,NPSSMC.PROCESS_STATUS,NPSSMC.SYSTEM_ID,NPSSMC.SYSTEM_NAME,NPSSMC.TENANT_ID,NPSSMC.APP_ID,NPSSMC.VERSION_NO FROM NPSS_MERCHANT_CASHDESK  NPSSMC)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant CashDesk AQ CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Cash Desk ID","target_column":"CASHDESK_ID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Cash Desk Overlay ID","target_column":"CASHDESK_OVERLAY_ID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "cash desk"
+	cash_desk__ee_for_disable_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk"
+		let destn_id="cash_desk_action_disable_cash_desk"
+		let parent_source_id=""
+		let event_code="e_1671603876518"
+		let event_params={"caller_name":"cash_desk__ee_for_disable_cd","event_desc":"EE for Disable CD","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"cash_desk","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "cash desk"
+	cash_desk__ee_for_entrol_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk"
+		let destn_id="cash_desk_action_enrolment_cash_desk"
+		let parent_source_id=""
+		let event_code="e_1671603912942"
+		let event_params={"caller_name":"cash_desk__ee_for_entrol_cd","event_desc":"EE for Entrol CD","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"cash_desk","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "cash desk"
+	cash_desk__ee_for_update_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk"
+		let destn_id="cash_desk_action_update_cash_desk"
+		let parent_source_id=""
+		let event_code="e_1671603932321"
+		let event_params={"caller_name":"cash_desk__ee_for_update_cd","event_desc":"EE for Update CD","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"cash_desk","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action disable cash desk"
+	cash_desk_action_disable_cash_desk__sp_for_disable_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk_action_disable_cash_desk"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671603985181"
+		let event_params={"caller_name":"cash_desk_action_disable_cash_desk__sp_for_disable_cd","event_desc":"SP for Disable CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_disable_cash_desk","raiseparam":{"profile_code":""}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action disable cash desk"
+	cash_desk_action_disable_cash_desk__cc__for_disable_cd_ena_dis() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk_action_disable_cash_desk"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671604097986"
+		let event_params={"caller_name":"cash_desk_action_disable_cash_desk__cc__for_disable_cd_ena_dis","event_desc":"CC  for Disable CD ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_disable_cash_desk","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action disable cash desk"
+	cash_desk_action_disable_cash_desk__se_for_disable_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk_action_disable_cash_desk"
+		let destn_id="action_disable_cash_desk"
+		let parent_source_id=""
+		let event_code="e_1671604585983"
+		let event_params={"caller_name":"cash_desk_action_disable_cash_desk__se_for_disable_cd","event_desc":"SE for Disable CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_disable_cash_desk","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action enrolment cash desk"
+	cash_desk_action_enrolment_cash_desk__sp_for_enroll_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk_action_enrolment_cash_desk"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671604021518"
+		let event_params={"caller_name":"cash_desk_action_enrolment_cash_desk__sp_for_enroll_cd","event_desc":"SP for Enroll CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_enrolment_cash_desk","raiseparam":{"profile_code":""}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action enrolment cash desk"
+	cash_desk_action_enrolment_cash_desk__cc__for_enroll_cd_ena_dis() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk_action_enrolment_cash_desk"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671604085433"
+		let event_params={"caller_name":"cash_desk_action_enrolment_cash_desk__cc__for_enroll_cd_ena_dis","event_desc":"CC  for Enroll CD ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_enrolment_cash_desk","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action enrolment cash desk"
+	cash_desk_action_enrolment_cash_desk__se_for_enroll_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk_action_enrolment_cash_desk"
+		let destn_id="action_enroll_cash_desk"
+		let parent_source_id=""
+		let event_code="e_1671604550899"
+		let event_params={"caller_name":"cash_desk_action_enrolment_cash_desk__se_for_enroll_cd","event_desc":"SE for Enroll CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_enrolment_cash_desk","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action update cash desk"
+	cash_desk_action_update_cash_desk__sp_for_update_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk_action_update_cash_desk"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671604055754"
+		let event_params={"caller_name":"cash_desk_action_update_cash_desk__sp_for_update_cd","event_desc":"SP for Update CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_update_cash_desk","raiseparam":{"profile_code":""}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action update cash desk"
+	cash_desk_action_update_cash_desk__cc__for_update_cd_ena_dis() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk_action_update_cash_desk"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671604077951"
+		let event_params={"caller_name":"cash_desk_action_update_cash_desk__cc__for_update_cd_ena_dis","event_desc":"CC  for Update CD ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_update_cash_desk","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action update cash desk"
+	cash_desk_action_update_cash_desk__se_for_update_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk_action_update_cash_desk"
+		let destn_id="action_update_cash_desk"
+		let parent_source_id=""
+		let event_code="e_1671604514608"
+		let event_params={"caller_name":"cash_desk_action_update_cash_desk__se_for_update_cd","event_desc":"SE for update CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_update_cash_desk","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action enroll cash desk"
+	action_enroll_cash_desk__cc_for_enroll_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_enroll_cash_desk"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671604733882"
+		let event_params={"caller_name":"action_enroll_cash_desk__cc_for_enroll_cd","event_desc":"CC for Enroll CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_enroll_cash_desk","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action update cash desk"
+	action_update_cash_desk__cc__for_update_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_update_cash_desk"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671604742544"
+		let event_params={"caller_name":"action_update_cash_desk__cc__for_update_cd","event_desc":"CC  for Update CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_update_cash_desk","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action disable cash desk"
+	action_disable_cash_desk__cc__for_disable_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_disable_cash_desk"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671604763685"
+		let event_params={"caller_name":"action_disable_cash_desk__cc__for_disable_cd","event_desc":"CC  for Disable CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_disable_cash_desk","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action disable"
+	action_disable__cc_for_disable() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_disable"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671605028027"
+		let event_params={"caller_name":"action_disable__cc_for_disable","event_desc":"CC for Disable","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_disable","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_mch_disableService.fn_npss_cs_mch_disable(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action update personal"
+	action_update_personal__cc_for_update_perosal() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_update_personal"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671605070545"
+		let event_params={"caller_name":"action_update_personal__cc_for_update_perosal","event_desc":"CC for Update perosal","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_update_personal","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_mch_update_personal_dataService.fn_npss_cs_mch_update_personal_data(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action add account"
+	action_add_account__cc_for_add_acoount_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_add_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671605249876"
+		let event_params={"caller_name":"action_add_account__cc_for_add_acoount_btn","event_desc":"CC for Add acoount btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_add_account","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_mch_add_bank_accountsService.fn_npss_cs_mch_add_bank_accounts(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action block"
+	action_block__cc_for_block_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_block"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671605310531"
+		let event_params={"caller_name":"action_block__cc_for_block_account","event_desc":"CC for Block account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_block","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_mch_block_bank_accountService.fn_npss_cs_mch_block_bank_account(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

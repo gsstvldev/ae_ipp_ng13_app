@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27461 
+Build ID        : 27465 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-20 8:8 AM 
+Modified Date   : 2022-Dec-21 6:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -465,8 +465,46 @@ focustoelement(){
 		this.ctrl.country.ctrl_id = "npss_shop_ui_country"
 		this.ctrl.npss_shop_ui_country = {}
 		this.ctrl.npss_shop_ui_country.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_shop_ui.model = {"SHOP_NAME":"","SHOP_MID":"","SHOP_TYPE":"","SHOP_MCC":"","SHOP_IBAN":"","BUILDING":"","STREET":"","CITY":"","POSTAL_CODE":"","COUNTY":"","COUNTRY":""}
-		this.screen_instance[this.comp_id].f_npss_shop_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SHOP_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SHOP_MID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SHOP_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SHOP_MCC"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SHOP_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BUILDING"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"STREET"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CITY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"POSTAL_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"COUNTY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"COUNTRY"}]
+	
+		//Properties of shop_id
+		this.ctrl.shop_id = {}
+		this.ctrl.shop_id.id = "RN11CN12"
+		this.ctrl.shop_id.desc = "Shop ID"
+		this.ctrl.shop_id.visible = true
+		this.ctrl.shop_id.label_name = "Shop ID"
+		this.ctrl.shop_id.df_code = "DF_1304_1666847814853"
+		this.ctrl.shop_id.df_description = "Column Group 1"
+		this.ctrl.shop_id.uictrl_code = "TXT"
+		this.ctrl.shop_id.target_column = "SHOP_ID"
+		this.ctrl.shop_id.data_type = "TEXT"
+		this.ctrl.shop_id.data_length = 16
+		this.ctrl.shop_id.zone_df_code = "DF_1304_1666847814853"
+		this.ctrl.shop_id.default_value = ""
+		this.ctrl.shop_id.is_memory_ctrl = ""
+		this.ctrl.shop_id.field_coordinates = ""
+		this.ctrl.shop_id.sub_details = ""
+		this.ctrl.shop_id.accept_char = ""
+		this.ctrl.shop_id.currency_format = ""
+		this.ctrl.shop_id.data_scale = ""
+		this.ctrl.shop_id.hide_label = false
+		this.ctrl.shop_id.depends_on = ""
+		this.ctrl.shop_id.placeholder = ""
+		this.ctrl.shop_id.dynamic_param = ""
+		this.ctrl.shop_id.style_code = ""
+		this.ctrl.shop_id.data_source = ""
+		this.ctrl.shop_id.image_association = ""
+		this.ctrl.shop_id.show = true
+		this.ctrl.shop_id.sub_content = ""
+		this.ctrl.shop_id.required = false
+		this.ctrl.shop_id.vld_rules = []
+		this.ctrl.shop_id.targetcolumn_lower = "shop_id"
+		this.ctrl.shop_id.disabled = false
+		this.ctrl.shop_id.view_name = "f_npss_shop_ui"
+		this.ctrl.shop_id.ctrl_id = "npss_shop_ui_shop_id"
+		this.ctrl.npss_shop_ui_shop_id = {}
+		this.ctrl.npss_shop_ui_shop_id.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_shop_ui.model = {"SHOP_NAME":"","SHOP_MID":"","SHOP_TYPE":"","SHOP_MCC":"","SHOP_IBAN":"","BUILDING":"","STREET":"","CITY":"","POSTAL_CODE":"","COUNTY":"","COUNTRY":"","SHOP_ID":""}
+		this.screen_instance[this.comp_id].f_npss_shop_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SHOP_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SHOP_MID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SHOP_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SHOP_MCC"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SHOP_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BUILDING"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"STREET"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CITY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"POSTAL_CODE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"COUNTY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"COUNTRY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SHOP_ID"}]
 		this.screen_instance[this.comp_id].f_npss_shop_ui.dt_code = "dt_1304_1666846074129"
 		this.screen_instance[this.comp_id].f_npss_shop_ui.dtt_code = "dtt_1304_1666847660575"
 		this.screen_instance[this.comp_id].f_npss_shop_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

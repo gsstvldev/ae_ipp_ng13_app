@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27470 
+Build ID        : 27475 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-20 13:29 PM 
+Modified Date   : 2022-Dec-21 10:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -162,7 +162,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_approve.label_name = "Approve"
 		this.navigation_ui_approve.show = true
 		this.navigation_ui_approve.disabled = true
-		this.navigation_ui_approve.params = {"icon_only":false,"uicgcc_style":"fa fa-font"}
+		this.navigation_ui_approve.params = {"icon_only":false,"uicgcc_style":"fa fa-thumbs-o-up"}
 		this.navigation_ui_approve.dynamic_param = {}
 		this.navigation_ui_approve.role = []
 		this.navigation_ui_approve.action = ""

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27465 
+Build ID        : 27472 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-21 6:57 AM 
+Modified Date   : 2022-Dec-21 11:55 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -115,7 +115,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	merchant_setup_widget : any = {}
 	queue : any = {}
 	sub_navigation_ui : any = {}
-	sub_navigation_ui_remove : any = {}
+	sub_navigation_ui_removess : any = {}
 	sub_navigation_ui_block_unblocks : any = {}
 	sub_navigation_ui_set_default : any = {}
 	sub_navigation_ui_add_bank_accountss : any = {}
@@ -597,14 +597,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.sub_navigation_ui.f_sub_navigation_ui = {"show":true}
 		this.sub_navigation_ui.current_view = "f_sub_navigation_ui"
 		
-		// "Remove" Button of "Sub Navigation UI" component
-		this.sub_navigation_ui_remove.label_name = "Remove"
-		this.sub_navigation_ui_remove.show = true
-		this.sub_navigation_ui_remove.disabled = true
-		this.sub_navigation_ui_remove.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
-		this.sub_navigation_ui_remove.dynamic_param = {}
-		this.sub_navigation_ui_remove.role = []
-		this.sub_navigation_ui_remove.action = ""
+		// "Removess" Button of "Sub Navigation UI" component
+		this.sub_navigation_ui_removess.label_name = "Removess"
+		this.sub_navigation_ui_removess.show = true
+		this.sub_navigation_ui_removess.disabled = true
+		this.sub_navigation_ui_removess.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.sub_navigation_ui_removess.dynamic_param = {}
+		this.sub_navigation_ui_removess.role = []
+		this.sub_navigation_ui_removess.action = ""
 		
 		// "Block Unblocks" Button of "Sub Navigation UI" component
 		this.sub_navigation_ui_block_unblocks.label_name = "Block Unblocks"
@@ -747,7 +747,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop.uicgc_desc = "Shop"
 		this.shop.uicgc_code = "uicgc_18"
 		this.shop.params = {"need_search":"N","need_pag_datatable":"Y"}
-		this.shop.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671605466279","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Shop AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_SHOPS ~NPSSMS","category":"NPSS_MERCHANT_SHOPS","loc":"304.99675934606216 359.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssms_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"shop_name_checked":true,"shop_mid_checked":true,"shop_id_checked":true,"shop_type_checked":true,"shop_mcc_checked":true,"shop_iban_checked":true,"building_checked":true,"street_checked":true,"city_checked":true,"postal_code_checked":true,"county_checked":true,"country_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565","DTT_1304_1666847660575"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_MID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_TYPE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_MCC","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_IBAN","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"BUILDING","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"STREET","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CITY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"POSTAL_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"COUNTY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"COUNTRY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMS","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_SHOPS ","alias_name":"NPSSMS","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMS_ID,PRODUCT_CODE,BANKUSERID,SHOP_NAME,SHOP_MID,SHOP_ID,SHOP_TYPE,SHOP_MCC,SHOP_IBAN,BUILDING,STREET,CITY,POSTAL_CODE,COUNTY,COUNTRY,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMS.NPSSMS_ID,NPSSMS.PRODUCT_CODE,NPSSMS.BANKUSERID,NPSSMS.SHOP_NAME,NPSSMS.SHOP_MID,NPSSMS.SHOP_ID,NPSSMS.SHOP_TYPE,NPSSMS.SHOP_MCC,NPSSMS.SHOP_IBAN,NPSSMS.BUILDING,NPSSMS.STREET,NPSSMS.CITY,NPSSMS.POSTAL_CODE,NPSSMS.COUNTY,NPSSMS.COUNTRY,NPSSMS.EXHF_ID,NPSSMS.NPSSMP_ID,NPSSMS.CREATED_BY,NPSSMS.CREATED_BY_NAME,NPSSMS.CREATED_BY_STS_ID,NPSSMS.CREATED_DATE,NPSSMS.DT_CODE,NPSSMS.DT_DESCRIPTION,NPSSMS.DTT_CODE,NPSSMS.DTT_DESCRIPTION,NPSSMS.MODIFIED_BY,NPSSMS.MODIFIED_BY_NAME,NPSSMS.MODIFIED_BY_STS_ID,NPSSMS.MODIFIED_DATE,NPSSMS.PRCT_ID,NPSSMS.STATUS,NPSSMS.PROCESS_STATUS,NPSSMS.SYSTEM_ID,NPSSMS.SYSTEM_NAME,NPSSMS.TENANT_ID,NPSSMS.APP_ID,NPSSMS.VERSION_NO FROM NPSS_MERCHANT_SHOPS  NPSSMS)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Shop AQ CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		this.shop.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671623479092","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Shop Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666932220178","date_format":false},{"column_name":"SHOP_MID","alias_name":"","mq_id":"MQ_1666932220593","date_format":false},{"column_name":"SHOP_NAME","alias_name":"","mq_id":"MQ_1666932220745","date_format":false},{"column_name":"SHOP_ID","alias_name":"","mq_id":"MQ_1666932220913","date_format":false},{"column_name":"SHOP_TYPE","alias_name":"","mq_id":"MQ_1666932221257","date_format":false},{"column_name":"SHOP_MCC","alias_name":"","mq_id":"MQ_1666932221417","date_format":false},{"column_name":"SHOP_IBAN","alias_name":"","mq_id":"MQ_1666932221577","date_format":false},{"column_name":"BUILDING","alias_name":"","mq_id":"MQ_1666932222401","date_format":false},{"column_name":"STREET","alias_name":"","mq_id":"MQ_1666932222561","date_format":false},{"column_name":"CITY","alias_name":"","mq_id":"MQ_1666932288472","date_format":false},{"column_name":"POSTAL_CODE","alias_name":"","mq_id":"MQ_1666932288632","date_format":false},{"column_name":"COUNTY","alias_name":"","mq_id":"MQ_1666932289064","date_format":false},{"column_name":"COUNTRY","alias_name":"","mq_id":"MQ_1666932350992","date_format":false},{"column_name":"NPSSMS_ID","alias_name":"","mq_id":"MQ_1667366133634","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSMS_ID,        BANKUSERID,        SHOP_MID,        SHOP_NAME,        SHOP_ID,        SHOP_TYPE,        SHOP_MCC,        SHOP_IBAN,        BUILDING,        STREET,        CITY,        POSTAL_CODE,        COUNTY,        COUNTRY,        STATUS,        PROCESS_STATUS,        TENANT_ID,        CREATED_DATE   FROM (SELECT S.NPSSMS_ID,                S.PRODUCT_CODE,                S.BANKUSERID,                S.SHOP_NAME,                S.SHOP_MID,                S.SHOP_ID,                S.SHOP_TYPE,                S.SHOP_MCC,                S.SHOP_IBAN,                S.BUILDING,                S.STREET,                S.CITY,                S.POSTAL_CODE,                S.COUNTY,                S.COUNTRY,                S.EXHF_ID,                S.STATUS,                S.PROCESS_STATUS,                S.TENANT_ID,                S.CREATED_DATE           FROM NPSS_MERCHANT_SHOPS S) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Shop Details Horizontal CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.shop.context_menu = []
 		this.shop.views = {}
 		this.shop.onChangecomponent = new EventEmitter<any>()
@@ -759,7 +759,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cash_desk.uicgc_desc = "Cash Desk"
 		this.cash_desk.uicgc_code = "uicgc_19"
 		this.cash_desk.params = {"need_search":"N","need_pag_datatable":"Y"}
-		this.cash_desk.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666848298941":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666848298941","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671605524923","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Cash desk  AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_CASHDESK ~NPSSMC","category":"NPSS_MERCHANT_CASHDESK","loc":"-169.00324065393784 108.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmc_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"cashdesk_overlay_id_checked":true,"cashdesk_id_checked":true,"exhf_id_checked":true,"npssms_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565","DTT_1304_1666847660575","DTT_1304_1666848298941"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMC_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CASHDESK_OVERLAY_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CASHDESK_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"NPSSMS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMC","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_CASHDESK ","alias_name":"NPSSMC","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMC_ID,PRODUCT_CODE,BANKUSERID,CASHDESK_OVERLAY_ID,CASHDESK_ID,EXHF_ID,NPSSMS_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMC.NPSSMC_ID,NPSSMC.PRODUCT_CODE,NPSSMC.BANKUSERID,NPSSMC.CASHDESK_OVERLAY_ID,NPSSMC.CASHDESK_ID,NPSSMC.EXHF_ID,NPSSMC.NPSSMS_ID,NPSSMC.CREATED_BY,NPSSMC.CREATED_BY_NAME,NPSSMC.CREATED_BY_STS_ID,NPSSMC.CREATED_DATE,NPSSMC.DT_CODE,NPSSMC.DT_DESCRIPTION,NPSSMC.DTT_CODE,NPSSMC.DTT_DESCRIPTION,NPSSMC.MODIFIED_BY,NPSSMC.MODIFIED_BY_NAME,NPSSMC.MODIFIED_BY_STS_ID,NPSSMC.MODIFIED_DATE,NPSSMC.PRCT_ID,NPSSMC.STATUS,NPSSMC.PROCESS_STATUS,NPSSMC.SYSTEM_ID,NPSSMC.SYSTEM_NAME,NPSSMC.TENANT_ID,NPSSMC.APP_ID,NPSSMC.VERSION_NO FROM NPSS_MERCHANT_CASHDESK  NPSSMC)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant CashDesk AQ CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Cash Desk ID","target_column":"CASHDESK_ID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Cash Desk Overlay ID","target_column":"CASHDESK_OVERLAY_ID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		this.cash_desk.datasource = {"default":{"dt_1304_1666846074129":{"dtt_1304_1666848298941":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666848298941","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671623568676","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Cash Desk Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666882336815","date_format":false},{"column_name":"CASHDESK_ID","alias_name":"","mq_id":"MQ_1666882337070","date_format":false},{"column_name":"CASHDESK_OVERLAY_ID","alias_name":"","mq_id":"MQ_1666882337573","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666882360517","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666882360725","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1666882360901","date_format":true},{"column_name":"DTT_CODE","alias_name":"","mq_id":"MQ_1666882395708","date_format":false},{"column_name":"DT_CODE","alias_name":"","mq_id":"MQ_1667365781652","date_format":false},{"column_name":"NPSSMC_ID","alias_name":"","mq_id":"MQ_1667365937621","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSMC_ID,        BANKUSERID,        CASHDESK_ID,        CASHDESK_OVERLAY_ID,        CREATED_DATE,        STATUS,        PROCESS_STATUS,        TENANT_ID,        DTT_CODE,        DT_CODE   FROM (SELECT C.NPSSMC_ID,                C.BANKUSERID,                C.CASHDESK_ID,                C.CASHDESK_OVERLAY_ID,                C.CREATED_DATE,                C.STATUS,                C.PROCESS_STATUS,                C.TENANT_ID,                C.DTT_CODE,                C.DT_CODE           FROM NPSS_MERCHANT_CASHDESK C) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Cash Desk Details CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cash Desk ID","target_column":"CASHDESK_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.cash_desk.context_menu = []
 		this.cash_desk.views = {}
 		this.cash_desk.onChangecomponent = new EventEmitter<any>()
@@ -915,6 +915,13 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.page_load__he_for_enroll_cd()
 		this.page_load__he_for_disable_cd()
 		this.page_load__he_for_update_cd()
+		this.page_load__he_for_enroll_shop()
+		this.page_load__he_for_disable_shop()
+		this.page_load__he_for_set_shop_account()
+		this.page_load__he_for_remove_shop()
+		this.page_load__e_1671620248127()
+		this.page_load__he_for_bun_3()
+		this.page_load__he_for_btn_4()
 	}
 
 	//Handler for INTERNAL event of "cf for pl"
@@ -1038,6 +1045,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.accounts__ee_for_update_mcc_btn()
 		this.accounts__ee_for_remove_account()
 		this.accounts__brfq_for_shop()
+		this.accounts__ee_for_enroll_shop()
 	}
 
 	//Handler for INTERNAL event of "svm for accounts"
@@ -1097,9 +1105,9 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.sub_navigation_ui_add_bank_accountss__cc_for_enab_desable_for_add_account()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui remove"
-	sub_navigation_ui_remove__action_button_click(){
-		this.sub_navigation_ui_remove__cc_for_enable_disable_for_remove()
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui removess"
+	sub_navigation_ui_removess__action_button_click(){
+		this.sub_navigation_ui_removess__cc_for_enable_disable_for_remove()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui set default"
@@ -1202,6 +1210,12 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	//Handler for SELECTION_CHANGED event of "shop"
 	shop__selection_changed(){
 		this.shop__brfq_for_cashdesk()
+		this.shop__ee_for_remove_shop()
+		this.shop__ee_for_update_shop()
+		this.shop__ee_for_diasble_shop()
+		this.shop__ee_for_set_shop_bank_account()
+		this.shop__tbc_for_button_3()
+		this.shop__ssr_for_shop_detail()
 	}
 
 	//Handler for INTERNAL event of "brfq for cashdesk"
@@ -1214,6 +1228,8 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cash_desk__ee_for_disable_cd()
 		this.cash_desk__ee_for_entrol_cd()
 		this.cash_desk__ee_for_update_cd()
+		this.cash_desk__ssr_for_cashdesk_dtl()
+		this.cash_desk__tbc_for_btn4()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "cash desk action disable cash desk"
@@ -1270,6 +1286,75 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "action block"
 	action_block__action_button_click(){
 		this.action_block__cc_for_block_account()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action enrolment shop"
+	shop_action_enrolment_shop__action_button_click(){
+		this.shop_action_enrolment_shop__se_for_entrol_shop()
+		this.shop_action_enrolment_shop__cc_for_shop_enrollment_enab()
+		this.shop_action_enrolment_shop__sp_for_shop_enroll()
+		this.shop_action_enrolment_shop__cu_for_enroll_shop_to_shop_dtl()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action disable shop"
+	shop_action_disable_shop__action_button_click(){
+		this.shop_action_disable_shop__se_for_disable_shop()
+		this.shop_action_disable_shop__cc_for_disable_shop_ena()
+		this.shop_action_disable_shop__sp_for_disable_shop()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action update shop"
+	shop_action_update_shop__action_button_click(){
+		this.shop_action_update_shop__se_for_update_shop()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop bank account"
+	shop_action_set_shop_bank_account__action_button_click(){
+		this.shop_action_set_shop_bank_account__se_for_set_bank_account()
+		this.shop_action_set_shop_bank_account__sp_for_set_shop_account()
+		this.shop_action_set_shop_bank_account__cc_for_set_shop_bank_account_enab()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
+	shop_action_remove_shop_account__action_button_click(){
+		this.shop_action_remove_shop_account__se_for_remove_shop_account()
+		this.shop_action_remove_shop_account__cc_for_remove_shop_account_ena_dis()
+		this.shop_action_remove_shop_account__sp_for_remove_shop_account()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action enroll shop"
+	action_enroll_shop__action_button_click(){
+		this.action_enroll_shop__cc_for_enroll_shop()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action update shop"
+	action_update_shop__action_button_click(){
+		this.action_update_shop__cc_for_update_shop()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action set shop account"
+	action_set_shop_account__action_button_click(){
+		this.action_set_shop_account__cc_for_set_shop_account()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action remove shop"
+	action_remove_shop__action_button_click(){
+		this.action_remove_shop__cc_for_remove__shop()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action disable shop"
+	action_disable_shop__action_button_click(){
+		this.action_disable_shop__cc_for_disable_shop()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui tri btn3"
+	navigation_ui_tri_btn3__action_button_click(){
+		this.navigation_ui_tri_btn3__bt_for_shop_detail()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui tri btn4"
+	navigation_ui_tri_btn4__action_button_click(){
+		this.navigation_ui_tri_btn4__bt_for_cashdesk()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1529,7 +1614,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="sub_navigation_ui_remove"
+		let destn_id="sub_navigation_ui_removess"
 		let parent_source_id=""
 		let event_code="e_1671021691214"
 		let event_params={"caller_name":"page_load__de_for_remove","event_desc":"DE for Remove","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1827,6 +1912,153 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1671604706574"
 		let event_params={"caller_name":"page_load__he_for_update_cd","event_desc":"HE for Update CD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_enroll_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_enroll_shop"
+		let parent_source_id=""
+		let event_code="e_1671619586398"
+		let event_params={"caller_name":"page_load__he_for_enroll_shop","event_desc":"HE for Enroll Shop","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_disable_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_disable_shop"
+		let parent_source_id=""
+		let event_code="e_1671619632915"
+		let event_params={"caller_name":"page_load__he_for_disable_shop","event_desc":"HE for Disable shop","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_set_shop_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_set_shop_account"
+		let parent_source_id=""
+		let event_code="e_1671619990287"
+		let event_params={"caller_name":"page_load__he_for_set_shop_account","event_desc":"HE for set shop account","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_remove_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_remove_shop"
+		let parent_source_id=""
+		let event_code="e_1671620209065"
+		let event_params={"caller_name":"page_load__he_for_remove_shop","event_desc":"HE for remove shop","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1671620248127() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="action_update_shop"
+		let parent_source_id=""
+		let event_code="e_1671620248127"
+		let event_params={"caller_name":"page_load__e_1671620248127","event_desc":"E_1671620248127","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_bun_3() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_tri_btn3"
+		let parent_source_id=""
+		let event_code="e_1671623187273"
+		let event_params={"caller_name":"page_load__he_for_bun_3","event_desc":"HE for bun 3","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_btn_4() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_tri_btn4"
+		let parent_source_id=""
+		let event_code="e_1671623226073"
+		let event_params={"caller_name":"page_load__he_for_btn_4","event_desc":"HE for btn 4","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -2733,7 +2965,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="sub_navigation_ui_remove"
+		let destn_id="sub_navigation_ui_removess"
 		let parent_source_id=""
 		let event_code="e_1671021804376"
 		let event_params={"caller_name":"accounts__ee_for_remove","event_desc":"EE for remove","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -2908,9 +3140,30 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_shop__sfr_for_shop,"
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671605466279","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Shop AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_SHOPS ~NPSSMS","category":"NPSS_MERCHANT_SHOPS","loc":"304.99675934606216 359.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssms_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"shop_name_checked":true,"shop_mid_checked":true,"shop_id_checked":true,"shop_type_checked":true,"shop_mcc_checked":true,"shop_iban_checked":true,"building_checked":true,"street_checked":true,"city_checked":true,"postal_code_checked":true,"county_checked":true,"country_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565","DTT_1304_1666847660575"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_MID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_TYPE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_MCC","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_IBAN","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"BUILDING","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"STREET","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CITY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"POSTAL_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"COUNTY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"COUNTRY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMS","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_SHOPS ","alias_name":"NPSSMS","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMS_ID,PRODUCT_CODE,BANKUSERID,SHOP_NAME,SHOP_MID,SHOP_ID,SHOP_TYPE,SHOP_MCC,SHOP_IBAN,BUILDING,STREET,CITY,POSTAL_CODE,COUNTY,COUNTRY,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMS.NPSSMS_ID,NPSSMS.PRODUCT_CODE,NPSSMS.BANKUSERID,NPSSMS.SHOP_NAME,NPSSMS.SHOP_MID,NPSSMS.SHOP_ID,NPSSMS.SHOP_TYPE,NPSSMS.SHOP_MCC,NPSSMS.SHOP_IBAN,NPSSMS.BUILDING,NPSSMS.STREET,NPSSMS.CITY,NPSSMS.POSTAL_CODE,NPSSMS.COUNTY,NPSSMS.COUNTRY,NPSSMS.EXHF_ID,NPSSMS.NPSSMP_ID,NPSSMS.CREATED_BY,NPSSMS.CREATED_BY_NAME,NPSSMS.CREATED_BY_STS_ID,NPSSMS.CREATED_DATE,NPSSMS.DT_CODE,NPSSMS.DT_DESCRIPTION,NPSSMS.DTT_CODE,NPSSMS.DTT_DESCRIPTION,NPSSMS.MODIFIED_BY,NPSSMS.MODIFIED_BY_NAME,NPSSMS.MODIFIED_BY_STS_ID,NPSSMS.MODIFIED_DATE,NPSSMS.PRCT_ID,NPSSMS.STATUS,NPSSMS.PROCESS_STATUS,NPSSMS.SYSTEM_ID,NPSSMS.SYSTEM_NAME,NPSSMS.TENANT_ID,NPSSMS.APP_ID,NPSSMS.VERSION_NO FROM NPSS_MERCHANT_SHOPS  NPSSMS)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Shop AQ CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671623479092","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Shop Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666932220178","date_format":false},{"column_name":"SHOP_MID","alias_name":"","mq_id":"MQ_1666932220593","date_format":false},{"column_name":"SHOP_NAME","alias_name":"","mq_id":"MQ_1666932220745","date_format":false},{"column_name":"SHOP_ID","alias_name":"","mq_id":"MQ_1666932220913","date_format":false},{"column_name":"SHOP_TYPE","alias_name":"","mq_id":"MQ_1666932221257","date_format":false},{"column_name":"SHOP_MCC","alias_name":"","mq_id":"MQ_1666932221417","date_format":false},{"column_name":"SHOP_IBAN","alias_name":"","mq_id":"MQ_1666932221577","date_format":false},{"column_name":"BUILDING","alias_name":"","mq_id":"MQ_1666932222401","date_format":false},{"column_name":"STREET","alias_name":"","mq_id":"MQ_1666932222561","date_format":false},{"column_name":"CITY","alias_name":"","mq_id":"MQ_1666932288472","date_format":false},{"column_name":"POSTAL_CODE","alias_name":"","mq_id":"MQ_1666932288632","date_format":false},{"column_name":"COUNTY","alias_name":"","mq_id":"MQ_1666932289064","date_format":false},{"column_name":"COUNTRY","alias_name":"","mq_id":"MQ_1666932350992","date_format":false},{"column_name":"NPSSMS_ID","alias_name":"","mq_id":"MQ_1667366133634","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSMS_ID,        BANKUSERID,        SHOP_MID,        SHOP_NAME,        SHOP_ID,        SHOP_TYPE,        SHOP_MCC,        SHOP_IBAN,        BUILDING,        STREET,        CITY,        POSTAL_CODE,        COUNTY,        COUNTRY,        STATUS,        PROCESS_STATUS,        TENANT_ID,        CREATED_DATE   FROM (SELECT S.NPSSMS_ID,                S.PRODUCT_CODE,                S.BANKUSERID,                S.SHOP_NAME,                S.SHOP_MID,                S.SHOP_ID,                S.SHOP_TYPE,                S.SHOP_MCC,                S.SHOP_IBAN,                S.BUILDING,                S.STREET,                S.CITY,                S.POSTAL_CODE,                S.COUNTY,                S.COUNTRY,                S.EXHF_ID,                S.STATUS,                S.PROCESS_STATUS,                S.TENANT_ID,                S.CREATED_DATE           FROM NPSS_MERCHANT_SHOPS S) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Shop Details Horizontal CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "accounts"
+	accounts__ee_for_enroll_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="accounts"
+		let destn_id="shop_action_enrolment_shop"
+		let parent_source_id=""
+		let event_code="e_1671619516146"
+		let event_params={"caller_name":"accounts__ee_for_enroll_shop","event_desc":"EE for enroll shop","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2952,7 +3205,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671605466279","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Shop AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_SHOPS ~NPSSMS","category":"NPSS_MERCHANT_SHOPS","loc":"304.99675934606216 359.0018439828373","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssms_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"shop_name_checked":true,"shop_mid_checked":true,"shop_id_checked":true,"shop_type_checked":true,"shop_mcc_checked":true,"shop_iban_checked":true,"building_checked":true,"street_checked":true,"city_checked":true,"postal_code_checked":true,"county_checked":true,"country_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565","DTT_1304_1666847660575"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_MID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_TYPE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_MCC","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SHOP_IBAN","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"BUILDING","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"STREET","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CITY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"POSTAL_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"COUNTY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"COUNTRY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMS","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMS","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_SHOPS ","alias_name":"NPSSMS","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMS_ID,PRODUCT_CODE,BANKUSERID,SHOP_NAME,SHOP_MID,SHOP_ID,SHOP_TYPE,SHOP_MCC,SHOP_IBAN,BUILDING,STREET,CITY,POSTAL_CODE,COUNTY,COUNTRY,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMS.NPSSMS_ID,NPSSMS.PRODUCT_CODE,NPSSMS.BANKUSERID,NPSSMS.SHOP_NAME,NPSSMS.SHOP_MID,NPSSMS.SHOP_ID,NPSSMS.SHOP_TYPE,NPSSMS.SHOP_MCC,NPSSMS.SHOP_IBAN,NPSSMS.BUILDING,NPSSMS.STREET,NPSSMS.CITY,NPSSMS.POSTAL_CODE,NPSSMS.COUNTY,NPSSMS.COUNTRY,NPSSMS.EXHF_ID,NPSSMS.NPSSMP_ID,NPSSMS.CREATED_BY,NPSSMS.CREATED_BY_NAME,NPSSMS.CREATED_BY_STS_ID,NPSSMS.CREATED_DATE,NPSSMS.DT_CODE,NPSSMS.DT_DESCRIPTION,NPSSMS.DTT_CODE,NPSSMS.DTT_DESCRIPTION,NPSSMS.MODIFIED_BY,NPSSMS.MODIFIED_BY_NAME,NPSSMS.MODIFIED_BY_STS_ID,NPSSMS.MODIFIED_DATE,NPSSMS.PRCT_ID,NPSSMS.STATUS,NPSSMS.PROCESS_STATUS,NPSSMS.SYSTEM_ID,NPSSMS.SYSTEM_NAME,NPSSMS.TENANT_ID,NPSSMS.APP_ID,NPSSMS.VERSION_NO FROM NPSS_MERCHANT_SHOPS  NPSSMS)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Shop AQ CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"NPSSMS","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671623479092","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Shop Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666932220178","date_format":false},{"column_name":"SHOP_MID","alias_name":"","mq_id":"MQ_1666932220593","date_format":false},{"column_name":"SHOP_NAME","alias_name":"","mq_id":"MQ_1666932220745","date_format":false},{"column_name":"SHOP_ID","alias_name":"","mq_id":"MQ_1666932220913","date_format":false},{"column_name":"SHOP_TYPE","alias_name":"","mq_id":"MQ_1666932221257","date_format":false},{"column_name":"SHOP_MCC","alias_name":"","mq_id":"MQ_1666932221417","date_format":false},{"column_name":"SHOP_IBAN","alias_name":"","mq_id":"MQ_1666932221577","date_format":false},{"column_name":"BUILDING","alias_name":"","mq_id":"MQ_1666932222401","date_format":false},{"column_name":"STREET","alias_name":"","mq_id":"MQ_1666932222561","date_format":false},{"column_name":"CITY","alias_name":"","mq_id":"MQ_1666932288472","date_format":false},{"column_name":"POSTAL_CODE","alias_name":"","mq_id":"MQ_1666932288632","date_format":false},{"column_name":"COUNTY","alias_name":"","mq_id":"MQ_1666932289064","date_format":false},{"column_name":"COUNTRY","alias_name":"","mq_id":"MQ_1666932350992","date_format":false},{"column_name":"NPSSMS_ID","alias_name":"","mq_id":"MQ_1667366133634","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSMS_ID,        BANKUSERID,        SHOP_MID,        SHOP_NAME,        SHOP_ID,        SHOP_TYPE,        SHOP_MCC,        SHOP_IBAN,        BUILDING,        STREET,        CITY,        POSTAL_CODE,        COUNTY,        COUNTRY,        STATUS,        PROCESS_STATUS,        TENANT_ID,        CREATED_DATE   FROM (SELECT S.NPSSMS_ID,                S.PRODUCT_CODE,                S.BANKUSERID,                S.SHOP_NAME,                S.SHOP_MID,                S.SHOP_ID,                S.SHOP_TYPE,                S.SHOP_MCC,                S.SHOP_IBAN,                S.BUILDING,                S.STREET,                S.CITY,                S.POSTAL_CODE,                S.COUNTY,                S.COUNTRY,                S.EXHF_ID,                S.STATUS,                S.PROCESS_STATUS,                S.TENANT_ID,                S.CREATED_DATE           FROM NPSS_MERCHANT_SHOPS S) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Shop Details Horizontal CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -3196,15 +3449,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui remove"
-	sub_navigation_ui_remove__cc_for_enable_disable_for_remove() { 
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui removess"
+	sub_navigation_ui_removess__cc_for_enable_disable_for_remove() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="sub_navigation_ui_remove"
+		let source_id="sub_navigation_ui_removess"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671021559328"
-		let event_params={"caller_name":"sub_navigation_ui_remove__cc_for_enable_disable_for_remove","event_desc":"CC for enable disable for remove","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_remove","raiseparam":{}}
+		let event_params={"caller_name":"sub_navigation_ui_removess__cc_for_enable_disable_for_remove","event_desc":"CC for enable disable for remove","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_removess","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -3923,9 +4176,135 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_cashdesk__sfr_for_cashdesk,"
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666848298941":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666848298941","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671605524923","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Cash desk  AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_CASHDESK ~NPSSMC","category":"NPSS_MERCHANT_CASHDESK","loc":"-169.00324065393784 108.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmc_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"cashdesk_overlay_id_checked":true,"cashdesk_id_checked":true,"exhf_id_checked":true,"npssms_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565","DTT_1304_1666847660575","DTT_1304_1666848298941"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMC_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CASHDESK_OVERLAY_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CASHDESK_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"NPSSMS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMC","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_CASHDESK ","alias_name":"NPSSMC","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMC_ID,PRODUCT_CODE,BANKUSERID,CASHDESK_OVERLAY_ID,CASHDESK_ID,EXHF_ID,NPSSMS_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMC.NPSSMC_ID,NPSSMC.PRODUCT_CODE,NPSSMC.BANKUSERID,NPSSMC.CASHDESK_OVERLAY_ID,NPSSMC.CASHDESK_ID,NPSSMC.EXHF_ID,NPSSMC.NPSSMS_ID,NPSSMC.CREATED_BY,NPSSMC.CREATED_BY_NAME,NPSSMC.CREATED_BY_STS_ID,NPSSMC.CREATED_DATE,NPSSMC.DT_CODE,NPSSMC.DT_DESCRIPTION,NPSSMC.DTT_CODE,NPSSMC.DTT_DESCRIPTION,NPSSMC.MODIFIED_BY,NPSSMC.MODIFIED_BY_NAME,NPSSMC.MODIFIED_BY_STS_ID,NPSSMC.MODIFIED_DATE,NPSSMC.PRCT_ID,NPSSMC.STATUS,NPSSMC.PROCESS_STATUS,NPSSMC.SYSTEM_ID,NPSSMC.SYSTEM_NAME,NPSSMC.TENANT_ID,NPSSMC.APP_ID,NPSSMC.VERSION_NO FROM NPSS_MERCHANT_CASHDESK  NPSSMC)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant CashDesk AQ CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Cash Desk ID","target_column":"CASHDESK_ID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Cash Desk Overlay ID","target_column":"CASHDESK_OVERLAY_ID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666848298941":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666848298941","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671623568676","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Cash Desk Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666882336815","date_format":false},{"column_name":"CASHDESK_ID","alias_name":"","mq_id":"MQ_1666882337070","date_format":false},{"column_name":"CASHDESK_OVERLAY_ID","alias_name":"","mq_id":"MQ_1666882337573","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666882360517","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666882360725","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1666882360901","date_format":true},{"column_name":"DTT_CODE","alias_name":"","mq_id":"MQ_1666882395708","date_format":false},{"column_name":"DT_CODE","alias_name":"","mq_id":"MQ_1667365781652","date_format":false},{"column_name":"NPSSMC_ID","alias_name":"","mq_id":"MQ_1667365937621","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSMC_ID,        BANKUSERID,        CASHDESK_ID,        CASHDESK_OVERLAY_ID,        CREATED_DATE,        STATUS,        PROCESS_STATUS,        TENANT_ID,        DTT_CODE,        DT_CODE   FROM (SELECT C.NPSSMC_ID,                C.BANKUSERID,                C.CASHDESK_ID,                C.CASHDESK_OVERLAY_ID,                C.CREATED_DATE,                C.STATUS,                C.PROCESS_STATUS,                C.TENANT_ID,                C.DTT_CODE,                C.DT_CODE           FROM NPSS_MERCHANT_CASHDESK C) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Cash Desk Details CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cash Desk ID","target_column":"CASHDESK_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__ee_for_remove_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="shop_action_remove_shop_account"
+		let parent_source_id=""
+		let event_code="e_1671619187016"
+		let event_params={"caller_name":"shop__ee_for_remove_shop","event_desc":"EE for Remove shop","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__ee_for_update_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="shop_action_update_shop"
+		let parent_source_id=""
+		let event_code="e_1671619201480"
+		let event_params={"caller_name":"shop__ee_for_update_shop","event_desc":"EE for Update shop","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__ee_for_diasble_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="shop_action_disable_shop"
+		let parent_source_id=""
+		let event_code="e_1671619254136"
+		let event_params={"caller_name":"shop__ee_for_diasble_shop","event_desc":"EE for Diasble shop","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__ee_for_set_shop_bank_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="shop_action_set_shop_bank_account"
+		let parent_source_id=""
+		let event_code="e_1671619341687"
+		let event_params={"caller_name":"shop__ee_for_set_shop_bank_account","event_desc":"EE for Set shop bank account","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__tbc_for_button_3() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="navigation_ui_tri_btn3"
+		let parent_source_id=""
+		let event_code="e_1671622922107"
+		let event_params={"caller_name":"shop__tbc_for_button_3","event_desc":"TBC for button 3","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__ssr_for_shop_detail() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="shop_detail"
+		let parent_source_id=""
+		let event_code="e_1671623047093"
+		let event_params={"caller_name":"shop__ssr_for_shop_detail","event_desc":"SSR for shop detail","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -3945,7 +4324,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666848298941":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666848298941","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671605524923","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Cash desk  AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_CASHDESK ~NPSSMC","category":"NPSS_MERCHANT_CASHDESK","loc":"-169.00324065393784 108.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssmc_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"cashdesk_overlay_id_checked":true,"cashdesk_id_checked":true,"exhf_id_checked":true,"npssms_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565","DTT_1304_1666847660575","DTT_1304_1666848298941"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMC_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CASHDESK_OVERLAY_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CASHDESK_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"NPSSMS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMC","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMC","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_CASHDESK ","alias_name":"NPSSMC","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMC_ID,PRODUCT_CODE,BANKUSERID,CASHDESK_OVERLAY_ID,CASHDESK_ID,EXHF_ID,NPSSMS_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMC.NPSSMC_ID,NPSSMC.PRODUCT_CODE,NPSSMC.BANKUSERID,NPSSMC.CASHDESK_OVERLAY_ID,NPSSMC.CASHDESK_ID,NPSSMC.EXHF_ID,NPSSMC.NPSSMS_ID,NPSSMC.CREATED_BY,NPSSMC.CREATED_BY_NAME,NPSSMC.CREATED_BY_STS_ID,NPSSMC.CREATED_DATE,NPSSMC.DT_CODE,NPSSMC.DT_DESCRIPTION,NPSSMC.DTT_CODE,NPSSMC.DTT_DESCRIPTION,NPSSMC.MODIFIED_BY,NPSSMC.MODIFIED_BY_NAME,NPSSMC.MODIFIED_BY_STS_ID,NPSSMC.MODIFIED_DATE,NPSSMC.PRCT_ID,NPSSMC.STATUS,NPSSMC.PROCESS_STATUS,NPSSMC.SYSTEM_ID,NPSSMC.SYSTEM_NAME,NPSSMC.TENANT_ID,NPSSMC.APP_ID,NPSSMC.VERSION_NO FROM NPSS_MERCHANT_CASHDESK  NPSSMC)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant CashDesk AQ CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Cash Desk ID","target_column":"CASHDESK_ID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Cash Desk Overlay ID","target_column":"CASHDESK_OVERLAY_ID","alias_name":"NPSSMC","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666848298941":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666848298941","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671623568676","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Cash Desk Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666882336815","date_format":false},{"column_name":"CASHDESK_ID","alias_name":"","mq_id":"MQ_1666882337070","date_format":false},{"column_name":"CASHDESK_OVERLAY_ID","alias_name":"","mq_id":"MQ_1666882337573","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666882360517","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666882360725","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1666882360901","date_format":true},{"column_name":"DTT_CODE","alias_name":"","mq_id":"MQ_1666882395708","date_format":false},{"column_name":"DT_CODE","alias_name":"","mq_id":"MQ_1667365781652","date_format":false},{"column_name":"NPSSMC_ID","alias_name":"","mq_id":"MQ_1667365937621","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSMC_ID,        BANKUSERID,        CASHDESK_ID,        CASHDESK_OVERLAY_ID,        CREATED_DATE,        STATUS,        PROCESS_STATUS,        TENANT_ID,        DTT_CODE,        DT_CODE   FROM (SELECT C.NPSSMC_ID,                C.BANKUSERID,                C.CASHDESK_ID,                C.CASHDESK_OVERLAY_ID,                C.CREATED_DATE,                C.STATUS,                C.PROCESS_STATUS,                C.TENANT_ID,                C.DTT_CODE,                C.DT_CODE           FROM NPSS_MERCHANT_CASHDESK C) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Cash Desk Details CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cash Desk ID","target_column":"CASHDESK_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -4011,6 +4390,48 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "cash desk"
+	cash_desk__ssr_for_cashdesk_dtl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk"
+		let destn_id="cash_desk_detail"
+		let parent_source_id=""
+		let event_code="e_1671623312627"
+		let event_params={"caller_name":"cash_desk__ssr_for_cashdesk_dtl","event_desc":"SSR for cashdesk dtl","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"cash_desk","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "cash desk"
+	cash_desk__tbc_for_btn4() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cash_desk"
+		let destn_id="navigation_ui_tri_btn4"
+		let parent_source_id=""
+		let event_code="e_1671623388365"
+		let event_params={"caller_name":"cash_desk__tbc_for_btn4","event_desc":"TBC for btn4","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"cash_desk","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -4347,6 +4768,447 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.npss_cs_mch_block_bank_accountService.fn_npss_cs_mch_block_bank_account(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action enrolment shop"
+	shop_action_enrolment_shop__se_for_entrol_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_enrolment_shop"
+		let destn_id="action_enroll_shop"
+		let parent_source_id=""
+		let event_code="e_1671620442427"
+		let event_params={"caller_name":"shop_action_enrolment_shop__se_for_entrol_shop","event_desc":"SE for entrol shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_enrolment_shop","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action enrolment shop"
+	shop_action_enrolment_shop__cc_for_shop_enrollment_enab() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_enrolment_shop"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671622678459"
+		let event_params={"caller_name":"shop_action_enrolment_shop__cc_for_shop_enrollment_enab","event_desc":"CC for Shop enrollment ENAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_enrolment_shop","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action enrolment shop"
+	shop_action_enrolment_shop__sp_for_shop_enroll() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_enrolment_shop"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671622689332"
+		let event_params={"caller_name":"shop_action_enrolment_shop__sp_for_shop_enroll","event_desc":"SP for shop enroll","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_enrolment_shop","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action enrolment shop"
+	shop_action_enrolment_shop__cu_for_enroll_shop_to_shop_dtl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_enrolment_shop"
+		let destn_id="shop_detail"
+		let parent_source_id=""
+		let event_code="e_1671623119316"
+		let event_params={"caller_name":"shop_action_enrolment_shop__cu_for_enroll_shop_to_shop_dtl","event_desc":"CU for enroll shop to shop dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_enrolment_shop","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action disable shop"
+	shop_action_disable_shop__se_for_disable_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_disable_shop"
+		let destn_id="action_disable_shop"
+		let parent_source_id=""
+		let event_code="e_1671620504487"
+		let event_params={"caller_name":"shop_action_disable_shop__se_for_disable_shop","event_desc":"SE for Disable shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_disable_shop","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action disable shop"
+	shop_action_disable_shop__cc_for_disable_shop_ena() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_disable_shop"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671621470001"
+		let event_params={"caller_name":"shop_action_disable_shop__cc_for_disable_shop_ena","event_desc":"CC for Disable shop ENA","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_disable_shop","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action disable shop"
+	shop_action_disable_shop__sp_for_disable_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_disable_shop"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671621480169"
+		let event_params={"caller_name":"shop_action_disable_shop__sp_for_disable_shop","event_desc":"SP for Disable shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_disable_shop","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action update shop"
+	shop_action_update_shop__se_for_update_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_update_shop"
+		let destn_id="action_update_shop"
+		let parent_source_id=""
+		let event_code="e_1671620555412"
+		let event_params={"caller_name":"shop_action_update_shop__se_for_update_shop","event_desc":"SE for update shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_update_shop","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop bank account"
+	shop_action_set_shop_bank_account__se_for_set_bank_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_set_shop_bank_account"
+		let destn_id="action_set_shop_account"
+		let parent_source_id=""
+		let event_code="e_1671620620010"
+		let event_params={"caller_name":"shop_action_set_shop_bank_account__se_for_set_bank_account","event_desc":"SE for set bank account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_shop_bank_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop bank account"
+	shop_action_set_shop_bank_account__sp_for_set_shop_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_set_shop_bank_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671621287695"
+		let event_params={"caller_name":"shop_action_set_shop_bank_account__sp_for_set_shop_account","event_desc":"SP for Set shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_shop_bank_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop bank account"
+	shop_action_set_shop_bank_account__cc_for_set_shop_bank_account_enab() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_set_shop_bank_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671621299093"
+		let event_params={"caller_name":"shop_action_set_shop_bank_account__cc_for_set_shop_bank_account_enab","event_desc":"CC for set shop bank account ENAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_shop_bank_account","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
+	shop_action_remove_shop_account__se_for_remove_shop_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_remove_shop_account"
+		let destn_id="action_remove_shop"
+		let parent_source_id=""
+		let event_code="e_1671620742304"
+		let event_params={"caller_name":"shop_action_remove_shop_account__se_for_remove_shop_account","event_desc":"SE for remove shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_shop_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
+	shop_action_remove_shop_account__cc_for_remove_shop_account_ena_dis() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_remove_shop_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671621189032"
+		let event_params={"caller_name":"shop_action_remove_shop_account__cc_for_remove_shop_account_ena_dis","event_desc":"CC for Remove shop account ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_shop_account","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
+	shop_action_remove_shop_account__sp_for_remove_shop_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_remove_shop_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671621199391"
+		let event_params={"caller_name":"shop_action_remove_shop_account__sp_for_remove_shop_account","event_desc":"SP for Remove shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_shop_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action enroll shop"
+	action_enroll_shop__cc_for_enroll_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_enroll_shop"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671620885118"
+		let event_params={"caller_name":"action_enroll_shop__cc_for_enroll_shop","event_desc":"CC for Enroll shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_enroll_shop","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action update shop"
+	action_update_shop__cc_for_update_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_update_shop"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671620893735"
+		let event_params={"caller_name":"action_update_shop__cc_for_update_shop","event_desc":"CC for Update shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_update_shop","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action set shop account"
+	action_set_shop_account__cc_for_set_shop_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_set_shop_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671620903548"
+		let event_params={"caller_name":"action_set_shop_account__cc_for_set_shop_account","event_desc":"CC for set Shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_set_shop_account","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action remove shop"
+	action_remove_shop__cc_for_remove__shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_remove_shop"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671620916610"
+		let event_params={"caller_name":"action_remove_shop__cc_for_remove__shop","event_desc":"CC for Remove  shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_remove_shop","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action disable shop"
+	action_disable_shop__cc_for_disable_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_disable_shop"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671620933141"
+		let event_params={"caller_name":"action_disable_shop__cc_for_disable_shop","event_desc":"CC for Disable shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_disable_shop","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui tri btn3"
+	navigation_ui_tri_btn3__bt_for_shop_detail() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_tri_btn3"
+		let destn_id="shop_detail"
+		let parent_source_id=""
+		let event_code="e_1671622988572"
+		let event_params={"caller_name":"navigation_ui_tri_btn3__bt_for_shop_detail","event_desc":"BT for shop detail","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_tri_btn3","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui tri btn4"
+	navigation_ui_tri_btn4__bt_for_cashdesk() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_tri_btn4"
+		let destn_id="cash_desk_detail"
+		let parent_source_id=""
+		let event_code="e_1671623264070"
+		let event_params={"caller_name":"navigation_ui_tri_btn4__bt_for_cashdesk","event_desc":"BT for cashdesk","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_tri_btn4","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

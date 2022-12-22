@@ -61,7 +61,7 @@ app.post('/', function(appRequest, appResponse, next) {
                            var seltranqry = `select * from npss_transactions where npsst_id='${params.Id}'`
                            var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                           // var selplqry=`select tpl.cbuae_return_code,crn.return_description,tpl.npsstrrd_refno from npss_trn_process_log tpl inner join core_nc_return_codes crn on  tpl.cbuae_return_code=crn.return_code where npsstpl_id='${params.tpl_id}'`
-                             var selplqry=`select CBUAE_RETURN_CODE from npss_trn_process_log where status = 'IP_RCT_REV_REQ_REJECTED'`
+                             
 
                            ExecuteQuery1(ruleqry, function (result) {
                                if (result.length) {
@@ -72,6 +72,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                            api_url = urlresult[0].param_detail;
                                            ExecuteQuery1(seltranqry, function (tranresult) {
                                                if (tranresult.length > 0) {
+                                               var selplqry=`select CBUAE_RETURN_CODE from npss_trn_process_log where status = 'IP_RCT_REV_REQ_REJECTED' and uetr = '${tranresult[0].uetr}'`
                                                    ExecuteQuery1(selplqry, function (tplresult) {
                                                        if (tplresult.length > 0) {
                                                            fn_DoAPIServiceCall(tranresult,tplresult, api_url,rule_code, function (apiresult) {

@@ -110,7 +110,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                              arrCusTranInst.push(objCusTranInst)
                                              _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
                                                 if (CusTranInsertRes.length > 0) {
-                                                   var Takepostrefno = `select * from npss_trn_process_log where status = 'IP_RCT_REV_INAU_POSTING_SUCCESS' and process_status = 'RCTRevINAUPostingSuccess'and uetr = '${arrdata[0].uetr}'`
+                                                   var Takepostrefno = `select * from npss_trn_process_log where status = 'IP_RCT_REV_INAU_POSTING_SUCCESS' and uetr = '${arrdata[0].uetr}'`
                                                    ExecuteQuery1(Takepostrefno, function (arrpostno) {
                                                       fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno, function (apiresult) {
                                                          if (apiresult === "SUCCESS") {

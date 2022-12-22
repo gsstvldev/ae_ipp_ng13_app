@@ -18,6 +18,8 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified Date : 19/12/2022
      Modified By : Siva Harish
     Modified Date : 20/12/2022  
+    Modified By : Siva Harish
+    Modified Date : 22/12/2022  
     Reason for : For Finance House 
     Reason for : Handling Failure response for auth 004
      Reason for : Taking Contra amount using accept success status for non aed 20/12/2022 10:40am
@@ -96,8 +98,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                         else {
                                             lclinstrm = ""
                                         }
-                                        var takereturncode =  `select cbuae_return_code  from npss_trn_process_log  where  status = 'IP_RCT_RR_RETURN_READY'`;
-                                        var TakeprssRefno = `select process_ref_no  from npss_trn_process_log  where uetr = '${params.uetr}' and status = 'IP_RCT_REV_INAU_POSTING_SUCCESS' and process_status = 'RCTRevINAUPostingSuccess'`;
+                                        var takereturncode =  `select cbuae_return_code  from npss_trn_process_log  where  status = 'IP_RCT_RR_RETURN_READY' and uetr = '${arrprocesslog[0].uetr}'`;
+                                        var TakeprssRefno = `select process_ref_no  from npss_trn_process_log  where uetr = '${arrprocesslog[0].uetr}' and status = 'IP_RCT_REV_INAU_POSTING_SUCCESS'`;
                                         var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
                                         ExecuteQuery1(TakeprssRefno,function(arrprssRefno){
                                             ExecuteQuery1(takereturncode,function(arrreturncode){
@@ -105,7 +107,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     if (arrActInf.length) {
                                                         var amount
                                                         if (params.screenName == 's_rct_reversal_non_aed') {
-                                                            var Takecontraamount = `select contra_amount from npss_trn_process_log where status = 'IP_RCT_RR_RETURN_READY'`
+                                                            var Takecontraamount = `select contra_amount from npss_trn_process_log where status = 'IP_RCT_RR_RETURN_READY' and uetr = '${arrprocesslog[0].uetr}'`
                                                             ExecuteQuery1(Takecontraamount, function (arramount) {
                                                                 var contra_amount = arramount[0].contra_amount || ''
                                                                 var reversal_amount = arrprocesslog[0].reversal_amount || ''
@@ -361,7 +363,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         else {
                                             lclinstrm = ""
                                         }
-                                        var takereturncode =  `select cbuae_return_code  from npss_trn_process_log  where  status = 'IP_RCT_RR_RETURN_READY'`;
+                                        var takereturncode =  `select cbuae_return_code  from npss_trn_process_log  where  status = 'IP_RCT_RR_RETURN_READY' and uetr = '${arrprocesslog[0].uetr}'`;
                                       
                                             ExecuteQuery1(takereturncode,function(arrreturncode){
                                                 ExecuteQuery1(take_return_url, function (arrreturnurl) {

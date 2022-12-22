@@ -147,7 +147,7 @@ try {
                                                  var url = arrurl[0].param_detail;
                                                  var amount
                                                  if (params.screenName == 's_rct_reversal_non_aed') {
-                                                    var Takecontraamount = `select contra_amount from npss_trn_process_log where status = 'IP_RCT_REV_DEAL_RECEIVED' `
+                                                    var Takecontraamount = `select contra_amount from npss_trn_process_log where status = 'IP_RCT_REV_DEAL_RECEIVED' and uetr = '${arrprocesslog[0].uetr}' `
                                                     ExecuteQuery1(Takecontraamount, function (arramount) {
                                                        var contra_amount = arramount[0].contra_amount || ''
                                                        var reversal_amount = arrprocesslog[0].reversal_amount || ''

@@ -10,6 +10,7 @@ app.post('/', function(appRequest, appResponse, next) {
     
     
     
+    
 
 
 try {
@@ -61,12 +62,12 @@ try {
                                 lang = param_val['General']['subgroup'][0]['language']
                                 bankcode = param_val['General']['subgroup'][0]['bankcode']
                                 groupcode = param_val['General']['subgroup'][0]['groupcode']
-                                url=url.replace('{groupCode}','00'+groupcode)
-                                url=url.replace('{bankCode}','00'+bankcode)
+                                url=url.replace('{groupCode}',groupcode)
+                                url=url.replace('{bankCode}',bankcode)
                                 url=url.replace('{bankUserId}',params.bankUserId)
                                
                                 fndoapicall(request_id, lang, url, bankcode, groupcode, function (result) {
-                                    if(result){
+                                    if(typeof result=='object'){
                                         objresponse.status = 'SUCCESS'
                                         objresponse.data = result
                                         sendResponse(null, objresponse)
@@ -92,7 +93,7 @@ try {
                        
                 function fndoapicall(requestid, lang, url, bankcode, groupcode, callbackapi) {
                     try {
-                        var apiName = 'Change Account Number'
+                        var apiName = 'Change Mobile Number'
                         var request = require('request');
                         var Date = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
                         var splitdate = Date.split(' ')
@@ -194,6 +195,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

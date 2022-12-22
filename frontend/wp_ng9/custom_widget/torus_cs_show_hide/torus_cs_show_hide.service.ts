@@ -41,7 +41,7 @@ export class torus_cs_show_hideService {
       this.CurRoleId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'APP_USER_ROLES')
       this.CurModuleId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'CURRENT_MODULE_NAME')      
       this.CurMenuGroupId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'MENU_GROUP')      
-      this.CurMenuItemId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'MENU_ITEM')      
+      this.CurMenuItemId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'MENU_ITEM_CODE')      
       this.Internals = internals
       if (screenInstance[screenInstance.wftpa_description] && screenInstance[screenInstance.wftpa_description].show_hide_btns) {
         let Rows = screenInstance[screenInstance.wftpa_description].show_hide_btns

@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
     
+    
 
     /*  Created By :  Daseen
 Created Date : 19/12/2022
@@ -66,14 +67,14 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         var bankcode = JsonValue["General"]["subgroup"][0]["bankcode"]
                         var groupcode = JsonValue["General"]["subgroup"][0]["groupcode"]
                       
-                        url = url.replace('{groupCode}', '00'+groupcode)
-                        url = url.replace('{bankCode}', '00'+bankcode)
+                        url = url.replace('{groupCode}',groupcode)
+                        url = url.replace('{bankCode}',bankcode)
                         url = url.replace('{bankUserId}', params.bankUserId)
                         
                        
                         // sendResponse(null,objresponse)
                         fndoapicall(request_id, lang, url, bankcode, groupcode, function (result) {
-                           if(result.length){
+                            if(typeof result=='object'){
                                 objresponse.status = 'SUCCESS'
                                 objresponse.data = result
                                 sendResponse(null, objresponse)
@@ -117,8 +118,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 "language": lang,
                                 "timestamp": formatdate,
                                 "channel-Id": params.channelId,
-                                "bankCode": '00'+bankcode,
-                                "groupCode": '00'+groupcode,
+                                "bankCode":bankcode,
+                                "groupCode":groupcode,
                                 "bankUserId":params.bankUserId,
                                 'Content-Type': 'application/json'
                             }
@@ -208,6 +209,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 });
+
 
 
 

@@ -1,5 +1,12 @@
 <div class="p_main_layout">
  <!-- PROFILE HTML - p_main_layout --> 
+<div id="R21" class="row">
+	<div id="R21C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="navigation_ui" >
+			<f_navigation_ui [comp_id]="'navigation_ui'" [screen_instance]="screen_instance" [hidden]="isHidden('navigation_ui','f_navigation_ui')" profile_name="p_main_layout"></f_navigation_ui >
+		</div>
+	</div>
+</div>
 <div id="R41" class="row">
 	<div id="R41C1" class="column col-md-2 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 		<div class="queue"  [hidden]="!screen_instance['queue'].show" >
@@ -8,11 +15,6 @@
 	</div>
 	<div id="R41C2" class="column col-md-10 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 <div id="R41C2R0" class="row">
-	<div id="R41C2R0C3" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
-		<div class="navigation_ui" >
-			<f_navigation_ui [comp_id]="'navigation_ui'" [screen_instance]="screen_instance" [hidden]="isHidden('navigation_ui','f_navigation_ui')" profile_name="p_main_layout"></f_navigation_ui >
-		</div>
-	</div>
 	<div id="R41C2R0C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 		<div class="merchant"  [hidden]="!screen_instance['merchant'].show" >
 			<datatable [comp_id]="'merchant'" [screen_instance]="screen_instance" profile_name="p_main_layout"></datatable>
@@ -27,34 +29,6 @@
 		<div class="accounts"  [hidden]="!screen_instance['accounts'].show" >
 			<datatable [comp_id]="'accounts'" [screen_instance]="screen_instance" profile_name="p_main_layout"></datatable>
 		</div>
-	</div>
-	<div id="R41C2R0C4" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
-<div id="R41C2R0C4R0" class="row">
-	<div id="R41C2R0C4R0C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
-		<div class="shop_action" >
-			<f_shop_action [comp_id]="'shop_action'" [screen_instance]="screen_instance" [hidden]="isHidden('shop_action','f_shop_action')" profile_name="p_main_layout"></f_shop_action >
-		</div>
-	</div>
-	<div id="R41C2R0C4R0C2" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
-		<div class="shop"  [hidden]="!screen_instance['shop'].show" >
-			<datatable [comp_id]="'shop'" [screen_instance]="screen_instance" profile_name="p_main_layout"></datatable>
-		</div>
-	</div>
-</div>
-	</div>
-	<div id="R41C2R0C5" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
-<div id="R41C2R0C5R0" class="row">
-	<div id="R41C2R0C5R0C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
-		<div class="cash_desk_action" >
-			<f_cash_desk_action [comp_id]="'cash_desk_action'" [screen_instance]="screen_instance" [hidden]="isHidden('cash_desk_action','f_cash_desk_action')" profile_name="p_main_layout"></f_cash_desk_action >
-		</div>
-	</div>
-	<div id="R41C2R0C5R0C2" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
-		<div class="cash_desk"  [hidden]="!screen_instance['cash_desk'].show" >
-			<datatable [comp_id]="'cash_desk'" [screen_instance]="screen_instance" profile_name="p_main_layout"></datatable>
-		</div>
-	</div>
-</div>
 	</div>
 </div>
 	</div>

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27435 
+Build ID        : 27486 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-17 14:15 PM 
+Modified Date   : 2022-Dec-22 7:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -827,6 +827,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.navigation_review__cc_for_get_usable_balance(peventcontext)
 		this.navigation_review__sp_for_fh(peventcontext)
 		this.navigation_review__sp_for_fab(peventcontext)
+		this.navigation_review__he_for_aefin(peventcontext)
 	}
 
 	//Handler for INTERNAL event of "cc for set status bind value"
@@ -1776,6 +1777,28 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
+	navigation_review__he_for_aefin(peventcontext) { 
+		let Dest_Is_ctrl=true
+		let eventcontext =["NPSS_AEFIN"]
+		if(eventcontext.indexOf(peventcontext)==-1) return true;
+		let source_id="navigation_review"
+		let destn_id="process_log_control_ui"
+		let parent_source_id=""
+		let event_code="e_1671692861445"
+		let event_params={"caller_name":"navigation_review__he_for_aefin","event_desc":"HE for AEFIN","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"navigation_review","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""},"eventcontext":["NPSS_AEFIN"]}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

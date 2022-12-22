@@ -1,0 +1,34 @@
+<div class="p_shop_and_cashdesk_layout">
+ <!-- PROFILE HTML - p_shop_and_cashdesk_layout --> 
+<div id="R11" class="row">
+	<div id="R11C1" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+<div id="R11C1R0" class="row">
+	<div id="R11C1R0C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="shop_action" >
+			<f_shop_action [comp_id]="'shop_action'" [screen_instance]="screen_instance" [hidden]="isHidden('shop_action','f_shop_action')" profile_name="p_shop_and_cashdesk_layout"></f_shop_action >
+		</div>
+	</div>
+	<div id="R11C1R0C2" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="shop"  [hidden]="!screen_instance['shop'].show" >
+			<datatable [comp_id]="'shop'" [screen_instance]="screen_instance" profile_name="p_shop_and_cashdesk_layout"></datatable>
+		</div>
+	</div>
+</div>
+	</div>
+	<div id="R11C2" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+<div id="R11C2R0" class="row">
+	<div id="R11C2R0C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="cash_desk_action" >
+			<f_cash_desk_action [comp_id]="'cash_desk_action'" [screen_instance]="screen_instance" [hidden]="isHidden('cash_desk_action','f_cash_desk_action')" profile_name="p_shop_and_cashdesk_layout"></f_cash_desk_action >
+		</div>
+	</div>
+	<div id="R11C2R0C2" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="cash_desk"  [hidden]="!screen_instance['cash_desk'].show" >
+			<datatable [comp_id]="'cash_desk'" [screen_instance]="screen_instance" profile_name="p_shop_and_cashdesk_layout"></datatable>
+		</div>
+	</div>
+</div>
+	</div>
+</div>
+
+</div>

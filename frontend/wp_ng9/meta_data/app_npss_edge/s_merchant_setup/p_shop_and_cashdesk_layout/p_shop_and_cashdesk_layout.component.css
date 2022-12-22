@@ -1,0 +1,3 @@
+/* CSS */
+:host ::ng-deep .shop_action .row.dynamic_action_btn .btn { float: right; }
+:host ::ng-deep .cash_desk_action .row.dynamic_action_btn .btn { float: right; }

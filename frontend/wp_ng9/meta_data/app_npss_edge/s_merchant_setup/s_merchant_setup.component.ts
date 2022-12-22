@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27480 
+Build ID        : 27484 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-21 13:18 PM 
+Modified Date   : 2022-Dec-22 5:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -72,7 +72,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
-	navigation_ui_entrolment : any = {}
+	navigation_ui_enrolment : any = {}
 	navigation_ui_disable_merchant : any = {}
 	navigation_ui_update_personal : any = {}
 	navigation_ui_change_mobile_no : any = {}
@@ -103,7 +103,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	action_block : any = {}
 	action_unblock : any = {}
 	action_remove_account : any = {}
-	action_enrol : any = {}
+	action_enroll : any = {}
 	action_enroll_shop : any = {}
 	action_update_shop_details : any = {}
 	action_disable_shop_details : any = {}
@@ -173,14 +173,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_search.role = []
 		this.navigation_ui_search.action = ""
 		
-		// "Entrolment" Button of "Navigation UI" component
-		this.navigation_ui_entrolment.label_name = "Entrolment"
-		this.navigation_ui_entrolment.show = true
-		this.navigation_ui_entrolment.disabled = false
-		this.navigation_ui_entrolment.params = {"icon_only":false,"uicgcc_style":"fa fa-file-archive-o"}
-		this.navigation_ui_entrolment.dynamic_param = {}
-		this.navigation_ui_entrolment.role = []
-		this.navigation_ui_entrolment.action = ""
+		// "Enrolment" Button of "Navigation UI" component
+		this.navigation_ui_enrolment.label_name = "Enrolment"
+		this.navigation_ui_enrolment.show = true
+		this.navigation_ui_enrolment.disabled = false
+		this.navigation_ui_enrolment.params = {"icon_only":false,"uicgcc_style":"fa fa-file-archive-o"}
+		this.navigation_ui_enrolment.dynamic_param = {}
+		this.navigation_ui_enrolment.role = []
+		this.navigation_ui_enrolment.action = ""
 		
 		// "Disable Merchant" Button of "Navigation UI" component
 		this.navigation_ui_disable_merchant.label_name = "Disable Merchant"
@@ -478,14 +478,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_remove_account.role = []
 		this.action_remove_account.action = ""
 		
-		// "Enrol" Button of "Action" component
-		this.action_enrol.label_name = "Enrol"
-		this.action_enrol.show = true
-		this.action_enrol.disabled = false
-		this.action_enrol.params = {"icon_only":false,"uicgcc_style":"fa fa-file-word-o"}
-		this.action_enrol.dynamic_param = {}
-		this.action_enrol.role = []
-		this.action_enrol.action = ""
+		// "Enroll" Button of "Action" component
+		this.action_enroll.label_name = "Enroll"
+		this.action_enroll.show = true
+		this.action_enroll.disabled = false
+		this.action_enroll.params = {"icon_only":false,"uicgcc_style":"fa fa-file-word-o"}
+		this.action_enroll.dynamic_param = {}
+		this.action_enroll.role = []
+		this.action_enroll.action = ""
 		
 		// "Enroll Shop" Button of "Action" component
 		this.action_enroll_shop.label_name = "Enroll Shop"
@@ -747,7 +747,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop.uicgc_desc = "Shop"
 		this.shop.uicgc_code = "uicgc_18"
 		this.shop.params = {"need_search":"N","need_pag_datatable":"Y"}
-		this.shop.datasource = {"e_1671603328942":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"E_1671603328942","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671628620037","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Shop Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666932220178","date_format":false},{"column_name":"SHOP_MID","alias_name":"","mq_id":"MQ_1666932220593","date_format":false},{"column_name":"SHOP_NAME","alias_name":"","mq_id":"MQ_1666932220745","date_format":false},{"column_name":"SHOP_ID","alias_name":"","mq_id":"MQ_1666932220913","date_format":false},{"column_name":"SHOP_TYPE","alias_name":"","mq_id":"MQ_1666932221257","date_format":false},{"column_name":"SHOP_MCC","alias_name":"","mq_id":"MQ_1666932221417","date_format":false},{"column_name":"SHOP_IBAN","alias_name":"","mq_id":"MQ_1666932221577","date_format":false},{"column_name":"BUILDING","alias_name":"","mq_id":"MQ_1666932222401","date_format":false},{"column_name":"STREET","alias_name":"","mq_id":"MQ_1666932222561","date_format":false},{"column_name":"CITY","alias_name":"","mq_id":"MQ_1666932288472","date_format":false},{"column_name":"POSTAL_CODE","alias_name":"","mq_id":"MQ_1666932288632","date_format":false},{"column_name":"COUNTY","alias_name":"","mq_id":"MQ_1666932289064","date_format":false},{"column_name":"COUNTRY","alias_name":"","mq_id":"MQ_1666932350992","date_format":false},{"column_name":"NPSSMS_ID","alias_name":"","mq_id":"MQ_1667366133634","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSMS_ID,        BANKUSERID,        SHOP_MID,        SHOP_NAME,        SHOP_ID,        SHOP_TYPE,        SHOP_MCC,        SHOP_IBAN,        BUILDING,        STREET,        CITY,        POSTAL_CODE,        COUNTY,        COUNTRY,        STATUS,        PROCESS_STATUS,        TENANT_ID,        CREATED_DATE   FROM (SELECT S.NPSSMS_ID,                S.PRODUCT_CODE,                S.BANKUSERID,                S.SHOP_NAME,                S.SHOP_MID,                S.SHOP_ID,                S.SHOP_TYPE,                S.SHOP_MCC,                S.SHOP_IBAN,                S.BUILDING,                S.STREET,                S.CITY,                S.POSTAL_CODE,                S.COUNTY,                S.COUNTRY,                S.EXHF_ID,                S.STATUS,                S.PROCESS_STATUS,                S.TENANT_ID,                S.CREATED_DATE           FROM NPSS_MERCHANT_SHOPS S) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Shop Details Horizontal CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.shop.datasource = {"e_1671603328942":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"E_1671603328942","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671628620037","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Shop Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666932220178","date_format":false},{"column_name":"SHOP_MID","alias_name":"","mq_id":"MQ_1666932220593","date_format":false},{"column_name":"SHOP_NAME","alias_name":"","mq_id":"MQ_1666932220745","date_format":false},{"column_name":"SHOP_ID","alias_name":"","mq_id":"MQ_1666932220913","date_format":false},{"column_name":"SHOP_TYPE","alias_name":"","mq_id":"MQ_1666932221257","date_format":false},{"column_name":"SHOP_MCC","alias_name":"","mq_id":"MQ_1666932221417","date_format":false},{"column_name":"SHOP_IBAN","alias_name":"","mq_id":"MQ_1666932221577","date_format":false},{"column_name":"BUILDING","alias_name":"","mq_id":"MQ_1666932222401","date_format":false},{"column_name":"STREET","alias_name":"","mq_id":"MQ_1666932222561","date_format":false},{"column_name":"CITY","alias_name":"","mq_id":"MQ_1666932288472","date_format":false},{"column_name":"POSTAL_CODE","alias_name":"","mq_id":"MQ_1666932288632","date_format":false},{"column_name":"COUNTY","alias_name":"","mq_id":"MQ_1666932289064","date_format":false},{"column_name":"COUNTRY","alias_name":"","mq_id":"MQ_1666932350992","date_format":false},{"column_name":"NPSSMS_ID","alias_name":"","mq_id":"MQ_1667366133634","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSMS_ID,        BANKUSERID,        SHOP_MID,        SHOP_NAME,        SHOP_ID,        SHOP_TYPE,        SHOP_MCC,        SHOP_IBAN,        BUILDING,        STREET,        CITY,        POSTAL_CODE,        COUNTY,        COUNTRY,        STATUS,        PROCESS_STATUS,        TENANT_ID,        CREATED_DATE   FROM (SELECT S.NPSSMS_ID,                S.PRODUCT_CODE,                S.BANKUSERID,                S.SHOP_NAME,                S.SHOP_MID,                S.SHOP_ID,                S.SHOP_TYPE,                S.SHOP_MCC,                S.SHOP_IBAN,                S.BUILDING,                S.STREET,                S.CITY,                S.POSTAL_CODE,                S.COUNTY,                S.COUNTRY,                S.EXHF_ID,                S.STATUS,                S.PROCESS_STATUS,                S.TENANT_ID,                S.CREATED_DATE           FROM NPSS_MERCHANT_SHOPS S) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Shop Details Horizontal CCD","filter":[{"filter_name":"NPSSMP_ID","binding_name":"NPSSMP_ID","binding_value":"","source_name":"MI_LEVEL_NPSSMP_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.shop.context_menu = []
 		this.shop.views = {}
 		this.shop.onChangecomponent = new EventEmitter<any>()
@@ -856,7 +856,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		// "Enrolment Cash Desk" Button of "Cash Desk Action" component
 		this.cash_desk_action_enrolment_cash_desk.label_name = "Enrolment Cash Desk"
 		this.cash_desk_action_enrolment_cash_desk.show = true
-		this.cash_desk_action_enrolment_cash_desk.disabled = false
+		this.cash_desk_action_enrolment_cash_desk.disabled = true
 		this.cash_desk_action_enrolment_cash_desk.params = {"icon_only":false,"uicgcc_style":"fa fa-file-word-o"}
 		this.cash_desk_action_enrolment_cash_desk.dynamic_param = {}
 		this.cash_desk_action_enrolment_cash_desk.role = []
@@ -996,13 +996,13 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_tri_btn1__trg_btn1_for_bt()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
-	navigation_ui_entrolment__action_button_click(){
-		this.navigation_ui_entrolment__sp_for_unen()
-		this.navigation_ui_entrolment__se_nav_entrol_to_action_entrol()
-		this.navigation_ui_entrolment__cu_for_cust_dtl()
-		this.navigation_ui_entrolment__cu_for_account_dtl()
-		this.navigation_ui_entrolment__cc_for_nav_entrol()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__action_button_click(){
+		this.navigation_ui_enrolment__sp_for_unen()
+		this.navigation_ui_enrolment__se_nav_entrol_to_action_entrol()
+		this.navigation_ui_enrolment__cu_for_cust_dtl()
+		this.navigation_ui_enrolment__cu_for_account_dtl()
+		this.navigation_ui_enrolment__cc_for_nav_entrol()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui change mobile no"
@@ -1068,9 +1068,9 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_back__rs_for_back()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "action enrol"
-	action_enrol__action_button_click(){
-		this.action_enrol__cc_for_customer_entroll()
+	//Handler for ACTION_BUTTON_CLICK event of "action enroll"
+	action_enroll__action_button_click(){
+		this.action_enroll__cc_for_customer_entroll()
 	}
 
 	//Handler for SELECTION_CHANGED event of "queue"
@@ -1216,6 +1216,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop__ee_for_set_shop_bank_account()
 		this.shop__tbc_for_button_3()
 		this.shop__ssr_for_shop_detail()
+		this.shop__ee_for_enrollment_cashdesk()
 	}
 
 	//Handler for INTERNAL event of "brfq for cashdesk"
@@ -1406,7 +1407,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="action_enrol"
+		let destn_id="action_enroll"
 		let parent_source_id=""
 		let event_code="e_1670996997915"
 		let event_params={"caller_name":"page_load__he_for_action_entrol","event_desc":"HE for action entrol","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -2500,15 +2501,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
-	navigation_ui_entrolment__sp_for_unen() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__sp_for_unen() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_entrolment"
+		let source_id="navigation_ui_enrolment"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1670997548906"
-		let event_params={"caller_name":"navigation_ui_entrolment__sp_for_unen","event_desc":"SP for UNEN","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"navigation_ui_enrolment__sp_for_unen","event_desc":"SP for UNEN","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2521,15 +2522,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
-	navigation_ui_entrolment__se_nav_entrol_to_action_entrol() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__se_nav_entrol_to_action_entrol() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_entrolment"
-		let destn_id="action_enrol"
+		let source_id="navigation_ui_enrolment"
+		let destn_id="action_enroll"
 		let parent_source_id=""
 		let event_code="e_1671001614444"
-		let event_params={"caller_name":"navigation_ui_entrolment__se_nav_entrol_to_action_entrol","event_desc":"SE nav entrol to action entrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_ui_enrolment__se_nav_entrol_to_action_entrol","event_desc":"SE nav entrol to action entrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -2542,15 +2543,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
-	navigation_ui_entrolment__cu_for_cust_dtl() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__cu_for_cust_dtl() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_entrolment"
+		let source_id="navigation_ui_enrolment"
 		let destn_id="merchant_detail"
 		let parent_source_id=""
 		let event_code="e_1671014985065"
-		let event_params={"caller_name":"navigation_ui_entrolment__cu_for_cust_dtl","event_desc":"CU for cust dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{"need_reset_key_column":"N"}}
+		let event_params={"caller_name":"navigation_ui_enrolment__cu_for_cust_dtl","event_desc":"CU for cust dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"need_reset_key_column":"N"}}
 		let handler_code="clear_ui"
 		let internals=""
 		let event_data={}
@@ -2563,15 +2564,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
-	navigation_ui_entrolment__cu_for_account_dtl() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__cu_for_account_dtl() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_entrolment"
+		let source_id="navigation_ui_enrolment"
 		let destn_id="account__detail"
 		let parent_source_id=""
 		let event_code="e_1671015020416"
-		let event_params={"caller_name":"navigation_ui_entrolment__cu_for_account_dtl","event_desc":"CU for Account Dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{"need_reset_key_column":"N"}}
+		let event_params={"caller_name":"navigation_ui_enrolment__cu_for_account_dtl","event_desc":"CU for Account Dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"need_reset_key_column":"N"}}
 		let handler_code="clear_ui"
 		let internals=""
 		let event_data={}
@@ -2584,15 +2585,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
-	navigation_ui_entrolment__cc_for_nav_entrol() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__cc_for_nav_entrol() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_entrolment"
+		let source_id="navigation_ui_enrolment"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671099422384"
-		let event_params={"caller_name":"navigation_ui_entrolment__cc_for_nav_entrol","event_desc":"CC for nav entrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_enrolment__cc_for_nav_entrol","event_desc":"CC for nav entrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -2862,7 +2863,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="navigation_ui_entrolment"
+		let destn_id="navigation_ui_enrolment"
 		let parent_source_id=""
 		let event_code="e_1671000444316"
 		let event_params={"caller_name":"accounts__ee_for_entrol","event_desc":"EE for entrol","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -3142,7 +3143,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_shop__sfr_for_shop,"
 		let event_data={}
-		let data_source={"e_1671603328942":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"E_1671603328942","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671628620037","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Shop Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666932220178","date_format":false},{"column_name":"SHOP_MID","alias_name":"","mq_id":"MQ_1666932220593","date_format":false},{"column_name":"SHOP_NAME","alias_name":"","mq_id":"MQ_1666932220745","date_format":false},{"column_name":"SHOP_ID","alias_name":"","mq_id":"MQ_1666932220913","date_format":false},{"column_name":"SHOP_TYPE","alias_name":"","mq_id":"MQ_1666932221257","date_format":false},{"column_name":"SHOP_MCC","alias_name":"","mq_id":"MQ_1666932221417","date_format":false},{"column_name":"SHOP_IBAN","alias_name":"","mq_id":"MQ_1666932221577","date_format":false},{"column_name":"BUILDING","alias_name":"","mq_id":"MQ_1666932222401","date_format":false},{"column_name":"STREET","alias_name":"","mq_id":"MQ_1666932222561","date_format":false},{"column_name":"CITY","alias_name":"","mq_id":"MQ_1666932288472","date_format":false},{"column_name":"POSTAL_CODE","alias_name":"","mq_id":"MQ_1666932288632","date_format":false},{"column_name":"COUNTY","alias_name":"","mq_id":"MQ_1666932289064","date_format":false},{"column_name":"COUNTRY","alias_name":"","mq_id":"MQ_1666932350992","date_format":false},{"column_name":"NPSSMS_ID","alias_name":"","mq_id":"MQ_1667366133634","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSMS_ID,        BANKUSERID,        SHOP_MID,        SHOP_NAME,        SHOP_ID,        SHOP_TYPE,        SHOP_MCC,        SHOP_IBAN,        BUILDING,        STREET,        CITY,        POSTAL_CODE,        COUNTY,        COUNTRY,        STATUS,        PROCESS_STATUS,        TENANT_ID,        CREATED_DATE   FROM (SELECT S.NPSSMS_ID,                S.PRODUCT_CODE,                S.BANKUSERID,                S.SHOP_NAME,                S.SHOP_MID,                S.SHOP_ID,                S.SHOP_TYPE,                S.SHOP_MCC,                S.SHOP_IBAN,                S.BUILDING,                S.STREET,                S.CITY,                S.POSTAL_CODE,                S.COUNTY,                S.COUNTRY,                S.EXHF_ID,                S.STATUS,                S.PROCESS_STATUS,                S.TENANT_ID,                S.CREATED_DATE           FROM NPSS_MERCHANT_SHOPS S) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Shop Details Horizontal CCD","filter":[],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"e_1671603328942":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"E_1671603328942","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671628620037","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Shop Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666932220178","date_format":false},{"column_name":"SHOP_MID","alias_name":"","mq_id":"MQ_1666932220593","date_format":false},{"column_name":"SHOP_NAME","alias_name":"","mq_id":"MQ_1666932220745","date_format":false},{"column_name":"SHOP_ID","alias_name":"","mq_id":"MQ_1666932220913","date_format":false},{"column_name":"SHOP_TYPE","alias_name":"","mq_id":"MQ_1666932221257","date_format":false},{"column_name":"SHOP_MCC","alias_name":"","mq_id":"MQ_1666932221417","date_format":false},{"column_name":"SHOP_IBAN","alias_name":"","mq_id":"MQ_1666932221577","date_format":false},{"column_name":"BUILDING","alias_name":"","mq_id":"MQ_1666932222401","date_format":false},{"column_name":"STREET","alias_name":"","mq_id":"MQ_1666932222561","date_format":false},{"column_name":"CITY","alias_name":"","mq_id":"MQ_1666932288472","date_format":false},{"column_name":"POSTAL_CODE","alias_name":"","mq_id":"MQ_1666932288632","date_format":false},{"column_name":"COUNTY","alias_name":"","mq_id":"MQ_1666932289064","date_format":false},{"column_name":"COUNTRY","alias_name":"","mq_id":"MQ_1666932350992","date_format":false},{"column_name":"NPSSMS_ID","alias_name":"","mq_id":"MQ_1667366133634","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSMS_ID,        BANKUSERID,        SHOP_MID,        SHOP_NAME,        SHOP_ID,        SHOP_TYPE,        SHOP_MCC,        SHOP_IBAN,        BUILDING,        STREET,        CITY,        POSTAL_CODE,        COUNTY,        COUNTRY,        STATUS,        PROCESS_STATUS,        TENANT_ID,        CREATED_DATE   FROM (SELECT S.NPSSMS_ID,                S.PRODUCT_CODE,                S.BANKUSERID,                S.SHOP_NAME,                S.SHOP_MID,                S.SHOP_ID,                S.SHOP_TYPE,                S.SHOP_MCC,                S.SHOP_IBAN,                S.BUILDING,                S.STREET,                S.CITY,                S.POSTAL_CODE,                S.COUNTY,                S.COUNTRY,                S.EXHF_ID,                S.STATUS,                S.PROCESS_STATUS,                S.TENANT_ID,                S.CREATED_DATE           FROM NPSS_MERCHANT_SHOPS S) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Shop Details Horizontal CCD","filter":[{"filter_name":"NPSSMP_ID","binding_name":"NPSSMP_ID","binding_value":"","source_name":"MI_LEVEL_NPSSMP_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -3258,15 +3259,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "action enrol"
-	action_enrol__cc_for_customer_entroll() { 
+	//Handler for ACTION_BUTTON_CLICK event of "action enroll"
+	action_enroll__cc_for_customer_entroll() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="action_enrol"
+		let source_id="action_enroll"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671002947221"
-		let event_params={"caller_name":"action_enrol__cc_for_customer_entroll","event_desc":"CC for Customer entroll","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_enrol","raiseparam":{}}
+		let event_params={"caller_name":"action_enroll__cc_for_customer_entroll","event_desc":"CC for Customer entroll","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_enroll","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -4307,6 +4308,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__ee_for_enrollment_cashdesk() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="cash_desk_action_enrolment_cash_desk"
+		let parent_source_id=""
+		let event_code="e_1671629377173"
+		let event_params={"caller_name":"shop__ee_for_enrollment_cashdesk","event_desc":"EE for enrollment cashdesk","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

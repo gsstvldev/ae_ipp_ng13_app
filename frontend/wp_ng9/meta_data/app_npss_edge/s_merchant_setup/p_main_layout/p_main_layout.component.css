@@ -1,14 +1,17 @@
 /* CSS */
 :host ::ng-deep .navigation_ui .row.dynamic_action_btn .btn { float: right; }
 :host ::ng-deep #merchant .ui-table .ui-table-wrapper{
-height: 269px !important
+height: 170px !important
 }
 :host ::ng-deep .sub_navigation_ui .row.dynamic_action_btn .btn { float: right; }
+:host ::ng-deep #merchant .ui-table .ui-table-wrapper{
+height: 170px !important
+}
 :host ::ng-deep .shop_action .row.dynamic_action_btn .btn { float: right; }
-:host ::ng-deep #shop .ui-table .ui-table-wrapper{
-height: 269px !important
+:host ::ng-deep #merchant .ui-table .ui-table-wrapper{
+height: 170px !important
 }
 :host ::ng-deep .cash_desk_action .row.dynamic_action_btn .btn { float: right; }
-:host ::ng-deep #cash_desk .ui-table .ui-table-wrapper{
-height: 269px !important
+:host ::ng-deep #merchant .ui-table .ui-table-wrapper{
+height: 170px !important
 }

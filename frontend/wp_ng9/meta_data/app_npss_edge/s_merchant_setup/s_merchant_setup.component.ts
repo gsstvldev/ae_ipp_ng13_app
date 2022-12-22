@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27464 
+Build ID        : 27487 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-22 7:8 AM 
+Modified Date   : 2022-Dec-22 7:53 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -1249,6 +1249,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop__ssr_for_shop_detail()
 		this.shop__ee_for_enrollment_cashdesk()
 		this.shop__svm_for_shop()
+		this.shop__ee_for_shop_enrolment_btn()
 	}
 
 	//Handler for INTERNAL event of "svm for shop"
@@ -4425,6 +4426,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847660575":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847660575","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671692481619","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Shop Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666932220178","date_format":false},{"column_name":"SHOP_MID","alias_name":"","mq_id":"MQ_1666932220593","date_format":false},{"column_name":"SHOP_NAME","alias_name":"","mq_id":"MQ_1666932220745","date_format":false},{"column_name":"SHOP_ID","alias_name":"","mq_id":"MQ_1666932220913","date_format":false},{"column_name":"SHOP_TYPE","alias_name":"","mq_id":"MQ_1666932221257","date_format":false},{"column_name":"SHOP_MCC","alias_name":"","mq_id":"MQ_1666932221417","date_format":false},{"column_name":"SHOP_IBAN","alias_name":"","mq_id":"MQ_1666932221577","date_format":false},{"column_name":"BUILDING","alias_name":"","mq_id":"MQ_1666932222401","date_format":false},{"column_name":"STREET","alias_name":"","mq_id":"MQ_1666932222561","date_format":false},{"column_name":"CITY","alias_name":"","mq_id":"MQ_1666932288472","date_format":false},{"column_name":"POSTAL_CODE","alias_name":"","mq_id":"MQ_1666932288632","date_format":false},{"column_name":"COUNTY","alias_name":"","mq_id":"MQ_1666932289064","date_format":false},{"column_name":"COUNTRY","alias_name":"","mq_id":"MQ_1666932350992","date_format":false},{"column_name":"NPSSMS_ID","alias_name":"","mq_id":"MQ_1667366133634","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSMS_ID,        BANKUSERID,        SHOP_MID,        SHOP_NAME,        SHOP_ID,        SHOP_TYPE,        SHOP_MCC,        SHOP_IBAN,        BUILDING,        STREET,        CITY,        POSTAL_CODE,        COUNTY,        COUNTRY,        STATUS,        PROCESS_STATUS,        TENANT_ID,        CREATED_DATE   FROM (SELECT S.NPSSMS_ID,                S.PRODUCT_CODE,                S.BANKUSERID,                S.SHOP_NAME,                S.SHOP_MID,                S.SHOP_ID,                S.SHOP_TYPE,                S.SHOP_MCC,                S.SHOP_IBAN,                S.BUILDING,                S.STREET,                S.CITY,                S.POSTAL_CODE,                S.COUNTY,                S.COUNTRY,                S.EXHF_ID,                S.STATUS,                S.PROCESS_STATUS,                S.TENANT_ID,                S.CREATED_DATE           FROM NPSS_MERCHANT_SHOPS S) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Shop Details Horizontal CCD","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop MID","target_column":"SHOP_MID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Shop Name","target_column":"SHOP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__ee_for_shop_enrolment_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="shop_action_enrolment_shop"
+		let parent_source_id=""
+		let event_code="e_1671695245953"
+		let event_params={"caller_name":"shop__ee_for_shop_enrolment_btn","event_desc":"EE for shop enrolment btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

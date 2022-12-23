@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27506 
+Build ID        : 27509 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-23 6:57 AM 
+Modified Date   : 2022-Dec-23 8:27 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -23,16 +23,16 @@ import {npss_cs_mch_update_personal_dataService} from '../../../custom_widget/np
 import {npss_cs_mch_add_bank_accountsService} from '../../../custom_widget/npss_cs_mch_add_bank_accounts/npss_cs_mch_add_bank_accounts.service'
 import {npss_cs_mch_block_bank_accountService} from '../../../custom_widget/npss_cs_mch_block_bank_account/npss_cs_mch_block_bank_account.service'
 import {npss_cs_shop_enrolmentService} from '../../../custom_widget/npss_cs_shop_enrolment/npss_cs_shop_enrolment.service'
-import {npss_cs_shop_disableService} from '../../../custom_widget/npss_cs_shop_disable/npss_cs_shop_disable.service'
 import {npss_cs_shop_updateService} from '../../../custom_widget/npss_cs_shop_update/npss_cs_shop_update.service'
 import {npss_cs_shop_set_bank_accountService} from '../../../custom_widget/npss_cs_shop_set_bank_account/npss_cs_shop_set_bank_account.service'
 import {npss_cs_shop_remove_bank_accountService} from '../../../custom_widget/npss_cs_shop_remove_bank_account/npss_cs_shop_remove_bank_account.service'
+import {npss_cs_shop_disableService} from '../../../custom_widget/npss_cs_shop_disable/npss_cs_shop_disable.service'
 
 @Component({
 	selector: 's_merchant_setup',
 	templateUrl: './s_merchant_setup.component.html',
 	styleUrls: ['./s_merchant_setup.component.css'],
-	providers:[torus_cs_show_hideService,npss_c_btn_enb_disbService,npss_cs_mch_change_mobileService,npss_cs_mch_enrolmentService,npss_cs_mch_unblock_bank_accountService,npss_cs_mch_remove_bank_accountsService,npss_cs_mch_disableService,npss_cs_mch_update_personal_dataService,npss_cs_mch_add_bank_accountsService,npss_cs_mch_block_bank_accountService,npss_cs_shop_enrolmentService,npss_cs_shop_disableService,npss_cs_shop_updateService,npss_cs_shop_set_bank_accountService,npss_cs_shop_remove_bank_accountService]
+	providers:[torus_cs_show_hideService,npss_c_btn_enb_disbService,npss_cs_mch_change_mobileService,npss_cs_mch_enrolmentService,npss_cs_mch_unblock_bank_accountService,npss_cs_mch_remove_bank_accountsService,npss_cs_mch_disableService,npss_cs_mch_update_personal_dataService,npss_cs_mch_add_bank_accountsService,npss_cs_mch_block_bank_accountService,npss_cs_shop_enrolmentService,npss_cs_shop_updateService,npss_cs_shop_set_bank_accountService,npss_cs_shop_remove_bank_accountService,npss_cs_shop_disableService]
 })
     
 // Start of class 
@@ -84,15 +84,16 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	navigation_ui_change_mobile_no : any = {}
 	navigation_ui_update_mcc : any = {}
 	navigation_ui_add_account : any = {}
-	navigation_ui_block_account : any = {}
-	navigation_ui_unblock_account : any = {}
+	navigation_ui_block_accounts : any = {}
 	navigation_ui_view_process_log : any = {}
-	navigation_ui_remove_account : any = {}
+	navigation_ui_unblock_accounts : any = {}
+	navigation_ui_remove_accounts : any = {}
 	navigation_ui_tri_btn1 : any = {}
 	navigation_ui_trg_btn2 : any = {}
 	navigation_ui_tri_btn3 : any = {}
 	navigation_ui_tri_btn4 : any = {}
 	navigation_ui_view_shop : any = {}
+	navigation_ui_trg_hide_all_navigation : any = {}
 	merchant : any = {}
 	accounts : any = {}
 	merchant_detail : any = {}
@@ -123,8 +124,9 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	merchant_setup_widget : any = {}
 	queue : any = {}
 	sub_navigation_ui : any = {}
-	sub_navigation_ui_removess : any = {}
-	sub_navigation_ui_block_unblocks : any = {}
+	sub_navigation_ui_remove_account : any = {}
+	sub_navigation_ui_unblock_account : any = {}
+	sub_navigation_ui_block_account : any = {}
 	sub_navigation_ui_set_default : any = {}
 	sub_navigation_ui_add_bank_accountss : any = {}
 	shop_detail : any = {}
@@ -153,7 +155,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_btn_enb_disbService:npss_c_btn_enb_disbService,private npss_cs_mch_change_mobileService:npss_cs_mch_change_mobileService,private npss_cs_mch_enrolmentService:npss_cs_mch_enrolmentService,private npss_cs_mch_unblock_bank_accountService:npss_cs_mch_unblock_bank_accountService,private npss_cs_mch_remove_bank_accountsService:npss_cs_mch_remove_bank_accountsService,private npss_cs_mch_disableService:npss_cs_mch_disableService,private npss_cs_mch_update_personal_dataService:npss_cs_mch_update_personal_dataService,private npss_cs_mch_add_bank_accountsService:npss_cs_mch_add_bank_accountsService,private npss_cs_mch_block_bank_accountService:npss_cs_mch_block_bank_accountService,private npss_cs_shop_enrolmentService:npss_cs_shop_enrolmentService,private npss_cs_shop_disableService:npss_cs_shop_disableService,private npss_cs_shop_updateService:npss_cs_shop_updateService,private npss_cs_shop_set_bank_accountService:npss_cs_shop_set_bank_accountService,private npss_cs_shop_remove_bank_accountService:npss_cs_shop_remove_bank_accountService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_btn_enb_disbService:npss_c_btn_enb_disbService,private npss_cs_mch_change_mobileService:npss_cs_mch_change_mobileService,private npss_cs_mch_enrolmentService:npss_cs_mch_enrolmentService,private npss_cs_mch_unblock_bank_accountService:npss_cs_mch_unblock_bank_accountService,private npss_cs_mch_remove_bank_accountsService:npss_cs_mch_remove_bank_accountsService,private npss_cs_mch_disableService:npss_cs_mch_disableService,private npss_cs_mch_update_personal_dataService:npss_cs_mch_update_personal_dataService,private npss_cs_mch_add_bank_accountsService:npss_cs_mch_add_bank_accountsService,private npss_cs_mch_block_bank_accountService:npss_cs_mch_block_bank_accountService,private npss_cs_shop_enrolmentService:npss_cs_shop_enrolmentService,private npss_cs_shop_updateService:npss_cs_shop_updateService,private npss_cs_shop_set_bank_accountService:npss_cs_shop_set_bank_accountService,private npss_cs_shop_remove_bank_accountService:npss_cs_shop_remove_bank_accountService,private npss_cs_shop_disableService:npss_cs_shop_disableService) {
     
 	}
     
@@ -236,23 +238,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_add_account.role = []
 		this.navigation_ui_add_account.action = ""
 		
-		// "Block Account" Button of "Navigation UI" component
-		this.navigation_ui_block_account.label_name = "Block Account"
-		this.navigation_ui_block_account.show = true
-		this.navigation_ui_block_account.disabled = true
-		this.navigation_ui_block_account.params = {"icon_only":false,"uicgcc_style":"fa fa-ban"}
-		this.navigation_ui_block_account.dynamic_param = {}
-		this.navigation_ui_block_account.role = []
-		this.navigation_ui_block_account.action = ""
-		
-		// "Unblock Account" Button of "Navigation UI" component
-		this.navigation_ui_unblock_account.label_name = "Unblock Account"
-		this.navigation_ui_unblock_account.show = true
-		this.navigation_ui_unblock_account.disabled = true
-		this.navigation_ui_unblock_account.params = {"icon_only":false,"uicgcc_style":"fa fa-check-circle"}
-		this.navigation_ui_unblock_account.dynamic_param = {}
-		this.navigation_ui_unblock_account.role = []
-		this.navigation_ui_unblock_account.action = ""
+		// "Block Accounts" Button of "Navigation UI" component
+		this.navigation_ui_block_accounts.label_name = "Block Accounts"
+		this.navigation_ui_block_accounts.show = true
+		this.navigation_ui_block_accounts.disabled = true
+		this.navigation_ui_block_accounts.params = {"icon_only":false,"uicgcc_style":"fa fa-ban"}
+		this.navigation_ui_block_accounts.dynamic_param = {}
+		this.navigation_ui_block_accounts.role = []
+		this.navigation_ui_block_accounts.action = ""
 		
 		// "View Process Log" Button of "Navigation UI" component
 		this.navigation_ui_view_process_log.label_name = "View Process Log"
@@ -263,14 +256,23 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_process_log.role = []
 		this.navigation_ui_view_process_log.action = ""
 		
-		// "Remove Account" Button of "Navigation UI" component
-		this.navigation_ui_remove_account.label_name = "Remove Account"
-		this.navigation_ui_remove_account.show = true
-		this.navigation_ui_remove_account.disabled = true
-		this.navigation_ui_remove_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
-		this.navigation_ui_remove_account.dynamic_param = {}
-		this.navigation_ui_remove_account.role = []
-		this.navigation_ui_remove_account.action = ""
+		// "Unblock Accounts" Button of "Navigation UI" component
+		this.navigation_ui_unblock_accounts.label_name = "Unblock Accounts"
+		this.navigation_ui_unblock_accounts.show = true
+		this.navigation_ui_unblock_accounts.disabled = true
+		this.navigation_ui_unblock_accounts.params = {"icon_only":false,"uicgcc_style":"fa fa-check-circle"}
+		this.navigation_ui_unblock_accounts.dynamic_param = {}
+		this.navigation_ui_unblock_accounts.role = []
+		this.navigation_ui_unblock_accounts.action = ""
+		
+		// "Remove Accounts" Button of "Navigation UI" component
+		this.navigation_ui_remove_accounts.label_name = "Remove Accounts"
+		this.navigation_ui_remove_accounts.show = true
+		this.navigation_ui_remove_accounts.disabled = true
+		this.navigation_ui_remove_accounts.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.navigation_ui_remove_accounts.dynamic_param = {}
+		this.navigation_ui_remove_accounts.role = []
+		this.navigation_ui_remove_accounts.action = ""
 		
 		// "Tri Btn1" Button of "Navigation UI" component
 		this.navigation_ui_tri_btn1.label_name = "Tri Btn1"
@@ -316,6 +318,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_shop.dynamic_param = {}
 		this.navigation_ui_view_shop.role = []
 		this.navigation_ui_view_shop.action = ""
+		
+		// "Trg Hide All Navigation" Button of "Navigation UI" component
+		this.navigation_ui_trg_hide_all_navigation.label_name = "Trg Hide All Navigation"
+		this.navigation_ui_trg_hide_all_navigation.show = true
+		this.navigation_ui_trg_hide_all_navigation.disabled = false
+		this.navigation_ui_trg_hide_all_navigation.params = {"icon_only":false,"uicgcc_style":""}
+		this.navigation_ui_trg_hide_all_navigation.dynamic_param = {}
+		this.navigation_ui_trg_hide_all_navigation.role = []
+		this.navigation_ui_trg_hide_all_navigation.action = ""
 	
 		// Component level properties - "Merchant" 
 		this.merchant.uictrl_code = "datatable"
@@ -624,23 +635,32 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.sub_navigation_ui.f_sub_navigation_ui = {"show":true}
 		this.sub_navigation_ui.current_view = "f_sub_navigation_ui"
 		
-		// "Removess" Button of "Sub Navigation UI" component
-		this.sub_navigation_ui_removess.label_name = "Removess"
-		this.sub_navigation_ui_removess.show = true
-		this.sub_navigation_ui_removess.disabled = true
-		this.sub_navigation_ui_removess.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
-		this.sub_navigation_ui_removess.dynamic_param = {}
-		this.sub_navigation_ui_removess.role = []
-		this.sub_navigation_ui_removess.action = ""
+		// "Remove Account" Button of "Sub Navigation UI" component
+		this.sub_navigation_ui_remove_account.label_name = "Remove Account"
+		this.sub_navigation_ui_remove_account.show = true
+		this.sub_navigation_ui_remove_account.disabled = true
+		this.sub_navigation_ui_remove_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.sub_navigation_ui_remove_account.dynamic_param = {}
+		this.sub_navigation_ui_remove_account.role = []
+		this.sub_navigation_ui_remove_account.action = ""
 		
-		// "Block Unblocks" Button of "Sub Navigation UI" component
-		this.sub_navigation_ui_block_unblocks.label_name = "Block Unblocks"
-		this.sub_navigation_ui_block_unblocks.show = true
-		this.sub_navigation_ui_block_unblocks.disabled = false
-		this.sub_navigation_ui_block_unblocks.params = {"icon_only":false,"uicgcc_style":"fa fa-check-circle"}
-		this.sub_navigation_ui_block_unblocks.dynamic_param = {}
-		this.sub_navigation_ui_block_unblocks.role = []
-		this.sub_navigation_ui_block_unblocks.action = ""
+		// "Unblock Account" Button of "Sub Navigation UI" component
+		this.sub_navigation_ui_unblock_account.label_name = "Unblock Account"
+		this.sub_navigation_ui_unblock_account.show = true
+		this.sub_navigation_ui_unblock_account.disabled = false
+		this.sub_navigation_ui_unblock_account.params = {"icon_only":false,"uicgcc_style":"fa fa-check-circle"}
+		this.sub_navigation_ui_unblock_account.dynamic_param = {}
+		this.sub_navigation_ui_unblock_account.role = []
+		this.sub_navigation_ui_unblock_account.action = ""
+		
+		// "Block Account" Button of "Sub Navigation UI" component
+		this.sub_navigation_ui_block_account.label_name = "Block Account"
+		this.sub_navigation_ui_block_account.show = true
+		this.sub_navigation_ui_block_account.disabled = false
+		this.sub_navigation_ui_block_account.params = {"icon_only":false,"uicgcc_style":""}
+		this.sub_navigation_ui_block_account.dynamic_param = {}
+		this.sub_navigation_ui_block_account.role = []
+		this.sub_navigation_ui_block_account.action = ""
 		
 		// "Set Default" Button of "Sub Navigation UI" component
 		this.sub_navigation_ui_set_default.label_name = "Set Default"
@@ -1148,9 +1168,11 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.sub_navigation_ui_add_bank_accountss__cc_for_enab_desable_for_add_account()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui removess"
-	sub_navigation_ui_removess__action_button_click(){
-		this.sub_navigation_ui_removess__cc_for_enable_disable_for_remove()
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui remove account"
+	sub_navigation_ui_remove_account__action_button_click(){
+		this.sub_navigation_ui_remove_account__cc_for_enable_disable_for_remove()
+		this.sub_navigation_ui_remove_account__sp_for_rem_acc()
+		this.sub_navigation_ui_remove_account__se_for_act_rem_bank_acc()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui set default"
@@ -1158,11 +1180,11 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.sub_navigation_ui_set_default__cc_for_enable_disable_for_set_default()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui block unblocks"
-	sub_navigation_ui_block_unblocks__action_button_click(){
-		this.sub_navigation_ui_block_unblocks__sp_for_block_unblock()
-		this.sub_navigation_ui_block_unblocks__cc_for_enable_disable_for_block_unblk()
-		this.sub_navigation_ui_block_unblocks__se_for_block_unblk()
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui unblock account"
+	sub_navigation_ui_unblock_account__action_button_click(){
+		this.sub_navigation_ui_unblock_account__sp_for_unblock()
+		this.sub_navigation_ui_unblock_account__cc_for_enable_disable_for_unblk()
+		this.sub_navigation_ui_unblock_account__se_for_unblock_accpunt()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui add account"
@@ -1172,11 +1194,11 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_add_account__se_for_nav_add_acc()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block account"
-	navigation_ui_block_account__action_button_click(){
-		this.navigation_ui_block_account__sp_for_nav_block()
-		this.navigation_ui_block_account__cc_for_nav_block()
-		this.navigation_ui_block_account__se_for_nav_block()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block accounts"
+	navigation_ui_block_accounts__action_button_click(){
+		this.navigation_ui_block_accounts__sp_for_nav_block()
+		this.navigation_ui_block_accounts__cc_for_nav_block()
+		this.navigation_ui_block_accounts__se_for_nav_block()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view process log"
@@ -1214,11 +1236,11 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.history_detail__ssr_from_hd_to_req()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unblock account"
-	navigation_ui_unblock_account__action_button_click(){
-		this.navigation_ui_unblock_account__se_for_unblock_btn()
-		this.navigation_ui_unblock_account__sp_for_unblock_btn()
-		this.navigation_ui_unblock_account__cc_for_unblock_btn_enab_disab()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unblock accounts"
+	navigation_ui_unblock_accounts__action_button_click(){
+		this.navigation_ui_unblock_accounts__se_for_unblock_btn()
+		this.navigation_ui_unblock_accounts__sp_for_unblock_btn()
+		this.navigation_ui_unblock_accounts__cc_for_unblock_btn_enab_disab()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "action unblock bank account"
@@ -1238,11 +1260,11 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_update_mcc__cc_for_update_mcc()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove account"
-	navigation_ui_remove_account__action_button_click(){
-		this.navigation_ui_remove_account__se_for_remove_account()
-		this.navigation_ui_remove_account__sp_for_remove_account()
-		this.navigation_ui_remove_account__cc_for_remove_account_en_di()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove accounts"
+	navigation_ui_remove_accounts__action_button_click(){
+		this.navigation_ui_remove_accounts__se_for_remove_account()
+		this.navigation_ui_remove_accounts__sp_for_remove_account()
+		this.navigation_ui_remove_accounts__cc_for_remove_account_en_di()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "action remove bank account"
@@ -1433,6 +1455,13 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "action back to view shop"
 	action_back_to_view_shop__action_button_click(){
 		this.action_back_to_view_shop__sp_for_action_view_shop()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui block account"
+	sub_navigation_ui_block_account__action_button_click(){
+		this.sub_navigation_ui_block_account__cc_for_show_hide_for_block_acc()
+		this.sub_navigation_ui_block_account__sp_for_block_acc()
+		this.sub_navigation_ui_block_account__se_for_block_cnk_acc()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1692,7 +1721,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="sub_navigation_ui_removess"
+		let destn_id="sub_navigation_ui_remove_account"
 		let parent_source_id=""
 		let event_code="e_1671021691214"
 		let event_params={"caller_name":"page_load__de_for_remove","event_desc":"DE for Remove","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1734,7 +1763,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="sub_navigation_ui_block_unblocks"
+		let destn_id="sub_navigation_ui_unblock_account"
 		let parent_source_id=""
 		let event_code="e_1671021715640"
 		let event_params={"caller_name":"page_load__he_for_block_unblk","event_desc":"HE for block unblk","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -1776,7 +1805,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_block_account"
+		let destn_id="navigation_ui_block_accounts"
 		let parent_source_id=""
 		let event_code="e_1671028314499"
 		let event_params={"caller_name":"page_load__de_for_nav_block","event_desc":"DE for nav block","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1839,7 +1868,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_unblock_account"
+		let destn_id="navigation_ui_unblock_accounts"
 		let parent_source_id=""
 		let event_code="e_1671598877588"
 		let event_params={"caller_name":"page_load__de_for_unblock_btn","event_desc":"DE for unblock btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -2175,7 +2204,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_remove_account"
+		let destn_id="navigation_ui_remove_accounts"
 		let parent_source_id=""
 		let event_code="e_1671774089662"
 		let event_params={"caller_name":"page_load__de_frompl","event_desc":"DE frompl","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -3106,7 +3135,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="sub_navigation_ui_removess"
+		let destn_id="sub_navigation_ui_remove_account"
 		let parent_source_id=""
 		let event_code="e_1671021804376"
 		let event_params={"caller_name":"accounts__ee_for_remove","event_desc":"EE for remove","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -3148,7 +3177,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="sub_navigation_ui_block_unblocks"
+		let destn_id="sub_navigation_ui_unblock_account"
 		let parent_source_id=""
 		let event_code="e_1671021836620"
 		let event_params={"caller_name":"accounts__ee_for_block_unblk","event_desc":"EE for block unblk","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -3169,7 +3198,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="navigation_ui_block_account"
+		let destn_id="navigation_ui_block_accounts"
 		let parent_source_id=""
 		let event_code="e_1671028378551"
 		let event_params={"caller_name":"accounts__ee_for_nav_block","event_desc":"EE for nav block","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -3211,7 +3240,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="navigation_ui_unblock_account"
+		let destn_id="navigation_ui_unblock_accounts"
 		let parent_source_id=""
 		let event_code="e_1671598984269"
 		let event_params={"caller_name":"accounts__ee_for_unblock_btn","event_desc":"EE for unblock btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -3253,7 +3282,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="navigation_ui_remove_account"
+		let destn_id="navigation_ui_remove_accounts"
 		let parent_source_id=""
 		let event_code="e_1671599628864"
 		let event_params={"caller_name":"accounts__ee_for_remove_account","event_desc":"EE for Remove account","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -3591,21 +3620,63 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui removess"
-	sub_navigation_ui_removess__cc_for_enable_disable_for_remove() { 
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui remove account"
+	sub_navigation_ui_remove_account__cc_for_enable_disable_for_remove() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="sub_navigation_ui_removess"
+		let source_id="sub_navigation_ui_remove_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671021559328"
-		let event_params={"caller_name":"sub_navigation_ui_removess__cc_for_enable_disable_for_remove","event_desc":"CC for enable disable for remove","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_removess","raiseparam":{}}
+		let event_params={"caller_name":"sub_navigation_ui_remove_account__cc_for_enable_disable_for_remove","event_desc":"CC for enable disable for remove","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_remove_account","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
 			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui remove account"
+	sub_navigation_ui_remove_account__sp_for_rem_acc() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="sub_navigation_ui_remove_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671782544886"
+		let event_params={"caller_name":"sub_navigation_ui_remove_account__sp_for_rem_acc","event_desc":"SP FOR REM ACC","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_remove_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui remove account"
+	sub_navigation_ui_remove_account__se_for_act_rem_bank_acc() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="sub_navigation_ui_remove_account"
+		let destn_id="action_remove_bank_account"
+		let parent_source_id=""
+		let event_code="e_1671782583458"
+		let event_params={"caller_name":"sub_navigation_ui_remove_account__se_for_act_rem_bank_acc","event_desc":"SE FOR ACT REM BANK ACC","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_remove_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -3633,15 +3704,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui block unblocks"
-	sub_navigation_ui_block_unblocks__sp_for_block_unblock() { 
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui unblock account"
+	sub_navigation_ui_unblock_account__sp_for_unblock() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="sub_navigation_ui_block_unblocks"
+		let source_id="sub_navigation_ui_unblock_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671021446968"
-		let event_params={"caller_name":"sub_navigation_ui_block_unblocks__sp_for_block_unblock","event_desc":"SP for Block unblock","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_block_unblocks","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"sub_navigation_ui_unblock_account__sp_for_unblock","event_desc":"SP for unblock","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_unblock_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -3654,15 +3725,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui block unblocks"
-	sub_navigation_ui_block_unblocks__cc_for_enable_disable_for_block_unblk() { 
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui unblock account"
+	sub_navigation_ui_unblock_account__cc_for_enable_disable_for_unblk() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="sub_navigation_ui_block_unblocks"
+		let source_id="sub_navigation_ui_unblock_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671021624019"
-		let event_params={"caller_name":"sub_navigation_ui_block_unblocks__cc_for_enable_disable_for_block_unblk","event_desc":"CC for enable disable for Block unblk","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_block_unblocks","raiseparam":{}}
+		let event_params={"caller_name":"sub_navigation_ui_unblock_account__cc_for_enable_disable_for_unblk","event_desc":"CC for enable disable for unblk","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_unblock_account","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -3675,15 +3746,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui block unblocks"
-	sub_navigation_ui_block_unblocks__se_for_block_unblk() { 
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui unblock account"
+	sub_navigation_ui_unblock_account__se_for_unblock_accpunt() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="sub_navigation_ui_block_unblocks"
-		let destn_id="action_block_bank_account"
+		let source_id="sub_navigation_ui_unblock_account"
+		let destn_id="action_unblock_bank_account"
 		let parent_source_id=""
-		let event_code="e_1671022112556"
-		let event_params={"caller_name":"sub_navigation_ui_block_unblocks__se_for_block_unblk","event_desc":"SE for block unblk","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_block_unblocks","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_code="e_1671783500529"
+		let event_params={"caller_name":"sub_navigation_ui_unblock_account__se_for_unblock_accpunt","event_desc":"se for unblock accpunt","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_unblock_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -3759,15 +3830,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block account"
-	navigation_ui_block_account__sp_for_nav_block() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block accounts"
+	navigation_ui_block_accounts__sp_for_nav_block() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_block_account"
+		let source_id="navigation_ui_block_accounts"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671028145631"
-		let event_params={"caller_name":"navigation_ui_block_account__sp_for_nav_block","event_desc":"SP for nav block","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_block_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"navigation_ui_block_accounts__sp_for_nav_block","event_desc":"SP for nav block","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_block_accounts","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -3780,15 +3851,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block account"
-	navigation_ui_block_account__cc_for_nav_block() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block accounts"
+	navigation_ui_block_accounts__cc_for_nav_block() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_block_account"
+		let source_id="navigation_ui_block_accounts"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671028240797"
-		let event_params={"caller_name":"navigation_ui_block_account__cc_for_nav_block","event_desc":"CC for nav block","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_block_account","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_block_accounts__cc_for_nav_block","event_desc":"CC for nav block","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_block_accounts","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -3801,15 +3872,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block account"
-	navigation_ui_block_account__se_for_nav_block() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block accounts"
+	navigation_ui_block_accounts__se_for_nav_block() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_block_account"
+		let source_id="navigation_ui_block_accounts"
 		let destn_id="action_block_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671028489443"
-		let event_params={"caller_name":"navigation_ui_block_account__se_for_nav_block","event_desc":"SE for nav block","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_block_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_ui_block_accounts__se_for_nav_block","event_desc":"SE for nav block","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_block_accounts","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -4054,15 +4125,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unblock account"
-	navigation_ui_unblock_account__se_for_unblock_btn() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unblock accounts"
+	navigation_ui_unblock_accounts__se_for_unblock_btn() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_unblock_account"
+		let source_id="navigation_ui_unblock_accounts"
 		let destn_id="action_unblock_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671599038697"
-		let event_params={"caller_name":"navigation_ui_unblock_account__se_for_unblock_btn","event_desc":"SE for unblock btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unblock_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_ui_unblock_accounts__se_for_unblock_btn","event_desc":"SE for unblock btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unblock_accounts","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -4075,15 +4146,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unblock account"
-	navigation_ui_unblock_account__sp_for_unblock_btn() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unblock accounts"
+	navigation_ui_unblock_accounts__sp_for_unblock_btn() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_unblock_account"
+		let source_id="navigation_ui_unblock_accounts"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671599065667"
-		let event_params={"caller_name":"navigation_ui_unblock_account__sp_for_unblock_btn","event_desc":"SP for unblock btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unblock_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"navigation_ui_unblock_accounts__sp_for_unblock_btn","event_desc":"SP for unblock btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unblock_accounts","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -4096,15 +4167,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unblock account"
-	navigation_ui_unblock_account__cc_for_unblock_btn_enab_disab() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unblock accounts"
+	navigation_ui_unblock_accounts__cc_for_unblock_btn_enab_disab() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_unblock_account"
+		let source_id="navigation_ui_unblock_accounts"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671599127880"
-		let event_params={"caller_name":"navigation_ui_unblock_account__cc_for_unblock_btn_enab_disab","event_desc":"CC for unblock btn enab disab","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unblock_account","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_unblock_accounts__cc_for_unblock_btn_enab_disab","event_desc":"CC for unblock btn enab disab","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unblock_accounts","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -4222,15 +4293,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove account"
-	navigation_ui_remove_account__se_for_remove_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove accounts"
+	navigation_ui_remove_accounts__se_for_remove_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_remove_account"
+		let source_id="navigation_ui_remove_accounts"
 		let destn_id="action_remove_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671599696745"
-		let event_params={"caller_name":"navigation_ui_remove_account__se_for_remove_account","event_desc":"SE for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_ui_remove_accounts__se_for_remove_account","event_desc":"SE for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_accounts","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -4243,15 +4314,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove account"
-	navigation_ui_remove_account__sp_for_remove_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove accounts"
+	navigation_ui_remove_accounts__sp_for_remove_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_remove_account"
+		let source_id="navigation_ui_remove_accounts"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671599737816"
-		let event_params={"caller_name":"navigation_ui_remove_account__sp_for_remove_account","event_desc":"SP for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"navigation_ui_remove_accounts__sp_for_remove_account","event_desc":"SP for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_accounts","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -4264,15 +4335,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove account"
-	navigation_ui_remove_account__cc_for_remove_account_en_di() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove accounts"
+	navigation_ui_remove_accounts__cc_for_remove_account_en_di() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_remove_account"
+		let source_id="navigation_ui_remove_accounts"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671599748710"
-		let event_params={"caller_name":"navigation_ui_remove_account__cc_for_remove_account_en_di","event_desc":"CC for Remove account EN DI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_account","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_remove_accounts__cc_for_remove_account_en_di","event_desc":"CC for Remove account EN DI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_accounts","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -5098,7 +5169,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_shop_enrolmentService.fn_npss_cs_shop_enrolment(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5182,7 +5253,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_shop_disableService.fn_npss_cs_shop_disable(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5266,7 +5337,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_shop_updateService.fn_npss_cs_shop_update(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5329,7 +5400,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_shop_set_bank_accountService.fn_npss_cs_shop_set_bank_account(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5371,7 +5442,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_shop_remove_bank_accountService.fn_npss_cs_shop_remove_bank_account(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5434,7 +5505,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_shop_enrolmentService.fn_npss_cs_shop_enrolment(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5455,7 +5526,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_shop_updateService.fn_npss_cs_shop_update(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5476,7 +5547,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_shop_set_bank_accountService.fn_npss_cs_shop_set_bank_account(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5497,7 +5568,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_shop_remove_bank_accountService.fn_npss_cs_shop_remove_bank_account(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5518,7 +5589,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_shop_disableService.fn_npss_cs_shop_disable(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5667,6 +5738,69 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui block account"
+	sub_navigation_ui_block_account__cc_for_show_hide_for_block_acc() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="sub_navigation_ui_block_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671782956877"
+		let event_params={"caller_name":"sub_navigation_ui_block_account__cc_for_show_hide_for_block_acc","event_desc":"cc for show hide for block acc","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_block_account","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui block account"
+	sub_navigation_ui_block_account__sp_for_block_acc() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="sub_navigation_ui_block_account"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671782990164"
+		let event_params={"caller_name":"sub_navigation_ui_block_account__sp_for_block_acc","event_desc":"sp for block acc","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_block_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui block account"
+	sub_navigation_ui_block_account__se_for_block_cnk_acc() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="sub_navigation_ui_block_account"
+		let destn_id="action_block_bank_account"
+		let parent_source_id=""
+		let event_code="e_1671783272527"
+		let event_params={"caller_name":"sub_navigation_ui_block_account__se_for_block_cnk_acc","event_desc":"SE for block cnk acc","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_block_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

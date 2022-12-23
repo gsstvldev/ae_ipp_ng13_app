@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27503 
+Build ID        : 27510 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-23 6:56 AM 
+Modified Date   : 2022-Dec-23 8:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -65,16 +65,16 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
-	navigation_ui_entrolment : any = {}
-	navigation_ui_unentrolment : any = {}
+	navigation_ui_enrolment : any = {}
+	navigation_ui_unenrolment : any = {}
 	navigation_ui_update_personal : any = {}
 	navigation_ui_change_mobile_no : any = {}
-	navigation_ui_block_unblock_account : any = {}
 	navigation_ui_add_account : any = {}
+	navigation_ui_block_unblock_account : any = {}
 	navigation_ui_remove_account : any = {}
 	navigation_ui_tri_btn1 : any = {}
-	navigation_ui_view_process_log : any = {}
 	navigation_ui_trg_btn2 : any = {}
+	navigation_ui_view_process_log : any = {}
 	customers : any = {}
 	accounts : any = {}
 	customer_detail : any = {}
@@ -137,23 +137,23 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_search.role = []
 		this.navigation_ui_search.action = ""
 		
-		// "Entrolment" Button of "Navigation UI" component
-		this.navigation_ui_entrolment.label_name = "Entrolment"
-		this.navigation_ui_entrolment.show = true
-		this.navigation_ui_entrolment.disabled = false
-		this.navigation_ui_entrolment.params = {"icon_only":false,"uicgcc_style":"fa fa-file-archive-o"}
-		this.navigation_ui_entrolment.dynamic_param = {}
-		this.navigation_ui_entrolment.role = []
-		this.navigation_ui_entrolment.action = ""
+		// "Enrolment" Button of "Navigation UI" component
+		this.navigation_ui_enrolment.label_name = "Enrolment"
+		this.navigation_ui_enrolment.show = true
+		this.navigation_ui_enrolment.disabled = false
+		this.navigation_ui_enrolment.params = {"icon_only":false,"uicgcc_style":"fa fa-file-archive-o"}
+		this.navigation_ui_enrolment.dynamic_param = {}
+		this.navigation_ui_enrolment.role = []
+		this.navigation_ui_enrolment.action = ""
 		
-		// "Unentrolment" Button of "Navigation UI" component
-		this.navigation_ui_unentrolment.label_name = "Unentrolment"
-		this.navigation_ui_unentrolment.show = true
-		this.navigation_ui_unentrolment.disabled = true
-		this.navigation_ui_unentrolment.params = {"icon_only":false,"uicgcc_style":"fa fa-file-zip-o"}
-		this.navigation_ui_unentrolment.dynamic_param = {}
-		this.navigation_ui_unentrolment.role = []
-		this.navigation_ui_unentrolment.action = ""
+		// "Unenrolment" Button of "Navigation UI" component
+		this.navigation_ui_unenrolment.label_name = "Unenrolment"
+		this.navigation_ui_unenrolment.show = true
+		this.navigation_ui_unenrolment.disabled = true
+		this.navigation_ui_unenrolment.params = {"icon_only":false,"uicgcc_style":"fa fa-file-zip-o"}
+		this.navigation_ui_unenrolment.dynamic_param = {}
+		this.navigation_ui_unenrolment.role = []
+		this.navigation_ui_unenrolment.action = ""
 		
 		// "Update Personal" Button of "Navigation UI" component
 		this.navigation_ui_update_personal.label_name = "Update Personal"
@@ -173,15 +173,6 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_change_mobile_no.role = []
 		this.navigation_ui_change_mobile_no.action = ""
 		
-		// "Block Unblock Account" Button of "Navigation UI" component
-		this.navigation_ui_block_unblock_account.label_name = "Block Unblock Account"
-		this.navigation_ui_block_unblock_account.show = true
-		this.navigation_ui_block_unblock_account.disabled = true
-		this.navigation_ui_block_unblock_account.params = {"icon_only":false,"uicgcc_style":"fa fa-check-circle"}
-		this.navigation_ui_block_unblock_account.dynamic_param = {}
-		this.navigation_ui_block_unblock_account.role = []
-		this.navigation_ui_block_unblock_account.action = ""
-		
 		// "Add Account" Button of "Navigation UI" component
 		this.navigation_ui_add_account.label_name = "Add Account"
 		this.navigation_ui_add_account.show = true
@@ -190,6 +181,15 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_add_account.dynamic_param = {}
 		this.navigation_ui_add_account.role = []
 		this.navigation_ui_add_account.action = ""
+		
+		// "Block Unblock Account" Button of "Navigation UI" component
+		this.navigation_ui_block_unblock_account.label_name = "Block Unblock Account"
+		this.navigation_ui_block_unblock_account.show = true
+		this.navigation_ui_block_unblock_account.disabled = true
+		this.navigation_ui_block_unblock_account.params = {"icon_only":false,"uicgcc_style":"fa fa-check-circle"}
+		this.navigation_ui_block_unblock_account.dynamic_param = {}
+		this.navigation_ui_block_unblock_account.role = []
+		this.navigation_ui_block_unblock_account.action = ""
 		
 		// "Remove Account" Button of "Navigation UI" component
 		this.navigation_ui_remove_account.label_name = "Remove Account"
@@ -209,15 +209,6 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_tri_btn1.role = []
 		this.navigation_ui_tri_btn1.action = ""
 		
-		// "View Process Log" Button of "Navigation UI" component
-		this.navigation_ui_view_process_log.label_name = "View Process Log"
-		this.navigation_ui_view_process_log.show = true
-		this.navigation_ui_view_process_log.disabled = true
-		this.navigation_ui_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
-		this.navigation_ui_view_process_log.dynamic_param = {}
-		this.navigation_ui_view_process_log.role = []
-		this.navigation_ui_view_process_log.action = ""
-		
 		// "Trg Btn2" Button of "Navigation UI" component
 		this.navigation_ui_trg_btn2.label_name = "Trg Btn2"
 		this.navigation_ui_trg_btn2.show = true
@@ -226,6 +217,15 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_trg_btn2.dynamic_param = {}
 		this.navigation_ui_trg_btn2.role = []
 		this.navigation_ui_trg_btn2.action = ""
+		
+		// "View Process Log" Button of "Navigation UI" component
+		this.navigation_ui_view_process_log.label_name = "View Process Log"
+		this.navigation_ui_view_process_log.show = true
+		this.navigation_ui_view_process_log.disabled = true
+		this.navigation_ui_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
+		this.navigation_ui_view_process_log.dynamic_param = {}
+		this.navigation_ui_view_process_log.role = []
+		this.navigation_ui_view_process_log.action = ""
 	
 		// Component level properties - "Customers" 
 		this.customers.uictrl_code = "datatable"
@@ -661,13 +661,13 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_tri_btn1__trg_btn1_for_bt()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
-	navigation_ui_entrolment__action_button_click(){
-		this.navigation_ui_entrolment__sp_for_unen()
-		this.navigation_ui_entrolment__se_nav_entrol_to_action_entrol()
-		this.navigation_ui_entrolment__cu_for_cust_dtl()
-		this.navigation_ui_entrolment__cu_for_account_dtl()
-		this.navigation_ui_entrolment__cc_for_nav_entrol()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__action_button_click(){
+		this.navigation_ui_enrolment__sp_for_unen()
+		this.navigation_ui_enrolment__se_nav_entrol_to_action_entrol()
+		this.navigation_ui_enrolment__cu_for_cust_dtl()
+		this.navigation_ui_enrolment__cu_for_account_dtl()
+		this.navigation_ui_enrolment__cc_for_nav_entrol()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui change mobile no"
@@ -677,11 +677,11 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_change_mobile_no__cc_for_mobile_enab_disab()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unentrolment"
-	navigation_ui_unentrolment__action_button_click(){
-		this.navigation_ui_unentrolment__sp_for_unentrol()
-		this.navigation_ui_unentrolment__se_for_nav_to_action_unentrol()
-		this.navigation_ui_unentrolment__cc_for_unentrol_enab_disab()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unenrolment"
+	navigation_ui_unenrolment__action_button_click(){
+		this.navigation_ui_unenrolment__sp_for_unentrol()
+		this.navigation_ui_unenrolment__se_for_nav_to_action_unentrol()
+		this.navigation_ui_unenrolment__cc_for_unentrol_enab_disab()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui update personal"
@@ -963,7 +963,7 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_unentrolment"
+		let destn_id="navigation_ui_unenrolment"
 		let parent_source_id=""
 		let event_code="e_1670997270095"
 		let event_params={"caller_name":"page_load__de_for_un_entrol","event_desc":"DE for Un Entrol","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1742,15 +1742,15 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
-	navigation_ui_entrolment__sp_for_unen() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__sp_for_unen() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_entrolment"
+		let source_id="navigation_ui_enrolment"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1670997548906"
-		let event_params={"caller_name":"navigation_ui_entrolment__sp_for_unen","event_desc":"SP for UNEN","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"navigation_ui_enrolment__sp_for_unen","event_desc":"SP for UNEN","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1763,15 +1763,15 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
-	navigation_ui_entrolment__se_nav_entrol_to_action_entrol() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__se_nav_entrol_to_action_entrol() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_entrolment"
+		let source_id="navigation_ui_enrolment"
 		let destn_id="action_enrol"
 		let parent_source_id=""
 		let event_code="e_1671001614444"
-		let event_params={"caller_name":"navigation_ui_entrolment__se_nav_entrol_to_action_entrol","event_desc":"SE nav entrol to action entrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_ui_enrolment__se_nav_entrol_to_action_entrol","event_desc":"SE nav entrol to action entrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -1784,15 +1784,15 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
-	navigation_ui_entrolment__cu_for_cust_dtl() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__cu_for_cust_dtl() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_entrolment"
+		let source_id="navigation_ui_enrolment"
 		let destn_id="customer_detail"
 		let parent_source_id=""
 		let event_code="e_1671014985065"
-		let event_params={"caller_name":"navigation_ui_entrolment__cu_for_cust_dtl","event_desc":"CU for cust dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{"need_reset_key_column":"N"}}
+		let event_params={"caller_name":"navigation_ui_enrolment__cu_for_cust_dtl","event_desc":"CU for cust dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"need_reset_key_column":"N"}}
 		let handler_code="clear_ui"
 		let internals=""
 		let event_data={}
@@ -1805,15 +1805,15 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
-	navigation_ui_entrolment__cu_for_account_dtl() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__cu_for_account_dtl() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_entrolment"
+		let source_id="navigation_ui_enrolment"
 		let destn_id="account__detail"
 		let parent_source_id=""
 		let event_code="e_1671015020416"
-		let event_params={"caller_name":"navigation_ui_entrolment__cu_for_account_dtl","event_desc":"CU for Account Dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{"need_reset_key_column":"N"}}
+		let event_params={"caller_name":"navigation_ui_enrolment__cu_for_account_dtl","event_desc":"CU for Account Dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"need_reset_key_column":"N"}}
 		let handler_code="clear_ui"
 		let internals=""
 		let event_data={}
@@ -1826,15 +1826,15 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui entrolment"
-	navigation_ui_entrolment__cc_for_nav_entrol() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__cc_for_nav_entrol() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_entrolment"
+		let source_id="navigation_ui_enrolment"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671099422384"
-		let event_params={"caller_name":"navigation_ui_entrolment__cc_for_nav_entrol","event_desc":"CC for nav entrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_entrolment","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_enrolment__cc_for_nav_entrol","event_desc":"CC for nav entrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -1910,15 +1910,15 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unentrolment"
-	navigation_ui_unentrolment__sp_for_unentrol() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unenrolment"
+	navigation_ui_unenrolment__sp_for_unentrol() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_unentrolment"
+		let source_id="navigation_ui_unenrolment"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1670997993994"
-		let event_params={"caller_name":"navigation_ui_unentrolment__sp_for_unentrol","event_desc":"SP for Unentrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unentrolment","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"navigation_ui_unenrolment__sp_for_unentrol","event_desc":"SP for Unentrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unenrolment","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1931,15 +1931,15 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unentrolment"
-	navigation_ui_unentrolment__se_for_nav_to_action_unentrol() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unenrolment"
+	navigation_ui_unenrolment__se_for_nav_to_action_unentrol() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_unentrolment"
+		let source_id="navigation_ui_unenrolment"
 		let destn_id="action_unenrol"
 		let parent_source_id=""
 		let event_code="e_1670998007874"
-		let event_params={"caller_name":"navigation_ui_unentrolment__se_for_nav_to_action_unentrol","event_desc":"SE for nav to action unentrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unentrolment","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_ui_unenrolment__se_for_nav_to_action_unentrol","event_desc":"SE for nav to action unentrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unenrolment","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -1952,15 +1952,15 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unentrolment"
-	navigation_ui_unentrolment__cc_for_unentrol_enab_disab() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui unenrolment"
+	navigation_ui_unenrolment__cc_for_unentrol_enab_disab() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_unentrolment"
+		let source_id="navigation_ui_unenrolment"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671005294412"
-		let event_params={"caller_name":"navigation_ui_unentrolment__cc_for_unentrol_enab_disab","event_desc":"CC for unentrol enab disab","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unentrolment","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_unenrolment__cc_for_unentrol_enab_disab","event_desc":"CC for unentrol enab disab","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unenrolment","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -2104,7 +2104,7 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="navigation_ui_entrolment"
+		let destn_id="navigation_ui_enrolment"
 		let parent_source_id=""
 		let event_code="e_1671000444316"
 		let event_params={"caller_name":"accounts__ee_for_entrol","event_desc":"EE for entrol","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -2146,7 +2146,7 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="navigation_ui_unentrolment"
+		let destn_id="navigation_ui_unenrolment"
 		let parent_source_id=""
 		let event_code="e_1671000475768"
 		let event_params={"caller_name":"accounts__ee_for_nav_unentrol","event_desc":"EE for nav unentrol","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}

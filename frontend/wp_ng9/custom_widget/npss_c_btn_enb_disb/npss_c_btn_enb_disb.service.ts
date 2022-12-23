@@ -30,9 +30,11 @@ export class npss_c_btn_enb_disbService {
         if (btnName == 'ENROLMENT') {
             CtrlScope1.memory9.show = false //hide block/unblock dorpdown
             CtrlScope1.memory10.show = false //hide block/unblock dorpdown
+            CtrlScope1.memory11.show = false //hide remove dorpdown
         }else if(btnName == 'BLOCK UNBLOCK ACCOUNT'){
             CtrlScope1.memory9.show = true //show block/unblock dorpdown
             CtrlScope1.memory10.show = true //show block/unblock dorpdown
+            CtrlScope1.memory11.show = false //hide remove dorpdown
             CtrlScope1.iban.show = false
             CtrlScope1.currency.show = false
             CtrlScope1.instant_payment.show = false
@@ -60,6 +62,7 @@ export class npss_c_btn_enb_disbService {
         }else if(btnName == 'UPDATE PERSONAL'){
             CtrlScope1.memory9.show = false //show block/unblock dorpdown
             CtrlScope1.memory10.show = false //show block/unblock dorpdown
+            CtrlScope1.memory11.show = false //hide remove dorpdown
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope1.instant_payment.disabled = true
@@ -74,6 +77,7 @@ export class npss_c_btn_enb_disbService {
         else if(btnName == 'UNENROLMENT'){
             CtrlScope1.memory9.show = false //show block/unblock dorpdown
             CtrlScope1.memory10.show = false //show block/unblock dorpdown
+            CtrlScope1.memory11.show = false //hide remove dorpdown
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope1.instant_payment.disabled = true
@@ -101,6 +105,7 @@ export class npss_c_btn_enb_disbService {
         }else if(btnName == 'REMOVE ACCOUNT'){
             CtrlScope1.memory9.show = false //show block/unblock dorpdown
             CtrlScope1.memory10.show = false //show block/unblock dorpdown
+            CtrlScope1.memory11.show = true //hide remove dorpdown
             CtrlScope1.iban.show = false
             CtrlScope1.currency.show = false
             CtrlScope1.instant_payment.show = false
@@ -118,14 +123,8 @@ export class npss_c_btn_enb_disbService {
                     var CtrlScope2 = screenInstance['shop_detail'].f_npss_shop_ui.controls; // for Account details
                     var CtrlScope3 = screenInstance['cash_desk_detail'].f_npss_cash_desk_ui.controls; // for Account details
         if (btnName == 'ENROLMENT') {
-            CtrlScope1.memory9.show = false //hide block/unblock dorpdown
-            CtrlScope1.memory10.show = false //hide block/unblock dorpdown
-            CtrlScope1.memory11.show = false //hide block/unblock dorpdown
             CtrlScope3.cashdesk_overlay_id.show = false
         }else if(btnName == 'BLOCK ACCOUNT'){
-            CtrlScope1.memory9.show = true //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.show = false
             CtrlScope1.currency.show = false
             CtrlScope.bankuserid.disabled = true
@@ -156,9 +155,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = true
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'UNBLOCK ACCOUNT'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = true //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.show = false
             CtrlScope1.currency.show = false
             CtrlScope.bankuserid.disabled = true
@@ -189,9 +185,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = true
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'CHANGE MOBILE NO'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope.bankuserid.disabled = true
@@ -222,9 +215,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = true
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'UPDATE PERSONAL'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope.bankuserid.disabled = true
@@ -256,9 +246,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }
         else if(btnName == 'DISABLE'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope.bankuserid.disabled = true
@@ -289,9 +276,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = true
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'ADD ACCOUNT'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = false
             CtrlScope1.currency.disabled = false
             CtrlScope.bankuserid.disabled = true
@@ -322,9 +306,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = true
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'REMOVE ACCOUNT'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = true
             CtrlScope1.iban.show = false
             CtrlScope1.currency.show = false
             CtrlScope.bankuserid.disabled = true
@@ -355,9 +336,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = true
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'ENROLMENT SHOP'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope.bankuserid.disabled = true
@@ -388,9 +366,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = true
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'UPDATE SHOP'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope.bankuserid.disabled = true
@@ -421,9 +396,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = true
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'DISABLE SHOP'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope.bankuserid.disabled = true
@@ -454,9 +426,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = true
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'REMOVE SHOP ACCOUNT'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope.bankuserid.disabled = true
@@ -487,9 +456,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = true
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'ENROLMENT DESK'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope.bankuserid.disabled = true
@@ -520,9 +486,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = false
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'UPDATE DESK'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope.bankuserid.disabled = true
@@ -553,9 +516,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = false
             CtrlScope3.cashdesk_overlay_id.disabled = false
         }else if(btnName == 'DISABLE DESK'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope.bankuserid.disabled = true
@@ -586,9 +546,6 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = true
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'UPDATE MCC'){
-            CtrlScope1.memory9.show = false //show block/unblock dorpdown
-            CtrlScope1.memory10.show = false //show block/unblock dorpdown
-            CtrlScope1.memory11.show = false
             CtrlScope1.iban.disabled = true
             CtrlScope1.currency.disabled = true
             CtrlScope.bankuserid.disabled = true

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27506 
+Build ID        : 27509 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-23 6:57 AM 
+Modified Date   : 2022-Dec-23 8:27 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -514,7 +514,7 @@ focustoelement(){
 		this.ctrl.logo.label_name = "Logo"
 		this.ctrl.logo.df_code = "DF_1304_1666846276198"
 		this.ctrl.logo.df_description = "Column Group 1"
-		this.ctrl.logo.uictrl_code = "IMG_CCTRL"
+		this.ctrl.logo.uictrl_code = "IMG_BRW"
 		this.ctrl.logo.target_column = "LOGO"
 		this.ctrl.logo.data_type = "TEXT"
 		this.ctrl.logo.data_length = 4000
@@ -544,7 +544,7 @@ focustoelement(){
 		this.ctrl.npss_merchant_ui_logo = {}
 		this.ctrl.npss_merchant_ui_logo.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_merchant_ui.model = {"CHANNEL_ID":"","BANKUSERID":"","MERCHANT_NAME":"","SURNAME":"","DENOMINATION":"","VAT_NUMBER":"","MCC":"","MOBILE":"","PROXY_TYPE":"","PROXY_VALUE":"","CHANNEL_NAME":"","MERCHANT_TAG":"","LOGO":""}
-		this.screen_instance[this.comp_id].f_npss_merchant_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DENOMINATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VAT_NUMBER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MCC"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_VALUE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_TAG"},{"CTLR_CODE":"IMG_CCTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"LOGO"}]
+		this.screen_instance[this.comp_id].f_npss_merchant_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DENOMINATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VAT_NUMBER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MCC"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_VALUE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_TAG"},{"CTLR_CODE":"IMG_BRW","DATA_TYPE":"TEXT","TARGET_COLUMN":"LOGO"}]
 		this.screen_instance[this.comp_id].f_npss_merchant_ui.dt_code = "dt_1304_1666846074129"
 		this.screen_instance[this.comp_id].f_npss_merchant_ui.dtt_code = "dtt_1304_1666846129395"
 		this.screen_instance[this.comp_id].f_npss_merchant_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

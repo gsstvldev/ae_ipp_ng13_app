@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27502 
+Build ID        : 27506 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-23 4:28 AM 
+Modified Date   : 2022-Dec-23 6:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -79,15 +79,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
 	navigation_ui_enrolment : any = {}
-	navigation_ui_disable_merchant : any = {}
+	navigation_ui_disable : any = {}
 	navigation_ui_update_personal : any = {}
 	navigation_ui_change_mobile_no : any = {}
 	navigation_ui_update_mcc : any = {}
-	navigation_ui_add_bank_account : any = {}
+	navigation_ui_add_account : any = {}
 	navigation_ui_block_account : any = {}
 	navigation_ui_unblock_account : any = {}
 	navigation_ui_view_process_log : any = {}
-	navigation_ui_remove_bank_account : any = {}
+	navigation_ui_remove_account : any = {}
 	navigation_ui_tri_btn1 : any = {}
 	navigation_ui_trg_btn2 : any = {}
 	navigation_ui_tri_btn3 : any = {}
@@ -102,24 +102,24 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	account__detail : any = {}
 	action : any = {}
 	action_back : any = {}
-	action_disable : any = {}
+	action_disable_merchant : any = {}
 	action_update_personal_data : any = {}
 	action_update_mcc : any = {}
 	action_change_mobile_number : any = {}
-	action_add_account : any = {}
-	action_block : any = {}
-	action_unblock : any = {}
-	action_remove_account : any = {}
+	action_add_bank_account : any = {}
+	action_block_bank_account : any = {}
+	action_unblock_bank_account : any = {}
+	action_remove_bank_account : any = {}
 	action_enroll : any = {}
 	action_enroll_shop : any = {}
 	action_update_shop_details : any = {}
 	action_disable_shop_details : any = {}
 	action_set_shop_account : any = {}
-	action_remove_shop : any = {}
+	action_remove_shop_bank_account : any = {}
 	action_enroll_cash_desk : any = {}
 	action_update_cash_desk_details : any = {}
 	action_disable_cash_desk_details : any = {}
-	action_view_shop : any = {}
+	action_back_to_view_shop : any = {}
 	merchant_setup_widget : any = {}
 	queue : any = {}
 	sub_navigation_ui : any = {}
@@ -143,8 +143,8 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	shop_action_enrolment_shop : any = {}
 	shop_action_update_shop : any = {}
 	shop_action_disable_shop : any = {}
-	shop_action_set_default : any = {}
-	shop_action_remove_account : any = {}
+	shop_action_set_shop_default : any = {}
+	shop_action_remove_shop_account : any = {}
 	cash_desk_action : any = {}
 	cash_desk_action_back : any = {}
 	cash_desk_action_enrolment_desk : any = {}
@@ -191,14 +191,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_enrolment.role = []
 		this.navigation_ui_enrolment.action = ""
 		
-		// "Disable Merchant" Button of "Navigation UI" component
-		this.navigation_ui_disable_merchant.label_name = "Disable Merchant"
-		this.navigation_ui_disable_merchant.show = true
-		this.navigation_ui_disable_merchant.disabled = true
-		this.navigation_ui_disable_merchant.params = {"icon_only":false,"uicgcc_style":"fa fa-file-zip-o"}
-		this.navigation_ui_disable_merchant.dynamic_param = {}
-		this.navigation_ui_disable_merchant.role = []
-		this.navigation_ui_disable_merchant.action = ""
+		// "Disable" Button of "Navigation UI" component
+		this.navigation_ui_disable.label_name = "Disable"
+		this.navigation_ui_disable.show = true
+		this.navigation_ui_disable.disabled = true
+		this.navigation_ui_disable.params = {"icon_only":false,"uicgcc_style":"fa fa-file-zip-o"}
+		this.navigation_ui_disable.dynamic_param = {}
+		this.navigation_ui_disable.role = []
+		this.navigation_ui_disable.action = ""
 		
 		// "Update Personal" Button of "Navigation UI" component
 		this.navigation_ui_update_personal.label_name = "Update Personal"
@@ -227,14 +227,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_update_mcc.role = []
 		this.navigation_ui_update_mcc.action = ""
 		
-		// "Add Bank Account" Button of "Navigation UI" component
-		this.navigation_ui_add_bank_account.label_name = "Add Bank Account"
-		this.navigation_ui_add_bank_account.show = true
-		this.navigation_ui_add_bank_account.disabled = true
-		this.navigation_ui_add_bank_account.params = {"icon_only":false,"uicgcc_style":"fa fa-plus"}
-		this.navigation_ui_add_bank_account.dynamic_param = {}
-		this.navigation_ui_add_bank_account.role = []
-		this.navigation_ui_add_bank_account.action = ""
+		// "Add Account" Button of "Navigation UI" component
+		this.navigation_ui_add_account.label_name = "Add Account"
+		this.navigation_ui_add_account.show = true
+		this.navigation_ui_add_account.disabled = true
+		this.navigation_ui_add_account.params = {"icon_only":false,"uicgcc_style":"fa fa-plus"}
+		this.navigation_ui_add_account.dynamic_param = {}
+		this.navigation_ui_add_account.role = []
+		this.navigation_ui_add_account.action = ""
 		
 		// "Block Account" Button of "Navigation UI" component
 		this.navigation_ui_block_account.label_name = "Block Account"
@@ -263,14 +263,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_process_log.role = []
 		this.navigation_ui_view_process_log.action = ""
 		
-		// "Remove Bank Account" Button of "Navigation UI" component
-		this.navigation_ui_remove_bank_account.label_name = "Remove Bank Account"
-		this.navigation_ui_remove_bank_account.show = true
-		this.navigation_ui_remove_bank_account.disabled = true
-		this.navigation_ui_remove_bank_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
-		this.navigation_ui_remove_bank_account.dynamic_param = {}
-		this.navigation_ui_remove_bank_account.role = []
-		this.navigation_ui_remove_bank_account.action = ""
+		// "Remove Account" Button of "Navigation UI" component
+		this.navigation_ui_remove_account.label_name = "Remove Account"
+		this.navigation_ui_remove_account.show = true
+		this.navigation_ui_remove_account.disabled = true
+		this.navigation_ui_remove_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.navigation_ui_remove_account.dynamic_param = {}
+		this.navigation_ui_remove_account.role = []
+		this.navigation_ui_remove_account.action = ""
 		
 		// "Tri Btn1" Button of "Navigation UI" component
 		this.navigation_ui_tri_btn1.label_name = "Tri Btn1"
@@ -424,14 +424,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_back.role = []
 		this.action_back.action = ""
 		
-		// "Disable" Button of "Action" component
-		this.action_disable.label_name = "Disable"
-		this.action_disable.show = true
-		this.action_disable.disabled = false
-		this.action_disable.params = {"icon_only":false,"uicgcc_style":"fa fa-file-text-o"}
-		this.action_disable.dynamic_param = {}
-		this.action_disable.role = []
-		this.action_disable.action = ""
+		// "Disable Merchant" Button of "Action" component
+		this.action_disable_merchant.label_name = "Disable Merchant"
+		this.action_disable_merchant.show = true
+		this.action_disable_merchant.disabled = false
+		this.action_disable_merchant.params = {"icon_only":false,"uicgcc_style":"fa fa-file-text-o"}
+		this.action_disable_merchant.dynamic_param = {}
+		this.action_disable_merchant.role = []
+		this.action_disable_merchant.action = ""
 		
 		// "Update Personal Data" Button of "Action" component
 		this.action_update_personal_data.label_name = "Update Personal Data"
@@ -460,41 +460,41 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_change_mobile_number.role = []
 		this.action_change_mobile_number.action = ""
 		
-		// "Add Account" Button of "Action" component
-		this.action_add_account.label_name = "Add Account"
-		this.action_add_account.show = true
-		this.action_add_account.disabled = false
-		this.action_add_account.params = {"icon_only":false,"uicgcc_style":"fa fa-bank"}
-		this.action_add_account.dynamic_param = {}
-		this.action_add_account.role = []
-		this.action_add_account.action = ""
+		// "Add Bank Account" Button of "Action" component
+		this.action_add_bank_account.label_name = "Add Bank Account"
+		this.action_add_bank_account.show = true
+		this.action_add_bank_account.disabled = false
+		this.action_add_bank_account.params = {"icon_only":false,"uicgcc_style":"fa fa-bank"}
+		this.action_add_bank_account.dynamic_param = {}
+		this.action_add_bank_account.role = []
+		this.action_add_bank_account.action = ""
 		
-		// "Block" Button of "Action" component
-		this.action_block.label_name = "Block"
-		this.action_block.show = true
-		this.action_block.disabled = false
-		this.action_block.params = {"icon_only":false,"uicgcc_style":"fa fa-ban"}
-		this.action_block.dynamic_param = {}
-		this.action_block.role = []
-		this.action_block.action = ""
+		// "Block Bank Account" Button of "Action" component
+		this.action_block_bank_account.label_name = "Block Bank Account"
+		this.action_block_bank_account.show = true
+		this.action_block_bank_account.disabled = false
+		this.action_block_bank_account.params = {"icon_only":false,"uicgcc_style":"fa fa-ban"}
+		this.action_block_bank_account.dynamic_param = {}
+		this.action_block_bank_account.role = []
+		this.action_block_bank_account.action = ""
 		
-		// "Unblock" Button of "Action" component
-		this.action_unblock.label_name = "Unblock"
-		this.action_unblock.show = true
-		this.action_unblock.disabled = false
-		this.action_unblock.params = {"icon_only":false,"uicgcc_style":"fa fa-check-circle"}
-		this.action_unblock.dynamic_param = {}
-		this.action_unblock.role = []
-		this.action_unblock.action = ""
+		// "Unblock Bank Account" Button of "Action" component
+		this.action_unblock_bank_account.label_name = "Unblock Bank Account"
+		this.action_unblock_bank_account.show = true
+		this.action_unblock_bank_account.disabled = false
+		this.action_unblock_bank_account.params = {"icon_only":false,"uicgcc_style":"fa fa-check-circle"}
+		this.action_unblock_bank_account.dynamic_param = {}
+		this.action_unblock_bank_account.role = []
+		this.action_unblock_bank_account.action = ""
 		
-		// "Remove Account" Button of "Action" component
-		this.action_remove_account.label_name = "Remove Account"
-		this.action_remove_account.show = true
-		this.action_remove_account.disabled = false
-		this.action_remove_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
-		this.action_remove_account.dynamic_param = {}
-		this.action_remove_account.role = []
-		this.action_remove_account.action = ""
+		// "Remove Bank Account" Button of "Action" component
+		this.action_remove_bank_account.label_name = "Remove Bank Account"
+		this.action_remove_bank_account.show = true
+		this.action_remove_bank_account.disabled = false
+		this.action_remove_bank_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.action_remove_bank_account.dynamic_param = {}
+		this.action_remove_bank_account.role = []
+		this.action_remove_bank_account.action = ""
 		
 		// "Enroll" Button of "Action" component
 		this.action_enroll.label_name = "Enroll"
@@ -541,14 +541,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_set_shop_account.role = []
 		this.action_set_shop_account.action = ""
 		
-		// "Remove Shop" Button of "Action" component
-		this.action_remove_shop.label_name = "Remove Shop"
-		this.action_remove_shop.show = true
-		this.action_remove_shop.disabled = false
-		this.action_remove_shop.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
-		this.action_remove_shop.dynamic_param = {}
-		this.action_remove_shop.role = []
-		this.action_remove_shop.action = ""
+		// "Remove Shop Bank Account" Button of "Action" component
+		this.action_remove_shop_bank_account.label_name = "Remove Shop Bank Account"
+		this.action_remove_shop_bank_account.show = true
+		this.action_remove_shop_bank_account.disabled = false
+		this.action_remove_shop_bank_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.action_remove_shop_bank_account.dynamic_param = {}
+		this.action_remove_shop_bank_account.role = []
+		this.action_remove_shop_bank_account.action = ""
 		
 		// "Enroll Cash Desk" Button of "Action" component
 		this.action_enroll_cash_desk.label_name = "Enroll Cash Desk"
@@ -577,14 +577,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_disable_cash_desk_details.role = []
 		this.action_disable_cash_desk_details.action = ""
 		
-		// "View Shop" Button of "Action" component
-		this.action_view_shop.label_name = "View Shop"
-		this.action_view_shop.show = true
-		this.action_view_shop.disabled = false
-		this.action_view_shop.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
-		this.action_view_shop.dynamic_param = {}
-		this.action_view_shop.role = []
-		this.action_view_shop.action = ""
+		// "Back to View Shop" Button of "Action" component
+		this.action_back_to_view_shop.label_name = "Back to View Shop"
+		this.action_back_to_view_shop.show = true
+		this.action_back_to_view_shop.disabled = false
+		this.action_back_to_view_shop.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.action_back_to_view_shop.dynamic_param = {}
+		this.action_back_to_view_shop.role = []
+		this.action_back_to_view_shop.action = ""
 	
 		// Component level properties - "Merchant Setup Widget" 
 		this.merchant_setup_widget.uictrl_code = "custom_widget"
@@ -848,23 +848,23 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop_action_disable_shop.role = []
 		this.shop_action_disable_shop.action = ""
 		
-		// "Set Default" Button of "Shop Action" component
-		this.shop_action_set_default.label_name = "Set Default"
-		this.shop_action_set_default.show = true
-		this.shop_action_set_default.disabled = true
-		this.shop_action_set_default.params = {"icon_only":false,"uicgcc_style":"fa fa-plus"}
-		this.shop_action_set_default.dynamic_param = {}
-		this.shop_action_set_default.role = []
-		this.shop_action_set_default.action = ""
+		// "Set Shop Default" Button of "Shop Action" component
+		this.shop_action_set_shop_default.label_name = "Set Shop Default"
+		this.shop_action_set_shop_default.show = true
+		this.shop_action_set_shop_default.disabled = true
+		this.shop_action_set_shop_default.params = {"icon_only":false,"uicgcc_style":"fa fa-plus"}
+		this.shop_action_set_shop_default.dynamic_param = {}
+		this.shop_action_set_shop_default.role = []
+		this.shop_action_set_shop_default.action = ""
 		
-		// "Remove Account" Button of "Shop Action" component
-		this.shop_action_remove_account.label_name = "Remove Account"
-		this.shop_action_remove_account.show = true
-		this.shop_action_remove_account.disabled = true
-		this.shop_action_remove_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
-		this.shop_action_remove_account.dynamic_param = {}
-		this.shop_action_remove_account.role = []
-		this.shop_action_remove_account.action = ""
+		// "Remove Shop Account" Button of "Shop Action" component
+		this.shop_action_remove_shop_account.label_name = "Remove Shop Account"
+		this.shop_action_remove_shop_account.show = true
+		this.shop_action_remove_shop_account.disabled = true
+		this.shop_action_remove_shop_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.shop_action_remove_shop_account.dynamic_param = {}
+		this.shop_action_remove_shop_account.role = []
+		this.shop_action_remove_shop_account.action = ""
 	
 		// Component level properties - "Cash Desk Action" 
 		this.cash_desk_action.uictrl_code = "dynamic_ui"
@@ -959,6 +959,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.page_load__he_for_bun_3()
 		this.page_load__he_for_btn_4()
 		this.page_load__de_for_vscd_button()
+		this.page_load__de_frompl()
 	}
 
 	//Handler for INTERNAL event of "cf for pl"
@@ -1050,11 +1051,11 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_change_mobile_no__cc_for_mobile_enab_disab()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable merchant"
-	navigation_ui_disable_merchant__action_button_click(){
-		this.navigation_ui_disable_merchant__sp_for_unentrol()
-		this.navigation_ui_disable_merchant__se_for_nav_to_action_unentrol()
-		this.navigation_ui_disable_merchant__cc_for_unentrol_enab_disab()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable"
+	navigation_ui_disable__action_button_click(){
+		this.navigation_ui_disable__sp_for_unentrol()
+		this.navigation_ui_disable__se_for_nav_to_action_unentrol()
+		this.navigation_ui_disable__cc_for_unentrol_enab_disab()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui update personal"
@@ -1164,11 +1165,11 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.sub_navigation_ui_block_unblocks__se_for_block_unblk()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui add bank account"
-	navigation_ui_add_bank_account__action_button_click(){
-		this.navigation_ui_add_bank_account__sp_for_nav_add_acc()
-		this.navigation_ui_add_bank_account__cc_for_nav_add_acc()
-		this.navigation_ui_add_bank_account__se_for_nav_add_acc()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui add account"
+	navigation_ui_add_account__action_button_click(){
+		this.navigation_ui_add_account__sp_for_nav_add_acc()
+		this.navigation_ui_add_account__cc_for_nav_add_acc()
+		this.navigation_ui_add_account__se_for_nav_add_acc()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block account"
@@ -1220,9 +1221,9 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_unblock_account__cc_for_unblock_btn_enab_disab()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "action unblock"
-	action_unblock__action_button_click(){
-		this.action_unblock__cc_for_unblock_btn()
+	//Handler for ACTION_BUTTON_CLICK event of "action unblock bank account"
+	action_unblock_bank_account__action_button_click(){
+		this.action_unblock_bank_account__cc_for_unblock_btn()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui update mcc"
@@ -1237,16 +1238,16 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_update_mcc__cc_for_update_mcc()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove bank account"
-	navigation_ui_remove_bank_account__action_button_click(){
-		this.navigation_ui_remove_bank_account__se_for_remove_account()
-		this.navigation_ui_remove_bank_account__sp_for_remove_account()
-		this.navigation_ui_remove_bank_account__cc_for_remove_account_en_di()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove account"
+	navigation_ui_remove_account__action_button_click(){
+		this.navigation_ui_remove_account__se_for_remove_account()
+		this.navigation_ui_remove_account__sp_for_remove_account()
+		this.navigation_ui_remove_account__cc_for_remove_account_en_di()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "action remove account"
-	action_remove_account__action_button_click(){
-		this.action_remove_account__cc_for_remove_account()
+	//Handler for ACTION_BUTTON_CLICK event of "action remove bank account"
+	action_remove_bank_account__action_button_click(){
+		this.action_remove_bank_account__cc_for_remove_account()
 	}
 
 	//Handler for SELECTION_CHANGED event of "shop"
@@ -1321,9 +1322,9 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_disable_cash_desk_details__cc__for_disable_cd()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "action disable"
-	action_disable__action_button_click(){
-		this.action_disable__cc_for_disable()
+	//Handler for ACTION_BUTTON_CLICK event of "action disable merchant"
+	action_disable_merchant__action_button_click(){
+		this.action_disable_merchant__cc_for_disable()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "action update personal data"
@@ -1331,14 +1332,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_update_personal_data__cc_for_update_perosal()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "action add account"
-	action_add_account__action_button_click(){
-		this.action_add_account__cc_for_add_acoount_btn()
+	//Handler for ACTION_BUTTON_CLICK event of "action add bank account"
+	action_add_bank_account__action_button_click(){
+		this.action_add_bank_account__cc_for_add_acoount_btn()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "action block"
-	action_block__action_button_click(){
-		this.action_block__cc_for_block_account()
+	//Handler for ACTION_BUTTON_CLICK event of "action block bank account"
+	action_block_bank_account__action_button_click(){
+		this.action_block_bank_account__cc_for_block_account()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "shop action enrolment shop"
@@ -1363,18 +1364,19 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop_action_update_shop__cc_for_update_shop_ena()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action set default"
-	shop_action_set_default__action_button_click(){
-		this.shop_action_set_default__se_for_set_bank_account()
-		this.shop_action_set_default__sp_for_set_shop_account()
-		this.shop_action_set_default__cc_for_set_shop_bank_account_enab()
+	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop default"
+	shop_action_set_shop_default__action_button_click(){
+		this.shop_action_set_shop_default__se_for_set_bank_account()
+		this.shop_action_set_shop_default__sp_for_set_shop_account()
+		this.shop_action_set_shop_default__cc_for_set_shop_bank_account_enab()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action remove account"
-	shop_action_remove_account__action_button_click(){
-		this.shop_action_remove_account__se_for_remove_shop_account()
-		this.shop_action_remove_account__cc_for_remove_shop_account_ena_dis()
-		this.shop_action_remove_account__sp_for_remove_shop_account()
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
+	shop_action_remove_shop_account__action_button_click(){
+		this.shop_action_remove_shop_account__se_for_remove_shop_account()
+		this.shop_action_remove_shop_account__cc_for_remove_shop_account_ena_dis()
+		this.shop_action_remove_shop_account__sp_for_remove_shop_account()
+		this.shop_action_remove_shop_account__he_for_act_rba()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "action enroll shop"
@@ -1392,9 +1394,9 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_set_shop_account__cc_for_set_shop_account()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "action remove shop"
-	action_remove_shop__action_button_click(){
-		this.action_remove_shop__cc_for_remove__shop()
+	//Handler for ACTION_BUTTON_CLICK event of "action remove shop bank account"
+	action_remove_shop_bank_account__action_button_click(){
+		this.action_remove_shop_bank_account__cc_for_remove__shop()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "action disable shop details"
@@ -1428,9 +1430,9 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cash_desk_action_back__sp_for_back()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "action view shop"
-	action_view_shop__action_button_click(){
-		this.action_view_shop__sp_for_action_view_shop()
+	//Handler for ACTION_BUTTON_CLICK event of "action back to view shop"
+	action_back_to_view_shop__action_button_click(){
+		this.action_back_to_view_shop__sp_for_action_view_shop()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1522,7 +1524,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="action_disable"
+		let destn_id="action_disable_merchant"
 		let parent_source_id=""
 		let event_code="e_1670997015088"
 		let event_params={"caller_name":"page_load__he_for_action_unentrol","event_desc":"HE for action unentrol","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -1543,7 +1545,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_disable_merchant"
+		let destn_id="navigation_ui_disable"
 		let parent_source_id=""
 		let event_code="e_1670997270095"
 		let event_params={"caller_name":"page_load__de_for_un_entrol","event_desc":"DE for Un Entrol","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1648,7 +1650,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="action_add_account"
+		let destn_id="action_add_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671000834042"
 		let event_params={"caller_name":"page_load__he_for_action_add_account","event_desc":"HE for action add account","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -1753,7 +1755,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="action_block"
+		let destn_id="action_block_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671025627076"
 		let event_params={"caller_name":"page_load__he_for_block_unblock","event_desc":"HE for Block unblock","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -1795,7 +1797,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_add_bank_account"
+		let destn_id="navigation_ui_add_account"
 		let parent_source_id=""
 		let event_code="e_1671028323552"
 		let event_params={"caller_name":"page_load__de_for_nav_add_acc","event_desc":"DE for nav add acc","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1858,7 +1860,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="action_unblock"
+		let destn_id="action_unblock_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671598890233"
 		let event_params={"caller_name":"page_load__he_for_unblock_btn","event_desc":"HE for unblock btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -1921,7 +1923,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="action_remove_account"
+		let destn_id="action_remove_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671599674558"
 		let event_params={"caller_name":"page_load__he_for_remove_account","event_desc":"HE for Remove account","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -2068,7 +2070,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="action_remove_shop"
+		let destn_id="action_remove_shop_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671620209065"
 		let event_params={"caller_name":"page_load__he_for_remove_shop","event_desc":"HE for remove shop","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -2156,6 +2158,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1671688626929"
 		let event_params={"caller_name":"page_load__de_for_vscd_button","event_desc":"DE for vscd button","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_frompl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_remove_account"
+		let parent_source_id=""
+		let event_code="e_1671774089662"
+		let event_params={"caller_name":"page_load__de_frompl","event_desc":"DE frompl","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -2784,15 +2807,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable merchant"
-	navigation_ui_disable_merchant__sp_for_unentrol() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable"
+	navigation_ui_disable__sp_for_unentrol() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_disable_merchant"
+		let source_id="navigation_ui_disable"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1670997993994"
-		let event_params={"caller_name":"navigation_ui_disable_merchant__sp_for_unentrol","event_desc":"SP for Unentrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_disable_merchant","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"navigation_ui_disable__sp_for_unentrol","event_desc":"SP for Unentrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_disable","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2805,15 +2828,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable merchant"
-	navigation_ui_disable_merchant__se_for_nav_to_action_unentrol() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable"
+	navigation_ui_disable__se_for_nav_to_action_unentrol() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_disable_merchant"
-		let destn_id="action_disable"
+		let source_id="navigation_ui_disable"
+		let destn_id="action_disable_merchant"
 		let parent_source_id=""
 		let event_code="e_1670998007874"
-		let event_params={"caller_name":"navigation_ui_disable_merchant__se_for_nav_to_action_unentrol","event_desc":"SE for nav to action unentrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_disable_merchant","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_ui_disable__se_for_nav_to_action_unentrol","event_desc":"SE for nav to action unentrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_disable","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -2826,15 +2849,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable merchant"
-	navigation_ui_disable_merchant__cc_for_unentrol_enab_disab() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable"
+	navigation_ui_disable__cc_for_unentrol_enab_disab() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_disable_merchant"
+		let source_id="navigation_ui_disable"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671005294412"
-		let event_params={"caller_name":"navigation_ui_disable_merchant__cc_for_unentrol_enab_disab","event_desc":"CC for unentrol enab disab","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_disable_merchant","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_disable__cc_for_unentrol_enab_disab","event_desc":"CC for unentrol enab disab","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_disable","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -3020,7 +3043,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="navigation_ui_disable_merchant"
+		let destn_id="navigation_ui_disable"
 		let parent_source_id=""
 		let event_code="e_1671000475768"
 		let event_params={"caller_name":"accounts__ee_for_nav_unentrol","event_desc":"EE for nav unentrol","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -3167,7 +3190,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="navigation_ui_add_bank_account"
+		let destn_id="navigation_ui_add_account"
 		let parent_source_id=""
 		let event_code="e_1671028389125"
 		let event_params={"caller_name":"accounts__ee_for_nav_add_ac","event_desc":"EE for nav add ac","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -3230,7 +3253,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="accounts"
-		let destn_id="navigation_ui_remove_bank_account"
+		let destn_id="navigation_ui_remove_account"
 		let parent_source_id=""
 		let event_code="e_1671599628864"
 		let event_params={"caller_name":"accounts__ee_for_remove_account","event_desc":"EE for Remove account","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -3510,7 +3533,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="sub_navigation_ui_add_bank_accountss"
-		let destn_id="action_add_account"
+		let destn_id="action_add_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671021103777"
 		let event_params={"caller_name":"sub_navigation_ui_add_bank_accountss__se_for_add_bank_account","event_desc":"SE for add bank account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_add_bank_accountss","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
@@ -3657,7 +3680,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="sub_navigation_ui_block_unblocks"
-		let destn_id="action_block"
+		let destn_id="action_block_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671022112556"
 		let event_params={"caller_name":"sub_navigation_ui_block_unblocks__se_for_block_unblk","event_desc":"SE for block unblk","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_block_unblocks","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
@@ -3673,15 +3696,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui add bank account"
-	navigation_ui_add_bank_account__sp_for_nav_add_acc() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui add account"
+	navigation_ui_add_account__sp_for_nav_add_acc() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_add_bank_account"
+		let source_id="navigation_ui_add_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671028131769"
-		let event_params={"caller_name":"navigation_ui_add_bank_account__sp_for_nav_add_acc","event_desc":"SP for nav Add acc","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_add_bank_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"navigation_ui_add_account__sp_for_nav_add_acc","event_desc":"SP for nav Add acc","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_add_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -3694,15 +3717,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui add bank account"
-	navigation_ui_add_bank_account__cc_for_nav_add_acc() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui add account"
+	navigation_ui_add_account__cc_for_nav_add_acc() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_add_bank_account"
+		let source_id="navigation_ui_add_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671028251011"
-		let event_params={"caller_name":"navigation_ui_add_bank_account__cc_for_nav_add_acc","event_desc":"CC for nav add acc","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_add_bank_account","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_add_account__cc_for_nav_add_acc","event_desc":"CC for nav add acc","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_add_account","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -3715,15 +3738,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui add bank account"
-	navigation_ui_add_bank_account__se_for_nav_add_acc() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui add account"
+	navigation_ui_add_account__se_for_nav_add_acc() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_add_bank_account"
-		let destn_id="action_add_account"
+		let source_id="navigation_ui_add_account"
+		let destn_id="action_add_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671028440057"
-		let event_params={"caller_name":"navigation_ui_add_bank_account__se_for_nav_add_acc","event_desc":"SE for nav add acc","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_add_bank_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_ui_add_account__se_for_nav_add_acc","event_desc":"SE for nav add acc","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_add_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -3783,7 +3806,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_ui_block_account"
-		let destn_id="action_block"
+		let destn_id="action_block_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671028489443"
 		let event_params={"caller_name":"navigation_ui_block_account__se_for_nav_block","event_desc":"SE for nav block","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_block_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
@@ -4036,7 +4059,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_ui_unblock_account"
-		let destn_id="action_unblock"
+		let destn_id="action_unblock_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671599038697"
 		let event_params={"caller_name":"navigation_ui_unblock_account__se_for_unblock_btn","event_desc":"SE for unblock btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_unblock_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
@@ -4094,15 +4117,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "action unblock"
-	action_unblock__cc_for_unblock_btn() { 
+	//Handler for ACTION_BUTTON_CLICK event of "action unblock bank account"
+	action_unblock_bank_account__cc_for_unblock_btn() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="action_unblock"
+		let source_id="action_unblock_bank_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671599185796"
-		let event_params={"caller_name":"action_unblock__cc_for_unblock_btn","event_desc":"CC for unblock btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_unblock","raiseparam":{}}
+		let event_params={"caller_name":"action_unblock_bank_account__cc_for_unblock_btn","event_desc":"CC for unblock btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_unblock_bank_account","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -4199,15 +4222,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove bank account"
-	navigation_ui_remove_bank_account__se_for_remove_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove account"
+	navigation_ui_remove_account__se_for_remove_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_remove_bank_account"
-		let destn_id="action_remove_account"
+		let source_id="navigation_ui_remove_account"
+		let destn_id="action_remove_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671599696745"
-		let event_params={"caller_name":"navigation_ui_remove_bank_account__se_for_remove_account","event_desc":"SE for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_bank_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"navigation_ui_remove_account__se_for_remove_account","event_desc":"SE for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -4220,15 +4243,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove bank account"
-	navigation_ui_remove_bank_account__sp_for_remove_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove account"
+	navigation_ui_remove_account__sp_for_remove_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_remove_bank_account"
+		let source_id="navigation_ui_remove_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671599737816"
-		let event_params={"caller_name":"navigation_ui_remove_bank_account__sp_for_remove_account","event_desc":"SP for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_bank_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"navigation_ui_remove_account__sp_for_remove_account","event_desc":"SP for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -4241,15 +4264,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove bank account"
-	navigation_ui_remove_bank_account__cc_for_remove_account_en_di() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui remove account"
+	navigation_ui_remove_account__cc_for_remove_account_en_di() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_remove_bank_account"
+		let source_id="navigation_ui_remove_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671599748710"
-		let event_params={"caller_name":"navigation_ui_remove_bank_account__cc_for_remove_account_en_di","event_desc":"CC for Remove account EN DI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_bank_account","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_remove_account__cc_for_remove_account_en_di","event_desc":"CC for Remove account EN DI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_remove_account","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -4262,15 +4285,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "action remove account"
-	action_remove_account__cc_for_remove_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "action remove bank account"
+	action_remove_bank_account__cc_for_remove_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="action_remove_account"
+		let source_id="action_remove_bank_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671599756492"
-		let event_params={"caller_name":"action_remove_account__cc_for_remove_account","event_desc":"CC for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_remove_account","raiseparam":{}}
+		let event_params={"caller_name":"action_remove_bank_account__cc_for_remove_account","event_desc":"CC for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_remove_bank_account","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -4288,7 +4311,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="shop"
-		let destn_id="shop_action_remove_account"
+		let destn_id="shop_action_remove_shop_account"
 		let parent_source_id=""
 		let event_code="e_1671619187016"
 		let event_params={"caller_name":"shop__ee_for_remove_shop","event_desc":"EE for Remove shop","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -4351,7 +4374,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="shop"
-		let destn_id="shop_action_set_default"
+		let destn_id="shop_action_set_shop_default"
 		let parent_source_id=""
 		let event_code="e_1671619341687"
 		let event_params={"caller_name":"shop__ee_for_set_shop_bank_account","event_desc":"EE for Set shop bank account","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -4956,15 +4979,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "action disable"
-	action_disable__cc_for_disable() { 
+	//Handler for ACTION_BUTTON_CLICK event of "action disable merchant"
+	action_disable_merchant__cc_for_disable() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="action_disable"
+		let source_id="action_disable_merchant"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671605028027"
-		let event_params={"caller_name":"action_disable__cc_for_disable","event_desc":"CC for Disable","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_disable","raiseparam":{}}
+		let event_params={"caller_name":"action_disable_merchant__cc_for_disable","event_desc":"CC for Disable","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_disable_merchant","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -4998,15 +5021,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "action add account"
-	action_add_account__cc_for_add_acoount_btn() { 
+	//Handler for ACTION_BUTTON_CLICK event of "action add bank account"
+	action_add_bank_account__cc_for_add_acoount_btn() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="action_add_account"
+		let source_id="action_add_bank_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671605249876"
-		let event_params={"caller_name":"action_add_account__cc_for_add_acoount_btn","event_desc":"CC for Add acoount btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_add_account","raiseparam":{}}
+		let event_params={"caller_name":"action_add_bank_account__cc_for_add_acoount_btn","event_desc":"CC for Add acoount btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_add_bank_account","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -5019,15 +5042,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "action block"
-	action_block__cc_for_block_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "action block bank account"
+	action_block_bank_account__cc_for_block_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="action_block"
+		let source_id="action_block_bank_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671605310531"
-		let event_params={"caller_name":"action_block__cc_for_block_account","event_desc":"CC for Block account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_block","raiseparam":{}}
+		let event_params={"caller_name":"action_block_bank_account__cc_for_block_account","event_desc":"CC for Block account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_block_bank_account","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -5250,15 +5273,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action set default"
-	shop_action_set_default__se_for_set_bank_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop default"
+	shop_action_set_shop_default__se_for_set_bank_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="shop_action_set_default"
+		let source_id="shop_action_set_shop_default"
 		let destn_id="action_set_shop_account"
 		let parent_source_id=""
 		let event_code="e_1671620620010"
-		let event_params={"caller_name":"shop_action_set_default__se_for_set_bank_account","event_desc":"SE for set bank account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_default","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"shop_action_set_shop_default__se_for_set_bank_account","event_desc":"SE for set bank account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_shop_default","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -5271,15 +5294,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action set default"
-	shop_action_set_default__sp_for_set_shop_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop default"
+	shop_action_set_shop_default__sp_for_set_shop_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="shop_action_set_default"
+		let source_id="shop_action_set_shop_default"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671621287695"
-		let event_params={"caller_name":"shop_action_set_default__sp_for_set_shop_account","event_desc":"SP for Set shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_default","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"shop_action_set_shop_default__sp_for_set_shop_account","event_desc":"SP for Set shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_shop_default","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -5292,15 +5315,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action set default"
-	shop_action_set_default__cc_for_set_shop_bank_account_enab() { 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop default"
+	shop_action_set_shop_default__cc_for_set_shop_bank_account_enab() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="shop_action_set_default"
+		let source_id="shop_action_set_shop_default"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671621299093"
-		let event_params={"caller_name":"shop_action_set_default__cc_for_set_shop_bank_account_enab","event_desc":"CC for set shop bank account ENAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_default","raiseparam":{}}
+		let event_params={"caller_name":"shop_action_set_shop_default__cc_for_set_shop_bank_account_enab","event_desc":"CC for set shop bank account ENAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_shop_default","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -5313,15 +5336,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action remove account"
-	shop_action_remove_account__se_for_remove_shop_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
+	shop_action_remove_shop_account__se_for_remove_shop_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="shop_action_remove_account"
-		let destn_id="action_remove_shop"
+		let source_id="shop_action_remove_shop_account"
+		let destn_id="action_remove_shop_bank_account"
 		let parent_source_id=""
 		let event_code="e_1671620742304"
-		let event_params={"caller_name":"shop_action_remove_account__se_for_remove_shop_account","event_desc":"SE for remove shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"shop_action_remove_shop_account__se_for_remove_shop_account","event_desc":"SE for remove shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_shop_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -5334,15 +5357,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action remove account"
-	shop_action_remove_account__cc_for_remove_shop_account_ena_dis() { 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
+	shop_action_remove_shop_account__cc_for_remove_shop_account_ena_dis() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="shop_action_remove_account"
+		let source_id="shop_action_remove_shop_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671621189032"
-		let event_params={"caller_name":"shop_action_remove_account__cc_for_remove_shop_account_ena_dis","event_desc":"CC for Remove shop account ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_account","raiseparam":{}}
+		let event_params={"caller_name":"shop_action_remove_shop_account__cc_for_remove_shop_account_ena_dis","event_desc":"CC for Remove shop account ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_shop_account","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -5355,21 +5378,42 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action remove account"
-	shop_action_remove_account__sp_for_remove_shop_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
+	shop_action_remove_shop_account__sp_for_remove_shop_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="shop_action_remove_account"
+		let source_id="shop_action_remove_shop_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671621199391"
-		let event_params={"caller_name":"shop_action_remove_account__sp_for_remove_shop_account","event_desc":"SP for Remove shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"shop_action_remove_shop_account__sp_for_remove_shop_account","event_desc":"SP for Remove shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_shop_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
+	shop_action_remove_shop_account__he_for_act_rba() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_remove_shop_account"
+		let destn_id="action_disable_shop_details"
+		let parent_source_id=""
+		let event_code="e_1671774579346"
+		let event_params={"caller_name":"shop_action_remove_shop_account__he_for_act_rba","event_desc":"he for act rba","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_shop_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5439,15 +5483,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "action remove shop"
-	action_remove_shop__cc_for_remove__shop() { 
+	//Handler for ACTION_BUTTON_CLICK event of "action remove shop bank account"
+	action_remove_shop_bank_account__cc_for_remove__shop() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="action_remove_shop"
+		let source_id="action_remove_shop_bank_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671620916610"
-		let event_params={"caller_name":"action_remove_shop__cc_for_remove__shop","event_desc":"CC for Remove  shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_remove_shop","raiseparam":{}}
+		let event_params={"caller_name":"action_remove_shop_bank_account__cc_for_remove__shop","event_desc":"CC for Remove  shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_remove_shop_bank_account","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -5608,15 +5652,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "action view shop"
-	action_view_shop__sp_for_action_view_shop() { 
+	//Handler for ACTION_BUTTON_CLICK event of "action back to view shop"
+	action_back_to_view_shop__sp_for_action_view_shop() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="action_view_shop"
+		let source_id="action_back_to_view_shop"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671715602289"
-		let event_params={"caller_name":"action_view_shop__sp_for_action_view_shop","event_desc":"SP for action view shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_view_shop","raiseparam":{"profile_code":"BTL_1304_1671687995972"}}
+		let event_params={"caller_name":"action_back_to_view_shop__sp_for_action_view_shop","event_desc":"SP for action view shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_back_to_view_shop","raiseparam":{"profile_code":"BTL_1304_1671687995972"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

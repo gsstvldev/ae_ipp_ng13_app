@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27502 
+Build ID        : 27506 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-23 4:28 AM 
+Modified Date   : 2022-Dec-23 6:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -50,7 +50,7 @@ focustoelement(){
   
 		//Properties of channel_id
 		this.ctrl.channel_id = {}
-		this.ctrl.channel_id.id = "RN01CN1"
+		this.ctrl.channel_id.id = "RN31CN14RN4CN16"
 		this.ctrl.channel_id.desc = "Channel ID"
 		this.ctrl.channel_id.visible = true
 		this.ctrl.channel_id.label_name = "Channel ID"
@@ -89,7 +89,7 @@ focustoelement(){
 	
 		//Properties of bankuserid
 		this.ctrl.bankuserid = {}
-		this.ctrl.bankuserid.id = "RN01CN2"
+		this.ctrl.bankuserid.id = "RN31CN14RN4CN17"
 		this.ctrl.bankuserid.desc = "Bank User ID"
 		this.ctrl.bankuserid.visible = true
 		this.ctrl.bankuserid.label_name = "Bank User ID"
@@ -127,7 +127,7 @@ focustoelement(){
 	
 		//Properties of merchant_name
 		this.ctrl.merchant_name = {}
-		this.ctrl.merchant_name.id = "RN01CN4"
+		this.ctrl.merchant_name.id = "RN31CN14RN4CN18"
 		this.ctrl.merchant_name.desc = "Name"
 		this.ctrl.merchant_name.visible = true
 		this.ctrl.merchant_name.label_name = "Name"
@@ -165,7 +165,7 @@ focustoelement(){
 	
 		//Properties of surname
 		this.ctrl.surname = {}
-		this.ctrl.surname.id = "RN01CN3"
+		this.ctrl.surname.id = "RN31CN14RN4CN19"
 		this.ctrl.surname.desc = "Surname"
 		this.ctrl.surname.visible = true
 		this.ctrl.surname.label_name = "Surname"
@@ -203,7 +203,7 @@ focustoelement(){
 	
 		//Properties of denomination
 		this.ctrl.denomination = {}
-		this.ctrl.denomination.id = "RN11CN9"
+		this.ctrl.denomination.id = "RN31CN14RN4CN20"
 		this.ctrl.denomination.desc = "Denomination"
 		this.ctrl.denomination.visible = true
 		this.ctrl.denomination.label_name = "Denomination"
@@ -241,10 +241,10 @@ focustoelement(){
 	
 		//Properties of vat_number
 		this.ctrl.vat_number = {}
-		this.ctrl.vat_number.id = "RN01CN10"
-		this.ctrl.vat_number.desc = "Vat Number"
+		this.ctrl.vat_number.id = "RN31CN14RN4CN21"
+		this.ctrl.vat_number.desc = "VAT Number"
 		this.ctrl.vat_number.visible = true
-		this.ctrl.vat_number.label_name = "Vat Number"
+		this.ctrl.vat_number.label_name = "VAT Number"
 		this.ctrl.vat_number.df_code = "DF_1304_1666846276198"
 		this.ctrl.vat_number.df_description = "Column Group 1"
 		this.ctrl.vat_number.uictrl_code = "TXT"
@@ -279,7 +279,7 @@ focustoelement(){
 	
 		//Properties of mcc
 		this.ctrl.mcc = {}
-		this.ctrl.mcc.id = "RN11CN8"
+		this.ctrl.mcc.id = "RN31CN14RN4CN22"
 		this.ctrl.mcc.desc = "MCC"
 		this.ctrl.mcc.visible = true
 		this.ctrl.mcc.label_name = "MCC"
@@ -317,7 +317,7 @@ focustoelement(){
 	
 		//Properties of mobile
 		this.ctrl.mobile = {}
-		this.ctrl.mobile.id = "RN11CN6"
+		this.ctrl.mobile.id = "RN31CN14RN4CN23"
 		this.ctrl.mobile.desc = "Mobile"
 		this.ctrl.mobile.visible = true
 		this.ctrl.mobile.label_name = "Mobile"
@@ -355,7 +355,7 @@ focustoelement(){
 	
 		//Properties of proxy_type
 		this.ctrl.proxy_type = {}
-		this.ctrl.proxy_type.id = "RN01CN11"
+		this.ctrl.proxy_type.id = "RN31CN14RN4CN24"
 		this.ctrl.proxy_type.desc = "Type"
 		this.ctrl.proxy_type.visible = true
 		this.ctrl.proxy_type.label_name = "Type"
@@ -394,7 +394,7 @@ focustoelement(){
 	
 		//Properties of proxy_value
 		this.ctrl.proxy_value = {}
-		this.ctrl.proxy_value.id = "RN11CN7"
+		this.ctrl.proxy_value.id = "RN31CN14RN4CN25"
 		this.ctrl.proxy_value.desc = "Value"
 		this.ctrl.proxy_value.visible = true
 		this.ctrl.proxy_value.label_name = "Value"
@@ -432,7 +432,7 @@ focustoelement(){
 	
 		//Properties of channel_name
 		this.ctrl.channel_name = {}
-		this.ctrl.channel_name.id = "RN11CN12"
+		this.ctrl.channel_name.id = "RN31CN14RN4CN26"
 		this.ctrl.channel_name.desc = "Channel Name"
 		this.ctrl.channel_name.visible = true
 		this.ctrl.channel_name.label_name = "Channel Name"
@@ -470,7 +470,7 @@ focustoelement(){
 	
 		//Properties of merchant_tag
 		this.ctrl.merchant_tag = {}
-		this.ctrl.merchant_tag.id = "RN11CN14"
+		this.ctrl.merchant_tag.id = "RN31CN14RN4CN27"
 		this.ctrl.merchant_tag.desc = "Merchant Tag"
 		this.ctrl.merchant_tag.visible = true
 		this.ctrl.merchant_tag.label_name = "Merchant Tag"
@@ -514,7 +514,7 @@ focustoelement(){
 		this.ctrl.logo.label_name = "Logo"
 		this.ctrl.logo.df_code = "DF_1304_1666846276198"
 		this.ctrl.logo.df_description = "Column Group 1"
-		this.ctrl.logo.uictrl_code = "TXT"
+		this.ctrl.logo.uictrl_code = "IMG_CCTRL"
 		this.ctrl.logo.target_column = "LOGO"
 		this.ctrl.logo.data_type = "TEXT"
 		this.ctrl.logo.data_length = 4000
@@ -544,7 +544,7 @@ focustoelement(){
 		this.ctrl.npss_merchant_ui_logo = {}
 		this.ctrl.npss_merchant_ui_logo.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_merchant_ui.model = {"CHANNEL_ID":"","BANKUSERID":"","MERCHANT_NAME":"","SURNAME":"","DENOMINATION":"","VAT_NUMBER":"","MCC":"","MOBILE":"","PROXY_TYPE":"","PROXY_VALUE":"","CHANNEL_NAME":"","MERCHANT_TAG":"","LOGO":""}
-		this.screen_instance[this.comp_id].f_npss_merchant_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DENOMINATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VAT_NUMBER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MCC"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_VALUE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_TAG"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"LOGO"}]
+		this.screen_instance[this.comp_id].f_npss_merchant_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DENOMINATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VAT_NUMBER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MCC"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_VALUE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_TAG"},{"CTLR_CODE":"IMG_CCTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"LOGO"}]
 		this.screen_instance[this.comp_id].f_npss_merchant_ui.dt_code = "dt_1304_1666846074129"
 		this.screen_instance[this.comp_id].f_npss_merchant_ui.dtt_code = "dtt_1304_1666846129395"
 		this.screen_instance[this.comp_id].f_npss_merchant_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

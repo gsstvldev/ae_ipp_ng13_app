@@ -10,7 +10,7 @@ import { AppHandlerService } from '../../scripts/fx/app.handler.service'; //Show
 import { SessionService } from '../../scripts/fx/session.service'; // get Session information
 import { SCOPE } from '../../scripts/fx/session.enum'; // get Scope for Session level
 import { DialogService } from '../../scripts/fx/dialog.service'; // Dialog box appear
-import { LoaderService } from '../../scripts/fx/loader.service'; // Loader box appear for form loader  view
+import { LoaderService } from '../../scripts/fx/loader.service'; // Loader box appear for form loader view
 
 @Injectable()
 export class npss_c_btn_enb_disbService {

@@ -24,7 +24,7 @@ export class npss_cs_set_reversal_prd_system_setup_dateService {
     fn_npss_cs_set_reversal_prd_system_setup_date(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
         let Clientparam: any = {}  
       Clientparam.screenName = screenInstance.wftpa_description
-      Clientparam.TenantId = = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
+      Clientparam.TenantId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
       this.CallUrlWithData(Clientparam, screenInstance, internals);
     }
     //Custom validation logics
@@ -38,7 +38,7 @@ CallUrlWithData(ClientParam, screenInstance, internals) {
         .subscribe((res: any) => {
             if (res.data.status == "SUCCESS") {
                 this.coreHelper.set_value_to_memory("MEMORY_VARIABLES", "MI_LEVEL_CD", res.data.data);
-                this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
+                  this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
 
             }else{
                 this.dialogHelper.ShowInfoDialog(res.data.data);  

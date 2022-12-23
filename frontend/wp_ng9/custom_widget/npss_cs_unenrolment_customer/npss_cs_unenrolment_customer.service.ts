@@ -33,7 +33,7 @@ export class npss_cs_unenrolment_customerService {
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     CallUrlWithData(ClientParams, screenInstance, internals) {
-        this.httpHelper.HttpPost('/microsvc/npss_cs_customer_unenrolment/', ClientParams)
+        this.httpHelper.HttpPost('/microsvc/npss_cs_unenrolment_customer/', ClientParams)
             .subscribe((res: any) => {
                 var event
                     if(res.data.status == 'SUCCESS'){ 

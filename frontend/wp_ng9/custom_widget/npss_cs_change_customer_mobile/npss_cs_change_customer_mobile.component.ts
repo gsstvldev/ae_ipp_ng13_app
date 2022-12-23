@@ -58,7 +58,7 @@ export class npss_cs_change_customer_mobileComponent implements OnInit {
                                                 var msgkey = Object.keys(data[i][k][keys[h]][g])
                                                 for(let u =0; u < msgkey.length ; u++){
                                                     messgaeobj = {}
-                                                    messgaeobj['msg'] = msgkey[u] + ':' + data[i][k][keys[h]][g][msgkey[u]]
+                                                    messgaeobj['msg'] = msgkey[u] + ' : ' + data[i][k][keys[h]][g][msgkey[u]]
                                                     this.messagearray.push(messgaeobj)
                                                 }
                                             }
@@ -67,7 +67,7 @@ export class npss_cs_change_customer_mobileComponent implements OnInit {
                                     }
                                      else {
                                         messgaeobj = {}
-                                        messgaeobj['msg'] = keys[h] + ':' + data[i][k][keys[h]]
+                                        messgaeobj['msg'] = keys[h] + ' : ' + data[i][k][keys[h]]
                                         this.messagearray.push(messgaeobj)
                                     }
         
@@ -78,7 +78,7 @@ export class npss_cs_change_customer_mobileComponent implements OnInit {
                             var keyvalue = Object.keys(data[i])
                             for (let j = 0; j < keyvalue.length; j++) {
                                 messgaeobj = {}
-                                messgaeobj['msg'] = keyvalue[j] + ':' + data[i][keyvalue[j]]
+                                messgaeobj['msg'] = keyvalue[j] + ' : ' + data[i][keyvalue[j]]
                                 this.messagearray.push(messgaeobj)
                             }
                         }
@@ -86,7 +86,7 @@ export class npss_cs_change_customer_mobileComponent implements OnInit {
                     } else {
                         messgaeobj = {}
                         
-                        messgaeobj['msg'] = i + ':' + data[i]
+                        messgaeobj['msg'] = i + ' : ' + data[i]
                         this.messagearray.push(messgaeobj)
                     }
                 }

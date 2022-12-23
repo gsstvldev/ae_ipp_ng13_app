@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27509 
+Build ID        : 27512 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-23 8:27 AM 
+Modified Date   : 2022-Dec-23 10:31 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -945,41 +945,26 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	// To handle page_load event
 	page_load(){
 		this.page_load__cf_for_pl()
-		this.page_load__he_for_action_change_mob()
-		this.page_load__he_for_action_entrol()
-		this.page_load__he_for_update_personal_data()
-		this.page_load__he_for_action_unentrol()
 		this.page_load__de_for_un_entrol()
 		this.page_load__de_for_cmn()
 		this.page_load__de_for_up()
 		this.page_load__he_for_trg_btn_2()
 		this.page_load__he_for_trg_btn1()
-		this.page_load__he_for_action_add_account()
 		this.page_load__he_for_add_account()
 		this.page_load__de_for_remove()
 		this.page_load__de_for_set_default()
 		this.page_load__he_for_block_unblk()
-		this.page_load__he_for_block_unblock()
 		this.page_load__de_for_nav_block()
 		this.page_load__de_for_nav_add_acc()
 		this.page_load__de_for_vpl_from_pl()
 		this.page_load__de_for_unblock_btn()
-		this.page_load__he_for_unblock_btn()
 		this.page_load__de_for_update_mcc_btn()
-		this.page_load__he_for_update_mcc_btn()
-		this.page_load__he_for_remove_account()
-		this.page_load__he_for_enroll_cd()
-		this.page_load__he_for_disable_cd()
-		this.page_load__he_for_update_cd()
-		this.page_load__he_for_enroll_shop()
-		this.page_load__he_for_disable_shop()
-		this.page_load__he_for_set_shop_account()
-		this.page_load__he_for_remove_shop()
-		this.page_load__e_1671620248127()
 		this.page_load__he_for_bun_3()
 		this.page_load__he_for_btn_4()
 		this.page_load__de_for_vscd_button()
 		this.page_load__de_frompl()
+		this.page_load__he_for_trg_hide_all_nav()
+		this.page_load__tbc_for_trg_hide_all_nav_btn()
 	}
 
 	//Handler for INTERNAL event of "cf for pl"
@@ -1455,6 +1440,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "action back to view shop"
 	action_back_to_view_shop__action_button_click(){
 		this.action_back_to_view_shop__sp_for_action_view_shop()
+		this.action_back_to_view_shop__tbc_for_trg_hide_all_nav()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui block account"
@@ -1462,6 +1448,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.sub_navigation_ui_block_account__cc_for_show_hide_for_block_acc()
 		this.sub_navigation_ui_block_account__sp_for_block_acc()
 		this.sub_navigation_ui_block_account__se_for_block_cnk_acc()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__action_button_click(){
+		this.navigation_ui_trg_hide_all_navigation__he_for_enroll_shop()
+		this.navigation_ui_trg_hide_all_navigation__he_for_disable_shop()
+		this.navigation_ui_trg_hide_all_navigation__he_for_set_shop_account()
+		this.navigation_ui_trg_hide_all_navigation__he_for_action_add_account()
+		this.navigation_ui_trg_hide_all_navigation__he_for_action_change_mob()
+		this.navigation_ui_trg_hide_all_navigation__he_for_remove_account()
+		this.navigation_ui_trg_hide_all_navigation__he_for_enroll_cd()
+		this.navigation_ui_trg_hide_all_navigation__he_for_block_unblock()
+		this.navigation_ui_trg_hide_all_navigation__e_1671620248127()
+		this.navigation_ui_trg_hide_all_navigation__he_for_update_personal_data()
+		this.navigation_ui_trg_hide_all_navigation__he_for_unblock_btn()
+		this.navigation_ui_trg_hide_all_navigation__he_for_action_unentrol()
+		this.navigation_ui_trg_hide_all_navigation__he_for_action_entrol()
+		this.navigation_ui_trg_hide_all_navigation__he_for_remove_shop()
+		this.navigation_ui_trg_hide_all_navigation__he_for_disable_cd()
+		this.navigation_ui_trg_hide_all_navigation__he_for_update_mcc_btn()
+		this.navigation_ui_trg_hide_all_navigation__he_for_update_cd()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1479,90 +1486,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_action_change_mob() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_change_mobile_number"
-		let parent_source_id=""
-		let event_code="e_1670996990729"
-		let event_params={"caller_name":"page_load__he_for_action_change_mob","event_desc":"HE for action change mob","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_action_entrol() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_enroll"
-		let parent_source_id=""
-		let event_code="e_1670996997915"
-		let event_params={"caller_name":"page_load__he_for_action_entrol","event_desc":"HE for action entrol","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_update_personal_data() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_update_personal_data"
-		let parent_source_id=""
-		let event_code="e_1670997004020"
-		let event_params={"caller_name":"page_load__he_for_update_personal_data","event_desc":"HE for Update personal data","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_action_unentrol() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_disable_merchant"
-		let parent_source_id=""
-		let event_code="e_1670997015088"
-		let event_params={"caller_name":"page_load__he_for_action_unentrol","event_desc":"HE for action unentrol","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1675,27 +1598,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_action_add_account() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_add_bank_account"
-		let parent_source_id=""
-		let event_code="e_1671000834042"
-		let event_params={"caller_name":"page_load__he_for_action_add_account","event_desc":"HE for action add account","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
 	page_load__he_for_add_account() { 
 		let Dest_Is_ctrl=true
 		
@@ -1767,27 +1669,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1671021715640"
 		let event_params={"caller_name":"page_load__he_for_block_unblk","event_desc":"HE for block unblk","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_block_unblock() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_block_bank_account"
-		let parent_source_id=""
-		let event_code="e_1671025627076"
-		let event_params={"caller_name":"page_load__he_for_block_unblock","event_desc":"HE for Block unblock","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -1885,27 +1766,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_unblock_btn() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_unblock_bank_account"
-		let parent_source_id=""
-		let event_code="e_1671598890233"
-		let event_params={"caller_name":"page_load__he_for_unblock_btn","event_desc":"HE for unblock btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
 	page_load__de_for_update_mcc_btn() { 
 		let Dest_Is_ctrl=true
 		
@@ -1920,216 +1780,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_update_mcc_btn() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_update_mcc"
-		let parent_source_id=""
-		let event_code="e_1671599283401"
-		let event_params={"caller_name":"page_load__he_for_update_mcc_btn","event_desc":"HE for Update MCC btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_remove_account() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_remove_bank_account"
-		let parent_source_id=""
-		let event_code="e_1671599674558"
-		let event_params={"caller_name":"page_load__he_for_remove_account","event_desc":"HE for Remove account","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_enroll_cd() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_enroll_cash_desk"
-		let parent_source_id=""
-		let event_code="e_1671604627015"
-		let event_params={"caller_name":"page_load__he_for_enroll_cd","event_desc":"HE for Enroll CD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_disable_cd() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_disable_cash_desk_details"
-		let parent_source_id=""
-		let event_code="e_1671604672206"
-		let event_params={"caller_name":"page_load__he_for_disable_cd","event_desc":"HE for Disable CD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_update_cd() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_update_cash_desk_details"
-		let parent_source_id=""
-		let event_code="e_1671604706574"
-		let event_params={"caller_name":"page_load__he_for_update_cd","event_desc":"HE for Update CD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_enroll_shop() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_enroll_shop"
-		let parent_source_id=""
-		let event_code="e_1671619586398"
-		let event_params={"caller_name":"page_load__he_for_enroll_shop","event_desc":"HE for Enroll Shop","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_disable_shop() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_disable_shop_details"
-		let parent_source_id=""
-		let event_code="e_1671619632915"
-		let event_params={"caller_name":"page_load__he_for_disable_shop","event_desc":"HE for Disable shop","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_set_shop_account() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_set_shop_account"
-		let parent_source_id=""
-		let event_code="e_1671619990287"
-		let event_params={"caller_name":"page_load__he_for_set_shop_account","event_desc":"HE for set shop account","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_remove_shop() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_remove_shop_bank_account"
-		let parent_source_id=""
-		let event_code="e_1671620209065"
-		let event_params={"caller_name":"page_load__he_for_remove_shop","event_desc":"HE for remove shop","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__e_1671620248127() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="action_update_shop_details"
-		let parent_source_id=""
-		let event_code="e_1671620248127"
-		let event_params={"caller_name":"page_load__e_1671620248127","event_desc":"E_1671620248127","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2214,6 +1864,48 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_trg_hide_all_nav() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_trg_hide_all_navigation"
+		let parent_source_id=""
+		let event_code="e_1671789258696"
+		let event_params={"caller_name":"page_load__he_for_trg_hide_all_nav","event_desc":"HE for Trg hide all nav","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__tbc_for_trg_hide_all_nav_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_trg_hide_all_navigation"
+		let parent_source_id=""
+		let event_code="e_1671789321325"
+		let event_params={"caller_name":"page_load__tbc_for_trg_hide_all_nav_btn","event_desc":"TBC for Trg hide all nav btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5744,6 +5436,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "action back to view shop"
+	action_back_to_view_shop__tbc_for_trg_hide_all_nav() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_back_to_view_shop"
+		let destn_id="navigation_ui_trg_hide_all_navigation"
+		let parent_source_id=""
+		let event_code="e_1671789393031"
+		let event_params={"caller_name":"action_back_to_view_shop__tbc_for_trg_hide_all_nav","event_desc":"TBC for trg hide all nav","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_back_to_view_shop","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui block account"
 	sub_navigation_ui_block_account__cc_for_show_hide_for_block_acc() { 
 		let Dest_Is_ctrl=true
@@ -5801,6 +5514,363 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_enroll_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_enroll_shop"
+		let parent_source_id=""
+		let event_code="e_1671619586398"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_enroll_shop","event_desc":"HE for Enroll Shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_disable_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_disable_shop_details"
+		let parent_source_id=""
+		let event_code="e_1671619632915"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_disable_shop","event_desc":"HE for Disable shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_set_shop_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_set_shop_account"
+		let parent_source_id=""
+		let event_code="e_1671619990287"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_set_shop_account","event_desc":"HE for set shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_action_add_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_add_bank_account"
+		let parent_source_id=""
+		let event_code="e_1671000834042"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_action_add_account","event_desc":"HE for action add account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_action_change_mob() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_change_mobile_number"
+		let parent_source_id=""
+		let event_code="e_1670996990729"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_action_change_mob","event_desc":"HE for action change mob","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_remove_account() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_remove_bank_account"
+		let parent_source_id=""
+		let event_code="e_1671599674558"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_remove_account","event_desc":"HE for Remove account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_enroll_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_enroll_cash_desk"
+		let parent_source_id=""
+		let event_code="e_1671604627015"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_enroll_cd","event_desc":"HE for Enroll CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_block_unblock() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_block_bank_account"
+		let parent_source_id=""
+		let event_code="e_1671025627076"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_block_unblock","event_desc":"HE for Block unblock","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__e_1671620248127() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_update_shop_details"
+		let parent_source_id=""
+		let event_code="e_1671620248127"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__e_1671620248127","event_desc":"E_1671620248127","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_update_personal_data() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_update_personal_data"
+		let parent_source_id=""
+		let event_code="e_1670997004020"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_update_personal_data","event_desc":"HE for Update personal data","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_unblock_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_unblock_bank_account"
+		let parent_source_id=""
+		let event_code="e_1671598890233"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_unblock_btn","event_desc":"HE for unblock btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_action_unentrol() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_disable_merchant"
+		let parent_source_id=""
+		let event_code="e_1670997015088"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_action_unentrol","event_desc":"HE for action unentrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_action_entrol() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_enroll"
+		let parent_source_id=""
+		let event_code="e_1670996997915"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_action_entrol","event_desc":"HE for action entrol","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_remove_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_remove_shop_bank_account"
+		let parent_source_id=""
+		let event_code="e_1671620209065"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_remove_shop","event_desc":"HE for remove shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_disable_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_disable_cash_desk_details"
+		let parent_source_id=""
+		let event_code="e_1671604672206"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_disable_cd","event_desc":"HE for Disable CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_update_mcc_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_update_mcc"
+		let parent_source_id=""
+		let event_code="e_1671599283401"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_update_mcc_btn","event_desc":"HE for Update MCC btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui trg hide all navigation"
+	navigation_ui_trg_hide_all_navigation__he_for_update_cd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_trg_hide_all_navigation"
+		let destn_id="action_update_cash_desk_details"
+		let parent_source_id=""
+		let event_code="e_1671604706574"
+		let event_params={"caller_name":"navigation_ui_trg_hide_all_navigation__he_for_update_cd","event_desc":"HE for Update CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_trg_hide_all_navigation","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

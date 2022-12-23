@@ -26,7 +26,7 @@ export class npss_c_btn_enb_disbService {
         var btnName = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "CURRENT_BTN_LABEL").toUpperCase();
         if(screenInstance.wftpa_description == 's_customer_setup'){
                     var CtrlScope = screenInstance['customer_detail'].f_npss_customer_proxy_ui.controls; // for customer details
-                    var CtrlScope1 = screenInstance['account__detail'].f_npss_customer_account_ui.controls; // for Account details
+                    var CtrlScope1 = screenInstance['account__detail'].f_npss_customer_account_ui.controls; // for Account detail
         if (btnName == 'ENROLMENT') {
             CtrlScope1.memory9.show = false //hide block/unblock dorpdown
             CtrlScope1.memory10.show = false //hide block/unblock dorpdown

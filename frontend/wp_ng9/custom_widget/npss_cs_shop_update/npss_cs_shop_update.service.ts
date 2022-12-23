@@ -12,7 +12,7 @@ export class npss_cs_shop_updateService {
     constructor() { }
     //Default calling function
     fn_npss_cs_shop_update(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
-    console.log('success');
+    console.log('successs');
     }
     //Custom validation logics
     //Uncomment below lines when validation is required

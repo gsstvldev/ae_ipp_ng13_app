@@ -6,20 +6,10 @@ import { Injectable } from '@angular/core';
 //import { HttpClient } from '@angular/common/http';
 //import 'rxjs/add/operator/map';
 //import 'rxjs/add/operator/catch';
-import { HttphelperService } from '../../scripts/fx/httphelper.service'; // for server call only use http services
-import { AppHandlerService } from '../../scripts/fx/app.handler.service'; //Show for Dialog for Screen
-import { SCOPE, SESSION } from '../../scripts/fx/session.enum';
-import { SessionService } from '../../scripts/fx/session.service'; // get Session information
-import { DialogService } from '../../scripts/fx/dialog.service'; // Dialog box appear
-import { CoreService } from '../../scripts/fx/core.service'; 
-                        
+
 @Injectable()
 export class npss_cs_shop_disableService {
-    constructor(private httpHelper: HttphelperService,
-        private appHandler: AppHandlerService,
-        private sessionHelper: SessionService,
-        private coreHelper: CoreService,
-        public dialogHelper: DialogService) { }
+    constructor() { }
     //Default calling function
     fn_npss_cs_shop_disable(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
     console.log('SUCCESS')

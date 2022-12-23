@@ -8,7 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
  
     try {
-        /*  Created By : Siva Harish M
+        /*  Created By :Siva Harish M
         Created Date :20-12-2022
         Modified By :
         Modified Date :
@@ -49,7 +49,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     mTranConn = pSession; //  assign connection     
     
                     try {
-                        var getdays = `SELECT param_detail  FROM core_nc_system_setup WHERE param_category = 'RCT_OP_REV_PERIOD' and param_code ='NO_OF_DAYS' and status = 'APPROVED' and tenant_id = '${params.TenantId}'`
+                          var getdays = `SELECT param_detail  FROM core_nc_system_setup WHERE param_category = 'RCT_OP_REV_PERIOD' and param_code ='NO_OF_DAYS' and status = 'APPROVED' and tenant_id = '${params.TenantId}'`
                         
                         
                         var getfullparam                   

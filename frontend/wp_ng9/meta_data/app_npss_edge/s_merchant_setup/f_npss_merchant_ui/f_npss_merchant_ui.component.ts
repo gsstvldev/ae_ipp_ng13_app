@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27487 
+Build ID        : 27502 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-22 7:53 AM 
+Modified Date   : 2022-Dec-23 4:28 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -56,7 +56,7 @@ focustoelement(){
 		this.ctrl.channel_id.label_name = "Channel ID"
 		this.ctrl.channel_id.df_code = "DF_1304_1666846276198"
 		this.ctrl.channel_id.df_description = "Column Group 1"
-		this.ctrl.channel_id.uictrl_code = "TXT"
+		this.ctrl.channel_id.uictrl_code = "CBO"
 		this.ctrl.channel_id.target_column = "CHANNEL_ID"
 		this.ctrl.channel_id.data_type = "TEXT"
 		this.ctrl.channel_id.data_length = 128
@@ -73,7 +73,7 @@ focustoelement(){
 		this.ctrl.channel_id.placeholder = ""
 		this.ctrl.channel_id.dynamic_param = ""
 		this.ctrl.channel_id.style_code = ""
-		this.ctrl.channel_id.data_source = ""
+		this.ctrl.channel_id.data_source = {"ds_code":"UDS_1304_1670498867574","ds_description":"Simulator SQL CDB","rows":[],"type":"DPS_TABLE","value_member":"S_CODE","display_member":"S_DESCRIPTION","first_record_display":"","column_list":"","order_by":"CREATED_DATE DESC","target_table":"CORE_SYSTEM_EXTN","context":"","filters":[{"filter_name":"Filter1","binding_name":"ST_CODE","id":"DF_1670573366636","binding_value":"CH","source_name":"ST_CODE","source_value":"CH","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1670573366636","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"ST_CODE","binding_value":"CH","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"CH"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(ST_CODE = CH AND TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[],"need_first_item_selection":true,"has_parent":false}
 		this.ctrl.channel_id.image_association = ""
 		this.ctrl.channel_id.show = true
 		this.ctrl.channel_id.sub_content = ""
@@ -85,6 +85,7 @@ focustoelement(){
 		this.ctrl.channel_id.ctrl_id = "npss_merchant_ui_channel_id"
 		this.ctrl.npss_merchant_ui_channel_id = {}
 		this.ctrl.npss_merchant_ui_channel_id.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_merchant_ui.channel_id = {}
 	
 		//Properties of bankuserid
 		this.ctrl.bankuserid = {}
@@ -543,7 +544,7 @@ focustoelement(){
 		this.ctrl.npss_merchant_ui_logo = {}
 		this.ctrl.npss_merchant_ui_logo.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_merchant_ui.model = {"CHANNEL_ID":"","BANKUSERID":"","MERCHANT_NAME":"","SURNAME":"","DENOMINATION":"","VAT_NUMBER":"","MCC":"","MOBILE":"","PROXY_TYPE":"","PROXY_VALUE":"","CHANNEL_NAME":"","MERCHANT_TAG":"","LOGO":""}
-		this.screen_instance[this.comp_id].f_npss_merchant_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DENOMINATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VAT_NUMBER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MCC"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_VALUE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_TAG"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"LOGO"}]
+		this.screen_instance[this.comp_id].f_npss_merchant_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SURNAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DENOMINATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"VAT_NUMBER"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MCC"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_VALUE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MERCHANT_TAG"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"LOGO"}]
 		this.screen_instance[this.comp_id].f_npss_merchant_ui.dt_code = "dt_1304_1666846074129"
 		this.screen_instance[this.comp_id].f_npss_merchant_ui.dtt_code = "dtt_1304_1666846129395"
 		this.screen_instance[this.comp_id].f_npss_merchant_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27487 
+Build ID        : 27502 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-22 7:53 AM 
+Modified Date   : 2022-Dec-23 4:28 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -49,13 +49,13 @@ import { s_merchant_setupRoutingModule } from './s_merchant_setup.routing.module
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { f_sub_navigation_uiComponent } from './f_sub_navigation_ui/f_sub_navigation_ui.component'
-import { f_npss_cash_desk_uiComponent } from './f_npss_cash_desk_ui/f_npss_cash_desk_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
 import { f_npss_merchant_setup_srchComponent } from './f_npss_merchant_setup_srch/f_npss_merchant_setup_srch.component'
 import { p_action_layoutComponent } from './p_action_layout/p_action_layout.component'
 import { f_npss_merchant_uiComponent } from './f_npss_merchant_ui/f_npss_merchant_ui.component'
 import { f_npss_mer_account_uiComponent } from './f_npss_mer_account_ui/f_npss_mer_account_ui.component'
 import { f_npss_shop_uiComponent } from './f_npss_shop_ui/f_npss_shop_ui.component'
+import { f_npss_cash_desk_uiComponent } from './f_npss_cash_desk_ui/f_npss_cash_desk_ui.component'
 import { f_actionComponent } from './f_action/f_action.component'
 import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
 import { f_process_log_uiComponent } from './f_process_log_ui/f_process_log_ui.component'
@@ -82,7 +82,7 @@ import { f_cash_desk_actionComponent } from './f_cash_desk_action/f_cash_desk_ac
     s_merchant_setupRoutingModule,
     npss_cs_mch_enrolmentModule,torus_cs_show_hideModule,npss_c_btn_enb_disbModule,npss_cs_mch_change_mobileModule,npss_cs_mch_unblock_bank_accountModule,npss_cs_mch_remove_bank_accountsModule,npss_cs_mch_disableModule,npss_cs_mch_update_personal_dataModule,npss_cs_mch_add_bank_accountsModule,npss_cs_mch_block_bank_accountModule,npss_cs_shop_enrolmentModule,npss_cs_shop_disableModule,npss_cs_shop_updateModule,npss_cs_shop_set_bank_accountModule,npss_cs_shop_remove_bank_accountModule
   ],
-  declarations: [s_merchant_setupComponent,p_main_layoutComponent,f_navigation_uiComponent,f_sub_navigation_uiComponent,f_npss_cash_desk_uiComponent,p_search_layoutComponent,f_npss_merchant_setup_srchComponent,p_action_layoutComponent,f_npss_merchant_uiComponent,f_npss_mer_account_uiComponent,f_npss_shop_uiComponent,f_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_req_and_res_profileComponent,f_single_back_uiComponent,f_npss_sm_request_uiComponent,f_npss_sm_response_uiComponent,p_shop_and_cashdesk_layoutComponent,f_shop_actionComponent,f_cash_desk_actionComponent,],
+  declarations: [s_merchant_setupComponent,p_main_layoutComponent,f_navigation_uiComponent,f_sub_navigation_uiComponent,p_search_layoutComponent,f_npss_merchant_setup_srchComponent,p_action_layoutComponent,f_npss_merchant_uiComponent,f_npss_mer_account_uiComponent,f_npss_shop_uiComponent,f_npss_cash_desk_uiComponent,f_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_req_and_res_profileComponent,f_single_back_uiComponent,f_npss_sm_request_uiComponent,f_npss_sm_response_uiComponent,p_shop_and_cashdesk_layoutComponent,f_shop_actionComponent,f_cash_desk_actionComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27487 
+Build ID        : 27502 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-22 7:53 AM 
+Modified Date   : 2022-Dec-23 4:28 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -85,14 +85,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	navigation_ui_update_mcc : any = {}
 	navigation_ui_add_bank_account : any = {}
 	navigation_ui_block_account : any = {}
-	navigation_ui_view_process_log : any = {}
 	navigation_ui_unblock_account : any = {}
+	navigation_ui_view_process_log : any = {}
 	navigation_ui_remove_bank_account : any = {}
 	navigation_ui_tri_btn1 : any = {}
 	navigation_ui_trg_btn2 : any = {}
 	navigation_ui_tri_btn3 : any = {}
 	navigation_ui_tri_btn4 : any = {}
-	navigation_ui_view_shop_and_cashdesk_details : any = {}
+	navigation_ui_view_shop : any = {}
 	merchant : any = {}
 	accounts : any = {}
 	merchant_detail : any = {}
@@ -119,6 +119,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	action_enroll_cash_desk : any = {}
 	action_update_cash_desk_details : any = {}
 	action_disable_cash_desk_details : any = {}
+	action_view_shop : any = {}
 	merchant_setup_widget : any = {}
 	queue : any = {}
 	sub_navigation_ui : any = {}
@@ -142,13 +143,13 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	shop_action_enrolment_shop : any = {}
 	shop_action_update_shop : any = {}
 	shop_action_disable_shop : any = {}
-	shop_action_set_shop_bank_account : any = {}
-	shop_action_remove_shop_account : any = {}
+	shop_action_set_default : any = {}
+	shop_action_remove_account : any = {}
 	cash_desk_action : any = {}
-	cash_desk_action_enrolment_cash_desk : any = {}
-	cash_desk_action_update_cash_desk : any = {}
-	cash_desk_action_disable_cash_desk : any = {}
 	cash_desk_action_back : any = {}
+	cash_desk_action_enrolment_desk : any = {}
+	cash_desk_action_update_desk : any = {}
+	cash_desk_action_disable_desk : any = {}
 
 
 	// Constructor 
@@ -244,15 +245,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_block_account.role = []
 		this.navigation_ui_block_account.action = ""
 		
-		// "View Process Log" Button of "Navigation UI" component
-		this.navigation_ui_view_process_log.label_name = "View Process Log"
-		this.navigation_ui_view_process_log.show = true
-		this.navigation_ui_view_process_log.disabled = false
-		this.navigation_ui_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
-		this.navigation_ui_view_process_log.dynamic_param = {}
-		this.navigation_ui_view_process_log.role = []
-		this.navigation_ui_view_process_log.action = ""
-		
 		// "Unblock Account" Button of "Navigation UI" component
 		this.navigation_ui_unblock_account.label_name = "Unblock Account"
 		this.navigation_ui_unblock_account.show = true
@@ -261,6 +253,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_unblock_account.dynamic_param = {}
 		this.navigation_ui_unblock_account.role = []
 		this.navigation_ui_unblock_account.action = ""
+		
+		// "View Process Log" Button of "Navigation UI" component
+		this.navigation_ui_view_process_log.label_name = "View Process Log"
+		this.navigation_ui_view_process_log.show = true
+		this.navigation_ui_view_process_log.disabled = false
+		this.navigation_ui_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
+		this.navigation_ui_view_process_log.dynamic_param = {}
+		this.navigation_ui_view_process_log.role = []
+		this.navigation_ui_view_process_log.action = ""
 		
 		// "Remove Bank Account" Button of "Navigation UI" component
 		this.navigation_ui_remove_bank_account.label_name = "Remove Bank Account"
@@ -307,14 +308,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_tri_btn4.role = []
 		this.navigation_ui_tri_btn4.action = ""
 		
-		// "View Shop and Cashdesk Details" Button of "Navigation UI" component
-		this.navigation_ui_view_shop_and_cashdesk_details.label_name = "View Shop and Cashdesk Details"
-		this.navigation_ui_view_shop_and_cashdesk_details.show = true
-		this.navigation_ui_view_shop_and_cashdesk_details.disabled = false
-		this.navigation_ui_view_shop_and_cashdesk_details.params = {"icon_only":false,"uicgcc_style":"fa fa-eye-slash"}
-		this.navigation_ui_view_shop_and_cashdesk_details.dynamic_param = {}
-		this.navigation_ui_view_shop_and_cashdesk_details.role = []
-		this.navigation_ui_view_shop_and_cashdesk_details.action = ""
+		// "View Shop" Button of "Navigation UI" component
+		this.navigation_ui_view_shop.label_name = "View Shop"
+		this.navigation_ui_view_shop.show = true
+		this.navigation_ui_view_shop.disabled = false
+		this.navigation_ui_view_shop.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
+		this.navigation_ui_view_shop.dynamic_param = {}
+		this.navigation_ui_view_shop.role = []
+		this.navigation_ui_view_shop.action = ""
 	
 		// Component level properties - "Merchant" 
 		this.merchant.uictrl_code = "datatable"
@@ -575,6 +576,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.action_disable_cash_desk_details.dynamic_param = {}
 		this.action_disable_cash_desk_details.role = []
 		this.action_disable_cash_desk_details.action = ""
+		
+		// "View Shop" Button of "Action" component
+		this.action_view_shop.label_name = "View Shop"
+		this.action_view_shop.show = true
+		this.action_view_shop.disabled = false
+		this.action_view_shop.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.action_view_shop.dynamic_param = {}
+		this.action_view_shop.role = []
+		this.action_view_shop.action = ""
 	
 		// Component level properties - "Merchant Setup Widget" 
 		this.merchant_setup_widget.uictrl_code = "custom_widget"
@@ -838,23 +848,23 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop_action_disable_shop.role = []
 		this.shop_action_disable_shop.action = ""
 		
-		// "Set Shop Bank Account" Button of "Shop Action" component
-		this.shop_action_set_shop_bank_account.label_name = "Set Shop Bank Account"
-		this.shop_action_set_shop_bank_account.show = true
-		this.shop_action_set_shop_bank_account.disabled = true
-		this.shop_action_set_shop_bank_account.params = {"icon_only":false,"uicgcc_style":"fa fa-plus"}
-		this.shop_action_set_shop_bank_account.dynamic_param = {}
-		this.shop_action_set_shop_bank_account.role = []
-		this.shop_action_set_shop_bank_account.action = ""
+		// "Set Default" Button of "Shop Action" component
+		this.shop_action_set_default.label_name = "Set Default"
+		this.shop_action_set_default.show = true
+		this.shop_action_set_default.disabled = true
+		this.shop_action_set_default.params = {"icon_only":false,"uicgcc_style":"fa fa-plus"}
+		this.shop_action_set_default.dynamic_param = {}
+		this.shop_action_set_default.role = []
+		this.shop_action_set_default.action = ""
 		
-		// "Remove Shop Account" Button of "Shop Action" component
-		this.shop_action_remove_shop_account.label_name = "Remove Shop Account"
-		this.shop_action_remove_shop_account.show = true
-		this.shop_action_remove_shop_account.disabled = true
-		this.shop_action_remove_shop_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
-		this.shop_action_remove_shop_account.dynamic_param = {}
-		this.shop_action_remove_shop_account.role = []
-		this.shop_action_remove_shop_account.action = ""
+		// "Remove Account" Button of "Shop Action" component
+		this.shop_action_remove_account.label_name = "Remove Account"
+		this.shop_action_remove_account.show = true
+		this.shop_action_remove_account.disabled = true
+		this.shop_action_remove_account.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.shop_action_remove_account.dynamic_param = {}
+		this.shop_action_remove_account.role = []
+		this.shop_action_remove_account.action = ""
 	
 		// Component level properties - "Cash Desk Action" 
 		this.cash_desk_action.uictrl_code = "dynamic_ui"
@@ -870,33 +880,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cash_desk_action.f_cash_desk_action = {"show":true}
 		this.cash_desk_action.current_view = "f_cash_desk_action"
 		
-		// "Enrolment Cash Desk" Button of "Cash Desk Action" component
-		this.cash_desk_action_enrolment_cash_desk.label_name = "Enrolment Cash Desk"
-		this.cash_desk_action_enrolment_cash_desk.show = true
-		this.cash_desk_action_enrolment_cash_desk.disabled = true
-		this.cash_desk_action_enrolment_cash_desk.params = {"icon_only":false,"uicgcc_style":"fa fa-file-word-o"}
-		this.cash_desk_action_enrolment_cash_desk.dynamic_param = {}
-		this.cash_desk_action_enrolment_cash_desk.role = []
-		this.cash_desk_action_enrolment_cash_desk.action = ""
-		
-		// "Update Cash Desk" Button of "Cash Desk Action" component
-		this.cash_desk_action_update_cash_desk.label_name = "Update Cash Desk"
-		this.cash_desk_action_update_cash_desk.show = true
-		this.cash_desk_action_update_cash_desk.disabled = true
-		this.cash_desk_action_update_cash_desk.params = {"icon_only":false,"uicgcc_style":"fa fa-user-o"}
-		this.cash_desk_action_update_cash_desk.dynamic_param = {}
-		this.cash_desk_action_update_cash_desk.role = []
-		this.cash_desk_action_update_cash_desk.action = ""
-		
-		// "Disable Cash Desk" Button of "Cash Desk Action" component
-		this.cash_desk_action_disable_cash_desk.label_name = "Disable Cash Desk"
-		this.cash_desk_action_disable_cash_desk.show = true
-		this.cash_desk_action_disable_cash_desk.disabled = true
-		this.cash_desk_action_disable_cash_desk.params = {"icon_only":false,"uicgcc_style":"fa fa-file-zip-o"}
-		this.cash_desk_action_disable_cash_desk.dynamic_param = {}
-		this.cash_desk_action_disable_cash_desk.role = []
-		this.cash_desk_action_disable_cash_desk.action = ""
-		
 		// "Back" Button of "Cash Desk Action" component
 		this.cash_desk_action_back.label_name = "Back"
 		this.cash_desk_action_back.show = true
@@ -905,6 +888,33 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cash_desk_action_back.dynamic_param = {}
 		this.cash_desk_action_back.role = []
 		this.cash_desk_action_back.action = ""
+		
+		// "Enrolment Desk" Button of "Cash Desk Action" component
+		this.cash_desk_action_enrolment_desk.label_name = "Enrolment Desk"
+		this.cash_desk_action_enrolment_desk.show = true
+		this.cash_desk_action_enrolment_desk.disabled = true
+		this.cash_desk_action_enrolment_desk.params = {"icon_only":false,"uicgcc_style":"fa fa-file-word-o"}
+		this.cash_desk_action_enrolment_desk.dynamic_param = {}
+		this.cash_desk_action_enrolment_desk.role = []
+		this.cash_desk_action_enrolment_desk.action = ""
+		
+		// "Update Desk" Button of "Cash Desk Action" component
+		this.cash_desk_action_update_desk.label_name = "Update Desk"
+		this.cash_desk_action_update_desk.show = true
+		this.cash_desk_action_update_desk.disabled = true
+		this.cash_desk_action_update_desk.params = {"icon_only":false,"uicgcc_style":"fa fa-user-o"}
+		this.cash_desk_action_update_desk.dynamic_param = {}
+		this.cash_desk_action_update_desk.role = []
+		this.cash_desk_action_update_desk.action = ""
+		
+		// "Disable Desk" Button of "Cash Desk Action" component
+		this.cash_desk_action_disable_desk.label_name = "Disable Desk"
+		this.cash_desk_action_disable_desk.show = true
+		this.cash_desk_action_disable_desk.disabled = true
+		this.cash_desk_action_disable_desk.params = {"icon_only":false,"uicgcc_style":"fa fa-file-zip-o"}
+		this.cash_desk_action_disable_desk.dynamic_param = {}
+		this.cash_desk_action_disable_desk.role = []
+		this.cash_desk_action_disable_desk.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -1250,6 +1260,10 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop__ee_for_enrollment_cashdesk()
 		this.shop__svm_for_shop()
 		this.shop__ee_for_shop_enrolment_btn()
+		this.shop__bt_for_shop_dtl()
+		this.shop__bt_for_accountdtl()
+		this.shop__bt_for_cashdesk_detail()
+		this.shop__bt_for_merchant_detail()
 	}
 
 	//Handler for INTERNAL event of "svm for shop"
@@ -1271,25 +1285,25 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cash_desk__tbc_for_btn4()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "cash desk action disable cash desk"
-	cash_desk_action_disable_cash_desk__action_button_click(){
-		this.cash_desk_action_disable_cash_desk__sp_for_disable_cd()
-		this.cash_desk_action_disable_cash_desk__cc__for_disable_cd_ena_dis()
-		this.cash_desk_action_disable_cash_desk__se_for_disable_cd()
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action disable desk"
+	cash_desk_action_disable_desk__action_button_click(){
+		this.cash_desk_action_disable_desk__sp_for_disable_cd()
+		this.cash_desk_action_disable_desk__cc__for_disable_cd_ena_dis()
+		this.cash_desk_action_disable_desk__se_for_disable_cd()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "cash desk action enrolment cash desk"
-	cash_desk_action_enrolment_cash_desk__action_button_click(){
-		this.cash_desk_action_enrolment_cash_desk__sp_for_enroll_cd()
-		this.cash_desk_action_enrolment_cash_desk__cc__for_enroll_cd_ena_dis()
-		this.cash_desk_action_enrolment_cash_desk__se_for_enroll_cd()
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action enrolment desk"
+	cash_desk_action_enrolment_desk__action_button_click(){
+		this.cash_desk_action_enrolment_desk__sp_for_enroll_cd()
+		this.cash_desk_action_enrolment_desk__cc__for_enroll_cd_ena_dis()
+		this.cash_desk_action_enrolment_desk__se_for_enroll_cd()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "cash desk action update cash desk"
-	cash_desk_action_update_cash_desk__action_button_click(){
-		this.cash_desk_action_update_cash_desk__sp_for_update_cd()
-		this.cash_desk_action_update_cash_desk__cc__for_update_cd_ena_dis()
-		this.cash_desk_action_update_cash_desk__se_for_update_cd()
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action update desk"
+	cash_desk_action_update_desk__action_button_click(){
+		this.cash_desk_action_update_desk__sp_for_update_cd()
+		this.cash_desk_action_update_desk__cc__for_update_cd_ena_dis()
+		this.cash_desk_action_update_desk__se_for_update_cd()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "action enroll cash desk"
@@ -1349,18 +1363,18 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop_action_update_shop__cc_for_update_shop_ena()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop bank account"
-	shop_action_set_shop_bank_account__action_button_click(){
-		this.shop_action_set_shop_bank_account__se_for_set_bank_account()
-		this.shop_action_set_shop_bank_account__sp_for_set_shop_account()
-		this.shop_action_set_shop_bank_account__cc_for_set_shop_bank_account_enab()
+	//Handler for ACTION_BUTTON_CLICK event of "shop action set default"
+	shop_action_set_default__action_button_click(){
+		this.shop_action_set_default__se_for_set_bank_account()
+		this.shop_action_set_default__sp_for_set_shop_account()
+		this.shop_action_set_default__cc_for_set_shop_bank_account_enab()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
-	shop_action_remove_shop_account__action_button_click(){
-		this.shop_action_remove_shop_account__se_for_remove_shop_account()
-		this.shop_action_remove_shop_account__cc_for_remove_shop_account_ena_dis()
-		this.shop_action_remove_shop_account__sp_for_remove_shop_account()
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove account"
+	shop_action_remove_account__action_button_click(){
+		this.shop_action_remove_account__se_for_remove_shop_account()
+		this.shop_action_remove_account__cc_for_remove_shop_account_ena_dis()
+		this.shop_action_remove_account__sp_for_remove_shop_account()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "action enroll shop"
@@ -1398,10 +1412,10 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_tri_btn4__bt_for_cashdesk()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view shop and cashdesk details"
-	navigation_ui_view_shop_and_cashdesk_details__action_button_click(){
-		this.navigation_ui_view_shop_and_cashdesk_details__sp_for_view_sh_cash_desk_btn()
-		this.navigation_ui_view_shop_and_cashdesk_details__brfq_from_shop_to_vscd_btn()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view shop"
+	navigation_ui_view_shop__action_button_click(){
+		this.navigation_ui_view_shop__sp_for_view_sh_cash_desk_btn()
+		this.navigation_ui_view_shop__brfq_from_shop_to_vscd_btn()
 	}
 
 	//Handler for INTERNAL event of "brfq from shop to vscd btn"
@@ -1412,6 +1426,11 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "cash desk action back"
 	cash_desk_action_back__action_button_click(){
 		this.cash_desk_action_back__sp_for_back()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "action view shop"
+	action_view_shop__action_button_click(){
+		this.action_view_shop__sp_for_action_view_shop()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2133,7 +2152,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_shop_and_cashdesk_details"
+		let destn_id="navigation_ui_view_shop"
 		let parent_source_id=""
 		let event_code="e_1671688626929"
 		let event_params={"caller_name":"page_load__de_for_vscd_button","event_desc":"DE for vscd button","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -2452,7 +2471,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="merchant"
-		let destn_id="navigation_ui_view_shop_and_cashdesk_details"
+		let destn_id="navigation_ui_view_shop"
 		let parent_source_id=""
 		let event_code="e_1671688737680"
 		let event_params={"caller_name":"merchant__ee_for_vscd_btn","event_desc":"EE for vscd btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -3028,7 +3047,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_params={"caller_name":"accounts__svm_for_accounts","event_desc":"SVM for Accounts","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"accounts","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_accounts__cc_for_acc_show_hide,"
-		let event_data={"accounts":{"e_1671012456913":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGC_3","event_code":"E_1671012456913","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS Merchant Proxy DTG","dtt_desc":"NPSS Merchant Cashdesk","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let event_data={"accounts":{"e_1671012456913":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGC_3","event_code":"E_1671012456913","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS Merchant Proxy DTG","dtt_desc":"NPSS Merchant Cashdesk","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"IBAN","level":"MI_LEVEL","name":"MI_LEVEL_IBAN","setd3name":"IBAN"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666847369565":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666847369565","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671276169608","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Merchant Account AQ","eq_type":"S","eq_mode":"A","eq_designer_json":{"columns":{"class":"go.GraphLinksModel","copiesarrays":true,"copiesarrayobjects":true,"linkfromportidproperty":"fromPort","linktoportidproperty":"toPort","nodedataarray":[{"key":"NPSS_MERCHANT_ACCOUNTS ~NPSSMA","category":"NPSS_MERCHANT_ACCOUNTS","loc":"-203.00324065393784 189.00184398283727","leftarray":[],"rightarray":[],"toparray":[],"bottomarray":[],"npssma_id_checked":true,"created_by_checked":true,"created_by_name_checked":true,"created_by_sts_id_checked":true,"created_date_checked":true,"dtg_code_checked":true,"dtg_description_checked":true,"dt_code_checked":true,"dt_description_checked":true,"modified_by_checked":true,"modified_by_name_checked":true,"modified_by_sts_id_checked":true,"modified_date_checked":true,"prct_id_checked":true,"status_checked":true,"process_status_checked":true,"system_id_checked":true,"system_name_checked":true,"tenant_id_checked":true,"app_id_checked":true,"version_no_checked":true,"product_code_checked":true,"bankuserid_checked":true,"iban_checked":true,"currency_checked":true,"default_account_checked":true,"exhf_id_checked":true,"npssmp_id_checked":true}],"linkdataarray":[]},"joins":[],"dtts":["DTT_1304_1666846129395","DTT_1304_1666847369565"],"app_dtts":[]},"eq_json":{"columns":[{"column_name":"NPSSMA_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRODUCT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"BANKUSERID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"IBAN","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CURRENCY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"EXHF_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"NPSSMP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"CREATED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DTG_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_CODE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"DT_DESCRIPTION","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_BY_STS_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"MODIFIED_DATE","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PRCT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"PROCESS_STATUS","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"SYSTEM_NAME","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"TENANT_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"APP_ID","alias_name":"NPSSMA","date_format":false,"currency_format":false},{"column_name":"VERSION_NO","alias_name":"NPSSMA","date_format":false,"currency_format":false}],"joins":[{"table_name":"NPSS_MERCHANT_ACCOUNTS ","alias_name":"NPSSMA","join_type":"","condition":"","sort_order":""}]},"eq_text":"SELECT NPSSMA_ID,PRODUCT_CODE,BANKUSERID,IBAN,CURRENCY,DEFAULT_ACCOUNT,EXHF_ID,NPSSMP_ID,CREATED_BY,CREATED_BY_NAME,CREATED_BY_STS_ID,CREATED_DATE,DT_CODE,DT_DESCRIPTION,DTT_CODE,DTT_DESCRIPTION,MODIFIED_BY,MODIFIED_BY_NAME,MODIFIED_BY_STS_ID,MODIFIED_DATE,PRCT_ID,STATUS,PROCESS_STATUS,SYSTEM_ID,SYSTEM_NAME,TENANT_ID,APP_ID,VERSION_NO,'SELECTED' NODE_CATEGORY FROM(SELECT NPSSMA.NPSSMA_ID,NPSSMA.PRODUCT_CODE,NPSSMA.BANKUSERID,NPSSMA.IBAN,NPSSMA.CURRENCY,NPSSMA.DEFAULT_ACCOUNT,NPSSMA.EXHF_ID,NPSSMA.NPSSMP_ID,NPSSMA.CREATED_BY,NPSSMA.CREATED_BY_NAME,NPSSMA.CREATED_BY_STS_ID,NPSSMA.CREATED_DATE,NPSSMA.DT_CODE,NPSSMA.DT_DESCRIPTION,NPSSMA.DTT_CODE,NPSSMA.DTT_DESCRIPTION,NPSSMA.MODIFIED_BY,NPSSMA.MODIFIED_BY_NAME,NPSSMA.MODIFIED_BY_STS_ID,NPSSMA.MODIFIED_DATE,NPSSMA.PRCT_ID,NPSSMA.STATUS,NPSSMA.PROCESS_STATUS,NPSSMA.SYSTEM_ID,NPSSMA.SYSTEM_NAME,NPSSMA.TENANT_ID,NPSSMA.APP_ID,NPSSMA.VERSION_NO FROM NPSS_MERCHANT_ACCOUNTS  NPSSMA)T $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Merchant Account AQ","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"IBAN","target_column":"IBAN","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Default Account","target_column":"DEFAULT_ACCOUNT","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"NPSSMA","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
@@ -4269,7 +4288,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="shop"
-		let destn_id="shop_action_remove_shop_account"
+		let destn_id="shop_action_remove_account"
 		let parent_source_id=""
 		let event_code="e_1671619187016"
 		let event_params={"caller_name":"shop__ee_for_remove_shop","event_desc":"EE for Remove shop","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -4332,7 +4351,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="shop"
-		let destn_id="shop_action_set_shop_bank_account"
+		let destn_id="shop_action_set_default"
 		let parent_source_id=""
 		let event_code="e_1671619341687"
 		let event_params={"caller_name":"shop__ee_for_set_shop_bank_account","event_desc":"EE for Set shop bank account","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -4395,7 +4414,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="shop"
-		let destn_id="cash_desk_action_enrolment_cash_desk"
+		let destn_id="cash_desk_action_enrolment_desk"
 		let parent_source_id=""
 		let event_code="e_1671629377173"
 		let event_params={"caller_name":"shop__ee_for_enrollment_cashdesk","event_desc":"EE for enrollment cashdesk","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -4453,6 +4472,90 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__bt_for_shop_dtl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="shop_detail"
+		let parent_source_id=""
+		let event_code="e_1671717152300"
+		let event_params={"caller_name":"shop__bt_for_shop_dtl","event_desc":"bt for shop dtl","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__bt_for_accountdtl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="account__detail"
+		let parent_source_id=""
+		let event_code="e_1671717198605"
+		let event_params={"caller_name":"shop__bt_for_accountdtl","event_desc":"bt for accountdtl","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__bt_for_cashdesk_detail() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="cash_desk_detail"
+		let parent_source_id=""
+		let event_code="e_1671717276750"
+		let event_params={"caller_name":"shop__bt_for_cashdesk_detail","event_desc":"bt for cashdesk detail","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__bt_for_merchant_detail() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="merchant_detail"
+		let parent_source_id=""
+		let event_code="e_1671717338649"
+		let event_params={"caller_name":"shop__bt_for_merchant_detail","event_desc":"bt for merchant detail","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "svm for shop"
 	svm_for_shop__brfq_for_cashdesk_list(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -4501,7 +4604,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="cash_desk"
-		let destn_id="cash_desk_action_disable_cash_desk"
+		let destn_id="cash_desk_action_disable_desk"
 		let parent_source_id=""
 		let event_code="e_1671603876518"
 		let event_params={"caller_name":"cash_desk__ee_for_disable_cd","event_desc":"EE for Disable CD","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"cash_desk","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -4522,7 +4625,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="cash_desk"
-		let destn_id="cash_desk_action_enrolment_cash_desk"
+		let destn_id="cash_desk_action_enrolment_desk"
 		let parent_source_id=""
 		let event_code="e_1671603912942"
 		let event_params={"caller_name":"cash_desk__ee_for_entrol_cd","event_desc":"EE for Entrol CD","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"cash_desk","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -4543,7 +4646,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="cash_desk"
-		let destn_id="cash_desk_action_update_cash_desk"
+		let destn_id="cash_desk_action_update_desk"
 		let parent_source_id=""
 		let event_code="e_1671603932321"
 		let event_params={"caller_name":"cash_desk__ee_for_update_cd","event_desc":"EE for Update CD","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"cash_desk","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -4601,15 +4704,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "cash desk action disable cash desk"
-	cash_desk_action_disable_cash_desk__sp_for_disable_cd() { 
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action disable desk"
+	cash_desk_action_disable_desk__sp_for_disable_cd() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="cash_desk_action_disable_cash_desk"
+		let source_id="cash_desk_action_disable_desk"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671603985181"
-		let event_params={"caller_name":"cash_desk_action_disable_cash_desk__sp_for_disable_cd","event_desc":"SP for Disable CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_disable_cash_desk","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"cash_desk_action_disable_desk__sp_for_disable_cd","event_desc":"SP for Disable CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_disable_desk","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -4622,15 +4725,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "cash desk action disable cash desk"
-	cash_desk_action_disable_cash_desk__cc__for_disable_cd_ena_dis() { 
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action disable desk"
+	cash_desk_action_disable_desk__cc__for_disable_cd_ena_dis() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="cash_desk_action_disable_cash_desk"
+		let source_id="cash_desk_action_disable_desk"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671604097986"
-		let event_params={"caller_name":"cash_desk_action_disable_cash_desk__cc__for_disable_cd_ena_dis","event_desc":"CC  for Disable CD ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_disable_cash_desk","raiseparam":{}}
+		let event_params={"caller_name":"cash_desk_action_disable_desk__cc__for_disable_cd_ena_dis","event_desc":"CC  for Disable CD ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_disable_desk","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -4643,15 +4746,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "cash desk action disable cash desk"
-	cash_desk_action_disable_cash_desk__se_for_disable_cd() { 
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action disable desk"
+	cash_desk_action_disable_desk__se_for_disable_cd() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="cash_desk_action_disable_cash_desk"
+		let source_id="cash_desk_action_disable_desk"
 		let destn_id="action_disable_cash_desk_details"
 		let parent_source_id=""
 		let event_code="e_1671604585983"
-		let event_params={"caller_name":"cash_desk_action_disable_cash_desk__se_for_disable_cd","event_desc":"SE for Disable CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_disable_cash_desk","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"cash_desk_action_disable_desk__se_for_disable_cd","event_desc":"SE for Disable CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_disable_desk","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -4664,15 +4767,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "cash desk action enrolment cash desk"
-	cash_desk_action_enrolment_cash_desk__sp_for_enroll_cd() { 
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action enrolment desk"
+	cash_desk_action_enrolment_desk__sp_for_enroll_cd() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="cash_desk_action_enrolment_cash_desk"
+		let source_id="cash_desk_action_enrolment_desk"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671604021518"
-		let event_params={"caller_name":"cash_desk_action_enrolment_cash_desk__sp_for_enroll_cd","event_desc":"SP for Enroll CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_enrolment_cash_desk","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"cash_desk_action_enrolment_desk__sp_for_enroll_cd","event_desc":"SP for Enroll CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_enrolment_desk","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -4685,15 +4788,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "cash desk action enrolment cash desk"
-	cash_desk_action_enrolment_cash_desk__cc__for_enroll_cd_ena_dis() { 
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action enrolment desk"
+	cash_desk_action_enrolment_desk__cc__for_enroll_cd_ena_dis() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="cash_desk_action_enrolment_cash_desk"
+		let source_id="cash_desk_action_enrolment_desk"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671604085433"
-		let event_params={"caller_name":"cash_desk_action_enrolment_cash_desk__cc__for_enroll_cd_ena_dis","event_desc":"CC  for Enroll CD ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_enrolment_cash_desk","raiseparam":{}}
+		let event_params={"caller_name":"cash_desk_action_enrolment_desk__cc__for_enroll_cd_ena_dis","event_desc":"CC  for Enroll CD ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_enrolment_desk","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -4706,15 +4809,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "cash desk action enrolment cash desk"
-	cash_desk_action_enrolment_cash_desk__se_for_enroll_cd() { 
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action enrolment desk"
+	cash_desk_action_enrolment_desk__se_for_enroll_cd() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="cash_desk_action_enrolment_cash_desk"
+		let source_id="cash_desk_action_enrolment_desk"
 		let destn_id="action_enroll_cash_desk"
 		let parent_source_id=""
 		let event_code="e_1671604550899"
-		let event_params={"caller_name":"cash_desk_action_enrolment_cash_desk__se_for_enroll_cd","event_desc":"SE for Enroll CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_enrolment_cash_desk","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"cash_desk_action_enrolment_desk__se_for_enroll_cd","event_desc":"SE for Enroll CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_enrolment_desk","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -4727,15 +4830,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "cash desk action update cash desk"
-	cash_desk_action_update_cash_desk__sp_for_update_cd() { 
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action update desk"
+	cash_desk_action_update_desk__sp_for_update_cd() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="cash_desk_action_update_cash_desk"
+		let source_id="cash_desk_action_update_desk"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671604055754"
-		let event_params={"caller_name":"cash_desk_action_update_cash_desk__sp_for_update_cd","event_desc":"SP for Update CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_update_cash_desk","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"cash_desk_action_update_desk__sp_for_update_cd","event_desc":"SP for Update CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_update_desk","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -4748,15 +4851,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "cash desk action update cash desk"
-	cash_desk_action_update_cash_desk__cc__for_update_cd_ena_dis() { 
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action update desk"
+	cash_desk_action_update_desk__cc__for_update_cd_ena_dis() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="cash_desk_action_update_cash_desk"
+		let source_id="cash_desk_action_update_desk"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671604077951"
-		let event_params={"caller_name":"cash_desk_action_update_cash_desk__cc__for_update_cd_ena_dis","event_desc":"CC  for Update CD ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_update_cash_desk","raiseparam":{}}
+		let event_params={"caller_name":"cash_desk_action_update_desk__cc__for_update_cd_ena_dis","event_desc":"CC  for Update CD ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_update_desk","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -4769,15 +4872,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "cash desk action update cash desk"
-	cash_desk_action_update_cash_desk__se_for_update_cd() { 
+	//Handler for ACTION_BUTTON_CLICK event of "cash desk action update desk"
+	cash_desk_action_update_desk__se_for_update_cd() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="cash_desk_action_update_cash_desk"
+		let source_id="cash_desk_action_update_desk"
 		let destn_id="action_update_cash_desk_details"
 		let parent_source_id=""
 		let event_code="e_1671604514608"
-		let event_params={"caller_name":"cash_desk_action_update_cash_desk__se_for_update_cd","event_desc":"SE for update CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_update_cash_desk","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"cash_desk_action_update_desk__se_for_update_cd","event_desc":"SE for update CD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_update_desk","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -5147,15 +5250,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop bank account"
-	shop_action_set_shop_bank_account__se_for_set_bank_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action set default"
+	shop_action_set_default__se_for_set_bank_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="shop_action_set_shop_bank_account"
+		let source_id="shop_action_set_default"
 		let destn_id="action_set_shop_account"
 		let parent_source_id=""
 		let event_code="e_1671620620010"
-		let event_params={"caller_name":"shop_action_set_shop_bank_account__se_for_set_bank_account","event_desc":"SE for set bank account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_shop_bank_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"shop_action_set_default__se_for_set_bank_account","event_desc":"SE for set bank account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_default","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -5168,15 +5271,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop bank account"
-	shop_action_set_shop_bank_account__sp_for_set_shop_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action set default"
+	shop_action_set_default__sp_for_set_shop_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="shop_action_set_shop_bank_account"
+		let source_id="shop_action_set_default"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671621287695"
-		let event_params={"caller_name":"shop_action_set_shop_bank_account__sp_for_set_shop_account","event_desc":"SP for Set shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_shop_bank_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"shop_action_set_default__sp_for_set_shop_account","event_desc":"SP for Set shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_default","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -5189,15 +5292,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop bank account"
-	shop_action_set_shop_bank_account__cc_for_set_shop_bank_account_enab() { 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action set default"
+	shop_action_set_default__cc_for_set_shop_bank_account_enab() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="shop_action_set_shop_bank_account"
+		let source_id="shop_action_set_default"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671621299093"
-		let event_params={"caller_name":"shop_action_set_shop_bank_account__cc_for_set_shop_bank_account_enab","event_desc":"CC for set shop bank account ENAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_shop_bank_account","raiseparam":{}}
+		let event_params={"caller_name":"shop_action_set_default__cc_for_set_shop_bank_account_enab","event_desc":"CC for set shop bank account ENAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_default","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -5210,15 +5313,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
-	shop_action_remove_shop_account__se_for_remove_shop_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove account"
+	shop_action_remove_account__se_for_remove_shop_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="shop_action_remove_shop_account"
+		let source_id="shop_action_remove_account"
 		let destn_id="action_remove_shop"
 		let parent_source_id=""
 		let event_code="e_1671620742304"
-		let event_params={"caller_name":"shop_action_remove_shop_account__se_for_remove_shop_account","event_desc":"SE for remove shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_shop_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"shop_action_remove_account__se_for_remove_shop_account","event_desc":"SE for remove shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_account","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -5231,15 +5334,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
-	shop_action_remove_shop_account__cc_for_remove_shop_account_ena_dis() { 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove account"
+	shop_action_remove_account__cc_for_remove_shop_account_ena_dis() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="shop_action_remove_shop_account"
+		let source_id="shop_action_remove_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671621189032"
-		let event_params={"caller_name":"shop_action_remove_shop_account__cc_for_remove_shop_account_ena_dis","event_desc":"CC for Remove shop account ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_shop_account","raiseparam":{}}
+		let event_params={"caller_name":"shop_action_remove_account__cc_for_remove_shop_account_ena_dis","event_desc":"CC for Remove shop account ENA DIS","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_account","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -5252,15 +5355,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
-	shop_action_remove_shop_account__sp_for_remove_shop_account() { 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove account"
+	shop_action_remove_account__sp_for_remove_shop_account() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="shop_action_remove_shop_account"
+		let source_id="shop_action_remove_account"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671621199391"
-		let event_params={"caller_name":"shop_action_remove_shop_account__sp_for_remove_shop_account","event_desc":"SP for Remove shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_shop_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
+		let event_params={"caller_name":"shop_action_remove_account__sp_for_remove_shop_account","event_desc":"SP for Remove shop account","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_account","raiseparam":{"profile_code":"BTL_1304_1670996891370"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -5420,15 +5523,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view shop and cashdesk details"
-	navigation_ui_view_shop_and_cashdesk_details__sp_for_view_sh_cash_desk_btn() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view shop"
+	navigation_ui_view_shop__sp_for_view_sh_cash_desk_btn() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_shop_and_cashdesk_details"
+		let source_id="navigation_ui_view_shop"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671688782908"
-		let event_params={"caller_name":"navigation_ui_view_shop_and_cashdesk_details__sp_for_view_sh_cash_desk_btn","event_desc":"SP for view sh cash desk btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_shop_and_cashdesk_details","raiseparam":{"profile_code":"BTL_1304_1671687995972"}}
+		let event_params={"caller_name":"navigation_ui_view_shop__sp_for_view_sh_cash_desk_btn","event_desc":"SP for view sh cash desk btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_shop","raiseparam":{"profile_code":"BTL_1304_1671687995972"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -5441,15 +5544,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view shop and cashdesk details"
-	navigation_ui_view_shop_and_cashdesk_details__brfq_from_shop_to_vscd_btn() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view shop"
+	navigation_ui_view_shop__brfq_from_shop_to_vscd_btn() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_shop_and_cashdesk_details"
+		let source_id="navigation_ui_view_shop"
 		let destn_id="shop"
 		let parent_source_id=""
 		let event_code="e_1671688925790"
-		let event_params={"caller_name":"navigation_ui_view_shop_and_cashdesk_details__brfq_from_shop_to_vscd_btn","event_desc":"BRFQ from shop to vscd btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_shop_and_cashdesk_details","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let event_params={"caller_name":"navigation_ui_view_shop__brfq_from_shop_to_vscd_btn","event_desc":"BRFQ from shop to vscd btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_shop","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_from_shop_to_vscd_btn__sfr_for_shop_details,"
 		let event_data={}
@@ -5469,9 +5572,9 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_from_shop_to_vscd_btn"
 		let destn_id="shop"
-		let parent_source_id="navigation_ui_view_shop_and_cashdesk_details"
+		let parent_source_id="navigation_ui_view_shop"
 		let event_code="e_1671689139814"
-		let event_params={"caller_name":"brfq_from_shop_to_vscd_btn__sfr_for_shop_details","event_desc":"SFR for shop details","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_shop_and_cashdesk_details","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"brfq_from_shop_to_vscd_btn__sfr_for_shop_details","event_desc":"SFR for shop details","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_shop","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
@@ -5493,6 +5596,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1671691473696"
 		let event_params={"caller_name":"cash_desk_action_back__sp_for_back","event_desc":"sp for back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cash_desk_action_back","raiseparam":{"profile_code":"BTL_1304_1670996775588"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "action view shop"
+	action_view_shop__sp_for_action_view_shop() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="action_view_shop"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1671715602289"
+		let event_params={"caller_name":"action_view_shop__sp_for_action_view_shop","event_desc":"SP for action view shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"action_view_shop","raiseparam":{"profile_code":"BTL_1304_1671687995972"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

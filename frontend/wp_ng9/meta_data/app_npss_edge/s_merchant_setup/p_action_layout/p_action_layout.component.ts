@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27487 
+Build ID        : 27502 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-22 7:53 AM 
+Modified Date   : 2022-Dec-23 4:28 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -25,6 +25,7 @@ export class p_action_layoutComponent implements OnInit {
   	merchant_detail : any = {}
 	account__detail : any = {}
 	shop_detail : any = {}
+	cash_desk_detail : any = {}
 	action : any = {}
 	merchant_setup_widget : any = {}
 
@@ -40,6 +41,8 @@ export class p_action_layoutComponent implements OnInit {
 		this.account__detail.need_header = true
 		this.shop_detail.desc = "Shop Detail"
 		this.shop_detail.need_header = true
+		this.cash_desk_detail.desc = "Cash Desk Detail"
+		this.cash_desk_detail.need_header = true
 		this.action.desc = "Action"
 		this.action.need_header = ""
 		this.merchant_setup_widget.desc = "Merchant Setup Widget"

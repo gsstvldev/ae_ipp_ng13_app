@@ -4,7 +4,7 @@
 	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_merchant_ui="ngForm">
 <div id="RN01" class="row">
 	<div #npss_merchant_ui_channel_id id="RN01CN1" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_id')" >
-				<txt [ctrl_id]="'npss_merchant_ui_channel_id'" [comp_id]="comp_id" [ctrl]="ctrl.channel_id" [model]="screen_instance[this.comp_id].f_npss_merchant_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+				<cbo [ctrl_id]="'npss_merchant_ui_channel_id'" [comp_id]="comp_id" [ctrl]="ctrl.channel_id" [model]="screen_instance[this.comp_id].f_npss_merchant_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
 	</div>
 	<div  id="RN01CN2" class="column col-md-2 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('bankuserid')" >
 				<txt [ctrl_id]="'npss_merchant_ui_bankuserid'" [comp_id]="comp_id" [ctrl]="ctrl.bankuserid" [model]="screen_instance[this.comp_id].f_npss_merchant_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>

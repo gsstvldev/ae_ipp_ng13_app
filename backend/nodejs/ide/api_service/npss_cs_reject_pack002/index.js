@@ -79,7 +79,7 @@ Modified By : Daseen
                                                    var selplqry = `select CBUAE_RETURN_CODE from npss_trn_process_log where status = 'IP_RCT_REV_REQ_REJECTED' and uetr = '${tranresult[0].uetr}'`
                                                    ExecuteQuery1(selplqry, function (tplresult) {
                                                        if (tplresult.length > 0) {
-                                                           var hdrqry = `select process_name,status,uetr,msg_id,fx_resv_date1 from npss_trn_process_log where process_name='Receive pacs.007' and  status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr =  '${tranresult[0].uetr}'`
+                                                           var hdrqry = `select process_name,status,uetr,msg_id,fx_resv_text1 from npss_trn_process_log where process_name='Receive pacs.007' and  status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr =  '${tranresult[0].uetr}'`
                                                            ExecuteQuery1(hdrqry, function (hdrresult) {
                                                                if (hdrresult.length > 0) {
                                                                    fn_DoAPIServiceCall(tranresult, tplresult, api_url, rule_code, hdrresult, function (apiresult) {
@@ -222,7 +222,7 @@ Modified By : Daseen
                                    //"hdr_msg_id": tranresult[0].hdr_msg_id,
                                    //"hdr_created_date": tranresult[0].hdr_created_date,
                                    "hdr_msg_id": hdrresult[0].msg_id,
-                                   "hdr_created_date": hdrresult[0].fx_resv_date1,
+                                   "hdr_created_date": hdrresult[0].fx_resv_text1,
                                    
                                    "hdr_total_amount": tranresult[0].hdr_total_amount,
                                    "payment_endtoend_id": tranresult[0].payment_endtoend_id,

@@ -8,12 +8,15 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+
 /*  Created By :sIVA hARISH
 Created Date : 16-12-2022
 Modified By : sIVA hARISH
 Modified Date : 17/12/2022
 Modified By : sIVA hARISH
 Modified Date : 19/12/2022
+Modified By : sIVA hARISH
+Modified Date : 24/12/2022
       Reason for : Changes For Finance House & query changes for taking status and remove api name
        Reason for : Handling Failure for unfreeze posting
  
@@ -50,7 +53,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                sendResponse(error);
             } else {
                var PRCT_ID = prct_id
-                var success_process_status
+               var success_process_status
                var success_status
                try {
                   var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
@@ -112,57 +115,77 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                 if (CusTranInsertRes.length > 0) {
                                                    var Takepostrefno = `select * from npss_trn_process_log where status = 'IP_RCT_REV_INAU_POSTING_SUCCESS' and uetr = '${arrdata[0].uetr}'`
                                                    ExecuteQuery1(Takepostrefno, function (arrpostno) {
-                                                      fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno, function (apiresult) {
-                                                         if (apiresult === "SUCCESS") {
-                                                            var Takeurl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
-                                                            ExecuteQuery1(Takeurl, function (arrgeturl) {
-                                                               fn_DoAPIServiceCall(arrdata, arrgeturl, function (getresult) {
-                                                                  if (getresult == 'SUCCESS') {
-                                                                    // var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='RCT_REV_CANCEL_REQ'`
-                                                                    var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='RCT_REV_CANCEL_REQ' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
-                                                                     ExecuteQuery1(ruleqry, function (arrsts) {
-                                                                        var updtranqry = `update npss_transactions set  status='${arrsts[0].success_status}',process_status='${arrsts[0].success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
-                                                                        ExecuteQuery(updtranqry, function (uptranresult) {
-                                                                           if (uptranresult == 'SUCCESS') {
-                                                                              objresponse.status = 'SUCCESS';
-                                                                              sendResponse(null, objresponse)
-                                                                           }else{
-                                                                              objresponse.status = 'Failure in Tran Status Update';
-                                                                              sendResponse(null, objresponse)
-                                                                           }
-                                                                        })
+                                                    if(arrpostno.length > 0){
+                                                        fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno, function (apiresult) {
+                                                            if (apiresult === "SUCCESS") {
+                                                               var Takeurl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
+                                                               ExecuteQuery1(Takeurl, function (arrgeturl) {
+                                                                  if (arrgeturl.length > 0) {
+                                                                     var hdrqry = `select process_name,status,uetr,msg_id,fx_resv_date1 from npss_trn_process_log where process_name='Receive pacs.007' and  status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr =  '${arrdata[0].uetr}'`
+                                                                     ExecuteQuery1(hdrqry, function (hdrresult) {
+                                                                        if(hdrresult.length > 0){
+                                                                           fn_DoAPIServiceCall(arrdata, arrgeturl,hdrresult, function (getresult) {
+                                                                              if (getresult == 'SUCCESS') {
+         
+                                                                                 var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='RCT_REV_CANCEL_REQ' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
+                                                                                 ExecuteQuery1(ruleqry, function (arrsts) {
+                                                                                    var updtranqry = `update npss_transactions set  status='${arrsts[0].success_status}',process_status='${arrsts[0].success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
+                                                                                    ExecuteQuery(updtranqry, function (uptranresult) {
+                                                                                       if (uptranresult == 'SUCCESS') {
+                                                                                          objresponse.status = 'SUCCESS';
+                                                                                          sendResponse(null, objresponse)
+                                                                                       } else {
+                                                                                          objresponse.status = 'Failure in Tran Status Update';
+                                                                                          sendResponse(null, objresponse)
+                                                                                       }
+                                                                                    })
+                                                                                 })
+         
+         
+                                                                              } else {
+                                                                                 objresponse.status = 'Fail From Pac002';
+                                                                                 reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
+                                                                                 sendResponse(null, objresponse)
+                                                                              }
+         
+                                                                           })
+                                                                        }else{
+                                                                           objresponse.status = 'No Data Found Against Pac007 in Trn Process Log Table';
+                                                                           sendResponse(null, objresponse)
+                                                                        }
                                                                      })
-
-
+                                                                     
                                                                   } else {
-                                                                     objresponse.status = 'Fail From Pac002';
-                                                                     reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
+                                                                     objresponse.status = 'Url Not Found';
+   
                                                                      sendResponse(null, objresponse)
                                                                   }
-
+   
                                                                })
-                                                            })
-                                                         } else {
-                                                            // objresponse.status = 'Fail From T24 Unfreeze Posting';
-                                                            // reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
-                                                            // sendResponse(null, objresponse)
-                                                            var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Id}'`          
-                                                            ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                               var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_UNFR_POSTING_FAILURE'`
-                                                               ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                  if (arrFail.length) {
-                                                                    
-                                                                     objresponse.status = 'Failure Error Code - '+arrFail[0].cbuae_return_code
-                                                                     sendResponse(null, objresponse);
-                                                                  } else {
-                                                                   
-                                                                     objresponse.status = 'Fail From T24 Unfreeze Posting No Error Code Found'
-                                                                     sendResponse(null, objresponse);
-                                                                  }
+                                                            } else {
+   
+                                                               var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Id}'`
+                                                               ExecuteQuery1(Takeuetr, function (arruetr) {
+                                                                  var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_UNFR_POSTING_FAILURE'`
+                                                                  ExecuteQuery1(TakeFailureresult, function (arrFail) {
+                                                                     if (arrFail.length) {
+   
+                                                                        objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
+                                                                        sendResponse(null, objresponse);
+                                                                     } else {
+   
+                                                                        objresponse.status = 'Fail From T24 Unfreeze Posting No Error Code Found'
+                                                                        sendResponse(null, objresponse);
+                                                                     }
+                                                                  })
                                                                })
-                                                            })
-                                                         }
-                                                      })
+                                                            }
+                                                         })
+                                                    }else{
+                                                        objresponse.status = 'No Posting Ref No Found';
+                                                        sendResponse(null, objresponse)
+                                                    }
+                                                      
                                                    })
 
 
@@ -202,38 +225,47 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                            sendResponse(error)
                         }
                      });
-                  }else{ //for finance house
+                  } else { //for finance house
                      var TakedatafrmTrn = `select * from npss_transactions where npsst_id = '${params.Id}'`
                      ExecuteQuery1(TakedatafrmTrn, function (arrdata) {
-                           if (arrdata.length > 0) {
+                        if (arrdata.length > 0) {
                            var Takeurl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
                            ExecuteQuery1(Takeurl, function (arrgeturl) {
-                              fn_DoAPIServiceCall(arrdata, arrgeturl, function (getresult) {
-                                 if (getresult == 'SUCCESS') {
-                                    var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='RCT_REV_CANCEL_REQ' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
-                                    ExecuteQuery1(ruleqry, function (arrsts) {
-                                       var updtranqry = `update npss_transactions set  status='${arrsts[0].success_status}',process_status='${arrsts[0].success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
-                                       ExecuteQuery(updtranqry, function (uptranresult) {
-                                          if (uptranresult == 'SUCCESS') {
-                                             objresponse.status = 'SUCCESS';
-                                             sendResponse(null, objresponse)
-                                          }else{
-                                             objresponse.status = 'Failure in Tran Status Update';
-                                             sendResponse(null, objresponse)
-                                          }
-                                       })
+                              var hdrqry = `select process_name,status,uetr,msg_id,fx_resv_date1 from npss_trn_process_log where process_name='Receive pacs.007' and  status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr =  '${arrdata[0].uetr}'`
+                              ExecuteQuery1(hdrqry, function (hdrresult) {
+                                 if(hdrresult.length > 0){
+                                    fn_DoAPIServiceCall(arrdata, arrgeturl,hdrresult, function (getresult) {
+                                       if (getresult == 'SUCCESS') {
+                                          var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='RCT_REV_CANCEL_REQ' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
+                                          ExecuteQuery1(ruleqry, function (arrsts) {
+                                             var updtranqry = `update npss_transactions set  status='${arrsts[0].success_status}',process_status='${arrsts[0].success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
+                                             ExecuteQuery(updtranqry, function (uptranresult) {
+                                                if (uptranresult == 'SUCCESS') {
+                                                   objresponse.status = 'SUCCESS';
+                                                   sendResponse(null, objresponse)
+                                                } else {
+                                                   objresponse.status = 'Failure in Tran Status Update';
+                                                   sendResponse(null, objresponse)
+                                                }
+                                             })
+                                          })
+      
+      
+                                       } else {
+                                          objresponse.status = 'Fail From Pac002';
+                                          reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
+                                          sendResponse(null, objresponse)
+                                       }
+      
                                     })
-
-
-                                 } else {
-                                    objresponse.status = 'Fail From Pac002';
-                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
+                                 }else{
+                                    objresponse.status = 'No Data Found against Pac007 in Trn Processlog Table';
                                     sendResponse(null, objresponse)
                                  }
-
                               })
+                              
                            })
-                        }else{
+                        } else {
                            objresponse.status = 'FAILURE';
                            objresponse.data.msg = 'No data for this Tran Id'
                            sendResponse(null, objresponse)
@@ -295,7 +327,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                            if (error) {
                               reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                               sendResponse(error, null);
-                             
+
                            } else {
                               responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
                               console.log("------API CALL SUCCESS----");
@@ -310,7 +342,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
 
                   // Do API Call for Service 
-                  function fn_DoAPIServiceCall(tranresult, url, callbackapi) {
+                  function fn_DoAPIServiceCall(tranresult, url,hdrresult, callbackapi) {
                      try {
                         var request = require('request');
                         var apiURL =
@@ -322,8 +354,10 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                            json: {
                               "cr_sort_code": tranresult[0].cr_sort_code,
                               "dr_sort_code": tranresult[0].dr_sort_code,
-                              "hdr_msg_id": tranresult[0].hdr_msg_id,
-                              "hdr_created_date": tranresult[0].hdr_created_date,
+                              // "hdr_msg_id": tranresult[0].hdr_msg_id,
+                              // "hdr_created_date": tranresult[0].hdr_created_date,
+                              "hdr_msg_id": hdrresult[0].msg_id,
+                              "hdr_created_date": hdrresult[0].fx_resv_date1,
                               "hdr_total_amount": tranresult[0].hdr_total_amount,
                               "payment_endtoend_id": tranresult[0].payment_endtoend_id,
                               "uetr": tranresult[0].uetr,
@@ -344,8 +378,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                            if (error) {
                               reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
-                             sendResponse(error, null);
-                            
+                              sendResponse(error, null);
+
                            } else {
                               console.log("------API CALL SUCCESS----");
                               callbackapi(responseBodyFromImagingService)
@@ -441,6 +475,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
       reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
    }
 })
+
 
 
 

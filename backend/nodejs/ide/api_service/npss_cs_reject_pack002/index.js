@@ -8,11 +8,15 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
-    
+
+
+
     /*  Created By : Daseen
    Created Date : 28/10/2022
    Modified By : Siva Harish
    Modified Date : 29/11/2022
+Modified By : Daseen
+   Modified Date : 24/12/2022
    Reason for : 
     
    */
@@ -30,7 +34,7 @@ app.post('/', function(appRequest, appResponse, next) {
    var reqAsync = require('async');
    var success_process_status, success_status;
    var Id = params.Id;
-   var rule_code=params.RULE_CODE;
+   var rule_code = params.RULE_CODE;
    var api_url;
    var mTranConn = "";
    var objresponse = {
@@ -60,52 +64,61 @@ app.post('/', function(appRequest, appResponse, next) {
                            var urlqry = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
                            var seltranqry = `select * from npss_transactions where npsst_id='${params.Id}'`
                            var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                          // var selplqry=`select tpl.cbuae_return_code,crn.return_description,tpl.npsstrrd_refno from npss_trn_process_log tpl inner join core_nc_return_codes crn on  tpl.cbuae_return_code=crn.return_code where npsstpl_id='${params.tpl_id}'`
-                             
+                           // var selplqry=`select tpl.cbuae_return_code,crn.return_description,tpl.npsstrrd_refno from npss_trn_process_log tpl inner join core_nc_return_codes crn on  tpl.cbuae_return_code=crn.return_code where npsstpl_id='${params.tpl_id}'`
+
 
                            ExecuteQuery1(ruleqry, function (result) {
                                if (result.length) {
                                    success_process_status = result[0].success_process_status;
                                    success_status = result[0].success_status;
                                    ExecuteQuery1(urlqry, function (urlresult) {
-                                       if (urlresult.length > 0) {     
+                                       if (urlresult.length > 0) {
                                            api_url = urlresult[0].param_detail;
                                            ExecuteQuery1(seltranqry, function (tranresult) {
                                                if (tranresult.length > 0) {
-                                               var selplqry=`select CBUAE_RETURN_CODE from npss_trn_process_log where status = 'IP_RCT_REV_REQ_REJECTED' and uetr = '${tranresult[0].uetr}'`
+                                                   var selplqry = `select CBUAE_RETURN_CODE from npss_trn_process_log where status = 'IP_RCT_REV_REQ_REJECTED' and uetr = '${tranresult[0].uetr}'`
                                                    ExecuteQuery1(selplqry, function (tplresult) {
                                                        if (tplresult.length > 0) {
-                                                           fn_DoAPIServiceCall(tranresult,tplresult, api_url,rule_code, function (apiresult) {
-                                                               if (apiresult === "SUCCESS") {
-                                                                   var updtranqry = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
-                                                                   ExecuteQuery(updtranqry, function (uptranresult) {
-                                                                       if(uptranresult=='SUCCESS'){
-                                                                           objresponse.status = 'SUCCESS';
-                                                                           sendResponse(null, objresponse)
+                                                           var hdrqry = `select process_name,status,uetr,msg_id,fx_resv_date1 from npss_trn_process_log where process_name='Receive pacs.007' and  status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr =  '${tranresult[0].uetr}'`
+                                                           ExecuteQuery1(hdrqry, function (hdrresult) {
+                                                               if (hdrresult.length > 0) {
+                                                                   fn_DoAPIServiceCall(tranresult, tplresult, api_url, rule_code, hdrresult, function (apiresult) {
+                                                                       if (apiresult === "SUCCESS") {
+                                                                           var updtranqry = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
+                                                                           ExecuteQuery(updtranqry, function (uptranresult) {
+                                                                               if (uptranresult == 'SUCCESS') {
+                                                                                   objresponse.status = 'SUCCESS';
+                                                                                   sendResponse(null, objresponse)
+                                                                               }
+                                                                           })
+
+                                                                       } else {
+                                                                        objresponse.status = 'Pac002 Api Call Failed';
+                                                                        sendResponse(null, objresponse)
                                                                        }
                                                                    })
-                                                                   
-                                                               } else {
-                                                                   reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
-                                                                   sendResponse('Data not received from service.please check the log');
+                                                               } else {/*  */
+                                                                   console.log("No Record in process log for 007");
+                                                                   objresponse.status = 'No Data Found Against Pac007 in Trn Processlog Table';
+                                                                   sendResponse(null, objresponse)
                                                                }
                                                            })
                                                        }
                                                        else {
-                                                           console.log("Error in update transaction");
-                                                           objresponse.status = 'FAILURE';
+                                                           console.log("No record found in   transaction log table");
+                                                           objresponse.status = 'No CBUAE Return Code Found in Trn PreocessLog Table';
                                                            sendResponse(null, objresponse)
                                                        }
                                                    })
 
-                                                  
+
 
 
 
                                                }
                                                else {
                                                    console.log("Error in update transaction");
-                                                   objresponse.status = 'FAILURE';
+                                                   objresponse.status = 'No Data Found for this Tran in Tran Table';
                                                    sendResponse(null, objresponse)
                                                }
                                            })
@@ -194,7 +207,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                    // Do API Call for Service 
-                   function fn_DoAPIServiceCall(tranresult, tplresult,url, rule_code, callbackapi) {
+                   function fn_DoAPIServiceCall(tranresult, tplresult, url, rule_code,hdrresult, callbackapi) {
                        try {
                            var request = require('request');
                            var apiURL =
@@ -206,17 +219,20 @@ app.post('/', function(appRequest, appResponse, next) {
                                json: {
                                    "cr_sort_code": tranresult[0].cr_sort_code,
                                    "dr_sort_code": tranresult[0].dr_sort_code,
-                                   "hdr_msg_id": tranresult[0].hdr_msg_id,
-                                   "hdr_created_date": tranresult[0].hdr_created_date,
+                                   //"hdr_msg_id": tranresult[0].hdr_msg_id,
+                                   //"hdr_created_date": tranresult[0].hdr_created_date,
+                                   "hdr_msg_id": hdrresult[0].msg_id,
+                                   "hdr_created_date": hdrresult[0].fx_resv_date1,
+                                   
                                    "hdr_total_amount": tranresult[0].hdr_total_amount,
                                    "payment_endtoend_id": tranresult[0].payment_endtoend_id,
                                    "uetr": tranresult[0].uetr,
-                                    "tran_ref_id": tranresult[0].tran_ref_id,
+                                   "tran_ref_id": tranresult[0].tran_ref_id,
                                    "active_status": 'RJCT',
-                                   "clrsysref":tranresult[0].clrsysref,
-                                    "rsn_code":tplresult[0].cbuae_return_code, 
-                                   
-                                   "parent_npsstrrd_refno":tplresult[0].npsstrrd_refno
+                                   "clrsysref": tranresult[0].clrsysref,
+                                   "rsn_code": tplresult[0].cbuae_return_code,
+
+                                   "parent_npsstrrd_refno": tplresult[0].npsstrrd_refno
 
                                },
                                headers: {
@@ -264,6 +280,8 @@ app.post('/', function(appRequest, appResponse, next) {
            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
        }
    })
+
+
 
 
 

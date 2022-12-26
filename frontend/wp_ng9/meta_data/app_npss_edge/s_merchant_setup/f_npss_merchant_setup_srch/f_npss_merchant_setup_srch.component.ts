@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27523 
+Build ID        : 27525 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-26 4:57 AM 
+Modified Date   : 2022-Dec-26 6:13 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of memory26
 		this.ctrl.memory26 = {}
 		this.ctrl.memory26.id = "RN01CN1"
-		this.ctrl.memory26.desc = "Createddate"
+		this.ctrl.memory26.desc = "Created Date"
 		this.ctrl.memory26.visible = false
-		this.ctrl.memory26.label_name = "Createddate"
+		this.ctrl.memory26.label_name = "Created Date"
 		this.ctrl.memory26.df_code = "DF_1304_1666846276198"
 		this.ctrl.memory26.df_description = "Column Group 1"
 		this.ctrl.memory26.uictrl_code = "CDN_DATE"

@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
     
+    
 
 
     /*  Created By :Siva Harish
@@ -67,11 +68,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 var TakedatafrmTrn = `select  * from npss_transactions where status in ('IP_RCT_REVERSAL_REQ_RECEIVED', 'IP_RCT_RR_RETURN_READY', 'IP_RCT_REV_REQ_REJECTED')`
                                                 ExecuteQuery1(TakedatafrmTrn, function (arrdata) {
                                                    if(arrdata.length){
-                                                    reqInstanceHelper.PrintInfo(serviceName, ".................Reversal Request REJECT PAC002 Eligible Tran From NPSS Tran Table..................TranId----->"+JSON.stringify(arrdata), objSessionLogInfo);              
+                                                    for(let i =0; i < arrdata.length; i++){
+                                                        reqInstanceHelper.PrintInfo(serviceName, ".................Eligible Tran From NPSS Tran Table---->"+arrdata[i].npsst_id, objSessionLogInfo);              
+                                                    }
+                                                   
                                                     reqAsync.forEachOfSeries(arrdata, function (arrTrndataobj, i, nextobjctfunc) {
                                                         reqInstanceHelper.PrintInfo(serviceName, ".........TranId Checking for before hours query Excecuted ----->"+arrTrndataobj.npsst_id, objSessionLogInfo);   
                                                     
-                                                  var Takedataaft45hrs = `select * from npss_trn_process_log where uetr = '${arrTrndataobj.uetr}' and status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and process_name = 'Receive pacs.007' and created_date_utc <= CURRENT_TIMESTAMP - INTERVAL '${arrhrs[0].tat_expected}''${arrhrs[0].tat_frequency}'`
+                                                  var Takedataaft45hrs = `select * from npss_trn_process_log where uetr = '${arrTrndataobj.uetr}' and status = '${params.Pac_status}' and process_name = '${params.process_name}' and created_date_utc <= CURRENT_TIMESTAMP - INTERVAL '${arrhrs[0].tat_expected}''${arrhrs[0].tat_frequency}'`
                                                   ExecuteQuery1(Takedataaft45hrs, function (arrTnprlogdata) {
                                                     if(arrTnprlogdata.length){
                                                         reqInstanceHelper.PrintInfo(serviceName, "...Eligible TranId after query Excecuted ----->" +arrTrndataobj.npsst_id, objSessionLogInfo);   
@@ -116,7 +120,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 } else {
                                                                     reqInstanceHelper.PrintInfo(serviceName, "...Pac002 API Response for this TranId ----->" +arrTrndataobj.npsst_id +"---->"+responseBody, objSessionLogInfo);   
                                                                    if(responseBody == 'SUCCESS'){
-                                                                   var updateTran = `update npss_transactions set  status = 'IP_RCT_REVREQ_REJ_REPLIED',process_status='RCTCompleted',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${arrTrndataobj.npsst_id}' `
+                                                                   var updateTran = `update npss_transactions set  status = '${params.status}',process_status='${params.process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${arrTrndataobj.npsst_id}' `
                                                                    ExecuteQuery(updateTran, function (uptranresult) {
                                                                         try{
                                                                             if(uptranresult == 'SUCCESS'){
@@ -256,6 +260,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

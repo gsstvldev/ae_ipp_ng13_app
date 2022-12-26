@@ -94,7 +94,7 @@ try {
                                   objCusTranInst.REVERSAL_CODE = arrprocesslog[0].revrsal_code
                                   objCusTranInst.UETR = arrprocesslog[0].uetr;
                                   objCusTranInst.NPSSTRRD_REFNO = arrprocesslog[0].tran_ref_id;
-                                  objCusTranInst.PROCESS_NAME = 'Accept  Reversal'
+                                  objCusTranInst.PROCESS_NAME = 'Accept Reversal'
                                   objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
                                   objCusTranInst.PROCESS_STATUS = final_process_status;
                                   objCusTranInst.STATUS = final_status;

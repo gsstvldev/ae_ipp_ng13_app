@@ -73,6 +73,12 @@ export class npss_cs_ip_rev_get_dealService {
 
                 // }
                 else {
+                     var ctrlscope= screenInstance['deal_ui'].f_npss_reversal_deal_plog_ui.model;
+                ctrlscope.BUY_CURRENCY = ''
+                ctrlscope.SELL_CURRENCY = ''
+                ctrlscope.EXCHANGE_RATE = ''
+                ctrlscope.DEALT_AMOUNT = ''
+                ctrlscope.CONTRA_AMOUNT = ''
                     this.dialogHelper.ShowErrorDialog(res.data.status)
                 }
             });

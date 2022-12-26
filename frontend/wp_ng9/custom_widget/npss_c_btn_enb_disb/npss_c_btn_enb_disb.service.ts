@@ -119,9 +119,9 @@ export class npss_c_btn_enb_disbService {
         }
         }else if(screenInstance.wftpa_description == 's_merchant_setup'){
                     var CtrlScope = screenInstance['merchant_detail'].f_npss_merchant_ui.controls; // for customer details
-                    var CtrlScope1 = screenInstance['account_detail'].f_npss_mer_account_ui.controls; // for Account details
+                    var CtrlScope1 = screenInstance['account__detail'].f_npss_mer_account_ui.controls; // for Account details
                     var CtrlScope2 = screenInstance['shop_detail'].f_npss_shop_ui.controls; // for Account details
-                    var CtrlScope3 = screenInstance['cash_desk_detail'].f_npss_cash_desk_ui.controls; // for Account details
+                    var CtrlScope3 = screenInstance['cashdesk_detail'].f_npss_cash_desk_ui.controls; // for Account details
         if (btnName == 'ENROLMENT') {
             CtrlScope3.cashdesk_overlay_id.show = false
         }else if(btnName == 'BLOCK ACCOUNT'){

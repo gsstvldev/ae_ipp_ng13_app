@@ -1,26 +1,26 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27516 
+Build ID        : 27523 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-23 11:35 AM 
+Modified Date   : 2022-Dec-26 4:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
-Form Name       : Cash Desk Action--------------------------------------------------------------------------- */
+Form Name       : CashDesk Action--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_cash_desk_action',
-  templateUrl: './f_cash_desk_action.component.html',
-  styleUrls: ['./f_cash_desk_action.component.css'],
+  selector: 'f_cashdesk_action',
+  templateUrl: './f_cashdesk_action.component.html',
+  styleUrls: ['./f_cashdesk_action.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_cash_desk_actionComponent implements OnInit {
+export class f_cashdesk_actionComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_cash_desk_actionComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_cash_desk_action[control]==undefined) {
-      this.screen_instance[this.comp_id].f_cash_desk_action[control] = {}
+    if(this.screen_instance[this.comp_id].f_cashdesk_action[control]==undefined) {
+      this.screen_instance[this.comp_id].f_cashdesk_action[control] = {}
     }
-    this.screen_instance[this.comp_id].f_cash_desk_action[control][property] = value;
+    this.screen_instance[this.comp_id].f_cashdesk_action[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

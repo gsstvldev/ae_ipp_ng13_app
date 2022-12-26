@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27541 
+Build ID        : 27543 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-26 13:53 PM 
+Modified Date   : 2022-Dec-26 14:30 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -335,10 +335,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.page_load__cf_on_page_load()
 		this.page_load__he_for_pl_trg()
 		this.page_load__pl_to_back_hide()
-		this.page_load__he_for_vcdd()
 		this.page_load__he_for_btm()
-		this.page_load__he_for_pl_to_vad()
-		this.page_load__he_for_vsd()
 	}
 
 	//Handler for INTERNAL event of "cf on page load"
@@ -571,27 +568,6 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_vcdd() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_view_cash_desk_detail"
-		let parent_source_id=""
-		let event_code="e_1669094830565"
-		let event_params={"caller_name":"page_load__he_for_vcdd","event_desc":"HE for VCDD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
 	page_load__he_for_btm() { 
 		let Dest_Is_ctrl=true
 		
@@ -600,48 +576,6 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1669094840990"
 		let event_params={"caller_name":"page_load__he_for_btm","event_desc":"HE for BTM","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_pl_to_vad() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_view_account_detail"
-		let parent_source_id=""
-		let event_code="e_1669094851057"
-		let event_params={"caller_name":"page_load__he_for_pl_to_vad","event_desc":"HE for PL to VAD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_vsd() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_view_shop_detail"
-		let parent_source_id=""
-		let event_code="e_1669094861653"
-		let event_params={"caller_name":"page_load__he_for_vsd","event_desc":"HE for VSD","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}

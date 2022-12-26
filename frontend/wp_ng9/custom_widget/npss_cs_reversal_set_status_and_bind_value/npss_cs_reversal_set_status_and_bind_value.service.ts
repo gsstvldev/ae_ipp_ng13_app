@@ -26,6 +26,7 @@ export class npss_cs_reversal_set_status_and_bind_valueService {
         let Clientparam: any = {}
           let roleId  = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES")
             Clientparam.roleId = roleId
+            Clientparam.PRODUCT_CODE = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "ROOT_SCODE")
               Clientparam.uetr = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_UETR")
        
         Clientparam.screenName = screenInstance.wftpa_description

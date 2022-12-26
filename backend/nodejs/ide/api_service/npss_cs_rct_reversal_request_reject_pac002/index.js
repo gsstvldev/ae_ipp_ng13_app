@@ -8,13 +8,14 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
 
     /*  Created By :Siva Harish
     Created Date : 22-12-2022
-    Modified By : 
-    Modified Date : 
-    Reason for : 
+    Modified By :Siva Harish 
+    Modified Date : 26/12/2022
+    Reason for : Changing hdrmsgid and hdrdate from TranPrcsLog Tbl
      
     */
     var serviceName = 'NPSS (CS) RCT Reversal Request Reject Pac002';
@@ -35,6 +36,7 @@ app.post('/', function(appRequest, appResponse, next) {
         'msg': ''
     }; // Response to Client
     // Assign function for loginformation and session info
+    reqInstanceHelper.PrintInfo(serviceName, ".........Entering in NPSS (CS) RCT Reversal Request Reject Pac002 IDE............................", objSessionLogInfo);   
     console.log('.................................Entering in NPSS (CS) RCT Reversal Request Reject Pac002 IDE')
     reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInformation) {
         try {
@@ -51,7 +53,8 @@ app.post('/', function(appRequest, appResponse, next) {
                         sendResponse(error);
                     } else {
                         var PRCT_ID = prct_id
-                        console.log('.................................Entering DB Connect in NPSS (CS) RCT Reversal Request Reject Pac002 IDE')
+                        reqInstanceHelper.PrintInfo(serviceName, ".........After DB Connection in NPSS (CS) RCT Reversal Request Reject Pac002 IDE............................", objSessionLogInfo);   
+                        console.log('.................................After DB Connect in NPSS (CS) RCT Reversal Request Reject Pac002 IDE')
                       
                         try {
                             var urlqry = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
@@ -61,13 +64,18 @@ app.post('/', function(appRequest, appResponse, next) {
                                     ExecuteQuery1(Takehours, function (arrhrs) {
                                         try {
                                             if (arrhrs.length > 0) {                                  
-                                                var TakedatafrmTrn = `select * from npss_transactions where status in ('IP_RCT_REVERSAL_REQ_RECEIVED', 'IP_RCT_RR_RETURN_READY', 'IP_RCT_REV_REQ_REJECTED')`
+                                                var TakedatafrmTrn = `select  * from npss_transactions where status in ('IP_RCT_REVERSAL_REQ_RECEIVED', 'IP_RCT_RR_RETURN_READY', 'IP_RCT_REV_REQ_REJECTED')`
                                                 ExecuteQuery1(TakedatafrmTrn, function (arrdata) {
                                                    if(arrdata.length){
-                                                    reqAsync.forEachOfSeries(arrdata, function (arrTrndataobj, i, nextobjctfunc) { 
+                                                    reqInstanceHelper.PrintInfo(serviceName, ".................Reversal Request REJECT PAC002 Eligible Tran From NPSS Tran Table..................TranId----->"+JSON.stringify(arrdata), objSessionLogInfo);              
+                                                    reqAsync.forEachOfSeries(arrdata, function (arrTrndataobj, i, nextobjctfunc) {
+                                                        reqInstanceHelper.PrintInfo(serviceName, ".........TranId Checking for before hours query Excecuted ----->"+arrTrndataobj.npsst_id, objSessionLogInfo);   
+                                                    
                                                   var Takedataaft45hrs = `select * from npss_trn_process_log where uetr = '${arrTrndataobj.uetr}' and status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and process_name = 'Receive pacs.007' and created_date_utc <= CURRENT_TIMESTAMP - INTERVAL '${arrhrs[0].tat_expected}''${arrhrs[0].tat_frequency}'`
                                                   ExecuteQuery1(Takedataaft45hrs, function (arrTnprlogdata) {
                                                     if(arrTnprlogdata.length){
+                                                        reqInstanceHelper.PrintInfo(serviceName, "...Eligible TranId after query Excecuted ----->" +arrTrndataobj.npsst_id, objSessionLogInfo);   
+                                                        
                                                         try {
                                                             var request = require('request');
                                                             var apiURL =
@@ -79,8 +87,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 json: {
                                                                     "cr_sort_code": arrTrndataobj.cr_sort_code,
                                                                     "dr_sort_code": arrTrndataobj.dr_sort_code,
-                                                                    "hdr_msg_id": arrTrndataobj.hdr_msg_id,
-                                                                    "hdr_created_date": arrTrndataobj.hdr_created_date,
+                                                                    "hdr_msg_id": arrTnprlogdata[0].msg_id,
+                                                                    "hdr_created_date": arrTnprlogdata[0].fx_resv_text1,
                                                                     "hdr_total_amount": arrTrndataobj.hdr_total_amount,
                                                                     "payment_endtoend_id": arrTrndataobj.payment_endtoend_id,
                                                                     "uetr": arrTrndataobj.uetr,
@@ -106,11 +114,17 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                      sendResponse(error);
                                                                    
                                                                 } else {
+                                                                    reqInstanceHelper.PrintInfo(serviceName, "...Pac002 API Response for this TranId ----->" +arrTrndataobj.npsst_id +"---->"+responseBody, objSessionLogInfo);   
                                                                    if(responseBody == 'SUCCESS'){
                                                                    var updateTran = `update npss_transactions set  status = 'IP_RCT_REVREQ_REJ_REPLIED',process_status='RCTCompleted',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${arrTrndataobj.npsst_id}' `
                                                                    ExecuteQuery(updateTran, function (uptranresult) {
                                                                         try{
-                                                                            nextobjctfunc()
+                                                                            if(uptranresult == 'SUCCESS'){
+                                                                                nextobjctfunc()
+                                                                            }else{
+                                                                                nextobjctfunc()
+                                                                            }
+                                                                           
                                                                         }catch(error){
                                                                             nextobjctfunc()
                                                                         }
@@ -130,7 +144,7 @@ app.post('/', function(appRequest, appResponse, next) {
         
         
                                                     }else{
-                                                        
+                                                        reqInstanceHelper.PrintInfo(serviceName, "...after hours query Excecuted.....This NPSST_ID Not eligible(No data found) in Trn_Prcs_Log Tbl ----->"+arrTrndataobj.npsst_id, objSessionLogInfo);                 
                                                         nextobjctfunc()
                                                     }
         
@@ -142,6 +156,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     })
         
                                                    }else{
+                                                    reqInstanceHelper.PrintInfo(serviceName, "...No data found in Tran Table----->"+arrdata, objSessionLogInfo);  
                                                     console.log('..........NPSS (CS) RCT Reversal Request Reject Pac002 IDE No data found in Tran Table.....')
                                                     objresponse.status = 'FAILURE';
                                                     sendResponse(null, objresponse)
@@ -151,6 +166,8 @@ app.post('/', function(appRequest, appResponse, next) {
         
         
                                             } else {
+                                                reqInstanceHelper.PrintInfo(serviceName, ".............................RCT_IP_REVERSAL_SLA Rule Not Found in core_nc_rule_book_setup Table...............ERROR IN Rule Code Taking Function"+arrhrs, objSessionLogInfo);
+                                                
                                                 console.log('..........NPSS (CS) RCT Reversal Request Reject Pac002 IDE No data found in core_nc_rule_book_setup.....')
                                                 objresponse.status = 'FAILURE';
                                                 sendResponse(null, objresponse)
@@ -162,6 +179,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     });
 
                                 }else{
+                                    reqInstanceHelper.PrintInfo(serviceName, "........................REJECT PAC002 URL NO FOUND...............ERROR IN API CALL FUNCTION"+arrurl, objSessionLogInfo);
+                                    
                                     console.log('..........NPSS (CS) RCT Reversal Request Reject Pac002 IDE API Url Not Found.....')
                                     objresponse.status = 'FAILURE';
                                     sendResponse(null, objresponse)
@@ -237,6 +256,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

@@ -13,8 +13,10 @@ app.post('/', function(appRequest, appResponse, next) {
         Created Date :16-12-2022
         Modified By :
         Modified Date :17/12/2022
+        Modified By :sIVA hARISH
+        Modified Date :26/12/2022
      
-        Reason for : 
+        Reason for : Adding Product code in query
         */
         var serviceName = 'NPSS Set Reversat status and bind value';
           var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -50,9 +52,9 @@ app.post('/', function(appRequest, appResponse, next) {
                     mTranConn = pSession; //  assign connection     
     
                     try {
-                        var getstatus = `select param_value from core_rule_prod_params where rule_code = 'REVERSAL PL STATUS'`
-                        var getparamdata = `select param_value from core_rule_prod_params where rule_code = 'REVERSAL PSPL STATUS'`
-                        var getcltDtl = `select param_value from core_rule_prod_params where rule_code = 'REVERSAL DEALPL STATUS'`
+                        var getstatus = `select param_value from core_rule_prod_params where rule_code = 'REVERSAL PL STATUS' and product_code = '${params.PRODUCT_CODE}'`
+                        var getparamdata = `select param_value from core_rule_prod_params where rule_code = 'REVERSAL PSPL STATUS' and product_code = '${params.PRODUCT_CODE}'`
+                        var getcltDtl = `select param_value from core_rule_prod_params where rule_code = 'REVERSAL DEALPL STATUS' and product_code = '${params.PRODUCT_CODE}'`
                         var rulestatus
                         var process_status
                         var getfullparam                   

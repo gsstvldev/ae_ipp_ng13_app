@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27313 
+Build ID        : 27546 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-12 11:9 AM 
+Modified Date   : 2022-Dec-27 5:25 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_process_logs

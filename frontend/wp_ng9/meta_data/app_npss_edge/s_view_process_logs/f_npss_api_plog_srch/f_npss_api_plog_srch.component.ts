@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27313 
+Build ID        : 27546 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-12 11:9 AM 
+Modified Date   : 2022-Dec-27 5:25 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_process_logs
@@ -168,9 +168,9 @@ focustoelement(){
 		//Properties of memory7
 		this.ctrl.memory7 = {}
 		this.ctrl.memory7.id = "1bb75499-d8e2-44cc-abb3-d783b3bd8155_1670593280291"
-		this.ctrl.memory7.desc = "Trn Created Date"
+		this.ctrl.memory7.desc = "Created Date"
 		this.ctrl.memory7.visible = true
-		this.ctrl.memory7.label_name = "Trn Created Date"
+		this.ctrl.memory7.label_name = "Created Date"
 		this.ctrl.memory7.df_code = "DF_1304_1670589236195"
 		this.ctrl.memory7.df_description = "Column Group 1"
 		this.ctrl.memory7.uictrl_code = "CDN_DATE"

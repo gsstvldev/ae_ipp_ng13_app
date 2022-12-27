@@ -125,8 +125,8 @@ export class npss_c_btn_enb_disbService {
         if (btnName == 'ENROLMENT') {
             CtrlScope3.cashdesk_overlay_id.show = false
         }else if(btnName == 'BLOCK ACCOUNT'){
-            CtrlScope1.iban.show = false
-            CtrlScope1.currency.show = false
+            CtrlScope1.iban.show = true
+            CtrlScope1.currency.show = true
             CtrlScope.bankuserid.disabled = true
             CtrlScope.channel_id.disabled = true
             CtrlScope.merchant_name.disabled = true
@@ -155,8 +155,8 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = true
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'UNBLOCK ACCOUNT'){
-            CtrlScope1.iban.show = false
-            CtrlScope1.currency.show = false
+            CtrlScope1.iban.show = true
+            CtrlScope1.currency.show = true
             CtrlScope.bankuserid.disabled = true
             CtrlScope.channel_id.disabled = true
             CtrlScope.merchant_name.disabled = true
@@ -306,8 +306,8 @@ export class npss_c_btn_enb_disbService {
             CtrlScope3.cashdesk_id.disabled = true
             CtrlScope3.cashdesk_overlay_id.disabled = true
         }else if(btnName == 'REMOVE ACCOUNT'){
-            CtrlScope1.iban.show = false
-            CtrlScope1.currency.show = false
+            CtrlScope1.iban.show = true
+            CtrlScope1.currency.show = true
             CtrlScope.bankuserid.disabled = true
             CtrlScope.channel_id.disabled = true
             CtrlScope.merchant_name.disabled = true

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27507 
+Build ID        : 27554 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-27 6:19 AM 
+Modified Date   : 2022-Dec-27 7:54 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -63,7 +63,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_4","uicgc_14","uicgc_18","uicgc_6","uicgc_16","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
+	forms : any = ["uicgc_14","uicgc_4","uicgc_18","uicgc_6","uicgc_16","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
@@ -536,7 +536,6 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.search_search__cu_for_tl()
 		this.search_search__de_from_search_to_view_log_hst()
 		this.search_search__de_from_search_to_view_message_details()
-		this.search_search__e_1672119481113__search()
 	}
 
 	//Handler for INTERNAL event of "ssp for pl queue"
@@ -971,27 +970,6 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "search search"
-	search_search__e_1672119481113__search() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="search_search"
-		let destn_id="search_search"
-		let parent_source_id=""
-		let event_code="e_1672119481113"
-		let event_params={"caller_name":"search_search__e_1672119481113__search","event_desc":"E_1672119481113","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
-		let handler_code="set_value_to_memory"
-		let internals=""
-		let event_data={"control":{"e_1672119481113":{"dts":{"dt_1304_1665901130705":{"dtts":{"dtt_1304_1665905039255":{"uicgc_code":"CONTROL","event_code":"E_1672119481113","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"2022-12-13 12:35:12.506","level":"MI_LEVEL","name":"MI_LEVEL_CDT","setd3name":""}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={}
-		try {
-			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27507 
+Build ID        : 27559 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-27 6:19 AM 
+Modified Date   : 2022-Dec-27 11:34 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -23,6 +23,7 @@ export class p_accept_ui_layoutComponent implements OnInit {
 
   // Variables 
   	reversal_ui : any = {}
+	reversal_additional_ui : any = {}
 	process_log_control_ui : any = {}
 	deal_ui : any = {}
 	get_usable_balance_widget : any = {}
@@ -37,6 +38,8 @@ export class p_accept_ui_layoutComponent implements OnInit {
   ngOnInit() {
     	this.reversal_ui.desc = "Reversal UI"
 		this.reversal_ui.need_header = ""
+		this.reversal_additional_ui.desc = "Reversal Additional UI"
+		this.reversal_additional_ui.need_header = ""
 		this.process_log_control_ui.desc = "Process Log Control UI"
 		this.process_log_control_ui.need_header = ""
 		this.deal_ui.desc = "Deal UI"

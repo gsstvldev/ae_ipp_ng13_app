@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27507 
+Build ID        : 27560 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-27 6:18 AM 
+Modified Date   : 2022-Dec-27 11:34 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -21,12 +21,13 @@ import {npss_cs_reject_pack002Service} from '../../../custom_widget/npss_cs_reje
 import {npss_cs_ip_rev_ret_auth_pacs004Service} from '../../../custom_widget/npss_cs_ip_rev_ret_auth_pacs004/npss_cs_ip_rev_ret_auth_pacs004.service'
 import {npss_cs_ip_rev_reject_inau_reserve_fundService} from '../../../custom_widget/npss_cs_ip_rev_reject_inau_reserve_fund/npss_cs_ip_rev_reject_inau_reserve_fund.service'
 import {npss_cs_reversal_cancelService} from '../../../custom_widget/npss_cs_reversal_cancel/npss_cs_reversal_cancel.service'
+import {npss_cs_reversal_send_to_makerService} from '../../../custom_widget/npss_cs_reversal_send_to_maker/npss_cs_reversal_send_to_maker.service'
 
 @Component({
 	selector: 's_rct_reversal',
 	templateUrl: './s_rct_reversal.component.html',
 	styleUrls: ['./s_rct_reversal.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_reversal_set_status_and_bind_valueService,npss_cs_rev_get_usable_balanceService,npss_cs_ip_rev_accept_inau_reserve_fundService,npss_cs_reject_pack002Service,npss_cs_ip_rev_ret_auth_pacs004Service,npss_cs_ip_rev_reject_inau_reserve_fundService,npss_cs_reversal_cancelService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_reversal_set_status_and_bind_valueService,npss_cs_rev_get_usable_balanceService,npss_cs_ip_rev_accept_inau_reserve_fundService,npss_cs_reject_pack002Service,npss_cs_ip_rev_ret_auth_pacs004Service,npss_cs_ip_rev_reject_inau_reserve_fundService,npss_cs_reversal_cancelService,npss_cs_reversal_send_to_makerService]
 })
     
 // Start of class 
@@ -67,7 +68,10 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	uicgc_31 : string = "get_usable_balance_widget"
 	uicgc_32 : string = "cancel_return_ui"
 	uicgc_33 : string = "reject_ui"
+	uicgc_34 : string = "send_to_maker_ui"
+	uicgc_35 : string = "reversal_additional_ui"
 	key_events : any = {}
+	btl_1304_1672139504213 : string = "p_send_to_maker_layout"
 	btl_1304_1671280977095 : string = "p_fh_review_layout"
 	btl_1304_1671195425258 : string = "p_cancel_layout"
 	btl_1304_1670243823771 : string = "p_view_req_and_res_profile"
@@ -82,11 +86,12 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	btl_1304_1666856778120 : string = "p_accept_layout"
 	btl_1304_1666856478860 : string = "p_fab_review_layout"
 	btl_1304_1666856426885 : string = "p_main_layout"
-	forms : any = ["uicgc_32","uicgc_9","uicgc_26","uicgc_5","uicgc_24","uicgc_6","uicgc_23","uicgc_20","uicgc_33","uicgc_10","uicgc_4","uicgc_25","uicgc_17","uicgc_19","uicgc_15","uicgc_12","uicgc_3"]
+	forms : any = ["uicgc_32","uicgc_9","uicgc_35","uicgc_26","uicgc_5","uicgc_24","uicgc_34","uicgc_6","uicgc_23","uicgc_20","uicgc_33","uicgc_10","uicgc_4","uicgc_25","uicgc_17","uicgc_19","uicgc_15","uicgc_12","uicgc_3"]
 	p_accept_layout__spap_for_accept_showpopup : boolean = false
 	p_change_return_layout__crr_for_spap_showpopup : boolean = false
 	p_remarks_layout__spap_for_reject_code_showpopup : boolean = false
 	p_cancel_layout__spap_for_rau_cancel_showpopup : boolean = false
+	p_send_to_maker_layout__spap_for_send_to_maker_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation : any = {}
@@ -102,6 +107,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	reversal_action_ui_approve : any = {}
 	reversal_action_ui_change_return_reason : any = {}
 	reversal_action_ui_cancel : any = {}
+	reversal_action_ui_send_to_maker : any = {}
 	reversal_action_ui_trigger_btn : any = {}
 	accept_ui : any = {}
 	accept_ui_save : any = {}
@@ -141,10 +147,13 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	cancel_return_ui : any = {}
 	cancel_return_ui_save : any = {}
 	reject_ui : any = {}
+	send_to_maker_ui : any = {}
+	send_to_maker_ui_save : any = {}
+	reversal_additional_ui : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_reversal_set_status_and_bind_valueService:npss_cs_reversal_set_status_and_bind_valueService,private npss_cs_rev_get_usable_balanceService:npss_cs_rev_get_usable_balanceService,private npss_cs_ip_rev_accept_inau_reserve_fundService:npss_cs_ip_rev_accept_inau_reserve_fundService,private npss_cs_reject_pack002Service:npss_cs_reject_pack002Service,private npss_cs_ip_rev_ret_auth_pacs004Service:npss_cs_ip_rev_ret_auth_pacs004Service,private npss_cs_ip_rev_reject_inau_reserve_fundService:npss_cs_ip_rev_reject_inau_reserve_fundService,private npss_cs_reversal_cancelService:npss_cs_reversal_cancelService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_reversal_set_status_and_bind_valueService:npss_cs_reversal_set_status_and_bind_valueService,private npss_cs_rev_get_usable_balanceService:npss_cs_rev_get_usable_balanceService,private npss_cs_ip_rev_accept_inau_reserve_fundService:npss_cs_ip_rev_accept_inau_reserve_fundService,private npss_cs_reject_pack002Service:npss_cs_reject_pack002Service,private npss_cs_ip_rev_ret_auth_pacs004Service:npss_cs_ip_rev_ret_auth_pacs004Service,private npss_cs_ip_rev_reject_inau_reserve_fundService:npss_cs_ip_rev_reject_inau_reserve_fundService,private npss_cs_reversal_cancelService:npss_cs_reversal_cancelService,private npss_cs_reversal_send_to_makerService:npss_cs_reversal_send_to_makerService) {
     
 	}
     
@@ -300,6 +309,15 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.reversal_action_ui_cancel.dynamic_param = {}
 		this.reversal_action_ui_cancel.role = []
 		this.reversal_action_ui_cancel.action = ""
+		
+		// "Send to Maker" Button of "Reversal Action UI" component
+		this.reversal_action_ui_send_to_maker.label_name = "Send to Maker"
+		this.reversal_action_ui_send_to_maker.show = true
+		this.reversal_action_ui_send_to_maker.disabled = false
+		this.reversal_action_ui_send_to_maker.params = {"icon_only":false,"uicgcc_style":"fa fa-step-backward"}
+		this.reversal_action_ui_send_to_maker.dynamic_param = {}
+		this.reversal_action_ui_send_to_maker.role = []
+		this.reversal_action_ui_send_to_maker.action = ""
 		
 		// "Trigger btn" Button of "Reversal Action UI" component
 		this.reversal_action_ui_trigger_btn.label_name = "Trigger btn"
@@ -750,6 +768,43 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.reject_ui.dynamic_param = {}
 		this.reject_ui.f_npss_reject_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
 		this.reject_ui.form_name = "f_npss_reject_ui"
+	
+		// Component level properties - "Send to Maker UI" 
+		this.send_to_maker_ui.uictrl_code = "dynamic_ui"
+		this.send_to_maker_ui.uicgc_desc = "Send to Maker UI"
+		this.send_to_maker_ui.uicgc_code = "uicgc_34"
+		this.send_to_maker_ui.params = {}
+		this.send_to_maker_ui.datasource = {}
+		this.send_to_maker_ui.context_menu = []
+		this.send_to_maker_ui.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Send to maker UI","tab_order":0,"tab_name":"","uicgc_description":"Send to Maker UI","role_description":"default","dtt_description":"NPSS Transactions"}]}}
+		this.send_to_maker_ui.onChangecomponent = new EventEmitter<any>()
+		this.send_to_maker_ui.show = true
+		this.send_to_maker_ui.dynamic_param = {}
+		this.send_to_maker_ui.f_npss_send_to_maker_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.send_to_maker_ui.form_name = "f_npss_send_to_maker_ui"
+		
+		// "Save" Button of "Send to Maker UI" component
+		this.send_to_maker_ui_save.label_name = "Save"
+		this.send_to_maker_ui_save.show = true
+		this.send_to_maker_ui_save.disabled = false
+		this.send_to_maker_ui_save.params = {"icon_only":false,"uicgcc_style":"fa fa-floppy-o"}
+		this.send_to_maker_ui_save.dynamic_param = {}
+		this.send_to_maker_ui_save.role = []
+		this.send_to_maker_ui_save.action = ""
+	
+		// Component level properties - "Reversal Additional UI" 
+		this.reversal_additional_ui.uictrl_code = "dynamic_ui"
+		this.reversal_additional_ui.uicgc_desc = "Reversal Additional UI"
+		this.reversal_additional_ui.uicgc_code = "uicgc_35"
+		this.reversal_additional_ui.params = {}
+		this.reversal_additional_ui.datasource = {}
+		this.reversal_additional_ui.context_menu = []
+		this.reversal_additional_ui.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Tran Remarks UI","tab_order":0,"tab_name":"","uicgc_description":"Reversal Additional UI","role_description":"default","dtt_description":"NPSS Transactions"}]}}
+		this.reversal_additional_ui.onChangecomponent = new EventEmitter<any>()
+		this.reversal_additional_ui.show = true
+		this.reversal_additional_ui.dynamic_param = {}
+		this.reversal_additional_ui.f_npss_tran_remarks_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.reversal_additional_ui.form_name = "f_npss_tran_remarks_ui"
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -808,6 +863,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.transaction_list__ee_for_vd()
 		this.transaction_list__ee_for_vlh()
 		this.transaction_list__ee_for_vm()
+		this.transaction_list__ssr_for_rev_add_ui()
 	}
 
 	//Handler for INTERNAL event of "svm for transaction list"
@@ -828,6 +884,8 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.navigation_review__sp_for_fh(peventcontext)
 		this.navigation_review__sp_for_fab(peventcontext)
 		this.navigation_review__he_for_aefin(peventcontext)
+		this.navigation_review__de_for_rev_add_ui()
+		this.navigation_review__bt_for_rev_add_ui()
 	}
 
 	//Handler for INTERNAL event of "cc for set status bind value"
@@ -1123,6 +1181,26 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "im for cancel btn"
 	im_for_cancel_btn__internal(parent_event_result){
 		this.im_for_cancel_btn__rs_for_cancel_btn(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "send to maker ui save"
+	send_to_maker_ui_save__action_button_click(){
+		this.send_to_maker_ui_save__cc_for_send_to_maker_save()
+	}
+
+	//Handler for INTERNAL event of "cc for send to maker save"
+	cc_for_send_to_maker_save__internal(){
+		this.cc_for_send_to_maker_save__im_for_send_to_maker_save()
+	}
+
+	//Handler for INTERNAL event of "im for send to maker save"
+	im_for_send_to_maker_save__internal(){
+		this.im_for_send_to_maker_save__rs_for_send_to_maker_save()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui send to maker"
+	reversal_action_ui_send_to_maker__action_button_click(){
+		this.reversal_action_ui_send_to_maker__spap_for_send_to_maker()
 	}
 
 	//Handler for SELECTION_CHANGED event of "npss pl change cancel reason ui t24 return code"
@@ -1590,6 +1668,27 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ssr_for_rev_add_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="reversal_additional_ui"
+		let parent_source_id=""
+		let event_code="e_1672140462644"
+		let event_params={"caller_name":"transaction_list__ssr_for_rev_add_ui","event_desc":"SSR for rev add UI","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "svm for transaction list"
 	svm_for_transaction_list__cc_for_show_hide_in_tran_list(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -1799,6 +1898,48 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
+	navigation_review__de_for_rev_add_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_review"
+		let destn_id="reversal_additional_ui"
+		let parent_source_id=""
+		let event_code="e_1672140604952"
+		let event_params={"caller_name":"navigation_review__de_for_rev_add_ui","event_desc":"DE for rev add ui","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_review","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
+	navigation_review__bt_for_rev_add_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_review"
+		let destn_id="reversal_additional_ui"
+		let parent_source_id=""
+		let event_code="e_1672140641153"
+		let event_params={"caller_name":"navigation_review__bt_for_rev_add_ui","event_desc":"BT for rev add ui","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_review","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -3486,6 +3627,90 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "send to maker ui save"
+	send_to_maker_ui_save__cc_for_send_to_maker_save() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="send_to_maker_ui_save"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1672139778453"
+		let event_params={"caller_name":"send_to_maker_ui_save__cc_for_send_to_maker_save","event_desc":"CC for Send to maker save","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"send_to_maker_ui_save","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_send_to_maker_save__im_for_send_to_maker_save,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_reversal_send_to_makerService.fn_npss_cs_reversal_send_to_maker(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for send to maker save"
+	cc_for_send_to_maker_save__im_for_send_to_maker_save() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cc_for_send_to_maker_save"
+		let destn_id=""
+		let parent_source_id="send_to_maker_ui_save"
+		let event_code="e_1672139849361"
+		let event_params={"caller_name":"cc_for_send_to_maker_save__im_for_send_to_maker_save","event_desc":"IM for Send to maker save","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Reversal request has been sent to maker successfully","root_source_id":"send_to_maker_ui_save","raiseparam":{"info_msg":""}}
+		let handler_code="info_msg"
+		let internals="im_for_send_to_maker_save__rs_for_send_to_maker_save,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "im for send to maker save"
+	im_for_send_to_maker_save__rs_for_send_to_maker_save() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="im_for_send_to_maker_save"
+		let destn_id=""
+		let parent_source_id="cc_for_send_to_maker_save"
+		let event_code="e_1672139857468"
+		let event_params={"caller_name":"im_for_send_to_maker_save__rs_for_send_to_maker_save","event_desc":"RS for send to maker save","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"send_to_maker_ui_save","raiseparam":{}}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui send to maker"
+	reversal_action_ui_send_to_maker__spap_for_send_to_maker() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="reversal_action_ui_send_to_maker"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1672140069914"
+		let event_params={"caller_name":"reversal_action_ui_send_to_maker__spap_for_send_to_maker","event_desc":"SPAP for send to maker","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_send_to_maker","raiseparam":{"popup_category":"profile","variable":"p_send_to_maker_layout__spap_for_send_to_maker","selector":"p_send_to_maker_layout","profile_code":"BTL_1304_1672139504213","window_title":"","window_height":"","window_width":"auto","window_close_icon":"Y","eventdes":"spap_for_send_to_maker","eventcode":"E_1672140069914"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

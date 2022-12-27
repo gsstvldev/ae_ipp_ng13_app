@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27560 
+Build ID        : 27564 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-27 11:34 AM 
+Modified Date   : 2022-Dec-27 12:43 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -3704,7 +3704,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1672140069914"
-		let event_params={"caller_name":"reversal_action_ui_send_to_maker__spap_for_send_to_maker","event_desc":"SPAP for send to maker","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_send_to_maker","raiseparam":{"popup_category":"profile","variable":"p_send_to_maker_layout__spap_for_send_to_maker","selector":"p_send_to_maker_layout","profile_code":"BTL_1304_1672139504213","window_title":"","window_height":"","window_width":"auto","window_close_icon":"Y","eventdes":"spap_for_send_to_maker","eventcode":"E_1672140069914"}}
+		let event_params={"caller_name":"reversal_action_ui_send_to_maker__spap_for_send_to_maker","event_desc":"SPAP for send to maker","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_send_to_maker","raiseparam":{"popup_category":"profile","variable":"p_send_to_maker_layout__spap_for_send_to_maker","selector":"p_send_to_maker_layout","profile_code":"BTL_1304_1672139504213","window_title":"","window_height":200,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_send_to_maker","eventcode":"E_1672140069914"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27559 
+Build ID        : 27564 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-27 11:34 AM 
+Modified Date   : 2022-Dec-27 12:43 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -816,6 +816,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		this.page_load__de_for_vlh_from_pl()
 		this.page_load__cc_for_routing_key()
 		this.page_load__de_for_rau_cancel()
+		this.page_load__de_for_reversal__pl()
 	}
 
 	//Handler for INTERNAL event of "cc for routing key"
@@ -1390,6 +1391,27 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1671197634387"
 		let event_params={"caller_name":"page_load__de_for_rau_cancel","event_desc":"DE for RAU cancel","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_reversal__pl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="reversal_additional_ui"
+		let parent_source_id=""
+		let event_code="e_1672143800332"
+		let event_params={"caller_name":"page_load__de_for_reversal__pl","event_desc":"DE for Reversal  PL","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -3413,7 +3435,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1672138488786"
-		let event_params={"caller_name":"reversal_action_ui_send_to_maker__spap_for_stm","event_desc":"SPAP for STM","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_send_to_maker","raiseparam":{"popup_category":"profile","variable":"p_send_to_maker_layout__spap_for_stm","selector":"p_send_to_maker_layout","profile_code":"BTL_1304_1672138417367","window_title":"Remarks","window_height":400,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_stm","eventcode":"E_1672138488786"}}
+		let event_params={"caller_name":"reversal_action_ui_send_to_maker__spap_for_stm","event_desc":"SPAP for STM","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_send_to_maker","raiseparam":{"popup_category":"profile","variable":"p_send_to_maker_layout__spap_for_stm","selector":"p_send_to_maker_layout","profile_code":"BTL_1304_1672138417367","window_title":"Remarks","window_height":200,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_stm","eventcode":"E_1672138488786"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}

@@ -44,7 +44,7 @@ export class npss_cs_ip_rev_reject_inau_reserve_fundService {
 
         var Ctrlscope = screenInstance["remarks_ui"].f_npss_remarks_ui.model
         var Ctrlscope1 = screenInstance["reject_ui"].f_npss_reject_ui.model
-        var ResonCode = Ctrlscope.REMARKS
+        var ResonCode = Ctrlscope.memory90
         let ClientParams: any = {};
         ///  Prepare input for Server call
         ClientParams.T24_RETURN_CODE = Ctrlscope1.T24_RETURN_CODE || '';

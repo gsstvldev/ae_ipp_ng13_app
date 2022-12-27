@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27559 
+Build ID        : 27564 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-27 11:34 AM 
+Modified Date   : 2022-Dec-27 12:43 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -26,7 +26,7 @@ export class f_npss_remarks_uiComponent implements OnInit {
   hasHeader:boolean;
   component_header:string;
   @ViewChild('f_npss_remarks_ui') form;
-  @ViewChild('npss_remarks_ui_remarks') element: ElementRef;
+  @ViewChild('npss_remarks_ui_memory90') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -48,45 +48,45 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
-		//Properties of remarks
-		this.ctrl.remarks = {}
-		this.ctrl.remarks.id = "RN01CN1"
-		this.ctrl.remarks.desc = "Remarks"
-		this.ctrl.remarks.visible = false
-		this.ctrl.remarks.label_name = "Remarks"
-		this.ctrl.remarks.df_code = "DF_1304_1665901396659"
-		this.ctrl.remarks.df_description = "Column Group 1"
-		this.ctrl.remarks.uictrl_code = "TXT"
-		this.ctrl.remarks.target_column = "REMARKS"
-		this.ctrl.remarks.data_type = "TEXT"
-		this.ctrl.remarks.data_length = 256
-		this.ctrl.remarks.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.remarks.default_value = ""
-		this.ctrl.remarks.is_memory_ctrl = ""
-		this.ctrl.remarks.field_coordinates = ""
-		this.ctrl.remarks.sub_details = ""
-		this.ctrl.remarks.accept_char = ""
-		this.ctrl.remarks.currency_format = ""
-		this.ctrl.remarks.data_scale = ""
-		this.ctrl.remarks.hide_label = false
-		this.ctrl.remarks.depends_on = ""
-		this.ctrl.remarks.placeholder = ""
-		this.ctrl.remarks.dynamic_param = ""
-		this.ctrl.remarks.style_code = ""
-		this.ctrl.remarks.data_source = ""
-		this.ctrl.remarks.image_association = ""
-		this.ctrl.remarks.show = true
-		this.ctrl.remarks.sub_content = ""
-		this.ctrl.remarks.required = false
-		this.ctrl.remarks.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
-		this.ctrl.remarks.targetcolumn_lower = "remarks"
-		this.ctrl.remarks.disabled = false
-		this.ctrl.remarks.view_name = "f_npss_remarks_ui"
-		this.ctrl.remarks.ctrl_id = "npss_remarks_ui_remarks"
-		this.ctrl.npss_remarks_ui_remarks = {}
-		this.ctrl.npss_remarks_ui_remarks.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_remarks_ui.model = {"REMARKS":""}
-		this.screen_instance[this.comp_id].f_npss_remarks_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"REMARKS"}]
+		//Properties of memory90
+		this.ctrl.memory90 = {}
+		this.ctrl.memory90.id = "RN01CN1"
+		this.ctrl.memory90.desc = "Remarks"
+		this.ctrl.memory90.visible = false
+		this.ctrl.memory90.label_name = "Remarks"
+		this.ctrl.memory90.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory90.df_description = "Column Group 1"
+		this.ctrl.memory90.uictrl_code = "TXT"
+		this.ctrl.memory90.target_column = "memory90"
+		this.ctrl.memory90.data_type = "TEXT"
+		this.ctrl.memory90.data_length = 0
+		this.ctrl.memory90.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory90.default_value = ""
+		this.ctrl.memory90.is_memory_ctrl = "Y"
+		this.ctrl.memory90.field_coordinates = ""
+		this.ctrl.memory90.sub_details = ""
+		this.ctrl.memory90.accept_char = ""
+		this.ctrl.memory90.currency_format = ""
+		this.ctrl.memory90.data_scale = ""
+		this.ctrl.memory90.hide_label = false
+		this.ctrl.memory90.depends_on = ""
+		this.ctrl.memory90.placeholder = ""
+		this.ctrl.memory90.dynamic_param = ""
+		this.ctrl.memory90.style_code = ""
+		this.ctrl.memory90.data_source = ""
+		this.ctrl.memory90.image_association = ""
+		this.ctrl.memory90.show = true
+		this.ctrl.memory90.sub_content = ""
+		this.ctrl.memory90.required = false
+		this.ctrl.memory90.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
+		this.ctrl.memory90.targetcolumn_lower = "memory90"
+		this.ctrl.memory90.disabled = false
+		this.ctrl.memory90.view_name = "f_npss_remarks_ui"
+		this.ctrl.memory90.ctrl_id = "npss_remarks_ui_memory90"
+		this.ctrl.npss_remarks_ui_memory90 = {}
+		this.ctrl.npss_remarks_ui_memory90.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_remarks_ui.model = {"MEMORY90":""}
+		this.screen_instance[this.comp_id].f_npss_remarks_ui.Meta = []
 		this.screen_instance[this.comp_id].f_npss_remarks_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_remarks_ui.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_remarks_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

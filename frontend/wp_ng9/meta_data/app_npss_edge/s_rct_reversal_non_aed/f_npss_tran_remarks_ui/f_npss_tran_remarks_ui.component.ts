@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27559 
+Build ID        : 27564 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-27 11:34 AM 
+Modified Date   : 2022-Dec-27 12:43 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -78,7 +78,7 @@ focustoelement(){
 		this.ctrl.remarks.show = true
 		this.ctrl.remarks.sub_content = ""
 		this.ctrl.remarks.required = false
-		this.ctrl.remarks.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
+		this.ctrl.remarks.vld_rules = []
 		this.ctrl.remarks.targetcolumn_lower = "remarks"
 		this.ctrl.remarks.disabled = false
 		this.ctrl.remarks.view_name = "f_npss_tran_remarks_ui"

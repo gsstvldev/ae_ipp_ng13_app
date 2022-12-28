@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27576 
+Build ID        : 27587 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-28 12:50 PM 
+Modified Date   : 2022-Dec-28 14:55 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -16,6 +16,7 @@ import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hi
 import {npss_c_btn_enb_disbService} from '../../../custom_widget/npss_c_btn_enb_disb/npss_c_btn_enb_disb.service'
 import {npss_cs_mch_change_mobileService} from '../../../custom_widget/npss_cs_mch_change_mobile/npss_cs_mch_change_mobile.service'
 import {npss_cs_mch_enrolmentService} from '../../../custom_widget/npss_cs_mch_enrolment/npss_cs_mch_enrolment.service'
+import {npss_cs_mch_set_defaultService} from '../../../custom_widget/npss_cs_mch_set_default/npss_cs_mch_set_default.service'
 import {npss_cs_mch_unblock_bank_accountService} from '../../../custom_widget/npss_cs_mch_unblock_bank_account/npss_cs_mch_unblock_bank_account.service'
 import {npss_cs_mch_update_mccService} from '../../../custom_widget/npss_cs_mch_update_mcc/npss_cs_mch_update_mcc.service'
 import {npss_cs_mch_remove_bank_accountsService} from '../../../custom_widget/npss_cs_mch_remove_bank_accounts/npss_cs_mch_remove_bank_accounts.service'
@@ -36,7 +37,7 @@ import {npss_cs_shop_disableService} from '../../../custom_widget/npss_cs_shop_d
 	selector: 's_merchant_setup',
 	templateUrl: './s_merchant_setup.component.html',
 	styleUrls: ['./s_merchant_setup.component.css'],
-	providers:[torus_cs_show_hideService,npss_c_btn_enb_disbService,npss_cs_mch_change_mobileService,npss_cs_mch_enrolmentService,npss_cs_mch_unblock_bank_accountService,npss_cs_mch_update_mccService,npss_cs_mch_remove_bank_accountsService,npss_cs_desk_enrolmentService,npss_cs_desk_updateService,npss_cs_desk_disableService,npss_cs_mch_disableService,npss_cs_mch_update_personal_dataService,npss_cs_mch_add_bank_accountsService,npss_cs_mch_block_bank_accountService,npss_cs_shop_enrolmentService,npss_cs_shop_updateService,npss_cs_shop_set_bank_accountService,npss_cs_shop_remove_bank_accountService,npss_cs_shop_disableService]
+	providers:[torus_cs_show_hideService,npss_c_btn_enb_disbService,npss_cs_mch_change_mobileService,npss_cs_mch_enrolmentService,npss_cs_mch_set_defaultService,npss_cs_mch_unblock_bank_accountService,npss_cs_mch_update_mccService,npss_cs_mch_remove_bank_accountsService,npss_cs_desk_enrolmentService,npss_cs_desk_updateService,npss_cs_desk_disableService,npss_cs_mch_disableService,npss_cs_mch_update_personal_dataService,npss_cs_mch_add_bank_accountsService,npss_cs_mch_block_bank_accountService,npss_cs_shop_enrolmentService,npss_cs_shop_updateService,npss_cs_shop_set_bank_accountService,npss_cs_shop_remove_bank_accountService,npss_cs_shop_disableService]
 })
     
 // Start of class 
@@ -159,7 +160,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_btn_enb_disbService:npss_c_btn_enb_disbService,private npss_cs_mch_change_mobileService:npss_cs_mch_change_mobileService,private npss_cs_mch_enrolmentService:npss_cs_mch_enrolmentService,private npss_cs_mch_unblock_bank_accountService:npss_cs_mch_unblock_bank_accountService,private npss_cs_mch_update_mccService:npss_cs_mch_update_mccService,private npss_cs_mch_remove_bank_accountsService:npss_cs_mch_remove_bank_accountsService,private npss_cs_desk_enrolmentService:npss_cs_desk_enrolmentService,private npss_cs_desk_updateService:npss_cs_desk_updateService,private npss_cs_desk_disableService:npss_cs_desk_disableService,private npss_cs_mch_disableService:npss_cs_mch_disableService,private npss_cs_mch_update_personal_dataService:npss_cs_mch_update_personal_dataService,private npss_cs_mch_add_bank_accountsService:npss_cs_mch_add_bank_accountsService,private npss_cs_mch_block_bank_accountService:npss_cs_mch_block_bank_accountService,private npss_cs_shop_enrolmentService:npss_cs_shop_enrolmentService,private npss_cs_shop_updateService:npss_cs_shop_updateService,private npss_cs_shop_set_bank_accountService:npss_cs_shop_set_bank_accountService,private npss_cs_shop_remove_bank_accountService:npss_cs_shop_remove_bank_accountService,private npss_cs_shop_disableService:npss_cs_shop_disableService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_btn_enb_disbService:npss_c_btn_enb_disbService,private npss_cs_mch_change_mobileService:npss_cs_mch_change_mobileService,private npss_cs_mch_enrolmentService:npss_cs_mch_enrolmentService,private npss_cs_mch_set_defaultService:npss_cs_mch_set_defaultService,private npss_cs_mch_unblock_bank_accountService:npss_cs_mch_unblock_bank_accountService,private npss_cs_mch_update_mccService:npss_cs_mch_update_mccService,private npss_cs_mch_remove_bank_accountsService:npss_cs_mch_remove_bank_accountsService,private npss_cs_desk_enrolmentService:npss_cs_desk_enrolmentService,private npss_cs_desk_updateService:npss_cs_desk_updateService,private npss_cs_desk_disableService:npss_cs_desk_disableService,private npss_cs_mch_disableService:npss_cs_mch_disableService,private npss_cs_mch_update_personal_dataService:npss_cs_mch_update_personal_dataService,private npss_cs_mch_add_bank_accountsService:npss_cs_mch_add_bank_accountsService,private npss_cs_mch_block_bank_accountService:npss_cs_mch_block_bank_accountService,private npss_cs_shop_enrolmentService:npss_cs_shop_enrolmentService,private npss_cs_shop_updateService:npss_cs_shop_updateService,private npss_cs_shop_set_bank_accountService:npss_cs_shop_set_bank_accountService,private npss_cs_shop_remove_bank_accountService:npss_cs_shop_remove_bank_accountService,private npss_cs_shop_disableService:npss_cs_shop_disableService) {
     
 	}
     
@@ -1156,6 +1157,11 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui set default"
 	sub_navigation_ui_set_default__action_button_click(){
 		this.sub_navigation_ui_set_default__cc_for_enable_disable_for_set_default()
+	}
+
+	//Handler for INTERNAL event of "cc for enable disable for set default"
+	cc_for_enable_disable_for_set_default__internal(parent_event_result){
+		this.cc_for_enable_disable_for_set_default__cc_for_set_default(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui unblock account"
@@ -3301,11 +3307,33 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_code="e_1671021598364"
 		let event_params={"caller_name":"sub_navigation_ui_set_default__cc_for_enable_disable_for_set_default","event_desc":"CC for enable disable for set default","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_set_default","raiseparam":{}}
 		let handler_code="custom_connectors"
-		let internals=""
+		let internals="cc_for_enable_disable_for_set_default__cc_for_set_default,"
 		let event_data={}
 		let data_source={}
 		try {
 			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for enable disable for set default"
+	cc_for_enable_disable_for_set_default__cc_for_set_default(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_enable_disable_for_set_default"
+		let destn_id=""
+		let parent_source_id="sub_navigation_ui_set_default"
+		let event_code="e_1672239230605"
+		let event_params={"caller_name":"cc_for_enable_disable_for_set_default__cc_for_set_default","event_desc":"CC for set default","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_set_default","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_mch_set_defaultService.fn_npss_cs_mch_set_default(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

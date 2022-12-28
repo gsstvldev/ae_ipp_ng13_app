@@ -10,9 +10,6 @@
 <p_fab_review_layout [screen_instance]="this" [hidden]="!(current_profile=='p_fab_review_layout')"></p_fab_review_layout>
 <p_main_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_layout')"></p_main_layout>
 
-<p-dialog header="{{'Return Reason' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_accept_layout__spap_for_accept_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '300px','width': '600px'}" [draggable]="true" [modal]="true">
-	<p_accept_layout [screen_instance]="this" ></p_accept_layout></p-dialog>
-
 <p-dialog header="{{'Change Return Reason' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_change_return_layout__crr_for_spap_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '300px','width': '600px'}" [draggable]="true" [modal]="true">
 	<p_change_return_layout [screen_instance]="this" ></p_change_return_layout></p-dialog>
 

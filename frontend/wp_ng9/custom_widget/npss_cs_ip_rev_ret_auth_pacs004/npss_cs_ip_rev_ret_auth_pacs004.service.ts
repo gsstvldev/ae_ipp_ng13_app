@@ -37,6 +37,7 @@ export class npss_cs_ip_rev_ret_auth_pacs004Service {
         ClientParams.AppId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");
         ClientParams.TENANT_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
         ClientParams.RULE_CODE = 'RCT_IP_REV_REQ_ACCEPT'
+        ClientParams.roleId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES");
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
      CallUrlWithData(ClientParams, screenInstance, internals) {

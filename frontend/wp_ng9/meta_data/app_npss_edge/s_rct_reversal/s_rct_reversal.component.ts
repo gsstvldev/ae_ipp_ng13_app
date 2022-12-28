@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27564 
+Build ID        : 27571 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-27 12:43 PM 
+Modified Date   : 2022-Dec-28 7:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -87,7 +87,6 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	btl_1304_1666856478860 : string = "p_fab_review_layout"
 	btl_1304_1666856426885 : string = "p_main_layout"
 	forms : any = ["uicgc_32","uicgc_9","uicgc_35","uicgc_26","uicgc_5","uicgc_24","uicgc_34","uicgc_6","uicgc_23","uicgc_20","uicgc_33","uicgc_10","uicgc_4","uicgc_25","uicgc_17","uicgc_19","uicgc_15","uicgc_12","uicgc_3"]
-	p_accept_layout__spap_for_accept_showpopup : boolean = false
 	p_change_return_layout__crr_for_spap_showpopup : boolean = false
 	p_remarks_layout__spap_for_reject_code_showpopup : boolean = false
 	p_cancel_layout__spap_for_rau_cancel_showpopup : boolean = false
@@ -900,7 +899,22 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui accept"
 	reversal_action_ui_accept__action_button_click(){
-		this.reversal_action_ui_accept__spap_for_accept()
+		this.reversal_action_ui_accept__conf_info_for_accept()
+	}
+
+	//Handler for INTERNAL event of "conf info for accept"
+	conf_info_for_accept__internal(parent_event_result){
+		this.conf_info_for_accept__cc_for_accept_ide(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "cc for accept ide"
+	cc_for_accept_ide__internal(parent_event_result){
+		this.cc_for_accept_ide__info_for_accept(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "info for accept"
+	info_for_accept__internal(parent_event_result){
+		this.info_for_accept__rs_for_accepts(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "process log list"
@@ -1991,20 +2005,86 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui accept"
-	reversal_action_ui_accept__spap_for_accept() { 
+	reversal_action_ui_accept__conf_info_for_accept() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="reversal_action_ui_accept"
 		let destn_id=""
 		let parent_source_id=""
-		let event_code="e_1666857226486"
-		let event_params={"caller_name":"reversal_action_ui_accept__spap_for_accept","event_desc":"SPAP for Accept","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_accept","raiseparam":{"popup_category":"profile","variable":"p_accept_layout__spap_for_accept","selector":"p_accept_layout","profile_code":"BTL_1304_1666856778120","window_title":"Return Reason","window_height":300,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_accept","eventcode":"E_1666857226486"}}
-		let handler_code="show_profile_as_popup"
+		let event_code="e_1672212220468"
+		let event_params={"caller_name":"reversal_action_ui_accept__conf_info_for_accept","event_desc":"Conf info for accept","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","message_text":"Do you want to accept ?","root_source_id":"reversal_action_ui_accept","raiseparam":{"conf_msg":""}}
+		let handler_code="conf_msg"
+		let internals="conf_info_for_accept__cc_for_accept_ide,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.conf_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "conf info for accept"
+	conf_info_for_accept__cc_for_accept_ide(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="YES"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="conf_info_for_accept"
+		let destn_id=""
+		let parent_source_id="reversal_action_ui_accept"
+		let event_code="e_1672212459182"
+		let event_params={"caller_name":"conf_info_for_accept__cc_for_accept_ide","event_desc":"CC for accept ide","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_accept","raiseparam":{},"parent_event_result":"YES"}
+		let handler_code="custom_connectors"
+		let internals="cc_for_accept_ide__info_for_accept,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_ip_rev_accept_inau_reserve_fundService.fn_npss_cs_ip_rev_accept_inau_reserve_fund(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for accept ide"
+	cc_for_accept_ide__info_for_accept(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_accept_ide"
+		let destn_id=""
+		let parent_source_id="conf_info_for_accept"
+		let event_code="e_1672212594886"
+		let event_params={"caller_name":"cc_for_accept_ide__info_for_accept","event_desc":"info for accept","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Fund has been reserved successfully","root_source_id":"reversal_action_ui_accept","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="info_for_accept__rs_for_accepts,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "info for accept"
+	info_for_accept__rs_for_accepts(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="info_for_accept"
+		let destn_id=""
+		let parent_source_id="cc_for_accept_ide"
+		let event_code="e_1672212632516"
+		let event_params={"caller_name":"info_for_accept__rs_for_accepts","event_desc":"RS for accepts","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_accept","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

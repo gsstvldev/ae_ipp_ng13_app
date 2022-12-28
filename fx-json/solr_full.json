@@ -1288,7 +1288,7 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$HDR_CREATED_DATE$DQ$,
-        $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
@@ -1303,7 +1303,7 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$HDR_SETTLEMENT_DATE$DQ$,
-        $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
@@ -1448,7 +1448,7 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$ACCP_DATE_TIME$DQ$,
-        $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {

@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+
     try {
         /*   Created By :Daseen
         Created Date :04-11-2022
@@ -222,7 +223,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                     }
                                                                                 })
                                                                             } else if (apicalls == 1 || apicalls == '1') {
-                                                                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount,reverandRefno, function (prepaidApiCallResult) {
+                                                                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, function (prepaidApiCallResult) {
                                                                                     if (prepaidApiCallResult === "SUCCESS" || prepaidApiCallResult === "Success" || prepaidApiCallResult === "success") {
                                                                                         console.log('First API Call Success')
                                                                                         ExecuteQuery1(take_return_url, function (arrreturnurl) {
@@ -287,8 +288,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                         })
                                                                                     }
                                                                                 })
-                                                                            }else if (apicalls == 2 || apicalls == '2') {
-                                                                                fn_doCreditapicall(url, arrprocesslog, arrActInf, lclinstrm, amount,reverandRefno, function (creditdApiCallResult) {
+                                                                            } else if (apicalls == 2 || apicalls == '2') {
+                                                                                fn_doCreditapicall(url, arrprocesslog, arrActInf, lclinstrm, amount, reverandRefno, function (creditdApiCallResult) {
                                                                                     if (creditdApiCallResult === "SUCCESS" || creditdApiCallResult === "Success" || creditdApiCallResult === "success") {
                                                                                         console.log('First API Call Success')
                                                                                         ExecuteQuery1(take_return_url, function (arrreturnurl) {
@@ -451,7 +452,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                     }
                                                                                 })
                                                                             } else if (apicalls == 1 || apicalls == '1') { //Prepaid
-                                                                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount,reverandRefno, function (prepaidApiCallResult) {
+                                                                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, function (prepaidApiCallResult) {
                                                                                     if (prepaidApiCallResult === "SUCCESS" || prepaidApiCallResult === "Success" || prepaidApiCallResult === "success") {
                                                                                         console.log('First API Call Success')
                                                                                         ExecuteQuery1(take_return_url, function (arrreturnurl) {
@@ -516,8 +517,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                         })
                                                                                     }
                                                                                 })
-                                                                            }else if (apicalls == 2 || apicalls == '2') {
-                                                                                fn_doCreditapicall(url, arrprocesslog, arrActInf, lclinstrm, amount,reverandRefno, function (creditdApiCallResult) {
+                                                                            } else if (apicalls == 2 || apicalls == '2') {
+                                                                                fn_doCreditapicall(url, arrprocesslog, arrActInf, lclinstrm, amount, reverandRefno, function (creditdApiCallResult) {
                                                                                     if (creditdApiCallResult === "SUCCESS" || creditdApiCallResult === "Success" || creditdApiCallResult === "success") {
                                                                                         console.log('First API Call Success')
                                                                                         ExecuteQuery1(take_return_url, function (arrreturnurl) {
@@ -922,7 +923,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     //Prepaid Card Api Call only for checker
-                    function fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount,reverandRefno, callbackapi) {
+                    function fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV RET PREPAID API CALL'
                             var request = require('request');
@@ -1012,8 +1013,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     //Function to call Credit Card api
-                    
-                    function fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount,reverandRefno, callbackapi) {
+
+                    function fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV RET CREDIT API CALL'
                             var request = require('request');
@@ -1199,22 +1200,27 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 parameter.alternate_account_id = arrActInf[0].alternate_account_id || ''
                                             ExecuteQuery1(TakeCount, function (arrCount) {
                                                 ExecuteQuery1(TakerevId, function (arrRevId) {
-
-                                                    if (arrRevId[0].process_ref_no != null) {
-                                                        if (arrCount[0].counts.length == 1) {
-                                                            var count = Number(arrCount[0].counts)
-                                                            count++
-                                                            parameter.reverseId = arrRevId[0].process_ref_no + '.0' + count
-                                                            resolve(parameter)
+                                                    if (arrRevId.length > 0) {
+                                                        if (arrRevId[0].process_ref_no != null) {
+                                                            if (arrCount[0].counts.length == 1) {
+                                                                var count = Number(arrCount[0].counts)
+                                                                count++
+                                                                parameter.reverseId = arrRevId[0].process_ref_no + '.0' + count
+                                                                resolve(parameter)
+                                                            } else {
+                                                                var count = Number(arrCount[0].counts)
+                                                                count++
+                                                                parameter.reverseId = arrRevId[0].process_ref_no + '.' + count
+                                                                resolve(parameter)
+                                                            }
                                                         } else {
-                                                            var count = Number(arrCount[0].counts)
-                                                            count++
-                                                            parameter.reverseId = arrRevId[0].process_ref_no + '.' + count
-                                                            resolve(parameter)
+                                                            objresponse.status = "FAILURE"
+                                                            objresponse.errdata = "Reversal Process Ref no is Missing"
+                                                            sendResponse(null, objresponse)
                                                         }
                                                     } else {
                                                         objresponse.status = "FAILURE"
-                                                        objresponse.errdata = "Reversal Process Ref no is Missing"
+                                                        objresponse.errdata = "Reversal Process Ref not found in table"
                                                         sendResponse(null, objresponse)
                                                     }
                                                 })
@@ -1347,6 +1353,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

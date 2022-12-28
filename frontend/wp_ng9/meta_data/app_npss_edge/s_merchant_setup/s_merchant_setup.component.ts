@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27507 
+Build ID        : 27576 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-27 6:19 AM 
+Modified Date   : 2022-Dec-28 12:50 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -17,7 +17,11 @@ import {npss_c_btn_enb_disbService} from '../../../custom_widget/npss_c_btn_enb_
 import {npss_cs_mch_change_mobileService} from '../../../custom_widget/npss_cs_mch_change_mobile/npss_cs_mch_change_mobile.service'
 import {npss_cs_mch_enrolmentService} from '../../../custom_widget/npss_cs_mch_enrolment/npss_cs_mch_enrolment.service'
 import {npss_cs_mch_unblock_bank_accountService} from '../../../custom_widget/npss_cs_mch_unblock_bank_account/npss_cs_mch_unblock_bank_account.service'
+import {npss_cs_mch_update_mccService} from '../../../custom_widget/npss_cs_mch_update_mcc/npss_cs_mch_update_mcc.service'
 import {npss_cs_mch_remove_bank_accountsService} from '../../../custom_widget/npss_cs_mch_remove_bank_accounts/npss_cs_mch_remove_bank_accounts.service'
+import {npss_cs_desk_enrolmentService} from '../../../custom_widget/npss_cs_desk_enrolment/npss_cs_desk_enrolment.service'
+import {npss_cs_desk_updateService} from '../../../custom_widget/npss_cs_desk_update/npss_cs_desk_update.service'
+import {npss_cs_desk_disableService} from '../../../custom_widget/npss_cs_desk_disable/npss_cs_desk_disable.service'
 import {npss_cs_mch_disableService} from '../../../custom_widget/npss_cs_mch_disable/npss_cs_mch_disable.service'
 import {npss_cs_mch_update_personal_dataService} from '../../../custom_widget/npss_cs_mch_update_personal_data/npss_cs_mch_update_personal_data.service'
 import {npss_cs_mch_add_bank_accountsService} from '../../../custom_widget/npss_cs_mch_add_bank_accounts/npss_cs_mch_add_bank_accounts.service'
@@ -32,7 +36,7 @@ import {npss_cs_shop_disableService} from '../../../custom_widget/npss_cs_shop_d
 	selector: 's_merchant_setup',
 	templateUrl: './s_merchant_setup.component.html',
 	styleUrls: ['./s_merchant_setup.component.css'],
-	providers:[torus_cs_show_hideService,npss_c_btn_enb_disbService,npss_cs_mch_change_mobileService,npss_cs_mch_enrolmentService,npss_cs_mch_unblock_bank_accountService,npss_cs_mch_remove_bank_accountsService,npss_cs_mch_disableService,npss_cs_mch_update_personal_dataService,npss_cs_mch_add_bank_accountsService,npss_cs_mch_block_bank_accountService,npss_cs_shop_enrolmentService,npss_cs_shop_updateService,npss_cs_shop_set_bank_accountService,npss_cs_shop_remove_bank_accountService,npss_cs_shop_disableService]
+	providers:[torus_cs_show_hideService,npss_c_btn_enb_disbService,npss_cs_mch_change_mobileService,npss_cs_mch_enrolmentService,npss_cs_mch_unblock_bank_accountService,npss_cs_mch_update_mccService,npss_cs_mch_remove_bank_accountsService,npss_cs_desk_enrolmentService,npss_cs_desk_updateService,npss_cs_desk_disableService,npss_cs_mch_disableService,npss_cs_mch_update_personal_dataService,npss_cs_mch_add_bank_accountsService,npss_cs_mch_block_bank_accountService,npss_cs_shop_enrolmentService,npss_cs_shop_updateService,npss_cs_shop_set_bank_accountService,npss_cs_shop_remove_bank_accountService,npss_cs_shop_disableService]
 })
     
 // Start of class 
@@ -155,7 +159,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_btn_enb_disbService:npss_c_btn_enb_disbService,private npss_cs_mch_change_mobileService:npss_cs_mch_change_mobileService,private npss_cs_mch_enrolmentService:npss_cs_mch_enrolmentService,private npss_cs_mch_unblock_bank_accountService:npss_cs_mch_unblock_bank_accountService,private npss_cs_mch_remove_bank_accountsService:npss_cs_mch_remove_bank_accountsService,private npss_cs_mch_disableService:npss_cs_mch_disableService,private npss_cs_mch_update_personal_dataService:npss_cs_mch_update_personal_dataService,private npss_cs_mch_add_bank_accountsService:npss_cs_mch_add_bank_accountsService,private npss_cs_mch_block_bank_accountService:npss_cs_mch_block_bank_accountService,private npss_cs_shop_enrolmentService:npss_cs_shop_enrolmentService,private npss_cs_shop_updateService:npss_cs_shop_updateService,private npss_cs_shop_set_bank_accountService:npss_cs_shop_set_bank_accountService,private npss_cs_shop_remove_bank_accountService:npss_cs_shop_remove_bank_accountService,private npss_cs_shop_disableService:npss_cs_shop_disableService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_btn_enb_disbService:npss_c_btn_enb_disbService,private npss_cs_mch_change_mobileService:npss_cs_mch_change_mobileService,private npss_cs_mch_enrolmentService:npss_cs_mch_enrolmentService,private npss_cs_mch_unblock_bank_accountService:npss_cs_mch_unblock_bank_accountService,private npss_cs_mch_update_mccService:npss_cs_mch_update_mccService,private npss_cs_mch_remove_bank_accountsService:npss_cs_mch_remove_bank_accountsService,private npss_cs_desk_enrolmentService:npss_cs_desk_enrolmentService,private npss_cs_desk_updateService:npss_cs_desk_updateService,private npss_cs_desk_disableService:npss_cs_desk_disableService,private npss_cs_mch_disableService:npss_cs_mch_disableService,private npss_cs_mch_update_personal_dataService:npss_cs_mch_update_personal_dataService,private npss_cs_mch_add_bank_accountsService:npss_cs_mch_add_bank_accountsService,private npss_cs_mch_block_bank_accountService:npss_cs_mch_block_bank_accountService,private npss_cs_shop_enrolmentService:npss_cs_shop_enrolmentService,private npss_cs_shop_updateService:npss_cs_shop_updateService,private npss_cs_shop_set_bank_accountService:npss_cs_shop_set_bank_accountService,private npss_cs_shop_remove_bank_accountService:npss_cs_shop_remove_bank_accountService,private npss_cs_shop_disableService:npss_cs_shop_disableService) {
     
 	}
     
@@ -3890,7 +3894,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_mch_update_mccService.fn_npss_cs_mch_update_mcc(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -4478,7 +4482,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_desk_enrolmentService.fn_npss_cs_desk_enrolment(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -4499,7 +4503,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_desk_updateService.fn_npss_cs_desk_update(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -4520,7 +4524,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_desk_disableService.fn_npss_cs_desk_disable(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

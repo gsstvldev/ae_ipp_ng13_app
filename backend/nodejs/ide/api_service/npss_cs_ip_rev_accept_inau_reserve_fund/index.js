@@ -226,8 +226,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                         })
 
                                                                                     } else if (apistatus == 'TIMEOUT') {
-                                                                                        objresponse.status = "FAILURE"
-                                                                                        objresponse.errdata = 'Time Out' + apiName + ' Api Failure'
+                                                                                       
+                                                                                        objresponse.status = 'Time Out' + apiName + ' Api Failure'
                                                                                         sendResponse(null, objresponse);
                                                                                     } else {
                                                                                         var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
@@ -298,8 +298,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                     })
 
                                                                                 } else if (apistatus == 'TIMEOUT') {
-                                                                                    objresponse.status = "FAILURE"
-                                                                                    objresponse.errdata = 'Time Out' + apiName + ' Api Failure'
+                                                                                  
+                                                                                    objresponse.status = 'Time Out' + apiName + ' Api Failure'
                                                                                     sendResponse(null, objresponse);
                                                                                 } else {
                                                                                     var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
@@ -775,8 +775,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     resolve(2)
                                                 }
                                             } else {
-                                                objresponse.status = "FAILURE"
-                                                objresponse.errdata = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden
+                                               
+                                                objresponse.status = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden
                                                 sendResponse(null, objresponse)
                                             }
 
@@ -800,8 +800,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                             }
 
                                         } else {
-                                            objresponse.status = "FAILURE"
-                                            objresponse.errdata = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden
+                                          
+                                            objresponse.status = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden
                                             sendResponse(null, objresponse)
                                         }
 
@@ -852,8 +852,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     })
 
                                 } else {
-                                    objresponse.status = "FAILURE"
-                                    objresponse.errdata = "Process Refno for reversal Id is missing"
+                                   
+                                    objresponse.status = "Process Refno for reversal Id is missing"
                                     sendResponse(null, objresponse)
                                 }
 
@@ -898,13 +898,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         resolve(parameter)
                                                     }
                                                 } else {
-                                                    objresponse.status = "FAILURE"
-                                                    objresponse.errdata = "Reversal Process Ref no is Missing"
+                                                   
+                                                    objresponse.status = "Reversal Process Ref no is Missing"
                                                     sendResponse(null, objresponse)
                                                 }
                                             } else {
-                                                objresponse.status = "FAILURE"
-                                                objresponse.errdata = "No data found for reversal process ref no"
+                                                
+                                                objresponse.status = "No data found for reversal process ref no"
                                                 sendResponse(null, objresponse)
                                             }
 
@@ -912,8 +912,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     })
                                 } else {
                                     console.log("No Data found in accounts table");
-                                    objresponse.status = "FAILURE"
-                                    objresponse.errdata = "No Data found in accounts table"
+                                   
+                                    objresponse.status = "No Data found in accounts table"
                                     sendResponse(null, objresponse)
                                 }
 

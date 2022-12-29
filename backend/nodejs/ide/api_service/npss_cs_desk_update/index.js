@@ -9,7 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
 
-    /*  Created By :   Daseen
+    /*  Created By :  Daseen
 Created Date : 29/12/2022
 Modified By : 
 Modified Date : 
@@ -55,7 +55,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
             //get prct id                              
             try {
 
-                var Takejson = `select param_value from core_rule_prod_params where rule_code = 'UPDATE CASH DESK'`
+                var Takejson = `select param_value from core_rule_prod_params where rule_code = 'MERCHANT UPDATE CASH DESK' and tenant_id = '${params.TenantId}'`
                 ExecuteQuery1(Takejson, function (arrjson) {
                     if (arrjson.length) {
                         var JsonValue = JSON.parse(arrjson[0].param_value)

@@ -52,7 +52,7 @@ try {
                 mTranConn = pSession; //  assign connection     
                 reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
                     try {
-                        var take_api_hdr = `select param_value from core_rule_prod_params where rule_code = 'CHANGE MOBILE NUMBER'`;
+                        var take_api_hdr = `select param_value from core_rule_prod_params where rule_code = 'MERCHANT UPDATE MOBILE' and tenant_id = '${params.TenantId}'`;
 
                         ExecuteQuery1(take_api_hdr, function (arrResult) {
                             if (arrResult.length) {

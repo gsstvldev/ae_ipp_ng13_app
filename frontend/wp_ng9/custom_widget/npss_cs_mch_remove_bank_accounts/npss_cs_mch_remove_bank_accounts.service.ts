@@ -28,10 +28,11 @@ export class npss_cs_mch_remove_bank_accountsService {
         let CtrlScope=screenInstance["account__detail"].f_npss_mer_account_ui.model; 
         let CtrlScope1=screenInstance["merchant_detail"].f_npss_merchant_ui.model;
         ClientParams={
-            iban:CtrlScope.IBAN,
-            merchant_tag:CtrlScope1.MERCHANT_TAG,
-            bankUserId:CtrlScope1.BANKUSERID,
-            channelId:CtrlScope1.CHANNEL_ID
+            "iban":CtrlScope.IBAN,
+            "merchant_tag":CtrlScope1.MERCHANT_TAG,
+            "bankUserId":CtrlScope1.BANKUSERID,
+            "channelId":CtrlScope1.CHANNEL_ID,
+            "TenantId":  this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
         
         this.CallUrlWithData(ClientParams, screenInstance, internals);

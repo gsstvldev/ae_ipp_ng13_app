@@ -33,8 +33,8 @@ export class npss_cs_desk_enrolmentService {
             "shop_id": CtrlScope_shop.SHOP_ID,
             "merchant_tag": CtrlScope.MERCHANT_TAG,
             "cashdesk_id":CtrlScope_deskenroll.CASHDESK_ID,
-            "cashdesk_overlay_id":CtrlScope_deskenroll.CASHDESK_OVERLAY_ID
-
+            "cashdesk_overlay_id":CtrlScope_deskenroll.CASHDESK_OVERLAY_ID,
+            "TenantId":  this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
 
         }
         this.CallUrlWithData(ClientParams, screenInstance, internals);

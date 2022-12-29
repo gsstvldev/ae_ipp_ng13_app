@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27601 
+Build ID        : 27605 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-29 8:20 AM 
+Modified Date   : 2022-Dec-29 10:16 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -24,6 +24,7 @@ import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hid
 import {npss_cs_set_reversal_prd_system_setup_dateModule} from '../../../custom_widget/npss_cs_set_reversal_prd_system_setup_date/npss_cs_set_reversal_prd_system_setup_date.module'
 import {npss_cs_reversal_initiateModule} from '../../../custom_widget/npss_cs_reversal_initiate/npss_cs_reversal_initiate.module'
 import {npss_cs_rct_rev_approveModule} from '../../../custom_widget/npss_cs_rct_rev_approve/npss_cs_rct_rev_approve.module'
+import {npss_cs_reversal_send_to_makerModule} from '../../../custom_widget/npss_cs_reversal_send_to_maker/npss_cs_reversal_send_to_maker.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -57,6 +58,8 @@ import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss
 import { p_view_req_and_res_profileComponent } from './p_view_req_and_res_profile/p_view_req_and_res_profile.component'
 import { p_initate_layoutComponent } from './p_initate_layout/p_initate_layout.component'
 import { f_npss_op_reversal_uiComponent } from './f_npss_op_reversal_ui/f_npss_op_reversal_ui.component'
+import { p_send_to_maker_layoutComponent } from './p_send_to_maker_layout/p_send_to_maker_layout.component'
+import { f_npss_send_to_maker_uiComponent } from './f_npss_send_to_maker_ui/f_npss_send_to_maker_ui.component'
 
 
 
@@ -71,9 +74,9 @@ import { f_npss_op_reversal_uiComponent } from './f_npss_op_reversal_ui/f_npss_o
     OverlayPanelModule,
     
     s_op_rct_reversalRoutingModule,
-    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_set_reversal_prd_system_setup_dateModule,npss_cs_reversal_initiateModule,npss_cs_rct_rev_approveModule
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_set_reversal_prd_system_setup_dateModule,npss_cs_reversal_initiateModule,npss_cs_rct_rev_approveModule,npss_cs_reversal_send_to_makerModule
   ],
-  declarations: [s_op_rct_reversalComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_op_reversal_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_single_back_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,p_initate_layoutComponent,f_npss_op_reversal_uiComponent,],
+  declarations: [s_op_rct_reversalComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_op_reversal_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_single_back_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,p_initate_layoutComponent,f_npss_op_reversal_uiComponent,p_send_to_maker_layoutComponent,f_npss_send_to_maker_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

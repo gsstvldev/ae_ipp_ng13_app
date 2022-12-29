@@ -25,6 +25,7 @@ export class npss_cs_set_reversal_prd_system_setup_dateService {
         let Clientparam: any = {}  
       Clientparam.screenName = screenInstance.wftpa_description
       Clientparam.TenantId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
+       Clientparam.PRODUCT_CODE = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "ROOT_SCODE")
       this.CallUrlWithData(Clientparam, screenInstance, internals);
     }
     //Custom validation logics

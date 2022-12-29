@@ -31,7 +31,8 @@ export class npss_cs_blockunblock_customer_bankaccountService {
             "bankUserId": CtrlScope.BANKUSERID,
             "blockIBAN": CtrlScope1.memory9,
             "unblockIBAN": CtrlScope1.memory10,
-              "channelId": CtrlScope.CHANNEL_ID
+              "channelId": CtrlScope.CHANNEL_ID,
+              "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

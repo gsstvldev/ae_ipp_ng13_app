@@ -28,7 +28,8 @@ export class npss_cs_unenrolment_customerService {
         
         ClientParams = {
             "bankUserId": CtrlScope.BANKUSERID,
-            "channelId": CtrlScope.CHANNEL_ID
+            "channelId": CtrlScope.CHANNEL_ID,
+            "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

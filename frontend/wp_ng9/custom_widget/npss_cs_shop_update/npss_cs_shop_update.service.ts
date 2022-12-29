@@ -38,7 +38,8 @@ export class npss_cs_shop_updateService {
                    'street':CtrlScope1.STREET,
                    'city':CtrlScope1.CITY,
                    'County':CtrlScope1.COUNTY,
-                   'Country':CtrlScope1.COUNTRY
+                   'Country':CtrlScope1.COUNTRY,
+                   "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
 
         }
         this.CallUrlWithData(ClientParams, screenInstance, internals);

@@ -13,5 +13,8 @@
 
 <p-dialog header="{{'Initiate' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_initate_layout__sp_for_initate_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '400px','width': '550px'}" [draggable]="true" [modal]="true">
 	<p_initate_layout [screen_instance]="this" ></p_initate_layout></p-dialog>
+
+<p-dialog header="{{'' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_send_to_maker_layout__stm_popup_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '200px','width': '600px'}" [draggable]="true" [modal]="true">
+	<p_send_to_maker_layout [screen_instance]="this" ></p_send_to_maker_layout></p-dialog>
 <app-dialog [screen_instance]="this" ></app-dialog>
 </div>

@@ -30,6 +30,7 @@ export class npss_cs_change_customer_mobileService {
         ClientParams.mobile=mobile;
         ClientParams.channel_id=channel_id;
         ClientParams.bankUserId=bankUserId;
+        Clientparams.TenantId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
         
         
 

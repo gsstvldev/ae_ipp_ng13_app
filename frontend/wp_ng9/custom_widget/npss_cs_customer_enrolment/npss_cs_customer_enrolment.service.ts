@@ -22,6 +22,7 @@ export class npss_cs_customer_enrolmentService {
         private dialogHelper: DialogService) { }
     //Default calling function
     fn_npss_cs_customer_enrolment(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
+       
         let ClientParams = {}
 
         var CtrlScope = screenInstance['customer_detail'].f_npss_customer_proxy_ui.model;
@@ -36,7 +37,8 @@ export class npss_cs_customer_enrolmentService {
             "instantPayment": CtrlScope1.INSTANT_PAYMENT,
             "type": CtrlScope.PROXY_TYPE,
             "value": CtrlScope.PROXY_VALUE,
-            "channelId": CtrlScope.CHANNEL_ID
+            "channelId": CtrlScope.CHANNEL_ID,
+            "TenantId":  this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

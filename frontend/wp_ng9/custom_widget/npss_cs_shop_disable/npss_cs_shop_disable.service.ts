@@ -29,7 +29,8 @@ export class npss_cs_shop_disableService {
             "channelId":CtrlScope.CHANNEL_ID,
              "merchant_tag":CtrlScope.MERCHANT_TAG,
              "bankUserId":CtrlScope.BANKUSERID,
-              "shopId"     :CtrlScope1.SHOP_ID
+              "shopId"     :CtrlScope1.SHOP_ID,
+              "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     //Custom validation logics

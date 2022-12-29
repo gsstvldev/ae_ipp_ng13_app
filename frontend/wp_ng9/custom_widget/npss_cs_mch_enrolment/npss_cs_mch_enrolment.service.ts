@@ -53,7 +53,8 @@ export class npss_cs_mch_enrolmentService {
             "postal_code": CtrlScope_shop.POSTAL_CODE,
             "county": CtrlScope_shop.COUNTY,
             "country": CtrlScope_shop.COUNTRY,
-            "shop_id": CtrlScope_shop.SHOP_ID
+            "shop_id": CtrlScope_shop.SHOP_ID,
+            "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
 
 
         }

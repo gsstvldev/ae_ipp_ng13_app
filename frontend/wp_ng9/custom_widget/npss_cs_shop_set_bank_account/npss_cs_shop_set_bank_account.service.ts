@@ -32,7 +32,8 @@ export class npss_cs_shop_set_bank_accountService {
              'bankUserId':Ctrlscope.BANKUSERID,
             'merchant_tag':Ctrlscope.MERCHANT_TAG,
             'iban':Ctrlscope2.SHOP_IBAN,
-            'shopId':Ctrlscope2.SHOP_ID
+            'shopId':Ctrlscope2.SHOP_ID,
+            "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
         this.CallUrlWithData(Clientparams, screenInstance, internals)
     }

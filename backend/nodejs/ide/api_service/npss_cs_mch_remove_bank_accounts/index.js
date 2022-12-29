@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+ 
 
     /*  Created By :  Daseen
 Created Date : 21/12/2022
@@ -54,7 +55,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
             //get prct id                              
             try {
 
-                var Takejson = `select param_value from core_rule_prod_params where rule_code = 'REMOVE MERCHANT BANK ACCOUNT'`
+                var Takejson = `select param_value from core_rule_prod_params where rule_code = 'MERCHANT REMOVE BANK ACCOUNT' and tenant_id = '${params.TenantId}'`
                 ExecuteQuery1(Takejson, function (arrjson) {  //merchanttag,bankuserid,channelid,iban
                     if (arrjson.length) {
                         var JsonValue = JSON.parse(arrjson[0].param_value)
@@ -69,7 +70,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         url = url.replace('{bankCode}', bankcode)
                         url = url.replace('{bankUserId}', params.bankUserId)
                         url = url.replace('{merchantTag}', merchant_tag)
-                        
+                        url=url+'?IBAN='+params.iban
                        
                         // sendResponse(null,objresponse)
                         fndoapicall(request_id, lang, url, bankcode, groupcode, function (result) {
@@ -186,6 +187,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
     } catch (error) {
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
+})   
 
 
 });

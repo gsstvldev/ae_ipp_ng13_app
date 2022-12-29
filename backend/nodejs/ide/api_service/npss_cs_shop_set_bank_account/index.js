@@ -53,7 +53,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
             mTranConn = pSession; //  assign connection 
             //get prct id                              
             try {
-                var Takejson = `select param_value from core_rule_prod_params where rule_code = 'SET SHOP BANK ACCOUNT'`
+                var Takejson = `select param_value from core_rule_prod_params where rule_code = 'MERCHANT SET SHOP BANK ACCOUNT' and tenant_id = '${params.TenantId}'`
                 ExecuteQuery1(Takejson, function (arrjson) {  //merchanttag,bankuserid,channelid,iban
                     if (arrjson.length) {
                         var JsonValue = JSON.parse(arrjson[0].param_value)

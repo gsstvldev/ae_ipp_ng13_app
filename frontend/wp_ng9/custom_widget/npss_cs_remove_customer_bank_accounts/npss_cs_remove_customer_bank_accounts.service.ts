@@ -23,6 +23,7 @@ export class npss_cs_remove_customer_bank_accountsService {
         private dialogHelper: DialogService) { }
     //Default calling function
     fn_npss_cs_remove_customer_bank_accounts(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
+      
         let ClientParams = {}
 
         var CtrlScope = screenInstance['customer_detail'].f_npss_customer_proxy_ui.model;
@@ -30,7 +31,8 @@ export class npss_cs_remove_customer_bank_accountsService {
         ClientParams = {
             "bankUserId": CtrlScope.BANKUSERID,
             "IBAN": CtrlScope1.memory11,
-            "channelId": CtrlScope.CHANNEL_ID
+            "channelId": CtrlScope.CHANNEL_ID,
+             "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

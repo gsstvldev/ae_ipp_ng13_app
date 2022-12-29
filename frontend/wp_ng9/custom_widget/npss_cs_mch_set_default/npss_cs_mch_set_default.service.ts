@@ -30,7 +30,8 @@ export class npss_cs_mch_set_defaultService {
             "channelId": CtrlScope.CHANNEL_ID,
             "merchant_tag": CtrlScope.MERCHANT_TAG,
             "bankUserId": CtrlScope.BANKUSERID,
-            "IBAN": CtrlScope_acc.IBAN
+            "IBAN": CtrlScope_acc.IBAN,
+            "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
            
         }
         this.CallUrlWithData(ClientParams, screenInstance, internals);

@@ -30,7 +30,8 @@ export class npss_cs_update_customer_personal_dataService {
             "bankUserId": CtrlScope.BANKUSERID,
             "name": CtrlScope.CUSTOMER_NAME,
             "surname": CtrlScope.SURNAME,
-           "channelId": CtrlScope.CHANNEL_ID
+           "channelId": CtrlScope.CHANNEL_ID,
+           "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

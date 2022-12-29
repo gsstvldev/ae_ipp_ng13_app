@@ -28,7 +28,8 @@ export class npss_cs_mch_update_mccService {
             "channelId":CtrlScope.CHANNEL_ID,
             "bankUserId":CtrlScope.BANKUSERID,
             "mcc":CtrlScope.MCC,
-            "merchant_tag":CtrlScope.MERCHANT_TAG
+            "merchant_tag":CtrlScope.MERCHANT_TAG,
+            "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
     }
     this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

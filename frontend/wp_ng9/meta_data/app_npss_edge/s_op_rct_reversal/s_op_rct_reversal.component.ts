@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27601 
+Build ID        : 27605 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-29 8:20 AM 
+Modified Date   : 2022-Dec-29 10:16 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -17,12 +17,13 @@ import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hi
 import {npss_cs_set_reversal_prd_system_setup_dateService} from '../../../custom_widget/npss_cs_set_reversal_prd_system_setup_date/npss_cs_set_reversal_prd_system_setup_date.service'
 import {npss_cs_reversal_initiateService} from '../../../custom_widget/npss_cs_reversal_initiate/npss_cs_reversal_initiate.service'
 import {npss_cs_rct_rev_approveService} from '../../../custom_widget/npss_cs_rct_rev_approve/npss_cs_rct_rev_approve.service'
+import {npss_cs_reversal_send_to_makerService} from '../../../custom_widget/npss_cs_reversal_send_to_maker/npss_cs_reversal_send_to_maker.service'
 
 @Component({
 	selector: 's_op_rct_reversal',
 	templateUrl: './s_op_rct_reversal.component.html',
 	styleUrls: ['./s_op_rct_reversal.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_set_reversal_prd_system_setup_dateService,npss_cs_reversal_initiateService,npss_cs_rct_rev_approveService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_set_reversal_prd_system_setup_dateService,npss_cs_reversal_initiateService,npss_cs_rct_rev_approveService,npss_cs_reversal_send_to_makerService]
 })
     
 // Start of class 
@@ -53,7 +54,9 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 	uicgc_16 : string = "single_back_ui"
 	uicgc_17 : string = "history_detail"
 	uicgc_18 : string = "initate_ui"
+	uicgc_19 : string = "send_to_maker_ui"
 	key_events : any = {}
+	btl_1304_1672307215426 : string = "p_send_to_maker_layout"
 	btl_1304_1671186172155 : string = "p_initate_layout"
 	btl_1304_1670244943676 : string = "p_view_req_and_res_profile"
 	btl_1304_1669368765629 : string = "p_view_history_layout"
@@ -64,15 +67,17 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 	btl_1304_1669200873578 : string = "p_vertical_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_4","uicgc_15","uicgc_11","uicgc_18","uicgc_10","uicgc_16","uicgc_12","uicgc_13","uicgc_14","uicgc_7","uicgc_3"]
+	forms : any = ["uicgc_4","uicgc_15","uicgc_19","uicgc_11","uicgc_18","uicgc_10","uicgc_16","uicgc_12","uicgc_13","uicgc_14","uicgc_7","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	p_initate_layout__sp_for_initate_showpopup : boolean = false
+	p_send_to_maker_layout__stm_popup_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
 	navigation_ui_approve : any = {}
 	navigation_ui_initiate : any = {}
+	navigation_ui_send_to_maker : any = {}
 	navigation_ui_view_tran : any = {}
 	navigation_ui_view_process_log : any = {}
 	navigation_ui_view_message_log : any = {}
@@ -102,10 +107,12 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 	history_detail : any = {}
 	initate_ui : any = {}
 	initate_ui_save : any = {}
+	send_to_maker_ui : any = {}
+	send_to_maker_ui_save : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_set_reversal_prd_system_setup_dateService:npss_cs_set_reversal_prd_system_setup_dateService,private npss_cs_reversal_initiateService:npss_cs_reversal_initiateService,private npss_cs_rct_rev_approveService:npss_cs_rct_rev_approveService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_set_reversal_prd_system_setup_dateService:npss_cs_set_reversal_prd_system_setup_dateService,private npss_cs_reversal_initiateService:npss_cs_reversal_initiateService,private npss_cs_rct_rev_approveService:npss_cs_rct_rev_approveService,private npss_cs_reversal_send_to_makerService:npss_cs_reversal_send_to_makerService) {
     
 	}
     
@@ -175,6 +182,15 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_initiate.dynamic_param = {}
 		this.navigation_ui_initiate.role = []
 		this.navigation_ui_initiate.action = ""
+		
+		// "Send to Maker" Button of "Navigation UI" component
+		this.navigation_ui_send_to_maker.label_name = "Send to Maker"
+		this.navigation_ui_send_to_maker.show = true
+		this.navigation_ui_send_to_maker.disabled = true
+		this.navigation_ui_send_to_maker.params = {"icon_only":false,"uicgcc_style":"fa fa-step-backward"}
+		this.navigation_ui_send_to_maker.dynamic_param = {}
+		this.navigation_ui_send_to_maker.role = []
+		this.navigation_ui_send_to_maker.action = ""
 		
 		// "View Tran" Button of "Navigation UI" component
 		this.navigation_ui_view_tran.label_name = "View Tran"
@@ -498,6 +514,29 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.initate_ui_save.dynamic_param = {}
 		this.initate_ui_save.role = []
 		this.initate_ui_save.action = ""
+	
+		// Component level properties - "Send to Maker UI" 
+		this.send_to_maker_ui.uictrl_code = "dynamic_ui"
+		this.send_to_maker_ui.uicgc_desc = "Send to Maker UI"
+		this.send_to_maker_ui.uicgc_code = "uicgc_19"
+		this.send_to_maker_ui.params = {}
+		this.send_to_maker_ui.datasource = {}
+		this.send_to_maker_ui.context_menu = []
+		this.send_to_maker_ui.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Send to maker UI","tab_order":0,"tab_name":"","uicgc_description":"Send to Maker UI","role_description":"default","dtt_description":"NPSS Transactions"}]}}
+		this.send_to_maker_ui.onChangecomponent = new EventEmitter<any>()
+		this.send_to_maker_ui.show = true
+		this.send_to_maker_ui.dynamic_param = {}
+		this.send_to_maker_ui.f_npss_send_to_maker_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.send_to_maker_ui.form_name = "f_npss_send_to_maker_ui"
+		
+		// "Save" Button of "Send to Maker UI" component
+		this.send_to_maker_ui_save.label_name = "Save"
+		this.send_to_maker_ui_save.show = true
+		this.send_to_maker_ui_save.disabled = false
+		this.send_to_maker_ui_save.params = {"icon_only":false,"uicgcc_style":"fa fa-floppy-o"}
+		this.send_to_maker_ui_save.dynamic_param = {}
+		this.send_to_maker_ui_save.role = []
+		this.send_to_maker_ui_save.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -513,6 +552,8 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.page_load__cc_for_routing_key()
 		this.page_load__de_for_queue()
 		this.page_load__he_for_pl_approve()
+		this.page_load__he_for_stm()
+		this.page_load__de_for_stm()
 	}
 
 	//Handler for INTERNAL event of "cc for routing key"
@@ -583,6 +624,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.transaction_list__ee_for_tran_to_initate()
 		this.transaction_list__ssr_for_initate()
 		this.transaction_list__ee_for_approves()
+		this.transaction_list__ee_for_send_to_maker()
 	}
 
 	//Handler for INTERNAL event of "svm for tl"
@@ -733,6 +775,26 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.info_for_approve_ide__rs_for_approve_ide(parent_event_result)
 	}
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui send to maker"
+	navigation_ui_send_to_maker__action_button_click(){
+		this.navigation_ui_send_to_maker__stm_popup()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "send to maker ui save"
+	send_to_maker_ui_save__action_button_click(){
+		this.send_to_maker_ui_save__cc_for_send_to_maker_save()
+	}
+
+	//Handler for INTERNAL event of "cc for send to maker save"
+	cc_for_send_to_maker_save__internal(parent_event_result){
+		this.cc_for_send_to_maker_save__im_for_send_to_maker_save(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "im for send to maker save"
+	im_for_send_to_maker_save__internal(parent_event_result){
+		this.im_for_send_to_maker_save__rs_for_send_to_maker_save(parent_event_result)
+	}
+
 	//Handler for DPSINIT event of "page_load"
 	page_load__he_for_initiate() { 
 		let Dest_Is_ctrl=true
@@ -853,6 +915,48 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_stm() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_send_to_maker"
+		let parent_source_id=""
+		let event_code="e_1672307345795"
+		let event_params={"caller_name":"page_load__he_for_stm","event_desc":"HE for STM","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_stm() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_send_to_maker"
+		let parent_source_id=""
+		let event_code="e_1672307358284"
+		let event_params={"caller_name":"page_load__de_for_stm","event_desc":"DE for STM","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1319,6 +1423,27 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1671200192402"
 		let event_params={"caller_name":"transaction_list__ee_for_approves","event_desc":"EE for Approves","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_send_to_maker() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_send_to_maker"
+		let parent_source_id=""
+		let event_code="e_1672308448863"
+		let event_params={"caller_name":"transaction_list__ee_for_send_to_maker","event_desc":"EE for Send to maker","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
@@ -2250,6 +2375,92 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		let parent_source_id="cc_for_approve_ide"
 		let event_code="e_1671189309426"
 		let event_params={"caller_name":"info_for_approve_ide__rs_for_approve_ide","event_desc":"RS for approve ide","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_approve","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui send to maker"
+	navigation_ui_send_to_maker__stm_popup() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_send_to_maker"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1672307400251"
+		let event_params={"caller_name":"navigation_ui_send_to_maker__stm_popup","event_desc":"STM Popup","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_send_to_maker","raiseparam":{"popup_category":"profile","variable":"p_send_to_maker_layout__stm_popup","selector":"p_send_to_maker_layout","profile_code":"BTL_1304_1672307215426","window_title":"","window_height":200,"window_width":"600px","window_close_icon":"Y","eventdes":"stm_popup","eventcode":"E_1672307400251"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "send to maker ui save"
+	send_to_maker_ui_save__cc_for_send_to_maker_save() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="send_to_maker_ui_save"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1672307517079"
+		let event_params={"caller_name":"send_to_maker_ui_save__cc_for_send_to_maker_save","event_desc":"CC for Send to maker save","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"send_to_maker_ui_save","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_send_to_maker_save__im_for_send_to_maker_save,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_reversal_send_to_makerService.fn_npss_cs_reversal_send_to_maker(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for send to maker save"
+	cc_for_send_to_maker_save__im_for_send_to_maker_save(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_send_to_maker_save"
+		let destn_id=""
+		let parent_source_id="send_to_maker_ui_save"
+		let event_code="e_1672307556237"
+		let event_params={"caller_name":"cc_for_send_to_maker_save__im_for_send_to_maker_save","event_desc":"IM for Send to maker save","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Reversal request has been sent to maker successfully","root_source_id":"send_to_maker_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="im_for_send_to_maker_save__rs_for_send_to_maker_save,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "im for send to maker save"
+	im_for_send_to_maker_save__rs_for_send_to_maker_save(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="im_for_send_to_maker_save"
+		let destn_id=""
+		let parent_source_id="cc_for_send_to_maker_save"
+		let event_code="e_1672307575321"
+		let event_params={"caller_name":"im_for_send_to_maker_save__rs_for_send_to_maker_save","event_desc":"RS for send to maker save","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"send_to_maker_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

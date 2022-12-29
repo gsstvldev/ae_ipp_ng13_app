@@ -33,6 +33,7 @@ export class npss_cs_mch_update_personal_dataService {
             "vat_number":CtrlScope.VAT_NUMBER,
             "logo":CtrlScope.LOGO,
             "merchant_tag":CtrlScope.MERCHANT_TAG,
+            "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
     }
     this.CallUrlWithData(ClientParams, screenInstance, internals);
     //Custom validation logics

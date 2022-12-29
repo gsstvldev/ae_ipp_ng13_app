@@ -31,7 +31,8 @@ export class npss_cs_mch_unblock_bank_accountService {
             "bankUserId":CtrlScope.BANKUSERID,
             "IBAN":CtrlScope_acc.IBAN,
             "currency":CtrlScope_acc.CURRENCY,
-            "merchant_tag":CtrlScope.MERCHANT_TAG
+            "merchant_tag":CtrlScope.MERCHANT_TAG,
+            "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
     }
     this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

@@ -31,7 +31,8 @@ export class npss_cs_add_customer_bank_accountsService {
             "IBAN": CtrlScope1.IBAN,
             "currency": CtrlScope1.CURRENCY,
             "instantPayment": CtrlScope1.INSTANT_PAYMENT,
-             "channelId": CtrlScope.CHANNEL_ID
+             "channelId": CtrlScope.CHANNEL_ID,
+             "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

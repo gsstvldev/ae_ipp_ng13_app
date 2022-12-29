@@ -24,7 +24,7 @@ export class npss_cs_mch_update_mccService {
     fn_npss_cs_mch_update_mcc(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
         let ClientParams: any = {};
         var CtrlScope = screenInstance['merchant_detail'].f_npss_merchant_ui.model;
-        ClientParams={
+           ClientParams={
             "channelId":CtrlScope.CHANNEL_ID,
             "bankUserId":CtrlScope.BANKUSERID,
             "mcc":CtrlScope.MCC,

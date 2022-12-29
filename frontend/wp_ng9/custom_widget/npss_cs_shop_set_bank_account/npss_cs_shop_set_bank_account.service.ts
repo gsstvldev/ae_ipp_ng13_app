@@ -37,7 +37,7 @@ export class npss_cs_shop_set_bank_accountService {
         }
         this.CallUrlWithData(Clientparams, screenInstance, internals)
     }
-     CallUrlWithData(ClientParam, screenInstance, internals) {
+       CallUrlWithData(ClientParam, screenInstance, internals) {
       this.httpHelper.HttpPost('/microsvc/npss_cs_shop_set_bank_account/', ClientParam)
           .subscribe((res: any) => {
              var event

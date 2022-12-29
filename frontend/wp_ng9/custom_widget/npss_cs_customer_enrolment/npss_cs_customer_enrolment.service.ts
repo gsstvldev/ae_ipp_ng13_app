@@ -23,7 +23,7 @@ export class npss_cs_customer_enrolmentService {
     //Default calling function
     fn_npss_cs_customer_enrolment(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
        
-        let ClientParams = {}
+           let ClientParams = {}
 
         var CtrlScope = screenInstance['customer_detail'].f_npss_customer_proxy_ui.model;
         var CtrlScope1 = screenInstance['account__detail'].f_npss_customer_account_ui.model;

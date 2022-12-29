@@ -26,7 +26,7 @@ export class npss_cs_mch_set_defaultService {
         var CtrlScope1 = screenInstance["shop_detail"].f_npss_shop_ui.model;
         var CtrlScope_acc = screenInstance['account__detail'].f_npss_mer_account_ui.model;
         var ClientParams: any = {}
-        ClientParams = {
+          ClientParams = {
             "channelId": CtrlScope.CHANNEL_ID,
             "merchant_tag": CtrlScope.MERCHANT_TAG,
             "bankUserId": CtrlScope.BANKUSERID,

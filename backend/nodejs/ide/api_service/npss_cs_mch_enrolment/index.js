@@ -54,7 +54,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
             //get prct id                              
             try {
 
-                var Takejson = `select param_value from core_rule_prod_params where rule_code = 'MERCHANT ENROLMENT' and tenant_id = '${params.TenantId}'`
+                  var Takejson = `select param_value from core_rule_prod_params where rule_code = 'MERCHANT ENROLMENT' and tenant_id = '${params.TenantId}'`
                 ExecuteQuery1(Takejson, function (arrjson) {
                     if (arrjson.length) {
                         var JsonValue = JSON.parse(arrjson[0].param_value)

@@ -21,7 +21,7 @@ export class npss_cs_remove_customer_bank_accountsService {
         private appHandler: AppHandlerService,
         private sessionHelper: SessionService,
         private dialogHelper: DialogService) { }
-    //Default calling function
+    //Default calling  function
     fn_npss_cs_remove_customer_bank_accounts(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
       
         let ClientParams = {}

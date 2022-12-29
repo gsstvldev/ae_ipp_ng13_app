@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-//Uncomment below lines when it is     required
+//Uncomment below lines when it is      required
 import { Http, Response, Headers, RequestOptions, HttpModule } from '@angular/http';
 //import { Observable } from 'rxjs/Observable';
 //import { HttpClient } from '@angular/common/http';
@@ -33,9 +33,9 @@ export class npss_cs_desk_disableService {
             "cashDeskId": CtrlScope_cash.CASHDESK_OVERLAY_ID,
              "TenantId":  this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
-           
-        }
-        this.CallUrlWithData(ClientParams, screenInstance, internals);
+            this.CallUrlWithData(ClientParams, screenInstance, internals);
+        
+       
     }
     CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_desk_disable/', ClientParams)

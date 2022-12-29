@@ -25,7 +25,7 @@ export class npss_cs_shop_disableService {
     var CtrlScope=screenInstance["merchant_detail"].f_npss_merchant_ui.model;
         var CtrlScope1=screenInstance["shop_detail"].f_npss_shop_ui.model;
         var ClientParams: any = {}
-        ClientParams={
+          ClientParams={
             "channelId":CtrlScope.CHANNEL_ID,
              "merchant_tag":CtrlScope.MERCHANT_TAG,
              "bankUserId":CtrlScope.BANKUSERID,

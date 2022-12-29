@@ -28,6 +28,7 @@ export class npss_cs_mch_disableService {
         ClientParams.bankUserId=CtrlScope.BANKUSERID;
         ClientParams.merchant_tag=CtrlScope.MERCHANT_TAG;
         ClientParams.channelId=CtrlScope.CHANNEL_ID;
+        ClientParams.TenantId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
        this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     CallUrlWithData(ClientParams, screenInstance, internals) {

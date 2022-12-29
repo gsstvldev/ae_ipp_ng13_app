@@ -26,7 +26,7 @@ export class npss_cs_mch_enrolmentService {
         var CtrlScope = screenInstance['merchant_detail'].f_npss_merchant_ui.model;
         var CtrlScope_acc = screenInstance['account__detail'].f_npss_mer_account_ui.model;
         var CtrlScope_shop = screenInstance['shop_detail'].f_npss_shop_ui.model;
-        ClientParams = {
+          ClientParams = {
             "channelId": CtrlScope.CHANNEL_ID,
             "bankUserId": CtrlScope.BANKUSERID,
             "merchant_name": CtrlScope.MERCHANT_NAME,

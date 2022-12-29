@@ -30,7 +30,7 @@ export class npss_cs_mch_change_mobileService {
             mobile:CtrlScope.MOBILE,
             merchant_tag:CtrlScope.MERCHANT_TAG,
             channelId:CtrlScope.CHANNEL_ID ,
-            "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
+            TenantId : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
        this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

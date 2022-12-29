@@ -25,7 +25,7 @@ export class npss_cs_mch_add_bank_accountsService {
         let ClientParams: any = {};
         var CtrlScope = screenInstance['merchant_detail'].f_npss_merchant_ui.model;
         var CtrlScope_acc = screenInstance['account__detail'].f_npss_mer_account_ui.model;
-        ClientParams={
+          ClientParams={
             "channelId":CtrlScope.CHANNEL_ID,
             "bankUserId":CtrlScope.BANKUSERID,
             "IBAN":CtrlScope_acc.IBAN,

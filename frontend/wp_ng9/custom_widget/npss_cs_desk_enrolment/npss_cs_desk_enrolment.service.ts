@@ -21,7 +21,7 @@ export class npss_cs_desk_enrolmentService {
         private sessionHelper: SessionService,
         private coreHelper: CoreService,
         public dialogHelper: DialogService) { }
-    //Default calling function
+    //Default calling  function
     fn_npss_cs_desk_enrolment(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         let ClientParams: any = {};
         var CtrlScope = screenInstance['merchant_detail'].f_npss_merchant_ui.model;

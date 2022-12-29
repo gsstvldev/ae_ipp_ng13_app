@@ -22,7 +22,7 @@ export class npss_cs_mch_unblock_bank_accountService {
        private coreHelper: CoreService,
        public dialogHelper: DialogService) { }
     //Default calling function
-    fn_npss_cs_mch_unblock_bank_account(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
+       fn_npss_cs_mch_unblock_bank_account(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
         let ClientParams: any = {};
         var CtrlScope = screenInstance['merchant_detail'].f_npss_merchant_ui.model;
         var CtrlScope_acc = screenInstance['account__detail'].f_npss_mer_account_ui.model;

@@ -33,7 +33,7 @@ export class npss_cs_update_customer_personal_dataService {
            "channelId": CtrlScope.CHANNEL_ID,
            "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
-        this.CallUrlWithData(ClientParams, screenInstance, internals);
+          this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_update_customer_personal_data/', ClientParams)

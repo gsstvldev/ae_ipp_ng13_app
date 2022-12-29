@@ -15,7 +15,7 @@ Reason for :
 * 
 */
 var serviceName = 'NPSS Disable Shop '; //service name 
-var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
+  var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
 var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
 var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
 var reqAuditLog = require($REFPATH + 'log/audit/AuditLog'); //audit log information

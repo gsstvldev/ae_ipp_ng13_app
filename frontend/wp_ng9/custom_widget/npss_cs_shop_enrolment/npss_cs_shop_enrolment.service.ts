@@ -23,6 +23,7 @@ export class npss_cs_shop_enrolmentService {
        public dialogHelper: DialogService) { }
     //Default calling function
     fn_npss_cs_shop_enrolment(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
+      var ClientParams={};
       var CtrlScope = screenInstance['merchant_detail'].f_npss_merchant_ui.model;
         var CtrlScope_acc = screenInstance['account__detail'].f_npss_mer_account_ui.model;
           var CtrlScope_shop = screenInstance['shop_detail'].f_npss_shop_ui.model;

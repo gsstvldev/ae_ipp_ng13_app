@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27587 
+Build ID        : 27595 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-28 14:55 PM 
+Modified Date   : 2022-Dec-29 5:40 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -1041,6 +1041,10 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_enrolment__cu_for_cust_dtl()
 		this.navigation_ui_enrolment__cu_for_account_dtl()
 		this.navigation_ui_enrolment__cc_for_nav_entrol()
+		this.navigation_ui_enrolment__cui_for_enrolment_to_sd()
+		this.navigation_ui_enrolment__cui_for_enrolment_to_ad()
+		this.navigation_ui_enrolment__cui_for_enrolment_to_md()
+		this.navigation_ui_enrolment__cui_for_enrolment_to_cdd()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui change mobile no"
@@ -1176,6 +1180,9 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_add_account__sp_for_nav_add_acc()
 		this.navigation_ui_add_account__cc_for_nav_add_acc()
 		this.navigation_ui_add_account__se_for_nav_add_acc()
+		this.navigation_ui_add_account__cui_for_add_acc_to_sd()
+		this.navigation_ui_add_account__cui_for_add_acc_to_ad()
+		this.navigation_ui_add_account__cui_for_add_acc_to_cdd()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block accounts"
@@ -1290,6 +1297,8 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cashdesk_action_enrolment_desk__cc__for_enroll_cd_ena_dis()
 		this.cashdesk_action_enrolment_desk__se_for_enroll_cd()
 		this.cashdesk_action_enrolment_desk__cu_for_cd_detail_enrolment()
+		this.cashdesk_action_enrolment_desk__e_1672292320842()
+		this.cashdesk_action_enrolment_desk__e_1672292342385()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action update desk"
@@ -1340,6 +1349,8 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop_action_enrolment_shop__cc_for_shop_enrollment_enab()
 		this.shop_action_enrolment_shop__sp_for_shop_enroll()
 		this.shop_action_enrolment_shop__cu_for_enroll_shop_to_shop_dtl()
+		this.shop_action_enrolment_shop__cui_for_enrolment_shop_to_cdd()
+		this.shop_action_enrolment_shop__e_1672292386953()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "shop action disable shop"
@@ -2381,6 +2392,90 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__cui_for_enrolment_to_sd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_enrolment"
+		let destn_id="shop_detail"
+		let parent_source_id=""
+		let event_code="e_1672291733528"
+		let event_params={"caller_name":"navigation_ui_enrolment__cui_for_enrolment_to_sd","event_desc":"CUI for Enrolment to SD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__cui_for_enrolment_to_ad() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_enrolment"
+		let destn_id="account__detail"
+		let parent_source_id=""
+		let event_code="e_1672291743099"
+		let event_params={"caller_name":"navigation_ui_enrolment__cui_for_enrolment_to_ad","event_desc":"CUI for Enrolment to AD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__cui_for_enrolment_to_md() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_enrolment"
+		let destn_id="merchant_detail"
+		let parent_source_id=""
+		let event_code="e_1672291750341"
+		let event_params={"caller_name":"navigation_ui_enrolment__cui_for_enrolment_to_md","event_desc":"CUI for Enrolment to MD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
+	navigation_ui_enrolment__cui_for_enrolment_to_cdd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_enrolment"
+		let destn_id="cashdesk_detail"
+		let parent_source_id=""
+		let event_code="e_1672291760629"
+		let event_params={"caller_name":"navigation_ui_enrolment__cui_for_enrolment_to_cdd","event_desc":"CUI for Enrolment to CDD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -3466,6 +3561,69 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui add account"
+	navigation_ui_add_account__cui_for_add_acc_to_sd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_add_account"
+		let destn_id="shop_detail"
+		let parent_source_id=""
+		let event_code="e_1672291829598"
+		let event_params={"caller_name":"navigation_ui_add_account__cui_for_add_acc_to_sd","event_desc":"CUI for Add Acc to SD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_add_account","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui add account"
+	navigation_ui_add_account__cui_for_add_acc_to_ad() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_add_account"
+		let destn_id="account__detail"
+		let parent_source_id=""
+		let event_code="e_1672291869775"
+		let event_params={"caller_name":"navigation_ui_add_account__cui_for_add_acc_to_ad","event_desc":"CUI for Add Acc to AD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_add_account","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui add account"
+	navigation_ui_add_account__cui_for_add_acc_to_cdd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_add_account"
+		let destn_id="cashdesk_detail"
+		let parent_source_id=""
+		let event_code="e_1672291889393"
+		let event_params={"caller_name":"navigation_ui_add_account__cui_for_add_acc_to_cdd","event_desc":"CUI for Add Acc to CDD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_add_account","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui block accounts"
 	navigation_ui_block_accounts__sp_for_nav_block() { 
 		let Dest_Is_ctrl=true
@@ -4433,6 +4591,48 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action enrolment desk"
+	cashdesk_action_enrolment_desk__e_1672292320842() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cashdesk_action_enrolment_desk"
+		let destn_id="cashdesk_detail"
+		let parent_source_id=""
+		let event_code="e_1672292320842"
+		let event_params={"caller_name":"cashdesk_action_enrolment_desk__e_1672292320842","event_desc":"E_1672292320842","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cashdesk_action_enrolment_desk","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action enrolment desk"
+	cashdesk_action_enrolment_desk__e_1672292342385() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cashdesk_action_enrolment_desk"
+		let destn_id="shop_detail"
+		let parent_source_id=""
+		let event_code="e_1672292342385"
+		let event_params={"caller_name":"cashdesk_action_enrolment_desk__e_1672292342385","event_desc":"E_1672292342385","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cashdesk_action_enrolment_desk","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action update desk"
 	cashdesk_action_update_desk__sp_for_update_cd() { 
 		let Dest_Is_ctrl=true
@@ -4715,6 +4915,48 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1671623119316"
 		let event_params={"caller_name":"shop_action_enrolment_shop__cu_for_enroll_shop_to_shop_dtl","event_desc":"CU for enroll shop to shop dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_enrolment_shop","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action enrolment shop"
+	shop_action_enrolment_shop__cui_for_enrolment_shop_to_cdd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_enrolment_shop"
+		let destn_id="cashdesk_detail"
+		let parent_source_id=""
+		let event_code="e_1672292050251"
+		let event_params={"caller_name":"shop_action_enrolment_shop__cui_for_enrolment_shop_to_cdd","event_desc":"CUI for Enrolment shop to CDD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_enrolment_shop","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action enrolment shop"
+	shop_action_enrolment_shop__e_1672292386953() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_enrolment_shop"
+		let destn_id="shop_detail"
+		let parent_source_id=""
+		let event_code="e_1672292386953"
+		let event_params={"caller_name":"shop_action_enrolment_shop__e_1672292386953","event_desc":"E_1672292386953","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_enrolment_shop","raiseparam":{"need_reset_key_column":"N"}}
 		let handler_code="clear_ui"
 		let internals=""
 		let event_data={}

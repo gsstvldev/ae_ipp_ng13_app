@@ -51,6 +51,7 @@ export class npss_cs_shop_set_bank_accountService {
                     this.dialogHelper.ShowInfoDialog(res.data.status)
                 }
           });
+        }
     //Custom validation logics
     //Uncomment below lines when validation is required
     //fn_customValidation(projName,screenInstance,message,callback){

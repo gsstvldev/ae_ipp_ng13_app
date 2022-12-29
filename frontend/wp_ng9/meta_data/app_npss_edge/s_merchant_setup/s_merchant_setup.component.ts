@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27598 
+Build ID        : 27579 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-29 6:21 AM 
+Modified Date   : 2022-Dec-29 8:27 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -157,6 +157,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	cashdesk_action_enrolment_desk : any = {}
 	cashdesk_action_update_desk : any = {}
 	cashdesk_action_disable_desk : any = {}
+	cashdesk_action_trg_for_clear_ui : any = {}
 
 
 	// Constructor 
@@ -940,6 +941,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cashdesk_action_disable_desk.dynamic_param = {}
 		this.cashdesk_action_disable_desk.role = []
 		this.cashdesk_action_disable_desk.action = ""
+		
+		// "TRG for Clear UI" Button of "CashDesk Action" component
+		this.cashdesk_action_trg_for_clear_ui.label_name = "TRG for Clear UI"
+		this.cashdesk_action_trg_for_clear_ui.show = true
+		this.cashdesk_action_trg_for_clear_ui.disabled = false
+		this.cashdesk_action_trg_for_clear_ui.params = {"icon_only":false,"uicgcc_style":""}
+		this.cashdesk_action_trg_for_clear_ui.dynamic_param = {}
+		this.cashdesk_action_trg_for_clear_ui.role = []
+		this.cashdesk_action_trg_for_clear_ui.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -970,6 +980,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.page_load__de_frompl()
 		this.page_load__he_for_trg_hide_all_nav()
 		this.page_load__tbc_for_trg_hide_all_nav_btn()
+		this.page_load__e_1672300701260()
 	}
 
 	//Handler for INTERNAL event of "cf for pl"
@@ -1038,8 +1049,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	navigation_ui_enrolment__action_button_click(){
 		this.navigation_ui_enrolment__sp_for_unen()
 		this.navigation_ui_enrolment__se_nav_entrol_to_action_entrol()
-		this.navigation_ui_enrolment__cu_for_cust_dtl()
-		this.navigation_ui_enrolment__cu_for_account_dtl()
 		this.navigation_ui_enrolment__cc_for_nav_entrol()
 		this.navigation_ui_enrolment__cui_for_enrolment_to_sd()
 		this.navigation_ui_enrolment__cui_for_enrolment_to_ad()
@@ -1160,12 +1169,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui set default"
 	sub_navigation_ui_set_default__action_button_click(){
-		this.sub_navigation_ui_set_default__cc_for_enable_disable_for_set_default()
-	}
-
-	//Handler for INTERNAL event of "cc for enable disable for set default"
-	cc_for_enable_disable_for_set_default__internal(parent_event_result){
-		this.cc_for_enable_disable_for_set_default__cc_for_set_default(parent_event_result)
+		this.sub_navigation_ui_set_default__cc_for_set_default()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui unblock account"
@@ -1274,6 +1278,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop__ee_for_shop_enrolment_btn()
 		this.shop__bt_for_shop_dtl()
 		this.shop__tbc_for_cashdesk_list()
+		this.shop__e_1672301047211()
 	}
 
 	//Handler for SELECTION_CHANGED event of "cashdesk"
@@ -1282,6 +1287,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cashdesk__ee_for_entrol_cd()
 		this.cashdesk__ee_for_update_cd()
 		this.cashdesk__bt_for_cashdesk_detail()
+		this.cashdesk__e_1672300984368()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action disable desk"
@@ -1465,6 +1471,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "brfq for for cashdesk list"
 	brfq_for_for_cashdesk_list__internal(parent_event_result){
 		this.brfq_for_for_cashdesk_list__sfr_for_casdesk_list(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action trg for clear ui"
+	cashdesk_action_trg_for_clear_ui__action_button_click(peventcontext){
+		if(!peventcontext) { 
+ 			peventcontext = this.cashdesk_action_trg_for_clear_ui__sec_for_clear()
+		 }
+		this.cashdesk_action_trg_for_clear_ui__cui_for_trg_to_shop(peventcontext)
+		this.cashdesk_action_trg_for_clear_ui__cui_for_trg_to_cash(peventcontext)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1908,6 +1923,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1672300701260() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="cashdesk_action_trg_for_clear_ui"
+		let parent_source_id=""
+		let event_code="e_1672300701260"
+		let event_params={"caller_name":"page_load__e_1672300701260","event_desc":"E_1672300701260","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "cf for pl"
 	cf_for_pl__cc_for_pl_show_hide(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -2329,48 +2365,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
-	navigation_ui_enrolment__cu_for_cust_dtl() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_enrolment"
-		let destn_id="merchant_detail"
-		let parent_source_id=""
-		let event_code="e_1671014985065"
-		let event_params={"caller_name":"navigation_ui_enrolment__cu_for_cust_dtl","event_desc":"CU for cust dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"need_reset_key_column":"N"}}
-		let handler_code="clear_ui"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui enrolment"
-	navigation_ui_enrolment__cu_for_account_dtl() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_enrolment"
-		let destn_id="account__detail"
-		let parent_source_id=""
-		let event_code="e_1671015020416"
-		let event_params={"caller_name":"navigation_ui_enrolment__cu_for_account_dtl","event_desc":"CU for Account Dtl","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_enrolment","raiseparam":{"need_reset_key_column":"N"}}
-		let handler_code="clear_ui"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -3393,36 +3387,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui set default"
-	sub_navigation_ui_set_default__cc_for_enable_disable_for_set_default() { 
+	sub_navigation_ui_set_default__cc_for_set_default() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="sub_navigation_ui_set_default"
 		let destn_id=""
 		let parent_source_id=""
-		let event_code="e_1671021598364"
-		let event_params={"caller_name":"sub_navigation_ui_set_default__cc_for_enable_disable_for_set_default","event_desc":"CC for enable disable for set default","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_set_default","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals="cc_for_enable_disable_for_set_default__cc_for_set_default,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "cc for enable disable for set default"
-	cc_for_enable_disable_for_set_default__cc_for_set_default(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_for_enable_disable_for_set_default"
-		let destn_id=""
-		let parent_source_id="sub_navigation_ui_set_default"
-		let event_code="e_1672239230605"
-		let event_params={"caller_name":"cc_for_enable_disable_for_set_default__cc_for_set_default","event_desc":"CC for set default","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_set_default","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_code="e_1672302355468"
+		let event_params={"caller_name":"sub_navigation_ui_set_default__cc_for_set_default","event_desc":"CC for set default","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_set_default","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -4360,6 +4332,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__e_1672301047211() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="cashdesk_action_trg_for_clear_ui"
+		let parent_source_id=""
+		let event_code="e_1672301047211"
+		let event_params={"caller_name":"shop__e_1672301047211","event_desc":"E_1672301047211","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for SELECTION_CHANGED event of "cashdesk"
 	cashdesk__ee_for_disable_cd() { 
 		let Dest_Is_ctrl=true
@@ -4438,6 +4431,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "cashdesk"
+	cashdesk__e_1672300984368() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cashdesk"
+		let destn_id="cashdesk_action_trg_for_clear_ui"
+		let parent_source_id=""
+		let event_code="e_1672300984368"
+		let event_params={"caller_name":"cashdesk__e_1672300984368","event_desc":"E_1672300984368","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"cashdesk","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5931,6 +5945,71 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666848298941":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666848298941","dtt_desc":"NPSS Merchant Cashdesk","ds_eligible":"DS_1671623568676","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Cash Desk Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666882336815","date_format":false},{"column_name":"CASHDESK_ID","alias_name":"","mq_id":"MQ_1666882337070","date_format":false},{"column_name":"CASHDESK_OVERLAY_ID","alias_name":"","mq_id":"MQ_1666882337573","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666882360517","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666882360725","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1666882360901","date_format":true},{"column_name":"DTT_CODE","alias_name":"","mq_id":"MQ_1666882395708","date_format":false},{"column_name":"DT_CODE","alias_name":"","mq_id":"MQ_1667365781652","date_format":false},{"column_name":"NPSSMC_ID","alias_name":"","mq_id":"MQ_1667365937621","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSMC_ID,        BANKUSERID,        CASHDESK_ID,        CASHDESK_OVERLAY_ID,        CREATED_DATE,        STATUS,        PROCESS_STATUS,        TENANT_ID,        DTT_CODE,        DT_CODE   FROM (SELECT C.NPSSMC_ID,                C.BANKUSERID,                C.CASHDESK_ID,                C.CASHDESK_OVERLAY_ID,                C.CREATED_DATE,                C.STATUS,                C.PROCESS_STATUS,                C.TENANT_ID,                C.DTT_CODE,                C.DT_CODE           FROM NPSS_MERCHANT_CASHDESK C) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Cash Desk Details CCD","filter":[{"filter_name":"BANKUSERID","binding_name":"BANKUSERID","binding_value":"","source_name":"MI_LEVEL_BANKUSERID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cash Desk ID","target_column":"CASHDESK_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action trg for clear ui"
+	cashdesk_action_trg_for_clear_ui__sec_for_clear() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cashdesk_action_trg_for_clear_ui"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1672301214598"
+		let event_params={"caller_name":"cashdesk_action_trg_for_clear_ui__sec_for_clear","event_desc":"SEC for Clear","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cashdesk_action_trg_for_clear_ui","raiseparam":{}}
+		let handler_code="set_event_context"
+		let internals=""
+		let event_data={"cashdesk_action_trg_for_clear_ui":{"e_1672301214598":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGCC_71","event_code":"E_1672301214598","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS Merchant Proxy DTG","dtt_desc":"NPSS Merchant Cashdesk","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[],"get_from_memory":[],"set_event_context":"Y","sec_value":{"type":"SESSION_LEVEL","value":"CURRENT_BTN_LABEL"}}}}}}}}}
+		let data_source={}
+		try {
+			return this.handler.set_event_context(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action trg for clear ui"
+	cashdesk_action_trg_for_clear_ui__cui_for_trg_to_shop(peventcontext) { 
+		let Dest_Is_ctrl=true
+		let eventcontext =["Enrolment Shop","Add Account"]
+		if(eventcontext.indexOf(peventcontext)==-1) return true;
+		let source_id="cashdesk_action_trg_for_clear_ui"
+		let destn_id="shop_detail"
+		let parent_source_id=""
+		let event_code="e_1672300737969"
+		let event_params={"caller_name":"cashdesk_action_trg_for_clear_ui__cui_for_trg_to_shop","event_desc":"CUI for Trg to shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"Enrolment Shop","root_source_id":"cashdesk_action_trg_for_clear_ui","raiseparam":{"need_reset_key_column":"N"},"eventcontext":["Enrolment Shop","Add Account"]}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action trg for clear ui"
+	cashdesk_action_trg_for_clear_ui__cui_for_trg_to_cash(peventcontext) { 
+		let Dest_Is_ctrl=true
+		let eventcontext =["Enrolment Shop","Add Account","Enrolment Desk"]
+		if(eventcontext.indexOf(peventcontext)==-1) return true;
+		let source_id="cashdesk_action_trg_for_clear_ui"
+		let destn_id="cashdesk_detail"
+		let parent_source_id=""
+		let event_code="e_1672300765924"
+		let event_params={"caller_name":"cashdesk_action_trg_for_clear_ui__cui_for_trg_to_cash","event_desc":"CUI for Trg to cash","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"Enrolment Shop","root_source_id":"cashdesk_action_trg_for_clear_ui","raiseparam":{"need_reset_key_column":"N"},"eventcontext":["Enrolment Shop","Add Account","Enrolment Desk"]}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

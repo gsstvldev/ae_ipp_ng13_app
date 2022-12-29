@@ -31,6 +31,7 @@ app.post('/', function(appRequest, appResponse, next) {
                  Reason for : Adding reversal Id for Fab 26/12/2022 10:20am
                   Reason for : Calling Credit and debit api  for Fab 27/12/2022 
                    Reason for : TAKING CBUAE Return code from core_nc_system_setup  for Fab 28/12/2022 
+                     Reason for : TAKING CBUAE Return code query changes adding status  for Fab and fin and handling failure case for fin 29/12/2022
         */
         var serviceName = 'NPSS IP REV Accept INAU Reserve Fund';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -86,7 +87,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt,
                                ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm
                                from npss_transactions ns  where npsst_id = '${params.Tran_Id}'`;
-                            var Takeretcode = `select param_code,param_detail from core_nc_system_setup where param_category='REVERSAL RETURN CODE' and product_code = '${params.PROD_CODE}'`
+                            var Takeretcode = `select param_code,param_detail from core_nc_system_setup where param_category='REVERSAL RETURN CODE' and product_code = '${params.PROD_CODE}' and status = 'APPROVED'`
                             if (params.PROD_CODE == 'NPSS_AEFAB') {
                                 ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
                                     if (arrurlResult.length) {
@@ -465,7 +466,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                             }
                                         })
                                     }else{
-
+                                        objresponse.status = "CBUAE Return Code is not found in table"
+                                                sendResponse(null, objresponse)
                                     }
                                     })
                                     } else {

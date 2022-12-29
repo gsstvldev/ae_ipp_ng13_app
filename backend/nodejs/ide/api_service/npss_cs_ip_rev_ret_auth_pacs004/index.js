@@ -28,6 +28,7 @@ app.post('/', function(appRequest, appResponse, next) {
          Reason for : Taking Contra amount using accept success status for non aed 20/12/2022 10:40am
           Reason for : Adding Reversal Id for fab
            Reason for : Adding Prepaid and credit api Call api function for fab 27/12/2022
+            Reason for : Handling Error msg for process ref no for fab 28/12/2022
         */
         var serviceName = 'NPSS IP REV Ret Auth PACS004';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -1188,6 +1189,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('IP_RCT_REV_INAU_POSTING_SUCCESS','IP_RCT_REV_INAU_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
                             var TakerevId = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
                             ExecuteQuery1(TakeprssRefno, function (arrprssRefno) {
+                              if(arrprssRefno.length > 0){
                                 var parameter = {}
                                 if (arrprssRefno[0].process_ref_no != null) {
                                     parameter.processRefno = arrprssRefno[0].process_ref_no
@@ -1238,6 +1240,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                     objresponse.errdata = "Process Refno is missing"
                                     sendResponse(null, objresponse)
                                 }
+                                
+                                }else{
+                                
+                                    objresponse.status = "FAILURE"
+                                    objresponse.errdata = "Process Refno is not in the table"
+                                    sendResponse(null, objresponse)
+                                
+                                }
                             })
 
 
@@ -1254,6 +1264,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             parameter = {}
                             var TakeReversePrsno = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
                             ExecuteQuery1(TakeReversePrsno, function (arrRevno) {
+                             if(arrRevno.length > 0){
                                 if (arrRevno[0].process_ref_no != null) {
 
                                     var Takecount
@@ -1281,6 +1292,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                     objresponse.errdata = "Process Refno for reversal Id is missing"
                                     sendResponse(null, objresponse)
                                 }
+                                }else{
+                                objresponse.status = "FAILURE"
+                                objresponse.errdata = "Process Refno for reversal Id is not in the table"
+                                sendResponse(null, objresponse) 
+                            }
 
                             })
 

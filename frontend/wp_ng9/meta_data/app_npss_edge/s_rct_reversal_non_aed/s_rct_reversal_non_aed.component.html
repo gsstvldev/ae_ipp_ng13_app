@@ -20,6 +20,9 @@
 
 <p-dialog header="{{'Remarks' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_send_to_maker_layout__spap_for_stm_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '200px','width': '600px'}" [draggable]="true" [modal]="true">
 	<p_send_to_maker_layout [screen_instance]="this" ></p_send_to_maker_layout></p-dialog>
+
+<p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_for_search_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '400px','width': '650px'}" [draggable]="true" [modal]="true">
+	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>
 <app-dialog [screen_instance]="this" ></app-dialog>
 <div style="display:none">
 	<datatable [comp_id]="'comment_list'" [screen_instance]="this"></datatable>

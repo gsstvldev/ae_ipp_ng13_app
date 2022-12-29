@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27579 
+Build ID        : 27591 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-29 8:27 AM 
+Modified Date   : 2022-Dec-29 8:26 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -1169,7 +1169,12 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui set default"
 	sub_navigation_ui_set_default__action_button_click(){
-		this.sub_navigation_ui_set_default__cc_for_set_default()
+		this.sub_navigation_ui_set_default__cc_for_enable_disable_for_set_default()
+	}
+
+	//Handler for INTERNAL event of "cc for enable disable for set default"
+	cc_for_enable_disable_for_set_default__internal(parent_event_result){
+		this.cc_for_enable_disable_for_set_default__cc_for_set_default(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui unblock account"
@@ -3387,14 +3392,36 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "sub navigation ui set default"
-	sub_navigation_ui_set_default__cc_for_set_default() { 
+	sub_navigation_ui_set_default__cc_for_enable_disable_for_set_default() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="sub_navigation_ui_set_default"
 		let destn_id=""
 		let parent_source_id=""
-		let event_code="e_1672302355468"
-		let event_params={"caller_name":"sub_navigation_ui_set_default__cc_for_set_default","event_desc":"CC for set default","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_set_default","raiseparam":{}}
+		let event_code="e_1671021598364"
+		let event_params={"caller_name":"sub_navigation_ui_set_default__cc_for_enable_disable_for_set_default","event_desc":"CC for enable disable for set default","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_set_default","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_enable_disable_for_set_default__cc_for_set_default,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for enable disable for set default"
+	cc_for_enable_disable_for_set_default__cc_for_set_default(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_enable_disable_for_set_default"
+		let destn_id=""
+		let parent_source_id="sub_navigation_ui_set_default"
+		let event_code="e_1672239230605"
+		let event_params={"caller_name":"cc_for_enable_disable_for_set_default__cc_for_set_default","event_desc":"CC for set default","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"sub_navigation_ui_set_default","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}

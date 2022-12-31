@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27631 
+Build ID        : 27636 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-31 10:46 AM 
+Modified Date   : 2022-Dec-31 13:28 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_camt054
@@ -69,6 +69,7 @@ focustoelement(){
 		this.ctrl.notification_id.currency_format = ""
 		this.ctrl.notification_id.data_scale = ""
 		this.ctrl.notification_id.binding_name = "NOTIFICATION_ID"
+		this.ctrl.notification_id.hide_label = false
 		this.ctrl.notification_id.depends_on = ""
 		this.ctrl.notification_id.placeholder = ""
 		this.ctrl.notification_id.dynamic_param = ""
@@ -107,6 +108,7 @@ focustoelement(){
 		this.ctrl.ntfn_created_datetime.currency_format = ""
 		this.ctrl.ntfn_created_datetime.data_scale = ""
 		this.ctrl.ntfn_created_datetime.binding_name = "NTFN_CREATED_DATETIME"
+		this.ctrl.ntfn_created_datetime.hide_label = false
 		this.ctrl.ntfn_created_datetime.depends_on = ""
 		this.ctrl.ntfn_created_datetime.placeholder = ""
 		this.ctrl.ntfn_created_datetime.dynamic_param = ""
@@ -145,6 +147,7 @@ focustoelement(){
 		this.ctrl.iban.currency_format = ""
 		this.ctrl.iban.data_scale = ""
 		this.ctrl.iban.binding_name = "IBAN"
+		this.ctrl.iban.hide_label = false
 		this.ctrl.iban.depends_on = ""
 		this.ctrl.iban.placeholder = ""
 		this.ctrl.iban.dynamic_param = ""
@@ -183,6 +186,7 @@ focustoelement(){
 		this.ctrl.currency.currency_format = ""
 		this.ctrl.currency.data_scale = ""
 		this.ctrl.currency.binding_name = "CURRENCY"
+		this.ctrl.currency.hide_label = false
 		this.ctrl.currency.depends_on = ""
 		this.ctrl.currency.placeholder = ""
 		this.ctrl.currency.dynamic_param = ""
@@ -221,7 +225,8 @@ focustoelement(){
 		this.ctrl.memory12.accept_char = ""
 		this.ctrl.memory12.currency_format = ""
 		this.ctrl.memory12.data_scale = ""
-		this.ctrl.memory12.binding_name = "MI_CREATED_DATE"
+		this.ctrl.memory12.binding_name = "CREATED_DATE"
+		this.ctrl.memory12.hide_label = false
 		this.ctrl.memory12.depends_on = ""
 		this.ctrl.memory12.placeholder = ""
 		this.ctrl.memory12.dynamic_param = ""
@@ -260,6 +265,7 @@ focustoelement(){
 		this.ctrl.cr_dr_indicator.currency_format = ""
 		this.ctrl.cr_dr_indicator.data_scale = ""
 		this.ctrl.cr_dr_indicator.binding_name = "CR_DR_INDICATOR"
+		this.ctrl.cr_dr_indicator.hide_label = false
 		this.ctrl.cr_dr_indicator.depends_on = ""
 		this.ctrl.cr_dr_indicator.placeholder = ""
 		this.ctrl.cr_dr_indicator.dynamic_param = ""
@@ -299,6 +305,7 @@ focustoelement(){
 		this.ctrl.end_to_end_id.currency_format = ""
 		this.ctrl.end_to_end_id.data_scale = ""
 		this.ctrl.end_to_end_id.binding_name = "END_TO_END_ID"
+		this.ctrl.end_to_end_id.hide_label = false
 		this.ctrl.end_to_end_id.depends_on = ""
 		this.ctrl.end_to_end_id.placeholder = ""
 		this.ctrl.end_to_end_id.dynamic_param = ""

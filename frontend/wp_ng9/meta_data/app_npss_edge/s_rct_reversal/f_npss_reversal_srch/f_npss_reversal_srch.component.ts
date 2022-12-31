@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27613 
+Build ID        : 27636 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-29 13:17 PM 
+Modified Date   : 2022-Dec-31 13:28 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -304,6 +304,7 @@ focustoelement(){
 		this.ctrl.dbtr_iban.currency_format = ""
 		this.ctrl.dbtr_iban.data_scale = ""
 		this.ctrl.dbtr_iban.binding_name = "DBTR_IBAN"
+		this.ctrl.dbtr_iban.hide_label = false
 		this.ctrl.dbtr_iban.depends_on = ""
 		this.ctrl.dbtr_iban.placeholder = ""
 		this.ctrl.dbtr_iban.dynamic_param = ""

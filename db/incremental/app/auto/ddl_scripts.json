@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column DISPUTE_REF_NO CHARACTER VARYING(256), add column CHARGE_AMOUNT NUMERIC(9,2);","params" : [] }]

@@ -378,7 +378,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             if (intblkamt && reversalAmt) {
                                                                 if (Number(reversalAmt) > Number(intblkamt)) {
                                                                     objresponse.status = 'FAILURE'
-                                                                    objresponse.data = 'Reversal Amount is greater than Inter Bulk Settlement Amount'
+                                                                    objresponse.errdata = 'Reversal Amount is greater than Inter Bulk Settlement Amount'
                                                                     sendResponse(null, objresponse)
                                                                 } else {
                                                                     amount = reversalAmt
@@ -597,7 +597,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 }
                                                             } else {
                                                                 objresponse.status = 'FAILURE'
-                                                                objresponse.data = 'IntBlkAmt or Reversal Amount is Missing'
+                                                                objresponse.errdata = 'IntBlkAmt or Reversal Amount is Missing'
                                                                 sendResponse(null, objresponse)
                                                             }
 

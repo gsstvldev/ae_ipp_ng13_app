@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27638 
+Build ID        : 27639 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-31 13:25 PM 
+Modified Date   : 2022-Dec-31 13:38 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -14,12 +14,16 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_cs_outward_manual_initiationService} from '../../../custom_widget/npss_cs_outward_manual_initiation/npss_cs_outward_manual_initiation.service'
+import {npss_cs_send_to_checkerService} from '../../../custom_widget/npss_cs_send_to_checker/npss_cs_send_to_checker.service'
+import {npss_cs_manual_initiation_approveService} from '../../../custom_widget/npss_cs_manual_initiation_approve/npss_cs_manual_initiation_approve.service'
+import {npss_cs_manual_initiation_rejectService} from '../../../custom_widget/npss_cs_manual_initiation_reject/npss_cs_manual_initiation_reject.service'
 
 @Component({
 	selector: 's_rct_manual_initiation',
 	templateUrl: './s_rct_manual_initiation.component.html',
 	styleUrls: ['./s_rct_manual_initiation.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_outward_manual_initiationService,npss_cs_send_to_checkerService,npss_cs_manual_initiation_approveService,npss_cs_manual_initiation_rejectService]
 })
     
 // Start of class 
@@ -114,7 +118,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_outward_manual_initiationService:npss_cs_outward_manual_initiationService,private npss_cs_send_to_checkerService:npss_cs_send_to_checkerService,private npss_cs_manual_initiation_approveService:npss_cs_manual_initiation_approveService,private npss_cs_manual_initiation_rejectService:npss_cs_manual_initiation_rejectService) {
     
 	}
     
@@ -847,6 +851,51 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	//Handler for SELECTION_CHANGED event of "payment processing details"
 	payment_processing_details__selection_changed(){
 		this.payment_processing_details__svm_for_ppd_list()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui sent to checker"
+	navigation_ui_sent_to_checker__action_button_click(){
+		this.navigation_ui_sent_to_checker__e_1672493515462()
+	}
+
+	//Handler for INTERNAL event of "e 1672493515462"
+	e_1672493515462__internal(parent_event_result){
+		this.e_1672493515462__e_1672493534657(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1672493534657"
+	e_1672493534657__internal(parent_event_result){
+		this.e_1672493534657__e_1672493678659(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui accept"
+	navigation_ui_accept__action_button_click(){
+		this.navigation_ui_accept__e_1672493584178()
+	}
+
+	//Handler for INTERNAL event of "e 1672493584178"
+	e_1672493584178__internal(parent_event_result){
+		this.e_1672493584178__e_1672493597012(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1672493597012"
+	e_1672493597012__internal(parent_event_result){
+		this.e_1672493597012__e_1672493606875(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui reject"
+	navigation_ui_reject__action_button_click(){
+		this.navigation_ui_reject__e_1672493700138()
+	}
+
+	//Handler for INTERNAL event of "e 1672493700138"
+	e_1672493700138__internal(parent_event_result){
+		this.e_1672493700138__e_1672493719119(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1672493719119"
+	e_1672493719119__internal(parent_event_result){
+		this.e_1672493719119__e_1672493733400(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2305,7 +2354,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_outward_manual_initiationService.fn_npss_cs_outward_manual_initiation(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2476,6 +2525,201 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_20","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1672491762593","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS MI Process Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"VALUE_DATE","alias_name":"","mq_id":"MQ_1672489775952","date_format":true},{"column_name":"DBTRIBAN","alias_name":"","mq_id":"MQ_1672489781485","date_format":false},{"column_name":"DBTRACCTNAME","alias_name":"","mq_id":"MQ_1672489782613","date_format":false},{"column_name":"DRSORTCODE","alias_name":"","mq_id":"MQ_1672489782788","date_format":false},{"column_name":"CUSTOMER_POSTING_RESTRICTION_CODE","alias_name":"","mq_id":"MQ_1672489782964","date_format":false},{"column_name":"CUSTOMER_POSTING_RESTRICTION_DESCRIPTION","alias_name":"","mq_id":"MQ_1672489783132","date_format":false},{"column_name":"ACCOUNT_NUMBER","alias_name":"","mq_id":"MQ_1672489845885","date_format":false},{"column_name":"ACCOUNT_NAME","alias_name":"","mq_id":"MQ_1672489846054","date_format":false},{"column_name":"CDTRIBAN","alias_name":"","mq_id":"MQ_1672489861164","date_format":false},{"column_name":"CDTRACCTNAME","alias_name":"","mq_id":"MQ_1672489866763","date_format":false},{"column_name":"CRSORTCODE","alias_name":"","mq_id":"MQ_1672489872099","date_format":false},{"column_name":"BANK_NAME","alias_name":"","mq_id":"MQ_1672489877989","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1672490954517","date_format":false}],"joins":[]},"eq_text":"select  NPSST_ID,VALUE_DATE ,  DBTRIBAN ,  DBTRACCTNAME,  DRSORTCODE,  CLRSYSREF ,  PAYMENT_ENDTOEND_ID ,  CDTRIBAN,  CDTRACCTNAME,  CRSORTCODE,  BANK_NAME, CUSTOMER_POSTING_RESTRICTION_CODE, CUSTOMER_POSTING_RESTRICTION_DESCRIPTION, ACCOUNT_NUMBER, ACCOUNT_NAME from  (  select   NT.NPSST_ID,NT.VALUE_DATE,   NT.CDTR_IBAN as DBTRIBAN,   NT.CDTR_ACCT_NAME as DBTRACCTNAME,   NT.CR_SORT_CODE as DRSORTCODE,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.DBTR_IBAN as CDTRIBAN,   NT.DBTR_ACCT_NAME as CDTRACCTNAME,   NT.DR_SORT_CODE as CRSORTCODE,   CNCA.CUSTOMER_POSTING_RESTRICTION_DESCRIPTION,   CNCA.CUSTOMER_POSTING_RESTRICTION_CODE,   CNCA.ACCOUNT_NUMBER ,   CNCA.ACCOUNT_NAME ,   CMB.BANK_NAME  from   NPSS_TRANSACTIONS NT  left join CORE_NC_CBS_ACCOUNTS CNCA on   NT.DBTR_IBAN = CNCA.ALTERNATE_ACCOUNT_ID  inner join CORE_MEMBER_BANKS CMB on   NT.DR_SORT_CODE = CMB.BIC_CODE  ) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS MI Process Tran CCD","filter":[{"filter_name":"NPSST_ID","binding_name":"NPSST_ID","binding_value":"","source_name":"MI_LEVEL_NPSST_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"","group_no":""}],"databinding":[{"header":"DR Account Number","target_column":"CDTRIBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"DR Account Name","target_column":"CDTRACCTNAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"DR Sort Code","target_column":"CRSORTCODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Posting restriction code","target_column":"CUSTOMER_POSTING_RESTRICTION_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Posting restriction description","target_column":"CUSTOMER_POSTING_RESTRICTION_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Real Account No","target_column":"ACCOUNT_NUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Real Account Name","target_column":"ACCOUNT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Account number","target_column":"DBTRIBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Account Name","target_column":"DBTRACCTNAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Bank BIC","target_column":"DRSORTCODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Bank Name","target_column":"BANK_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Original E2E ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui sent to checker"
+	navigation_ui_sent_to_checker__e_1672493515462() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_sent_to_checker"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1672493515462"
+		let event_params={"caller_name":"navigation_ui_sent_to_checker__e_1672493515462","event_desc":"E_1672493515462","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_sent_to_checker","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1672493515462__e_1672493534657,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_send_to_checkerService.fn_npss_cs_send_to_checker(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1672493515462"
+	e_1672493515462__e_1672493534657(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1672493515462"
+		let destn_id=""
+		let parent_source_id="navigation_ui_sent_to_checker"
+		let event_code="e_1672493534657"
+		let event_params={"caller_name":"e_1672493515462__e_1672493534657","event_desc":"E_1672493534657","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been sent to checker successfully","root_source_id":"navigation_ui_sent_to_checker","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1672493534657__e_1672493678659,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1672493534657"
+	e_1672493534657__e_1672493678659(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1672493534657"
+		let destn_id=""
+		let parent_source_id="e_1672493515462"
+		let event_code="e_1672493678659"
+		let event_params={"caller_name":"e_1672493534657__e_1672493678659","event_desc":"E_1672493678659","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_sent_to_checker","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui accept"
+	navigation_ui_accept__e_1672493584178() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_accept"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1672493584178"
+		let event_params={"caller_name":"navigation_ui_accept__e_1672493584178","event_desc":"E_1672493584178","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_accept","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1672493584178__e_1672493597012,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_manual_initiation_approveService.fn_npss_cs_manual_initiation_approve(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1672493584178"
+	e_1672493584178__e_1672493597012(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1672493584178"
+		let destn_id=""
+		let parent_source_id="navigation_ui_accept"
+		let event_code="e_1672493597012"
+		let event_params={"caller_name":"e_1672493584178__e_1672493597012","event_desc":"E_1672493597012","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been approved successfully","root_source_id":"navigation_ui_accept","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1672493597012__e_1672493606875,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1672493597012"
+	e_1672493597012__e_1672493606875(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1672493597012"
+		let destn_id=""
+		let parent_source_id="e_1672493584178"
+		let event_code="e_1672493606875"
+		let event_params={"caller_name":"e_1672493597012__e_1672493606875","event_desc":"E_1672493606875","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_accept","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui reject"
+	navigation_ui_reject__e_1672493700138() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_reject"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1672493700138"
+		let event_params={"caller_name":"navigation_ui_reject__e_1672493700138","event_desc":"E_1672493700138","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_reject","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1672493700138__e_1672493719119,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_manual_initiation_rejectService.fn_npss_cs_manual_initiation_reject(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1672493700138"
+	e_1672493700138__e_1672493719119(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1672493700138"
+		let destn_id=""
+		let parent_source_id="navigation_ui_reject"
+		let event_code="e_1672493719119"
+		let event_params={"caller_name":"e_1672493700138__e_1672493719119","event_desc":"E_1672493719119","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been rejected successfully","root_source_id":"navigation_ui_reject","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1672493719119__e_1672493733400,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1672493719119"
+	e_1672493719119__e_1672493733400(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1672493719119"
+		let destn_id=""
+		let parent_source_id="e_1672493700138"
+		let event_code="e_1672493733400"
+		let event_params={"caller_name":"e_1672493719119__e_1672493733400","event_desc":"E_1672493733400","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_reject","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

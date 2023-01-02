@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
     /*  Created By :   Siva Harish
     Created Date :31/12/2022
@@ -26,6 +27,7 @@ app.post('/', function(appRequest, appResponse, next) {
     var headers = appRequest.headers; // header details 
     var objSessionLogInfo = null; // set value is null
     var fs = require("fs");
+    var moment = require('moment')
     var reqAsync = require('async');
     var success_process_status, success_status;
     var Id = params.Id;
@@ -88,13 +90,42 @@ app.post('/', function(appRequest, appResponse, next) {
                                         }
 
                                         if (arrresultObj.participation_flag == 'Y') {
-                                            dataobj.fromDate = arrresultObj.from_date,
+                                            if(arrresultObj.from_date){
+                                                dataobj.fromDate = moment(arrresultObj.from_date).format('DDMMYYYY')
+                                           
+                                               
 
-                                                dataobj.fromTime = arrresultObj.from_time,
+                                            }else{
+                                                dataobj.fromDate = ''
+                                            }
+                                        
+                                            if(arrresultObj.from_time){
+                                               var Time = arrresultObj.from_time.split(':')
+                                               var remAMPM = Time[1].split(' ')
+                                               dataobj.fromTime = Time[0]+remAMPM[0]
+                                            }else{
+                                                dataobj.fromTime = ''
+                                            }
+                                               
 
-                                                dataobj.toDate = arrresultObj.to_date,
+                                            if(arrresultObj.to_date){
+                                                 dataobj.toDate = moment(arrresultObj.to_date).format('DDMMYYYY')
+                                               
+                                                 
+ 
+                                             }else{
+                                                 dataobj.toDate = ''
+                                             }
 
-                                                dataobj.toTime = arrresultObj.to_time,
+                                             if(arrresultObj.to_time){
+                                                var Time = arrresultObj.to_time.split(':')
+                                                var remAMPM = Time[1].split(' ')
+                                                dataobj.toTime = Time[0]+remAMPM[0]
+                                             }else{
+                                                dataobj.toTime = ''
+                                             }
+
+                                                // dataobj.toTime = arrresultObj.to_time,
 
                                                 dataobj.Action = arrresultObj.action
                                         }
@@ -227,6 +258,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

@@ -32,7 +32,7 @@ export class torus_cs_set_rule_mi_paramService {
             "rule_code":  this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_RULE_CODE"),
             "TenantId":  this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
-        this.CallUrlWithData(ClientParams, screenInstance, internals);
+        //this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
   CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/torus_cs_set_rule_mi_param/', ClientParams)

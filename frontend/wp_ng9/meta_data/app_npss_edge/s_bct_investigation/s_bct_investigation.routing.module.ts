@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27641 
+Build ID        : 27651 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-02 5:44 AM 
+Modified Date   : 2023-Jan-02 8:12 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_investigation

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27649 
+Build ID        : 27651 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-02 6:59 AM 
+Modified Date   : 2023-Jan-02 8:12 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -51,12 +51,12 @@ focustoelement(){
 		//Properties of memory91
 		this.ctrl.memory91 = {}
 		this.ctrl.memory91.id = "RN01CN1"
-		this.ctrl.memory91.desc = "Cdtr IBAN"
+		this.ctrl.memory91.desc = "Account number"
 		this.ctrl.memory91.visible = true
-		this.ctrl.memory91.label_name = "Cdtr IBAN"
+		this.ctrl.memory91.label_name = "Account number"
 		this.ctrl.memory91.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory91.df_description = "Column Group 1"
-		this.ctrl.memory91.uictrl_code = "CDN_CTRL"
+		this.ctrl.memory91.uictrl_code = "TXT"
 		this.ctrl.memory91.target_column = "memory91"
 		this.ctrl.memory91.data_type = "TEXT"
 		this.ctrl.memory91.data_length = 64
@@ -90,9 +90,9 @@ focustoelement(){
 		//Properties of memory89
 		this.ctrl.memory89 = {}
 		this.ctrl.memory89.id = "RN01CN2"
-		this.ctrl.memory89.desc = "Created date"
+		this.ctrl.memory89.desc = "Transaction date range"
 		this.ctrl.memory89.visible = true
-		this.ctrl.memory89.label_name = "Created date"
+		this.ctrl.memory89.label_name = "Transaction date range"
 		this.ctrl.memory89.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory89.df_description = "Column Group 1"
 		this.ctrl.memory89.uictrl_code = "CDN_DATE"
@@ -129,9 +129,9 @@ focustoelement(){
 		//Properties of memory92
 		this.ctrl.memory92 = {}
 		this.ctrl.memory92.id = "RN11CN3"
-		this.ctrl.memory92.desc = "Intrbk Sttlm Amnt"
+		this.ctrl.memory92.desc = "Amount range"
 		this.ctrl.memory92.visible = true
-		this.ctrl.memory92.label_name = "Intrbk Sttlm Amnt"
+		this.ctrl.memory92.label_name = "Amount range"
 		this.ctrl.memory92.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory92.df_description = "Column Group 1"
 		this.ctrl.memory92.uictrl_code = "CDN_CUR_CTRL"
@@ -157,7 +157,7 @@ focustoelement(){
 		this.ctrl.memory92.show = true
 		this.ctrl.memory92.sub_content = ""
 		this.ctrl.memory92.required = false
-		this.ctrl.memory92.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
+		this.ctrl.memory92.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTZERO","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.memory92.targetcolumn_lower = "memory92"
 		this.ctrl.memory92.disabled = false
 		this.ctrl.memory92.view_name = "f_npss_manual_initiation_srch"
@@ -207,9 +207,9 @@ focustoelement(){
 		//Properties of payment_endtoend_id
 		this.ctrl.payment_endtoend_id = {}
 		this.ctrl.payment_endtoend_id.id = "RN11CN4"
-		this.ctrl.payment_endtoend_id.desc = "Payment Endtoend Id"
+		this.ctrl.payment_endtoend_id.desc = "Original E2E reference Number"
 		this.ctrl.payment_endtoend_id.visible = true
-		this.ctrl.payment_endtoend_id.label_name = "Payment Endtoend Id"
+		this.ctrl.payment_endtoend_id.label_name = "Original E2E reference Number"
 		this.ctrl.payment_endtoend_id.df_code = "DF_1304_1665901396659"
 		this.ctrl.payment_endtoend_id.df_description = "Column Group 1"
 		this.ctrl.payment_endtoend_id.uictrl_code = "TXT"

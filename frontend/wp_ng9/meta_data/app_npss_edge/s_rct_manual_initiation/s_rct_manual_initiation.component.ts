@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27649 
+Build ID        : 27651 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-02 6:59 AM 
+Modified Date   : 2023-Jan-02 8:12 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -552,7 +552,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.original_transaction_details.views = {}
 		this.original_transaction_details.onChangecomponent = new EventEmitter<any>()
 		this.original_transaction_details.show = true
-		this.original_transaction_details.dynamic_param = {}
+		this.original_transaction_details.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
 	
 		// Component level properties - "Payment Processing Details" 
 		this.payment_processing_details.uictrl_code = "datatable"
@@ -564,7 +564,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.payment_processing_details.views = {}
 		this.payment_processing_details.onChangecomponent = new EventEmitter<any>()
 		this.payment_processing_details.show = true
-		this.payment_processing_details.dynamic_param = {}
+		this.payment_processing_details.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
 	
 		// Component level properties - "Payment Processing Details UI" 
 		this.payment_processing_details_ui.uictrl_code = "dynamic_ui"

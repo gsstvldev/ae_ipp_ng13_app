@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27631 
+Build ID        : 27647 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-31 10:46 AM 
+Modified Date   : 2023-Jan-02 6:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_camt052
@@ -46,9 +46,6 @@ export class s_view_camt052Component implements OnInit,AfterViewInit {
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
 	navigation_ui_view_message_data : any = {}
-	navigation_ui_export_as_pdf : any = {}
-	navigation_ui_export_as_excel : any = {}
-	navigation_ui_print : any = {}
 	message_data_ui : any = {}
 	search : any = {}
 	search_clear : any = {}
@@ -107,33 +104,6 @@ export class s_view_camt052Component implements OnInit,AfterViewInit {
 		this.navigation_ui_view_message_data.dynamic_param = {}
 		this.navigation_ui_view_message_data.role = []
 		this.navigation_ui_view_message_data.action = ""
-		
-		// "Export as PDF" Button of "Navigation UI" component
-		this.navigation_ui_export_as_pdf.label_name = "Export as PDF"
-		this.navigation_ui_export_as_pdf.show = true
-		this.navigation_ui_export_as_pdf.disabled = true
-		this.navigation_ui_export_as_pdf.params = {"icon_only":false,"uicgcc_style":"fa fa-file-pdf-o"}
-		this.navigation_ui_export_as_pdf.dynamic_param = {}
-		this.navigation_ui_export_as_pdf.role = []
-		this.navigation_ui_export_as_pdf.action = ""
-		
-		// "Export as Excel" Button of "Navigation UI" component
-		this.navigation_ui_export_as_excel.label_name = "Export as Excel"
-		this.navigation_ui_export_as_excel.show = true
-		this.navigation_ui_export_as_excel.disabled = true
-		this.navigation_ui_export_as_excel.params = {"icon_only":false,"uicgcc_style":"fa fa-file-excel-o"}
-		this.navigation_ui_export_as_excel.dynamic_param = {}
-		this.navigation_ui_export_as_excel.role = []
-		this.navigation_ui_export_as_excel.action = ""
-		
-		// "Print" Button of "Navigation UI" component
-		this.navigation_ui_print.label_name = "Print"
-		this.navigation_ui_print.show = true
-		this.navigation_ui_print.disabled = true
-		this.navigation_ui_print.params = {"icon_only":false,"uicgcc_style":"fa fa-print"}
-		this.navigation_ui_print.dynamic_param = {}
-		this.navigation_ui_print.role = []
-		this.navigation_ui_print.action = ""
 	
 		// Component level properties - "Message Data UI" 
 		this.message_data_ui.uictrl_code = "dynamic_ui"
@@ -240,9 +210,6 @@ export class s_view_camt052Component implements OnInit,AfterViewInit {
 	list__selection_changed(){
 		this.list__svm_for_list()
 		this.list__ssr_for_md_ui()
-		this.list__ee_for_print()
-		this.list__ee_for_pdf()
-		this.list__ee_for_excel()
 		this.list__ee_for_vmd()
 	}
 
@@ -440,69 +407,6 @@ export class s_view_camt052Component implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "list"
-	list__ee_for_print() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_ui_print"
-		let parent_source_id=""
-		let event_code="e_1672481553300"
-		let event_params={"caller_name":"list__ee_for_print","event_desc":"EE for Print","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__ee_for_pdf() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_ui_export_as_pdf"
-		let parent_source_id=""
-		let event_code="e_1672481577443"
-		let event_params={"caller_name":"list__ee_for_pdf","event_desc":"EE for PDF","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__ee_for_excel() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_ui_export_as_excel"
-		let parent_source_id=""
-		let event_code="e_1672481593817"
-		let event_params={"caller_name":"list__ee_for_excel","event_desc":"EE for Excel","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
 	list__ee_for_vmd() { 
 		let Dest_Is_ctrl=true
 		
@@ -615,7 +519,7 @@ export class s_view_camt052Component implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1672475044312"
-		let event_params={"caller_name":"navigation_ui_search__spap_for_nav_search","event_desc":"SPAP for Nav Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_nav_search","selector":"p_search_layout","profile_code":"BTL_1304_1672474452916","window_title":"Search","window_height":450,"window_width":"650px","window_close_icon":"Y","eventdes":"spap_for_nav_search","eventcode":"E_1672475044312"}}
+		let event_params={"caller_name":"navigation_ui_search__spap_for_nav_search","event_desc":"SPAP for Nav Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_nav_search","selector":"p_search_layout","profile_code":"BTL_1304_1672474452916","window_title":"Search","window_height":450,"window_width":"900px","window_close_icon":"Y","eventdes":"spap_for_nav_search","eventcode":"E_1672475044312"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}

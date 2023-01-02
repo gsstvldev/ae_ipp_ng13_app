@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27636 
+Build ID        : 27647 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-31 13:28 PM 
+Modified Date   : 2023-Jan-02 6:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_camt054
@@ -90,9 +90,9 @@ focustoelement(){
 		//Properties of ntfn_created_datetime
 		this.ctrl.ntfn_created_datetime = {}
 		this.ctrl.ntfn_created_datetime.id = "RN01CN2"
-		this.ctrl.ntfn_created_datetime.desc = "Ntfn Created Datetime"
+		this.ctrl.ntfn_created_datetime.desc = "Notification Created Datetime"
 		this.ctrl.ntfn_created_datetime.visible = true
-		this.ctrl.ntfn_created_datetime.label_name = "Ntfn Created Datetime"
+		this.ctrl.ntfn_created_datetime.label_name = "Notification Created Datetime"
 		this.ctrl.ntfn_created_datetime.df_code = "DF_1304_1672472068656"
 		this.ctrl.ntfn_created_datetime.df_description = "Column Group 1"
 		this.ctrl.ntfn_created_datetime.uictrl_code = "CDN_CTRL"
@@ -213,7 +213,7 @@ focustoelement(){
 		this.ctrl.memory12.label_name = "Created Date"
 		this.ctrl.memory12.df_code = "DF_1304_1672472068656"
 		this.ctrl.memory12.df_description = "Column Group 1"
-		this.ctrl.memory12.uictrl_code = "DTP"
+		this.ctrl.memory12.uictrl_code = "CDN_DATE"
 		this.ctrl.memory12.target_column = "memory12"
 		this.ctrl.memory12.data_type = "DATETIME"
 		this.ctrl.memory12.data_length = 0

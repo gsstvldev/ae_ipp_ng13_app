@@ -3,26 +3,24 @@
 <fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
 	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_manual_initiation_ui="ngForm">
 <div id="RN31" class="row">
-	<div #npss_manual_initiation_ui_value_date id="RN31CN6" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('value_date')" >
+	<div #npss_manual_initiation_ui_value_date id="RN31CN6" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('value_date')" >
 				<dtp [ctrl_id]="'npss_manual_initiation_ui_value_date'" [comp_id]="comp_id" [ctrl]="ctrl.value_date" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></dtp>
 	</div>
-	<div  id="RN31CN6001" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory95')" >
+	<div  id="RN31CN6001" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory95')" >
 				<txt [ctrl_id]="'npss_manual_initiation_ui_memory95'" [comp_id]="comp_id" [ctrl]="ctrl.memory95" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN01CN1" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('charge_amount')" >
+				<txt [ctrl_id]="'npss_manual_initiation_ui_charge_amount'" [comp_id]="comp_id" [ctrl]="ctrl.charge_amount" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
 </div>
 <div id="RN01" class="row">
-	<div  id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('charge_amount')" >
-				<txt [ctrl_id]="'npss_manual_initiation_ui_charge_amount'" [comp_id]="comp_id" [ctrl]="ctrl.charge_amount" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
-	</div>
-	<div  id="RN01CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('intrbk_sttlm_cur')" >
+	<div  id="RN01CN2" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('intrbk_sttlm_cur')" >
 				<txt [ctrl_id]="'npss_manual_initiation_ui_intrbk_sttlm_cur'" [comp_id]="comp_id" [ctrl]="ctrl.intrbk_sttlm_cur" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
-</div>
-<div id="RN11" class="row">
-	<div  id="RN11CN3" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('intrbk_sttlm_amnt')" >
+	<div  id="RN11CN3" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('intrbk_sttlm_amnt')" >
 				<cur [ctrl_id]="'npss_manual_initiation_ui_intrbk_sttlm_amnt'" [comp_id]="comp_id" [ctrl]="ctrl.intrbk_sttlm_amnt" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cur>
 	</div>
-	<div  id="RN11CN4" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('dispute_ref_no')" >
+	<div  id="RN11CN4" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('dispute_ref_no')" >
 				<txt [ctrl_id]="'npss_manual_initiation_ui_dispute_ref_no'" [comp_id]="comp_id" [ctrl]="ctrl.dispute_ref_no" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
 </div>

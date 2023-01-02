@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27639 
+Build ID        : 27643 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-31 13:38 PM 
+Modified Date   : 2023-Jan-02 5:44 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of value_date
 		this.ctrl.value_date = {}
 		this.ctrl.value_date.id = "RN31CN6"
-		this.ctrl.value_date.desc = "Value Date"
+		this.ctrl.value_date.desc = "Txn Value Date"
 		this.ctrl.value_date.visible = true
-		this.ctrl.value_date.label_name = "Value Date"
+		this.ctrl.value_date.label_name = "Txn Value Date"
 		this.ctrl.value_date.df_code = "DF_1304_1665901396659"
 		this.ctrl.value_date.df_description = "Column Group 1"
 		this.ctrl.value_date.uictrl_code = "DTP"
@@ -127,9 +127,9 @@ focustoelement(){
 		//Properties of charge_amount
 		this.ctrl.charge_amount = {}
 		this.ctrl.charge_amount.id = "RN01CN1"
-		this.ctrl.charge_amount.desc = "Charge Amount"
+		this.ctrl.charge_amount.desc = "Txn Charges AED"
 		this.ctrl.charge_amount.visible = true
-		this.ctrl.charge_amount.label_name = "Charge Amount"
+		this.ctrl.charge_amount.label_name = "Txn Charges AED"
 		this.ctrl.charge_amount.df_code = "DF_1304_1665901396659"
 		this.ctrl.charge_amount.df_description = "Column Group 1"
 		this.ctrl.charge_amount.uictrl_code = "TXT"
@@ -165,9 +165,9 @@ focustoelement(){
 		//Properties of intrbk_sttlm_cur
 		this.ctrl.intrbk_sttlm_cur = {}
 		this.ctrl.intrbk_sttlm_cur.id = "RN01CN2"
-		this.ctrl.intrbk_sttlm_cur.desc = "Intrbk Sttlm Cur"
+		this.ctrl.intrbk_sttlm_cur.desc = "TXN Currency"
 		this.ctrl.intrbk_sttlm_cur.visible = true
-		this.ctrl.intrbk_sttlm_cur.label_name = "Intrbk Sttlm Cur"
+		this.ctrl.intrbk_sttlm_cur.label_name = "TXN Currency"
 		this.ctrl.intrbk_sttlm_cur.df_code = "DF_1304_1665901396659"
 		this.ctrl.intrbk_sttlm_cur.df_description = "Column Group 1"
 		this.ctrl.intrbk_sttlm_cur.uictrl_code = "TXT"
@@ -203,9 +203,9 @@ focustoelement(){
 		//Properties of intrbk_sttlm_amnt
 		this.ctrl.intrbk_sttlm_amnt = {}
 		this.ctrl.intrbk_sttlm_amnt.id = "RN11CN3"
-		this.ctrl.intrbk_sttlm_amnt.desc = "Intrbk Sttlm Amnt"
+		this.ctrl.intrbk_sttlm_amnt.desc = "TXN Amount in AED"
 		this.ctrl.intrbk_sttlm_amnt.visible = true
-		this.ctrl.intrbk_sttlm_amnt.label_name = "Intrbk Sttlm Amnt"
+		this.ctrl.intrbk_sttlm_amnt.label_name = "TXN Amount in AED"
 		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
 		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
 		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CUR"
@@ -241,9 +241,9 @@ focustoelement(){
 		//Properties of dispute_ref_no
 		this.ctrl.dispute_ref_no = {}
 		this.ctrl.dispute_ref_no.id = "RN11CN4"
-		this.ctrl.dispute_ref_no.desc = "Dispute Ref No"
+		this.ctrl.dispute_ref_no.desc = "Dispute Reference Number"
 		this.ctrl.dispute_ref_no.visible = true
-		this.ctrl.dispute_ref_no.label_name = "Dispute Ref No"
+		this.ctrl.dispute_ref_no.label_name = "Dispute Reference Number"
 		this.ctrl.dispute_ref_no.df_code = "DF_1304_1665901396659"
 		this.ctrl.dispute_ref_no.df_description = "Column Group 1"
 		this.ctrl.dispute_ref_no.uictrl_code = "TXT"

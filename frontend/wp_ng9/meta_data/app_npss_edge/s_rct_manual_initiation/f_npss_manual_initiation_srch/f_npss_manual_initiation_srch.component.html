@@ -3,24 +3,26 @@
 <fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
 	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_manual_initiation_srch="ngForm">
 <div id="RN01" class="row">
-	<div #npss_manual_initiation_srch_memory91 id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory91')" >
-				<txt [ctrl_id]="'npss_manual_initiation_srch_memory91'" [comp_id]="comp_id" [ctrl]="ctrl.memory91" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	<div #npss_manual_initiation_srch_memory91 id="RN01CN1" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory91')" >
+				<cdn_ctrl [ctrl_id]="'npss_manual_initiation_srch_memory91'" [comp_id]="comp_id" [ctrl]="ctrl.memory91" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
 	</div>
-	<div  id="RN01CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory89')" >
-				<dtp [ctrl_id]="'npss_manual_initiation_srch_memory89'" [comp_id]="comp_id" [ctrl]="ctrl.memory89" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></dtp>
+</div>
+<div id="RN31" class="row">
+	<div  id="RN01CN2" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory89')" >
+				<cdn_date [ctrl_id]="'npss_manual_initiation_srch_memory89'" [comp_id]="comp_id" [ctrl]="ctrl.memory89" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
 	</div>
 </div>
 <div id="RN11" class="row">
-	<div  id="RN11CN3" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory92')" >
-				<cur [ctrl_id]="'npss_manual_initiation_srch_memory92'" [comp_id]="comp_id" [ctrl]="ctrl.memory92" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cur>
-	</div>
-	<div  id="RN11CN4" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('payment_endtoend_id')" >
-				<txt [ctrl_id]="'npss_manual_initiation_srch_payment_endtoend_id'" [comp_id]="comp_id" [ctrl]="ctrl.payment_endtoend_id" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	<div  id="RN11CN3" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory92')" >
+				<cdn_cur_ctrl [ctrl_id]="'npss_manual_initiation_srch_memory92'" [comp_id]="comp_id" [ctrl]="ctrl.memory92" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_cur_ctrl>
 	</div>
 </div>
 <div id="RN21" class="row">
 	<div  id="RN21CN6" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('uetr')" >
 				<txt [ctrl_id]="'npss_manual_initiation_srch_uetr'" [comp_id]="comp_id" [ctrl]="ctrl.uetr" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN11CN4" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('payment_endtoend_id')" >
+				<txt [ctrl_id]="'npss_manual_initiation_srch_payment_endtoend_id'" [comp_id]="comp_id" [ctrl]="ctrl.payment_endtoend_id" [model]="screen_instance[this.comp_id].f_npss_manual_initiation_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
 </div>
 	</form>

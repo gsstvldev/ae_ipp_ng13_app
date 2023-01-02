@@ -53,7 +53,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     var success_status
                     try {
                         var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                        ExecuteQuery1(ruleqry, function (arrrule) {
+                         ExecuteQuery1(ruleqry, function (arrrule) {
                             try {
                                 if (arrrule.length > 0) {
                                     success_process_status = arrrule[0].success_process_status;

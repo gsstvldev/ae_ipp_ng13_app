@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27668 
+Build ID        : 27673 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-02 15:48 PM 
+Modified Date   : 2023-Jan-03 5:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -14,6 +14,7 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {torus_cs_set_rule_mi_paramService} from '../../../custom_widget/torus_cs_set_rule_mi_param/torus_cs_set_rule_mi_param.service'
 import {npss_cs_outward_manual_initiationService} from '../../../custom_widget/npss_cs_outward_manual_initiation/npss_cs_outward_manual_initiation.service'
 import {npss_cs_send_to_checkerService} from '../../../custom_widget/npss_cs_send_to_checker/npss_cs_send_to_checker.service'
 import {npss_cs_manual_initiation_approveService} from '../../../custom_widget/npss_cs_manual_initiation_approve/npss_cs_manual_initiation_approve.service'
@@ -23,7 +24,7 @@ import {npss_cs_manual_initiation_rejectService} from '../../../custom_widget/np
 	selector: 's_rct_manual_initiation',
 	templateUrl: './s_rct_manual_initiation.component.html',
 	styleUrls: ['./s_rct_manual_initiation.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_outward_manual_initiationService,npss_cs_send_to_checkerService,npss_cs_manual_initiation_approveService,npss_cs_manual_initiation_rejectService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,torus_cs_set_rule_mi_paramService,npss_cs_outward_manual_initiationService,npss_cs_send_to_checkerService,npss_cs_manual_initiation_approveService,npss_cs_manual_initiation_rejectService]
 })
     
 // Start of class 
@@ -118,7 +119,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_outward_manual_initiationService:npss_cs_outward_manual_initiationService,private npss_cs_send_to_checkerService:npss_cs_send_to_checkerService,private npss_cs_manual_initiation_approveService:npss_cs_manual_initiation_approveService,private npss_cs_manual_initiation_rejectService:npss_cs_manual_initiation_rejectService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private torus_cs_set_rule_mi_paramService:torus_cs_set_rule_mi_paramService,private npss_cs_outward_manual_initiationService:npss_cs_outward_manual_initiationService,private npss_cs_send_to_checkerService:npss_cs_send_to_checkerService,private npss_cs_manual_initiation_approveService:npss_cs_manual_initiation_approveService,private npss_cs_manual_initiation_rejectService:npss_cs_manual_initiation_rejectService) {
     
 	}
     
@@ -658,6 +659,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "svm for queue"
 	svm_for_queue__internal(parent_event_result){
 		this.svm_for_queue__cc_for_queue(parent_event_result)
+		this.svm_for_queue__e_1672725032440(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "cc for queue"
@@ -1221,7 +1223,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let event_code="e_1666857327033"
 		let event_params={"caller_name":"queue__svm_for_queue","event_desc":"SVM for Queue","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
 		let handler_code="set_value_to_memory"
-		let internals="svm_for_queue__cc_for_queue,"
+		let internals="svm_for_queue__cc_for_queue,svm_for_queue__e_1672725032440,"
 		let event_data={"queue":{"e_1666857327033":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_1","event_code":"E_1666857327033","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"BULK","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"},{"type":"LOCAL","column_name":"PROCESSING_SYSTEM","level":"MI_LEVEL","name":"MI_LEVEL_PROCESSING_SYSTEM","setd3name":"PROCESSING_SYSTEM"},{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"},{"type":"HARDCODED","column_name":"MI_PL_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_RULE","setd3name":"RULE"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1672490830459","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS PSPQ PLTransaction Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1672410362411","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1672410362790","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1672410364150","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESS_STATUS,  STATUS,  PROCESSING_SYSTEM from  (  select   NT.CREATED_DATE,   NTPL.STATUS,   NTPL.PROCESS_STATUS,   NT.UETR,   NT.PROCESSING_SYSTEM,   NT.TENANT_ID,   NT.MODIFIED_DATE,   NT.MODIFIED_DATE_UTC,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   NT.CREATED_BY,   NT.CREATED_BY_NAME,   NT.SYSTEM_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER,   NT.DEPARTMENT_CODE,   NT.VALUE_DATE,   NT.DBTR_ACCT_NO,   NT.CDTR_ACCT_NO,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.INTRBK_STTLM_AMNT  from   NPSS_TRANSACTIONS NT  inner join NPSS_TRN_PROCESS_LOG NTPL on   NT.UETR = NTPL.UETR  left join TRANSACTION_SET TS on   NT.NPSST_ID = TS.TRN_ID   and NT.DTT_CODE = TS.DTT_CODE  inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on   NTPL.STATUS = QR.PROCESS_QUEUE_STATUS   and NTPL.PROCESS_STATUS = QR.QUEUE_CODE  inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on   NTPL.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS PSPQ PL Transaction Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"Department_code","binding_name":"Department_code","binding_value":"","source_name":"Department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -1248,6 +1250,28 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "svm for queue"
+	svm_for_queue__e_1672725032440(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="svm_for_queue"
+		let destn_id=""
+		let parent_source_id="queue"
+		let event_code="e_1672725032440"
+		let event_params={"caller_name":"svm_for_queue__e_1672725032440","event_desc":"E_1672725032440","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_set_rule_mi_paramService.fn_torus_cs_set_rule_mi_param(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

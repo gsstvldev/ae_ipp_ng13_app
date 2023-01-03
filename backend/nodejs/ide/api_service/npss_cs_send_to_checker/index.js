@@ -8,11 +8,12 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 try {
     /*   Created By :Siva Harish
     Created Date :02-01-2023
-    Modified By : 
-    Modified Date :    
+    Modified By : Siva Harish
+    Modified Date : 03-01-2023   
     
     */
     var serviceName = 'NPSS (CS) Send To Checker';
@@ -139,19 +140,11 @@ try {
                                                                     var url = arrurl[0].param_detail;
                                                                     var amount
 
-                                                                    var intblkamt =  arrprocesslog[0].intrbk_sttlm_amnt
-                                                                    var reversalAmt = arrprocesslog[0].reversal_amount
-                                                                    if (intblkamt && reversalAmt) {
-                                                                        if (Number(reversalAmt) > Number(intblkamt)) {
-
-                                                                            objresponse.status = 'FAILURE'
-                                                                            objresponse.data = 'Reversal Amount is greater than Inter Bulk Settlement Amount'
-                                                                            sendResponse(null, objresponse)
-
-
-                                                                        } else {
+                                                                     amount =  arrprocesslog[0].intrbk_sttlm_amnt
+                                                                   
+                                                                   
                                                                             apiName = 'Manual Initiation Reserve Fund Api'
-                                                                            amount = reversalAmt
+                                                                          
                                                                           var callapi = async () =>{
                                                                             var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam)
 
@@ -199,12 +192,8 @@ try {
                                                                                 
 
                                                                             
-                                                                        }
-                                                                    } else {
-                                                                        objresponse.status = 'FAILURE'
-                                                                        objresponse.data = 'Reversal Amount or Inter Bulk Settlement Amount is Missing'
-                                                                        sendResponse(null, objresponse)
-                                                                    }
+                                                                        
+                                                                    
 
 
 
@@ -452,7 +441,7 @@ try {
                         var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
 
                         var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status = 'IP_RCT_REV_INAU_POSTING_FAILURE' and uetr = '${arrprocesslog[0].uetr}'`
-                        var TakerevId = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
+                       
 
                         var parameter = {}
                         ExecuteQuery1(TakeAcctInf, function (arrActInf) {
@@ -462,33 +451,27 @@ try {
                                     parameter.inactive_marker = arrActInf[0].inactive_marker || '',
                                     parameter.currency = arrActInf[0].currency || '',
                                     parameter.alternate_account_id = arrActInf[0].alternate_account_id || ''
-                                ExecuteQuery1(TakeCount, function (arrCount) {
-                                    ExecuteQuery1(TakerevId, function (arrRevId) {
-                                        if (arrRevId.length > 0) {
-                                            if (arrRevId[0].process_ref_no != null) {
+                                ExecuteQuery1(TakeCount, function (arrCount) {                                        
+                                            if (arrprocesslog[0].clrsysref) {
                                                 if (arrCount[0].counts.length == 1) {
                                                     var count = Number(arrCount[0].counts)
                                                     count++
-                                                    parameter.reverseId = arrRevId[0].process_ref_no + '.0' + count
+                                                    parameter.reverseId = arrprocesslog[0].clrsysref + '.0' + count
                                                     resolve(parameter)
                                                 } else {
                                                     var count = Number(arrCount[0].counts)
                                                     count++
-                                                    parameter.reverseId = arrRevId[0].process_ref_no + '.' + count
+                                                    parameter.reverseId = arrprocesslog[0].clrsysref + '.' + count
                                                     resolve(parameter)
                                                 }
                                             } else {
 
-                                                objresponse.status = "Reversal Process Ref no is Missing"
+                                                objresponse.status = "Clrsysref is not found in tran"
                                                 sendResponse(null, objresponse)
                                             }
-                                        } else {
+                                        
 
-                                            objresponse.status = "No data found for reversal process ref no"
-                                            sendResponse(null, objresponse)
-                                        }
-
-                                    })
+                                   
                                 })
                             } else {
                                 console.log("No Data found in accounts table");
@@ -612,6 +595,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

@@ -93,9 +93,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 else {
                                                     lclinstrm = ""
                                                 }
-                                                var takereturncode = `select cbuae_return_code  from npss_trn_process_log  where  status = 'IP_RCT_RR_RETURN_READY' and uetr = '${arrprocesslog[0].uetr}'`;
-                                                ExecuteQuery1(takereturncode, async function (arrreturncode) {
-                                                    if (arrreturncode.length > 0) {
+                                                
+                                                ExecuteQuery1(take_api_params, async function (arrreturncode) {
+                                                   
 
                                                         // Logic For Taking Reversal Id and Taking PostingRefno and account Information only for auth004 api call
                                                         reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog)
@@ -103,15 +103,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_AUTH_PACS004' and param_code='URL'`;
                                                         var amount
 
-                                                        var intblkamt = arrprocesslog[0].intrbk_sttlm_amnt
-                                                        var reversalAmt = arrprocesslog[0].reversal_amount
-                                                        if (intblkamt && reversalAmt) {
-                                                            if (Number(reversalAmt) > Number(intblkamt)) {
-                                                                objresponse.status = 'FAILURE'
-                                                                objresponse.errdata = 'Reversal Amount is greater than Inter Bulk Settlement Amount'
-                                                                sendResponse(null, objresponse)
-                                                            } else {
-                                                                amount = reversalAmt
+                                                        amount = arrprocesslog[0].intrbk_sttlm_amnt
+                                                      
+                                                               
                                                                 ExecuteQuery1(take_api_url, function (arrurl) {
                                                                     if (arrurl.length) {
                                                                         var url = arrurl[0].param_detail;
@@ -186,20 +180,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         sendResponse(null, objresponse)
                                                                     }
                                                                 })
-                                                            }
-                                                        } else {
-                                                            objresponse.status = 'FAILURE'
-                                                            objresponse.errdata = 'IntBlkAmt or Reversal Amount is Missing'
-                                                            sendResponse(null, objresponse)
-                                                        }
+                                                          
+                                                       
 
 
 
-                                                    } else {
-                                                        objresponse.status = "FAILURE"
-                                                        objresponse.errdata = "CBUAE Return Code Not Found"
-                                                        sendResponse(null, objresponse)
-                                                    }
+                                                   
                                                 })
 
 
@@ -564,7 +550,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
                             var TakeprssRefno = `select process_ref_no  from npss_trn_process_log  where uetr = '${arrprocesslog[0].uetr}' and status = 'IP_RCT_REV_INAU_POSTING_SUCCESS'`;
                             var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('IP_RCT_REV_INAU_POSTING_SUCCESS','IP_RCT_REV_INAU_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
-                            var TakerevId = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
+                            
                             ExecuteQuery1(TakeprssRefno, function (arrprssRefno) {
                                 if (arrprssRefno.length > 0) {
                                     var parameter = {}
@@ -578,31 +564,27 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     parameter.currency = arrActInf[0].currency || '',
                                                     parameter.alternate_account_id = arrActInf[0].alternate_account_id || ''
                                                 ExecuteQuery1(TakeCount, function (arrCount) {
-                                                    ExecuteQuery1(TakerevId, function (arrRevId) {
-                                                        if (arrRevId.length > 0) {
-                                                            if (arrRevId[0].process_ref_no != null) {
+                                                    
+                                                     
+                                                            if (arrprocesslog[0].clrsysref) {
                                                                 if (arrCount[0].counts.length == 1) {
                                                                     var count = Number(arrCount[0].counts)
                                                                     count++
-                                                                    parameter.reverseId = arrRevId[0].process_ref_no + '.0' + count
+                                                                    parameter.reverseId = arrprocesslog[0].clrsysref + '.0' + count
                                                                     resolve(parameter)
                                                                 } else {
                                                                     var count = Number(arrCount[0].counts)
                                                                     count++
-                                                                    parameter.reverseId = arrRevId[0].process_ref_no + '.' + count
+                                                                    parameter.reverseId = arrprocesslog[0].clrsysref + '.' + count
                                                                     resolve(parameter)
                                                                 }
                                                             } else {
                                                                 objresponse.status = "FAILURE"
-                                                                objresponse.errdata = "Reversal Process Ref no is Missing"
+                                                                objresponse.errdata = "clrsysRef  is Missing"
                                                                 sendResponse(null, objresponse)
                                                             }
-                                                        } else {
-                                                            objresponse.status = "FAILURE"
-                                                            objresponse.errdata = "Reversal Process Ref not found in table"
-                                                            sendResponse(null, objresponse)
-                                                        }
-                                                    })
+                                                       
+                                                  
                                                 })
                                             } else {
                                                 console.log("No Data found in accounts table");

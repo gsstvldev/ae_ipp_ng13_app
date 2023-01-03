@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27609 
+Build ID        : 27677 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-29 13:15 PM 
+Modified Date   : 2023-Jan-03 11:8 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -152,6 +152,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	shop_action_disable_shop : any = {}
 	shop_action_set_shop_default : any = {}
 	shop_action_remove_shop_account : any = {}
+	shop_action_trg_hide_for_bind_tran : any = {}
 	cashdesk_action : any = {}
 	cashdesk_action_back : any = {}
 	cashdesk_action_enrolment_desk : any = {}
@@ -891,6 +892,15 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop_action_remove_shop_account.dynamic_param = {}
 		this.shop_action_remove_shop_account.role = []
 		this.shop_action_remove_shop_account.action = ""
+		
+		// "TRG hide for bind tran" Button of "Shop Action" component
+		this.shop_action_trg_hide_for_bind_tran.label_name = "TRG hide for bind tran"
+		this.shop_action_trg_hide_for_bind_tran.show = true
+		this.shop_action_trg_hide_for_bind_tran.disabled = false
+		this.shop_action_trg_hide_for_bind_tran.params = {"icon_only":false,"uicgcc_style":""}
+		this.shop_action_trg_hide_for_bind_tran.dynamic_param = {}
+		this.shop_action_trg_hide_for_bind_tran.role = []
+		this.shop_action_trg_hide_for_bind_tran.action = ""
 	
 		// Component level properties - "CashDesk Action" 
 		this.cashdesk_action.uictrl_code = "dynamic_ui"
@@ -1276,9 +1286,9 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop__ee_for_enrollment_cashdesk()
 		this.shop__svm_for_shop()
 		this.shop__ee_for_shop_enrolment_btn()
-		this.shop__bt_for_shop_dtl()
 		this.shop__tbc_for_cashdesk_list()
 		this.shop__e_1672301047211()
+		this.shop__e_1672743518139()
 	}
 
 	//Handler for SELECTION_CHANGED event of "cashdesk"
@@ -1364,6 +1374,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop_action_disable_shop__se_for_disable_shop()
 		this.shop_action_disable_shop__cc_for_disable_shop_ena()
 		this.shop_action_disable_shop__sp_for_disable_shop()
+		this.shop_action_disable_shop__e_1672743947650()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "shop action update shop"
@@ -1371,6 +1382,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop_action_update_shop__se_for_update_shop()
 		this.shop_action_update_shop__sp_for_update_shop()
 		this.shop_action_update_shop__cc_for_update_shop_ena()
+		this.shop_action_update_shop__e_1672743999918()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop default"
@@ -1378,6 +1390,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop_action_set_shop_default__se_for_set_bank_account()
 		this.shop_action_set_shop_default__sp_for_set_shop_account()
 		this.shop_action_set_shop_default__cc_for_set_shop_bank_account_enab()
+		this.shop_action_set_shop_default__e_1672743969217()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
@@ -1386,6 +1399,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop_action_remove_shop_account__cc_for_remove_shop_account_ena_dis()
 		this.shop_action_remove_shop_account__sp_for_remove_shop_account()
 		this.shop_action_remove_shop_account__he_for_act_rba()
+		this.shop_action_remove_shop_account__e_1672743905328()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "action enroll shop"
@@ -1480,6 +1494,11 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		 }
 		this.cashdesk_action_trg_for_clear_ui__cui_for_trg_to_shop(peventcontext)
 		this.cashdesk_action_trg_for_clear_ui__cui_for_trg_to_cash(peventcontext)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action trg hide for bind tran"
+	shop_action_trg_hide_for_bind_tran__action_button_click(){
+		this.shop_action_trg_hide_for_bind_tran__e_1672744026078()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -4291,27 +4310,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "shop"
-	shop__bt_for_shop_dtl() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="shop"
-		let destn_id="shop_detail"
-		let parent_source_id=""
-		let event_code="e_1671717152300"
-		let event_params={"caller_name":"shop__bt_for_shop_dtl","event_desc":"BT for shop dtl","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
-		let handler_code="bind_tran"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "shop"
 	shop__tbc_for_cashdesk_list() { 
 		let Dest_Is_ctrl=true
 		
@@ -4347,6 +4345,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "shop"
+	shop__e_1672743518139() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop"
+		let destn_id="shop_detail"
+		let parent_source_id=""
+		let event_code="e_1672743518139"
+		let event_params={"caller_name":"shop__e_1672743518139","event_desc":"E_1672743518139","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5046,6 +5065,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action disable shop"
+	shop_action_disable_shop__e_1672743947650() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_disable_shop"
+		let destn_id="shop_action_trg_hide_for_bind_tran"
+		let parent_source_id=""
+		let event_code="e_1672743947650"
+		let event_params={"caller_name":"shop_action_disable_shop__e_1672743947650","event_desc":"E_1672743947650","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_disable_shop","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "shop action update shop"
 	shop_action_update_shop__se_for_update_shop() { 
 		let Dest_Is_ctrl=true
@@ -5109,6 +5149,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "shop action update shop"
+	shop_action_update_shop__e_1672743999918() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_update_shop"
+		let destn_id="shop_action_trg_hide_for_bind_tran"
+		let parent_source_id=""
+		let event_code="e_1672743999918"
+		let event_params={"caller_name":"shop_action_update_shop__e_1672743999918","event_desc":"E_1672743999918","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_update_shop","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop default"
 	shop_action_set_shop_default__se_for_set_bank_account() { 
 		let Dest_Is_ctrl=true
@@ -5166,6 +5227,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action set shop default"
+	shop_action_set_shop_default__e_1672743969217() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_set_shop_default"
+		let destn_id="shop_action_trg_hide_for_bind_tran"
+		let parent_source_id=""
+		let event_code="e_1672743969217"
+		let event_params={"caller_name":"shop_action_set_shop_default__e_1672743969217","event_desc":"E_1672743969217","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_set_shop_default","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5250,6 +5332,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action remove shop account"
+	shop_action_remove_shop_account__e_1672743905328() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_remove_shop_account"
+		let destn_id="shop_action_trg_hide_for_bind_tran"
+		let parent_source_id=""
+		let event_code="e_1672743905328"
+		let event_params={"caller_name":"shop_action_remove_shop_account__e_1672743905328","event_desc":"E_1672743905328","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_remove_shop_account","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -6011,6 +6114,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action trg hide for bind tran"
+	shop_action_trg_hide_for_bind_tran__e_1672744026078() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_trg_hide_for_bind_tran"
+		let destn_id="shop_detail"
+		let parent_source_id=""
+		let event_code="e_1672744026078"
+		let event_params={"caller_name":"shop_action_trg_hide_for_bind_tran__e_1672744026078","event_desc":"E_1672744026078","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_trg_hide_for_bind_tran","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

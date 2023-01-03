@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27677 
+Build ID        : 27679 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-03 11:8 AM 
+Modified Date   : 2023-Jan-03 12:56 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -1071,6 +1071,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_change_mobile_no__sp_for_cmn()
 		this.navigation_ui_change_mobile_no__se_for_nav_mob_to_action()
 		this.navigation_ui_change_mobile_no__cc_for_mobile_enab_disab()
+		this.navigation_ui_change_mobile_no__e_1672750360293()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable"
@@ -1078,6 +1079,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_disable__sp_for_unentrol()
 		this.navigation_ui_disable__se_for_nav_to_action_unentrol()
 		this.navigation_ui_disable__cc_for_unentrol_enab_disab()
+		this.navigation_ui_disable__e_1672750437647()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui update personal"
@@ -1085,6 +1087,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_update_personal__sp_for_upd()
 		this.navigation_ui_update_personal__se_for_nav_to_action_add_account()
 		this.navigation_ui_update_personal__cc_for_update_personal_enab_disab()
+		this.navigation_ui_update_personal__e_1672750394528()
 	}
 
 	//Handler for SELECTION_CHANGED event of "accounts"
@@ -1258,6 +1261,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_update_mcc__se_for_update_mcc_btn()
 		this.navigation_ui_update_mcc__sp_for_update_mcc()
 		this.navigation_ui_update_mcc__cc_for_update_mcc_en_di()
+		this.navigation_ui_update_mcc__e_1672750295155()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "action update mcc"
@@ -1296,8 +1300,8 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cashdesk__ee_for_disable_cd()
 		this.cashdesk__ee_for_entrol_cd()
 		this.cashdesk__ee_for_update_cd()
-		this.cashdesk__bt_for_cashdesk_detail()
 		this.cashdesk__e_1672300984368()
+		this.cashdesk__e_1672746295508()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action disable desk"
@@ -1305,6 +1309,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cashdesk_action_disable_desk__sp_for_disable_cd()
 		this.cashdesk_action_disable_desk__cc__for_disable_cd_ena_dis()
 		this.cashdesk_action_disable_desk__se_for_disable_cd()
+		this.cashdesk_action_disable_desk__e_1672746390535()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action enrolment desk"
@@ -1322,6 +1327,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cashdesk_action_update_desk__sp_for_update_cd()
 		this.cashdesk_action_update_desk__cc__for_update_cd_ena_dis()
 		this.cashdesk_action_update_desk__se_for_update_cd()
+		this.cashdesk_action_update_desk__e_1672746427885()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "action enroll cash desk"
@@ -1499,6 +1505,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "shop action trg hide for bind tran"
 	shop_action_trg_hide_for_bind_tran__action_button_click(){
 		this.shop_action_trg_hide_for_bind_tran__e_1672744026078()
+		this.shop_action_trg_hide_for_bind_tran__e_1672746328383()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2558,6 +2565,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui change mobile no"
+	navigation_ui_change_mobile_no__e_1672750360293() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_change_mobile_no"
+		let destn_id="shop_action_trg_hide_for_bind_tran"
+		let parent_source_id=""
+		let event_code="e_1672750360293"
+		let event_params={"caller_name":"navigation_ui_change_mobile_no__e_1672750360293","event_desc":"E_1672750360293","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_change_mobile_no","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable"
 	navigation_ui_disable__sp_for_unentrol() { 
 		let Dest_Is_ctrl=true
@@ -2621,6 +2649,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui disable"
+	navigation_ui_disable__e_1672750437647() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_disable"
+		let destn_id="shop_action_trg_hide_for_bind_tran"
+		let parent_source_id=""
+		let event_code="e_1672750437647"
+		let event_params={"caller_name":"navigation_ui_disable__e_1672750437647","event_desc":"E_1672750437647","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_disable","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui update personal"
 	navigation_ui_update_personal__sp_for_upd() { 
 		let Dest_Is_ctrl=true
@@ -2678,6 +2727,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.npss_c_btn_enb_disbService.fn_npss_c_btn_enb_disb(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui update personal"
+	navigation_ui_update_personal__e_1672750394528() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_update_personal"
+		let destn_id="shop_action_trg_hide_for_bind_tran"
+		let parent_source_id=""
+		let event_code="e_1672750394528"
+		let event_params={"caller_name":"navigation_ui_update_personal__e_1672750394528","event_desc":"E_1672750394528","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_update_personal","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -4057,6 +4127,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui update mcc"
+	navigation_ui_update_mcc__e_1672750295155() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_update_mcc"
+		let destn_id="shop_action_trg_hide_for_bind_tran"
+		let parent_source_id=""
+		let event_code="e_1672750295155"
+		let event_params={"caller_name":"navigation_ui_update_mcc__e_1672750295155","event_desc":"E_1672750295155","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_update_mcc","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "action update mcc"
 	action_update_mcc__cc_for_update_mcc() { 
 		let Dest_Is_ctrl=true
@@ -4436,27 +4527,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "cashdesk"
-	cashdesk__bt_for_cashdesk_detail() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="cashdesk"
-		let destn_id="cashdesk_detail"
-		let parent_source_id=""
-		let event_code="e_1672031429557"
-		let event_params={"caller_name":"cashdesk__bt_for_cashdesk_detail","event_desc":"BT for cashdesk detail","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"cashdesk","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
-		let handler_code="bind_tran"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "cashdesk"
 	cashdesk__e_1672300984368() { 
 		let Dest_Is_ctrl=true
 		
@@ -4471,6 +4541,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "cashdesk"
+	cashdesk__e_1672746295508() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cashdesk"
+		let destn_id="cashdesk_detail"
+		let parent_source_id=""
+		let event_code="e_1672746295508"
+		let event_params={"caller_name":"cashdesk__e_1672746295508","event_desc":"E_1672746295508","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"cashdesk","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -4534,6 +4625,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action disable desk"
+	cashdesk_action_disable_desk__e_1672746390535() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cashdesk_action_disable_desk"
+		let destn_id="shop_action_trg_hide_for_bind_tran"
+		let parent_source_id=""
+		let event_code="e_1672746390535"
+		let event_params={"caller_name":"cashdesk_action_disable_desk__e_1672746390535","event_desc":"E_1672746390535","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cashdesk_action_disable_desk","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -4723,6 +4835,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action update desk"
+	cashdesk_action_update_desk__e_1672746427885() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cashdesk_action_update_desk"
+		let destn_id="shop_action_trg_hide_for_bind_tran"
+		let parent_source_id=""
+		let event_code="e_1672746427885"
+		let event_params={"caller_name":"cashdesk_action_update_desk__e_1672746427885","event_desc":"E_1672746427885","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cashdesk_action_update_desk","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -6129,6 +6262,27 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1672744026078"
 		let event_params={"caller_name":"shop_action_trg_hide_for_bind_tran__e_1672744026078","event_desc":"E_1672744026078","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_trg_hide_for_bind_tran","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "shop action trg hide for bind tran"
+	shop_action_trg_hide_for_bind_tran__e_1672746328383() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="shop_action_trg_hide_for_bind_tran"
+		let destn_id="cashdesk_detail"
+		let parent_source_id=""
+		let event_code="e_1672746328383"
+		let event_params={"caller_name":"shop_action_trg_hide_for_bind_tran__e_1672746328383","event_desc":"E_1672746328383","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_trg_hide_for_bind_tran","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
 		let handler_code="bind_tran"
 		let internals=""
 		let event_data={}

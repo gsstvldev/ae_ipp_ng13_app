@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27695 
+Build ID        : 27702 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-04 12:40 PM 
+Modified Date   : 2023-Jan-04 15:41 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_view_transaction
@@ -27,7 +27,7 @@ export class p_main_layoutComponent implements OnInit {
 	payment_type_group : any = {}
 	queue_group : any = {}
 	message_type_group : any = {}
-	chart : any = {}
+	status_group : any = {}
 	process_log : any = {}
 
 
@@ -46,8 +46,8 @@ export class p_main_layoutComponent implements OnInit {
 		this.queue_group.need_header = true
 		this.message_type_group.desc = "Message Type Group"
 		this.message_type_group.need_header = true
-		this.chart.desc = "Chart"
-		this.chart.need_header = ""
+		this.status_group.desc = "Status Group"
+		this.status_group.need_header = true
 		this.process_log.desc = "Process Log"
 		this.process_log.need_header = true
 	

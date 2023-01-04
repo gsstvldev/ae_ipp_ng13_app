@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27683 
+Build ID        : 27688 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-04 6:52 AM 
+Modified Date   : 2023-Jan-04 7:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2p_payments
@@ -23,6 +23,7 @@ export class p_payment_layoutComponent implements OnInit {
 
   // Variables 
   	payment_type_ui : any = {}
+	retrieve_contact_cw : any = {}
 
 
   // Constructor 
@@ -32,6 +33,8 @@ export class p_payment_layoutComponent implements OnInit {
   ngOnInit() {
     	this.payment_type_ui.desc = "Payment Type UI"
 		this.payment_type_ui.need_header = ""
+		this.retrieve_contact_cw.desc = "Retrieve Contact CW"
+		this.retrieve_contact_cw.need_header = ""
 	
 
     this.screen_instance['p_payment_layout'] = {};

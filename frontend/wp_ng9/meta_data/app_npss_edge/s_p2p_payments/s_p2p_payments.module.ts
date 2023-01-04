@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27683 
+Build ID        : 27688 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-04 6:52 AM 
+Modified Date   : 2023-Jan-04 7:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2p_payments
@@ -19,6 +19,9 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
+import {npss_cs_retrieve_contactModule} from '../../../custom_widget/npss_cs_retrieve_contact/npss_cs_retrieve_contact.module'
+import {npss_cs_verify_paymentModule} from '../../../custom_widget/npss_cs_verify_payment/npss_cs_verify_payment.module'
+import {npss_cs_confirm_paymentModule} from '../../../custom_widget/npss_cs_confirm_payment/npss_cs_confirm_payment.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -47,7 +50,7 @@ import { f_npss_p2p_retrive_contacctComponent } from './f_npss_p2p_retrive_conta
     OverlayPanelModule,
     
     s_p2p_paymentsRoutingModule,
-    
+    npss_cs_retrieve_contactModule,npss_cs_verify_paymentModule,npss_cs_confirm_paymentModule
   ],
   declarations: [s_p2p_paymentsComponent,p_payment_layoutComponent,f_npss_p2p_retrive_contacctComponent,],
   providers:[AppHandlerService,ComponenthelperService]

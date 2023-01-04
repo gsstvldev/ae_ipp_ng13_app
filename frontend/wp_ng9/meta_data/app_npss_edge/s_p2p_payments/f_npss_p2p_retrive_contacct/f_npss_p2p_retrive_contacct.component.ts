@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27688 
+Build ID        : 27691 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-04 7:15 AM 
+Modified Date   : 2023-Jan-04 8:8 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2p_payments
@@ -125,6 +125,82 @@ focustoelement(){
 		this.ctrl.npss_p2p_retrive_contacct_bankuserid = {}
 		this.ctrl.npss_p2p_retrive_contacct_bankuserid.onChangecomponent = new EventEmitter<any>()
 	
+		//Properties of memory23
+		this.ctrl.memory23 = {}
+		this.ctrl.memory23.id = "RN51CN11"
+		this.ctrl.memory23.desc = "Bank Account ID"
+		this.ctrl.memory23.visible = true
+		this.ctrl.memory23.label_name = "Bank Account ID"
+		this.ctrl.memory23.df_code = "DF_1304_1666846148448"
+		this.ctrl.memory23.df_description = "Customer"
+		this.ctrl.memory23.uictrl_code = "TXT"
+		this.ctrl.memory23.target_column = "memory23"
+		this.ctrl.memory23.data_type = "TEXT"
+		this.ctrl.memory23.data_length = 0
+		this.ctrl.memory23.zone_df_code = "DF_1304_1666846148448"
+		this.ctrl.memory23.default_value = ""
+		this.ctrl.memory23.is_memory_ctrl = "Y"
+		this.ctrl.memory23.field_coordinates = ""
+		this.ctrl.memory23.sub_details = ""
+		this.ctrl.memory23.accept_char = ""
+		this.ctrl.memory23.currency_format = ""
+		this.ctrl.memory23.data_scale = ""
+		this.ctrl.memory23.hide_label = false
+		this.ctrl.memory23.depends_on = ""
+		this.ctrl.memory23.placeholder = ""
+		this.ctrl.memory23.dynamic_param = ""
+		this.ctrl.memory23.style_code = ""
+		this.ctrl.memory23.data_source = ""
+		this.ctrl.memory23.image_association = ""
+		this.ctrl.memory23.show = true
+		this.ctrl.memory23.sub_content = ""
+		this.ctrl.memory23.required = false
+		this.ctrl.memory23.vld_rules = []
+		this.ctrl.memory23.targetcolumn_lower = "memory23"
+		this.ctrl.memory23.disabled = false
+		this.ctrl.memory23.view_name = "f_npss_p2p_retrive_contacct"
+		this.ctrl.memory23.ctrl_id = "npss_p2p_retrive_contacct_memory23"
+		this.ctrl.npss_p2p_retrive_contacct_memory23 = {}
+		this.ctrl.npss_p2p_retrive_contacct_memory23.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of mobile
+		this.ctrl.mobile = {}
+		this.ctrl.mobile.id = "RN21CN5"
+		this.ctrl.mobile.desc = "Payee Mobile Number"
+		this.ctrl.mobile.visible = true
+		this.ctrl.mobile.label_name = "Payee Mobile Number"
+		this.ctrl.mobile.df_code = "DF_1304_1666846148448"
+		this.ctrl.mobile.df_description = "Customer"
+		this.ctrl.mobile.uictrl_code = "TXT"
+		this.ctrl.mobile.target_column = "MOBILE"
+		this.ctrl.mobile.data_type = "TEXT"
+		this.ctrl.mobile.data_length = 30
+		this.ctrl.mobile.zone_df_code = "DF_1304_1666846148448"
+		this.ctrl.mobile.default_value = ""
+		this.ctrl.mobile.is_memory_ctrl = ""
+		this.ctrl.mobile.field_coordinates = ""
+		this.ctrl.mobile.sub_details = ""
+		this.ctrl.mobile.accept_char = ""
+		this.ctrl.mobile.currency_format = ""
+		this.ctrl.mobile.data_scale = ""
+		this.ctrl.mobile.hide_label = false
+		this.ctrl.mobile.depends_on = ""
+		this.ctrl.mobile.placeholder = ""
+		this.ctrl.mobile.dynamic_param = ""
+		this.ctrl.mobile.style_code = ""
+		this.ctrl.mobile.data_source = ""
+		this.ctrl.mobile.image_association = ""
+		this.ctrl.mobile.show = true
+		this.ctrl.mobile.sub_content = "*"
+		this.ctrl.mobile.required = true
+		this.ctrl.mobile.vld_rules = []
+		this.ctrl.mobile.targetcolumn_lower = "mobile"
+		this.ctrl.mobile.disabled = false
+		this.ctrl.mobile.view_name = "f_npss_p2p_retrive_contacct"
+		this.ctrl.mobile.ctrl_id = "npss_p2p_retrive_contacct_mobile"
+		this.ctrl.npss_p2p_retrive_contacct_mobile = {}
+		this.ctrl.npss_p2p_retrive_contacct_mobile.onChangecomponent = new EventEmitter<any>()
+	
 		//Properties of proxy_type
 		this.ctrl.proxy_type = {}
 		this.ctrl.proxy_type.id = "RN11CN4"
@@ -202,45 +278,121 @@ focustoelement(){
 		this.ctrl.npss_p2p_retrive_contacct_proxy_value = {}
 		this.ctrl.npss_p2p_retrive_contacct_proxy_value.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of mobile
-		this.ctrl.mobile = {}
-		this.ctrl.mobile.id = "RN21CN5"
-		this.ctrl.mobile.desc = "Payee Mobile Number"
-		this.ctrl.mobile.visible = false
-		this.ctrl.mobile.label_name = "Payee Mobile Number"
-		this.ctrl.mobile.df_code = "DF_1304_1666846148448"
-		this.ctrl.mobile.df_description = "Customer"
-		this.ctrl.mobile.uictrl_code = "TXT"
-		this.ctrl.mobile.target_column = "MOBILE"
-		this.ctrl.mobile.data_type = "TEXT"
-		this.ctrl.mobile.data_length = 30
-		this.ctrl.mobile.zone_df_code = "DF_1304_1666846148448"
-		this.ctrl.mobile.default_value = ""
-		this.ctrl.mobile.is_memory_ctrl = ""
-		this.ctrl.mobile.field_coordinates = ""
-		this.ctrl.mobile.sub_details = ""
-		this.ctrl.mobile.accept_char = ""
-		this.ctrl.mobile.currency_format = ""
-		this.ctrl.mobile.data_scale = ""
-		this.ctrl.mobile.hide_label = false
-		this.ctrl.mobile.depends_on = ""
-		this.ctrl.mobile.placeholder = ""
-		this.ctrl.mobile.dynamic_param = ""
-		this.ctrl.mobile.style_code = ""
-		this.ctrl.mobile.data_source = ""
-		this.ctrl.mobile.image_association = ""
-		this.ctrl.mobile.show = true
-		this.ctrl.mobile.sub_content = "*"
-		this.ctrl.mobile.required = true
-		this.ctrl.mobile.vld_rules = []
-		this.ctrl.mobile.targetcolumn_lower = "mobile"
-		this.ctrl.mobile.disabled = false
-		this.ctrl.mobile.view_name = "f_npss_p2p_retrive_contacct"
-		this.ctrl.mobile.ctrl_id = "npss_p2p_retrive_contacct_mobile"
-		this.ctrl.npss_p2p_retrive_contacct_mobile = {}
-		this.ctrl.npss_p2p_retrive_contacct_mobile.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model = {"CHANNEL_ID":"","BANKUSERID":"","PROXY_TYPE":"","PROXY_VALUE":"","MOBILE":""}
-		this.screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_VALUE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"}]
+		//Properties of customer_name
+		this.ctrl.customer_name = {}
+		this.ctrl.customer_name.id = "RN21CN7"
+		this.ctrl.customer_name.desc = "Customer Name"
+		this.ctrl.customer_name.visible = true
+		this.ctrl.customer_name.label_name = "Customer Name"
+		this.ctrl.customer_name.df_code = "DF_1304_1666846148448"
+		this.ctrl.customer_name.df_description = "Customer"
+		this.ctrl.customer_name.uictrl_code = "TXT"
+		this.ctrl.customer_name.target_column = "CUSTOMER_NAME"
+		this.ctrl.customer_name.data_type = "TEXT"
+		this.ctrl.customer_name.data_length = 50
+		this.ctrl.customer_name.zone_df_code = "DF_1304_1666846148448"
+		this.ctrl.customer_name.default_value = ""
+		this.ctrl.customer_name.is_memory_ctrl = ""
+		this.ctrl.customer_name.field_coordinates = ""
+		this.ctrl.customer_name.sub_details = ""
+		this.ctrl.customer_name.accept_char = ""
+		this.ctrl.customer_name.currency_format = ""
+		this.ctrl.customer_name.data_scale = ""
+		this.ctrl.customer_name.hide_label = false
+		this.ctrl.customer_name.depends_on = ""
+		this.ctrl.customer_name.placeholder = ""
+		this.ctrl.customer_name.dynamic_param = ""
+		this.ctrl.customer_name.style_code = ""
+		this.ctrl.customer_name.data_source = ""
+		this.ctrl.customer_name.image_association = ""
+		this.ctrl.customer_name.show = true
+		this.ctrl.customer_name.sub_content = "*"
+		this.ctrl.customer_name.required = true
+		this.ctrl.customer_name.vld_rules = []
+		this.ctrl.customer_name.targetcolumn_lower = "customer_name"
+		this.ctrl.customer_name.disabled = false
+		this.ctrl.customer_name.view_name = "f_npss_p2p_retrive_contacct"
+		this.ctrl.customer_name.ctrl_id = "npss_p2p_retrive_contacct_customer_name"
+		this.ctrl.npss_p2p_retrive_contacct_customer_name = {}
+		this.ctrl.npss_p2p_retrive_contacct_customer_name.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of memory21
+		this.ctrl.memory21 = {}
+		this.ctrl.memory21.id = "RN31CN7"
+		this.ctrl.memory21.desc = "Amount"
+		this.ctrl.memory21.visible = true
+		this.ctrl.memory21.label_name = "Amount"
+		this.ctrl.memory21.df_code = "DF_1304_1666846148448"
+		this.ctrl.memory21.df_description = "Customer"
+		this.ctrl.memory21.uictrl_code = "CUR"
+		this.ctrl.memory21.target_column = "memory21"
+		this.ctrl.memory21.data_type = "NUMBER"
+		this.ctrl.memory21.data_length = 0
+		this.ctrl.memory21.zone_df_code = "DF_1304_1666846148448"
+		this.ctrl.memory21.default_value = ""
+		this.ctrl.memory21.is_memory_ctrl = "Y"
+		this.ctrl.memory21.field_coordinates = ""
+		this.ctrl.memory21.sub_details = ""
+		this.ctrl.memory21.accept_char = ""
+		this.ctrl.memory21.currency_format = ""
+		this.ctrl.memory21.data_scale = ""
+		this.ctrl.memory21.hide_label = false
+		this.ctrl.memory21.depends_on = ""
+		this.ctrl.memory21.placeholder = ""
+		this.ctrl.memory21.dynamic_param = ""
+		this.ctrl.memory21.style_code = ""
+		this.ctrl.memory21.data_source = ""
+		this.ctrl.memory21.image_association = ""
+		this.ctrl.memory21.show = true
+		this.ctrl.memory21.sub_content = ""
+		this.ctrl.memory21.required = false
+		this.ctrl.memory21.vld_rules = []
+		this.ctrl.memory21.targetcolumn_lower = "memory21"
+		this.ctrl.memory21.disabled = false
+		this.ctrl.memory21.view_name = "f_npss_p2p_retrive_contacct"
+		this.ctrl.memory21.ctrl_id = "npss_p2p_retrive_contacct_memory21"
+		this.ctrl.npss_p2p_retrive_contacct_memory21 = {}
+		this.ctrl.npss_p2p_retrive_contacct_memory21.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of memory22
+		this.ctrl.memory22 = {}
+		this.ctrl.memory22.id = "RN31CN8"
+		this.ctrl.memory22.desc = "Currency"
+		this.ctrl.memory22.visible = true
+		this.ctrl.memory22.label_name = "Currency"
+		this.ctrl.memory22.df_code = "DF_1304_1666846148448"
+		this.ctrl.memory22.df_description = "Customer"
+		this.ctrl.memory22.uictrl_code = "TXT"
+		this.ctrl.memory22.target_column = "memory22"
+		this.ctrl.memory22.data_type = "TEXT"
+		this.ctrl.memory22.data_length = 0
+		this.ctrl.memory22.zone_df_code = "DF_1304_1666846148448"
+		this.ctrl.memory22.default_value = ""
+		this.ctrl.memory22.is_memory_ctrl = "Y"
+		this.ctrl.memory22.field_coordinates = ""
+		this.ctrl.memory22.sub_details = ""
+		this.ctrl.memory22.accept_char = ""
+		this.ctrl.memory22.currency_format = ""
+		this.ctrl.memory22.data_scale = ""
+		this.ctrl.memory22.hide_label = false
+		this.ctrl.memory22.depends_on = ""
+		this.ctrl.memory22.placeholder = ""
+		this.ctrl.memory22.dynamic_param = ""
+		this.ctrl.memory22.style_code = ""
+		this.ctrl.memory22.data_source = ""
+		this.ctrl.memory22.image_association = ""
+		this.ctrl.memory22.show = true
+		this.ctrl.memory22.sub_content = ""
+		this.ctrl.memory22.required = false
+		this.ctrl.memory22.vld_rules = []
+		this.ctrl.memory22.targetcolumn_lower = "memory22"
+		this.ctrl.memory22.disabled = false
+		this.ctrl.memory22.view_name = "f_npss_p2p_retrive_contacct"
+		this.ctrl.memory22.ctrl_id = "npss_p2p_retrive_contacct_memory22"
+		this.ctrl.npss_p2p_retrive_contacct_memory22 = {}
+		this.ctrl.npss_p2p_retrive_contacct_memory22.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model = {"CHANNEL_ID":"","BANKUSERID":"","MEMORY23":"","MOBILE":"","PROXY_TYPE":"","PROXY_VALUE":"","CUSTOMER_NAME":"","MEMORY21":"","MEMORY22":""}
+		this.screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_VALUE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMER_NAME"}]
 		this.screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.dt_code = "dt_1304_1666846042955"
 		this.screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.dtt_code = "dtt_1304_1666846082411"
 		this.screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.controls = this.screen_instance[this.comp_id].form_instance.ctrl

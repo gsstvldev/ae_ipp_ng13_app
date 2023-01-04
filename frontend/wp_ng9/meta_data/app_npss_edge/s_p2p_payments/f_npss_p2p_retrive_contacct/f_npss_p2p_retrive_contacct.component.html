@@ -3,24 +3,36 @@
 <fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
 	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_p2p_retrive_contacct="ngForm">
 <div id="RN01" class="row">
-	<div #npss_p2p_retrive_contacct_channel_id id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_id')" >
+	<div #npss_p2p_retrive_contacct_channel_id id="RN01CN1" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_id')" >
 				<cbo [ctrl_id]="'npss_p2p_retrive_contacct_channel_id'" [comp_id]="comp_id" [ctrl]="ctrl.channel_id" [model]="screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
 	</div>
-	<div  id="RN01CN3" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('bankuserid')" >
+	<div  id="RN01CN3" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('bankuserid')" >
 				<txt [ctrl_id]="'npss_p2p_retrive_contacct_bankuserid'" [comp_id]="comp_id" [ctrl]="ctrl.bankuserid" [model]="screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
+	<div  id="RN51CN11" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory23')" >
+				<txt [ctrl_id]="'npss_p2p_retrive_contacct_memory23'" [comp_id]="comp_id" [ctrl]="ctrl.memory23" [model]="screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
 </div>
-<div id="RN11" class="row">
-	<div  id="RN11CN4" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('proxy_type')" >
+<div id="RN51" class="row">
+	<div  id="RN21CN5" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('mobile')" >
+				<txt [ctrl_id]="'npss_p2p_retrive_contacct_mobile'" [comp_id]="comp_id" [ctrl]="ctrl.mobile" [model]="screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN11CN4" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('proxy_type')" >
 				<cbo [ctrl_id]="'npss_p2p_retrive_contacct_proxy_type'" [comp_id]="comp_id" [ctrl]="ctrl.proxy_type" [model]="screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
 	</div>
-	<div  id="RN11CN6" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('proxy_value')" >
+	<div  id="RN11CN6" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('proxy_value')" >
 				<txt [ctrl_id]="'npss_p2p_retrive_contacct_proxy_value'" [comp_id]="comp_id" [ctrl]="ctrl.proxy_value" [model]="screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
 </div>
-<div id="RN21" class="row">
-	<div  id="RN21CN5" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('mobile')" >
-				<txt [ctrl_id]="'npss_p2p_retrive_contacct_mobile'" [comp_id]="comp_id" [ctrl]="ctrl.mobile" [model]="screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+<div id="RN11" class="row">
+	<div  id="RN21CN7" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('customer_name')" >
+				<txt [ctrl_id]="'npss_p2p_retrive_contacct_customer_name'" [comp_id]="comp_id" [ctrl]="ctrl.customer_name" [model]="screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN31CN7" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory21')" >
+				<cur [ctrl_id]="'npss_p2p_retrive_contacct_memory21'" [comp_id]="comp_id" [ctrl]="ctrl.memory21" [model]="screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model" [screen_instance]="screen_instance" [form_instance]="this"></cur>
+	</div>
+	<div  id="RN31CN8" class="column col-md-4 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory22')" >
+				<txt [ctrl_id]="'npss_p2p_retrive_contacct_memory22'" [comp_id]="comp_id" [ctrl]="ctrl.memory22" [model]="screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
 	</div>
 </div>
 	</form>

@@ -45,7 +45,8 @@ Customer_Posting_restrict_type character varying(6) COLLATE pg_catalog."default"
 productidentifier character varying(128) COLLATE pg_catalog."default",
 issuer_type_code character varying(256) COLLATE pg_catalog."default",
 economic_activity_code character varying(4) COLLATE pg_catalog."default",
-cityofbirth character varying(64) COLLATE pg_catalog."default"
+cityofbirth character varying(64) COLLATE pg_catalog."default",
+account_closed character varying(32) COLLATE pg_catalog."default"
 ) 
 TABLESPACE pg_default; 
 @SPL@

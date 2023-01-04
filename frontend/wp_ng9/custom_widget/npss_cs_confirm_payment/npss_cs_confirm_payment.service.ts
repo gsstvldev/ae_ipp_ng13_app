@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-//Uncomment below lines when it is     required
+//Uncomment below lines when it is      required
 import { Http, Response, Headers, RequestOptions, HttpModule } from '@angular/http';
 //import { Observable } from 'rxjs/Observable';
 //import { HttpClient } from '@angular/common/http';
@@ -33,7 +33,7 @@ export class npss_cs_confirm_paymentService {
             "proxy_type": CtrlScope.PROXY_TYPE || '',
             "proxy_value": CtrlScope.PROXY_VALUE || '',
             "Mobile_Number": CtrlScope.MOBILE || '',
-            "paymentId":   this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PAYMENT_ID"); 
+            "paymentId":   this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PAYMENT_ID")||'',
             "TenantId": this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
 
 

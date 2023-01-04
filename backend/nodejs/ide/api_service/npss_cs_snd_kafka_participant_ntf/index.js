@@ -102,7 +102,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             if(arrresultObj.from_time){
                                                var Time = arrresultObj.from_time.split(':')
                                                var remAMPM = Time[1].split(' ')
-                                               dataobj.fromTime = Time[0]+remAMPM[0]
+                                               dataobj.fromTime = Time[0]+remAMPM[0]+'00'
                                             }else{
                                                 dataobj.fromTime = ''
                                             }
@@ -120,7 +120,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                              if(arrresultObj.to_time){
                                                 var Time = arrresultObj.to_time.split(':')
                                                 var remAMPM = Time[1].split(' ')
-                                                dataobj.toTime = Time[0]+remAMPM[0]
+                                                dataobj.toTime = Time[0]+remAMPM[0]+'00'
                                              }else{
                                                 dataobj.toTime = ''
                                              }

@@ -1,0 +1,2 @@
+/* CSS */
+:host ::ng-deep .payment_type_ui .row.dynamic_action_btn .btn { float: right; }

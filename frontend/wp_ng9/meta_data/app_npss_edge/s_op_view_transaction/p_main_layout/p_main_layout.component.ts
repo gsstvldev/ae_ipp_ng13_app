@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27702 
+Build ID        : 27705 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-04 15:41 PM 
+Modified Date   : 2023-Jan-05 12:50 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_view_transaction
@@ -22,13 +22,14 @@ export class p_main_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	navigation_ui : any = {}
+  	process_type_list : any = {}
+	navigation_ui : any = {}
 	channel_group : any = {}
 	payment_type_group : any = {}
 	queue_group : any = {}
 	message_type_group : any = {}
 	status_group : any = {}
-	process_log : any = {}
+	transaction_list : any = {}
 
 
   // Constructor 
@@ -36,7 +37,9 @@ export class p_main_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.navigation_ui.desc = "Navigation UI"
+    	this.process_type_list.desc = "Process Type List"
+		this.process_type_list.need_header = true
+		this.navigation_ui.desc = "Navigation UI"
 		this.navigation_ui.need_header = ""
 		this.channel_group.desc = "Channel Group"
 		this.channel_group.need_header = true
@@ -48,8 +51,8 @@ export class p_main_layoutComponent implements OnInit {
 		this.message_type_group.need_header = true
 		this.status_group.desc = "Status Group"
 		this.status_group.need_header = true
-		this.process_log.desc = "Process Log"
-		this.process_log.need_header = true
+		this.transaction_list.desc = "Transaction List"
+		this.transaction_list.need_header = true
 	
 
     this.screen_instance['p_main_layout'] = {};

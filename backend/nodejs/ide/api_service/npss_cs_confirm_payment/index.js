@@ -107,7 +107,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         var options = {
                             url: apiURL,
                             timeout: 18000000,
-                            method: 'POST',
+                            method: 'PUT',
                             json: {
 
                                 "payment": {

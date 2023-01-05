@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27691 
+Build ID        : 27703 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-04 8:8 AM 
+Modified Date   : 2023-Jan-05 12:50 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2p_payments
@@ -316,6 +316,44 @@ focustoelement(){
 		this.ctrl.npss_p2p_retrive_contacct_customer_name = {}
 		this.ctrl.npss_p2p_retrive_contacct_customer_name.onChangecomponent = new EventEmitter<any>()
 	
+		//Properties of memory22
+		this.ctrl.memory22 = {}
+		this.ctrl.memory22.id = "RN31CN8"
+		this.ctrl.memory22.desc = "Currency"
+		this.ctrl.memory22.visible = true
+		this.ctrl.memory22.label_name = "Currency"
+		this.ctrl.memory22.df_code = "DF_1304_1666846148448"
+		this.ctrl.memory22.df_description = "Customer"
+		this.ctrl.memory22.uictrl_code = "TXT"
+		this.ctrl.memory22.target_column = "memory22"
+		this.ctrl.memory22.data_type = "TEXT"
+		this.ctrl.memory22.data_length = 0
+		this.ctrl.memory22.zone_df_code = "DF_1304_1666846148448"
+		this.ctrl.memory22.default_value = "AED"
+		this.ctrl.memory22.is_memory_ctrl = "Y"
+		this.ctrl.memory22.field_coordinates = ""
+		this.ctrl.memory22.sub_details = ""
+		this.ctrl.memory22.accept_char = ""
+		this.ctrl.memory22.currency_format = ""
+		this.ctrl.memory22.data_scale = ""
+		this.ctrl.memory22.hide_label = false
+		this.ctrl.memory22.depends_on = ""
+		this.ctrl.memory22.placeholder = ""
+		this.ctrl.memory22.dynamic_param = ""
+		this.ctrl.memory22.style_code = ""
+		this.ctrl.memory22.data_source = ""
+		this.ctrl.memory22.image_association = ""
+		this.ctrl.memory22.show = true
+		this.ctrl.memory22.sub_content = ""
+		this.ctrl.memory22.required = false
+		this.ctrl.memory22.vld_rules = []
+		this.ctrl.memory22.targetcolumn_lower = "memory22"
+		this.ctrl.memory22.disabled = false
+		this.ctrl.memory22.view_name = "f_npss_p2p_retrive_contacct"
+		this.ctrl.memory22.ctrl_id = "npss_p2p_retrive_contacct_memory22"
+		this.ctrl.npss_p2p_retrive_contacct_memory22 = {}
+		this.ctrl.npss_p2p_retrive_contacct_memory22.onChangecomponent = new EventEmitter<any>()
+	
 		//Properties of memory21
 		this.ctrl.memory21 = {}
 		this.ctrl.memory21.id = "RN31CN7"
@@ -353,45 +391,7 @@ focustoelement(){
 		this.ctrl.memory21.ctrl_id = "npss_p2p_retrive_contacct_memory21"
 		this.ctrl.npss_p2p_retrive_contacct_memory21 = {}
 		this.ctrl.npss_p2p_retrive_contacct_memory21.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of memory22
-		this.ctrl.memory22 = {}
-		this.ctrl.memory22.id = "RN31CN8"
-		this.ctrl.memory22.desc = "Currency"
-		this.ctrl.memory22.visible = true
-		this.ctrl.memory22.label_name = "Currency"
-		this.ctrl.memory22.df_code = "DF_1304_1666846148448"
-		this.ctrl.memory22.df_description = "Customer"
-		this.ctrl.memory22.uictrl_code = "TXT"
-		this.ctrl.memory22.target_column = "memory22"
-		this.ctrl.memory22.data_type = "TEXT"
-		this.ctrl.memory22.data_length = 0
-		this.ctrl.memory22.zone_df_code = "DF_1304_1666846148448"
-		this.ctrl.memory22.default_value = ""
-		this.ctrl.memory22.is_memory_ctrl = "Y"
-		this.ctrl.memory22.field_coordinates = ""
-		this.ctrl.memory22.sub_details = ""
-		this.ctrl.memory22.accept_char = ""
-		this.ctrl.memory22.currency_format = ""
-		this.ctrl.memory22.data_scale = ""
-		this.ctrl.memory22.hide_label = false
-		this.ctrl.memory22.depends_on = ""
-		this.ctrl.memory22.placeholder = ""
-		this.ctrl.memory22.dynamic_param = ""
-		this.ctrl.memory22.style_code = ""
-		this.ctrl.memory22.data_source = ""
-		this.ctrl.memory22.image_association = ""
-		this.ctrl.memory22.show = true
-		this.ctrl.memory22.sub_content = ""
-		this.ctrl.memory22.required = false
-		this.ctrl.memory22.vld_rules = []
-		this.ctrl.memory22.targetcolumn_lower = "memory22"
-		this.ctrl.memory22.disabled = false
-		this.ctrl.memory22.view_name = "f_npss_p2p_retrive_contacct"
-		this.ctrl.memory22.ctrl_id = "npss_p2p_retrive_contacct_memory22"
-		this.ctrl.npss_p2p_retrive_contacct_memory22 = {}
-		this.ctrl.npss_p2p_retrive_contacct_memory22.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model = {"CHANNEL_ID":"","BANKUSERID":"","MEMORY23":"","MOBILE":"","PROXY_TYPE":"","PROXY_VALUE":"","CUSTOMER_NAME":"","MEMORY21":"","MEMORY22":""}
+		this.screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.model = {"CHANNEL_ID":"","BANKUSERID":"","MEMORY23":"","MOBILE":"","PROXY_TYPE":"","PROXY_VALUE":"","CUSTOMER_NAME":"","MEMORY22":"AED","MEMORY21":""}
 		this.screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BANKUSERID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MOBILE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROXY_VALUE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUSTOMER_NAME"}]
 		this.screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.dt_code = "dt_1304_1666846042955"
 		this.screen_instance[this.comp_id].f_npss_p2p_retrive_contacct.dtt_code = "dtt_1304_1666846082411"

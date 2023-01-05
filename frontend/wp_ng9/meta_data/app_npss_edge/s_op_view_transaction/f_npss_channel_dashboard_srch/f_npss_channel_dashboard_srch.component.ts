@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27702 
+Build ID        : 27705 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-04 15:41 PM 
+Modified Date   : 2023-Jan-05 12:50 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_view_transaction
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of memory63
 		this.ctrl.memory63 = {}
 		this.ctrl.memory63.id = "RN01CN1"
-		this.ctrl.memory63.desc = "created date"
+		this.ctrl.memory63.desc = "Created Date"
 		this.ctrl.memory63.visible = false
-		this.ctrl.memory63.label_name = "created date"
+		this.ctrl.memory63.label_name = "Created Date"
 		this.ctrl.memory63.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory63.df_description = "Column Group 1"
 		this.ctrl.memory63.uictrl_code = "CDN_DATE"

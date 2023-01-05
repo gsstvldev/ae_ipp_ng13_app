@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27705 
+Build ID        : 27709 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-05 12:50 PM 
+Modified Date   : 2023-Jan-05 14:23 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_view_dashboard
@@ -25,7 +25,7 @@ export class p_main_layoutComponent implements OnInit {
   	navigation_ui : any = {}
 	process_type_list : any = {}
 	dashboard : any = {}
-	process_log_list : any = {}
+	transaction_list : any = {}
 
 
   // Constructor 
@@ -39,8 +39,8 @@ export class p_main_layoutComponent implements OnInit {
 		this.process_type_list.need_header = true
 		this.dashboard.desc = "Dashboard"
 		this.dashboard.need_header = true
-		this.process_log_list.desc = "Process Log List"
-		this.process_log_list.need_header = true
+		this.transaction_list.desc = "Transaction List"
+		this.transaction_list.need_header = true
 	
 
     this.screen_instance['p_main_layout'] = {};

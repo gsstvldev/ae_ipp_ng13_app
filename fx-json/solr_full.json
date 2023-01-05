@@ -1740,6 +1740,61 @@
         $DQ$NAME$DQ$: $DQ$NPSSMP_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847369565$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$NPSSNL_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672928670076$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672928670076$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_REF_NO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672928670076$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$STATUS_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672928670076$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$ORDER_CUST_ACC_NO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672928670076$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$AMOUNT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672928670076$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$STATUS_DESCRIPTION$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672928670076$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$KAFKA_MESSAGE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672928670076$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$COMMPD_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672928670076$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$COMMPM_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672928670076$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$COMMPML_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672928670076$DQ$
       }
     ],
     $DQ$TRAN_DELETION$DQ$: [],

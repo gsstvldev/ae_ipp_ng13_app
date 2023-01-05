@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27710 
+Build ID        : 27713 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-05 14:21 PM 
+Modified Date   : 2023-Jan-05 15:49 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_view_transaction
@@ -27,7 +27,7 @@ export class s_op_view_transactionComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_op_view_transaction"
 	wftpa_id : string = "WFT_NPSS_P_1304_1672827991199_0"
 	cg_code : string = "CG_1304_1672826611094"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID"}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -789,6 +789,9 @@ export class s_op_view_transactionComponent implements OnInit,AfterViewInit {
 	//Handler for SELECTION_CHANGED event of "process type list"
 	process_type_list__selection_changed(){
 		this.process_type_list__svm_for_process_type()
+		this.process_type_list__e_1672931158278()
+		this.process_type_list__e_1672931454946()
+		this.process_type_list__e_1672931485188()
 	}
 
 	//Handler for INTERNAL event of "svm for process type"
@@ -797,8 +800,9 @@ export class s_op_view_transactionComponent implements OnInit,AfterViewInit {
 	}
 
 	//Handler for INTERNAL event of "e 1672903593112"
-	e_1672903593112__internal(){
+	e_1672903593112__internal(parent_event_result){
 		this.e_1672903593112__e_1672903828395()
+		this.e_1672903593112__e_1672931056200(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2481,6 +2485,69 @@ export class s_op_view_transactionComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "process type list"
+	process_type_list__e_1672931158278() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_type_list"
+		let destn_id="payment_type_group"
+		let parent_source_id=""
+		let event_code="e_1672931158278"
+		let event_params={"caller_name":"process_type_list__e_1672931158278","event_desc":"E_1672931158278","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_type_list","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1672828181899","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Payment Type MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PAYMENT_TYPE_COUNT","alias_name":"","mq_id":"MQ_1672833338397","date_format":false},{"column_name":"PAYMENT_TYPE","alias_name":"","mq_id":"MQ_1672833338547","date_format":false}],"joins":[]},"eq_text":"select   COUNT(PAYMENT_TYPE) as PAYMENT_TYPE_COUNT,   PAYMENT_TYPE from   (  select    T.created_date,    T.channel_id ,    T.process_type ,    T.tenant_id,    case    when T.EXHF_ID is null then 'RCT'    else 'BCT'   end as PAYMENT_TYPE  from npss_transactions T ) V $WHERE group by  PAYMENT_TYPE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Payment Type Dashboard CCD","filter":[{"filter_name":"CHANNEL_ID","binding_name":"CHANNEL_ID","binding_value":"","source_name":"MI_LEVEL_CHANNEL_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"Department_code","binding_name":"Department_code","binding_value":"","source_name":"Department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Payment Type","target_column":"PAYMENT_TYPE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"PAYMENT_TYPE_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process type list"
+	process_type_list__e_1672931454946() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_type_list"
+		let destn_id="queue_group"
+		let parent_source_id=""
+		let event_code="e_1672931454946"
+		let event_params={"caller_name":"process_type_list__e_1672931454946","event_desc":"E_1672931454946","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_type_list","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1672828247713","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Queue Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS_COUNT","alias_name":"","mq_id":"MQ_1672833641472","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1672833641606","date_format":false}],"joins":[]},"eq_text":"select  COUNT(PROCESS_STATUS) as PROCESS_STATUS_COUNT,  PROCESS_STATUS from  (  select   T.CREATED_DATE,   T.CHANNEL_ID ,   T.PROCESS_TYPE ,   T.TENANT_ID,   T.DEPARTMENT_CODE,   case    when T.EXHF_ID is null then 'RCT'    else 'BCT'   end as PAYMENT_TYPE,   PL.PROCESS_STATUS  from   NPSS_TRANSACTIONS T  inner join (   select    PLR.NPSSTPL_ID,    PLR.UETR,    PLR.STATUS,    PLR.PROCESS_STATUS,    PLR.ROW_NUM   from    (    select     A.NPSSTPL_ID,     A.DT_CODE,     A.DTT_CODE,     A.UETR,     A.STATUS,     A.PROCESS_NAME,     A.PROCESS_STATUS,     row_number() over( partition by A.UETR    order by     A.NPSSTPL_ID desc) as ROW_NUM    from     NPSS_TRN_PROCESS_LOG A )PLR   where    PLR.ROW_NUM = 1) PL on   PL.UETR = T.UETR) V $WHERE group by  PROCESS_STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Queue Dashboard CCD","filter":[{"filter_name":"CHANNEL_ID","binding_name":"CHANNEL_ID","binding_value":"","source_name":"MI_LEVEL_CHANNEL_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Department_code","binding_name":"Department_code","binding_value":"","source_name":"Department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PAYMENT_TYPE","binding_name":"PAYMENT_TYPE","binding_value":"","source_name":"MI_LEVEL_PAYMENT_TYPE","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"PROCESS_STATUS_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "process type list"
+	process_type_list__e_1672931485188() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_type_list"
+		let destn_id="message_type_group"
+		let parent_source_id=""
+		let event_code="e_1672931485188"
+		let event_params={"caller_name":"process_type_list__e_1672931485188","event_desc":"E_1672931485188","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_type_list","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_20","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1672828449252","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Process Name Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME_COUNT","alias_name":"","mq_id":"MQ_1672835105850","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1672835108736","date_format":false}],"joins":[]},"eq_text":"select  COUNT(PROCESS_NAME) as PROCESS_NAME_COUNT,  PROCESS_NAME from  (  select   T.CREATED_DATE,   T.CHANNEL_ID ,   T.PROCESS_TYPE ,   T.TENANT_ID,   T.DEPARTMENT_CODE,   case    when T.EXHF_ID is null then 'RCT'    else 'BCT'   end as PAYMENT_TYPE,   PL.PROCESS_STATUS,   PL.STATUS,   PL.PROCESS_NAME  from   NPSS_TRANSACTIONS T  inner join (   select    PLR.NPSSTPL_ID,    PLR.UETR,    PLR.STATUS,    PLR.PROCESS_STATUS,    PLR.PROCESS_NAME,    PLR.ROW_NUM   from    (    select     A.NPSSTPL_ID,     A.DT_CODE,     A.DTT_CODE,     A.UETR,     A.STATUS,     A.PROCESS_NAME,     A.PROCESS_STATUS,     A.CREATED_DATE,     row_number() over( partition by A.UETR    order by     A.NPSSTPL_ID desc) as ROW_NUM    from     NPSS_TRN_PROCESS_LOG A ) PLR   where    PLR.ROW_NUM = 1) PL on   PL.UETR = T.UETR) V $WHERE group by  PROCESS_NAME"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Process Name Dashboard CCD","filter":[{"filter_name":"CHANNEL_ID","binding_name":"CHANNEL_ID","binding_value":"","source_name":"MI_LEVEL_CHANNEL_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Department_code","binding_name":"Department_code","binding_value":"","source_name":"Department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PAYMENT_TYPE","binding_name":"PAYMENT_TYPE","binding_value":"","source_name":"MI_LEVEL_PAYMENT_TYPE","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"PROCESS_NAME_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "svm for process type"
 	svm_for_process_type__e_1672903593112(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -2492,7 +2559,7 @@ export class s_op_view_transactionComponent implements OnInit,AfterViewInit {
 		let event_code="e_1672903593112"
 		let event_params={"caller_name":"svm_for_process_type__e_1672903593112","event_desc":"E_1672903593112","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_type_list","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="set_search_params"
-		let internals="e_1672903593112__e_1672903828395,"
+		let internals="e_1672903593112__e_1672903828395,e_1672903593112__e_1672931056200,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -2516,6 +2583,28 @@ export class s_op_view_transactionComponent implements OnInit,AfterViewInit {
 		let internals=""
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1672828121470","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Channel Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"CHANNEL_COUNT","alias_name":"","mq_id":"MQ_1672829934302","date_format":false},{"column_name":"channel_id","alias_name":"","mq_id":"MQ_1672829934741","date_format":false}],"joins":[]},"eq_text":"select  COUNT(channel_id) as CHANNEL_COUNT,  channel_id from  (  select   T.created_date,   T.channel_id ,   T.process_type ,   T.tenant_id,   T.DEPARTMENT_CODE  from   npss_transactions T) V $WHERE group by  channel_id"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Channel Dashboard CCD","filter":[{"filter_name":"Department_code","binding_name":"Department_code","binding_value":"","source_name":"Department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel ID","target_column":"channel_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"CHANNEL_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1672903593112"
+	e_1672903593112__e_1672931056200(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1672903593112"
+		let destn_id="status_group"
+		let parent_source_id="svm_for_process_type"
+		let event_code="e_1672931056200"
+		let event_params={"caller_name":"e_1672903593112__e_1672931056200","event_desc":"E_1672931056200","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_type_list","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"PIE","chart_label":"STATUS","chart_series":"","chart_data":"STATUS_COUNT","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_21","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1672838507154","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Status Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"STATUS_COUNT","alias_name":"","mq_id":"MQ_1672836121070","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1672836121212","date_format":false}],"joins":[]},"eq_text":"select  COUNT(STATUS) as STATUS_COUNT,  STATUS from  (  select   T.CREATED_DATE,   T.CHANNEL_ID ,   T.PROCESS_TYPE ,   T.TENANT_ID,   T.DEPARTMENT_CODE,   case    when T.EXHF_ID is null then 'RCT'    else 'BCT'   end as PAYMENT_TYPE,   PL.PROCESS_STATUS,   PL.STATUS,   PL.PROCESS_NAME  from   NPSS_TRANSACTIONS T  inner join (   select    PLR.NPSSTPL_ID,    PLR.UETR,    PLR.STATUS,    PLR.PROCESS_STATUS,    PLR.PROCESS_NAME,    PLR.ROW_NUM   from    (    select     A.NPSSTPL_ID,     A.DT_CODE,     A.DTT_CODE,     A.UETR,     A.STATUS,     A.PROCESS_NAME,     A.PROCESS_STATUS,     row_number() over( partition by A.UETR    order by     A.NPSSTPL_ID desc) as ROW_NUM    from     NPSS_TRN_PROCESS_LOG A ) PLR   where    PLR.ROW_NUM = 1) PL on   PL.UETR = T.UETR) V $WHERE group by  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Status Dashboard CCD","filter":[{"filter_name":"CHANNEL_ID","binding_name":"CHANNEL_ID","binding_value":"","source_name":"MI_LEVEL_CHANNEL_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"Department_code","binding_name":"Department_code","binding_value":"","source_name":"Department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"<>","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PAYMENT_TYPE","binding_name":"PAYMENT_TYPE","binding_value":"","source_name":"MI_LEVEL_PAYMENT_TYPE","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_NAME","binding_name":"PROCESS_NAME","binding_value":"","source_name":"MI_LEVEL_PROCESS_NAME","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"STATUS_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {

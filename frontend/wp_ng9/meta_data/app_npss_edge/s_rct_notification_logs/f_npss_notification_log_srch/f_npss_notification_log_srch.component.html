@@ -1,0 +1,36 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_notification_log_srch="ngForm">
+<div id="RN01" class="row">
+	<div #npss_notification_log_srch_memory12 id="RN01CN1" class="column col-md-10 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory12')" >
+				<dtp [ctrl_id]="'npss_notification_log_srch_memory12'" [comp_id]="comp_id" [ctrl]="ctrl.memory12" [model]="screen_instance[this.comp_id].f_npss_notification_log_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></dtp>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN21CN3" class="column col-md-10 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_id')" >
+				<txt [ctrl_id]="'npss_notification_log_srch_channel_id'" [comp_id]="comp_id" [ctrl]="ctrl.channel_id" [model]="screen_instance[this.comp_id].f_npss_notification_log_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+<div id="RN21" class="row">
+	<div  id="RN11CN2" class="column col-md-10 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('channel_ref_no')" >
+				<txt [ctrl_id]="'npss_notification_log_srch_channel_ref_no'" [comp_id]="comp_id" [ctrl]="ctrl.channel_ref_no" [model]="screen_instance[this.comp_id].f_npss_notification_log_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+<div id="RN31" class="row">
+	<div  id="RN31CN4" class="column col-md-10 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('status_code')" >
+				<txt [ctrl_id]="'npss_notification_log_srch_status_code'" [comp_id]="comp_id" [ctrl]="ctrl.status_code" [model]="screen_instance[this.comp_id].f_npss_notification_log_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+ 		<div class="col-md-2 col-sm-6 col-xs-6 col-md-offset-8 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.search_search.show" >
+			<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+		</div>
+		<div class="col-md-2 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.search_clear.show" >
+			<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		</div>
+	</div>
+
+</div>

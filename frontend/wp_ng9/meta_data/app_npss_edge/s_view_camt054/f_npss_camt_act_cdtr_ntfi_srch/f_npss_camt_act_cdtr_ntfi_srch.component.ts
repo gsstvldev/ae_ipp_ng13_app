@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27705 
+Build ID        : 27728 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-05 12:50 PM 
+Modified Date   : 2023-Jan-06 13:51 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_camt054
@@ -56,7 +56,7 @@ focustoelement(){
 		this.ctrl.notification_id.label_name = "Notification Id"
 		this.ctrl.notification_id.df_code = "DF_1304_1672472068656"
 		this.ctrl.notification_id.df_description = "Column Group 1"
-		this.ctrl.notification_id.uictrl_code = "TXT"
+		this.ctrl.notification_id.uictrl_code = "CDN_CTRL"
 		this.ctrl.notification_id.target_column = "NOTIFICATION_ID"
 		this.ctrl.notification_id.data_type = "TEXT"
 		this.ctrl.notification_id.data_length = 35
@@ -323,7 +323,7 @@ focustoelement(){
 		this.ctrl.npss_camt_act_cdtr_ntfi_srch_end_to_end_id = {}
 		this.ctrl.npss_camt_act_cdtr_ntfi_srch_end_to_end_id.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_camt_act_cdtr_ntfi_srch.model = {"NOTIFICATION_ID":"","NTFN_CREATED_DATETIME":"","IBAN":"","CURRENCY":"","MEMORY12":"setcurrentdate(),{}","CR_DR_INDICATOR":"","END_TO_END_ID":""}
-		this.screen_instance[this.comp_id].f_npss_camt_act_cdtr_ntfi_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"NOTIFICATION_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"NTFN_CREATED_DATETIME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"IBAN"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CURRENCY"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_DR_INDICATOR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"END_TO_END_ID"}]
+		this.screen_instance[this.comp_id].f_npss_camt_act_cdtr_ntfi_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"NOTIFICATION_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"NTFN_CREATED_DATETIME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"IBAN"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CURRENCY"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_DR_INDICATOR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"END_TO_END_ID"}]
 		this.screen_instance[this.comp_id].f_npss_camt_act_cdtr_ntfi_srch.dt_code = "dt_1304_1672471156312"
 		this.screen_instance[this.comp_id].f_npss_camt_act_cdtr_ntfi_srch.dtt_code = "dtt_1304_1672471952205"
 		this.screen_instance[this.comp_id].f_npss_camt_act_cdtr_ntfi_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

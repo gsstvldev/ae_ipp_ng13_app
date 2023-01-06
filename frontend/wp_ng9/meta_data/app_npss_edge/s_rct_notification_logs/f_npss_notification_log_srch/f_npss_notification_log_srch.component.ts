@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27721 
+Build ID        : 27728 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-06 8:16 AM 
+Modified Date   : 2023-Jan-06 13:51 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_notification_logs
@@ -95,7 +95,7 @@ focustoelement(){
 		this.ctrl.channel_id.label_name = "Channel"
 		this.ctrl.channel_id.df_code = "DF_1304_1672928913148"
 		this.ctrl.channel_id.df_description = "Column Group 1"
-		this.ctrl.channel_id.uictrl_code = "TXT"
+		this.ctrl.channel_id.uictrl_code = "CDN_CTRL"
 		this.ctrl.channel_id.target_column = "CHANNEL_ID"
 		this.ctrl.channel_id.data_type = "TEXT"
 		this.ctrl.channel_id.data_length = 32
@@ -204,7 +204,7 @@ focustoelement(){
 		this.ctrl.npss_notification_log_srch_status_code = {}
 		this.ctrl.npss_notification_log_srch_status_code.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_notification_log_srch.model = {"MEMORY12":"setcurrentdate(),{}","CHANNEL_ID":"","CHANNEL_REF_NO":"","STATUS_CODE":""}
-		this.screen_instance[this.comp_id].f_npss_notification_log_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"STATUS_CODE"}]
+		this.screen_instance[this.comp_id].f_npss_notification_log_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"STATUS_CODE"}]
 		this.screen_instance[this.comp_id].f_npss_notification_log_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_notification_log_srch.dtt_code = "dtt_1304_1672928670076"
 		this.screen_instance[this.comp_id].f_npss_notification_log_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

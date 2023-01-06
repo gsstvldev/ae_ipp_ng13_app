@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27721 
+Build ID        : 27728 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-06 8:16 AM 
+Modified Date   : 2023-Jan-06 13:51 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_notification_logs
@@ -12,13 +12,13 @@ Screen Name     : s_rct_notification_logs
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {npss_cs_rct_ipir_posting_failure_retryService} from '../../../custom_widget/npss_cs_rct_ipir_posting_failure_retry/npss_cs_rct_ipir_posting_failure_retry.service'
+import {npss_cs_communication_send_outward_ipp_payment_ntfService} from '../../../custom_widget/npss_cs_communication_send_outward_ipp_payment_ntf/npss_cs_communication_send_outward_ipp_payment_ntf.service'
 
 @Component({
 	selector: 's_rct_notification_logs',
 	templateUrl: './s_rct_notification_logs.component.html',
 	styleUrls: ['./s_rct_notification_logs.component.css'],
-	providers:[npss_cs_rct_ipir_posting_failure_retryService]
+	providers:[npss_cs_communication_send_outward_ipp_payment_ntfService]
 })
     
 // Start of class 
@@ -57,7 +57,7 @@ export class s_rct_notification_logsComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private npss_cs_rct_ipir_posting_failure_retryService:npss_cs_rct_ipir_posting_failure_retryService) {
+	constructor(private handler:AppHandlerService ,private npss_cs_communication_send_outward_ipp_payment_ntfService:npss_cs_communication_send_outward_ipp_payment_ntfService) {
     
 	}
     
@@ -595,7 +595,7 @@ export class s_rct_notification_logsComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_rct_ipir_posting_failure_retryService.fn_npss_cs_rct_ipir_posting_failure_retry(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_communication_send_outward_ipp_payment_ntfService.fn_npss_cs_communication_send_outward_ipp_payment_ntf(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

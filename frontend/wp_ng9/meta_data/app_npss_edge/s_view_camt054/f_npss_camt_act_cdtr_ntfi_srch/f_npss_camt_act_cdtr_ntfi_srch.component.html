@@ -4,7 +4,7 @@
 	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_camt_act_cdtr_ntfi_srch="ngForm">
 <div id="RN01" class="row">
 	<div #npss_camt_act_cdtr_ntfi_srch_notification_id id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('notification_id')" >
-				<txt [ctrl_id]="'npss_camt_act_cdtr_ntfi_srch_notification_id'" [comp_id]="comp_id" [ctrl]="ctrl.notification_id" [model]="screen_instance[this.comp_id].f_npss_camt_act_cdtr_ntfi_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+				<cdn_ctrl [ctrl_id]="'npss_camt_act_cdtr_ntfi_srch_notification_id'" [comp_id]="comp_id" [ctrl]="ctrl.notification_id" [model]="screen_instance[this.comp_id].f_npss_camt_act_cdtr_ntfi_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
 	</div>
 	<div  id="RN01CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('ntfn_created_datetime')" >
 				<cdn_ctrl [ctrl_id]="'npss_camt_act_cdtr_ntfi_srch_ntfn_created_datetime'" [comp_id]="comp_id" [ctrl]="ctrl.ntfn_created_datetime" [model]="screen_instance[this.comp_id].f_npss_camt_act_cdtr_ntfi_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>

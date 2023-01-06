@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27716 
+Build ID        : 27729 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-06 7:10 AM 
+Modified Date   : 2023-Jan-06 13:51 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_report_access
@@ -19,6 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
+import {torus_cs_change_routingkeyModule} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -46,7 +47,7 @@ import { p_report_access_layoutComponent } from './p_report_access_layout/p_repo
     OverlayPanelModule,
     
     s_report_accessRoutingModule,
-    
+    torus_cs_change_routingkeyModule
   ],
   declarations: [s_report_accessComponent,p_report_access_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]

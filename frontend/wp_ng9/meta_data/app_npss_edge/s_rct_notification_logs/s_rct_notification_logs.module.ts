@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27721 
+Build ID        : 27728 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-06 8:16 AM 
+Modified Date   : 2023-Jan-06 13:51 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_notification_logs
@@ -19,7 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
-import {npss_cs_rct_ipir_posting_failure_retryModule} from '../../../custom_widget/npss_cs_rct_ipir_posting_failure_retry/npss_cs_rct_ipir_posting_failure_retry.module'
+import {npss_cs_communication_send_outward_ipp_payment_ntfModule} from '../../../custom_widget/npss_cs_communication_send_outward_ipp_payment_ntf/npss_cs_communication_send_outward_ipp_payment_ntf.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -53,7 +53,7 @@ import { f_npss_kafka_message_uiComponent } from './f_npss_kafka_message_ui/f_np
     OverlayPanelModule,
     
     s_rct_notification_logsRoutingModule,
-    npss_cs_rct_ipir_posting_failure_retryModule
+    npss_cs_communication_send_outward_ipp_payment_ntfModule
   ],
   declarations: [s_rct_notification_logsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_notification_log_srchComponent,p_view_message_layoutComponent,f_back_uiComponent,f_npss_kafka_message_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

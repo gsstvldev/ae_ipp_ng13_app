@@ -89,8 +89,9 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                     "TEMPLATECODE": "COMM_CATEGORY1654506913618",
                                                                     "DT_CODE": "",
                                                                     "DTT_CODE": "",
-                                                                    "TOPIC_NAME": TopicName[0].param_value || ' ',
-                                                                    "STATIC_DATA": arrTranobj.kafka_message || ' '
+                                                                    "TOPIC_NAME": TopicName[0].param_value || '',
+                                                                    "STATIC_DATA": arrTranobj.kafka_message || '',
+                                                                     "SKIP_COMM_FLOW": true
                                                                 },
                                                                 "PROCESS_INFO": {
                                                                     "MODULE": "NPSS",
@@ -100,7 +101,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                 }
                                                             },
                                                             headers: {
-                                                                'session-id':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbl9uYW1lIjoiQUVGQUJOUFNTIiwiaWF0IjoxNjczMDAxMjk3LCJleHAiOjE2NzMwMDE0Njl9.5U2XSsNW7Bjqpovott0T0TViIQBG--irhI46gr4n4Xg",
+                                                                
                                                                 'Content-Type': 'application/json'
     
                                                             }

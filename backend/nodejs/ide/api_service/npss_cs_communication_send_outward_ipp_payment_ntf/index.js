@@ -101,8 +101,10 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                 }
                                                             },
                                                             headers: {
-                                                                
-                                                                'Content-Type': 'application/json'
+                                                                 "session-id":"STATIC-SESSION-NPSS",
+                                                            "routingKey":"CLT-0~APP-0~TNT-0~ENV-0",
+                                                            'Content-Type': 'application/json'
+                                                               
     
                                                             }
                                                         }

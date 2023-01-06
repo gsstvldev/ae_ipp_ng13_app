@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27696 
+Build ID        : 27718 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-06 4:55 AM 
+Modified Date   : 2023-Jan-06 6:32 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_notification_logs
@@ -56,7 +56,7 @@ focustoelement(){
 		this.ctrl.memory12.label_name = "Created Date"
 		this.ctrl.memory12.df_code = "DF_1304_1672928913148"
 		this.ctrl.memory12.df_description = "Column Group 1"
-		this.ctrl.memory12.uictrl_code = "DTP"
+		this.ctrl.memory12.uictrl_code = "CDN_DATE"
 		this.ctrl.memory12.target_column = "memory12"
 		this.ctrl.memory12.data_type = "DATETIME"
 		this.ctrl.memory12.data_length = 0

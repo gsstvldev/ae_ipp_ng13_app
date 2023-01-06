@@ -1,29 +1,28 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27720 
+Build ID        : 27716 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-06 7:11 AM 
+Modified Date   : 2023-Jan-06 7:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_rct_notification_logs
-Profile Name    : Main Layout--------------------------------------------------------------------------- */
+Screen Name     : s_report_viewer
+Profile Name    : Report Viewer Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_main_layout',
-  templateUrl: './p_main_layout.component.html',
-  styleUrls: ['./p_main_layout.component.css']
+  selector: 'p_report_viewer_layout',
+  templateUrl: './p_report_viewer_layout.component.html',
+  styleUrls: ['./p_report_viewer_layout.component.css']
 })
 
 // Start of class 
-export class p_main_layoutComponent implements OnInit {
+export class p_report_viewer_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	navigation_ui : any = {}
-	process_log_list : any = {}
+  	report_viewer : any = {}
 
 
   // Constructor 
@@ -31,14 +30,12 @@ export class p_main_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.navigation_ui.desc = "Navigation UI"
-		this.navigation_ui.need_header = ""
-		this.process_log_list.desc = "Queue"
-		this.process_log_list.need_header = true
+    	this.report_viewer.desc = "Report Viewer"
+		this.report_viewer.need_header = ""
 	
 
-    this.screen_instance['p_main_layout'] = {};
-    this.screen_instance['p_main_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_report_viewer_layout'] = {};
+    this.screen_instance['p_report_viewer_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

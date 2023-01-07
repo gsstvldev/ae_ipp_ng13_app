@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27746 
+Build ID        : 27750 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-07 12:52 PM 
+Modified Date   : 2023-Jan-07 16:5 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_view_dashboard

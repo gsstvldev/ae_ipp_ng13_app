@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS alter column DBTR_ACCT_NO type CHARACTER VARYING(512),alter column CR_ACCT_IDENTIFICATION type CHARACTER VARYING(512);","params" : [] }]
+[]

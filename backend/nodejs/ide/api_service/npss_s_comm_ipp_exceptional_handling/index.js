@@ -7,7 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
+
     /*  Created By :  Daseen
     Created Date : 06/01/2023
     Modified By : 
@@ -50,8 +51,8 @@ app.post('/', function(appRequest, appResponse, next) {
                         var ApitrnId
                         var app_id
                         try {
-
-                            var selrec = `select i.commmt_code,i.commmg_code,d.commpd_id,i.template_info, m.commpm_id ,l.attempt_count,l.commpml_id,m.message from dep_tran.comm_info i inner join comm_process_data d    on i.commmg_code=d.commmg_code and d.is_processed='N'    and i.app_id='${params.appId}' and i.comm_type='kafka' inner join  comm_process_message m on i.commmt_code=m.commmt_code  and m.type='KAFKA'   inner join comm_process_message_log l on l.comm_msg_id=m.comm_msg_id and l.comments <>'SUCCESS' and m.message like'_______________OrigChannelID%'`
+                            var selrec = `select i.commmt_code,i.commmg_code,d.commpd_id,i.template_info, m.commpm_id ,l.attempt_count,l.commpml_id,m.message from dep_tran.comm_info i inner join comm_process_data d    on i.commmg_code=d.commmg_code and d.is_processed='N'  and i.commmg_code='COMM_CATEGORY1673011887342'    and i.app_id='${params.appId}' and i.comm_type='kafka' inner join  comm_process_message m on i.commmt_code=m.commmt_code  and m.type='KAFKA'   inner join comm_process_message_log l on l.comm_msg_id=m.comm_msg_id and l.comments <>'SUCCESS' and m.message like '%OrigChannelID%'`
+                            // var selrec = `select i.commmt_code,i.commmg_code,d.commpd_id,i.template_info, m.commpm_id ,l.attempt_count,l.commpml_id,m.message from dep_tran.comm_info i inner join comm_process_data d    on i.commmg_code=d.commmg_code and d.is_processed='N'    and i.app_id='${params.appId}' and i.comm_type='kafka' inner join  comm_process_message m on i.commmt_code=m.commmt_code  and m.type='KAFKA'   inner join comm_process_message_log l on l.comm_msg_id=m.comm_msg_id and l.comments <>'SUCCESS' and m.message like'_______________OrigChannelID%'`
                             ExecuteQuery1(selrec, function (insarr) {
                                 if (insarr.length) {
                                     var JsonValue = JSON.parse(insarr[0].template_info)
@@ -61,18 +62,18 @@ app.post('/', function(appRequest, appResponse, next) {
                                     var arrNoinsert = [];
                                     for (let i = 0; i < insarr.length; i++) {
                                         if (retry_count <= insarr[i].attempt_count) {
-                                            
+
                                             var objNoinsert = {};
                                             var Value = JSON.parse(insarr[i].message)
                                             var data = Value['message']
                                             var MsgValue = JSON.parse(data)
-                                           
-                                            objNoinsert.CHANNEL_ID = MsgValue['OrigChannelID']||'';
-                                           
-                        
-                                            objNoinsert.CHANNEL_REF_NO = MsgValue['channelReferenceNo']||'';
-                                            objNoinsert.STATUS_CODE = MsgValue['statusCode']||'';
-                                            objNoinsert.STATUS_DESCRIPTION = MsgValue['statusDesc']||'';
+
+                                            objNoinsert.CHANNEL_ID = MsgValue['OrigChannelID'] || '';
+
+
+                                            objNoinsert.CHANNEL_REF_NO = MsgValue['channelReferenceNo'] || '';
+                                            objNoinsert.STATUS_CODE = MsgValue['statusCode'] || '';
+                                            objNoinsert.STATUS_DESCRIPTION = MsgValue['statusDesc'] || '';
                                             objNoinsert.KAFKA_MESSAGE = insarr[i].message
                                             objNoinsert.COMMPD_ID = insarr[i].commpd_id
                                             objNoinsert.COMMPM_ID = insarr[i].commpm_id
@@ -95,7 +96,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             objNoinsert.SYSTEM_NAME = params.SYSTEM_NAME;
                                             objNoinsert.CREATED_BY_STS_ID = "";
                                             objNoinsert.MODIFIED_BY_STS_ID = "";
-                                            objNoinsert.PRCT_ID =PRCT_ID;
+                                            objNoinsert.PRCT_ID = PRCT_ID;
                                             objNoinsert.created_clientip = objSessionLogInfo.CLIENTIP;
                                             objNoinsert.created_tz = objSessionLogInfo.CLIENTTZ;
                                             objNoinsert.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
@@ -103,33 +104,50 @@ app.post('/', function(appRequest, appResponse, next) {
                                             objNoinsert.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                             objNoinsert.routingkey = headers.routingkey;
                                             arrNoinsert.push(objNoinsert);
-                        
+
                                         }
-                                        
+
                                     }
-                                  
-                                    _BulkInsertProcessItem(arrNoinsert, 'npss_notification_logs', function callbackInsert(CusTranInsertRes) {
-                                        if (CusTranInsertRes.length > 0) {
-                                            objresponse.status = 'SUCCESS';
-                                            sendResponse(null, objresponse)
-                                        } else {
-                                            objresponse.status = 'FAILURE';
-                                            sendResponse(null, objresponse)
-                                        }
-                        
-                                    })
-                               
-                        
+                                    if (arrNoinsert.length) {
+                                        _BulkInsertProcessItem(arrNoinsert, 'npss_notification_logs', function callbackInsert(CusTranInsertRes) {
+                                            if (CusTranInsertRes.length > 0) {
+                                                reqInstanceHelper.PrintInfo(serviceName, "........................All Data inserted Successfully...............", objSessionLogInfo);
+                                                console.log("........................ All Data inserted Successfully...............")
+                                                objresponse.status = 'SUCCESS';
+                                                sendResponse(null, objresponse)
+                                            } else {
+                                                reqInstanceHelper.PrintInfo(serviceName, "........................Error in insert...............", objSessionLogInfo);
+                                                console.log("........................ Error in insert...............")
+                                                objresponse.status = 'FAILURE';
+                                                sendResponse(null, objresponse)
+                                            }
+
+                                        })
+                                    }
+                                    else {
+
+                                        reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND to insert...............", objSessionLogInfo);
+                                        console.log("........................ NO Data FOUND to insert...............")
+                                        objresponse.status = 'SUCCESS';
+                                        objresponse.msg = 'No data Found to insert';
+                                        sendResponse(null, objresponse)
+
+                                    }
+
                                 } else {
-                                    objresponse.status = 'No Data Found';
-                                    sendResponse(null, objresponse);
+
+                                    reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND in communication table...............", objSessionLogInfo);
+                                    console.log("........................ NO Data FOUND in communication table...............")
+                                    objresponse.status = 'SUCCESS';
+                                    objresponse.msg = 'No data Found in communication table';
+                                    sendResponse(null, objresponse)
                                 }
                             })
-                        
-                        
-                        
-                        
-                        
+
+
+
+
+
                             function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
                                 try {
                                     reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
@@ -154,14 +172,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                     sendResponse(error)
                                 }
                             }
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+
+
+
+
+
+
+
+
                             //fucntion to execute select query
                             function ExecuteQuery1(query, callback) {
                                 reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
@@ -182,21 +200,21 @@ app.post('/', function(appRequest, appResponse, next) {
                                     }
                                 });
                             }
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+
+
+
+
+
+
+
+
+
                         } catch (error) {
                             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10003', 'ERROR IN DB CONNECTION FUNCTION', error);
                         }
                     }
 
-                  
+
 
 
 
@@ -222,6 +240,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

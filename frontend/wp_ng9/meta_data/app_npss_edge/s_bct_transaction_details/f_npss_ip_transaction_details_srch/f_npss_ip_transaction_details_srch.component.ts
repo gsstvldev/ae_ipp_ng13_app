@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27741 
+Build ID        : 27746 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-07 10:4 AM 
+Modified Date   : 2023-Jan-07 12:52 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_transaction_details
@@ -176,7 +176,7 @@ focustoelement(){
 		this.ctrl.cr_acct_identification.uictrl_code = "TXT"
 		this.ctrl.cr_acct_identification.target_column = "CR_ACCT_IDENTIFICATION"
 		this.ctrl.cr_acct_identification.data_type = "TEXT"
-		this.ctrl.cr_acct_identification.data_length = 34
+		this.ctrl.cr_acct_identification.data_length = 512
 		this.ctrl.cr_acct_identification.zone_df_code = "DF_1304_1665901396659"
 		this.ctrl.cr_acct_identification.default_value = ""
 		this.ctrl.cr_acct_identification.is_memory_ctrl = ""
@@ -186,6 +186,7 @@ focustoelement(){
 		this.ctrl.cr_acct_identification.currency_format = ""
 		this.ctrl.cr_acct_identification.data_scale = ""
 		this.ctrl.cr_acct_identification.binding_name = "CR_ACCT_IDENTIFICATION"
+		this.ctrl.cr_acct_identification.hide_label = false
 		this.ctrl.cr_acct_identification.depends_on = ""
 		this.ctrl.cr_acct_identification.placeholder = ""
 		this.ctrl.cr_acct_identification.dynamic_param = ""

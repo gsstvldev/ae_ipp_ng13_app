@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27741 
+Build ID        : 27746 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-07 10:4 AM 
+Modified Date   : 2023-Jan-07 12:52 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2b_transaction_details
@@ -176,7 +176,7 @@ focustoelement(){
 		this.ctrl.dbtr_acct_no.uictrl_code = "TXT"
 		this.ctrl.dbtr_acct_no.target_column = "DBTR_ACCT_NO"
 		this.ctrl.dbtr_acct_no.data_type = "TEXT"
-		this.ctrl.dbtr_acct_no.data_length = 20
+		this.ctrl.dbtr_acct_no.data_length = 512
 		this.ctrl.dbtr_acct_no.zone_df_code = "DF_1304_1665901396659"
 		this.ctrl.dbtr_acct_no.default_value = ""
 		this.ctrl.dbtr_acct_no.is_memory_ctrl = ""

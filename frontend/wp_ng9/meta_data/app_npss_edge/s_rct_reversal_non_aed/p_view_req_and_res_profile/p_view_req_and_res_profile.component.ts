@@ -1,28 +1,30 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27738 
+Build ID        : 27741 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-07 6:45 AM 
+Modified Date   : 2023-Jan-07 10:4 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
-Profile Name    : Accept Layout--------------------------------------------------------------------------- */
+Profile Name    : View Req and Res Profile--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_accept_layout',
-  templateUrl: './p_accept_layout.component.html',
-  styleUrls: ['./p_accept_layout.component.css']
+  selector: 'p_view_req_and_res_profile',
+  templateUrl: './p_view_req_and_res_profile.component.html',
+  styleUrls: ['./p_view_req_and_res_profile.component.css']
 })
 
 // Start of class 
-export class p_accept_layoutComponent implements OnInit {
+export class p_view_req_and_res_profileComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	accept_ui : any = {}
+  	single_back_ui : any = {}
+	request_ui : any = {}
+	response_ui : any = {}
 
 
   // Constructor 
@@ -30,12 +32,16 @@ export class p_accept_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.accept_ui.desc = "Accept UI"
-		this.accept_ui.need_header = ""
+    	this.single_back_ui.desc = "Single Back UI"
+		this.single_back_ui.need_header = ""
+		this.request_ui.desc = "Request UI"
+		this.request_ui.need_header = false
+		this.response_ui.desc = "Response UI"
+		this.response_ui.need_header = false
 	
 
-    this.screen_instance['p_accept_layout'] = {};
-    this.screen_instance['p_accept_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_view_req_and_res_profile'] = {};
+    this.screen_instance['p_view_req_and_res_profile']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

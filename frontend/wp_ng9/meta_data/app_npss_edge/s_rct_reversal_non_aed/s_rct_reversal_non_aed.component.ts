@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27738 
+Build ID        : 27741 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-07 6:45 AM 
+Modified Date   : 2023-Jan-07 10:4 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -41,7 +41,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
-	current_profile : string = "p_accept_layout"
+	current_profile : string = "p_main_layout"
 	uicgc_1 : string = "queue"
 	uicgc_2 : string = "transaction_list"
 	uicgc_3 : string = "navigation"

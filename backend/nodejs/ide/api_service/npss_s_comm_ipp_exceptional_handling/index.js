@@ -8,8 +8,8 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
-    /*  Created By :  Siva Harish M
-    Created Date : 14/10/2022
+    /*  Created By :  Daseen
+    Created Date : 06/01/2023
     Modified By : 
     Modified Date : 
     Reason for : 
@@ -79,8 +79,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                             objNoinsert.COMMPML_ID = insarr[i].commpml_id
                                             objNoinsert.TENANT_ID = params.TENANT_ID;
                                             objNoinsert.APP_ID = params.appId;
-                                            objNoinsert.STATUS = 'CREATED'
-                                            objNoinsert.PROCESS_STATUS = 'CREATED'
+                                            objNoinsert.STATUS = 'Created'
+                                            objNoinsert.PROCESS_STATUS = 'Created'
                                             objNoinsert.DT_CODE = 'DT_1304_1665901130705'
                                             objNoinsert.DTT_CODE = 'DTT_1304_1672928670076'
                                             objNoinsert.DT_DESCRIPTION = 'transaction_group'

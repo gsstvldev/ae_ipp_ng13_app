@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27651 
+Build ID        : 27738 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-02 8:13 AM 
+Modified Date   : 2023-Jan-07 6:44 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_transaction_details
@@ -36,7 +36,7 @@ import { s_bct_transaction_detailsRoutingModule } from './s_bct_transaction_deta
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_npss_rct_post_plog_srchComponent } from './f_npss_rct_post_plog_srch/f_npss_rct_post_plog_srch.component'
+import { f_npss_ip_transaction_details_srchComponent } from './f_npss_ip_transaction_details_srch/f_npss_ip_transaction_details_srch.component'
 import { p_vertical_layoutComponent } from './p_vertical_layout/p_vertical_layout.component'
 import { f_main_back_uiComponent } from './f_main_back_ui/f_main_back_ui.component'
 import { p_refund_layoutComponent } from './p_refund_layout/p_refund_layout.component'
@@ -70,7 +70,7 @@ import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/
     s_bct_transaction_detailsRoutingModule,
     torus_cs_change_routingkeyModule,torus_cs_show_hideModule
   ],
-  declarations: [s_bct_transaction_detailsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_vertical_layoutComponent,f_main_back_uiComponent,p_refund_layoutComponent,f_refund_uiComponent,f_refund_editable_uiComponent,f_submit_uiComponent,p_view_response_layoutComponent,f_npss_bct_response_uiComponent,f_hst_process_log_backComponent,p_view_request_layoutComponent,f_npss_bct_request_uiComponent,p_view_history_layoutComponent,f_hst_process_log_to_main_backComponent,p_main_req_and_res_layoutComponent,p_pl_req_and_res_layoutComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,],
+  declarations: [s_bct_transaction_detailsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_ip_transaction_details_srchComponent,p_vertical_layoutComponent,f_main_back_uiComponent,p_refund_layoutComponent,f_refund_uiComponent,f_refund_editable_uiComponent,f_submit_uiComponent,p_view_response_layoutComponent,f_npss_bct_response_uiComponent,f_hst_process_log_backComponent,p_view_request_layoutComponent,f_npss_bct_request_uiComponent,p_view_history_layoutComponent,f_hst_process_log_to_main_backComponent,p_main_req_and_res_layoutComponent,p_pl_req_and_res_layoutComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

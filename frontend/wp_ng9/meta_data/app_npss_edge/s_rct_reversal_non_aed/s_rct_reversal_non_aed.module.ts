@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27651 
+Build ID        : 27738 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-02 8:12 AM 
+Modified Date   : 2023-Jan-07 6:45 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -42,40 +42,8 @@ import { s_rct_reversal_non_aedRoutingModule } from './s_rct_reversal_non_aed.ro
     
 
 
-import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
-import { f_navigationComponent } from './f_navigation/f_navigation.component'
-import { p_accept_ui_layoutComponent } from './p_accept_ui_layout/p_accept_ui_layout.component'
-import { f_npss_rct_reversal_uiComponent } from './f_npss_rct_reversal_ui/f_npss_rct_reversal_ui.component'
-import { f_npss_tran_remarks_uiComponent } from './f_npss_tran_remarks_ui/f_npss_tran_remarks_ui.component'
-import { f_npss_reversal_plog_uiComponent } from './f_npss_reversal_plog_ui/f_npss_reversal_plog_ui.component'
-import { f_npss_reversal_deal_plog_uiComponent } from './f_npss_reversal_deal_plog_ui/f_npss_reversal_deal_plog_ui.component'
-import { f_reversal_action_uiComponent } from './f_reversal_action_ui/f_reversal_action_ui.component'
-import { p_change_return_layoutComponent } from './p_change_return_layout/p_change_return_layout.component'
-import { f_npss_pl_change_rtn_reason_uiComponent } from './f_npss_pl_change_rtn_reason_ui/f_npss_pl_change_rtn_reason_ui.component'
-import { p_remarks_layoutComponent } from './p_remarks_layout/p_remarks_layout.component'
-import { f_npss_reject_uiComponent } from './f_npss_reject_ui/f_npss_reject_ui.component'
-import { f_npss_remarks_uiComponent } from './f_npss_remarks_ui/f_npss_remarks_ui.component'
-import { p_vertical_layoutComponent } from './p_vertical_layout/p_vertical_layout.component'
-import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
-import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
-import { f_process_log_uiComponent } from './f_process_log_ui/f_process_log_ui.component'
-import { p_view_message_list_layoutComponent } from './p_view_message_list_layout/p_view_message_list_layout.component'
-import { f_message_detail_actionComponent } from './f_message_detail_action/f_message_detail_action.component'
-import { p_view_message_ui_layoutComponent } from './p_view_message_ui_layout/p_view_message_ui_layout.component'
-import { f_message_back_uiComponent } from './f_message_back_ui/f_message_back_ui.component'
-import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss_message_data_ui.component'
-import { p_view_req_and_res_profileComponent } from './p_view_req_and_res_profile/p_view_req_and_res_profile.component'
-import { f_single_back_uiComponent } from './f_single_back_ui/f_single_back_ui.component'
-import { f_npss_target_request_uiComponent } from './f_npss_target_request_ui/f_npss_target_request_ui.component'
-import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/f_npss_target_response_ui.component'
-import { p_cancel_layoutComponent } from './p_cancel_layout/p_cancel_layout.component'
-import { f_npss_pl_change_cancel_reason_uiComponent } from './f_npss_pl_change_cancel_reason_ui/f_npss_pl_change_cancel_reason_ui.component'
-import { p_send_to_maker_layoutComponent } from './p_send_to_maker_layout/p_send_to_maker_layout.component'
-import { f_npss_send_to_maker_uiComponent } from './f_npss_send_to_maker_ui/f_npss_send_to_maker_ui.component'
-import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_npss_reversal_srchComponent } from './f_npss_reversal_srch/f_npss_reversal_srch.component'
-import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_request_layout.component'
-import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
+import { p_accept_layoutComponent } from './p_accept_layout/p_accept_layout.component'
+import { f_npss_pl_rtn_reason_uiComponent } from './f_npss_pl_rtn_reason_ui/f_npss_pl_rtn_reason_ui.component'
 
 
 
@@ -92,7 +60,7 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     s_rct_reversal_non_aedRoutingModule,
     npss_cs_rev_get_usable_balanceModule,torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_reversal_set_status_and_bind_valueModule,npss_cs_ip_rev_accept_inau_reserve_fundModule,npss_cs_reject_pack002Module,npss_cs_ip_rev_ret_auth_pacs004Module,npss_cs_ip_rev_reject_inau_reserve_fundModule,npss_cs_ip_rev_get_dealModule,npss_cs_reversal_cancelModule,npss_cs_reversal_send_to_makerModule
   ],
-  declarations: [s_rct_reversal_non_aedComponent,p_main_layoutComponent,f_navigationComponent,p_accept_ui_layoutComponent,f_npss_rct_reversal_uiComponent,f_npss_tran_remarks_uiComponent,f_npss_reversal_plog_uiComponent,f_npss_reversal_deal_plog_uiComponent,f_reversal_action_uiComponent,p_change_return_layoutComponent,f_npss_pl_change_rtn_reason_uiComponent,p_remarks_layoutComponent,f_npss_reject_uiComponent,f_npss_remarks_uiComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_cancel_layoutComponent,f_npss_pl_change_cancel_reason_uiComponent,p_send_to_maker_layoutComponent,f_npss_send_to_maker_uiComponent,p_search_layoutComponent,f_npss_reversal_srchComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
+  declarations: [s_rct_reversal_non_aedComponent,p_accept_layoutComponent,f_npss_pl_rtn_reason_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

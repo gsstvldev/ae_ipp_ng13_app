@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27651 
+Build ID        : 27738 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-02 8:13 AM 
+Modified Date   : 2023-Jan-07 6:45 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -127,9 +127,9 @@ focustoelement(){
 		//Properties of cr_acct_identification
 		this.ctrl.cr_acct_identification = {}
 		this.ctrl.cr_acct_identification.id = "RN01CN13"
-		this.ctrl.cr_acct_identification.desc = "Cr Account No"
+		this.ctrl.cr_acct_identification.desc = "Cr Account Identifiction"
 		this.ctrl.cr_acct_identification.visible = true
-		this.ctrl.cr_acct_identification.label_name = "Cr Account No"
+		this.ctrl.cr_acct_identification.label_name = "Cr Account Identifiction"
 		this.ctrl.cr_acct_identification.df_code = "DF_1304_1665901396659"
 		this.ctrl.cr_acct_identification.df_description = "Column Group 1"
 		this.ctrl.cr_acct_identification.uictrl_code = "TXT"

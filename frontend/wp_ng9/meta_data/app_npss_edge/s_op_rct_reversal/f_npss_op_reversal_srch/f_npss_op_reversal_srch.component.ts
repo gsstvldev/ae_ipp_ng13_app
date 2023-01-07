@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27651 
+Build ID        : 27739 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-02 8:12 AM 
+Modified Date   : 2023-Jan-07 6:50 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -87,44 +87,83 @@ focustoelement(){
 		this.ctrl.npss_op_reversal_srch_value_date = {}
 		this.ctrl.npss_op_reversal_srch_value_date.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of cdtr_iban
-		this.ctrl.cdtr_iban = {}
-		this.ctrl.cdtr_iban.id = "RN01CN2"
-		this.ctrl.cdtr_iban.desc = "Cr IBAN"
-		this.ctrl.cdtr_iban.visible = true
-		this.ctrl.cdtr_iban.label_name = "Cr IBAN"
-		this.ctrl.cdtr_iban.df_code = "DF_1304_1665901396659"
-		this.ctrl.cdtr_iban.df_description = "Column Group 1"
-		this.ctrl.cdtr_iban.uictrl_code = "CDN_CTRL"
-		this.ctrl.cdtr_iban.target_column = "CDTR_IBAN"
-		this.ctrl.cdtr_iban.data_type = "TEXT"
-		this.ctrl.cdtr_iban.data_length = 64
-		this.ctrl.cdtr_iban.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.cdtr_iban.default_value = ""
-		this.ctrl.cdtr_iban.is_memory_ctrl = ""
-		this.ctrl.cdtr_iban.field_coordinates = ""
-		this.ctrl.cdtr_iban.sub_details = ""
-		this.ctrl.cdtr_iban.accept_char = ""
-		this.ctrl.cdtr_iban.currency_format = ""
-		this.ctrl.cdtr_iban.data_scale = ""
-		this.ctrl.cdtr_iban.binding_name = "CDTR_IBAN"
-		this.ctrl.cdtr_iban.hide_label = false
-		this.ctrl.cdtr_iban.depends_on = ""
-		this.ctrl.cdtr_iban.placeholder = ""
-		this.ctrl.cdtr_iban.dynamic_param = ""
-		this.ctrl.cdtr_iban.style_code = ""
-		this.ctrl.cdtr_iban.data_source = ""
-		this.ctrl.cdtr_iban.image_association = ""
-		this.ctrl.cdtr_iban.show = true
-		this.ctrl.cdtr_iban.sub_content = ""
-		this.ctrl.cdtr_iban.required = false
-		this.ctrl.cdtr_iban.vld_rules = []
-		this.ctrl.cdtr_iban.targetcolumn_lower = "cdtr_iban"
-		this.ctrl.cdtr_iban.disabled = false
-		this.ctrl.cdtr_iban.view_name = "f_npss_op_reversal_srch"
-		this.ctrl.cdtr_iban.ctrl_id = "npss_op_reversal_srch_cdtr_iban"
-		this.ctrl.npss_op_reversal_srch_cdtr_iban = {}
-		this.ctrl.npss_op_reversal_srch_cdtr_iban.onChangecomponent = new EventEmitter<any>()
+		//Properties of dbtr_iban
+		this.ctrl.dbtr_iban = {}
+		this.ctrl.dbtr_iban.id = "RN41CN8"
+		this.ctrl.dbtr_iban.desc = "Dr IBAN"
+		this.ctrl.dbtr_iban.visible = true
+		this.ctrl.dbtr_iban.label_name = "Dr IBAN"
+		this.ctrl.dbtr_iban.df_code = "DF_1304_1665901396659"
+		this.ctrl.dbtr_iban.df_description = "Column Group 1"
+		this.ctrl.dbtr_iban.uictrl_code = "CDN_CTRL"
+		this.ctrl.dbtr_iban.target_column = "DBTR_IBAN"
+		this.ctrl.dbtr_iban.data_type = "TEXT"
+		this.ctrl.dbtr_iban.data_length = 64
+		this.ctrl.dbtr_iban.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.dbtr_iban.default_value = ""
+		this.ctrl.dbtr_iban.is_memory_ctrl = ""
+		this.ctrl.dbtr_iban.field_coordinates = ""
+		this.ctrl.dbtr_iban.sub_details = ""
+		this.ctrl.dbtr_iban.accept_char = ""
+		this.ctrl.dbtr_iban.currency_format = ""
+		this.ctrl.dbtr_iban.data_scale = ""
+		this.ctrl.dbtr_iban.binding_name = "DBTR_IBAN"
+		this.ctrl.dbtr_iban.hide_label = false
+		this.ctrl.dbtr_iban.depends_on = ""
+		this.ctrl.dbtr_iban.placeholder = ""
+		this.ctrl.dbtr_iban.dynamic_param = ""
+		this.ctrl.dbtr_iban.style_code = ""
+		this.ctrl.dbtr_iban.data_source = ""
+		this.ctrl.dbtr_iban.image_association = ""
+		this.ctrl.dbtr_iban.show = true
+		this.ctrl.dbtr_iban.sub_content = ""
+		this.ctrl.dbtr_iban.required = false
+		this.ctrl.dbtr_iban.vld_rules = []
+		this.ctrl.dbtr_iban.targetcolumn_lower = "dbtr_iban"
+		this.ctrl.dbtr_iban.disabled = false
+		this.ctrl.dbtr_iban.view_name = "f_npss_op_reversal_srch"
+		this.ctrl.dbtr_iban.ctrl_id = "npss_op_reversal_srch_dbtr_iban"
+		this.ctrl.npss_op_reversal_srch_dbtr_iban = {}
+		this.ctrl.npss_op_reversal_srch_dbtr_iban.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of dbtr_acct_no
+		this.ctrl.dbtr_acct_no = {}
+		this.ctrl.dbtr_acct_no.id = "RN41CN9"
+		this.ctrl.dbtr_acct_no.desc = "Dr Account Identification"
+		this.ctrl.dbtr_acct_no.visible = true
+		this.ctrl.dbtr_acct_no.label_name = "Dr Account Identification"
+		this.ctrl.dbtr_acct_no.df_code = "DF_1304_1665901396659"
+		this.ctrl.dbtr_acct_no.df_description = "Column Group 1"
+		this.ctrl.dbtr_acct_no.uictrl_code = "CDN_CTRL"
+		this.ctrl.dbtr_acct_no.target_column = "DBTR_ACCT_NO"
+		this.ctrl.dbtr_acct_no.data_type = "TEXT"
+		this.ctrl.dbtr_acct_no.data_length = 20
+		this.ctrl.dbtr_acct_no.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.dbtr_acct_no.default_value = ""
+		this.ctrl.dbtr_acct_no.is_memory_ctrl = ""
+		this.ctrl.dbtr_acct_no.field_coordinates = ""
+		this.ctrl.dbtr_acct_no.sub_details = ""
+		this.ctrl.dbtr_acct_no.accept_char = ""
+		this.ctrl.dbtr_acct_no.currency_format = ""
+		this.ctrl.dbtr_acct_no.data_scale = ""
+		this.ctrl.dbtr_acct_no.binding_name = "DBTR_ACCT_NO"
+		this.ctrl.dbtr_acct_no.hide_label = false
+		this.ctrl.dbtr_acct_no.depends_on = ""
+		this.ctrl.dbtr_acct_no.placeholder = ""
+		this.ctrl.dbtr_acct_no.dynamic_param = ""
+		this.ctrl.dbtr_acct_no.style_code = ""
+		this.ctrl.dbtr_acct_no.data_source = ""
+		this.ctrl.dbtr_acct_no.image_association = ""
+		this.ctrl.dbtr_acct_no.show = true
+		this.ctrl.dbtr_acct_no.sub_content = ""
+		this.ctrl.dbtr_acct_no.required = false
+		this.ctrl.dbtr_acct_no.vld_rules = []
+		this.ctrl.dbtr_acct_no.targetcolumn_lower = "dbtr_acct_no"
+		this.ctrl.dbtr_acct_no.disabled = false
+		this.ctrl.dbtr_acct_no.view_name = "f_npss_op_reversal_srch"
+		this.ctrl.dbtr_acct_no.ctrl_id = "npss_op_reversal_srch_dbtr_acct_no"
+		this.ctrl.npss_op_reversal_srch_dbtr_acct_no = {}
+		this.ctrl.npss_op_reversal_srch_dbtr_acct_no.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of uetr
 		this.ctrl.uetr = {}
@@ -322,8 +361,8 @@ focustoelement(){
 		this.ctrl.npss_op_reversal_srch_memory75 = {}
 		this.ctrl.npss_op_reversal_srch_memory75.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.memory75 = {}
-		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.model = {"VALUE_DATE":"","CDTR_IBAN":"","UETR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","MEMORY75":""}
-		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"}]
+		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.model = {"VALUE_DATE":"","DBTR_IBAN":"","DBTR_ACCT_NO":"","UETR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","MEMORY75":""}
+		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"}]
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

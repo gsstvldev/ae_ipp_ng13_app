@@ -1,28 +1,5 @@
 <div class="s_rct_reversal_non_aed">
-<p_view_req_and_res_profile [screen_instance]="this" [hidden]="!(current_profile=='p_view_req_and_res_profile')"></p_view_req_and_res_profile>
-<p_view_response_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_response_layout')"></p_view_response_layout>
-<p_view_message_ui_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_ui_layout')"></p_view_message_ui_layout>
-<p_view_message_list_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_list_layout')"></p_view_message_list_layout>
-<p_view_request_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_request_layout')"></p_view_request_layout>
-<p_view_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_history_layout')"></p_view_history_layout>
-<p_vertical_layout [screen_instance]="this" [hidden]="!(current_profile=='p_vertical_layout')"></p_vertical_layout>
-<p_accept_ui_layout [screen_instance]="this" [hidden]="!(current_profile=='p_accept_ui_layout')"></p_accept_ui_layout>
-<p_main_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_layout')"></p_main_layout>
-
-<p-dialog header="{{'Change Return Reason' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_change_return_layout__crr_for_spap_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '300px','width': '600px'}" [draggable]="true" [modal]="true">
-	<p_change_return_layout [screen_instance]="this" ></p_change_return_layout></p-dialog>
-
-<p-dialog header="{{'Remark Details' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_remarks_layout__spap_for_error_code_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '300px','width': '600px'}" [draggable]="true" [modal]="true">
-	<p_remarks_layout [screen_instance]="this" ></p_remarks_layout></p-dialog>
-
-<p-dialog header="{{'Cancel Reason' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_cancel_layout__spap_for_rau_cancel_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '300px','width': '600px'}" [draggable]="true" [modal]="true">
-	<p_cancel_layout [screen_instance]="this" ></p_cancel_layout></p-dialog>
-
-<p-dialog header="{{'Remarks' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_send_to_maker_layout__spap_for_stm_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '200px','width': '600px'}" [draggable]="true" [modal]="true">
-	<p_send_to_maker_layout [screen_instance]="this" ></p_send_to_maker_layout></p-dialog>
-
-<p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_for_search_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '400px','width': '650px'}" [draggable]="true" [modal]="true">
-	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>
+<p_accept_layout [screen_instance]="this" [hidden]="!(current_profile=='p_accept_layout')"></p_accept_layout>
 <app-dialog [screen_instance]="this" ></app-dialog>
 <div style="display:none">
 	<datatable [comp_id]="'comment_list'" [screen_instance]="this"></datatable>

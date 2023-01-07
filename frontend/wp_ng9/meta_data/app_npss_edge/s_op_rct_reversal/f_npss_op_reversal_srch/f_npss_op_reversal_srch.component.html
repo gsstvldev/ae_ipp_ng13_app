@@ -6,27 +6,30 @@
 	<div #npss_op_reversal_srch_value_date id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('value_date')" >
 				<cdn_date [ctrl_id]="'npss_op_reversal_srch_value_date'" [comp_id]="comp_id" [ctrl]="ctrl.value_date" [model]="screen_instance[this.comp_id].f_npss_op_reversal_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
 	</div>
-	<div  id="RN01CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cdtr_iban')" >
-				<cdn_ctrl [ctrl_id]="'npss_op_reversal_srch_cdtr_iban'" [comp_id]="comp_id" [ctrl]="ctrl.cdtr_iban" [model]="screen_instance[this.comp_id].f_npss_op_reversal_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	<div  id="RN41CN8" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('dbtr_iban')" >
+				<cdn_ctrl [ctrl_id]="'npss_op_reversal_srch_dbtr_iban'" [comp_id]="comp_id" [ctrl]="ctrl.dbtr_iban" [model]="screen_instance[this.comp_id].f_npss_op_reversal_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
 	</div>
 </div>
-<div id="RN01" class="row">
+<div id="RN41" class="row">
+	<div  id="RN41CN9" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('dbtr_acct_no')" >
+				<cdn_ctrl [ctrl_id]="'npss_op_reversal_srch_dbtr_acct_no'" [comp_id]="comp_id" [ctrl]="ctrl.dbtr_acct_no" [model]="screen_instance[this.comp_id].f_npss_op_reversal_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
 	<div  id="RN01CN3" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('uetr')" >
 				<cdn_ctrl [ctrl_id]="'npss_op_reversal_srch_uetr'" [comp_id]="comp_id" [ctrl]="ctrl.uetr" [model]="screen_instance[this.comp_id].f_npss_op_reversal_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
 	</div>
+</div>
+<div id="RN01" class="row">
 	<div  id="RN01CN4" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('intrbk_sttlm_amnt')" >
 				<cdn_ctrl [ctrl_id]="'npss_op_reversal_srch_intrbk_sttlm_amnt'" [comp_id]="comp_id" [ctrl]="ctrl.intrbk_sttlm_amnt" [model]="screen_instance[this.comp_id].f_npss_op_reversal_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
 	</div>
-</div>
-<div id="RN11" class="row">
 	<div  id="RN11CN7001" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('reversal_amount')" >
 				<cdn_ctrl [ctrl_id]="'npss_op_reversal_srch_reversal_amount'" [comp_id]="comp_id" [ctrl]="ctrl.reversal_amount" [model]="screen_instance[this.comp_id].f_npss_op_reversal_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
 	</div>
+</div>
+<div id="RN11" class="row">
 	<div  id="RN11CN5" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory87')" >
 				<cbo [ctrl_id]="'npss_op_reversal_srch_memory87'" [comp_id]="comp_id" [ctrl]="ctrl.memory87" [model]="screen_instance[this.comp_id].f_npss_op_reversal_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
 	</div>
-</div>
-<div id="RN31" class="row">
 	<div  id="RN11CN10" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory75')" >
 				<cbo [ctrl_id]="'npss_op_reversal_srch_memory75'" [comp_id]="comp_id" [ctrl]="ctrl.memory75" [model]="screen_instance[this.comp_id].f_npss_op_reversal_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
 	</div>

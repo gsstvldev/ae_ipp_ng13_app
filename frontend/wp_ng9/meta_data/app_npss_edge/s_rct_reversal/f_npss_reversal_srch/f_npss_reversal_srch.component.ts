@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27651 
+Build ID        : 27738 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-02 8:13 AM 
+Modified Date   : 2023-Jan-07 6:45 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -125,6 +125,45 @@ focustoelement(){
 		this.ctrl.cdtr_iban.ctrl_id = "npss_reversal_srch_cdtr_iban"
 		this.ctrl.npss_reversal_srch_cdtr_iban = {}
 		this.ctrl.npss_reversal_srch_cdtr_iban.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of cr_acct_identification
+		this.ctrl.cr_acct_identification = {}
+		this.ctrl.cr_acct_identification.id = "RN11CN9"
+		this.ctrl.cr_acct_identification.desc = "Cr Account Identification"
+		this.ctrl.cr_acct_identification.visible = true
+		this.ctrl.cr_acct_identification.label_name = "Cr Account Identification"
+		this.ctrl.cr_acct_identification.df_code = "DF_1304_1665901396659"
+		this.ctrl.cr_acct_identification.df_description = "Column Group 1"
+		this.ctrl.cr_acct_identification.uictrl_code = "CDN_CTRL"
+		this.ctrl.cr_acct_identification.target_column = "CR_ACCT_IDENTIFICATION"
+		this.ctrl.cr_acct_identification.data_type = "TEXT"
+		this.ctrl.cr_acct_identification.data_length = 34
+		this.ctrl.cr_acct_identification.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.cr_acct_identification.default_value = ""
+		this.ctrl.cr_acct_identification.is_memory_ctrl = ""
+		this.ctrl.cr_acct_identification.field_coordinates = ""
+		this.ctrl.cr_acct_identification.sub_details = ""
+		this.ctrl.cr_acct_identification.accept_char = ""
+		this.ctrl.cr_acct_identification.currency_format = ""
+		this.ctrl.cr_acct_identification.data_scale = ""
+		this.ctrl.cr_acct_identification.binding_name = "CR_ACCT_IDENTIFICATION"
+		this.ctrl.cr_acct_identification.hide_label = false
+		this.ctrl.cr_acct_identification.depends_on = ""
+		this.ctrl.cr_acct_identification.placeholder = ""
+		this.ctrl.cr_acct_identification.dynamic_param = ""
+		this.ctrl.cr_acct_identification.style_code = ""
+		this.ctrl.cr_acct_identification.data_source = ""
+		this.ctrl.cr_acct_identification.image_association = ""
+		this.ctrl.cr_acct_identification.show = true
+		this.ctrl.cr_acct_identification.sub_content = ""
+		this.ctrl.cr_acct_identification.required = false
+		this.ctrl.cr_acct_identification.vld_rules = []
+		this.ctrl.cr_acct_identification.targetcolumn_lower = "cr_acct_identification"
+		this.ctrl.cr_acct_identification.disabled = false
+		this.ctrl.cr_acct_identification.view_name = "f_npss_reversal_srch"
+		this.ctrl.cr_acct_identification.ctrl_id = "npss_reversal_srch_cr_acct_identification"
+		this.ctrl.npss_reversal_srch_cr_acct_identification = {}
+		this.ctrl.npss_reversal_srch_cr_acct_identification.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of uetr
 		this.ctrl.uetr = {}
@@ -283,45 +322,6 @@ focustoelement(){
 		this.ctrl.npss_reversal_srch_memory87.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_reversal_srch.memory87 = {}
 	
-		//Properties of dbtr_iban
-		this.ctrl.dbtr_iban = {}
-		this.ctrl.dbtr_iban.id = "RN31CN8001"
-		this.ctrl.dbtr_iban.desc = "Dr IBAN"
-		this.ctrl.dbtr_iban.visible = true
-		this.ctrl.dbtr_iban.label_name = "Dr IBAN"
-		this.ctrl.dbtr_iban.df_code = "DF_1304_1665901396659"
-		this.ctrl.dbtr_iban.df_description = "Column Group 1"
-		this.ctrl.dbtr_iban.uictrl_code = "TXT"
-		this.ctrl.dbtr_iban.target_column = "DBTR_IBAN"
-		this.ctrl.dbtr_iban.data_type = "TEXT"
-		this.ctrl.dbtr_iban.data_length = 64
-		this.ctrl.dbtr_iban.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.dbtr_iban.default_value = ""
-		this.ctrl.dbtr_iban.is_memory_ctrl = ""
-		this.ctrl.dbtr_iban.field_coordinates = ""
-		this.ctrl.dbtr_iban.sub_details = ""
-		this.ctrl.dbtr_iban.accept_char = ""
-		this.ctrl.dbtr_iban.currency_format = ""
-		this.ctrl.dbtr_iban.data_scale = ""
-		this.ctrl.dbtr_iban.binding_name = "DBTR_IBAN"
-		this.ctrl.dbtr_iban.hide_label = false
-		this.ctrl.dbtr_iban.depends_on = ""
-		this.ctrl.dbtr_iban.placeholder = ""
-		this.ctrl.dbtr_iban.dynamic_param = ""
-		this.ctrl.dbtr_iban.style_code = ""
-		this.ctrl.dbtr_iban.data_source = ""
-		this.ctrl.dbtr_iban.image_association = ""
-		this.ctrl.dbtr_iban.show = true
-		this.ctrl.dbtr_iban.sub_content = ""
-		this.ctrl.dbtr_iban.required = false
-		this.ctrl.dbtr_iban.vld_rules = []
-		this.ctrl.dbtr_iban.targetcolumn_lower = "dbtr_iban"
-		this.ctrl.dbtr_iban.disabled = false
-		this.ctrl.dbtr_iban.view_name = "f_npss_reversal_srch"
-		this.ctrl.dbtr_iban.ctrl_id = "npss_reversal_srch_dbtr_iban"
-		this.ctrl.npss_reversal_srch_dbtr_iban = {}
-		this.ctrl.npss_reversal_srch_dbtr_iban.onChangecomponent = new EventEmitter<any>()
-	
 		//Properties of payment_endtoend_id
 		this.ctrl.payment_endtoend_id = {}
 		this.ctrl.payment_endtoend_id.id = "RN31CN8"
@@ -360,8 +360,8 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.ctrl_id = "npss_reversal_srch_payment_endtoend_id"
 		this.ctrl.npss_reversal_srch_payment_endtoend_id = {}
 		this.ctrl.npss_reversal_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reversal_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","CDTR_IBAN":"","UETR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","DBTR_IBAN":"","PAYMENT_ENDTOEND_ID":""}
-		this.screen_instance[this.comp_id].f_npss_reversal_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"}]
+		this.screen_instance[this.comp_id].f_npss_reversal_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","UETR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","PAYMENT_ENDTOEND_ID":""}
+		this.screen_instance[this.comp_id].f_npss_reversal_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"}]
 		this.screen_instance[this.comp_id].f_npss_reversal_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_reversal_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_reversal_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

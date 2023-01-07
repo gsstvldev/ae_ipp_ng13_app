@@ -1,0 +1,23 @@
+<div class="p_vertical_layout">
+ <!-- PROFILE HTML - p_vertical_layout --> 
+<div id="R21" class="row">
+	<div id="R21C1" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-6 col-sm-offset-0 col-xs-offset-0" >
+		<div class="main_back_ui" >
+			<f_main_back_ui [comp_id]="'main_back_ui'" [screen_instance]="screen_instance" [hidden]="isHidden('main_back_ui','f_main_back_ui')" profile_name="p_vertical_layout"></f_main_back_ui >
+		</div>
+	</div>
+</div>
+<div id="R11" class="row">
+	<div id="R11C1" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="view_dr_cr_tran_details"  [hidden]="!screen_instance['view_dr_cr_tran_details'].show" >
+			<datatable [comp_id]="'view_dr_cr_tran_details'" [screen_instance]="screen_instance" profile_name="p_vertical_layout"></datatable>
+		</div>
+	</div>
+	<div id="R11C2" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="view_payment_tran_details"  [hidden]="!screen_instance['view_payment_tran_details'].show" >
+			<datatable [comp_id]="'view_payment_tran_details'" [screen_instance]="screen_instance" profile_name="p_vertical_layout"></datatable>
+		</div>
+	</div>
+</div>
+
+</div>

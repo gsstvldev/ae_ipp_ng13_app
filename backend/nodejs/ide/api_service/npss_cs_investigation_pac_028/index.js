@@ -104,15 +104,15 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                         json: {
                                             "hdr_msg_id": arrresult[0].hdr_msg_id,
 
-                                            "hdr_created_date": arrresult[0].hdr_created_date,
-
                                             "cr_sort_code": arrresult[0].cr_sort_code,
 
                                             "payment_endtoend_id": arrresult[0].payment_endtoend_id,
 
                                             "uetr": arrresult[0].uetr,
 
-                                            "txid": arrresult[0].tran_ref_id
+                                            "tran_ref_id": arrresult[0].tran_ref_id,
+                                            
+                                            "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09"
 
                                         },
                                         headers: {

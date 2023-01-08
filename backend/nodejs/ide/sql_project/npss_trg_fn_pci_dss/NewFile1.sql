@@ -24,9 +24,12 @@ CREATE OR REPLACE FUNCTION ad_gss_tran.fn_card_decrypt_and_mask(s text, k text)
 AS $function$
   DECLARE  
   dec_val text;
+  reg text;
   BEGIN 
         dec_val = pgp_sym_decrypt(decode(s, 'base64'), k, 'compress-algo=1, cipher-algo=aes256' );
-        RETURN regexp_replace(dec_val, '(?<!^.?)[[:digit:]](?!.?$)', 'x','g'); END; $function$;
+        select regexp_replace(dec_val, '(?<!^.?).(?!.?$)', 'x','g') into reg;
+        raise notice 'regexp_replace valuee %',reg ;  
+        RETURN reg; END; $function$;
 @SPL@
 CREATE OR REPLACE FUNCTION ad_gss_tran.fn_npss_transactions_pci()
  RETURNS trigger

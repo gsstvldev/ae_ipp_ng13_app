@@ -51,99 +51,113 @@ app.post('/', function(appRequest, appResponse, next) {
                         var ApitrnId
                         var app_id
                         try {
+                            var takecomg = `select * from core_ns_params where param_name = 'COMM_GROUP' AND process_name = '${params.PROCESS_NAME}'`
                             var selrec = `select i.commmt_code,i.commmg_code,d.commpd_id,i.template_info, m.commpm_id ,l.attempt_count,l.commpml_id,m.message from dep_tran.comm_info i inner join comm_process_data d    on i.commmg_code=d.commmg_code and d.is_processed='N'  and i.commmg_code='COMM_CATEGORY1673011887342'    and i.app_id='${params.appId}' and i.comm_type='kafka' inner join  comm_process_message m on i.commmt_code=m.commmt_code  and m.type='KAFKA'   inner join comm_process_message_log l on l.comm_msg_id=m.comm_msg_id and l.comments <>'SUCCESS' and m.message like '%OrigChannelID%'`
                             // var selrec = `select i.commmt_code,i.commmg_code,d.commpd_id,i.template_info, m.commpm_id ,l.attempt_count,l.commpml_id,m.message from dep_tran.comm_info i inner join comm_process_data d    on i.commmg_code=d.commmg_code and d.is_processed='N'    and i.app_id='${params.appId}' and i.comm_type='kafka' inner join  comm_process_message m on i.commmt_code=m.commmt_code  and m.type='KAFKA'   inner join comm_process_message_log l on l.comm_msg_id=m.comm_msg_id and l.comments <>'SUCCESS' and m.message like'_______________OrigChannelID%'`
-                            ExecuteQuery1(selrec, function (insarr) {
-                                if (insarr.length) {
-                                    var JsonValue = JSON.parse(insarr[0].template_info)
-                                    var temp_info = JsonValue["TEMP_INFO"]
-                                    var partemp = JSON.parse(temp_info)
-                                    var retry_count = partemp["RETRY_COUNT"]
-                                    var arrNoinsert = [];
-                                    for (let i = 0; i < insarr.length; i++) {
-                                        if (retry_count <= insarr[i].attempt_count) {
-
-                                            var objNoinsert = {};
-                                            var Value = JSON.parse(insarr[i].message)
-                                            var data = Value['message']
-                                            var MsgValue = JSON.parse(data)
-
-                                            objNoinsert.CHANNEL_ID = MsgValue['OrigChannelID'] || '';
+                            ExecuteQuery1(takecomg, function (commmg) {
+                                if (commmg.length) {
+                                    var commmg_code = commmg[0].param_value
 
 
-                                            objNoinsert.CHANNEL_REF_NO = MsgValue['channelReferenceNo'] || '';
-                                            objNoinsert.STATUS_CODE = MsgValue['statusCode'] || '';
-                                            objNoinsert.STATUS_DESCRIPTION = MsgValue['statusDesc'] || '';
-                                            objNoinsert.KAFKA_MESSAGE = insarr[i].message
-                                            objNoinsert.COMMPD_ID = insarr[i].commpd_id
-                                            objNoinsert.COMMPM_ID = insarr[i].commpm_id
-                                            objNoinsert.COMMPML_ID = insarr[i].commpml_id
-                                            objNoinsert.TENANT_ID = params.TENANT_ID;
-                                            objNoinsert.APP_ID = params.appId;
-                                            objNoinsert.STATUS = 'Created'
-                                            objNoinsert.PROCESS_STATUS = 'Created'
-                                            objNoinsert.DT_CODE = 'DT_1304_1665901130705'
-                                            objNoinsert.DTT_CODE = 'DTT_1304_1672928670076'
-                                            objNoinsert.DT_DESCRIPTION = 'transaction_group'
-                                            objNoinsert.DTT_DESCRIPTION = 'Transaction'
-                                            objNoinsert.CREATED_BY = params.CREATED_BY;
-                                            objNoinsert.CREATED_BY_NAME = params.CREATED_BY_NAME;
-                                            objNoinsert.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                                            objNoinsert.MODIFIED_BY = "";
-                                            objNoinsert.MODIFIED_BY_NAME = "";
-                                            objNoinsert.MODIFIED_DATE = null;
-                                            objNoinsert.SYSTEM_ID = params.SYSTEM_ID;
-                                            objNoinsert.SYSTEM_NAME = params.SYSTEM_NAME;
-                                            objNoinsert.CREATED_BY_STS_ID = "";
-                                            objNoinsert.MODIFIED_BY_STS_ID = "";
-                                            objNoinsert.PRCT_ID = PRCT_ID;
-                                            objNoinsert.created_clientip = objSessionLogInfo.CLIENTIP;
-                                            objNoinsert.created_tz = objSessionLogInfo.CLIENTTZ;
-                                            objNoinsert.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
-                                            objNoinsert.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
-                                            objNoinsert.created_by_sessionid = objSessionLogInfo.SESSION_ID;
-                                            objNoinsert.routingkey = headers.routingkey;
-                                            arrNoinsert.push(objNoinsert);
+                                    ExecuteQuery1(selrec, function (insarr) {
+                                        if (insarr.length) {
+                                            var JsonValue = JSON.parse(insarr[0].template_info)
+                                            var temp_info = JsonValue["TEMP_INFO"]
+                                            var partemp = JSON.parse(temp_info)
+                                            var retry_count = partemp["RETRY_COUNT"]
+                                            var arrNoinsert = [];
+                                            for (let i = 0; i < insarr.length; i++) {
+                                                if (retry_count <= insarr[i].attempt_count) {
 
-                                        }
+                                                    var objNoinsert = {};
+                                                    var Value = JSON.parse(insarr[i].message)
+                                                    var data = Value['message']
+                                                    var MsgValue = JSON.parse(data)
 
-                                    }
-                                    if (arrNoinsert.length) {
-                                        _BulkInsertProcessItem(arrNoinsert, 'npss_notification_logs', function callbackInsert(CusTranInsertRes) {
-                                            if (CusTranInsertRes.length > 0) {
-                                                reqInstanceHelper.PrintInfo(serviceName, "........................All Data inserted Successfully...............", objSessionLogInfo);
-                                                console.log("........................ All Data inserted Successfully...............")
+                                                    objNoinsert.CHANNEL_ID = MsgValue['OrigChannelID'] || '';
+
+
+                                                    objNoinsert.CHANNEL_REF_NO = MsgValue['channelReferenceNo'] || '';
+                                                    objNoinsert.STATUS_CODE = MsgValue['statusCode'] || '';
+                                                    objNoinsert.STATUS_DESCRIPTION = MsgValue['statusDesc'] || '';
+                                                    objNoinsert.KAFKA_MESSAGE = insarr[i].message||'';
+                                                    objNoinsert.COMMPD_ID = insarr[i].commpd_id||'';
+                                                    objNoinsert.COMMPM_ID = insarr[i].commpm_id||'';
+                                                    objNoinsert.COMMPML_ID = insarr[i].commpml_id||'';
+                                                    objNoinsert.TENANT_ID = params.TENANT_ID||'';
+                                                    objNoinsert.APP_ID = params.appId||'';
+                                                    objNoinsert.STATUS = 'Created'
+                                                    objNoinsert.PROCESS_STATUS = 'Created'
+                                                    objNoinsert.DT_CODE = 'DT_1304_1665901130705'
+                                                    objNoinsert.DTT_CODE = 'DTT_1304_1672928670076'
+                                                    objNoinsert.DT_DESCRIPTION = 'transaction_group'
+                                                    objNoinsert.DTT_DESCRIPTION = 'Transaction'
+                                                    objNoinsert.CREATED_BY = params.CREATED_BY;
+                                                    objNoinsert.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                                    objNoinsert.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                                    objNoinsert.MODIFIED_BY = "";
+                                                    objNoinsert.MODIFIED_BY_NAME = "";
+                                                    objNoinsert.MODIFIED_DATE = null;
+                                                    objNoinsert.SYSTEM_ID = params.SYSTEM_ID;
+                                                    objNoinsert.SYSTEM_NAME = params.SYSTEM_NAME;
+                                                    objNoinsert.CREATED_BY_STS_ID = "";
+                                                    objNoinsert.MODIFIED_BY_STS_ID = "";
+                                                    objNoinsert.PRCT_ID = PRCT_ID;
+                                                    objNoinsert.created_clientip = objSessionLogInfo.CLIENTIP;
+                                                    objNoinsert.created_tz = objSessionLogInfo.CLIENTTZ;
+                                                    objNoinsert.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                                    objNoinsert.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                                    objNoinsert.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                                    objNoinsert.routingkey = headers.routingkey;
+                                                    arrNoinsert.push(objNoinsert);
+
+                                                }
+
+                                            }
+                                            if (arrNoinsert.length) {
+                                                _BulkInsertProcessItem(arrNoinsert, 'npss_notification_logs', function callbackInsert(CusTranInsertRes) {
+                                                    if (CusTranInsertRes.length > 0) {
+                                                        reqInstanceHelper.PrintInfo(serviceName, "........................All Data inserted Successfully...............", objSessionLogInfo);
+                                                        console.log("........................ All Data inserted Successfully...............")
+                                                        objresponse.status = 'SUCCESS';
+                                                        sendResponse(null, objresponse)
+                                                    } else {
+                                                        reqInstanceHelper.PrintInfo(serviceName, "........................Error in insert...............", objSessionLogInfo);
+                                                        console.log("........................ Error in insert...............")
+                                                        objresponse.status = 'FAILURE';
+                                                        sendResponse(null, objresponse)
+                                                    }
+
+                                                })
+                                            }
+                                            else {
+
+                                                reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND to insert...............", objSessionLogInfo);
+                                                console.log("........................ NO Data FOUND to insert...............")
                                                 objresponse.status = 'SUCCESS';
+                                                objresponse.msg = 'No data Found to insert';
                                                 sendResponse(null, objresponse)
-                                            } else {
-                                                reqInstanceHelper.PrintInfo(serviceName, "........................Error in insert...............", objSessionLogInfo);
-                                                console.log("........................ Error in insert...............")
-                                                objresponse.status = 'FAILURE';
-                                                sendResponse(null, objresponse)
+
                                             }
 
-                                        })
-                                    }
-                                    else {
+                                        } else {
 
-                                        reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND to insert...............", objSessionLogInfo);
-                                        console.log("........................ NO Data FOUND to insert...............")
-                                        objresponse.status = 'SUCCESS';
-                                        objresponse.msg = 'No data Found to insert';
-                                        sendResponse(null, objresponse)
-
-                                    }
-
-                                } else {
-
-                                    reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND in communication table...............", objSessionLogInfo);
-                                    console.log("........................ NO Data FOUND in communication table...............")
+                                            reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND in communication table...............", objSessionLogInfo);
+                                            console.log("........................ NO Data FOUND in communication table...............")
+                                            objresponse.status = 'SUCCESS';
+                                            objresponse.msg = 'No data Found in communication table';
+                                            sendResponse(null, objresponse)
+                                        }
+                                    })
+                                }
+                                else {
+                                    reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND in Params table...............", objSessionLogInfo);
+                                    console.log("........................ NO Data FOUND in Params table...............")
                                     objresponse.status = 'SUCCESS';
-                                    objresponse.msg = 'No data Found in communication table';
+                                    objresponse.msg = 'No data Found in Params table';
                                     sendResponse(null, objresponse)
                                 }
                             })
-
 
 
 

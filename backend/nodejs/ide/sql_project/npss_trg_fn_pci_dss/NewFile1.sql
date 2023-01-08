@@ -27,7 +27,7 @@ AS $function$
   reg text;
   BEGIN 
         dec_val = pgp_sym_decrypt(decode(s, 'base64'), k, 'compress-algo=1, cipher-algo=aes256' );
-        select regexp_replace(dec_val, '(?<!^.?).(?!.?$)', 'x','g') into reg;
+        select regexp_replace(dec_val, '(?<!^.?)[[:digit:]](?!.?$)', 'x','g') into reg;
         raise notice 'regexp_replace valuee %',reg ;  
         RETURN reg; END; $function$;
 @SPL@
@@ -35,10 +35,13 @@ CREATE OR REPLACE FUNCTION ad_gss_tran.fn_npss_transactions_pci()
  RETURNS trigger
  LANGUAGE plpgsql
 AS $function$
-  DECLARE  BEGIN 
-        NEW.cr_acct_identification = fn_pci_dss_encryption(NEW.cr_acct_identification);
-        NEW.dbtr_acct_no = fn_pci_dss_encryption(NEW.dbtr_acct_no);
-  RETURN NEW; END; $function$;
+  DECLARE  BEGIN
+  if new.cr_acct_identification <> old.cr_acct_identification then
+        NEW.cr_acct_identification = fn_pcidss_encrypt(NEW.cr_acct_identification);
+		end if;
+		if new.dbtr_acct_no <> old.dbtr_acct_no then
+        NEW.dbtr_acct_no = fn_pcidss_encrypt(NEW.dbtr_acct_no);
+		end if; RETURN NEW; END; $function$;
 @SPL@
 DROP TRIGGER IF EXISTS a_trg_npss_transactions_pci ON ad_gss_tran.npss_transactions;
 @SPL@

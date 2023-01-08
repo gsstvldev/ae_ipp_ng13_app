@@ -57,8 +57,9 @@ app.post('/', function(appRequest, appResponse, next) {
                             ExecuteQuery1(takecomg, function (commmg) {
                                 if (commmg.length) {
                                     var commmg_code = commmg[0].param_value
-                                    var selrec = `select i.commmt_code,i.commmg_code,d.commpd_id,i.template_info, m.commpm_id ,l.attempt_count,l.commpml_id,m.message from dep_tran.comm_info i inner join comm_process_data d    on i.commmg_code=d.commmg_code and d.is_processed='N'  and i.commmg_code='${commmg_code}'    and i.app_id='${params.appId}' and i.comm_type='kafka' inner join  comm_process_message m on i.commmt_code=m.commmt_code  and m.type='KAFKA'   inner join comm_process_message_log l on l.comm_msg_id=m.comm_msg_id and l.comments <>'SUCCESS' and m.message like '%OrigChannelID%'`
-
+                                    //var selrec = `select i.commmt_code,i.commmg_code,d.commpd_id,i.template_info, m.commpm_id ,l.attempt_count,l.commpml_id,m.message from dep_tran.comm_info i inner join comm_process_data d    on i.commmg_code=d.commmg_code and d.is_processed='N'  and i.commmg_code='${commmg_code}'    and i.app_id='${params.appId}' and i.comm_type='kafka' inner join  comm_process_message m on i.commmt_code=m.commmt_code  and m.type='KAFKA'   inner join comm_process_message_log l on l.comm_msg_id=m.comm_msg_id and l.comments <>'SUCCESS' and m.message like '%OrigChannelID%'`
+          
+          var selrec = `select i.commmt_code,i.commmg_code,d.commpd_id,i.template_info, m.commpm_id ,l.attempt_count,l.commpml_id,m.message from dep_tran.comm_info i inner join comm_process_data d    on i.commmg_code=d.commmg_code and d.is_processed='N'  and i.commmg_code='COMM_CATEGORY1673169458273'    and i.app_id='${params.appId}' and i.comm_type='kafka' inner join  comm_process_message m on i.commmt_code=m.commmt_code  and m.type='KAFKA'   inner join comm_process_message_log l on l.comm_msg_id=m.comm_msg_id and l.comments <>'SUCCESS' and m.message like '%OrigChannelID%' order by commpml_id desc`
                                     ExecuteQuery1(selrec, function (insarr) {
                                         if (insarr.length) {
                                             var JsonValue = JSON.parse(insarr[0].template_info)
@@ -66,13 +67,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                             var partemp = JSON.parse(temp_info)
                                             var retry_count = partemp["RETRY_COUNT"]
                                             var arrNoinsert = [];
-                                            for (let i = 0; i < insarr.length; i++) {
-                                                if (retry_count <= insarr[i].attempt_count) {
+                                          
+                                                if (retry_count <= insarr[0].attempt_count) {
 
                                                     var objNoinsert = {};
                                                     var Value = JSON.parse(insarr[i].message)
                                                     var data = Value['message']
-                                                    var MsgValue = JSON.parse(data)
+                                                    var DataMsgValue = JSON.parse(data)
+                                                    var MsgValue = JSON.parse(DataMsgValue)
 
                                                     objNoinsert.CHANNEL_ID = MsgValue['OrigChannelID'] || '';
 
@@ -80,10 +82,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     objNoinsert.CHANNEL_REF_NO = MsgValue['channelReferenceNo'] || '';
                                                     objNoinsert.STATUS_CODE = MsgValue['statusCode'] || '';
                                                     objNoinsert.STATUS_DESCRIPTION = MsgValue['statusDesc'] || '';
-                                                    objNoinsert.KAFKA_MESSAGE = insarr[i].message||'';
-                                                    objNoinsert.COMMPD_ID = insarr[i].commpd_id||'';
-                                                    objNoinsert.COMMPM_ID = insarr[i].commpm_id||'';
-                                                    objNoinsert.COMMPML_ID = insarr[i].commpml_id||'';
+                                                    objNoinsert.KAFKA_MESSAGE = insarr[0].message||'';
+                                                    objNoinsert.COMMPD_ID = insarr[0].commpd_id||'';
+                                                    objNoinsert.COMMPM_ID = insarr[0].commpm_id||'';
+                                                    objNoinsert.COMMPML_ID = insarr[0].commpml_id||'';
                                                     objNoinsert.TENANT_ID = params.TENANT_ID||'';
                                                     objNoinsert.APP_ID = params.appId||'';
                                                     objNoinsert.STATUS = 'Created'
@@ -113,7 +115,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                 }
 
-                                            }
+                                            
                                             if (arrNoinsert.length) {
                                                 _BulkInsertProcessItem(arrNoinsert, 'npss_notification_logs', function callbackInsert(CusTranInsertRes) {
                                                     if (CusTranInsertRes.length > 0) {

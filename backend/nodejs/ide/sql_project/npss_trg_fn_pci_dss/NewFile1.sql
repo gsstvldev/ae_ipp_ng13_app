@@ -1,3 +1,4 @@
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
 CREATE OR REPLACE FUNCTION ad_gss_tran.fn_pcidss_encrypt(s text)
  RETURNS text
  LANGUAGE plpgsql
@@ -36,10 +37,10 @@ CREATE OR REPLACE FUNCTION ad_gss_tran.fn_npss_transactions_pci()
  LANGUAGE plpgsql
 AS $function$
   DECLARE  BEGIN
-  if new.cr_acct_identification <> old.cr_acct_identification then
+  if new.cr_acct_identification <> old.cr_acct_identification or old.cr_acct_identification is null then
         NEW.cr_acct_identification = fn_pcidss_encrypt(NEW.cr_acct_identification);
 		end if;
-		if new.dbtr_acct_no <> old.dbtr_acct_no then
+		if new.dbtr_acct_no <> old.dbtr_acct_no or old.dbtr_acct_no is null  then
         NEW.dbtr_acct_no = fn_pcidss_encrypt(NEW.dbtr_acct_no);
 		end if; RETURN NEW; END; $function$;
 @SPL@

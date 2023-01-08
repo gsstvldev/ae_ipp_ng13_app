@@ -9,7 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-    /*  Created By :  Daseen
+    /*  Created By :   Daseen
     Created Date : 06/01/2023
     Modified By : 
     Modified Date : 
@@ -52,12 +52,12 @@ app.post('/', function(appRequest, appResponse, next) {
                         var app_id
                         try {
                             var takecomg = `select * from core_ns_params where param_name = 'COMM_GROUP' AND process_name = '${params.PROCESS_NAME}'`
-                            var selrec = `select i.commmt_code,i.commmg_code,d.commpd_id,i.template_info, m.commpm_id ,l.attempt_count,l.commpml_id,m.message from dep_tran.comm_info i inner join comm_process_data d    on i.commmg_code=d.commmg_code and d.is_processed='N'  and i.commmg_code='COMM_CATEGORY1673011887342'    and i.app_id='${params.appId}' and i.comm_type='kafka' inner join  comm_process_message m on i.commmt_code=m.commmt_code  and m.type='KAFKA'   inner join comm_process_message_log l on l.comm_msg_id=m.comm_msg_id and l.comments <>'SUCCESS' and m.message like '%OrigChannelID%'`
+                          
                             // var selrec = `select i.commmt_code,i.commmg_code,d.commpd_id,i.template_info, m.commpm_id ,l.attempt_count,l.commpml_id,m.message from dep_tran.comm_info i inner join comm_process_data d    on i.commmg_code=d.commmg_code and d.is_processed='N'    and i.app_id='${params.appId}' and i.comm_type='kafka' inner join  comm_process_message m on i.commmt_code=m.commmt_code  and m.type='KAFKA'   inner join comm_process_message_log l on l.comm_msg_id=m.comm_msg_id and l.comments <>'SUCCESS' and m.message like'_______________OrigChannelID%'`
                             ExecuteQuery1(takecomg, function (commmg) {
                                 if (commmg.length) {
                                     var commmg_code = commmg[0].param_value
-
+                                    var selrec = `select i.commmt_code,i.commmg_code,d.commpd_id,i.template_info, m.commpm_id ,l.attempt_count,l.commpml_id,m.message from dep_tran.comm_info i inner join comm_process_data d    on i.commmg_code=d.commmg_code and d.is_processed='N'  and i.commmg_code='${commmg_code}'    and i.app_id='${params.appId}' and i.comm_type='kafka' inner join  comm_process_message m on i.commmt_code=m.commmt_code  and m.type='KAFKA'   inner join comm_process_message_log l on l.comm_msg_id=m.comm_msg_id and l.comments <>'SUCCESS' and m.message like '%OrigChannelID%'`
 
                                     ExecuteQuery1(selrec, function (insarr) {
                                         if (insarr.length) {

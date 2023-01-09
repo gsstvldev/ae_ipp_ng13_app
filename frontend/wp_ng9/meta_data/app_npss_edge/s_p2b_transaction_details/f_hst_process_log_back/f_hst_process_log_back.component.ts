@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27761 
+Build ID        : 27767 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-09 8:28 AM 
+Modified Date   : 2023-Jan-09 11:29 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_p2b_transaction_details

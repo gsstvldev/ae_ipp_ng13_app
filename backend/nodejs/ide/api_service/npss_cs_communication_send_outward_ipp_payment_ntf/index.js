@@ -8,10 +8,11 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
 
+
     /*  Created By :   Siva Harish
     Created Date :6/1/2022
     Modified By : Siva Harish
-    Modified Date : 7/1/2023
+    Modified Date : 09/1/2023
     Reason for : 
      
     */
@@ -57,17 +58,19 @@ app.post('/', function(appRequest, appResponse, next) {
                     var TakeTempCode = `select param_value from core_ns_params cnp where process_name = 'Outward IPP Payment'`
                     ExecuteQuery1(Takeurl, function (arrUrl) {
                         if (arrUrl.length > 0) {
-                            ExecuteQuery1(TakeTempCode, function (tempcode) {
-                                if (tempcode.length > 0) {
-                                    ExecuteQuery1(TakeStatus, function (arrStatus) {
-                                        if (arrStatus.length > 0) {
-                                            var TakedatafrmntfTbl = `select npssnl_id,kafka_message,channel_id from npss_notification_logs  where status = '${arrStatus[0].process_queue_status}' `
-                                            ExecuteQuery1(TakedatafrmntfTbl, function (arrTran) {
-                                                if (arrTran.length > 0) {
-                                                    reqAsync.forEachOfSeries(arrTran, function (arrTranobj, i, nextobjctfunc) {
-                                                        var TakeTopicName = `select param_value,process_name from core_ns_params where destination_system = '${arrTranobj.channel_id}' and param_name = 'KAFKA_TOPIC'`
-                                                        ExecuteQuery1(TakeTopicName, function (TopicName) {
-                                                            if (TopicName.length > 0) {
+                         
+                            ExecuteQuery1(TakeStatus, function (arrStatus) {
+                                if (arrStatus.length > 0) {
+                                    var TakedatafrmntfTbl = `select npssnl_id,kafka_message,channel_id from npss_notification_logs  where status = '${arrStatus[0].process_queue_status}' `
+                                    ExecuteQuery1(TakedatafrmntfTbl, function (arrTran) {
+                                        if (arrTran.length > 0) {
+                                            reqAsync.forEachOfSeries(arrTran, function (arrTranobj, i, nextobjctfunc) {
+                                                var TakeTopicName = `select param_value,process_name from core_ns_params where destination_system = '${arrTranobj.channel_id}' and param_name = 'KAFKA_TOPIC'`
+                                                ExecuteQuery1(TakeTopicName, function (TopicName) {
+                                                    if (TopicName.length > 0) {
+                                                        var TakeCmCategory = `select param_value  from core_ns_params where destination_system = '${arrTranobj.channel_id}' and param_name = 'COMM_GROUP'`
+                                                        ExecuteQuery1(TakeCmCategory, function (arrComCategory) {
+                                                            if (arrComCategory.length > 0) {
                                                                 try {
 
                                                                     var request = require('request');
@@ -83,7 +86,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 "EVENT_CODE": "DEFAULT",
                                                                                 "USER_EMAIL": "",
                                                                                 "USER_MOBILE": "",
-                                                                                "TEMPLATECODE": tempcode[0].param_value,
+                                                                                "TEMPLATECODE": arrComCategory[0].param_value,
                                                                                 "DT_CODE": "",
                                                                                 "DTT_CODE": "",
                                                                                 "TOPIC_NAME": TopicName[0].param_value || '',
@@ -148,43 +151,46 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     sendResponse(error, null);
                                                                 }
                                                             } else {
-                                                                var Tobj = {}
-                                                                Tobj.TopicName_Not_Found_Tran = arrTranobj.npssnl_id
+                                                                var CatTobj = {}
+                                                                CatTobj.Comm_Catgeory_Not_FoundTran = arrTranobj.npssnl_id
                                                                 failedData.push(Tobj)
                                                                 nextobjctfunc()
                                                             }
-
-
                                                         })
 
+                                                    } else {
+                                                        var Tobj = {}
+                                                        Tobj.TopicName_Not_Found_Tran = arrTranobj.npssnl_id
+                                                        failedData.push(Tobj)
+                                                        nextobjctfunc()
+                                                    }
+
+
+                                                })
 
 
 
-                                                    }, function () {
-                                                        objresponse.status = 'SUCCESS';
-                                                        objresponse.FailedData = failedData || '';
-                                                        sendResponse(null, objresponse)
-                                                    })
-                                                } else {
-                                                    objresponse.status = 'FAILURE';
-                                                    objresponse.msg = 'Tran Data not found for this status' + arrStatus[0].process_queue_status;
-                                                    sendResponse(null, objresponse)
-                                                }
 
+                                            }, function () {
+                                                objresponse.status = 'SUCCESS';
+                                                objresponse.FailedData = failedData || '';
+                                                sendResponse(null, objresponse)
                                             })
                                         } else {
                                             objresponse.status = 'FAILURE';
-                                            objresponse.msg = 'Status Entry Not Found in core_q_status_roles tbl';
+                                            objresponse.msg = 'Tran Data not found for this status' + arrStatus[0].process_queue_status;
                                             sendResponse(null, objresponse)
                                         }
 
                                     })
                                 } else {
                                     objresponse.status = 'FAILURE';
-                                    objresponse.msg = 'Template Code Not Found';
+                                    objresponse.msg = 'Status Entry Not Found in core_q_status_roles tbl';
                                     sendResponse(null, objresponse)
                                 }
+
                             })
+                          
 
                         } else {
                             objresponse.status = 'FAILURE';
@@ -265,6 +271,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

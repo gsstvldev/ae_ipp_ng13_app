@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27779 
+Build ID        : 27784 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-10 14:46 PM 
+Modified Date   : 2023-Jan-10 16:4 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_view_dashboard
@@ -23,7 +23,6 @@ export class p_main_layoutComponent implements OnInit {
 
   // Variables 
   	navigation_ui : any = {}
-	process_type_list : any = {}
 	dashboard : any = {}
 	transaction_list : any = {}
 
@@ -35,8 +34,6 @@ export class p_main_layoutComponent implements OnInit {
   ngOnInit() {
     	this.navigation_ui.desc = "Navigation UI"
 		this.navigation_ui.need_header = ""
-		this.process_type_list.desc = "Process Type List"
-		this.process_type_list.need_header = true
 		this.dashboard.desc = "Dashboard"
 		this.dashboard.need_header = true
 		this.transaction_list.desc = "Transaction List"

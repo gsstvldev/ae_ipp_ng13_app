@@ -1,4 +1,5 @@
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
+@SPL@
 CREATE OR REPLACE FUNCTION ad_gss_tran.fn_pcidss_encrypt(s text)
  RETURNS text
  LANGUAGE plpgsql

@@ -32,6 +32,19 @@ AS $function$
         raise notice 'regexp_replace valuee %',reg ;  
         RETURN reg; END; $function$;
 @SPL@
+CREATE OR REPLACE FUNCTION ad_gss_tran.fn_card_decrypt_and_mask_rpt(s text)
+ RETURNS text
+ LANGUAGE plpgsql
+AS $function$
+  DECLARE  
+  dec_val text;
+  reg text;
+  BEGIN 
+        dec_val = pgp_sym_decrypt(decode(s, 'base64'), 'Pc!Nps$Key7', 'compress-algo=1, cipher-algo=aes256' );
+        select regexp_replace(dec_val, '(?<!^.?)[[:digit:]](?!.?$)', 'x','g') into reg;
+        raise notice 'regexp_replace valuee %',reg ;  
+        RETURN reg; END; $function$;
+@SPL@
 CREATE OR REPLACE FUNCTION ad_gss_tran.fn_npss_transactions_pci()
  RETURNS trigger
  LANGUAGE plpgsql

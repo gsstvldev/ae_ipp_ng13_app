@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27751 
+Build ID        : 27773 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-08 6:45 AM 
+Modified Date   : 2023-Jan-10 5:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -161,6 +161,44 @@ focustoelement(){
 		this.ctrl.cr_acct_identification.ctrl_id = "npss_rct_reversal_ui_cr_acct_identification"
 		this.ctrl.npss_rct_reversal_ui_cr_acct_identification = {}
 		this.ctrl.npss_rct_reversal_ui_cr_acct_identification.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of memory96
+		this.ctrl.memory96 = {}
+		this.ctrl.memory96.id = "RN01CN13001"
+		this.ctrl.memory96.desc = "Cr Account No"
+		this.ctrl.memory96.visible = true
+		this.ctrl.memory96.label_name = "Cr Account No"
+		this.ctrl.memory96.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory96.df_description = "Column Group 1"
+		this.ctrl.memory96.uictrl_code = "TXT"
+		this.ctrl.memory96.target_column = "memory96"
+		this.ctrl.memory96.data_type = "TEXT"
+		this.ctrl.memory96.data_length = 0
+		this.ctrl.memory96.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory96.default_value = ""
+		this.ctrl.memory96.is_memory_ctrl = "Y"
+		this.ctrl.memory96.field_coordinates = ""
+		this.ctrl.memory96.sub_details = ""
+		this.ctrl.memory96.accept_char = ""
+		this.ctrl.memory96.currency_format = ""
+		this.ctrl.memory96.data_scale = ""
+		this.ctrl.memory96.hide_label = false
+		this.ctrl.memory96.depends_on = ""
+		this.ctrl.memory96.placeholder = ""
+		this.ctrl.memory96.dynamic_param = ""
+		this.ctrl.memory96.style_code = ""
+		this.ctrl.memory96.data_source = ""
+		this.ctrl.memory96.image_association = ""
+		this.ctrl.memory96.show = true
+		this.ctrl.memory96.sub_content = ""
+		this.ctrl.memory96.required = false
+		this.ctrl.memory96.vld_rules = []
+		this.ctrl.memory96.targetcolumn_lower = "memory96"
+		this.ctrl.memory96.disabled = false
+		this.ctrl.memory96.view_name = "f_npss_rct_reversal_ui"
+		this.ctrl.memory96.ctrl_id = "npss_rct_reversal_ui_memory96"
+		this.ctrl.npss_rct_reversal_ui_memory96 = {}
+		this.ctrl.npss_rct_reversal_ui_memory96.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_acct_name
 		this.ctrl.cdtr_acct_name = {}
@@ -465,46 +503,8 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_rct_reversal_ui_intrbk_sttlm_amnt"
 		this.ctrl.npss_rct_reversal_ui_intrbk_sttlm_amnt = {}
 		this.ctrl.npss_rct_reversal_ui_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of reversal_amount
-		this.ctrl.reversal_amount = {}
-		this.ctrl.reversal_amount.id = "RN11CN12"
-		this.ctrl.reversal_amount.desc = "Reversal Amount"
-		this.ctrl.reversal_amount.visible = true
-		this.ctrl.reversal_amount.label_name = "Reversal Amount"
-		this.ctrl.reversal_amount.df_code = "DF_1304_1665901396659"
-		this.ctrl.reversal_amount.df_description = "Column Group 1"
-		this.ctrl.reversal_amount.uictrl_code = "TXT"
-		this.ctrl.reversal_amount.target_column = "REVERSAL_AMOUNT"
-		this.ctrl.reversal_amount.data_type = "NUMBER"
-		this.ctrl.reversal_amount.data_length = 19
-		this.ctrl.reversal_amount.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.reversal_amount.default_value = ""
-		this.ctrl.reversal_amount.is_memory_ctrl = ""
-		this.ctrl.reversal_amount.field_coordinates = ""
-		this.ctrl.reversal_amount.sub_details = ""
-		this.ctrl.reversal_amount.accept_char = ""
-		this.ctrl.reversal_amount.currency_format = ""
-		this.ctrl.reversal_amount.data_scale = "2"
-		this.ctrl.reversal_amount.hide_label = false
-		this.ctrl.reversal_amount.depends_on = ""
-		this.ctrl.reversal_amount.placeholder = ""
-		this.ctrl.reversal_amount.dynamic_param = ""
-		this.ctrl.reversal_amount.style_code = ""
-		this.ctrl.reversal_amount.data_source = ""
-		this.ctrl.reversal_amount.image_association = ""
-		this.ctrl.reversal_amount.show = true
-		this.ctrl.reversal_amount.sub_content = ""
-		this.ctrl.reversal_amount.required = false
-		this.ctrl.reversal_amount.vld_rules = []
-		this.ctrl.reversal_amount.targetcolumn_lower = "reversal_amount"
-		this.ctrl.reversal_amount.disabled = false
-		this.ctrl.reversal_amount.view_name = "f_npss_rct_reversal_ui"
-		this.ctrl.reversal_amount.ctrl_id = "npss_rct_reversal_ui_reversal_amount"
-		this.ctrl.npss_rct_reversal_ui_reversal_amount = {}
-		this.ctrl.npss_rct_reversal_ui_reversal_amount.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.model = {"VALUE_DATE":"","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","CDTR_ACCT_NAME":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","UETR":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":""}
-		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"}]
+		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.model = {"VALUE_DATE":"","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","MEMORY96":"","CDTR_ACCT_NAME":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","UETR":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":""}
+		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
 		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

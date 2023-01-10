@@ -1,32 +1,32 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27751 
+Build ID        : 27773 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-08 6:45 AM 
+Modified Date   : 2023-Jan-10 5:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
-Form Name       : NPSS RCT Reversal UI--------------------------------------------------------------------------- */
+Form Name       : NPSS Reversal NON AED UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_rct_reversal_ui',
-  templateUrl: './f_npss_rct_reversal_ui.component.html',
-  styleUrls: ['./f_npss_rct_reversal_ui.component.css'],
+  selector: 'f_npss_reversal_non_aed_ui',
+  templateUrl: './f_npss_reversal_non_aed_ui.component.html',
+  styleUrls: ['./f_npss_reversal_non_aed_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_rct_reversal_uiComponent implements OnInit {
+export class f_npss_reversal_non_aed_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_rct_reversal_ui') form;
-  @ViewChild('npss_rct_reversal_ui_value_date') element: ElementRef;
+  @ViewChild('f_npss_reversal_non_aed_ui') form;
+  @ViewChild('npss_reversal_non_aed_ui_value_date') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -50,7 +50,7 @@ focustoelement(){
   
 		//Properties of value_date
 		this.ctrl.value_date = {}
-		this.ctrl.value_date.id = "RN01CN1"
+		this.ctrl.value_date.id = "1f112396-a1f5-4274-927b-8ed16f5c94de_1673327656021"
 		this.ctrl.value_date.desc = "Value Date"
 		this.ctrl.value_date.visible = true
 		this.ctrl.value_date.label_name = "Value Date"
@@ -81,14 +81,14 @@ focustoelement(){
 		this.ctrl.value_date.vld_rules = []
 		this.ctrl.value_date.targetcolumn_lower = "value_date"
 		this.ctrl.value_date.disabled = false
-		this.ctrl.value_date.view_name = "f_npss_rct_reversal_ui"
-		this.ctrl.value_date.ctrl_id = "npss_rct_reversal_ui_value_date"
-		this.ctrl.npss_rct_reversal_ui_value_date = {}
-		this.ctrl.npss_rct_reversal_ui_value_date.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.value_date.view_name = "f_npss_reversal_non_aed_ui"
+		this.ctrl.value_date.ctrl_id = "npss_reversal_non_aed_ui_value_date"
+		this.ctrl.npss_reversal_non_aed_ui_value_date = {}
+		this.ctrl.npss_reversal_non_aed_ui_value_date.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_iban
 		this.ctrl.cdtr_iban = {}
-		this.ctrl.cdtr_iban.id = "RN11CN3"
+		this.ctrl.cdtr_iban.id = "bec87b11-db3e-41c8-bf07-f733f9b4311c_1673327656021"
 		this.ctrl.cdtr_iban.desc = "Cr IBAN"
 		this.ctrl.cdtr_iban.visible = true
 		this.ctrl.cdtr_iban.label_name = "Cr IBAN"
@@ -119,14 +119,14 @@ focustoelement(){
 		this.ctrl.cdtr_iban.vld_rules = []
 		this.ctrl.cdtr_iban.targetcolumn_lower = "cdtr_iban"
 		this.ctrl.cdtr_iban.disabled = false
-		this.ctrl.cdtr_iban.view_name = "f_npss_rct_reversal_ui"
-		this.ctrl.cdtr_iban.ctrl_id = "npss_rct_reversal_ui_cdtr_iban"
-		this.ctrl.npss_rct_reversal_ui_cdtr_iban = {}
-		this.ctrl.npss_rct_reversal_ui_cdtr_iban.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.cdtr_iban.view_name = "f_npss_reversal_non_aed_ui"
+		this.ctrl.cdtr_iban.ctrl_id = "npss_reversal_non_aed_ui_cdtr_iban"
+		this.ctrl.npss_reversal_non_aed_ui_cdtr_iban = {}
+		this.ctrl.npss_reversal_non_aed_ui_cdtr_iban.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cr_acct_identification
 		this.ctrl.cr_acct_identification = {}
-		this.ctrl.cr_acct_identification.id = "RN01CN13"
+		this.ctrl.cr_acct_identification.id = "36334a3f-67e9-4c46-badc-7bcbc12ca750_1673327656021"
 		this.ctrl.cr_acct_identification.desc = "Cr Account Identifiction"
 		this.ctrl.cr_acct_identification.visible = true
 		this.ctrl.cr_acct_identification.label_name = "Cr Account Identifiction"
@@ -157,14 +157,52 @@ focustoelement(){
 		this.ctrl.cr_acct_identification.vld_rules = []
 		this.ctrl.cr_acct_identification.targetcolumn_lower = "cr_acct_identification"
 		this.ctrl.cr_acct_identification.disabled = false
-		this.ctrl.cr_acct_identification.view_name = "f_npss_rct_reversal_ui"
-		this.ctrl.cr_acct_identification.ctrl_id = "npss_rct_reversal_ui_cr_acct_identification"
-		this.ctrl.npss_rct_reversal_ui_cr_acct_identification = {}
-		this.ctrl.npss_rct_reversal_ui_cr_acct_identification.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.cr_acct_identification.view_name = "f_npss_reversal_non_aed_ui"
+		this.ctrl.cr_acct_identification.ctrl_id = "npss_reversal_non_aed_ui_cr_acct_identification"
+		this.ctrl.npss_reversal_non_aed_ui_cr_acct_identification = {}
+		this.ctrl.npss_reversal_non_aed_ui_cr_acct_identification.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of memory96
+		this.ctrl.memory96 = {}
+		this.ctrl.memory96.id = "e95eeea6-198d-49bf-b1cf-2c8948dc38c8_1673327656021"
+		this.ctrl.memory96.desc = "Cr Account No"
+		this.ctrl.memory96.visible = true
+		this.ctrl.memory96.label_name = "Cr Account No"
+		this.ctrl.memory96.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory96.df_description = "Column Group 1"
+		this.ctrl.memory96.uictrl_code = "TXT"
+		this.ctrl.memory96.target_column = "memory96"
+		this.ctrl.memory96.data_type = "TEXT"
+		this.ctrl.memory96.data_length = 0
+		this.ctrl.memory96.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory96.default_value = ""
+		this.ctrl.memory96.is_memory_ctrl = "Y"
+		this.ctrl.memory96.field_coordinates = ""
+		this.ctrl.memory96.sub_details = ""
+		this.ctrl.memory96.accept_char = ""
+		this.ctrl.memory96.currency_format = ""
+		this.ctrl.memory96.data_scale = ""
+		this.ctrl.memory96.hide_label = false
+		this.ctrl.memory96.depends_on = ""
+		this.ctrl.memory96.placeholder = ""
+		this.ctrl.memory96.dynamic_param = ""
+		this.ctrl.memory96.style_code = ""
+		this.ctrl.memory96.data_source = ""
+		this.ctrl.memory96.image_association = ""
+		this.ctrl.memory96.show = true
+		this.ctrl.memory96.sub_content = ""
+		this.ctrl.memory96.required = false
+		this.ctrl.memory96.vld_rules = []
+		this.ctrl.memory96.targetcolumn_lower = "memory96"
+		this.ctrl.memory96.disabled = false
+		this.ctrl.memory96.view_name = "f_npss_reversal_non_aed_ui"
+		this.ctrl.memory96.ctrl_id = "npss_reversal_non_aed_ui_memory96"
+		this.ctrl.npss_reversal_non_aed_ui_memory96 = {}
+		this.ctrl.npss_reversal_non_aed_ui_memory96.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of cdtr_acct_name
 		this.ctrl.cdtr_acct_name = {}
-		this.ctrl.cdtr_acct_name.id = "RN31CN11"
+		this.ctrl.cdtr_acct_name.id = "4c9da5d9-78b4-4c6f-ada8-c310c3df450f_1673327656021"
 		this.ctrl.cdtr_acct_name.desc = "Cr Name"
 		this.ctrl.cdtr_acct_name.visible = true
 		this.ctrl.cdtr_acct_name.label_name = "Cr Name"
@@ -195,14 +233,14 @@ focustoelement(){
 		this.ctrl.cdtr_acct_name.vld_rules = []
 		this.ctrl.cdtr_acct_name.targetcolumn_lower = "cdtr_acct_name"
 		this.ctrl.cdtr_acct_name.disabled = false
-		this.ctrl.cdtr_acct_name.view_name = "f_npss_rct_reversal_ui"
-		this.ctrl.cdtr_acct_name.ctrl_id = "npss_rct_reversal_ui_cdtr_acct_name"
-		this.ctrl.npss_rct_reversal_ui_cdtr_acct_name = {}
-		this.ctrl.npss_rct_reversal_ui_cdtr_acct_name.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.cdtr_acct_name.view_name = "f_npss_reversal_non_aed_ui"
+		this.ctrl.cdtr_acct_name.ctrl_id = "npss_reversal_non_aed_ui_cdtr_acct_name"
+		this.ctrl.npss_reversal_non_aed_ui_cdtr_acct_name = {}
+		this.ctrl.npss_reversal_non_aed_ui_cdtr_acct_name.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of clrsysref
 		this.ctrl.clrsysref = {}
-		this.ctrl.clrsysref.id = "RN31CN12"
+		this.ctrl.clrsysref.id = "a1840e7f-e7e2-43be-9025-61fe8c465c36_1673327656021"
 		this.ctrl.clrsysref.desc = "Clr Ref No"
 		this.ctrl.clrsysref.visible = true
 		this.ctrl.clrsysref.label_name = "Clr Ref No"
@@ -233,14 +271,14 @@ focustoelement(){
 		this.ctrl.clrsysref.vld_rules = []
 		this.ctrl.clrsysref.targetcolumn_lower = "clrsysref"
 		this.ctrl.clrsysref.disabled = false
-		this.ctrl.clrsysref.view_name = "f_npss_rct_reversal_ui"
-		this.ctrl.clrsysref.ctrl_id = "npss_rct_reversal_ui_clrsysref"
-		this.ctrl.npss_rct_reversal_ui_clrsysref = {}
-		this.ctrl.npss_rct_reversal_ui_clrsysref.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.clrsysref.view_name = "f_npss_reversal_non_aed_ui"
+		this.ctrl.clrsysref.ctrl_id = "npss_reversal_non_aed_ui_clrsysref"
+		this.ctrl.npss_reversal_non_aed_ui_clrsysref = {}
+		this.ctrl.npss_reversal_non_aed_ui_clrsysref.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of payment_endtoend_id
 		this.ctrl.payment_endtoend_id = {}
-		this.ctrl.payment_endtoend_id.id = "RN31CN13"
+		this.ctrl.payment_endtoend_id.id = "e7caf7a6-54ce-4b58-b05a-de41b2dfda1a_1673327656022"
 		this.ctrl.payment_endtoend_id.desc = "End to End Ref No"
 		this.ctrl.payment_endtoend_id.visible = true
 		this.ctrl.payment_endtoend_id.label_name = "End to End Ref No"
@@ -271,14 +309,14 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.vld_rules = []
 		this.ctrl.payment_endtoend_id.targetcolumn_lower = "payment_endtoend_id"
 		this.ctrl.payment_endtoend_id.disabled = false
-		this.ctrl.payment_endtoend_id.view_name = "f_npss_rct_reversal_ui"
-		this.ctrl.payment_endtoend_id.ctrl_id = "npss_rct_reversal_ui_payment_endtoend_id"
-		this.ctrl.npss_rct_reversal_ui_payment_endtoend_id = {}
-		this.ctrl.npss_rct_reversal_ui_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.payment_endtoend_id.view_name = "f_npss_reversal_non_aed_ui"
+		this.ctrl.payment_endtoend_id.ctrl_id = "npss_reversal_non_aed_ui_payment_endtoend_id"
+		this.ctrl.npss_reversal_non_aed_ui_payment_endtoend_id = {}
+		this.ctrl.npss_reversal_non_aed_ui_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of uetr
 		this.ctrl.uetr = {}
-		this.ctrl.uetr.id = "RN01CN2"
+		this.ctrl.uetr.id = "52a5a8d4-68b2-47ca-b852-87f7a4212264_1673327656022"
 		this.ctrl.uetr.desc = "UETR"
 		this.ctrl.uetr.visible = true
 		this.ctrl.uetr.label_name = "UETR"
@@ -309,14 +347,14 @@ focustoelement(){
 		this.ctrl.uetr.vld_rules = []
 		this.ctrl.uetr.targetcolumn_lower = "uetr"
 		this.ctrl.uetr.disabled = false
-		this.ctrl.uetr.view_name = "f_npss_rct_reversal_ui"
-		this.ctrl.uetr.ctrl_id = "npss_rct_reversal_ui_uetr"
-		this.ctrl.npss_rct_reversal_ui_uetr = {}
-		this.ctrl.npss_rct_reversal_ui_uetr.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.uetr.view_name = "f_npss_reversal_non_aed_ui"
+		this.ctrl.uetr.ctrl_id = "npss_reversal_non_aed_ui_uetr"
+		this.ctrl.npss_reversal_non_aed_ui_uetr = {}
+		this.ctrl.npss_reversal_non_aed_ui_uetr.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of dbtr_iban
 		this.ctrl.dbtr_iban = {}
-		this.ctrl.dbtr_iban.id = "RN11CN4"
+		this.ctrl.dbtr_iban.id = "e7886876-1937-425c-be3c-10deba2967f0_1673327656022"
 		this.ctrl.dbtr_iban.desc = "Dr Account No"
 		this.ctrl.dbtr_iban.visible = true
 		this.ctrl.dbtr_iban.label_name = "Dr Account No"
@@ -347,14 +385,14 @@ focustoelement(){
 		this.ctrl.dbtr_iban.vld_rules = []
 		this.ctrl.dbtr_iban.targetcolumn_lower = "dbtr_iban"
 		this.ctrl.dbtr_iban.disabled = false
-		this.ctrl.dbtr_iban.view_name = "f_npss_rct_reversal_ui"
-		this.ctrl.dbtr_iban.ctrl_id = "npss_rct_reversal_ui_dbtr_iban"
-		this.ctrl.npss_rct_reversal_ui_dbtr_iban = {}
-		this.ctrl.npss_rct_reversal_ui_dbtr_iban.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.dbtr_iban.view_name = "f_npss_reversal_non_aed_ui"
+		this.ctrl.dbtr_iban.ctrl_id = "npss_reversal_non_aed_ui_dbtr_iban"
+		this.ctrl.npss_reversal_non_aed_ui_dbtr_iban = {}
+		this.ctrl.npss_reversal_non_aed_ui_dbtr_iban.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of dbtr_acct_name
 		this.ctrl.dbtr_acct_name = {}
-		this.ctrl.dbtr_acct_name.id = "RN21CN5"
+		this.ctrl.dbtr_acct_name.id = "44d75c31-37fe-4dd4-ade1-144606acd2ee_1673327656022"
 		this.ctrl.dbtr_acct_name.desc = "Dr Account Name"
 		this.ctrl.dbtr_acct_name.visible = true
 		this.ctrl.dbtr_acct_name.label_name = "Dr Account Name"
@@ -385,14 +423,14 @@ focustoelement(){
 		this.ctrl.dbtr_acct_name.vld_rules = []
 		this.ctrl.dbtr_acct_name.targetcolumn_lower = "dbtr_acct_name"
 		this.ctrl.dbtr_acct_name.disabled = false
-		this.ctrl.dbtr_acct_name.view_name = "f_npss_rct_reversal_ui"
-		this.ctrl.dbtr_acct_name.ctrl_id = "npss_rct_reversal_ui_dbtr_acct_name"
-		this.ctrl.npss_rct_reversal_ui_dbtr_acct_name = {}
-		this.ctrl.npss_rct_reversal_ui_dbtr_acct_name.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.dbtr_acct_name.view_name = "f_npss_reversal_non_aed_ui"
+		this.ctrl.dbtr_acct_name.ctrl_id = "npss_reversal_non_aed_ui_dbtr_acct_name"
+		this.ctrl.npss_reversal_non_aed_ui_dbtr_acct_name = {}
+		this.ctrl.npss_reversal_non_aed_ui_dbtr_acct_name.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of intrbk_sttlm_cur
 		this.ctrl.intrbk_sttlm_cur = {}
-		this.ctrl.intrbk_sttlm_cur.id = "RN21CN6"
+		this.ctrl.intrbk_sttlm_cur.id = "60ff5916-3172-4a98-abd4-78187f4c52e6_1673327656022"
 		this.ctrl.intrbk_sttlm_cur.desc = "Dr Account Currency"
 		this.ctrl.intrbk_sttlm_cur.visible = true
 		this.ctrl.intrbk_sttlm_cur.label_name = "Dr Account Currency"
@@ -423,14 +461,14 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_cur.vld_rules = []
 		this.ctrl.intrbk_sttlm_cur.targetcolumn_lower = "intrbk_sttlm_cur"
 		this.ctrl.intrbk_sttlm_cur.disabled = false
-		this.ctrl.intrbk_sttlm_cur.view_name = "f_npss_rct_reversal_ui"
-		this.ctrl.intrbk_sttlm_cur.ctrl_id = "npss_rct_reversal_ui_intrbk_sttlm_cur"
-		this.ctrl.npss_rct_reversal_ui_intrbk_sttlm_cur = {}
-		this.ctrl.npss_rct_reversal_ui_intrbk_sttlm_cur.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.intrbk_sttlm_cur.view_name = "f_npss_reversal_non_aed_ui"
+		this.ctrl.intrbk_sttlm_cur.ctrl_id = "npss_reversal_non_aed_ui_intrbk_sttlm_cur"
+		this.ctrl.npss_reversal_non_aed_ui_intrbk_sttlm_cur = {}
+		this.ctrl.npss_reversal_non_aed_ui_intrbk_sttlm_cur.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of intrbk_sttlm_amnt
 		this.ctrl.intrbk_sttlm_amnt = {}
-		this.ctrl.intrbk_sttlm_amnt.id = "RN31CN8"
+		this.ctrl.intrbk_sttlm_amnt.id = "94f877a0-5e41-4008-aba2-4f60d78eb7d5_1673327656022"
 		this.ctrl.intrbk_sttlm_amnt.desc = "Inward Amount"
 		this.ctrl.intrbk_sttlm_amnt.visible = true
 		this.ctrl.intrbk_sttlm_amnt.label_name = "Inward Amount"
@@ -461,53 +499,15 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.vld_rules = []
 		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
 		this.ctrl.intrbk_sttlm_amnt.disabled = false
-		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_rct_reversal_ui"
-		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_rct_reversal_ui_intrbk_sttlm_amnt"
-		this.ctrl.npss_rct_reversal_ui_intrbk_sttlm_amnt = {}
-		this.ctrl.npss_rct_reversal_ui_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of reversal_amount
-		this.ctrl.reversal_amount = {}
-		this.ctrl.reversal_amount.id = "RN11CN12"
-		this.ctrl.reversal_amount.desc = "Reversal Amount"
-		this.ctrl.reversal_amount.visible = true
-		this.ctrl.reversal_amount.label_name = "Reversal Amount"
-		this.ctrl.reversal_amount.df_code = "DF_1304_1665901396659"
-		this.ctrl.reversal_amount.df_description = "Column Group 1"
-		this.ctrl.reversal_amount.uictrl_code = "TXT"
-		this.ctrl.reversal_amount.target_column = "REVERSAL_AMOUNT"
-		this.ctrl.reversal_amount.data_type = "NUMBER"
-		this.ctrl.reversal_amount.data_length = 19
-		this.ctrl.reversal_amount.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.reversal_amount.default_value = ""
-		this.ctrl.reversal_amount.is_memory_ctrl = ""
-		this.ctrl.reversal_amount.field_coordinates = ""
-		this.ctrl.reversal_amount.sub_details = ""
-		this.ctrl.reversal_amount.accept_char = ""
-		this.ctrl.reversal_amount.currency_format = ""
-		this.ctrl.reversal_amount.data_scale = "2"
-		this.ctrl.reversal_amount.hide_label = false
-		this.ctrl.reversal_amount.depends_on = ""
-		this.ctrl.reversal_amount.placeholder = ""
-		this.ctrl.reversal_amount.dynamic_param = ""
-		this.ctrl.reversal_amount.style_code = ""
-		this.ctrl.reversal_amount.data_source = ""
-		this.ctrl.reversal_amount.image_association = ""
-		this.ctrl.reversal_amount.show = true
-		this.ctrl.reversal_amount.sub_content = ""
-		this.ctrl.reversal_amount.required = false
-		this.ctrl.reversal_amount.vld_rules = []
-		this.ctrl.reversal_amount.targetcolumn_lower = "reversal_amount"
-		this.ctrl.reversal_amount.disabled = false
-		this.ctrl.reversal_amount.view_name = "f_npss_rct_reversal_ui"
-		this.ctrl.reversal_amount.ctrl_id = "npss_rct_reversal_ui_reversal_amount"
-		this.ctrl.npss_rct_reversal_ui_reversal_amount = {}
-		this.ctrl.npss_rct_reversal_ui_reversal_amount.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.model = {"VALUE_DATE":"","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","CDTR_ACCT_NAME":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","UETR":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":""}
-		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"}]
-		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.dtt_code = "dtt_1304_1665901217208"
-		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_reversal_non_aed_ui"
+		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_reversal_non_aed_ui_intrbk_sttlm_amnt"
+		this.ctrl.npss_reversal_non_aed_ui_intrbk_sttlm_amnt = {}
+		this.ctrl.npss_reversal_non_aed_ui_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui.model = {"VALUE_DATE":"","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","MEMORY96":"","CDTR_ACCT_NAME":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","UETR":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":""}
+		this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
+		this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui.dtt_code = "dtt_1304_1665901217208"
+		this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -554,10 +554,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_rct_reversal_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_rct_reversal_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_rct_reversal_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

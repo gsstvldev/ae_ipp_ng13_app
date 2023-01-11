@@ -7,10 +7,11 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 /*   Created By :   Siva Harish
 Created Date : 28/10/2022
 Modified By : Siva Harish
-Modified Date : 10/01/2023
+Modified Date : 11/01/2023
 Reason for : 
  
 */
@@ -53,7 +54,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     try {
                         try {
                             var TakeStsPsts = `select * from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                            var TakeApiurl = `select api_url  from CORE_API_MASTER_RULE_SETUP where api_code =  'NPSS_INVESTIGATION_PAC_028'`
+                            var TakeApiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INVESTIGATION_PAC_028' and param_code='URL'`
                             ExecuteQuery1(TakeApiurl, function (arrUrl) {
                                 if (arrUrl.length) {
                                     ExecuteQuery1(TakeStsPsts, function (arrresult) {
@@ -96,7 +97,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 try {
                                     var request = require('request');
                                     var apiURL =
-                                        apiURL = arrUrl[0].api_url; // apiURL + apiName
+                                        apiURL = arrUrl[0].param_detail; // apiURL + apiName
                                     var options = {
                                         url: apiURL,
                                         timeout: 99999999,
@@ -215,6 +216,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 })
+
 
 
 

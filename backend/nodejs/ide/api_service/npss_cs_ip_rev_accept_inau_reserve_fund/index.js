@@ -250,13 +250,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                     }
 
                                                                                 } else {
-                                                                                    objresponse.status = 'FAILURE'
-                                                                                    objresponse.data = 'Contra or Reversal Amount is Missing'
+                                                                                   
+                                                                                    objresponse.status = 'Contra or Reversal Amount is Missing'
                                                                                     sendResponse(null, objresponse)
                                                                                 }
                                                                             }else{
-                                                                                objresponse.status = 'FAILURE'
-                                                                                objresponse.data = 'Contra Amount is not found'
+                                                                               
+                                                                                objresponse.status = 'Contra Amount is not found'
                                                                                 sendResponse(null, objresponse) 
                                                                             }
                                                                             })
@@ -266,8 +266,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 if(intblkamt && reversalAmt){
                                                                                 if (Number(reversalAmt) > Number(intblkamt)) {
                                                                                     
-                                                                                        objresponse.status = 'FAILURE'
-                                                                                        objresponse.data = 'Reversal Amount is greater than Inter Bulk Settlement Amount'
+                                                                                        
+                                                                                        objresponse.status = 'Reversal Amount is greater than Inter Bulk Settlement Amount'
                                                                                         sendResponse(null, objresponse)
                                                                                    
                                                                                    

@@ -7,7 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-     /*  Created By :  Daseen
+    
+     /*  Created By :   Daseen
 Created Date : 22/12/2022
 Modified By : 
 Modified Date : 
@@ -102,32 +103,47 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                             timeout: 18000000,
                             method: 'POST',
                             json: {
-                                "shops": [
-                                    {
-                                      "label":params.shop_name,
-                                      "mid": params.shop_mid,
-                                      "type": params.shop_type,
-                                      "mcc": params.shop_mcc,
-                                      "bankAccount": {
-                                        "IBAN": params.shop_IBAN,
-                                      },
-                                      "address": [
-                                        {
-                                          "building": params.building,
-                                          "street": params.street,
-                                          "city":params.city,
-                                          "postalCode": params.postal_code,
-                                          "county":params.county,
-                                          "country": params.country,
-                                        }
-                                      ],
-                                      "cashDesks": [
-                                        {
-                                          "identification": params.shop_id,
-                                        }
-                                    ]
-                                  }
-                                ]
+
+                                "shop": {
+                              
+                                  "label":params.shop_name,
+                              
+                                  "mid": params.shop_mid,
+                              
+                                  "type": params.shop_type,
+                              
+                                  "mcc":  params.shop_mcc,
+                              
+                                  "bankAccount": {
+                              
+                                    "IBAN":  params.shop_IBAN
+                              
+                                  },
+                              
+                                  "address": {
+                              
+                                    "building":params.building,
+                              
+                                    "street":  params.street,
+                              
+                                    "city": params.city,
+                              
+                                    "postalCode": params.postal_code,
+                              
+                                    "county": params.county,
+                              
+                                    "country":  params.country
+                              
+                                  },
+                              
+                                  "cashDesks": [{
+                              
+                                    "identification": params.shop_id
+                              
+                                  }]
+                              
+                                }
+                              
                               }, headers: {
                                 "X-Request-ID": requestid,
                                 "language": lang,
@@ -212,6 +228,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 });
+
 
 
 

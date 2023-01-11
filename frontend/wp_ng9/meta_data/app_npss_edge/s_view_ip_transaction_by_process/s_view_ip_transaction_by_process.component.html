@@ -1,0 +1,15 @@
+<div class="s_view_ip_transaction_by_process">
+<p_view_req_and_res [screen_instance]="this" [hidden]="!(current_profile=='p_view_req_and_res')"></p_view_req_and_res>
+<p_view_message_ui_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_ui_layout')"></p_view_message_ui_layout>
+<p_view_message_list_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_list_layout')"></p_view_message_list_layout>
+<p_view_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_history_layout')"></p_view_history_layout>
+<p_vertical_tran_detail_profile [screen_instance]="this" [hidden]="!(current_profile=='p_vertical_tran_detail_profile')"></p_vertical_tran_detail_profile>
+<p_main_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_layout')"></p_main_layout>
+
+<p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_for_search_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '250px','width': '800px'}" [draggable]="true" [modal]="true">
+	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>
+<app-dialog [screen_instance]="this" ></app-dialog>
+<div style="display:none">
+	<datatable [comp_id]="'process_log_list'" [screen_instance]="this"></datatable>
+</div>
+</div>

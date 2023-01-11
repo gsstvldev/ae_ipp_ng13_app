@@ -7,10 +7,11 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
     
 
-    /*  Created By :    Daseen
+    /*  Created By :   Daseen
 Created Date : 21/12/2022
 Modified By : 
 Modified Date : 
@@ -121,6 +122,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 "language": lang,
                                 "timestamp": formatdate,
                                 "channel-Id": params.channelId,
+                                "authorization":"Y",
                                /*  "bankCode": '00'+bankcode,
                                 "groupCode": '00'+groupcode,
                                 "bankUserId":params.bankUserId,
@@ -213,6 +215,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 });
+
 
 
 

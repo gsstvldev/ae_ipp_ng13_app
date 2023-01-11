@@ -113,6 +113,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 "bankCode":  bankcode,
                                 "groupCode":  groupcode,
                                 "bankUserId":params.bankUserId,
+                                 "authorization":"Y",
                                 'Content-Type': 'application/json'
                             }
                         }

@@ -120,6 +120,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 "language": lang,
                                 "timestamp": formatdate,
                                 "channel-Id": params.channelId,
+                                 "authorization":"Y",
                                 'Content-Type': 'application/json'
                             }
                         }

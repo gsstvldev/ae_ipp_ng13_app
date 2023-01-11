@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
     
+    
 
 try {
     /*   Created By :   Daseen
@@ -114,6 +115,7 @@ try {
                                 'x-jws-signature': 'eyJhbGciOiJSUzI1NiJ9..aoYZZnqLXH0HAyrXtJV1uxZXB_LKgIdzPduJahRnV_09v35UZAEwEyJktWx0pnj3AVFGk7c2CZHbc1wPqRhVdECxcuG1_7H3bkJ-nl40VC1VUUQaymaNjJvgswtG441s6cC-yTUSyukF6vmbQqWH3sIJuF4y8EoOGZ_CLeQKRtSk6F8IRgSFUCpfw1VmDn-SrML3ixSDnSiBgu2XPa_ntUhcE6BJXQrUNIZ0HOC45vvlu0RjvwEEawElsB7H7RmF0fHjUKPKiQMym5GqhmTDatdHOl98mEcwelravUElzw6_4ErtW9Rlj1_ywPcYHJcoAOzuS-fOfIRmKrzApPV3DA',
                                 'bankUserId': params.bankUserId,
                                 'bankCode': bankcode,
+                                "authorization":"Y",
                                 'groupCode': groupcode
                             }
                         };
@@ -192,6 +194,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

@@ -7,12 +7,13 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
-    /*  Created By :    Daseen
+    /*  Created By :   Daseen
 Created Date : 21/12/2022
-Modified By : 
-Modified Date : 
-Reason for : 
+Modified By : Daseen
+Modified Date : 11-01-2023
+Reason for : Api Json change
 * 
 */
 var serviceName = 'NPSS Merchant ENROLMENT'; //service name 
@@ -106,58 +107,79 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                             timeout: 18000000,
                             method: 'POST',
                             json: {
-                                "merchant": [
-                                  {
+
+                                "merchant": {
+                            
                                     "bankUserId": params.bankUserId,
-                                    "name":  params.merchant_name,
+                            
+                                    "name": params.merchant_name,
+                            
                                     "surname": params.surname,
-                                    "denomination":  params.denomination,
-                                    "vatNumber":  params.vat_number,
-                                    "mcc":  params.mcc,
-                                    "mobile":  params.mobile,
-                                    "proxies": [
-                                      {
-                                        "type": params.proxy_type,
-                                        "value": params.proxy_value
-                                      }
-                                    ],
-                                    "channelName": params.channel_name,
-                                    "bankAccounts": [
-                                      {
-                                        "IBAN": params.IBAN,
-                                        "currency": params.currency
-                                      }
-                                    ],
+                            
+                                    "denomination":params.denomination,
+                            
                                     "logo": params.logo,
-                                    "shops": [
-                                      {
+                            
+                                    "vatNumber":  params.vat_number,
+                            
+                                    "mobile":  params.mobile,
+                            
+                                    "mcc":  params.mcc,
+                            
+                                    "channelName":params.channel_name,
+                            
+                                    "bankAccounts": [{
+                            
+                                        "IBAN": params.IBAN,
+                            
+                                        "currency": params.currency
+                            
+                                    }],
+                            
+                                    "shops": [{
+                            
                                         "label":params.shop_name,
+                            
+                                        "mcc":params.shop_mcc,
+                            
                                         "mid": params.shop_mid,
-                                        "type": params.shop_type,
-                                        "mcc": params.shop_mcc,
+                            
+                                        "type":params.shop_type,
+                            
                                         "bankAccount": {
-                                          "IBAN": params.shop_IBAN,
+                            
+                                            "IBAN": params.shop_IBAN
+                            
                                         },
-                                        "address": [
-                                          {
+                            
+                                        "address": {
+                            
                                             "building": params.building,
+                            
                                             "street": params.street,
-                                            "city":params.city,
+                            
                                             "postalCode": params.postal_code,
-                                            "county":params.county,
+                            
                                             "country": params.country,
-                                          }
-                                        ],
-                                        "cashDesks": [
-                                          {
-                                            "identification": params.shop_id,
-                                          }
-                                        ]
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }, headers: {
+                            
+                                            "county": params.county,
+                            
+                                            "city":params.city
+                            
+                                        },
+                            
+                                        "cashDesks": [{
+                            
+                                            "identification":  params.shop_id
+                            
+                                        }]
+                            
+                                    }]
+                            
+                                }
+                            
+                            }
+                            , headers: {
                                 "X-Request-ID": requestid,
                                 "language": lang,
                                 "timestamp": formatdate,
@@ -166,6 +188,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 "groupCode":groupcode,
                                 "bankUserId":params.bankUserId,
                                  "merchantTag":params.merchant_tag,
+                                 "authorization":"Y",
                                 'Content-Type': 'application/json'
                             }
                         }
@@ -254,6 +277,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 });
+
 
 
 

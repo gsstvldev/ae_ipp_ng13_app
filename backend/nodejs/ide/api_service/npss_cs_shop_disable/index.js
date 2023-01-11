@@ -84,7 +84,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         })
 
                     } else {
-                        objresponse.status = 'JSON not found in core rule prod params';
+                        objresponse.status = 'JSON not found in core rule  prod params';
                         sendResponse(null, objresponse);
                     }
                 })
@@ -112,7 +112,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 "bankCode": bankcode,
                                 "groupCode": groupcode,
                                 "bankUserId":params.bankUserId,
-			       'Content-Type': 'application/json'
+                                      "authorization":"Y",
+			                     'Content-Type': 'application/json'
                             }
                         }
 

@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
     
 
@@ -126,6 +127,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 "groupCode": groupcode,
                                 "bankUserId":params.bankUserId,
                                 "merchantTag":params.merchant_tag,
+                                "authorization":"Y",
                                 'Content-Type': 'application/json'
                             }
                         }
@@ -214,6 +216,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 });
+
 
 
 

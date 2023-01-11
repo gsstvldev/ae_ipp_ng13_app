@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
      
     /*  Created By :    Daseen
 Created Date : 21/12/2022
@@ -127,6 +128,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 "groupCode": groupcode,
                                 "bankUserId":params.bankUserId,
                                  "merchantTag":params.merchant_tag,
+                                 "authorization":"Y",
                                 'Content-Type': 'application/json'
                             }
                         }
@@ -215,6 +217,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 });
+
 
 
 

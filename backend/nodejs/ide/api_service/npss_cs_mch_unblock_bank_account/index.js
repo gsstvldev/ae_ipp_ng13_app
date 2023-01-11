@@ -121,6 +121,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 "language": lang,
                                 "timestamp": formatdate,
                                 "channel-Id": params.channelId,
+                                   "authorization":"Y",
                                /*  "bankCode": '00'+bankcode,
                                 "groupCode": '00'+groupcode,
                                 "bankUserId":params.bankUserId,

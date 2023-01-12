@@ -27,11 +27,11 @@ export class npss_cs_reversal_cancelService {
         var CtrlScope
         if (screenInstance.wftpa_description == 's_rct_reversal_non_aed') {
             CtrlScope = screenInstance['cancel_ui'].f_npss_pl_change_cancel_reason_ui.model
-            ClientParams.T24_RETURN_CODE = CtrlScope.T24_RETURN_CODE
+           // ClientParams.T24_RETURN_CODE = CtrlScope.T24_RETURN_CODE
             ClientParams.CBUAE_RETURN_CODE = CtrlScope.CBUAE_RETURN_CODE 
         } else {
             CtrlScope = screenInstance['cancel_return_ui'].f_npss_pl_change_cancel_reason_ui.model
-            ClientParams.T24_RETURN_CODE = CtrlScope.T24_RETURN_CODE
+           // ClientParams.T24_RETURN_CODE = CtrlScope.T24_RETURN_CODE
             ClientParams.CBUAE_RETURN_CODE = CtrlScope.CBUAE_RETURN_CODE 
         }
 

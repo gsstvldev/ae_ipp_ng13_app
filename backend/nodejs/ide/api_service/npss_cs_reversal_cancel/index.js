@@ -86,7 +86,6 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                              objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
                                              objCusTranInst.PROCESS_STATUS = success_process_status;
                                              objCusTranInst.STATUS = success_status;
-                                             objCusTranInst.T24_RETURN_CODE = params.T24_RETURN_CODE;
                                              objCusTranInst.CBUAE_RETURN_CODE = params.CBUAE_RETURN_CODE;
                                              objCusTranInst.TENANT_ID = params.TENANT_ID;
                                              objCusTranInst.APP_ID = '215'

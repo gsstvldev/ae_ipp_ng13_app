@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27793 
+Build ID        : 27787 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-11 15:16 PM 
+Modified Date   : 2023-Jan-12 6:20 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_ip_transaction_by_messages
@@ -35,7 +35,7 @@ import { s_view_ip_transaction_by_messagesRoutingModule } from './s_view_ip_tran
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_searchComponent } from './f_search/f_search.component'
+import { f_npss_channel_dashboard_srchComponent } from './f_npss_channel_dashboard_srch/f_npss_channel_dashboard_srch.component'
 import { p_vertical_tran_detail_profileComponent } from './p_vertical_tran_detail_profile/p_vertical_tran_detail_profile.component'
 import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
 import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
@@ -65,7 +65,7 @@ import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/
     s_view_ip_transaction_by_messagesRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_view_ip_transaction_by_messagesComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_searchComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,],
+  declarations: [s_view_ip_transaction_by_messagesComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_channel_dashboard_srchComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

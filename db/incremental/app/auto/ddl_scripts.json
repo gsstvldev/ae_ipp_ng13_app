@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRN_PROCESS_LOG alter column RESPONSE_DATA type CHARACTER VARYING(80000);","params" : [] }]
+[]

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27793 
+Build ID        : 27794 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-11 15:16 PM 
+Modified Date   : 2023-Jan-12 6:27 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -112,6 +112,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 	reversal_action_ui_get_deal : any = {}
 	reversal_action_ui_cancel : any = {}
 	reversal_action_ui_send_to_maker : any = {}
+	reversal_action_ui_force_post : any = {}
 	reversal_action_ui_trigger_btn : any = {}
 	accept_ui : any = {}
 	accept_ui_save : any = {}
@@ -341,6 +342,15 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		this.reversal_action_ui_send_to_maker.dynamic_param = {}
 		this.reversal_action_ui_send_to_maker.role = []
 		this.reversal_action_ui_send_to_maker.action = ""
+		
+		// "Force Post" Button of "Reversal Action UI" component
+		this.reversal_action_ui_force_post.label_name = "Force Post"
+		this.reversal_action_ui_force_post.show = true
+		this.reversal_action_ui_force_post.disabled = false
+		this.reversal_action_ui_force_post.params = {"icon_only":false,"uicgcc_style":"fa fa-check-square-o"}
+		this.reversal_action_ui_force_post.dynamic_param = {}
+		this.reversal_action_ui_force_post.role = []
+		this.reversal_action_ui_force_post.action = ""
 		
 		// "Trigger btn" Button of "Reversal Action UI" component
 		this.reversal_action_ui_trigger_btn.label_name = "Trigger btn"
@@ -864,6 +874,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		this.page_load__cc_for_routing_key()
 		this.page_load__de_for_rau_cancel()
 		this.page_load__de_for_reversal__pl()
+		this.page_load__de_for_force_post()
 	}
 
 	//Handler for INTERNAL event of "cc for routing key"
@@ -1264,26 +1275,6 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		this.search_clear__cu_for_search()
 	}
 
-	//Handler for SELECTION_CHANGED event of "npss reject ui t24 return code"
-	npss_reject_ui_t24_return_code__selection_changed(){
-		this.npss_reject_ui_t24_return_code__fcb_for_t24__reject_ui()
-	}
-
-	//Handler for SELECTION_CHANGED event of "npss pl change rtn reason ui t24 return code"
-	npss_pl_change_rtn_reason_ui_t24_return_code__selection_changed(){
-		this.npss_pl_change_rtn_reason_ui_t24_return_code__e_1669363813044__change_return_ui()
-	}
-
-	//Handler for SELECTION_CHANGED event of "npss pl change cancel reason ui t24 return code"
-	npss_pl_change_cancel_reason_ui_t24_return_code__selection_changed(){
-		this.npss_pl_change_cancel_reason_ui_t24_return_code__e_1671196424802__cancel_ui()
-	}
-
-	//Handler for SELECTION_CHANGED event of "npss pl rtn reason ui t24 return code"
-	npss_pl_rtn_reason_ui_t24_return_code__selection_changed(){
-		this.npss_pl_rtn_reason_ui_t24_return_code__fcb_for_source__accept_ui()
-	}
-
 	//Handler for DPSINIT event of "page_load"
 	page_load__de_for_crr() { 
 		let Dest_Is_ctrl=true
@@ -1503,6 +1494,27 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1672143800332"
 		let event_params={"caller_name":"page_load__de_for_reversal__pl","event_desc":"DE for Reversal  PL","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_force_post() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="reversal_action_ui_force_post"
+		let parent_source_id=""
+		let event_code="e_1673499786925"
+		let event_params={"caller_name":"page_load__de_for_force_post","event_desc":"DE for Force Post","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -3855,90 +3867,6 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "npss reject ui t24 return code"
-	npss_reject_ui_t24_return_code__fcb_for_t24__reject_ui() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="npss_reject_ui_t24_return_code"
-		let destn_id="npss_reject_ui_cbuae_return_code"
-		let parent_source_id=""
-		let event_code="e_1671282710967"
-		let event_params={"source_comp_id":"reject_ui","source_ctrl_id":"t24_return_code","destn_comp_id":"reject_ui","destn_ctrl_id":"cbuae_return_code","caller_name":"npss_reject_ui_t24_return_code__fcb_for_t24__reject_ui","event_desc":"FCB for T24","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_reject_ui~uicgc_32~ui~df_1304_1665905157963~14","raiseparam":{"parentcolumn":"SOURCE_RETURN_CODE","need_selecteditem":"Y"}}
-		let handler_code="filter_combo_binding"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.filter_combo_binding(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "npss pl change rtn reason ui t24 return code"
-	npss_pl_change_rtn_reason_ui_t24_return_code__e_1669363813044__change_return_ui() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="npss_pl_change_rtn_reason_ui_t24_return_code"
-		let destn_id="npss_pl_change_rtn_reason_ui_cbuae_return_code"
-		let parent_source_id=""
-		let event_code="e_1669363813044"
-		let event_params={"source_comp_id":"change_return_ui","source_ctrl_id":"t24_return_code","destn_comp_id":"change_return_ui","destn_ctrl_id":"cbuae_return_code","caller_name":"npss_pl_change_rtn_reason_ui_t24_return_code__e_1669363813044__change_return_ui","event_desc":"E_1669363813044","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_pl_change_rtn_reason_ui~uicgc_6~ui~df_1304_1665905157963~14","raiseparam":{"parentcolumn":"SOURCE_RETURN_CODE","need_selecteditem":"Y"}}
-		let handler_code="filter_combo_binding"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.filter_combo_binding(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "npss pl change cancel reason ui t24 return code"
-	npss_pl_change_cancel_reason_ui_t24_return_code__e_1671196424802__cancel_ui() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="npss_pl_change_cancel_reason_ui_t24_return_code"
-		let destn_id="npss_pl_change_cancel_reason_ui_cbuae_return_code"
-		let parent_source_id=""
-		let event_code="e_1671196424802"
-		let event_params={"source_comp_id":"cancel_ui","source_ctrl_id":"t24_return_code","destn_comp_id":"cancel_ui","destn_ctrl_id":"cbuae_return_code","caller_name":"npss_pl_change_cancel_reason_ui_t24_return_code__e_1671196424802__cancel_ui","event_desc":"E_1671196424802","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_pl_change_cancel_reason_ui~uicgc_31~ui~df_1304_1665905157963~14","raiseparam":{"parentcolumn":"SOURCE_RETURN_CODE","need_selecteditem":"Y"}}
-		let handler_code="filter_combo_binding"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.filter_combo_binding(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "npss pl rtn reason ui t24 return code"
-	npss_pl_rtn_reason_ui_t24_return_code__fcb_for_source__accept_ui() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="npss_pl_rtn_reason_ui_t24_return_code"
-		let destn_id="npss_pl_rtn_reason_ui_cbuae_return_code"
-		let parent_source_id=""
-		let event_code="e_1666876334010"
-		let event_params={"source_comp_id":"accept_ui","source_ctrl_id":"t24_return_code","destn_comp_id":"accept_ui","destn_ctrl_id":"cbuae_return_code","caller_name":"npss_pl_rtn_reason_ui_t24_return_code__fcb_for_source__accept_ui","event_desc":"FCB for source","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_pl_rtn_reason_ui~uicgc_5~ui~df_1304_1665905157963~14","raiseparam":{"parentcolumn":"SOURCE_RETURN_CODE","need_selecteditem":"N"}}
-		let handler_code="filter_combo_binding"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.filter_combo_binding(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

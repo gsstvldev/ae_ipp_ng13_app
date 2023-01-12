@@ -7,11 +7,10 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-
 /*  Created By : Siva Harish
 Created Date :29/12/2022
-Modified By : 
-Modified Date : 
+Modified By : Siva Harish
+Modified Date : 12/01/2023
 Reason for : 
  
 */
@@ -104,8 +103,16 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                 var updtranqry = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',remarks = '${params.remarks}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id='${params.Id}' `
                                                 ExecuteQuery(updtranqry, function (tranresult) {
                                                     if (tranresult == 'SUCCESS') {
-                                                        objresponse.status = 'SUCCESS';
-                                                        sendResponse(null, objresponse)
+                                                        var UpdateTrnPrslogTbl = `update npss_trn_process_log set  additional_info = ' ',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsstpl_id ='${params.tpl_id}'`
+                                                        ExecuteQuery(UpdateTrnPrslogTbl, function (updTrnprslog) {
+                                                            if(updTrnprslog == 'SUCCESS'){
+                                                                objresponse.status = 'SUCCESS';
+                                                                sendResponse(null, objresponse);
+                                                            }else{
+                                                                objresponse.status = 'Update Fail in Trn Process Log Table';
+                                                                sendResponse(null, objresponse);
+                                                            }
+                                                        })
 
                                                     }
                                                     else {

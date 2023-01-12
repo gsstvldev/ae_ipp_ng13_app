@@ -41,8 +41,6 @@ update
     on
     ad_gss_tran.npss_transactions for each row execute procedure fn_npss_transactions_pci();
 @SPL@
-ALTER TABLE NPSS_TRANSACTIONS DISABLE TRIGGER a_trg_npss_transactions_pci;
-@SPL@
 CREATE OR REPLACE FUNCTION ad_gss_tran.fn_npss_trn_req_resp_dtls_pci()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -60,8 +58,6 @@ insert
 update
     on
     ad_gss_tran.npss_trn_req_resp_dtls for each row execute procedure fn_npss_trn_req_resp_dtls_pci();
-@SPL@
-ALTER TABLE NPSS_TRN_REQ_RESP_DTLS DISABLE TRIGGER a_trg_npss_trn_req_resp_dtls_pci;
 @SPL@
 CREATE OR REPLACE FUNCTION ad_gss_tran.fn_npss_trn_process_log_pci()
  RETURNS trigger
@@ -83,6 +79,4 @@ insert
 update
     on
     ad_gss_tran.npss_trn_process_log for each row execute procedure fn_npss_trn_process_log_pci();
-@SPL@
-ALTER TABLE npss_trn_process_log DISABLE TRIGGER a_trg_npss_trn_process_log_pci;
 @SPL@

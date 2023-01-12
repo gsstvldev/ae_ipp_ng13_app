@@ -15,6 +15,7 @@ try {
     Modified Date : 20/12/2022
     Reason for : Changing Update Query Position for FAB
    Adding Query Position for FAB
+    Reason for :Adding Update query for Tran Process Log Table 12/01/2023
     */
     var serviceName = 'NPSS RCT Outward Reversal Approve';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -113,7 +114,7 @@ try {
                                         _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
                                             if (CusTranInsertRes.length > 0) {
                                                 
-                                                //ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
+                                                   //ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
                                                    //if (uptranresult == 'SUCCESS') {
                                                     var TakepostRefno = `select process_ref_no from npss_trn_process_log where uetr = '${arrprocesslog[0].uetr}' and process_name = 'Receive pacs002' and status in ('OP_AC_STATUS_ACCEPTED','OP_P2P_STATUS_ACCEPTED', 'OP_P2B_STATUS_ACCEPTED')`
                                                     ExecuteQuery1(TakepostRefno, function (arrpostrefno) {
@@ -126,9 +127,18 @@ try {
                                                                             var UpdateTrnTbl = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Tran_Id}'`
                                                                             ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
                                                                                 if (uptranresult == 'SUCCESS') {
-                                                                                    objresponse.status = 'SUCCESS';
-                                                                                    objresponse.data = result;
-                                                                                    sendResponse(null, objresponse);
+                                                                                    var UpdateTrnPrslogTbl = `update npss_trn_process_log set  additional_info = 'Checker_Approved',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsstpl_id ='${params.NPSSTPL_Id}'`
+                                                                                    ExecuteQuery(UpdateTrnPrslogTbl, function (updTrnprslog) {
+                                                                                        if(updTrnprslog == 'SUCCESS'){
+                                                                                            objresponse.status = 'SUCCESS';
+                                                                                            objresponse.data = result;
+                                                                                            sendResponse(null, objresponse);
+                                                                                        }else{
+                                                                                            objresponse.status = 'Update Fail in Trn Process Log Table';
+                                                                                            sendResponse(null, objresponse);
+                                                                                        }
+                                                                                    
+                                                                                    })
     
                                                                                 }else{
                                                                                     objresponse.status = 'Update Fail in npss tran';

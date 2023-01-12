@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27787 
+Build ID        : 27798 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-12 6:20 AM 
+Modified Date   : 2023-Jan-12 8:28 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_ip_transaction_by_messages
@@ -23,7 +23,7 @@ export class p_main_layoutComponent implements OnInit {
 
   // Variables 
   	message_type_list : any = {}
-	channel_group : any = {}
+	processing_system_group : any = {}
 	payment_type_group : any = {}
 	navigation_ui : any = {}
 	queue_group : any = {}
@@ -37,8 +37,8 @@ export class p_main_layoutComponent implements OnInit {
   ngOnInit() {
     	this.message_type_list.desc = "Message Type List"
 		this.message_type_list.need_header = true
-		this.channel_group.desc = "Channel Group"
-		this.channel_group.need_header = true
+		this.processing_system_group.desc = "Processing System Group"
+		this.processing_system_group.need_header = true
 		this.payment_type_group.desc = "Payment Type Group"
 		this.payment_type_group.need_header = true
 		this.navigation_ui.desc = "Navigation UI"

@@ -44,7 +44,7 @@ export class npss_cs_ip_rev_get_dealService {
                  
                 var response =JSON.parse(dat1)
                   
-                    console.log(res.data.data);
+                  
                 var ctrlscope= screenInstance['deal_ui'].f_npss_reversal_deal_plog_ui.model;
                 ctrlscope.BUY_CURRENCY = response.buy_currency
                 ctrlscope.SELL_CURRENCY = response.sell_currency
@@ -53,25 +53,7 @@ export class npss_cs_ip_rev_get_dealService {
                 ctrlscope.CONTRA_AMOUNT = response.contra_amount
                 this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 }
-                // } else if (res.data.status == 'No Rule Code Found' || res.data == 'No Rule Code Found') {
-                //     this.dialogHelper.ShowErrorDialog('No Rule Code Found')
-
-                // } else if (res.data.status == 'No Data found in System Setup table' || res.data == 'No Data found in System Setup table') {
-                //     this.dialogHelper.ShowErrorDialog('"No Data found in System Setup table')
-
-                // }
-                // else if (res.data.status == 'No Data found in Transaction table' || res.data == 'No Data found in Transaction table') {
-                //     this.dialogHelper.ShowErrorDialog('No Data found in Transaction table')
-
-                // }
-                // else if (res.data.status == 'No Data found in accounts table' || res.data == 'No Data found in accounts table') {
-                //     this.dialogHelper.ShowErrorDialog('No Data found in accounts table')
-
-                // }
-                // else if (res.data.status == 'No Data found in workflow table' || res.data == 'No Data found in workflow table') {
-                //     this.dialogHelper.ShowErrorDialog('No Data found in workflow table')
-
-                // }
+               
                 else {
                      var ctrlscope= screenInstance['deal_ui'].f_npss_reversal_deal_plog_ui.model;
                 ctrlscope.BUY_CURRENCY = ''

@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
     
+    
 try {
     /*   Created By :Siva Harish
     Created Date :02-01-2023
@@ -152,7 +153,7 @@ try {
                                                                           var callapi = async () =>{
                                                                             var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam)
 
-                                                                            if (apistatus == 'SUCCESS' || apistatus == 'Success') {
+                                                                            if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
                                                                                 var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
 
                                                                                 ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
@@ -167,28 +168,14 @@ try {
                                                                                     }
                                                                                 })
 
-                                                                            } else if (apistatus == 'TIMEOUT') {
+                                                                            } else if (apistatus.status == 'TIMEOUT') {
 
                                                                                 objresponse.status = 'Time Out' + apiName + ' Api Failure'
                                                                                 sendResponse(null, objresponse);
                                                                             } else {
-                                                                                var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                                                ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                                    var status
-                                                                                    
-                                                                                    status = 'IP_RCT_REV_INAU_POSTING_FAILURE'
-                                                                                    
-                                                                                    var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = '${status}'`
-                                                                                    ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                                        if (arrFail.length) {
-                                                                                            objresponse.status = apiName + 'Failure Error Code - ' + arrFail[0].cbuae_return_code
-                                                                                            sendResponse(null, objresponse);
-                                                                                        } else {
-                                                                                            objresponse.status = apiName + 'Api Call Failure No Error Code Found'
-                                                                                            sendResponse(null, objresponse);
-                                                                                        }
-                                                                                    })
-                                                                                })
+                                                                                objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
+                                                                               
+                                                                                sendResponse(null, objresponse);
                                                                             }
                                                                           }
                                                                           
@@ -421,8 +408,9 @@ try {
 
                             } else {
                                 responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                console.log("------API CALL SUCCESS----");
-                                callbackapi(responseBodyFromImagingService)
+                                console.log("------API CALL SUCCESS----",responseBodyFromImagingService);
+                                var responseData = JSON.parse(responseBodyFromImagingService)
+                                callbackapi(responseData)
                             }
                         });
 
@@ -599,6 +587,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

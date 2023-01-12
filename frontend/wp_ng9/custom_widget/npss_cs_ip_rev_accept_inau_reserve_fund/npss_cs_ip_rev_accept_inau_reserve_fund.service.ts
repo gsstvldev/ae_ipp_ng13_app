@@ -64,7 +64,13 @@ export class npss_cs_ip_rev_accept_inau_reserve_fundService {
 
                 }
                 else {
-                  this.dialogHelper.ShowErrorDialog(res.data.status)
+                   if(res.data.flag == 'Y'){
+                        screenInstance.reversal_action_ui_force_post.disabled = false;
+                        this.dialogHelper.ShowErrorDialog(res.data.status)
+                    }else{
+                        screenInstance.reversal_action_ui_force_post.disabled = true;
+                        this.dialogHelper.ShowErrorDialog(res.data.status) 
+                    }
                 }
             });
     }

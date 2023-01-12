@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
 /*  Created By :sIVA hARISH
 Created Date : 16-12-2022
@@ -19,6 +20,7 @@ Modified By : sIVA hARISH
 Modified Date : 24/12/2022
       Reason for : Changes For Finance House & query changes for taking status and remove api name
        Reason for : Handling Failure for unfreeze posting
+         Reason for : changing error handling 12/01/2023
  
 */
 var serviceName = 'NPSS Reversal Cancel';
@@ -116,7 +118,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                    ExecuteQuery1(Takepostrefno, function (arrpostno) {
                                                     if(arrpostno.length > 0){
                                                         fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno, function (apiresult) {
-                                                            if (apiresult === "SUCCESS") {
+                                                            if (apiresult.status === "SUCCESS") {
                                                                var Takeurl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
                                                                ExecuteQuery1(Takeurl, function (arrgeturl) {
                                                                   if (arrgeturl.length > 0) {
@@ -163,21 +165,10 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                })
                                                             } else {
    
-                                                               var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Id}'`
-                                                               ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                  var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_UNFR_POSTING_FAILURE'`
-                                                                  ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                     if (arrFail.length) {
-   
-                                                                        objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
+                                                              
+                                                                        objresponse.status = 'Fail From T24 Unfreeze  Error Code -'+apiresult.error_code
                                                                         sendResponse(null, objresponse);
-                                                                     } else {
-   
-                                                                        objresponse.status = 'Fail From T24 Unfreeze Posting No Error Code Found'
-                                                                        sendResponse(null, objresponse);
-                                                                     }
-                                                                  })
-                                                               })
+                                                                
                                                             }
                                                          })
                                                     }else{
@@ -329,8 +320,9 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
                            } else {
                               responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                              console.log("------API CALL SUCCESS----");
-                              callbackapi(responseBodyFromImagingService)
+                              console.log("------API CALL SUCCESS----",responseBodyFromImagingService);
+                              var responseData = JSON.parse(responseBodyFromImagingService)
+                              callbackapi(responseData)
                            }
                         });
                      } catch (error) {
@@ -474,6 +466,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
       reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
    }
 })
+
 
 
 

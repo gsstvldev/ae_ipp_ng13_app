@@ -65,7 +65,7 @@ export class npss_cs_ip_rev_ret_auth_pacs004Service {
 
                 } */
                 else {
-                    this.appHandler.callInternals(internals, screenInstance, "FAILURE");
+                  
                    // this.dialogHelper.ShowErrorDialog(res.data.errdata)
                     this.dialogHelper.ShowInfoDialog(res.data.errdata);
 

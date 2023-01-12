@@ -7,8 +7,9 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
-      try {
+    try {
         /*   Created By :Daseen
         Created Date :04-11-2022
         Modified By : Siva Harish
@@ -32,6 +33,7 @@ app.post('/', function(appRequest, appResponse, next) {
            Reason for : Adding Prepaid and credit api Call api function for fab 27/12/2022
             Reason for : Handling Error msg for process ref no for fab 28/12/2022
               Reason for : calling fn_pcidss_decrypt function for taking and converting masking cr_identification_code 08/01/2023
+               Reason for : changing response diagloue 12/01/2023
         */
         var serviceName = 'NPSS IP REV Ret Auth PACS004';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -167,7 +169,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             var url = arrurl[0].param_detail;
                                                                             if (apicalls == 0 || apicalls == '0') {
                                                                                 fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, function (firstapiresult) {
-                                                                                    if (firstapiresult === "SUCCESS" || firstapiresult === "Success" || firstapiresult === "success") {
+                                                                                    if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
                                                                                         console.log('First API Call Success')
                                                                                         ExecuteQuery1(take_return_url, function (arrreturnurl) {
                                                                                             if (arrreturnurl.length) {
@@ -210,26 +212,15 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                                         })
                                                                                     } else {
-                                                                                        var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                                                        ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                                            var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_AUTH_POSTING_FAILURE'`
-                                                                                            ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                                                if (arrFail.length) {
-                                                                                                    objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Auth Pac004 Failure Error Code - ' + arrFail[0].cbuae_return_code
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                } else {
-                                                                                                    objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Auth Pac004 Api Call Failure No Error Code Found'
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                }
-                                                                                            })
-                                                                                        })
+                                                                                        objresponse.status = "FAILURE"
+                                                                                        objresponse.errdata = 'Auth Pac004 Api Call Failure Error Code Found - '+firstapiresult.error_code
+                                                                                        sendResponse(null, objresponse);
+                                                                                       
                                                                                     }
                                                                                 })
                                                                             } else if (apicalls == 1 || apicalls == '1') {
                                                                                 fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, function (prepaidApiCallResult) {
-                                                                                    if (prepaidApiCallResult === "SUCCESS" || prepaidApiCallResult === "Success" || prepaidApiCallResult === "success") {
+                                                                                    if (prepaidApiCallResult.status === "SUCCESS" || prepaidApiCallResult.status === "Success" || prepaidApiCallResult.status === "success") {
                                                                                         console.log('First API Call Success')
                                                                                         ExecuteQuery1(take_return_url, function (arrreturnurl) {
                                                                                             if (arrreturnurl.length) {
@@ -271,31 +262,20 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                             }
 
                                                                                         })
-                                                                                    } else if (prepaidApiCallResult == 'TIMEOUT') {
+                                                                                    } else if (prepaidApiCallResult.status == 'TIMEOUT') {
                                                                                         objresponse.status = "FAILURE"
                                                                                         objresponse.errdata = 'Time Out Prepaid Api Failure'
                                                                                         sendResponse(null, objresponse);
                                                                                     } else {
-                                                                                        var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                                                        ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                                            var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_PC_POSTING_FAILURE'`
-                                                                                            ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                                                if (arrFail.length) {
-                                                                                                    objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Prepaid Api Failure Error Code - ' + arrFail[0].cbuae_return_code
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                } else {
-                                                                                                    objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Prepaid Api Call Failure No Error Code Found'
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                }
-                                                                                            })
-                                                                                        })
+                                                                                        objresponse.status = "FAILURE"
+                                                                                        objresponse.errdata = 'Prepaid Api Failure Error Code - '+prepaidApiCallResult.error_code
+                                                                                        sendResponse(null, objresponse);
+                                                                                       
                                                                                     }
                                                                                 })
                                                                             } else if (apicalls == 2 || apicalls == '2') {
                                                                                 fn_doCreditapicall(url, arrprocesslog, arrActInf, lclinstrm, amount, reverandRefno, function (creditdApiCallResult) {
-                                                                                    if (creditdApiCallResult === "SUCCESS" || creditdApiCallResult === "Success" || creditdApiCallResult === "success") {
+                                                                                    if (creditdApiCallResult.status === "SUCCESS" || creditdApiCallResult.status === "Success" || creditdApiCallResult.status === "success") {
                                                                                         console.log('First API Call Success')
                                                                                         ExecuteQuery1(take_return_url, function (arrreturnurl) {
                                                                                             if (arrreturnurl.length) {
@@ -337,26 +317,16 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                             }
 
                                                                                         })
-                                                                                    } else if (prepaidApiCallResult == 'TIMEOUT') {
+                                                                                    } else if (prepaidApiCallResult.status == 'TIMEOUT') {
                                                                                         objresponse.status = "FAILURE"
                                                                                         objresponse.errdata = 'Time Out Credit Api Failure'
                                                                                         sendResponse(null, objresponse);
                                                                                     } else {
-                                                                                        var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                                                        ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                                            var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_CC_POSTING_FAILURE'`
-                                                                                            ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                                                if (arrFail.length) {
+                                                                                       
                                                                                                     objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Credit Api Failure Error Code - ' + arrFail[0].cbuae_return_code
+                                                                                                    objresponse.errdata = 'Credit Api Call Failure  Error Code -'+prepaidApiCallResult.error_code
                                                                                                     sendResponse(null, objresponse);
-                                                                                                } else {
-                                                                                                    objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Credit Api Call Failure No Error Code Found'
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                }
-                                                                                            })
-                                                                                        })
+                                                                                          
                                                                                     }
                                                                                 })
                                                                             }
@@ -392,7 +362,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             if (apicalls == 0 || apicalls == '0') {
 
                                                                                 fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, function (firstapiresult) {
-                                                                                    if (firstapiresult === "SUCCESS" || firstapiresult === "Success" || firstapiresult === "success") {
+                                                                                    if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
                                                                                         console.log('First API Call Success')
                                                                                         ExecuteQuery1(take_return_url, function (arrreturnurl) {
                                                                                             if (arrreturnurl.length) {
@@ -439,26 +409,15 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                                         })
                                                                                     } else {
-                                                                                        var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                                                        ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                                            var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_AUTH_POSTING_FAILURE'`
-                                                                                            ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                                                if (arrFail.length) {
-                                                                                                    objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                } else {
-                                                                                                    objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Auth Pac004 Api Call Failure No Error Code Found'
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                }
-                                                                                            })
-                                                                                        })
+                                                                                       
+                                                                                        objresponse.status = "FAILURE"
+                                                                                        objresponse.errdata = 'Auth Pac004 Api Call Failure Error Code Found - '+firstapiresult.error_code
+                                                                                        sendResponse(null, objresponse);
                                                                                     }
                                                                                 })
                                                                             } else if (apicalls == 1 || apicalls == '1') { //Prepaid
                                                                                 fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, function (prepaidApiCallResult) {
-                                                                                    if (prepaidApiCallResult === "SUCCESS" || prepaidApiCallResult === "Success" || prepaidApiCallResult === "success") {
+                                                                                    if (prepaidApiCallResult.status === "SUCCESS" || prepaidApiCallResult.status === "Success" || prepaidApiCallResult.status === "success") {
                                                                                         console.log('First API Call Success')
                                                                                         ExecuteQuery1(take_return_url, function (arrreturnurl) {
                                                                                             if (arrreturnurl.length) {
@@ -500,31 +459,21 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                             }
 
                                                                                         })
-                                                                                    } else if (prepaidApiCallResult == 'TIMEOUT') {
+                                                                                    } else if (prepaidApiCallResult.status == 'TIMEOUT') {
                                                                                         objresponse.status = "FAILURE"
                                                                                         objresponse.errdata = 'Time Out Prepaid Api Failure'
                                                                                         sendResponse(null, objresponse);
                                                                                     } else {
-                                                                                        var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                                                        ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                                            var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_PC_POSTING_FAILURE'`
-                                                                                            ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                                                if (arrFail.length) {
+                                                                                       
                                                                                                     objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Prepaid Api Failure Error Code - ' + arrFail[0].cbuae_return_code
+                                                                                                    objresponse.errdata = 'Prepaid Api Call Failure Error Code -'+prepaidApiCallResult.error_code
                                                                                                     sendResponse(null, objresponse);
-                                                                                                } else {
-                                                                                                    objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Prepaid Api Call Failure No Error Code Found'
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                }
-                                                                                            })
-                                                                                        })
+                                                                                            
                                                                                     }
                                                                                 })
                                                                             } else if (apicalls == 2 || apicalls == '2') {
                                                                                 fn_doCreditapicall(url, arrprocesslog, arrActInf, lclinstrm, amount, reverandRefno, function (creditdApiCallResult) {
-                                                                                    if (creditdApiCallResult === "SUCCESS" || creditdApiCallResult === "Success" || creditdApiCallResult === "success") {
+                                                                                    if (creditdApiCallResult.status === "SUCCESS" || creditdApiCallResult.status === "Success" || creditdApiCallResult.status === "success") {
                                                                                         console.log('First API Call Success')
                                                                                         ExecuteQuery1(take_return_url, function (arrreturnurl) {
                                                                                             if (arrreturnurl.length) {
@@ -566,26 +515,16 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                             }
 
                                                                                         })
-                                                                                    } else if (prepaidApiCallResult == 'TIMEOUT') {
+                                                                                    } else if (creditdApiCallResult.status == 'TIMEOUT') {
                                                                                         objresponse.status = "FAILURE"
                                                                                         objresponse.errdata = 'Time Out Credit Api Failure'
                                                                                         sendResponse(null, objresponse);
                                                                                     } else {
-                                                                                        var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                                                        ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                                            var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_CC_POSTING_FAILURE'`
-                                                                                            ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                                                if (arrFail.length) {
+                                                                                      
                                                                                                     objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Credit Api Failure Error Code - ' + arrFail[0].cbuae_return_code
+                                                                                                    objresponse.errdata = 'Credit Api Call Failure Error Code -'+creditdApiCallResult.error_code
                                                                                                     sendResponse(null, objresponse);
-                                                                                                } else {
-                                                                                                    objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Credit Api Call Failure No Error Code Found'
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                }
-                                                                                            })
-                                                                                        })
+                                                                                            
                                                                                     }
                                                                                 })
                                                                             }
@@ -858,8 +797,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                 } else {
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                    console.log("------API CALL SUCCESS----");
-                                    callbackapi(responseBodyFromImagingService)
+                                    console.log("------API CALL SUCCESS----", responseBodyFromImagingService);
+                                    var Responsedata = JSON.parse(responseBodyFromImagingService)
+                                    callbackapi(Responsedata)
                                 }
                             });
 
@@ -1000,8 +940,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                 } else {
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                    console.log("------API CALL SUCCESS----");
-                                    callbackapi(responseBodyFromImagingService)
+                                    console.log("------API CALL SUCCESS----", responseBodyFromImagingService);
+                                    var Responsedata = JSON.parse(responseBodyFromImagingService)
+                                    callbackapi(Responsedata)
                                 }
                             });
 
@@ -1092,7 +1033,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                 } else {
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
                                     console.log("------API CALL SUCCESS----");
-                                    callbackapi(responseBodyFromImagingService)
+
+                                     console.log("------API CALL SUCCESS----", responseBodyFromImagingService);
+                                    var Responsedata = JSON.parse(responseBodyFromImagingService)
+                                    callbackapi(Responsedata)
                                 }
                             });
 
@@ -1373,6 +1317,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

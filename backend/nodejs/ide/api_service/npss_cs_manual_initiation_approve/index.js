@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
     try {
         /*   Created By :Siva Harish
         Created Date :02-01-2023
@@ -112,7 +113,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     if (arrurl.length) {
                                                                         var url = arrurl[0].param_detail;
                                                                         fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, function (firstapiresult) {
-                                                                            if (firstapiresult === "SUCCESS" || firstapiresult === "Success" || firstapiresult === "success") {
+                                                                            if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
 
                                                                                 console.log('First API Call Success')
                                                                                 //Call Pac008 Api
@@ -155,21 +156,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             })
 
                                                                             } else {
-                                                                                var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                                                ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                                    var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_AUTH_POSTING_FAILURE'`
-                                                                                    ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                                        if (arrFail.length) {
+                                                                                
                                                                                             objresponse.status = "FAILURE"
-                                                                                            objresponse.errdata = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
+                                                                                            objresponse.errdata = 'Auth Pac004 Api Call Failure  Error Code Found-'+firstapiresult.error_code
                                                                                             sendResponse(null, objresponse);
-                                                                                        } else {
-                                                                                            objresponse.status = "FAILURE"
-                                                                                            objresponse.errdata = 'Auth Pac004 Api Call Failure No Error Code Found'
-                                                                                            sendResponse(null, objresponse);
-                                                                                        }
-                                                                                    })
-                                                                                })
+                                                                                   
                                                                             }
                                                                         })
 
@@ -409,8 +400,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                 } else {
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                    console.log("------API CALL SUCCESS----");
-                                    callbackapi(responseBodyFromImagingService)
+                                    console.log("------API CALL SUCCESS----",responseBodyFromImagingService);
+                                    var responseData = JSON.parse(responseBodyFromImagingService)
+                                    callbackapi(responseData)
                                 }
                             });
 
@@ -679,6 +671,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

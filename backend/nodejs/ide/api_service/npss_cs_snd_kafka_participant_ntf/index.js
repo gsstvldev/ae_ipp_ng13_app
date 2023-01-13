@@ -9,8 +9,10 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
 
+
+
     /*  Created By :   Siva Harish
-    Created Date :31/12/2022
+    Created Date :13/01/2023
     Modified By : 
     Modified Date : 
     Reason for : 
@@ -53,156 +55,189 @@ app.post('/', function(appRequest, appResponse, next) {
             reqTranDBInstance.GetTranDBConn(headers, false, async function (pSession) {
                 mTranConn = pSession; //  assign connection     
                 try {
-                    var takeparticipantList = `select cbp.cncbp_id,cbp.bank_bic,cbp.bank_short_code,cbp.bank_name,cbp.participation_flag,cbp.participation_flag,cbp.rct_subscription_flag,cbp.bct_subscription_flag,cpa.from_date,cpa.from_time,cpa.to_date,cpa.to_time,cpa.action from core_nc_bank_participation cbp inner join core_nc_bank_part_avail cpa on cbp.bank_bic = cpa.bank_bic`
-                    ExecuteQuery1(takeparticipantList, async function (arrresult) {
-                        if (arrresult.length > 0) {
-                            const kafka = new Kafka({
-                                clientId: params.clientId,
-                                brokers: [params.kafkaipPort],
-                                retry: {
-                                    initialRetryTime: 100,
-                                    retries: 5
-                                  }
-                            })
-                            try {
-                                producer = kafka.producer()
-                                await producer.connect()
-                                reqAsync.forEachOfSeries(arrresult, function (arrresultObj, i, nextobjctfunc) {
-                                    try {
-                                        var transferMode
-                                        if (arrresultObj.rct_subscription_flag == 'Subscribed' && arrresultObj.bct_subscription_flag == 'Subscribed') {
-                                            transferMode = 'BOTH'
-                                        } else if (arrresultObj.rct_subscription_flag == 'Subscribed') {
-                                            transferMode = 'INST'
-                                        } else {
-                                            transferMode = 'BATCH'
-                                        }
-                                        var dataobj = {
-                                            bic: arrresultObj.bank_bic,
-
-                                            shortCode: arrresultObj.bank_short_code,
-
-                                            name: arrresultObj.bank_name,
-
-                                            enabled: arrresultObj.participation_flag,
-
-                                            transferMode: transferMode,
-                                        }
-
-                                        if (arrresultObj.participation_flag == 'Y') {
-                                            if(arrresultObj.from_date){
-                                                dataobj.fromDate = moment(arrresultObj.from_date).format('DDMMYYYY')
-                                           
-                                               
-
-                                            }else{
-                                                dataobj.fromDate = ''
-                                            }
-                                        
-                                            if(arrresultObj.from_time){
-                                               var Time = arrresultObj.from_time.split(':')
-                                               var remAMPM = Time[1].split(' ')
-                                               dataobj.fromTime = Time[0]+remAMPM[0]+'00'
-                                            }else{
-                                                dataobj.fromTime = ''
-                                            }
-                                               
-
-                                            if(arrresultObj.to_date){
-                                                 dataobj.toDate = moment(arrresultObj.to_date).format('DDMMYYYY')
-                                               
-                                                 
- 
-                                             }else{
-                                                 dataobj.toDate = ''
-                                             }
-
-                                             if(arrresultObj.to_time){
-                                                var Time = arrresultObj.to_time.split(':')
-                                                var remAMPM = Time[1].split(' ')
-                                                dataobj.toTime = Time[0]+remAMPM[0]+'00'
-                                             }else{
-                                                dataobj.toTime = ''
-                                             }
-
-                                                // dataobj.toTime = arrresultObj.to_time,
-
-                                                dataobj.Action = arrresultObj.action
-                                        }
-                                                
-
-
-                                        var sendtoKafka = async () => {
-
-                                            try {
-                                                var datatype = await producer.send({
-                                                    topic: params.topic,
-
-                                                    messages: [
-                                                        {
-                                                            value: JSON.stringify(dataobj)
-                                                        }
-                                                    ],
+                    var TakeUrl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL'`
+                    ExecuteQuery1(TakeUrl, function (arrUrl) {
+                        if (arrUrl.length) {
+                            var Takechnl = `select process_name,destination_system from core_ns_params where process_name = '${params.processName}' group by process_name,destination_system`
+                            ExecuteQuery1(Takechnl, function (arrChnl) {
+                                if (arrChnl.length > 0) {
+                                    reqAsync.forEachOfSeries(arrChnl, function (arrrearrChnlsultObj, i, channelnextobjctfunc) {
+                                        var TakeKafkaTp = `select param_value from core_ns_params where process_name = '${params.processName}' and destination_system ='${arrrearrChnlsultObj.destination_system}' and param_name = 'KAFKA_TOPIC'`
+                                        ExecuteQuery1(TakeKafkaTp, function (arrTopic) {
+                                            if (arrTopic.length > 0) {
+                                                var TakeComCat = `select param_value from core_ns_params where process_name = '${params.processName}' and destination_system ='${arrrearrChnlsultObj.destination_system}' and param_name = 'COMM_GROUP'`
+                                                ExecuteQuery1(TakeComCat, function (arrComCat) {
+                                                    if (arrComCat.length > 0) {
+                                                        var takeparticipantList = `select cbp.cncbp_id,cbp.bank_bic,cbp.bank_short_code,cbp.bank_name,cbp.participation_flag,cbp.participation_flag,cbp.rct_subscription_flag,cbp.bct_subscription_flag,cpa.from_date,cpa.from_time,cpa.to_date,cpa.to_time,cpa.action from core_nc_bank_participation cbp inner join core_nc_bank_part_avail cpa on cbp.bank_bic = cpa.bank_bic`
+                                                        ExecuteQuery1(takeparticipantList, async function (arrresult) {
+                                                            if (arrresult.length > 0) {
+                    
+                                                                reqAsync.forEachOfSeries(arrresult, function (arrresultObj, i, nextobjctfunc) {
+                                                                    try {
+                                                                        var transferMode
+                                                                        if (arrresultObj.rct_subscription_flag == 'Subscribed' && arrresultObj.bct_subscription_flag == 'Subscribed') {
+                                                                            transferMode = 'BOTH'
+                                                                        } else if (arrresultObj.rct_subscription_flag == 'Subscribed') {
+                                                                            transferMode = 'INST'
+                                                                        } else {
+                                                                            transferMode = 'BATCH'
+                                                                        }
+                                                                        var dataobj = {
+                                                                            bic: arrresultObj.bank_bic,
+                    
+                                                                            shortCode: arrresultObj.bank_short_code,
+                    
+                                                                            name: arrresultObj.bank_name,
+                    
+                                                                            enabled: arrresultObj.participation_flag,
+                    
+                                                                            transferMode: transferMode,
+                                                                        }
+                    
+                                                                        if (arrresultObj.participation_flag == 'Y') {
+                                                                            if (arrresultObj.from_date) {
+                                                                                dataobj.fromDate = moment(arrresultObj.from_date).format('DDMMYYYY')
+                    
+                    
+                    
+                                                                            } else {
+                                                                                dataobj.fromDate = ''
+                                                                            }
+                    
+                                                                            if (arrresultObj.from_time) {
+                                                                                var Time = arrresultObj.from_time.split(':')
+                                                                                var remAMPM = Time[1].split(' ')
+                                                                                dataobj.fromTime = Time[0] + remAMPM[0] + '00'
+                                                                            } else {
+                                                                                dataobj.fromTime = ''
+                                                                            }
+                    
+                    
+                                                                            if (arrresultObj.to_date) {
+                                                                                dataobj.toDate = moment(arrresultObj.to_date).format('DDMMYYYY')
+                    
+                    
+                    
+                                                                            } else {
+                                                                                dataobj.toDate = ''
+                                                                            }
+                    
+                                                                            if (arrresultObj.to_time) {
+                                                                                var Time = arrresultObj.to_time.split(':')
+                                                                                var remAMPM = Time[1].split(' ')
+                                                                                dataobj.toTime = Time[0] + remAMPM[0] + '00'
+                                                                            } else {
+                                                                                dataobj.toTime = ''
+                                                                            }
+                    
+                    
+                    
+                                                                            dataobj.Action = arrresultObj.action
+                                                                        }
+                    
+                    
+                                                                       
+                                                                        try {
+                    
+                                                                            var request = require('request');
+                    
+                                                                            var options = {
+                                                                                url: arrUrl[0].param_detail,
+                                                                                timeout: 18000000,
+                                                                                method: 'POST',
+                                                                                json: {
+                                                                                    "PARAMS": {
+                                                                                        "WFTPA_ID": "DEFAULT",
+                                                                                        "PRCT_ID": "",
+                                                                                        "EVENT_CODE": "DEFAULT",
+                                                                                        "USER_EMAIL": "",
+                                                                                        "USER_MOBILE": "",
+                                                                                        "TEMPLATECODE": arrComCat[0].param_value,
+                                                                                        "DT_CODE": "",
+                                                                                        "DTT_CODE": "",
+                                                                                        "TOPIC_NAME": arrTopic[0].param_value || '',
+                                                                                        "STATIC_DATA": dataobj || '',
+                                                                                        "SKIP_COMM_FLOW": true
+                                                                                    },
+                                                                                    "PROCESS_INFO": {
+                                                                                        "MODULE": "NPSS",
+                                                                                        "MENU_GROUP": "NPSS",
+                                                                                        "MENU_ITEM": "NPSS",
+                                                                                        "PROCESS_NAME": params.processName
+                                                                                    }
+                                                                                },
+                                                                                headers: {
+                                                                                    "session-id": "STATIC-SESSION-NPSS",
+                                                                                    "routingKey": "CLT-0~APP-0~TNT-0~ENV-0",
+                                                                                    'Content-Type': 'application/json'
+                    
+                    
+                                                                                }
+                                                                            }
+                    
+                                                                            console.log('------------API JSON-------' + JSON.stringify(options));
+                                                                            reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                                                                            request(options, function (error, responseFromImagingService, responseBody) {
+                                                                                if (error) {
+                                                                                    reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
+                                                                                    sendResponse(error, null);
+                                                                                } else {
+                                                                                    reqInstanceHelper.PrintInfo(serviceName, "........................-API CALL STATUS FOR ..............." + arrresultObj.cncbp_id + JSON.stringify(responseBody), objSessionLogInfo);
+                                                                                    console.log("------API CALL STATUS FOR------" + arrresultObj.cncpc_id, JSON.stringify(responseBody));
+                                                                                    nextobjctfunc()
+                                                                                }
+                                                                            });
+                    
+                                                                        } catch (error) {
+                                                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
+                                                                            sendResponse(error, null);
+                                                                        }
+                    
+                                                                    } catch (error) {
+                                                                        nextobjctfunc()
+                    
+                                                                    }
+                                                                }, function () {
+                                                                    channelnextobjctfunc()
+                                                                })
+                    
+                    
+                                                            } else {
+                                                                channelnextobjctfunc()
+                                                            }
+                    
+                                                        })
+                                                    } else {
+                                                        reqInstanceHelper.PrintInfo(serviceName, "........................No COMM_GROUP Found..............." + arrrearrChnlsultObj.destination_system, objSessionLogInfo);
+                                                        channelnextobjctfunc()
+                                                    }
                                                 })
-                                                if (datatype.length) {
-                                                    reqInstanceHelper.PrintInfo(serviceName, ".......................Data Move to kafka Successfully..............."+arrresultObj.cncbp_id, objSessionLogInfo);
-                                                     console.log("........................ Data Move to kafka Successfully..............."+ arrresultObj.cncbp_id)
-                                                    nextobjctfunc()
-                                                } else {
-                                                    reqInstanceHelper.PrintInfo(serviceName, ".......................Data Not Move to kafka Successfully..............."+arrresultObj.cncbp_id, objSessionLogInfo);
-                                                     console.log("........................ Data Not Move to kafka Successfully..............."+ arrresultObj.cncbp_id)
-                                                    nextobjctfunc()
-                                                }
-                                            } catch (error) {
-                                                reqInstanceHelper.PrintInfo(serviceName, "........................Error in producing kafka msg..............." + error, objSessionLogInfo);
-                                                
-                                                 console.log("........................ Error in producing kafka msg..............."+ error)
-                                                objresponse.status = 'Failure';
-                                                objresponse.msg = error;
-                                                sendResponse(null, objresponse)
+                                            } else {
+                                                reqInstanceHelper.PrintInfo(serviceName, "........................No Topic found ..............." + arrrearrChnlsultObj.destination_system, objSessionLogInfo);
+                                                channelnextobjctfunc()
                                             }
-
-                                        }
-
-                                        sendtoKafka()
-
-
-
-                                    } catch (error) {
-                                        reqInstanceHelper.PrintInfo(serviceName, "........................Error in kafka connection..............." + error, objSessionLogInfo);
-                                        console.log("........................ Error in kafka connection..............."+ error)
-                                        objresponse.status = 'Failure';
-                                        objresponse.msg = error;
+                                        })
+                                    }, function () {
+                                        reqInstanceHelper.PrintInfo(serviceName, "........................ALL DATA MOVED SUCCESSFULLY TO ALL CHANNEL...............", objSessionLogInfo);
+                                        objresponse.status = 'SUCCESS';
+                                        objresponse.msg = 'ALL DATA MOVED SUCCESSFULLY TO ALL CHANNEL';
                                         sendResponse(null, objresponse)
-
-                                    }
-                                }, function () {
-                                    reqInstanceHelper.PrintInfo(serviceName, "........................All Data Move Successfully...............", objSessionLogInfo);
-                                     console.log("........................ All Data Move Successfully...............")
-                                    producer.disconnect()
+                                    })
+                                } else {
+                                    reqInstanceHelper.PrintInfo(serviceName, "........................No Data Found in corensparam table...............", objSessionLogInfo);
                                     objresponse.status = 'SUCCESS';
-                                    objresponse.msg = 'All data success';
+                                    objresponse.msg = 'No Data Found in corensparam table';
                                     sendResponse(null, objresponse)
-                                })
-                            } catch (error) {
-                              console.log("........................ Error..............."+ error)
-                                objresponse.status = 'Failure';
-                                objresponse.msg = error;
-                                sendResponse(null, objresponse)
-                            }
-
-
-
-
-
+                                }
+                            })
+                    
                         } else {
-                            reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND in table...............", objSessionLogInfo);
-                            console.log("........................ NO Data FOUND in table...............")
-                            objresponse.status = 'SUCCESS';
-                            objresponse.msg = 'No data Found in core nc bank participation';
+                            reqInstanceHelper.PrintInfo(serviceName, "........................API Url Not Found...............", objSessionLogInfo);
+                            console.log("........................API Url Not Found...............")
+                            objresponse.status = 'FAILURE';
+                            objresponse.msg = 'API Url Not Found';
                             sendResponse(null, objresponse)
                         }
-
                     })
 
 
@@ -258,6 +293,8 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
+
 
 
 

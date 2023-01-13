@@ -1,0 +1,22 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_user_log_srch="ngForm">
+<div id="RN01" class="row">
+	<div #npss_user_log_srch_memory17 id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-3 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory17')" >
+				<cdn_date [ctrl_id]="'npss_user_log_srch_memory17'" [comp_id]="comp_id" [ctrl]="ctrl.memory17" [model]="screen_instance[this.comp_id].f_npss_user_log_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN11CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-3 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory18')" >
+				<cdn_ctrl [ctrl_id]="'npss_user_log_srch_memory18'" [comp_id]="comp_id" [ctrl]="ctrl.memory18" [model]="screen_instance[this.comp_id].f_npss_user_log_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+ 	</div>
+
+</div>

@@ -7,14 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-
-
-
-
-
-
-    /*  Created By :   Siva Harish
+     /*  Created By :   Siva Harish
     Created Date :31/12/2022
     Modified By : Siva Harish
     Modified Date : 13/01/2023
@@ -24,7 +17,7 @@ app.post('/', function(appRequest, appResponse, next) {
     var serviceName = 'NPSS (S) Send Kafka Purpose Code Notification';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
     var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
-    var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
+      var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
     var reqXlsx = require('node-xlsx').default;
     var reqAuditLog = require($REFPATH + 'log/audit/AuditLog');
     var reqDateFormatter = require($REFPATH + 'common/dateconverter/DateFormatter');

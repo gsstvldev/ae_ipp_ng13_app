@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27827 
+Build ID        : 27831 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-13 14:20 PM 
+Modified Date   : 2023-Jan-13 15:10 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_activities

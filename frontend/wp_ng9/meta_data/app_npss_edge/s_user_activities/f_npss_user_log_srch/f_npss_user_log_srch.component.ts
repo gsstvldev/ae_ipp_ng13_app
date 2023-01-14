@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27837 
+Build ID        : 27843 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-14 6:0 AM 
+Modified Date   : 2023-Jan-14 7:27 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_activities
@@ -61,7 +61,7 @@ focustoelement(){
 		this.ctrl.memory17.data_type = "DATETIME"
 		this.ctrl.memory17.data_length = 0
 		this.ctrl.memory17.zone_df_code = "DF_1304_1665904016567"
-		this.ctrl.memory17.default_value = "setcurrentdate(),{}"
+		this.ctrl.memory17.default_value = ""
 		this.ctrl.memory17.is_memory_ctrl = "Y"
 		this.ctrl.memory17.field_coordinates = ""
 		this.ctrl.memory17.sub_details = ""
@@ -125,7 +125,7 @@ focustoelement(){
 		this.ctrl.memory18.ctrl_id = "npss_user_log_srch_memory18"
 		this.ctrl.npss_user_log_srch_memory18 = {}
 		this.ctrl.npss_user_log_srch_memory18.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_user_log_srch.model = {"MEMORY17":"setcurrentdate(),{}","MEMORY18":""}
+		this.screen_instance[this.comp_id].f_npss_user_log_srch.model = {"MEMORY17":"","MEMORY18":""}
 		this.screen_instance[this.comp_id].f_npss_user_log_srch.Meta = []
 		this.screen_instance[this.comp_id].f_npss_user_log_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_user_log_srch.dtt_code = "dtt_1304_1665903906193"

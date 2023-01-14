@@ -100,7 +100,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                     "MODULE": "NPSS",
                                                                                     "MENU_GROUP": "NPSS",
                                                                                     "MENU_ITEM": "NPSS",
-                                                                                    "PROCESS_NAME": params.process_name
+                                                                                    "PROCESS_NAME": params.processName
                                                                                 }
                                                                             },
                                                                             headers: {

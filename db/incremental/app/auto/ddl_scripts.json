@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRN_PROCESS_LOG alter column T24_RETURN_CODE type CHARACTER VARYING(64);","params" : [] }]
+[]

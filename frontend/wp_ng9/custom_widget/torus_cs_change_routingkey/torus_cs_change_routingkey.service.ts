@@ -109,9 +109,9 @@ GetDataFromDb(ClientParams, screenInstance) {
                }
          departmentcode =  departcode.slice(0,-1)
       }
-      this.SessionSvc.SetVariable(SCOPE.SESSION_LEVEL,'Department_code', departmentcode);
+      this.SessionSvc.SetVariable(SCOPE.SESSION_LEVEL,'DEPARTMENT_CODE', departmentcode);
     }else{
-        this.SessionSvc.SetVariable(SCOPE.SESSION_LEVEL,'Department_code', departmentcode);
+        this.SessionSvc.SetVariable(SCOPE.SESSION_LEVEL,'DEPARTMENT_CODE', departmentcode);
     }
       
     this.AppHandler.callInternals(this.Internals, screenInstance, "SUCCESS");

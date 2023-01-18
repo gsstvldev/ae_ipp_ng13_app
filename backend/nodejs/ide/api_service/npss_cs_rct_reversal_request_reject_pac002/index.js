@@ -17,7 +17,9 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified By :Siva Harish 
     Modified Date : 26/12/2022
     Reason for : Changing hdrmsgid and hdrdate from TranPrcsLog Tbl
-     
+     Modified By :Siva Harish 
+    Modified Date : 17/01/2023
+    Reason for : Removing Console log
     */
     var serviceName = 'NPSS (CS) RCT Reversal Request Reject Pac002';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -38,7 +40,7 @@ app.post('/', function(appRequest, appResponse, next) {
     }; // Response to Client
     // Assign function for loginformation and session info
     reqInstanceHelper.PrintInfo(serviceName, ".........Entering in NPSS (CS) RCT Reversal Request Reject Pac002 IDE............................", objSessionLogInfo);   
-    console.log('.................................Entering in NPSS (CS) RCT Reversal Request Reject Pac002 IDE')
+   
     reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInformation) {
         try {
             objSessionLogInfo = objLogInfo; // Assing log information
@@ -55,7 +57,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     } else {
                         var PRCT_ID = prct_id
                         reqInstanceHelper.PrintInfo(serviceName, ".........After DB Connection in NPSS (CS) RCT Reversal Request Reject Pac002 IDE............................", objSessionLogInfo);   
-                        console.log('.................................After DB Connect in NPSS (CS) RCT Reversal Request Reject Pac002 IDE')
+                     
                       
                         try {
                             var urlqry = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
@@ -109,11 +111,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 }
                                                             };
                                  
-                                                            console.log('------------API JSON-------' + JSON.stringify(options));
+                                                          
                                                             reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                                                             request(options, function (error, responseFromImagingService, responseBody) {
                                                                 if (error) {
-                                                                    console.log('........NPSS (CS) RCT Reversal Request Reject Pac002........Error....................................'+error)
+                                                                  
                                                                      reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
                                                                      sendResponse(error);
                                                                    
@@ -161,7 +163,7 @@ app.post('/', function(appRequest, appResponse, next) {
         
                                                    }else{
                                                     reqInstanceHelper.PrintInfo(serviceName, "...No data found in Tran Table----->"+arrdata, objSessionLogInfo);  
-                                                    console.log('..........NPSS (CS) RCT Reversal Request Reject Pac002 IDE No data found in Tran Table.....')
+                                                  
                                                     objresponse.status = 'FAILURE';
                                                     sendResponse(null, objresponse)
                                                    }
@@ -172,7 +174,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             } else {
                                                 reqInstanceHelper.PrintInfo(serviceName, ".............................RCT_IP_REVERSAL_SLA Rule Not Found in core_nc_rule_book_setup Table...............ERROR IN Rule Code Taking Function"+arrhrs, objSessionLogInfo);
                                                 
-                                                console.log('..........NPSS (CS) RCT Reversal Request Reject Pac002 IDE No data found in core_nc_rule_book_setup.....')
+                                               
                                                 objresponse.status = 'FAILURE';
                                                 sendResponse(null, objresponse)
                                             }
@@ -185,7 +187,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 }else{
                                     reqInstanceHelper.PrintInfo(serviceName, "........................REJECT PAC002 URL NO FOUND...............ERROR IN API CALL FUNCTION"+arrurl, objSessionLogInfo);
                                     
-                                    console.log('..........NPSS (CS) RCT Reversal Request Reject Pac002 IDE API Url Not Found.....')
+                                  
                                     objresponse.status = 'FAILURE';
                                     sendResponse(null, objresponse)
                                 }

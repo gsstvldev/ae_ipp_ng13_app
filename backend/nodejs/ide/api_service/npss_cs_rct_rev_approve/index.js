@@ -241,15 +241,16 @@ try {
                             }
 
                         }
-                        console.log('------------API JSON-------' + JSON.stringify(options));
+                       
                          reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                             if (error) {
                                 reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
                                 sendResponse(error, null);
                             } else {
+                             reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                 responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                console.log("------API CALL SUCCESS----");
+                              
                                 callbackapi(responseBodyFromImagingService)
                             }
                         });

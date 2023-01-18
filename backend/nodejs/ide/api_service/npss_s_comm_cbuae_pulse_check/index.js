@@ -129,7 +129,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                                                console.log('------------API JSON-------' + JSON.stringify(options));
+                                               
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                                                 request(options, function (error, responseFromImagingService, responseBody) {
 
@@ -138,8 +138,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         sendResponse(error, null);
                                                     } else {
 
-
-                                                        console.log("------API CALL SUCCESS----", JSON.stringify(responseBody));
+                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBody, objSessionLogInfo);
+                                                        
                                                         objresponse.status = 'SUCCESS';
 
                                                         sendResponse(null, objresponse)

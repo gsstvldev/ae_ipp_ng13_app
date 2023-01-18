@@ -26,6 +26,7 @@ export class npss_cs_mch_enrolmentService {
         var CtrlScope = screenInstance['merchant_detail'].f_npss_merchant_ui.model;
         var CtrlScope_acc = screenInstance['account__detail'].f_npss_mer_account_ui.model;
         var CtrlScope_shop = screenInstance['shop_detail'].f_npss_shop_ui.model;
+        var CtrlScope_cashdesk = screenInstance['cashdesk_detail'].f_npss_cash_desk_ui.model;
           ClientParams = {
             "channelId": CtrlScope.CHANNEL_ID,
             "bankUserId": CtrlScope.BANKUSERID,
@@ -54,6 +55,7 @@ export class npss_cs_mch_enrolmentService {
             "county": CtrlScope_shop.COUNTY,
             "country": CtrlScope_shop.COUNTRY,
             "shop_id": CtrlScope_shop.SHOP_ID,
+             "cashdesk_id": CtrlScope_cashdesk.CASHDESK_ID,
             "TenantId" : this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
 
 

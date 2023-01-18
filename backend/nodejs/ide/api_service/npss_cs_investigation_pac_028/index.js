@@ -122,7 +122,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                         }
                                     };
 
-                                    console.log('------------API JSON-------' + JSON.stringify(options));
+                                   
                                     reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
 
@@ -130,8 +130,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                             reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
                                             sendResponse(error, null);
                                         } else {
-                                            console.log('API Response...................', responseBodyFromImagingService)
-                                            console.log("------API CALL SUCCESS----");
+                                         reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                           
                                             callbackapi(responseBodyFromImagingService)
                                         }
                                     });

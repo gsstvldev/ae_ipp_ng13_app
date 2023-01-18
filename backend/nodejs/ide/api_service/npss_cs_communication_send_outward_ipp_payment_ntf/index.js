@@ -111,7 +111,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                                                                    console.log('------------API JSON-------' + JSON.stringify(options));
+                                                                   
                                                                     reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                                                                     request(options, function (error, responseFromImagingService, responseBody) {
 
@@ -120,7 +120,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             sendResponse(error, null);
                                                                         } else {
 
-                                                                            console.log("------API CALL SUCCESS----", JSON.stringify(responseBody));
+                                                                          reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBody, objSessionLogInfo);
 
                                                                             if (responseBody.data == 'SUCCESS') {
                                                                                 var UpdtTrnTbl = `update npss_notification_logs set status = 'Success', process_status = 'Success' where npssnl_id = '${arrTranobj.npssnl_id}'`

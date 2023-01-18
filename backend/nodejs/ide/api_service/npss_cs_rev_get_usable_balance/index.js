@@ -10,12 +10,14 @@ app.post('/', function(appRequest, appResponse, next) {
     
     
     
+    
   try {
     /*   Created By :Daseen
     Created Date :16-12-2022
     Modified By : Siva Harish
     Modified Date :08-01-2023 
     Reason for : Calling fn_pcidss_decrypt for taking masking cr acct ident code 8/01/2023
+    Reason for Remove Console log 18/01/2023
     */
     var serviceName = 'NPSS Get Usable Amount';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -68,7 +70,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         
                                 ExecuteQuery1(take_api_params, function (arrprocesslog) {
                                     if (arrprocesslog.length) {
-                                        console.log('................', arrprocesslog[0])
+                                        
                                         var lclinstrm
                                         if (arrprocesslog[0].message_data !== null) {
 
@@ -78,7 +80,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
 
                                             });
-                                            console.log('................', lclinstrm)
+                                           
                                         }
                                         else {
                                             lclinstrm = ""
@@ -141,14 +143,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     //})
                                                     }
                                                     else {
-                                                        console.log("No Data found in workflow table");
+                                                       
                                                         objresponse.status = "No Data found in workflow table"
                                                         sendResponse(null,objresponse)
                                                     }
                                                 })
                                             }
                                             else {
-                                                console.log("No Data found in accounts table");
+                                               
                                                 objresponse.status = "No Data found in accounts table"
                                                 sendResponse(null,objresponse)
                                             }
@@ -159,7 +161,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                     }
                                     else {
-                                        console.log("No Data found in Transaction table");
+                                     
                                         objresponse.status = "No Data found in Transaction table"
                                         sendResponse(null,objresponse)
                                     }
@@ -251,15 +253,22 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                        console.log('------------API JSON-------' + JSON.stringify(options));
-                        reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                        var PrintInfo = {}
+                        PrintInfo.url = url || ''
+                        PrintInfo.uetr = arrprocesslog[0].uetr || ''
+                       
+                       
+                        PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
+                        PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
+                       
+                        reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                         if (error) {
                                 reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
                                 sendResponse(error, null);
                             } else {
                                 responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                console.log("------API CALL SUCCESS----");
+                                reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                 callbackapi(responseBodyFromImagingService)
                             }
                         });
@@ -313,6 +322,7 @@ app.post('/', function(appRequest, appResponse, next) {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

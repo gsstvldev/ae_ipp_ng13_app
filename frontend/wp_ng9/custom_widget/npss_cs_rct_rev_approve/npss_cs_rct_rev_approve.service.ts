@@ -45,7 +45,7 @@ export class npss_cs_rct_rev_approveService {
             .subscribe((res: any) => {
                 if (res.data.status == 'SUCCESS') {
                     var response = res.data.data;
-                    console.log(res.data.data);
+                    
               
                 this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 }

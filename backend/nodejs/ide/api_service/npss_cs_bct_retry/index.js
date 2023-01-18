@@ -72,7 +72,7 @@ try {
                                     
                                 })
                             } else {
-                                console.log("No Data found in Rule Code");
+                               
                                 objresponse.status = 'FAILURE';
                                 sendResponse(null, objresponse)
                             }

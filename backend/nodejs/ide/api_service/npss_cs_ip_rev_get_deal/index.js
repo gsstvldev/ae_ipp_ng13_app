@@ -7,14 +7,18 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-    
+
+
+
     try {
         /*   Created By :Daseen
         Created Date :16-12-2022
         Modified By : Siva Harish
         Modified Date :26-12-2022  
         Reason for :Handling Error While Failure 
+         Modified By : Siva Harish
+        Modified Date :17-01-2023  
+        Reason for :Remove Console log
         */
         var serviceName = ' NPSS_IP_REV_GET_DEAL';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -57,76 +61,76 @@ app.post('/', function(appRequest, appResponse, next) {
                             var final_status
                             var final_process_status
                             var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_GET_DEAL' and param_code='URL'`;
-                         
+
                             var take_api_params = `select  ns.intrbk_sttlm_amnt,ns.remittance_info,ns.cr_acct_identification,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method,
                             ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,
                             ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,
                             ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm
                             from npss_transactions ns  where npsst_id = '${params.Tran_Id}'`;
-                           
-                            
-                                    ExecuteQuery1(take_api_params, function (arrprocesslog) {
-                                        if (arrprocesslog.length) {
-                                            console.log('................', arrprocesslog[0])
-                                            
-                                            var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
-                                            ExecuteQuery1(TakeAcctInf, function (arrActInf) {
-                                                if (arrActInf.length) {
-                                                    ExecuteQuery1(take_api_url, function (arrurl) {
-                                                        if (arrurl.length) {
-                                                            var url = arrurl[0].param_detail;
 
-                                                            fn_doapicall(url, arrprocesslog, arrActInf, function (result) {
-                                                                reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" +result, objSessionLogInfo);   
-                                                             
-                                                                if (result == 'FAILURE') {
-                                                                    var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`          
-                                                                    ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                       var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_DEAL_FAILURE'`
-                                                                       ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                          if (arrFail.length) {
-                                                                             objresponse.status = 'Failure Error Code - '+arrFail[0].cbuae_return_code
-                                                                             sendResponse(null, objresponse);
-                                                                          } else {
-                                                                             objresponse.status = 'Api Call Failure No Error Code Found'
-                                                                             sendResponse(null, objresponse);
-                                                                          }
-                                                                       })
-                                                                    })
-                                                                }                                           
-                                                                 else {
-                                                                    objresponse.status = 'SUCCESS';
-                                                                    objresponse.data=result;
-                                                                    sendResponse(null, objresponse);                                         
-                                                                }
+
+                            ExecuteQuery1(take_api_params, function (arrprocesslog) {
+                                if (arrprocesslog.length) {
+                                   
+
+                                    var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
+                                    ExecuteQuery1(TakeAcctInf, function (arrActInf) {
+                                        if (arrActInf.length) {
+                                            ExecuteQuery1(take_api_url, function (arrurl) {
+                                                if (arrurl.length) {
+                                                    var url = arrurl[0].param_detail;
+
+                                                    fn_doapicall(url, arrprocesslog, arrActInf, function (result) {
+                                                        reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
+
+                                                        if (result == 'FAILURE') {
+                                                            var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                                                            ExecuteQuery1(Takeuetr, function (arruetr) {
+                                                                var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_DEAL_FAILURE'`
+                                                                ExecuteQuery1(TakeFailureresult, function (arrFail) {
+                                                                    if (arrFail.length) {
+                                                                        objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
+                                                                        sendResponse(null, objresponse);
+                                                                    } else {
+                                                                        objresponse.status = 'Api Call Failure No Error Code Found'
+                                                                        sendResponse(null, objresponse);
+                                                                    }
+                                                                })
                                                             })
                                                         }
                                                         else {
-                                                            console.log("No Data found in workflow table");
-                                                            objresponse.status = "No Data found in workflow table"
-                                                           sendResponse(null,objresponse)
+                                                            objresponse.status = 'SUCCESS';
+                                                            objresponse.data = result;
+                                                            sendResponse(null, objresponse);
                                                         }
                                                     })
                                                 }
                                                 else {
-                                                    console.log("No Data found in accounts table");
-                                                    objresponse.status = "No Data found in accounts table"
-                                                   sendResponse(null,objresponse)
+                                                  
+                                                    objresponse.status = "No Data found in workflow table"
+                                                    sendResponse(null, objresponse)
                                                 }
                                             })
-
-
-
-
                                         }
                                         else {
-                                            console.log("No Data found in Transaction table");
-                                            objresponse.status = "No Data found in Transaction table"
-                                           sendResponse(null,objresponse)
+                                            
+                                            objresponse.status = "No Data found in accounts table"
+                                            sendResponse(null, objresponse)
                                         }
-
                                     })
-                               
+
+
+
+
+                                }
+                                else {
+                                  
+                                    objresponse.status = "No Data found in Transaction table"
+                                    sendResponse(null, objresponse)
+                                }
+
+                            })
+
 
 
 
@@ -141,7 +145,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     // Do API Call for Service 
-                    function fn_doapicall(url, arrprocesslog, arrActInf,  callbackapi) {
+                    function fn_doapicall(url, arrprocesslog, arrActInf, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Get Deal'
                             var request = require('request');
@@ -157,14 +161,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                     "payload": {
                                         "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date || '',
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
-                                        "intrbk_sttlm_amnt":arrprocesslog[0].intrbk_sttlm_amnt || '',
+                                        "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "process_type": "IP",
                                         "process": "",
-                                        "uetr":params.UETR,
+                                        "uetr": params.UETR,
                                         "deal_process": "GetDeal"
-                                                                         
+
 
                                     },
                                     "AccountInformation": {
@@ -172,10 +176,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "company_code": arrActInf[0].company_code || '',
                                         "inactive_marker": arrActInf[0].inactive_marker || '',
                                         "currency": arrActInf[0].currency || '',
-                                        "alternate_account_type":  arrActInf[0].alternate_account_type ||'',
+                                        "alternate_account_type": arrActInf[0].alternate_account_type || '',
                                         "alternate_account_id": arrActInf[0].alternate_account_id || '',
-                                        "account_officer":arrActInf[0].account_officer || '',
-                                         "curr_rate_segment": arrActInf[0].curr_rate_segment || '',
+                                        "account_officer": arrActInf[0].account_officer || '',
+                                        "curr_rate_segment": arrActInf[0].curr_rate_segment || '',
                                         "customer_id": arrActInf[0].customer_id || ''
                                     }
                                 },
@@ -186,15 +190,21 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                            console.log('------------API JSON-------' + JSON.stringify(options));
-                            reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                            var PrintInfo = {}
+                            PrintInfo.url = url || ''
+                            PrintInfo.uetr =  params.UETR || ''
+                            PrintInfo.hdr_settlement_date = arrprocesslog[0].hdr_settlement_date || ''
+                            PrintInfo.deal_process = "GetDeal" || ''
+                            PrintInfo.company_code = arrActInf[0].company_code || ''
+
+                            reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
                                     reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
                                     sendResponse(error, null);
                                 } else {
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                    console.log("------API CALL SUCCESS----");
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                     callbackapi(responseBodyFromImagingService)
                                 }
                             });
@@ -248,6 +258,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

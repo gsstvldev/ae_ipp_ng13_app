@@ -11,7 +11,9 @@ app.post('/', function(appRequest, appResponse, next) {
     Created Date :31/12/2022
     Modified By : Siva Harish
     Modified Date : 13/01/2023
-    Reason for : 
+     Modified By : Siva Harish
+    Modified Date : 17/01/2023
+    Reason for : Remove Console log
      
     */
     var serviceName = 'NPSS (S) Send Kafka Purpose Code Notification';
@@ -112,7 +114,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             }
                                                                         }
         
-                                                                        console.log('------------API JSON-------' + JSON.stringify(options));
+                                                                       
                                                                         reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                                                                         request(options, function (error, responseFromImagingService, responseBody) {
                                                                             if (error) {
@@ -120,7 +122,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 sendResponse(error, null);
                                                                             } else {
                                                                                 reqInstanceHelper.PrintInfo(serviceName, "........................-API CALL STATUS FOR ..............."+arrresultObj.cncpc_id + JSON.stringify(responseBody), objSessionLogInfo);
-                                                                                console.log("------API CALL STATUS FOR------"+arrresultObj.cncpc_id, JSON.stringify(responseBody));
+                                                                            
                                                                                 nextobjctfunc()
                                                                             }
                                                                         });
@@ -167,7 +169,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     })
                                 } else {
                                     reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND in table...............", objSessionLogInfo);
-                                    console.log("........................ NO Data FOUND in table...............")
+                                 
                                     objresponse.status = 'SUCCESS';
                                     objresponse.msg = 'No data Found in core_nc_purpose_codes';
                                     sendResponse(null, objresponse)
@@ -176,7 +178,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             })
                         }else{
                             reqInstanceHelper.PrintInfo(serviceName, "........................API Url Not Found...............", objSessionLogInfo);
-                            console.log("........................API Url Not Found...............")
+                           
                             objresponse.status = 'FAILURE';
                             objresponse.msg = 'API Url Not Found';
                             sendResponse(null, objresponse)  

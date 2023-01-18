@@ -10,9 +10,9 @@ app.post('/', function(appRequest, appResponse, next) {
     
  /*  Created By :   Siva Harish
     Created Date :13/1/2023
-    Modified By : 
-    Modified Date : 
-    Reason for : 
+    Modified By : Siva Harish
+    Modified Date : 17/01/2023
+    Reason for : Removing Console log
      
     */
     var serviceName = 'NPSS (S) Send Kafka Participant X Availability Notification';
@@ -77,7 +77,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             var splitTime = SplitDtndTim[1].split(':')
                                                            
                                                           var AEFrmtime = await tConvert(splitTime[0]+':'+splitTime[1])
-                                                          console.log(AEFrmtime)
+                                                         
                                                            
                                                             var takeparticipantList = `select * from core_nc_bank_part_avail where  from_date = '${currdate}' and to_time  <= '${AEFrmtime}'`
                                                             ExecuteQuery1(takeparticipantList, async function (arrresult) {
@@ -152,7 +152,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                 }
                                                                                             }
                             
-                                                                                            console.log('------------API JSON-------' + JSON.stringify(options));
+                                                                                           
                                                                                             reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                                                                                             request(options, function (error, responseFromImagingService, responseBody) {
                                                                                                 if (error) {
@@ -160,7 +160,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                     sendResponse(error, null);
                                                                                                 } else {
                                                                                                     reqInstanceHelper.PrintInfo(serviceName, "........................-API CALL STATUS FOR ..............."+arrresultObj.cncpc_id + JSON.stringify(responseBody), objSessionLogInfo);
-                                                                                                    console.log("------API CALL STATUS FOR------"+arrresultObj.cncpc_id, JSON.stringify(responseBody));
+                                                                                                  
                                                                                                     nextobjctfunc()
                                                                                                 }
                                                                                             });
@@ -172,7 +172,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                        
                                                                                     }else{
                                                                                         reqInstanceHelper.PrintInfo(serviceName, "........................Failure in Updation..............." + arrresultObj.cncbpa_id, objSessionLogInfo);
-                                                                                        console.log("........................ Failure in Updation..............." + arrresultObj.cncbpa_id)
+                                                                                      
                                                                                         nextobjctfunc()
                                                                                     }
                                                                                   
@@ -180,7 +180,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                         
                                                                                     } else {
                                                                                         reqInstanceHelper.PrintInfo(serviceName, "........................bankName not found..............." + arrresultObj.cncbpa_id, objSessionLogInfo);
-                                                                                        console.log("........................ bankName not found..............." + arrresultObj)
+                                                                                     
                                                                                         nextobjctfunc()
                                                                                     }
                                     
@@ -203,7 +203,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     
                                                                 } else {
                                                                     reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND in core_nc_bank_part_avail table...............", objSessionLogInfo);
-                                                                    console.log("........................ NO Data FOUND in  core_nc_bank_part_avail table...............")
+                                                                   
                                                                     channelnextobjctfunc()
                                                                 }
                                     
@@ -235,7 +235,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                         } else {
                             reqInstanceHelper.PrintInfo(serviceName, "........................API Url Not Found...............", objSessionLogInfo);
-                            console.log("........................API Url Not Found...............")
+                          
                             objresponse.status = 'FAILURE';
                             objresponse.msg = 'API Url Not Found';
                             sendResponse(null, objresponse)

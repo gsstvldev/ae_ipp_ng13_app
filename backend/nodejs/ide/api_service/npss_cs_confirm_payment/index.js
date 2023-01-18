@@ -28,10 +28,10 @@ var reqFXDBInstance = require($REFPATH + 'instance/DBInstance'); // casandra db 
 var reqInsHelper = require($REFPATH + 'common/InstanceHelper'); //  Response,error,info msg printing        
 var reqDateFormatter = require($REFPATH + 'common/dateconverter/DateFormatter'); //date formatter
 var params = appRequest.body.PARAMS; //  Client input fromm Server
-console.log("app headers=====================>", appRequest.headers);
+
 var headers = appRequest.headers; // header details 
 // headers["session-id"] = "STATIC-SESSION-KEEQB-4";
-console.log("headers after adding session id ========>", headers);
+
 
 var objSessionLogInfo = null; // set value is null
 var mTranConn = "";
@@ -140,7 +140,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
 
 
-                        console.log('------------API JSON-------' + JSON.stringify(options));
+                       
                         reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                         request(options, function (error, responseFromImagingService, responseBody) {
 
@@ -149,7 +149,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 sendResponse(error, null);
                             } else {
 
-                                console.log("------API CALL SUCCESS----", JSON.stringify(responseBody));
+                               reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBody, objSessionLogInfo);
                                 callbackapi(responseBody)
                             }
                         });

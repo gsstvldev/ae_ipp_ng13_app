@@ -62,14 +62,14 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                             sendResponse(null, objresponse)                                       
                                     }
                                     else {
-                                        console.log("Error in update transaction");
+                                       
                                         objresponse.status = 'FAILURE';
                                         sendResponse(null, objresponse)
                                     }
                                 })
                             }
                             else {
-                                console.log("No data Found In Rule Code");
+                              
                                 objresponse.status = 'FAILURE';
                                 sendResponse(null, objresponse)
                             }

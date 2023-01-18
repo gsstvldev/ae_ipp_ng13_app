@@ -6,7 +6,8 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
-    
+
+        
     
     
 
@@ -52,7 +53,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         var PRCT_ID = prct_id
                         var ApitrnId
                         var app_id
-                        console.log(dob.slice(0,10));
+                       
                         try {
                             var TakeExtraValue = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_SIM_PACK_008' and param_code='URL'`
                             // Take Value from API Manager Table
@@ -167,7 +168,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         sendResponse(null, result)
                                                     } else {
                                                         reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from API Service", result);
-                                                        sendResponse(result, null);
+                                                        sendResponse(null, result);
                                                     }
                                                 })
 
@@ -300,7 +301,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                                    console.log('------------API JSON-------' + JSON.stringify(options));
+                                    
                                 reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                                 request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                     if (error) {
@@ -390,6 +391,7 @@ app.post('/', function(appRequest, appResponse, next) {
     reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
 }
     })
+
 
 
 

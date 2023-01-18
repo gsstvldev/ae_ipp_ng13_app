@@ -240,14 +240,14 @@ Modified By : Daseen
                                }
                            };
 
-                           console.log('------------API JSON-------' + JSON.stringify(options));
+                         
                            reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                            request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                if (error) {
                                    reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
                                    sendResponse(error);
                                } else {
-                                   console.log("------API CALL SUCCESS----");
+                                 reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                    callbackapi(responseBodyFromImagingService)
                                }
                            });

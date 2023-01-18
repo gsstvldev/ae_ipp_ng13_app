@@ -135,7 +135,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
 
 
-                        console.log('------------API JSON-------' + JSON.stringify(options));
+                        
                         reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                         request(options, function (error, responseFromImagingService, responseBody) {
 
@@ -144,7 +144,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 sendResponse(error, null);
                             } else {
 
-                                console.log("------API CALL SUCCESS----", JSON.stringify(responseBody));
+                                console.log("------API CALL SUCCESS----");
                                 callbackapi(responseBody)
                             }
                         });

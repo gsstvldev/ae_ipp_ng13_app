@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -57,21 +58,16 @@ app.post('/', function(appRequest, appResponse, next) {
                         try {
                             var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL'`;
                             var take_batch_name = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='BATCH_NAME'`;
-                            // var take_api_params = `select  ns.remittance_info,ns.cr_acct_identification,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method,
-                            // ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,
-                            // ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,
-                            // ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm
-                            // from npss_transactions ns  where npsst_id = '${params.tran_id}'`;
+                            
                             var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.tran_id}'`;
-                            // var TakenpsstrRefno = `select npsstrrd_refno from npss_trn_process_log ns where ns.uetr = '${params.uetr}' and ns.status = '${params.STATUS}' and ns.process_status = '${params.ELIGIBLE_PROCESS_STATUS}' `
-                            // var TakenpsstrRefno2 = `select npsstrrd_refno,npsstpl_id from npss_trn_process_log  where uetr= '${params.uetr}' order by npsstpl_id  desc`
+                            
                             ExecuteQuery1(take_api_url, function (arrurlResult) {
                                 if (arrurlResult.length) {
                                     // var param_val = JSON.parse(arrurlResult[0].rule_param_value);
                                     var url = arrurlResult[0].param_detail;
                                     ExecuteQuery1(take_api_params, function (arrprocesslog) {
                                         if (arrprocesslog.length) {
-                                            console.log('................', arrprocesslog[0])
+                                            
                                             var lclinstrm
                                             var parser = new xml2js.Parser({ strict: false, trim: true });
                                             parser.parseString(arrprocesslog[0].message_data, function (err, result) {
@@ -79,7 +75,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
 
                                             });
-                                            console.log('................', lclinstrm)
+                                            
                                             ExecuteQuery1(take_batch_name, function (arrbatchname) {
                                                 if (arrbatchname.length) {
                                                     var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
@@ -92,6 +88,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         if (arrActInf[0].currency == "AED") {
                                                             sell_margin = ""
                                                             sell_rate = ""
+                                                            fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf, lclinstrm, function (result) {
+                                                                if (result) {
+                                                                    sendResponse(null, result)
+                                                                } else {
+                                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
+                                                                    sendResponse(null, result);
+                                                                }
+                                                            })
                                                         }
                                                         else {
                                                             var seldetqry = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrActInf[0].customer_id}'`
@@ -112,7 +116,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     objtrnprcslog.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
                                                                     objtrnprcslog.MODIFIED_BY = "";
                                                                     objtrnprcslog.MODIFIED_BY_NAME = "";
-                                                                   // objtrnprcslog.MODIFIED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                                                 
                                                                     objtrnprcslog.SYSTEM_ID = params.SYSTEM_ID;
                                                                     objtrnprcslog.SYSTEM_NAME = params.SYSTEM_NAME;
                                                                     objtrnprcslog.PRCT_ID = prct_id;
@@ -127,13 +131,28 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     objtrnprcslog.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                                                     objtrnprcslog.routingkey = headers.routingkey;
                                                                     arrInstlog.push(objtrnprcslog);
-                                                                    console.log(arrInstlog);
+                                                                    
                                                                     _BulkInsertProcessItem(arrInstlog, 'npss_trn_process_log', function callbackInsert(TranlogInsertRes) {
                                                                         if (TranlogInsertRes.length > 0) {
                                                                            
-                                                                            console.log("Trn Process Log insert success "+ arrprocesslog[0].uetr+' UETR');
+                                                                            
+                                                                            fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf, lclinstrm, function (result) {
+                                                                                if (result) {
+                                                                                    sendResponse(null, result)
+                                                                                } else {
+                                                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
+                                                                                    sendResponse(null, result);
+                                                                                }
+                                                                            })
                                                                         } else {
-                                                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Trn Process Log insert not success", result);
+                                                                            fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf, lclinstrm, function (result) {
+                                                                                if (result) {
+                                                                                    sendResponse(null, result)
+                                                                                } else {
+                                                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
+                                                                                    sendResponse(null, result);
+                                                                                }
+                                                                            })
                                                                            
                                                                         }
                             
@@ -145,20 +164,19 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 }
                                                                 else {
                                                                     console.log("No Data found in Cust Special Rate table");
-                                                                    objresponse.status = "No Data found in Cust Special Rate table"
-                                                                    sendResponse(objresponse, null)
+                                                                    fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf, lclinstrm, function (result) {
+                                                                        if (result) {
+                                                                            sendResponse(null, result)
+                                                                        } else {
+                                                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
+                                                                            sendResponse(null, result);
+                                                                        }
+                                                                    })
                                                                 }
 
                                                             })
                                                         }
-                                                        fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf, lclinstrm, function (result) {
-                                                            if (result) {
-                                                                sendResponse(null, result)
-                                                            } else {
-                                                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
-                                                                sendResponse(result, null);
-                                                            }
-                                                        })
+                                                     
 
                                                     })
 
@@ -167,7 +185,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 else {
                                                     console.log("No Data found in System Setup table");
                                                     objresponse.status = "No Data found in System Setup table"
-                                                    sendResponse(objresponse, null)
+                                                    sendResponse( null,objresponse)
                                                 }
 
                                             })
@@ -175,7 +193,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         else {
                                             console.log("No Data found in Transaction table");
                                             objresponse.status = "No Data found in Transaction table"
-                                            sendResponse(objresponse, null)
+                                            sendResponse( null,objresponse)
                                         }
 
                                     })
@@ -185,7 +203,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 } else {
                                     console.log("No URL found in Rule code");
                                     objresponse.status = "No URL found in Rule code"
-                                    sendResponse(objresponse, null)
+                                    sendResponse( null,objresponse)
                                 }
                             })
 
@@ -277,7 +295,12 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                                    console.log('------------API JSON-------' + JSON.stringify(options));
+                                    var PrintInfo = {}
+                                    PrintInfo.url = url
+                                    PrintInfo.uetr = arrprocesslog[0].uetr || ''
+                                                                  
+                                    PrintInfo.tran_ref_id = arrprocesslog[0].tran_ref_id || ''
+                                    PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
                                     reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                         if (error) {
@@ -372,6 +395,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

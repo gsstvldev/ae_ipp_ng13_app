@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
     
+    
 
 /*  Created By :sIVA hARISH
 Created Date : 16-12-2022
@@ -21,6 +22,7 @@ Modified Date : 24/12/2022
       Reason for : Changes For Finance House & query changes for taking status and remove api name
        Reason for : Handling Failure for unfreeze posting
          Reason for : changing error handling 12/01/2023
+          Reason for : Remove Console log 17/01/2023
  
 */
 var serviceName = 'NPSS Reversal Cancel';
@@ -311,16 +313,20 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
 
 
-                        console.log('------------API JSON-------' + JSON.stringify(options));
-                        reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                        var PrintInfo = {}
+                        PrintInfo.url = url[0].param_detail || ''
+                        PrintInfo.hdr_settlement_date = trndata[0].hdr_settlement_date || ''
+                        PrintInfo.uetr = trndata[0].uetr || ''
+                        PrintInfo.posting_ref_no = arrpostno[0].process_ref_no || ''                    
+                        reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                            if (error) {
                               reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                               sendResponse(error, null);
 
                            } else {
-                              responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                              console.log("------API CALL SUCCESS----",responseBodyFromImagingService);
+                            reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                              responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode       
                               var responseData = JSON.parse(responseBodyFromImagingService)
                               callbackapi(responseData)
                            }
@@ -345,8 +351,6 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                            json: {
                               "cr_sort_code": tranresult[0].cr_sort_code,
                               "dr_sort_code": tranresult[0].dr_sort_code,
-                              // "hdr_msg_id": tranresult[0].hdr_msg_id,
-                              // "hdr_created_date": tranresult[0].hdr_created_date,
                               "hdr_msg_id": hdrresult[0].msg_id,
                               "hdr_created_date": hdrresult[0].fx_resv_text1,
                               "hdr_total_amount": tranresult[0].hdr_total_amount,
@@ -364,7 +368,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                            }
                         };
 
-                        console.log('------------API JSON-------' + JSON.stringify(options));
+                       
                         reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                            if (error) {
@@ -372,7 +376,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                               sendResponse(error, null);
 
                            } else {
-                              console.log("------API CALL SUCCESS----");
+                            reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                               callbackapi(responseBodyFromImagingService)
                            }
                         });
@@ -466,6 +470,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
       reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
    }
 })
+
 
 
 

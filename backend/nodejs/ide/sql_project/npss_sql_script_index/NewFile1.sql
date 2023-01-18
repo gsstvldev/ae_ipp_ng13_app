@@ -1,6 +1,9 @@
 drop index if exists nt_created_date ;
 create index if not exists nt_created_date on npss_transactions (created_date);
 @SPL@
+drop index if exists nt_tenant_id ;
+create index if not exists nt_tenant_id on npss_transactions (tenant_id);
+@SPL@
 drop index if exists nt_uetr ;
 create index if not exists nt_uetr on npss_transactions (uetr);
 @SPL@

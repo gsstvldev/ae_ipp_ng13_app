@@ -113,7 +113,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                          
                                             }
                                             else {
-                                                console.log("Error in update transaction");
+                                             
                                                 objresponse.status = 'No Tran Update in NPSS Transactions Table';
                                                 sendResponse(null, objresponse)
                                             }
@@ -124,7 +124,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                
                             }
                             else {
-                                console.log("No data Found In Rule Code");
+                               
                                 objresponse.status = 'No data Found In Rule Code';
                                 sendResponse(null, objresponse)
                             }

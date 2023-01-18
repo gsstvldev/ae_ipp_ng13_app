@@ -13,6 +13,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
+
     try {
         /*   Created By :  Daseen
         Created Date :04-11-2022
@@ -71,7 +73,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     var url = arrurlResult[0].param_detail;
                                     ExecuteQuery1(take_api_params, function (arrprocesslog) {
                                         if (arrprocesslog.length) {
-                                            console.log('................', arrprocesslog[0])
+
                                             var lclinstrm
                                             var parser = new xml2js.Parser({ strict: false, trim: true });
                                             parser.parseString(arrprocesslog[0].message_data, function (err, result) {
@@ -79,7 +81,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
 
                                             });
-                                            console.log('................', lclinstrm)
+
                                             ExecuteQuery1(take_batch_name, function (arrbatchname) {
                                                 if (arrbatchname.length) {
                                                     var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
@@ -92,11 +94,19 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         if (arrActInf[0].currency == "AED") {
                                                             sell_margin = ""
                                                             sell_rate = ""
+                                                            fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf, lclinstrm, function (result) {
+                                                                if (result) {
+                                                                    sendResponse(null, result)
+                                                                } else {
+                                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
+                                                                    sendResponse(null, result);
+                                                                }
+                                                            })
                                                         }
                                                         else {
                                                             var seldetqry = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrActInf[0].customer_id}'`
-                                                            var arrInstlog=[];
-                                                            ExecuteQuery1(seldetqry, function (arrselldet) {
+                                                            var arrInstlog = [];
+                                                            ExecuteQuery1(seldetqry, async function (arrselldet) {
                                                                 if (arrselldet.length > 0) {
                                                                     sell_margin = arrselldet[0].sell_margin
                                                                     sell_rate = arrselldet[0].sell_rate
@@ -112,7 +122,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     objtrnprcslog.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
                                                                     objtrnprcslog.MODIFIED_BY = "";
                                                                     objtrnprcslog.MODIFIED_BY_NAME = "";
-                                                                   // objtrnprcslog.MODIFIED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                                                    // objtrnprcslog.MODIFIED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
                                                                     objtrnprcslog.SYSTEM_ID = params.SYSTEM_ID;
                                                                     objtrnprcslog.SYSTEM_NAME = params.SYSTEM_NAME;
                                                                     objtrnprcslog.PRCT_ID = prct_id;
@@ -127,16 +137,29 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     objtrnprcslog.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                                                     objtrnprcslog.routingkey = headers.routingkey;
                                                                     arrInstlog.push(objtrnprcslog);
-                                                                    console.log(arrInstlog);
+
                                                                     _BulkInsertProcessItem(arrInstlog, 'npss_trn_process_log', function callbackInsert(TranlogInsertRes) {
                                                                         if (TranlogInsertRes.length > 0) {
-                                                                           
-                                                                            console.log("Trn Process Log insert success "+ arrprocesslog[0].uetr+' UETR');
+
+                                                                            fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf, lclinstrm, function (result) {
+                                                                                if (result) {
+                                                                                    sendResponse(null, result)
+                                                                                } else {
+                                                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
+                                                                                    sendResponse(null, result);
+                                                                                }
+                                                                            })
                                                                         } else {
-                                                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Trn Process Log insert not success", result);
-                                                                           
+                                                                            fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf, lclinstrm, function (result) {
+                                                                                if (result) {
+                                                                                    sendResponse(null, result)
+                                                                                } else {
+                                                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
+                                                                                    sendResponse(null, result);
+                                                                                }
+                                                                            })
                                                                         }
-                            
+
                                                                     })
 
 
@@ -144,21 +167,19 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                 }
                                                                 else {
-                                                                    console.log("No Data found in Cust Special Rate table");
-                                                                    objresponse.status = "No Data found in Cust Special Rate table"
-                                                                    sendResponse(objresponse, null)
+                                                                    fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf, lclinstrm, function (result) {
+                                                                        if (result) {
+                                                                            sendResponse(null, result)
+                                                                        } else {
+                                                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
+                                                                            sendResponse(null, result);
+                                                                        }
+                                                                    })
                                                                 }
 
                                                             })
                                                         }
-                                                        fn_doapicall(url, arrprocesslog, arrbatchname, arrActInf, lclinstrm, function (result) {
-                                                            if (result) {
-                                                                sendResponse(null, result)
-                                                            } else {
-                                                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
-                                                                sendResponse(result, null);
-                                                            }
-                                                        })
+
 
                                                     })
 
@@ -277,8 +298,13 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                                    console.log('------------API JSON-------' + JSON.stringify(options));
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                                    var PrintInfo = {}
+                                    PrintInfo.url = url
+                                    PrintInfo.uetr = arrprocesslog[0].uetr || ''
+
+                                    PrintInfo.tran_ref_id = arrprocesslog[0].tran_ref_id || ''
+                                    PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                         if (error) {
                                             reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
@@ -372,6 +398,8 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
+
 
 
 

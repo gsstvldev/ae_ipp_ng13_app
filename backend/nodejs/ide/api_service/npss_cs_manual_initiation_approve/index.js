@@ -9,12 +9,14 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
     
+    
     try {
         /*   Created By :Siva Harish
         Created Date :02-01-2023
         Modified_by:Siva Harish
           Modified Date :03-01-2023
           Reason for adding fn_pcidss_decrypt for taking cr act identification code
+           Reason for Removing Console log
        
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -81,7 +83,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         final_status = arrurlResult[0].success_status
                                         ExecuteQuery1(take_api_params, function (arrprocesslog) {
                                             if (arrprocesslog.length) {
-                                                console.log('................', arrprocesslog[0])
+                                               
                                                 var lclinstrm
                                                 if (arrprocesslog[0].message_data !== null) {
 
@@ -91,7 +93,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
 
                                                     });
-                                                    console.log('................', lclinstrm)
+                                                  
                                                 }
                                                 else {
                                                     lclinstrm = ""
@@ -115,7 +117,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, function (firstapiresult) {
                                                                             if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
 
-                                                                                console.log('First API Call Success')
+                                                                               reqInstanceHelper.PrintInfo(serviceName, '------------fIRST API CALL SUCCESS-------', objSessionLogInfo);
                                                                                 //Call Pac008 Api
                                                                                 var Takepac008url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_MANUAL_INT_PAC008' and param_code='URL'`;
                                                                                 ExecuteQuery1(Takepac008url, function (pac008url) {
@@ -132,7 +134,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                     }
                                                                                                     else {
         
-                                                                                                        console.log("No Data Updated in Transaction Table");
+                                                                                                     
                                                                                                         objresponse.status = "FAILURE"
                                                                                                         objresponse.errdata = "No Data Updated in Transaction Table"
                                                                                                         sendResponse(null, objresponse)
@@ -167,7 +169,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                     }
                                                                     else {
-                                                                        console.log("Posting URL not found workflow table");
+                                                                     reqInstanceHelper.PrintInfo(serviceName, '------------Posting Url Not Found-------', objSessionLogInfo);
                                                                         objresponse.status = "FAILURE"
                                                                         objresponse.errdata = "Posting URL not found workflow table"
                                                                         sendResponse(null, objresponse)
@@ -188,7 +190,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                             }
                                             else {
-                                                console.log("No Data found in Transaction table");
+                                               
                                                 objresponse.status = "FAILURE"
                                                 objresponse.errdata = "No Data found in Transaction table"
                                                 sendResponse(null, objresponse)
@@ -198,7 +200,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     }
                                     else {
 
-                                        console.log("No Data found in Workflow table");
+                                      
                                         objresponse.status = "FAILURE"
                                         objresponse.errdata = "No Data found in Workflow table"
                                         sendResponse(null, objresponse)
@@ -214,7 +216,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         final_status = arrurlResult[0].success_status
                                         ExecuteQuery1(take_api_params, function (arrprocesslog) {
                                             if (arrprocesslog.length) {
-                                                console.log('................', arrprocesslog[0])
+                                              
                                                 var lclinstrm
                                                 if (arrprocesslog[0].message_data !== null) {
 
@@ -224,7 +226,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
 
                                                     });
-                                                    console.log('................', lclinstrm)
+                                                   
                                                 }
                                                 else {
                                                     lclinstrm = ""
@@ -239,7 +241,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 fn_doapicall2(returnurl, arrprocesslog, arrreturncode, function (secondapiresult) {
                                                                     if (secondapiresult === "SUCCESS" || secondapiresult === "Success" || secondapiresult === "success") {
 
-                                                                        console.log('Second  API Call Success')
+                                                                     reqInstanceHelper.PrintInfo(serviceName, '------------Second API CALL SUCCESS-------', objSessionLogInfo);
 
                                                                         var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
 
@@ -250,7 +252,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             }
                                                                             else {
 
-                                                                                console.log("No Data Updated in Transaction Table");
+                                                                              
                                                                                 objresponse.status = "FAILURE"
                                                                                 objresponse.errdata = "No Data Updated in Transaction Table"
                                                                                 sendResponse(null, objresponse)
@@ -260,7 +262,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         }
                                                                         )
                                                                     } else {
-                                                                        console.log("Second api calll not success");
+                                                                      
                                                                         objresponse.status = "FAILURE"
                                                                         objresponse.errdata = "Pac004 api call not success"
                                                                         sendResponse(null, objresponse)
@@ -268,7 +270,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     }
                                                                 })
                                                             } else {
-                                                                console.log("Return URL not found workflow table");
+                                                             
                                                                 objresponse.status = "FAILURE"
                                                                 objresponse.errdata = "Pac004 URL not found workflow table"
                                                                 sendResponse(null, objresponse)
@@ -286,7 +288,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                             }
                                             else {
-                                                console.log("No Data found in Transaction table");
+                                              
                                                 objresponse.status = "FAILURE"
                                                 objresponse.errdata = "No Data found in Transaction table"
                                                 sendResponse(null, objresponse)
@@ -296,7 +298,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     }
                                     else {
 
-                                        console.log("No Data found in Workflow table");
+                                       
                                         objresponse.status = "FAILURE"
                                         objresponse.errdata = "No Data found in Workflow table"
                                         sendResponse(null, objresponse)
@@ -389,10 +391,17 @@ app.post('/', function(appRequest, appResponse, next) {
                                 }
                             }
 
+                            var PrintInfo = {}
+                            PrintInfo.url = url || ''
+                            PrintInfo.uetr = arrprocesslog[0].uetr || ''
+                            PrintInfo.posting_ref_no = reverandRefno.processRefno || ''
+                            PrintInfo.reversal_id = reverandRefno.reverseId || ''
+                            PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
+                            PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
 
+                             reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
 
-                            console.log('------------API JSON-------' + JSON.stringify(options));
-                            reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                          
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
                                     reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
@@ -400,8 +409,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                 } else {
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                    console.log("------API CALL SUCCESS----",responseBodyFromImagingService);
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                     var responseData = JSON.parse(responseBodyFromImagingService)
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseData, objSessionLogInfo);
                                     callbackapi(responseData)
                                 }
                             });
@@ -448,8 +458,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                            console.log('------------API JSON-------' + JSON.stringify(options));
-                            reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                         
+                            reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
                                     reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
@@ -457,8 +467,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                 } else {
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseFromImagingService, objSessionLogInfo);
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                    console.log("------API CALL 2 SUCCESS----");
+                                
                                     callbackapi(responseBodyFromImagingService)
                                 }
                             });
@@ -511,9 +522,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                     'Content-Type': 'application/json'
                                 }
                             }
-
-                            console.log('------------API JSON-------' + JSON.stringify(options));
-                            reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                            var PrintInfo = {}
+                            PrintInfo.url = url || ''
+                            PrintInfo.uetr = arrprocesslog[0].uetr || ''
+                            PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
+                            PrintInfo.payment_endtoend_id = arrprocesslog[0].payment_endtoend_id || ''
+                            
+                             reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                          
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
                                     reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
@@ -521,8 +537,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                 } else {
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                    console.log("------API CALL 2 SUCCESS----");
+                                  
                                     callbackapi(responseBodyFromImagingService)
                                 }
                             });
@@ -581,7 +598,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                   
                                                 })
                                             } else {
-                                                console.log("No Data found in accounts table");
+                                             
                                                 objresponse.status = "FAILURE"
                                                 objresponse.errdata = "No Data found in accounts table"
                                                 sendResponse(null, objresponse)
@@ -671,6 +688,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

@@ -63,6 +63,7 @@ try {
                                 url=url.replace('{groupCode}',groupcode)
                                 url=url.replace('{bankCode}',bankcode)
                                 url=url.replace('{bankUserId}',params.bankUserId)
+                                  url=url.replace('{merchantTag}',params.merchant_tag)
                                
                                 fndoapicall(request_id, lang, url, bankcode, groupcode, function (result) {
                                     if(typeof result=='object'){

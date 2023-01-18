@@ -30,7 +30,7 @@ export class npss_cs_desk_disableService {
             "bankUserId": CtrlScope.BANKUSERID,
             "shopId":CtrlScope_shop.SHOP_ID,
             "merchant_tag": CtrlScope.MERCHANT_TAG,
-            "cashDeskId": CtrlScope_cash.CASHDESK_OVERLAY_ID,
+            "cashDeskId": CtrlScope_cash.CASHDESK_ID,
              "TenantId":  this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
             this.CallUrlWithData(ClientParams, screenInstance, internals);

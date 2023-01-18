@@ -69,7 +69,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         url = url.replace('{groupCode}', groupcode)
                         url = url.replace('{bankCode}', bankcode)
                         url = url.replace('{bankUserId}', params.bankUserId)
-                        url = url.replace('{merchant_tag}', merchant_tag)
+                    url = url.replace('{merchantTag}', params.merchant_tag)
                         
                        
                         // sendResponse(null,objresponse)

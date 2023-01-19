@@ -187,10 +187,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                     if (arramount[0].contra_amount && arrprocesslog[0].reversal_amount) {
                                                                                         if (Number(arramount[0].contra_amount) > Number(arrprocesslog[0].reversal_amount)) {
                                                                                             amount = Number(arrprocesslog[0].reversal_amount)
-                                                                                            console.log('enter amount')
+                                                                                           
                                                                                         } else {
                                                                                             amount = Number(arramount[0].contra_amount)
-                                                                                            console.log('enter amoun2t')
+                                                                                          
                                                                                         }
 
                                                                                         var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls)
@@ -328,7 +328,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         // })
                                                                     }
                                                                     else {
-                                                                        console.log("No Data found in workflow table");
+                                                                       
                                                                         objresponse.status = "No Data found in workflow table"
                                                                         sendResponse(null, objresponse)
                                                                     }
@@ -351,7 +351,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                     }
                                                     else {
-                                                        console.log("No Data found in Transaction table");
+                                                      
                                                         objresponse.status = "No Data found in Transaction table"
 
                                                         objresponse.status = "No Data found in Transaction table"
@@ -367,7 +367,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                     }
                                     else {
-                                        console.log("No Data found in System Setup table");
+                                     
                                         objresponse.status = "No Data found in System Setup  table"
                                         sendResponse(null, objresponse)
                                     }
@@ -418,7 +418,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                                         objCusTranInst.routingkey = headers.routingkey;
                                                         arrCusTranInst.push(objCusTranInst)
-                                                        console.log('................', arrprocesslog[0])
+                                                        
                                                         _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
                                                             var UpdateTrnTble = `Update npss_transactions set status ='${arrurlResult[0].success_status}',process_status = '${arrurlResult[0].success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                             var UpdateProcessLogTbl = `Update npss_trn_process_log set t24_return_code = '${params.T24_Return_Code}',cbuae_return_code = '${params.CBUAE_Return_Code}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsstpl_id = '${params.NPSSTPL_Id}'`
@@ -543,7 +543,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
 
 
-                            console.log('------------API JSON-------' + JSON.stringify(options));
+                           
                             reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
@@ -552,8 +552,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                 } else {
+                                  reqInstanceHelper.PrintInfo(serviceName, '------------API Response Json-------' + responseBodyFromImagingService, objSessionLogInfo);
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                    console.log("------API CALL SUCCESS----", responseBodyFromImagingService);
+         
                                     var Responsedata = JSON.parse(responseBodyFromImagingService)
                                     callbackapi(Responsedata)
                                 }
@@ -624,7 +625,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
 
 
-                            console.log('------------API JSON-------' + JSON.stringify(options));
+                         
                             reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
@@ -633,8 +634,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                 } else {
+                                 reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                    console.log("------API CALL SUCCESS----", responseBodyFromImagingService);
+                                  
                                     var Responsedata = JSON.parse(responseBodyFromImagingService)
                                     callbackapi(Responsedata)
                                 }
@@ -705,7 +707,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
 
 
-                            console.log('------------API JSON-------' + JSON.stringify(options));
+                           
                             reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
@@ -714,8 +716,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                 } else {
+                                 reqInstanceHelper.PrintInfo(serviceName, '------------API Response-------' + responseBodyFromImagingService, objSessionLogInfo);
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                    console.log("------API CALL SUCCESS----", responseBodyFromImagingService);
+                                   
                                     var Responsedata = JSON.parse(responseBodyFromImagingService)
                                     callbackapi(Responsedata)
                                 }
@@ -903,7 +906,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         })
                                     })
                                 } else {
-                                    console.log("No Data found in accounts table");
+                                  
 
                                     objresponse.status = "No Data found in accounts table"
                                     sendResponse(null, objresponse)

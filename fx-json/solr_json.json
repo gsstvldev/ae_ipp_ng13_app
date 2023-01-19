@@ -1,4 +1,39 @@
 [{
+  $DQ$TRAN_INSERTION$DQ$: [
+    {
+      $DQ$NAME$DQ$: $DQ$CNC_ID$DQ$,
+      $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674108265517$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$REQ_DATA$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674108265517$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$RES_DATA$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674108265517$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$ERR_DATACORE$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674108265517$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$PROCESS_SYSTEM$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674108265517$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$CORE$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674108265517$DQ$
+    }
+  ],
+  $DQ$TRAN_DELETION$DQ$: [],
+  $DQ$ATMT_INSERTION$DQ$: []
+},{
   $DQ$TRAN_INSERTION$DQ$: [],
   $DQ$TRAN_DELETION$DQ$: [],
   $DQ$ATMT_INSERTION$DQ$: []

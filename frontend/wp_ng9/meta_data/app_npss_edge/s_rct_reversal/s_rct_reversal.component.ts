@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27873 
+Build ID        : 27874 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-19 7:37 AM 
+Modified Date   : 2023-Jan-19 9:58 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -967,6 +967,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.navigation_review__he_for_force_post(peventcontext)
 		this.navigation_review__brfq_for_cbc_account()
 		this.navigation_review__he_for_fin(peventcontext)
+		this.navigation_review__e_1674122143563()
 		this.navigation_review__bvm_for_cr_account_no__reversal_ui()
 	}
 
@@ -2226,6 +2227,27 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_37","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1674106680765","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rev CBS Account MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"ACCOUNT_NUMBER","alias_name":"","mq_id":"MQ_1674106327804","date_format":false},{"column_name":"ACCOUNT_NAME","alias_name":"","mq_id":"MQ_1674106327988","date_format":false},{"column_name":"NPSST_ID","alias_name":"","mq_id":"MQ_1674106525607","date_format":false},{"column_name":"TENANT_ID","alias_name":"","mq_id":"MQ_1674106532094","date_format":false}],"joins":[]},"eq_text":"SELECT  ACCOUNT_NUMBER,NPSST_ID,  ACCOUNT_NAME,TENANT_ID FROM  (  SELECT   CNCA.ACCOUNT_NUMBER,   CNCA.ACCOUNT_NAME,   CNCA.ALTERNATE_ACCOUNT_ID,   NT.TENANT_ID,   NT.CDTR_IBAN,   NT.NPSST_ID,   NT.DTT_CODE,   NT.DT_CODE  FROM   CORE_NC_CBS_ACCOUNTS CNCA  INNER JOIN NPSS_TRANSACTIONS NT ON   CNCA.ALTERNATE_ACCOUNT_ID = NT.CDTR_IBAN)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rev CBS Account CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"NPSST_ID","binding_name":"NPSST_ID","binding_value":"","source_name":"MI_LEVEL_NPSST_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Real Account No","target_column":"ACCOUNT_NUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Real Account Name","target_column":"ACCOUNT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
+	navigation_review__e_1674122143563() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_review"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1674122143563"
+		let event_params={"caller_name":"navigation_review__e_1674122143563","event_desc":"E_1674122143563","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_review","raiseparam":{"profile_code":"BTL_1304_1666856478860"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

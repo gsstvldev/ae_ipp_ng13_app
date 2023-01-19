@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27876 
+Build ID        : 27851 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-19 12:24 PM 
+Modified Date   : 2023-Jan-19 14:21 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_exceptions
@@ -134,7 +134,7 @@ focustoelement(){
 		this.ctrl.process_system.label_name = "Processing System"
 		this.ctrl.process_system.df_code = "DF_1304_1674108302241"
 		this.ctrl.process_system.df_description = "Column Group 1"
-		this.ctrl.process_system.uictrl_code = "CDN_CTRL"
+		this.ctrl.process_system.uictrl_code = "CBO"
 		this.ctrl.process_system.target_column = "PROCESS_SYSTEM"
 		this.ctrl.process_system.data_type = "TEXT"
 		this.ctrl.process_system.data_length = 64
@@ -152,7 +152,7 @@ focustoelement(){
 		this.ctrl.process_system.placeholder = ""
 		this.ctrl.process_system.dynamic_param = ""
 		this.ctrl.process_system.style_code = ""
-		this.ctrl.process_system.data_source = ""
+		this.ctrl.process_system.data_source = {"ds_code":"UDS_1304_1672992612811","ds_description":"Core Processing system CDB","rows":[],"type":"DPS_TABLE","value_member":"SYSTEM_CODE","display_member":"SYSTEM_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"SYSTEM_DESCRIPTION","target_table":"CORE_NC_PROCESSING_SYSTEM","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1672992897321","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter2","binding_name":"STATUS","id":"DF_1672992897321","binding_value":"APPROVED","source_name":"STATUS","source_value":"APPROVED","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"},{"operators":"=","data_type":"TEXT","binding_name":"STATUS","binding_value":"APPROVED","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"APPROVED"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID AND STATUS = APPROVED)"},"sel_columns":[]}
 		this.ctrl.process_system.image_association = ""
 		this.ctrl.process_system.show = true
 		this.ctrl.process_system.sub_content = ""
@@ -164,6 +164,7 @@ focustoelement(){
 		this.ctrl.process_system.ctrl_id = "npss_exceptional_srch_process_system"
 		this.ctrl.npss_exceptional_srch_process_system = {}
 		this.ctrl.npss_exceptional_srch_process_system.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_exceptional_srch.process_system = {}
 	
 		//Properties of process_name
 		this.ctrl.process_name = {}
@@ -398,7 +399,7 @@ focustoelement(){
 		this.ctrl.npss_exceptional_srch_memory9 = {}
 		this.ctrl.npss_exceptional_srch_memory9.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_exceptional_srch.model = {"UETR":"","MESSAGE_DATA":"","PROCESS_SYSTEM":"","PROCESS_NAME":"","CORE":"","REQ_DATA":"","RES_DATA":"","ERR_DATACORE":"","MEMORY9":"setcurrentdate(),{}"}
-		this.screen_instance[this.comp_id].f_npss_exceptional_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MESSAGE_DATA"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_SYSTEM"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CORE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"REQ_DATA"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"RES_DATA"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ERR_DATACORE"}]
+		this.screen_instance[this.comp_id].f_npss_exceptional_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MESSAGE_DATA"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_SYSTEM"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CORE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"REQ_DATA"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"RES_DATA"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ERR_DATACORE"}]
 		this.screen_instance[this.comp_id].f_npss_exceptional_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_exceptional_srch.dtt_code = "dtt_1304_1674108265517"
 		this.screen_instance[this.comp_id].f_npss_exceptional_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

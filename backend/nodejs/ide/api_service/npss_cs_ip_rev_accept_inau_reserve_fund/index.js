@@ -344,7 +344,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     }
                                                                     else {
                                                                     
-                                                                        objresponse.status = "No Data found in workflow table"
+                                                                        objresponse.status = "Url not found in system setup table"
                                                                         sendResponse(null, objresponse)
                                                                     }
                                                                 })
@@ -377,7 +377,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     }
                                     else {
                                       
-                                        objresponse.status = "No Data found in System Setup  table"
+                                        objresponse.status = "No Data found in Workflow Setup  table"
                                         sendResponse(null, objresponse)
                                     }
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27876 
+Build ID        : 27851 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-19 12:24 PM 
+Modified Date   : 2023-Jan-19 14:21 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_exceptions
@@ -77,7 +77,7 @@ export class s_view_exceptionsComponent implements OnInit,AfterViewInit {
 		this.list.uicgc_desc = "List"
 		this.list.uicgc_code = "uicgc_1"
 		this.list.params = {"need_pag_datatable":"Y","advance_dynamic_search":"N","need_search":"N"}
-		this.list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1674108265517":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1674108265517","dtt_desc":"Core NC Exceptions","ds_eligible":"DS_1674130313603","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Exceptions MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"UETR","alias_name":"","mq_id":"MQ_1674109998186","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1674109998440","date_format":false},{"column_name":"PROCESS_SYSTEM","alias_name":"","mq_id":"MQ_1674109998712","date_format":false},{"column_name":"DT_CODE","alias_name":"","mq_id":"MQ_1674110160045","date_format":false},{"column_name":"DTT_CODE","alias_name":"","mq_id":"MQ_1674110160245","date_format":false},{"column_name":"ERR_DATACORE","alias_name":"","mq_id":"MQ_1674110160460","date_format":false},{"column_name":"CORE","alias_name":"","mq_id":"MQ_1674114227458","date_format":false},{"column_name":"MESSAGE_DATA","alias_name":"","mq_id":"MQ_1674114718929","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1674129779135","date_format":true}],"joins":[]},"eq_text":"select UETR,        MESSAGE_DATA,        REQ_DATA,        RES_DATA,        ERR_DATACORE,        PROCESS_NAME,        PROCESS_SYSTEM,        TENANT_ID,        DT_CODE,        DTT_CODE,        CORE,        CREATED_DATE   from (select E.CNC_ID,                E.UETR,                E.MESSAGE_DATA,                E.REQ_DATA,                E.RES_DATA,                E.ERR_DATACORE,                E.PROCESS_NAME,                E.PROCESS_SYSTEM,                E.TENANT_ID,                E.DT_CODE,                E.DTT_CODE,                E.CREATED_DATE,                E.CORE,                T.PROCESS_TYPE,                T.CDTR_IBAN,                T.DEPARTMENT_CODE,                PL.T24_RETURN_CODE           from CORE_NC_EXCEPTIONS E          inner join NPSS_TRN_PROCESS_LOG PL on PL.UETR = E.UETR          inner join NPSS_TRANSACTIONS T on T.UETR = E.UETR) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Exception MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESS_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Service Name","target_column":"CORE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1674108265517":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1674108265517","dtt_desc":"Core NC Exceptions","ds_eligible":"DS_1674130313603","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Exceptions MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"UETR","alias_name":"","mq_id":"MQ_1674109998186","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1674109998440","date_format":false},{"column_name":"PROCESS_SYSTEM","alias_name":"","mq_id":"MQ_1674109998712","date_format":false},{"column_name":"DT_CODE","alias_name":"","mq_id":"MQ_1674110160045","date_format":false},{"column_name":"DTT_CODE","alias_name":"","mq_id":"MQ_1674110160245","date_format":false},{"column_name":"ERR_DATACORE","alias_name":"","mq_id":"MQ_1674110160460","date_format":false},{"column_name":"CORE","alias_name":"","mq_id":"MQ_1674114227458","date_format":false},{"column_name":"MESSAGE_DATA","alias_name":"","mq_id":"MQ_1674114718929","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1674129779135","date_format":true}],"joins":[]},"eq_text":"select CNC_ID,UETR,        MESSAGE_DATA,        REQ_DATA,        RES_DATA,        ERR_DATACORE,        PROCESS_NAME,        PROCESS_SYSTEM,        TENANT_ID,        DT_CODE,        DTT_CODE,        CORE,        CREATED_DATE   from (select E.CNC_ID,                E.UETR,                E.MESSAGE_DATA,                E.REQ_DATA,                E.RES_DATA,                E.ERR_DATACORE,                E.PROCESS_NAME,                E.PROCESS_SYSTEM,                E.TENANT_ID,                E.DT_CODE,                E.DTT_CODE,                E.CREATED_DATE,                E.CORE,                T.PROCESS_TYPE,                T.CDTR_IBAN,                T.DEPARTMENT_CODE,                PL.T24_RETURN_CODE           from CORE_NC_EXCEPTIONS E          inner join NPSS_TRN_PROCESS_LOG PL on PL.UETR = E.UETR          inner join NPSS_TRANSACTIONS T on T.UETR = E.UETR) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Exception MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESS_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Service Name","target_column":"CORE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.list.context_menu = []
 		this.list.views = {}
 		this.list.onChangecomponent = new EventEmitter<any>()
@@ -320,6 +320,10 @@ export class s_view_exceptionsComponent implements OnInit,AfterViewInit {
 		this.list__ee_for_vml()
 		this.list__ee_for_view_req_and_res()
 		this.list__ee_for_vel()
+		this.list__e_1674131159713()
+		this.list__e_1674131179736()
+		this.list__e_1674131188393()
+		this.list__e_1674131204264()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -458,7 +462,7 @@ export class s_view_exceptionsComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1674124866203"
-		let event_params={"caller_name":"navigation_ui_search__spap_for_search","event_desc":"SPAP for Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_search","selector":"p_search_layout","profile_code":"BTL_1304_1674124490640","window_title":"Search","window_height":400,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_search","eventcode":"E_1674124866203"}}
+		let event_params={"caller_name":"navigation_ui_search__spap_for_search","event_desc":"SPAP for Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_search","selector":"p_search_layout","profile_code":"BTL_1304_1674124490640","window_title":"Search","window_height":500,"window_width":"800px","window_close_icon":"Y","eventdes":"spap_for_search","eventcode":"E_1674124866203"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}
@@ -736,7 +740,7 @@ export class s_view_exceptionsComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1674108265517":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1674108265517","dtt_desc":"Core NC Exceptions","ds_eligible":"DS_1674130313603","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Exceptions MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"UETR","alias_name":"","mq_id":"MQ_1674109998186","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1674109998440","date_format":false},{"column_name":"PROCESS_SYSTEM","alias_name":"","mq_id":"MQ_1674109998712","date_format":false},{"column_name":"DT_CODE","alias_name":"","mq_id":"MQ_1674110160045","date_format":false},{"column_name":"DTT_CODE","alias_name":"","mq_id":"MQ_1674110160245","date_format":false},{"column_name":"ERR_DATACORE","alias_name":"","mq_id":"MQ_1674110160460","date_format":false},{"column_name":"CORE","alias_name":"","mq_id":"MQ_1674114227458","date_format":false},{"column_name":"MESSAGE_DATA","alias_name":"","mq_id":"MQ_1674114718929","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1674129779135","date_format":true}],"joins":[]},"eq_text":"select UETR,        MESSAGE_DATA,        REQ_DATA,        RES_DATA,        ERR_DATACORE,        PROCESS_NAME,        PROCESS_SYSTEM,        TENANT_ID,        DT_CODE,        DTT_CODE,        CORE,        CREATED_DATE   from (select E.CNC_ID,                E.UETR,                E.MESSAGE_DATA,                E.REQ_DATA,                E.RES_DATA,                E.ERR_DATACORE,                E.PROCESS_NAME,                E.PROCESS_SYSTEM,                E.TENANT_ID,                E.DT_CODE,                E.DTT_CODE,                E.CREATED_DATE,                E.CORE,                T.PROCESS_TYPE,                T.CDTR_IBAN,                T.DEPARTMENT_CODE,                PL.T24_RETURN_CODE           from CORE_NC_EXCEPTIONS E          inner join NPSS_TRN_PROCESS_LOG PL on PL.UETR = E.UETR          inner join NPSS_TRANSACTIONS T on T.UETR = E.UETR) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Exception MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESS_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Service Name","target_column":"CORE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1674108265517":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1674108265517","dtt_desc":"Core NC Exceptions","ds_eligible":"DS_1674130313603","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Exceptions MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"UETR","alias_name":"","mq_id":"MQ_1674109998186","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1674109998440","date_format":false},{"column_name":"PROCESS_SYSTEM","alias_name":"","mq_id":"MQ_1674109998712","date_format":false},{"column_name":"DT_CODE","alias_name":"","mq_id":"MQ_1674110160045","date_format":false},{"column_name":"DTT_CODE","alias_name":"","mq_id":"MQ_1674110160245","date_format":false},{"column_name":"ERR_DATACORE","alias_name":"","mq_id":"MQ_1674110160460","date_format":false},{"column_name":"CORE","alias_name":"","mq_id":"MQ_1674114227458","date_format":false},{"column_name":"MESSAGE_DATA","alias_name":"","mq_id":"MQ_1674114718929","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1674129779135","date_format":true}],"joins":[]},"eq_text":"select CNC_ID,UETR,        MESSAGE_DATA,        REQ_DATA,        RES_DATA,        ERR_DATACORE,        PROCESS_NAME,        PROCESS_SYSTEM,        TENANT_ID,        DT_CODE,        DTT_CODE,        CORE,        CREATED_DATE   from (select E.CNC_ID,                E.UETR,                E.MESSAGE_DATA,                E.REQ_DATA,                E.RES_DATA,                E.ERR_DATACORE,                E.PROCESS_NAME,                E.PROCESS_SYSTEM,                E.TENANT_ID,                E.DT_CODE,                E.DTT_CODE,                E.CREATED_DATE,                E.CORE,                T.PROCESS_TYPE,                T.CDTR_IBAN,                T.DEPARTMENT_CODE,                PL.T24_RETURN_CODE           from CORE_NC_EXCEPTIONS E          inner join NPSS_TRN_PROCESS_LOG PL on PL.UETR = E.UETR          inner join NPSS_TRANSACTIONS T on T.UETR = E.UETR) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Exception MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESS_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Service Name","target_column":"CORE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -802,6 +806,90 @@ export class s_view_exceptionsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "list"
+	list__e_1674131159713() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="list"
+		let destn_id="response_ui"
+		let parent_source_id=""
+		let event_code="e_1674131159713"
+		let event_params={"caller_name":"list__e_1674131159713","event_desc":"E_1674131159713","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "list"
+	list__e_1674131179736() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="list"
+		let destn_id="error_log"
+		let parent_source_id=""
+		let event_code="e_1674131179736"
+		let event_params={"caller_name":"list__e_1674131179736","event_desc":"E_1674131179736","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "list"
+	list__e_1674131188393() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="list"
+		let destn_id="request_ui"
+		let parent_source_id=""
+		let event_code="e_1674131188393"
+		let event_params={"caller_name":"list__e_1674131188393","event_desc":"E_1674131188393","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "list"
+	list__e_1674131204264() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="list"
+		let destn_id="message_log"
+		let parent_source_id=""
+		let event_code="e_1674131204264"
+		let event_params={"caller_name":"list__e_1674131204264","event_desc":"E_1674131204264","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

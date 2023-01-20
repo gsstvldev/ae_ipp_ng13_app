@@ -7,16 +7,11 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-
-
-
-
 try {
     /*  Created By :   Daseen
     Created Date :17/11/2022
-    Modified By : 
-    Modified Date : 
+    Modified By : Daseen
+    Modified Date : 20/01/2023
     Reason for : 
     */
     var serviceName = 'NPSS BCT IP Invenstigation Change State';
@@ -53,19 +48,26 @@ try {
                 reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
                     try {
                           var PRCT_ID =  prct_id
-
-
-                        var finalstatusqry = `select eligible_status,eligible_process_status, success_process_status,success_status from core_nc_workflow_setup where rule_code='${params.api_code}'`;
-
+                        var finalstatusqry = `select eligible_status,eligible_process_status, success_process_status,success_status from core_nc_workflow_setup where rule_code='${params.api_code}' and eligible_status ='${params.eligible_status}' and eligible_process_status ='${params.eligible_process_status}'`;
                         ExecuteQuery1(finalstatusqry, function (arrResult) {
                             if (arrResult.length) {
                                 final_status = arrResult[0].success_status;
                              final_process_status = arrResult[0].success_process_status;
-                                eligible_status = arrResult[0].eligible_status;
-                                eligible_process_status = arrResult[0].eligible_process_status;
-                             selectQry = `select * from npss_transactions where status='${eligible_status}' and process_status='${eligible_process_status}' `;
-
-
+                             if(params.Id){
+                                var UpdateQry = `update npss_transactions set  status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Id}'`
+                                ExecuteQuery(UpdateQry, function (arrUpdt) {
+                                    if (arrUpdt == "SUCCESS") {
+                                        objresponse.status = 'SUCCESS'
+                                        sendResponse(null, objresponse)
+                                    }
+                                    else {
+                                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service.please check the log", result);
+                                        objresponse.status = 'Fail Transaction Table Update'
+                                        sendResponse(null, objresponse)
+                                    }
+                                })
+                             }else{
+                             selectQry = `select * from npss_transactions where status='${params.eligible_status}' and process_status='${params.eligible_process_status}'`;
                                 fn_MappingSearchParamQry(function callbackMappingSearchParamQry(pError, addquery) {
                                     if (pError) {
                                         sendResponse(pError)
@@ -77,31 +79,35 @@ try {
                                                     id += "," + arrfinalResult[i].npsst_id;
                                                 }
                                                 id = id.slice(1);
-                                                var updateQry = `update npss_transactions set  status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id='${params.Id}' `
+                                                id = '('+ id +')'
+                                                var updateQry = `update npss_transactions set  status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id in ${id}`
                                                 ExecuteQuery(updateQry, function (arrfinalResult) {
                                                     if (arrfinalResult == "SUCCESS") {
-                                                        sendResponse(null, arrfinalResult)
+                                                        objresponse.status = 'SUCCESS'
+                                                        sendResponse(null, objresponse)
                                                     }
                                                     else {
                                                         reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service.please check the log", result);
-                                                        sendResponse('Error in transaction update', result);
+                                                        objresponse.status = 'Fail Transaction Table Update'
+                                                        sendResponse(null, objresponse)
                                                     }
                                                 })
                                             }
                                             else {
-                                                console.log("No Data found in Transaction");
-                                                objresponse.status = "FAILURE"
-                                                sendResponse(objresponse, null)
+                                              
+                                                objresponse.status = "No Data found in Transaction"
+                                                sendResponse(null, objresponse)
                                             }
                                         })
 
 
                                     }
                                 })
+                            }
                             } else {
-                                console.log("No Data found in Rule Code");
-                                objresponse.status = "FAILURE"
-                                sendResponse(objresponse, null)
+                               
+                                objresponse.status = "No Data found in Rule Code"
+                                sendResponse(null, objresponse)
                             }
                         })
 
@@ -117,14 +123,7 @@ try {
                                     conditionObj["UETR"] = "UETR='" + params.s_uetr + "'";
                                 }
 
-                               //  if (params.s_paymentmethod) {
-                                 //   if(params.s_paymentmethod!="BULK"){
-                                 //   conditionObj["paymentmethod"] = "exhf_id IS NULL";
-                                //    }
-                               //     else{
-                                //        conditionObj["paymentmethod"] = "exhf_id  IS NOT NULL";
-                               //     }
-                             //   } 
+                              
                                 if (params.s_valuedatevalue) {
                                     conditionObj["valuedate"] = reqDateFormatter.GetSearchCriteriaForBusinessColumn(headers, objSessionLogInfo, 'VALUE_DATE', params.s_valuedatevalue, params.s_valuedatetovalue, params.s_valuedateop);
                                 }
@@ -249,6 +248,8 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
+
 
 
 

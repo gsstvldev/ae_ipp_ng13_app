@@ -49,7 +49,7 @@ export class npss_cs_bct_ip_investigation_change_stateService {
         ClientParams.SYSTEM_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_DESC");
         ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
-        ClientParams.Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID");
+        ClientParams.Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID") || '';
         ClientParams.system = system
         ClientParams.api_code = "BCT_IP_INVEST_INITIATE";
 
@@ -113,12 +113,10 @@ export class npss_cs_bct_ip_investigation_change_stateService {
         this.httpHelper.HttpPost('/microsvc/npss_cs_bct_ip_investigation_change_state/', ClientParams)
             .subscribe((res: any) => {
                 console.log("Bulk Change Status Server Response", res);
-                if (res.data == "SUCCESS") {
+                if (res.data.status == "SUCCESS") {
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
-                } else if (res.data == "FAILURE") {
-                    this.appHandler.callInternals(internals, screenInstance, "FAILURE");
                 } else {
-                    this.dialogHelper.ShowInfoDialog(res.data);
+                    this.dialogHelper.ShowInfoDialog(res.data.status);
 
                 }
             });

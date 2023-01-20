@@ -66,14 +66,14 @@ try {
                                             sendResponse(null, objresponse) 
                                         }
                                         else {
-                                           objresponse.status = 'FAILURE';
+                                           objresponse.status = 'Transaction status update not success';
                                 sendResponse(null, objresponse)
                                         }
                                     
                                 })
                             } else {
                                
-                                objresponse.status = 'FAILURE';
+                                objresponse.status = 'No rule found in workflow setup';
                                 sendResponse(null, objresponse)
                             }
                         })

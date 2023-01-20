@@ -66,14 +66,14 @@ try {
                                             sendResponse(null, objresponse) 
                                         }
                                         else {
-                                           objresponse.status = 'FAILURE';
+                                           objresponse.status = 'Transaction status update not success';
                                 sendResponse(null, objresponse)
                                         }
                                     
                                 })
                             } else {
-                                console.log("No Data found in Rule Code");
-                                objresponse.status = 'FAILURE';
+                                
+                                objresponse.status = 'No Data found in Rule Code';
                                 sendResponse(null, objresponse)
                             }
                         })

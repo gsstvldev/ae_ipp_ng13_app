@@ -69,7 +69,7 @@ export class npss_cs_bct_retryService {
                 } else if (res.data == "FAILURE") {
                     this.appHandler.callInternals(internals, screenInstance, "FAILURE");
                 }  else {
-                    this.dialogHelper.ShowInfoDialog(res.data);
+                    this.dialogHelper.ShowInfoDialog(res.data.status);
     
                 }
             });

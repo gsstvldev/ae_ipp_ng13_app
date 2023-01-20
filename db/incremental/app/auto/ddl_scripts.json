@@ -1,1 +1,1 @@
-[]
+[{"query" : "drop table CORE_NC_EXCEPTIONS;","params" : [] },{"query" : "drop sequence seq_CORE_NC_EXCEPTIONS;","params" : [] }]

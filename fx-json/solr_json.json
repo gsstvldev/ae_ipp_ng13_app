@@ -2,4 +2,18 @@
   $DQ$TRAN_INSERTION$DQ$: [],
   $DQ$TRAN_DELETION$DQ$: [],
   $DQ$ATMT_INSERTION$DQ$: []
+},{
+  $DQ$TRAN_INSERTION$DQ$: [
+    {
+      $DQ$NAME$DQ$: $DQ$NPSSE_ID$DQ$,
+      $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674198360280$DQ$
+    }
+  ],
+  $DQ$TRAN_DELETION$DQ$: [],
+  $DQ$ATMT_INSERTION$DQ$: []
+},{
+  $DQ$TRAN_INSERTION$DQ$: [],
+  $DQ$TRAN_DELETION$DQ$: [],
+  $DQ$ATMT_INSERTION$DQ$: []
 }]

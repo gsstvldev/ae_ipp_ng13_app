@@ -1,0 +1,53 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_exceptions_srch="ngForm">
+<div id="RN01" class="row">
+	<div #npss_exceptions_srch_uetr id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('uetr')" >
+				<cdn_ctrl [ctrl_id]="'npss_exceptions_srch_uetr'" [comp_id]="comp_id" [ctrl]="ctrl.uetr" [model]="screen_instance[this.comp_id].f_npss_exceptions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN01CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('message_data')" >
+				<cdn_ctrl [ctrl_id]="'npss_exceptions_srch_message_data'" [comp_id]="comp_id" [ctrl]="ctrl.message_data" [model]="screen_instance[this.comp_id].f_npss_exceptions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN11CN3" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('process_system')" >
+				<cbo [ctrl_id]="'npss_exceptions_srch_process_system'" [comp_id]="comp_id" [ctrl]="ctrl.process_system" [model]="screen_instance[this.comp_id].f_npss_exceptions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
+	</div>
+	<div  id="RN11CN4" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('process_name')" >
+				<cdn_ctrl [ctrl_id]="'npss_exceptions_srch_process_name'" [comp_id]="comp_id" [ctrl]="ctrl.process_name" [model]="screen_instance[this.comp_id].f_npss_exceptions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN21" class="row">
+	<div  id="RN21CN5" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('core')" >
+				<cdn_ctrl [ctrl_id]="'npss_exceptions_srch_core'" [comp_id]="comp_id" [ctrl]="ctrl.core" [model]="screen_instance[this.comp_id].f_npss_exceptions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN21CN6" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('req_data')" >
+				<cdn_ctrl [ctrl_id]="'npss_exceptions_srch_req_data'" [comp_id]="comp_id" [ctrl]="ctrl.req_data" [model]="screen_instance[this.comp_id].f_npss_exceptions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN31" class="row">
+	<div  id="RN31CN7" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('res_data')" >
+				<cdn_ctrl [ctrl_id]="'npss_exceptions_srch_res_data'" [comp_id]="comp_id" [ctrl]="ctrl.res_data" [model]="screen_instance[this.comp_id].f_npss_exceptions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN31CN8" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('err_datacore')" >
+				<cdn_ctrl [ctrl_id]="'npss_exceptions_srch_err_datacore'" [comp_id]="comp_id" [ctrl]="ctrl.err_datacore" [model]="screen_instance[this.comp_id].f_npss_exceptions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN41" class="row">
+	<div  id="RN41CN9" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory10')" >
+				<cdn_date [ctrl_id]="'npss_exceptions_srch_memory10'" [comp_id]="comp_id" [ctrl]="ctrl.memory10" [model]="screen_instance[this.comp_id].f_npss_exceptions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+ 		<div class="col-md-2 col-sm-6 col-xs-6 col-md-offset-8 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.search_search.show" >
+			<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+		</div>
+		<div class="col-md-2 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.search_clear.show" >
+			<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		</div>
+	</div>
+
+</div>

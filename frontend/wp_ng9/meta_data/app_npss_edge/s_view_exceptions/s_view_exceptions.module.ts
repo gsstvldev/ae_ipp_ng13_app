@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27851 
+Build ID        : 27880 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-19 14:21 PM 
+Modified Date   : 2023-Jan-20 7:45 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_exceptions
@@ -35,15 +35,15 @@ import { s_view_exceptionsRoutingModule } from './s_view_exceptions.routing.modu
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_npss_exceptional_srchComponent } from './f_npss_exceptional_srch/f_npss_exceptional_srch.component'
+import { f_npss_exceptions_srchComponent } from './f_npss_exceptions_srch/f_npss_exceptions_srch.component'
 import { p_view_main_req_and_res_layoutComponent } from './p_view_main_req_and_res_layout/p_view_main_req_and_res_layout.component'
 import { f_single_back_uiComponent } from './f_single_back_ui/f_single_back_ui.component'
-import { f_npss_exceptional_req_uiComponent } from './f_npss_exceptional_req_ui/f_npss_exceptional_req_ui.component'
-import { f_npss_exceptional_res_uiComponent } from './f_npss_exceptional_res_ui/f_npss_exceptional_res_ui.component'
+import { f_npss_excep_request_uiComponent } from './f_npss_excep_request_ui/f_npss_excep_request_ui.component'
+import { f_npss_excep_response_uiComponent } from './f_npss_excep_response_ui/f_npss_excep_response_ui.component'
 import { p_view_message_log_layoutComponent } from './p_view_message_log_layout/p_view_message_log_layout.component'
-import { f_npss_exceptional_message_datauiComponent } from './f_npss_exceptional_message_dataui/f_npss_exceptional_message_dataui.component'
+import { f_npss_excep_message_data_uiComponent } from './f_npss_excep_message_data_ui/f_npss_excep_message_data_ui.component'
 import { p_view_error_log_layoutComponent } from './p_view_error_log_layout/p_view_error_log_layout.component'
-import { f_npss_exceptional_error_datauiComponent } from './f_npss_exceptional_error_dataui/f_npss_exceptional_error_dataui.component'
+import { f_npss_excep_error_uiComponent } from './f_npss_excep_error_ui/f_npss_excep_error_ui.component'
 
 
 
@@ -60,7 +60,7 @@ import { f_npss_exceptional_error_datauiComponent } from './f_npss_exceptional_e
     s_view_exceptionsRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_view_exceptionsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_exceptional_srchComponent,p_view_main_req_and_res_layoutComponent,f_single_back_uiComponent,f_npss_exceptional_req_uiComponent,f_npss_exceptional_res_uiComponent,p_view_message_log_layoutComponent,f_npss_exceptional_message_datauiComponent,p_view_error_log_layoutComponent,f_npss_exceptional_error_datauiComponent,],
+  declarations: [s_view_exceptionsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_exceptions_srchComponent,p_view_main_req_and_res_layoutComponent,f_single_back_uiComponent,f_npss_excep_request_uiComponent,f_npss_excep_response_uiComponent,p_view_message_log_layoutComponent,f_npss_excep_message_data_uiComponent,p_view_error_log_layoutComponent,f_npss_excep_error_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

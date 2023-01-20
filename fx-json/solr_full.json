@@ -1592,6 +1592,51 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$NPSSE_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674198360280$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$UETR$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674198360280$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$MESSAGE_DATA$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674198360280$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$REQ_DATA$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674198360280$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$RES_DATA$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674198360280$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$ERR_DATACORE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674198360280$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESS_NAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674198360280$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESS_SYSTEM$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674198360280$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CORE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674198360280$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NPSSCA_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846862798$DQ$

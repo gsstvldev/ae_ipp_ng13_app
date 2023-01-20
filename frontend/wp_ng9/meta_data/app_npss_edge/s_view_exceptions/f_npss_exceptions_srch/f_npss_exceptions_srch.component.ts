@@ -1,38 +1,38 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27851 
+Build ID        : 27880 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-19 14:21 PM 
+Modified Date   : 2023-Jan-20 7:45 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_exceptions
-Form Name       : NPSS Exceptional SRCH--------------------------------------------------------------------------- */
+Form Name       : NPSS Exceptions SRCH--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_exceptional_srch',
-  templateUrl: './f_npss_exceptional_srch.component.html',
-  styleUrls: ['./f_npss_exceptional_srch.component.css'],
+  selector: 'f_npss_exceptions_srch',
+  templateUrl: './f_npss_exceptions_srch.component.html',
+  styleUrls: ['./f_npss_exceptions_srch.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_exceptional_srchComponent implements OnInit {
+export class f_npss_exceptions_srchComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_exceptional_srch') form;
-  @ViewChild('npss_exceptional_srch_uetr') element: ElementRef;
+  @ViewChild('f_npss_exceptions_srch') form;
+  @ViewChild('npss_exceptions_srch_uetr') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
 	ctrl : any = {}
 	dt_code : string = "dt_1304_1665901130705"
-	dtt_code : string = "dtt_1304_1674108265517"
+	dtt_code : string = "dtt_1304_1674198360280"
 
   
   // Constructor 
@@ -54,13 +54,13 @@ focustoelement(){
 		this.ctrl.uetr.desc = "UETR"
 		this.ctrl.uetr.visible = true
 		this.ctrl.uetr.label_name = "UETR"
-		this.ctrl.uetr.df_code = "DF_1304_1674108302241"
+		this.ctrl.uetr.df_code = "DF_1304_1674198409820"
 		this.ctrl.uetr.df_description = "Column Group 1"
 		this.ctrl.uetr.uictrl_code = "CDN_CTRL"
 		this.ctrl.uetr.target_column = "UETR"
 		this.ctrl.uetr.data_type = "TEXT"
 		this.ctrl.uetr.data_length = 64
-		this.ctrl.uetr.zone_df_code = "DF_1304_1674108302241"
+		this.ctrl.uetr.zone_df_code = "DF_1304_1674198409820"
 		this.ctrl.uetr.default_value = ""
 		this.ctrl.uetr.is_memory_ctrl = ""
 		this.ctrl.uetr.field_coordinates = ""
@@ -82,24 +82,24 @@ focustoelement(){
 		this.ctrl.uetr.vld_rules = []
 		this.ctrl.uetr.targetcolumn_lower = "uetr"
 		this.ctrl.uetr.disabled = false
-		this.ctrl.uetr.view_name = "f_npss_exceptional_srch"
-		this.ctrl.uetr.ctrl_id = "npss_exceptional_srch_uetr"
-		this.ctrl.npss_exceptional_srch_uetr = {}
-		this.ctrl.npss_exceptional_srch_uetr.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.uetr.view_name = "f_npss_exceptions_srch"
+		this.ctrl.uetr.ctrl_id = "npss_exceptions_srch_uetr"
+		this.ctrl.npss_exceptions_srch_uetr = {}
+		this.ctrl.npss_exceptions_srch_uetr.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of message_data
 		this.ctrl.message_data = {}
 		this.ctrl.message_data.id = "RN01CN2"
-		this.ctrl.message_data.desc = "Message"
+		this.ctrl.message_data.desc = "Message Log"
 		this.ctrl.message_data.visible = true
-		this.ctrl.message_data.label_name = "Message"
-		this.ctrl.message_data.df_code = "DF_1304_1674108302241"
+		this.ctrl.message_data.label_name = "Message Log"
+		this.ctrl.message_data.df_code = "DF_1304_1674198409820"
 		this.ctrl.message_data.df_description = "Column Group 1"
 		this.ctrl.message_data.uictrl_code = "CDN_CTRL"
 		this.ctrl.message_data.target_column = "MESSAGE_DATA"
 		this.ctrl.message_data.data_type = "TEXT"
 		this.ctrl.message_data.data_length = 80000
-		this.ctrl.message_data.zone_df_code = "DF_1304_1674108302241"
+		this.ctrl.message_data.zone_df_code = "DF_1304_1674198409820"
 		this.ctrl.message_data.default_value = ""
 		this.ctrl.message_data.is_memory_ctrl = ""
 		this.ctrl.message_data.field_coordinates = ""
@@ -121,10 +121,10 @@ focustoelement(){
 		this.ctrl.message_data.vld_rules = []
 		this.ctrl.message_data.targetcolumn_lower = "message_data"
 		this.ctrl.message_data.disabled = false
-		this.ctrl.message_data.view_name = "f_npss_exceptional_srch"
-		this.ctrl.message_data.ctrl_id = "npss_exceptional_srch_message_data"
-		this.ctrl.npss_exceptional_srch_message_data = {}
-		this.ctrl.npss_exceptional_srch_message_data.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.message_data.view_name = "f_npss_exceptions_srch"
+		this.ctrl.message_data.ctrl_id = "npss_exceptions_srch_message_data"
+		this.ctrl.npss_exceptions_srch_message_data = {}
+		this.ctrl.npss_exceptions_srch_message_data.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of process_system
 		this.ctrl.process_system = {}
@@ -132,13 +132,13 @@ focustoelement(){
 		this.ctrl.process_system.desc = "Processing System"
 		this.ctrl.process_system.visible = true
 		this.ctrl.process_system.label_name = "Processing System"
-		this.ctrl.process_system.df_code = "DF_1304_1674108302241"
+		this.ctrl.process_system.df_code = "DF_1304_1674198409820"
 		this.ctrl.process_system.df_description = "Column Group 1"
 		this.ctrl.process_system.uictrl_code = "CBO"
 		this.ctrl.process_system.target_column = "PROCESS_SYSTEM"
 		this.ctrl.process_system.data_type = "TEXT"
 		this.ctrl.process_system.data_length = 64
-		this.ctrl.process_system.zone_df_code = "DF_1304_1674108302241"
+		this.ctrl.process_system.zone_df_code = "DF_1304_1674198409820"
 		this.ctrl.process_system.default_value = ""
 		this.ctrl.process_system.is_memory_ctrl = ""
 		this.ctrl.process_system.field_coordinates = ""
@@ -160,11 +160,11 @@ focustoelement(){
 		this.ctrl.process_system.vld_rules = []
 		this.ctrl.process_system.targetcolumn_lower = "process_system"
 		this.ctrl.process_system.disabled = false
-		this.ctrl.process_system.view_name = "f_npss_exceptional_srch"
-		this.ctrl.process_system.ctrl_id = "npss_exceptional_srch_process_system"
-		this.ctrl.npss_exceptional_srch_process_system = {}
-		this.ctrl.npss_exceptional_srch_process_system.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_exceptional_srch.process_system = {}
+		this.ctrl.process_system.view_name = "f_npss_exceptions_srch"
+		this.ctrl.process_system.ctrl_id = "npss_exceptions_srch_process_system"
+		this.ctrl.npss_exceptions_srch_process_system = {}
+		this.ctrl.npss_exceptions_srch_process_system.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_exceptions_srch.process_system = {}
 	
 		//Properties of process_name
 		this.ctrl.process_name = {}
@@ -172,13 +172,13 @@ focustoelement(){
 		this.ctrl.process_name.desc = "Process Name"
 		this.ctrl.process_name.visible = true
 		this.ctrl.process_name.label_name = "Process Name"
-		this.ctrl.process_name.df_code = "DF_1304_1674108302241"
+		this.ctrl.process_name.df_code = "DF_1304_1674198409820"
 		this.ctrl.process_name.df_description = "Column Group 1"
 		this.ctrl.process_name.uictrl_code = "CDN_CTRL"
 		this.ctrl.process_name.target_column = "PROCESS_NAME"
 		this.ctrl.process_name.data_type = "TEXT"
 		this.ctrl.process_name.data_length = 64
-		this.ctrl.process_name.zone_df_code = "DF_1304_1674108302241"
+		this.ctrl.process_name.zone_df_code = "DF_1304_1674198409820"
 		this.ctrl.process_name.default_value = ""
 		this.ctrl.process_name.is_memory_ctrl = ""
 		this.ctrl.process_name.field_coordinates = ""
@@ -200,10 +200,10 @@ focustoelement(){
 		this.ctrl.process_name.vld_rules = []
 		this.ctrl.process_name.targetcolumn_lower = "process_name"
 		this.ctrl.process_name.disabled = false
-		this.ctrl.process_name.view_name = "f_npss_exceptional_srch"
-		this.ctrl.process_name.ctrl_id = "npss_exceptional_srch_process_name"
-		this.ctrl.npss_exceptional_srch_process_name = {}
-		this.ctrl.npss_exceptional_srch_process_name.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.process_name.view_name = "f_npss_exceptions_srch"
+		this.ctrl.process_name.ctrl_id = "npss_exceptions_srch_process_name"
+		this.ctrl.npss_exceptions_srch_process_name = {}
+		this.ctrl.npss_exceptions_srch_process_name.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of core
 		this.ctrl.core = {}
@@ -211,13 +211,13 @@ focustoelement(){
 		this.ctrl.core.desc = "Service Name"
 		this.ctrl.core.visible = true
 		this.ctrl.core.label_name = "Service Name"
-		this.ctrl.core.df_code = "DF_1304_1674108302241"
+		this.ctrl.core.df_code = "DF_1304_1674198409820"
 		this.ctrl.core.df_description = "Column Group 1"
 		this.ctrl.core.uictrl_code = "CDN_CTRL"
 		this.ctrl.core.target_column = "CORE"
 		this.ctrl.core.data_type = "TEXT"
 		this.ctrl.core.data_length = 64
-		this.ctrl.core.zone_df_code = "DF_1304_1674108302241"
+		this.ctrl.core.zone_df_code = "DF_1304_1674198409820"
 		this.ctrl.core.default_value = ""
 		this.ctrl.core.is_memory_ctrl = ""
 		this.ctrl.core.field_coordinates = ""
@@ -239,24 +239,24 @@ focustoelement(){
 		this.ctrl.core.vld_rules = []
 		this.ctrl.core.targetcolumn_lower = "core"
 		this.ctrl.core.disabled = false
-		this.ctrl.core.view_name = "f_npss_exceptional_srch"
-		this.ctrl.core.ctrl_id = "npss_exceptional_srch_core"
-		this.ctrl.npss_exceptional_srch_core = {}
-		this.ctrl.npss_exceptional_srch_core.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.core.view_name = "f_npss_exceptions_srch"
+		this.ctrl.core.ctrl_id = "npss_exceptions_srch_core"
+		this.ctrl.npss_exceptions_srch_core = {}
+		this.ctrl.npss_exceptions_srch_core.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of req_data
 		this.ctrl.req_data = {}
 		this.ctrl.req_data.id = "RN21CN6"
-		this.ctrl.req_data.desc = "Request"
+		this.ctrl.req_data.desc = "Request Log"
 		this.ctrl.req_data.visible = true
-		this.ctrl.req_data.label_name = "Request"
-		this.ctrl.req_data.df_code = "DF_1304_1674108302241"
+		this.ctrl.req_data.label_name = "Request Log"
+		this.ctrl.req_data.df_code = "DF_1304_1674198409820"
 		this.ctrl.req_data.df_description = "Column Group 1"
 		this.ctrl.req_data.uictrl_code = "CDN_CTRL"
 		this.ctrl.req_data.target_column = "REQ_DATA"
 		this.ctrl.req_data.data_type = "TEXT"
 		this.ctrl.req_data.data_length = 80000
-		this.ctrl.req_data.zone_df_code = "DF_1304_1674108302241"
+		this.ctrl.req_data.zone_df_code = "DF_1304_1674198409820"
 		this.ctrl.req_data.default_value = ""
 		this.ctrl.req_data.is_memory_ctrl = ""
 		this.ctrl.req_data.field_coordinates = ""
@@ -278,24 +278,24 @@ focustoelement(){
 		this.ctrl.req_data.vld_rules = []
 		this.ctrl.req_data.targetcolumn_lower = "req_data"
 		this.ctrl.req_data.disabled = false
-		this.ctrl.req_data.view_name = "f_npss_exceptional_srch"
-		this.ctrl.req_data.ctrl_id = "npss_exceptional_srch_req_data"
-		this.ctrl.npss_exceptional_srch_req_data = {}
-		this.ctrl.npss_exceptional_srch_req_data.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.req_data.view_name = "f_npss_exceptions_srch"
+		this.ctrl.req_data.ctrl_id = "npss_exceptions_srch_req_data"
+		this.ctrl.npss_exceptions_srch_req_data = {}
+		this.ctrl.npss_exceptions_srch_req_data.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of res_data
 		this.ctrl.res_data = {}
 		this.ctrl.res_data.id = "RN31CN7"
-		this.ctrl.res_data.desc = "Response"
+		this.ctrl.res_data.desc = "Response Log"
 		this.ctrl.res_data.visible = true
-		this.ctrl.res_data.label_name = "Response"
-		this.ctrl.res_data.df_code = "DF_1304_1674108302241"
+		this.ctrl.res_data.label_name = "Response Log"
+		this.ctrl.res_data.df_code = "DF_1304_1674198409820"
 		this.ctrl.res_data.df_description = "Column Group 1"
 		this.ctrl.res_data.uictrl_code = "CDN_CTRL"
 		this.ctrl.res_data.target_column = "RES_DATA"
 		this.ctrl.res_data.data_type = "TEXT"
 		this.ctrl.res_data.data_length = 80000
-		this.ctrl.res_data.zone_df_code = "DF_1304_1674108302241"
+		this.ctrl.res_data.zone_df_code = "DF_1304_1674198409820"
 		this.ctrl.res_data.default_value = ""
 		this.ctrl.res_data.is_memory_ctrl = ""
 		this.ctrl.res_data.field_coordinates = ""
@@ -317,24 +317,24 @@ focustoelement(){
 		this.ctrl.res_data.vld_rules = []
 		this.ctrl.res_data.targetcolumn_lower = "res_data"
 		this.ctrl.res_data.disabled = false
-		this.ctrl.res_data.view_name = "f_npss_exceptional_srch"
-		this.ctrl.res_data.ctrl_id = "npss_exceptional_srch_res_data"
-		this.ctrl.npss_exceptional_srch_res_data = {}
-		this.ctrl.npss_exceptional_srch_res_data.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.res_data.view_name = "f_npss_exceptions_srch"
+		this.ctrl.res_data.ctrl_id = "npss_exceptions_srch_res_data"
+		this.ctrl.npss_exceptions_srch_res_data = {}
+		this.ctrl.npss_exceptions_srch_res_data.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of err_datacore
 		this.ctrl.err_datacore = {}
 		this.ctrl.err_datacore.id = "RN31CN8"
-		this.ctrl.err_datacore.desc = "Error"
+		this.ctrl.err_datacore.desc = "Error Log"
 		this.ctrl.err_datacore.visible = true
-		this.ctrl.err_datacore.label_name = "Error"
-		this.ctrl.err_datacore.df_code = "DF_1304_1674108302241"
+		this.ctrl.err_datacore.label_name = "Error Log"
+		this.ctrl.err_datacore.df_code = "DF_1304_1674198409820"
 		this.ctrl.err_datacore.df_description = "Column Group 1"
 		this.ctrl.err_datacore.uictrl_code = "CDN_CTRL"
 		this.ctrl.err_datacore.target_column = "ERR_DATACORE"
 		this.ctrl.err_datacore.data_type = "TEXT"
 		this.ctrl.err_datacore.data_length = 80000
-		this.ctrl.err_datacore.zone_df_code = "DF_1304_1674108302241"
+		this.ctrl.err_datacore.zone_df_code = "DF_1304_1674198409820"
 		this.ctrl.err_datacore.default_value = ""
 		this.ctrl.err_datacore.is_memory_ctrl = ""
 		this.ctrl.err_datacore.field_coordinates = ""
@@ -356,53 +356,54 @@ focustoelement(){
 		this.ctrl.err_datacore.vld_rules = []
 		this.ctrl.err_datacore.targetcolumn_lower = "err_datacore"
 		this.ctrl.err_datacore.disabled = false
-		this.ctrl.err_datacore.view_name = "f_npss_exceptional_srch"
-		this.ctrl.err_datacore.ctrl_id = "npss_exceptional_srch_err_datacore"
-		this.ctrl.npss_exceptional_srch_err_datacore = {}
-		this.ctrl.npss_exceptional_srch_err_datacore.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.err_datacore.view_name = "f_npss_exceptions_srch"
+		this.ctrl.err_datacore.ctrl_id = "npss_exceptions_srch_err_datacore"
+		this.ctrl.npss_exceptions_srch_err_datacore = {}
+		this.ctrl.npss_exceptions_srch_err_datacore.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of memory9
-		this.ctrl.memory9 = {}
-		this.ctrl.memory9.id = "RN21CN11"
-		this.ctrl.memory9.desc = "Created Date"
-		this.ctrl.memory9.visible = true
-		this.ctrl.memory9.label_name = "Created Date"
-		this.ctrl.memory9.df_code = "DF_1304_1674108302241"
-		this.ctrl.memory9.df_description = "Column Group 1"
-		this.ctrl.memory9.uictrl_code = "CDN_DATE"
-		this.ctrl.memory9.target_column = "memory9"
-		this.ctrl.memory9.data_type = "DATETIME"
-		this.ctrl.memory9.data_length = 0
-		this.ctrl.memory9.zone_df_code = "DF_1304_1674108302241"
-		this.ctrl.memory9.default_value = "setcurrentdate(),{}"
-		this.ctrl.memory9.is_memory_ctrl = "Y"
-		this.ctrl.memory9.field_coordinates = ""
-		this.ctrl.memory9.sub_details = ""
-		this.ctrl.memory9.accept_char = ""
-		this.ctrl.memory9.currency_format = ""
-		this.ctrl.memory9.data_scale = ""
-		this.ctrl.memory9.binding_name = "CREATED_DATE"
-		this.ctrl.memory9.depends_on = ""
-		this.ctrl.memory9.placeholder = ""
-		this.ctrl.memory9.dynamic_param = ""
-		this.ctrl.memory9.style_code = ""
-		this.ctrl.memory9.data_source = ""
-		this.ctrl.memory9.image_association = ""
-		this.ctrl.memory9.show = true
-		this.ctrl.memory9.sub_content = ""
-		this.ctrl.memory9.required = false
-		this.ctrl.memory9.vld_rules = []
-		this.ctrl.memory9.targetcolumn_lower = "memory9"
-		this.ctrl.memory9.disabled = false
-		this.ctrl.memory9.view_name = "f_npss_exceptional_srch"
-		this.ctrl.memory9.ctrl_id = "npss_exceptional_srch_memory9"
-		this.ctrl.npss_exceptional_srch_memory9 = {}
-		this.ctrl.npss_exceptional_srch_memory9.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_exceptional_srch.model = {"UETR":"","MESSAGE_DATA":"","PROCESS_SYSTEM":"","PROCESS_NAME":"","CORE":"","REQ_DATA":"","RES_DATA":"","ERR_DATACORE":"","MEMORY9":"setcurrentdate(),{}"}
-		this.screen_instance[this.comp_id].f_npss_exceptional_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MESSAGE_DATA"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_SYSTEM"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CORE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"REQ_DATA"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"RES_DATA"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ERR_DATACORE"}]
-		this.screen_instance[this.comp_id].f_npss_exceptional_srch.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_exceptional_srch.dtt_code = "dtt_1304_1674108265517"
-		this.screen_instance[this.comp_id].f_npss_exceptional_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		//Properties of memory10
+		this.ctrl.memory10 = {}
+		this.ctrl.memory10.id = "RN41CN9"
+		this.ctrl.memory10.desc = "Created Date"
+		this.ctrl.memory10.visible = false
+		this.ctrl.memory10.label_name = "Created Date"
+		this.ctrl.memory10.df_code = "DF_1304_1674198409820"
+		this.ctrl.memory10.df_description = "Column Group 1"
+		this.ctrl.memory10.uictrl_code = "CDN_DATE"
+		this.ctrl.memory10.target_column = "memory10"
+		this.ctrl.memory10.data_type = "DATETIME"
+		this.ctrl.memory10.data_length = 0
+		this.ctrl.memory10.zone_df_code = "DF_1304_1674198409820"
+		this.ctrl.memory10.default_value = "setcurrentdate(),{}"
+		this.ctrl.memory10.is_memory_ctrl = "Y"
+		this.ctrl.memory10.field_coordinates = ""
+		this.ctrl.memory10.sub_details = ""
+		this.ctrl.memory10.accept_char = ""
+		this.ctrl.memory10.currency_format = ""
+		this.ctrl.memory10.data_scale = ""
+		this.ctrl.memory10.binding_name = "CREATED_DATE"
+		this.ctrl.memory10.hide_label = false
+		this.ctrl.memory10.depends_on = ""
+		this.ctrl.memory10.placeholder = ""
+		this.ctrl.memory10.dynamic_param = ""
+		this.ctrl.memory10.style_code = ""
+		this.ctrl.memory10.data_source = ""
+		this.ctrl.memory10.image_association = ""
+		this.ctrl.memory10.show = true
+		this.ctrl.memory10.sub_content = ""
+		this.ctrl.memory10.required = false
+		this.ctrl.memory10.vld_rules = []
+		this.ctrl.memory10.targetcolumn_lower = "memory10"
+		this.ctrl.memory10.disabled = false
+		this.ctrl.memory10.view_name = "f_npss_exceptions_srch"
+		this.ctrl.memory10.ctrl_id = "npss_exceptions_srch_memory10"
+		this.ctrl.npss_exceptions_srch_memory10 = {}
+		this.ctrl.npss_exceptions_srch_memory10.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_exceptions_srch.model = {"UETR":"","MESSAGE_DATA":"","PROCESS_SYSTEM":"","PROCESS_NAME":"","CORE":"","REQ_DATA":"","RES_DATA":"","ERR_DATACORE":"","MEMORY10":"setcurrentdate(),{}"}
+		this.screen_instance[this.comp_id].f_npss_exceptions_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MESSAGE_DATA"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_SYSTEM"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CORE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"REQ_DATA"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"RES_DATA"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ERR_DATACORE"}]
+		this.screen_instance[this.comp_id].f_npss_exceptions_srch.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_npss_exceptions_srch.dtt_code = "dtt_1304_1674198360280"
+		this.screen_instance[this.comp_id].f_npss_exceptions_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -449,10 +450,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_exceptional_srch[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_exceptional_srch[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_exceptions_srch[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_exceptions_srch[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_exceptional_srch[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_exceptions_srch[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

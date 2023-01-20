@@ -1,38 +1,38 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27851 
+Build ID        : 27880 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-19 14:21 PM 
+Modified Date   : 2023-Jan-20 7:45 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_exceptions
-Form Name       : NPSS Exceptional Res UI--------------------------------------------------------------------------- */
+Form Name       : NPSS Excep Request UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_exceptional_res_ui',
-  templateUrl: './f_npss_exceptional_res_ui.component.html',
-  styleUrls: ['./f_npss_exceptional_res_ui.component.css'],
+  selector: 'f_npss_excep_request_ui',
+  templateUrl: './f_npss_excep_request_ui.component.html',
+  styleUrls: ['./f_npss_excep_request_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_exceptional_res_uiComponent implements OnInit {
+export class f_npss_excep_request_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_exceptional_res_ui') form;
-  @ViewChild('npss_exceptional_res_ui_res_data') element: ElementRef;
+  @ViewChild('f_npss_excep_request_ui') form;
+  @ViewChild('npss_excep_request_ui_req_data') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
 	ctrl : any = {}
 	dt_code : string = "dt_1304_1665901130705"
-	dtt_code : string = "dtt_1304_1674108265517"
+	dtt_code : string = "dtt_1304_1674198360280"
 
   
   // Constructor 
@@ -48,48 +48,48 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
-		//Properties of res_data
-		this.ctrl.res_data = {}
-		this.ctrl.res_data.id = "RN01CN1"
-		this.ctrl.res_data.desc = "Response Data"
-		this.ctrl.res_data.visible = false
-		this.ctrl.res_data.label_name = "Response Data"
-		this.ctrl.res_data.df_code = "DF_1304_1674108302241"
-		this.ctrl.res_data.df_description = "Column Group 1"
-		this.ctrl.res_data.uictrl_code = "RICH_TXT"
-		this.ctrl.res_data.target_column = "RES_DATA"
-		this.ctrl.res_data.data_type = "TEXT"
-		this.ctrl.res_data.data_length = 80000
-		this.ctrl.res_data.zone_df_code = "DF_1304_1674108302241"
-		this.ctrl.res_data.default_value = ""
-		this.ctrl.res_data.is_memory_ctrl = ""
-		this.ctrl.res_data.field_coordinates = ""
-		this.ctrl.res_data.sub_details = ""
-		this.ctrl.res_data.accept_char = ""
-		this.ctrl.res_data.currency_format = ""
-		this.ctrl.res_data.data_scale = ""
-		this.ctrl.res_data.hide_label = false
-		this.ctrl.res_data.depends_on = ""
-		this.ctrl.res_data.placeholder = ""
-		this.ctrl.res_data.dynamic_param = ""
-		this.ctrl.res_data.style_code = ""
-		this.ctrl.res_data.data_source = ""
-		this.ctrl.res_data.image_association = ""
-		this.ctrl.res_data.show = true
-		this.ctrl.res_data.sub_content = ""
-		this.ctrl.res_data.required = false
-		this.ctrl.res_data.vld_rules = []
-		this.ctrl.res_data.targetcolumn_lower = "res_data"
-		this.ctrl.res_data.disabled = false
-		this.ctrl.res_data.view_name = "f_npss_exceptional_res_ui"
-		this.ctrl.res_data.ctrl_id = "npss_exceptional_res_ui_res_data"
-		this.ctrl.npss_exceptional_res_ui_res_data = {}
-		this.ctrl.npss_exceptional_res_ui_res_data.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_exceptional_res_ui.model = {"RES_DATA":""}
-		this.screen_instance[this.comp_id].f_npss_exceptional_res_ui.Meta = [{"CTLR_CODE":"RICH_TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"RES_DATA"}]
-		this.screen_instance[this.comp_id].f_npss_exceptional_res_ui.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_exceptional_res_ui.dtt_code = "dtt_1304_1674108265517"
-		this.screen_instance[this.comp_id].f_npss_exceptional_res_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		//Properties of req_data
+		this.ctrl.req_data = {}
+		this.ctrl.req_data.id = "RN01CN1"
+		this.ctrl.req_data.desc = "Request Data"
+		this.ctrl.req_data.visible = false
+		this.ctrl.req_data.label_name = "Request Data"
+		this.ctrl.req_data.df_code = "DF_1304_1674198409820"
+		this.ctrl.req_data.df_description = "Column Group 1"
+		this.ctrl.req_data.uictrl_code = "RICH_TXT"
+		this.ctrl.req_data.target_column = "REQ_DATA"
+		this.ctrl.req_data.data_type = "TEXT"
+		this.ctrl.req_data.data_length = 80000
+		this.ctrl.req_data.zone_df_code = "DF_1304_1674198409820"
+		this.ctrl.req_data.default_value = ""
+		this.ctrl.req_data.is_memory_ctrl = ""
+		this.ctrl.req_data.field_coordinates = ""
+		this.ctrl.req_data.sub_details = ""
+		this.ctrl.req_data.accept_char = ""
+		this.ctrl.req_data.currency_format = ""
+		this.ctrl.req_data.data_scale = ""
+		this.ctrl.req_data.hide_label = false
+		this.ctrl.req_data.depends_on = ""
+		this.ctrl.req_data.placeholder = ""
+		this.ctrl.req_data.dynamic_param = ""
+		this.ctrl.req_data.style_code = ""
+		this.ctrl.req_data.data_source = ""
+		this.ctrl.req_data.image_association = ""
+		this.ctrl.req_data.show = true
+		this.ctrl.req_data.sub_content = ""
+		this.ctrl.req_data.required = false
+		this.ctrl.req_data.vld_rules = []
+		this.ctrl.req_data.targetcolumn_lower = "req_data"
+		this.ctrl.req_data.disabled = false
+		this.ctrl.req_data.view_name = "f_npss_excep_request_ui"
+		this.ctrl.req_data.ctrl_id = "npss_excep_request_ui_req_data"
+		this.ctrl.npss_excep_request_ui_req_data = {}
+		this.ctrl.npss_excep_request_ui_req_data.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_excep_request_ui.model = {"REQ_DATA":""}
+		this.screen_instance[this.comp_id].f_npss_excep_request_ui.Meta = [{"CTLR_CODE":"RICH_TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"REQ_DATA"}]
+		this.screen_instance[this.comp_id].f_npss_excep_request_ui.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_npss_excep_request_ui.dtt_code = "dtt_1304_1674198360280"
+		this.screen_instance[this.comp_id].f_npss_excep_request_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -136,10 +136,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_exceptional_res_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_exceptional_res_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_excep_request_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_excep_request_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_exceptional_res_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_excep_request_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

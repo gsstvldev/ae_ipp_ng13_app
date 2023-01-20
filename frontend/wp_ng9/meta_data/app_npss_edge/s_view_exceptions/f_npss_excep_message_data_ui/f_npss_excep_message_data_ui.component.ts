@@ -1,38 +1,38 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27851 
+Build ID        : 27880 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-19 14:21 PM 
+Modified Date   : 2023-Jan-20 7:45 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_exceptions
-Form Name       : NPSS Exceptional Message dataUI--------------------------------------------------------------------------- */
+Form Name       : NPSS Excep Message data UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_exceptional_message_dataui',
-  templateUrl: './f_npss_exceptional_message_dataui.component.html',
-  styleUrls: ['./f_npss_exceptional_message_dataui.component.css'],
+  selector: 'f_npss_excep_message_data_ui',
+  templateUrl: './f_npss_excep_message_data_ui.component.html',
+  styleUrls: ['./f_npss_excep_message_data_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_exceptional_message_datauiComponent implements OnInit {
+export class f_npss_excep_message_data_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_exceptional_message_dataui') form;
-  @ViewChild('npss_exceptional_message_dataui_message_data') element: ElementRef;
+  @ViewChild('f_npss_excep_message_data_ui') form;
+  @ViewChild('npss_excep_message_data_ui_message_data') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
 	ctrl : any = {}
 	dt_code : string = "dt_1304_1665901130705"
-	dtt_code : string = "dtt_1304_1674108265517"
+	dtt_code : string = "dtt_1304_1674198360280"
 
   
   // Constructor 
@@ -54,13 +54,13 @@ focustoelement(){
 		this.ctrl.message_data.desc = "Message Data"
 		this.ctrl.message_data.visible = false
 		this.ctrl.message_data.label_name = "Message Data"
-		this.ctrl.message_data.df_code = "DF_1304_1674108302241"
+		this.ctrl.message_data.df_code = "DF_1304_1674198409820"
 		this.ctrl.message_data.df_description = "Column Group 1"
 		this.ctrl.message_data.uictrl_code = "RICH_TXT"
 		this.ctrl.message_data.target_column = "MESSAGE_DATA"
 		this.ctrl.message_data.data_type = "TEXT"
 		this.ctrl.message_data.data_length = 80000
-		this.ctrl.message_data.zone_df_code = "DF_1304_1674108302241"
+		this.ctrl.message_data.zone_df_code = "DF_1304_1674198409820"
 		this.ctrl.message_data.default_value = ""
 		this.ctrl.message_data.is_memory_ctrl = ""
 		this.ctrl.message_data.field_coordinates = ""
@@ -81,15 +81,15 @@ focustoelement(){
 		this.ctrl.message_data.vld_rules = []
 		this.ctrl.message_data.targetcolumn_lower = "message_data"
 		this.ctrl.message_data.disabled = false
-		this.ctrl.message_data.view_name = "f_npss_exceptional_message_dataui"
-		this.ctrl.message_data.ctrl_id = "npss_exceptional_message_dataui_message_data"
-		this.ctrl.npss_exceptional_message_dataui_message_data = {}
-		this.ctrl.npss_exceptional_message_dataui_message_data.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_exceptional_message_dataui.model = {"MESSAGE_DATA":""}
-		this.screen_instance[this.comp_id].f_npss_exceptional_message_dataui.Meta = [{"CTLR_CODE":"RICH_TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MESSAGE_DATA"}]
-		this.screen_instance[this.comp_id].f_npss_exceptional_message_dataui.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_exceptional_message_dataui.dtt_code = "dtt_1304_1674108265517"
-		this.screen_instance[this.comp_id].f_npss_exceptional_message_dataui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		this.ctrl.message_data.view_name = "f_npss_excep_message_data_ui"
+		this.ctrl.message_data.ctrl_id = "npss_excep_message_data_ui_message_data"
+		this.ctrl.npss_excep_message_data_ui_message_data = {}
+		this.ctrl.npss_excep_message_data_ui_message_data.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_excep_message_data_ui.model = {"MESSAGE_DATA":""}
+		this.screen_instance[this.comp_id].f_npss_excep_message_data_ui.Meta = [{"CTLR_CODE":"RICH_TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MESSAGE_DATA"}]
+		this.screen_instance[this.comp_id].f_npss_excep_message_data_ui.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_npss_excep_message_data_ui.dtt_code = "dtt_1304_1674198360280"
+		this.screen_instance[this.comp_id].f_npss_excep_message_data_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -136,10 +136,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_exceptional_message_dataui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_exceptional_message_dataui[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_excep_message_data_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_excep_message_data_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_exceptional_message_dataui[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_excep_message_data_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

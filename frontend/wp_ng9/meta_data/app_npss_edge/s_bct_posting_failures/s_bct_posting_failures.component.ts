@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27847 
+Build ID        : 27849 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-14 11:24 AM 
+Modified Date   : 2023-Jan-20 11:6 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_failures
@@ -30,7 +30,7 @@ export class s_bct_posting_failuresComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_bct_posting_failures"
 	wftpa_id : string = "WFT_NPSS_P_1304_1669011248151_0"
 	cg_code : string = "CG_1304_1669009980673"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID"}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674108265517":"CNC_ID","dtt_1304_1674198360280":"NPSSE_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []

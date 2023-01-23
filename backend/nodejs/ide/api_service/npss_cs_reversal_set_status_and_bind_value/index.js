@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
     try {
@@ -162,17 +163,22 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             sendResponse(null, objresponse)
                                                         }
                                                     } else {
+
                                                         if (params.screenName == 's_rct_reversal_non_aed' && params.roleId == '708') {
+                                                            var GetProcessRefno = await TakeRefno()
                                                             ExecuteQuery1(getcltDtl, function (arrfulldata) {
                                                                 if (arrfulldata.length > 0) {
                                                                     var dataform = {}
                                                                     var formsub = ''
-                                                                    var param = JSON.parse(arrfulldata[0].param_value)
-                                                                    dataform['status'] = param["General"]["subgroup"][0]["status"]
-                                                                    dataform['process_status'] = param["General"]["subgroup"][0]["process_status"]
+                                                                    var FormatData
                                                                     for (let i in dataform) {
                                                                         if (dataform[i] != '') {
-                                                                            formsub += ` and  ${i} = '${dataform[i]}' `
+                                                                            if (dataform[i].includes(',')) {
+                                                                                FormatData = '(' + "'" + dataform[i].toString().split(',').join("','") + "'" + ')'
+                                                                                formsub += ` and  ${i} in ${FormatData}`
+                                                                            } else {
+                                                                                formsub += ` and  ${i} in ${'('} '${dataform[i]}' ${')'} `
+                                                                            }
                                                                         }
                                                                     }
                                                                     var getparamfullDeyails = `select exchange_rate ,contra_amount ,sell_currency ,buy_currency ,dealt_amount  from npss_trn_process_log  where uetr = '${params.uetr}' ${formsub}`
@@ -189,6 +195,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             objresponse.data.sell_currency = arrgetparamfullDtls[0].sell_currency
                                                                             objresponse.data.buy_currency = arrgetparamfullDtls[0].buy_currency
                                                                             objresponse.data.dealt_amount = arrgetparamfullDtls[0].dealt_amount
+                                                                            objresponse.data.process_ref_no = GetProcessRefno
                                                                             sendResponse(null, objresponse)
                                                                         } else {
                                                                             objresponse.status = 'NOFAILURE'
@@ -345,6 +352,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

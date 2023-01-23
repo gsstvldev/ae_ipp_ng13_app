@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27849 
+Build ID        : 27886 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-20 11:6 AM 
+Modified Date   : 2023-Jan-23 7:59 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -26,7 +26,7 @@ export class f_npss_reversal_plog_uiComponent implements OnInit {
   hasHeader:boolean;
   component_header:string;
   @ViewChild('f_npss_reversal_plog_ui') form;
-  @ViewChild('npss_reversal_plog_ui_amount_credited') element: ElementRef;
+  @ViewChild('npss_reversal_plog_ui_process_ref_no') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -48,6 +48,44 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
+		//Properties of process_ref_no
+		this.ctrl.process_ref_no = {}
+		this.ctrl.process_ref_no.id = "RN01CN4"
+		this.ctrl.process_ref_no.desc = "Core Sys Ref No"
+		this.ctrl.process_ref_no.visible = true
+		this.ctrl.process_ref_no.label_name = "Core Sys Ref No"
+		this.ctrl.process_ref_no.df_code = "DF_1304_1665905157963"
+		this.ctrl.process_ref_no.df_description = "Column Group 1"
+		this.ctrl.process_ref_no.uictrl_code = "TXT"
+		this.ctrl.process_ref_no.target_column = "PROCESS_REF_NO"
+		this.ctrl.process_ref_no.data_type = "TEXT"
+		this.ctrl.process_ref_no.data_length = 64
+		this.ctrl.process_ref_no.zone_df_code = "DF_1304_1665905157963"
+		this.ctrl.process_ref_no.default_value = ""
+		this.ctrl.process_ref_no.is_memory_ctrl = ""
+		this.ctrl.process_ref_no.field_coordinates = ""
+		this.ctrl.process_ref_no.sub_details = ""
+		this.ctrl.process_ref_no.accept_char = ""
+		this.ctrl.process_ref_no.currency_format = ""
+		this.ctrl.process_ref_no.data_scale = ""
+		this.ctrl.process_ref_no.hide_label = false
+		this.ctrl.process_ref_no.depends_on = ""
+		this.ctrl.process_ref_no.placeholder = ""
+		this.ctrl.process_ref_no.dynamic_param = ""
+		this.ctrl.process_ref_no.style_code = ""
+		this.ctrl.process_ref_no.data_source = ""
+		this.ctrl.process_ref_no.image_association = ""
+		this.ctrl.process_ref_no.show = true
+		this.ctrl.process_ref_no.sub_content = ""
+		this.ctrl.process_ref_no.required = false
+		this.ctrl.process_ref_no.vld_rules = []
+		this.ctrl.process_ref_no.targetcolumn_lower = "process_ref_no"
+		this.ctrl.process_ref_no.disabled = false
+		this.ctrl.process_ref_no.view_name = "f_npss_reversal_plog_ui"
+		this.ctrl.process_ref_no.ctrl_id = "npss_reversal_plog_ui_process_ref_no"
+		this.ctrl.npss_reversal_plog_ui_process_ref_no = {}
+		this.ctrl.npss_reversal_plog_ui_process_ref_no.onChangecomponent = new EventEmitter<any>()
+	
 		//Properties of amount_credited
 		this.ctrl.amount_credited = {}
 		this.ctrl.amount_credited.id = "RN01CN1"
@@ -161,8 +199,8 @@ focustoelement(){
 		this.ctrl.charge_amount.ctrl_id = "npss_reversal_plog_ui_charge_amount"
 		this.ctrl.npss_reversal_plog_ui_charge_amount = {}
 		this.ctrl.npss_reversal_plog_ui_charge_amount.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.model = {"AMOUNT_CREDITED":"","AMT_CR_LOC_CUR":"","CHARGE_AMOUNT":""}
-		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"AMOUNT_CREDITED"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMT_CR_LOC_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"}]
+		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.model = {"PROCESS_REF_NO":"","AMOUNT_CREDITED":"","AMT_CR_LOC_CUR":"","CHARGE_AMOUNT":""}
+		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"AMOUNT_CREDITED"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMT_CR_LOC_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"}]
 		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.dtt_code = "dtt_1304_1665905039255"
 		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

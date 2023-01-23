@@ -9,10 +9,11 @@
 <p_vertical_tran_detail_profile [screen_instance]="this" [hidden]="!(current_profile=='p_vertical_tran_detail_profile')"></p_vertical_tran_detail_profile>
 <p_main_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_layout')"></p_main_layout>
 
-<p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_for_search_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '400px','width': '650px'}" [draggable]="true" [modal]="true">
+<p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_for_search_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '500px','width': '550px'}" [draggable]="true" [modal]="true">
 	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>
 <app-dialog [screen_instance]="this" ></app-dialog>
 <div style="display:none">
 	<datatable [comp_id]="'process_log_list'" [screen_instance]="this"></datatable>
+	<f_search_info_ui [comp_id]="'search_info_ui'" [screen_instance]="this" ></f_search_info_ui >
 </div>
 </div>

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27890 
+Build ID        : 27894 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-23 11:42 AM 
+Modified Date   : 2023-Jan-23 13:22 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -40,8 +40,8 @@ import { s_rct_manual_initiationRoutingModule } from './s_rct_manual_initiation.
 
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
+import { f_search_info_uiComponent } from './f_search_info_ui/f_search_info_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_npss_mi_search_info_srchComponent } from './f_npss_mi_search_info_srch/f_npss_mi_search_info_srch.component'
 import { f_npss_manual_initiation_srchComponent } from './f_npss_manual_initiation_srch/f_npss_manual_initiation_srch.component'
 import { p_initate_layoutComponent } from './p_initate_layout/p_initate_layout.component'
 import { f_npss_manual_initiation_uiComponent } from './f_npss_manual_initiation_ui/f_npss_manual_initiation_ui.component'
@@ -76,7 +76,7 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     s_rct_manual_initiationRoutingModule,
     torus_cs_change_routingkeyModule,torus_cs_show_hideModule,torus_cs_set_rule_mi_paramModule,npss_cs_outward_manual_initiationModule,npss_cs_send_to_checkerModule,npss_cs_manual_initiation_approveModule,npss_cs_manual_initiation_rejectModule
   ],
-  declarations: [s_rct_manual_initiationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_mi_search_info_srchComponent,f_npss_manual_initiation_srchComponent,p_initate_layoutComponent,f_npss_manual_initiation_uiComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
+  declarations: [s_rct_manual_initiationComponent,p_main_layoutComponent,f_navigation_uiComponent,f_search_info_uiComponent,p_search_layoutComponent,f_npss_manual_initiation_srchComponent,p_initate_layoutComponent,f_npss_manual_initiation_uiComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

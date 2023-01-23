@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27890 
+Build ID        : 27894 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-23 11:42 AM 
+Modified Date   : 2023-Jan-23 13:22 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -40,6 +40,7 @@ import { s_op_rct_reversalRoutingModule } from './s_op_rct_reversal.routing.modu
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
+import { f_npss_mi_ui_dbtr_infoComponent } from './f_npss_mi_ui_dbtr_info/f_npss_mi_ui_dbtr_info.component'
 import { f_npss_op_reversal_srchComponent } from './f_npss_op_reversal_srch/f_npss_op_reversal_srch.component'
 import { p_vertical_layoutComponent } from './p_vertical_layout/p_vertical_layout.component'
 import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
@@ -76,7 +77,7 @@ import { f_npss_send_to_maker_uiComponent } from './f_npss_send_to_maker_ui/f_np
     s_op_rct_reversalRoutingModule,
     torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_set_reversal_prd_system_setup_dateModule,npss_cs_reversal_initiateModule,npss_cs_rct_rev_approveModule,npss_cs_reversal_send_to_makerModule
   ],
-  declarations: [s_op_rct_reversalComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_op_reversal_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_single_back_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,p_initate_layoutComponent,f_npss_op_reversal_uiComponent,p_send_to_maker_layoutComponent,f_npss_send_to_maker_uiComponent,],
+  declarations: [s_op_rct_reversalComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_mi_ui_dbtr_infoComponent,f_npss_op_reversal_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_single_back_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,p_initate_layoutComponent,f_npss_op_reversal_uiComponent,p_send_to_maker_layoutComponent,f_npss_send_to_maker_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

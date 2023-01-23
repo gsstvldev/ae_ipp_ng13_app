@@ -163,9 +163,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             sendResponse(null, objresponse)
                                                         }
                                                     } else {
-
+                                                         var GetProcessRefno = await TakeRefno()
                                                         if (params.screenName == 's_rct_reversal_non_aed' && params.roleId == '708') {
-                                                            var GetProcessRefno = await TakeRefno()
+                                                          
                                                             ExecuteQuery1(getcltDtl, function (arrfulldata) {
                                                                 if (arrfulldata.length > 0) {
                                                                     var dataform = {}
@@ -212,8 +212,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             })
 
                                                         } else {
-                                                            objresponse.status = 'NOFAILURE'
-                                                            objresponse.data.msg = 'No credit,charge amount found'
+                                                            objresponse.status = 'SUCCESS'
+                                                            objresponse.data.process_ref_no = GetProcessRefno
                                                             sendResponse(null, objresponse)
                                                         }
                                                     }

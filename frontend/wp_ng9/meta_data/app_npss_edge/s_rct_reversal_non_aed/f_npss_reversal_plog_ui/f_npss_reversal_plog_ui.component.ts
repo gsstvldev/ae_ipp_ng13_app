@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27890 
+Build ID        : 27894 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-23 11:42 AM 
+Modified Date   : 2023-Jan-23 13:22 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -127,9 +127,9 @@ focustoelement(){
 		//Properties of amt_cr_loc_cur
 		this.ctrl.amt_cr_loc_cur = {}
 		this.ctrl.amt_cr_loc_cur.id = "RN01CN1001"
-		this.ctrl.amt_cr_loc_cur.desc = "Amount Credited in Loc Currency"
+		this.ctrl.amt_cr_loc_cur.desc = "Amount Credited in Loc"
 		this.ctrl.amt_cr_loc_cur.visible = true
-		this.ctrl.amt_cr_loc_cur.label_name = "Amount Credited in Loc Currency"
+		this.ctrl.amt_cr_loc_cur.label_name = "Amount Credited in Loc"
 		this.ctrl.amt_cr_loc_cur.df_code = "DF_1304_1665905157963"
 		this.ctrl.amt_cr_loc_cur.df_description = "Column Group 1"
 		this.ctrl.amt_cr_loc_cur.uictrl_code = "CUR"

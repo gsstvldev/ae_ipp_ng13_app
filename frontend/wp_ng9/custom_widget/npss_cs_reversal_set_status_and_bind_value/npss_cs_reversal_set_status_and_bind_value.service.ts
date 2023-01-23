@@ -58,6 +58,7 @@ export class npss_cs_reversal_set_status_and_bind_valueService {
                     CtrlScope.AMOUNT_CREDITED = res.data.data.amount_credited
                     CtrlScope.AMT_CR_LOC_CUR = res.data.data.amt_cr_loc_cur
                     CtrlScope.CHARGE_AMOUNT = res.data.data.charge_amount
+                     CtrlScope.PROCESS_REF_NO = res.data.data.process_ref_no
 
                     let roleId  = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES")
                     if (roleId == '708' && screenInstance.wftpa_description == 's_rct_reversal_non_aed') {

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27894 
+Build ID        : 27897 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-23 13:22 PM 
+Modified Date   : 2023-Jan-23 15:18 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -100,7 +100,7 @@ focustoelement(){
 		this.ctrl.memory89.data_type = "DATETIME"
 		this.ctrl.memory89.data_length = 0
 		this.ctrl.memory89.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory89.default_value = ""
+		this.ctrl.memory89.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory89.is_memory_ctrl = "Y"
 		this.ctrl.memory89.field_coordinates = ""
 		this.ctrl.memory89.sub_details = ""
@@ -242,7 +242,7 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.ctrl_id = "npss_manual_initiation_srch_payment_endtoend_id"
 		this.ctrl.npss_manual_initiation_srch_payment_endtoend_id = {}
 		this.ctrl.npss_manual_initiation_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_manual_initiation_srch.model = {"MEMORY91":"","MEMORY89":"","MEMORY92":"","UETR":"","PAYMENT_ENDTOEND_ID":""}
+		this.screen_instance[this.comp_id].f_npss_manual_initiation_srch.model = {"MEMORY91":"","MEMORY89":"setcurrentdate(),{}","MEMORY92":"","UETR":"","PAYMENT_ENDTOEND_ID":""}
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"}]
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_srch.dtt_code = "dtt_1304_1665901217208"

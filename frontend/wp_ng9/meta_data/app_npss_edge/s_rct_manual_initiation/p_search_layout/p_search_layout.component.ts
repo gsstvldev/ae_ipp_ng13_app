@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27888 
+Build ID        : 27890 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-23 7:38 AM 
+Modified Date   : 2023-Jan-23 11:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -22,7 +22,8 @@ export class p_search_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	search : any = {}
+  	search_info_ui : any = {}
+	search : any = {}
 
 
   // Constructor 
@@ -30,7 +31,9 @@ export class p_search_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.search.desc = "Search"
+    	this.search_info_ui.desc = "Search Info UI"
+		this.search_info_ui.need_header = ""
+		this.search.desc = "Search"
 		this.search.need_header = ""
 	
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27888 
+Build ID        : 27890 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-23 7:38 AM 
+Modified Date   : 2023-Jan-23 11:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -59,6 +59,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	uicgc_19 : string = "original_transaction_details"
 	uicgc_20 : string = "payment_processing_details"
 	uicgc_21 : string = "payment_processing_details_ui"
+	uicgc_22 : string = "search_info_ui"
 	key_events : any = {}
 	btl_1304_1672489774529 : string = "p_initate_layout"
 	btl_1304_1670245368385 : string = "p_view_req_and_res"
@@ -71,7 +72,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_16","uicgc_6","uicgc_14","uicgc_21","uicgc_4","uicgc_18","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
+	forms : any = ["uicgc_16","uicgc_6","uicgc_14","uicgc_22","uicgc_21","uicgc_4","uicgc_18","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
@@ -116,6 +117,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	payment_processing_details_ui : any = {}
 	payment_processing_details_ui_back : any = {}
 	payment_processing_details_ui_save : any = {}
+	search_info_ui : any = {}
 
 
 	// Constructor 
@@ -598,6 +600,20 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.payment_processing_details_ui_save.dynamic_param = {}
 		this.payment_processing_details_ui_save.role = []
 		this.payment_processing_details_ui_save.action = ""
+	
+		// Component level properties - "Search Info UI" 
+		this.search_info_ui.uictrl_code = "dynamic_form_search"
+		this.search_info_ui.uicgc_desc = "Search Info UI"
+		this.search_info_ui.uicgc_code = "uicgc_22"
+		this.search_info_ui.params = {}
+		this.search_info_ui.datasource = {}
+		this.search_info_ui.context_menu = []
+		this.search_info_ui.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS MI Search Info SRCH","tab_order":0,"tab_name":"","uicgc_description":"Search Info UI","role_description":"default","dtt_description":"NPSS Transactions"}]}}
+		this.search_info_ui.onChangecomponent = new EventEmitter<any>()
+		this.search_info_ui.show = true
+		this.search_info_ui.dynamic_param = {}
+		this.search_info_ui.f_npss_mi_search_info_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.search_info_ui.form_name = "f_npss_mi_search_info_srch"
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -633,7 +649,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.search_search__cu_for_tl()
 		this.search_search__de_from_search_to_view_log_hst()
 		this.search_search__de_from_search_to_view_message_details()
-		this.search_search__validate_ele()
+		this.search_search__ve_for_search_info()
 	}
 
 	//Handler for INTERNAL event of "validate ele"
@@ -649,6 +665,11 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "brfq for queue"
 	brfq_for_queue__internal(parent_event_result){
 		this.brfq_for_queue__cp_after_search(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "ve for search info"
+	ve_for_search_info__internal(parent_event_result){
+		this.ve_for_search_info__validate_ele(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "queue"
@@ -914,6 +935,11 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.payment_processing_details_ui_back__rs_for_initate_back()
 	}
 
+	//Handler for SELECTION_CHANGED event of "npss mi search info srch memory97"
+	npss_mi_search_info_srch_memory97__selection_changed(){
+		this.npss_mi_search_info_srch_memory97__shc_for_search_info_to_search__search_info_ui()
+	}
+
 	//Handler for DPSINIT event of "page_load"
 	page_load__he_from_pg_to_view_details() { 
 		let Dest_Is_ctrl=true
@@ -1127,16 +1153,16 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
-	search_search__validate_ele() { 
+	search_search__ve_for_search_info() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="search_search"
-		let destn_id="search"
+		let destn_id="search_info_ui"
 		let parent_source_id=""
-		let event_code="e_1672633883134"
-		let event_params={"caller_name":"search_search__validate_ele","event_desc":"Validate Ele","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
+		let event_code="e_1674473871087"
+		let event_params={"caller_name":"search_search__ve_for_search_info","event_desc":"VE for Search Info","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
 		let handler_code="validate_elements"
-		let internals="validate_ele__ssp_for_search,"
+		let internals="ve_for_search_info__validate_ele,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -1154,7 +1180,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="validate_ele"
 		let destn_id="search"
-		let parent_source_id="search_search"
+		let parent_source_id="ve_for_search_info"
 		let event_code="e_1672633889966"
 		let event_params={"caller_name":"validate_ele__ssp_for_search","event_desc":"SSP for search","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="set_search_params"
@@ -1207,6 +1233,28 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.close_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ve for search info"
+	ve_for_search_info__validate_ele(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ve_for_search_info"
+		let destn_id="search"
+		let parent_source_id="search_search"
+		let event_code="e_1672633883134"
+		let event_params={"caller_name":"ve_for_search_info__validate_ele","event_desc":"Validate Ele","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="validate_elements"
+		let internals="validate_ele__ssp_for_search,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2802,6 +2850,27 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "npss mi search info srch memory97"
+	npss_mi_search_info_srch_memory97__shc_for_search_info_to_search__search_info_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="npss_mi_search_info_srch_memory97"
+		let destn_id="search"
+		let parent_source_id=""
+		let event_code="e_1674473311577"
+		let event_params={"source_comp_id":"search_info_ui","source_ctrl_id":"memory97","caller_name":"npss_mi_search_info_srch_memory97__shc_for_search_info_to_search__search_info_ui","event_desc":"SHC for Search Info to Search","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_mi_search_info_srch~uicgc_22~sch~df_1304_1665901396659~97","raiseparam":{}}
+		let handler_code="show_hide_controls"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_hide_controls(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

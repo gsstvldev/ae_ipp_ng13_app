@@ -33,6 +33,7 @@ export class npss_cs_outward_manual_initiationService {
         ClientParams.AppId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");
         ClientParams.TENANT_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
          ClientParams.RULE_CODE = 'OUTWARD_MANUAL_INITIATION'
+           ClientParams.NPSSTPL_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSTPL_ID") || '';
         ClientParams.screenName = screenInstance.wftpa_description
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

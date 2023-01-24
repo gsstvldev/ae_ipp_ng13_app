@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
     try {
@@ -30,6 +31,7 @@ app.post('/', function(appRequest, appResponse, next) {
          Reason for : adding fn_pcidss_decrypt for taking masked cr_acct_identification_code 08/01/20233
           Reason for : Changing response and adding forcetoposflag N to reserver fund api
             Reason for : Removing console log 17/01/2023
+            Reason for : changing Bulk insert positon
         */
         var serviceName = 'NPSS IP REV Accept INAU Reserve Fund';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -76,15 +78,11 @@ app.post('/', function(appRequest, appResponse, next) {
                             var final_status
                             var final_process_status
 
-                            //  var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL'`;
+                            
 
                             var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_IP_REV_REQ_ACCEPT' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
 
-                            // var take_api_params = `select  ns.remittance_info,ns.cr_acct_identification,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method,
-                            // ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,
-                            //  ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt,
-                            //  ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm
-                            //  from npss_transactions ns  where npsst_id = '${params.Tran_Id}'`;
+                           
                             var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`
                             var Takeretcode = `select param_code,param_detail from core_nc_system_setup where param_category='REVERSAL RETURN CODE' and product_code = '${params.PROD_CODE}' and status = 'APPROVED'`
                             if (params.PROD_CODE == 'NPSS_AEFAB') {
@@ -97,46 +95,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             if (arrcode.length > 0) {
                                                 ExecuteQuery1(take_api_params, function (arrprocesslog) {
                                                     if (arrprocesslog.length) {
-                                                        var arrCusTranInst = [];
-                                                        var objCusTranInst = {};
-
-                                                        objCusTranInst.MSG_ID = arrprocesslog[0].hdr_msg_id;
-                                                        objCusTranInst.PRCT_ID = PRCT_ID;
-                                                        objCusTranInst.REVERSAL_CODE = arrprocesslog[0].revrsal_code
-                                                        objCusTranInst.UETR = arrprocesslog[0].uetr;
-                                                        objCusTranInst.NPSSTRRD_REFNO = arrprocesslog[0].tran_ref_id;
-                                                        objCusTranInst.PROCESS_NAME = 'Accept Reversal'
-                                                        objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
-                                                        objCusTranInst.PROCESS_STATUS = final_process_status;
-                                                        objCusTranInst.STATUS = final_status;
-                                                        objCusTranInst.TENANT_ID = params.TENANT_ID;
-                                                        objCusTranInst.APP_ID = '215'
-                                                        objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
-                                                        objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
-                                                        objCusTranInst.DT_DESCRIPTION = 'transaction_group'
-                                                        objCusTranInst.DTT_DESCRIPTION = 'Transaction'
-                                                        objCusTranInst.CREATED_BY = params.CREATED_BY;
-                                                        objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
-                                                        objCusTranInst.T24_RETURN_CODE = null;
-                                                        objCusTranInst.CBUAE_RETURN_CODE = arrcode[0].param_code;
-                                                        objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                                                        objCusTranInst.MODIFIED_BY = "";
-                                                        objCusTranInst.MODIFIED_BY_NAME = "";
-                                                        objCusTranInst.MODIFIED_DATE = null;
-                                                        objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
-                                                        objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
-                                                        objCusTranInst.CREATED_BY_STS_ID = "";
-                                                        objCusTranInst.MODIFIED_BY_STS_ID = "";
-                                                        objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
-                                                        objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
-                                                        objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
-                                                        objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
-                                                        objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
-                                                        objCusTranInst.routingkey = headers.routingkey;
-                                                        arrCusTranInst.push(objCusTranInst)
-
-                                                        _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
-                                                            var lclinstrm
+                                                        var lclinstrm
                                                             if (arrprocesslog[0].message_data !== null) {
 
                                                                 var parser = new xml2js.Parser({ strict: false, trim: true });
@@ -150,6 +109,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             else {
                                                                 lclinstrm = ""
                                                             }
+
+                                                    
+                                                          
                                                             ExecuteQuery1(take_api_params, async function (arrprocesslog) {
                                                                 // chkapicall = 0 --> Resurve Fund api call
                                                                 // chkapicall = 1 --> prepaid card api call
@@ -178,9 +140,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     reverseAcinfparam = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
                                                                 }
 
-                                                                //var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
-                                                                // ExecuteQuery1(TakeAcctInf, function (arrActInf) {
-                                                                // if (arrActInf.length) {
+                                                              
                                                                 if (apicalls == 0 || apicalls == '0') { // Reserve api call
                                                                     take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL'`;
                                                                 } else if (apicalls == 1 || apicalls == '1') { //Prepaid  api Call
@@ -196,8 +156,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         if (params.screenName == 's_rct_reversal_non_aed') {
                                                                             var Takecontraamount = `select contra_amount from npss_trn_process_log where status = 'IP_RCT_REV_DEAL_RECEIVED' and uetr = '${arrprocesslog[0].uetr}' `
                                                                             ExecuteQuery1(Takecontraamount, async function (arramount) {
-                                                                                // var contra_amount = arramount[0].contra_amount || ''
-                                                                                // var reversal_amount = arrprocesslog[0].reversal_amount || ''
+                                                                              
                                                                                 if (arramount.length > 0) {
                                                                                     if (arramount[0].contra_amount && arrprocesslog[0].reversal_amount) {
                                                                                         if (Number(arramount[0].contra_amount) > Number(arrprocesslog[0].reversal_amount)) {
@@ -211,19 +170,25 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                         var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls)
 
                                                                                         if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
-                                                                                            var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-
-                                                                                            ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                                                if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                                    objresponse.status = 'SUCCESS';
-                                                                                                    sendResponse(null, objresponse);
-
-                                                                                                } else {
-                                                                                                    objresponse.status = 'No Data Updated in Transaction Table';
-                                                                                                    sendResponse(null, objresponse);
-
-                                                                                                }
-                                                                                            })
+                                                                                            var InsertTable = await ProcessInstData(arrprocesslog,final_status,final_process_status,PRCT_ID,arrcode)
+                                                                                            if(InsertTable.length > 0){
+                                                                                                var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                                ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                                                    if (arrUpdTranTbl == 'SUCCESS') {
+                                                                                                        objresponse.status = 'SUCCESS';
+                                                                                                        sendResponse(null, objresponse);
+    
+                                                                                                    } else {
+                                                                                                        objresponse.status = 'No Data Updated in Transaction Table';
+                                                                                                        sendResponse(null, objresponse);
+    
+                                                                                                    }
+                                                                                                })
+                                                                                            }else{
+                                                                                                objresponse.status = 'Error in Insert TrnProcessLog Table';
+                                                                                                sendResponse(null, objresponse);
+                                                                                            }
+                                                                                   
 
                                                                                         } else if (apistatus.status == 'TIMEOUT') {
 
@@ -284,19 +249,26 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                         var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls)
 
                                                                                         if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
-                                                                                            var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                            var InsertTable = await ProcessInstData(arrprocesslog,final_status,final_process_status,PRCT_ID,arrcode)
+                                                                                            if(InsertTable.length > 0){
+                                                                                                var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
 
-                                                                                            ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                                                if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                                    objresponse.status = 'SUCCESS';
-                                                                                                    sendResponse(null, objresponse);
-
-                                                                                                } else {
-                                                                                                    objresponse.status = 'No Data Updated in Transaction Table';
-                                                                                                    sendResponse(null, objresponse);
-
-                                                                                                }
-                                                                                            })
+                                                                                                ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                                                    if (arrUpdTranTbl == 'SUCCESS') {
+                                                                                                        objresponse.status = 'SUCCESS';
+                                                                                                        sendResponse(null, objresponse);
+    
+                                                                                                    } else {
+                                                                                                        objresponse.status = 'No Data Updated in Transaction Table';
+                                                                                                        sendResponse(null, objresponse);
+    
+                                                                                                    }
+                                                                                                })
+                                                                                            }else{
+                                                                                                objresponse.status = 'Error in TrnProcessLog Table Insert';
+                                                                                                sendResponse(null, objresponse);
+                                                                                            }
+                                                                                           
 
                                                                                         } else if (apistatus.status == 'TIMEOUT') {
 
@@ -351,7 +323,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                
 
                                                             })
-                                                        })
+                                                        
 
 
 
@@ -984,6 +956,53 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
 
+                    function ProcessInstData(arrprocesslog,final_status,final_process_status,PRCT_ID,arrcode) {
+                        return new Promise((resolve, reject) => {
+                            var arrCusTranInst = [];
+                            var objCusTranInst = {};
+                            
+                            objCusTranInst.MSG_ID = arrprocesslog[0].hdr_msg_id;
+                            objCusTranInst.PRCT_ID = PRCT_ID;
+                            objCusTranInst.REVERSAL_CODE = arrprocesslog[0].revrsal_code
+                            objCusTranInst.UETR = arrprocesslog[0].uetr;
+                            objCusTranInst.NPSSTRRD_REFNO = arrprocesslog[0].tran_ref_id;
+                            objCusTranInst.PROCESS_NAME = 'Accept Reversal'
+                            objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
+                            objCusTranInst.PROCESS_STATUS = final_process_status;
+                            objCusTranInst.STATUS = final_status;
+                            objCusTranInst.TENANT_ID = params.TENANT_ID;
+                            objCusTranInst.APP_ID = '215'
+                            objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
+                            objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
+                            objCusTranInst.DT_DESCRIPTION = 'transaction_group'
+                            objCusTranInst.DTT_DESCRIPTION = 'Transaction'
+                            objCusTranInst.CREATED_BY = params.CREATED_BY;
+                            objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                            objCusTranInst.T24_RETURN_CODE = null;
+                            objCusTranInst.CBUAE_RETURN_CODE = arrcode[0].param_code;
+                            objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                            objCusTranInst.MODIFIED_BY = "";
+                            objCusTranInst.MODIFIED_BY_NAME = "";
+                            objCusTranInst.MODIFIED_DATE = null;
+                            objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
+                            objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
+                            objCusTranInst.CREATED_BY_STS_ID = "";
+                            objCusTranInst.MODIFIED_BY_STS_ID = "";
+                            objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
+                            objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
+                            objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                            objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                            objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                            objCusTranInst.routingkey = headers.routingkey;
+                            arrCusTranInst.push(objCusTranInst)
+
+                            _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
+                                resolve(CusTranInsertRes)
+
+                            })
+                        })
+
+                    }
 
 
 
@@ -1071,6 +1090,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

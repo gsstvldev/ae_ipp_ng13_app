@@ -10,12 +10,14 @@ app.post('/', function(appRequest, appResponse, next) {
     
     
     
+    
 
 /*  Created By :sIVA hARISH
 Created Date : 02-01-2022
 Modifyed by : Siva Harish
 Modified Date : 17/01/2023
 Reason for Remove console log
+Reason for Adding Update Query
 
  
 */
@@ -73,98 +75,93 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                           var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrdata[0].cdtr_iban}'`
                                           ExecuteQuery1(TakeAcctInf, function (arrcbsact) {
                                              if(arrcbsact.length > 0){
+                                                var Takepostrefno = `select * from npss_trn_process_log where status = 'IP_RCT_REV_INAU_POSTING_SUCCESS' and uetr = '${arrdata[0].uetr}'`
+                                                ExecuteQuery1(Takepostrefno, function (arrpostno) {
+                                                 if(arrpostno.length > 0){
+                                                     fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno, function (apiresult) {
+                                                         if (apiresult.status === "SUCCESS") {
+                                                            var arrCusTranInst = [];
+                                                            var objCusTranInst = {};
+                                                            
+                                                            objCusTranInst.MSG_ID = arrdata[0].hdr_msg_id;
+                                                            objCusTranInst.PRCT_ID = PRCT_ID;
+                                                            objCusTranInst.REVERSAL_CODE = params.reversalcode
+                                                            objCusTranInst.UETR = arrdata[0].uetr;
+                                                            objCusTranInst.NPSSTRRD_REFNO = arrdata[0].tran_ref_id;
+                                                            objCusTranInst.PROCESS_NAME = 'Cancel Reversal'
+                                                            objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
+                                                            objCusTranInst.PROCESS_STATUS = success_process_status;
+                                                            objCusTranInst.STATUS = success_status;
+                                                            objCusTranInst.T24_RETURN_CODE = null;
+                                                            objCusTranInst.CBUAE_RETURN_CODE = null;
+                                                            objCusTranInst.TENANT_ID = params.TENANT_ID;
+                                                            objCusTranInst.APP_ID = '215'
+                                                            objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
+                                                            objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
+                                                            objCusTranInst.DT_DESCRIPTION = 'transaction_group'
+                                                            objCusTranInst.DTT_DESCRIPTION = 'Transaction'
+                                                            objCusTranInst.CREATED_BY = params.CREATED_BY;
+                                                            objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                                            objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                                            objCusTranInst.MODIFIED_BY = "";
+                                                            objCusTranInst.MODIFIED_BY_NAME = "";
+                                                            objCusTranInst.MODIFIED_DATE = null;
+                                                            objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
+                                                            objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
+                                                            objCusTranInst.CREATED_BY_STS_ID = "";
+                                                            objCusTranInst.MODIFIED_BY_STS_ID = "";
+                                                            objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
+                                                            objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
+                                                            objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                                            objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                                            objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                                            objCusTranInst.routingkey = headers.routingkey;
+                                                            arrCusTranInst.push(objCusTranInst)
+                                                            _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
+                                                               if (CusTranInsertRes.length > 0) {
+                                                                var UpdateTrnProcessLog = `update npss_trn_process_log set  additional_info = 'Maker_Rejected',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsstpl_id ='${params.NPSSTPL_Id}'`
+                                                                var updtranqry = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
+                                                                ExecuteQuery(updtranqry, function (uptranresult) {
+                                                                   if (uptranresult == 'SUCCESS') {
+                                                                    ExecuteQuery(UpdateTrnProcessLog, function (arrUpdPrsLog) {
+                                                                        if (arrUpdPrsLog == 'SUCCESS') {
+                                                                            objresponse.status = 'SUCCESS';
+                                                                            sendResponse(null, objresponse);
+                                                                        } else {
+                                                                            objresponse.status = 'No Data Updated in TranProcessLog Table';
+                                                                            sendResponse(null, objresponse);
+                                                                        }
+                                                                    })
+                                                                   } else {
+                                                                      objresponse.status = 'Failure in Tran Status Update';
+                                                                      sendResponse(null, objresponse)
+                                                                   }
+                                                                })
+                                                            
+                                                            
+                                                               } else {
+                                                                  objresponse.status = 'FAILURE';
+                                                                  reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
+                                                                  sendResponse(null, objresponse)
+                                                               }
+                                                            
+                                                            })
+                                                           
+                                                              
+                                                            
+                                                         } else {
+                                                            objresponse.status = 'Fail From T24 Unfreeze  Error Code -'+apiresult.error_code
+                                                            sendResponse(null, objresponse);
+                                                         }
+                                                      })
+                                                 }else{
+                                                     objresponse.status = 'No Posting Ref No Found';
+                                                     sendResponse(null, objresponse)
+                                                 }
+                                                   
+                                                })
                       
-                                             var arrCusTranInst = [];
-                                             var objCusTranInst = {};
-
-                                             objCusTranInst.MSG_ID = arrdata[0].hdr_msg_id;
-                                             objCusTranInst.PRCT_ID = PRCT_ID;
-                                             objCusTranInst.REVERSAL_CODE = params.reversalcode
-                                             objCusTranInst.UETR = arrdata[0].uetr;
-                                             objCusTranInst.NPSSTRRD_REFNO = arrdata[0].tran_ref_id;
-                                             objCusTranInst.PROCESS_NAME = 'Cancel Reversal'
-                                             objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
-                                             objCusTranInst.PROCESS_STATUS = success_process_status;
-                                             objCusTranInst.STATUS = success_status;
-                                             objCusTranInst.T24_RETURN_CODE = null;
-                                             objCusTranInst.CBUAE_RETURN_CODE = null;
-                                             objCusTranInst.TENANT_ID = params.TENANT_ID;
-                                             objCusTranInst.APP_ID = '215'
-                                             objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
-                                             objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
-                                             objCusTranInst.DT_DESCRIPTION = 'transaction_group'
-                                             objCusTranInst.DTT_DESCRIPTION = 'Transaction'
-                                             objCusTranInst.CREATED_BY = params.CREATED_BY;
-                                             objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
-                                             objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                                             objCusTranInst.MODIFIED_BY = "";
-                                             objCusTranInst.MODIFIED_BY_NAME = "";
-                                             objCusTranInst.MODIFIED_DATE = null;
-                                             objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
-                                             objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
-                                             objCusTranInst.CREATED_BY_STS_ID = "";
-                                             objCusTranInst.MODIFIED_BY_STS_ID = "";
-                                             objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
-                                             objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
-                                             objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
-                                             objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
-                                             objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
-                                             objCusTranInst.routingkey = headers.routingkey;
-                                             arrCusTranInst.push(objCusTranInst)
-                                             _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
-                                                if (CusTranInsertRes.length > 0) {
-                                                   var Takepostrefno = `select * from npss_trn_process_log where status = 'IP_RCT_REV_INAU_POSTING_SUCCESS' and uetr = '${arrdata[0].uetr}'`
-                                                   ExecuteQuery1(Takepostrefno, function (arrpostno) {
-                                                    if(arrpostno.length > 0){
-                                                        fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno, function (apiresult) {
-                                                            if (apiresult === "SUCCESS") {
-                                                              
-                                                              
-                                                                  var updtranqry = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
-                                                                  ExecuteQuery(updtranqry, function (uptranresult) {
-                                                                     if (uptranresult == 'SUCCESS') {
-                                                                        objresponse.status = 'SUCCESS';
-                                                                        sendResponse(null, objresponse)
-                                                                     } else {
-                                                                        objresponse.status = 'Failure in Tran Status Update';
-                                                                        sendResponse(null, objresponse)
-                                                                     }
-                                                                  })
-                                                               
-                                                            } else {
-   
-                                                               var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Id}'`
-                                                               ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                  var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_UNFR_POSTING_FAILURE'`
-                                                                  ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                     if (arrFail.length) {
-   
-                                                                        objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
-                                                                        sendResponse(null, objresponse);
-                                                                     } else {
-   
-                                                                        objresponse.status = 'Fail From  Unfreeze Posting No Error Code Found'
-                                                                        sendResponse(null, objresponse);
-                                                                     }
-                                                                  })
-                                                               })
-                                                            }
-                                                         })
-                                                    }else{
-                                                        objresponse.status = 'No Posting Ref No Found';
-                                                        sendResponse(null, objresponse)
-                                                    }
-                                                      
-                                                   })
-
-
-                                                } else {
-                                                   objresponse.status = 'FAILURE';
-                                                   reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
-                                                   sendResponse(null, objresponse)
-                                                }
-
-                                             })
+                                         
                                              
                                           }else{
                                              objresponse.status = 'No Account Information found in cbs accounts table'
@@ -309,8 +306,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                            } else {
                             reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' +responseBodyFromImagingService , objSessionLogInfo);
                               responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                             
-                              callbackapi(responseBodyFromImagingService)
+                             var responseBody = JSON.parse(responseBodyFromImagingService)
+                              callbackapi(responseBody)
                            }
                         });
                      } catch (error) {
@@ -452,6 +449,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
       reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
    }
 })
+
 
 
 

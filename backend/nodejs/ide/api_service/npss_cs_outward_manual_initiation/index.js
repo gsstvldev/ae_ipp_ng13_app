@@ -7,12 +7,13 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 /*  Created By :sIVA hARISH
 Created Date : 31-12-2022
-Modified By : 
-Modified Date : 
+Modified By : Siva Harish
+Modified Date : 24/01/2023
 Reason for : 
  
 */
@@ -63,11 +64,13 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                         if (arrdata.length > 0) {
                                             var arrCusTranInst = [];
                                             var objCusTranInst = {};
-
+  
                                             objCusTranInst.CR_SORT_CODE = arrdata[0].dr_sort_code;
                                             objCusTranInst.PRCT_ID = PRCT_ID;
-                                            objCusTranInst.DR_SORT_CODE = params.cr_sort_code
+                                            objCusTranInst.DR_SORT_CODE = params.cr_sort_code;
+                                             objCusTranInst.HDR_MSG_ID = arrdata[0].hdr_msg_id;
                                             objCusTranInst.UETR = null;
+                                            objCusTranInst.PROCESS_TYPE = 'OP';
                                             objCusTranInst.DBTR_IBAN = arrdata[0].cdtr_iban;
                                             objCusTranInst.CDTR_IBAN = arrdata[0].dbtr_iban
                                             objCusTranInst.DBTR_ACCT_NAME = arrdata[0].cdtr_acct_name
@@ -141,8 +144,16 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                     arrTrnPrslog.push(objcusTranprslog)
                                                     _BulkInsertProcessItem(arrTrnPrslog, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTrnPrslog) {
                                                         if (CusTrnPrslog.length > 0) {
-                                                            objresponse.status = 'SUCCESS';
-                                                            sendResponse(null, objresponse)
+                                                            var UpdateTrnProcessLog = `update npss_trn_process_log set  additional_info = 'Maker_Initiated',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsstpl_id ='${params.NPSSTPL_Id}'`
+                                                            ExecuteQuery(UpdateTrnProcessLog, function (arrUpdPrsLog) {
+                                                                if (arrUpdPrsLog == 'SUCCESS') {
+                                                                    objresponse.status = 'SUCCESS';
+                                                                    sendResponse(null, objresponse);
+                                                                } else {
+                                                                    objresponse.status = 'No Data Updated in TranProcessLog Table';
+                                                                    sendResponse(null, objresponse);
+                                                                }
+                                                            })
                                                         } else {
                                                             objresponse.status = 'Data not insert in trn process log';
                                                             reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
@@ -267,6 +278,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 })
+
 
 
 

@@ -69,7 +69,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                             objCusTranInst.PRCT_ID = PRCT_ID;
                                             objCusTranInst.DR_SORT_CODE = params.cr_sort_code;
                                              objCusTranInst.HDR_MSG_ID = arrdata[0].hdr_msg_id;
-                                            objCusTranInst.UETR = null;
+                                            objCusTranInst.UETR = arrdata[0].uetr;
                                             objCusTranInst.PROCESS_TYPE = 'OP';
                                             objCusTranInst.DBTR_IBAN = arrdata[0].cdtr_iban;
                                             objCusTranInst.CDTR_IBAN = arrdata[0].dbtr_iban

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27910 
+Build ID        : 27914 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-24 15:28 PM 
+Modified Date   : 2023-Jan-25 6:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -16,14 +16,12 @@ import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {torus_cs_set_rule_mi_paramService} from '../../../custom_widget/torus_cs_set_rule_mi_param/torus_cs_set_rule_mi_param.service'
 import {npss_cs_outward_manual_initiationService} from '../../../custom_widget/npss_cs_outward_manual_initiation/npss_cs_outward_manual_initiation.service'
-import {npss_cs_manual_initiation_approveService} from '../../../custom_widget/npss_cs_manual_initiation_approve/npss_cs_manual_initiation_approve.service'
-import {npss_cs_manual_initiation_rejectService} from '../../../custom_widget/npss_cs_manual_initiation_reject/npss_cs_manual_initiation_reject.service'
 
 @Component({
 	selector: 's_rct_manual_initiation',
 	templateUrl: './s_rct_manual_initiation.component.html',
 	styleUrls: ['./s_rct_manual_initiation.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,torus_cs_set_rule_mi_paramService,npss_cs_outward_manual_initiationService,npss_cs_manual_initiation_approveService,npss_cs_manual_initiation_rejectService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,torus_cs_set_rule_mi_paramService,npss_cs_outward_manual_initiationService]
 })
     
 // Start of class 
@@ -81,8 +79,6 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	navigation_ui_view_process_log : any = {}
 	navigation_ui_view_message_log : any = {}
 	navigation_ui_initiate : any = {}
-	navigation_ui_reject : any = {}
-	navigation_ui_approve : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -119,7 +115,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private torus_cs_set_rule_mi_paramService:torus_cs_set_rule_mi_paramService,private npss_cs_outward_manual_initiationService:npss_cs_outward_manual_initiationService,private npss_cs_manual_initiation_approveService:npss_cs_manual_initiation_approveService,private npss_cs_manual_initiation_rejectService:npss_cs_manual_initiation_rejectService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private torus_cs_set_rule_mi_paramService:torus_cs_set_rule_mi_paramService,private npss_cs_outward_manual_initiationService:npss_cs_outward_manual_initiationService) {
     
 	}
     
@@ -207,24 +203,6 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_initiate.dynamic_param = {}
 		this.navigation_ui_initiate.role = []
 		this.navigation_ui_initiate.action = ""
-		
-		// "Reject" Button of "Navigation UI" component
-		this.navigation_ui_reject.label_name = "Reject"
-		this.navigation_ui_reject.show = true
-		this.navigation_ui_reject.disabled = false
-		this.navigation_ui_reject.params = {"icon_only":false,"uicgcc_style":"fa fa-close"}
-		this.navigation_ui_reject.dynamic_param = {}
-		this.navigation_ui_reject.role = []
-		this.navigation_ui_reject.action = ""
-		
-		// "Approve" Button of "Navigation UI" component
-		this.navigation_ui_approve.label_name = "Approve"
-		this.navigation_ui_approve.show = true
-		this.navigation_ui_approve.disabled = false
-		this.navigation_ui_approve.params = {"icon_only":false,"uicgcc_style":"fa fa-check"}
-		this.navigation_ui_approve.dynamic_param = {}
-		this.navigation_ui_approve.role = []
-		this.navigation_ui_approve.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -613,6 +591,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.page_load__he_from_pg_to_view_details()
 		this.page_load__cf_for_routing_key()
 		this.page_load__he_for_pl_to_vm()
+		this.page_load__de_for_initiate()
 	}
 
 	//Handler for INTERNAL event of "cf for routing key"
@@ -687,6 +666,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.transaction_list__ee_for_tran_to_vd()
 		this.transaction_list__ee_for_vlh()
 		this.transaction_list__ee_for_vm()
+		this.transaction_list__ee_for_initiate()
 	}
 
 	//Handler for INTERNAL event of "svm for tl"
@@ -867,36 +847,6 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.payment_processing_details__svm_for_ppd_list()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui approve"
-	navigation_ui_approve__action_button_click(){
-		this.navigation_ui_approve__e_1672493584178()
-	}
-
-	//Handler for INTERNAL event of "e 1672493584178"
-	e_1672493584178__internal(parent_event_result){
-		this.e_1672493584178__e_1672493597012(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "e 1672493597012"
-	e_1672493597012__internal(parent_event_result){
-		this.e_1672493597012__e_1672493606875(parent_event_result)
-	}
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui reject"
-	navigation_ui_reject__action_button_click(){
-		this.navigation_ui_reject__e_1672493700138()
-	}
-
-	//Handler for INTERNAL event of "e 1672493700138"
-	e_1672493700138__internal(parent_event_result){
-		this.e_1672493700138__e_1672493719119(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "e 1672493719119"
-	e_1672493719119__internal(parent_event_result){
-		this.e_1672493719119__e_1672493733400(parent_event_result)
-	}
-
 	//Handler for ACTION_BUTTON_CLICK event of "payment processing details ui back"
 	payment_processing_details_ui_back__action_button_click(){
 		this.payment_processing_details_ui_back__rs_for_initate_back()
@@ -959,6 +909,27 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_initiate() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_initiate"
+		let parent_source_id=""
+		let event_code="e_1674623955680"
+		let event_params={"caller_name":"page_load__de_for_initiate","event_desc":"DE for initiate","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1425,6 +1396,27 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1669460652921"
 		let event_params={"caller_name":"transaction_list__ee_for_vm","event_desc":"EE For VM","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_initiate() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_initiate"
+		let parent_source_id=""
+		let event_code="e_1674623969987"
+		let event_params={"caller_name":"transaction_list__ee_for_initiate","event_desc":"EE for initiate","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
@@ -2574,136 +2566,6 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_20","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1672491762593","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS MI Process Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"VALUE_DATE","alias_name":"","mq_id":"MQ_1672489775952","date_format":true},{"column_name":"DBTRIBAN","alias_name":"","mq_id":"MQ_1672489781485","date_format":false},{"column_name":"DBTRACCTNAME","alias_name":"","mq_id":"MQ_1672489782613","date_format":false},{"column_name":"DRSORTCODE","alias_name":"","mq_id":"MQ_1672489782788","date_format":false},{"column_name":"CUSTOMER_POSTING_RESTRICTION_CODE","alias_name":"","mq_id":"MQ_1672489782964","date_format":false},{"column_name":"CUSTOMER_POSTING_RESTRICTION_DESCRIPTION","alias_name":"","mq_id":"MQ_1672489783132","date_format":false},{"column_name":"ACCOUNT_NUMBER","alias_name":"","mq_id":"MQ_1672489845885","date_format":false},{"column_name":"ACCOUNT_NAME","alias_name":"","mq_id":"MQ_1672489846054","date_format":false},{"column_name":"CDTRIBAN","alias_name":"","mq_id":"MQ_1672489861164","date_format":false},{"column_name":"CDTRACCTNAME","alias_name":"","mq_id":"MQ_1672489866763","date_format":false},{"column_name":"CRSORTCODE","alias_name":"","mq_id":"MQ_1672489872099","date_format":false},{"column_name":"BANK_NAME","alias_name":"","mq_id":"MQ_1672489877989","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1672490954517","date_format":false}],"joins":[]},"eq_text":"select  NPSST_ID,  TNPSST_ID,  VALUE_DATE ,  DBTRIBAN ,  DBTRACCTNAME,  DRSORTCODE,  CLRSYSREF ,  PAYMENT_ENDTOEND_ID ,  CDTRIBAN,  CDTRACCTNAME,  CRSORTCODE,  BANK_NAME,  CUSTOMER_POSTING_RESTRICTION_CODE,  CUSTOMER_POSTING_RESTRICTION_DESCRIPTION,  ACCOUNT_NUMBER,  ACCOUNT_NAME from  (  select   NT.NPSST_ID,   NT.VALUE_DATE,   NT.CDTR_IBAN as DBTRIBAN,   NT.CDTR_ACCT_NAME as DBTRACCTNAME,   NT.CR_SORT_CODE as DRSORTCODE,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.DBTR_IBAN as CDTRIBAN,   NT.DBTR_ACCT_NAME as CDTRACCTNAME,   NT.DR_SORT_CODE as CRSORTCODE,   CNCA.CUSTOMER_POSTING_RESTRICTION_DESCRIPTION,   CNCA.CUSTOMER_POSTING_RESTRICTION_CODE,   CNCA.ACCOUNT_NUMBER ,   CNCA.ACCOUNT_NAME ,   CMB.BANK_NAME,   NT.NPSST_ID::text as TNPSST_ID  from   NPSS_TRANSACTIONS NT  left join <tran_db>.CORE_NC_CBS_ACCOUNTS CNCA on   NT.DBTR_IBAN = CNCA.ALTERNATE_ACCOUNT_ID  inner join <tran_db>.CORE_MEMBER_BANKS CMB on   NT.DR_SORT_CODE = CMB.BIC_CODE ) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS MI Process Tran CCD","filter":[{"filter_name":"NPSST_ID","binding_name":"NPSST_ID","binding_value":"","source_name":"MI_LEVEL_NPSST_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"","group_no":""}],"databinding":[{"header":"DR Account number","target_column":"DBTRIBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"DR Account Name","target_column":"DBTRACCTNAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"DR Bank BIC","target_column":"DRSORTCODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Posting restriction code","target_column":"CUSTOMER_POSTING_RESTRICTION_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Posting restriction description","target_column":"CUSTOMER_POSTING_RESTRICTION_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Real Account No","target_column":"ACCOUNT_NUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Real Account Name","target_column":"ACCOUNT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Account Number","target_column":"CDTRIBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Account Name","target_column":"CDTRACCTNAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Bank Bic","target_column":"CRSORTCODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Bank Name","target_column":"BANK_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Original E2E ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui approve"
-	navigation_ui_approve__e_1672493584178() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_approve"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1672493584178"
-		let event_params={"caller_name":"navigation_ui_approve__e_1672493584178","event_desc":"E_1672493584178","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_approve","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals="e_1672493584178__e_1672493597012,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_cs_manual_initiation_approveService.fn_npss_cs_manual_initiation_approve(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1672493584178"
-	e_1672493584178__e_1672493597012(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1672493584178"
-		let destn_id=""
-		let parent_source_id="navigation_ui_approve"
-		let event_code="e_1672493597012"
-		let event_params={"caller_name":"e_1672493584178__e_1672493597012","event_desc":"E_1672493597012","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been approved successfully","root_source_id":"navigation_ui_approve","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
-		let handler_code="info_msg"
-		let internals="e_1672493597012__e_1672493606875,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1672493597012"
-	e_1672493597012__e_1672493606875(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1672493597012"
-		let destn_id=""
-		let parent_source_id="e_1672493584178"
-		let event_code="e_1672493606875"
-		let event_params={"caller_name":"e_1672493597012__e_1672493606875","event_desc":"E_1672493606875","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_approve","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="refresh_screen"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui reject"
-	navigation_ui_reject__e_1672493700138() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_reject"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1672493700138"
-		let event_params={"caller_name":"navigation_ui_reject__e_1672493700138","event_desc":"E_1672493700138","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_reject","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals="e_1672493700138__e_1672493719119,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_cs_manual_initiation_rejectService.fn_npss_cs_manual_initiation_reject(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1672493700138"
-	e_1672493700138__e_1672493719119(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1672493700138"
-		let destn_id=""
-		let parent_source_id="navigation_ui_reject"
-		let event_code="e_1672493719119"
-		let event_params={"caller_name":"e_1672493700138__e_1672493719119","event_desc":"E_1672493719119","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been rejected successfully","root_source_id":"navigation_ui_reject","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
-		let handler_code="info_msg"
-		let internals="e_1672493719119__e_1672493733400,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1672493719119"
-	e_1672493719119__e_1672493733400(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1672493719119"
-		let destn_id=""
-		let parent_source_id="e_1672493700138"
-		let event_code="e_1672493733400"
-		let event_params={"caller_name":"e_1672493719119__e_1672493733400","event_desc":"E_1672493733400","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_reject","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="refresh_screen"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27892 
+Build ID        : 27921 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-23 10:56 AM 
+Modified Date   : 2023-Jan-25 14:0 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -1317,9 +1317,8 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cashdesk_action_enrolment_desk__sp_for_enroll_cd()
 		this.cashdesk_action_enrolment_desk__cc__for_enroll_cd_ena_dis()
 		this.cashdesk_action_enrolment_desk__se_for_enroll_cd()
-		this.cashdesk_action_enrolment_desk__cu_for_cd_detail_enrolment()
 		this.cashdesk_action_enrolment_desk__e_1672292320842()
-		this.cashdesk_action_enrolment_desk__e_1672292342385()
+		this.cashdesk_action_enrolment_desk__tbc_for_cd_enroll()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action update desk"
@@ -4716,27 +4715,6 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action enrolment desk"
-	cashdesk_action_enrolment_desk__cu_for_cd_detail_enrolment() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="cashdesk_action_enrolment_desk"
-		let destn_id="cashdesk_detail"
-		let parent_source_id=""
-		let event_code="e_1672030886605"
-		let event_params={"caller_name":"cashdesk_action_enrolment_desk__cu_for_cd_detail_enrolment","event_desc":"CU for CD detail enrolment","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cashdesk_action_enrolment_desk","raiseparam":{"need_reset_key_column":"N"}}
-		let handler_code="clear_ui"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action enrolment desk"
 	cashdesk_action_enrolment_desk__e_1672292320842() { 
 		let Dest_Is_ctrl=true
 		
@@ -4758,20 +4736,20 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action enrolment desk"
-	cashdesk_action_enrolment_desk__e_1672292342385() { 
+	cashdesk_action_enrolment_desk__tbc_for_cd_enroll() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="cashdesk_action_enrolment_desk"
-		let destn_id="shop_detail"
+		let destn_id="shop_action_trg_hide_for_bind_tran"
 		let parent_source_id=""
-		let event_code="e_1672292342385"
-		let event_params={"caller_name":"cashdesk_action_enrolment_desk__e_1672292342385","event_desc":"E_1672292342385","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cashdesk_action_enrolment_desk","raiseparam":{"need_reset_key_column":"N"}}
-		let handler_code="clear_ui"
+		let event_code="e_1674655126375"
+		let event_params={"caller_name":"cashdesk_action_enrolment_desk__tbc_for_cd_enroll","event_desc":"TBC for CD Enroll","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cashdesk_action_enrolment_desk","raiseparam":{}}
+		let handler_code="trigger_button_click"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

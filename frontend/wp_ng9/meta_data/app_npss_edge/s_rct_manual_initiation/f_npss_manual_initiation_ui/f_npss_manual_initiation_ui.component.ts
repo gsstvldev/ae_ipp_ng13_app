@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27914 
+Build ID        : 27920 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-25 6:1 AM 
+Modified Date   : 2023-Jan-25 11:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -200,43 +200,43 @@ focustoelement(){
 		this.ctrl.npss_manual_initiation_ui_intrbk_sttlm_cur = {}
 		this.ctrl.npss_manual_initiation_ui_intrbk_sttlm_cur.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of intrbk_sttlm_amnt
-		this.ctrl.intrbk_sttlm_amnt = {}
-		this.ctrl.intrbk_sttlm_amnt.id = "RN11CN3"
-		this.ctrl.intrbk_sttlm_amnt.desc = "TXN Amount in AED"
-		this.ctrl.intrbk_sttlm_amnt.visible = true
-		this.ctrl.intrbk_sttlm_amnt.label_name = "TXN Amount in AED"
-		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
-		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
-		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CUR"
-		this.ctrl.intrbk_sttlm_amnt.target_column = "INTRBK_STTLM_AMNT"
-		this.ctrl.intrbk_sttlm_amnt.data_type = "NUMBER"
-		this.ctrl.intrbk_sttlm_amnt.data_length = 19
-		this.ctrl.intrbk_sttlm_amnt.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.intrbk_sttlm_amnt.default_value = ""
-		this.ctrl.intrbk_sttlm_amnt.is_memory_ctrl = ""
-		this.ctrl.intrbk_sttlm_amnt.field_coordinates = ""
-		this.ctrl.intrbk_sttlm_amnt.sub_details = ""
-		this.ctrl.intrbk_sttlm_amnt.accept_char = ""
-		this.ctrl.intrbk_sttlm_amnt.currency_format = ""
-		this.ctrl.intrbk_sttlm_amnt.data_scale = "2"
-		this.ctrl.intrbk_sttlm_amnt.hide_label = false
-		this.ctrl.intrbk_sttlm_amnt.depends_on = ""
-		this.ctrl.intrbk_sttlm_amnt.placeholder = ""
-		this.ctrl.intrbk_sttlm_amnt.dynamic_param = ""
-		this.ctrl.intrbk_sttlm_amnt.style_code = ""
-		this.ctrl.intrbk_sttlm_amnt.data_source = ""
-		this.ctrl.intrbk_sttlm_amnt.image_association = ""
-		this.ctrl.intrbk_sttlm_amnt.show = true
-		this.ctrl.intrbk_sttlm_amnt.sub_content = ""
-		this.ctrl.intrbk_sttlm_amnt.required = false
-		this.ctrl.intrbk_sttlm_amnt.vld_rules = []
-		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
-		this.ctrl.intrbk_sttlm_amnt.disabled = false
-		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_manual_initiation_ui"
-		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_manual_initiation_ui_intrbk_sttlm_amnt"
-		this.ctrl.npss_manual_initiation_ui_intrbk_sttlm_amnt = {}
-		this.ctrl.npss_manual_initiation_ui_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
+		//Properties of memory92
+		this.ctrl.memory92 = {}
+		this.ctrl.memory92.id = "RN11CN3"
+		this.ctrl.memory92.desc = "TXN Amount in AED"
+		this.ctrl.memory92.visible = true
+		this.ctrl.memory92.label_name = "TXN Amount in AED"
+		this.ctrl.memory92.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory92.df_description = "Column Group 1"
+		this.ctrl.memory92.uictrl_code = "CUR"
+		this.ctrl.memory92.target_column = "memory92"
+		this.ctrl.memory92.data_type = "NUMBER"
+		this.ctrl.memory92.data_length = 19
+		this.ctrl.memory92.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory92.default_value = ""
+		this.ctrl.memory92.is_memory_ctrl = "Y"
+		this.ctrl.memory92.field_coordinates = ""
+		this.ctrl.memory92.sub_details = ""
+		this.ctrl.memory92.accept_char = ""
+		this.ctrl.memory92.currency_format = ""
+		this.ctrl.memory92.data_scale = "2"
+		this.ctrl.memory92.hide_label = false
+		this.ctrl.memory92.depends_on = ""
+		this.ctrl.memory92.placeholder = ""
+		this.ctrl.memory92.dynamic_param = ""
+		this.ctrl.memory92.style_code = ""
+		this.ctrl.memory92.data_source = ""
+		this.ctrl.memory92.image_association = ""
+		this.ctrl.memory92.show = true
+		this.ctrl.memory92.sub_content = ""
+		this.ctrl.memory92.required = false
+		this.ctrl.memory92.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTZERO","click":"Valitem","message":"Enter  the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
+		this.ctrl.memory92.targetcolumn_lower = "memory92"
+		this.ctrl.memory92.disabled = false
+		this.ctrl.memory92.view_name = "f_npss_manual_initiation_ui"
+		this.ctrl.memory92.ctrl_id = "npss_manual_initiation_ui_memory92"
+		this.ctrl.npss_manual_initiation_ui_memory92 = {}
+		this.ctrl.npss_manual_initiation_ui_memory92.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of dispute_ref_no
 		this.ctrl.dispute_ref_no = {}
@@ -275,8 +275,8 @@ focustoelement(){
 		this.ctrl.dispute_ref_no.ctrl_id = "npss_manual_initiation_ui_dispute_ref_no"
 		this.ctrl.npss_manual_initiation_ui_dispute_ref_no = {}
 		this.ctrl.npss_manual_initiation_ui_dispute_ref_no.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY95":"AED","CHARGE_AMOUNT":"","INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":"","DISPUTE_REF_NO":""}
-		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DISPUTE_REF_NO"}]
+		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY95":"AED","CHARGE_AMOUNT":"","INTRBK_STTLM_CUR":"","MEMORY92":"","DISPUTE_REF_NO":""}
+		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DISPUTE_REF_NO"}]
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

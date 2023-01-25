@@ -91,56 +91,22 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 ExecuteQuery1(take_api_url, function (arrurl) {
                                                     if (arrurl.length) {
                                                         var url = arrurl[0].param_detail;
-
-                                                        // ExecuteQuery1(Takecontraamount, function (arramount) {
-                                                        //     if(arramount.length){
-                                                        //         console.log('succ')
-                                                        //     }
-                                                        //     var contra_amount = arramount[0].contra_amount || ''
-                                                        //     var reversal_amount = arrprocesslog[0].reversal_amount || ''
-                                                        //     var amount
-                                                        //       if (contra_amount && reversal_amount) {
-                                                        //         if (Number(contra_amount) > Number(reversal_amount)) {
-                                                        //             amount = reversal_amount
-                                                        //         } else {
-                                                        //             amount = contra_amount
-                                                        //         }
-                                                        //     } else {
-                                                        //         amount = ''
-                                                        //     }
-                                                        // })
-                                                       // ExecuteQuery1(Takecontraamount, function (arramount) {
-    
-                                                            // var contra_amount = arramount[0].contra_amount || ''
-                                                            // var reversal_amount = arrprocesslog[0].reversal_amount || ''
-                                                            // var amount
-                                                            //   if (contra_amount && reversal_amount) {
-                                                            //     if (Number(contra_amount) > Number(reversal_amount)) {
-                                                            //         amount = reversal_amount
-                                                            //     } else {
-                                                            //         amount = contra_amount
-                                                            //     }
-                                                            // } else {
-                                                            //     amount = ''
-                                                            // }
                                                         fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm, function (result) {
                                                             if (result ) {
                                                                 objresponse.status = 'SUCCESS';
-                                                              //  var someText = result.replace(/(\\r\\n|\n|\r)/g,"");
-
-                                                               // someText = result.replace(/(\n)/g,"")
-                          
-                                                               // console.log(someText)
+                                                            
                                                                 objresponse.data=result;
                                                                 sendResponse(null, objresponse);}
                                                                
                                                                 
                                                              else {
                                                                 reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
-                                                                sendResponse(result, null);
+                                                                   objresponse.status = 'FAILURE';
+                                                                 objresponse.data=result;
+                                                                sendResponse(null, objresponse);
                                                             }
                                                         })
-                                                    //})
+                                                  
                                                     }
                                                     else {
                                                        

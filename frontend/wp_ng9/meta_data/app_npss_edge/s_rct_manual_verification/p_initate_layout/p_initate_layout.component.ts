@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27914 
+Build ID        : 27920 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-25 6:1 AM 
+Modified Date   : 2023-Jan-25 11:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_verification
@@ -25,6 +25,7 @@ export class p_initate_layoutComponent implements OnInit {
   	original_transaction_details : any = {}
 	payment_processing_details : any = {}
 	get_usable_balance_widget : any = {}
+	verification_ui : any = {}
 	payment_processing_details_ui : any = {}
 
 
@@ -39,6 +40,8 @@ export class p_initate_layoutComponent implements OnInit {
 		this.payment_processing_details.need_header = true
 		this.get_usable_balance_widget.desc = "Get Usable Balance Widget"
 		this.get_usable_balance_widget.need_header = ""
+		this.verification_ui.desc = "Verification UI"
+		this.verification_ui.need_header = ""
 		this.payment_processing_details_ui.desc = "Payment Processing Details UI"
 		this.payment_processing_details_ui.need_header = ""
 	

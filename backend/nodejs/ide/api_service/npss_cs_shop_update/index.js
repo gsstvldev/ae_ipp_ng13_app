@@ -106,7 +106,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 "label": params.label,
                                 "mid": params.shopMId,
                                 "mcc": params.shopMcc,
-                                "address": [
+                                "address": 
                                   {
                                     "building":params.building,
                                     "street": params.street,
@@ -115,7 +115,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                     "county": params.County,
                                     "country": params.Country
                                   }
-                                ]
+                                
                             }
                             }, headers: {
                                 "X-Request-ID": requestid,

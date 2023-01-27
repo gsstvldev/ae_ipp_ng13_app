@@ -153,7 +153,7 @@ Reason for : Api Json change
                                                 "IBAN": params.shop_IBAN
                                             },
 
-                                            "address": [{
+                                            "address": {
 
                                                 "building": params.building,
 
@@ -167,9 +167,9 @@ Reason for : Api Json change
 
                                                 "country": params.country
 
-                                            }],
+                                            },
 
-                                            "cashDesks": { "identification": params.cashdesk_id }
+                                            "cashDesks":{ "identification": params.cashdesk_id }
 
                                         }]
 

@@ -111,7 +111,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 
                                     "cashDesks": [
                                       {
-                                        "identification": params.cashdesk_id
+                                        "identification": params.cashdesk_identification
                                       }
                                     ]
                                   

@@ -30,8 +30,8 @@ export class npss_cs_desk_updateService {
             "bankUserId": CtrlScope.BANKUSERID,
             "shopId":CtrlScope_shop.SHOP_ID,
             "merchant_tag": CtrlScope.MERCHANT_TAG,
-            "cash_id": CtrlScope_cash.CASHDESK_OVERLAY_ID,
-            "cash_identification": CtrlScope_cash.CASHDESK_ID,
+            "cash_identification": CtrlScope_cash.CASHDESK_OVERLAY_ID,
+            "cash_id": CtrlScope_cash.CASHDESK_ID,
             "TenantId":  this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID")
         }
         this.CallUrlWithData(ClientParams, screenInstance, internals);

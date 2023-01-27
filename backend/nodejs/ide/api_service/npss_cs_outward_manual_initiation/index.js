@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -19,6 +20,8 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified Date : 24/01/2023
     Modified By : Siva Harish
     Modified Date : 25/01/2023
+     Modified By : Siva Harish
+    Modified Date : 26/01/2023
     Reason for : 
      
     */
@@ -106,8 +109,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objCusTranInst.MODIFIED_BY = "";
                                                         objCusTranInst.MODIFIED_BY_NAME = "";
                                                         objCusTranInst.MODIFIED_DATE = null;
-                                                        objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
-                                                        objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
+                                                        objCusTranInst.SYSTEM_ID = params.SYSTEM_ID || null;
+                                                        objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME || null;
                                                         objCusTranInst.CREATED_BY_STS_ID = "";
                                                         objCusTranInst.MODIFIED_BY_STS_ID = "";
                                                         objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
@@ -116,12 +119,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
                                                         objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                                         objCusTranInst.routingkey = headers.routingkey;
-                                                        objCusTranInst.INTRBK_STTLM_AMNT = params.INTRBK_STTLM_AMNT
-                                                        objCusTranInst.INTRBK_STTLM_CUR = params.INTRBK_STTLM_CUR
+                                                        objCusTranInst.INTRBK_STTLM_AMNT = params.INTRBK_STTLM_AMNT || null
+                                                        objCusTranInst.INTRBK_STTLM_CUR = params.INTRBK_STTLM_CUR || null
                                                         objCusTranInst.VALUE_DATE = reqDateFormatter.GetDateAt12AM(headers, objSessionLogInfo, params.VALUE_DATE)
                                                         objCusTranInst.DBTR_ACCT_NO = arrdata[0].cdtr_acct_no
                                                         objCusTranInst.BASE_AMOUNT = arrdata[0].base_amount
-                                                        objCusTranInst.BASE_CURRENCY = params.BASE_CURRENCY
+                                                        objCusTranInst.BASE_CURRENCY = params.BASE_CURRENCY || null
                                                         objCusTranInst.HDR_CREATED_DATE = arrdata[0].hdr_created_date
                                                         objCusTranInst.HDR_TOTAL_RECORDS = arrdata[0].hdr_total_records
                                                         objCusTranInst.RATE_CODE = arrdata[0].rate_code
@@ -172,9 +175,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objCusTranInst.CPR_DW_FILE_NAME = arrdata[0].cpr_dw_file_name
                                                         objCusTranInst.CPR_REJECT_REASON = arrdata[0].cpr_reject_reason
                                                         objCusTranInst.REMARKS = arrdata[0].remarks
-                                                        objCusTranInst.DISPUTE_REF_NO = params.DISPUTE_REF_NO
+                                                        objCusTranInst.DISPUTE_REF_NO = params.DISPUTE_REF_NO || null
                                                         objCusTranInst.REVERSAL_AMOUNT = arrdata[0].reversal_amount
-                                                        objCusTranInst.CHARGE_AMOUNT = params.CHARGE_AMOUNT
+                                                        objCusTranInst.CHARGE_AMOUNT = params.CHARGE_AMOUNT || null
                                                         arrCusTranInst.push(objCusTranInst)
                                                         _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRANSACTIONS', function callbackInsert(CusTranInsertRes) {
                                                             if (CusTranInsertRes.length > 0) {
@@ -200,8 +203,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 objcusTranprslog.MODIFIED_BY = "";
                                                                 objcusTranprslog.MODIFIED_BY_NAME = "";
                                                                 objcusTranprslog.MODIFIED_DATE = null;
-                                                                objcusTranprslog.SYSTEM_ID = params.SYSTEM_ID;
-                                                                objcusTranprslog.SYSTEM_NAME = params.SYSTEM_NAME;
+                                                                objcusTranprslog.SYSTEM_ID = params.SYSTEM_ID || null;
+                                                                objcusTranprslog.SYSTEM_NAME = params.SYSTEM_NAME || null;
                                                                 objcusTranprslog.CREATED_BY_STS_ID = "";
                                                                 objcusTranprslog.MODIFIED_BY_STS_ID = "";
                                                                 objcusTranprslog.created_clientip = objSessionLogInfo.CLIENTIP;
@@ -391,6 +394,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

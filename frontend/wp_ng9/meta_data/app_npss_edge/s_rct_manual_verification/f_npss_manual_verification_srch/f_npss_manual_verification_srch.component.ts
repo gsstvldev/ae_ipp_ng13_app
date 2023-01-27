@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27921 
+Build ID        : 27924 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-25 14:0 PM 
+Modified Date   : 2023-Jan-27 4:48 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_verification
@@ -51,12 +51,12 @@ focustoelement(){
 		//Properties of cdtr_iban
 		this.ctrl.cdtr_iban = {}
 		this.ctrl.cdtr_iban.id = "9c78b1b4-2aa1-48ac-9017-209d01b1b37d_1674573747682"
-		this.ctrl.cdtr_iban.desc = "Cdtr IBAN"
+		this.ctrl.cdtr_iban.desc = "Cr IBAN"
 		this.ctrl.cdtr_iban.visible = false
-		this.ctrl.cdtr_iban.label_name = "Cdtr IBAN"
+		this.ctrl.cdtr_iban.label_name = "Cr IBAN"
 		this.ctrl.cdtr_iban.df_code = "DF_1304_1665901396659"
 		this.ctrl.cdtr_iban.df_description = "Column Group 1"
-		this.ctrl.cdtr_iban.uictrl_code = "TXT"
+		this.ctrl.cdtr_iban.uictrl_code = "CDN_CTRL"
 		this.ctrl.cdtr_iban.target_column = "CDTR_IBAN"
 		this.ctrl.cdtr_iban.data_type = "TEXT"
 		this.ctrl.cdtr_iban.data_length = 64
@@ -129,17 +129,17 @@ focustoelement(){
 		//Properties of memory63
 		this.ctrl.memory63 = {}
 		this.ctrl.memory63.id = "7b8bd0a5-4090-4f26-bdbe-2c29a1dd99c0_1674573747682"
-		this.ctrl.memory63.desc = "MI created date"
+		this.ctrl.memory63.desc = "Transaction Date"
 		this.ctrl.memory63.visible = true
-		this.ctrl.memory63.label_name = "MI created date"
+		this.ctrl.memory63.label_name = "Transaction Date"
 		this.ctrl.memory63.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory63.df_description = "Column Group 1"
-		this.ctrl.memory63.uictrl_code = "DTP"
+		this.ctrl.memory63.uictrl_code = "CDN_DATE"
 		this.ctrl.memory63.target_column = "memory63"
 		this.ctrl.memory63.data_type = "DATETIME"
 		this.ctrl.memory63.data_length = 0
 		this.ctrl.memory63.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory63.default_value = ""
+		this.ctrl.memory63.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory63.is_memory_ctrl = "Y"
 		this.ctrl.memory63.field_coordinates = ""
 		this.ctrl.memory63.sub_details = ""
@@ -168,12 +168,12 @@ focustoelement(){
 		//Properties of intrbk_sttlm_amnt
 		this.ctrl.intrbk_sttlm_amnt = {}
 		this.ctrl.intrbk_sttlm_amnt.id = "34ed9440-95b5-4299-a032-4e2729ffe9a5_1674573747682"
-		this.ctrl.intrbk_sttlm_amnt.desc = "Intrbk Sttlm Amnt"
+		this.ctrl.intrbk_sttlm_amnt.desc = "Amount"
 		this.ctrl.intrbk_sttlm_amnt.visible = true
-		this.ctrl.intrbk_sttlm_amnt.label_name = "Intrbk Sttlm Amnt"
+		this.ctrl.intrbk_sttlm_amnt.label_name = "Amount"
 		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
 		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
-		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CUR"
+		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CDN_CUR_CTRL"
 		this.ctrl.intrbk_sttlm_amnt.target_column = "INTRBK_STTLM_AMNT"
 		this.ctrl.intrbk_sttlm_amnt.data_type = "NUMBER"
 		this.ctrl.intrbk_sttlm_amnt.data_length = 19
@@ -203,8 +203,8 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_manual_verification_srch_intrbk_sttlm_amnt"
 		this.ctrl.npss_manual_verification_srch_intrbk_sttlm_amnt = {}
 		this.ctrl.npss_manual_verification_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_manual_verification_srch.model = {"CDTR_IBAN":"","DBTR_IBAN":"","MEMORY63":"","INTRBK_STTLM_AMNT":""}
-		this.screen_instance[this.comp_id].f_npss_manual_verification_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
+		this.screen_instance[this.comp_id].f_npss_manual_verification_srch.model = {"CDTR_IBAN":"","DBTR_IBAN":"","MEMORY63":"setcurrentdate(),{}","INTRBK_STTLM_AMNT":""}
+		this.screen_instance[this.comp_id].f_npss_manual_verification_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
 		this.screen_instance[this.comp_id].f_npss_manual_verification_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_manual_verification_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_manual_verification_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

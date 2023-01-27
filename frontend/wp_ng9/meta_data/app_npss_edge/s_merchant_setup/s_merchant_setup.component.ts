@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27921 
+Build ID        : 27924 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-25 14:0 PM 
+Modified Date   : 2023-Jan-27 4:48 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -1292,7 +1292,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop__ee_for_shop_enrolment_btn()
 		this.shop__tbc_for_cashdesk_list()
 		this.shop__e_1672301047211()
-		this.shop__e_1672743518139()
+		this.shop__ssr_for_shop_to_shop_detail()
 	}
 
 	//Handler for SELECTION_CHANGED event of "cashdesk"
@@ -1318,7 +1318,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.cashdesk_action_enrolment_desk__cc__for_enroll_cd_ena_dis()
 		this.cashdesk_action_enrolment_desk__se_for_enroll_cd()
 		this.cashdesk_action_enrolment_desk__e_1672292320842()
-		this.cashdesk_action_enrolment_desk__tbc_for_cd_enroll()
+		this.cashdesk_action_enrolment_desk__bt_from_enrolment_desk_to_shop()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action update desk"
@@ -1371,7 +1371,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 		this.shop_action_enrolment_shop__sp_for_shop_enroll()
 		this.shop_action_enrolment_shop__cu_for_enroll_shop_to_shop_dtl()
 		this.shop_action_enrolment_shop__cui_for_enrolment_shop_to_cdd()
-		this.shop_action_enrolment_shop__e_1672292386953()
+		this.shop_action_enrolment_shop__clr_for_enrolment_to_sd()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "shop action disable shop"
@@ -1503,7 +1503,7 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "shop action trg hide for bind tran"
 	shop_action_trg_hide_for_bind_tran__action_button_click(){
-		this.shop_action_trg_hide_for_bind_tran__e_1672744026078()
+		this.shop_action_trg_hide_for_bind_tran__bt_for_trg_to_shop_detail()
 		this.shop_action_trg_hide_for_bind_tran__e_1672746328383()
 	}
 
@@ -4442,14 +4442,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "shop"
-	shop__e_1672743518139() { 
+	shop__ssr_for_shop_to_shop_detail() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="shop"
 		let destn_id="shop_detail"
 		let parent_source_id=""
 		let event_code="e_1672743518139"
-		let event_params={"caller_name":"shop__e_1672743518139","event_desc":"E_1672743518139","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{}}
+		let event_params={"caller_name":"shop__ssr_for_shop_to_shop_detail","event_desc":"SSR for Shop to Shop detail","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"shop","raiseparam":{}}
 		let handler_code="set_selected_row"
 		let internals=""
 		let event_data={}
@@ -4736,20 +4736,20 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "cashdesk action enrolment desk"
-	cashdesk_action_enrolment_desk__tbc_for_cd_enroll() { 
+	cashdesk_action_enrolment_desk__bt_from_enrolment_desk_to_shop() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="cashdesk_action_enrolment_desk"
-		let destn_id="shop_action_trg_hide_for_bind_tran"
+		let destn_id="shop_detail"
 		let parent_source_id=""
-		let event_code="e_1674655126375"
-		let event_params={"caller_name":"cashdesk_action_enrolment_desk__tbc_for_cd_enroll","event_desc":"TBC for CD Enroll","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cashdesk_action_enrolment_desk","raiseparam":{}}
-		let handler_code="trigger_button_click"
+		let event_code="e_1674657517609"
+		let event_params={"caller_name":"cashdesk_action_enrolment_desk__bt_from_enrolment_desk_to_shop","event_desc":"BT from Enrolment desk to shop","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cashdesk_action_enrolment_desk","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -5093,14 +5093,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "shop action enrolment shop"
-	shop_action_enrolment_shop__e_1672292386953() { 
+	shop_action_enrolment_shop__clr_for_enrolment_to_sd() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="shop_action_enrolment_shop"
 		let destn_id="shop_detail"
 		let parent_source_id=""
 		let event_code="e_1672292386953"
-		let event_params={"caller_name":"shop_action_enrolment_shop__e_1672292386953","event_desc":"E_1672292386953","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_enrolment_shop","raiseparam":{"need_reset_key_column":"N"}}
+		let event_params={"caller_name":"shop_action_enrolment_shop__clr_for_enrolment_to_sd","event_desc":"CLR for Enrolment to SD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_enrolment_shop","raiseparam":{"need_reset_key_column":"N"}}
 		let handler_code="clear_ui"
 		let internals=""
 		let event_data={}
@@ -6232,14 +6232,14 @@ export class s_merchant_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "shop action trg hide for bind tran"
-	shop_action_trg_hide_for_bind_tran__e_1672744026078() { 
+	shop_action_trg_hide_for_bind_tran__bt_for_trg_to_shop_detail() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="shop_action_trg_hide_for_bind_tran"
 		let destn_id="shop_detail"
 		let parent_source_id=""
 		let event_code="e_1672744026078"
-		let event_params={"caller_name":"shop_action_trg_hide_for_bind_tran__e_1672744026078","event_desc":"E_1672744026078","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_trg_hide_for_bind_tran","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let event_params={"caller_name":"shop_action_trg_hide_for_bind_tran__bt_for_trg_to_shop_detail","event_desc":"BT for Trg to Shop detail","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"shop_action_trg_hide_for_bind_tran","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
 		let handler_code="bind_tran"
 		let internals=""
 		let event_data={}

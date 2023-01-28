@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27604 
+Build ID        : 27932 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-25 10:35 AM 
+Modified Date   : 2023-Jan-28 7:31 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -212,7 +212,7 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.label_name = "Inward Amount"
 		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
 		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
-		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CDN_CTRL"
+		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CDN_CUR_CTRL"
 		this.ctrl.intrbk_sttlm_amnt.target_column = "INTRBK_STTLM_AMNT"
 		this.ctrl.intrbk_sttlm_amnt.data_type = "NUMBER"
 		this.ctrl.intrbk_sttlm_amnt.data_length = 19
@@ -361,7 +361,7 @@ focustoelement(){
 		this.ctrl.npss_reversal_srch_payment_endtoend_id = {}
 		this.ctrl.npss_reversal_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_reversal_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","UETR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","PAYMENT_ENDTOEND_ID":""}
-		this.screen_instance[this.comp_id].f_npss_reversal_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"}]
+		this.screen_instance[this.comp_id].f_npss_reversal_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"}]
 		this.screen_instance[this.comp_id].f_npss_reversal_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_reversal_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_reversal_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27879 
+Build ID        : 27963 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-24 13:12 PM 
+Modified Date   : 2023-Feb-01 12:54 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_activities
@@ -90,9 +90,9 @@ focustoelement(){
 		//Properties of memory18
 		this.ctrl.memory18 = {}
 		this.ctrl.memory18.id = "RN11CN2"
-		this.ctrl.memory18.desc = "Users"
+		this.ctrl.memory18.desc = "User Login Name"
 		this.ctrl.memory18.visible = true
-		this.ctrl.memory18.label_name = "Users"
+		this.ctrl.memory18.label_name = "User Login Name"
 		this.ctrl.memory18.df_code = "DF_1304_1665904016567"
 		this.ctrl.memory18.df_description = "Column Group 1"
 		this.ctrl.memory18.uictrl_code = "CDN_CTRL"

@@ -302,7 +302,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                     })
                                                                                 }
                                                                             } else {
-                                                                                objresponse.status = 'FAILURE'
+                                                                                objresponse.status = 'Reversal Amount or Inter Bulk Settlement Amount is Missing'
                                                                                 objresponse.data = 'Reversal Amount or Inter Bulk Settlement Amount is Missing'
                                                                                 sendResponse(null, objresponse)
                                                                             }

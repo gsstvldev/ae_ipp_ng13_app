@@ -48,6 +48,7 @@ export class torus_cs_set_rule_mi_paramService {
                         this.coreHelper.set_value_to_memory("MEMORY_VARIABLES", "MI_LEVEL_RULE_"+k[i].toUpperCase(),val[k[i]].toUpperCase());
                     } 
                 }
+                 this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
               }
 
                 

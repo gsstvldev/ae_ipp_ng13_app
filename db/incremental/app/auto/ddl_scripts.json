@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column PROCESS_GROUP CHARACTER VARYING(32);","params" : [] }]

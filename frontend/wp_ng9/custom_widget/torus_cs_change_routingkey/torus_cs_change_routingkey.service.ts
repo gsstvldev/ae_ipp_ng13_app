@@ -30,7 +30,7 @@ export class torus_cs_change_routingkeyService {
         private AppHandler: AppHandlerService) { }
     //Default calling function
     fn_torus_cs_change_routingkey(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
-        this.AppHandler.callInternals(this.Internals, screenInstance, "SUCCESS");
+       this.AppHandler.callInternals(internals, screenInstance, "SUCCESS");
         // setTimeout(() => {
         //     this.selectedItems = this.CoreSvc.get_selected_items(parent_source_id, event_params, source_id, screenInstance)
         //     this.MiLevelStatus = this.CoreSvc.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");

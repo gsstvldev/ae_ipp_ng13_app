@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27978 
+Build ID        : 27987 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-02 5:34 AM 
+Modified Date   : 2023-Feb-03 8:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_transaction_details
@@ -437,8 +437,88 @@ focustoelement(){
 		this.ctrl.processing_system.ctrl_id = "npss_ip_transaction_details_srch_processing_system"
 		this.ctrl.npss_ip_transaction_details_srch_processing_system = {}
 		this.ctrl.npss_ip_transaction_details_srch_processing_system.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","UETR":"","TRAN_REF_ID":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","INTRBK_STTLM_AMNT":"","PROCESSING_SYSTEM":""}
-		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"}]
+	
+		//Properties of process_group
+		this.ctrl.process_group = {}
+		this.ctrl.process_group.id = "RN51CN11"
+		this.ctrl.process_group.desc = "Process Group"
+		this.ctrl.process_group.visible = true
+		this.ctrl.process_group.label_name = "Process Group"
+		this.ctrl.process_group.df_code = "DF_1304_1665901396659"
+		this.ctrl.process_group.df_description = "Column Group 1"
+		this.ctrl.process_group.uictrl_code = "CBO"
+		this.ctrl.process_group.target_column = "PROCESS_GROUP"
+		this.ctrl.process_group.data_type = "TEXT"
+		this.ctrl.process_group.data_length = 32
+		this.ctrl.process_group.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.process_group.default_value = ""
+		this.ctrl.process_group.is_memory_ctrl = ""
+		this.ctrl.process_group.field_coordinates = ""
+		this.ctrl.process_group.sub_details = ""
+		this.ctrl.process_group.accept_char = ""
+		this.ctrl.process_group.currency_format = ""
+		this.ctrl.process_group.data_scale = ""
+		this.ctrl.process_group.binding_name = "PROCESS_GROUP"
+		this.ctrl.process_group.hide_label = false
+		this.ctrl.process_group.depends_on = ""
+		this.ctrl.process_group.placeholder = ""
+		this.ctrl.process_group.dynamic_param = ""
+		this.ctrl.process_group.style_code = ""
+		this.ctrl.process_group.data_source = {"ds_code":"UDS_1304_1675403226618","ds_description":"NPSS Process group CDB","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"CD_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CODE_DESCRIPTIONS","context":"","filters":[{"filter_name":"Filter1","binding_name":"CD_CATEGORY","id":"DF_1675403303356","binding_value":"PROCESS_GROUP","source_name":"CD_CATEGORY","source_value":"PROCESS_GROUP","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1675403303356","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter3","binding_name":"STATUS","id":"DF_1675403303356","binding_value":"APPROVED","source_name":"STATUS","source_value":"APPROVED","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"PROCESS_GROUP","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"PROCESS_GROUP"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"},{"operators":"=","data_type":"TEXT","binding_name":"STATUS","binding_value":"APPROVED","sort_order":3,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"APPROVED"}]},"query":"(CD_CATEGORY = PROCESS_GROUP AND TENANT_ID = SESSION_LEVEL.TENANT_ID AND STATUS = APPROVED)"},"sel_columns":[]}
+		this.ctrl.process_group.image_association = ""
+		this.ctrl.process_group.show = true
+		this.ctrl.process_group.sub_content = ""
+		this.ctrl.process_group.required = false
+		this.ctrl.process_group.vld_rules = []
+		this.ctrl.process_group.targetcolumn_lower = "process_group"
+		this.ctrl.process_group.disabled = false
+		this.ctrl.process_group.view_name = "f_npss_ip_transaction_details_srch"
+		this.ctrl.process_group.ctrl_id = "npss_ip_transaction_details_srch_process_group"
+		this.ctrl.npss_ip_transaction_details_srch_process_group = {}
+		this.ctrl.npss_ip_transaction_details_srch_process_group.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.process_group = {}
+	
+		//Properties of department_code
+		this.ctrl.department_code = {}
+		this.ctrl.department_code.id = "RN51CN12"
+		this.ctrl.department_code.desc = "Department Code"
+		this.ctrl.department_code.visible = true
+		this.ctrl.department_code.label_name = "Department Code"
+		this.ctrl.department_code.df_code = "DF_1304_1665901396659"
+		this.ctrl.department_code.df_description = "Column Group 1"
+		this.ctrl.department_code.uictrl_code = "CBO"
+		this.ctrl.department_code.target_column = "DEPARTMENT_CODE"
+		this.ctrl.department_code.data_type = "TEXT"
+		this.ctrl.department_code.data_length = 32
+		this.ctrl.department_code.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.department_code.default_value = ""
+		this.ctrl.department_code.is_memory_ctrl = ""
+		this.ctrl.department_code.field_coordinates = ""
+		this.ctrl.department_code.sub_details = ""
+		this.ctrl.department_code.accept_char = ""
+		this.ctrl.department_code.currency_format = ""
+		this.ctrl.department_code.data_scale = ""
+		this.ctrl.department_code.binding_name = "DEPARTMENT_CODE"
+		this.ctrl.department_code.hide_label = false
+		this.ctrl.department_code.depends_on = ""
+		this.ctrl.department_code.placeholder = ""
+		this.ctrl.department_code.dynamic_param = ""
+		this.ctrl.department_code.style_code = ""
+		this.ctrl.department_code.data_source = {"ds_code":"UDS_1304_1672981344164","ds_description":"Core NC Department Code CDB","rows":[],"type":"DPS_TABLE","value_member":"CODE","display_member":"DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"CODE","target_table":"CORE_VW_NC_DEPARTMENT_CODE","context":"","filters":[{"filter_name":"Filter1","binding_name":"STATUS","id":"DF_1672981739587","binding_value":"APPROVED","source_name":"STATUS","source_value":"APPROVED","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1672981739588","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"STATUS","binding_value":"APPROVED","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"APPROVED"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(STATUS = APPROVED AND TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"need_auto_first_record":false,"sel_columns":[]}
+		this.ctrl.department_code.image_association = ""
+		this.ctrl.department_code.show = true
+		this.ctrl.department_code.sub_content = ""
+		this.ctrl.department_code.required = false
+		this.ctrl.department_code.vld_rules = []
+		this.ctrl.department_code.targetcolumn_lower = "department_code"
+		this.ctrl.department_code.disabled = false
+		this.ctrl.department_code.view_name = "f_npss_ip_transaction_details_srch"
+		this.ctrl.department_code.ctrl_id = "npss_ip_transaction_details_srch_department_code"
+		this.ctrl.npss_ip_transaction_details_srch_department_code = {}
+		this.ctrl.npss_ip_transaction_details_srch_department_code.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.department_code = {}
+		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","UETR":"","TRAN_REF_ID":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","INTRBK_STTLM_AMNT":"","PROCESSING_SYSTEM":"","PROCESS_GROUP":"","DEPARTMENT_CODE":""}
+		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_GROUP"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"}]
 		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

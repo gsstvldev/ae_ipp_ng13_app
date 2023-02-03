@@ -42,6 +42,14 @@
 				<cdn_ctrl [ctrl_id]="'npss_op_transaction_details_srch_processing_system'" [comp_id]="comp_id" [ctrl]="ctrl.processing_system" [model]="screen_instance[this.comp_id].f_npss_op_transaction_details_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
 	</div>
 </div>
+<div id="RN51" class="row">
+	<div  id="RN51CN11" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('process_group')" >
+				<cbo [ctrl_id]="'npss_op_transaction_details_srch_process_group'" [comp_id]="comp_id" [ctrl]="ctrl.process_group" [model]="screen_instance[this.comp_id].f_npss_op_transaction_details_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
+	</div>
+	<div  id="RN51CN12" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('department_code')" >
+				<cbo [ctrl_id]="'npss_op_transaction_details_srch_department_code'" [comp_id]="comp_id" [ctrl]="ctrl.department_code" [model]="screen_instance[this.comp_id].f_npss_op_transaction_details_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
+	</div>
+</div>
 	</form>
 </fieldset >
 	<div class="row dynamic_action_btn">

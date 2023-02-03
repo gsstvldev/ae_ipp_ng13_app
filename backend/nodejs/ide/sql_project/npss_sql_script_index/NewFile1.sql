@@ -55,3 +55,21 @@ create index if not exists ncp_created_date on npss_customer_proxy (created_date
 drop index if exists nmp_created_date ;
 create index if not exists nmp_created_date on npss_merchant_proxy (created_date);
 @SPL@
+drop index if exists cbsa_alternate_account_id ;
+create index if not exists cbsa_alternate_account_id on core_nc_cbs_accounts (alternate_account_id);
+@SPL@
+drop index if exists cbsa_account_closed ;
+create index if not exists cbsa_account_closed on core_nc_cbs_accounts (account_closed);
+@SPL@
+drop index if exists cbsa_inactive_marker ;
+create index if not exists cbsa_inactive_marker on core_nc_cbs_accounts (inactive_marker);
+@SPL@
+drop index if exists cbsa_posting_restriction_code ;
+create index if not exists cbsa_posting_restriction_code on core_nc_cbs_accounts (posting_restriction_code);
+@SPL@
+drop index if exists cbsa_customer_posting_restriction_code ;
+create index if not exists cbsa_customer_posting_restriction_code on core_nc_cbs_accounts (customer_posting_restriction_code);
+@SPL@
+drop index if exists cbsa_productidentifier ;
+create index if not exists cbsa_productidentifier on core_nc_cbs_accounts (productidentifier);
+@SPL@

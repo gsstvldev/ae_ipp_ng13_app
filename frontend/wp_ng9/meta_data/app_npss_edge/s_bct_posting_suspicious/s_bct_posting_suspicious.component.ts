@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27987 
+Build ID        : 27990 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-03 8:5 AM 
+Modified Date   : 2023-Feb-03 10:33 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_suspicious
@@ -609,6 +609,11 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		this.transaction_list__svm_for_tl()
 		this.transaction_list__ee_for_vd()
 		this.transaction_list__ee_for_vlh()
+		this.transaction_list__ee_for_already_posted_from_tran_list()
+		this.transaction_list__ee_for_cc_posting_from_tran_list()
+		this.transaction_list__ee_for_call_enquiry_from_tran_list()
+		this.transaction_list__ee_for_t24_posting()
+		this.transaction_list__ee_for_retry_from_tran_list()
 	}
 
 	//Handler for INTERNAL event of "svm for tl"
@@ -1267,6 +1272,111 @@ export class s_bct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1669448396214"
 		let event_params={"caller_name":"transaction_list__ee_for_vlh","event_desc":"EE for VLH","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_already_posted_from_tran_list() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_already_posted"
+		let parent_source_id=""
+		let event_code="e_1675418192704"
+		let event_params={"caller_name":"transaction_list__ee_for_already_posted_from_tran_list","event_desc":"EE for Already Posted from Tran List","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_cc_posting_from_tran_list() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_call_cc_posting"
+		let parent_source_id=""
+		let event_code="e_1675418301359"
+		let event_params={"caller_name":"transaction_list__ee_for_cc_posting_from_tran_list","event_desc":"EE for CC Posting from Tran List","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_call_enquiry_from_tran_list() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_call_enquiry"
+		let parent_source_id=""
+		let event_code="e_1675418441766"
+		let event_params={"caller_name":"transaction_list__ee_for_call_enquiry_from_tran_list","event_desc":"EE for Call Enquiry from Tran List","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_t24_posting() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_call_t24_posting"
+		let parent_source_id=""
+		let event_code="e_1675418511706"
+		let event_params={"caller_name":"transaction_list__ee_for_t24_posting","event_desc":"EE for T24 Posting","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_retry_from_tran_list() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_retry"
+		let parent_source_id=""
+		let event_code="e_1675418605284"
+		let event_params={"caller_name":"transaction_list__ee_for_retry_from_tran_list","event_desc":"EE for Retry from Tran List","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}

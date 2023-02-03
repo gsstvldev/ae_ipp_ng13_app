@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27987 
+Build ID        : 27991 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-03 8:5 AM 
+Modified Date   : 2023-Feb-03 10:26 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_failures
@@ -563,6 +563,7 @@ export class s_bct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.transaction_list__svm_for_tl()
 		this.transaction_list__ee_for_vd_process()
 		this.transaction_list__ee_for_vlh()
+		this.transaction_list__ee_for_retry_btn()
 	}
 
 	//Handler for INTERNAL event of "svm for tl"
@@ -1125,6 +1126,27 @@ export class s_bct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1669452278162"
 		let event_params={"caller_name":"transaction_list__ee_for_vlh","event_desc":"EE for VLH","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_retry_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_retry"
+		let parent_source_id=""
+		let event_code="e_1675419526992"
+		let event_params={"caller_name":"transaction_list__ee_for_retry_btn","event_desc":"EE for retry btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}

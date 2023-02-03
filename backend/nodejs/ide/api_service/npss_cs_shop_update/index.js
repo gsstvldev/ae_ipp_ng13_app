@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+
     
    /*  Created By :   Daseen
 Created Date : 19/12/2022
@@ -49,7 +50,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         objSessionLogInfo.ACTION = 'ACTION';
         objSessionLogInfo.PROCESS = 'NPSS Shop Update';
         // Get DB Connection 
-        reqTranDBInstance.GetTranDBConn(headers, true, function (pSession) {
+        reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
             mTranConn = pSession; //  assign connection 
             //get prct id                              
             try {
@@ -183,13 +184,13 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
             function sendResponse(error, response) {
                 try {
                     if (error) {
-                        reqTranDBInstance.Commit(mTranConn, false, function callbackres(res) {
+                       
                             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-                        });
+                      
                     } else {
-                        reqTranDBInstance.Commit(mTranConn, true, function callbackres(res) {
+                      
                             reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-                        });
+                     
                     }
                 } catch (error) {
                     reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
@@ -201,6 +202,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 });
+
+
 
 
 

@@ -50,7 +50,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         objSessionLogInfo.ACTION = 'ACTION';
         objSessionLogInfo.PROCESS = 'NPSS Customer Enrolment';
         // Get DB Connection 
-        reqTranDBInstance.GetTranDBConn(headers, true, function (pSession) {
+        reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
             mTranConn = pSession; //  assign connection 
             //get prct id                              
             try {
@@ -139,7 +139,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
 
 
-                        console.log('------------API JSON-------' + JSON.stringify(options));
+                      
                         reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                         request(options, function (error, responseFromImagingService, responseBody) {
 
@@ -148,7 +148,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 sendResponse(error, null);
                             } else {
 
-                                console.log("------API CALL SUCCESS----", JSON.stringify(responseBody));
+                                console.log("------API CALL SUCCESS----");
                                 callbackapi(responseBody)
                             }
                         });
@@ -203,13 +203,13 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
             function sendResponse(error, response) {
                 try {
                     if (error) {
-                        reqTranDBInstance.Commit(mTranConn, false, function callbackres(res) {
+                     
                             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-                        });
+                      
                     } else {
-                        reqTranDBInstance.Commit(mTranConn, true, function callbackres(res) {
+                      
                             reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-                        });
+                      
                     }
                 } catch (error) {
                     reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);

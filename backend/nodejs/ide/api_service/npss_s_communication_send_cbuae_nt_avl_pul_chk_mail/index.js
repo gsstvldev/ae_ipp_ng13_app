@@ -138,7 +138,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                                                                    console.log('------------API JSON-------' + JSON.stringify(options));
+                                                                   
                                                                     reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                                                                     request(options, function (error, responseFromImagingService, responseBody) {
 
@@ -146,8 +146,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                                             sendResponse(error, null);
                                                                         } else {
-
-                                                                            console.log("------API CALL SUCCESS----", JSON.stringify(responseBody));
+                                                       reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBody, objSessionLogInfo);
+                                                                           
                                                                             objresponse.status = 'SUCCESS';
 
                                                                             sendResponse(null, objresponse)
@@ -251,13 +251,13 @@ app.post('/', function(appRequest, appResponse, next) {
                 function sendResponse(error, response) {
                     try {
                         if (error) {
-                            reqTranDBInstance.Commit(mTranConn, false, function callbackres(res) {
+                         
                                 reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-                            });
+                          
                         } else {
-                            reqTranDBInstance.Commit(mTranConn, true, function callbackres(res) {
+                         
                                 reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-                            });
+                         
                         }
                     } catch (error) {
                         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);

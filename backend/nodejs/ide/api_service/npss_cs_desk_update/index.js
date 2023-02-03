@@ -7,9 +7,9 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
 
-    /*  Created By :   Daseen
+
+/*  Created By :   Daseen
 Created Date : 29/12/2022
 Modified By : 
 Modified Date : 
@@ -50,7 +50,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         objSessionLogInfo.ACTION = 'ACTION';
         objSessionLogInfo.PROCESS = 'NPSS Desk UPDATE';
         // Get DB Connection 
-        reqTranDBInstance.GetTranDBConn(headers, true, function (pSession) {
+        reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
             mTranConn = pSession; //  assign connection 
             //get prct id                              
             try {
@@ -64,25 +64,25 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         var lang = JsonValue["General"]["subgroup"][0]["language"]
                         var bankcode = JsonValue["General"]["subgroup"][0]["bankcode"]
                         var groupcode = JsonValue["General"]["subgroup"][0]["groupcode"]
-                       
+
                         url = url.replace('{groupCode}', groupcode)
                         url = url.replace('{bankCode}', bankcode)
                         url = url.replace('{bankUserId}', params.bankUserId)
-                        url = url.replace('{merchantTag}',params.merchant_tag)
-                        url = url.replace('{shopId}',params.shopId)
-                        
-                       
+                        url = url.replace('{merchantTag}', params.merchant_tag)
+                        url = url.replace('{shopId}', params.shopId)
+
+
                         // sendResponse(null,objresponse)
                         fndoapicall(request_id, lang, url, bankcode, groupcode, function (result) {
-                          if(typeof result=='object'){
+                            if (typeof result == 'object') {
                                 objresponse.status = 'SUCCESS'
                                 objresponse.data = result
                                 sendResponse(null, objresponse)
-                            }else{
-                                objresponse.status = 'FAILURE'                            
+                            } else {
+                                objresponse.status = 'FAILURE'
                                 sendResponse(null, objresponse)
                             }
-                           
+
                         })
 
                     } else {
@@ -110,24 +110,24 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                             method: 'PUT',
                             json: {
                                 "cashDesks": [
-                                  {
-                                    "id":params. cash_id,
-                                    "identification":params.cash_identification
-                                  }
+                                    {
+                                        "id": params.cash_id,
+                                        "identification": params.cash_identification
+                                    }
                                 ]
-                              }, headers: {
+                            }, headers: {
                                 "X-Request-ID": requestid,
                                 "language": lang,
                                 "timestamp": formatdate,
                                 "channel-Id": params.channelId,
-                                 "authorization":"Y",
+                                "authorization": "Y",
                                 'Content-Type': 'application/json'
                             }
                         }
 
 
 
-                
+
                         reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                         request(options, function (error, responseFromImagingService, responseBody) {
 
@@ -177,12 +177,6 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
 
 
-
-
-
-
-
-
             } catch (error) {
                 reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10003', 'ERROR IN DB CONNECTION FUNCTION', error);
             }
@@ -191,13 +185,13 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
             function sendResponse(error, response) {
                 try {
                     if (error) {
-                        reqTranDBInstance.Commit(mTranConn, false, function callbackres(res) {
-                            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-                        });
+
+                        reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
+
                     } else {
-                        reqTranDBInstance.Commit(mTranConn, true, function callbackres(res) {
-                            reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-                        });
+
+                        reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
+
                     }
                 } catch (error) {
                     reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);

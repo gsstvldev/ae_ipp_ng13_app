@@ -32,6 +32,7 @@ app.post('/', function(appRequest, appResponse, next) {
           Reason for : Changing response and adding forcetoposflag N to reserver fund api
             Reason for : Removing console log 17/01/2023
             Reason for : changing Bulk insert positon
+             Reason for : changing transaction scope false 2/2/2023
         */
         var serviceName = 'NPSS IP REV Accept INAU Reserve Fund';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -64,7 +65,7 @@ app.post('/', function(appRequest, appResponse, next) {
                 objSessionLogInfo.PROCESS = 'NPSS IP REV Accept INAU Reserve Fund';
                 var cus_iban;
                 // Get DB Connection                                                                                                                                      
-                reqTranDBInstance.GetTranDBConn(headers, true, function (pSession) {
+                reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
                     mTranConn = pSession; //  assign connection     
                     reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
                         try {
@@ -1069,13 +1070,13 @@ app.post('/', function(appRequest, appResponse, next) {
                     function sendResponse(error, response) {
                         try {
                             if (error) {
-                                reqTranDBInstance.Commit(mTranConn, false, function callbackres(res) {
+                              
                                     reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-                                });
+                               
                             } else {
-                                reqTranDBInstance.Commit(mTranConn, true, function callbackres(res) {
+                               
                                     reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-                                });
+                              
                             }
                         } catch (error) {
                             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);

@@ -8,7 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     try {
-        /*   Created By : Siva Harish M
+        /*   Created By :  Siva Harish M
         Created Date :23-11-2022
         Modified By :Siva Harish M
         Modified Date :25-11-2022
@@ -45,7 +45,7 @@ app.post('/', function(appRequest, appResponse, next) {
                 objSessionLogInfo.PROCESS = 'Torus (CS) Change RoutingKey';
                 var cus_iban;
                 // Get DB Connection                                                                                                                                      
-                reqTranDBInstance.GetTranDBConn(headers, true, async function (pSession) {
+                reqTranDBInstance.GetTranDBConn(headers, false, async function (pSession) {
                     mTranConn = pSession; //  assign connection     
 
                     try {
@@ -107,13 +107,13 @@ app.post('/', function(appRequest, appResponse, next) {
                         function sendResponse(error, response) {
                             try {
                                 if (error) {
-                                    reqTranDBInstance.Commit(mTranConn, false, function callbackres(res) {
+                                  
                                         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-                                    });
+                                 
                                 } else {
-                                    reqTranDBInstance.Commit(mTranConn, true, function callbackres(res) {
+                                  
                                         reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-                                    });
+                               
                                 }
                             } catch (error) {
                                 reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);

@@ -47,7 +47,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         objSessionLogInfo.ACTION = 'ACTION';
         objSessionLogInfo.PROCESS = ' TORUS (CS) Set Rule MI Param';
         // Get DB Connection 
-        reqTranDBInstance.GetTranDBConn(headers, true, function (pSession) {
+        reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
             mTranConn = pSession; //  assign connection 
             //get prct id                              
             try {
@@ -56,10 +56,10 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                 ExecuteQuery1(Takejson, function (arrjson) {  //merchanttag,bankuserid,channelid,iban
                     if (arrjson.length) {
                         var JsonValue = JSON.parse(arrjson[0].param_value)
-                        console.log(JsonValue);
+                       
                         
                         var stsobj = JsonValue["GENERAL"]["subgroup"][0]
-                        console.log(stsobj);
+                       
                         if(stsobj){
                             objresponse.status = 'SUCCESS'
                                     objresponse.data = stsobj
@@ -113,13 +113,13 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 function sendResponse(error, response) {
     try {
         if (error) {
-            reqTranDBInstance.Commit(mTranConn, false, function callbackres(res) {
+         
                 reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-            });
+           
         } else {
-            reqTranDBInstance.Commit(mTranConn, true, function callbackres(res) {
+           
                 reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-            });
+          
         }
     } catch (error) {
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);

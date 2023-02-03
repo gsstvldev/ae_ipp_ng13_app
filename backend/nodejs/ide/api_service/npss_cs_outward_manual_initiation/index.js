@@ -7,12 +7,6 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-
-
-
-
-
 
     /*  Created By :sIVA hARISH
     Created Date : 31-12-2022
@@ -376,13 +370,13 @@ app.post('/', function(appRequest, appResponse, next) {
                     function sendResponse(error, response) {
                         try {
                             if (error) {
-                                reqTranDBInstance.Commit(mTranConn, false, function callbackres(res) {
+                               
                                     reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-                                });
+                              
                             } else {
-                                reqTranDBInstance.Commit(mTranConn, true, function callbackres(res) {
+                              
                                     reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-                                });
+                             
                             }
                         } catch (error) {
                             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);

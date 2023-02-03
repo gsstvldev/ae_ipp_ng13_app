@@ -50,7 +50,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         objSessionLogInfo.ACTION = 'ACTION';
         objSessionLogInfo.PROCESS = 'NPSS DISABLE ACCOUNT';
         // Get DB Connection 
-        reqTranDBInstance.GetTranDBConn(headers, true, function (pSession) {
+        reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
             mTranConn = pSession; //  assign connection 
             //get prct id                              
             try {
@@ -170,13 +170,13 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
             function sendResponse(error, response) {
                 try {
                     if (error) {
-                        reqTranDBInstance.Commit(mTranConn, false, function callbackres(res) {
+                       
                             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-                        });
+                    
                     } else {
-                        reqTranDBInstance.Commit(mTranConn, true, function callbackres(res) {
+                      
                             reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-                        });
+                     
                     }
                 } catch (error) {
                     reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);

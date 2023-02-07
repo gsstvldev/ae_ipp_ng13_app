@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27987 
+Build ID        : 28014 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-03 8:5 AM 
+Modified Date   : 2023-Feb-06 11:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_iban_transaction_details
@@ -499,6 +499,7 @@ focustoelement(){
 		this.ctrl.department_code.currency_format = ""
 		this.ctrl.department_code.data_scale = ""
 		this.ctrl.department_code.binding_name = "DEPARTMENT_CODE"
+		this.ctrl.department_code.hide_label = false
 		this.ctrl.department_code.depends_on = ""
 		this.ctrl.department_code.placeholder = ""
 		this.ctrl.department_code.dynamic_param = ""

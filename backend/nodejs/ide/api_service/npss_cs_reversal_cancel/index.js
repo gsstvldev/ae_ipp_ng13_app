@@ -88,7 +88,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                           var Takeurl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
                                                                                           ExecuteQuery1(Takeurl, function (arrgeturl) {
                                                                                               if (arrgeturl.length > 0) {
-                                                                                                  var hdrqry = `select process_name,status,uetr,msg_id,fx_resv_text1 from npss_trn_process_log where process_name='Receive pacs.007' and  status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr =  '${arrdata[0].uetr}'`
+                                                                                                  var hdrqry = `select process_name,status,uetr,msg_id,fx_resv_text1 from npss_trn_process_log where process_name='Receive Pacs.007' and  status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr =  '${arrdata[0].uetr}'`
                                                                                                   ExecuteQuery1(hdrqry, function (hdrresult) {
                                                                                                       if (hdrresult.length > 0) {
                                                                                                           fn_DoAPIServiceCall(arrdata, arrgeturl, hdrresult, function (getresult) {

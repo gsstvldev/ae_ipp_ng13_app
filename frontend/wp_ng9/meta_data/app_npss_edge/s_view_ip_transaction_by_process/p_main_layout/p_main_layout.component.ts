@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28026 
+Build ID        : 28032 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-07 11:38 AM 
+Modified Date   : 2023-Feb-07 14:16 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_ip_transaction_by_process
@@ -36,7 +36,7 @@ export class p_main_layoutComponent implements OnInit {
   ngOnInit() {
     	this.process_type_list.desc = "Process Type List"
 		this.process_type_list.need_header = true
-		this.process_group.desc = "Payment Type Group"
+		this.process_group.desc = "Process Group"
 		this.process_group.need_header = true
 		this.navigation_ui.desc = "Navigation UI"
 		this.navigation_ui.need_header = ""

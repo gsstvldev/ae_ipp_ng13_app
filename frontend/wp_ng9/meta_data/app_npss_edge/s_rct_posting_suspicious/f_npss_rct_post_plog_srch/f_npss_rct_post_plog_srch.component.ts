@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28014 
+Build ID        : 28030 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-06 11:11 AM 
+Modified Date   : 2023-Feb-07 14:16 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -302,7 +302,7 @@ focustoelement(){
 		this.ctrl.memory22.accept_char = ""
 		this.ctrl.memory22.currency_format = ""
 		this.ctrl.memory22.data_scale = ""
-		this.ctrl.memory22.binding_name = "E2E_REF_ID"
+		this.ctrl.memory22.binding_name = "PAYMENT_ENDTOEND_ID"
 		this.ctrl.memory22.hide_label = false
 		this.ctrl.memory22.depends_on = ""
 		this.ctrl.memory22.placeholder = ""

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28014 
+Build ID        : 28026 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-06 11:11 AM 
+Modified Date   : 2023-Feb-07 11:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_ip_transaction_by_ps

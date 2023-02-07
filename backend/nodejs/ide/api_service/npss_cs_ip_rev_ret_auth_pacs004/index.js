@@ -9,6 +9,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
     
+    
+    
 
     try {
         /*   Created By :Daseen
@@ -36,6 +38,7 @@ app.post('/', function(appRequest, appResponse, next) {
               Reason for : calling fn_pcidss_decrypt function for taking and converting masking cr_identification_code 08/01/2023
                Reason for : changing response diagloue 12/01/2023
                 Reason for : Remove Console log 17/01/2023
+                  Reason for : Remove Credit and Prepaid Card api calls 06/02/2023
         */
         var serviceName = 'NPSS IP REV Ret Auth PACS004';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -87,11 +90,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                             var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_IP_REV_RETURN_PACS004'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
 
-                          //  var take_api_params = `select  ns.remittance_info,ns.cr_acct_identification,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method,
-                      //  ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,
-                      // ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt,
-                      //  ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm
-                     //   from npss_transactions ns  where npsst_id = '${params.Tran_Id}'`;
+                        
                       var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification, ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
                             if (params.PROD_CODE == 'NPSS_AEFAB') {
                                 ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
@@ -117,17 +116,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     lclinstrm = ""
                                                 }
                                                 var takereturncode = `select cbuae_return_code  from npss_trn_process_log  where  status = 'IP_RCT_RR_RETURN_READY' and uetr = '${arrprocesslog[0].uetr}'`;
-                                                // var TakeprssRefno = `select process_ref_no  from npss_trn_process_log  where uetr = '${arrprocesslog[0].uetr}' and status = 'IP_RCT_REV_INAU_POSTING_SUCCESS'`;
-                                                //var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
-
-                                                // ExecuteQuery1(TakeprssRefno, function (arrprssRefno) {
-                                                //     if (arrprssRefno[0].process_ref_no != null) {
+                                               
                                                 ExecuteQuery1(takereturncode, async function (arrreturncode) {
                                                     if (arrreturncode.length > 0) {
-                                                        // ExecuteQuery1(TakeAcctInf, async function (arrActInf) {
-                                                        // if (arrActInf.length) {
-
-
+                                                       
                                                         // apicalls = 0 --> auth 004 api call
                                                         // apicalls = 1 --> prepaid card api call
                                                         // apicalls = 2 --> credit card api call
@@ -141,17 +133,16 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                         if (apicalls == 0) { // Logic For Taking Reversal Id and Taking PostingRefno and account Information only for auth004 api call
                                                             reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog)
-                                                        } else { // Taking Reversal ID for Prepaid and Credit Card
-                                                            reverandRefno = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
                                                         }
+                                                         //else { // Taking Reversal ID for Prepaid and Credit Card
+                                                        //     reverandRefno = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
+                                                        // }
 
                                                         if (apicalls == 0 || apicalls == '0') { // Auth004 and Pac004 api call
                                                             take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_AUTH_PACS004' and param_code='URL'`;
-                                                        } else if (apicalls == 1 || apicalls == '1') { //Prepaid and Pac004 api Call
-                                                            take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_PREPAID_CARD' and param_code='URL'`;
-                                                        } else if (apicalls == 2 || apicalls == '2') { // Credit and pac004 api call
-                                                            take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_CREDIT_CARD' and param_code='URL'`;
-                                                        }
+                                                        } else if (apicalls == 1 || apicalls == '1' || apicalls == 2 || apicalls == '2') { //Prepaid and Pac004 api Call
+                                                            take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL'`;
+                                                        } 
 
                                                         var amount
                                                         if (params.screenName == 's_rct_reversal_non_aed') {
@@ -220,11 +211,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                        
                                                                                     }
                                                                                 })
-                                                                            } else if (apicalls == 1 || apicalls == '1') {
-                                                                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, function (prepaidApiCallResult) {
-                                                                                    if (prepaidApiCallResult.status === "SUCCESS" || prepaidApiCallResult.status === "Success" || prepaidApiCallResult.status === "success") {
-                                                                                      
-                                                                                        ExecuteQuery1(take_return_url, function (arrreturnurl) {
+                                                                            } else if (apicalls == 1 || apicalls == '1' || apicalls == 2 || apicalls == '2') {
+                                                                    
+                                                                                        ExecuteQuery1(take_api_url, function (arrreturnurl) {
                                                                                             if (arrreturnurl.length) {
                                                                                                 var returnurl = arrreturnurl[0].param_detail;
                                                                                                 fn_doapicall2(returnurl, arrprocesslog, arrreturncode, function (secondapiresult) {
@@ -250,7 +239,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                     } else {
                                                                                                        
                                                                                                         objresponse.status = "FAILURE"
-                                                                                                        objresponse.errdata = "After Prepaid Api Call Pac004  api call not success"
+                                                                                                        objresponse.errdata = "Pac004  api call not success"
                                                                                                         sendResponse(null, objresponse)
 
                                                                                                     }
@@ -264,74 +253,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                             }
 
                                                                                         })
-                                                                                    } else if (prepaidApiCallResult.status == 'TIMEOUT') {
-                                                                                        objresponse.status = "FAILURE"
-                                                                                        objresponse.errdata = 'Time Out Prepaid Api Failure'
-                                                                                        sendResponse(null, objresponse);
-                                                                                    } else {
-                                                                                        objresponse.status = "FAILURE"
-                                                                                        objresponse.errdata = 'Prepaid Api Failure Error Code - '+prepaidApiCallResult.error_code
-                                                                                        sendResponse(null, objresponse);
-                                                                                       
-                                                                                    }
-                                                                                })
-                                                                            } else if (apicalls == 2 || apicalls == '2') {
-                                                                                fn_doCreditapicall(url, arrprocesslog, arrActInf, lclinstrm, amount, reverandRefno, function (creditdApiCallResult) {
-                                                                                    if (creditdApiCallResult.status === "SUCCESS" || creditdApiCallResult.status === "Success" || creditdApiCallResult.status === "success") {
-                                                                                       
-                                                                                        ExecuteQuery1(take_return_url, function (arrreturnurl) {
-                                                                                            if (arrreturnurl.length) {
-                                                                                                var returnurl = arrreturnurl[0].param_detail;
-                                                                                                fn_doapicall2(returnurl, arrprocesslog, arrreturncode, function (secondapiresult) {
-                                                                                                    if (secondapiresult === "SUCCESS" || secondapiresult === "Success" || secondapiresult === "success") {
-                                                                                                       
-                                                                                                        var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                                                                        ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                                                            if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                                                objresponse.status = 'SUCCESS';
-                                                                                                                sendResponse(null, objresponse);
-                                                                                                            }
-                                                                                                            else {
-
-                                                                                                              
-                                                                                                                objresponse.status = "FAILURE"
-                                                                                                                objresponse.errdata = "No Data Updated in Transaction Table"
-                                                                                                                sendResponse(null, objresponse)
-
-                                                                                                            }
-
-                                                                                                        }
-                                                                                                        )
-                                                                                                    } else {
-                                                                                                       
-                                                                                                        objresponse.status = "FAILURE"
-                                                                                                        objresponse.errdata = "After Credit Api Call Pac004  api call not success"
-                                                                                                        sendResponse(null, objresponse)
-
-                                                                                                    }
-                                                                                                })
-                                                                                            }
-                                                                                            else {
-                                                                                              
-                                                                                                objresponse.status = "FAILURE"
-                                                                                                objresponse.errdata = "Return URL not found workflow table"
-                                                                                                sendResponse(null, objresponse)
-                                                                                            }
-
-                                                                                        })
-                                                                                    } else if (prepaidApiCallResult.status == 'TIMEOUT') {
-                                                                                        objresponse.status = "FAILURE"
-                                                                                        objresponse.errdata = 'Time Out Credit Api Failure'
-                                                                                        sendResponse(null, objresponse);
-                                                                                    } else {
-                                                                                       
-                                                                                                    objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Credit Api Call Failure  Error Code -'+prepaidApiCallResult.error_code
-                                                                                                    sendResponse(null, objresponse);
-                                                                                          
-                                                                                    }
-                                                                                })
-                                                                            }
+                                                                                   
+                                                                              
+                                                                            } 
 
 
                                                                         }
@@ -417,119 +341,51 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                         sendResponse(null, objresponse);
                                                                                     }
                                                                                 })
-                                                                            } else if (apicalls == 1 || apicalls == '1') { //Prepaid
-                                                                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, function (prepaidApiCallResult) {
-                                                                                    if (prepaidApiCallResult.status === "SUCCESS" || prepaidApiCallResult.status === "Success" || prepaidApiCallResult.status === "success") {
-                                                                                       
-                                                                                        ExecuteQuery1(take_return_url, function (arrreturnurl) {
-                                                                                            if (arrreturnurl.length) {
-                                                                                                var returnurl = arrreturnurl[0].param_detail;
-                                                                                                fn_doapicall2(returnurl, arrprocesslog, arrreturncode, function (secondapiresult) {
-                                                                                                    if (secondapiresult === "SUCCESS" || secondapiresult === "Success" || secondapiresult === "success") {
-                                                                                                       
-                                                                                                        var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                                                                        ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                                                            if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                                                objresponse.status = 'SUCCESS';
-                                                                                                                sendResponse(null, objresponse);
-                                                                                                            }
-                                                                                                            else {
+                                                                            }  else if (apicalls == 1 || apicalls == '1' || apicalls == 2 || apicalls == '2') {
+                                                                    
+                                                                                ExecuteQuery1(take_api_url, function (arrreturnurl) {
+                                                                                    if (arrreturnurl.length) {
+                                                                                        var returnurl = arrreturnurl[0].param_detail;
+                                                                                        fn_doapicall2(returnurl, arrprocesslog, arrreturncode, function (secondapiresult) {
+                                                                                            if (secondapiresult === "SUCCESS" || secondapiresult === "Success" || secondapiresult === "success") {
+                                                                                               
+                                                                                                var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                                ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                                                    if (arrUpdTranTbl == 'SUCCESS') {
+                                                                                                        objresponse.status = 'SUCCESS';
+                                                                                                        sendResponse(null, objresponse);
+                                                                                                    }
+                                                                                                    else {
 
-                                                                                                            
-                                                                                                                objresponse.status = "FAILURE"
-                                                                                                                objresponse.errdata = "No Data Updated in Transaction Table"
-                                                                                                                sendResponse(null, objresponse)
-
-                                                                                                            }
-
-                                                                                                        }
-                                                                                                        )
-                                                                                                    } else {
-                                                                                                       
+                                                                                                      
                                                                                                         objresponse.status = "FAILURE"
-                                                                                                        objresponse.errdata = "After Prepaid Api Call Pac004  api call not success"
+                                                                                                        objresponse.errdata = "No Data Updated in Transaction Table"
                                                                                                         sendResponse(null, objresponse)
 
                                                                                                     }
-                                                                                                })
-                                                                                            }
-                                                                                            else {
-                                                                                              
+
+                                                                                                }
+                                                                                                )
+                                                                                            } else {
+                                                                                               
                                                                                                 objresponse.status = "FAILURE"
-                                                                                                objresponse.errdata = "Return URL not found workflow table"
+                                                                                                objresponse.errdata = " Pac004  api call not success"
                                                                                                 sendResponse(null, objresponse)
-                                                                                            }
 
+                                                                                            }
                                                                                         })
-                                                                                    } else if (prepaidApiCallResult.status == 'TIMEOUT') {
-                                                                                        objresponse.status = "FAILURE"
-                                                                                        objresponse.errdata = 'Time Out Prepaid Api Failure'
-                                                                                        sendResponse(null, objresponse);
-                                                                                    } else {
-                                                                                       
-                                                                                                    objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Prepaid Api Call Failure Error Code -'+prepaidApiCallResult.error_code
-                                                                                                    sendResponse(null, objresponse);
-                                                                                            
                                                                                     }
-                                                                                })
-                                                                            } else if (apicalls == 2 || apicalls == '2') {
-                                                                                fn_doCreditapicall(url, arrprocesslog, arrActInf, lclinstrm, amount, reverandRefno, function (creditdApiCallResult) {
-                                                                                    if (creditdApiCallResult.status === "SUCCESS" || creditdApiCallResult.status === "Success" || creditdApiCallResult.status === "success") {
-                                                                                       
-                                                                                        ExecuteQuery1(take_return_url, function (arrreturnurl) {
-                                                                                            if (arrreturnurl.length) {
-                                                                                                var returnurl = arrreturnurl[0].param_detail;
-                                                                                                fn_doapicall2(returnurl, arrprocesslog, arrreturncode, function (secondapiresult) {
-                                                                                                    if (secondapiresult === "SUCCESS" || secondapiresult === "Success" || secondapiresult === "success") {
-                                                                                                     
-                                                                                                        var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                                                                        ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                                                            if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                                                objresponse.status = 'SUCCESS';
-                                                                                                                sendResponse(null, objresponse);
-                                                                                                            }
-                                                                                                            else {
-
-                                                                                                             
-                                                                                                                objresponse.status = "FAILURE"
-                                                                                                                objresponse.errdata = "No Data Updated in Transaction Table"
-                                                                                                                sendResponse(null, objresponse)
-
-                                                                                                            }
-
-                                                                                                        }
-                                                                                                        )
-                                                                                                    } else {
-                                                                                                     
-                                                                                                        objresponse.status = "FAILURE"
-                                                                                                        objresponse.errdata = "After Credit Api Call Pac004  api call not success"
-                                                                                                        sendResponse(null, objresponse)
-
-                                                                                                    }
-                                                                                                })
-                                                                                            }
-                                                                                            else {
-                                                                                             
-                                                                                                objresponse.status = "FAILURE"
-                                                                                                objresponse.errdata = "Return URL not found workflow table"
-                                                                                                sendResponse(null, objresponse)
-                                                                                            }
-
-                                                                                        })
-                                                                                    } else if (creditdApiCallResult.status == 'TIMEOUT') {
+                                                                                    else {
+                                                                                     
                                                                                         objresponse.status = "FAILURE"
-                                                                                        objresponse.errdata = 'Time Out Credit Api Failure'
-                                                                                        sendResponse(null, objresponse);
-                                                                                    } else {
-                                                                                      
-                                                                                                    objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = 'Credit Api Call Failure Error Code -'+creditdApiCallResult.error_code
-                                                                                                    sendResponse(null, objresponse);
-                                                                                            
+                                                                                        objresponse.errdata = "Return URL not found workflow table"
+                                                                                        sendResponse(null, objresponse)
                                                                                     }
+
                                                                                 })
-                                                                            }
+                                                                           
+                                                                      
+                                                                    } 
 
                                                                         }
                                                                         else {
@@ -1338,6 +1194,8 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
+
 
 
 

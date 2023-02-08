@@ -56,7 +56,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     try {
 
 
-                        var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'and eligible_process_status='${params.eligible_process_status}'and eligible_status='${params.eligible_status}'`
+                        var ruleqry = `select success_process_status,success_status,processing_system,process_type  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'and eligible_process_status='${params.eligible_process_status}'and eligible_status='${params.eligible_status}'`
                         ExecuteQuery1(ruleqry, function (result) {
                             if (result.length) {
                                 success_process_status = result[0].success_process_status;
@@ -72,7 +72,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                         objCusTranInst.UETR = arrdata[0].uetr;
                                         objCusTranInst.NPSSTRRD_REFNO = arrdata[0].tran_ref_id;
                                         objCusTranInst.PROCESS_NAME = 'Reversal-Send to Maker'
-                                        objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
+                                        objCusTranInst.PROCESSING_SYSTEM = result[0].processing_system;
+                                        objCusTranInst.PROCESS_TYPE = result[0].process_type;
                                         objCusTranInst.PROCESS_STATUS = success_process_status;
                                         objCusTranInst.STATUS = success_status;
                                         objCusTranInst.TENANT_ID = params.TENANT_ID;

@@ -56,7 +56,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                var success_process_status
                var success_status
                try {
-                  var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
+                  var ruleqry = `select success_process_status,success_status,processing_system,process_type  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
                   var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_REVERSAL_CANCEL' and param_code='URL'`;
 
                   // Take Value from API Manager Table
@@ -89,7 +89,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                             objCusTranInst.UETR = arrdata[0].uetr;
                                                             objCusTranInst.NPSSTRRD_REFNO = arrdata[0].tran_ref_id;
                                                             objCusTranInst.PROCESS_NAME = 'Cancel Reversal'
-                                                            objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
+                                                            objCusTranInst.PROCESSING_SYSTEM =arrrule[0].processing_system;
+                                                            objCusTranInst.PROCESS_TYPE =arrrule[0].process_type;
                                                             objCusTranInst.PROCESS_STATUS = success_process_status;
                                                             objCusTranInst.STATUS = success_status;
                                                             objCusTranInst.T24_RETURN_CODE = null;

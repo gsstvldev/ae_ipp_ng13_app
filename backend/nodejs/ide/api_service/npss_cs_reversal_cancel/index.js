@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -25,6 +26,7 @@ app.post('/', function(appRequest, appResponse, next) {
              Reason for : changing error handling 12/01/2023
               Reason for : Remove Console log 17/01/2023
               Reason for :Changing Insert After api call success 24/01/2023
+               Reason for :Changing INSERT payload and query 8/2/2023
      
     */
               var serviceName = 'NPSS Reversal Cancel';
@@ -62,7 +64,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                   var success_process_status
                                   var success_status
                                   try {
-                                      var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
+                                      var ruleqry = `select success_process_status,success_status,processing_system,process_type  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
                                       var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_REVERSAL_CANCEL' and param_code='URL'`;
           
                                       // Take Value from API Manager Table
@@ -102,7 +104,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                                   objCusTranInst.UETR = arrdata[0].uetr;
                                                                                                                   objCusTranInst.NPSSTRRD_REFNO = arrdata[0].tran_ref_id;
                                                                                                                   objCusTranInst.PROCESS_NAME = 'Cancel Reversal'
-                                                                                                                  objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
+                                                                                                                  objCusTranInst.PROCESSING_SYSTEM =arrrule[0].processing_system;
+                                                                                                                  objCusTranInst.PROCESS_TYPE =arrrule[0].process_type;
                                                                                                                   objCusTranInst.PROCESS_STATUS = success_process_status;
                                                                                                                   objCusTranInst.STATUS = success_status;
                                                                                                                   objCusTranInst.CBUAE_RETURN_CODE = params.CBUAE_RETURN_CODE;
@@ -481,6 +484,7 @@ app.post('/', function(appRequest, appResponse, next) {
           
           
           
+
 
 });
 

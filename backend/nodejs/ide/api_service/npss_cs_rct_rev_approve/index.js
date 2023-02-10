@@ -117,7 +117,7 @@ try {
                                                 
                                                    //ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
                                                    //if (uptranresult == 'SUCCESS') {
-                                                    var TakepostRefno = `select process_ref_no from npss_trn_process_log where uetr = '${arrprocesslog[0].uetr}' and process_name = 'Receive pacs002' and status in ('OP_AC_STATUS_ACCEPTED','OP_P2P_STATUS_ACCEPTED', 'OP_P2B_STATUS_ACCEPTED')`
+                                                    var TakepostRefno = `select process_ref_no from npss_trn_process_log where uetr = '${arrprocesslog[0].uetr}' and process_name = 'Receive Pacs002' and status in ('OP_AC_STATUS_ACCEPTED','OP_P2P_STATUS_ACCEPTED', 'OP_P2B_STATUS_ACCEPTED')`
                                                     ExecuteQuery1(TakepostRefno, function (arrpostrefno) {
                                                         if(arrpostrefno.length > 0){
                                                             ExecuteQuery1(take_api_url, function (arrurl) {

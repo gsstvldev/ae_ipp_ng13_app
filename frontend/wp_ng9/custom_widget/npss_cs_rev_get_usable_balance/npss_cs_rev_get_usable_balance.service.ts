@@ -33,7 +33,13 @@ export class npss_cs_rev_get_usable_balanceService {
         ClientParams.AppId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");
         ClientParams.TENANT_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
         ClientParams.RULE_CODE = 'NPSS_REVERSE_USABLE_BALANCE'
-        this.CallUrlWithData(ClientParams, screenInstance, internals);
+        // this.CallUrlWithData(ClientParams, screenInstance, internals);
+         ClientParams.CDTR_IBAN = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_CDTR_IBAN");
+        if(ClientParams.CDTR_IBAN != ''){
+            this.CallUrlWithData(ClientParams, screenInstance, internals);
+        }else{
+            this.appHandler.callInternals(internals, screenInstance, "SUCCESS");  
+        }
     }
     CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_rev_get_usable_balance/', ClientParams)

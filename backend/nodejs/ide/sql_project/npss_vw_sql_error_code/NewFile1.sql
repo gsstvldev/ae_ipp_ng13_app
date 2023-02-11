@@ -9,7 +9,7 @@ CREATE OR REPLACE VIEW  NPSS_VW_SQL_ERROR_CODE AS
 	error_category,
 	process_status
 	from ( select
-		concat(a.ERROR_CODE, '~', a.ERROR_DESCRIPTION) ERROR_DESC,
+		concat(a.ERROR_CODE, '_', a.ERROR_DESCRIPTION) ERROR_DESC,
 		a.tenant_id ,
 		a.status ,
 		a.product_code,

@@ -125,7 +125,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         // apicalls = 2 --> credit card api call
 
 
-                                                        if (params.roleId == '708' || params.roleId == 708) { //for checking prepaid or credit only for checker
+                                                        if (params.roleId == '708' || params.roleId == 708 || params.roleId == '738' || params.roleId == 738) { //for checking prepaid or credit only for checker
                                                             apicalls = await checkprepaidorcredit(arrprocesslog)
                                                         } else {
                                                             apicalls = 0

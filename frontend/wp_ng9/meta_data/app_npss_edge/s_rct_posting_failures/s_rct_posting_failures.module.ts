@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28090 
+Build ID        : 28097 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-13 13:4 PM 
+Modified Date   : 2023-Feb-13 14:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -21,7 +21,8 @@ import { SharedModule } from '../../../shared/shared.module'
 
 import {torus_cs_change_routingkeyModule} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
-import {npss_cs_rct_ipir_posting_failure_retryModule} from '../../../custom_widget/npss_cs_rct_ipir_posting_failure_retry/npss_cs_rct_ipir_posting_failure_retry.module'
+import {npss_cs_rct_inward_posting_failure_retry_repostModule} from '../../../custom_widget/npss_cs_rct_inward_posting_failure_retry_repost/npss_cs_rct_inward_posting_failure_retry_repost.module'
+import {npss_cs_rct_inward_posting_failure_closeModule} from '../../../custom_widget/npss_cs_rct_inward_posting_failure_close/npss_cs_rct_inward_posting_failure_close.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -67,7 +68,7 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     OverlayPanelModule,
     
     s_rct_posting_failuresRoutingModule,
-    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_rct_ipir_posting_failure_retryModule
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_rct_inward_posting_failure_retry_repostModule,npss_cs_rct_inward_posting_failure_closeModule
   ],
   declarations: [s_rct_posting_failuresComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_tran_srchComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]

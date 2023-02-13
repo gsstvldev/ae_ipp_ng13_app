@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28090 
+Build ID        : 28097 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-13 13:4 PM 
+Modified Date   : 2023-Feb-13 14:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -14,13 +14,14 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
-import {npss_cs_rct_ipir_posting_failure_retryService} from '../../../custom_widget/npss_cs_rct_ipir_posting_failure_retry/npss_cs_rct_ipir_posting_failure_retry.service'
+import {npss_cs_rct_inward_posting_failure_retry_repostService} from '../../../custom_widget/npss_cs_rct_inward_posting_failure_retry_repost/npss_cs_rct_inward_posting_failure_retry_repost.service'
+import {npss_cs_rct_inward_posting_failure_closeService} from '../../../custom_widget/npss_cs_rct_inward_posting_failure_close/npss_cs_rct_inward_posting_failure_close.service'
 
 @Component({
 	selector: 's_rct_posting_failures',
 	templateUrl: './s_rct_posting_failures.component.html',
 	styleUrls: ['./s_rct_posting_failures.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_rct_ipir_posting_failure_retryService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_rct_inward_posting_failure_retry_repostService,npss_cs_rct_inward_posting_failure_closeService]
 })
     
 // Start of class 
@@ -105,7 +106,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_rct_ipir_posting_failure_retryService:npss_cs_rct_ipir_posting_failure_retryService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_rct_inward_posting_failure_retry_repostService:npss_cs_rct_inward_posting_failure_retry_repostService,private npss_cs_rct_inward_posting_failure_closeService:npss_cs_rct_inward_posting_failure_closeService) {
     
 	}
     
@@ -1470,7 +1471,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_rct_ipir_posting_failure_retryService.fn_npss_cs_rct_ipir_posting_failure_retry(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_rct_inward_posting_failure_retry_repostService.fn_npss_cs_rct_inward_posting_failure_retry_repost(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2166,7 +2167,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_rct_inward_posting_failure_closeService.fn_npss_cs_rct_inward_posting_failure_close(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2231,7 +2232,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_rct_inward_posting_failure_retry_repostService.fn_npss_cs_rct_inward_posting_failure_retry_repost(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

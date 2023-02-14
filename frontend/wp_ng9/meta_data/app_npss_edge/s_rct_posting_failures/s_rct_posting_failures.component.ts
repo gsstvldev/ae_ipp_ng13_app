@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28099 
+Build ID        : 28100 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-14 4:43 AM 
+Modified Date   : 2023-Feb-14 6:46 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -14,6 +14,7 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_c_disable_action_by_multiselectService} from '../../../custom_widget/npss_c_disable_action_by_multiselect/npss_c_disable_action_by_multiselect.service'
 import {npss_cs_rct_inward_posting_failure_retry_repostService} from '../../../custom_widget/npss_cs_rct_inward_posting_failure_retry_repost/npss_cs_rct_inward_posting_failure_retry_repost.service'
 import {npss_cs_rct_inward_posting_failure_closeService} from '../../../custom_widget/npss_cs_rct_inward_posting_failure_close/npss_cs_rct_inward_posting_failure_close.service'
 
@@ -21,7 +22,7 @@ import {npss_cs_rct_inward_posting_failure_closeService} from '../../../custom_w
 	selector: 's_rct_posting_failures',
 	templateUrl: './s_rct_posting_failures.component.html',
 	styleUrls: ['./s_rct_posting_failures.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_rct_inward_posting_failure_retry_repostService,npss_cs_rct_inward_posting_failure_closeService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_rct_inward_posting_failure_retry_repostService,npss_cs_rct_inward_posting_failure_closeService]
 })
     
 // Start of class 
@@ -106,7 +107,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_rct_inward_posting_failure_retry_repostService:npss_cs_rct_inward_posting_failure_retry_repostService,private npss_cs_rct_inward_posting_failure_closeService:npss_cs_rct_inward_posting_failure_closeService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_rct_inward_posting_failure_retry_repostService:npss_cs_rct_inward_posting_failure_retry_repostService,private npss_cs_rct_inward_posting_failure_closeService:npss_cs_rct_inward_posting_failure_closeService) {
     
 	}
     
@@ -593,10 +594,8 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	transaction_list__checked_changed(){
 		this.transaction_list__svm_for_tl()
 		this.transaction_list__ee_for_back_in_vertical_tran()
-		this.transaction_list__ee_for_tran_to_vd()
-		this.transaction_list__ee_for_vlh()
-		this.transaction_list__ee_for_vm()
 		this.transaction_list__ee_for_retry_button()
+		this.transaction_list__cc_for_disable()
 	}
 
 	//Handler for INTERNAL event of "svm for tl"
@@ -1202,69 +1201,6 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for CHECKED_CHANGED event of "transaction list"
-	transaction_list__ee_for_tran_to_vd() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="transaction_list"
-		let destn_id="navigation_ui_view_tran"
-		let parent_source_id=""
-		let event_code="e_1669284184598"
-		let event_params={"caller_name":"transaction_list__ee_for_tran_to_vd","event_desc":"EE for Tran to VD","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for CHECKED_CHANGED event of "transaction list"
-	transaction_list__ee_for_vlh() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="transaction_list"
-		let destn_id="navigation_ui_view_process_log"
-		let parent_source_id=""
-		let event_code="e_1669460418078"
-		let event_params={"caller_name":"transaction_list__ee_for_vlh","event_desc":"EE for VLH","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for CHECKED_CHANGED event of "transaction list"
-	transaction_list__ee_for_vm() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="transaction_list"
-		let destn_id="navigation_ui_view_message_log"
-		let parent_source_id=""
-		let event_code="e_1669460652921"
-		let event_params={"caller_name":"transaction_list__ee_for_vm","event_desc":"EE For VM","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for CHECKED_CHANGED event of "transaction list"
 	transaction_list__ee_for_retry_button() { 
 		let Dest_Is_ctrl=true
 		
@@ -1279,6 +1215,27 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for CHECKED_CHANGED event of "transaction list"
+	transaction_list__cc_for_disable() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1676357056494"
+		let event_params={"caller_name":"transaction_list__cc_for_disable","event_desc":"CC for disable","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_disable_action_by_multiselectService.fn_npss_c_disable_action_by_multiselect(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -7,24 +7,10 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-
-
-
-
-
-
     try {
-        /*   Created By :Daseen
-        Created Date :16-12-2022
-        Modified By : 
-        Modified Date : 20/12/2022
-        Reason for : Changing Update Query Position for FAB
-       Adding Query Position for FAB
-        Reason for :Adding Update query for Tran Process Log Table 12/01/2023
-        Reason for :Changing Pac007 payload
-          Modified By : Daseen
-        Modified Date : 10/02/2023
-        Reason for : Process log after api call
+        /*   Created By :Siva Harish
+        Created Date :14-02-2023
+       
         */
         var serviceName = 'NPSS (CS) RCT Inward Posting Failure Close';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -79,23 +65,24 @@ app.post('/', function(appRequest, appResponse, next) {
                                     }
                                     TempTranID = '(' + "'" + arrTranID.toString().split(',').join("','") + "'" + ')';
                                     if (params.role_id == 'Maker') {
-                                        processName = 'Manual Close'
+                                        processName = 'Manual Close - Maker'
                                     } else {
-                                        processName = 'Manual Close'
+                                        processName = 'Manual Close - Checker'
                                     }
-                                var TakeTrnData = `select * from npss_transactions where npsst_id in '${TempTranID}'`
+                                    var TakeTrnData = `select * from npss_transactions where npsst_id in ${TempTranID}`
                                     ExecuteQuery1(TakeTrnData, function (arrprocesslog) {
                                         if (arrprocesslog.length > 0) {
-                                            for(let i=0; i < arrprocesslog.length ; i++){
+                                            for (let i = 0; i < arrprocesslog.length; i++) {
                                                 var arrCusTranInst = [];
                                                 var objCusTranInst = {};
-                                                
+
                                                 objCusTranInst.MSG_ID = arrprocesslog[0].hdr_msg_id;
                                                 objCusTranInst.PRCT_ID = PRCT_ID;
-                                                objCusTranInst.REVERSAL_CODE = params.REVERSAL_CODE
                                                 objCusTranInst.UETR = arrprocesslog[0].uetr;
                                                 objCusTranInst.NPSSTRRD_REFNO = arrprocesslog[0].tran_ref_id;
-                                                objCusTranInst.PROCESS_NAME = 'Approve Reversal'
+                                                objCusTranInst.PROCESS_TYPE = 'IP'
+                                                objCusTranInst.PROCESS_TIME = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                                objCusTranInst.PROCESS_NAME = processName
                                                 objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
                                                 objCusTranInst.PROCESS_STATUS = success_process_status;
                                                 objCusTranInst.STATUS = success_status;
@@ -122,23 +109,25 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                                 objCusTranInst.routingkey = headers.routingkey;
                                                 arrCusTranInst.push(objCusTranInst)
-                                                _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
-                                                    if (CusTranInsertRes.length > 0) {
-                                                        objresponse.status = 'SUCCESS';
-                                                        sendResponse(null, objresponse);
-                                                
-                                                    } else {
-                                                        objresponse.status = 'FAILURE';
-                                                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
-                                                        sendResponse(null, objresponse)
-                                                    }
-                                                
-                                                })
-                                                      
+
                                             }
-                                                        
-                                                           
-                                                                                  
+
+
+                                            _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
+                                                if (CusTranInsertRes.length > 0) {
+                                                    objresponse.status = 'SUCCESS';
+                                                    sendResponse(null, objresponse);
+
+                                                } else {
+                                                    objresponse.status = 'FAILURE';
+                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
+                                                    sendResponse(null, objresponse)
+                                                }
+
+                                            })
+
+
+
                                         }
                                         else {
                                             console.log("No Data found in Transaction table");
@@ -163,72 +152,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         }
 
                     })
-                    // Do API Call for Service 
-                    function fn_doapicall(url, arrprocesslog, arrpostrefno, acctInform, callbackapi) {
-                        try {
-                            var apiName = 'RCT_OP_REV_APPROVE'
-                            var request = require('request');
-                            var apiURL =
-                                apiURL = url // apiURL + apiName
-                            var options = {
-                                url: apiURL,
-                                timeout: 18000000,
-                                method: 'POST',
-                                json: {
-
-
-
-                                    "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
-                                    "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
-                                    "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
-                                    "uetr": arrprocesslog[0].uetr || '',
-                                    "clrsysref": arrpostrefno[0].process_ref_no,
-                                    "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
-                                    "reversal_amount": arrprocesslog[0].reversal_amount || '',
-                                    "reversal_code": params.REVERSAL_CODE || '',
-                                    "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
-                                    "intrbk_sttlm_dt": arrprocesslog[0].hdr_settlement_date || '',
-                                    "AccountInformation": {
-                                        account_number: acctInform[0].account_number || '',
-                                        company_code: acctInform[0].company_code || '',
-                                        inactive_marker: acctInform[0].inactive_marker || '',
-                                        currency: acctInform[0].currency || '',
-                                        alternate_account_type: acctInform[0].alternate_account_type || '',
-                                        alternate_account_id: acctInform[0].alternate_account_id || '',
-                                        account_officer: acctInform[0].account_officer || '',
-                                        curr_rate_segment: acctInform[0].curr_rate_segment || '',
-                                        customer_id: acctInform[0].customer_id || '',
-                                        department_code: arrprocesslog[0].department_code
-                                    }
-
-
-
-
-                                },
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                }
-
-                            }
-
-                            reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
-                            request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
-                                if (error) {
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
-                                    sendResponse(error, null);
-                                } else {
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-                                    responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-
-                                    callbackapi(responseBodyFromImagingService)
-                                }
-                            });
-
-                        } catch (error) {
-                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
-                            sendResponse(error, null);
-                        }
-                    }
+                    
 
                     function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
                         try {
@@ -315,6 +239,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

@@ -61,7 +61,7 @@ export class npss_cs_reversal_set_status_and_bind_valueService {
                      CtrlScope.PROCESS_REF_NO = res.data.data.process_ref_no
 
                     let roleId  = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES")
-                    if (roleId == '708' && screenInstance.wftpa_description == 's_rct_reversal_non_aed') {
+                    if (roleId == '738' && screenInstance.wftpa_description == 's_rct_reversal_non_aed') {
                         var CtrlScope1 = screenInstance['deal_ui'].f_npss_reversal_deal_plog_ui.model
                         CtrlScope1.EXCHANGE_RATE = res.data.data.exchange_rate
                         CtrlScope1.BUY_CURRENCY = res.data.data.contra_amount

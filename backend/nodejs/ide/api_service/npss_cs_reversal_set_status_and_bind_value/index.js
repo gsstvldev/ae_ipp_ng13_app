@@ -98,7 +98,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         var amt_cr_loc_cur = arrparamdata[0].amt_cr_loc_cur
                                                         var charge_amount = arrparamdata[0].charge_amount
                                                         var GetProcessRefno = await TakeRefno()
-                                                        if (params.screenName == 's_rct_reversal_non_aed' && params.roleId == '708') {
+                                                        if (params.screenName == 's_rct_reversal_non_aed' && params.roleId == '738') {
                                                             ExecuteQuery1(getcltDtl, function (arrfulldata) {
                                                                 if (arrfulldata.length > 0) {
                                                                     var dataform = {}
@@ -164,7 +164,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         }
                                                     } else {
                                                          var GetProcessRefno = await TakeRefno()
-                                                        if (params.screenName == 's_rct_reversal_non_aed' && params.roleId == '708') {
+                                                        if (params.screenName == 's_rct_reversal_non_aed' && params.roleId == '738') {
                                                           
                                                             ExecuteQuery1(getcltDtl, function (arrfulldata) {
                                                                 if (arrfulldata.length > 0) {

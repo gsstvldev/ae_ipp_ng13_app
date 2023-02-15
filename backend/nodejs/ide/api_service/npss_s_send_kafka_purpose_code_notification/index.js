@@ -53,7 +53,7 @@ app.post('/', function(appRequest, appResponse, next) {
                 mTranConn = pSession; //  assign connection     
                 try {
                      var TakeUrl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL'`
-                    var taketrnlist = `select cncpc_id,purpose_code,purpose_description,enable_flag from core_nc_purpose_codes `
+                    var taketrnlist = `select cncpc_id,purpose_code,purpose_description,enable_flag,action_flag from core_nc_purpose_codes`
                     ExecuteQuery1(TakeUrl, function (arrUrl) {
                         if(arrUrl.length > 0){
                             ExecuteQuery1(taketrnlist,  function (arrresult) {
@@ -73,7 +73,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         code:arrresultObj.purpose_code,
                                                                         description:arrresultObj.purpose_description,
                                                                         enabled:arrresultObj.enable_flag,
-                                                                        Action: 'M',
+                                                                         Action: arrresultObj.action_flag,
                                                                     }
                                                                     var paramData = dataobj
                                                                     try {

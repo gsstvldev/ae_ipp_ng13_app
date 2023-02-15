@@ -86,7 +86,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 
                                                                         reqAsync.forEachOfSeries(arrresult, function (arrresultObj, i, nextobjctfunc) {
                                                                             try {
-                                                                                var TakeBnkName = `select bank_name from core_nc_bank_participation where bank_bic = '${arrresultObj.bank_bic}'`
+                                                                                var TakeBnkName = `select bank_name from core_nc_bank_part_avail where bank_bic = '${arrresultObj.bank_bic}'`
                                                                                 ExecuteQuery1(TakeBnkName, async function (arrBankNm) {
                                                                                     if (arrBankNm.length > 0) {
                                                                                 var UpdateActFlag = `Update core_nc_bank_part_avail set availability_flag = 'Y' where cncbpa_id = '${arrresultObj.cncbpa_id}'`

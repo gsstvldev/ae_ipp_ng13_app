@@ -26,7 +26,7 @@ export class npss_cs_rct_inward_posting_failure_closeService {
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
         ClientParams.TENANT_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
          ClientParams.SYSTEM_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_ID");
-            ClientParams.SYSTEM_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_DESC");
+        ClientParams.SYSTEM_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_DESC");
         ClientParams.Tran_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID");
         ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS") || '';
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS") || '';
@@ -43,13 +43,9 @@ export class npss_cs_rct_inward_posting_failure_closeService {
     CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_rct_inward_posting_failure_close/', ClientParams)
             .subscribe((res: any) => {
-                if (res.data == "SUCCESS" || res.data.status == 'SUCCESS') {
+                if (res.data.status == "SUCCESS" || res.data.status == 'SUCCESS') {
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
-                } else if (res.data.status == 'No Rule Code Found' || res.data == 'No Rule Code Found') {
-                    this.dialogHelper.ShowErrorDialog('No Rule Code Found')
-                } else if (res.data == "FAILURE" || res.data.status == 'FAILURE') {
-                    this.appHandler.callInternals(internals, screenInstance, "FAILURE");
-                } else {
+                }else {
                     this.dialogHelper.ShowInfoDialog(res.data.status)
                 }
             });

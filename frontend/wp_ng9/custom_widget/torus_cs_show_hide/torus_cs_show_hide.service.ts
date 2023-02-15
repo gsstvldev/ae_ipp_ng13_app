@@ -125,12 +125,12 @@ export class torus_cs_show_hideService {
           if (showAlwaysModeCtrls.length) {
             this.showBtn(curElement, showAlwaysModeCtrls, screenInstance)
           }
-          if (this.selectedItems.length && this.selectedItems.length == 1) {
+          /*if (this.selectedItems.length && this.selectedItems.length == 1) {
             let showSingleBtn = data.filter((value) => {
               return value.action_mode == 'SINGLE' || value.action_mode == 'SELECT'
             })
             this.showBtn(curElement, showSingleBtn, screenInstance)
-          }
+          }*/
         }
 
       }

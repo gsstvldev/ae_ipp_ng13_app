@@ -7,9 +7,10 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
     try {
         /*   Created By :Siva Harish
-        Created Date :14-02-2023
+        Created Date :15-02-2023
        
         */
         var serviceName = 'NPSS (CS) RCT Inward Posting Failure Close';
@@ -64,7 +65,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         arrTranID = [params.Tran_Id.toString()];
                                     }
                                     TempTranID = '(' + "'" + arrTranID.toString().split(',').join("','") + "'" + ')';
-                                    if (params.role_id == 'Maker') {
+                                    if (params.Roleid == '705' || params.Roleid == 705) {
                                         processName = 'Manual Close - Maker'
                                     } else {
                                         processName = 'Manual Close - Checker'
@@ -72,8 +73,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                     var TakeTrnData = `select * from npss_transactions where npsst_id in ${TempTranID}`
                                     ExecuteQuery1(TakeTrnData, function (arrprocesslog) {
                                         if (arrprocesslog.length > 0) {
+                                            var arrCusTranInst = [];
                                             for (let i = 0; i < arrprocesslog.length; i++) {
-                                                var arrCusTranInst = [];
+                                              
                                                 var objCusTranInst = {};
 
                                                 objCusTranInst.MSG_ID = arrprocesslog[0].hdr_msg_id;
@@ -113,13 +115,22 @@ app.post('/', function(appRequest, appResponse, next) {
                                             }
 
 
-                                            _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
+                                            _BulkInsertProcessItem(arrCusTranInst, 'npss_trn_process_log', function callbackInsert(CusTranInsertRes) {
                                                 if (CusTranInsertRes.length > 0) {
-                                                    objresponse.status = 'SUCCESS';
-                                                    sendResponse(null, objresponse);
+                                                    var UpdateTrnTbl = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
+                                                    ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
+                                                        if (uptranresult == 'SUCCESS') {
+                                                            objresponse.status = 'Success';   
+                                                            sendResponse(null, objresponse)
+                                                        }else{
+                                                            objresponse.status = 'Error in NPSS_TRN_PROCESS_LOG Table Update';
+                                                            sendResponse(null, objresponse)
+                                                          
+                                                        }
+                                                    })
 
                                                 } else {
-                                                    objresponse.status = 'FAILURE';
+                                                    objresponse.status = 'Error in NPSS_TRN_PROCESS_LOG Insert';
                                                     reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
                                                     sendResponse(null, objresponse)
                                                 }
@@ -130,7 +141,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                         }
                                         else {
-                                            console.log("No Data found in Transaction table");
+                                           
                                             objresponse.status = "No Data found in Transaction table"
                                             sendResponse(null, objresponse)
                                         }
@@ -138,8 +149,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     })
                                 }
                                 else {
-                                    console.log("No Data found in Rule table");
-                                    objresponse.status = "No Data found in Rule table"
+                                   
+                                    objresponse.status = "No Data found in core nc workflow table"
                                     sendResponse(null, objresponse)
                                 }
                             })
@@ -239,6 +250,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

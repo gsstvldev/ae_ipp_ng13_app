@@ -24,7 +24,7 @@ export class npss_c_disable_action_by_multiselectService {
     let App_Id = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");
     let Product_Code = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "ROOT_SCODE");
     if (Product_Code === "NPSS_AEFAB" || Product_Code === "NPSS_AEFIN") {
-            if (screenInstance.wftpa_description === "s_rct_posting_failures") {
+            if (screenInstance.wftpa_description === "s_rct_posting_failures" || screenInstance.wftpa_description === "s_rct_rejected_returns") {
                 if (this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID").length == 1) {
                     if (screenInstance["navigation_ui_view_message_log"]) {
                     screenInstance["navigation_ui_view_message_log"].disabled = false;    

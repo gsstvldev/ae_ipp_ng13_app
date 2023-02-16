@@ -7,23 +7,22 @@ Modified Date   : 2023-Feb-16 11:31 AM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_returns
-Profile Name    : View History Layout--------------------------------------------------------------------------- */
+Profile Name    : Close Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_view_history_layout',
-  templateUrl: './p_view_history_layout.component.html',
-  styleUrls: ['./p_view_history_layout.component.css']
+  selector: 'p_close_layout',
+  templateUrl: './p_close_layout.component.html',
+  styleUrls: ['./p_close_layout.component.css']
 })
 
 // Start of class 
-export class p_view_history_layoutComponent implements OnInit {
+export class p_close_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	process_log_ui : any = {}
-	history_detail : any = {}
+  	close_ui : any = {}
 
 
   // Constructor 
@@ -31,14 +30,12 @@ export class p_view_history_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.process_log_ui.desc = "Process Log UI"
-		this.process_log_ui.need_header = ""
-		this.history_detail.desc = "History Detail"
-		this.history_detail.need_header = true
+    	this.close_ui.desc = "Close UI"
+		this.close_ui.need_header = ""
 	
 
-    this.screen_instance['p_view_history_layout'] = {};
-    this.screen_instance['p_view_history_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_close_layout'] = {};
+    this.screen_instance['p_close_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

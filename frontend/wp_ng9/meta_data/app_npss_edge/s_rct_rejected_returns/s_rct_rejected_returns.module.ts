@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28129 
+Build ID        : 28135 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-16 7:46 AM 
+Modified Date   : 2023-Feb-16 11:31 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_returns
@@ -21,9 +21,9 @@ import { SharedModule } from '../../../shared/shared.module'
 
 import {torus_cs_change_routingkeyModule} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
-import {npss_cs_inward_reject_return_closeModule} from '../../../custom_widget/npss_cs_inward_reject_return_close/npss_cs_inward_reject_return_close.module'
 import {npss_cs_inward_rejected_return_re_submitModule} from '../../../custom_widget/npss_cs_inward_rejected_return_re_submit/npss_cs_inward_rejected_return_re_submit.module'
 import {npss_c_disable_action_by_multiselectModule} from '../../../custom_widget/npss_c_disable_action_by_multiselect/npss_c_disable_action_by_multiselect.module'
+import {npss_cs_inward_reject_return_closeModule} from '../../../custom_widget/npss_cs_inward_reject_return_close/npss_cs_inward_reject_return_close.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -53,6 +53,8 @@ import { p_view_req_and_resComponent } from './p_view_req_and_res/p_view_req_and
 import { f_single_back_uiComponent } from './f_single_back_ui/f_single_back_ui.component'
 import { f_npss_target_request_uiComponent } from './f_npss_target_request_ui/f_npss_target_request_ui.component'
 import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/f_npss_target_response_ui.component'
+import { p_close_layoutComponent } from './p_close_layout/p_close_layout.component'
+import { f_npss_reject_return_uiComponent } from './f_npss_reject_return_ui/f_npss_reject_return_ui.component'
 import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_request_layout.component'
 import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
 
@@ -69,9 +71,9 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     OverlayPanelModule,
     
     s_rct_rejected_returnsRoutingModule,
-    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_inward_reject_return_closeModule,npss_cs_inward_rejected_return_re_submitModule,npss_c_disable_action_by_multiselectModule
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_inward_rejected_return_re_submitModule,npss_c_disable_action_by_multiselectModule,npss_cs_inward_reject_return_closeModule
   ],
-  declarations: [s_rct_rejected_returnsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_tran_srchComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
+  declarations: [s_rct_rejected_returnsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_tran_srchComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_close_layoutComponent,f_npss_reject_return_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

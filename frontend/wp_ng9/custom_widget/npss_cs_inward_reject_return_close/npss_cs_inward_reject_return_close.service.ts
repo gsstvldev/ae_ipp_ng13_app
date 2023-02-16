@@ -39,7 +39,7 @@ export class npss_cs_inward_reject_return_closeService {
         let Country_Code: any = code[1].slice(0, 2);
         let client_code: any = code[1];
         let system: any = code[0];
-        let remarks='hi';
+        let remarks= screenInstance['close_ui'].f_npss_reject_return_ui.model;
         let ClientParams: any = {};
         ///  Prepare input for Server call
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
@@ -49,7 +49,7 @@ export class npss_cs_inward_reject_return_closeService {
         ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
         ClientParams.Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_NPSST_ID') || '';
-        ClientParams.remarks= remarks;
+        ClientParams.remarks= remarks.memory90;
         ClientParams.system = system
         ClientParams.api_code = "IP_RCT_REJ_RET_CLOSE";
 

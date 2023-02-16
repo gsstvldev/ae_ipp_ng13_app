@@ -56,7 +56,7 @@ app.post('/', function(appRequest, appResponse, next) {
                    
                     var takeCount = `select count(*),department_code from npss_transactions where status in(${FinSts}) group by department_code`
                     var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL'`
-                    var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_TO'`
+                    
                     ExecuteQuery1(takeurl, function (arrUrl) {
                         //   for(var i=0;i<=arrCount.length;arrCount++){
                         if (arrUrl.length == 0) {

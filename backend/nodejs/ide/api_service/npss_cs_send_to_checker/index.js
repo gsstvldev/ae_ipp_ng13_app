@@ -7,7 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
+
 
     try {
         /*   Created By :Siva Harish
@@ -19,6 +20,7 @@ app.post('/', function(appRequest, appResponse, next) {
         Reason for Remove console log
         Reason for Adding update query 24/01/2023
         Reason for CHANGING insert payload changes 8/2/2023
+         Reason for checking force to post
         
         */
         var serviceName = 'NPSS (CS) Send To Checker';
@@ -35,7 +37,7 @@ app.post('/', function(appRequest, appResponse, next) {
         var mTranConn = "";
         var addquery = "";
 
-
+        var checkForceTopost
         var objresponse = {
             'status': 'FAILURE',
             'data': '',
@@ -54,7 +56,7 @@ app.post('/', function(appRequest, appResponse, next) {
                 // Get DB Connection                                                                                                                                      
                 reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
                     mTranConn = pSession; //  assign connection     
-                    reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
+                    reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
                         try {
 
                             var PRCT_ID = prct_id
@@ -92,86 +94,82 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         }
 
                                                         var takedata = async () => {
-                                                            reverseAcinfparam = await TakereversalIdandActInfm(arrprocesslog)
-                                                            take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL'`;
-                                                            ExecuteQuery1(take_api_url, function (arrurl) {
-                                                                if (arrurl.length) {
-                                                                    var url = arrurl[0].param_detail;
-                                                                    var amount
+                                                            checkForceTopost = await ForcetoPost(arrprocesslog)
+                                                            if (checkForceTopost == 'Call_Reserve_Fund_Api') {
+                                                                reverseAcinfparam = await TakereversalIdandActInfm(arrprocesslog)
+                                                                take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL'`;
+                                                                ExecuteQuery1(take_api_url, function (arrurl) {
+                                                                    if (arrurl.length) {
+                                                                        var url = arrurl[0].param_detail;
+                                                                        var amount
 
-                                                                    amount = arrprocesslog[0].intrbk_sttlm_amnt
-
-
-                                                                    apiName = 'Manual Initiation Reserve Fund Api'
-
-                                                                    var callapi = async () => {
-                                                                        var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam)
-
-                                                                        if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
-                                                                            var InsPrslogTable = async () => {
-                                                                                var InsertTable = await ProcessInstData(arrprocesslog,final_status,final_process_status,PRCT_ID,arrcode,arrurlResult)
-                                                                                if (InsertTable.length > 0) {
-                                                                                    var UpdateTrnProcessLog = `update npss_trn_process_log set  additional_info = 'Maker_Approved',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsstpl_id ='${params.NPSSTPL_Id}'`
-                                                                                    var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                                                    ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                                        if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                            ExecuteQuery(UpdateTrnProcessLog, function (arrUpdPrsLog) {
-                                                                                                if (arrUpdPrsLog == 'SUCCESS') {
-                                                                                                    objresponse.status = 'SUCCESS';
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                } else {
-                                                                                                    objresponse.status = 'No Data Updated in TranProcessLog Table';
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                }
-                                                                                            })
+                                                                        amount = arrprocesslog[0].intrbk_sttlm_amnt
 
 
-                                                                                        } else {
-                                                                                            objresponse.status = 'No Data Updated in Transaction Table';
-                                                                                            sendResponse(null, objresponse);
+                                                                        apiName = 'Manual Initiation Reserve Fund Api'
 
-                                                                                        }
-                                                                                    })
-                                                                                } else {
-                                                                                    objresponse.status = 'Error in TranProcessLog Table Insert';
-                                                                                    sendResponse(null, objresponse);
+                                                                        var callapi = async () => {
+                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam)
+
+                                                                            if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
+                                                                                var InsPrslogTable = async () => {
+                                                                                    var InsertTable = await ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode, arrurlResult)
+                                                                                    if (InsertTable.length > 0) {
+                                                                                        var UpdateTrnProcessLog = `update npss_trn_process_log set  additional_info = 'Maker_Approved',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsstpl_id ='${params.NPSSTPL_Id}'`
+                                                                                        var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                        ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                                            if (arrUpdTranTbl == 'SUCCESS') {
+                                                                                                ExecuteQuery(UpdateTrnProcessLog, function (arrUpdPrsLog) {
+                                                                                                    if (arrUpdPrsLog == 'SUCCESS') {
+                                                                                                        objresponse.status = 'SUCCESS';
+                                                                                                        sendResponse(null, objresponse);
+                                                                                                    } else {
+                                                                                                        objresponse.status = 'No Data Updated in TranProcessLog Table';
+                                                                                                        sendResponse(null, objresponse);
+                                                                                                    }
+                                                                                                })
+
+
+                                                                                            } else {
+                                                                                                objresponse.status = 'No Data Updated in Transaction Table';
+                                                                                                sendResponse(null, objresponse);
+
+                                                                                            }
+                                                                                        })
+                                                                                    } else {
+                                                                                        objresponse.status = 'Error in TranProcessLog Table Insert';
+                                                                                        sendResponse(null, objresponse);
+                                                                                    }
+
                                                                                 }
+                                                                                InsPrslogTable()
 
+
+                                                                            } else if (apistatus.status == 'TIMEOUT') {
+
+                                                                                objresponse.status = 'Time Out' + apiName + ' Api Failure'
+                                                                                sendResponse(null, objresponse);
+                                                                            } else {
+                                                                                objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
+
+                                                                                sendResponse(null, objresponse);
                                                                             }
-                                                                            InsPrslogTable()
-
-
-                                                                        } else if (apistatus.status == 'TIMEOUT') {
-
-                                                                            objresponse.status = 'Time Out' + apiName + ' Api Failure'
-                                                                            sendResponse(null, objresponse);
-                                                                        } else {
-                                                                            objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
-
-                                                                            sendResponse(null, objresponse);
                                                                         }
+
+                                                                        callapi()
+
                                                                     }
+                                                                    else {
 
-                                                                    callapi()
+                                                                        objresponse.status = "No Data found in workflow table"
+                                                                        sendResponse(null, objresponse)
+                                                                    }
+                                                                })
+                                                            } else {
+                                                                objresponse.status = checkForceTopost
+                                                                sendResponse(null, objresponse)
+                                                            }
 
-
-
-
-
-
-
-
-
-
-
-
-                                                                }
-                                                                else {
-
-                                                                    objresponse.status = "No Data found in workflow table"
-                                                                    sendResponse(null, objresponse)
-                                                                }
-                                                            })
                                                         }
 
                                                         takedata()
@@ -482,7 +480,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     //Function for insert in TrnProcess Log Table
-                    function ProcessInstData(arrprocesslog,final_status,final_process_status,PRCT_ID,arrcode,arrurlResult) {
+                    function ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode, arrurlResult) {
                         return new Promise((resolve, reject) => {
                             var arrCusTranInst = [];
                             var objCusTranInst = {};
@@ -528,6 +526,56 @@ app.post('/', function(appRequest, appResponse, next) {
                             })
                         })
 
+                    }
+
+
+                    //function to check forceTopost
+                    function ForcetoPost(arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            var Takepostcode = `select POSTING_RESTRICTION_CODE ,CUSTOMER_POSTING_RESTRICTION_CODE from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].dbtr_iban}'`
+                            ExecuteQuery1(Takepostcode, function (arrCode) {
+                                if (arrCode.length > 0) {
+                                    if (arrCode[0].posting_restriction_code || arrCode[0].customer_posting_restriction_code) {
+                                        var checkingRestrictId
+                                        if (arrCode[0].posting_restriction_code) {
+                                            checkingRestrictId = arrCode[0].posting_restriction_code || ''
+                                        }else {
+                                            checkingRestrictId = arrCode[0].customer_posting_restriction_code || ''
+                                        }
+
+                                        var TakingResid = `select applicable_dr_ac from CORE_NC_POST_RESTRICTIONS where restriction_id = '${checkingRestrictId}'`
+                                        ExecuteQuery1(TakingResid, function (arrRestid) {
+                                            if (arrRestid.length) {
+
+                                                if (arrRestid[0].applicable_dr_ac) {
+                                                    var appdract = arrRestid[0].applicable_dr_ac.toUpperCase()
+                                                    if (appdract == 'RESTRICT') {
+                                                        resolve('Please use the Force Post option')
+                                                    } else {
+                                                        resolve('Call_Reserve_Fund_Api')
+                                                    }
+
+                                                } else {
+                                                    resolve('Call_Reserve_Fund_Api')
+                                                }
+
+                                            } else {
+                                                resolve('No data found in CORE_NC_POST_RESTRICTIONS table')
+                                            }
+
+                                        })
+
+                                    } else {
+                                        resolve('Call_Reserve_Fund_Api')
+                                    }
+
+
+                                } else {
+                                    resolve('No data found in core_nc_cbs_account table for selected Tran DBTR_IBAN')
+                                }
+
+                            })
+                        })
                     }
 
 
@@ -593,13 +641,13 @@ app.post('/', function(appRequest, appResponse, next) {
                     function sendResponse(error, response) {
                         try {
                             if (error) {
-                           
-                                    reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-                              
+
+                                reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
+
                             } else {
-                               
-                                    reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-                            
+
+                                reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
+
                             }
                         } catch (error) {
                             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
@@ -614,6 +662,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

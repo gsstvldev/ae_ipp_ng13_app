@@ -78,10 +78,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                               
                                                 var objCusTranInst = {};
 
-                                                objCusTranInst.MSG_ID = arrprocesslog[0].hdr_msg_id;
+                                                objCusTranInst.MSG_ID = arrprocesslog[i].hdr_msg_id;
                                                 objCusTranInst.PRCT_ID = PRCT_ID;
-                                                objCusTranInst.UETR = arrprocesslog[0].uetr;
-                                                objCusTranInst.NPSSTRRD_REFNO = arrprocesslog[0].tran_ref_id;
+                                                objCusTranInst.UETR = arrprocesslog[i].uetr;
+                                                objCusTranInst.NPSSTRRD_REFNO = arrprocesslog[i].tran_ref_id;
                                                 objCusTranInst.PROCESS_TYPE = 'IP'
                                                 objCusTranInst.PROCESS_TIME = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
                                                 objCusTranInst.PROCESS_NAME = processName

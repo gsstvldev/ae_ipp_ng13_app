@@ -51,8 +51,12 @@ export class npss_cs_send_to_checkerService {
             .subscribe((res: any) => {
                 if (res.data.status == "SUCCESS" || res.data == "SUCCESS") {
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
-                } 
-                else {
+                }else if(res.data.status == "Please use the Force Post option"){
+                     screenInstance.navigation_ui_force_post.disabled = false;
+                     screenInstance.navigation_ui_send_to_checker.disabled = true;
+                      this.dialogHelper.ShowInfoDialog(res.data.status)
+                    
+                }else {
                     this.dialogHelper.ShowErrorDialog(res.data.status)
                 }
             });

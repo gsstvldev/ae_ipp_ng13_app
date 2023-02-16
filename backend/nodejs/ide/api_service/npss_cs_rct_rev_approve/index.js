@@ -8,11 +8,6 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
 
-
-
-
-
-
 try {
     /*   Created By :Daseen
     Created Date :16-12-2022
@@ -26,6 +21,7 @@ try {
     Modified Date : 10/02/2023
     Reason for : Process log after api call
       Reason for : Checking prepaid and credit card 
+        Reason for : changes in payload 15/02/2023
     */
     var serviceName = 'NPSS RCT Outward Reversal Approve';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -81,7 +77,9 @@ try {
 
                                 ExecuteQuery1(take_api_params, async function (arrprocesslog) {
                                     if (arrprocesslog.length) {
-
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------1-------' + arrprocesslog[0].cr_acct_identification, objSessionLogInfo);
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------2Acct_code-------' + arrprocesslog[0].cr_acct_id_code, objSessionLogInfo);
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------3-------' + arrprocesslog[0].cdtr_iban, objSessionLogInfo);
                                         var TakeAccountInformation = await GetaccountInfo(arrprocesslog)
                                         var TakepostRefno = `select process_ref_no from npss_trn_process_log where uetr = '${arrprocesslog[0].uetr}' and process_name = 'Receive Pacs002' and status in ('OP_AC_STATUS_ACCEPTED','OP_P2P_STATUS_ACCEPTED', 'OP_P2B_STATUS_ACCEPTED')`
                                         ExecuteQuery1(TakepostRefno, function (arrpostrefno) {
@@ -240,7 +238,10 @@ try {
                                 "reversal_code": params.REVERSAL_CODE || '',
                                 "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
                                 "intrbk_sttlm_dt": arrprocesslog[0].hdr_settlement_date || '',
-                                "AccountInformation": TakeAccountInformation
+                                "AccountInformation": TakeAccountInformation,
+                                "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
+                                "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                "cr_acct_identification": arrprocesslog[0].cr_acct_identification || ''
 
 
 
@@ -340,6 +341,7 @@ try {
 
                         } else {
                             if (arrprocesslog[0].cr_acct_identification && arrprocesslog[0].cr_acct_id_code == 'AIIN') {
+
                                 var TakeacctIden1 = arrprocesslog[0].cr_acct_identification.substring(0, 6)
                                 var checkCard1 = `select * from CORE_NC_CARD_BIN_SETUP where bin_number = '${TakeacctIden1}'`
                                 ExecuteQuery1(checkCard1, function (arrCradType) {
@@ -477,6 +479,8 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
+
 
 
 

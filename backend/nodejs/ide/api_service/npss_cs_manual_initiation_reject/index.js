@@ -8,9 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
-    
-    
-    
+
 
 /*  Created By :sIVA hARISH
 Created Date : 02-01-2022
@@ -18,6 +16,7 @@ Modifyed by : Siva Harish
 Modified Date : 17/01/2023
 Reason for Remove console log
 Reason for Adding Update Query
+Reason for removing update query
 
  
 */
@@ -120,19 +119,13 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                             arrCusTranInst.push(objCusTranInst)
                                                             _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
                                                                if (CusTranInsertRes.length > 0) {
-                                                                var UpdateTrnProcessLog = `update npss_trn_process_log set  additional_info = 'Maker_Rejected',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsstpl_id ='${params.NPSSTPL_Id}'`
+                                                               
                                                                 var updtranqry = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
                                                                 ExecuteQuery(updtranqry, function (uptranresult) {
                                                                    if (uptranresult == 'SUCCESS') {
-                                                                    ExecuteQuery(UpdateTrnProcessLog, function (arrUpdPrsLog) {
-                                                                        if (arrUpdPrsLog == 'SUCCESS') {
-                                                                            objresponse.status = 'SUCCESS';
-                                                                            sendResponse(null, objresponse);
-                                                                        } else {
-                                                                            objresponse.status = 'No Data Updated in TranProcessLog Table';
-                                                                            sendResponse(null, objresponse);
-                                                                        }
-                                                                    })
+                                                                    objresponse.status = 'SUCCESS';
+                                                                    sendResponse(null, objresponse);
+                                                                   
                                                                    } else {
                                                                       objresponse.status = 'Failure in Tran Status Update';
                                                                       sendResponse(null, objresponse)

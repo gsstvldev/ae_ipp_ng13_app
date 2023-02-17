@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28145 
+Build ID        : 28152 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-16 14:55 PM 
+Modified Date   : 2023-Feb-17 7:24 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_returns
@@ -14,7 +14,7 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
-import {torus_cs_set_rule_mi_paramService} from '../../../custom_widget/torus_cs_set_rule_mi_param/torus_cs_set_rule_mi_param.service'
+import {npss_c_set_mi_level_valueService} from '../../../custom_widget/npss_c_set_mi_level_value/npss_c_set_mi_level_value.service'
 import {npss_c_disable_action_by_multiselectService} from '../../../custom_widget/npss_c_disable_action_by_multiselect/npss_c_disable_action_by_multiselect.service'
 import {npss_cs_inward_rejected_return_re_submitService} from '../../../custom_widget/npss_cs_inward_rejected_return_re_submit/npss_cs_inward_rejected_return_re_submit.service'
 import {npss_cs_inward_reject_return_closeService} from '../../../custom_widget/npss_cs_inward_reject_return_close/npss_cs_inward_reject_return_close.service'
@@ -23,7 +23,7 @@ import {npss_cs_inward_reject_return_closeService} from '../../../custom_widget/
 	selector: 's_rct_rejected_returns',
 	templateUrl: './s_rct_rejected_returns.component.html',
 	styleUrls: ['./s_rct_rejected_returns.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,torus_cs_set_rule_mi_paramService,npss_c_disable_action_by_multiselectService,npss_cs_inward_rejected_return_re_submitService,npss_cs_inward_reject_return_closeService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_set_mi_level_valueService,npss_c_disable_action_by_multiselectService,npss_cs_inward_rejected_return_re_submitService,npss_cs_inward_reject_return_closeService]
 })
     
 // Start of class 
@@ -112,7 +112,7 @@ export class s_rct_rejected_returnsComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private torus_cs_set_rule_mi_paramService:torus_cs_set_rule_mi_paramService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_inward_rejected_return_re_submitService:npss_cs_inward_rejected_return_re_submitService,private npss_cs_inward_reject_return_closeService:npss_cs_inward_reject_return_closeService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_set_mi_level_valueService:npss_c_set_mi_level_valueService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_inward_rejected_return_re_submitService:npss_cs_inward_rejected_return_re_submitService,private npss_cs_inward_reject_return_closeService:npss_cs_inward_reject_return_closeService) {
     
 	}
     
@@ -914,7 +914,7 @@ export class s_rct_rejected_returnsComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_set_rule_mi_paramService.fn_torus_cs_set_rule_mi_param(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_c_set_mi_level_valueService.fn_npss_c_set_mi_level_value(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

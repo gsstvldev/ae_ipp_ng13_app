@@ -8,11 +8,6 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
-    
-    
-    
-    
-    
     try {
         /*   Created By :Siva Harish
         Created Date :02-01-2023
@@ -22,6 +17,7 @@ app.post('/', function(appRequest, appResponse, next) {
            Reason for Removing Console log
            Reason for Adding Update query
            Reason for adding two api param for pac008 25/01/2023
+           Reason for removing updt query 17/02/2023
        
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -125,18 +121,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                             if (pac008api == 'SUCCESS') {
 
                                                                                                 var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                                                                var UpdateTrnProcessLog = `update npss_trn_process_log set  additional_info = 'Maker_Approved',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsstpl_id ='${params.NPSSTPL_Id}'`
+                                                                                               
                                                                                                 ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
                                                                                                     if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                                ExecuteQuery(UpdateTrnProcessLog, function (arrUpdPrsLog) {
-                                                                                                if (arrUpdPrsLog == 'SUCCESS') {
-                                                                                                    objresponse.status = 'SUCCESS';
+                                                                                                        objresponse.status = 'SUCCESS';
                                                                                                     sendResponse(null, objresponse);
-                                                                                                } else {
-                                                                                                    objresponse.status = 'No Data Updated in TranProcessLog Table';
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                }
-                                                                                            })
+                        
                                                                                                     }
                                                                                                     else {
         

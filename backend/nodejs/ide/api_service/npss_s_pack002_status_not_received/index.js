@@ -21,7 +21,7 @@ app.post('/', function(appRequest, appResponse, next) {
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
     var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
     var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
-    var reqXlsx = require('node-xlsx').default;
+      var reqXlsx = require('node-xlsx').default;
     var reqAuditLog = require($REFPATH + 'log/audit/AuditLog');
     var reqDateFormatter = require($REFPATH + 'common/dateconverter/DateFormatter');
     var params = appRequest.body.PARAMS; //  Client input fromm Server

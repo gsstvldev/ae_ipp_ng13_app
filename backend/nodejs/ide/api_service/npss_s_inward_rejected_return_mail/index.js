@@ -27,7 +27,7 @@ app.post('/', function(appRequest, appResponse, next) {
     var objSessionLogInfo = null; // set value is null
     var success_process_status, success_status;
     var reqAsync = require('async');
-    var mTranConn = "";
+      var mTranConn = "";
     var producer
     var failedData = []
     var objresponse = {

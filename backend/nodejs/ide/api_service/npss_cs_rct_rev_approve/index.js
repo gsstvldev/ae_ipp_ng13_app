@@ -239,7 +239,7 @@ try {
                                 "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
                                 "intrbk_sttlm_dt": arrprocesslog[0].hdr_settlement_date || '',
                                 "AccountInformation": TakeAccountInformation,
-                                "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
+                                 "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                 "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                 "cr_acct_identification": arrprocesslog[0].cr_acct_identification || ''
 

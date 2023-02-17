@@ -7,22 +7,22 @@ Modified Date   : 2023-Feb-17 7:41 AM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_activities
-Profile Name    : Menu Access Layout--------------------------------------------------------------------------- */
+Profile Name    : Authentication History--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_menu_access_layout',
-  templateUrl: './p_menu_access_layout.component.html',
-  styleUrls: ['./p_menu_access_layout.component.css']
+  selector: 'p_authentication_history',
+  templateUrl: './p_authentication_history.component.html',
+  styleUrls: ['./p_authentication_history.component.css']
 })
 
 // Start of class 
-export class p_menu_access_layoutComponent implements OnInit {
+export class p_authentication_historyComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	menu_access : any = {}
+  	authentication_history : any = {}
 
 
   // Constructor 
@@ -30,12 +30,12 @@ export class p_menu_access_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.menu_access.desc = "Menu Access"
-		this.menu_access.need_header = true
+    	this.authentication_history.desc = "Authentication History"
+		this.authentication_history.need_header = true
 	
 
-    this.screen_instance['p_menu_access_layout'] = {};
-    this.screen_instance['p_menu_access_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_authentication_history'] = {};
+    this.screen_instance['p_authentication_history']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

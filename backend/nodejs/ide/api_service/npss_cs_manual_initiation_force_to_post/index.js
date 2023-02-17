@@ -12,8 +12,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
 try {
     /*   Created By :Siva Harish
-    Created Date :02-01-2023
-    reason for Removing update query 17/02/2023
+    Created Date :17-02-2023
+   
     
     */
     var serviceName = 'NPSS (CS) Manual Initiation Force to Post ';
@@ -87,8 +87,7 @@ try {
                                                     }
 
                                                     var takedata = async () => {
-                                                        checkForceTopost = await ForcetoPost(arrprocesslog)
-                                                        if (checkForceTopost == 'Call_Reserve_Fund_Api') {
+                                                        
                                                             reverseAcinfparam = await TakereversalIdandActInfm(arrprocesslog)
                                                             take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL'`;
                                                             ExecuteQuery1(take_api_url, function (arrurl) {
@@ -152,10 +151,7 @@ try {
                                                                     sendResponse(null, objresponse)
                                                                 }
                                                             })
-                                                        } else {
-                                                            objresponse.status = checkForceTopost
-                                                            sendResponse(null, objresponse)
-                                                        }
+                                                        
 
                                                     }
 
@@ -517,54 +513,7 @@ try {
                 }
 
 
-                //function to check forceTopost
-                function ForcetoPost(arrprocesslog) {
-                    return new Promise((resolve, reject) => {
-                        var Takepostcode = `select POSTING_RESTRICTION_CODE ,CUSTOMER_POSTING_RESTRICTION_CODE from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].dbtr_iban}'`
-                        ExecuteQuery1(Takepostcode, function (arrCode) {
-                            if (arrCode.length > 0) {
-                                if (arrCode[0].posting_restriction_code || arrCode[0].customer_posting_restriction_code) {
-                                    var checkingRestrictId
-                                    if (arrCode[0].posting_restriction_code) {
-                                        checkingRestrictId = arrCode[0].posting_restriction_code || ''
-                                    }else {
-                                        checkingRestrictId = arrCode[0].customer_posting_restriction_code || ''
-                                    }
-
-                                    var TakingResid = `select applicable_dr_ac from CORE_NC_POST_RESTRICTIONS where restriction_id = '${checkingRestrictId}'`
-                                    ExecuteQuery1(TakingResid, function (arrRestid) {
-                                        if (arrRestid.length) {
-
-                                            if (arrRestid[0].applicable_dr_ac) {
-                                                var appdract = arrRestid[0].applicable_dr_ac.toUpperCase()
-                                                if (appdract == 'RESTRICT') {
-                                                    resolve('Please use the Force Post option')
-                                                } else {
-                                                    resolve('Call_Reserve_Fund_Api')
-                                                }
-
-                                            } else {
-                                                resolve('Call_Reserve_Fund_Api')
-                                            }
-
-                                        } else {
-                                            resolve('No data found in CORE_NC_POST_RESTRICTIONS table')
-                                        }
-
-                                    })
-
-                                } else {
-                                    resolve('Call_Reserve_Fund_Api')
-                                }
-
-
-                            } else {
-                                resolve('No data found in core_nc_cbs_account table for selected Tran DBTR_IBAN')
-                            }
-
-                        })
-                    })
-                }
+                
 
 
 

@@ -43,7 +43,7 @@ export class npss_cs_rct_inward_posting_failure_closeService {
     CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_rct_inward_posting_failure_close/', ClientParams)
             .subscribe((res: any) => {
-                if (res.data.status == "SUCCESS" || res.data.status == 'SUCCESS') {
+                if (res.data.status == "Success" || res.data.status == 'Success') {
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 }else {
                     this.dialogHelper.ShowInfoDialog(res.data.status)

@@ -7,11 +7,12 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
     try {
         /*   Created By :Siva Harish
-        Created Date :17-01-2023
+        Created Date :18-01-2023
       
          
        
@@ -76,7 +77,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     ExecuteQuery1(Takekafkaurl, async function (arrurl) {
                                         if (arrurl.length > 0) {
                                             if (params.Roleid == '705' || params.Roleid == 705) {
-                                                var UpdateTrnTbl = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${arrTranID} `
+                                                var UpdateTrnTbl = `update npss_transactions set  status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
                                                 ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
                                                     if (uptranresult == 'SUCCESS') {
                                                         objresponse.status = 'SUCCESS';
@@ -109,7 +110,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         }
 
                                                         if (Apicalls == 'SUCCESS') {
-                                                            InsertProcess(arrTranparams, success_process_status, success_status,PRCT_ID)
+                                                            InsertProcess(arrTranparams, final_process_status, final_status,PRCT_ID)
                                                         } else {
                                                             objresponse.status = "API call FAILURE"
                                                             objresponse.errdata = ""
@@ -121,7 +122,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         sendResponse(null, objresponse)
                                                     }
                                                 })
-                                                //var PreparedData = await InsertProcess(arrTranparams,success_process_status,success_status)
+                                               
                                             }
                                         } else {
                                             objresponse.status = 'FAILURE';
@@ -468,7 +469,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             }
 
                                             var PrintInfo = {}
-                                            PrintInfo.url = url
+                                            PrintInfo.url = arrurl[0].param_detail
                                             PrintInfo.card = 'PREPAID CARD'
                                             PrintInfo.uetr = arrTranparamsObj.uetr || ''
                                             PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
@@ -525,7 +526,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 var TakepostingRefno = `select distinct process_ref_no from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}'`
                                 ExecuteQuery1(TakepostingRefno, function (arrrefno) {
                                     if (arrrefno.length > 0) {
-                                        var cbsaccount = `select company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id =`
+                                        var cbsaccount = `select company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${arrTranparamsObj.cdtr_iban}'`
                                         ExecuteQuery1(cbsaccount, function (arrcbsdata) {
                                             if (arrcbsdata.length > 0) { 
                                                 var Virtual_account
@@ -691,7 +692,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                                      
-                                        var cbsaccount = `select curr_rate_segment,alternate_account_id,currency,account_number,account_officer,company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id =`
+                                        var cbsaccount = `select curr_rate_segment,alternate_account_id,currency,account_number,account_officer,company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${arrTranparamsObj.cdtr_iban}'`
                                         ExecuteQuery1(cbsaccount, function (arrcbsdata) {
                                             if (arrcbsdata.length > 0) { 
                                                 var Virtual_account
@@ -903,6 +904,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

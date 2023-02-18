@@ -16,7 +16,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified Date : 
    }
     */
-    var serviceName = 'NPSS (S) Inward Rejected Return Mail';
+    var serviceName = 'NPSS (S) Pack002 Status Not Received ';
 
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
     var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
@@ -45,16 +45,16 @@ app.post('/', function(appRequest, appResponse, next) {
 
             objSessionLogInfo = objLogInfo; // Assing log information
             // Log Viewer Setup
-            objSessionLogInfo.HANDLER_CODE = 'NPSS (S) Inward Rejected Return Mail';
+            objSessionLogInfo.HANDLER_CODE = 'NPSS (S) Pack002 Status Not Received';
             objSessionLogInfo.ACTION = 'ACTION';
-            objSessionLogInfo.PROCESS = 'NPSS (S) Inward Rejected Return Mail';
+            objSessionLogInfo.PROCESS = 'NPSS (S) Pack002 Status Not Received';
             // Get DB Connection 
             reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
                 mTranConn = pSession; //  assign connection     
 
                 try {
                     //  var takeTrn = `select l.npsstpl_id,l.additional_info,l.status,l.uetr,nt.cdtr_iban, fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,nt.base_amount,nt.dbtr_iban ,ac.customer_email_id  from npss_trn_process_log l left join  npss_transactions nt on l.uetr=nt.uetr    left join core_nc_cbs_accounts ac on nt.cdtr_iban = ac.alternate_account_id    where l.status ='${params.status}' and( l.additional_info <>('Mail_Triggered') OR  l.additional_info ISNULL)`
-                    var takeTrn = `select npsst_id,uetr,department_code,Value_Date,process_type,cdtr_iban,fn_pcidss_decrypt(cr_acct_identification,'Pc!Nps$Key7') as cr_acct_identification,intrbk_sttlm_cur,cdtr_acct_name,intrbk_sttlm_amnt,clrsysref,PAYMENT_ENDTOEND_ID,DBTR_IBAN,DBTR_acct_NAME from npss_transactions where  TO_DATE(TO_CHAR(CREATED_DATE, 'DD-MON-YY'),'DD-MON-YY') = CURRENT_DATE `
+                    var takeTrn = `select npsst_id,uetr,department_code,Value_Date,process_type,cdtr_iban,fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification,intrbk_sttlm_cur,cdtr_acct_name,intrbk_sttlm_amnt,clrsysref,PAYMENT_ENDTOEND_ID,DBTR_IBAN,DBTR_acct_NAME from npss_transactions where  TO_DATE(TO_CHAR(CREATED_DATE, 'DD-MON-YY'),'DD-MON-YY') = CURRENT_DATE `
                     var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL'`
 
                     ExecuteQuery1(takeurl, function (arrUrl) {

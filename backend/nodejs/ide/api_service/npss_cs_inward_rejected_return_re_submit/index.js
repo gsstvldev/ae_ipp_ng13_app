@@ -7,9 +7,10 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
     /*   Created By :   Siva Harish
-    Created Date : 16/02/2023
+    Created Date : 18/02/2023
     Modified By : 
     Modified Date : 
     Reason for : 
@@ -54,7 +55,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         try {
                             try {
                                 var TakeStsPsts = `select * from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                var TakeReasonCode = `select cbuae_return_code from npss_trn_process_log where npsstpl_id = '${params.NPSSTPL_Id}'`
+                                
                                 var TakeFinalStatus = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.RULE_CODE}' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                                 var TakeapiUrl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_RETURN_PACK004' and param_code = 'URL'`
                                 ExecuteQuery1(TakeapiUrl, function (arrUrl) {
@@ -62,7 +63,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                         ExecuteQuery1(TakeStsPsts, function (arrresult) {
                                             try {
                                                 if (arrresult.length > 0) {
-                                                    ExecuteQuery1(TakeReasonCode, function (arrReasoncode) {
+                                                    var TakeReasonCode = `select cbuae_return_code from npss_trn_process_log where status in ('IP_RCT_RETURN_REJECTED','IP_RCT_CC_POSTING_FAILURE','IP_RCT_PC_POSTING_FAILURE','IP_RCT_POSTING_FAILURE','IP_RCT_RR_RETURN_REJECTED','IP_RCT_RR_RETURN_READY','IP_RCT_RR_STATUS_REJECTED','IP_RCT_RR_POSTING_FAILURE') and uetr = '${arrresult[0].uetr}'`
+                                                     ExecuteQuery1(TakeReasonCode, function (arrReasoncode) {
                                                         if (arrReasoncode.length > 0) {
                                                             fn_callApi(arrresult, arrReasoncode, arrUrl, function (result) {
 
@@ -130,20 +132,20 @@ app.post('/', function(appRequest, appResponse, next) {
                                             method: 'POST',
                                             json: {
 
-                                                "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
-                                                "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date || '',
-                                                "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
-                                                "hdr_settlement_method": arrprocesslog[0].hdr_settlement_method || '',
-                                                "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
-                                                "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
-                                                "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
-                                                "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
-                                                "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
-                                                "uetr": arrprocesslog[0].uetr,
-                                                "hdr_clearing_system": arrprocesslog[0].hdr_clearing_system || '',
-                                                "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
-                                                "post_reason_code": arrreturncode[0].cbuae_return_code || '',
-                                                "clrsysref": arrprocesslog[0].clrsysref || ''
+                                                "hdr_msg_id": arrresult[0].hdr_msg_id || '',
+                                                "hdr_settlement_date": arrresult[0].hdr_settlement_date || '',
+                                                "hdr_created_date": arrresult[0].hdr_created_date || '',
+                                                "hdr_settlement_method": arrresult[0].hdr_settlement_method || '',
+                                                "intrbk_sttlm_cur": arrresult[0].intrbk_sttlm_cur || '',
+                                                "intrbk_sttlm_amnt": arrresult[0].intrbk_sttlm_amnt || '',
+                                                "dr_sort_code": arrresult[0].dr_sort_code || '',
+                                                "cr_sort_code": arrresult[0].cr_sort_code || '',
+                                                "payment_endtoend_id": arrresult[0].payment_endtoend_id || '',
+                                                "uetr": arrresult[0].uetr,
+                                                "hdr_clearing_system": arrresult[0].hdr_clearing_system || '',
+                                                "tran_ref_id": arrresult[0].tran_ref_id || '',
+                                                "post_reason_code": arrReasoncode[0].cbuae_return_code || '',
+                                                "clrsysref": arrresult[0].clrsysref || ''
 
                                             },
                                             headers: {
@@ -245,6 +247,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

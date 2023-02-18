@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -38,6 +39,7 @@ try {
             Reason for : Remove Console log 17/01/2023
               Reason for : Remove Credit and Prepaid Card api calls 06/02/2023
               Reason for : changes in contra amount query 15/02/2023
+               Reason for : changes contra amount logic 18/02/2023
     */
     var serviceName = 'NPSS IP REV Ret Auth PACS004';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -145,17 +147,9 @@ try {
 
                                                     var amount
                                                     if (params.screenName == 's_rct_reversal_non_aed') {
-                                                        var Takecontraamount = `select contra_amount from npss_trn_process_log where status = 'IP_RCT_REV_DEAL_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
-                                                        ExecuteQuery1(Takecontraamount, function (arramount) {
-                                                            var contra_amount = arramount[0].contra_amount || ''
-                                                            var reversal_amount = arrprocesslog[0].reversal_amount || ''
-
-                                                            if (contra_amount && reversal_amount) {
-                                                                if (Number(contra_amount) > Number(reversal_amount)) {
-                                                                    amount = reversal_amount
-                                                                } else {
-                                                                    amount = contra_amount
-                                                                }
+                                                     
+                                                        var ContraAmount = await getconamount(arrprocesslog,apicalls)
+                                                        amount = ContraAmount
                                                                 ExecuteQuery1(take_api_url, function (arrurl) {
                                                                     if (arrurl.length) {
                                                                         var url = arrurl[0].param_detail;
@@ -265,12 +259,8 @@ try {
                                                                         sendResponse(null, objresponse)
                                                                     }
                                                                 })
-                                                            } else {
-                                                                objresponse.status = 'FAILURE'
-                                                                objresponse.data = 'Contra or Reversal Amount is Missing'
-                                                                sendResponse(null, objresponse)
-                                                            }
-                                                        })
+                                                            
+                                                       
                                                     } else {
                                                         var intblkamt = arrprocesslog[0].intrbk_sttlm_amnt
                                                         var reversalAmt = arrprocesslog[0].reversal_amount
@@ -927,6 +917,63 @@ try {
 
 
 
+                function getconamount(arrprocesslog,apicalls) {
+                    return new Promise((resolve, reject) => {
+                        var Takecontraamount = `select contra_amount from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' order by npsstpl_id desc`
+                        ExecuteQuery1(Takecontraamount, function (arramount) {
+                            if (arramount.length > 0) {
+                                if (arramount[0].contra_amount != null) {
+                                    if(apicalls == '0' || apicalls == 0){
+                                        var Takecreditamount = `select amount_credited  from npss_trn_process_log WHERE process_name = 'Inward Credit Posting' and status = 'IP_RCT_POSTING_SUCCESS' and uetr = '${arrprocesslog[0].uetr}'`
+                                        ExecuteQuery1(Takecreditamount, function (arrcctamount) {
+                                            if (arrcctamount.length > 0) {
+                                                if (arrcctamount[0].amount_credited != null) {
+                                                    var creditAmount = arrcctamount[0].amount_credited.slice(3)
+                                                    if (arramount[0].contra_amount && creditAmount) {
+                                                        if (Number(arramount[0].contra_amount) > Number(creditAmount)) {
+                                                           resolve(creditAmount)
+                                                         
+                                                        } else {
+                                                            resolve(arramount[0].contra_amount)
+                                                        
+                                                        }
+                                                    }else{
+                                                        objresponse.status = 'FAILURE'
+                                                        objresponse.errdata = 'Inward Credit  Amount or contra amount is Missing'
+                                                    sendResponse(null, objresponse)
+                                                    }
+
+                                                } else {
+                                                    objresponse.status = 'FAILURE'
+                                                    objresponse.errdata = 'Inward Credit  Amount  is Missing'
+                                                    sendResponse(null, objresponse)
+                                                }
+
+                                            } else {
+                                                objresponse.status = 'FAILURE'
+                                                objresponse.errdata = 'Inward Credit  Amount is not found'
+                                                sendResponse(null, objresponse)
+                                            }
+
+                                        })
+                                    }else{
+                                        resolve(arramount[0].contra_amount)
+                                    }
+                                   
+                                } else {
+                                    objresponse.status = 'FAILURE'
+                                    objresponse.errdata = 'Contra or Reversal Amount is Missing'
+                                    sendResponse(null, objresponse)
+                                }
+
+                            } else {
+                                objresponse.status = 'FAILURE'
+                                objresponse.errdata = 'Contra Amount is not found'
+                                sendResponse(null, objresponse)
+                            }
+                        })
+                    })
+                }
 
 
 
@@ -1193,6 +1240,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

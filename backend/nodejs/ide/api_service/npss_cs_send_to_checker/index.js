@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -22,6 +23,7 @@ try {
     Reason for CHANGING insert payload changes 8/2/2023
      Reason for checking force to post
      Reason for remove update query 17/02/2023
+     Reason for changing insert logic 18/02/2023
     
     */
     var serviceName = 'NPSS (CS) Send To Checker';
@@ -80,7 +82,7 @@ try {
                                     final_status = arrurlResult[0].success_status
                                     ExecuteQuery1(Takeretcode, function (arrcode) {
                                         if (arrcode.length > 0) {
-                                            ExecuteQuery1(take_api_params, function (arrprocesslog) {
+                                            ExecuteQuery1(take_api_params, async function (arrprocesslog) {
                                                 if (arrprocesslog.length) {
                                                     var lclinstrm
                                                     if (arrprocesslog[0].message_data !== null) {
@@ -93,7 +95,8 @@ try {
                                                     else {
                                                         lclinstrm = ""
                                                     }
-
+                                                    var InsertTable = await ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode, arrurlResult)
+                                                    if(InsertTable.length > 0){                                               
                                                     var takedata = async () => {
                                                         checkForceTopost = await ForcetoPost(arrprocesslog)
                                                         if (checkForceTopost == 'Call_Reserve_Fund_Api') {
@@ -166,6 +169,12 @@ try {
                                                     }
 
                                                     takedata()
+                                                }else{
+                                                   
+
+                                                    objresponse.status = "Error in table insert"
+                                                    sendResponse(null, objresponse)
+                                                }
 
 
 
@@ -655,6 +664,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

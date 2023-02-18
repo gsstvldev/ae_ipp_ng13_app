@@ -7,10 +7,12 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-    
-    
-    
+
+
+
+
+
+
 
 
     try {
@@ -38,6 +40,7 @@ app.post('/', function(appRequest, appResponse, next) {
              Reason for : changing transaction scope false 2/2/2023
              Reason for : changing payload for prepaid card api 7/2/2023
               Reason for : changing rulecode taking query and insert param changes 8/2/2023
+               Reason for : CHANGING contra amount logic and insert logic 18/02/2023
         */
         var serviceName = 'NPSS IP REV Accept INAU Reserve Fund';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -84,11 +87,11 @@ app.post('/', function(appRequest, appResponse, next) {
                             var final_status
                             var final_process_status
 
-                            
+
 
                             var TakeStsPsts = `select success_process_status,success_status,processing_system,process_type from core_nc_workflow_setup where rule_code = 'RCT_IP_REV_REQ_ACCEPT' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
 
-                           
+
                             var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.accp_date_time,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`
                             var Takeretcode = `select param_code,param_detail from core_nc_system_setup where param_category='REVERSAL RETURN CODE' and product_code = '${params.PROD_CODE}' and status = 'APPROVED'`
                             if (params.PROD_CODE == 'NPSS_AEFAB') {
@@ -99,25 +102,25 @@ app.post('/', function(appRequest, appResponse, next) {
                                         final_status = arrurlResult[0].success_status
                                         ExecuteQuery1(Takeretcode, function (arrcode) {
                                             if (arrcode.length > 0) {
-                                                ExecuteQuery1(take_api_params, function (arrprocesslog) {
+                                                ExecuteQuery1(take_api_params, async function (arrprocesslog) {
                                                     if (arrprocesslog.length) {
                                                         var lclinstrm
-                                                            if (arrprocesslog[0].message_data !== null) {
+                                                        if (arrprocesslog[0].message_data !== null) {
 
-                                                                var parser = new xml2js.Parser({ strict: false, trim: true });
-                                                                parser.parseString(arrprocesslog[0].message_data, function (err, result) {
+                                                            var parser = new xml2js.Parser({ strict: false, trim: true });
+                                                            parser.parseString(arrprocesslog[0].message_data, function (err, result) {
 
-                                                                    lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
+                                                                lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
 
-                                                                });
+                                                            });
 
-                                                            }
-                                                            else {
-                                                                lclinstrm = ""
-                                                            }
+                                                        }
+                                                        else {
+                                                            lclinstrm = ""
+                                                        }
 
-                                                    
-                                                          
+                                                        var InsertTable = await ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode, arrurlResult)
+                                                        if (InsertTable.length > 0) {
                                                             ExecuteQuery1(take_api_params, async function (arrprocesslog) {
                                                                 // chkapicall = 0 --> Resurve Fund api call
                                                                 // chkapicall = 1 --> prepaid card api call
@@ -146,7 +149,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     reverseAcinfparam = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
                                                                 }
 
-                                                              
+
                                                                 if (apicalls == 0 || apicalls == '0') { // Reserve api call
                                                                     take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL'`;
                                                                 } else if (apicalls == 1 || apicalls == '1') { //Prepaid  api Call
@@ -155,87 +158,64 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_CREDIT_CARD' and param_code='URL'`;
                                                                 }
 
-                                                                ExecuteQuery1(take_api_url, function (arrurl) {
+                                                                ExecuteQuery1(take_api_url, async function (arrurl) {
                                                                     if (arrurl.length) {
                                                                         var url = arrurl[0].param_detail;
                                                                         var amount
                                                                         if (params.screenName == 's_rct_reversal_non_aed') {
-                                                                            var Takecontraamount = `select contra_amount from npss_trn_process_log where status = 'IP_RCT_REV_DEAL_RECEIVED' and uetr = '${arrprocesslog[0].uetr}' `
-                                                                            ExecuteQuery1(Takecontraamount, async function (arramount) {
-                                                                              
-                                                                                if (arramount.length > 0) {
-                                                                                    if (arramount[0].contra_amount && arrprocesslog[0].reversal_amount) {
-                                                                                        if (Number(arramount[0].contra_amount) > Number(arrprocesslog[0].reversal_amount)) {
-                                                                                            amount = Number(arrprocesslog[0].reversal_amount)
-                                                                                         
-                                                                                        } else {
-                                                                                            amount = Number(arramount[0].contra_amount)
-                                                                                        
-                                                                                        }
 
-                                                                                        var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls)
-
-                                                                                        if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
-                                                                                            var InsertTable = await ProcessInstData(arrprocesslog,final_status,final_process_status,PRCT_ID,arrcode,arrurlResult)
-                                                                                            if(InsertTable.length > 0){
-                                                                                                var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                                                                ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                                                    if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                                        objresponse.status = 'SUCCESS';
-                                                                                                        sendResponse(null, objresponse);
-    
-                                                                                                    } else {
-                                                                                                        objresponse.status = 'No Data Updated in Transaction Table';
-                                                                                                        sendResponse(null, objresponse);
-    
-                                                                                                    }
-                                                                                                })
-                                                                                            }else{
-                                                                                                objresponse.status = 'Error in Insert TrnProcessLog Table';
-                                                                                                sendResponse(null, objresponse);
-                                                                                            }
-                                                                                   
-
-                                                                                        } else if (apistatus.status == 'TIMEOUT') {
-
-                                                                                            objresponse.status = 'Time Out' + apiName + ' Api Failure'
+                                                                            var ContraAmount = await getconamount(arrprocesslog, apicalls)
+                                                                            amount = ContraAmount
+                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls)
+                                                                            if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
+                                                                               
+                                                                                    var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                    ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                                        if (arrUpdTranTbl == 'SUCCESS') {
+                                                                                            objresponse.status = 'SUCCESS';
                                                                                             sendResponse(null, objresponse);
+
                                                                                         } else {
-                                                                                            if (apicalls == 0) {
-                                                                                                if (apistatus['response']['error']['errorDetails'][0]['message'].includes("Overdraft") || apistatus['response']['error']['errorDetails'][0]['message'].includes("overdraft") || apistatus['response']['error']['errorDetails'][0]['message'].includes("insufficient") || apistatus['response']['error']['errorDetails'][0]['message'].includes("Insufficient")) {
-                                                                                                    objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
-                                                                                                    objresponse.flag = 'Y'
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                } else {
-                                                                                                    objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
-                                                                                                    objresponse.flag = 'Y'
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                }
+                                                                                            objresponse.status = 'No Data Updated in Transaction Table';
+                                                                                            sendResponse(null, objresponse);
 
-                                                                                            } else if (apicalls == 1) {
-                                                                                                objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
-                                                                                                objresponse.flag = 'N'
-                                                                                                sendResponse(null, objresponse);
-
-                                                                                            } else if (apicalls == 2) {
-                                                                                                objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
-                                                                                                objresponse.flag = 'N'
-                                                                                                sendResponse(null, objresponse);
-
-                                                                                            }
                                                                                         }
+                                                                                    })
+                                                                               
 
+
+                                                                            } else if (apistatus.status == 'TIMEOUT') {
+
+                                                                                objresponse.status = 'Time Out' + apiName + ' Api Failure'
+                                                                                sendResponse(null, objresponse);
+                                                                            } else {
+                                                                                if (apicalls == 0) {
+                                                                                    if (apistatus['response']['error']['errorDetails'][0]['message'].includes("Overdraft") || apistatus['response']['error']['errorDetails'][0]['message'].includes("overdraft") || apistatus['response']['error']['errorDetails'][0]['message'].includes("insufficient") || apistatus['response']['error']['errorDetails'][0]['message'].includes("Insufficient")) {
+                                                                                        objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
+                                                                                        objresponse.flag = 'Y'
+                                                                                        sendResponse(null, objresponse);
                                                                                     } else {
-
-                                                                                        objresponse.status = 'Contra or Reversal Amount is Missing'
-                                                                                        sendResponse(null, objresponse)
+                                                                                        objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
+                                                                                        objresponse.flag = 'Y'
+                                                                                        sendResponse(null, objresponse);
                                                                                     }
-                                                                                } else {
 
-                                                                                    objresponse.status = 'Contra Amount is not found'
-                                                                                    sendResponse(null, objresponse)
+                                                                                } else if (apicalls == 1) {
+                                                                                    objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
+                                                                                    objresponse.flag = 'N'
+                                                                                    sendResponse(null, objresponse);
+
+                                                                                } else if (apicalls == 2) {
+                                                                                    objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
+                                                                                    objresponse.flag = 'N'
+                                                                                    sendResponse(null, objresponse);
+
                                                                                 }
-                                                                            })
+                                                                            }
+
+
+
+
                                                                         } else {
                                                                             var intblkamt = arrprocesslog[0].intrbk_sttlm_amnt
                                                                             var reversalAmt = arrprocesslog[0].reversal_amount
@@ -255,26 +235,23 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                         var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls)
 
                                                                                         if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
-                                                                                            var InsertTable = await ProcessInstData(arrprocesslog,final_status,final_process_status,PRCT_ID,arrcode,arrurlResult)
-                                                                                            if(InsertTable.length > 0){
+
+                                                                                           
                                                                                                 var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
 
                                                                                                 ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
                                                                                                     if (arrUpdTranTbl == 'SUCCESS') {
                                                                                                         objresponse.status = 'SUCCESS';
                                                                                                         sendResponse(null, objresponse);
-    
+
                                                                                                     } else {
                                                                                                         objresponse.status = 'No Data Updated in Transaction Table';
                                                                                                         sendResponse(null, objresponse);
-    
+
                                                                                                     }
                                                                                                 })
-                                                                                            }else{
-                                                                                                objresponse.status = 'Error in TrnProcessLog Table Insert';
-                                                                                                sendResponse(null, objresponse);
-                                                                                            }
-                                                                                           
+                                                                                            
+
 
                                                                                         } else if (apistatus.status == 'TIMEOUT') {
 
@@ -321,15 +298,19 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         // })
                                                                     }
                                                                     else {
-                                                                    
+
                                                                         objresponse.status = "Url not found in system setup table"
                                                                         sendResponse(null, objresponse)
                                                                     }
                                                                 })
-                                                               
+
 
                                                             })
-                                                        
+                                                        } else {
+                                                            objresponse.status = "Error in Table Insert"
+                                                            sendResponse(null, objresponse)
+                                                        }
+
 
 
 
@@ -338,7 +319,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                     }
                                                     else {
-                                                     
+
                                                         objresponse.status = "No Data found in Transaction table"
 
                                                         objresponse.status = "No Data found in Transaction table"
@@ -354,7 +335,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                     }
                                     else {
-                                      
+
                                         objresponse.status = "No Data found in Workflow Setup  table"
                                         sendResponse(null, objresponse)
                                     }
@@ -406,7 +387,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                                         objCusTranInst.routingkey = headers.routingkey;
                                                         arrCusTranInst.push(objCusTranInst)
-                                                     
+
                                                         _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
                                                             var UpdateTrnTble = `Update npss_transactions set status ='${arrurlResult[0].success_status}',process_status = '${arrurlResult[0].success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                             var UpdateProcessLogTbl = `Update npss_trn_process_log set t24_return_code = '${params.T24_Return_Code}',cbuae_return_code = '${params.CBUAE_Return_Code}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsstpl_id = '${params.NPSSTPL_Id}'`
@@ -548,7 +529,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 } else {
                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                  
+
                                     var Responsedata = JSON.parse(responseBodyFromImagingService)
                                     callbackapi(Responsedata)
                                 }
@@ -602,7 +583,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
                                         "cr_acct_id_code": arrprocesslog[0].cr_acct_id_code || '',
                                         "message_data": arrprocesslog[0].message_data || '',
-                                         "accp_dt_tm":arrprocesslog[0].accp_date_time || '',
+                                        "accp_dt_tm": arrprocesslog[0].accp_date_time || '',
                                         "process_type": arrprocesslog[0].process_type || '',
                                         "status": params.eligible_status || '',
                                         "process_status": params.eligible_process_status || '',
@@ -626,7 +607,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             PrintInfo.reversal_id = reverseAcinfparam.reverseId || ''
                             PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
                             PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
-                           
+
                             reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
@@ -637,7 +618,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 } else {
                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                  
+
                                     var Responsedata = JSON.parse(responseBodyFromImagingService)
                                     callbackapi(Responsedata)
                                 }
@@ -726,7 +707,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                 } else {
                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-                                    responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode                        
+                                    responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
                                     var Responsedata = JSON.parse(responseBodyFromImagingService)
                                     callbackapi(Responsedata)
                                 }
@@ -746,7 +727,63 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+                    function getconamount(arrprocesslog, apicalls) {
+                        return new Promise((resolve, reject) => {
+                            var Takecontraamount = `select contra_amount from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' order by npsstpl_id desc`
+                            ExecuteQuery1(Takecontraamount, function (arramount) {
+                                if (arramount.length > 0) {
+                                    if (arramount[0].contra_amount != null) {
+                                        if (apicalls == '0' || apicalls == 0) {
+                                            var Takecreditamount = `select amount_credited  from npss_trn_process_log WHERE process_name = 'Inward Credit Posting' and status = 'IP_RCT_POSTING_SUCCESS' and uetr = '${arrprocesslog[0].uetr}'`
+                                            ExecuteQuery1(Takecreditamount, function (arrcctamount) {
+                                                if (arrcctamount.length > 0) {
+                                                    if (arrcctamount[0].amount_credited != null) {
+                                                        var creditAmount = arrcctamount[0].amount_credited.slice(3)
+                                                        if (arramount[0].contra_amount && creditAmount) {
+                                                            if (Number(arramount[0].contra_amount) > Number(creditAmount)) {
+                                                                resolve(creditAmount)
 
+                                                            } else {
+                                                                resolve(arramount[0].contra_amount)
+
+                                                            }
+                                                        } else {
+                                                            objresponse.status = 'Inward Credit  Amount or contra amount is Missing'
+                                                            sendResponse(null, objresponse)
+                                                        }
+
+
+
+
+                                                    } else {
+                                                        objresponse.status = 'Inward Credit  Amount  is Missing'
+                                                        sendResponse(null, objresponse)
+                                                    }
+
+                                                } else {
+                                                    objresponse.status = 'Inward Credit  Amount is not found'
+                                                    sendResponse(null, objresponse)
+                                                }
+
+                                            })
+                                        } else {
+                                            resolve(arramount[0].contra_amount)
+                                        }
+
+                                    } else {
+
+                                        objresponse.status = 'Contra or Reversal Amount is Missing'
+                                        sendResponse(null, objresponse)
+                                    }
+
+                                } else {
+
+                                    objresponse.status = 'Contra Amount is not found'
+                                    sendResponse(null, objresponse)
+                                }
+                            })
+                        })
+                    }
 
 
 
@@ -914,7 +951,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         })
                                     })
                                 } else {
-                                  
+
 
                                     objresponse.status = "No Data found in accounts table"
                                     sendResponse(null, objresponse)
@@ -963,11 +1000,11 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
 
-                    function ProcessInstData(arrprocesslog,final_status,final_process_status,PRCT_ID,arrcode,arrurlResult) {
+                    function ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode, arrurlResult) {
                         return new Promise((resolve, reject) => {
                             var arrCusTranInst = [];
                             var objCusTranInst = {};
-                            
+
                             objCusTranInst.MSG_ID = arrprocesslog[0].hdr_msg_id;
                             objCusTranInst.PRCT_ID = PRCT_ID;
                             objCusTranInst.REVERSAL_CODE = arrprocesslog[0].revrsal_code
@@ -1077,13 +1114,13 @@ app.post('/', function(appRequest, appResponse, next) {
                     function sendResponse(error, response) {
                         try {
                             if (error) {
-                              
-                                    reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-                               
+
+                                reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
+
                             } else {
-                               
-                                    reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-                              
+
+                                reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
+
                             }
                         } catch (error) {
                             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
@@ -1098,6 +1135,8 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
+
 
 
 

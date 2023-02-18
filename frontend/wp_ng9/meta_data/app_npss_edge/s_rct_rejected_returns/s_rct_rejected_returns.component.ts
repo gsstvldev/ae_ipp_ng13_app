@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28168 
+Build ID        : 28180 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-17 13:40 PM 
+Modified Date   : 2023-Feb-18 8:49 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_returns
@@ -13,7 +13,6 @@ Screen Name     : s_rct_rejected_returns
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
-import {npss_c_set_mi_level_valueService} from '../../../custom_widget/npss_c_set_mi_level_value/npss_c_set_mi_level_value.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_c_disable_action_by_multiselectService} from '../../../custom_widget/npss_c_disable_action_by_multiselect/npss_c_disable_action_by_multiselect.service'
 import {npss_cs_inward_rejected_return_re_submitService} from '../../../custom_widget/npss_cs_inward_rejected_return_re_submit/npss_cs_inward_rejected_return_re_submit.service'
@@ -23,7 +22,7 @@ import {npss_cs_inward_reject_return_closeService} from '../../../custom_widget/
 	selector: 's_rct_rejected_returns',
 	templateUrl: './s_rct_rejected_returns.component.html',
 	styleUrls: ['./s_rct_rejected_returns.component.css'],
-	providers:[torus_cs_change_routingkeyService,npss_c_set_mi_level_valueService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_inward_rejected_return_re_submitService,npss_cs_inward_reject_return_closeService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_inward_rejected_return_re_submitService,npss_cs_inward_reject_return_closeService]
 })
     
 // Start of class 
@@ -112,7 +111,7 @@ export class s_rct_rejected_returnsComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private npss_c_set_mi_level_valueService:npss_c_set_mi_level_valueService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_inward_rejected_return_re_submitService:npss_cs_inward_rejected_return_re_submitService,private npss_cs_inward_reject_return_closeService:npss_cs_inward_reject_return_closeService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_inward_rejected_return_re_submitService:npss_cs_inward_rejected_return_re_submitService,private npss_cs_inward_reject_return_closeService:npss_cs_inward_reject_return_closeService) {
     
 	}
     
@@ -552,7 +551,6 @@ export class s_rct_rejected_returnsComponent implements OnInit,AfterViewInit {
 		this.page_load__he_from_pg_to_view_details()
 		this.page_load__cf_for_routing_key()
 		this.page_load__he_for_pl_to_vm()
-		this.page_load__mi_level_set_value()
 	}
 
 	//Handler for INTERNAL event of "cf for routing key"
@@ -567,12 +565,7 @@ export class s_rct_rejected_returnsComponent implements OnInit,AfterViewInit {
 
 	//Handler for INTERNAL event of "cc for show hide ide"
 	cc_for_show_hide_ide__internal(parent_event_result){
-		this.cc_for_show_hide_ide__set_params_mi_level(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "set params mi level"
-	set_params_mi_level__internal(parent_event_result){
-		this.set_params_mi_level__tbc_for_search_in_pl(parent_event_result)
+		this.cc_for_show_hide_ide__tbc_for_search_in_pl(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
@@ -857,27 +850,6 @@ export class s_rct_rejected_returnsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for DPSINIT event of "page_load"
-	page_load__mi_level_set_value() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1676629358012"
-		let event_params={"caller_name":"page_load__mi_level_set_value","event_desc":"MI LEVEL SET VALUE","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_c_set_mi_level_valueService.fn_npss_c_set_mi_level_value(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
 	//Handler for INTERNAL event of "cf for routing key"
 	cf_for_routing_key__cf_for_pageload(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -911,7 +883,7 @@ export class s_rct_rejected_returnsComponent implements OnInit,AfterViewInit {
 		let event_code="e_1669390931114"
 		let event_params={"caller_name":"cf_for_pageload__cc_for_show_hide_ide","event_desc":"CC for Show hide ide","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals="cc_for_show_hide_ide__set_params_mi_level,"
+		let internals="cc_for_show_hide_ide__tbc_for_search_in_pl,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -923,37 +895,15 @@ export class s_rct_rejected_returnsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "cc for show hide ide"
-	cc_for_show_hide_ide__set_params_mi_level(parent_event_result) { 
+	cc_for_show_hide_ide__tbc_for_search_in_pl(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="cc_for_show_hide_ide"
-		let destn_id=""
-		let parent_source_id="cf_for_pageload"
-		let event_code="e_1676558215454"
-		let event_params={"caller_name":"cc_for_show_hide_ide__set_params_mi_level","event_desc":"SET PARAMS MI LEVEL","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="custom_connectors"
-		let internals="set_params_mi_level__tbc_for_search_in_pl,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_c_set_mi_level_valueService.fn_npss_c_set_mi_level_value(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "set params mi level"
-	set_params_mi_level__tbc_for_search_in_pl(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="set_params_mi_level"
 		let destn_id="search_search"
-		let parent_source_id="cc_for_show_hide_ide"
-		let event_code="e_1676558247404"
-		let event_params={"caller_name":"set_params_mi_level__tbc_for_search_in_pl","event_desc":"TBC for search in PL","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let parent_source_id="cf_for_pageload"
+		let event_code="e_1676708920250"
+		let event_params={"caller_name":"cc_for_show_hide_ide__tbc_for_search_in_pl","event_desc":"TBC for search in PL","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="trigger_button_click"
 		let internals=""
 		let event_data={}

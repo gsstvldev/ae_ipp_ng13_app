@@ -8,6 +8,9 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
+
+
 
 
 
@@ -79,24 +82,48 @@ app.post('/', function(appRequest, appResponse, next) {
                                                if (arrTrn.length > 0) {
                                                    reqAsync.forEachOfSeries(arrTrn, function (arrTrnobj, i, nextobjctfunc) {
                                                        var Takelog = `select l.uetr,l.Process_name,l.npsstpl_id from  npss_trn_process_log l where uetr='${arrTrnobj.uetr}' order by npsstpl_id`
-                                                       ExecuteQuery1(Takelog, async function (arrlog) {
-                                                           if(arrlog.length > 0){
-                                                               if (arrlog[0].process_name == 'Place Pacs002' || arrlog[0].process_name == 'Place Pacs004' || arrlog[0].process_name == 'Place Pacs008') {
-                                                                   var sendMail
-                                                                   if (arrlog[1].process_name == 'Place Pacs028') {
-                                                                       if (arrlog.length > 2) {
-                                                                           var Checkrecievepac002Count = 0
-                                                                           var notRecivepac002 = 0
-                                                                           for (let i = 2; i < arrlog.length; i++) {
-                                                                               if (arrlog[i].process_name == 'Receive Pacs002') {
-                                                                                   Checkrecievepac002Count++
+                                                       ExecuteQuery1(Takelog, function (arrlog) {
+                                                           if (arrlog.length > 0) {
+                                                               var Twocount = 0
+                                                               var multicount = 0
+                                                
+                                                               var Recvpac002count = 0
+                                                               var Otherprocess = 0
+                                                               for (let i = 0; i < arrlog.length; i++) {
+                                                                   if (arrlog[i].process_name == 'Place Pacs002' || arrlog[i].process_name == 'Place Pacs004' || arrlog[i].process_name == 'Place Pacs008') {
+                                                                       for (let h = i+1; h < arrlog.length; h++) {
+                                                                           if (arrlog[h].process_name == 'Place Pacs028') {
+                                                                               if (arrlog.length > 2) {
+                                                                                  
+                                                                                   for (let k = h+1; k < arrlog.length; k++) {
+                                                                                       if (arrlog[k].process_name == 'Receive Pacs002') {
+                                                                                           Recvpac002count++
+                                                                                           break
+                                                                                       } else {
+                                                                                           Otherprocess++
+                                                                                       }
+
+                                                                                       
+                                                                                   }
                                                                                } else {
-                                                                                   notRecivepac002++
+                                                                                   Twocount++
+                                                                                   break
+
                                                                                }
+
                                                                            }
-   
-                                                                           if (Checkrecievepac002Count == 0) {
-                                                                               var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system = '${arrTrnobj.department_code}' and param_name='COMM_TO'`
+
+                                                                       }
+                                                                   }
+                                                                   if(Twocount || multicount){
+                                                                    break
+                                                                   }
+                                                               }
+
+
+                                                               if(Twocount || Recvpac002count == 0){
+                                                                console.log(i)
+                                                                   var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system = '${arrTrnobj.department_code}' and param_name='COMM_TO'`
                                                                                ExecuteQuery1(TakeCometo, function (arrCometo) {
                                                                                    if (arrCometo.length > 0) {
                                                                                        if (arrlog[0].process_type == 'IP') {
@@ -125,65 +152,65 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                E2FREFNO: arrTrnobj.payment_endtoend_id,
                                                                                                DRACCTNUM: 'XXXX' + (arrTrnobj.dbtr_iban).substring(arrTrnobj.dbtr_iban.length - 4),
                                                                                                DRACCTNAM: arrTrnobj.dbtr_acct_name
-           
+
                                                                                            }]
                                                                                            var trndetail = JSON.stringify(frtodata)
                                                                                            var request = require('request');
-           
+
                                                                                            var options = {
                                                                                                url: arrUrl[0].param_detail,
                                                                                                timeout: 18000000,
                                                                                                method: 'POST',
                                                                                                json: {
                                                                                                    "PARAMS": {
-           
+
                                                                                                        "WFTPA_ID": "DEFAULT",
-           
+
                                                                                                        "PRCT_ID": "",
-           
+
                                                                                                        "EVENT_CODE": "DEFAULT",
-           
+
                                                                                                        "USER_EMAIL": "",
-           
+
                                                                                                        "USER_MOBILE": "",
-           
+
                                                                                                        "TRN_DETAILS": trndetail,
-           
+
                                                                                                        "TEMPLATECODE": arrCatgory[0].param_value,
-           
+
                                                                                                        "DT_CODE": "",
-           
+
                                                                                                        "DTT_CODE": "",
-           
+
                                                                                                        "COMM_INFO": "",
-           
+
                                                                                                        "SKIP_COMM_FLOW": true
-           
+
                                                                                                    },
-           
+
                                                                                                    "PROCESS_INFO": {
-           
+
                                                                                                        "MODULE": "MODULE",
-           
+
                                                                                                        "MENU_GROUP": "MENU_GROUP",
-           
+
                                                                                                        "MENU_ITEM": "MENU_ITEM",
-           
+
                                                                                                        "PROCESS_NAME": "PROCESS_NAME"
-           
+
                                                                                                    }
                                                                                                },
                                                                                                headers: {
                                                                                                    "session-id": params.session_id,
                                                                                                    "routingKey": params.routingKey,
                                                                                                    'Content-Type': 'application/json'
-           
+
                                                                                                }
                                                                                            }
-           
+
                                                                                            reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                                                                                            request(options, function (error, responseFromImagingService, responseBody) {
-           
+
                                                                                                if (error) {
                                                                                                    reqInstanceHelper.PrintInfo(serviceName, '------------ sent mail API ERROR-------' + error, objSessionLogInfo);
                                                                                                    sendResponse(error, null);
@@ -193,7 +220,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                    nextobjctfunc();
                                                                                                }
                                                                                            });
-           
+
                                                                                        } catch (error) {
                                                                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
                                                                                            sendResponse(error, null);
@@ -204,138 +231,20 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                        nextobjctfunc();
                                                                                    }
                                                                                })
-                                                                           } else {
-                                                                               nextobjctfunc()
-                                                                           }
-                                                                       } else {
-                                                                           var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system = '${arrTrnobj.department_code}' and param_name='COMM_TO'`
-                                                                           ExecuteQuery1(TakeCometo, function (arrCometo) {
-                                                                               if (arrCometo.length > 0) {
-                                                                                   if (arrlog[0].process_type == 'IP') {
-                                                                                       process_type = 'Inward Payment';
-                                                                                       message_type = 'Pacs.004'
-                                                                                   }
-                                                                                   else {
-                                                                                       process_type = 'Outward Payment';
-                                                                                       message_type = 'Pacs.008'
-                                                                                   }
-                                                                                   try {
-                                                                                       var frtodata = [{
-                                                                                           TO: arrCometo[0].param_value ? arrCometo[0].param_value : '',
-                                                                                           CC: arrcomcc[0].param_value ? arrcomcc[0].param_value : '',
-                                                                                           BCC: '',
-                                                                                           ORIGIN: arrorg[0].param_value ? arrorg[0].param_value : '',
-                                                                                           COMM_GROUP: arrcomgp[0].param_value ? arrcomgp[0].param_value : '',
-                                                                                           TxnValueDate: arrTrnobj.value_date,
-                                                                                           MessageType: message_type,
-                                                                                           ProcessType: process_type,
-                                                                                           CRAccountNumber: arrTrnobj.cdtr_iban ? 'XXXX' + (arrTrnobj.cdtr_iban).substring(arrTrnobj.cdtr_iban.length - 4) : arrTrnobj.cr_acct_identification,
-                                                                                           CRAccountCurrency: arrTrnobj.intrbk_sttlm_cur,
-                                                                                           CRAccountName: arrTrnobj.cdtr_acct_name,
-                                                                                           TxnAmountAED: arrTrnobj.intrbk_sttlm_amnt,
-                                                                                           ClearingSysRefNumber: arrTrnobj.clrsysref,
-                                                                                           E2EreferenceNumber: arrTrnobj.PAYMENT_ENDTOEND_ID,
-                                                                                           DRAccountNumber: 'XXXX' + (arrTrnobj.dbtr_iban).substring(arrTrnobj.dbtr_iban.length - 4),
-                                                                                           DRAccountName: arrTrnobj.DBTR_acct_NAME
-       
-                                                                                       }]
-                                                                                       var trndetail = JSON.stringify(frtodata)
-                                                                                       var request = require('request');
-       
-                                                                                       var options = {
-                                                                                           url: arrUrl[0].param_detail,
-                                                                                           timeout: 18000000,
-                                                                                           method: 'POST',
-                                                                                           json: {
-                                                                                               "PARAMS": {
-       
-                                                                                                   "WFTPA_ID": "DEFAULT",
-       
-                                                                                                   "PRCT_ID": "",
-       
-                                                                                                   "EVENT_CODE": "DEFAULT",
-       
-                                                                                                   "USER_EMAIL": "",
-       
-                                                                                                   "USER_MOBILE": "",
-       
-                                                                                                   "TRN_DETAILS": trndetail,
-       
-                                                                                                   "TEMPLATECODE": arrCatgory[0].param_value,
-       
-                                                                                                   "DT_CODE": "",
-       
-                                                                                                   "DTT_CODE": "",
-       
-                                                                                                   "COMM_INFO": "",
-       
-                                                                                                   "SKIP_COMM_FLOW": true
-       
-                                                                                               },
-       
-                                                                                               "PROCESS_INFO": {
-       
-                                                                                                   "MODULE": "MODULE",
-       
-                                                                                                   "MENU_GROUP": "MENU_GROUP",
-       
-                                                                                                   "MENU_ITEM": "MENU_ITEM",
-       
-                                                                                                   "PROCESS_NAME": "PROCESS_NAME"
-       
-                                                                                               }
-                                                                                           },
-                                                                                           headers: {
-                                                                                               "session-id": params.session_id,
-                                                                                               "routingKey": params.routingKey,
-                                                                                               'Content-Type': 'application/json'
-       
-                                                                                           }
-                                                                                       }
-       
-                                                                                       reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
-                                                                                       request(options, function (error, responseFromImagingService, responseBody) {
-       
-                                                                                           if (error) {
-                                                                                               reqInstanceHelper.PrintInfo(serviceName, '------------ sent mail API ERROR-------' + error, objSessionLogInfo);
-                                                                                               sendResponse(error, null);
-                                                                                           } else {
-                                                                                               reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseBody), objSessionLogInfo);
-                                                                                               reqInstanceHelper.PrintInfo(serviceName, '------------Mail has been sent for -------' + arrTrnobj.npsst_id, objSessionLogInfo);
-                                                                                               nextobjctfunc();
-                                                                                           }
-                                                                                       });
-       
-                                                                                   } catch (error) {
-                                                                                       reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
-                                                                                       sendResponse(error, null);
-                                                                                   }
-                                                                               }
-                                                                               else {
-                                                                                   reqInstanceHelper.PrintInfo(serviceName, '------------No email id available for-------' + arrTrnobj.department_code, objSessionLogInfo);
-                                                                                   nextobjctfunc();
-                                                                               }
-                                                                           })
-                                                                       }
-   
-   
-                                                                   }
-                                                                   else {
-                                                                       reqInstanceHelper.PrintInfo(serviceName, '------------Not Eligible trn id  -------' + arrTrnobj.npsst_id, objSessionLogInfo);
-                                                                       nextobjctfunc();
-                                                                   }
-   
-                                                               }
-                                                           
-   
-                                                               else {
-                                                                   reqInstanceHelper.PrintInfo(serviceName, '------------Not Eligible trn id  -------' + arrTrnobj.npsst_id, objSessionLogInfo);
+                                                               }else {
                                                                    nextobjctfunc();
                                                                }
-                                                           }else{
+
+
+
+
+
+                                               
+                                                               
+                                                           } else {
                                                                nextobjctfunc()
                                                            }
-                                                          
+
                                                        })
 
                                                    }, function () {
@@ -437,6 +346,9 @@ app.post('/', function(appRequest, appResponse, next) {
            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
        }
    })
+
+
+
 
 
 

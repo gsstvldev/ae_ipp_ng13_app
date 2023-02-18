@@ -45,7 +45,7 @@ export class npss_cs_rct_inward_posting_failure_retry_repostService {
     CallUrlWithData(ClientParams, screenInstance, internals) {
     this.httpHelper.HttpPost('/microsvc/npss_cs_rct_inward_posting_failure_retry_repost/', ClientParams)
         .subscribe((res: any) => {
-            if (res.data.status == "SUCCESS" || res.data.status == "SUCCESS") {
+            if (res.data.status == "SUCCESS" || res.data.status == "SUCCESS" || res.data.status == "Success" || res.data.status == "Success") {
                 this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
             } else {
                 this.appHandler.callInternals(internals, screenInstance, res.data.errdata);

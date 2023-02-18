@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28180 
+Build ID        : 28187 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-18 8:49 AM 
+Modified Date   : 2023-Feb-18 13:25 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_returns
@@ -67,7 +67,7 @@ export class s_rct_rejected_returnsComponent implements OnInit,AfterViewInit {
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_18","uicgc_16","uicgc_4","uicgc_19","uicgc_14","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_6","uicgc_3"]
+	forms : any = ["uicgc_19","uicgc_18","uicgc_16","uicgc_4","uicgc_14","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_6","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	p_close_layout__e_1676542968574_showpopup : boolean = false
 	queue : any = {}

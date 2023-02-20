@@ -1,0 +1,30 @@
+<div class="p_review_layout">
+ <!-- PROFILE HTML - p_review_layout --> 
+<div id="R31" class="row">
+	<div id="R31C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="tran_list"  [hidden]="!screen_instance['tran_list'].show" >
+			<datatable [comp_id]="'tran_list'" [screen_instance]="screen_instance" profile_name="p_review_layout"></datatable>
+		</div>
+	</div>
+</div>
+<div id="R11" class="row">
+	<div id="R11C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="review_ui" >
+			<f_npss_reject_pay_review_ui [comp_id]="'review_ui'" [screen_instance]="screen_instance" [hidden]="isHidden('review_ui','f_npss_reject_pay_review_ui')" profile_name="p_review_layout"></f_npss_reject_pay_review_ui >
+		</div>
+	</div>
+</div>
+<div id="R21" class="row">
+	<div id="R21C1" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="failure_list"  [hidden]="!screen_instance['failure_list'].show" >
+			<datatable [comp_id]="'failure_list'" [screen_instance]="screen_instance" profile_name="p_review_layout"></datatable>
+		</div>
+	</div>
+	<div id="R21C2" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="review_action_ui" >
+			<f_review_action_ui [comp_id]="'review_action_ui'" [screen_instance]="screen_instance" [hidden]="isHidden('review_action_ui','f_review_action_ui')" profile_name="p_review_layout"></f_review_action_ui >
+		</div>
+	</div>
+</div>
+
+</div>

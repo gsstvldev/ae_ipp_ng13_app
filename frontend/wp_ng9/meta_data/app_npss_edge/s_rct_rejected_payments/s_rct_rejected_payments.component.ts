@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28195 
+Build ID        : 28206 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-20 13:22 PM 
+Modified Date   : 2023-Feb-20 14:41 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_payments
@@ -14,17 +14,15 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
-import {npss_c_disable_action_by_multiselectService} from '../../../custom_widget/npss_c_disable_action_by_multiselect/npss_c_disable_action_by_multiselect.service'
 import {npss_cs_rejected_payment_closeService} from '../../../custom_widget/npss_cs_rejected_payment_close/npss_cs_rejected_payment_close.service'
 import {npss_cs_rejected_payment_rejectService} from '../../../custom_widget/npss_cs_rejected_payment_reject/npss_cs_rejected_payment_reject.service'
 import {npss_cs_rejected_payment_resubmitService} from '../../../custom_widget/npss_cs_rejected_payment_resubmit/npss_cs_rejected_payment_resubmit.service'
-import {npss_cs_bct_ip_investigation_change_stateService} from '../../../custom_widget/npss_cs_bct_ip_investigation_change_state/npss_cs_bct_ip_investigation_change_state.service'
 
 @Component({
 	selector: 's_rct_rejected_payments',
 	templateUrl: './s_rct_rejected_payments.component.html',
 	styleUrls: ['./s_rct_rejected_payments.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_rejected_payment_closeService,npss_cs_rejected_payment_rejectService,npss_cs_rejected_payment_resubmitService,npss_cs_bct_ip_investigation_change_stateService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_rejected_payment_closeService,npss_cs_rejected_payment_rejectService,npss_cs_rejected_payment_resubmitService]
 })
     
 // Start of class 
@@ -74,8 +72,9 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_20","uicgc_18","uicgc_16","uicgc_4","uicgc_21","uicgc_19","uicgc_17","uicgc_12","uicgc_14","uicgc_13","uicgc_15","uicgc_8","uicgc_6","uicgc_3"]
+	forms : any = ["uicgc_20","uicgc_19","uicgc_18","uicgc_16","uicgc_4","uicgc_21","uicgc_17","uicgc_12","uicgc_14","uicgc_13","uicgc_15","uicgc_8","uicgc_6","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
+	p_close_layout__e_1676903962392_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation_ui : any = {}
@@ -124,7 +123,7 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_rejected_payment_closeService:npss_cs_rejected_payment_closeService,private npss_cs_rejected_payment_rejectService:npss_cs_rejected_payment_rejectService,private npss_cs_rejected_payment_resubmitService:npss_cs_rejected_payment_resubmitService,private npss_cs_bct_ip_investigation_change_stateService:npss_cs_bct_ip_investigation_change_stateService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_rejected_payment_closeService:npss_cs_rejected_payment_closeService,private npss_cs_rejected_payment_rejectService:npss_cs_rejected_payment_rejectService,private npss_cs_rejected_payment_resubmitService:npss_cs_rejected_payment_resubmitService) {
     
 	}
     
@@ -135,7 +134,7 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 		this.queue.uicgc_desc = "Queue"
 		this.queue.uicgc_code = "uicgc_1"
 		this.queue.params = {"need_pag_datatable":"Y","need_search":"N","advance_dynamic_search":"N"}
-		this.queue.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1676895902951","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reject Payment Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1676897690721","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1676897690881","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1676897691017","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS from  (  select   NT.CREATED_DATE,   NT.STATUS,   NT.PROCESS_STATUS,   NT.UETR,   NT.DBTR_IBAN,   NT.PROCESSING_SYSTEM,   NT.TENANT_ID,   NT.MODIFIED_DATE,   NT.MODIFIED_DATE_UTC,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   NT.CREATED_BY,   NT.CREATED_BY_NAME,   NT.SYSTEM_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER,   NT.DEPARTMENT_CODE,   NT.VALUE_DATE,   NT.DBTR_ACCT_NO,   NT.CDTR_ACCT_NO,   NT.CR_ACCT_IDENTIFICATION,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.INTRBK_STTLM_AMNT,   NT.REVERSAL_AMOUNT,   case    when NT.CDTR_IBAN is not null    and NT.CR_ACCT_IDENTIFICATION is null then NT.ACCOUNT_CURRENCY    when NT.CDTR_IBAN is null    and NT.CR_ACCT_IDENTIFICATION is not null then UPPER('AED')    else UPPER('OTHERS')   end as CURRENCY,   NT.PROCESS_TYPE,   NTPL.reversal_code,   NT.PROCESS_GROUP  from   NPSS_TRANSACTIONS NT  inner join npss_trn_process_log NTPL on   NT.UETR = NTPL.UETR and NT.STATUS = NTPL.STATUS  left join TRANSACTION_SET TS on   NT.NPSST_ID = TS.TRN_ID   and NT.DTT_CODE = TS.DTT_CODE  inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on   NT.STATUS = QR.PROCESS_QUEUE_STATUS   and NT.PROCESS_STATUS = QR.QUEUE_CODE  inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on   NT.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reject Payment Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.queue.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1676895902951","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reject Payment Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1676897690721","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1676897690881","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1676897691017","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS from  (  select   NT.CREATED_DATE,   NT.STATUS,   NT.PROCESS_STATUS,   NT.UETR,   NT.DBTR_IBAN,   NT.PROCESSING_SYSTEM,   NT.TENANT_ID,   NT.MODIFIED_DATE,   NT.MODIFIED_DATE_UTC,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   NT.CREATED_BY,   NT.CREATED_BY_NAME,   NT.SYSTEM_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER,   NT.DEPARTMENT_CODE,   NT.VALUE_DATE,   NT.DBTR_ACCT_NO,   NT.CDTR_ACCT_NO,   NT.CR_ACCT_IDENTIFICATION,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.INTRBK_STTLM_AMNT,   NT.REVERSAL_AMOUNT,   NT.PROCESS_TYPE,   NTPL.reversal_code,   NTPL.cbuae_return_code,   NTPL.process_name,   NT.PROCESS_GROUP  from   NPSS_TRANSACTIONS NT  inner join npss_trn_process_log NTPL on   NT.UETR = NTPL.UETR   and NT.STATUS = NTPL.STATUS  left join TRANSACTION_SET TS on   NT.NPSST_ID = TS.TRN_ID   and NT.DTT_CODE = TS.DTT_CODE  inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on   NT.STATUS = QR.PROCESS_QUEUE_STATUS   and NT.PROCESS_STATUS = QR.QUEUE_CODE  inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on   NT.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reject Payment Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.queue.context_menu = []
 		this.queue.views = {}
 		this.queue.onChangecomponent = new EventEmitter<any>()
@@ -229,12 +228,12 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 		this.search.params = {}
 		this.search.datasource = {}
 		this.search.context_menu = []
-		this.search.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Manual Verification SRCH","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"NPSS Transactions"}]}}
+		this.search.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Reject Payment SRCH","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"NPSS Transactions"}]}}
 		this.search.onChangecomponent = new EventEmitter<any>()
 		this.search.show = true
 		this.search.dynamic_param = {}
-		this.search.f_npss_manual_verification_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.search.form_name = "f_npss_manual_verification_srch"
+		this.search.f_npss_reject_payment_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.search.form_name = "f_npss_reject_payment_srch"
 		
 		// "Search" Button of "Search" component
 		this.search_search.label_name = "Search"
@@ -537,12 +536,12 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 		this.close_ui.params = {}
 		this.close_ui.datasource = {}
 		this.close_ui.context_menu = []
-		this.close_ui.views = {}
+		this.close_ui.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Remarks UI","tab_order":0,"tab_name":"","uicgc_description":"Close UI","role_description":"default","dtt_description":"NPSS Transactions"}]}}
 		this.close_ui.onChangecomponent = new EventEmitter<any>()
 		this.close_ui.show = true
 		this.close_ui.dynamic_param = {}
-		this.close_ui.f_close_ui = {"show":true}
-		this.close_ui.current_view = "f_close_ui"
+		this.close_ui.f_npss_remarks_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.close_ui.form_name = "f_npss_remarks_ui"
 		
 		// "Save" Button of "Close UI" component
 		this.close_ui_save.label_name = "Save"
@@ -701,11 +700,12 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 		this.brfq_from_queue_to_tran_list__sfr_for_tran_list_from__queue(parent_event_result)
 	}
 
-	//Handler for CHECKED_CHANGED event of "transaction list"
-	transaction_list__checked_changed(){
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__selection_changed(){
 		this.transaction_list__svm_for_tl()
 		this.transaction_list__ee_for_back_in_vertical_tran()
-		this.transaction_list__cc_for_disable()
+		this.transaction_list__e_1676902766777()
+		this.transaction_list__e_1676902824998()
 		this.transaction_list__ee_for_repost_btn()
 	}
 
@@ -884,6 +884,7 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 	navigation_ui_review__action_button_click(){
 		this.navigation_ui_review__e_1676887349782()
 		this.navigation_ui_review__e_1676890167816()
+		this.navigation_ui_review__e_1676902686576()
 		this.navigation_ui_review__e_1676896894537__review_ui()
 		this.navigation_ui_review__e_1676896910360__review_ui()
 		this.navigation_ui_review__e_1676896924366__review_ui()
@@ -981,44 +982,14 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 		this.e_1676891776462__e_1676891798573(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "review action ui close"
-	review_action_ui_close__action_button_click(){
-		this.review_action_ui_close__e_1676887971421()
-	}
-
-	//Handler for INTERNAL event of "e 1676887971421"
-	e_1676887971421__internal(parent_event_result){
-		this.e_1676887971421__e_1676890490431(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "e 1676890490431"
-	e_1676890490431__internal(parent_event_result){
-		this.e_1676890490431__e_1676891413797(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "e 1676891413797"
-	e_1676891413797__internal(parent_event_result){
-		this.e_1676891413797__e_1676891429458(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "e 1676891429458"
-	e_1676891429458__internal(parent_event_result){
-		this.e_1676891429458__e_1676891442426(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "e 1676891442426"
-	e_1676891442426__internal(parent_event_result){
-		this.e_1676891442426__e_1676891598001(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "e 1676891598001"
-	e_1676891598001__internal(parent_event_result){
-		this.e_1676891598001__e_1676891605348(parent_event_result)
-	}
-
 	//Handler for SELECTION_CHANGED event of "tran list"
 	tran_list__selection_changed(){
 		this.tran_list__e_1676892233074()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "review action ui close"
+	review_action_ui_close__action_button_click(){
+		this.review_action_ui_close__e_1676903962392()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1310,7 +1281,7 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1676895902951","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reject Payment Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1676897690721","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1676897690881","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1676897691017","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS from  (  select   NT.CREATED_DATE,   NT.STATUS,   NT.PROCESS_STATUS,   NT.UETR,   NT.DBTR_IBAN,   NT.PROCESSING_SYSTEM,   NT.TENANT_ID,   NT.MODIFIED_DATE,   NT.MODIFIED_DATE_UTC,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   NT.CREATED_BY,   NT.CREATED_BY_NAME,   NT.SYSTEM_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER,   NT.DEPARTMENT_CODE,   NT.VALUE_DATE,   NT.DBTR_ACCT_NO,   NT.CDTR_ACCT_NO,   NT.CR_ACCT_IDENTIFICATION,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.INTRBK_STTLM_AMNT,   NT.REVERSAL_AMOUNT,   case    when NT.CDTR_IBAN is not null    and NT.CR_ACCT_IDENTIFICATION is null then NT.ACCOUNT_CURRENCY    when NT.CDTR_IBAN is null    and NT.CR_ACCT_IDENTIFICATION is not null then UPPER('AED')    else UPPER('OTHERS')   end as CURRENCY,   NT.PROCESS_TYPE,   NTPL.reversal_code,   NT.PROCESS_GROUP  from   NPSS_TRANSACTIONS NT  inner join npss_trn_process_log NTPL on   NT.UETR = NTPL.UETR and NT.STATUS = NTPL.STATUS  left join TRANSACTION_SET TS on   NT.NPSST_ID = TS.TRN_ID   and NT.DTT_CODE = TS.DTT_CODE  inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on   NT.STATUS = QR.PROCESS_QUEUE_STATUS   and NT.PROCESS_STATUS = QR.QUEUE_CODE  inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on   NT.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reject Payment Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1676895902951","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reject Payment Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1676897690721","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1676897690881","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1676897691017","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS from  (  select   NT.CREATED_DATE,   NT.STATUS,   NT.PROCESS_STATUS,   NT.UETR,   NT.DBTR_IBAN,   NT.PROCESSING_SYSTEM,   NT.TENANT_ID,   NT.MODIFIED_DATE,   NT.MODIFIED_DATE_UTC,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   NT.CREATED_BY,   NT.CREATED_BY_NAME,   NT.SYSTEM_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER,   NT.DEPARTMENT_CODE,   NT.VALUE_DATE,   NT.DBTR_ACCT_NO,   NT.CDTR_ACCT_NO,   NT.CR_ACCT_IDENTIFICATION,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.INTRBK_STTLM_AMNT,   NT.REVERSAL_AMOUNT,   NT.PROCESS_TYPE,   NTPL.reversal_code,   NTPL.cbuae_return_code,   NTPL.process_name,   NT.PROCESS_GROUP  from   NPSS_TRANSACTIONS NT  inner join npss_trn_process_log NTPL on   NT.UETR = NTPL.UETR   and NT.STATUS = NTPL.STATUS  left join TRANSACTION_SET TS on   NT.NPSST_ID = TS.TRN_ID   and NT.DTT_CODE = TS.DTT_CODE  inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on   NT.STATUS = QR.PROCESS_QUEUE_STATUS   and NT.PROCESS_STATUS = QR.QUEUE_CODE  inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on   NT.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reject Payment Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1331,7 +1302,7 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_queue__cc_for_queue,"
 		let event_data={"queue":{"e_1666857327033":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_1","event_code":"E_1666857327033","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"BULK","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"},{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"},{"type":"LOCAL","column_name":"PROCESSING_SYSTEM","level":"MI_LEVEL","name":"MI_LEVEL_PROCESSING_SYSTEM","setd3name":"PROCESSING_SYSTEM"},{"type":"HARDCODED","column_name":"","level":"MI_LEVEL","name":"MI_LEVEL_NPSST_ID","setd3name":"NPSST_ID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1676895902951","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reject Payment Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1676897690721","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1676897690881","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1676897691017","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS from  (  select   NT.CREATED_DATE,   NT.STATUS,   NT.PROCESS_STATUS,   NT.UETR,   NT.DBTR_IBAN,   NT.PROCESSING_SYSTEM,   NT.TENANT_ID,   NT.MODIFIED_DATE,   NT.MODIFIED_DATE_UTC,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   NT.CREATED_BY,   NT.CREATED_BY_NAME,   NT.SYSTEM_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER,   NT.DEPARTMENT_CODE,   NT.VALUE_DATE,   NT.DBTR_ACCT_NO,   NT.CDTR_ACCT_NO,   NT.CR_ACCT_IDENTIFICATION,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.INTRBK_STTLM_AMNT,   NT.REVERSAL_AMOUNT,   case    when NT.CDTR_IBAN is not null    and NT.CR_ACCT_IDENTIFICATION is null then NT.ACCOUNT_CURRENCY    when NT.CDTR_IBAN is null    and NT.CR_ACCT_IDENTIFICATION is not null then UPPER('AED')    else UPPER('OTHERS')   end as CURRENCY,   NT.PROCESS_TYPE,   NTPL.reversal_code,   NT.PROCESS_GROUP  from   NPSS_TRANSACTIONS NT  inner join npss_trn_process_log NTPL on   NT.UETR = NTPL.UETR and NT.STATUS = NTPL.STATUS  left join TRANSACTION_SET TS on   NT.NPSST_ID = TS.TRN_ID   and NT.DTT_CODE = TS.DTT_CODE  inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on   NT.STATUS = QR.PROCESS_QUEUE_STATUS   and NT.PROCESS_STATUS = QR.QUEUE_CODE  inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on   NT.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reject Payment Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1676895902951","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reject Payment Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1676897690721","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1676897690881","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1676897691017","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS from  (  select   NT.CREATED_DATE,   NT.STATUS,   NT.PROCESS_STATUS,   NT.UETR,   NT.DBTR_IBAN,   NT.PROCESSING_SYSTEM,   NT.TENANT_ID,   NT.MODIFIED_DATE,   NT.MODIFIED_DATE_UTC,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   NT.CREATED_BY,   NT.CREATED_BY_NAME,   NT.SYSTEM_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER,   NT.DEPARTMENT_CODE,   NT.VALUE_DATE,   NT.DBTR_ACCT_NO,   NT.CDTR_ACCT_NO,   NT.CR_ACCT_IDENTIFICATION,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.INTRBK_STTLM_AMNT,   NT.REVERSAL_AMOUNT,   NT.PROCESS_TYPE,   NTPL.reversal_code,   NTPL.cbuae_return_code,   NTPL.process_name,   NT.PROCESS_GROUP  from   NPSS_TRANSACTIONS NT  inner join npss_trn_process_log NTPL on   NT.UETR = NTPL.UETR   and NT.STATUS = NTPL.STATUS  left join TRANSACTION_SET TS on   NT.NPSST_ID = TS.TRN_ID   and NT.DTT_CODE = TS.DTT_CODE  inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on   NT.STATUS = QR.PROCESS_QUEUE_STATUS   and NT.PROCESS_STATUS = QR.QUEUE_CODE  inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on   NT.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reject Payment Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1428,7 +1399,7 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for CHECKED_CHANGED event of "transaction list"
+	//Handler for SELECTION_CHANGED event of "transaction list"
 	transaction_list__svm_for_tl() { 
 		let Dest_Is_ctrl=true
 		
@@ -1436,7 +1407,7 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 		let destn_id="transaction_list"
 		let parent_source_id=""
 		let event_code="e_1666857595507"
-		let event_params={"caller_name":"transaction_list__svm_for_tl","event_desc":"SVM for TL","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{}}
+		let event_params={"caller_name":"transaction_list__svm_for_tl","event_desc":"SVM for TL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_tl__show_hide_ide_link,"
 		let event_data={"transaction_list":{"e_1666857595507":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1666857595507","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"NPSST_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSST_ID","setd3name":"NPSST_ID"},{"type":"LOCAL","column_name":"UETR","level":"MI_LEVEL","name":"MI_LEVEL_UETR","setd3name":"UETR"},{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
@@ -1449,7 +1420,7 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for CHECKED_CHANGED event of "transaction list"
+	//Handler for SELECTION_CHANGED event of "transaction list"
 	transaction_list__ee_for_back_in_vertical_tran() { 
 		let Dest_Is_ctrl=true
 		
@@ -1457,7 +1428,7 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 		let destn_id="back_ui_back"
 		let parent_source_id=""
 		let event_code="e_1669202699210"
-		let event_params={"caller_name":"transaction_list__ee_for_back_in_vertical_tran","event_desc":"EE for Back in Vertical tran","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let event_params={"caller_name":"transaction_list__ee_for_back_in_vertical_tran","event_desc":"EE for Back in Vertical tran","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
@@ -1470,28 +1441,49 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for CHECKED_CHANGED event of "transaction list"
-	transaction_list__cc_for_disable() { 
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__e_1676902766777() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id=""
+		let destn_id="navigation_ui_view_process_log"
 		let parent_source_id=""
-		let event_code="e_1676357056494"
-		let event_params={"caller_name":"transaction_list__cc_for_disable","event_desc":"CC for disable","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{}}
-		let handler_code="custom_connectors"
+		let event_code="e_1676902766777"
+		let event_params={"caller_name":"transaction_list__e_1676902766777","event_desc":"E_1676902766777","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_c_disable_action_by_multiselectService.fn_npss_c_disable_action_by_multiselect(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
  		} 
 	} 
 
-	//Handler for CHECKED_CHANGED event of "transaction list"
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__e_1676902824998() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_view_message_log"
+		let parent_source_id=""
+		let event_code="e_1676902824998"
+		let event_params={"caller_name":"transaction_list__e_1676902824998","event_desc":"E_1676902824998","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
 	transaction_list__ee_for_repost_btn() { 
 		let Dest_Is_ctrl=true
 		
@@ -1499,7 +1491,7 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 		let destn_id="navigation_ui_review"
 		let parent_source_id=""
 		let event_code="e_1676439284146"
-		let event_params={"caller_name":"transaction_list__ee_for_repost_btn","event_desc":"EE for Repost btn","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let event_params={"caller_name":"transaction_list__ee_for_repost_btn","event_desc":"EE for Repost btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
@@ -1542,7 +1534,7 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1666857782776"
-		let event_params={"caller_name":"navigation_ui_search__spap_for_search","event_desc":"SPAP for Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_search","selector":"p_search_layout","profile_code":"BTL_1304_1666856790983","window_title":"","window_height":"","window_width":"auto","window_close_icon":"Y","eventdes":"spap_for_search","eventcode":"E_1666857782776"}}
+		let event_params={"caller_name":"navigation_ui_search__spap_for_search","event_desc":"SPAP for Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_search","selector":"p_search_layout","profile_code":"BTL_1304_1666856790983","window_title":"Search","window_height":450,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_search","eventcode":"E_1666857782776"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}
@@ -2555,6 +2547,27 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui review"
+	navigation_ui_review__e_1676902686576() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_review"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1676902686576"
+		let event_params={"caller_name":"navigation_ui_review__e_1676902686576","event_desc":"E_1676902686576","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_review","raiseparam":{"profile_code":"BTL_1304_1676878033375"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui review"
 	navigation_ui_review__e_1676896894537__review_ui() { 
 		let Dest_Is_ctrl=true
 		
@@ -3135,159 +3148,6 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "review action ui close"
-	review_action_ui_close__e_1676887971421() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="review_action_ui_close"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1676887971421"
-		let event_params={"caller_name":"review_action_ui_close__e_1676887971421","event_desc":"E_1676887971421","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"review_action_ui_close","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals="e_1676887971421__e_1676890490431,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_cs_bct_ip_investigation_change_stateService.fn_npss_cs_bct_ip_investigation_change_state(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1676887971421"
-	e_1676887971421__e_1676890490431(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1676887971421"
-		let destn_id=""
-		let parent_source_id="review_action_ui_close"
-		let event_code="e_1676890490431"
-		let event_params={"caller_name":"e_1676887971421__e_1676890490431","event_desc":"E_1676890490431","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been closed successfully","root_source_id":"review_action_ui_close","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
-		let handler_code="info_msg"
-		let internals="e_1676890490431__e_1676891413797,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1676890490431"
-	e_1676890490431__e_1676891413797(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1676890490431"
-		let destn_id="search"
-		let parent_source_id="e_1676887971421"
-		let event_code="e_1676891413797"
-		let event_params={"caller_name":"e_1676890490431__e_1676891413797","event_desc":"E_1676891413797","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"review_action_ui_close","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="set_search_params"
-		let internals="e_1676891413797__e_1676891429458,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1676891413797"
-	e_1676891413797__e_1676891429458(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1676891413797"
-		let destn_id="tran_list"
-		let parent_source_id="e_1676890490431"
-		let event_code="e_1676891429458"
-		let event_params={"caller_name":"e_1676891413797__e_1676891429458","event_desc":"E_1676891429458","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"review_action_ui_close","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
-		let handler_code="bind_record_from_query"
-		let internals="e_1676891429458__e_1676891442426,"
-		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_23","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1676896157098","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reject Payment Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"value_date","alias_name":"","mq_id":"MQ_1676897350273","date_format":true},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1676897350440","date_format":false},{"column_name":"dbtr_iban","alias_name":"","mq_id":"MQ_1676897350744","date_format":false},{"column_name":"dbtr_acct_name","alias_name":"","mq_id":"MQ_1676897350912","date_format":false},{"column_name":"intrbk_sttlm_amnt","alias_name":"","mq_id":"MQ_1676897351064","date_format":false,"currency_format":true},{"column_name":"process_name","alias_name":"","mq_id":"MQ_1676897351224","date_format":false},{"column_name":"cbuae_return_code","alias_name":"","mq_id":"MQ_1676897385456","date_format":false},{"column_name":"cr_sort_code","alias_name":"","mq_id":"MQ_1676897385615","date_format":false},{"column_name":"cdtr_iban","alias_name":"","mq_id":"MQ_1676897385775","date_format":false},{"column_name":"cdtr_acct_name","alias_name":"","mq_id":"MQ_1676897385943","date_format":false},{"column_name":"payment_endtoend_id","alias_name":"","mq_id":"MQ_1676897450771","date_format":false}],"joins":[]},"eq_text":"select  NPSST_ID,  DATEMI,  ACCP_DATE_TIME,  DEPARTMENT_CODE,  PROCESS_GROUP,  CHANNEL_ID,  CHANNEL_PRODUCT,  CHANNEL_REFNO,  INTRBK_STTLM_CUR,  INTRBK_STTLM_AMNT,  EXHF_ID,  MODIFIED_DATE_UTC,  VALUE_DATE,  CREATED_DATE,  MODIFIED_DATE_UTC,  CDTR_ACCT_NO,  CDTR_ACCT_NAME,  DBTR_ACCT_NO,  DBTR_ACCT_NAME,  DR_SORT_CODE,  CR_SORT_CODE,  UETR,  REMITTANCE_INFO,  category_purpose,  issuer_type_code,  HDR_MSG_ID,  PRODUCT_CODE,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  PROCESS_TYPE,  DBTR_PHONE_NO,  DBTR_EMAIL_ID,  DBTR_DOCUMENT_ID,  DBTR_IBAN,  CDTR_PHONE_NO,  CDTR_EMAIL_ID,  CDTR_DOCUMENT_ID,  CDTR_IBAN,  CLRSYSREF,  PAYMENT_ENDTOEND_ID,  PROCESS_STATUS,  STATUS,  DT_CODE,  DTT_CODE,  TENANT_ID,  TS_ID,  LOCKED_BY,  LOCKED_BY_NAME,  VERSION_NO,  DBTR_PRVT_ID,  DBTR_OTHER_ISSUER,  TRAN_REF_ID,  PROCESSING_SYSTEM,  process_name,  cbuae_return_code from  (  select   A.NPSST_ID,   A.VALUE_DATE,   A.MODIFIED_DATE_UTC,   A.CREATED_DATE,   TO_CHAR(A.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   A.CDTR_ACCT_NO,   A.CDTR_ACCT_NAME,   A.INTRBK_STTLM_AMNT,   A.INTRBK_STTLM_CUR,   A.DBTR_ACCT_NO,   A.DBTR_ACCT_NAME,   A.DR_SORT_CODE,   A.CR_SORT_CODE,   A.DEPARTMENT_CODE,   A.PROCESS_GROUP,   A.UETR,   a.category_purpose,   A.issuer_type_code,   A.HDR_MSG_ID,   A.PRODUCT_CODE,   A.CHANNEL_ID,   A.CHANNEL_REFNO,   A.CHANNEL_PRODUCT,   A.CHANNEL_SUB_PRODUCT,   A.CHANNEL_TRAN_CODE,   A.PROCESS_TYPE,   A.DBTR_PHONE_NO,   A.DBTR_EMAIL_ID,   A.DBTR_DOCUMENT_ID,   A.DBTR_IBAN,   A.CDTR_PHONE_NO,   A.CDTR_EMAIL_ID,   A.CDTR_DOCUMENT_ID,   A.CDTR_IBAN,   A.CLRSYSREF,   A.PAYMENT_ENDTOEND_ID,   A.TRAN_REF_ID,   A.ACCP_DATE_TIME,   A.EXHF_ID,   A.REMITTANCE_INFO,   A.INWARD_FILE_NAME,   A.PROCESS_STATUS,   A.CBS_REF_NO,   A.STATUS,   A.DT_CODE,   A.DTT_CODE,   A.TENANT_ID,   A.VERSION_NO,   A.DBTR_PRVT_ID,   A.DBTR_OTHER_ISSUER,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   A.PROCESSING_SYSTEM,   NTPL.process_name,   NTPL.cbuae_return_code  from   NPSS_TRANSACTIONS A  left join TRANSACTION_SET TS on   TS.TRN_ID = A.NPSST_ID   and TS.DTT_CODE = A.DTT_CODE  inner join NPSS_TRN_PROCESS_LOG NTPL on   NTPL.UETR = A.UETR   and NTPL.STATUS = A.STATUS  order by   A.NPSST_ID desc ) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reject Payment Tran CCD","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Txn Value Date","target_column":"value_date","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr IBAN","target_column":"dbtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr Name","target_column":"dbtr_acct_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"intrbk_sttlm_amnt","alias_name":"","alignment":"Right","width":"","format":"","date_format":false,"currency_format":true},{"header":"Process Name","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Error Code","target_column":"cbuae_return_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr BIC","target_column":"cr_sort_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr IBAN","target_column":"cdtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr Name","target_column":"cdtr_acct_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E Ref Number","target_column":"payment_endtoend_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
-		try {
-			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1676891429458"
-	e_1676891429458__e_1676891442426(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1676891429458"
-		let destn_id="tran_list"
-		let parent_source_id="e_1676891413797"
-		let event_code="e_1676891442426"
-		let event_params={"caller_name":"e_1676891429458__e_1676891442426","event_desc":"E_1676891442426","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"review_action_ui_close","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="select_first_record"
-		let internals="e_1676891442426__e_1676891598001,"
-		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_23","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1676896157098","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reject Payment Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"value_date","alias_name":"","mq_id":"MQ_1676897350273","date_format":true},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1676897350440","date_format":false},{"column_name":"dbtr_iban","alias_name":"","mq_id":"MQ_1676897350744","date_format":false},{"column_name":"dbtr_acct_name","alias_name":"","mq_id":"MQ_1676897350912","date_format":false},{"column_name":"intrbk_sttlm_amnt","alias_name":"","mq_id":"MQ_1676897351064","date_format":false,"currency_format":true},{"column_name":"process_name","alias_name":"","mq_id":"MQ_1676897351224","date_format":false},{"column_name":"cbuae_return_code","alias_name":"","mq_id":"MQ_1676897385456","date_format":false},{"column_name":"cr_sort_code","alias_name":"","mq_id":"MQ_1676897385615","date_format":false},{"column_name":"cdtr_iban","alias_name":"","mq_id":"MQ_1676897385775","date_format":false},{"column_name":"cdtr_acct_name","alias_name":"","mq_id":"MQ_1676897385943","date_format":false},{"column_name":"payment_endtoend_id","alias_name":"","mq_id":"MQ_1676897450771","date_format":false}],"joins":[]},"eq_text":"select  NPSST_ID,  DATEMI,  ACCP_DATE_TIME,  DEPARTMENT_CODE,  PROCESS_GROUP,  CHANNEL_ID,  CHANNEL_PRODUCT,  CHANNEL_REFNO,  INTRBK_STTLM_CUR,  INTRBK_STTLM_AMNT,  EXHF_ID,  MODIFIED_DATE_UTC,  VALUE_DATE,  CREATED_DATE,  MODIFIED_DATE_UTC,  CDTR_ACCT_NO,  CDTR_ACCT_NAME,  DBTR_ACCT_NO,  DBTR_ACCT_NAME,  DR_SORT_CODE,  CR_SORT_CODE,  UETR,  REMITTANCE_INFO,  category_purpose,  issuer_type_code,  HDR_MSG_ID,  PRODUCT_CODE,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  PROCESS_TYPE,  DBTR_PHONE_NO,  DBTR_EMAIL_ID,  DBTR_DOCUMENT_ID,  DBTR_IBAN,  CDTR_PHONE_NO,  CDTR_EMAIL_ID,  CDTR_DOCUMENT_ID,  CDTR_IBAN,  CLRSYSREF,  PAYMENT_ENDTOEND_ID,  PROCESS_STATUS,  STATUS,  DT_CODE,  DTT_CODE,  TENANT_ID,  TS_ID,  LOCKED_BY,  LOCKED_BY_NAME,  VERSION_NO,  DBTR_PRVT_ID,  DBTR_OTHER_ISSUER,  TRAN_REF_ID,  PROCESSING_SYSTEM,  process_name,  cbuae_return_code from  (  select   A.NPSST_ID,   A.VALUE_DATE,   A.MODIFIED_DATE_UTC,   A.CREATED_DATE,   TO_CHAR(A.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   A.CDTR_ACCT_NO,   A.CDTR_ACCT_NAME,   A.INTRBK_STTLM_AMNT,   A.INTRBK_STTLM_CUR,   A.DBTR_ACCT_NO,   A.DBTR_ACCT_NAME,   A.DR_SORT_CODE,   A.CR_SORT_CODE,   A.DEPARTMENT_CODE,   A.PROCESS_GROUP,   A.UETR,   a.category_purpose,   A.issuer_type_code,   A.HDR_MSG_ID,   A.PRODUCT_CODE,   A.CHANNEL_ID,   A.CHANNEL_REFNO,   A.CHANNEL_PRODUCT,   A.CHANNEL_SUB_PRODUCT,   A.CHANNEL_TRAN_CODE,   A.PROCESS_TYPE,   A.DBTR_PHONE_NO,   A.DBTR_EMAIL_ID,   A.DBTR_DOCUMENT_ID,   A.DBTR_IBAN,   A.CDTR_PHONE_NO,   A.CDTR_EMAIL_ID,   A.CDTR_DOCUMENT_ID,   A.CDTR_IBAN,   A.CLRSYSREF,   A.PAYMENT_ENDTOEND_ID,   A.TRAN_REF_ID,   A.ACCP_DATE_TIME,   A.EXHF_ID,   A.REMITTANCE_INFO,   A.INWARD_FILE_NAME,   A.PROCESS_STATUS,   A.CBS_REF_NO,   A.STATUS,   A.DT_CODE,   A.DTT_CODE,   A.TENANT_ID,   A.VERSION_NO,   A.DBTR_PRVT_ID,   A.DBTR_OTHER_ISSUER,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   A.PROCESSING_SYSTEM,   NTPL.process_name,   NTPL.cbuae_return_code  from   NPSS_TRANSACTIONS A  left join TRANSACTION_SET TS on   TS.TRN_ID = A.NPSST_ID   and TS.DTT_CODE = A.DTT_CODE  inner join NPSS_TRN_PROCESS_LOG NTPL on   NTPL.UETR = A.UETR   and NTPL.STATUS = A.STATUS  order by   A.NPSST_ID desc ) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reject Payment Tran CCD","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Txn Value Date","target_column":"value_date","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr IBAN","target_column":"dbtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr Name","target_column":"dbtr_acct_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"intrbk_sttlm_amnt","alias_name":"","alignment":"Right","width":"","format":"","date_format":false,"currency_format":true},{"header":"Process Name","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Error Code","target_column":"cbuae_return_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr BIC","target_column":"cr_sort_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr IBAN","target_column":"cdtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr Name","target_column":"cdtr_acct_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E Ref Number","target_column":"payment_endtoend_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
-		try {
-			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1676891442426"
-	e_1676891442426__e_1676891598001(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="FAILURE"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1676891442426"
-		let destn_id=""
-		let parent_source_id="e_1676891429458"
-		let event_code="e_1676891598001"
-		let event_params={"caller_name":"e_1676891442426__e_1676891598001","event_desc":"E_1676891598001","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"All transactions are completed and you will be redirected to main screen.","root_source_id":"review_action_ui_close","raiseparam":{"info_msg":""},"parent_event_result":"FAILURE"}
-		let handler_code="info_msg"
-		let internals="e_1676891598001__e_1676891605348,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1676891598001"
-	e_1676891598001__e_1676891605348(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1676891598001"
-		let destn_id=""
-		let parent_source_id="e_1676891442426"
-		let event_code="e_1676891605348"
-		let event_params={"caller_name":"e_1676891598001__e_1676891605348","event_desc":"E_1676891605348","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"review_action_ui_close","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="refresh_screen"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
 	//Handler for SELECTION_CHANGED event of "tran list"
 	tran_list__e_1676892233074() { 
 		let Dest_Is_ctrl=true
@@ -3303,6 +3163,27 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "review action ui close"
+	review_action_ui_close__e_1676903962392() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="review_action_ui_close"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1676903962392"
+		let event_params={"caller_name":"review_action_ui_close__e_1676903962392","event_desc":"E_1676903962392","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"review_action_ui_close","raiseparam":{"popup_category":"profile","variable":"p_close_layout__e_1676903962392","selector":"p_close_layout","profile_code":"BTL_1304_1676542195984","window_title":"Remarks","window_height":350,"window_width":"400px","window_close_icon":"Y","eventdes":"e_1676903962392","eventcode":"E_1676903962392"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

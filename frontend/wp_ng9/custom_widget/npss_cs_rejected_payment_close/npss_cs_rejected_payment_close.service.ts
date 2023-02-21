@@ -21,7 +21,7 @@ export class npss_cs_rejected_payment_closeService {
         public dialogHelper: DialogService) { }
     //Default calling function
     fn_npss_cs_rejected_payment_close(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
-       // let remarks= screenInstance['close_ui'].f_npss_reject_return_ui.model;
+       let remarks = screenInstance['close_ui'].f_npss_remarks_ui.model;
         var ClientParams: any = {}
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
        ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
@@ -32,7 +32,7 @@ export class npss_cs_rejected_payment_closeService {
        ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS") || '';
        ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS") || '';
        ClientParams.Roleid = this.sessionHelper.GetVariable('SESSION_LEVEL', 'APP_USER_ROLES')
-       //ClientParams.remark = remarks.memory90
+       ClientParams.remark = remarks.memory90
        ClientParams.Rule_Code = 'OP_RCT_REJ_PAY_CLOSE'
        this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

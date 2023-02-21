@@ -29,7 +29,7 @@ try {
     var serviceName = 'NPSS (CS) Send To Checker';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
     var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
-    var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
+      var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
     var reqAuditLog = require($REFPATH + 'log/audit/AuditLog');
     var reqDateFormatter = require($REFPATH + 'common/dateconverter/DateFormatter');
     var params = appRequest.body.PARAMS; //  Client input fromm Server
@@ -53,7 +53,7 @@ try {
             objSessionLogInfo = objLogInfo; // Assing log information
             // Log Viewer Setup
             objSessionLogInfo.HANDLER_CODE = 'NPSS (CS) Send To Checker';
-            objSessionLogInfo.ACTION = 'ACTION';
+             objSessionLogInfo.ACTION = 'ACTION';
             objSessionLogInfo.PROCESS = 'NPSS (CS) Send To Checker';
             var cus_iban;
             // Get DB Connection                                                                                                                                      

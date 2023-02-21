@@ -23,7 +23,7 @@ try {
     Reason for CHANGING insert payload changes 8/2/2023
      Reason for checking force to post
      Reason for remove update query 17/02/2023
-     Reason for changing insert logic 18/02/2023
+     Reason for changing insert logic 20/02/2023
     
     */
     var serviceName = 'NPSS (CS) Send To Checker';
@@ -116,9 +116,7 @@ try {
                                                                         var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam)
 
                                                                         if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
-                                                                            var InsPrslogTable = async () => {
-                                                                                var InsertTable = await ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode, arrurlResult)
-                                                                                if (InsertTable.length > 0) {
+                                                                          
                                                                                    
                                                                                     var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                                     ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
@@ -132,13 +130,9 @@ try {
 
                                                                                         }
                                                                                     })
-                                                                                } else {
-                                                                                    objresponse.status = 'Error in TranProcessLog Table Insert';
-                                                                                    sendResponse(null, objresponse);
-                                                                                }
+                                                                               
 
-                                                                            }
-                                                                            InsPrslogTable()
+                                                                           
 
 
                                                                         } else if (apistatus.status == 'TIMEOUT') {

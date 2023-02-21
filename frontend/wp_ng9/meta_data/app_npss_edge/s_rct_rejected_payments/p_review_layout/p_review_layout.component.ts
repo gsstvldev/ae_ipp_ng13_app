@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28206 
+Build ID        : 28208 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-20 14:41 PM 
+Modified Date   : 2023-Feb-21 8:7 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_payments
@@ -23,8 +23,8 @@ export class p_review_layoutComponent implements OnInit {
 
   // Variables 
   	tran_list : any = {}
-	review_ui : any = {}
 	failure_list : any = {}
+	review_ui : any = {}
 	review_action_ui : any = {}
 
 
@@ -35,10 +35,10 @@ export class p_review_layoutComponent implements OnInit {
   ngOnInit() {
     	this.tran_list.desc = "Tran List"
 		this.tran_list.need_header = ""
-		this.review_ui.desc = "Review UI"
-		this.review_ui.need_header = false
 		this.failure_list.desc = "Failure List"
 		this.failure_list.need_header = true
+		this.review_ui.desc = "Review UI"
+		this.review_ui.need_header = false
 		this.review_action_ui.desc = "Review Action UI"
 		this.review_action_ui.need_header = ""
 	

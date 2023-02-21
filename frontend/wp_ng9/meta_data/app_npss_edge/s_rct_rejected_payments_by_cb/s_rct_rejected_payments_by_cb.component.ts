@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28211 
+Build ID        : 28217 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-21 8:16 AM 
+Modified Date   : 2023-Feb-21 10:29 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_payments_by_cb
@@ -14,13 +14,12 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
-import {npss_cs_investigation_pac_028Service} from '../../../custom_widget/npss_cs_investigation_pac_028/npss_cs_investigation_pac_028.service'
 
 @Component({
 	selector: 's_rct_rejected_payments_by_cb',
 	templateUrl: './s_rct_rejected_payments_by_cb.component.html',
 	styleUrls: ['./s_rct_rejected_payments_by_cb.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_investigation_pac_028Service]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService]
 })
     
 // Start of class 
@@ -63,15 +62,12 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
 	forms : any = ["uicgc_15","uicgc_4","uicgc_11","uicgc_10","uicgc_3","uicgc_16","uicgc_12","uicgc_13","uicgc_14","uicgc_7"]
-	p_search_layout__spap_for_search_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation_ui : any = {}
-	navigation_ui_search : any = {}
 	navigation_ui_view_tran : any = {}
 	navigation_ui_view_process_log : any = {}
 	navigation_ui_view_message_log : any = {}
-	navigation_ui_initiate : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -100,7 +96,7 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_investigation_pac_028Service:npss_cs_investigation_pac_028Service) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService) {
     
 	}
     
@@ -144,15 +140,6 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
 		this.navigation_ui.f_navigation_ui = {"show":true}
 		this.navigation_ui.current_view = "f_navigation_ui"
 		
-		// "Search" Button of "Navigation UI" component
-		this.navigation_ui_search.label_name = "Search"
-		this.navigation_ui_search.show = true
-		this.navigation_ui_search.disabled = false
-		this.navigation_ui_search.params = {"icon_only":false,"uicgcc_style":"fa fa-search"}
-		this.navigation_ui_search.dynamic_param = {}
-		this.navigation_ui_search.role = []
-		this.navigation_ui_search.action = ""
-		
 		// "View Tran" Button of "Navigation UI" component
 		this.navigation_ui_view_tran.label_name = "View Tran"
 		this.navigation_ui_view_tran.show = true
@@ -179,15 +166,6 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
 		this.navigation_ui_view_message_log.dynamic_param = {}
 		this.navigation_ui_view_message_log.role = []
 		this.navigation_ui_view_message_log.action = ""
-		
-		// "Initiate" Button of "Navigation UI" component
-		this.navigation_ui_initiate.label_name = "Initiate"
-		this.navigation_ui_initiate.show = true
-		this.navigation_ui_initiate.disabled = false
-		this.navigation_ui_initiate.params = {"icon_only":false,"uicgcc_style":"fa fa-ellipsis-h"}
-		this.navigation_ui_initiate.dynamic_param = {}
-		this.navigation_ui_initiate.role = []
-		this.navigation_ui_initiate.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -482,7 +460,6 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
   
 	// To handle page_load event
 	page_load(){
-		this.page_load__he_for_initiate()
 		this.page_load__de_for_pl_to_vm()
 		this.page_load__de_for_vlh_from_pl()
 		this.page_load__cc_for_routing_key()
@@ -548,18 +525,11 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
 		this.transaction_list__ee_for_vtd()
 		this.transaction_list__ee_for_vm()
 		this.transaction_list__ee_for_vlh()
-		this.transaction_list__ee_for_initiate_btn_from_tran()
 	}
 
 	//Handler for INTERNAL event of "svm for tl"
 	svm_for_tl__internal(parent_event_result){
 		this.svm_for_tl__show_hide_ide_link(parent_event_result)
-	}
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui search"
-	navigation_ui_search__action_button_click(){
-		this.navigation_ui_search__spap_for_search()
-		this.navigation_ui_search__cu_for_seach()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search clear"
@@ -585,21 +555,6 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
 	//Handler for INTERNAL event of "brfq for tl"
 	brfq_for_tl__internal(parent_event_result){
 		this.brfq_for_tl__sfr_for_tl(parent_event_result)
-	}
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui initiate"
-	navigation_ui_initiate__action_button_click(){
-		this.navigation_ui_initiate__cc_for_initiate()
-	}
-
-	//Handler for INTERNAL event of "cc for initiate"
-	cc_for_initiate__internal(parent_event_result){
-		this.cc_for_initiate__info_for_initiate(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "info for initiate"
-	info_for_initiate__internal(parent_event_result){
-		this.info_for_initiate__rs_for_initiate(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
@@ -695,27 +650,6 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
 		this.process_log_ui_view_req_and_res__bt_vreq()
 		this.process_log_ui_view_req_and_res__bt_vres()
 	}
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_initiate() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_ui_initiate"
-		let parent_source_id=""
-		let event_code="e_1667555863965"
-		let event_params={"caller_name":"page_load__he_for_initiate","event_desc":"HE for initiate","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
 
 	//Handler for DPSINIT event of "page_load"
 	page_load__de_for_pl_to_vm() { 
@@ -1166,27 +1100,6 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "transaction list"
-	transaction_list__ee_for_initiate_btn_from_tran() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="transaction_list"
-		let destn_id="navigation_ui_initiate"
-		let parent_source_id=""
-		let event_code="e_1675418583056"
-		let event_params={"caller_name":"transaction_list__ee_for_initiate_btn_from_tran","event_desc":"EE for initiate btn from tran","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
 	//Handler for INTERNAL event of "svm for tl"
 	svm_for_tl__show_hide_ide_link(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -1203,48 +1116,6 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
 		let data_source={}
 		try {
 			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui search"
-	navigation_ui_search__spap_for_search() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_search"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1666857782776"
-		let event_params={"caller_name":"navigation_ui_search__spap_for_search","event_desc":"SPAP for Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_search","selector":"p_search_layout","profile_code":"BTL_1304_1666856790983","window_title":"Search","window_height":450,"window_width":"800px","window_close_icon":"Y","eventdes":"spap_for_search","eventcode":"E_1666857782776"}}
-		let handler_code="show_profile_as_popup"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui search"
-	navigation_ui_search__cu_for_seach() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_search"
-		let destn_id="search"
-		let parent_source_id=""
-		let event_code="e_1667298696365"
-		let event_params={"caller_name":"navigation_ui_search__cu_for_seach","event_desc":"CU for seach","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_search","raiseparam":{"need_reset_key_column":"N"}}
-		let handler_code="clear_ui"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1359,71 +1230,6 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui initiate"
-	navigation_ui_initiate__cc_for_initiate() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_initiate"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1666943031009"
-		let event_params={"caller_name":"navigation_ui_initiate__cc_for_initiate","event_desc":"CC for initiate","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals="cc_for_initiate__info_for_initiate,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_cs_investigation_pac_028Service.fn_npss_cs_investigation_pac_028(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "cc for initiate"
-	cc_for_initiate__info_for_initiate(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_for_initiate"
-		let destn_id=""
-		let parent_source_id="navigation_ui_initiate"
-		let event_code="e_1666943220349"
-		let event_params={"caller_name":"cc_for_initiate__info_for_initiate","event_desc":"INFO for Initiate","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Data has been initiated successfully","root_source_id":"navigation_ui_initiate","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
-		let handler_code="info_msg"
-		let internals="info_for_initiate__rs_for_initiate,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "info for initiate"
-	info_for_initiate__rs_for_initiate(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="info_for_initiate"
-		let destn_id=""
-		let parent_source_id="cc_for_initiate"
-		let event_code="e_1666943300723"
-		let event_params={"caller_name":"info_for_initiate__rs_for_initiate","event_desc":"RS for initiate","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="refresh_screen"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
 	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
 	back_ui_back__sp_for_main() { 
 		let Dest_Is_ctrl=true
@@ -1432,7 +1238,7 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1669201104744"
-		let event_params={"caller_name":"back_ui_back__sp_for_main","event_desc":"SP for Main","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"back_ui_back","raiseparam":{"profile_code":"BTL_1304_1666856599156"}}
+		let event_params={"caller_name":"back_ui_back__sp_for_main","event_desc":"SP for Main","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"back_ui_back","raiseparam":{"profile_code":"BTL_1304_1676962378520"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1706,7 +1512,7 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1669369998718"
-		let event_params={"caller_name":"process_log_ui_back__sp_to_main_layout","event_desc":"SP to Main layout","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_back","raiseparam":{"profile_code":"BTL_1304_1666856599156"}}
+		let event_params={"caller_name":"process_log_ui_back__sp_to_main_layout","event_desc":"SP to Main layout","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_back","raiseparam":{"profile_code":"BTL_1304_1676962378520"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1727,7 +1533,7 @@ export class s_rct_rejected_payments_by_cbComponent implements OnInit,AfterViewI
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1669370073664"
-		let event_params={"caller_name":"message_detail_action_back__sp_for_mda","event_desc":"SP for MDA","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_back","raiseparam":{"profile_code":"BTL_1304_1666856599156"}}
+		let event_params={"caller_name":"message_detail_action_back__sp_for_mda","event_desc":"SP for MDA","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_back","raiseparam":{"profile_code":"BTL_1304_1676962378520"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

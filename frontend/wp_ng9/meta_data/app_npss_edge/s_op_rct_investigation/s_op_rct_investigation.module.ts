@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28208 
+Build ID        : 28216 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-21 8:7 AM 
+Modified Date   : 2023-Feb-21 10:33 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_investigation
@@ -53,6 +53,8 @@ import { p_view_message_ui_layoutComponent } from './p_view_message_ui_layout/p_
 import { f_message_back_uiComponent } from './f_message_back_ui/f_message_back_ui.component'
 import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss_message_data_ui.component'
 import { p_view_req_and_res_profileComponent } from './p_view_req_and_res_profile/p_view_req_and_res_profile.component'
+import { p_remarks_uiComponent } from './p_remarks_ui/p_remarks_ui.component'
+import { f_npss_remarks_uiComponent } from './f_npss_remarks_ui/f_npss_remarks_ui.component'
 
 
 
@@ -69,7 +71,7 @@ import { p_view_req_and_res_profileComponent } from './p_view_req_and_res_profil
     s_op_rct_investigationRoutingModule,
     torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_investigation_pac_028Module
   ],
-  declarations: [s_op_rct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_single_back_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,],
+  declarations: [s_op_rct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_single_back_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,p_remarks_uiComponent,f_npss_remarks_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

@@ -1,30 +1,28 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28211 
+Build ID        : 28216 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-21 8:16 AM 
+Modified Date   : 2023-Feb-21 10:33 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_rct_rejected_payments_by_cb
-Profile Name    : Main Layout--------------------------------------------------------------------------- */
+Screen Name     : s_op_rct_investigation
+Profile Name    : Remarks UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_main_layout',
-  templateUrl: './p_main_layout.component.html',
-  styleUrls: ['./p_main_layout.component.css']
+  selector: 'p_remarks_ui',
+  templateUrl: './p_remarks_ui.component.html',
+  styleUrls: ['./p_remarks_ui.component.css']
 })
 
 // Start of class 
-export class p_main_layoutComponent implements OnInit {
+export class p_remarks_uiComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	navigation_ui : any = {}
-	queue : any = {}
-	transaction_list : any = {}
+  	remark_ui : any = {}
 
 
   // Constructor 
@@ -32,16 +30,12 @@ export class p_main_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.navigation_ui.desc = "Navigation UI"
-		this.navigation_ui.need_header = ""
-		this.queue.desc = "Queue"
-		this.queue.need_header = true
-		this.transaction_list.desc = "Transaction List"
-		this.transaction_list.need_header = true
+    	this.remark_ui.desc = "Remark UI"
+		this.remark_ui.need_header = ""
 	
 
-    this.screen_instance['p_main_layout'] = {};
-    this.screen_instance['p_main_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_remarks_ui'] = {};
+    this.screen_instance['p_remarks_ui']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

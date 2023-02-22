@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28218 
+Build ID        : 28243 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-21 13:4 PM 
+Modified Date   : 2023-Feb-22 9:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -56,6 +56,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 	uicgc_18 : string = "initate_ui"
 	uicgc_19 : string = "send_to_maker_ui"
 	uicgc_20 : string = "search_info_ui"
+	uicgc_21 : string = "initiate_custom_widget"
 	key_events : any = {}
 	btl_1304_1672307215426 : string = "p_send_to_maker_layout"
 	btl_1304_1671186172155 : string = "p_initate_layout"
@@ -111,6 +112,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 	send_to_maker_ui : any = {}
 	send_to_maker_ui_save : any = {}
 	search_info_ui : any = {}
+	initiate_custom_widget : any = {}
 
 
 	// Constructor 
@@ -553,6 +555,18 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.search_info_ui.dynamic_param = {}
 		this.search_info_ui.f_npss_mi_ui_dbtr_info = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
 		this.search_info_ui.form_name = "f_npss_mi_ui_dbtr_info"
+	
+		// Component level properties - "Initiate custom widget" 
+		this.initiate_custom_widget.uictrl_code = "custom_widget"
+		this.initiate_custom_widget.uicgc_desc = "Initiate custom widget"
+		this.initiate_custom_widget.uicgc_code = "uicgc_21"
+		this.initiate_custom_widget.params = {}
+		this.initiate_custom_widget.datasource = {}
+		this.initiate_custom_widget.context_menu = []
+		this.initiate_custom_widget.views = {}
+		this.initiate_custom_widget.onChangecomponent = new EventEmitter<any>()
+		this.initiate_custom_widget.show = true
+		this.initiate_custom_widget.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {

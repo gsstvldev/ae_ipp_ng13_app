@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28218 
+Build ID        : 28243 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-21 13:4 PM 
+Modified Date   : 2023-Feb-22 9:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -23,6 +23,7 @@ export class p_initate_layoutComponent implements OnInit {
 
   // Variables 
   	initate_ui : any = {}
+	initiate_custom_widget : any = {}
 
 
   // Constructor 
@@ -32,6 +33,8 @@ export class p_initate_layoutComponent implements OnInit {
   ngOnInit() {
     	this.initate_ui.desc = "Initate UI"
 		this.initate_ui.need_header = ""
+		this.initiate_custom_widget.desc = "Initiate custom widget"
+		this.initiate_custom_widget.need_header = ""
 	
 
     this.screen_instance['p_initate_layout'] = {};

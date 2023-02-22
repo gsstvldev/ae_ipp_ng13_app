@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28218 
+Build ID        : 28238 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-21 13:4 PM 
+Modified Date   : 2023-Feb-22 8:12 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_payments
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of value_date
 		this.ctrl.value_date = {}
 		this.ctrl.value_date.id = "RN01CN1"
-		this.ctrl.value_date.desc = "Value Date"
+		this.ctrl.value_date.desc = "Txn Value Date"
 		this.ctrl.value_date.visible = true
-		this.ctrl.value_date.label_name = "Value Date"
+		this.ctrl.value_date.label_name = "Txn Value Date"
 		this.ctrl.value_date.df_code = "DF_1304_1665901396659"
 		this.ctrl.value_date.df_description = "Column Group 1"
 		this.ctrl.value_date.uictrl_code = "CDN_DATE"
@@ -129,9 +129,9 @@ focustoelement(){
 		//Properties of dbtr_iban
 		this.ctrl.dbtr_iban = {}
 		this.ctrl.dbtr_iban.id = "RN11CN3"
-		this.ctrl.dbtr_iban.desc = "Dbtr IBAN"
+		this.ctrl.dbtr_iban.desc = "Dr IBAN"
 		this.ctrl.dbtr_iban.visible = true
-		this.ctrl.dbtr_iban.label_name = "Dbtr IBAN"
+		this.ctrl.dbtr_iban.label_name = "Dr IBAN"
 		this.ctrl.dbtr_iban.df_code = "DF_1304_1665901396659"
 		this.ctrl.dbtr_iban.df_description = "Column Group 1"
 		this.ctrl.dbtr_iban.uictrl_code = "CDN_CTRL"
@@ -168,9 +168,9 @@ focustoelement(){
 		//Properties of intrbk_sttlm_amnt
 		this.ctrl.intrbk_sttlm_amnt = {}
 		this.ctrl.intrbk_sttlm_amnt.id = "RN11CN6"
-		this.ctrl.intrbk_sttlm_amnt.desc = "Intrbk Sttlm Amnt"
+		this.ctrl.intrbk_sttlm_amnt.desc = "Amount"
 		this.ctrl.intrbk_sttlm_amnt.visible = true
-		this.ctrl.intrbk_sttlm_amnt.label_name = "Intrbk Sttlm Amnt"
+		this.ctrl.intrbk_sttlm_amnt.label_name = "Amount"
 		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
 		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
 		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CDN_CUR_CTRL"
@@ -207,9 +207,9 @@ focustoelement(){
 		//Properties of memory106
 		this.ctrl.memory106 = {}
 		this.ctrl.memory106.id = "RN21CN7001"
-		this.ctrl.memory106.desc = "CBUAE Return Code"
+		this.ctrl.memory106.desc = "Failure Error Code"
 		this.ctrl.memory106.visible = true
-		this.ctrl.memory106.label_name = "CBUAE Return Code"
+		this.ctrl.memory106.label_name = "Failure Error Code"
 		this.ctrl.memory106.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory106.df_description = "Column Group 1"
 		this.ctrl.memory106.uictrl_code = "CBO"
@@ -244,51 +244,12 @@ focustoelement(){
 		this.ctrl.npss_reject_payment_srch_memory106.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_reject_payment_srch.memory106 = {}
 	
-		//Properties of cdtr_iban
-		this.ctrl.cdtr_iban = {}
-		this.ctrl.cdtr_iban.id = "RN21CN7"
-		this.ctrl.cdtr_iban.desc = "Cdtr IBAN"
-		this.ctrl.cdtr_iban.visible = true
-		this.ctrl.cdtr_iban.label_name = "Cdtr IBAN"
-		this.ctrl.cdtr_iban.df_code = "DF_1304_1665901396659"
-		this.ctrl.cdtr_iban.df_description = "Column Group 1"
-		this.ctrl.cdtr_iban.uictrl_code = "CDN_CTRL"
-		this.ctrl.cdtr_iban.target_column = "CDTR_IBAN"
-		this.ctrl.cdtr_iban.data_type = "TEXT"
-		this.ctrl.cdtr_iban.data_length = 64
-		this.ctrl.cdtr_iban.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.cdtr_iban.default_value = ""
-		this.ctrl.cdtr_iban.is_memory_ctrl = ""
-		this.ctrl.cdtr_iban.field_coordinates = ""
-		this.ctrl.cdtr_iban.sub_details = ""
-		this.ctrl.cdtr_iban.accept_char = ""
-		this.ctrl.cdtr_iban.currency_format = ""
-		this.ctrl.cdtr_iban.data_scale = ""
-		this.ctrl.cdtr_iban.binding_name = "CDTR_IBAN"
-		this.ctrl.cdtr_iban.hide_label = false
-		this.ctrl.cdtr_iban.depends_on = ""
-		this.ctrl.cdtr_iban.placeholder = ""
-		this.ctrl.cdtr_iban.dynamic_param = ""
-		this.ctrl.cdtr_iban.style_code = ""
-		this.ctrl.cdtr_iban.data_source = ""
-		this.ctrl.cdtr_iban.image_association = ""
-		this.ctrl.cdtr_iban.show = true
-		this.ctrl.cdtr_iban.sub_content = ""
-		this.ctrl.cdtr_iban.required = false
-		this.ctrl.cdtr_iban.vld_rules = []
-		this.ctrl.cdtr_iban.targetcolumn_lower = "cdtr_iban"
-		this.ctrl.cdtr_iban.disabled = false
-		this.ctrl.cdtr_iban.view_name = "f_npss_reject_payment_srch"
-		this.ctrl.cdtr_iban.ctrl_id = "npss_reject_payment_srch_cdtr_iban"
-		this.ctrl.npss_reject_payment_srch_cdtr_iban = {}
-		this.ctrl.npss_reject_payment_srch_cdtr_iban.onChangecomponent = new EventEmitter<any>()
-	
 		//Properties of cr_sort_code
 		this.ctrl.cr_sort_code = {}
 		this.ctrl.cr_sort_code.id = "RN31CN8"
-		this.ctrl.cr_sort_code.desc = "Cr Sort Code"
+		this.ctrl.cr_sort_code.desc = "Cr BIC"
 		this.ctrl.cr_sort_code.visible = true
-		this.ctrl.cr_sort_code.label_name = "Cr Sort Code"
+		this.ctrl.cr_sort_code.label_name = "Cr BIC"
 		this.ctrl.cr_sort_code.df_code = "DF_1304_1665901396659"
 		this.ctrl.cr_sort_code.df_description = "Column Group 1"
 		this.ctrl.cr_sort_code.uictrl_code = "CDN_CTRL"
@@ -322,12 +283,51 @@ focustoelement(){
 		this.ctrl.npss_reject_payment_srch_cr_sort_code = {}
 		this.ctrl.npss_reject_payment_srch_cr_sort_code.onChangecomponent = new EventEmitter<any>()
 	
+		//Properties of cdtr_iban
+		this.ctrl.cdtr_iban = {}
+		this.ctrl.cdtr_iban.id = "RN21CN7"
+		this.ctrl.cdtr_iban.desc = "Cr IBAN"
+		this.ctrl.cdtr_iban.visible = true
+		this.ctrl.cdtr_iban.label_name = "Cr IBAN"
+		this.ctrl.cdtr_iban.df_code = "DF_1304_1665901396659"
+		this.ctrl.cdtr_iban.df_description = "Column Group 1"
+		this.ctrl.cdtr_iban.uictrl_code = "CDN_CTRL"
+		this.ctrl.cdtr_iban.target_column = "CDTR_IBAN"
+		this.ctrl.cdtr_iban.data_type = "TEXT"
+		this.ctrl.cdtr_iban.data_length = 64
+		this.ctrl.cdtr_iban.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.cdtr_iban.default_value = ""
+		this.ctrl.cdtr_iban.is_memory_ctrl = ""
+		this.ctrl.cdtr_iban.field_coordinates = ""
+		this.ctrl.cdtr_iban.sub_details = ""
+		this.ctrl.cdtr_iban.accept_char = ""
+		this.ctrl.cdtr_iban.currency_format = ""
+		this.ctrl.cdtr_iban.data_scale = ""
+		this.ctrl.cdtr_iban.binding_name = "CDTR_IBAN"
+		this.ctrl.cdtr_iban.hide_label = false
+		this.ctrl.cdtr_iban.depends_on = ""
+		this.ctrl.cdtr_iban.placeholder = ""
+		this.ctrl.cdtr_iban.dynamic_param = ""
+		this.ctrl.cdtr_iban.style_code = ""
+		this.ctrl.cdtr_iban.data_source = ""
+		this.ctrl.cdtr_iban.image_association = ""
+		this.ctrl.cdtr_iban.show = true
+		this.ctrl.cdtr_iban.sub_content = ""
+		this.ctrl.cdtr_iban.required = false
+		this.ctrl.cdtr_iban.vld_rules = []
+		this.ctrl.cdtr_iban.targetcolumn_lower = "cdtr_iban"
+		this.ctrl.cdtr_iban.disabled = false
+		this.ctrl.cdtr_iban.view_name = "f_npss_reject_payment_srch"
+		this.ctrl.cdtr_iban.ctrl_id = "npss_reject_payment_srch_cdtr_iban"
+		this.ctrl.npss_reject_payment_srch_cdtr_iban = {}
+		this.ctrl.npss_reject_payment_srch_cdtr_iban.onChangecomponent = new EventEmitter<any>()
+	
 		//Properties of payment_endtoend_id
 		this.ctrl.payment_endtoend_id = {}
 		this.ctrl.payment_endtoend_id.id = "RN31CN5"
-		this.ctrl.payment_endtoend_id.desc = "Payment Endtoend Id"
+		this.ctrl.payment_endtoend_id.desc = "E2E Ref Number"
 		this.ctrl.payment_endtoend_id.visible = true
-		this.ctrl.payment_endtoend_id.label_name = "Payment Endtoend Id"
+		this.ctrl.payment_endtoend_id.label_name = "E2E Ref Number"
 		this.ctrl.payment_endtoend_id.df_code = "DF_1304_1665901396659"
 		this.ctrl.payment_endtoend_id.df_description = "Column Group 1"
 		this.ctrl.payment_endtoend_id.uictrl_code = "CDN_CTRL"
@@ -360,8 +360,8 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.ctrl_id = "npss_reject_payment_srch_payment_endtoend_id"
 		this.ctrl.npss_reject_payment_srch_payment_endtoend_id = {}
 		this.ctrl.npss_reject_payment_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reject_payment_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","UETR":"","DBTR_IBAN":"","INTRBK_STTLM_AMNT":"","MEMORY106":"","CDTR_IBAN":"","CR_SORT_CODE":"","PAYMENT_ENDTOEND_ID":""}
-		this.screen_instance[this.comp_id].f_npss_reject_payment_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_SORT_CODE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"}]
+		this.screen_instance[this.comp_id].f_npss_reject_payment_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","UETR":"","DBTR_IBAN":"","INTRBK_STTLM_AMNT":"","MEMORY106":"","CR_SORT_CODE":"","CDTR_IBAN":"","PAYMENT_ENDTOEND_ID":""}
+		this.screen_instance[this.comp_id].f_npss_reject_payment_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_SORT_CODE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"}]
 		this.screen_instance[this.comp_id].f_npss_reject_payment_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_reject_payment_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_reject_payment_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28221 
+Build ID        : 28223 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-21 13:4 PM 
+Modified Date   : 2023-Feb-22 7:40 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_investigation
@@ -22,6 +22,7 @@ import { SharedModule } from '../../../shared/shared.module'
 import {torus_cs_change_routingkeyModule} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_cs_investigation_pac_028Module} from '../../../custom_widget/npss_cs_investigation_pac_028/npss_cs_investigation_pac_028.module'
+import {npss_cs_investigation_closeModule} from '../../../custom_widget/npss_cs_investigation_close/npss_cs_investigation_close.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -69,7 +70,7 @@ import { f_npss_remarks_uiComponent } from './f_npss_remarks_ui/f_npss_remarks_u
     OverlayPanelModule,
     
     s_op_rct_investigationRoutingModule,
-    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_investigation_pac_028Module
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_investigation_pac_028Module,npss_cs_investigation_closeModule
   ],
   declarations: [s_op_rct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_single_back_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,p_remarks_uiComponent,f_npss_remarks_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

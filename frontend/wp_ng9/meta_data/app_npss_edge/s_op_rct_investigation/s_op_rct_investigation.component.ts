@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28221 
+Build ID        : 28223 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-21 13:4 PM 
+Modified Date   : 2023-Feb-22 7:40 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_investigation
@@ -15,12 +15,13 @@ import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_investigation_pac_028Service} from '../../../custom_widget/npss_cs_investigation_pac_028/npss_cs_investigation_pac_028.service'
+import {npss_cs_investigation_closeService} from '../../../custom_widget/npss_cs_investigation_close/npss_cs_investigation_close.service'
 
 @Component({
 	selector: 's_op_rct_investigation',
 	templateUrl: './s_op_rct_investigation.component.html',
 	styleUrls: ['./s_op_rct_investigation.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_investigation_pac_028Service]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_investigation_pac_028Service,npss_cs_investigation_closeService]
 })
     
 // Start of class 
@@ -105,7 +106,7 @@ export class s_op_rct_investigationComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_investigation_pac_028Service:npss_cs_investigation_pac_028Service) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_investigation_pac_028Service:npss_cs_investigation_pac_028Service,private npss_cs_investigation_closeService:npss_cs_investigation_closeService) {
     
 	}
     
@@ -2187,7 +2188,7 @@ export class s_op_rct_investigationComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1676972632098"
-		let event_params={"caller_name":"navigation_ui_close__spap_fro_close_btn","event_desc":"SPAP fro close btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_close","raiseparam":{"popup_category":"profile","variable":"p_remarks_ui__spap_fro_close_btn","selector":"p_remarks_ui","profile_code":"BTL_1304_1676972448420","window_title":"Remarks","window_height":350,"window_width":"500px","window_close_icon":"Y","eventdes":"spap_fro_close_btn","eventcode":"E_1676972632098"}}
+		let event_params={"caller_name":"navigation_ui_close__spap_fro_close_btn","event_desc":"SPAP fro close btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_close","raiseparam":{"popup_category":"profile","variable":"p_remarks_ui__spap_fro_close_btn","selector":"p_remarks_ui","profile_code":"BTL_1304_1676972448420","window_title":"Remarks","window_height":200,"window_width":"500px","window_close_icon":"Y","eventdes":"spap_fro_close_btn","eventcode":"E_1676972632098"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}
@@ -2214,7 +2215,7 @@ export class s_op_rct_investigationComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_investigation_closeService.fn_npss_cs_investigation_close(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

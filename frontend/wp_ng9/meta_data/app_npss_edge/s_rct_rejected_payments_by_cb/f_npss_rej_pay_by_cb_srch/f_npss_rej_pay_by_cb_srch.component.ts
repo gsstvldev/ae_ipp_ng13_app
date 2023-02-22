@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28239 
+Build ID        : 28254 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-22 10:1 AM 
+Modified Date   : 2023-Feb-22 12:58 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_payments_by_cb
@@ -245,9 +245,9 @@ focustoelement(){
 		//Properties of value_date
 		this.ctrl.value_date = {}
 		this.ctrl.value_date.id = "RN21CN8"
-		this.ctrl.value_date.desc = "Value Date"
+		this.ctrl.value_date.desc = "Tran Date"
 		this.ctrl.value_date.visible = true
-		this.ctrl.value_date.label_name = "Value Date"
+		this.ctrl.value_date.label_name = "Tran Date"
 		this.ctrl.value_date.df_code = "DF_1304_1665901396659"
 		this.ctrl.value_date.df_description = "Column Group 1"
 		this.ctrl.value_date.uictrl_code = "CDN_DATE"

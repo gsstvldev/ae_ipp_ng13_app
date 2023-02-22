@@ -23,6 +23,7 @@ export class npss_cs_reversal_initiateService {
     //Default calling function
     fn_npss_cs_reversal_initiate(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         var ClientParams: any = {}
+        
         var CtrlScope = screenInstance['initate_ui'].f_npss_op_reversal_ui.model
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
@@ -38,6 +39,7 @@ export class npss_cs_reversal_initiateService {
         ClientParams.RULE_CODE = 'RCT_OP_REV_INITIATE'
         ClientParams.SYSTEM_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_ID"),
             ClientParams.SYSTEM_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_DESC"),
+            ClientParams.confirmationflag="NO";
             this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     //Custom validation logics
@@ -53,7 +55,13 @@ export class npss_cs_reversal_initiateService {
                     
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 }
-                else {
+                else if((res.data.status=='CONFIRMATIONSUCCESS'||res.data.data.status=='CONFIRMATIONSUCCESS')&&((res.data.data=='NeedConfirmation')||(res.data.data.data=='NeedConfirmation')))
+                {
+                    var event = { eventId: "custom-connector", param: ClientParams, internals: internals ,case:'needConfirmation'}
+        //" initiate_custom_widget
+                screenInstance["initiate_custom_widget"].onChangecomponent.emit(event);
+                }
+               else {
                     this.appHandler.callInternals(internals, screenInstance, "FAILURE");
                 }
             });

@@ -1,1 +1,26 @@
+
 <!--HTML FILE-->
+
+<p-dialog header="Comments" [(visible)]="ShowPopup" [modal]="true" [responsive]="true" (onHide)="cancel()"
+  styleClass="comments__popup">
+  <section>
+    <div style="width:700px;">
+      <div class="col-md-12">
+        <div class="row">
+        
+            <div>
+            <label for="Category" class="form-label">Reversal Request has been already initiated for this record, do you want to submit message again?</label>
+          
+          </div>
+        </div>
+        
+        
+        <div class="row" style="float:right" >
+          <button class="btn custom-btn--min" (click)="yes()">Yes</button>
+          <button class="btn custom-btn--min" (click)="cancel()">No</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</p-dialog>
+

@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+
     /*  Created By :SIVA hARISH
     Created Date :22/02/2023
     Modified By : 
@@ -64,29 +65,79 @@ app.post('/', function(appRequest, appResponse, next) {
                                         ExecuteQuery1(Takedata, function (arruetrData) {
                                             if (arruetrData.length > 0) {
                                                 reqAsync.forEachOfSeries(arruetrData, function (arruetrDataobj, i, nextobjctfunc) {
-                                                    var TakeuetrInfm = `select * from npss_trn_process_log where uetr = '${arruetrDataobj.uetr}' order by npsstpl_id desc`
+                                                    var TakeuetrInfm = `select * from npss_trn_process_log where uetr = '${arruetrDataobj.uetr}' order by npsstpl_id desc limit ${arrTakehrs[0].retry_count}`
                                                     ExecuteQuery1(TakeuetrInfm, async function (arruetrInformation) {
                                                         if (arruetrInformation.length > 0) {
-                                                            if (arruetrInformation[0].process_name == 'Place Pacs028') {
-                                                                var item
-                                                                var count = 0
-                                                                var Doapicall = await apiCall(arruetrDataobj, arrUrl, count, arrTakehrs,item)
-                                                                if (Doapicall == 'SUCCESS') {
-                                                                    nextobjctfunc()
-                                                                } else {
-                                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API call && Retry Count Failure for uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                                                    nextobjctfunc()
+                                                            if (Number(arruetrInformation.length) == Number(arrTakehrs[0].retry_count)) {
+                                                                var p028count = 0;
+                                                                var r002count = 0;
+                                                                var othercount = 0;
+                                                                for (var a = 0; a < arruetrInformation.length; a++) {
+                                                                    if (arruetrInformation[a].process_name == 'Place Pacs028') {
+                                                                        p028count++;
+                                                                    }
+                                                                    else if (arruetrInformation[a].process_name == 'Receive Pacs002') {
+                                                                        r002count++;
+                                                                    }
+                                                                    else {
+                                                                        othercount++;
+                                                                    }
+
                                                                 }
-                                                            } else {
-                                                                nextobjctfunc()
+                                                                if (r002count > 0 || p028count == Number(arrTakehrs[0].retry_count)) {
+                                                                    nextobjctfunc();
+                                                                }
+                                                                else {
+                                                                    var doapicall = await apiCall(arruetrDataobj, arrUrl);
+                                                                    if (doapicall == 'SUCCESS') {
+                                                                        nextobjctfunc();
+                                                                    } else {
+                                                                        reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                                                        nextobjctfunc();
+                                                                    }
+
+
+                                                                }
                                                             }
+                                                            else {//for less than retry count
+
+
+                                                                if (arruetrInformation[0].process_name == 'Place Pacs028') {
+                                                                    var doapicall = await apiCall(arruetrDataobj, arrUrl);
+                                                                    if (doapicall == 'SUCCESS') {
+                                                                        nextobjctfunc();
+                                                                    } else {
+                                                                        reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                                                        nextobjctfunc();
+                                                                    }
+                                                                }
+                                                                else if (arruetrInformation[0].process_name == 'Receive Pacs002') {
+                                                                    nextobjctfunc();
+                                                                }
+                                                                else {
+                                                                    var doapicall = await apiCall(arruetrDataobj, arrUrl);
+                                                                    if (doapicall == 'SUCCESS') {
+                                                                        nextobjctfunc();
+                                                                    } else {
+                                                                        reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                                                        nextobjctfunc();
+                                                                    }
+                                                                }
+
+
+                                                            }
+
                                                         } else {
                                                             nextobjctfunc()
                                                         }
 
                                                     })
 
-                                                })
+                                                }, function () {
+                                                    objresponse.status = 'SUCCESS';
+                                                    sendResponse(null, objresponse)
+                                                }
+                                                )
                                             } else {
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------No uetr data found in Tran Process log for currentData-------', objSessionLogInfo);
                                                 objresponse.status = 'FAILURE';
@@ -116,66 +167,58 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                        function apiCall(arruetrDataobj, arrUrl, count, arrTakehrs,job) {
+                        function apiCall(arruetrDataobj, arrUrl) {
                             return new Promise((resolve, reject) => {
 
                                 var TakeactInfm = `select uetr,hdr_msg_id,cr_sort_code,hdr_created_date,payment_endtoend_id,tran_ref_id from npss_transactions where uetr = '${arruetrDataobj.uetr}'`
                                 ExecuteQuery1(TakeactInfm, function (arrresult) {
-                                    try {
-                                       if(count > 0){
-                                        job.cancel()
-                                       }
-                                        var request = require('request');
-                                        var apiURL =
-                                            apiURL = arrUrl[0].param_detail; // apiURL + apiName
-                                        var options = {
-                                            url: apiURL,
-                                            timeout: 99999999,
-                                            method: 'POST',
-                                            json: {
-                                                "hdr_created_date": arrresult[0].hdr_created_date,
-                                                "hdr_msg_id": arrresult[0].hdr_msg_id,
-                                                "cr_sort_code": arrresult[0].cr_sort_code,
-                                                "payment_endtoend_id": arrresult[0].payment_endtoend_id,
-                                                "uetr": arrresult[0].uetr,
-                                                "tran_ref_id": arrresult[0].tran_ref_id,
-                                                "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09"
+                                    if (arrresult.length > 0) {
 
-                                            },
-                                            headers: {
-                                                'content-type': 'application/json'
-                                            }
-                                        };
-                                        reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
-                                        request(options, async function (error, responseFromImagingService, responseBody) {
-                                           try{
-                                            if (error) {
-                                                reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
-                                                sendResponse(error, null);
-                                            } else {
-                                                reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBody + '---for uert....' + arruetrDataobj.uetr, objSessionLogInfo);
-                                                if (responseBody == 'SUCCESS') {
-                                                    var checkTranstatus = await Transtatus(arruetrDataobj, arrUrl, count, arrTakehrs)
-                                                    if (checkTranstatus == 'SUCCESS') {
-                                                        resolve('SUCCESS')
+                                        try {
+
+                                            var request = require('request');
+                                            var apiURL =
+                                                apiURL = arrUrl[0].param_detail; // apiURL + apiName
+                                            var options = {
+                                                url: apiURL,
+                                                timeout: 99999999,
+                                                method: 'POST',
+                                                json: {
+                                                    "hdr_created_date": arrresult[0].hdr_created_date,
+                                                    "hdr_msg_id": arrresult[0].hdr_msg_id,
+                                                    "cr_sort_code": arrresult[0].cr_sort_code,
+                                                    "payment_endtoend_id": arrresult[0].payment_endtoend_id,
+                                                    "uetr": arrresult[0].uetr,
+                                                    "tran_ref_id": arrresult[0].tran_ref_id,
+                                                    "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09"
+
+                                                },
+                                                headers: {
+                                                    'content-type': 'application/json'
+                                                }
+                                            };
+                                            reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                                            request(options, async function (error, responseFromImagingService, responseBody) {
+                                                try {
+                                                    if (error) {
+                                                        reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
+                                                        sendResponse(error, null);
                                                     } else {
-                                                        resolve('FAILURE')
-                                                    }
+                                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBody + '---for uert....' + arruetrDataobj.uetr, objSessionLogInfo);
+                                                        resolve('SUCCESS');
 
-                                                } else {
+                                                    }
+                                                } catch (error) {
                                                     resolve('FAILURE')
                                                 }
 
-
-                                            }
-                                           }catch(error){
-                                            resolve('FAILURE')
-                                           }
-                                           
-                                        });
-                                    } catch (error) {
-                                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
-                                        sendResponse(error, null);
+                                            });
+                                        } catch (error) {
+                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
+                                            sendResponse(error, null);
+                                        }
+                                    } else {
+                                        resolve('FAILURE')
                                     }
 
                                 })
@@ -187,35 +230,50 @@ app.post('/', function(appRequest, appResponse, next) {
                         function Transtatus(arruetrDataobj, arrUrl, count, arrTakehrs) {
                             return new Promise((resolve, reject) => {
                                 var TakeuetrInformation = `select * from npss_trn_process_log where uetr = '${arruetrDataobj.uetr}' order by npsstpl_id desc`
-                                
-                               var job = schedule.scheduleJob(`*/${Number(arrTakehrs[0].retry_interval)} * * * *`, function () {
-                                    ExecuteQuery1(TakeuetrInformation, function (arruetr) { 
+                                var timer = setTimeout(checktime, 5000)
+                                function checktime() {
+                                    ExecuteQuery1(TakeuetrInformation, function (arruetr) {
                                         count++
                                         if (arruetr[0].process_name == 'Place Pacs028') {
                                             if (Number(count) > Number(arrTakehrs[0].retry_count)) {
-                                                job.cancel()
+
                                                 resolve('FAILURE')
-    
                                             } else {
-                                               
-                                                apiCall(arruetrDataobj, arrUrl, count, arrTakehrs,job) 
+                                                apiCall(arruetrDataobj, arrUrl, count, arrTakehrs)
                                             }
-    
-    
                                         } else {
-                                            
                                             resolve('SUCCESS')
                                         }
                                     })
-                                       
-                                    })
-                              
-                                   
-                                   
+                                }
+                                //  var job = schedule.scheduleJob(`*/${Number(arrTakehrs[0].retry_interval)} * * * *`, function () {
+                                /*     ExecuteQuery1(TakeuetrInformation, function (arruetr) {
+                                      count++
+                                      if (arruetr[0].process_name == 'Place Pacs028') {
+                                          if (Number(count) > Number(arrTakehrs[0].retry_count)) {
+                                              job.cancel()
+                                              resolve('FAILURE')
 
-                               
+                                          } else {
+
+                                              apiCall(arruetrDataobj, arrUrl, count, arrTakehrs, job)
+                                          }
+
+
+                                      } else {
+
+                                          resolve('SUCCESS')
+                                      }
+                                  })
+
+                              }) */
+
                             })
+
+
+
                         }
+
 
 
 
@@ -308,6 +366,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

@@ -114,7 +114,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                     TXNVALUEDATE: arrDataobj.value_date ? arrDataobj.value_date : '',
                                                                                                     CRACCOUNTNUMBER: arrDataobj.cdtr_iban ? arrDataobj.cdtr_iban : '',
                                                                                                     CRACCOUNTNAME: arrDataobj.cdtr_acct_name ? arrDataobj.cdtr_acct_name : '',
-                                                                                                    CRACCOUNTCURRENCY: arrDataobj.intrbk_sttlm_curr ? arrDataobj.intrbk_sttlm_curr : '',
+                                                                                                    CRACCOUNTCURRENCY: arrDataobj.intrbk_sttlm_cur ? arrDataobj.intrbk_sttlm_cur : '',
                                                                                                     CRBANKNAME: arrDataobj.cr_sort_code ? arrDataobj.cr_sort_code : '',
                                                                                                     TRANSACTIONAMOUNT: arrDataobj.intrbk_sttlm_amnt ? arrDataobj.intrbk_sttlm_amnt : '',
                                                                                                     DRACCOUNTNUMBER: arrDataobj.dbtr_iban ? arrDataobj.dbtr_iban : '',

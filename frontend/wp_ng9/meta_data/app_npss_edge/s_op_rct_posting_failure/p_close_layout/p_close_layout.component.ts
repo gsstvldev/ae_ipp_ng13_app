@@ -7,23 +7,22 @@ Modified Date   : 2023-Feb-24 9:30 AM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_posting_failure
-Profile Name    : View Message UI Layout--------------------------------------------------------------------------- */
+Profile Name    : Close Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_view_message_ui_layout',
-  templateUrl: './p_view_message_ui_layout.component.html',
-  styleUrls: ['./p_view_message_ui_layout.component.css']
+  selector: 'p_close_layout',
+  templateUrl: './p_close_layout.component.html',
+  styleUrls: ['./p_close_layout.component.css']
 })
 
 // Start of class 
-export class p_view_message_ui_layoutComponent implements OnInit {
+export class p_close_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	message_back_ui : any = {}
-	message_detail_ui : any = {}
+  	close_ui : any = {}
 
 
   // Constructor 
@@ -31,14 +30,12 @@ export class p_view_message_ui_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.message_back_ui.desc = "Message Back UI"
-		this.message_back_ui.need_header = ""
-		this.message_detail_ui.desc = "Message Detail UI"
-		this.message_detail_ui.need_header = ""
+    	this.close_ui.desc = "Close UI"
+		this.close_ui.need_header = ""
 	
 
-    this.screen_instance['p_view_message_ui_layout'] = {};
-    this.screen_instance['p_view_message_ui_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_close_layout'] = {};
+    this.screen_instance['p_close_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

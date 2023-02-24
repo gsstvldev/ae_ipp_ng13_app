@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28288 
+Build ID        : 28303 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-24 5:9 AM 
+Modified Date   : 2023-Feb-24 9:30 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_posting_failure
@@ -15,14 +15,14 @@ import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_c_disable_action_by_multiselectService} from '../../../custom_widget/npss_c_disable_action_by_multiselect/npss_c_disable_action_by_multiselect.service'
-import {npss_cs_rct_inward_posting_failure_retry_repostService} from '../../../custom_widget/npss_cs_rct_inward_posting_failure_retry_repost/npss_cs_rct_inward_posting_failure_retry_repost.service'
-import {npss_cs_rct_inward_posting_failure_closeService} from '../../../custom_widget/npss_cs_rct_inward_posting_failure_close/npss_cs_rct_inward_posting_failure_close.service'
+import {npss_cs_rct_outward_posting_failure_retry_repostService} from '../../../custom_widget/npss_cs_rct_outward_posting_failure_retry_repost/npss_cs_rct_outward_posting_failure_retry_repost.service'
+import {npss_cs_rct_outward_posting_failure_closeService} from '../../../custom_widget/npss_cs_rct_outward_posting_failure_close/npss_cs_rct_outward_posting_failure_close.service'
 
 @Component({
 	selector: 's_op_rct_posting_failure',
 	templateUrl: './s_op_rct_posting_failure.component.html',
 	styleUrls: ['./s_op_rct_posting_failure.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_rct_inward_posting_failure_retry_repostService,npss_cs_rct_inward_posting_failure_closeService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_rct_outward_posting_failure_retry_repostService,npss_cs_rct_outward_posting_failure_closeService]
 })
     
 // Start of class 
@@ -54,7 +54,9 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	uicgc_16 : string = "request_ui"
 	uicgc_17 : string = "single_back_ui"
 	uicgc_18 : string = "response_ui"
+	uicgc_19 : string = "close_ui"
 	key_events : any = {}
+	btl_1304_1677225300112 : string = "p_close_layout"
 	btl_1304_1670245368385 : string = "p_view_req_and_res"
 	btl_1304_1669459620728 : string = "p_view_message_ui_layout"
 	btl_1304_1669459551241 : string = "p_view_message_list_layout"
@@ -65,8 +67,9 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_18","uicgc_16","uicgc_14","uicgc_4","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_6","uicgc_3"]
+	forms : any = ["uicgc_18","uicgc_16","uicgc_14","uicgc_4","uicgc_19","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_6","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
+	p_close_layout__sp_for_remarks_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation_ui : any = {}
@@ -104,10 +107,12 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	single_back_ui : any = {}
 	single_back_ui_back : any = {}
 	response_ui : any = {}
+	close_ui : any = {}
+	close_ui_save : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_rct_inward_posting_failure_retry_repostService:npss_cs_rct_inward_posting_failure_retry_repostService,private npss_cs_rct_inward_posting_failure_closeService:npss_cs_rct_inward_posting_failure_closeService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_rct_outward_posting_failure_retry_repostService:npss_cs_rct_outward_posting_failure_retry_repostService,private npss_cs_rct_outward_posting_failure_closeService:npss_cs_rct_outward_posting_failure_closeService) {
     
 	}
     
@@ -521,6 +526,29 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		this.response_ui.dynamic_param = {}
 		this.response_ui.f_npss_target_response_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
 		this.response_ui.form_name = "f_npss_target_response_ui"
+	
+		// Component level properties - "Close UI" 
+		this.close_ui.uictrl_code = "dynamic_ui"
+		this.close_ui.uicgc_desc = "Close UI"
+		this.close_ui.uicgc_code = "uicgc_19"
+		this.close_ui.params = {}
+		this.close_ui.datasource = {}
+		this.close_ui.context_menu = []
+		this.close_ui.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Remarks UI","tab_order":0,"tab_name":"","uicgc_description":"Close UI","role_description":"default","dtt_description":"NPSS Transactions"}]}}
+		this.close_ui.onChangecomponent = new EventEmitter<any>()
+		this.close_ui.show = true
+		this.close_ui.dynamic_param = {}
+		this.close_ui.f_npss_remarks_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.close_ui.form_name = "f_npss_remarks_ui"
+		
+		// "Save" Button of "Close UI" component
+		this.close_ui_save.label_name = "Save"
+		this.close_ui_save.show = true
+		this.close_ui_save.disabled = false
+		this.close_ui_save.params = {"icon_only":false,"uicgcc_style":"fa fa-floppy-o"}
+		this.close_ui_save.dynamic_param = {}
+		this.close_ui_save.role = []
+		this.close_ui_save.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -745,21 +773,6 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		this.process_log_ui_view_req_and_res__bt_for_res()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
-	navigation_ui_close__action_button_click(){
-		this.navigation_ui_close__cc_for_close_btn()
-	}
-
-	//Handler for INTERNAL event of "cc for close btn"
-	cc_for_close_btn__internal(parent_event_result){
-		this.cc_for_close_btn__im_for_close_btn(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "im for close btn"
-	im_for_close_btn__internal(parent_event_result){
-		this.im_for_close_btn__rs_for_close_btn(parent_event_result)
-	}
-
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui repost"
 	navigation_ui_repost__action_button_click(){
 		this.navigation_ui_repost__cc_for_repost_btn()
@@ -773,6 +786,31 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "im for repost btn"
 	im_for_repost_btn__internal(parent_event_result){
 		this.im_for_repost_btn__rs_for_repost_btn(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
+	navigation_ui_close__action_button_click(){
+		this.navigation_ui_close__sp_for_remarks()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "close ui save"
+	close_ui_save__action_button_click(){
+		this.close_ui_save__e_1677225498599()
+	}
+
+	//Handler for INTERNAL event of "e 1677225498599"
+	e_1677225498599__internal(parent_event_result){
+		this.e_1677225498599__e_1677225505146(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1677225505146"
+	e_1677225505146__internal(parent_event_result){
+		this.e_1677225505146__e_1677225521347(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1677225521347"
+	e_1677225521347__internal(parent_event_result){
+		this.e_1677225521347__e_1677225528156(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1472,7 +1510,7 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_rct_inward_posting_failure_retry_repostService.fn_npss_cs_rct_inward_posting_failure_retry_repost(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_rct_outward_posting_failure_retry_repostService.fn_npss_cs_rct_outward_posting_failure_retry_repost(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2154,71 +2192,6 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
-	navigation_ui_close__cc_for_close_btn() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_close"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1676292146024"
-		let event_params={"caller_name":"navigation_ui_close__cc_for_close_btn","event_desc":"CC for Close Btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_close","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals="cc_for_close_btn__im_for_close_btn,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_cs_rct_inward_posting_failure_closeService.fn_npss_cs_rct_inward_posting_failure_close(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "cc for close btn"
-	cc_for_close_btn__im_for_close_btn(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_for_close_btn"
-		let destn_id=""
-		let parent_source_id="navigation_ui_close"
-		let event_code="e_1676292151674"
-		let event_params={"caller_name":"cc_for_close_btn__im_for_close_btn","event_desc":"IM for Close Btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been manually closed successfully","root_source_id":"navigation_ui_close","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
-		let handler_code="info_msg"
-		let internals="im_for_close_btn__rs_for_close_btn,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "im for close btn"
-	im_for_close_btn__rs_for_close_btn(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="im_for_close_btn"
-		let destn_id=""
-		let parent_source_id="cc_for_close_btn"
-		let event_code="e_1676292158976"
-		let event_params={"caller_name":"im_for_close_btn__rs_for_close_btn","event_desc":"RS for Close btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_close","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="refresh_screen"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui repost"
 	navigation_ui_repost__cc_for_repost_btn() { 
 		let Dest_Is_ctrl=true
@@ -2233,7 +2206,7 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_rct_inward_posting_failure_retry_repostService.fn_npss_cs_rct_inward_posting_failure_retry_repost(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_rct_outward_posting_failure_retry_repostService.fn_npss_cs_rct_outward_posting_failure_retry_repost(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2272,6 +2245,114 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let parent_source_id="cc_for_repost_btn"
 		let event_code="e_1676292275369"
 		let event_params={"caller_name":"im_for_repost_btn__rs_for_repost_btn","event_desc":"Rs for repost btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_repost","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
+	navigation_ui_close__sp_for_remarks() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_close"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1677225409406"
+		let event_params={"caller_name":"navigation_ui_close__sp_for_remarks","event_desc":"SP for Remarks","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_close","raiseparam":{"popup_category":"profile","variable":"p_close_layout__sp_for_remarks","selector":"p_close_layout","profile_code":"BTL_1304_1677225300112","window_title":"Remarks","window_height":250,"window_width":"500px","window_close_icon":"Y","eventdes":"sp_for_remarks","eventcode":"E_1677225409406"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "close ui save"
+	close_ui_save__e_1677225498599() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="close_ui_save"
+		let destn_id="close_ui"
+		let parent_source_id=""
+		let event_code="e_1677225498599"
+		let event_params={"caller_name":"close_ui_save__e_1677225498599","event_desc":"E_1677225498599","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"close_ui_save","raiseparam":{}}
+		let handler_code="validate_elements"
+		let internals="e_1677225498599__e_1677225505146,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1677225498599"
+	e_1677225498599__e_1677225505146(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1677225498599"
+		let destn_id=""
+		let parent_source_id="close_ui_save"
+		let event_code="e_1677225505146"
+		let event_params={"caller_name":"e_1677225498599__e_1677225505146","event_desc":"E_1677225505146","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"close_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals="e_1677225505146__e_1677225521347,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_rct_outward_posting_failure_closeService.fn_npss_cs_rct_outward_posting_failure_close(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1677225505146"
+	e_1677225505146__e_1677225521347(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1677225505146"
+		let destn_id=""
+		let parent_source_id="e_1677225498599"
+		let event_code="e_1677225521347"
+		let event_params={"caller_name":"e_1677225505146__e_1677225521347","event_desc":"E_1677225521347","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been sent to checker successfully","root_source_id":"close_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1677225521347__e_1677225528156,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1677225521347"
+	e_1677225521347__e_1677225528156(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1677225521347"
+		let destn_id=""
+		let parent_source_id="e_1677225505146"
+		let event_code="e_1677225528156"
+		let event_params={"caller_name":"e_1677225521347__e_1677225528156","event_desc":"E_1677225528156","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"close_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

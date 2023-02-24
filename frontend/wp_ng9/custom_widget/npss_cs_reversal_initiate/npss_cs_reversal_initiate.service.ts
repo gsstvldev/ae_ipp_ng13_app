@@ -51,11 +51,11 @@ export class npss_cs_reversal_initiateService {
     CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_reversal_initiate/', ClientParams)
             .subscribe((res: any) => {
-                if (res.data.status=='SUCCESS'||res.data.data.status=='SUCCESS') {
+                if((res.data.status=='SUCCESS'||res.data.data.status=='SUCCESS')&&((res.data.data=='NoNeedConfirmation')||(res.data.data.data=='NoNeedConfirmation'))) {
                     
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 }
-                else if((res.data.status=='CONFIRMATIONSUCCESS'||res.data.data.status=='CONFIRMATIONSUCCESS')&&((res.data.data=='NeedConfirmation')||(res.data.data.data=='NeedConfirmation')))
+                else if((res.data.status=='SUCCESS'||res.data.data.status=='SUCCESS')&&((res.data.data=='NeedConfirmation')||(res.data.data.data=='NeedConfirmation')))
                 {
                     var event = { eventId: "custom-connector", param: ClientParams, internals: internals ,case:'needConfirmation'}
         //" initiate_custom_widget

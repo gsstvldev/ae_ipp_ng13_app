@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -16,7 +17,7 @@ app.post('/', function(appRequest, appResponse, next) {
 /*  Created By :Daseen
 Created Date :23/02/2023
 Modified By : 
-Modified Date : 
+Modified Date : 24/02/2023
 }
 */
 var serviceName = 'NPSS(S) P2B UNFREEZE the Cancel Account';
@@ -82,17 +83,15 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     takehour = `select * from Core_nc_system_setup where param_category='${params.param_category}' and param_code='${params.param_code}' `
                     ExecuteQuery1(takehour, function (arrhour) {
                         if (arrhour.length > 0) {
-                            takepayver = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,* from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  additional_info not in  ${additional_info1}`
+                            var utcMoment = moment.utc();
+                              var Formdate = utcMoment.subtract(arrhour[0].param_detail, 'hours')
+                              Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss')
+                            takepayver = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,* from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  additional_info not in  ${additional_info1} and created_date_utc < '${Formdate}'`
                             ExecuteQuery1(takepayver, function (arrpayver) {
                                 if (arrpayver.length > 0) {
                                     reqAsync.forEachOfSeries(arrpayver, function (arrpayverobj, i, nextobjctfunc) {
                                         if (arrpayverobj.npsstrrd_refno) {
-
-                                            var m = moment(arrpayverobj.created_date_utc)
-                                            var add_hrs = m.add(arrhour[0].param_detail, 'hours')
-
-                                            var Formdate = moment(add_hrs).format('YYYY-MM-DD HH:mm:ss')
-                                            takefundauth = `select npsstpl_id, * from npss_trn_process_log where status in ${status2} and process_name in ${process_name2} and npsstrrd_refno='${arrpayverobj.npsstrrd_refno}' and created_date_utc>='${Formdate}'`
+                                            takefundauth = `select npsstpl_id, * from npss_trn_process_log where status in ${status2} and process_name in ${process_name2} and npsstrrd_refno='${arrpayverobj.npsstrrd_refno}'`
                                             ExecuteQuery1(takefundauth, async function (arrfundauth) {
                                                 if (arrfundauth.length > 0) {
                                                     reqInstanceHelper.PrintInfo(serviceName, '-----------Not a eligible tran-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
@@ -501,6 +500,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
     }
 
 })
+
 
 
 

@@ -10,9 +10,6 @@
 
 <p-dialog header="{{'' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_for_search_showpopup" [contentStyle]="{'overflow-y': 'auto','width': 'auto'}" [draggable]="true" [modal]="true">
 	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>
-
-<p-dialog header="{{'Remarks' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_close_layout__sp_for_remarks_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '250px','width': '500px'}" [draggable]="true" [modal]="true">
-	<p_close_layout [screen_instance]="this" ></p_close_layout></p-dialog>
 <app-dialog [screen_instance]="this" ></app-dialog>
 <div style="display:none">
 	<datatable [comp_id]="'process_log_list'" [screen_instance]="this"></datatable>

@@ -7,10 +7,10 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
 try {
     /*   Created By :Siva Harish
-    Created Date :21-02-2023
+    Created Date :24-02-2023
 
     */
     var serviceName = 'NPSS (CS) Rejected Payment Reject';
@@ -88,24 +88,24 @@ try {
                                                     var TakeacctInformation = `select * from core_nc_cbs_accounts where alternate_account_id = '${arrprocesslogObj.cdtr_iban}'`
                                                     ExecuteQuery1(TakeacctInformation, function (arracctInfrm) {
                                                         if (arracctInfrm.length > 0) {
-                                                    var Takeprsdata = `select status_intrbksttlmdt,status_resp_amount,status_accp_date,msg_id,npsstrrd_refno,cbuae_return_code from npss_trn_process_log where process_name='Receive Pacs002' and uetr = '${arrprocesslogObj.uetr}'`
-                                                    ExecuteQuery1(Takeprsdata, function (prsdata) {
-                                                  
-                                                        fn_doapicall(arrUrl, arrprocesslogObj, lclinstrm, arracctInfrm, prsdata,function (result) {
-                                                            if (result == 'SUCCESS') {
-                                                                nextobjctfunc()
-                                                            } else {
-                                                                objresponse.status = 'FAILURE'
-                                                                objresponse.errdata = 'Api Call Failed'
-                                                                sendResponse(null, objresponse)
-                                                            }
+                                                            var Takeprsdata = `select status_intrbksttlmdt,status_resp_amount,status_accp_date,msg_id,npsstrrd_refno,cbuae_return_code from npss_trn_process_log where process_name='Receive Pacs002' and uetr = '${arrprocesslogObj.uetr}'`
+                                                            ExecuteQuery1(Takeprsdata, function (prsdata) {
 
-                                                        })
-                                                   
-                                                        
+                                                                fn_doapicall(arrUrl, arrprocesslogObj, lclinstrm, arracctInfrm, prsdata, function (result) {
+                                                                    if (result == 'SUCCESS') {
+                                                                        nextobjctfunc()
+                                                                    } else {
+                                                                        objresponse.status = 'FAILURE'
+                                                                        objresponse.errdata = 'Api Call Failed'
+                                                                        sendResponse(null, objresponse)
+                                                                    }
 
-                                                    })  
-                                                            
+                                                                })
+
+
+
+                                                            })
+
 
                                                         } else {
                                                             objresponse.status = "FAILURE"
@@ -161,8 +161,23 @@ try {
 
 
                 // Do API Call for Service 
-                function fn_doapicall(arrUrl, arrprocesslog, lclinstrm, arracctInfrm,prsdata, callbackapi) {
+                function fn_doapicall(arrUrl, arrprocesslog, lclinstrm, arracctInfrm, prsdata, callbackapi) {
                     try {
+                        var msgId
+                        var rsn_code
+                        var npsstrrd_refno
+                        var cbuae_return_code
+                        if (prsdata.length == 0) {
+                            var msgId = ''
+                            var rsn_code = ''
+                            var npsstrrd_refno = ''
+                            var cbuae_return_code = ''
+                        } else {
+                            var msgId = prsdata[0].msg_id || ''
+                            var rsn_code = prsdata[0].cbuae_return_code || ''
+                            var npsstrrd_refno = prsdata[0].npsstrrd_refno || ''
+                            var cbuae_return_code = prsdata[0].cbuae_return_code || ''
+                        }
 
                         var Virtual_account
                         if (arracctInfrm[0].alternate_account_type == 'VA.IBAN' || arracctInfrm[0].alternate_account_type == 'VA.BBAN') {
@@ -184,15 +199,15 @@ try {
                             method: 'POST',
                             json: {
                                 "batch_name": "DR-CBS-POSTING-Q",
-                                "data":{
+                                "data": {
                                     "payload": {
                                         "hdr_msg_id": arrprocesslog.hdr_msg_id || '',
                                         "hdr_created_date": arrprocesslog.hdr_created_date || '',
                                         "hdr_total_records": arrprocesslog.hdr_total_records || '',
                                         "hdr_total_amount": arrprocesslog.hdr_total_amount || '',
                                         "hdr_settlement_date": arrprocesslog.hdr_settlement_date || '',
-                                        "value_date": moment(arrprocesslog.value_date).format('YYYY-MM-DD') || '',
-                                        "hdr_settlement_method": arrprocesslog.hdr_settlement_method || '',
+                                        "value_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),
+                                        "hdr_settlement_method": "CLRG",
                                         "hdr_clearing_system": arrprocesslog.hdr_clearing_system || '',
                                         "instruction_id": arrprocesslog.instruction_id || '',
                                         "dr_sort_code": arrprocesslog.dr_sort_code || '',
@@ -262,19 +277,16 @@ try {
                                         "customer_id": arracctInfrm[0].customer_id || '',
                                         "department_code": arracctInfrm[0].department_code || '',
                                         "active_status": "RJCT",
-                                        "cbuae_return_code": prsdata[0].cbuae_return_code || '',
+                                        "cbuae_return_code": cbuae_return_code || '',
                                         "process_ref_no": arrprocesslog.clrsysref || '',
-                                        "msgId": prsdata[0].msg_id || '',
-                                        "status_accp_date": prsdata[0].status_accp_date || '',
-                                        "status_resp_amount": prsdata[0].status_resp_amount || '',
-                                        "status_intrbksttlmdt": prsdata[0].status_intrbksttlmdt || '',
-                                        "rsn_code": prsdata[0].cbuae_return_code || '',
-                                        "npsstrrd_refno": prsdata[0].npsstrrd_refno || '',
+                                        "msgId": msgId || '',
+                                        "rsn_code": rsn_code || '',
+                                        "npsstrrd_refno": npsstrrd_refno || '',
                                         "process_name": "Pacs.002 Payment Status Report",
                                         "request_data_json": null
                                     }
                                 }
-                               
+
                             },
                             headers: {
                                 'Content-Type': 'application/json'
@@ -291,7 +303,7 @@ try {
                         reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                             if (error) {
-                                reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
+                                reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                 sendResponse(error, null);
 
                             } else {

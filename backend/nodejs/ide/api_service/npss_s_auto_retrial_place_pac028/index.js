@@ -7,11 +7,12 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
     /*  Created By :SIVA hARISH
     Created Date :22/02/2023
     Modified By : 
-    Modified Date : 
+    Modified Date : 23/02/2023
     }
     */
     var serviceName = 'NPSS (S) Auto Retrial Place Pac028';
@@ -115,13 +116,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     nextobjctfunc();
                                                                 }
                                                                 else {
-                                                                    var doapicall = await apiCall(arruetrDataobj, arrUrl);
-                                                                    if (doapicall == 'SUCCESS') {
-                                                                        nextobjctfunc();
-                                                                    } else {
-                                                                        reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                                                        nextobjctfunc();
-                                                                    }
+                                                                    nextobjctfunc();
                                                                 }
 
 
@@ -190,7 +185,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "payment_endtoend_id": arrresult[0].payment_endtoend_id,
                                                     "uetr": arrresult[0].uetr,
                                                     "tran_ref_id": arrresult[0].tran_ref_id,
-                                                    "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09"
+                                                    "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09",
+                                                    "payment_processing_method": "SCT_INITITATION",
+                                                    "process_type": "OP"
 
                                                 },
                                                 headers: {
@@ -366,6 +363,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28303 
+Build ID        : 28316 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-24 9:30 AM 
+Modified Date   : 2023-Feb-24 14:23 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_posting_failure
@@ -69,7 +69,6 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	btl_1304_1666856599156 : string = "p_main_layout"
 	forms : any = ["uicgc_18","uicgc_16","uicgc_14","uicgc_4","uicgc_19","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_6","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
-	p_close_layout__sp_for_remarks_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation_ui : any = {}
@@ -788,11 +787,6 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		this.im_for_repost_btn__rs_for_repost_btn(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
-	navigation_ui_close__action_button_click(){
-		this.navigation_ui_close__sp_for_remarks()
-	}
-
 	//Handler for ACTION_BUTTON_CLICK event of "close ui save"
 	close_ui_save__action_button_click(){
 		this.close_ui_save__e_1677225498599()
@@ -810,7 +804,22 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 
 	//Handler for INTERNAL event of "e 1677225521347"
 	e_1677225521347__internal(parent_event_result){
-		this.e_1677225521347__e_1677225528156(parent_event_result)
+		this.e_1677225521347__dg_cv(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
+	navigation_ui_close__action_button_click(){
+		this.navigation_ui_close__e_1677248130264()
+	}
+
+	//Handler for INTERNAL event of "e 1677248130264"
+	e_1677248130264__internal(parent_event_result){
+		this.e_1677248130264__e_1677248176649(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1677248176649"
+	e_1677248176649__internal(parent_event_result){
+		this.e_1677248176649__e_1677248192867(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2257,27 +2266,6 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
-	navigation_ui_close__sp_for_remarks() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_close"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1677225409406"
-		let event_params={"caller_name":"navigation_ui_close__sp_for_remarks","event_desc":"SP for Remarks","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_close","raiseparam":{"popup_category":"profile","variable":"p_close_layout__sp_for_remarks","selector":"p_close_layout","profile_code":"BTL_1304_1677225300112","window_title":"Remarks","window_height":250,"window_width":"500px","window_close_icon":"Y","eventdes":"sp_for_remarks","eventcode":"E_1677225409406"}}
-		let handler_code="show_profile_as_popup"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
 	//Handler for ACTION_BUTTON_CLICK event of "close ui save"
 	close_ui_save__e_1677225498599() { 
 		let Dest_Is_ctrl=true
@@ -2332,7 +2320,7 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let event_code="e_1677225521347"
 		let event_params={"caller_name":"e_1677225505146__e_1677225521347","event_desc":"E_1677225521347","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been sent to checker successfully","root_source_id":"close_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
-		let internals="e_1677225521347__e_1677225528156,"
+		let internals="e_1677225521347__dg_cv,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -2344,7 +2332,7 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "e 1677225521347"
-	e_1677225521347__e_1677225528156(parent_event_result) { 
+	e_1677225521347__dg_cv(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
@@ -2352,7 +2340,72 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="e_1677225505146"
 		let event_code="e_1677225528156"
-		let event_params={"caller_name":"e_1677225521347__e_1677225528156","event_desc":"E_1677225528156","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"close_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"e_1677225521347__dg_cv","event_desc":"dg cv","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"close_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
+	navigation_ui_close__e_1677248130264() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_close"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1677248130264"
+		let event_params={"caller_name":"navigation_ui_close__e_1677248130264","event_desc":"E_1677248130264","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_close","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1677248130264__e_1677248176649,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_rct_outward_posting_failure_closeService.fn_npss_cs_rct_outward_posting_failure_close(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1677248130264"
+	e_1677248130264__e_1677248176649(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1677248130264"
+		let destn_id=""
+		let parent_source_id="navigation_ui_close"
+		let event_code="e_1677248176649"
+		let event_params={"caller_name":"e_1677248130264__e_1677248176649","event_desc":"E_1677248176649","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been manually closed successfully","root_source_id":"navigation_ui_close","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1677248176649__e_1677248192867,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1677248176649"
+	e_1677248176649__e_1677248192867(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1677248176649"
+		let destn_id=""
+		let parent_source_id="e_1677248130264"
+		let event_code="e_1677248192867"
+		let event_params={"caller_name":"e_1677248176649__e_1677248192867","event_desc":"E_1677248192867","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_close","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

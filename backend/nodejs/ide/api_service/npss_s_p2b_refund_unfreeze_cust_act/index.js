@@ -8,18 +8,12 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
-    
-
-
-
-
-
 
 
 /*  Created By :SIVA hARISH
 Created Date :23/02/2023
 Modified By : 
-Modified Date : 
+Modified Date : 24/02/2023
 }
 */
 var serviceName = 'NPSS (S) P2B Refund Unfreeze Customer Account';
@@ -67,17 +61,19 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     var SecondprocessName = await Prepareparam(params.CheckprocessName)
                     var Secondaddinfo = await Prepareparam(params.checkaddinfo)
                     var TakerequestData = await Prepareparam(params.RequestprocessName)
+                   
                     var Takehours = `select param_detail from core_nc_system_setup where param_category = '${params.param_category}' and param_code = '${params.param_code}'`
                     ExecuteQuery1(Takehours, function (arrTakehrs) {
                         if (arrTakehrs.length > 0) {
-                            var Takedata = `select * from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info in ${Firstaddinfo}`
+                            var utcMoment = moment.utc();
+                          console.log(utcMoment)
+                            var Formdate = utcMoment.subtract(arrTakehrs[0].param_detail, 'hours')
+                            Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss')
+                            var Takedata = `select * from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info in ${Firstaddinfo} and created_date_utc < '${Formdate}'`
                             ExecuteQuery1(Takedata, function (arrData) {
                                 if (arrData.length > 0) {
                                     reqAsync.forEachOfSeries(arrData, function (arrDataobj, i, nextobjctfunc) {
-                                        var dateTime = moment(arrDataobj.created_date)
-                                        var Formdate = dateTime.add(arrTakehrs[0].param_detail, 'hours')
-                                        Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss')
-                                        var Checkcond = `select npsstpl_id, * from npss_trn_process_log where status in ${Secondstatus} and process_name in ${SecondprocessName} and npsstrrd_refno='${arrDataobj.npsstrrd_refno}' and additional_info in ${Secondaddinfo} and created_date_utc >='${Formdate}'`
+                                        var Checkcond = `select npsstpl_id, * from npss_trn_process_log where status in ${Secondstatus} and process_name in ${SecondprocessName} and npsstrrd_refno='${arrDataobj.npsstrrd_refno}' and additional_info in ${Secondaddinfo}`
                                         ExecuteQuery1(Checkcond, async function (chkcond) {
                                             if (chkcond.length == 0) {
                                                 var CheckalreadyTryTran = `select * from npss_trn_process_log where status = 'OP_P2B_FUND_UNFREEZED' and npsstrrd_refno='${arrDataobj.npsstrrd_refno}'`
@@ -518,6 +514,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 })
+
 
 
 

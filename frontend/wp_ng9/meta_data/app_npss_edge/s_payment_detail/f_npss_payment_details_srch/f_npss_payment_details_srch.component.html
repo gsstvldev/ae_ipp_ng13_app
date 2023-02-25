@@ -1,0 +1,28 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_payment_details_srch="ngForm">
+<div id="RN01" class="row">
+	<div #npss_payment_details_srch_reftype id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('reftype')" >
+				<txt [ctrl_id]="'npss_payment_details_srch_reftype'" [comp_id]="comp_id" [ctrl]="ctrl.reftype" [model]="screen_instance[this.comp_id].f_npss_payment_details_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN01CN1001" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('ref')" >
+				<txt [ctrl_id]="'npss_payment_details_srch_ref'" [comp_id]="comp_id" [ctrl]="ctrl.ref" [model]="screen_instance[this.comp_id].f_npss_payment_details_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN11CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('senderbic')" >
+				<txt [ctrl_id]="'npss_payment_details_srch_senderbic'" [comp_id]="comp_id" [ctrl]="ctrl.senderbic" [model]="screen_instance[this.comp_id].f_npss_payment_details_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN11CN3" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('datetime')" >
+				<dtp [ctrl_id]="'npss_payment_details_srch_datetime'" [comp_id]="comp_id" [ctrl]="ctrl.datetime" [model]="screen_instance[this.comp_id].f_npss_payment_details_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></dtp>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+ 	</div>
+
+</div>

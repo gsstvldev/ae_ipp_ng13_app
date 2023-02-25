@@ -1,0 +1,28 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_month_liq_position_srch="ngForm">
+<div id="RN01" class="row">
+	<div #npss_month_liq_position_srch_currency id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('currency')" >
+				<cbo [ctrl_id]="'npss_month_liq_position_srch_currency'" [comp_id]="comp_id" [ctrl]="ctrl.currency" [model]="screen_instance[this.comp_id].f_npss_month_liq_position_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
+	</div>
+	<div  id="RN01CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('accountholderbic')" >
+				<cdn_ctrl [ctrl_id]="'npss_month_liq_position_srch_accountholderbic'" [comp_id]="comp_id" [ctrl]="ctrl.accountholderbic" [model]="screen_instance[this.comp_id].f_npss_month_liq_position_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN11CN3" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('accountnumber')" >
+				<cdn_ctrl [ctrl_id]="'npss_month_liq_position_srch_accountnumber'" [comp_id]="comp_id" [ctrl]="ctrl.accountnumber" [model]="screen_instance[this.comp_id].f_npss_month_liq_position_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN11CN4" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('datetime')" >
+				<dtp [ctrl_id]="'npss_month_liq_position_srch_datetime'" [comp_id]="comp_id" [ctrl]="ctrl.datetime" [model]="screen_instance[this.comp_id].f_npss_month_liq_position_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></dtp>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+ 	</div>
+
+</div>

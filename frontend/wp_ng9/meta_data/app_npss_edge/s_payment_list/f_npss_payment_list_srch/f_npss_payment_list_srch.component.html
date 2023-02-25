@@ -1,0 +1,23 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_payment_list_srch="ngForm">
+<div id="RN01" class="row">
+	<div #npss_payment_list_srch_senderbic id="RN01CN1" class="column col-md-10 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('senderbic')" >
+				<txt [ctrl_id]="'npss_payment_list_srch_senderbic'" [comp_id]="comp_id" [ctrl]="ctrl.senderbic" [model]="screen_instance[this.comp_id].f_npss_payment_list_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN01CN2" class="column col-md-10 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('fromdate')" >
+				<dtp [ctrl_id]="'npss_payment_list_srch_fromdate'" [comp_id]="comp_id" [ctrl]="ctrl.fromdate" [model]="screen_instance[this.comp_id].f_npss_payment_list_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></dtp>
+	</div>
+	<div  id="RN01CN3" class="column col-md-10 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('todate')" >
+				<dtp [ctrl_id]="'npss_payment_list_srch_todate'" [comp_id]="comp_id" [ctrl]="ctrl.todate" [model]="screen_instance[this.comp_id].f_npss_payment_list_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></dtp>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+ 	</div>
+
+</div>

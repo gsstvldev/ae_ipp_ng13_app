@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28338 
+Build ID        : 28339 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 11:10 AM 
+Modified Date   : 2023-Feb-25 13:17 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_liquidity_position
@@ -21,7 +21,6 @@ import { SharedModule } from '../../../shared/shared.module'
 
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_cs_liquidity_positionModule} from '../../../custom_widget/npss_cs_liquidity_position/npss_cs_liquidity_position.module'
-import {npss_c_disable_action_by_multiselectModule} from '../../../custom_widget/npss_c_disable_action_by_multiselect/npss_c_disable_action_by_multiselect.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -52,7 +51,7 @@ import { f_api_input_ui_actionsComponent } from './f_api_input_ui_actions/f_api_
     OverlayPanelModule,
     
     s_liquidity_positionRoutingModule,
-    torus_cs_show_hideModule,npss_cs_liquidity_positionModule,npss_c_disable_action_by_multiselectModule
+    torus_cs_show_hideModule,npss_cs_liquidity_positionModule
   ],
   declarations: [s_liquidity_positionComponent,p_main_layoutComponent,f_npss_liq_pos__srchComponent,f_npss_liq_pos_uiComponent,f_api_input_ui_actionsComponent,],
   providers:[AppHandlerService,ComponenthelperService]

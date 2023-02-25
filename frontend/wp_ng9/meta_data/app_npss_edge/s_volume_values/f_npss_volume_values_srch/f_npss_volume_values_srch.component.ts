@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28338 
+Build ID        : 28339 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 11:10 AM 
+Modified Date   : 2023-Feb-25 13:17 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_volume_values
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of senderbic
 		this.ctrl.senderbic = {}
 		this.ctrl.senderbic.id = "RN01CN1"
-		this.ctrl.senderbic.desc = "senderbic"
+		this.ctrl.senderbic.desc = "Sender BIC"
 		this.ctrl.senderbic.visible = true
-		this.ctrl.senderbic.label_name = "senderbic"
+		this.ctrl.senderbic.label_name = "Sender BIC"
 		this.ctrl.senderbic.df_code = "DF_1304_1670589236195"
 		this.ctrl.senderbic.df_description = "Column Group 1"
 		this.ctrl.senderbic.uictrl_code = "CDN_CTRL"
@@ -69,6 +69,7 @@ focustoelement(){
 		this.ctrl.senderbic.currency_format = ""
 		this.ctrl.senderbic.data_scale = ""
 		this.ctrl.senderbic.binding_name = "SENDERBIC"
+		this.ctrl.senderbic.hide_label = false
 		this.ctrl.senderbic.depends_on = ""
 		this.ctrl.senderbic.placeholder = ""
 		this.ctrl.senderbic.dynamic_param = ""
@@ -89,9 +90,9 @@ focustoelement(){
 		//Properties of fromdate
 		this.ctrl.fromdate = {}
 		this.ctrl.fromdate.id = "RN01CN2"
-		this.ctrl.fromdate.desc = "fromdate"
+		this.ctrl.fromdate.desc = "From Date"
 		this.ctrl.fromdate.visible = true
-		this.ctrl.fromdate.label_name = "fromdate"
+		this.ctrl.fromdate.label_name = "From Date"
 		this.ctrl.fromdate.df_code = "DF_1304_1670589236195"
 		this.ctrl.fromdate.df_description = "Column Group 1"
 		this.ctrl.fromdate.uictrl_code = "CDN_DATE"
@@ -107,6 +108,7 @@ focustoelement(){
 		this.ctrl.fromdate.currency_format = ""
 		this.ctrl.fromdate.data_scale = ""
 		this.ctrl.fromdate.binding_name = "FROMDATE"
+		this.ctrl.fromdate.hide_label = false
 		this.ctrl.fromdate.depends_on = ""
 		this.ctrl.fromdate.placeholder = ""
 		this.ctrl.fromdate.dynamic_param = ""
@@ -127,9 +129,9 @@ focustoelement(){
 		//Properties of todate
 		this.ctrl.todate = {}
 		this.ctrl.todate.id = "RN01CN3"
-		this.ctrl.todate.desc = "todate"
+		this.ctrl.todate.desc = "To Date"
 		this.ctrl.todate.visible = true
-		this.ctrl.todate.label_name = "todate"
+		this.ctrl.todate.label_name = "To Date"
 		this.ctrl.todate.df_code = "DF_1304_1670589236195"
 		this.ctrl.todate.df_description = "Column Group 1"
 		this.ctrl.todate.uictrl_code = "CDN_DATE"
@@ -145,6 +147,7 @@ focustoelement(){
 		this.ctrl.todate.currency_format = ""
 		this.ctrl.todate.data_scale = ""
 		this.ctrl.todate.binding_name = "TODATE"
+		this.ctrl.todate.hide_label = false
 		this.ctrl.todate.depends_on = ""
 		this.ctrl.todate.placeholder = ""
 		this.ctrl.todate.dynamic_param = ""

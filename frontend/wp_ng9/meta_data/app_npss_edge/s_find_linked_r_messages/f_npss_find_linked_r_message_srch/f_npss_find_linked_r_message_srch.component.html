@@ -1,0 +1,33 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_find_linked_r_message_srch="ngForm">
+<div id="RN01" class="row">
+	<div #npss_find_linked_r_message_srch_reftype id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('reftype')" >
+				<cdn_ctrl [ctrl_id]="'npss_find_linked_r_message_srch_reftype'" [comp_id]="comp_id" [ctrl]="ctrl.reftype" [model]="screen_instance[this.comp_id].f_npss_find_linked_r_message_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN01CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('ref')" >
+				<cdn_ctrl [ctrl_id]="'npss_find_linked_r_message_srch_ref'" [comp_id]="comp_id" [ctrl]="ctrl.ref" [model]="screen_instance[this.comp_id].f_npss_find_linked_r_message_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN11CN3" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('senderbic')" >
+				<cdn_ctrl [ctrl_id]="'npss_find_linked_r_message_srch_senderbic'" [comp_id]="comp_id" [ctrl]="ctrl.senderbic" [model]="screen_instance[this.comp_id].f_npss_find_linked_r_message_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN11CN4" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('fromdate')" >
+				<dtp [ctrl_id]="'npss_find_linked_r_message_srch_fromdate'" [comp_id]="comp_id" [ctrl]="ctrl.fromdate" [model]="screen_instance[this.comp_id].f_npss_find_linked_r_message_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></dtp>
+	</div>
+</div>
+<div id="RN21" class="row">
+	<div  id="RN21CN5" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('todate')" >
+				<dtp [ctrl_id]="'npss_find_linked_r_message_srch_todate'" [comp_id]="comp_id" [ctrl]="ctrl.todate" [model]="screen_instance[this.comp_id].f_npss_find_linked_r_message_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></dtp>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+ 	</div>
+
+</div>

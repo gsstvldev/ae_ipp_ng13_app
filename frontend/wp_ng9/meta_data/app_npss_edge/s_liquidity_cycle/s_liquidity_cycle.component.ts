@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28339 
+Build ID        : 28341 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 13:17 PM 
+Modified Date   : 2023-Feb-25 14:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_liquidity_cycle
@@ -219,7 +219,17 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 
 	//Handler for INTERNAL event of "ve for save to api"
 	ve_for_save_to_api__internal(parent_event_result){
-		this.ve_for_save_to_api__st_for_save_to_api(parent_event_result)
+		this.ve_for_save_to_api__save_tran_lc(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "save tran lc"
+	save_tran_lc__internal(parent_event_result){
+		this.save_tran_lc__info_for_lc(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "info for lc"
+	info_for_lc__internal(parent_event_result){
+		this.info_for_lc__rs_for_lc(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions call api"
@@ -498,7 +508,7 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 		let event_code="e_1677321344128"
 		let event_params={"caller_name":"api_input_ui_actions_save__ve_for_save_to_api","event_desc":"VE for Save to API","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_save","raiseparam":{}}
 		let handler_code="validate_elements"
-		let internals="ve_for_save_to_api__st_for_save_to_api,"
+		let internals="ve_for_save_to_api__save_tran_lc,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -510,21 +520,65 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "ve for save to api"
-	ve_for_save_to_api__st_for_save_to_api(parent_event_result) { 
+	ve_for_save_to_api__save_tran_lc(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="ve_for_save_to_api"
 		let destn_id="api_details"
 		let parent_source_id="api_input_ui_actions_save"
-		let event_code="e_1677321369857"
-		let event_params={"caller_name":"ve_for_save_to_api__st_for_save_to_api","event_desc":"ST for Save to API","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_save","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="validate_elements"
+		let event_code="e_1677334344967"
+		let event_params={"caller_name":"ve_for_save_to_api__save_tran_lc","event_desc":"SAVE TRAN LC","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_save","raiseparam":{"reset_selection":"Y","need_clear_value":"Y","no_change_status_on_modify":"N","release_lock":"Y","clear_cache":"Y"},"parent_event_result":"SUCCESS"}
+		let handler_code="save_tran"
+		let internals="save_tran_lc__info_for_lc,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.save_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "save tran lc"
+	save_tran_lc__info_for_lc(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="save_tran_lc"
+		let destn_id=""
+		let parent_source_id="ve_for_save_to_api"
+		let event_code="e_1677334361887"
+		let event_params={"caller_name":"save_tran_lc__info_for_lc","event_desc":"INFO FOR LC","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"API Request has been saved successfully.","root_source_id":"api_input_ui_actions_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="info_for_lc__rs_for_lc,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "info for lc"
+	info_for_lc__rs_for_lc(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="info_for_lc"
+		let destn_id=""
+		let parent_source_id="save_tran_lc"
+		let event_code="e_1677334381030"
+		let event_params={"caller_name":"info_for_lc__rs_for_lc","event_desc":"RS for LC","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -561,7 +615,7 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="api_input_ui_actions_call_api"
 		let event_code="e_1677305568177"
-		let event_params={"caller_name":"ide_call__info_success_for_api","event_desc":"info success for API","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Core API liquidityPosition has been called successfully, Pl see the request and response in View Process Logs screen.","root_source_id":"api_input_ui_actions_call_api","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"ide_call__info_success_for_api","event_desc":"info success for API","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Core API liquidityCycle has been called successfully, Pl see the request and response in View Process Logs screen.","root_source_id":"api_input_ui_actions_call_api","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="info_success_for_api__rs__for_api,"
 		let event_data={}

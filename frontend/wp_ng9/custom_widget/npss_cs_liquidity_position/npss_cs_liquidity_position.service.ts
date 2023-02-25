@@ -46,7 +46,7 @@ export class npss_cs_liquidity_positionService {
                 }
                
                else {
-                    this.appHandler.callInternals(internals, screenInstance, "FAILURE");
+                     this.dialogHelper.ShowInfoDialog(res.data.status);
                 }
             });
     }

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28339 
+Build ID        : 28341 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 13:17 PM 
+Modified Date   : 2023-Feb-25 14:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_volume_values
@@ -220,6 +220,16 @@ export class s_volume_valuesComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "ve for save to api"
 	ve_for_save_to_api__internal(parent_event_result){
 		this.ve_for_save_to_api__st_for_save_to_api(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "st for save to api"
+	st_for_save_to_api__internal(parent_event_result){
+		this.st_for_save_to_api__info_for_msg(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "info for msg"
+	info_for_msg__internal(parent_event_result){
+		this.info_for_msg__rs_for_vp(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions call api"
@@ -517,14 +527,58 @@ export class s_volume_valuesComponent implements OnInit,AfterViewInit {
 		let source_id="ve_for_save_to_api"
 		let destn_id="api_details"
 		let parent_source_id="api_input_ui_actions_save"
-		let event_code="e_1677321369857"
-		let event_params={"caller_name":"ve_for_save_to_api__st_for_save_to_api","event_desc":"ST for Save to API","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_save","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="validate_elements"
+		let event_code="e_1677334507116"
+		let event_params={"caller_name":"ve_for_save_to_api__st_for_save_to_api","event_desc":"ST for Save to API","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_save","raiseparam":{"reset_selection":"Y","need_clear_value":"Y","no_change_status_on_modify":"N","release_lock":"Y","clear_cache":"Y"},"parent_event_result":"SUCCESS"}
+		let handler_code="save_tran"
+		let internals="st_for_save_to_api__info_for_msg,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.save_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "st for save to api"
+	st_for_save_to_api__info_for_msg(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="st_for_save_to_api"
+		let destn_id=""
+		let parent_source_id="ve_for_save_to_api"
+		let event_code="e_1677334525419"
+		let event_params={"caller_name":"st_for_save_to_api__info_for_msg","event_desc":"INFO for msg","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"API Request has been saved successfully.","root_source_id":"api_input_ui_actions_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="info_for_msg__rs_for_vp,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "info for msg"
+	info_for_msg__rs_for_vp(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="info_for_msg"
+		let destn_id=""
+		let parent_source_id="st_for_save_to_api"
+		let event_code="e_1677334556509"
+		let event_params={"caller_name":"info_for_msg__rs_for_vp","event_desc":"RS for VP","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -561,7 +615,7 @@ export class s_volume_valuesComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="api_input_ui_actions_call_api"
 		let event_code="e_1677305568177"
-		let event_params={"caller_name":"ide_call__info_success_for_api","event_desc":"info success for API","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Core API liquidityPosition has been called successfully, Pl see the request and response in View Process Logs screen.","root_source_id":"api_input_ui_actions_call_api","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"ide_call__info_success_for_api","event_desc":"info success for API","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Core API volumeValues has been called successfully, Pl see the request and response in View Process Logs screen.","root_source_id":"api_input_ui_actions_call_api","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="info_success_for_api__rs__for_api,"
 		let event_data={}

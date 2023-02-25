@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28339 
+Build ID        : 28341 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 13:17 PM 
+Modified Date   : 2023-Feb-25 14:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_list
@@ -13,13 +13,13 @@ Screen Name     : s_payment_list
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
-import {npss_cs_liquidity_positionService} from '../../../custom_widget/npss_cs_liquidity_position/npss_cs_liquidity_position.service'
+import {npss_cs_payment_listService} from '../../../custom_widget/npss_cs_payment_list/npss_cs_payment_list.service'
 
 @Component({
 	selector: 's_payment_list',
 	templateUrl: './s_payment_list.component.html',
 	styleUrls: ['./s_payment_list.component.css'],
-	providers:[torus_cs_show_hideService,npss_cs_liquidity_positionService]
+	providers:[torus_cs_show_hideService,npss_cs_payment_listService]
 })
     
 // Start of class 
@@ -53,7 +53,7 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_liquidity_positionService:npss_cs_liquidity_positionService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_payment_listService:npss_cs_payment_listService) {
     
 	}
     
@@ -220,6 +220,16 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "ve for save to api"
 	ve_for_save_to_api__internal(parent_event_result){
 		this.ve_for_save_to_api__st_for_save_to_api(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "st for save to api"
+	st_for_save_to_api__internal(parent_event_result){
+		this.st_for_save_to_api__inf_for_save_api(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "inf for save api"
+	inf_for_save_api__internal(parent_event_result){
+		this.inf_for_save_api__rs_for_save_api(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions call api"
@@ -517,14 +527,58 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 		let source_id="ve_for_save_to_api"
 		let destn_id="api_details"
 		let parent_source_id="api_input_ui_actions_save"
-		let event_code="e_1677321369857"
-		let event_params={"caller_name":"ve_for_save_to_api__st_for_save_to_api","event_desc":"ST for Save to API","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_save","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="validate_elements"
+		let event_code="e_1677334403756"
+		let event_params={"caller_name":"ve_for_save_to_api__st_for_save_to_api","event_desc":"ST for Save to API","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_save","raiseparam":{"reset_selection":"Y","need_clear_value":"Y","no_change_status_on_modify":"N","release_lock":"Y","clear_cache":"Y"},"parent_event_result":"SUCCESS"}
+		let handler_code="save_tran"
+		let internals="st_for_save_to_api__inf_for_save_api,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.save_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "st for save to api"
+	st_for_save_to_api__inf_for_save_api(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="st_for_save_to_api"
+		let destn_id=""
+		let parent_source_id="ve_for_save_to_api"
+		let event_code="e_1677334418445"
+		let event_params={"caller_name":"st_for_save_to_api__inf_for_save_api","event_desc":"INF for Save API","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"API Request has been saved successfully.","root_source_id":"api_input_ui_actions_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="inf_for_save_api__rs_for_save_api,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "inf for save api"
+	inf_for_save_api__rs_for_save_api(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="inf_for_save_api"
+		let destn_id=""
+		let parent_source_id="st_for_save_to_api"
+		let event_code="e_1677334450181"
+		let event_params={"caller_name":"inf_for_save_api__rs_for_save_api","event_desc":"RS for Save API","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -545,7 +599,7 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_liquidity_positionService.fn_npss_cs_liquidity_position(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_payment_listService.fn_npss_cs_payment_list(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -561,7 +615,7 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="api_input_ui_actions_call_api"
 		let event_code="e_1677305568177"
-		let event_params={"caller_name":"ide_call__info_success_for_api","event_desc":"info success for API","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Core API liquidityPosition has been called successfully, Pl see the request and response in View Process Logs screen.","root_source_id":"api_input_ui_actions_call_api","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"ide_call__info_success_for_api","event_desc":"info success for API","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Core API paymentList has been called successfully, Pl see the request and response in View Process Logs screen.","root_source_id":"api_input_ui_actions_call_api","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="info_success_for_api__rs__for_api,"
 		let event_data={}

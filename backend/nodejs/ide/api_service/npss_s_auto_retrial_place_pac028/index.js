@@ -8,11 +8,12 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
     /*  Created By :SIVA hARISH
     Created Date :22/02/2023
     Modified By : 
-    Modified Date : 23/02/2023
+    Modified Date : 25/02/2023
     }
     */
     var serviceName = 'NPSS (S) Auto Retrial Place Pac028';
@@ -66,67 +67,99 @@ app.post('/', function(appRequest, appResponse, next) {
                                         ExecuteQuery1(Takedata, function (arruetrData) {
                                             if (arruetrData.length > 0) {
                                                 reqAsync.forEachOfSeries(arruetrData, function (arruetrDataobj, i, nextobjctfunc) {
+                                                   
+                                                    var TakeprocessGROUP = `select process_group from npss_transactions where uetr = '${arruetrDataobj.uetr}'`
                                                     var TakeuetrInfm = `select * from npss_trn_process_log where uetr = '${arruetrDataobj.uetr}' order by npsstpl_id desc limit ${arrTakehrs[0].retry_count}`
-                                                    ExecuteQuery1(TakeuetrInfm, async function (arruetrInformation) {
-                                                        if (arruetrInformation.length > 0) {
-                                                            if (Number(arruetrInformation.length) == Number(arrTakehrs[0].retry_count)) {
-                                                                var p028count = 0;
-                                                                var r002count = 0;
-                                                                var othercount = 0;
-                                                                for (var a = 0; a < arruetrInformation.length; a++) {
-                                                                    if (arruetrInformation[a].process_name == 'Place Pacs028') {
-                                                                        p028count++;
-                                                                    }
-                                                                    else if (arruetrInformation[a].process_name == 'Receive Pacs002') {
-                                                                        r002count++;
-                                                                    }
-                                                                    else {
-                                                                        othercount++;
-                                                                    }
-
-                                                                }
-                                                                if (r002count > 0 || p028count == Number(arrTakehrs[0].retry_count)) {
-                                                                    nextobjctfunc();
-                                                                }
-                                                                else {
-                                                                    var doapicall = await apiCall(arruetrDataobj, arrUrl);
-                                                                    if (doapicall == 'SUCCESS') {
-                                                                        nextobjctfunc();
-                                                                    } else {
-                                                                        reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                                                        nextobjctfunc();
-                                                                    }
-
-
-                                                                }
-                                                            }
-                                                            else {//for less than retry count
-
-
-                                                                if (arruetrInformation[0].process_name == 'Place Pacs028') {
-                                                                    var doapicall = await apiCall(arruetrDataobj, arrUrl);
-                                                                    if (doapicall == 'SUCCESS') {
-                                                                        nextobjctfunc();
-                                                                    } else {
-                                                                        reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                                                        nextobjctfunc();
-                                                                    }
-                                                                }
-                                                                else if (arruetrInformation[0].process_name == 'Receive Pacs002') {
-                                                                    nextobjctfunc();
-                                                                }
-                                                                else {
-                                                                    nextobjctfunc();
-                                                                }
-
-
+                                                    ExecuteQuery1(TakeprocessGROUP, function(processgroup){
+                                                        if(processgroup.length > 0){
+                                                            var payment_processing_method 
+                                                          
+                                                            if(processgroup[0].process_group == 'P2P'){
+                                                                payment_processing_method =  "SCT_INITITATION" 
+                                                              
+                                                            }else if(processgroup[0].process_group == 'P2B'){
+                                                                payment_processing_method =  "P2B_SCT_INITITATION" 
+                                                                
+                                                            }else if(processgroup[0].process_group == 'IBAN'){
+                                                                payment_processing_method = "AC_AC_IBAN" 
+                                                               
+                                                            }else{
+                                                                payment_processing_method = ''
                                                             }
 
-                                                        } else {
-                                                            nextobjctfunc()
+                                                            ExecuteQuery1(TakeuetrInfm, async function (arruetrInformation) {
+                                                       
+                                                                if (arruetrInformation.length > 0) {
+                                                                    if (Number(arruetrInformation.length) == Number(arrTakehrs[0].retry_count)) {
+                                                                        if(arruetrInformation[0].process_name == 'Place Pacs028'){
+                                                                            var p028count = 0;
+                                                                            var r002count = 0;
+                                                                          
+                                                                            for (var a = 0; a < arruetrInformation.length; a++) {
+                                                                                if (arruetrInformation[a].process_name == 'Place Pacs028') {
+                                                                                    p028count++;
+                                                                                }
+                                                                                // else if (arruetrInformation[a].process_name == 'Receive Pacs002') {
+                                                                                //     r002count++;
+                                                                                // }
+            
+                                                                            }
+                                                                            if (Number(p028count) == Number(arrTakehrs[0].retry_count)) {
+                                                                                nextobjctfunc();
+                                                                            }
+                                                                            else {
+                                                                                var doapicall = await apiCall(arruetrDataobj, arrUrl,payment_processing_method);
+                                                                                if (doapicall == 'SUCCESS') {
+                                                                                    nextobjctfunc();
+                                                                                } else {
+                                                                                    reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                                                                    nextobjctfunc();
+                                                                                }
+            
+            
+                                                                            }
+                                                                        }else{
+                                                                            nextobjctfunc();
+                                                                        }
+                                                                      
+                                                                    }
+                                                                    else {//for less than retry count
+        
+        
+                                                                        if (arruetrInformation[0].process_name == 'Place Pacs028') {
+                                                                            var doapicall = await apiCall(arruetrDataobj, arrUrl,payment_processing_method);
+                                                                            if (doapicall == 'SUCCESS') {
+                                                                                nextobjctfunc();
+                                                                            } else {
+                                                                                reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                                                                nextobjctfunc();
+                                                                            }
+                                                                        }
+                                                                        else if (arruetrInformation[0].process_name == 'Receive Pacs002') {
+                                                                            nextobjctfunc();
+                                                                        }
+                                                                        else {
+                                                                            nextobjctfunc();
+                                                                        }
+        
+        
+                                                                    }
+        
+                                                                } else {
+                                                                    nextobjctfunc()
+                                                                }
+                                                          
+                                                         
+    
+                                                        })
+
+                                                        }else{
+                                                            reqInstanceHelper.PrintInfo(serviceName, '------------Process Group Not Found  for uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                                            nextobjctfunc();  
                                                         }
-
+                                                       
                                                     })
+                                                   
 
                                                 }, function () {
                                                     objresponse.status = 'SUCCESS';
@@ -162,7 +195,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                        function apiCall(arruetrDataobj, arrUrl) {
+                        function apiCall(arruetrDataobj, arrUrl,payment_processing_method) {
                             return new Promise((resolve, reject) => {
 
                                 var TakeactInfm = `select uetr,hdr_msg_id,cr_sort_code,hdr_created_date,payment_endtoend_id,tran_ref_id from npss_transactions where uetr = '${arruetrDataobj.uetr}'`
@@ -186,7 +219,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "uetr": arrresult[0].uetr,
                                                     "tran_ref_id": arrresult[0].tran_ref_id,
                                                     "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09",
-                                                    "payment_processing_method": "SCT_INITITATION",
+                                                    "payment_processing_method": payment_processing_method,
                                                     "process_type": "OP"
 
                                                 },
@@ -363,6 +396,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

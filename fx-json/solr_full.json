@@ -1092,6 +1092,31 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$CURRENCY$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$ACCOUNTHOLDERBIC$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$ACCOUNTNUMBER$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$DATETIME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CYCLENUMBER$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$RESPONSE_CODE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
@@ -1108,21 +1133,6 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$RESPONSE_DATA_JSON$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$CURRENCY$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$ACCOUNTHOLDERBIC$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$ACCOUNTNUMBER$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
       },
@@ -1154,11 +1164,6 @@
       {
         $DQ$NAME$DQ$: $DQ$REF$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$DATETIME$DQ$,
-        $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
       },
       {

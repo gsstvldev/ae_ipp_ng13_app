@@ -1,0 +1,37 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_liq_pos_ui="ngForm">
+<div id="RN01" class="row">
+	<div #npss_liq_pos_ui_process_name id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('process_name')" >
+				<txt [ctrl_id]="'npss_liq_pos_ui_process_name'" [comp_id]="comp_id" [ctrl]="ctrl.process_name" [model]="screen_instance[this.comp_id].f_npss_liq_pos_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN01CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('currency')" >
+				<cbo [ctrl_id]="'npss_liq_pos_ui_currency'" [comp_id]="comp_id" [ctrl]="ctrl.currency" [model]="screen_instance[this.comp_id].f_npss_liq_pos_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN11CN3" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('accountholderbic')" >
+				<txt [ctrl_id]="'npss_liq_pos_ui_accountholderbic'" [comp_id]="comp_id" [ctrl]="ctrl.accountholderbic" [model]="screen_instance[this.comp_id].f_npss_liq_pos_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN11CN5" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('accountnumber')" >
+				<txt [ctrl_id]="'npss_liq_pos_ui_accountnumber'" [comp_id]="comp_id" [ctrl]="ctrl.accountnumber" [model]="screen_instance[this.comp_id].f_npss_liq_pos_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+<div id="RN21" class="row">
+	<div  id="RN21CN4" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('datetime')" >
+				<dtp [ctrl_id]="'npss_liq_pos_ui_datetime'" [comp_id]="comp_id" [ctrl]="ctrl.datetime" [model]="screen_instance[this.comp_id].f_npss_liq_pos_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></dtp>
+	</div>
+	<div  id="RN21CN6" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('datasource')" >
+				<txt [ctrl_id]="'npss_liq_pos_ui_datasource'" [comp_id]="comp_id" [ctrl]="ctrl.datasource" [model]="screen_instance[this.comp_id].f_npss_liq_pos_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'api_input_ui_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.api_input_ui_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.api_input_ui_clear.show"></btn>
+		<btn [ctrl_id]="'api_input_ui_save'" [comp_id]="comp_id" [ctrl]="screen_instance.api_input_ui_save" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.api_input_ui_save.show"></btn>
+		<btn [ctrl_id]="'api_input_ui_call_api'" [comp_id]="comp_id" [ctrl]="screen_instance.api_input_ui_call_api" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.api_input_ui_call_api.show"></btn>
+ 	</div>
+
+</div>

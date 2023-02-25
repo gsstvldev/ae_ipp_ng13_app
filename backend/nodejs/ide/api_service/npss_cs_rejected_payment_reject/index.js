@@ -7,10 +7,11 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 try {
     /*   Created By :Siva Harish
-    Created Date :24-02-2023
+    Created Date :25-02-2023
 
     */
     var serviceName = 'NPSS (CS) Rejected Payment Reject';
@@ -88,15 +89,25 @@ try {
                                                     var TakeacctInformation = `select * from core_nc_cbs_accounts where alternate_account_id = '${arrprocesslogObj.cdtr_iban}'`
                                                     ExecuteQuery1(TakeacctInformation, function (arracctInfrm) {
                                                         if (arracctInfrm.length > 0) {
-                                                            var Takeprsdata = `select status_intrbksttlmdt,status_resp_amount,status_accp_date,msg_id,npsstrrd_refno,cbuae_return_code from npss_trn_process_log where process_name='Receive Pacs002' and uetr = '${arrprocesslogObj.uetr}'`
+                                                            var Takeprsdata = `select msg_id,npsstrrd_refno,cbuae_return_code from npss_trn_process_log where process_name='Receive Pacs002' and uetr = '${arrprocesslogObj.uetr}'`
                                                             ExecuteQuery1(Takeprsdata, function (prsdata) {
-
                                                                 fn_doapicall(arrUrl, arrprocesslogObj, lclinstrm, arracctInfrm, prsdata, function (result) {
                                                                     if (result == 'SUCCESS') {
-                                                                        nextobjctfunc()
+                                                                        var UpdateTrnTbl = `update npss_transactions set  status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id = '${arrprocesslogObj.npsst_id}'`
+                                                                        ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
+                                                                            if (uptranresult == 'SUCCESS') {
+                                                                               nextobjctfunc()
+                                                                            } else {
+                                                                                objresponse.status = "FAILURE"
+                                                                                objresponse.errdata = 'Error in NPSS_TRN_PROCESS_LOG Table Update';
+                                                                                sendResponse(null, objresponse)
+                                            
+                                                                            }
+                                                                        })
+                                                                       
                                                                     } else {
                                                                         objresponse.status = 'FAILURE'
-                                                                        objresponse.errdata = 'Api Call Failed'
+                                                                        objresponse.errdata = 'Api Call Failed for TranId'+arrprocesslogObj.npsst_id
                                                                         sendResponse(null, objresponse)
                                                                     }
 
@@ -379,6 +390,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

@@ -7,14 +7,15 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
+
 
 
 
 
 try {
     /*   Created By :Siva Harish
-    Created Date :24-01-2023
+    Created Date :25-01-2023
   
      
    
@@ -77,21 +78,31 @@ try {
                             if (arrurlResult.length) {
                                 final_process_status = arrurlResult[0].success_process_status
                                 final_status = arrurlResult[0].success_status
-                                ExecuteQuery1(Takekafkaurl, async function (arrurl) {
+                                ExecuteQuery1(Takekafkaurl,  function (arrurl) {
                                     if (arrurl.length > 0) {
                                         if (params.Roleid == '705' || params.Roleid == 705) {
-                                            var UpdateTrnTbl = `update npss_transactions set  status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
-                                            ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
-                                                if (uptranresult == 'SUCCESS') {
-                                                    objresponse.status = 'SUCCESS';
-                                                    sendResponse(null, objresponse)
-                                                } else {
-                                                    objresponse.status = 'FAILURE';
-                                                    objresponse.errdata = "Error in npss transaction table update"
-                                                    sendResponse(null, objresponse)
+                                            // var UpdateTrnTbl = `update npss_transactions set  status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
+                                            // ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
+                                            //     if (uptranresult == 'SUCCESS') {
+                                            //         objresponse.status = 'SUCCESS';
+                                            //         sendResponse(null, objresponse)
+                                            //     } else {
+                                            //         objresponse.status = 'FAILURE';
+                                            //         objresponse.errdata = "Error in npss transaction table update"
+                                            //         sendResponse(null, objresponse)
 
+                                            //     }
+                                            // })
+                                            ExecuteQuery1(take_api_params,  function (arrTranparams) {
+                                                if (arrTranparams.length > 0) {
+                                                    InsertProcess(arrTranparams, final_process_status, final_status, PRCT_ID)
+                                                } else {
+                                                    objresponse.status = 'FAILURE'
+                                                    objresponse.errdata = 'No date in Tran Table'
+                                                    sendResponse(null, objresponse)
                                                 }
                                             })
+
 
                                         } else { //checker for repost
                                             ExecuteQuery1(take_api_params, async function (arrTranparams) {
@@ -227,7 +238,7 @@ try {
                         var reason_code
                         var npsst_refno
                         reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
-                           
+
                             var runfunction = async () => {
                                 var TakeacctInfrm = await AccountInformation(arrTranparamsObj)
                                 if (TakeacctInfrm.status == 'SUCCESS') {
@@ -379,7 +390,7 @@ try {
                 function CallORAPI(arrTranparams, failcountobj, failcount, arrurl) {
                     return new Promise((resolve, reject) => {
                         reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
-                            var runapifun = async()=>{
+                            var runapifun = async () => {
                                 var TakeacctInfrm = await AccountInformation(arrTranparamsObj)
                                 if (TakeacctInfrm.status == 'SUCCESS') {
                                     var Takereturncode = `select cbuae_return_code,npsstrrd_refno from npss_trn_process_log where process_name='Receive Pacs004' and uetr = '${arrTranparamsObj.uetr}'`
@@ -478,7 +489,7 @@ try {
                                     resolve(TakeacctInfrm.status)
                                 }
                             }
-                           
+
                             runapifun()
 
                         }, function () {
@@ -492,11 +503,11 @@ try {
 
 
                 function CallP2B(arrTranparams, failcountobj, failcount, arrurl) {
-                   
+
                     return new Promise((resolve, reject) => {
-                        var runquery = async()=>{
+                        var runquery = async () => {
                             var postrefno;
-                            reqAsync.forEachOfSeries(arrTranparams,  function (arrTranparamsObj, i, nextobjctfunc) {
+                            reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var TakepostingRefno = `select process_ref_no from npss_trn_process_log where process_name = 'Fund Reserve INAU Posting' and uetr='${arrTranparamsObj.uetr}'`
                                 ExecuteQuery1(TakepostingRefno, function (arrpostrefno) {
                                     if (arrpostrefno.length > 0) {
@@ -518,8 +529,8 @@ try {
                                                                 sell_margin = arrselldet[0].sell_margin
                                                                 sell_rate = arrselldet[0].sell_rate
                                                             }
-    
-    
+
+
                                                             try {
                                                                 var request = require('request');
                                                                 var options = {
@@ -588,7 +599,7 @@ try {
                                                                                     "customer_id": arrtakeacctinfo[0].customer_id || '',
                                                                                     "department_code": '',
                                                                                     "tran_type_code": arrtakereqjson[0].tran_type_code || '',
-                                                                                    "recipient_bic_code":  '',
+                                                                                    "recipient_bic_code": '',
                                                                                     "birth_date": '',
                                                                                     "country_of_birth": arrtakeacctinfo[0].country_of_birth || '',
                                                                                     "national_id": arrtakeacctinfo[0].account_number || '',
@@ -601,64 +612,64 @@ try {
                                                                     headers: {
                                                                         'Content-Type': 'application/json'
                                                                     }
-    
+
                                                                 }
-    
+
                                                                 var PrintInfo = {}
                                                                 PrintInfo.url = arrurl[0].param_detail
                                                                 PrintInfo.uetr = arrTranparamsObj.uetr || ''
-    
-    
+
+
                                                                 reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                                                 request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                                                     if (error) {
                                                                         reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                                         sendResponse(error, null);
-    
+
                                                                     } else {
                                                                         reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                                         nextobjctfunc()
                                                                     }
                                                                 });
-    
+
                                                             } catch (error) {
                                                                 reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
                                                                 sendResponse(error, null);
                                                             }
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
                                                         })
                                                     } else {
                                                         reqInstanceHelper.PrintInfo(serviceName, '------------Account Information Not Found-------' + arrpayverobj.uetr, objSessionLogInfo);
                                                         resolve('Account Info not found for p2b process')
                                                     }
-    
-    
+
+
                                                 })
-    
-    
-    
+
+
+
                                             } else {
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------Request Data not found for uetr-------' + arrpayverobj.uetr, objSessionLogInfo);
                                                 resolve('Account Information not found for p2b process')
                                             }
                                         })
-    
+
                                     } else {
                                         reqInstanceHelper.PrintInfo(serviceName, '------------Posting Ref no not found for -------' + arrpayverobj.uetr, objSessionLogInfo);
                                         resolve('PostRefno not found for p2b process')
                                     }
-    
+
                                 })
                             }, function () {
                                 resolve('SUCCESS')
                             })
                         }
-                       
+
                         runquery()
 
                     })
@@ -813,6 +824,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

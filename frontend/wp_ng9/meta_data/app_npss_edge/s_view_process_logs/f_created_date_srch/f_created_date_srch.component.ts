@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27598 
+Build ID        : 28274 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-29 6:21 AM 
+Modified Date   : 2023-Feb-25 5:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_process_logs
@@ -108,6 +108,7 @@ focustoelement(){
 		this.ctrl.memory11.currency_format = ""
 		this.ctrl.memory11.data_scale = ""
 		this.ctrl.memory11.binding_name = "API"
+		this.ctrl.memory11.hide_label = false
 		this.ctrl.memory11.depends_on = ""
 		this.ctrl.memory11.placeholder = ""
 		this.ctrl.memory11.dynamic_param = ""

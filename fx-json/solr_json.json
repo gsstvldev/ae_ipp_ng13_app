@@ -1,5 +1,51 @@
 [{
-  $DQ$TRAN_INSERTION$DQ$: [],
+  $DQ$TRAN_INSERTION$DQ$: [
+    {
+      $DQ$NAME$DQ$: $DQ$ACCOUNTHOLDERBIC$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$ACCOUNTNUMBER$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$DATASOURCE$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$SENDERBIC$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$FROMDATE$DQ$,
+      $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$TODATE$DQ$,
+      $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$REFTYPE$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$REF$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$DATETIME$DQ$,
+      $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+    }
+  ],
   $DQ$TRAN_DELETION$DQ$: [],
   $DQ$ATMT_INSERTION$DQ$: []
 }]

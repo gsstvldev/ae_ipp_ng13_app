@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_CORE_API_PROCESS_LOG add column CYCLENUMBER CHARACTER VARYING(32);","params" : [] }]
+[]

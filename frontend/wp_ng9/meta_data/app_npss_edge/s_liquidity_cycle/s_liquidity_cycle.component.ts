@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28332 
+Build ID        : 28338 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 7:59 AM 
+Modified Date   : 2023-Feb-25 11:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_liquidity_cycle
@@ -12,13 +12,13 @@ Screen Name     : s_liquidity_cycle
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {npss_cs_liquidity_positionService} from '../../../custom_widget/npss_cs_liquidity_position/npss_cs_liquidity_position.service'
+import {npss_cs_liquidity_cycleService} from '../../../custom_widget/npss_cs_liquidity_cycle/npss_cs_liquidity_cycle.service'
 
 @Component({
 	selector: 's_liquidity_cycle',
 	templateUrl: './s_liquidity_cycle.component.html',
 	styleUrls: ['./s_liquidity_cycle.component.css'],
-	providers:[npss_cs_liquidity_positionService]
+	providers:[npss_cs_liquidity_cycleService]
 })
     
 // Start of class 
@@ -27,7 +27,7 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_liquidity_cycle"
 	wftpa_id : string = "WFT_NPSS_P_1304_1677311303773_0"
 	cg_code : string = "CG_1304_1677311239030"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID"}
+	key_column : any = {}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -37,7 +37,7 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 	uicgc_3 : string = "list"
 	key_events : any = {}
 	btl_1304_1677303885071 : string = "p_main_layout"
-	forms : any = ["uicgc_1","uicgc_2"]
+	forms : any = ["uicgc_2","uicgc_1"]
 	api_input_ui : any = {}
 	api_input_ui_clear : any = {}
 	api_input_ui_save : any = {}
@@ -50,7 +50,7 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private npss_cs_liquidity_positionService:npss_cs_liquidity_positionService) {
+	constructor(private handler:AppHandlerService ,private npss_cs_liquidity_cycleService:npss_cs_liquidity_cycleService) {
     
 	}
     
@@ -63,12 +63,12 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 		this.api_input_ui.params = {}
 		this.api_input_ui.datasource = {}
 		this.api_input_ui.context_menu = []
-		this.api_input_ui.views = {"first":"DTT_1304_1670589169341","is_tab_mode":"N","dtt_1304_1670589169341":{"0":[{"dttv_id":"NPSS Liq Cycle UI","tab_order":0,"tab_name":"","uicgc_description":"API Input UI","role_description":"default","dtt_description":"Core API Process Log"}]}}
+		this.api_input_ui.views = {}
 		this.api_input_ui.onChangecomponent = new EventEmitter<any>()
 		this.api_input_ui.show = true
 		this.api_input_ui.dynamic_param = {}
-		this.api_input_ui.f_npss_liq_cycle_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.api_input_ui.form_name = "f_npss_liq_cycle_ui"
+		this.api_input_ui.f_api_input_ui = {"show":true}
+		this.api_input_ui.current_view = "f_api_input_ui"
 		
 		// "Clear" Button of "API Input UI" component
 		this.api_input_ui_clear.label_name = "Clear"
@@ -113,12 +113,12 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 		this.search.params = {}
 		this.search.datasource = {}
 		this.search.context_menu = []
-		this.search.views = {"first":"DTT_1304_1670589169341","is_tab_mode":"N","dtt_1304_1670589169341":{"0":[{"dttv_id":"NPSS Liq Cycle SRCH","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"Core API Process Log"}]}}
+		this.search.views = {}
 		this.search.onChangecomponent = new EventEmitter<any>()
 		this.search.show = true
 		this.search.dynamic_param = {}
-		this.search.f_npss_liq_cycle_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.search.form_name = "f_npss_liq_cycle_srch"
+		this.search.f_search = {"show":true}
+		this.search.current_view = "f_search"
 		
 		// "Clear" Button of "Search" component
 		this.search_clear.label_name = "Clear"
@@ -142,8 +142,8 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 		this.list.uictrl_code = "datatable"
 		this.list.uicgc_desc = "List"
 		this.list.uicgc_code = "uicgc_3"
-		this.list.params = {"need_search":"N","need_pag_datatable":"Y"}
-		this.list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677311519796","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,   PROCESS_NAME,   PROCESSING_SYSTEM,   CURRENCY,   ACCOUNTHOLDERBIC,   ACCOUNTNUMBER,   DATETIME,   RESPONSE_CODE,   PROCESS_REF_NO,   REQUEST_DATA_JSON,   RESPONSE_DATA_JSON,   DATASOURCE,   SENDERBIC,   FROMDATE,   TODATE,   REFTYPE,   ref,   CYCLENUMBER,   CREATED_BY,   CREATED_BY_NAME,   CREATED_BY_STS_ID,   CREATED_DATE,   DT_CODE,   DT_DESCRIPTION,   DTT_CODE,   DTT_DESCRIPTION,   MODIFIED_BY,   MODIFIED_BY_NAME,   MODIFIED_BY_STS_ID,   MODIFIED_DATE,   PRCT_ID,   STATUS,   PROCESS_STATUS,   SYSTEM_ID,   SYSTEM_NAME,   TENANT_ID,   APP_ID,   VERSION_NO from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Core API PLOG Liq Cycle CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cycle Number","target_column":"CYCLENUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.list.params = {"need_search":"N","need_pag_datatable":"Y","need_multi_select":"Y"}
+		this.list.datasource = {}
 		this.list.context_menu = []
 		this.list.views = {}
 		this.list.onChangecomponent = new EventEmitter<any>()
@@ -162,6 +162,7 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 		this.page_load__tbc_for_hide()
 		this.page_load__hide_ele()
 		this.page_load__tbc_for_pl()
+		this.page_load__e_1677311920076()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
@@ -183,6 +184,11 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 	list__selection_changed(){
 		this.list__bt_for_list()
 		this.list__svm_for_list()
+	}
+
+	//Handler for CHECKED_CHANGED event of "list"
+	list__checked_changed(){
+		this.list__e_1677317721701()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "api input ui clear"
@@ -223,11 +229,6 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "info success for api"
 	info_success_for_api__internal(parent_event_result){
 		this.info_success_for_api__rs__for_api(parent_event_result)
-	}
-
-	//Handler for ACTION_BUTTON_CLICK event of "api input ui trg hide"
-	api_input_ui_trg_hide__action_button_click(){
-		this.api_input_ui_trg_hide__e_1677311702567__api_input_ui()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -314,6 +315,27 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1677311920076() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="api_input_ui_call_api"
+		let parent_source_id=""
+		let event_code="e_1677311920076"
+		let event_params={"caller_name":"page_load__e_1677311920076","event_desc":"E_1677311920076","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__ssp_for_search() { 
 		let Dest_Is_ctrl=true
@@ -348,7 +370,7 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677311519796","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,   PROCESS_NAME,   PROCESSING_SYSTEM,   CURRENCY,   ACCOUNTHOLDERBIC,   ACCOUNTNUMBER,   DATETIME,   RESPONSE_CODE,   PROCESS_REF_NO,   REQUEST_DATA_JSON,   RESPONSE_DATA_JSON,   DATASOURCE,   SENDERBIC,   FROMDATE,   TODATE,   REFTYPE,   ref,   CYCLENUMBER,   CREATED_BY,   CREATED_BY_NAME,   CREATED_BY_STS_ID,   CREATED_DATE,   DT_CODE,   DT_DESCRIPTION,   DTT_CODE,   DTT_DESCRIPTION,   MODIFIED_BY,   MODIFIED_BY_NAME,   MODIFIED_BY_STS_ID,   MODIFIED_DATE,   PRCT_ID,   STATUS,   PROCESS_STATUS,   SYSTEM_ID,   SYSTEM_NAME,   TENANT_ID,   APP_ID,   VERSION_NO from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Core API PLOG Liq Cycle CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cycle Number","target_column":"CYCLENUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -410,10 +432,31 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 		let event_params={"caller_name":"list__svm_for_list","event_desc":"SVM for List","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals=""
-		let event_data={"list":{"e_1677308498381":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_3","event_code":"E_1677308498381","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"Core API Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"NPSSCAPL_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSCAPL_ID","setd3name":"NPSSCAPL_ID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677311519796","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,   PROCESS_NAME,   PROCESSING_SYSTEM,   CURRENCY,   ACCOUNTHOLDERBIC,   ACCOUNTNUMBER,   DATETIME,   RESPONSE_CODE,   PROCESS_REF_NO,   REQUEST_DATA_JSON,   RESPONSE_DATA_JSON,   DATASOURCE,   SENDERBIC,   FROMDATE,   TODATE,   REFTYPE,   ref,   CYCLENUMBER,   CREATED_BY,   CREATED_BY_NAME,   CREATED_BY_STS_ID,   CREATED_DATE,   DT_CODE,   DT_DESCRIPTION,   DTT_CODE,   DTT_DESCRIPTION,   MODIFIED_BY,   MODIFIED_BY_NAME,   MODIFIED_BY_STS_ID,   MODIFIED_DATE,   PRCT_ID,   STATUS,   PROCESS_STATUS,   SYSTEM_ID,   SYSTEM_NAME,   TENANT_ID,   APP_ID,   VERSION_NO from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Core API PLOG Liq Cycle CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cycle Number","target_column":"CYCLENUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let event_data={}
+		let data_source={}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for CHECKED_CHANGED event of "list"
+	list__e_1677317721701() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="list"
+		let destn_id="api_input_ui_call_api"
+		let parent_source_id=""
+		let event_code="e_1677317721701"
+		let event_params={"caller_name":"list__e_1677317721701","event_desc":"E_1677317721701","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -542,7 +585,7 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_liquidity_positionService.fn_npss_cs_liquidity_position(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_liquidity_cycleService.fn_npss_cs_liquidity_cycle(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -587,27 +630,6 @@ export class s_liquidity_cycleComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "api input ui trg hide"
-	api_input_ui_trg_hide__e_1677311702567__api_input_ui() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="api_input_ui_trg_hide"
-		let destn_id="npss_liq_cycle_ui_process_name"
-		let parent_source_id=""
-		let event_code="e_1677311702567"
-		let event_params={"destn_comp_id":"api_input_ui","destn_ctrl_id":"process_name","caller_name":"api_input_ui_trg_hide__e_1677311702567__api_input_ui","event_desc":"E_1677311702567","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_trg_hide","raiseparam":{}}
-		let handler_code="disable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

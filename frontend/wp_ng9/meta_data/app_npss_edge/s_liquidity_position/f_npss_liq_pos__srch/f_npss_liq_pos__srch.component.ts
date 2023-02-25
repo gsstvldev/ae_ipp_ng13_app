@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28334 
+Build ID        : 28338 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 7:1 AM 
+Modified Date   : 2023-Feb-25 11:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_liquidity_position
@@ -95,7 +95,7 @@ focustoelement(){
 		this.ctrl.accountholderbic.label_name = "Account Holder BIC"
 		this.ctrl.accountholderbic.df_code = "DF_1304_1670589236195"
 		this.ctrl.accountholderbic.df_description = "Column Group 1"
-		this.ctrl.accountholderbic.uictrl_code = "TXT"
+		this.ctrl.accountholderbic.uictrl_code = "CDN_CTRL"
 		this.ctrl.accountholderbic.target_column = "ACCOUNTHOLDERBIC"
 		this.ctrl.accountholderbic.data_type = "TEXT"
 		this.ctrl.accountholderbic.data_length = 32
@@ -134,7 +134,7 @@ focustoelement(){
 		this.ctrl.accountnumber.label_name = "Account Number"
 		this.ctrl.accountnumber.df_code = "DF_1304_1670589236195"
 		this.ctrl.accountnumber.df_description = "Column Group 1"
-		this.ctrl.accountnumber.uictrl_code = "TXT"
+		this.ctrl.accountnumber.uictrl_code = "CDN_CTRL"
 		this.ctrl.accountnumber.target_column = "ACCOUNTNUMBER"
 		this.ctrl.accountnumber.data_type = "TEXT"
 		this.ctrl.accountnumber.data_length = 32
@@ -204,7 +204,7 @@ focustoelement(){
 		this.ctrl.npss_liq_pos__srch_datetime = {}
 		this.ctrl.npss_liq_pos__srch_datetime.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_liq_pos__srch.model = {"CURRENCY":"","ACCOUNTHOLDERBIC":"","ACCOUNTNUMBER":"","DATETIME":"setcurrentdate(),{}"}
-		this.screen_instance[this.comp_id].f_npss_liq_pos__srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNTHOLDERBIC"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNTNUMBER"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"DATETIME"}]
+		this.screen_instance[this.comp_id].f_npss_liq_pos__srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CURRENCY"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNTHOLDERBIC"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNTNUMBER"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"DATETIME"}]
 		this.screen_instance[this.comp_id].f_npss_liq_pos__srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_liq_pos__srch.dtt_code = "dtt_1304_1670589169341"
 		this.screen_instance[this.comp_id].f_npss_liq_pos__srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

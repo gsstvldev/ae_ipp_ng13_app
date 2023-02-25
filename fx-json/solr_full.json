@@ -1117,6 +1117,21 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$SENDERBIC$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$FROMDATE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$TODATE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$RESPONSE_CODE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
@@ -1139,21 +1154,6 @@
       {
         $DQ$NAME$DQ$: $DQ$DATASOURCE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$SENDERBIC$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$FROMDATE$DQ$,
-        $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$TODATE$DQ$,
-        $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$
       },
       {

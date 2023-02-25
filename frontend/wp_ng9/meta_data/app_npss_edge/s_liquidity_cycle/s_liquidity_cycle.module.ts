@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28332 
+Build ID        : 28338 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 7:59 AM 
+Modified Date   : 2023-Feb-25 11:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_liquidity_cycle
@@ -19,7 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
-import {npss_cs_liquidity_positionModule} from '../../../custom_widget/npss_cs_liquidity_position/npss_cs_liquidity_position.module'
+import {npss_cs_liquidity_cycleModule} from '../../../custom_widget/npss_cs_liquidity_cycle/npss_cs_liquidity_cycle.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -33,8 +33,8 @@ import { s_liquidity_cycleRoutingModule } from './s_liquidity_cycle.routing.modu
 
 
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
-import { f_npss_liq_cycle_srchComponent } from './f_npss_liq_cycle_srch/f_npss_liq_cycle_srch.component'
-import { f_npss_liq_cycle_uiComponent } from './f_npss_liq_cycle_ui/f_npss_liq_cycle_ui.component'
+import { f_searchComponent } from './f_search/f_search.component'
+import { f_api_input_uiComponent } from './f_api_input_ui/f_api_input_ui.component'
 
 
 
@@ -49,9 +49,9 @@ import { f_npss_liq_cycle_uiComponent } from './f_npss_liq_cycle_ui/f_npss_liq_c
     OverlayPanelModule,
     
     s_liquidity_cycleRoutingModule,
-    npss_cs_liquidity_positionModule
+    npss_cs_liquidity_cycleModule
   ],
-  declarations: [s_liquidity_cycleComponent,p_main_layoutComponent,f_npss_liq_cycle_srchComponent,f_npss_liq_cycle_uiComponent,],
+  declarations: [s_liquidity_cycleComponent,p_main_layoutComponent,f_searchComponent,f_api_input_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

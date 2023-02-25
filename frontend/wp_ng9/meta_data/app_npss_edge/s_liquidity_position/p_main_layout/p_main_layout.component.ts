@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28334 
+Build ID        : 28338 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 7:1 AM 
+Modified Date   : 2023-Feb-25 11:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_liquidity_position
@@ -24,6 +24,7 @@ export class p_main_layoutComponent implements OnInit {
   // Variables 
   	search : any = {}
 	api_input_ui : any = {}
+	api_input_ui_actions : any = {}
 	list : any = {}
 
 
@@ -36,6 +37,8 @@ export class p_main_layoutComponent implements OnInit {
 		this.search.need_header = ""
 		this.api_input_ui.desc = "API Input UI"
 		this.api_input_ui.need_header = ""
+		this.api_input_ui_actions.desc = "API Input UI Actions"
+		this.api_input_ui_actions.need_header = ""
 		this.list.desc = "List"
 		this.list.need_header = true
 	

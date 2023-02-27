@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28343 
+Build ID        : 28355 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 14:34 PM 
+Modified Date   : 2023-Feb-27 7:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_find_linked_r_messages
@@ -217,7 +217,7 @@ focustoelement(){
 		this.ctrl.todate.data_type = "DATETIME"
 		this.ctrl.todate.data_length = 0
 		this.ctrl.todate.zone_df_code = "DF_1304_1670589236195"
-		this.ctrl.todate.default_value = ""
+		this.ctrl.todate.default_value = "setcurrentdate(),{}"
 		this.ctrl.todate.is_memory_ctrl = ""
 		this.ctrl.todate.field_coordinates = ""
 		this.ctrl.todate.sub_details = ""
@@ -242,7 +242,7 @@ focustoelement(){
 		this.ctrl.todate.ctrl_id = "npss_find_linked_r_message_srch_todate"
 		this.ctrl.npss_find_linked_r_message_srch_todate = {}
 		this.ctrl.npss_find_linked_r_message_srch_todate.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_find_linked_r_message_srch.model = {"REFTYPE":"","REF":"","SENDERBIC":"","FROMDATE":"setcurrentdate(),{}","TODATE":""}
+		this.screen_instance[this.comp_id].f_npss_find_linked_r_message_srch.model = {"REFTYPE":"","REF":"","SENDERBIC":"","FROMDATE":"setcurrentdate(),{}","TODATE":"setcurrentdate(),{}"}
 		this.screen_instance[this.comp_id].f_npss_find_linked_r_message_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"REFTYPE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"REF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SENDERBIC"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"FROMDATE"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"TODATE"}]
 		this.screen_instance[this.comp_id].f_npss_find_linked_r_message_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_find_linked_r_message_srch.dtt_code = "dtt_1304_1670589169341"

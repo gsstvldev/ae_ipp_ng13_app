@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28341 
+Build ID        : 28355 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 14:37 PM 
+Modified Date   : 2023-Feb-27 7:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_detail
@@ -116,7 +116,7 @@ focustoelement(){
 		this.ctrl.reftype.show = true
 		this.ctrl.reftype.sub_content = ""
 		this.ctrl.reftype.required = false
-		this.ctrl.reftype.vld_rules = []
+		this.ctrl.reftype.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.reftype.targetcolumn_lower = "reftype"
 		this.ctrl.reftype.disabled = false
 		this.ctrl.reftype.view_name = "f_npss_payment_detail_ui"
@@ -154,7 +154,7 @@ focustoelement(){
 		this.ctrl.ref.show = true
 		this.ctrl.ref.sub_content = ""
 		this.ctrl.ref.required = false
-		this.ctrl.ref.vld_rules = []
+		this.ctrl.ref.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.ref.targetcolumn_lower = "ref"
 		this.ctrl.ref.disabled = false
 		this.ctrl.ref.view_name = "f_npss_payment_detail_ui"
@@ -192,7 +192,7 @@ focustoelement(){
 		this.ctrl.senderbic.show = true
 		this.ctrl.senderbic.sub_content = ""
 		this.ctrl.senderbic.required = false
-		this.ctrl.senderbic.vld_rules = []
+		this.ctrl.senderbic.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.senderbic.targetcolumn_lower = "senderbic"
 		this.ctrl.senderbic.disabled = false
 		this.ctrl.senderbic.view_name = "f_npss_payment_detail_ui"
@@ -230,7 +230,7 @@ focustoelement(){
 		this.ctrl.datetime.show = true
 		this.ctrl.datetime.sub_content = ""
 		this.ctrl.datetime.required = false
-		this.ctrl.datetime.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
+		this.ctrl.datetime.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Select the date","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.datetime.targetcolumn_lower = "datetime"
 		this.ctrl.datetime.disabled = false
 		this.ctrl.datetime.view_name = "f_npss_payment_detail_ui"

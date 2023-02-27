@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28341 
+Build ID        : 28355 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 14:37 PM 
+Modified Date   : 2023-Feb-27 7:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_detail
@@ -69,6 +69,7 @@ focustoelement(){
 		this.ctrl.reftype.currency_format = ""
 		this.ctrl.reftype.data_scale = ""
 		this.ctrl.reftype.binding_name = "REFTYPE"
+		this.ctrl.reftype.hide_label = false
 		this.ctrl.reftype.depends_on = ""
 		this.ctrl.reftype.placeholder = ""
 		this.ctrl.reftype.dynamic_param = ""
@@ -107,6 +108,7 @@ focustoelement(){
 		this.ctrl.ref.currency_format = ""
 		this.ctrl.ref.data_scale = ""
 		this.ctrl.ref.binding_name = "REF"
+		this.ctrl.ref.hide_label = false
 		this.ctrl.ref.depends_on = ""
 		this.ctrl.ref.placeholder = ""
 		this.ctrl.ref.dynamic_param = ""

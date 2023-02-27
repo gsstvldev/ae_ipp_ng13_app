@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28343 
+Build ID        : 28355 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 14:34 PM 
+Modified Date   : 2023-Feb-27 7:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_find_linked_r_messages
@@ -116,7 +116,7 @@ focustoelement(){
 		this.ctrl.reftype.show = true
 		this.ctrl.reftype.sub_content = ""
 		this.ctrl.reftype.required = false
-		this.ctrl.reftype.vld_rules = []
+		this.ctrl.reftype.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.reftype.targetcolumn_lower = "reftype"
 		this.ctrl.reftype.disabled = false
 		this.ctrl.reftype.view_name = "f_npss_find_linked_r_message_ui"
@@ -154,7 +154,7 @@ focustoelement(){
 		this.ctrl.ref.show = true
 		this.ctrl.ref.sub_content = ""
 		this.ctrl.ref.required = false
-		this.ctrl.ref.vld_rules = []
+		this.ctrl.ref.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.ref.targetcolumn_lower = "ref"
 		this.ctrl.ref.disabled = false
 		this.ctrl.ref.view_name = "f_npss_find_linked_r_message_ui"
@@ -192,7 +192,7 @@ focustoelement(){
 		this.ctrl.senderbic.show = true
 		this.ctrl.senderbic.sub_content = ""
 		this.ctrl.senderbic.required = false
-		this.ctrl.senderbic.vld_rules = []
+		this.ctrl.senderbic.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.senderbic.targetcolumn_lower = "senderbic"
 		this.ctrl.senderbic.disabled = false
 		this.ctrl.senderbic.view_name = "f_npss_find_linked_r_message_ui"
@@ -230,7 +230,7 @@ focustoelement(){
 		this.ctrl.fromdate.show = true
 		this.ctrl.fromdate.sub_content = ""
 		this.ctrl.fromdate.required = false
-		this.ctrl.fromdate.vld_rules = []
+		this.ctrl.fromdate.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Select the Date","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.fromdate.targetcolumn_lower = "fromdate"
 		this.ctrl.fromdate.disabled = false
 		this.ctrl.fromdate.view_name = "f_npss_find_linked_r_message_ui"
@@ -268,7 +268,7 @@ focustoelement(){
 		this.ctrl.todate.show = true
 		this.ctrl.todate.sub_content = ""
 		this.ctrl.todate.required = false
-		this.ctrl.todate.vld_rules = []
+		this.ctrl.todate.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Select the Date","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.todate.targetcolumn_lower = "todate"
 		this.ctrl.todate.disabled = false
 		this.ctrl.todate.view_name = "f_npss_find_linked_r_message_ui"

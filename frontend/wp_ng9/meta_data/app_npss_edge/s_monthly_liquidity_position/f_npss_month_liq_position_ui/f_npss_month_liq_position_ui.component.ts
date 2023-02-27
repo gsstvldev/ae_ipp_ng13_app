@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28341 
+Build ID        : 28355 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 14:37 PM 
+Modified Date   : 2023-Feb-27 7:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_monthly_liquidity_position
@@ -231,7 +231,7 @@ focustoelement(){
 		this.ctrl.datetime.show = true
 		this.ctrl.datetime.sub_content = ""
 		this.ctrl.datetime.required = false
-		this.ctrl.datetime.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
+		this.ctrl.datetime.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Select the date","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.datetime.targetcolumn_lower = "datetime"
 		this.ctrl.datetime.disabled = false
 		this.ctrl.datetime.view_name = "f_npss_month_liq_position_ui"

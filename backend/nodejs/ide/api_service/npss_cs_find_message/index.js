@@ -7,11 +7,13 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
+    
 
     /*  Created By :Daseen
     Created Date :25/02/2023
     Modified By : 
-    Modified Date : 25/02/2023
+    Modified Date : 27/02/2023 6:55pm
     }
     */
     var serviceName = 'NPSS (CS) Find Message';
@@ -134,7 +136,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     var fd = moment(arrTranobj.fromdate).format("YYYY-MM-DD")+'T00:00:00.000'
                                     var td = moment(arrTranobj.todate).format("YYYY-MM-DD")+'T23:00:00.000'
                                     var apiURL =
-                                        apiURL = arrUrl[0].param_detail +'/findRMessages?sender=' + arrTranobj.senderbic + '&from-date=' + fd+'&to-date=' + td+'&datasource='+datasource;
+                                        apiURL = arrUrl[0].param_detail +'/findRMessages?sender=' + arrTranobj.senderbic + '&from-date=' + fd+'&to-date=' + td+'&datasource='+arrTranobj.datasource;
                                     var options = {
                                         url: apiURL,
                                         timeout: 99999999,
@@ -143,6 +145,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                         },
                                         headers: {
+                                            'capl_id':arrTranobj.npsscapl_id,
                                             'content-type': 'application/json'
                                         }
                                     };
@@ -247,6 +250,8 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
+
 
 
 

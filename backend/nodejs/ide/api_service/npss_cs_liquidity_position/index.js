@@ -7,10 +7,11 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
     /*  Created By :Daseen
     Created Date :25/02/2023
     Modified By : 
-    Modified Date : 25/02/2023
+    Modified Date : 27/02/2023 6:52pm
     }
     */
     var serviceName = 'NPSS (CS) Liquidity Position';
@@ -141,6 +142,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                         },
                                         headers: {
+                                            'capl_id':arrTranobj.npsscapl_id,
                                             'content-type': 'application/json'
                                         }
                                     };
@@ -269,6 +271,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

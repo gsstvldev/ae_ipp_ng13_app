@@ -8,13 +8,15 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
+    
 
 
 
     /*  Created By :Siva Harish
     Created Date :25/02/2023
     Modified By : 
-    Modified Date : 
+    Modified Date :27/02/2023 7:02pm
     }
     */
     var serviceName = 'NPSS (CS) Liquidity Cycle';
@@ -136,7 +138,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             var request = require('request');
                                             var apiURL =
                                            
-                                            apiURL = arrUrl[0].param_detail+ '/liquidityCycle?currency='+arrTranobj.currency +'&accountHolderBic='+arrTranobj.accountholderbic+'&accountNumber='+arrTranobj.accountnumber+'cycleNumber='+arrTranobj.cycleNumber
+                                            apiURL = arrUrl[0].param_detail+ '/liquidityCycle?currency='+arrTranobj.currency +'&accountHolderBic='+arrTranobj.accountholderbic+'&accountNumber='+arrTranobj.accountnumber+'cycleNumber='+arrTranobj.cyclenumber
                                             var options = {
                                                 url: apiURL,
                                                 timeout: 99999999,
@@ -145,6 +147,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                    
                                                 },
                                                 headers: {
+                                                    'capl_id':arrTranobj.npsscapl_id,
                                                     'content-type': 'application/json'
                                                 }
                                             };
@@ -276,6 +279,8 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
+
 
 
 

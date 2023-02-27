@@ -7,14 +7,16 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
+    
 
 
 
 
 /*  Created By :Siva Harish
 Created Date :25/02/2023
-Modified By : 
-Modified Date : 
+Modified By : Siva Harish
+Modified Date : 27/02/2023 6:40pm
 }
 */
 var serviceName = 'NPSS (CS) Volume Values';
@@ -29,7 +31,7 @@ var params = appRequest.body.PARAMS; //  Client input fromm Server
 var headers = appRequest.headers; // header details 
 var objSessionLogInfo = null; // set value is null
 var success_process_status, success_status;
-
+var moment = require('moment');
 var reqAsync = require('async');
 
 var mTranConn = "";
@@ -51,7 +53,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         objSessionLogInfo.HANDLER_CODE = 'NPSS (CS) Volume Values';
         objSessionLogInfo.ACTION = 'ACTION';
         objSessionLogInfo.PROCESS = 'NPSS (CS) Volume Values';
-        // Get DB Connection 
+          // Get DB Connection 
         reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
             mTranConn = pSession; //  assign connection     
             reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
@@ -143,6 +145,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
                                     },
                                     headers: {
+                                        'capl_id':arrTranobj.npsscapl_id,
                                         'content-type': 'application/json'
                                     }
                                 };
@@ -273,6 +276,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 })
+
+
 
 
 

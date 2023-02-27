@@ -102,11 +102,23 @@ export class torus_cs_show_hideService {
           let curElement = document.getElementsByClassName(curLoopForm)[0].getElementsByClassName('dynamic_action_btn')[0].getElementsByTagName('button')
           this.hideAllBtn(curElement, screenInstance);
           let showBothModeCtrl = []
-          if (this.MiLevelStatus) {
+           if (this.MiLevelStatus) {
             showBothModeCtrl = data.filter((value) => {
+            if(value.process_queue_status && value.action_mode && (value.role_id == null || value.role_id == '')){
               return (value.process_queue_status == this.MiLevelStatus && value.action_mode == this.MiLevelActionMode) || (value.process_queue_status == this.MiLevelStatus && value.action_mode == 'BOTH')
+              }
+             else if(value.process_queue_status && value.action_mode && value.role_id){
+              return (value.process_queue_status == this.MiLevelStatus && value.action_mode == this.MiLevelActionMode && value.role_id == this.CurRoleId) || (value.process_queue_status == this.MiLevelStatus && value.action_mode == 'BOTH' && value.role_id == this.CurRoleId)
+              }
+              
             })
           }
+          //if (this.MiLevelStatus) {
+        // showBothModeCtrl = data.filter((value) => {
+          //return (value.process_queue_status == this.MiLevelStatus && value.action_mode == this.MiLevelActionMode) || (value.process_queue_status == this.MiLevelStatus && value.action_mode == 'BOTH')
+        //    })
+         // }
+         
 
           if (showBothModeCtrl.length) {
             this.showBtn(curElement, showBothModeCtrl, screenInstance)

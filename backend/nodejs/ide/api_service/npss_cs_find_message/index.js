@@ -97,19 +97,19 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         })
                                                     } else {
                                                         reqInstanceHelper.PrintInfo(serviceName, '-----------Update not success------', objSessionLogInfo);
-                                                        objresponse.status = 'FAILURE';
+                                                        objresponse.status = 'Failure in Tran Update';
                                                         sendResponse(null, objresponse)
                                                     }
                                                 })
                                             } else {
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------No URL found------', objSessionLogInfo);
-                                                objresponse.status = 'FAILURE';
+                                                objresponse.status = 'URL is not found';
                                                 sendResponse(null, objresponse)
                                             }
                                         })
                                     } else {
                                         reqInstanceHelper.PrintInfo(serviceName, '------------No Tran found-------', objSessionLogInfo);
-                                        objresponse.status = 'FAILURE';
+                                        objresponse.status = 'Tran Not Found';
                                         sendResponse(null, objresponse);
                                     }
 
@@ -117,7 +117,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 })
                             } else {
                                 reqInstanceHelper.PrintInfo(serviceName, '------------No Status  found-------', objSessionLogInfo);
-                                objresponse.status = 'FAILURE';
+                                objresponse.status = 'Status Not Found';
                                 sendResponse(null, objresponse);
                             }
 
@@ -197,30 +197,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             });
                         }
 
-                        function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
-                            try {
-                                reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
-                                    try {
-                                        if (error) {
-                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
-                                            sendResponse(error)
-                                        } else {
-                                            if (result.length > 0) {
-                                                callbackInsert(result);
-                                            } else {
-                                                callbackInsert([]);
-                                            }
-                                        }
-                                    } catch (error) {
-                                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
-                                        sendResponse(error)
-                                    }
-                                });
-                            } catch (error) {
-                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
-                                sendResponse(error)
-                            }
-                        }
+                    
 
 
                         function ExecuteQuery1(query, callback) {

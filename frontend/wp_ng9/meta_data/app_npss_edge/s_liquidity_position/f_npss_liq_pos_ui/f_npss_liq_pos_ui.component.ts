@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28341 
+Build ID        : 28348 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-25 14:37 PM 
+Modified Date   : 2023-Feb-27 5:11 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_liquidity_position
@@ -252,7 +252,7 @@ focustoelement(){
 		this.ctrl.datasource.data_type = "TEXT"
 		this.ctrl.datasource.data_length = 64
 		this.ctrl.datasource.zone_df_code = "DF_1304_1670589236195"
-		this.ctrl.datasource.default_value = "PRODUCTION HTTP/1.1"
+		this.ctrl.datasource.default_value = "PRODUCTION"
 		this.ctrl.datasource.is_memory_ctrl = ""
 		this.ctrl.datasource.field_coordinates = ""
 		this.ctrl.datasource.sub_details = ""
@@ -276,7 +276,7 @@ focustoelement(){
 		this.ctrl.datasource.ctrl_id = "npss_liq_pos_ui_datasource"
 		this.ctrl.npss_liq_pos_ui_datasource = {}
 		this.ctrl.npss_liq_pos_ui_datasource.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_liq_pos_ui.model = {"PROCESS_NAME":"liquidityPosition","CURRENCY":"","ACCOUNTHOLDERBIC":"","ACCOUNTNUMBER":"","DATETIME":"setcurrentdate(),{}","DATASOURCE":"PRODUCTION HTTP/1.1"}
+		this.screen_instance[this.comp_id].f_npss_liq_pos_ui.model = {"PROCESS_NAME":"liquidityPosition","CURRENCY":"","ACCOUNTHOLDERBIC":"","ACCOUNTNUMBER":"","DATETIME":"setcurrentdate(),{}","DATASOURCE":"PRODUCTION"}
 		this.screen_instance[this.comp_id].f_npss_liq_pos_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNTHOLDERBIC"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNTNUMBER"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"DATETIME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DATASOURCE"}]
 		this.screen_instance[this.comp_id].f_npss_liq_pos_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_liq_pos_ui.dtt_code = "dtt_1304_1670589169341"

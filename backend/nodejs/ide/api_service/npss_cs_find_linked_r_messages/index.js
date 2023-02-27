@@ -97,19 +97,19 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         })
                                                     } else {
                                                         reqInstanceHelper.PrintInfo(serviceName, '-----------Update not success------', objSessionLogInfo);
-                                                        objresponse.status = 'FAILURE';
+                                                        objresponse.status = 'Failure in Tran Update';
                                                         sendResponse(null, objresponse)
                                                     }
                                                 })
                                             } else {
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------No URL found------', objSessionLogInfo);
-                                                objresponse.status = 'FAILURE';
+                                                objresponse.status = 'URL is not found';
                                                 sendResponse(null, objresponse)
                                             }
                                         })
                                     } else {
                                         reqInstanceHelper.PrintInfo(serviceName, '------------No Tran found-------', objSessionLogInfo);
-                                        objresponse.status = 'FAILURE';
+                                        objresponse.status = 'No data found in npss core api process log table';
                                         sendResponse(null, objresponse);
                                     }
 
@@ -117,7 +117,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 })
                             } else {
                                 reqInstanceHelper.PrintInfo(serviceName, '------------No Status  found-------', objSessionLogInfo);
-                                objresponse.status = 'FAILURE';
+                                objresponse.status = 'No data found in workflow Table';
                                 sendResponse(null, objresponse);
                             }
 

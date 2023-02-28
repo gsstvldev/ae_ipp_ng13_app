@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28391 
+Build ID        : 28392 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-28 14:23 PM 
+Modified Date   : 2023-Feb-28 15:36 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -583,9 +583,9 @@ focustoelement(){
 		//Properties of buy_margin
 		this.ctrl.buy_margin = {}
 		this.ctrl.buy_margin.id = "RN21CN15"
-		this.ctrl.buy_margin.desc = "Buy Margin"
+		this.ctrl.buy_margin.desc = "Buy spread"
 		this.ctrl.buy_margin.visible = true
-		this.ctrl.buy_margin.label_name = "Buy Margin"
+		this.ctrl.buy_margin.label_name = "Buy spread"
 		this.ctrl.buy_margin.df_code = "DF_1304_1665901396659"
 		this.ctrl.buy_margin.df_description = "Column Group 1"
 		this.ctrl.buy_margin.uictrl_code = "TXT"
@@ -621,9 +621,9 @@ focustoelement(){
 		//Properties of tran_amount
 		this.ctrl.tran_amount = {}
 		this.ctrl.tran_amount.id = "RN21CN16"
-		this.ctrl.tran_amount.desc = "Tran  Amount"
+		this.ctrl.tran_amount.desc = "TXN Amount Account Currency"
 		this.ctrl.tran_amount.visible = true
-		this.ctrl.tran_amount.label_name = "Tran  Amount"
+		this.ctrl.tran_amount.label_name = "TXN Amount Account Currency"
 		this.ctrl.tran_amount.df_code = "DF_1304_1665901396659"
 		this.ctrl.tran_amount.df_description = "Column Group 1"
 		this.ctrl.tran_amount.uictrl_code = "TXT"

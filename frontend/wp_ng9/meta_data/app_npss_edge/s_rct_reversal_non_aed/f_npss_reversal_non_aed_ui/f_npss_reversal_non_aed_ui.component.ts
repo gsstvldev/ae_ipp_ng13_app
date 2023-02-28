@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28391 
+Build ID        : 28392 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-28 14:23 PM 
+Modified Date   : 2023-Feb-28 15:36 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -503,8 +503,46 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_reversal_non_aed_ui_intrbk_sttlm_amnt"
 		this.ctrl.npss_reversal_non_aed_ui_intrbk_sttlm_amnt = {}
 		this.ctrl.npss_reversal_non_aed_ui_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui.model = {"VALUE_DATE":"","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","MEMORY96":"","CDTR_ACCT_NAME":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","UETR":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":""}
-		this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
+	
+		//Properties of buy_margin
+		this.ctrl.buy_margin = {}
+		this.ctrl.buy_margin.id = "RN21CN13"
+		this.ctrl.buy_margin.desc = "Buy spread"
+		this.ctrl.buy_margin.visible = true
+		this.ctrl.buy_margin.label_name = "Buy spread"
+		this.ctrl.buy_margin.df_code = "DF_1304_1665901396659"
+		this.ctrl.buy_margin.df_description = "Column Group 1"
+		this.ctrl.buy_margin.uictrl_code = "TXT"
+		this.ctrl.buy_margin.target_column = "BUY_MARGIN"
+		this.ctrl.buy_margin.data_type = "NUMBER"
+		this.ctrl.buy_margin.data_length = 19
+		this.ctrl.buy_margin.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.buy_margin.default_value = ""
+		this.ctrl.buy_margin.is_memory_ctrl = ""
+		this.ctrl.buy_margin.field_coordinates = ""
+		this.ctrl.buy_margin.sub_details = ""
+		this.ctrl.buy_margin.accept_char = ""
+		this.ctrl.buy_margin.currency_format = ""
+		this.ctrl.buy_margin.data_scale = "2"
+		this.ctrl.buy_margin.hide_label = false
+		this.ctrl.buy_margin.depends_on = ""
+		this.ctrl.buy_margin.placeholder = ""
+		this.ctrl.buy_margin.dynamic_param = ""
+		this.ctrl.buy_margin.style_code = ""
+		this.ctrl.buy_margin.data_source = ""
+		this.ctrl.buy_margin.image_association = ""
+		this.ctrl.buy_margin.show = true
+		this.ctrl.buy_margin.sub_content = ""
+		this.ctrl.buy_margin.required = false
+		this.ctrl.buy_margin.vld_rules = []
+		this.ctrl.buy_margin.targetcolumn_lower = "buy_margin"
+		this.ctrl.buy_margin.disabled = false
+		this.ctrl.buy_margin.view_name = "f_npss_reversal_non_aed_ui"
+		this.ctrl.buy_margin.ctrl_id = "npss_reversal_non_aed_ui_buy_margin"
+		this.ctrl.npss_reversal_non_aed_ui_buy_margin = {}
+		this.ctrl.npss_reversal_non_aed_ui_buy_margin.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui.model = {"VALUE_DATE":"","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","MEMORY96":"","CDTR_ACCT_NAME":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","UETR":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":"","BUY_MARGIN":""}
+		this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_MARGIN"}]
 		this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_reversal_non_aed_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

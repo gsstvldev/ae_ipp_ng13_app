@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28391 
+Build ID        : 28392 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-28 14:23 PM 
+Modified Date   : 2023-Feb-28 15:36 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -199,8 +199,84 @@ focustoelement(){
 		this.ctrl.charge_amount.ctrl_id = "npss_reversal_plog_ui_charge_amount"
 		this.ctrl.npss_reversal_plog_ui_charge_amount = {}
 		this.ctrl.npss_reversal_plog_ui_charge_amount.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.model = {"PROCESS_REF_NO":"","AMOUNT_CREDITED":"","AMT_CR_LOC_CUR":"","CHARGE_AMOUNT":""}
-		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"AMOUNT_CREDITED"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMT_CR_LOC_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"}]
+	
+		//Properties of exchange_rate
+		this.ctrl.exchange_rate = {}
+		this.ctrl.exchange_rate.id = "RN11CN6"
+		this.ctrl.exchange_rate.desc = "Original Sell Rate"
+		this.ctrl.exchange_rate.visible = true
+		this.ctrl.exchange_rate.label_name = "Original Sell Rate"
+		this.ctrl.exchange_rate.df_code = "DF_1304_1665905157963"
+		this.ctrl.exchange_rate.df_description = "Column Group 1"
+		this.ctrl.exchange_rate.uictrl_code = "TXT"
+		this.ctrl.exchange_rate.target_column = "EXCHANGE_RATE"
+		this.ctrl.exchange_rate.data_type = "NUMBER"
+		this.ctrl.exchange_rate.data_length = 19
+		this.ctrl.exchange_rate.zone_df_code = "DF_1304_1665905157963"
+		this.ctrl.exchange_rate.default_value = ""
+		this.ctrl.exchange_rate.is_memory_ctrl = ""
+		this.ctrl.exchange_rate.field_coordinates = ""
+		this.ctrl.exchange_rate.sub_details = ""
+		this.ctrl.exchange_rate.accept_char = ""
+		this.ctrl.exchange_rate.currency_format = ""
+		this.ctrl.exchange_rate.data_scale = "6"
+		this.ctrl.exchange_rate.hide_label = false
+		this.ctrl.exchange_rate.depends_on = ""
+		this.ctrl.exchange_rate.placeholder = ""
+		this.ctrl.exchange_rate.dynamic_param = ""
+		this.ctrl.exchange_rate.style_code = ""
+		this.ctrl.exchange_rate.data_source = ""
+		this.ctrl.exchange_rate.image_association = ""
+		this.ctrl.exchange_rate.show = true
+		this.ctrl.exchange_rate.sub_content = ""
+		this.ctrl.exchange_rate.required = false
+		this.ctrl.exchange_rate.vld_rules = []
+		this.ctrl.exchange_rate.targetcolumn_lower = "exchange_rate"
+		this.ctrl.exchange_rate.disabled = false
+		this.ctrl.exchange_rate.view_name = "f_npss_reversal_plog_ui"
+		this.ctrl.exchange_rate.ctrl_id = "npss_reversal_plog_ui_exchange_rate"
+		this.ctrl.npss_reversal_plog_ui_exchange_rate = {}
+		this.ctrl.npss_reversal_plog_ui_exchange_rate.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of gm_margin
+		this.ctrl.gm_margin = {}
+		this.ctrl.gm_margin.id = "RN11CN5"
+		this.ctrl.gm_margin.desc = "Original Sell Spread"
+		this.ctrl.gm_margin.visible = true
+		this.ctrl.gm_margin.label_name = "Original Sell Spread"
+		this.ctrl.gm_margin.df_code = "DF_1304_1665905157963"
+		this.ctrl.gm_margin.df_description = "Column Group 1"
+		this.ctrl.gm_margin.uictrl_code = "TXT"
+		this.ctrl.gm_margin.target_column = "GM_MARGIN"
+		this.ctrl.gm_margin.data_type = "NUMBER"
+		this.ctrl.gm_margin.data_length = 19
+		this.ctrl.gm_margin.zone_df_code = "DF_1304_1665905157963"
+		this.ctrl.gm_margin.default_value = ""
+		this.ctrl.gm_margin.is_memory_ctrl = ""
+		this.ctrl.gm_margin.field_coordinates = ""
+		this.ctrl.gm_margin.sub_details = ""
+		this.ctrl.gm_margin.accept_char = ""
+		this.ctrl.gm_margin.currency_format = ""
+		this.ctrl.gm_margin.data_scale = "2"
+		this.ctrl.gm_margin.hide_label = false
+		this.ctrl.gm_margin.depends_on = ""
+		this.ctrl.gm_margin.placeholder = ""
+		this.ctrl.gm_margin.dynamic_param = ""
+		this.ctrl.gm_margin.style_code = ""
+		this.ctrl.gm_margin.data_source = ""
+		this.ctrl.gm_margin.image_association = ""
+		this.ctrl.gm_margin.show = true
+		this.ctrl.gm_margin.sub_content = ""
+		this.ctrl.gm_margin.required = false
+		this.ctrl.gm_margin.vld_rules = []
+		this.ctrl.gm_margin.targetcolumn_lower = "gm_margin"
+		this.ctrl.gm_margin.disabled = false
+		this.ctrl.gm_margin.view_name = "f_npss_reversal_plog_ui"
+		this.ctrl.gm_margin.ctrl_id = "npss_reversal_plog_ui_gm_margin"
+		this.ctrl.npss_reversal_plog_ui_gm_margin = {}
+		this.ctrl.npss_reversal_plog_ui_gm_margin.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.model = {"PROCESS_REF_NO":"","AMOUNT_CREDITED":"","AMT_CR_LOC_CUR":"","CHARGE_AMOUNT":"","EXCHANGE_RATE":"","GM_MARGIN":""}
+		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"AMOUNT_CREDITED"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMT_CR_LOC_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"EXCHANGE_RATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"GM_MARGIN"}]
 		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.dtt_code = "dtt_1304_1665905039255"
 		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

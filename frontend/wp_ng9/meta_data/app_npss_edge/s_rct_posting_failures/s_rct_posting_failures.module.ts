@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28282 
+Build ID        : 28384 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-23 12:50 PM 
+Modified Date   : 2023-Feb-28 10:8 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -39,7 +39,7 @@ import { s_rct_posting_failuresRoutingModule } from './s_rct_posting_failures.ro
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_npss_rct_tran_srchComponent } from './f_npss_rct_tran_srch/f_npss_rct_tran_srch.component'
+import { f_npss_rct_ip_posting_failure_srchComponent } from './f_npss_rct_ip_posting_failure_srch/f_npss_rct_ip_posting_failure_srch.component'
 import { p_vertical_tran_detail_profileComponent } from './p_vertical_tran_detail_profile/p_vertical_tran_detail_profile.component'
 import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
 import { p_view_history_layoutComponent } from './p_view_history_layout/p_view_history_layout.component'
@@ -71,7 +71,7 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     s_rct_posting_failuresRoutingModule,
     torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_rct_inward_posting_failure_retry_repostModule,npss_cs_rct_inward_posting_failure_closeModule,npss_c_disable_action_by_multiselectModule
   ],
-  declarations: [s_rct_posting_failuresComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_tran_srchComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
+  declarations: [s_rct_posting_failuresComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_ip_posting_failure_srchComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

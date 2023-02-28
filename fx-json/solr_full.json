@@ -1402,6 +1402,11 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$ACCOUNT_CURRENCY$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$PRODUCT_CODE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
@@ -1613,11 +1618,6 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$CBS_POSTING_FLAG$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$ACCOUNT_CURRENCY$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },

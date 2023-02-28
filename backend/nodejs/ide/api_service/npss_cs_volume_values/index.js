@@ -8,15 +8,11 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
-    
-
-
-
 
 /*  Created By :Siva Harish
 Created Date :25/02/2023
 Modified By : Siva Harish
-Modified Date : 27/02/2023 6:40pm
+Modified Date : 28/02/2023 
 }
 */
 var serviceName = 'NPSS (CS) Volume Values';
@@ -136,7 +132,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
                                 var request = require('request');
                                 var apiURL =    
-                                apiURL = arrUrl[0].param_detail+'/volumevalues?datasource='+arrTranobj.datasource+'&senderBic='+arrTranobj.senderbic+'&fromdate='+Fromdate+'&dateTo='+todate
+                               
+                                apiURL = arrUrl[0].param_detail+'/volumevalues?datasource='+arrTranobj.datasource+'&senderBic='+arrTranobj.senderbic+'&dateFrom='+Fromdate+'&dateTo='+todate
                                 var options = {
                                     url: apiURL,
                                     timeout: 99999999,
@@ -276,6 +273,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 })
+
 
 
 

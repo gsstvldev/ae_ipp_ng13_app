@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28355 
+Build ID        : 28389 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-27 7:5 AM 
+Modified Date   : 2023-Feb-28 12:59 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_volume_values
@@ -199,8 +199,46 @@ focustoelement(){
 		this.ctrl.todate.ctrl_id = "npss_volume_values_ui_todate"
 		this.ctrl.npss_volume_values_ui_todate = {}
 		this.ctrl.npss_volume_values_ui_todate.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_volume_values_ui.model = {"PROCESS_NAME":"volumeValues","SENDERBIC":"","FROMDATE":"","TODATE":""}
-		this.screen_instance[this.comp_id].f_npss_volume_values_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SENDERBIC"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"FROMDATE"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"TODATE"}]
+	
+		//Properties of datasource
+		this.ctrl.datasource = {}
+		this.ctrl.datasource.id = "RN21CN5"
+		this.ctrl.datasource.desc = "datasource"
+		this.ctrl.datasource.visible = false
+		this.ctrl.datasource.label_name = "datasource"
+		this.ctrl.datasource.df_code = "DF_1304_1670589236195"
+		this.ctrl.datasource.df_description = "Column Group 1"
+		this.ctrl.datasource.uictrl_code = "TXT"
+		this.ctrl.datasource.target_column = "DATASOURCE"
+		this.ctrl.datasource.data_type = "TEXT"
+		this.ctrl.datasource.data_length = 64
+		this.ctrl.datasource.zone_df_code = "DF_1304_1670589236195"
+		this.ctrl.datasource.default_value = "PRODUCTION"
+		this.ctrl.datasource.is_memory_ctrl = ""
+		this.ctrl.datasource.field_coordinates = ""
+		this.ctrl.datasource.sub_details = ""
+		this.ctrl.datasource.accept_char = ""
+		this.ctrl.datasource.currency_format = ""
+		this.ctrl.datasource.data_scale = ""
+		this.ctrl.datasource.hide_label = false
+		this.ctrl.datasource.depends_on = ""
+		this.ctrl.datasource.placeholder = ""
+		this.ctrl.datasource.dynamic_param = ""
+		this.ctrl.datasource.style_code = ""
+		this.ctrl.datasource.data_source = ""
+		this.ctrl.datasource.image_association = ""
+		this.ctrl.datasource.show = true
+		this.ctrl.datasource.sub_content = ""
+		this.ctrl.datasource.required = false
+		this.ctrl.datasource.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
+		this.ctrl.datasource.targetcolumn_lower = "datasource"
+		this.ctrl.datasource.disabled = false
+		this.ctrl.datasource.view_name = "f_npss_volume_values_ui"
+		this.ctrl.datasource.ctrl_id = "npss_volume_values_ui_datasource"
+		this.ctrl.npss_volume_values_ui_datasource = {}
+		this.ctrl.npss_volume_values_ui_datasource.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_volume_values_ui.model = {"PROCESS_NAME":"volumeValues","SENDERBIC":"","FROMDATE":"","TODATE":"","DATASOURCE":"PRODUCTION"}
+		this.screen_instance[this.comp_id].f_npss_volume_values_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SENDERBIC"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"FROMDATE"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"TODATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DATASOURCE"}]
 		this.screen_instance[this.comp_id].f_npss_volume_values_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_volume_values_ui.dtt_code = "dtt_1304_1670589169341"
 		this.screen_instance[this.comp_id].f_npss_volume_values_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

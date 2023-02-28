@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS add column TRAN_CHARGE NUMERIC(19,2), add column BUY_MARGIN NUMERIC(19,2), add column TRAN_AMOUNT NUMERIC(19,2);","params" : [] },{"query" : "alter table NPSS_TRN_PROCESS_LOG add column GM_MARGIN NUMERIC(1,19);","params" : [] }]
+[{"query" : "alter table NPSS_TRN_PROCESS_LOG drop column GM_MARGIN;","params" : [] }]

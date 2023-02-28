@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28384 
+Build ID        : 28386 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-28 10:9 AM 
+Modified Date   : 2023-Feb-28 12:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -468,10 +468,10 @@ focustoelement(){
 	
 		//Properties of intrbk_sttlm_amnt
 		this.ctrl.intrbk_sttlm_amnt = {}
-		this.ctrl.intrbk_sttlm_amnt.id = "RN31CN8"
-		this.ctrl.intrbk_sttlm_amnt.desc = "Inward Amount"
+		this.ctrl.intrbk_sttlm_amnt.id = "RN31CN17"
+		this.ctrl.intrbk_sttlm_amnt.desc = "Original Txn Amount Account Currency"
 		this.ctrl.intrbk_sttlm_amnt.visible = true
-		this.ctrl.intrbk_sttlm_amnt.label_name = "Inward Amount"
+		this.ctrl.intrbk_sttlm_amnt.label_name = "Original Txn Amount Account Currency"
 		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
 		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
 		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CUR"
@@ -503,8 +503,160 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_rct_reversal_ui_intrbk_sttlm_amnt"
 		this.ctrl.npss_rct_reversal_ui_intrbk_sttlm_amnt = {}
 		this.ctrl.npss_rct_reversal_ui_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.model = {"VALUE_DATE":"","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","MEMORY96":"","CDTR_ACCT_NAME":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","UETR":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":""}
-		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
+	
+		//Properties of memory110
+		this.ctrl.memory110 = {}
+		this.ctrl.memory110.id = "RN31CN18"
+		this.ctrl.memory110.desc = "Posting Restriction Description"
+		this.ctrl.memory110.visible = true
+		this.ctrl.memory110.label_name = "Posting Restriction Description"
+		this.ctrl.memory110.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory110.df_description = "Column Group 1"
+		this.ctrl.memory110.uictrl_code = "TXT"
+		this.ctrl.memory110.target_column = "memory110"
+		this.ctrl.memory110.data_type = "TEXT"
+		this.ctrl.memory110.data_length = 0
+		this.ctrl.memory110.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory110.default_value = ""
+		this.ctrl.memory110.is_memory_ctrl = "Y"
+		this.ctrl.memory110.field_coordinates = ""
+		this.ctrl.memory110.sub_details = ""
+		this.ctrl.memory110.accept_char = ""
+		this.ctrl.memory110.currency_format = ""
+		this.ctrl.memory110.data_scale = ""
+		this.ctrl.memory110.hide_label = false
+		this.ctrl.memory110.depends_on = ""
+		this.ctrl.memory110.placeholder = ""
+		this.ctrl.memory110.dynamic_param = ""
+		this.ctrl.memory110.style_code = ""
+		this.ctrl.memory110.data_source = ""
+		this.ctrl.memory110.image_association = ""
+		this.ctrl.memory110.show = true
+		this.ctrl.memory110.sub_content = ""
+		this.ctrl.memory110.required = false
+		this.ctrl.memory110.vld_rules = []
+		this.ctrl.memory110.targetcolumn_lower = "memory110"
+		this.ctrl.memory110.disabled = false
+		this.ctrl.memory110.view_name = "f_npss_rct_reversal_ui"
+		this.ctrl.memory110.ctrl_id = "npss_rct_reversal_ui_memory110"
+		this.ctrl.npss_rct_reversal_ui_memory110 = {}
+		this.ctrl.npss_rct_reversal_ui_memory110.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of tran_charge
+		this.ctrl.tran_charge = {}
+		this.ctrl.tran_charge.id = "RN31CN19"
+		this.ctrl.tran_charge.desc = "Tran Charge"
+		this.ctrl.tran_charge.visible = true
+		this.ctrl.tran_charge.label_name = "Tran Charge"
+		this.ctrl.tran_charge.df_code = "DF_1304_1665901396659"
+		this.ctrl.tran_charge.df_description = "Column Group 1"
+		this.ctrl.tran_charge.uictrl_code = "TXT"
+		this.ctrl.tran_charge.target_column = "TRAN_CHARGE"
+		this.ctrl.tran_charge.data_type = "NUMBER"
+		this.ctrl.tran_charge.data_length = 19
+		this.ctrl.tran_charge.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.tran_charge.default_value = ""
+		this.ctrl.tran_charge.is_memory_ctrl = ""
+		this.ctrl.tran_charge.field_coordinates = ""
+		this.ctrl.tran_charge.sub_details = ""
+		this.ctrl.tran_charge.accept_char = ""
+		this.ctrl.tran_charge.currency_format = ""
+		this.ctrl.tran_charge.data_scale = "2"
+		this.ctrl.tran_charge.hide_label = false
+		this.ctrl.tran_charge.depends_on = ""
+		this.ctrl.tran_charge.placeholder = ""
+		this.ctrl.tran_charge.dynamic_param = ""
+		this.ctrl.tran_charge.style_code = ""
+		this.ctrl.tran_charge.data_source = ""
+		this.ctrl.tran_charge.image_association = ""
+		this.ctrl.tran_charge.show = true
+		this.ctrl.tran_charge.sub_content = ""
+		this.ctrl.tran_charge.required = false
+		this.ctrl.tran_charge.vld_rules = []
+		this.ctrl.tran_charge.targetcolumn_lower = "tran_charge"
+		this.ctrl.tran_charge.disabled = false
+		this.ctrl.tran_charge.view_name = "f_npss_rct_reversal_ui"
+		this.ctrl.tran_charge.ctrl_id = "npss_rct_reversal_ui_tran_charge"
+		this.ctrl.npss_rct_reversal_ui_tran_charge = {}
+		this.ctrl.npss_rct_reversal_ui_tran_charge.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of buy_margin
+		this.ctrl.buy_margin = {}
+		this.ctrl.buy_margin.id = "RN21CN15"
+		this.ctrl.buy_margin.desc = "Buy Margin"
+		this.ctrl.buy_margin.visible = true
+		this.ctrl.buy_margin.label_name = "Buy Margin"
+		this.ctrl.buy_margin.df_code = "DF_1304_1665901396659"
+		this.ctrl.buy_margin.df_description = "Column Group 1"
+		this.ctrl.buy_margin.uictrl_code = "TXT"
+		this.ctrl.buy_margin.target_column = "BUY_MARGIN"
+		this.ctrl.buy_margin.data_type = "NUMBER"
+		this.ctrl.buy_margin.data_length = 19
+		this.ctrl.buy_margin.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.buy_margin.default_value = ""
+		this.ctrl.buy_margin.is_memory_ctrl = ""
+		this.ctrl.buy_margin.field_coordinates = ""
+		this.ctrl.buy_margin.sub_details = ""
+		this.ctrl.buy_margin.accept_char = ""
+		this.ctrl.buy_margin.currency_format = ""
+		this.ctrl.buy_margin.data_scale = "2"
+		this.ctrl.buy_margin.hide_label = false
+		this.ctrl.buy_margin.depends_on = ""
+		this.ctrl.buy_margin.placeholder = ""
+		this.ctrl.buy_margin.dynamic_param = ""
+		this.ctrl.buy_margin.style_code = ""
+		this.ctrl.buy_margin.data_source = ""
+		this.ctrl.buy_margin.image_association = ""
+		this.ctrl.buy_margin.show = true
+		this.ctrl.buy_margin.sub_content = ""
+		this.ctrl.buy_margin.required = false
+		this.ctrl.buy_margin.vld_rules = []
+		this.ctrl.buy_margin.targetcolumn_lower = "buy_margin"
+		this.ctrl.buy_margin.disabled = false
+		this.ctrl.buy_margin.view_name = "f_npss_rct_reversal_ui"
+		this.ctrl.buy_margin.ctrl_id = "npss_rct_reversal_ui_buy_margin"
+		this.ctrl.npss_rct_reversal_ui_buy_margin = {}
+		this.ctrl.npss_rct_reversal_ui_buy_margin.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of tran_amount
+		this.ctrl.tran_amount = {}
+		this.ctrl.tran_amount.id = "RN21CN16"
+		this.ctrl.tran_amount.desc = "Tran  Amount"
+		this.ctrl.tran_amount.visible = true
+		this.ctrl.tran_amount.label_name = "Tran  Amount"
+		this.ctrl.tran_amount.df_code = "DF_1304_1665901396659"
+		this.ctrl.tran_amount.df_description = "Column Group 1"
+		this.ctrl.tran_amount.uictrl_code = "TXT"
+		this.ctrl.tran_amount.target_column = "TRAN_AMOUNT"
+		this.ctrl.tran_amount.data_type = "NUMBER"
+		this.ctrl.tran_amount.data_length = 19
+		this.ctrl.tran_amount.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.tran_amount.default_value = ""
+		this.ctrl.tran_amount.is_memory_ctrl = ""
+		this.ctrl.tran_amount.field_coordinates = ""
+		this.ctrl.tran_amount.sub_details = ""
+		this.ctrl.tran_amount.accept_char = ""
+		this.ctrl.tran_amount.currency_format = ""
+		this.ctrl.tran_amount.data_scale = "2"
+		this.ctrl.tran_amount.hide_label = false
+		this.ctrl.tran_amount.depends_on = ""
+		this.ctrl.tran_amount.placeholder = ""
+		this.ctrl.tran_amount.dynamic_param = ""
+		this.ctrl.tran_amount.style_code = ""
+		this.ctrl.tran_amount.data_source = ""
+		this.ctrl.tran_amount.image_association = ""
+		this.ctrl.tran_amount.show = true
+		this.ctrl.tran_amount.sub_content = ""
+		this.ctrl.tran_amount.required = false
+		this.ctrl.tran_amount.vld_rules = []
+		this.ctrl.tran_amount.targetcolumn_lower = "tran_amount"
+		this.ctrl.tran_amount.disabled = false
+		this.ctrl.tran_amount.view_name = "f_npss_rct_reversal_ui"
+		this.ctrl.tran_amount.ctrl_id = "npss_rct_reversal_ui_tran_amount"
+		this.ctrl.npss_rct_reversal_ui_tran_amount = {}
+		this.ctrl.npss_rct_reversal_ui_tran_amount.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.model = {"VALUE_DATE":"","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","MEMORY96":"","CDTR_ACCT_NAME":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","UETR":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":"","MEMORY110":"","TRAN_CHARGE":"","BUY_MARGIN":"","TRAN_AMOUNT":""}
+		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_CHARGE"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_MARGIN"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_AMOUNT"}]
 		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_rct_reversal_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

@@ -282,6 +282,11 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$GM_MARGIN$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NCACN_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672471952205$DQ$
@@ -1663,6 +1668,21 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$CHARGE_AMOUNT$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$TRAN_CHARGE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BUY_MARGIN$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$TRAN_AMOUNT$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },

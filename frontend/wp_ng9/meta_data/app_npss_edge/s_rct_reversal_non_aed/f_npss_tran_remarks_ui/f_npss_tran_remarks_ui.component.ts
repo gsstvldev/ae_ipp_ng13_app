@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28384 
+Build ID        : 28386 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-28 10:8 AM 
+Modified Date   : 2023-Feb-28 12:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of reversal_amount
 		this.ctrl.reversal_amount = {}
 		this.ctrl.reversal_amount.id = "1672139269555CN2"
-		this.ctrl.reversal_amount.desc = "Reversal Amount"
+		this.ctrl.reversal_amount.desc = "Refund Request Txn Amount AED"
 		this.ctrl.reversal_amount.visible = true
-		this.ctrl.reversal_amount.label_name = "Reversal Amount"
+		this.ctrl.reversal_amount.label_name = "Refund Request Txn Amount AED"
 		this.ctrl.reversal_amount.df_code = "DF_1304_1665901396659"
 		this.ctrl.reversal_amount.df_description = "Column Group 1"
 		this.ctrl.reversal_amount.uictrl_code = "TXT"

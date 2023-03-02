@@ -6,7 +6,7 @@ Modified By     : Admin
 Modified Date   : 2023-Mar-02 14:46 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_rct_reversal
+Screen Name     : s_rct_reversal_non_aed
 Form Name       : NPSS Reversal N UI--------------------------------------------------------------------------- */
 
 // Component Definition 

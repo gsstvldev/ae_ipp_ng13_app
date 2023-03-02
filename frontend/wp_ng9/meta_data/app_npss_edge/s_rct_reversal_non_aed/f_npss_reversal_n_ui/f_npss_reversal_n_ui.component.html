@@ -1,0 +1,19 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_reversal_n_ui="ngForm">
+<div id="RN01" class="row">
+	<div #npss_reversal_n_ui_tran_charge id="RN01CN1" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('tran_charge')" >
+				<txt [ctrl_id]="'npss_reversal_n_ui_tran_charge'" [comp_id]="comp_id" [ctrl]="ctrl.tran_charge" [model]="screen_instance[this.comp_id].f_npss_reversal_n_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN01CN2" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('buy_margin')" >
+				<txt [ctrl_id]="'npss_reversal_n_ui_buy_margin'" [comp_id]="comp_id" [ctrl]="ctrl.buy_margin" [model]="screen_instance[this.comp_id].f_npss_reversal_n_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN01CN3" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('tran_amount')" >
+				<txt [ctrl_id]="'npss_reversal_n_ui_tran_amount'" [comp_id]="comp_id" [ctrl]="ctrl.tran_amount" [model]="screen_instance[this.comp_id].f_npss_reversal_n_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+	</form>
+</fieldset >
+
+</div>

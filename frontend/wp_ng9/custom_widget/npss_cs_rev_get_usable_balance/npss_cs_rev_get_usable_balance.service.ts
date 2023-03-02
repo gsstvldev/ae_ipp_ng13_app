@@ -46,14 +46,12 @@ export class npss_cs_rev_get_usable_balanceService {
             .subscribe((res: any) => {
                 var event:any
                 if (res.data.status=="SUCCESS") {
-                    //var dat="{  \"status\": \"SUCCESS\",  \"response\": {    \"applicationArea\": {      \"correlationId\": \"string\",      \"countryOfOrigin\": \"AE\",      \"transactionDateTime\": \"25-Jun-2019T12:30:45AM\",      \"transactionId\": \"A91225DDFGH\",      \"senderId\": \"FABMW\",      \"transactionTimeZone\": \"\"    },    \"responseStatus\": {      \"status\": \"SUCCESS\",      \"statusMessage\": \"SUCCESS\",      \"errorDetails\": [        {          \"errorCode\": \"SYS001\",          \"errorDesc\": \"Errormessage\"        }      ],      \"metaData\": {        \"dateFormat\": \"string\"      }    },    \"dataArea\": {      \"customerNumber\": \"\",      \"customerName\": \"ImranMalik\",      \"postingRestrictCode\": \"91\",      \"accountBlockCode\": \"\",      \"isInactive\": \"N\",      \"signature\": \"string\",      \"mandate\": \"string\",      \"signeeName\": \"ImranMalik\",      \"signeeType\": \"string\",      \"description\": \"string\",      \"signExpiryDate\": \"2022-12-16\",      \"usableBalance\": 8500,      \"workingBalance\": 8000,      \"raAccountBalance\": \"8000\"    }  }}";
-                   //var dat ="{\n  \"status\": \"SUCCESS\",\n  \"response\": {\n    \"applicationArea\": {\n      \"correlationId\": \"string\",\n      \"countryOfOrigin\": \"AE\",\n      \"transactionDateTime\": \"25-Jun-2019T12:30:45AM\",\n      \"transactionId\": \"A91225DDFGH\",\n      \"senderId\": \"FABMW\",\n      \"transactionTimeZone\": \"\"\n    },\n    \"responseStatus\": {\n      \"status\": \"SUCCESS\",\n      \"statusMessage\": \"SUCCESS\",\n      \"errorDetails\": [\n        {\n          \"errorCode\": \"SYS001\",\n          \"errorDesc\": \"Errormessage\"\n        }\n      ],\n      \"metaData\": {\n        \"dateFormat\": \"string\"\n      }\n    },\n    \"dataArea\": {\n      \"customerNumber\": \"\",\n      \"customerName\": \"ImranMalik\",\n      \"postingRestrictCode\": \"91\",\n      \"accountBlockCode\": \"\",\n      \"isInactive\": \"N\",\n      \"signature\": \"string\",\n      \"mandate\": \"string\",\n      \"signeeName\": \"ImranMalik\",\n      \"signeeType\": \"string\",\n      \"description\": \"string\",\n      \"signExpiryDate\": \"2022-12-16\",\n      \"usableBalance\": 8500,\n      \"workingBalance\": 8000,\n      \"raAccountBalance\": \"8000\"\n    }\n  }\n}";
-                   // var dat1=JSON.stringify(dat);
+                   
                    var dat =res.data.data;
                    var dat1 =dat.replace(/(\n)/g,"")
-                  // var t=s.replace(/(\n)/g,"")
+                 
                 var e=JSON.parse(dat1)
-                  //event = { eventId: "custom-connector", param: res.data.data, internals: internals }
+                 
                   event = { eventId: "custom-connector", param: e, internals: internals }
                     screenInstance["get_usable_balance_widget"].onChangecomponent.emit(event);
                   
@@ -75,6 +73,8 @@ export class npss_cs_rev_get_usable_balanceService {
                 else if (res.data.status == 'No Data found in workflow table' || res.data == 'No Data found in workflow table') {
                     this.dialogHelper.ShowErrorDialog('No Data found in workflow table')
 
+                }else if(res.data.status == 'CreditPrepaidTran'){
+                    console.log(res.data.status)
                 }
                 else {
                      event = { eventId: "custom-connector", param: "", internals: internals }

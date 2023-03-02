@@ -8,9 +8,6 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
-    
-    
-    
   try {
     /*   Created By :Daseen
     Created Date :16-12-2022
@@ -18,6 +15,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified Date :08-01-2023 
     Reason for : Calling fn_pcidss_decrypt for taking masking cr acct ident code 8/01/2023
     Reason for Remove Console log 18/01/2023
+     Reason for Handle Prepaid or Credit Changes 2/03/2023
     */
     var serviceName = 'NPSS Get Usable Amount';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -60,12 +58,6 @@ app.post('/', function(appRequest, appResponse, next) {
                         var final_status
                         var final_process_status
                         var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_REVERSE_USABLE_BALANCE' and param_code='URL'`;
-                     
-                       // var take_api_params = `select  ns.remittance_info,ns.cr_acct_identification,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method,
-                      //  ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,ns.intrbk_sttlm_amnt,
-                       // ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,
-                       // ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm
-                       // from npss_transactions ns  where npsst_id = '${params.Tran_Id}'`;
                       var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,ns.intrbk_sttlm_amnt, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
                         
                                 ExecuteQuery1(take_api_params, function (arrprocesslog) {
@@ -85,42 +77,49 @@ app.post('/', function(appRequest, appResponse, next) {
                                         else {
                                             lclinstrm = ""
                                         }
-                                        var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
-                                        ExecuteQuery1(TakeAcctInf, function (arrActInf) {
-                                            if (arrActInf.length) {
-                                                ExecuteQuery1(take_api_url, function (arrurl) {
-                                                    if (arrurl.length) {
-                                                        var url = arrurl[0].param_detail;
-                                                        fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm, function (result) {
-                                                            if (result ) {
-                                                                objresponse.status = 'SUCCESS';
-                                                            
-                                                                objresponse.data=result;
-                                                                sendResponse(null, objresponse);}
-                                                               
+                                        if(arrprocesslog[0].cdtr_iban == null || arrprocesslog[0].cdtr_iban == ''){
+                                            objresponse.status = 'CreditPrepaidTran';
+                                            objresponse.data = 'Credit or Prepaid Tran';
+                                           sendResponse(null, objresponse);
+                                        }else{
+                                            var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
+                                            ExecuteQuery1(TakeAcctInf, function (arrActInf) {
+                                                if (arrActInf.length) {
+                                                    ExecuteQuery1(take_api_url, function (arrurl) {
+                                                        if (arrurl.length) {
+                                                            var url = arrurl[0].param_detail;
+                                                            fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm, function (result) {
+                                                                if (result ) {
+                                                                    objresponse.status = 'SUCCESS';
                                                                 
-                                                             else {
-                                                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
-                                                                   objresponse.status = 'FAILURE';
-                                                                 objresponse.data=result;
-                                                                sendResponse(null, objresponse);
-                                                            }
-                                                        })
-                                                  
-                                                    }
-                                                    else {
-                                                       
-                                                        objresponse.status = "No Data found in workflow table"
-                                                        sendResponse(null,objresponse)
-                                                    }
-                                                })
-                                            }
-                                            else {
-                                               
-                                                objresponse.status = "No Data found in accounts table"
-                                                sendResponse(null,objresponse)
-                                            }
-                                        })
+                                                                    objresponse.data=result;
+                                                                    sendResponse(null, objresponse);}
+                                                                   
+                                                                    
+                                                                 else {
+                                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
+                                                                       objresponse.status = 'FAILURE';
+                                                                     objresponse.data=result;
+                                                                    sendResponse(null, objresponse);
+                                                                }
+                                                            })
+                                                      
+                                                        }
+                                                        else {
+                                                           
+                                                            objresponse.status = "No Data found in workflow table"
+                                                            sendResponse(null,objresponse)
+                                                        }
+                                                    })
+                                                }
+                                                else {
+                                                   
+                                                    objresponse.status = "No Data found in accounts table"
+                                                    sendResponse(null,objresponse)
+                                                }
+                                            })
+                                        }
+                                      
 
 
 
@@ -288,6 +287,7 @@ app.post('/', function(appRequest, appResponse, next) {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

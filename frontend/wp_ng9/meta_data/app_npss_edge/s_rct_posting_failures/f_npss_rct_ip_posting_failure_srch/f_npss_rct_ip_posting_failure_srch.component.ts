@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28392 
+Build ID        : 28400 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-28 15:35 PM 
+Modified Date   : 2023-Mar-02 12:17 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -246,9 +246,9 @@ focustoelement(){
 		//Properties of dbtr_iban
 		this.ctrl.dbtr_iban = {}
 		this.ctrl.dbtr_iban.id = "9a380e7f-0040-4d16-8f54-e0a650f0ee00_1677571954676"
-		this.ctrl.dbtr_iban.desc = "Debtor IBAN"
+		this.ctrl.dbtr_iban.desc = "Dr IBAN"
 		this.ctrl.dbtr_iban.visible = true
-		this.ctrl.dbtr_iban.label_name = "Debtor IBAN"
+		this.ctrl.dbtr_iban.label_name = "Dr IBAN"
 		this.ctrl.dbtr_iban.df_code = "DF_1304_1665901396659"
 		this.ctrl.dbtr_iban.df_description = "Column Group 1"
 		this.ctrl.dbtr_iban.uictrl_code = "CDN_CTRL"

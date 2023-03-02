@@ -3,15 +3,24 @@
 <div id="R11" class="row">
 	<div id="R11C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 <div id="R11C1R0" class="row">
-	<div id="R11C1R0C1" class="column col-md-9 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+	<div id="R11C1R0C1" class="column col-md-7 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 		<div class="vertical_list"  [hidden]="!screen_instance['vertical_list'].show" >
 			<datatable [comp_id]="'vertical_list'" [screen_instance]="screen_instance" profile_name="p_reversal_new__layout"></datatable>
 		</div>
 	</div>
-	<div id="R11C1R0C2" class="column col-md-3 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+	<div id="R11C1R0C2" class="column col-md-5 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+<div id="R11C1R0C2R0" class="row">
+	<div id="R11C1R0C2R0C1" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 		<div class="reversal_ui" >
 			<f_npss_reversal_n_ui [comp_id]="'reversal_ui'" [screen_instance]="screen_instance" [hidden]="isHidden('reversal_ui','f_npss_reversal_n_ui')" profile_name="p_reversal_new__layout"></f_npss_reversal_n_ui >
 		</div>
+	</div>
+	<div id="R11C1R0C2R0C2" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="get_usable_balance_widget"  [hidden]="!screen_instance['get_usable_balance_widget'].show" >
+			<npss_cs_rev_get_usable_balance [comp_id]="'get_usable_balance_widget'" [screen_instance]="screen_instance" profile_name="p_reversal_new__layout"></npss_cs_rev_get_usable_balance>
+		</div>
+	</div>
+</div>
 	</div>
 </div>
 	</div>
@@ -29,7 +38,7 @@
 	</div>
 </div>
 <div id="R31" class="row">
-	<div id="R31C1" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-6 col-sm-offset-0 col-xs-offset-0" >
+	<div id="R31C1" class="column col-md-8 col-sm-6 col-xs-6 col-md-offset-4 col-sm-offset-0 col-xs-offset-0" >
 		<div class="reversal_action_ui" >
 			<f_reversal_action_ui [comp_id]="'reversal_action_ui'" [screen_instance]="screen_instance" [hidden]="isHidden('reversal_action_ui','f_reversal_action_ui')" profile_name="p_reversal_new__layout"></f_reversal_action_ui >
 		</div>

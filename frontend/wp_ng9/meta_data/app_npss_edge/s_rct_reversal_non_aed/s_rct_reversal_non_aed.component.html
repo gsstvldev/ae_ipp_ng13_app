@@ -1,4 +1,5 @@
 <div class="s_rct_reversal_non_aed">
+<p_reversal_non_aed_layout [screen_instance]="this" [hidden]="!(current_profile=='p_reversal_non_aed_layout')"></p_reversal_non_aed_layout>
 <p_view_req_and_res_profile [screen_instance]="this" [hidden]="!(current_profile=='p_view_req_and_res_profile')"></p_view_req_and_res_profile>
 <p_view_response_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_response_layout')"></p_view_response_layout>
 <p_view_message_ui_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_ui_layout')"></p_view_message_ui_layout>
@@ -6,7 +7,6 @@
 <p_view_request_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_request_layout')"></p_view_request_layout>
 <p_view_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_history_layout')"></p_view_history_layout>
 <p_vertical_layout [screen_instance]="this" [hidden]="!(current_profile=='p_vertical_layout')"></p_vertical_layout>
-<p_accept_ui_layout [screen_instance]="this" [hidden]="!(current_profile=='p_accept_ui_layout')"></p_accept_ui_layout>
 <p_main_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_layout')"></p_main_layout>
 
 <p-dialog header="{{'Change Return Reason' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_change_return_layout__crr_for_spap_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '300px','width': '600px'}" [draggable]="true" [modal]="true">

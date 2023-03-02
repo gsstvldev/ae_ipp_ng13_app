@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28392 
+Build ID        : 28400 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-28 15:35 PM 
+Modified Date   : 2023-Mar-02 12:17 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -23,8 +23,7 @@ export class p_vertical_tran_detail_profileComponent implements OnInit {
 
   // Variables 
   	back_ui : any = {}
-	view_dr_cr_details : any = {}
-	view_payment_details : any = {}
+	view_transaction_list : any = {}
 
 
   // Constructor 
@@ -34,10 +33,8 @@ export class p_vertical_tran_detail_profileComponent implements OnInit {
   ngOnInit() {
     	this.back_ui.desc = "Back UI"
 		this.back_ui.need_header = ""
-		this.view_dr_cr_details.desc = "View Dr Cr Details"
-		this.view_dr_cr_details.need_header = true
-		this.view_payment_details.desc = "View Payment Details"
-		this.view_payment_details.need_header = true
+		this.view_transaction_list.desc = "View Transaction List"
+		this.view_transaction_list.need_header = true
 	
 
     this.screen_instance['p_vertical_tran_detail_profile'] = {};

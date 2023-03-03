@@ -7,7 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
 
 
 try {
@@ -26,6 +26,7 @@ try {
         Reason for : changes in payload 15/02/2023
          Modified By : Daseen 18/02/2023 -  Process log INSERT BEFORE api call
            Modified By : Siva Harish 1/03/2023 -  changing payload
+           Modified By : Siva Harish 3/03/2023 -  removing trnprslog tbl update
     */
     var serviceName = 'NPSS RCT Outward Reversal Approve';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -128,23 +129,13 @@ try {
                                                         arrCusTranInst.push(objCusTranInst)
                                                         _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
                                                             if (CusTranInsertRes.length > 0) {
-                                                                fn_doapicall(url, arrprocesslog, arrpostrefno, TakeAccountInformation,TakeSellRatemargin, function (result) {
+                                                                fn_doapicall(url, arrprocesslog, arrpostrefno, TakeAccountInformation, TakeSellRatemargin, function (result) {
                                                                     if (result == 'SUCCESS') {
                                                                         var UpdateTrnTbl = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Tran_Id}'`
                                                                         ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
                                                                             if (uptranresult == 'SUCCESS') {
-                                                                                var UpdateTrnPrslogTbl = `update npss_trn_process_log set  additional_info = 'Checker_Approved',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsstpl_id ='${params.NPSSTPL_Id}'`
-                                                                                ExecuteQuery(UpdateTrnPrslogTbl, function (updTrnprslog) {
-                                                                                    if (updTrnprslog == 'SUCCESS') {
-                                                                                        objresponse.status = 'SUCCESS';
-                                                                                        sendResponse(null, objresponse);
-
-                                                                                    } else {
-                                                                                        objresponse.status = 'Update Fail in Trn Process Log Table';
-                                                                                        sendResponse(null, objresponse);
-                                                                                    }
-
-                                                                                })
+                                                                                objresponse.status = 'SUCCESS';
+                                                                                sendResponse(null, objresponse);
 
                                                                             } else {
                                                                                 objresponse.status = 'Update Fail in npss tran';
@@ -219,7 +210,7 @@ try {
 
                 })
                 // Do API Call for Service 
-                function fn_doapicall(url, arrprocesslog, arrpostrefno, TakeAccountInformation,TakeSellRatemargin, callbackapi) {
+                function fn_doapicall(url, arrprocesslog, arrpostrefno, TakeAccountInformation, TakeSellRatemargin, callbackapi) {
                     try {
                         var apiName = 'RCT_OP_REV_APPROVE'
                         var request = require('request');
@@ -248,7 +239,7 @@ try {
                                 "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                 "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
                                 "dr_sell_margin": TakeSellRatemargin.sell_margin || '',
-                                "dr_sell_rate":TakeSellRatemargin.sell_rate || '',
+                                "dr_sell_rate": TakeSellRatemargin.sell_rate || '',
                                 "dr_department_code": arrprocesslog[0].department_code || ''
 
 
@@ -409,10 +400,10 @@ try {
                         var Takesellrate = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${acctInfm.customer_id}'`
                         ExecuteQuery1(Takesellrate, function (arrselldet) {
                             var Getselldetails = {}
-                            if(arrselldet.length == 0){
+                            if (arrselldet.length == 0) {
                                 Getselldetails.sell_margin = ''
                                 Getselldetails.sell_rate = ''
-                            }else{
+                            } else {
                                 Getselldetails.sell_margin = arrselldet[0].sell_margin
                                 Getselldetails.sell_rate = arrselldet[0].sell_rate
                             }

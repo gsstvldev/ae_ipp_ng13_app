@@ -62,7 +62,7 @@ export class npss_cs_reversal_initiateService {
                 screenInstance["initiate_custom_widget"].onChangecomponent.emit(event);
                 }
                else {
-                    this.appHandler.callInternals(internals, screenInstance, "FAILURE");
+                    this.dialogHelper.ShowErrorDialog(res.data.status) 
                 }
             });
     }

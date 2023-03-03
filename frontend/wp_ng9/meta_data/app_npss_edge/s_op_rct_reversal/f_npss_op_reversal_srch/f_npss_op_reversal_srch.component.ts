@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28428 
+Build ID        : 28437 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-03 5:27 AM 
+Modified Date   : 2023-Mar-03 11:30 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -321,44 +321,44 @@ focustoelement(){
 		this.ctrl.npss_op_reversal_srch_clrsysref = {}
 		this.ctrl.npss_op_reversal_srch_clrsysref.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of memory101
-		this.ctrl.memory101 = {}
-		this.ctrl.memory101.id = "RN81CN11"
-		this.ctrl.memory101.desc = "T24/CI reference number"
-		this.ctrl.memory101.visible = false
-		this.ctrl.memory101.label_name = "T24/CI reference number"
-		this.ctrl.memory101.df_code = "DF_1304_1665901396659"
-		this.ctrl.memory101.df_description = "Column Group 1"
-		this.ctrl.memory101.uictrl_code = "CDN_CTRL"
-		this.ctrl.memory101.target_column = "memory101"
-		this.ctrl.memory101.data_type = "TEXT"
-		this.ctrl.memory101.data_length = 64
-		this.ctrl.memory101.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory101.default_value = ""
-		this.ctrl.memory101.is_memory_ctrl = "Y"
-		this.ctrl.memory101.field_coordinates = ""
-		this.ctrl.memory101.sub_details = ""
-		this.ctrl.memory101.accept_char = ""
-		this.ctrl.memory101.currency_format = ""
-		this.ctrl.memory101.data_scale = ""
-		this.ctrl.memory101.binding_name = "PROCESS_REF_NO"
-		this.ctrl.memory101.hide_label = false
-		this.ctrl.memory101.depends_on = ""
-		this.ctrl.memory101.placeholder = ""
-		this.ctrl.memory101.dynamic_param = ""
-		this.ctrl.memory101.style_code = ""
-		this.ctrl.memory101.data_source = ""
-		this.ctrl.memory101.image_association = ""
-		this.ctrl.memory101.show = true
-		this.ctrl.memory101.sub_content = ""
-		this.ctrl.memory101.required = false
-		this.ctrl.memory101.vld_rules = []
-		this.ctrl.memory101.targetcolumn_lower = "memory101"
-		this.ctrl.memory101.disabled = false
-		this.ctrl.memory101.view_name = "f_npss_op_reversal_srch"
-		this.ctrl.memory101.ctrl_id = "npss_op_reversal_srch_memory101"
-		this.ctrl.npss_op_reversal_srch_memory101 = {}
-		this.ctrl.npss_op_reversal_srch_memory101.onChangecomponent = new EventEmitter<any>()
+		//Properties of memory118
+		this.ctrl.memory118 = {}
+		this.ctrl.memory118.id = "RN81CN11"
+		this.ctrl.memory118.desc = "T24/CI reference number"
+		this.ctrl.memory118.visible = true
+		this.ctrl.memory118.label_name = "T24/CI reference number"
+		this.ctrl.memory118.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory118.df_description = "Column Group 1"
+		this.ctrl.memory118.uictrl_code = "CDN_CTRL"
+		this.ctrl.memory118.target_column = "memory118"
+		this.ctrl.memory118.data_type = "TEXT"
+		this.ctrl.memory118.data_length = 64
+		this.ctrl.memory118.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory118.default_value = ""
+		this.ctrl.memory118.is_memory_ctrl = "Y"
+		this.ctrl.memory118.field_coordinates = ""
+		this.ctrl.memory118.sub_details = ""
+		this.ctrl.memory118.accept_char = ""
+		this.ctrl.memory118.currency_format = ""
+		this.ctrl.memory118.data_scale = ""
+		this.ctrl.memory118.binding_name = "NPSSTRRD_REFNO"
+		this.ctrl.memory118.hide_label = false
+		this.ctrl.memory118.depends_on = ""
+		this.ctrl.memory118.placeholder = ""
+		this.ctrl.memory118.dynamic_param = ""
+		this.ctrl.memory118.style_code = ""
+		this.ctrl.memory118.data_source = ""
+		this.ctrl.memory118.image_association = ""
+		this.ctrl.memory118.show = true
+		this.ctrl.memory118.sub_content = ""
+		this.ctrl.memory118.required = false
+		this.ctrl.memory118.vld_rules = []
+		this.ctrl.memory118.targetcolumn_lower = "memory118"
+		this.ctrl.memory118.disabled = false
+		this.ctrl.memory118.view_name = "f_npss_op_reversal_srch"
+		this.ctrl.memory118.ctrl_id = "npss_op_reversal_srch_memory118"
+		this.ctrl.npss_op_reversal_srch_memory118 = {}
+		this.ctrl.npss_op_reversal_srch_memory118.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of uetr
 		this.ctrl.uetr = {}
@@ -478,7 +478,7 @@ focustoelement(){
 		this.ctrl.npss_op_reversal_srch_memory75 = {}
 		this.ctrl.npss_op_reversal_srch_memory75.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.memory75 = {}
-		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.model = {"MEMORY100":"","MEMORY99":"","MEMORY98":"","MEMORY92":"","REVERSAL_AMOUNT":"","PAYMENT_ENDTOEND_ID":"","CLRSYSREF":"","MEMORY101":"","UETR":"","MEMORY87":"","MEMORY75":""}
+		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.model = {"MEMORY100":"","MEMORY99":"","MEMORY98":"","MEMORY92":"","REVERSAL_AMOUNT":"","PAYMENT_ENDTOEND_ID":"","CLRSYSREF":"","MEMORY118":"","UETR":"","MEMORY87":"","MEMORY75":""}
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"}]
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.dtt_code = "dtt_1304_1665901217208"

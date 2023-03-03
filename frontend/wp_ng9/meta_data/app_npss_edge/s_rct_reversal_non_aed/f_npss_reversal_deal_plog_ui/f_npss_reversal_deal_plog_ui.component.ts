@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28437 
+Build ID        : 28446 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-03 11:30 AM 
+Modified Date   : 2023-Mar-03 14:20 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of exchange_rate
 		this.ctrl.exchange_rate = {}
 		this.ctrl.exchange_rate.id = "RN01CN1"
-		this.ctrl.exchange_rate.desc = "Exchange Rate"
+		this.ctrl.exchange_rate.desc = "Buy Rate"
 		this.ctrl.exchange_rate.visible = true
-		this.ctrl.exchange_rate.label_name = "Exchange Rate"
+		this.ctrl.exchange_rate.label_name = "Buy Rate"
 		this.ctrl.exchange_rate.df_code = "DF_1304_1665905157963"
 		this.ctrl.exchange_rate.df_description = "Column Group 1"
 		this.ctrl.exchange_rate.uictrl_code = "TXT"

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28425 
+Build ID        : 28428 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-02 17:11 PM 
+Modified Date   : 2023-Mar-03 5:27 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -40,7 +40,7 @@ export class p_main_layoutComponent implements OnInit {
 		this.transaction_list.desc = "Transaction List"
 		this.transaction_list.need_header = true
 		this.reversal_details.desc = "Reversal Details"
-		this.reversal_details.need_header = true
+		this.reversal_details.need_header = false
 	
 
     this.screen_instance['p_main_layout'] = {};

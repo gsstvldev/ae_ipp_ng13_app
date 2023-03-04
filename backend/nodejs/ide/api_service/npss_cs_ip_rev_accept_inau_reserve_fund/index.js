@@ -15,6 +15,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By :Daseen
         Created Date :04-11-2022
@@ -41,6 +42,7 @@ app.post('/', function(appRequest, appResponse, next) {
              Reason for : changing payload for prepaid card api 7/2/2023
               Reason for : changing rulecode taking query and insert param changes 8/2/2023
                Reason for : CHANGING contra amount logic and insert logic 18/02/2023
+               Reason for : CHANGING Reserve Fund api payload 03/03/2023
         */
         var serviceName = 'NPSS IP REV Accept INAU Reserve Fund';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -162,26 +164,27 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     if (arrurl.length) {
                                                                         var url = arrurl[0].param_detail;
                                                                         var amount
+                                                                        var Objfiledata = await Getorgdata(arrprocesslog)
                                                                         if (params.screenName == 's_rct_reversal_non_aed') {
 
                                                                             var ContraAmount = await getconamount(arrprocesslog, apicalls)
                                                                             amount = ContraAmount
-                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls)
+                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls,Objfiledata)
                                                                             if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
-                                                                               
-                                                                                    var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                                                    ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                                        if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                            objresponse.status = 'SUCCESS';
-                                                                                            sendResponse(null, objresponse);
 
-                                                                                        } else {
-                                                                                            objresponse.status = 'No Data Updated in Transaction Table';
-                                                                                            sendResponse(null, objresponse);
+                                                                                var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                                    if (arrUpdTranTbl == 'SUCCESS') {
+                                                                                        objresponse.status = 'SUCCESS';
+                                                                                        sendResponse(null, objresponse);
 
-                                                                                        }
-                                                                                    })
-                                                                               
+                                                                                    } else {
+                                                                                        objresponse.status = 'No Data Updated in Transaction Table';
+                                                                                        sendResponse(null, objresponse);
+
+                                                                                    }
+                                                                                })
+
 
 
                                                                             } else if (apistatus.status == 'TIMEOUT') {
@@ -232,25 +235,25 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                                     ExecuteQuery1(take_api_params, async function (arrprocesslog) {
 
-                                                                                        var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls)
+                                                                                        var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls,Objfiledata)
 
                                                                                         if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
 
-                                                                                           
-                                                                                                var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
 
-                                                                                                ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                                                    if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                                        objresponse.status = 'SUCCESS';
-                                                                                                        sendResponse(null, objresponse);
+                                                                                            var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
 
-                                                                                                    } else {
-                                                                                                        objresponse.status = 'No Data Updated in Transaction Table';
-                                                                                                        sendResponse(null, objresponse);
+                                                                                            ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                                                if (arrUpdTranTbl == 'SUCCESS') {
+                                                                                                    objresponse.status = 'SUCCESS';
+                                                                                                    sendResponse(null, objresponse);
 
-                                                                                                    }
-                                                                                                })
-                                                                                            
+                                                                                                } else {
+                                                                                                    objresponse.status = 'No Data Updated in Transaction Table';
+                                                                                                    sendResponse(null, objresponse);
+
+                                                                                                }
+                                                                                            })
+
 
 
                                                                                         } else if (apistatus.status == 'TIMEOUT') {
@@ -445,7 +448,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         }
                     })
                     // Do API Call for Service 
-                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, callbackapi) {
+                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam,Objfiledata, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Accept INAU Reserve Fund'
                             var request = require('request');
@@ -459,6 +462,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                     "payload": {
+                                        "org_field_data":Objfiledata,
                                         "force_post_flag": "N",
                                         "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
                                         "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
@@ -786,6 +790,21 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
 
+                    function Getorgdata(arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            var orgflddata = `select process_ref_no from npss_trn_process_log where process_name = 'Inward Credit Posting' and uetr = '${arrprocesslog[0].uetr}'`
+                            ExecuteQuery1(orgflddata, function (arrflddata) {
+                                if (arrflddata.length > 0) {
+                                    resolve(arrflddata[0].process_ref_no)
+                                } else {
+                                    objresponse.status = "ORG Field Data is Not Found"
+                                    sendResponse(null, objresponse)
+                                }
+
+                            })
+                        })
+                    }
+
 
 
 
@@ -968,10 +987,10 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     //function to call all api calls(reservefund,prepaid,credit)
-                    function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls) {
+                    function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls,Objfiledata) {
                         return new Promise((resolve, reject) => {
                             if (apicalls == 0 || apicalls == 0) { // reserve fund
-                                fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, function (result) {
+                                fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam,Objfiledata, function (result) {
 
                                     resolve(result)
 
@@ -1135,6 +1154,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

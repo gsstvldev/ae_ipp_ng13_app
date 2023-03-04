@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28392 
+Build ID        : 28466 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-28 15:36 PM 
+Modified Date   : 2023-Mar-04 13:25 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_api_failures
@@ -42,6 +42,8 @@ import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
 import { f_npss_api_process_log__srchComponent } from './f_npss_api_process_log__srch/f_npss_api_process_log__srch.component'
 import { p_view_main_req_and_res_layoutComponent } from './p_view_main_req_and_res_layout/p_view_main_req_and_res_layout.component'
+import { p_view_failure_layoutComponent } from './p_view_failure_layout/p_view_failure_layout.component'
+import { f_npss_respose_data_uiComponent } from './f_npss_respose_data_ui/f_npss_respose_data_ui.component'
 
 
 
@@ -58,7 +60,7 @@ import { p_view_main_req_and_res_layoutComponent } from './p_view_main_req_and_r
     s_rct_view_api_failuresRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_rct_view_api_failuresComponent,p_main_layoutComponent,f_navigation_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,p_search_layoutComponent,f_npss_api_process_log__srchComponent,p_view_main_req_and_res_layoutComponent,],
+  declarations: [s_rct_view_api_failuresComponent,p_main_layoutComponent,f_navigation_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,p_search_layoutComponent,f_npss_api_process_log__srchComponent,p_view_main_req_and_res_layoutComponent,p_view_failure_layoutComponent,f_npss_respose_data_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28437 
+Build ID        : 28464 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-03 11:30 AM 
+Modified Date   : 2023-Mar-04 11:58 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_investigation
@@ -69,7 +69,9 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 	navigation_ui_search : any = {}
 	navigation_ui_view_tran : any = {}
 	navigation_ui_view_process_log : any = {}
+	navigation_ui_approve : any = {}
 	navigation_ui_initiate : any = {}
+	navigation_ui_reject : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -169,6 +171,15 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_process_log.role = []
 		this.navigation_ui_view_process_log.action = ""
 		
+		// "Approve" Button of "Navigation UI" component
+		this.navigation_ui_approve.label_name = "Approve"
+		this.navigation_ui_approve.show = true
+		this.navigation_ui_approve.disabled = false
+		this.navigation_ui_approve.params = {"icon_only":false,"uicgcc_style":"fa fa-check"}
+		this.navigation_ui_approve.dynamic_param = {}
+		this.navigation_ui_approve.role = []
+		this.navigation_ui_approve.action = ""
+		
 		// "Initiate" Button of "Navigation UI" component
 		this.navigation_ui_initiate.label_name = "Initiate"
 		this.navigation_ui_initiate.show = true
@@ -177,6 +188,15 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_initiate.dynamic_param = {}
 		this.navigation_ui_initiate.role = []
 		this.navigation_ui_initiate.action = ""
+		
+		// "Reject" Button of "Navigation UI" component
+		this.navigation_ui_reject.label_name = "Reject"
+		this.navigation_ui_reject.show = true
+		this.navigation_ui_reject.disabled = false
+		this.navigation_ui_reject.params = {"icon_only":false,"uicgcc_style":"fa fa-close"}
+		this.navigation_ui_reject.dynamic_param = {}
+		this.navigation_ui_reject.role = []
+		this.navigation_ui_reject.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"

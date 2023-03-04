@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28454 
+Build ID        : 28464 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-04 8:45 AM 
+Modified Date   : 2023-Mar-04 11:58 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of tran_charge
 		this.ctrl.tran_charge = {}
 		this.ctrl.tran_charge.id = "RN01CN1"
-		this.ctrl.tran_charge.desc = "Orignal Txn Charges AED"
+		this.ctrl.tran_charge.desc = "Txn Charges AED"
 		this.ctrl.tran_charge.visible = true
-		this.ctrl.tran_charge.label_name = "Orignal Txn Charges AED"
+		this.ctrl.tran_charge.label_name = "Txn Charges AED"
 		this.ctrl.tran_charge.df_code = "DF_1304_1665901396659"
 		this.ctrl.tran_charge.df_description = "Column Group 1"
 		this.ctrl.tran_charge.uictrl_code = "CUR"

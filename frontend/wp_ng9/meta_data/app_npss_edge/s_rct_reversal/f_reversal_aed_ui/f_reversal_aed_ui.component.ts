@@ -1,32 +1,32 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28454 
+Build ID        : 28464 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-04 8:45 AM 
+Modified Date   : 2023-Mar-04 11:58 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
-Form Name       : NPSS Reversal N UI--------------------------------------------------------------------------- */
+Form Name       : Reversal AED UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_reversal_n_ui',
-  templateUrl: './f_npss_reversal_n_ui.component.html',
-  styleUrls: ['./f_npss_reversal_n_ui.component.css'],
+  selector: 'f_reversal_aed_ui',
+  templateUrl: './f_reversal_aed_ui.component.html',
+  styleUrls: ['./f_reversal_aed_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_reversal_n_uiComponent implements OnInit {
+export class f_reversal_aed_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_reversal_n_ui') form;
-  @ViewChild('npss_reversal_n_ui_tran_charge') element: ElementRef;
+  @ViewChild('f_reversal_aed_ui') form;
+  @ViewChild('reversal_aed_ui_tran_charge') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -50,10 +50,10 @@ focustoelement(){
   
 		//Properties of tran_charge
 		this.ctrl.tran_charge = {}
-		this.ctrl.tran_charge.id = "RN01CN1"
-		this.ctrl.tran_charge.desc = "Orignal Txn Charges AED"
+		this.ctrl.tran_charge.id = "f6b4711b-bdfd-47bf-aff1-32936a141a0d_1677929251282"
+		this.ctrl.tran_charge.desc = "Txn Charges AED"
 		this.ctrl.tran_charge.visible = true
-		this.ctrl.tran_charge.label_name = "Orignal Txn Charges AED"
+		this.ctrl.tran_charge.label_name = "Txn Charges AED"
 		this.ctrl.tran_charge.df_code = "DF_1304_1665901396659"
 		this.ctrl.tran_charge.df_description = "Column Group 1"
 		this.ctrl.tran_charge.uictrl_code = "CUR"
@@ -81,52 +81,14 @@ focustoelement(){
 		this.ctrl.tran_charge.vld_rules = []
 		this.ctrl.tran_charge.targetcolumn_lower = "tran_charge"
 		this.ctrl.tran_charge.disabled = false
-		this.ctrl.tran_charge.view_name = "f_npss_reversal_n_ui"
-		this.ctrl.tran_charge.ctrl_id = "npss_reversal_n_ui_tran_charge"
-		this.ctrl.npss_reversal_n_ui_tran_charge = {}
-		this.ctrl.npss_reversal_n_ui_tran_charge.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of buy_margin
-		this.ctrl.buy_margin = {}
-		this.ctrl.buy_margin.id = "RN01CN2"
-		this.ctrl.buy_margin.desc = "Buy spread"
-		this.ctrl.buy_margin.visible = true
-		this.ctrl.buy_margin.label_name = "Buy spread"
-		this.ctrl.buy_margin.df_code = "DF_1304_1665901396659"
-		this.ctrl.buy_margin.df_description = "Column Group 1"
-		this.ctrl.buy_margin.uictrl_code = "CUR"
-		this.ctrl.buy_margin.target_column = "BUY_MARGIN"
-		this.ctrl.buy_margin.data_type = "NUMBER"
-		this.ctrl.buy_margin.data_length = 19
-		this.ctrl.buy_margin.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.buy_margin.default_value = ""
-		this.ctrl.buy_margin.is_memory_ctrl = ""
-		this.ctrl.buy_margin.field_coordinates = ""
-		this.ctrl.buy_margin.sub_details = ""
-		this.ctrl.buy_margin.accept_char = ""
-		this.ctrl.buy_margin.currency_format = ""
-		this.ctrl.buy_margin.data_scale = "2"
-		this.ctrl.buy_margin.hide_label = false
-		this.ctrl.buy_margin.depends_on = ""
-		this.ctrl.buy_margin.placeholder = ""
-		this.ctrl.buy_margin.dynamic_param = ""
-		this.ctrl.buy_margin.style_code = ""
-		this.ctrl.buy_margin.data_source = ""
-		this.ctrl.buy_margin.image_association = ""
-		this.ctrl.buy_margin.show = true
-		this.ctrl.buy_margin.sub_content = ""
-		this.ctrl.buy_margin.required = false
-		this.ctrl.buy_margin.vld_rules = []
-		this.ctrl.buy_margin.targetcolumn_lower = "buy_margin"
-		this.ctrl.buy_margin.disabled = false
-		this.ctrl.buy_margin.view_name = "f_npss_reversal_n_ui"
-		this.ctrl.buy_margin.ctrl_id = "npss_reversal_n_ui_buy_margin"
-		this.ctrl.npss_reversal_n_ui_buy_margin = {}
-		this.ctrl.npss_reversal_n_ui_buy_margin.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.tran_charge.view_name = "f_reversal_aed_ui"
+		this.ctrl.tran_charge.ctrl_id = "reversal_aed_ui_tran_charge"
+		this.ctrl.reversal_aed_ui_tran_charge = {}
+		this.ctrl.reversal_aed_ui_tran_charge.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of tran_amount
 		this.ctrl.tran_amount = {}
-		this.ctrl.tran_amount.id = "RN01CN3"
+		this.ctrl.tran_amount.id = "6d5be311-f48c-4282-94b3-2191023470d5_1677929251282"
 		this.ctrl.tran_amount.desc = "TXN Amount Account Currency"
 		this.ctrl.tran_amount.visible = true
 		this.ctrl.tran_amount.label_name = "TXN Amount Account Currency"
@@ -157,15 +119,15 @@ focustoelement(){
 		this.ctrl.tran_amount.vld_rules = []
 		this.ctrl.tran_amount.targetcolumn_lower = "tran_amount"
 		this.ctrl.tran_amount.disabled = false
-		this.ctrl.tran_amount.view_name = "f_npss_reversal_n_ui"
-		this.ctrl.tran_amount.ctrl_id = "npss_reversal_n_ui_tran_amount"
-		this.ctrl.npss_reversal_n_ui_tran_amount = {}
-		this.ctrl.npss_reversal_n_ui_tran_amount.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.model = {"TRAN_CHARGE":"","BUY_MARGIN":"","TRAN_AMOUNT":""}
-		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.Meta = [{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_CHARGE"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_MARGIN"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_AMOUNT"}]
-		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.dtt_code = "dtt_1304_1665901217208"
-		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		this.ctrl.tran_amount.view_name = "f_reversal_aed_ui"
+		this.ctrl.tran_amount.ctrl_id = "reversal_aed_ui_tran_amount"
+		this.ctrl.reversal_aed_ui_tran_amount = {}
+		this.ctrl.reversal_aed_ui_tran_amount.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_reversal_aed_ui.model = {"TRAN_CHARGE":"","TRAN_AMOUNT":""}
+		this.screen_instance[this.comp_id].f_reversal_aed_ui.Meta = [{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_CHARGE"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_AMOUNT"}]
+		this.screen_instance[this.comp_id].f_reversal_aed_ui.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_reversal_aed_ui.dtt_code = "dtt_1304_1665901217208"
+		this.screen_instance[this.comp_id].f_reversal_aed_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -212,10 +174,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_reversal_n_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_reversal_n_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_reversal_aed_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_reversal_aed_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_reversal_n_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_reversal_aed_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

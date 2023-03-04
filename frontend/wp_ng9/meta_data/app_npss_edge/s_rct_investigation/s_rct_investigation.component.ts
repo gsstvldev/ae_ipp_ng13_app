@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28437 
+Build ID        : 28466 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-03 11:30 AM 
+Modified Date   : 2023-Mar-04 13:25 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_investigation
@@ -14,13 +14,15 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_cs_maker_initiateService} from '../../../custom_widget/npss_cs_maker_initiate/npss_cs_maker_initiate.service'
+import {npss_cs_maker_closeService} from '../../../custom_widget/npss_cs_maker_close/npss_cs_maker_close.service'
 import {npss_cs_investigation_pac_028Service} from '../../../custom_widget/npss_cs_investigation_pac_028/npss_cs_investigation_pac_028.service'
 
 @Component({
 	selector: 's_rct_investigation',
 	templateUrl: './s_rct_investigation.component.html',
 	styleUrls: ['./s_rct_investigation.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_investigation_pac_028Service]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_maker_initiateService,npss_cs_maker_closeService,npss_cs_investigation_pac_028Service]
 })
     
 // Start of class 
@@ -51,7 +53,9 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 	uicgc_15 : string = "message_detail_ui"
 	uicgc_16 : string = "single_back_ui"
 	uicgc_17 : string = "history_detail"
+	uicgc_18 : string = "close_ui"
 	key_events : any = {}
+	btl_1304_1677933618536 : string = "p_close_layout"
 	btl_1304_1670244943676 : string = "p_view_req_and_res_profile"
 	btl_1304_1669368765629 : string = "p_view_history_layout"
 	btl_1304_1669368715639 : string = "p_view_response_layout"
@@ -61,8 +65,9 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 	btl_1304_1669200873578 : string = "p_vertical_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_11","uicgc_10","uicgc_15","uicgc_4","uicgc_16","uicgc_12","uicgc_13","uicgc_14","uicgc_7","uicgc_3"]
+	forms : any = ["uicgc_11","uicgc_10","uicgc_15","uicgc_4","uicgc_18","uicgc_16","uicgc_12","uicgc_13","uicgc_14","uicgc_7","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
+	p_close_layout__e_1677933677254_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation_ui : any = {}
@@ -71,6 +76,9 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 	navigation_ui_view_process_log : any = {}
 	navigation_ui_view_message_log : any = {}
 	navigation_ui_initiate : any = {}
+	navigation_ui_approve : any = {}
+	navigation_ui_reject : any = {}
+	navigation_ui_close : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -96,10 +104,12 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 	single_back_ui : any = {}
 	single_back_ui_back : any = {}
 	history_detail : any = {}
+	close_ui : any = {}
+	close_ui_save : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_investigation_pac_028Service:npss_cs_investigation_pac_028Service) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_maker_initiateService:npss_cs_maker_initiateService,private npss_cs_maker_closeService:npss_cs_maker_closeService,private npss_cs_investigation_pac_028Service:npss_cs_investigation_pac_028Service) {
     
 	}
     
@@ -187,6 +197,33 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_initiate.dynamic_param = {}
 		this.navigation_ui_initiate.role = []
 		this.navigation_ui_initiate.action = ""
+		
+		// "Approve" Button of "Navigation UI" component
+		this.navigation_ui_approve.label_name = "Approve"
+		this.navigation_ui_approve.show = true
+		this.navigation_ui_approve.disabled = false
+		this.navigation_ui_approve.params = {"icon_only":false,"uicgcc_style":"fa fa-check"}
+		this.navigation_ui_approve.dynamic_param = {}
+		this.navigation_ui_approve.role = []
+		this.navigation_ui_approve.action = ""
+		
+		// "Reject" Button of "Navigation UI" component
+		this.navigation_ui_reject.label_name = "Reject"
+		this.navigation_ui_reject.show = true
+		this.navigation_ui_reject.disabled = false
+		this.navigation_ui_reject.params = {"icon_only":false,"uicgcc_style":"fa fa-close"}
+		this.navigation_ui_reject.dynamic_param = {}
+		this.navigation_ui_reject.role = []
+		this.navigation_ui_reject.action = ""
+		
+		// "Close" Button of "Navigation UI" component
+		this.navigation_ui_close.label_name = "Close"
+		this.navigation_ui_close.show = true
+		this.navigation_ui_close.disabled = false
+		this.navigation_ui_close.params = {"icon_only":false,"uicgcc_style":"fa fa-close"}
+		this.navigation_ui_close.dynamic_param = {}
+		this.navigation_ui_close.role = []
+		this.navigation_ui_close.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -472,6 +509,29 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 		this.history_detail.onChangecomponent = new EventEmitter<any>()
 		this.history_detail.show = true
 		this.history_detail.dynamic_param = {}
+	
+		// Component level properties - "Close UI" 
+		this.close_ui.uictrl_code = "dynamic_ui"
+		this.close_ui.uicgc_desc = "Close UI"
+		this.close_ui.uicgc_code = "uicgc_18"
+		this.close_ui.params = {}
+		this.close_ui.datasource = {}
+		this.close_ui.context_menu = []
+		this.close_ui.views = {}
+		this.close_ui.onChangecomponent = new EventEmitter<any>()
+		this.close_ui.show = true
+		this.close_ui.dynamic_param = {}
+		this.close_ui.f_close_ui = {"show":true}
+		this.close_ui.current_view = "f_close_ui"
+		
+		// "Save" Button of "Close UI" component
+		this.close_ui_save.label_name = "Save"
+		this.close_ui_save.show = true
+		this.close_ui_save.disabled = false
+		this.close_ui_save.params = {"icon_only":false,"uicgcc_style":"fa fa-floppy-o"}
+		this.close_ui_save.dynamic_param = {}
+		this.close_ui_save.role = []
+		this.close_ui_save.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -694,6 +754,46 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 		this.process_log_ui_view_req_and_res__sp_for_vreq_and_vres()
 		this.process_log_ui_view_req_and_res__bt_vreq()
 		this.process_log_ui_view_req_and_res__bt_vres()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
+	navigation_ui_close__action_button_click(){
+		this.navigation_ui_close__e_1677933677254()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "close ui save"
+	close_ui_save__action_button_click(){
+		this.close_ui_save__e_1677933720083()
+	}
+
+	//Handler for INTERNAL event of "e 1677933720083"
+	e_1677933720083__internal(parent_event_result){
+		this.e_1677933720083__e_1677933726833(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1677933726833"
+	e_1677933726833__internal(parent_event_result){
+		this.e_1677933726833__e_1677933764388(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1677933764388"
+	e_1677933764388__internal(parent_event_result){
+		this.e_1677933764388__e_1677933772902(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui approve"
+	navigation_ui_approve__action_button_click(){
+		this.navigation_ui_approve__e_1677934537487()
+	}
+
+	//Handler for INTERNAL event of "e 1677934537487"
+	e_1677934537487__internal(parent_event_result){
+		this.e_1677934537487__e_1677934571168(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1677934571168"
+	e_1677934571168__internal(parent_event_result){
+		this.e_1677934571168__e_1677934721686(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1394,7 +1494,7 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_investigation_pac_028Service.fn_npss_cs_investigation_pac_028(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_maker_initiateService.fn_npss_cs_maker_initiate(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2071,6 +2171,179 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
+	navigation_ui_close__e_1677933677254() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_close"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1677933677254"
+		let event_params={"caller_name":"navigation_ui_close__e_1677933677254","event_desc":"E_1677933677254","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_close","raiseparam":{"popup_category":"profile","variable":"p_close_layout__e_1677933677254","selector":"p_close_layout","profile_code":"BTL_1304_1677933618536","window_title":"Remarks","window_height":250,"window_width":"400px","window_close_icon":"Y","eventdes":"e_1677933677254","eventcode":"E_1677933677254"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "close ui save"
+	close_ui_save__e_1677933720083() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="close_ui_save"
+		let destn_id="close_ui"
+		let parent_source_id=""
+		let event_code="e_1677933720083"
+		let event_params={"caller_name":"close_ui_save__e_1677933720083","event_desc":"E_1677933720083","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"close_ui_save","raiseparam":{}}
+		let handler_code="validate_elements"
+		let internals="e_1677933720083__e_1677933726833,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1677933720083"
+	e_1677933720083__e_1677933726833(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1677933720083"
+		let destn_id=""
+		let parent_source_id="close_ui_save"
+		let event_code="e_1677933726833"
+		let event_params={"caller_name":"e_1677933720083__e_1677933726833","event_desc":"E_1677933726833","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"close_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals="e_1677933726833__e_1677933764388,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_maker_closeService.fn_npss_cs_maker_close(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1677933726833"
+	e_1677933726833__e_1677933764388(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1677933726833"
+		let destn_id=""
+		let parent_source_id="e_1677933720083"
+		let event_code="e_1677933764388"
+		let event_params={"caller_name":"e_1677933726833__e_1677933764388","event_desc":"E_1677933764388","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been closed successfully","root_source_id":"close_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1677933764388__e_1677933772902,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1677933764388"
+	e_1677933764388__e_1677933772902(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1677933764388"
+		let destn_id=""
+		let parent_source_id="e_1677933726833"
+		let event_code="e_1677933772902"
+		let event_params={"caller_name":"e_1677933764388__e_1677933772902","event_desc":"E_1677933772902","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"close_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui approve"
+	navigation_ui_approve__e_1677934537487() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_approve"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1677934537487"
+		let event_params={"caller_name":"navigation_ui_approve__e_1677934537487","event_desc":"E_1677934537487","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_approve","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1677934537487__e_1677934571168,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_investigation_pac_028Service.fn_npss_cs_investigation_pac_028(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1677934537487"
+	e_1677934537487__e_1677934571168(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1677934537487"
+		let destn_id=""
+		let parent_source_id="navigation_ui_approve"
+		let event_code="e_1677934571168"
+		let event_params={"caller_name":"e_1677934537487__e_1677934571168","event_desc":"E_1677934571168","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been approved successfully","root_source_id":"navigation_ui_approve","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1677934571168__e_1677934721686,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1677934571168"
+	e_1677934571168__e_1677934721686(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1677934571168"
+		let destn_id=""
+		let parent_source_id="e_1677934537487"
+		let event_code="e_1677934721686"
+		let event_params={"caller_name":"e_1677934571168__e_1677934721686","event_desc":"E_1677934721686","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_approve","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

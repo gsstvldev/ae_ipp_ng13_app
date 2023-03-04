@@ -1,0 +1,16 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_reversal_aed_ui="ngForm">
+<div id="1677929251282" class="row">
+	<div #reversal_aed_ui_tran_charge id="f6b4711b-bdfd-47bf-aff1-32936a141a0d_1677929251282" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('tran_charge')" >
+				<cur [ctrl_id]="'reversal_aed_ui_tran_charge'" [comp_id]="comp_id" [ctrl]="ctrl.tran_charge" [model]="screen_instance[this.comp_id].f_reversal_aed_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cur>
+	</div>
+	<div  id="6d5be311-f48c-4282-94b3-2191023470d5_1677929251282" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('tran_amount')" >
+				<cur [ctrl_id]="'reversal_aed_ui_tran_amount'" [comp_id]="comp_id" [ctrl]="ctrl.tran_amount" [model]="screen_instance[this.comp_id].f_reversal_aed_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cur>
+	</div>
+</div>
+	</form>
+</fieldset >
+
+</div>

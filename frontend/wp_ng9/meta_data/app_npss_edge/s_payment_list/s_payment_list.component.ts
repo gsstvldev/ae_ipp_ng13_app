@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28355 
+Build ID        : 28454 
 Modified By     : Admin 
-Modified Date   : 2023-Feb-27 7:5 AM 
+Modified Date   : 2023-Mar-04 8:45 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_list
@@ -37,19 +37,23 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 	uicgc_2 : string = "search"
 	uicgc_3 : string = "list"
 	uicgc_4 : string = "api_details"
+	uicgc_5 : string = "payment_list_widget"
 	key_events : any = {}
+	btl_1304_1677908287470 : string = "p_custom_layout"
 	btl_1304_1677303885071 : string = "p_main_layout"
 	forms : any = ["uicgc_4","uicgc_2","uicgc_1"]
 	api_input_ui_actions : any = {}
 	api_input_ui_actions_clear : any = {}
 	api_input_ui_actions_save : any = {}
 	api_input_ui_actions_call_api : any = {}
+	api_input_ui_actions_view_response : any = {}
 	api_input_ui_actions_trg_hide : any = {}
 	search : any = {}
 	search_clear : any = {}
 	search_search : any = {}
 	list : any = {}
 	api_details : any = {}
+	payment_list_widget : any = {}
 
 
 	// Constructor 
@@ -99,6 +103,15 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 		this.api_input_ui_actions_call_api.dynamic_param = {}
 		this.api_input_ui_actions_call_api.role = []
 		this.api_input_ui_actions_call_api.action = ""
+		
+		// "View Response" Button of "API Input UI Actions" component
+		this.api_input_ui_actions_view_response.label_name = "View Response"
+		this.api_input_ui_actions_view_response.show = true
+		this.api_input_ui_actions_view_response.disabled = false
+		this.api_input_ui_actions_view_response.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.api_input_ui_actions_view_response.dynamic_param = {}
+		this.api_input_ui_actions_view_response.role = []
+		this.api_input_ui_actions_view_response.action = ""
 		
 		// "Trg hide" Button of "API Input UI Actions" component
 		this.api_input_ui_actions_trg_hide.label_name = "Trg hide"
@@ -166,6 +179,18 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 		this.api_details.dynamic_param = {}
 		this.api_details.f_npss_payment_list_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
 		this.api_details.form_name = "f_npss_payment_list_ui"
+	
+		// Component level properties - "Payment List Widget" 
+		this.payment_list_widget.uictrl_code = "custom_widget"
+		this.payment_list_widget.uicgc_desc = "Payment List Widget"
+		this.payment_list_widget.uicgc_code = "uicgc_5"
+		this.payment_list_widget.params = {}
+		this.payment_list_widget.datasource = {}
+		this.payment_list_widget.context_menu = []
+		this.payment_list_widget.views = {}
+		this.payment_list_widget.onChangecomponent = new EventEmitter<any>()
+		this.payment_list_widget.show = true
+		this.payment_list_widget.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -257,6 +282,11 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "svm for checked change"
 	svm_for_checked_change__internal(parent_event_result){
 		this.svm_for_checked_change__cc_for_show_hide_on_list(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions view response"
+	api_input_ui_actions_view_response__action_button_click(){
+		this.api_input_ui_actions_view_response__sp_for_vr()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions trg hide"
@@ -729,6 +759,27 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions view response"
+	api_input_ui_actions_view_response__sp_for_vr() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="api_input_ui_actions_view_response"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1677908763670"
+		let event_params={"caller_name":"api_input_ui_actions_view_response__sp_for_vr","event_desc":"SP for VR","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_view_response","raiseparam":{"profile_code":"BTL_1304_1677908287470"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -1,8 +1,0 @@
-<div class="s_rule_template_setup">
-<p_data_entry_layout [screen_instance]="this" [hidden]="!(current_profile=='p_data_entry_layout')"></p_data_entry_layout>
-<p_list_layout [screen_instance]="this" [hidden]="!(current_profile=='p_list_layout')"></p_list_layout>
-
-<p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_by_click_on_list_search_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '400px','width': '650px'}" [draggable]="true" [modal]="true">
-	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>
-<app-dialog [screen_instance]="this" ></app-dialog>
-</div>

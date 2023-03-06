@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28464 
+Build ID        : 28482 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-04 11:58 AM 
+Modified Date   : 2023-Mar-06 5:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_matrix_test
@@ -14,13 +14,15 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
-import {npss_cs_bct_ip_investigation_change_stateService} from '../../../custom_widget/npss_cs_bct_ip_investigation_change_state/npss_cs_bct_ip_investigation_change_state.service'
+import {npss_cs_maker_initiateService} from '../../../custom_widget/npss_cs_maker_initiate/npss_cs_maker_initiate.service'
+import {npss_cs_investigation_pac_028Service} from '../../../custom_widget/npss_cs_investigation_pac_028/npss_cs_investigation_pac_028.service'
+import {npss_cs_rev_rejectService} from '../../../custom_widget/npss_cs_rev_reject/npss_cs_rev_reject.service'
 
 @Component({
 	selector: 's_user_matrix_test',
 	templateUrl: './s_user_matrix_test.component.html',
 	styleUrls: ['./s_user_matrix_test.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_bct_ip_investigation_change_stateService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_maker_initiateService,npss_cs_investigation_pac_028Service,npss_cs_rev_rejectService]
 })
     
 // Start of class 
@@ -100,7 +102,7 @@ export class s_user_matrix_testComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_bct_ip_investigation_change_stateService:npss_cs_bct_ip_investigation_change_stateService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_maker_initiateService:npss_cs_maker_initiateService,private npss_cs_investigation_pac_028Service:npss_cs_investigation_pac_028Service,private npss_cs_rev_rejectService:npss_cs_rev_rejectService) {
     
 	}
     
@@ -687,6 +689,36 @@ export class s_user_matrix_testComponent implements OnInit,AfterViewInit {
 		this.process_log_ui_view_req_and_res__bt_for_requ()
 		this.process_log_ui_view_req_and_res__bt_for_resp()
 		this.process_log_ui_view_req_and_res__sp_for_req_res()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui approve"
+	navigation_ui_approve__action_button_click(){
+		this.navigation_ui_approve__bct_info_for_ide_link()
+	}
+
+	//Handler for INTERNAL event of "bct info for ide link"
+	bct_info_for_ide_link__internal(parent_event_result){
+		this.bct_info_for_ide_link__bct_info_for_approve(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "bct info for approve"
+	bct_info_for_approve__internal(parent_event_result){
+		this.bct_info_for_approve__bct_info_for_approve_rs(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui reject"
+	navigation_ui_reject__action_button_click(){
+		this.navigation_ui_reject__bct_info_for_reject_ide()
+	}
+
+	//Handler for INTERNAL event of "bct info for reject ide"
+	bct_info_for_reject_ide__internal(parent_event_result){
+		this.bct_info_for_reject_ide__bct_info_for_reject_info(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "bct info for reject info"
+	bct_info_for_reject_info__internal(parent_event_result){
+		this.bct_info_for_reject_info__bct_info_for_reject_rs(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1344,7 +1376,7 @@ export class s_user_matrix_testComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_bct_ip_investigation_change_stateService.fn_npss_cs_bct_ip_investigation_change_state(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_maker_initiateService.fn_npss_cs_maker_initiate(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1956,6 +1988,136 @@ export class s_user_matrix_testComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui approve"
+	navigation_ui_approve__bct_info_for_ide_link() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_approve"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678076019422"
+		let event_params={"caller_name":"navigation_ui_approve__bct_info_for_ide_link","event_desc":"BCT info for IDE LINK","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_approve","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="bct_info_for_ide_link__bct_info_for_approve,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_investigation_pac_028Service.fn_npss_cs_investigation_pac_028(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "bct info for ide link"
+	bct_info_for_ide_link__bct_info_for_approve(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="bct_info_for_ide_link"
+		let destn_id=""
+		let parent_source_id="navigation_ui_approve"
+		let event_code="e_1678076046249"
+		let event_params={"caller_name":"bct_info_for_ide_link__bct_info_for_approve","event_desc":"BCT info for approve","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been approved successfully","root_source_id":"navigation_ui_approve","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="bct_info_for_approve__bct_info_for_approve_rs,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "bct info for approve"
+	bct_info_for_approve__bct_info_for_approve_rs(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="bct_info_for_approve"
+		let destn_id=""
+		let parent_source_id="bct_info_for_ide_link"
+		let event_code="e_1678076135331"
+		let event_params={"caller_name":"bct_info_for_approve__bct_info_for_approve_rs","event_desc":"BCT info for approve RS","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_approve","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui reject"
+	navigation_ui_reject__bct_info_for_reject_ide() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_reject"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678076162243"
+		let event_params={"caller_name":"navigation_ui_reject__bct_info_for_reject_ide","event_desc":"BCT info for REJECT IDE","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_reject","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="bct_info_for_reject_ide__bct_info_for_reject_info,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_rev_rejectService.fn_npss_cs_rev_reject(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "bct info for reject ide"
+	bct_info_for_reject_ide__bct_info_for_reject_info(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="bct_info_for_reject_ide"
+		let destn_id=""
+		let parent_source_id="navigation_ui_reject"
+		let event_code="e_1678076170721"
+		let event_params={"caller_name":"bct_info_for_reject_ide__bct_info_for_reject_info","event_desc":"BCT info for REJECT INFO","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been rejected successfully","root_source_id":"navigation_ui_reject","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="bct_info_for_reject_info__bct_info_for_reject_rs,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "bct info for reject info"
+	bct_info_for_reject_info__bct_info_for_reject_rs(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="bct_info_for_reject_info"
+		let destn_id=""
+		let parent_source_id="bct_info_for_reject_ide"
+		let event_code="e_1678076177982"
+		let event_params={"caller_name":"bct_info_for_reject_info__bct_info_for_reject_rs","event_desc":"BCT info for REJECT RS","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_reject","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

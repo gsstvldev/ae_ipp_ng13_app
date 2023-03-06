@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28473 
+Build ID        : 28482 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-04 13:32 PM 
+Modified Date   : 2023-Mar-06 5:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_api_failures
@@ -22,8 +22,8 @@ export class p_view_request_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	request_ui : any = {}
-	single_back_ui : any = {}
+  	single_back_ui : any = {}
+	request_ui : any = {}
 
 
   // Constructor 
@@ -31,10 +31,10 @@ export class p_view_request_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.request_ui.desc = "Request UI"
-		this.request_ui.need_header = false
-		this.single_back_ui.desc = "Single Back UI"
+    	this.single_back_ui.desc = "Single Back UI"
 		this.single_back_ui.need_header = ""
+		this.request_ui.desc = "Request UI"
+		this.request_ui.need_header = false
 	
 
     this.screen_instance['p_view_request_layout'] = {};

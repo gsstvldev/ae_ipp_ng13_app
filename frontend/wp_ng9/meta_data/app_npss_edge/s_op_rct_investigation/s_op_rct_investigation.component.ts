@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28464 
+Build ID        : 28482 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-04 11:58 AM 
+Modified Date   : 2023-Mar-06 5:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_investigation
@@ -14,14 +14,16 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_cs_maker_initiateService} from '../../../custom_widget/npss_cs_maker_initiate/npss_cs_maker_initiate.service'
+import {npss_cs_maker_closeService} from '../../../custom_widget/npss_cs_maker_close/npss_cs_maker_close.service'
 import {npss_cs_investigation_pac_028Service} from '../../../custom_widget/npss_cs_investigation_pac_028/npss_cs_investigation_pac_028.service'
-import {npss_cs_investigation_closeService} from '../../../custom_widget/npss_cs_investigation_close/npss_cs_investigation_close.service'
+import {npss_cs_rev_rejectService} from '../../../custom_widget/npss_cs_rev_reject/npss_cs_rev_reject.service'
 
 @Component({
 	selector: 's_op_rct_investigation',
 	templateUrl: './s_op_rct_investigation.component.html',
 	styleUrls: ['./s_op_rct_investigation.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_investigation_pac_028Service,npss_cs_investigation_closeService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_maker_initiateService,npss_cs_maker_closeService,npss_cs_investigation_pac_028Service,npss_cs_rev_rejectService]
 })
     
 // Start of class 
@@ -108,7 +110,7 @@ export class s_op_rct_investigationComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_investigation_pac_028Service:npss_cs_investigation_pac_028Service,private npss_cs_investigation_closeService:npss_cs_investigation_closeService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_maker_initiateService:npss_cs_maker_initiateService,private npss_cs_maker_closeService:npss_cs_maker_closeService,private npss_cs_investigation_pac_028Service:npss_cs_investigation_pac_028Service,private npss_cs_rev_rejectService:npss_cs_rev_rejectService) {
     
 	}
     
@@ -775,6 +777,36 @@ export class s_op_rct_investigationComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "im for save btn"
 	im_for_save_btn__internal(parent_event_result){
 		this.im_for_save_btn__rs_for_save_btn(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui approve"
+	navigation_ui_approve__action_button_click(){
+		this.navigation_ui_approve__e_1678076897511()
+	}
+
+	//Handler for INTERNAL event of "e 1678076897511"
+	e_1678076897511__internal(parent_event_result){
+		this.e_1678076897511__e_1678076905587(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1678076905587"
+	e_1678076905587__internal(parent_event_result){
+		this.e_1678076905587__e_1678076911400(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui reject"
+	navigation_ui_reject__action_button_click(){
+		this.navigation_ui_reject__e_1678076967132()
+	}
+
+	//Handler for INTERNAL event of "e 1678076967132"
+	e_1678076967132__internal(parent_event_result){
+		this.e_1678076967132__e_1678076984145(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1678076984145"
+	e_1678076984145__internal(parent_event_result){
+		this.e_1678076984145__e_1678076997486(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1517,7 +1549,7 @@ export class s_op_rct_investigationComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_investigation_pac_028Service.fn_npss_cs_investigation_pac_028(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_maker_initiateService.fn_npss_cs_maker_initiate(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2235,7 +2267,7 @@ export class s_op_rct_investigationComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_investigation_closeService.fn_npss_cs_investigation_close(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_maker_closeService.fn_npss_cs_maker_close(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2274,6 +2306,136 @@ export class s_op_rct_investigationComponent implements OnInit,AfterViewInit {
 		let parent_source_id="cc_for_save_btn"
 		let event_code="e_1676972769792"
 		let event_params={"caller_name":"im_for_save_btn__rs_for_save_btn","event_desc":"RS for Save btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"remark_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui approve"
+	navigation_ui_approve__e_1678076897511() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_approve"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678076897511"
+		let event_params={"caller_name":"navigation_ui_approve__e_1678076897511","event_desc":"E_1678076897511","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_approve","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1678076897511__e_1678076905587,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_investigation_pac_028Service.fn_npss_cs_investigation_pac_028(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1678076897511"
+	e_1678076897511__e_1678076905587(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1678076897511"
+		let destn_id=""
+		let parent_source_id="navigation_ui_approve"
+		let event_code="e_1678076905587"
+		let event_params={"caller_name":"e_1678076897511__e_1678076905587","event_desc":"E_1678076905587","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been approved successfully","root_source_id":"navigation_ui_approve","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1678076905587__e_1678076911400,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1678076905587"
+	e_1678076905587__e_1678076911400(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1678076905587"
+		let destn_id=""
+		let parent_source_id="e_1678076897511"
+		let event_code="e_1678076911400"
+		let event_params={"caller_name":"e_1678076905587__e_1678076911400","event_desc":"E_1678076911400","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_approve","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui reject"
+	navigation_ui_reject__e_1678076967132() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_reject"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678076967132"
+		let event_params={"caller_name":"navigation_ui_reject__e_1678076967132","event_desc":"E_1678076967132","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_reject","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1678076967132__e_1678076984145,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_rev_rejectService.fn_npss_cs_rev_reject(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1678076967132"
+	e_1678076967132__e_1678076984145(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1678076967132"
+		let destn_id=""
+		let parent_source_id="navigation_ui_reject"
+		let event_code="e_1678076984145"
+		let event_params={"caller_name":"e_1678076967132__e_1678076984145","event_desc":"E_1678076984145","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been rejected successfully","root_source_id":"navigation_ui_reject","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1678076984145__e_1678076997486,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1678076984145"
+	e_1678076984145__e_1678076997486(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1678076984145"
+		let destn_id=""
+		let parent_source_id="e_1678076967132"
+		let event_code="e_1678076997486"
+		let event_params={"caller_name":"e_1678076984145__e_1678076997486","event_desc":"E_1678076997486","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_reject","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

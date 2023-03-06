@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28466 
+Build ID        : 28482 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-04 13:25 PM 
+Modified Date   : 2023-Mar-06 5:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_investigation
@@ -24,6 +24,7 @@ import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hid
 import {npss_cs_maker_initiateModule} from '../../../custom_widget/npss_cs_maker_initiate/npss_cs_maker_initiate.module'
 import {npss_cs_maker_closeModule} from '../../../custom_widget/npss_cs_maker_close/npss_cs_maker_close.module'
 import {npss_cs_investigation_pac_028Module} from '../../../custom_widget/npss_cs_investigation_pac_028/npss_cs_investigation_pac_028.module'
+import {npss_cs_rev_rejectModule} from '../../../custom_widget/npss_cs_rev_reject/npss_cs_rev_reject.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -56,7 +57,7 @@ import { f_message_back_uiComponent } from './f_message_back_ui/f_message_back_u
 import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss_message_data_ui.component'
 import { p_view_req_and_res_profileComponent } from './p_view_req_and_res_profile/p_view_req_and_res_profile.component'
 import { p_close_layoutComponent } from './p_close_layout/p_close_layout.component'
-import { f_close_uiComponent } from './f_close_ui/f_close_ui.component'
+import { f_npss_remarks_uiComponent } from './f_npss_remarks_ui/f_npss_remarks_ui.component'
 
 
 
@@ -71,9 +72,9 @@ import { f_close_uiComponent } from './f_close_ui/f_close_ui.component'
     OverlayPanelModule,
     
     s_rct_investigationRoutingModule,
-    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_maker_initiateModule,npss_cs_maker_closeModule,npss_cs_investigation_pac_028Module
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_maker_initiateModule,npss_cs_maker_closeModule,npss_cs_investigation_pac_028Module,npss_cs_rev_rejectModule
   ],
-  declarations: [s_rct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_single_back_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,p_close_layoutComponent,f_close_uiComponent,],
+  declarations: [s_rct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_post_plog_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_single_back_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,p_close_layoutComponent,f_npss_remarks_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

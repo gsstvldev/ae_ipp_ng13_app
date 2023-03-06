@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28473 
+Build ID        : 28482 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-04 13:32 PM 
+Modified Date   : 2023-Mar-06 5:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_api_failures
@@ -35,8 +35,8 @@ import { s_rct_view_api_failuresRoutingModule } from './s_rct_view_api_failures.
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_request_layout.component'
-import { f_npss_target_request_uiComponent } from './f_npss_target_request_ui/f_npss_target_request_ui.component'
 import { f_single_back_uiComponent } from './f_single_back_ui/f_single_back_ui.component'
+import { f_npss_target_request_uiComponent } from './f_npss_target_request_ui/f_npss_target_request_ui.component'
 import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
 import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/f_npss_target_response_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
@@ -60,7 +60,7 @@ import { f_npss_respose_data_uiComponent } from './f_npss_respose_data_ui/f_npss
     s_rct_view_api_failuresRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_rct_view_api_failuresComponent,p_main_layoutComponent,f_navigation_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,p_search_layoutComponent,f_npss_api_process_log__srchComponent,p_view_main_req_and_res_layoutComponent,p_view_failure_layoutComponent,f_npss_respose_data_uiComponent,],
+  declarations: [s_rct_view_api_failuresComponent,p_main_layoutComponent,f_navigation_uiComponent,p_view_request_layoutComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,p_search_layoutComponent,f_npss_api_process_log__srchComponent,p_view_main_req_and_res_layoutComponent,p_view_failure_layoutComponent,f_npss_respose_data_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

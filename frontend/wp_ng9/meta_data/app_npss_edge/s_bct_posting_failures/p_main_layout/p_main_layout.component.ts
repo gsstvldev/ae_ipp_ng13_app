@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28437 
+Build ID        : 28490 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-03 11:30 AM 
+Modified Date   : 2023-Mar-06 15:29 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_failures
@@ -25,6 +25,7 @@ export class p_main_layoutComponent implements OnInit {
   	navigation_ui : any = {}
 	queue : any = {}
 	transaction_list : any = {}
+	failure_list : any = {}
 
 
   // Constructor 
@@ -38,6 +39,8 @@ export class p_main_layoutComponent implements OnInit {
 		this.queue.need_header = true
 		this.transaction_list.desc = "Transaction List"
 		this.transaction_list.need_header = true
+		this.failure_list.desc = "Failure List"
+		this.failure_list.need_header = true
 	
 
     this.screen_instance['p_main_layout'] = {};

@@ -8,10 +8,16 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
-    /*  Created By :Daseen
+
+
+
+
+
+
+    /*  Created By :Siva Harish
     Created Date :25/02/2023
-    Modified By : 
-    Modified Date : 27/02/2023 6:52pm
+    Modified By : Siva Harish
+    Modified Date : 27/02/2023 6:44pm
     }
     */
     var serviceName = 'NPSS (CS) Liquidity Position';
@@ -28,8 +34,7 @@ app.post('/', function(appRequest, appResponse, next) {
     var success_process_status, success_status;
     var moment = require('moment');
     var reqAsync = require('async');
-    const schedule = require('node-schedule');
-    const { reject } = require('lodash');
+
     var mTranConn = "";
     var producer
     var task
@@ -50,90 +55,105 @@ app.post('/', function(appRequest, appResponse, next) {
             objSessionLogInfo.ACTION = 'ACTION';
             objSessionLogInfo.PROCESS = 'NPSS (CS) Liquidity Position';
             // Get DB Connection 
-            reqTranDBInstance.GetTranDBConn(headers, false, async function (pSession) {
+            reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
                 mTranConn = pSession; //  assign connection     
-                reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
+                reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
                     try {
-                        if (Array.isArray(params.Tran_Id)) {
-                            arrTranID = params.Tran_Id.map(function (eachTran) {
-                                return eachTran.toString();
-                            });
-                        } else {
-                            arrTranID = [params.Tran_Id.toString()];
-                        }
-                        tranid = '(' + "'" + arrTranID.toString().split(',').join("','") + "'" + ')';
-                        var PRCT_ID = prct_id
-                        var TakeFinalStatus = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'CORE_API_LIQUIDITY_POSITION' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
 
-                        var Taketran = `select * from npss_core_api_process_log where npsscapl_id in ${tranid}`
                         var Takeapiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_LIQUIDITY' and param_code='URL'`
-                        ExecuteQuery1(TakeFinalStatus, function (arrStatus) {
-                            if (arrStatus.length > 0) {
-                                final_status = arrStatus[0].success_status
-                                final_process_status = arrStatus[0].success_process_status
-                                ExecuteQuery1(Taketran, function (arrTran) {
-                                    if (arrTran.length > 0) {
-                                        ExecuteQuery1(Takeapiurl, function (arrUrl) {
-                                            if (arrUrl.length > 0) {
-                                                var UpdateTrnTbl = `update npss_core_api_process_log set   status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsscapl_id in ${tranid}`
-                                                ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
-                                                    if (uptranresult == 'SUCCESS') {
-                                                        reqAsync.forEachOfSeries(arrTran, function (arrTranobj, i, nextobjctfunc) {
-                                                            var runfunction = async () => {
-                                                                var doapicall = await apiCall(arrTranobj, arrUrl);
-                                                                if (doapicall == 'SUCCESS') {
-                                                                    reqInstanceHelper.PrintInfo(serviceName, '-----------Liquidity Position  api call success for-------' + arrTranobj, objSessionLogInfo);
-                                                                    nextobjctfunc();
-                                                                }
-                                                                else {
-                                                                    reqInstanceHelper.PrintInfo(serviceName, '-----------Liquidity Position  api call not success for-------' + arrTranobj, objSessionLogInfo);
-                                                                    nextobjctfunc();
-                                                                }
-                                                            } 
-                                                            runfunction();
-                                                        }, function () {
-                                                            objresponse.status = 'SUCCESS';
-                                                            sendResponse(null, objresponse)
-                                                        })
-                                                    } else {
-                                                        reqInstanceHelper.PrintInfo(serviceName, '-----------Update not success------', objSessionLogInfo);
-                                                        objresponse.status = 'FAILURE';
-                                                        sendResponse(null, objresponse)
-                                                    }
-                                                })
+                        ExecuteQuery1(Takeapiurl, function (arrUrl) {
+                            if (arrUrl.length > 0) {
+                                var PRCT_ID = prct_id;
+                                var objCoreApiInst = {};
+                                var arrCoreApiInst = [];
+
+                                objCoreApiInst.PROCESS_NAME = params.PROCESS_NAME;
+                                objCoreApiInst.CURRENCY = params.CURRENCY;
+                                objCoreApiInst.ACCOUNTHOLDERBIC = params.ACCOUNTHOLDERBIC;
+                                objCoreApiInst.ACCOUNTNUMBER = params.ACCOUNTNUMBER;
+                                objCoreApiInst.DATETIME = params.DATETIME;
+                                objCoreApiInst.DATASOURCE = params.DATASOURCE;
+                                objCoreApiInst.PRCT_ID = PRCT_ID;
+                                objCoreApiInst.TENANT_ID = params.TENANT_ID;
+                                objCoreApiInst.APP_ID = '222'
+                                objCoreApiInst.STATUS = 'CREATED'
+                                objCoreApiInst.PROCESS_STATUS = 'CREATED'
+                                objCoreApiInst.DT_CODE = 'DT_1304_1665901130705'
+                                objCoreApiInst.DTT_CODE = 'DTT_1304_1670589169341'
+                                objCoreApiInst.DT_DESCRIPTION = 'transaction_group'
+                                objCoreApiInst.DTT_DESCRIPTION = 'Transaction'
+                                objCoreApiInst.CREATED_BY = params.CREATED_BY;
+                                objCoreApiInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                objCoreApiInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                objCoreApiInst.MODIFIED_BY = "";
+                                objCoreApiInst.MODIFIED_BY_NAME = "";
+                                objCoreApiInst.MODIFIED_DATE = null;
+                                objCoreApiInst.SYSTEM_ID = params.SYSTEM_ID;
+                                objCoreApiInst.SYSTEM_NAME = params.SYSTEM_NAME;
+                                objCoreApiInst.CREATED_BY_STS_ID = "";
+                                objCoreApiInst.MODIFIED_BY_STS_ID = "";
+                                objCoreApiInst.created_clientip = objSessionLogInfo.CLIENTIP;
+                                objCoreApiInst.created_tz = objSessionLogInfo.CLIENTTZ;
+                                objCoreApiInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                objCoreApiInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                objCoreApiInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                objCoreApiInst.routingkey = headers.routingkey;
+                                arrCoreApiInst.push(objCoreApiInst)
+                                _BulkInsertProcessItem(arrCoreApiInst, 'npss_core_api_process_log', function callbackInsert(CoreTranInsertRes) {
+                                    if (CoreTranInsertRes.length > 0) {
+                                        var Taketran = `select * from npss_core_api_process_log where npsscapl_id = ${CoreTranInsertRes[0]['npsscapl_id']}`
+                                        ExecuteQuery1(Taketran, async function (arrTran) {
+                                            if (arrTran.length > 0) {
+                                                var doapicall = await apiCall(arrTran, arrUrl);
+                                                if (doapicall == 'SUCCESS') {
+                                                    reqInstanceHelper.PrintInfo(serviceName, '-----------Liquidity   api call success for-------' + CoreTranInsertRes.npsscapl_id, objSessionLogInfo);
+                                                  //  if (doapicall.data.status == 200 || doapicall.data.status == 201)
+                                                        objresponse.status = 'SUCCESS';
+                                                 
+                                                    sendResponse(null, objresponse)
+                                                }
+                                                else {
+                                                    reqInstanceHelper.PrintInfo(serviceName, '-----------Liquidity   api call not success for-------' + CoreTranInsertRes.npsscapl_id, objSessionLogInfo);
+                                                    objresponse.status = 'SUCCESS';
+                                                    objresponse.data='Error response from API Call'
+                                                    sendResponse(null, objresponse)
+                                                }
                                             } else {
-                                                reqInstanceHelper.PrintInfo(serviceName, '------------No URL found------', objSessionLogInfo);
-                                                objresponse.status = 'URL not found';
+                                                objresponse.status = 'FAILURE';
+                                                objresponse.data = 'No Tran Found';
                                                 sendResponse(null, objresponse)
                                             }
+
                                         })
                                     } else {
-                                        reqInstanceHelper.PrintInfo(serviceName, '------------No Tran found-------', objSessionLogInfo);
-                                        objresponse.status = 'No data found in core api table';
-                                        sendResponse(null, objresponse);
+                                        objresponse.status = 'FAILURE';
+                                        objresponse.data = 'Log Table insert is not success';
+                                        sendResponse(null, objresponse)
                                     }
-
 
                                 })
                             } else {
-                                reqInstanceHelper.PrintInfo(serviceName, '------------No Status  found-------', objSessionLogInfo);
-                                objresponse.status = 'No data found in workflow setup table';
-                                sendResponse(null, objresponse);
+                                objresponse.status = 'FAILURE';
+                                objresponse.data = 'URL is not found';
+                                sendResponse(null, objresponse)
                             }
-
                         })
 
 
-                        function apiCall(arrTranobj, arrUrl) {
+
+
+
+                        function apiCall(arrTran, arrUrl) {
                             return new Promise((resolve, reject) => {
 
 
                                 try {
-                                    //  url = url + '/exp-openapi/liquidityCycle?currency='+arrTranobj.currency +'&accountHolderBic='+arrTranobj.accountholderbic+'&accountNumber='+arrTranobj.accountnumber+'&dateTime='+arrTranobj.datetime+'&datasource='+datasource;
+                                    var resobj={};
+                                    //  url = url + '/exp-openapi/liquidityCycle?currency='+arrTran[0].currency +'&accountHolderBic='+arrTran[0].accountholderbic+'&accountNumber='+arrTran[0].accountnumber+'&dateTime='+arrTran[0].datetime+'&datasource='+datasource;
                                     var request = require('request');
-                                    var dt=moment(arrTranobj.datetime).format("YYYY-MM-DD")+"T00:00:01"
+                                    var dt = moment(arrTran[0].datetime).format("YYYY-MM-DD") + "T00:00:01"
                                     var apiURL =
-                                        apiURL = arrUrl[0].param_detail + '/liquidityPosition?currency=' + arrTranobj.currency + '&accountHolderBic=' + arrTranobj.accountholderbic + '&accountNumber=' + arrTranobj.accountnumber + '&dateTime=' + dt + '&datasource=' +arrTranobj.datasource;
+                                        apiURL = arrUrl[0].param_detail + '/liquidityPosition?currency=' + arrTran[0].currency + '&accountHolderBic=' + arrTran[0].accountholderbic + '&accountNumber=' + arrTran[0].accountnumber + '&dateTime=' + dt + '&datasource=' + arrTran[0].datasource;
                                     var options = {
                                         url: apiURL,
                                         timeout: 99999999,
@@ -142,7 +162,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                         },
                                         headers: {
-                                            'capl_id':arrTranobj.npsscapl_id,
+                                            'capl_id': arrTran[0].npsscapl_id,
                                             'content-type': 'application/json'
                                         }
                                     };
@@ -153,13 +173,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                 sendResponse(error, null);
                                             } else {
-                                               try {
-                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.parse(responseBody) + '---for npsscapl_id....' + arrTranobj.npsscapl_id, objSessionLogInfo);
+                                              
+                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseFromImagingService + '---for npsscapl_id....' + arrTran[0].npsscapl_id, objSessionLogInfo);
+                                                  //  resobj.status = 'SUCCESS'
+                                                   // resobj.data = responseFromImagingService;
                                                     resolve('SUCCESS');
-                                                } catch (error) {
-                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBody + '---for npsscapl_id....' + arrTranobj.npsscapl_id, objSessionLogInfo);
-                                                    resolve('SUCCESS');
-                                                }
+                                               
 
                                             }
                                         } catch (error) {
@@ -271,28 +290,6 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

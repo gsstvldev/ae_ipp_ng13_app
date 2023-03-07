@@ -48,30 +48,35 @@ export class npss_cs_daily_liquidity_position_responseService {
                     var event: any
                     if (status == "API_SUCCESS") {
                         if (res.data.status == "SUCCESS") {
-
-                            var responsearray = res.data.data
-                            var formatarray = []
-                            responsearray = JSON.parse(responsearray)
-                            for (let i = 0; i < responsearray.length; i++) {
-                                var data = JSON.parse(responsearray[i])
-                                var overall = {}
-                                for (let j in data) {
-
-
-                                    if (typeof data[j] == 'object') {
-                                        for (let k in data[j]) {
-                                            overall[k] = data[j][k]
+var responsearray = res.data.data
+                            try{
+                                responsearray = JSON.parse(responsearray)
+                                var formatarray = []
+                                for (let i = 0; i < responsearray.length; i++) {
+                                    var data = responsearray[i]
+                                    var overall = {}
+                                    for (let j in data) {
+    
+    
+                                        if (typeof data[j] == 'object') {
+                                            for (let k in data[j]) {
+                                                overall[k] = data[j][k]
+                                            }
+                                        } else {
+                                            overall[j] = data[j]
                                         }
-                                    } else {
-                                        overall[j] = data[j]
+    
                                     }
-
+                                    formatarray.push(overall)
                                 }
-                                formatarray.push(overall)
+                            }catch(error){
+                                this.dialogHelper.ShowInfoDialog('Invalid Json Format')
                             }
+                           
 
                             event = { eventId: "custom-connector", param: formatarray, case: 'success', internals: internals }
                             screenInstance["response"].onChangecomponent.emit(event)
+                           
                         }
                     }
                     else if (status == "API_FAILURE") {

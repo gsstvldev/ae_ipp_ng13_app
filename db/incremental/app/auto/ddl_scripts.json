@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS alter column BUY_MARGIN type NUMERIC(19,4);","params" : [] }]

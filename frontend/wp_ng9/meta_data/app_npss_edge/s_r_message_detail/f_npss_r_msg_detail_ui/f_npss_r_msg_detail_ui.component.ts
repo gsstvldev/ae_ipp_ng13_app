@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28527 
+Build ID        : 28467 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-07 15:0 PM 
+Modified Date   : 2023-Mar-07 15:46 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_r_message_detail
@@ -137,7 +137,7 @@ focustoelement(){
 		this.ctrl.ref.data_type = "TEXT"
 		this.ctrl.ref.data_length = 64
 		this.ctrl.ref.zone_df_code = "DF_1304_1670589236195"
-		this.ctrl.ref.default_value = "setcurrentdate(),{}"
+		this.ctrl.ref.default_value = ""
 		this.ctrl.ref.is_memory_ctrl = ""
 		this.ctrl.ref.field_coordinates = ""
 		this.ctrl.ref.sub_details = ""
@@ -275,7 +275,7 @@ focustoelement(){
 		this.ctrl.datasource.ctrl_id = "npss_r_msg_detail_ui_datasource"
 		this.ctrl.npss_r_msg_detail_ui_datasource = {}
 		this.ctrl.npss_r_msg_detail_ui_datasource.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_r_msg_detail_ui.model = {"PROCESS_NAME":"rMessageDetail","REFTYPE":"","REF":"setcurrentdate(),{}","DATETIME":"setcurrentdate(),{}","SENDERBIC":"","DATASOURCE":"HISTORICAL"}
+		this.screen_instance[this.comp_id].f_npss_r_msg_detail_ui.model = {"PROCESS_NAME":"rMessageDetail","REFTYPE":"","REF":"","DATETIME":"setcurrentdate(),{}","SENDERBIC":"","DATASOURCE":"HISTORICAL"}
 		this.screen_instance[this.comp_id].f_npss_r_msg_detail_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"REFTYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"REF"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"DATETIME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SENDERBIC"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DATASOURCE"}]
 		this.screen_instance[this.comp_id].f_npss_r_msg_detail_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_r_msg_detail_ui.dtt_code = "dtt_1304_1670589169341"

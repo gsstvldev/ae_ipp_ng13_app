@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28494 
+Build ID        : 28517 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-06 14:26 PM 
+Modified Date   : 2023-Mar-07 11:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_liquidity_position
@@ -56,7 +56,7 @@ focustoelement(){
 		this.ctrl.currency.label_name = "Currency"
 		this.ctrl.currency.df_code = "DF_1304_1670589236195"
 		this.ctrl.currency.df_description = "Column Group 1"
-		this.ctrl.currency.uictrl_code = "TXT"
+		this.ctrl.currency.uictrl_code = "CBO"
 		this.ctrl.currency.target_column = "CURRENCY"
 		this.ctrl.currency.data_type = "TEXT"
 		this.ctrl.currency.data_length = 3
@@ -74,7 +74,7 @@ focustoelement(){
 		this.ctrl.currency.placeholder = ""
 		this.ctrl.currency.dynamic_param = ""
 		this.ctrl.currency.style_code = ""
-		this.ctrl.currency.data_source = ""
+		this.ctrl.currency.data_source = {"ds_code":"UDS_1304_1677304181522","ds_description":"NPSS Core Currency CDB","rows":[],"type":"DPS_TABLE","value_member":"CURRENCY_CODE","display_member":"CURRENCY_CODE","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_CURRENCIES","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1677304329929","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[]}
 		this.ctrl.currency.image_association = ""
 		this.ctrl.currency.show = true
 		this.ctrl.currency.sub_content = ""
@@ -86,6 +86,7 @@ focustoelement(){
 		this.ctrl.currency.ctrl_id = "npss_liq_pos__srch_currency"
 		this.ctrl.npss_liq_pos__srch_currency = {}
 		this.ctrl.npss_liq_pos__srch_currency.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_liq_pos__srch.currency = {}
 	
 		//Properties of accountholderbic
 		this.ctrl.accountholderbic = {}
@@ -204,7 +205,7 @@ focustoelement(){
 		this.ctrl.npss_liq_pos__srch_datetime = {}
 		this.ctrl.npss_liq_pos__srch_datetime.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_liq_pos__srch.model = {"CURRENCY":"","ACCOUNTHOLDERBIC":"","ACCOUNTNUMBER":"","DATETIME":"setcurrentdate(),{}"}
-		this.screen_instance[this.comp_id].f_npss_liq_pos__srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CURRENCY"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNTHOLDERBIC"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNTNUMBER"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"DATETIME"}]
+		this.screen_instance[this.comp_id].f_npss_liq_pos__srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CURRENCY"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNTHOLDERBIC"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNTNUMBER"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"DATETIME"}]
 		this.screen_instance[this.comp_id].f_npss_liq_pos__srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_liq_pos__srch.dtt_code = "dtt_1304_1670589169341"
 		this.screen_instance[this.comp_id].f_npss_liq_pos__srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

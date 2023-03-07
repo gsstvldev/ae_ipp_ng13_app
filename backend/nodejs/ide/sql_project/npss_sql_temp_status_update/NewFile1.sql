@@ -15,7 +15,10 @@ process_type character varying(2) COLLATE pg_catalog."default" ,
 process_time timestamp without time zone,
 status_accp_date character varying(64) COLLATE pg_catalog."default" , 
 rule_code character varying(64) COLLATE pg_catalog."default" ,
-prct_id character varying(64) COLLATE pg_catalog."default"
+prct_id character varying(64) COLLATE pg_catalog."default",
+MESSAGE_DATA character varying(80000) COLLATE pg_catalog."default",
+PROCESS_CODE character varying(64) COLLATE pg_catalog."default",
+PROCESS_DETAIL character varying(128) COLLATE pg_catalog."default"
 )
 TABLESPACE pg_default;
 @SPL@

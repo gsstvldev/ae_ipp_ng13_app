@@ -1,9 +1,38 @@
-.tablestyle{
-    margin-left: 30px;
+.tablestyle {
+    margin-left: 50px;
+    width: 95%;
 }
 
-.textarea{
-margin-left:30px;
-width:500px;
-height :100px
+.textarea {
+
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
+    height: 80px;
+    font-weight: bold;
+}
+
+/* #header {
+    background-color: #136d98;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+} */
+#val{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+   
+}
+
+.datatable__headercell {
+    background: linear-gradient(to bottom,#489ed3,#3786b5)!important;
+    color: #fff !important;
+    padding: 0.5rem !important;
+    font-weight: normal;
+    font-size: 1.3rem;
+    white-space: nowrap;
 }

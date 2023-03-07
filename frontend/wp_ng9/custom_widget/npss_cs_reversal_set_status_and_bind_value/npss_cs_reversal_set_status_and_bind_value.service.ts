@@ -24,7 +24,7 @@ export class npss_cs_reversal_set_status_and_bind_valueService {
     fn_npss_cs_reversal_set_status_and_bind_value(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
        if(screenInstance.wftpa_description == 's_rct_reversal'){
              screenInstance['process_log_control_ui'].f_npss_reversal_plog_ui.controls.gm_margin.show = false
-             screenInstance['process_log_control_ui'].f_npss_reversal_plog_ui.controls.exchange_rate.show = false
+            
            
            }
         let Clientparam: any = {}

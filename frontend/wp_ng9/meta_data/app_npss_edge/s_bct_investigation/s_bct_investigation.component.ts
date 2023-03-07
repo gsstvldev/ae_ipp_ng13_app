@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28490 
+Build ID        : 28510 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-06 15:29 PM 
+Modified Date   : 2023-Mar-07 9:50 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_investigation
@@ -15,14 +15,14 @@ import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_maker_initiateService} from '../../../custom_widget/npss_cs_maker_initiate/npss_cs_maker_initiate.service'
-import {npss_cs_investigation_pac_028Service} from '../../../custom_widget/npss_cs_investigation_pac_028/npss_cs_investigation_pac_028.service'
+import {npss_cs_bct_checker_approveService} from '../../../custom_widget/npss_cs_bct_checker_approve/npss_cs_bct_checker_approve.service'
 import {npss_cs_rev_rejectService} from '../../../custom_widget/npss_cs_rev_reject/npss_cs_rev_reject.service'
 
 @Component({
 	selector: 's_bct_investigation',
 	templateUrl: './s_bct_investigation.component.html',
 	styleUrls: ['./s_bct_investigation.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_maker_initiateService,npss_cs_investigation_pac_028Service,npss_cs_rev_rejectService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_maker_initiateService,npss_cs_bct_checker_approveService,npss_cs_rev_rejectService]
 })
     
 // Start of class 
@@ -102,7 +102,7 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_maker_initiateService:npss_cs_maker_initiateService,private npss_cs_investigation_pac_028Service:npss_cs_investigation_pac_028Service,private npss_cs_rev_rejectService:npss_cs_rev_rejectService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_maker_initiateService:npss_cs_maker_initiateService,private npss_cs_bct_checker_approveService:npss_cs_bct_checker_approveService,private npss_cs_rev_rejectService:npss_cs_rev_rejectService) {
     
 	}
     
@@ -2008,7 +2008,7 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_investigation_pac_028Service.fn_npss_cs_investigation_pac_028(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_bct_checker_approveService.fn_npss_cs_bct_checker_approve(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

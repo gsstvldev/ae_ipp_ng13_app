@@ -3,12 +3,7 @@
 <div id="R11" class="row">
 	<div id="R11C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 <div id="R11C1R0" class="row">
-	<div id="R11C1R0C1" class="column col-md-5 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
-		<div class="search" >
-			<f_npss_payment_list_srch [comp_id]="'search'" [screen_instance]="screen_instance" [hidden]="isHidden('search','f_npss_payment_list_srch')" profile_name="p_main_layout"></f_npss_payment_list_srch >
-		</div>
-	</div>
-	<div id="R11C1R0C2" class="column col-md-7 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+	<div id="R11C1R0C2" class="column col-md-4 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 <div id="R11C1R0C2R0" class="row">
 	<div id="R11C1R0C2R0C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 		<div class="api_details" >
@@ -22,13 +17,18 @@
 	</div>
 </div>
 	</div>
+	<div id="R11C1R0C2" class="column col-md-8 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="request"  [hidden]="!screen_instance['request'].show" >
+			<datatable [comp_id]="'request'" [screen_instance]="screen_instance" profile_name="p_main_layout"></datatable>
+		</div>
+	</div>
 </div>
 	</div>
 </div>
 <div id="R21" class="row">
 	<div id="R21C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
-		<div class="list"  [hidden]="!screen_instance['list'].show" >
-			<datatable [comp_id]="'list'" [screen_instance]="screen_instance" profile_name="p_main_layout"></datatable>
+		<div class="response"  [hidden]="!screen_instance['response'].show" >
+			<npss_cs_liquidity_position_response [comp_id]="'response'" [screen_instance]="screen_instance" profile_name="p_main_layout"></npss_cs_liquidity_position_response>
 		</div>
 	</div>
 </div>

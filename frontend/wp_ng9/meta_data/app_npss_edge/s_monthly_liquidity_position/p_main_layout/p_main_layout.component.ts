@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28494 
+Build ID        : 28517 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-06 14:26 PM 
+Modified Date   : 2023-Mar-07 11:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_monthly_liquidity_position
@@ -22,10 +22,10 @@ export class p_main_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	search : any = {}
-	api_details : any = {}
+  	api_details : any = {}
 	api_input_ui_actions : any = {}
-	list : any = {}
+	request : any = {}
+	response : any = {}
 
 
   // Constructor 
@@ -33,14 +33,14 @@ export class p_main_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.search.desc = "Search"
-		this.search.need_header = true
-		this.api_details.desc = "API Details"
+    	this.api_details.desc = "API Details"
 		this.api_details.need_header = true
 		this.api_input_ui_actions.desc = "API Input UI Actions"
 		this.api_input_ui_actions.need_header = ""
-		this.list.desc = "List"
-		this.list.need_header = true
+		this.request.desc = "Request"
+		this.request.need_header = true
+		this.response.desc = "Response"
+		this.response.need_header = true
 	
 
     this.screen_instance['p_main_layout'] = {};

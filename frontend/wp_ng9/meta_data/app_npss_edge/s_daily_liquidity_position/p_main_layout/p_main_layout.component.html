@@ -1,0 +1,40 @@
+<div class="p_main_layout">
+ <!-- PROFILE HTML - p_main_layout --> 
+<div id="R11" class="row">
+	<div id="R11C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+<div id="R11C1R0" class="row">
+	<div id="R11C1R0C2" class="column col-md-4 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+<div id="R11C1R0C2R0" class="row">
+	<div id="R11C1R0C2R0C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="api_details" >
+			<f_npss_daily_liq_pos_ui [comp_id]="'api_details'" [screen_instance]="screen_instance" [hidden]="isHidden('api_details','f_npss_daily_liq_pos_ui')" profile_name="p_main_layout"></f_npss_daily_liq_pos_ui >
+		</div>
+	</div>
+	<div id="R11C1R0C2R0C2" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="api_input_ui_actions" >
+			<f_api_input_ui_actions [comp_id]="'api_input_ui_actions'" [screen_instance]="screen_instance" [hidden]="isHidden('api_input_ui_actions','f_api_input_ui_actions')" profile_name="p_main_layout"></f_api_input_ui_actions >
+		</div>
+	</div>
+</div>
+	</div>
+	<div id="R11C1R0C2" class="column col-md-8 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+<div id="R11C1R0C2R0" class="row">
+	<div id="R11C1R0C2R0C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="request"  [hidden]="!screen_instance['request'].show" >
+			<datatable [comp_id]="'request'" [screen_instance]="screen_instance" profile_name="p_main_layout"></datatable>
+		</div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+</div>
+<div id="R21" class="row">
+	<div id="R21C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="response"  [hidden]="!screen_instance['response'].show" >
+			<npss_cs_daily_liquidity_position_response [comp_id]="'response'" [screen_instance]="screen_instance" profile_name="p_main_layout"></npss_cs_daily_liquidity_position_response>
+		</div>
+	</div>
+</div>
+
+</div>

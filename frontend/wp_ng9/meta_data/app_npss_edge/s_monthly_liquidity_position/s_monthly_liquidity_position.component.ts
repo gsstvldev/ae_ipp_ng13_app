@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28494 
+Build ID        : 28517 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-06 14:26 PM 
+Modified Date   : 2023-Mar-07 11:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_monthly_liquidity_position
@@ -14,12 +14,13 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_monthly_liquidity_positionService} from '../../../custom_widget/npss_cs_monthly_liquidity_position/npss_cs_monthly_liquidity_position.service'
+import {npss_cs_liquidity_position_responseService} from '../../../custom_widget/npss_cs_liquidity_position_response/npss_cs_liquidity_position_response.service'
 
 @Component({
 	selector: 's_monthly_liquidity_position',
 	templateUrl: './s_monthly_liquidity_position.component.html',
 	styleUrls: ['./s_monthly_liquidity_position.component.css'],
-	providers:[torus_cs_show_hideService,npss_cs_monthly_liquidity_positionService]
+	providers:[torus_cs_show_hideService,npss_cs_monthly_liquidity_positionService,npss_cs_liquidity_position_responseService]
 })
     
 // Start of class 
@@ -35,25 +36,30 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
 	current_profile : string = "p_main_layout"
 	uicgc_1 : string = "api_input_ui_actions"
 	uicgc_2 : string = "search"
-	uicgc_3 : string = "list"
+	uicgc_3 : string = "request"
 	uicgc_4 : string = "api_details"
+	uicgc_5 : string = "response"
 	key_events : any = {}
+	btl_1304_1678183785816 : string = "p_search_layout"
 	btl_1304_1677303885071 : string = "p_main_layout"
 	forms : any = ["uicgc_4","uicgc_2","uicgc_1"]
+	p_search_layout__spap_from_list_showpopup : boolean = false
 	api_input_ui_actions : any = {}
 	api_input_ui_actions_clear : any = {}
-	api_input_ui_actions_save : any = {}
-	api_input_ui_actions_call_api : any = {}
+	api_input_ui_actions_fetch : any = {}
+	api_input_ui_actions_trg_view_response : any = {}
 	api_input_ui_actions_trg_hide : any = {}
+	api_input_ui_actions_fetch_trg : any = {}
 	search : any = {}
 	search_clear : any = {}
 	search_search : any = {}
-	list : any = {}
+	request : any = {}
 	api_details : any = {}
+	response : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_monthly_liquidity_positionService:npss_cs_monthly_liquidity_positionService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_monthly_liquidity_positionService:npss_cs_monthly_liquidity_positionService,private npss_cs_liquidity_position_responseService:npss_cs_liquidity_position_responseService) {
     
 	}
     
@@ -82,23 +88,23 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
 		this.api_input_ui_actions_clear.role = []
 		this.api_input_ui_actions_clear.action = ""
 		
-		// "Save" Button of "API Input UI Actions" component
-		this.api_input_ui_actions_save.label_name = "Save"
-		this.api_input_ui_actions_save.show = true
-		this.api_input_ui_actions_save.disabled = false
-		this.api_input_ui_actions_save.params = {"icon_only":false,"uicgcc_style":"fa fa-floppy-o"}
-		this.api_input_ui_actions_save.dynamic_param = {}
-		this.api_input_ui_actions_save.role = []
-		this.api_input_ui_actions_save.action = ""
+		// "Fetch" Button of "API Input UI Actions" component
+		this.api_input_ui_actions_fetch.label_name = "Fetch"
+		this.api_input_ui_actions_fetch.show = true
+		this.api_input_ui_actions_fetch.disabled = false
+		this.api_input_ui_actions_fetch.params = {"icon_only":false,"uicgcc_style":"fa fa-floppy-o"}
+		this.api_input_ui_actions_fetch.dynamic_param = {}
+		this.api_input_ui_actions_fetch.role = []
+		this.api_input_ui_actions_fetch.action = ""
 		
-		// "Call API" Button of "API Input UI Actions" component
-		this.api_input_ui_actions_call_api.label_name = "Call API"
-		this.api_input_ui_actions_call_api.show = true
-		this.api_input_ui_actions_call_api.disabled = false
-		this.api_input_ui_actions_call_api.params = {"icon_only":false,"uicgcc_style":"fa fa-check"}
-		this.api_input_ui_actions_call_api.dynamic_param = {}
-		this.api_input_ui_actions_call_api.role = []
-		this.api_input_ui_actions_call_api.action = ""
+		// "Trg View Response" Button of "API Input UI Actions" component
+		this.api_input_ui_actions_trg_view_response.label_name = "Trg View Response"
+		this.api_input_ui_actions_trg_view_response.show = true
+		this.api_input_ui_actions_trg_view_response.disabled = false
+		this.api_input_ui_actions_trg_view_response.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.api_input_ui_actions_trg_view_response.dynamic_param = {}
+		this.api_input_ui_actions_trg_view_response.role = []
+		this.api_input_ui_actions_trg_view_response.action = ""
 		
 		// "Trg hide" Button of "API Input UI Actions" component
 		this.api_input_ui_actions_trg_hide.label_name = "Trg hide"
@@ -108,6 +114,15 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
 		this.api_input_ui_actions_trg_hide.dynamic_param = {}
 		this.api_input_ui_actions_trg_hide.role = []
 		this.api_input_ui_actions_trg_hide.action = ""
+		
+		// "Fetch trg" Button of "API Input UI Actions" component
+		this.api_input_ui_actions_fetch_trg.label_name = "Fetch trg"
+		this.api_input_ui_actions_fetch_trg.show = true
+		this.api_input_ui_actions_fetch_trg.disabled = false
+		this.api_input_ui_actions_fetch_trg.params = {"icon_only":false,"uicgcc_style":""}
+		this.api_input_ui_actions_fetch_trg.dynamic_param = {}
+		this.api_input_ui_actions_fetch_trg.role = []
+		this.api_input_ui_actions_fetch_trg.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -141,17 +156,17 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
 		this.search_search.role = []
 		this.search_search.action = ""
 	
-		// Component level properties - "List" 
-		this.list.uictrl_code = "datatable"
-		this.list.uicgc_desc = "List"
-		this.list.uicgc_code = "uicgc_3"
-		this.list.params = {"need_search":"N","need_pag_datatable":"Y","need_multi_select":"Y"}
-		this.list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677328619184","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false},{"column_name":"SENDERBIC","alias_name":"","mq_id":"MQ_1677318148187","date_format":false},{"column_name":"FROMDATE","alias_name":"","mq_id":"MQ_1677318160384","date_format":true},{"column_name":"TODATE","alias_name":"","mq_id":"MQ_1677318160672","date_format":true},{"column_name":"REFTYPE","alias_name":"","mq_id":"MQ_1677327468115","date_format":false},{"column_name":"ref","alias_name":"","mq_id":"MQ_1677327468858","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1678106643760","date_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678106643919","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,  PROCESS_NAME,  PROCESSING_SYSTEM,  CURRENCY,  ACCOUNTHOLDERBIC,  ACCOUNTNUMBER,  DATETIME,  RESPONSE_CODE,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  DATASOURCE,  SENDERBIC,  FROMDATE,  TODATE,  REFTYPE,  ref,  CYCLENUMBER,  CREATED_BY,  CREATED_BY_NAME,  CREATED_BY_STS_ID,  CREATED_DATE,  DT_CODE,  DT_DESCRIPTION,  DTT_CODE,  DTT_DESCRIPTION,  MODIFIED_BY,  MODIFIED_BY_NAME,  MODIFIED_BY_STS_ID,  MODIFIED_DATE,  PRCT_ID,  STATUS,  PROCESS_STATUS,  SYSTEM_ID,  SYSTEM_NAME,  TENANT_ID,  APP_ID,  VERSION_NO,TS_ID,   LOCKED_BY,   LOCKED_BY_NAME from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NPSSCAPL.STATUS = QR.PROCESS_QUEUE_STATUS   and NPSSCAPL.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NPSSCAPL.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Month Liq Position CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_NAME","binding_name":"PROCESS_NAME","binding_value":"","source_name":"monthlyLiquidityPosition","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date Time","target_column":"DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
-		this.list.context_menu = []
-		this.list.views = {}
-		this.list.onChangecomponent = new EventEmitter<any>()
-		this.list.show = true
-		this.list.dynamic_param = {}
+		// Component level properties - "Request" 
+		this.request.uictrl_code = "datatable"
+		this.request.uicgc_desc = "Request"
+		this.request.uicgc_code = "uicgc_3"
+		this.request.params = {"need_search":"N","need_pag_datatable":"Y","advance_dynamic_search":"Y","view_all":"Y"}
+		this.request.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677328619184","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false},{"column_name":"SENDERBIC","alias_name":"","mq_id":"MQ_1677318148187","date_format":false},{"column_name":"FROMDATE","alias_name":"","mq_id":"MQ_1677318160384","date_format":true},{"column_name":"TODATE","alias_name":"","mq_id":"MQ_1677318160672","date_format":true},{"column_name":"REFTYPE","alias_name":"","mq_id":"MQ_1677327468115","date_format":false},{"column_name":"ref","alias_name":"","mq_id":"MQ_1677327468858","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1678106643760","date_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678106643919","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,  PROCESS_NAME,  PROCESSING_SYSTEM,  CURRENCY,  ACCOUNTHOLDERBIC,  ACCOUNTNUMBER,  DATETIME,  RESPONSE_CODE,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  DATASOURCE,  SENDERBIC,  FROMDATE,  TODATE,  REFTYPE,  ref,  CYCLENUMBER,  CREATED_BY,  CREATED_BY_NAME,  CREATED_BY_STS_ID,  CREATED_DATE,  DT_CODE,  DT_DESCRIPTION,  DTT_CODE,  DTT_DESCRIPTION,  MODIFIED_BY,  MODIFIED_BY_NAME,  MODIFIED_BY_STS_ID,  MODIFIED_DATE,  PRCT_ID,  STATUS,  PROCESS_STATUS,  SYSTEM_ID,  SYSTEM_NAME,  TENANT_ID,  APP_ID,  VERSION_NO,TS_ID,   LOCKED_BY,   LOCKED_BY_NAME from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NPSSCAPL.STATUS = QR.PROCESS_QUEUE_STATUS   and NPSSCAPL.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NPSSCAPL.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE ORDER BY NPSSCAPL_ID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Month Liq Position CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_NAME","binding_name":"PROCESS_NAME","binding_value":"","source_name":"monthlyLiquidityPosition","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date Time","target_column":"DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		this.request.context_menu = []
+		this.request.views = {}
+		this.request.onChangecomponent = new EventEmitter<any>()
+		this.request.show = true
+		this.request.dynamic_param = {}
 	
 		// Component level properties - "API Details" 
 		this.api_details.uictrl_code = "dynamic_ui"
@@ -166,6 +181,18 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
 		this.api_details.dynamic_param = {}
 		this.api_details.f_npss_month_liq_position_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
 		this.api_details.form_name = "f_npss_month_liq_position_ui"
+	
+		// Component level properties - "Response" 
+		this.response.uictrl_code = "custom_widget"
+		this.response.uicgc_desc = "Response"
+		this.response.uicgc_code = "uicgc_5"
+		this.response.params = {}
+		this.response.datasource = {}
+		this.response.context_menu = []
+		this.response.views = {}
+		this.response.onChangecomponent = new EventEmitter<any>()
+		this.response.show = true
+		this.response.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -180,6 +207,7 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
 		this.page_load__hide_ele()
 		this.page_load__de_for_call_api_btn_from_pg()
 		this.page_load__he_on_page_laod_to_call_api_btn()
+		this.page_load__he_from_pageload()
 	}
 
 	//Handler for INTERNAL event of "cf for pl"
@@ -195,6 +223,7 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__action_button_click(){
 		this.search_search__ssp_for_search()
+		this.search_search__cp_from_search_btn_click()
 	}
 
 	//Handler for INTERNAL event of "ssp for search"
@@ -212,51 +241,69 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
 		this.api_input_ui_actions_clear__cui_for_api()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions save"
-	api_input_ui_actions_save__action_button_click(){
-		this.api_input_ui_actions_save__ve_for_save_to_api()
+	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions fetch"
+	api_input_ui_actions_fetch__action_button_click(){
+		this.api_input_ui_actions_fetch__ve_for_save_to_api()
 	}
 
 	//Handler for INTERNAL event of "ve for save to api"
 	ve_for_save_to_api__internal(parent_event_result){
-		this.ve_for_save_to_api__st_for_api_details(parent_event_result)
+		this.ve_for_save_to_api__cc_from_fetch_btn_click(parent_event_result)
 	}
 
-	//Handler for INTERNAL event of "st for api details"
-	st_for_api_details__internal(parent_event_result){
-		this.st_for_api_details__info_msg_for_mlp(parent_event_result)
+	//Handler for INTERNAL event of "cc from fetch btn click"
+	cc_from_fetch_btn_click__internal(parent_event_result){
+		this.cc_from_fetch_btn_click__im_from_fetch_btn_click(parent_event_result)
 	}
 
-	//Handler for INTERNAL event of "info msg for mlp"
-	info_msg_for_mlp__internal(parent_event_result){
-		this.info_msg_for_mlp__e_1677334778629(parent_event_result)
+	//Handler for INTERNAL event of "im from fetch btn click"
+	im_from_fetch_btn_click__internal(parent_event_result){
+		this.im_from_fetch_btn_click__tbc_from_fetch_btn_click(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions call api"
-	api_input_ui_actions_call_api__action_button_click(){
-		this.api_input_ui_actions_call_api__ide_call()
+	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions trg view response"
+	api_input_ui_actions_trg_view_response__action_button_click(){
+		this.api_input_ui_actions_trg_view_response__ide_call()
 	}
 
-	//Handler for INTERNAL event of "ide call"
-	ide_call__internal(parent_event_result){
-		this.ide_call__info_success_for_api(parent_event_result)
+	//Handler for CHECKED_CHANGED event of "request"
+	request__checked_changed(peventcontext){
+		this.request__bt_for_list(peventcontext)
+		this.request__svm_for_checked_change(peventcontext)
+		this.request__ee_for_call_api_btn(peventcontext)
 	}
 
-	//Handler for INTERNAL event of "info success for api"
-	info_success_for_api__internal(parent_event_result){
-		this.info_success_for_api__rs__for_api(parent_event_result)
+	//Handler for SELECTION_CHANGED event of "request"
+	request__selection_changed(){
+		this.request__svtm_for_selection_change()
+		this.request__bt_from_list()
+		this.request__ee_from_list()
+		this.request__tbc_from_list()
 	}
 
-	//Handler for CHECKED_CHANGED event of "list"
-	list__checked_changed(){
-		this.list__bt_for_list()
-		this.list__svm_for_checked_change()
-		this.list__ee_for_call_api_btn()
+	//Handler for FILTER_CLICK event of "request"
+	request__filter_click(){
+		this.request__spap_from_list()
 	}
 
 	//Handler for INTERNAL event of "svm for checked change"
 	svm_for_checked_change__internal(parent_event_result){
 		this.svm_for_checked_change__cc_for_show_hide_on_list(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions fetch trg"
+	api_input_ui_actions_fetch_trg__action_button_click(){
+		this.api_input_ui_actions_fetch_trg__brfq_from_list()
+	}
+
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__internal(parent_event_result){
+		this.brfq_from_list__sfr_from_list(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "svtm for selection change"
+	svtm_for_selection_change__internal(parent_event_result){
+		this.svtm_for_selection_change__show_hide_ide_call(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions trg hide"
@@ -332,7 +379,7 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="api_input_ui_actions_call_api"
+		let destn_id="api_input_ui_actions_trg_view_response"
 		let parent_source_id=""
 		let event_code="e_1677321256773"
 		let event_params={"caller_name":"page_load__de_for_call_api_btn_from_pg","event_desc":"DE for Call API BTN from PG","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -353,10 +400,31 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="api_input_ui_actions_call_api"
+		let destn_id="api_input_ui_actions_trg_view_response"
 		let parent_source_id=""
 		let event_code="e_1677321825499"
 		let event_params={"caller_name":"page_load__he_on_page_laod_to_call_api_btn","event_desc":"HE on Page Laod to Call API BTN","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_from_pageload() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="api_input_ui_actions_fetch_trg"
+		let parent_source_id=""
+		let event_code="e_1678183824844"
+		let event_params={"caller_name":"page_load__he_from_pageload","event_desc":"HE from pageload","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -397,14 +465,14 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="cc_for_show_hide_on_page_load"
-		let destn_id="list"
+		let destn_id="request"
 		let parent_source_id="cf_for_pl"
 		let event_code="e_1677321904762"
 		let event_params={"caller_name":"cc_for_show_hide_on_page_load__brfq_on_page_laod","event_desc":"BRFQ on Page Laod","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677328619184","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false},{"column_name":"SENDERBIC","alias_name":"","mq_id":"MQ_1677318148187","date_format":false},{"column_name":"FROMDATE","alias_name":"","mq_id":"MQ_1677318160384","date_format":true},{"column_name":"TODATE","alias_name":"","mq_id":"MQ_1677318160672","date_format":true},{"column_name":"REFTYPE","alias_name":"","mq_id":"MQ_1677327468115","date_format":false},{"column_name":"ref","alias_name":"","mq_id":"MQ_1677327468858","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1678106643760","date_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678106643919","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,  PROCESS_NAME,  PROCESSING_SYSTEM,  CURRENCY,  ACCOUNTHOLDERBIC,  ACCOUNTNUMBER,  DATETIME,  RESPONSE_CODE,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  DATASOURCE,  SENDERBIC,  FROMDATE,  TODATE,  REFTYPE,  ref,  CYCLENUMBER,  CREATED_BY,  CREATED_BY_NAME,  CREATED_BY_STS_ID,  CREATED_DATE,  DT_CODE,  DT_DESCRIPTION,  DTT_CODE,  DTT_DESCRIPTION,  MODIFIED_BY,  MODIFIED_BY_NAME,  MODIFIED_BY_STS_ID,  MODIFIED_DATE,  PRCT_ID,  STATUS,  PROCESS_STATUS,  SYSTEM_ID,  SYSTEM_NAME,  TENANT_ID,  APP_ID,  VERSION_NO,TS_ID,   LOCKED_BY,   LOCKED_BY_NAME from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NPSSCAPL.STATUS = QR.PROCESS_QUEUE_STATUS   and NPSSCAPL.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NPSSCAPL.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Month Liq Position CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_NAME","binding_name":"PROCESS_NAME","binding_value":"","source_name":"monthlyLiquidityPosition","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date Time","target_column":"DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677328619184","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false},{"column_name":"SENDERBIC","alias_name":"","mq_id":"MQ_1677318148187","date_format":false},{"column_name":"FROMDATE","alias_name":"","mq_id":"MQ_1677318160384","date_format":true},{"column_name":"TODATE","alias_name":"","mq_id":"MQ_1677318160672","date_format":true},{"column_name":"REFTYPE","alias_name":"","mq_id":"MQ_1677327468115","date_format":false},{"column_name":"ref","alias_name":"","mq_id":"MQ_1677327468858","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1678106643760","date_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678106643919","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,  PROCESS_NAME,  PROCESSING_SYSTEM,  CURRENCY,  ACCOUNTHOLDERBIC,  ACCOUNTNUMBER,  DATETIME,  RESPONSE_CODE,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  DATASOURCE,  SENDERBIC,  FROMDATE,  TODATE,  REFTYPE,  ref,  CYCLENUMBER,  CREATED_BY,  CREATED_BY_NAME,  CREATED_BY_STS_ID,  CREATED_DATE,  DT_CODE,  DT_DESCRIPTION,  DTT_CODE,  DTT_DESCRIPTION,  MODIFIED_BY,  MODIFIED_BY_NAME,  MODIFIED_BY_STS_ID,  MODIFIED_DATE,  PRCT_ID,  STATUS,  PROCESS_STATUS,  SYSTEM_ID,  SYSTEM_NAME,  TENANT_ID,  APP_ID,  VERSION_NO,TS_ID,   LOCKED_BY,   LOCKED_BY_NAME from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NPSSCAPL.STATUS = QR.PROCESS_QUEUE_STATUS   and NPSSCAPL.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NPSSCAPL.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE ORDER BY NPSSCAPL_ID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Month Liq Position CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_NAME","binding_name":"PROCESS_NAME","binding_value":"","source_name":"monthlyLiquidityPosition","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date Time","target_column":"DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -434,20 +502,41 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "search search"
+	search_search__cp_from_search_btn_click() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="search_search"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678183855718"
+		let event_params={"popup_info":{"context":""},"caller_name":"search_search__cp_from_search_btn_click","event_desc":"CP from search btn click","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
+		let handler_code="close_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.close_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "ssp for search"
 	ssp_for_search__brfq_for_srch(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="ssp_for_search"
-		let destn_id="list"
+		let destn_id="request"
 		let parent_source_id="search_search"
 		let event_code="e_1677304184184"
 		let event_params={"caller_name":"ssp_for_search__brfq_for_srch","event_desc":"BRFQ for srch","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677328619184","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false},{"column_name":"SENDERBIC","alias_name":"","mq_id":"MQ_1677318148187","date_format":false},{"column_name":"FROMDATE","alias_name":"","mq_id":"MQ_1677318160384","date_format":true},{"column_name":"TODATE","alias_name":"","mq_id":"MQ_1677318160672","date_format":true},{"column_name":"REFTYPE","alias_name":"","mq_id":"MQ_1677327468115","date_format":false},{"column_name":"ref","alias_name":"","mq_id":"MQ_1677327468858","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1678106643760","date_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678106643919","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,  PROCESS_NAME,  PROCESSING_SYSTEM,  CURRENCY,  ACCOUNTHOLDERBIC,  ACCOUNTNUMBER,  DATETIME,  RESPONSE_CODE,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  DATASOURCE,  SENDERBIC,  FROMDATE,  TODATE,  REFTYPE,  ref,  CYCLENUMBER,  CREATED_BY,  CREATED_BY_NAME,  CREATED_BY_STS_ID,  CREATED_DATE,  DT_CODE,  DT_DESCRIPTION,  DTT_CODE,  DTT_DESCRIPTION,  MODIFIED_BY,  MODIFIED_BY_NAME,  MODIFIED_BY_STS_ID,  MODIFIED_DATE,  PRCT_ID,  STATUS,  PROCESS_STATUS,  SYSTEM_ID,  SYSTEM_NAME,  TENANT_ID,  APP_ID,  VERSION_NO,TS_ID,   LOCKED_BY,   LOCKED_BY_NAME from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NPSSCAPL.STATUS = QR.PROCESS_QUEUE_STATUS   and NPSSCAPL.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NPSSCAPL.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Month Liq Position CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_NAME","binding_name":"PROCESS_NAME","binding_value":"","source_name":"monthlyLiquidityPosition","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date Time","target_column":"DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677328619184","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false},{"column_name":"SENDERBIC","alias_name":"","mq_id":"MQ_1677318148187","date_format":false},{"column_name":"FROMDATE","alias_name":"","mq_id":"MQ_1677318160384","date_format":true},{"column_name":"TODATE","alias_name":"","mq_id":"MQ_1677318160672","date_format":true},{"column_name":"REFTYPE","alias_name":"","mq_id":"MQ_1677327468115","date_format":false},{"column_name":"ref","alias_name":"","mq_id":"MQ_1677327468858","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1678106643760","date_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678106643919","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,  PROCESS_NAME,  PROCESSING_SYSTEM,  CURRENCY,  ACCOUNTHOLDERBIC,  ACCOUNTNUMBER,  DATETIME,  RESPONSE_CODE,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  DATASOURCE,  SENDERBIC,  FROMDATE,  TODATE,  REFTYPE,  ref,  CYCLENUMBER,  CREATED_BY,  CREATED_BY_NAME,  CREATED_BY_STS_ID,  CREATED_DATE,  DT_CODE,  DT_DESCRIPTION,  DTT_CODE,  DTT_DESCRIPTION,  MODIFIED_BY,  MODIFIED_BY_NAME,  MODIFIED_BY_STS_ID,  MODIFIED_DATE,  PRCT_ID,  STATUS,  PROCESS_STATUS,  SYSTEM_ID,  SYSTEM_NAME,  TENANT_ID,  APP_ID,  VERSION_NO,TS_ID,   LOCKED_BY,   LOCKED_BY_NAME from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NPSSCAPL.STATUS = QR.PROCESS_QUEUE_STATUS   and NPSSCAPL.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NPSSCAPL.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE ORDER BY NPSSCAPL_ID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Month Liq Position CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_NAME","binding_name":"PROCESS_NAME","binding_value":"","source_name":"monthlyLiquidityPosition","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date Time","target_column":"DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -498,17 +587,17 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions save"
-	api_input_ui_actions_save__ve_for_save_to_api() { 
+	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions fetch"
+	api_input_ui_actions_fetch__ve_for_save_to_api() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="api_input_ui_actions_save"
+		let source_id="api_input_ui_actions_fetch"
 		let destn_id="api_details"
 		let parent_source_id=""
 		let event_code="e_1677321344128"
-		let event_params={"caller_name":"api_input_ui_actions_save__ve_for_save_to_api","event_desc":"VE for Save to API","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_save","raiseparam":{}}
+		let event_params={"caller_name":"api_input_ui_actions_fetch__ve_for_save_to_api","event_desc":"VE for Save to API","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_fetch","raiseparam":{}}
 		let handler_code="validate_elements"
-		let internals="ve_for_save_to_api__st_for_api_details,"
+		let internals="ve_for_save_to_api__cc_from_fetch_btn_click,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -520,82 +609,17 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
 	} 
 
 	//Handler for INTERNAL event of "ve for save to api"
-	ve_for_save_to_api__st_for_api_details(parent_event_result) { 
+	ve_for_save_to_api__cc_from_fetch_btn_click(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="ve_for_save_to_api"
-		let destn_id="api_details"
-		let parent_source_id="api_input_ui_actions_save"
-		let event_code="e_1677334695038"
-		let event_params={"caller_name":"ve_for_save_to_api__st_for_api_details","event_desc":"ST for API Details","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_save","raiseparam":{"reset_selection":"Y","need_clear_value":"Y","no_change_status_on_modify":"N","release_lock":"Y","clear_cache":"Y"},"parent_event_result":"SUCCESS"}
-		let handler_code="save_tran"
-		let internals="st_for_api_details__info_msg_for_mlp,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.save_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "st for api details"
-	st_for_api_details__info_msg_for_mlp(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="st_for_api_details"
 		let destn_id=""
-		let parent_source_id="ve_for_save_to_api"
-		let event_code="e_1677334724870"
-		let event_params={"caller_name":"st_for_api_details__info_msg_for_mlp","event_desc":"info msg for MLP","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"API Request has been saved successfully.","root_source_id":"api_input_ui_actions_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
-		let handler_code="info_msg"
-		let internals="info_msg_for_mlp__e_1677334778629,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "info msg for mlp"
-	info_msg_for_mlp__e_1677334778629(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="info_msg_for_mlp"
-		let destn_id=""
-		let parent_source_id="st_for_api_details"
-		let event_code="e_1677334778629"
-		let event_params={"caller_name":"info_msg_for_mlp__e_1677334778629","event_desc":"E_1677334778629","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_save","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="refresh_screen"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions call api"
-	api_input_ui_actions_call_api__ide_call() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="api_input_ui_actions_call_api"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1677305538537"
-		let event_params={"caller_name":"api_input_ui_actions_call_api__ide_call","event_desc":"ide call","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_call_api","raiseparam":{}}
+		let parent_source_id="api_input_ui_actions_fetch"
+		let event_code="e_1678184312207"
+		let event_params={"caller_name":"ve_for_save_to_api__cc_from_fetch_btn_click","event_desc":"CC from fetch btn click","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_fetch","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals="ide_call__info_success_for_api,"
+		let internals="cc_from_fetch_btn_click__im_from_fetch_btn_click,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -606,18 +630,18 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
  		} 
 	} 
 
-	//Handler for INTERNAL event of "ide call"
-	ide_call__info_success_for_api(parent_event_result) { 
+	//Handler for INTERNAL event of "cc from fetch btn click"
+	cc_from_fetch_btn_click__im_from_fetch_btn_click(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="ide_call"
+		let source_id="cc_from_fetch_btn_click"
 		let destn_id=""
-		let parent_source_id="api_input_ui_actions_call_api"
-		let event_code="e_1677305568177"
-		let event_params={"caller_name":"ide_call__info_success_for_api","event_desc":"info success for API","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Core API monthlyLiquidityPosition has been called successfully, Pl see the request and response in View Process Logs screen.","root_source_id":"api_input_ui_actions_call_api","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let parent_source_id="ve_for_save_to_api"
+		let event_code="e_1678184425249"
+		let event_params={"caller_name":"cc_from_fetch_btn_click__im_from_fetch_btn_click","event_desc":"IM from fetch btn click","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Core API monthlyLiquidityPosition has been called successfully","root_source_id":"api_input_ui_actions_fetch","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
-		let internals="info_success_for_api__rs__for_api,"
+		let internals="im_from_fetch_btn_click__tbc_from_fetch_btn_click,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -628,37 +652,59 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
  		} 
 	} 
 
-	//Handler for INTERNAL event of "info success for api"
-	info_success_for_api__rs__for_api(parent_event_result) { 
+	//Handler for INTERNAL event of "im from fetch btn click"
+	im_from_fetch_btn_click__tbc_from_fetch_btn_click(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="info_success_for_api"
-		let destn_id=""
-		let parent_source_id="ide_call"
-		let event_code="e_1677305765749"
-		let event_params={"caller_name":"info_success_for_api__rs__for_api","event_desc":"RS  FOR API","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_call_api","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="refresh_screen"
+		let source_id="im_from_fetch_btn_click"
+		let destn_id="api_input_ui_actions_fetch_trg"
+		let parent_source_id="cc_from_fetch_btn_click"
+		let event_code="e_1678184455283"
+		let event_params={"caller_name":"im_from_fetch_btn_click__tbc_from_fetch_btn_click","event_desc":"TBC from fetch btn click","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_fetch","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="trigger_button_click"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
  		} 
 	} 
 
-	//Handler for CHECKED_CHANGED event of "list"
-	list__bt_for_list() { 
+	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions trg view response"
+	api_input_ui_actions_trg_view_response__ide_call() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="list"
+		let source_id="api_input_ui_actions_trg_view_response"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1677305538537"
+		let event_params={"caller_name":"api_input_ui_actions_trg_view_response__ide_call","event_desc":"ide call","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_trg_view_response","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_liquidity_position_responseService.fn_npss_cs_liquidity_position_response(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for CHECKED_CHANGED event of "request"
+	request__bt_for_list(peventcontext) { 
+		let Dest_Is_ctrl=true
+		let eventcontext =["not call"]
+		if(eventcontext.indexOf(peventcontext)==-1) return true;
+		let source_id="request"
 		let destn_id="api_details"
 		let parent_source_id=""
 		let event_code="e_1677321518402"
-		let event_params={"caller_name":"list__bt_for_list","event_desc":"BT for LIST","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let event_params={"caller_name":"request__bt_for_list","event_desc":"BT for LIST","event_type":"CHECKED_CHANGED","caller_event_context":"not call","root_source_id":"request","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""},"eventcontext":["not call"]}
 		let handler_code="bind_tran"
 		let internals=""
 		let event_data={}
@@ -671,19 +717,20 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
  		} 
 	} 
 
-	//Handler for CHECKED_CHANGED event of "list"
-	list__svm_for_checked_change() { 
+	//Handler for CHECKED_CHANGED event of "request"
+	request__svm_for_checked_change(peventcontext) { 
 		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="list"
+		let eventcontext =["not call"]
+		if(eventcontext.indexOf(peventcontext)==-1) return true;
+		let source_id="request"
+		let destn_id="request"
 		let parent_source_id=""
 		let event_code="e_1677321588412"
-		let event_params={"caller_name":"list__svm_for_checked_change","event_desc":"SVM for Checked Change","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{}}
+		let event_params={"caller_name":"request__svm_for_checked_change","event_desc":"SVM for Checked Change","event_type":"CHECKED_CHANGED","caller_event_context":"not call","root_source_id":"request","raiseparam":{},"eventcontext":["not call"]}
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_checked_change__cc_for_show_hide_on_list,"
-		let event_data={"list":{"e_1677321588412":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_3","event_code":"E_1677321588412","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"Core API Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"MULTI","column_name":"NPSSCAPL_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSCAPL_ID","setd3name":"NPSSCAPL_ID"},{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"},{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677328619184","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false},{"column_name":"SENDERBIC","alias_name":"","mq_id":"MQ_1677318148187","date_format":false},{"column_name":"FROMDATE","alias_name":"","mq_id":"MQ_1677318160384","date_format":true},{"column_name":"TODATE","alias_name":"","mq_id":"MQ_1677318160672","date_format":true},{"column_name":"REFTYPE","alias_name":"","mq_id":"MQ_1677327468115","date_format":false},{"column_name":"ref","alias_name":"","mq_id":"MQ_1677327468858","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1678106643760","date_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678106643919","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,  PROCESS_NAME,  PROCESSING_SYSTEM,  CURRENCY,  ACCOUNTHOLDERBIC,  ACCOUNTNUMBER,  DATETIME,  RESPONSE_CODE,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  DATASOURCE,  SENDERBIC,  FROMDATE,  TODATE,  REFTYPE,  ref,  CYCLENUMBER,  CREATED_BY,  CREATED_BY_NAME,  CREATED_BY_STS_ID,  CREATED_DATE,  DT_CODE,  DT_DESCRIPTION,  DTT_CODE,  DTT_DESCRIPTION,  MODIFIED_BY,  MODIFIED_BY_NAME,  MODIFIED_BY_STS_ID,  MODIFIED_DATE,  PRCT_ID,  STATUS,  PROCESS_STATUS,  SYSTEM_ID,  SYSTEM_NAME,  TENANT_ID,  APP_ID,  VERSION_NO,TS_ID,   LOCKED_BY,   LOCKED_BY_NAME from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NPSSCAPL.STATUS = QR.PROCESS_QUEUE_STATUS   and NPSSCAPL.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NPSSCAPL.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Month Liq Position CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_NAME","binding_name":"PROCESS_NAME","binding_value":"","source_name":"monthlyLiquidityPosition","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date Time","target_column":"DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		let event_data={"request":{"e_1677321588412":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_3","event_code":"E_1677321588412","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"Core API Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"MULTI","column_name":"NPSSCAPL_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSCAPL_ID","setd3name":"NPSSCAPL_ID"},{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"},{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677328619184","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false},{"column_name":"SENDERBIC","alias_name":"","mq_id":"MQ_1677318148187","date_format":false},{"column_name":"FROMDATE","alias_name":"","mq_id":"MQ_1677318160384","date_format":true},{"column_name":"TODATE","alias_name":"","mq_id":"MQ_1677318160672","date_format":true},{"column_name":"REFTYPE","alias_name":"","mq_id":"MQ_1677327468115","date_format":false},{"column_name":"ref","alias_name":"","mq_id":"MQ_1677327468858","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1678106643760","date_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678106643919","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,  PROCESS_NAME,  PROCESSING_SYSTEM,  CURRENCY,  ACCOUNTHOLDERBIC,  ACCOUNTNUMBER,  DATETIME,  RESPONSE_CODE,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  DATASOURCE,  SENDERBIC,  FROMDATE,  TODATE,  REFTYPE,  ref,  CYCLENUMBER,  CREATED_BY,  CREATED_BY_NAME,  CREATED_BY_STS_ID,  CREATED_DATE,  DT_CODE,  DT_DESCRIPTION,  DTT_CODE,  DTT_DESCRIPTION,  MODIFIED_BY,  MODIFIED_BY_NAME,  MODIFIED_BY_STS_ID,  MODIFIED_DATE,  PRCT_ID,  STATUS,  PROCESS_STATUS,  SYSTEM_ID,  SYSTEM_NAME,  TENANT_ID,  APP_ID,  VERSION_NO,TS_ID,   LOCKED_BY,   LOCKED_BY_NAME from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NPSSCAPL.STATUS = QR.PROCESS_QUEUE_STATUS   and NPSSCAPL.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NPSSCAPL.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE ORDER BY NPSSCAPL_ID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Month Liq Position CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_NAME","binding_name":"PROCESS_NAME","binding_value":"","source_name":"monthlyLiquidityPosition","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date Time","target_column":"DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -692,21 +739,127 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
  		} 
 	} 
 
-	//Handler for CHECKED_CHANGED event of "list"
-	list__ee_for_call_api_btn() { 
+	//Handler for CHECKED_CHANGED event of "request"
+	request__ee_for_call_api_btn(peventcontext) { 
 		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="api_input_ui_actions_call_api"
+		let eventcontext =["not call"]
+		if(eventcontext.indexOf(peventcontext)==-1) return true;
+		let source_id="request"
+		let destn_id="api_input_ui_actions_trg_view_response"
 		let parent_source_id=""
 		let event_code="e_1677322950827"
-		let event_params={"caller_name":"list__ee_for_call_api_btn","event_desc":"EE for Call API BTN","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let event_params={"caller_name":"request__ee_for_call_api_btn","event_desc":"EE for Call API BTN","event_type":"CHECKED_CHANGED","caller_event_context":"not call","root_source_id":"request","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"eventcontext":["not call"]}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
 			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "request"
+	request__svtm_for_selection_change() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="request"
+		let destn_id="request"
+		let parent_source_id=""
+		let event_code="e_1678184984635"
+		let event_params={"caller_name":"request__svtm_for_selection_change","event_desc":"SVTM for selection change","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"request","raiseparam":{}}
+		let handler_code="set_value_to_memory"
+		let internals="svtm_for_selection_change__show_hide_ide_call,"
+		let event_data={"request":{"e_1678184984635":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_3","event_code":"E_1678184984635","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"Core API Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"NPSSCAPL_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSCAPL_ID","setd3name":"NPSSCAPL_ID"},{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"},{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677328619184","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false},{"column_name":"SENDERBIC","alias_name":"","mq_id":"MQ_1677318148187","date_format":false},{"column_name":"FROMDATE","alias_name":"","mq_id":"MQ_1677318160384","date_format":true},{"column_name":"TODATE","alias_name":"","mq_id":"MQ_1677318160672","date_format":true},{"column_name":"REFTYPE","alias_name":"","mq_id":"MQ_1677327468115","date_format":false},{"column_name":"ref","alias_name":"","mq_id":"MQ_1677327468858","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1678106643760","date_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678106643919","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,  PROCESS_NAME,  PROCESSING_SYSTEM,  CURRENCY,  ACCOUNTHOLDERBIC,  ACCOUNTNUMBER,  DATETIME,  RESPONSE_CODE,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  DATASOURCE,  SENDERBIC,  FROMDATE,  TODATE,  REFTYPE,  ref,  CYCLENUMBER,  CREATED_BY,  CREATED_BY_NAME,  CREATED_BY_STS_ID,  CREATED_DATE,  DT_CODE,  DT_DESCRIPTION,  DTT_CODE,  DTT_DESCRIPTION,  MODIFIED_BY,  MODIFIED_BY_NAME,  MODIFIED_BY_STS_ID,  MODIFIED_DATE,  PRCT_ID,  STATUS,  PROCESS_STATUS,  SYSTEM_ID,  SYSTEM_NAME,  TENANT_ID,  APP_ID,  VERSION_NO,TS_ID,   LOCKED_BY,   LOCKED_BY_NAME from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NPSSCAPL.STATUS = QR.PROCESS_QUEUE_STATUS   and NPSSCAPL.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NPSSCAPL.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE ORDER BY NPSSCAPL_ID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Month Liq Position CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_NAME","binding_name":"PROCESS_NAME","binding_value":"","source_name":"monthlyLiquidityPosition","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date Time","target_column":"DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		try {
+			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "request"
+	request__bt_from_list() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="request"
+		let destn_id="api_details"
+		let parent_source_id=""
+		let event_code="e_1678185073984"
+		let event_params={"caller_name":"request__bt_from_list","event_desc":"BT from list","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"request","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "request"
+	request__ee_from_list() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="request"
+		let destn_id="api_input_ui_actions_trg_view_response"
+		let parent_source_id=""
+		let event_code="e_1678185095511"
+		let event_params={"caller_name":"request__ee_from_list","event_desc":"EE from list","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"request","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "request"
+	request__tbc_from_list() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="request"
+		let destn_id="api_input_ui_actions_trg_view_response"
+		let parent_source_id=""
+		let event_code="e_1678187268194"
+		let event_params={"caller_name":"request__tbc_from_list","event_desc":"TBC from list","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"request","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for FILTER_CLICK event of "request"
+	request__spap_from_list() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="request"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678185145706"
+		let event_params={"caller_name":"request__spap_from_list","event_desc":"SPAP from list","event_type":"FILTER_CLICK","caller_event_context":"SUCCESS","root_source_id":"request","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_from_list","selector":"p_search_layout","profile_code":"BTL_1304_1678183785816","window_title":"Search","window_height":400,"window_width":"800px","window_close_icon":"Y","eventdes":"spap_from_list","eventcode":"E_1678185145706"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -720,9 +873,74 @@ export class s_monthly_liquidity_positionComponent implements OnInit,AfterViewIn
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="svm_for_checked_change"
 		let destn_id=""
-		let parent_source_id="list"
+		let parent_source_id="request"
 		let event_code="e_1677322171892"
-		let event_params={"caller_name":"svm_for_checked_change__cc_for_show_hide_on_list","event_desc":"CC for Show Hide on List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"svm_for_checked_change__cc_for_show_hide_on_list","event_desc":"CC for Show Hide on List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"request","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions fetch trg"
+	api_input_ui_actions_fetch_trg__brfq_from_list() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="api_input_ui_actions_fetch_trg"
+		let destn_id="request"
+		let parent_source_id=""
+		let event_code="e_1678184489080"
+		let event_params={"caller_name":"api_input_ui_actions_fetch_trg__brfq_from_list","event_desc":"BRFQ from list","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_fetch_trg","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let handler_code="bind_record_from_query"
+		let internals="brfq_from_list__sfr_from_list,"
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677328619184","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false},{"column_name":"SENDERBIC","alias_name":"","mq_id":"MQ_1677318148187","date_format":false},{"column_name":"FROMDATE","alias_name":"","mq_id":"MQ_1677318160384","date_format":true},{"column_name":"TODATE","alias_name":"","mq_id":"MQ_1677318160672","date_format":true},{"column_name":"REFTYPE","alias_name":"","mq_id":"MQ_1677327468115","date_format":false},{"column_name":"ref","alias_name":"","mq_id":"MQ_1677327468858","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1678106643760","date_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678106643919","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,  PROCESS_NAME,  PROCESSING_SYSTEM,  CURRENCY,  ACCOUNTHOLDERBIC,  ACCOUNTNUMBER,  DATETIME,  RESPONSE_CODE,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  DATASOURCE,  SENDERBIC,  FROMDATE,  TODATE,  REFTYPE,  ref,  CYCLENUMBER,  CREATED_BY,  CREATED_BY_NAME,  CREATED_BY_STS_ID,  CREATED_DATE,  DT_CODE,  DT_DESCRIPTION,  DTT_CODE,  DTT_DESCRIPTION,  MODIFIED_BY,  MODIFIED_BY_NAME,  MODIFIED_BY_STS_ID,  MODIFIED_DATE,  PRCT_ID,  STATUS,  PROCESS_STATUS,  SYSTEM_ID,  SYSTEM_NAME,  TENANT_ID,  APP_ID,  VERSION_NO,TS_ID,   LOCKED_BY,   LOCKED_BY_NAME from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NPSSCAPL.STATUS = QR.PROCESS_QUEUE_STATUS   and NPSSCAPL.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NPSSCAPL.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE ORDER BY NPSSCAPL_ID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Month Liq Position CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_NAME","binding_name":"PROCESS_NAME","binding_value":"","source_name":"monthlyLiquidityPosition","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date Time","target_column":"DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__sfr_from_list(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_list"
+		let destn_id="request"
+		let parent_source_id="api_input_ui_actions_fetch_trg"
+		let event_code="e_1678184515384"
+		let event_params={"caller_name":"brfq_from_list__sfr_from_list","event_desc":"SFR from list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_fetch_trg","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1670589169341":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1670589169341","dtt_desc":"Core API Process Log","ds_eligible":"DS_1677328619184","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Core API PLOG Liq Pos MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1677309546629","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1677309546860","date_format":false},{"column_name":"ACCOUNTHOLDERBIC","alias_name":"","mq_id":"MQ_1677309547107","date_format":false},{"column_name":"ACCOUNTNUMBER","alias_name":"","mq_id":"MQ_1677309565754","date_format":false},{"column_name":"DATETIME","alias_name":"","mq_id":"MQ_1677309566186","date_format":true},{"column_name":"DATASOURCE","alias_name":"","mq_id":"MQ_1677309586905","date_format":false},{"column_name":"CYCLENUMBER","alias_name":"","mq_id":"MQ_1677311049468","date_format":false},{"column_name":"SENDERBIC","alias_name":"","mq_id":"MQ_1677318148187","date_format":false},{"column_name":"FROMDATE","alias_name":"","mq_id":"MQ_1677318160384","date_format":true},{"column_name":"TODATE","alias_name":"","mq_id":"MQ_1677318160672","date_format":true},{"column_name":"REFTYPE","alias_name":"","mq_id":"MQ_1677327468115","date_format":false},{"column_name":"ref","alias_name":"","mq_id":"MQ_1677327468858","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1678106643760","date_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678106643919","date_format":false}],"joins":[]},"eq_text":"select  NPSSCAPL_ID,  PROCESS_NAME,  PROCESSING_SYSTEM,  CURRENCY,  ACCOUNTHOLDERBIC,  ACCOUNTNUMBER,  DATETIME,  RESPONSE_CODE,  PROCESS_REF_NO,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  DATASOURCE,  SENDERBIC,  FROMDATE,  TODATE,  REFTYPE,  ref,  CYCLENUMBER,  CREATED_BY,  CREATED_BY_NAME,  CREATED_BY_STS_ID,  CREATED_DATE,  DT_CODE,  DT_DESCRIPTION,  DTT_CODE,  DTT_DESCRIPTION,  MODIFIED_BY,  MODIFIED_BY_NAME,  MODIFIED_BY_STS_ID,  MODIFIED_DATE,  PRCT_ID,  STATUS,  PROCESS_STATUS,  SYSTEM_ID,  SYSTEM_NAME,  TENANT_ID,  APP_ID,  VERSION_NO,TS_ID,   LOCKED_BY,   LOCKED_BY_NAME from  (  select   NPSSCAPL.NPSSCAPL_ID,   NPSSCAPL.PROCESS_NAME,   NPSSCAPL.PROCESSING_SYSTEM,   NPSSCAPL.CURRENCY,   NPSSCAPL.ACCOUNTHOLDERBIC,   NPSSCAPL.ACCOUNTNUMBER,   NPSSCAPL.DATETIME,   NPSSCAPL.RESPONSE_CODE,   NPSSCAPL.PROCESS_REF_NO,   NPSSCAPL.REQUEST_DATA_JSON,   NPSSCAPL.RESPONSE_DATA_JSON,   NPSSCAPL.DATASOURCE,   NPSSCAPL.SENDERBIC,   NPSSCAPL.FROMDATE,   NPSSCAPL.TODATE,   NPSSCAPL.REFTYPE,   NPSSCAPL.REF,   NPSSCAPL.CYCLENUMBER,   NPSSCAPL.CREATED_BY,   NPSSCAPL.CREATED_BY_NAME,   NPSSCAPL.CREATED_BY_STS_ID,   NPSSCAPL.CREATED_DATE,   NPSSCAPL.DT_CODE,   NPSSCAPL.DT_DESCRIPTION,   NPSSCAPL.DTT_CODE,   NPSSCAPL.DTT_DESCRIPTION,   NPSSCAPL.MODIFIED_BY,   NPSSCAPL.MODIFIED_BY_NAME,   NPSSCAPL.MODIFIED_BY_STS_ID,   NPSSCAPL.MODIFIED_DATE,   NPSSCAPL.PRCT_ID,   NPSSCAPL.STATUS,   NPSSCAPL.PROCESS_STATUS,   NPSSCAPL.SYSTEM_ID,   NPSSCAPL.SYSTEM_NAME,   NPSSCAPL.TENANT_ID,   NPSSCAPL.APP_ID,   NPSSCAPL.VERSION_NO,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   npss_core_api_process_log NPSSCAPL  left join TRANSACTION_SET TS on   NPSSCAPL.NPSSCAPL_ID = TS.TRN_ID   and NPSSCAPL.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NPSSCAPL.STATUS = QR.PROCESS_QUEUE_STATUS   and NPSSCAPL.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NPSSCAPL.PROCESS_STATUS = PQ.QUEUE_CODE) VW $WHERE ORDER BY NPSSCAPL_ID DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Month Liq Position CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_NAME","binding_name":"PROCESS_NAME","binding_value":"","source_name":"monthlyLiquidityPosition","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Holder BIC","target_column":"ACCOUNTHOLDERBIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Number","target_column":"ACCOUNTNUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date Time","target_column":"DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "svtm for selection change"
+	svtm_for_selection_change__show_hide_ide_call(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="svtm_for_selection_change"
+		let destn_id=""
+		let parent_source_id="request"
+		let event_code="e_1678185043626"
+		let event_params={"caller_name":"svtm_for_selection_change__show_hide_ide_call","event_desc":"Show hide ide call","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"request","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}

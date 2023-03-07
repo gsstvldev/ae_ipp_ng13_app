@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
 
 
@@ -174,7 +175,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 sendResponse(error, null);
                                             } else {
                                               
-                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseFromImagingService + '---for npsscapl_id....' + arrTran[0].npsscapl_id, objSessionLogInfo);
+                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseFromImagingService)+ '---for npsscapl_id....' + arrTran[0].npsscapl_id, objSessionLogInfo);
                                                   //  resobj.status = 'SUCCESS'
                                                    // resobj.data = responseFromImagingService;
                                                     resolve('SUCCESS');
@@ -290,6 +291,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

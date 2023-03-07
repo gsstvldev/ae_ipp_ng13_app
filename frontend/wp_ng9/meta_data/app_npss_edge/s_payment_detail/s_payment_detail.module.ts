@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28512 
+Build ID        : 28527 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-07 11:9 AM 
+Modified Date   : 2023-Mar-07 15:0 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_detail
@@ -35,6 +35,11 @@ import { s_payment_detailRoutingModule } from './s_payment_detail.routing.module
     
 
 
+import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
+import { f_npss_payment_detail_uiComponent } from './f_npss_payment_detail_ui/f_npss_payment_detail_ui.component'
+import { f_api_input_ui_actionsComponent } from './f_api_input_ui_actions/f_api_input_ui_actions.component'
+import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
+import { f_npss_payment_details_srchComponent } from './f_npss_payment_details_srch/f_npss_payment_details_srch.component'
 
 
 
@@ -51,7 +56,7 @@ import { s_payment_detailRoutingModule } from './s_payment_detail.routing.module
     s_payment_detailRoutingModule,
     npss_cs_daily_liquidity_position_responseModule,torus_cs_show_hideModule,npss_cs_payment_detaiModule,npss_cs_liquidity_position_responseModule
   ],
-  declarations: [s_payment_detailComponent,],
+  declarations: [s_payment_detailComponent,p_main_layoutComponent,f_npss_payment_detail_uiComponent,f_api_input_ui_actionsComponent,p_search_layoutComponent,f_npss_payment_details_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

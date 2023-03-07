@@ -10,11 +10,6 @@ app.post('/', function(appRequest, appResponse, next) {
     
     
 
-
-
-
-
-
     /*  Created By :Siva Harish
     Created Date :25/02/2023
     Modified By : Siva Harish
@@ -175,7 +170,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 sendResponse(error, null);
                                             } else {
                                               
-                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseFromImagingService)+ '---for npsscapl_id....' + arrTran[0].npsscapl_id, objSessionLogInfo);
+                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseBody)+ '---for npsscapl_id....' + arrTran[0].npsscapl_id, objSessionLogInfo);
                                                   //  resobj.status = 'SUCCESS'
                                                    // resobj.data = responseFromImagingService;
                                                     resolve('SUCCESS');

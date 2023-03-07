@@ -22,14 +22,18 @@ export class npss_cs_payment_listService {
     //Default calling function
     fn_npss_cs_payment_list(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         var ClientParams: any = {}
+        var CtrlScope = screenInstance['api_details'].f_npss_payment_list_ui.model;
+        ClientParams.PROCESS_NAME = CtrlScope.PROCESS_NAME;
+        ClientParams.SENDERBIC = CtrlScope.SENDERBIC;
+        ClientParams.FROMDATE = CtrlScope.FROMDATE;
+        ClientParams.TODATE = CtrlScope.TODATE;
+        ClientParams.DATASOURCE = CtrlScope.DATASOURCE;
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
         ClientParams.TENANT_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
         ClientParams.SYSTEM_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_ID");
         ClientParams.SYSTEM_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_DESC");
-        ClientParams.Tran_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSCAPL_ID");
-        ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS") || '';
-        ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS") || '';
+       
 
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

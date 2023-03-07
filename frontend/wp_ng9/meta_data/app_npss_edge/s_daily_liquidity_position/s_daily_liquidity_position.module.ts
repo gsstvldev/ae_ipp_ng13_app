@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28517 
+Build ID        : 28527 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-07 11:9 AM 
+Modified Date   : 2023-Mar-07 15:0 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_daily_liquidity_position
@@ -19,7 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
-import {npss_cs_daily_liquidity_position_responseModule} from '../../../custom_widget/npss_cs_daily_liquidity_position_response/npss_cs_daily_liquidity_position_response.module'
+import {npss_cs_liquidity_position_responseModule} from '../../../custom_widget/npss_cs_liquidity_position_response/npss_cs_liquidity_position_response.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_cs_daily_liquidity_positionModule} from '../../../custom_widget/npss_cs_daily_liquidity_position/npss_cs_daily_liquidity_position.module'
 
@@ -53,7 +53,7 @@ import { f_npss_liq_pos__srchComponent } from './f_npss_liq_pos__srch/f_npss_liq
     OverlayPanelModule,
     
     s_daily_liquidity_positionRoutingModule,
-    npss_cs_daily_liquidity_position_responseModule,torus_cs_show_hideModule,npss_cs_daily_liquidity_positionModule
+    npss_cs_liquidity_position_responseModule,torus_cs_show_hideModule,npss_cs_daily_liquidity_positionModule
   ],
   declarations: [s_daily_liquidity_positionComponent,p_main_layoutComponent,f_npss_daily_liq_pos_uiComponent,f_api_input_ui_actionsComponent,p_search_layoutComponent,f_npss_liq_pos__srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]

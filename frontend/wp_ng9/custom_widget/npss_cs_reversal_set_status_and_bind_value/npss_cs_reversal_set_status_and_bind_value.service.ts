@@ -18,7 +18,7 @@ export class npss_cs_reversal_set_status_and_bind_valueService {
     constructor(private httpHelper: HttphelperService,
         private appHandler: AppHandlerService,
         private sessionHelper: SessionService,
-        private coreHelper: CoreService,
+         private coreHelper: CoreService,
         public dialogHelper: DialogService) { }
     //Default calling function
     fn_npss_cs_reversal_set_status_and_bind_value(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28515 
+Build ID        : 28530 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-07 9:55 AM 
+Modified Date   : 2023-Mar-07 13:38 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_ip_home_dashboard
@@ -23,7 +23,7 @@ export class p_default_profileComponent implements OnInit {
 
   // Variables 
   	navigation : any = {}
-	transaction_list : any = {}
+	list : any = {}
 
 
   // Constructor 
@@ -33,8 +33,8 @@ export class p_default_profileComponent implements OnInit {
   ngOnInit() {
     	this.navigation.desc = "Navigation"
 		this.navigation.need_header = ""
-		this.transaction_list.desc = "Transaction List"
-		this.transaction_list.need_header = true
+		this.list.desc = "List"
+		this.list.need_header = true
 	
 
     this.screen_instance['p_default_profile'] = {};

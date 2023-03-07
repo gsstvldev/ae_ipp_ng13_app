@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28515 
+Build ID        : 28530 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-07 9:55 AM 
+Modified Date   : 2023-Mar-07 13:38 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_home_dashboard
@@ -32,7 +32,7 @@ export class s_op_home_dashboardComponent implements OnInit,AfterViewInit {
 	components : any = []
 	current_profile : string = "p_default_profile"
 	uicgc_1 : string = "search"
-	uicgc_2 : string = "transaction_list"
+	uicgc_2 : string = "list"
 	uicgc_4 : string = "navigation"
 	key_events : any = {}
 	btl_1408_1598521300065 : string = "p_search_layout"
@@ -42,7 +42,7 @@ export class s_op_home_dashboardComponent implements OnInit,AfterViewInit {
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
-	transaction_list : any = {}
+	list : any = {}
 	navigation : any = {}
 	navigation_search : any = {}
 
@@ -86,17 +86,17 @@ export class s_op_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.search_clear.role = []
 		this.search_clear.action = ""
 	
-		// Component level properties - "Transaction List" 
-		this.transaction_list.uictrl_code = "datatable"
-		this.transaction_list.uicgc_desc = "Transaction List"
-		this.transaction_list.uicgc_code = "uicgc_2"
-		this.transaction_list.params = {"need_pag_datatable":"Y","need_search":"N","advance_dynamic_search":"N"}
-		this.transaction_list.datasource = {"e_1678168022581":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"E_1678168022581","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678168211544","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Home Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Type","alias_name":"","mq_id":"MQ_1677928433068","date_format":false},{"column_name":"Total","alias_name":"","mq_id":"MQ_1677928433241","date_format":false},{"column_name":"IBMB","alias_name":"","mq_id":"MQ_1677928433417","date_format":false},{"column_name":"RMB","alias_name":"","mq_id":"MQ_1677928433585","date_format":false},{"column_name":"RIB","alias_name":"","mq_id":"MQ_1677928433769","date_format":false},{"column_name":"CMB","alias_name":"","mq_id":"MQ_1677928433945","date_format":false},{"column_name":"CIB","alias_name":"","mq_id":"MQ_1677928434130","date_format":false},{"column_name":"CMS","alias_name":"","mq_id":"MQ_1677928467185","date_format":false},{"column_name":"Manual","alias_name":"","mq_id":"MQ_1677928467361","date_format":false},{"column_name":"Pending_Screening","alias_name":"","mq_id":"MQ_1677928467521","date_format":false},{"column_name":"Pending_Maker","alias_name":"","mq_id":"MQ_1677928484313","date_format":false},{"column_name":"Pending_Checker","alias_name":"","mq_id":"MQ_1677928484473","date_format":false},{"column_name":"Send_to_CB","alias_name":"","mq_id":"MQ_1677928484633","date_format":false},{"column_name":"CBACK","alias_name":"","mq_id":"MQ_1677928498570","date_format":false},{"column_name":"CBNACK","alias_name":"","mq_id":"MQ_1677928498753","date_format":false},{"column_name":"Pending_T_1","alias_name":"","mq_id":"MQ_1677928498969","date_format":false},{"column_name":"Created_Date","alias_name":"","mq_id":"MQ_1677928517681","date_format":true}],"joins":[]},"eq_text":"SELECT Type,        Total,        IBMB,        RMB,        RIB,        CMB,        CIB,        CMS,        Manual,        Pending_Screening,        Pending_Maker,        Pending_Checker,        Send_to_CB,        CBACK,        CBNACK,        Pending_T_1,     Created_Date   FROM vw_dashboard_outward_data $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Home Dashboard MQ CCD","filter":[],"databinding":[{"header":"Type","target_column":"Type","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total","target_column":"Total","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"IBMB","target_column":"IBMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RMB","target_column":"RMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RIB","target_column":"RIB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CMB","target_column":"CMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CIB","target_column":"CIB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CMS","target_column":"CMS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Manual","target_column":"Manual","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Screening","target_column":"Pending_Screening","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Maker)","target_column":"Pending_Maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Checker)","target_column":"Pending_Checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Send to CB","target_column":"Send_to_CB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB ACK","target_column":"CBACK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB NACK","target_column":"CBNACK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (T-1)","target_column":"Pending_T_1","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
-		this.transaction_list.context_menu = []
-		this.transaction_list.views = {}
-		this.transaction_list.onChangecomponent = new EventEmitter<any>()
-		this.transaction_list.show = true
-		this.transaction_list.dynamic_param = {}
+		// Component level properties - "List" 
+		this.list.uictrl_code = "datatable"
+		this.list.uicgc_desc = "List"
+		this.list.uicgc_code = "uicgc_2"
+		this.list.params = {"need_pag_datatable":"Y","need_search":"N","advance_dynamic_search":"N"}
+		this.list.datasource = {"e_1678168022581":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"E_1678168022581","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678168211544","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Home Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Type","alias_name":"","mq_id":"MQ_1677928433068","date_format":false},{"column_name":"Total","alias_name":"","mq_id":"MQ_1677928433241","date_format":false},{"column_name":"IBMB","alias_name":"","mq_id":"MQ_1677928433417","date_format":false},{"column_name":"RMB","alias_name":"","mq_id":"MQ_1677928433585","date_format":false},{"column_name":"RIB","alias_name":"","mq_id":"MQ_1677928433769","date_format":false},{"column_name":"CMB","alias_name":"","mq_id":"MQ_1677928433945","date_format":false},{"column_name":"CIB","alias_name":"","mq_id":"MQ_1677928434130","date_format":false},{"column_name":"CMS","alias_name":"","mq_id":"MQ_1677928467185","date_format":false},{"column_name":"Manual","alias_name":"","mq_id":"MQ_1677928467361","date_format":false},{"column_name":"Pending_Screening","alias_name":"","mq_id":"MQ_1677928467521","date_format":false},{"column_name":"Pending_Maker","alias_name":"","mq_id":"MQ_1677928484313","date_format":false},{"column_name":"Pending_Checker","alias_name":"","mq_id":"MQ_1677928484473","date_format":false},{"column_name":"Send_to_CB","alias_name":"","mq_id":"MQ_1677928484633","date_format":false},{"column_name":"CBACK","alias_name":"","mq_id":"MQ_1677928498570","date_format":false},{"column_name":"CBNACK","alias_name":"","mq_id":"MQ_1677928498753","date_format":false},{"column_name":"Pending_T_1","alias_name":"","mq_id":"MQ_1677928498969","date_format":false},{"column_name":"Created_Date","alias_name":"","mq_id":"MQ_1677928517681","date_format":true}],"joins":[]},"eq_text":"SELECT Type,        Total,        IBMB,        RMB,        RIB,        CMB,        CIB,        CMS,        Manual,        Pending_Screening,        Pending_Maker,        Pending_Checker,        Send_to_CB,        CBACK,        CBNACK,        Pending_T_1,     Created_Date   FROM vw_dashboard_outward_data $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Home Dashboard MQ CCD","filter":[],"databinding":[{"header":"Type","target_column":"Type","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total","target_column":"Total","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"IBMB","target_column":"IBMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RMB","target_column":"RMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RIB","target_column":"RIB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CMB","target_column":"CMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CIB","target_column":"CIB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CMS","target_column":"CMS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Manual","target_column":"Manual","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Screening","target_column":"Pending_Screening","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Maker)","target_column":"Pending_Maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Checker)","target_column":"Pending_Checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Send to CB","target_column":"Send_to_CB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB ACK","target_column":"CBACK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB NACK","target_column":"CBNACK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (T-1)","target_column":"Pending_T_1","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.list.context_menu = []
+		this.list.views = {}
+		this.list.onChangecomponent = new EventEmitter<any>()
+		this.list.show = true
+		this.list.dynamic_param = {}
 	
 		// Component level properties - "Navigation" 
 		this.navigation.uictrl_code = "dynamic_ui"
@@ -153,9 +153,9 @@ export class s_op_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.ssp_from_search_ve__bfrq_to_tl_from_ssp(parent_event_result)
 	}
 
-	//Handler for SELECTION_CHANGED event of "transaction list"
-	transaction_list__selection_changed(){
-		this.transaction_list__svm_by_click_on_tl()
+	//Handler for SELECTION_CHANGED event of "list"
+	list__selection_changed(){
+		this.list__svm_by_click_on_tl()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -282,7 +282,7 @@ export class s_op_home_dashboardComponent implements OnInit,AfterViewInit {
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="ssp_from_search_ve"
-		let destn_id="transaction_list"
+		let destn_id="list"
 		let parent_source_id="ve_from_search"
 		let event_code="e_1678168022581"
 		let event_params={"caller_name":"ssp_from_search_ve__bfrq_to_tl_from_ssp","event_desc":"BFRQ to TL from SSP","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
@@ -298,15 +298,15 @@ export class s_op_home_dashboardComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "transaction list"
-	transaction_list__svm_by_click_on_tl() { 
+	//Handler for SELECTION_CHANGED event of "list"
+	list__svm_by_click_on_tl() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="transaction_list"
-		let destn_id="transaction_list"
+		let source_id="list"
+		let destn_id="list"
 		let parent_source_id=""
 		let event_code="e_1598531297905"
-		let event_params={"caller_name":"transaction_list__svm_by_click_on_tl","event_desc":"SVM by click on TL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{}}
+		let event_params={"caller_name":"list__svm_by_click_on_tl","event_desc":"SVM by click on TL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals=""
 		let event_data={}

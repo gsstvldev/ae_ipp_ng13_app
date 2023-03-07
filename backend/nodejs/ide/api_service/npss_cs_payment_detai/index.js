@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 /*  Created By :Daseen
@@ -55,25 +56,13 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
             mTranConn = pSession; //  assign connection     
             reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
                 try {
-                    if (Array.isArray(params.Tran_Id)) {
-                        arrTranID = params.Tran_Id.map(function (eachTran) {
-                            return eachTran.toString();
-                        });
-                    } else {
-                        arrTranID = [params.Tran_Id.toString()];
-                    }
-                    tranid = '(' + "'" + arrTranID.toString().split(',').join("','") + "'" + ')';
+                    
                     var PRCT_ID = prct_id
-                    var TakeFinalStatus = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'CORE_API_PAYMENT_DETAIL' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-
-                    var Taketran = `select * from npss_core_api_process_log where npsscapl_id in ${tranid}`
+                   
                     var Takeapiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_LIQUIDITY' and param_code='URL'`
-                    ExecuteQuery1(TakeFinalStatus, function (arrStatus) {
-                        if (arrStatus.length > 0) {
-                            final_status = arrStatus[0].success_status
-                            final_process_status = arrStatus[0].success_process_status
-                            ExecuteQuery1(Taketran, function (arrTran) {
-                                if (arrTran.length > 0) {
+                   
+                      
+                          
                                     ExecuteQuery1(Takeapiurl, function (arrUrl) {
                                         if (arrUrl.length > 0) {
                                             var objCoreApiInst = {};
@@ -83,7 +72,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                             objCoreApiInst.REFTYPE = params.reftype;
                                             objCoreApiInst.REF = params.ref;
                                             objCoreApiInst.SENDERBIC = params.senderbic
-                                            objCoreApiInst.DATASODATETIMEURCE = params.datetime;
+                                            objCoreApiInst.DATETIME = params.datetime;
                                             objCoreApiInst.PRCT_ID = PRCT_ID;
                                             objCoreApiInst.TENANT_ID = params.TENANT_ID;
                                             objCoreApiInst.APP_ID = '222'
@@ -113,14 +102,14 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                             _BulkInsertProcessItem(arrCoreApiInst, 'npss_core_api_process_log', function callbackInsert(CoreTranInsertRes) {
                                                 if (CoreTranInsertRes.length > 0) {
                                                     var runfunction = async () => {
-                                                        var doapicall = await apiCall(arrTranobj, arrUrl);
+                                                        var doapicall = await apiCall(CoreTranInsertRes, arrUrl);
                                                         if (doapicall == 'SUCCESS') {
-                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------Monthly Liquidity Position  api call success for-------' + arrTranobj, objSessionLogInfo);
+                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------Monthly Liquidity Position  api call success for-------', objSessionLogInfo);
                                                             objresponse.status = 'SUCCESS'
                                                             sendResponse(null, objresponse)
                                                         }
                                                         else {
-                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------Monthly Liquidity Position  api call not success for-------' + arrTranobj, objSessionLogInfo);
+                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------Monthly Liquidity Position  api call not success for-------', objSessionLogInfo);
                                                             objresponse.status = 'API call Failure'
                                                             sendResponse(null, objresponse)
                                                         }
@@ -138,24 +127,16 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                             sendResponse(null, objresponse)
                                         }
                                     })
-                                } else {
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------No Tran found-------', objSessionLogInfo);
-                                    objresponse.status = 'No data found in npss core api process log';
-                                    sendResponse(null, objresponse);
-                                }
+                               
 
 
-                            })
-                        } else {
-                            reqInstanceHelper.PrintInfo(serviceName, '------------No Status  found-------', objSessionLogInfo);
-                            objresponse.status = 'No data found in workflow Table';
-                            sendResponse(null, objresponse);
-                        }
+                           
+                        
 
-                    })
+                 
 
 
-                    function apiCall(arrTranobj, arrUrl) {
+                    function apiCall(CoreTranInsertRes, arrUrl) {
                         return new Promise((resolve, reject) => {
 
 
@@ -173,7 +154,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
                                     },
                                     headers: {
-                                        'capl_id': arrTranobj.npsscapl_id,
+                                        'capl_id': CoreTranInsertRes[0].npsscapl_id,
                                         'content-type': 'application/json'
                                     }
                                 };
@@ -295,6 +276,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 })
+
 
 
 

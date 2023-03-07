@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28519 
+Build ID        : 28527 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-07 11:5 AM 
+Modified Date   : 2023-Mar-07 15:0 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_list
@@ -14,13 +14,13 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_payment_listService} from '../../../custom_widget/npss_cs_payment_list/npss_cs_payment_list.service'
-import {npss_cs_liquidity_position_responseService} from '../../../custom_widget/npss_cs_liquidity_position_response/npss_cs_liquidity_position_response.service'
+import {npss_cs_daily_liquidity_position_responseService} from '../../../custom_widget/npss_cs_daily_liquidity_position_response/npss_cs_daily_liquidity_position_response.service'
 
 @Component({
 	selector: 's_payment_list',
 	templateUrl: './s_payment_list.component.html',
 	styleUrls: ['./s_payment_list.component.css'],
-	providers:[torus_cs_show_hideService,npss_cs_payment_listService,npss_cs_liquidity_position_responseService]
+	providers:[torus_cs_show_hideService,npss_cs_payment_listService,npss_cs_daily_liquidity_position_responseService]
 })
     
 // Start of class 
@@ -59,7 +59,7 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_payment_listService:npss_cs_payment_listService,private npss_cs_liquidity_position_responseService:npss_cs_liquidity_position_responseService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_payment_listService:npss_cs_payment_listService,private npss_cs_daily_liquidity_position_responseService:npss_cs_daily_liquidity_position_responseService) {
     
 	}
     
@@ -279,7 +279,6 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 
 	//Handler for SELECTION_CHANGED event of "request"
 	request__selection_changed(){
-		this.request__bt_for_selection_change()
 		this.request__svm_for_selection_change()
 		this.request__trg_by_record_selefction()
 	}
@@ -760,27 +759,6 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "request"
-	request__bt_for_selection_change() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="request"
-		let destn_id="api_details"
-		let parent_source_id=""
-		let event_code="e_1678185926177"
-		let event_params={"caller_name":"request__bt_for_selection_change","event_desc":"BT for Selection Change","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"request","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
-		let handler_code="bind_tran"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "request"
 	request__svm_for_selection_change() { 
 		let Dest_Is_ctrl=true
 		
@@ -879,7 +857,7 @@ export class s_payment_listComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_liquidity_position_responseService.fn_npss_cs_liquidity_position_response(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_daily_liquidity_position_responseService.fn_npss_cs_daily_liquidity_position_response(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

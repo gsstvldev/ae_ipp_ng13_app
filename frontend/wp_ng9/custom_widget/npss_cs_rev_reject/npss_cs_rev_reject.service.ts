@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, HttpModule } from '@angular/http';
 //import { Observable } from 'rxjs/Observable';
-//import { HttpClient } from '@angular/common/http';
+//import { HttpClient }  from '@angular/common/http';
 //import 'rxjs/add/operator/map';
 //import 'rxjs/add/operator/catch';
 import { HttphelperService } from '../../scripts/fx/httphelper.service'; // for server call only use http services

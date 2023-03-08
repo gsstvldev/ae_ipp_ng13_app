@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28562 
+Build ID        : 28564 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 10:51 AM 
+Modified Date   : 2023-Mar-08 11:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -67,7 +67,7 @@ focustoelement(){
 		this.ctrl.tran_charge.sub_details = ""
 		this.ctrl.tran_charge.accept_char = ""
 		this.ctrl.tran_charge.currency_format = ""
-		this.ctrl.tran_charge.data_scale = "2"
+		this.ctrl.tran_charge.data_scale = "6"
 		this.ctrl.tran_charge.hide_label = false
 		this.ctrl.tran_charge.depends_on = ""
 		this.ctrl.tran_charge.placeholder = ""
@@ -105,7 +105,7 @@ focustoelement(){
 		this.ctrl.buy_margin.sub_details = ""
 		this.ctrl.buy_margin.accept_char = ""
 		this.ctrl.buy_margin.currency_format = ""
-		this.ctrl.buy_margin.data_scale = "2"
+		this.ctrl.buy_margin.data_scale = "6"
 		this.ctrl.buy_margin.hide_label = false
 		this.ctrl.buy_margin.depends_on = ""
 		this.ctrl.buy_margin.placeholder = ""
@@ -143,7 +143,7 @@ focustoelement(){
 		this.ctrl.tran_amount.sub_details = ""
 		this.ctrl.tran_amount.accept_char = ""
 		this.ctrl.tran_amount.currency_format = ""
-		this.ctrl.tran_amount.data_scale = "2"
+		this.ctrl.tran_amount.data_scale = "6"
 		this.ctrl.tran_amount.hide_label = false
 		this.ctrl.tran_amount.depends_on = ""
 		this.ctrl.tran_amount.placeholder = ""

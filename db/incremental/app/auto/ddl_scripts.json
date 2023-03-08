@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS alter column TRAN_CHARGE type NUMERIC(19,2),alter column BUY_MARGIN type NUMERIC(19,2),alter column TRAN_AMOUNT type NUMERIC(19,2);","params" : [] },{"query" : "alter table NPSS_TRANSACTIONS add column BUY_RATE NUMERIC(19,6);","params" : [] }]
+[{"query" : "alter table NPSS_TRANSACTIONS alter column TRAN_CHARGE type NUMERIC(19,6),alter column BUY_MARGIN type NUMERIC(19,6),alter column TRAN_AMOUNT type NUMERIC(19,6);","params" : [] }]

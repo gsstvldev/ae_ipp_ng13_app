@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28467 
+Build ID        : 28538 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-07 15:46 PM 
+Modified Date   : 2023-Mar-08 4:45 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_ip_home_dashboard
@@ -134,7 +134,7 @@ export class s_ip_home_dashboardComponent implements OnInit,AfterViewInit {
 
 	//Handler for INTERNAL event of "cf from pag load"
 	cf_from_pag_load__internal(){
-		this.cf_from_pag_load__tbc_from_cf()
+		this.cf_from_pag_load__tbc_from_cf_pgload()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
@@ -179,7 +179,7 @@ export class s_ip_home_dashboardComponent implements OnInit,AfterViewInit {
 		let event_code="e_1598521589606"
 		let event_params={"caller_name":"page_load__cf_from_pag_load","event_desc":"CF from pag load","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""}}
 		let handler_code="create_form"
-		let internals="cf_from_pag_load__tbc_from_cf,"
+		let internals="cf_from_pag_load__tbc_from_cf_pgload,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -191,14 +191,14 @@ export class s_ip_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "cf from pag load"
-	cf_from_pag_load__tbc_from_cf() { 
+	cf_from_pag_load__tbc_from_cf_pgload() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="cf_from_pag_load"
 		let destn_id="search_search"
 		let parent_source_id="page_load"
 		let event_code="e_1678168508975"
-		let event_params={"caller_name":"cf_from_pag_load__tbc_from_cf","event_desc":"TBC from CF","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let event_params={"caller_name":"cf_from_pag_load__tbc_from_cf_pgload","event_desc":"TBC from CF Pgload","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="trigger_button_click"
 		let internals=""
 		let event_data={}

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28467 
+Build ID        : 28533 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-07 15:46 PM 
+Modified Date   : 2023-Mar-08 4:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_volume_values
@@ -51,8 +51,8 @@ export class s_volume_valuesComponent implements OnInit,AfterViewInit {
 	api_input_ui_actions_trg_hide : any = {}
 	api_input_ui_actions_fetch_trg : any = {}
 	search : any = {}
-	search_search : any = {}
 	search_clear : any = {}
+	search_search : any = {}
 	request : any = {}
 	api_details : any = {}
 	response : any = {}
@@ -138,15 +138,6 @@ export class s_volume_valuesComponent implements OnInit,AfterViewInit {
 		this.search.f_npss_volume_values_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
 		this.search.form_name = "f_npss_volume_values_srch"
 		
-		// "Search" Button of "Search" component
-		this.search_search.label_name = "Search"
-		this.search_search.show = true
-		this.search_search.disabled = false
-		this.search_search.params = {"icon_only":false,"uicgcc_style":"fa fa-search"}
-		this.search_search.dynamic_param = {}
-		this.search_search.role = []
-		this.search_search.action = ""
-		
 		// "Clear" Button of "Search" component
 		this.search_clear.label_name = "Clear"
 		this.search_clear.show = true
@@ -155,6 +146,15 @@ export class s_volume_valuesComponent implements OnInit,AfterViewInit {
 		this.search_clear.dynamic_param = {}
 		this.search_clear.role = []
 		this.search_clear.action = ""
+		
+		// "Search" Button of "Search" component
+		this.search_search.label_name = "Search"
+		this.search_search.show = true
+		this.search_search.disabled = false
+		this.search_search.params = {"icon_only":false,"uicgcc_style":"fa fa-search"}
+		this.search_search.dynamic_param = {}
+		this.search_search.role = []
+		this.search_search.action = ""
 	
 		// Component level properties - "Request" 
 		this.request.uictrl_code = "datatable"

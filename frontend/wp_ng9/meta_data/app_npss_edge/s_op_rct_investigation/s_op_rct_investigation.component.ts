@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28564 
+Build ID        : 28555 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 11:1 AM 
+Modified Date   : 2023-Mar-08 12:30 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_investigation
@@ -547,6 +547,8 @@ export class s_op_rct_investigationComponent implements OnInit,AfterViewInit {
 		this.page_load__de_for_vlh_from_pl()
 		this.page_load__cc_for_routing_key()
 		this.page_load__he_for_close_btn()
+		this.page_load__he_for_approve()
+		this.page_load__he_for_reject()
 	}
 
 	//Handler for INTERNAL event of "cc for routing key"
@@ -612,6 +614,8 @@ export class s_op_rct_investigationComponent implements OnInit,AfterViewInit {
 		this.transaction_list__ee_for_vlh()
 		this.transaction_list__ee_for_initiate_btn_from_tran()
 		this.transaction_list__ee_for_close_btn()
+		this.transaction_list__ee_for_reject()
+		this.transaction_list__ee_for_aprove()
 	}
 
 	//Handler for INTERNAL event of "svm for tl"
@@ -902,6 +906,48 @@ export class s_op_rct_investigationComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1676981930252"
 		let event_params={"caller_name":"page_load__he_for_close_btn","event_desc":"HE for Close btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_approve() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_approve"
+		let parent_source_id=""
+		let event_code="e_1678278435352"
+		let event_params={"caller_name":"page_load__he_for_approve","event_desc":"he for approve","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_reject() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_reject"
+		let parent_source_id=""
+		let event_code="e_1678278449567"
+		let event_params={"caller_name":"page_load__he_for_reject","event_desc":"he for reject","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -1351,6 +1397,48 @@ export class s_op_rct_investigationComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1676983013537"
 		let event_params={"caller_name":"transaction_list__ee_for_close_btn","event_desc":"EE for Close btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_reject() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_reject"
+		let parent_source_id=""
+		let event_code="e_1678278492887"
+		let event_params={"caller_name":"transaction_list__ee_for_reject","event_desc":"ee for reject","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_aprove() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_approve"
+		let parent_source_id=""
+		let event_code="e_1678278509722"
+		let event_params={"caller_name":"transaction_list__ee_for_aprove","event_desc":"ee for aprove","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}

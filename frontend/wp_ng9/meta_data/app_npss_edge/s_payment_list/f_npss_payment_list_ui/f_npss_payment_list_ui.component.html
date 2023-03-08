@@ -19,8 +19,19 @@
 	</div>
 </div>
 <div id="RN21" class="row">
+	<div  id="RN31CN6" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('fromtime')" >
+				<tmr [ctrl_id]="'npss_payment_list_ui_fromtime'" [comp_id]="comp_id" [ctrl]="ctrl.fromtime" [model]="screen_instance[this.comp_id].f_npss_payment_list_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></tmr>
+	</div>
+	<div  id="RN21CN7" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('totime')" >
+				<tmr [ctrl_id]="'npss_payment_list_ui_totime'" [comp_id]="comp_id" [ctrl]="ctrl.totime" [model]="screen_instance[this.comp_id].f_npss_payment_list_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></tmr>
+	</div>
+</div>
+<div id="RN31" class="row">
 	<div  id="RN21CN5" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('datasource')" >
 				<txt [ctrl_id]="'npss_payment_list_ui_datasource'" [comp_id]="comp_id" [ctrl]="ctrl.datasource" [model]="screen_instance[this.comp_id].f_npss_payment_list_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN31CN8" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('pl_status')" >
+				<cbo [ctrl_id]="'npss_payment_list_ui_pl_status'" [comp_id]="comp_id" [ctrl]="ctrl.pl_status" [model]="screen_instance[this.comp_id].f_npss_payment_list_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
 	</div>
 </div>
 	</form>

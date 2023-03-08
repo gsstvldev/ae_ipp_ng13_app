@@ -10,28 +10,28 @@ import { SessionService } from '../../scripts/fx/session.service';
 import { AppHandlerService } from '../../scripts/fx/app.handler.service';
 //import 'rxjs/add/operator/map';
 //import 'rxjs/add/operator/catch';
-                        
+
 @Injectable()
 export class torus_cs_show_hideService {
-  
+
   MiLevelStatus: string
   MiLevelProcessStatus: string
   MiLevelActionMode: string
   Internals: string
   selectedItems: []
-  CurRoleId:string
-  CurModuleId:string
-  CurMenuGroupId:string
-  CurMenuItemId:string
-  
-    constructor(    
+  CurRoleId: string
+  CurModuleId: string
+  CurMenuGroupId: string
+  CurMenuItemId: string
+  CurrentAppId: any
+  constructor(
     private httpHelper: HttphelperService,
     private CoreSvc: CoreService,
     private SessionSvc: SessionService,
     private AppHandler: AppHandlerService
-    ) { }
-    //Default calling function
-    fn_torus_cs_show_hide(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
+  ) { }
+  //Default calling function
+  fn_torus_cs_show_hide(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
 
     setTimeout(() => {
       this.selectedItems = this.CoreSvc.get_selected_items(parent_source_id, event_params, source_id, screenInstance)
@@ -39,9 +39,9 @@ export class torus_cs_show_hideService {
       this.MiLevelProcessStatus = this.CoreSvc.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
       this.MiLevelActionMode = this.CoreSvc.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_ACTION_MODE");
       this.CurRoleId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'APP_USER_ROLES')
-      this.CurModuleId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'CURRENT_MODULE_NAME')      
-      this.CurMenuGroupId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'MENU_GROUP')      
-      this.CurMenuItemId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'MENU_ITEM_CODE')      
+      this.CurModuleId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'CURRENT_MODULE_NAME')
+      this.CurMenuGroupId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'MENU_GROUP')
+      this.CurMenuItemId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'MENU_ITEM_CODE');
       this.Internals = internals
       if (screenInstance[screenInstance.wftpa_description] && screenInstance[screenInstance.wftpa_description].show_hide_btns) {
         let Rows = screenInstance[screenInstance.wftpa_description].show_hide_btns
@@ -53,9 +53,9 @@ export class torus_cs_show_hideService {
         this.AppHandler.callInternals(this.Internals, screenInstance, "SUCCESS");
       } else {
         let appLists = JSON.parse(this.SessionSvc.GetVariable('SESSION_LEVEL', 'APPSYS')).Applications
-        let CurrentAppId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'APP_ID')
+        this.CurrentAppId = this.SessionSvc.GetVariable('SESSION_LEVEL', 'APP_ID')
         var curapp = appLists.filter(value => {
-          return value.app_id == CurrentAppId
+          return value.app_id == this.CurrentAppId
         })
         let curAppCode = curapp[0].app_code
         let ClientParams: any = {
@@ -102,38 +102,38 @@ export class torus_cs_show_hideService {
           let curElement = document.getElementsByClassName(curLoopForm)[0].getElementsByClassName('dynamic_action_btn')[0].getElementsByTagName('button')
           this.hideAllBtn(curElement, screenInstance);
           let showBothModeCtrl = []
-           if (this.MiLevelStatus) {
+          if (this.MiLevelStatus) {
             showBothModeCtrl = data.filter((value) => {
-            if(value.process_queue_status && value.action_mode && (value.role_id == null || value.role_id == '')){
-              return (value.process_queue_status == this.MiLevelStatus && value.action_mode == this.MiLevelActionMode) || (value.process_queue_status == this.MiLevelStatus && value.action_mode == 'BOTH')
+              if (value.process_queue_status && value.action_mode && (value.role_id == null || value.role_id == '')) {
+                return (value.process_queue_status == this.MiLevelStatus && value.action_mode == this.MiLevelActionMode) || (value.process_queue_status == this.MiLevelStatus && value.action_mode == 'BOTH')
               }
-             else if(value.process_queue_status && value.action_mode && value.role_id){
-              return (value.process_queue_status == this.MiLevelStatus && value.action_mode == this.MiLevelActionMode && value.role_id == this.CurRoleId) || (value.process_queue_status == this.MiLevelStatus && value.action_mode == 'BOTH' && value.role_id == this.CurRoleId)
+              else if (value.process_queue_status && value.action_mode && value.role_id) {
+                return (value.process_queue_status == this.MiLevelStatus && value.action_mode == this.MiLevelActionMode && value.role_id == this.CurRoleId) || (value.process_queue_status == this.MiLevelStatus && value.action_mode == 'BOTH' && value.role_id == this.CurRoleId)
               }
-              
+
             })
           }
           //if (this.MiLevelStatus) {
-        // showBothModeCtrl = data.filter((value) => {
+          // showBothModeCtrl = data.filter((value) => {
           //return (value.process_queue_status == this.MiLevelStatus && value.action_mode == this.MiLevelActionMode) || (value.process_queue_status == this.MiLevelStatus && value.action_mode == 'BOTH')
-        //    })
-         // }
-         
+          //    })
+          // }
+
 
           if (showBothModeCtrl.length) {
             this.showBtn(curElement, showBothModeCtrl, screenInstance)
           }
 
           let showAlwaysModewithoutRole = data.filter((value) => {
-            return value.action_mode == 'SHOW_ALWAYS' && (value.role_id =='' || value.role_id == null)
+            return value.action_mode == 'SHOW_ALWAYS' && (value.role_id == '' || value.role_id == null)
           })
-          
-          let showalwayswithRole=data.filter((value) => {
+
+          let showalwayswithRole = data.filter((value) => {
             return value.action_mode == 'SHOW_ALWAYS' && value.role_id == this.CurRoleId
           })
-          
+
           let showAlwaysModeCtrls = showAlwaysModewithoutRole.concat(showalwayswithRole)
-          
+
           if (showAlwaysModeCtrls.length) {
             this.showBtn(curElement, showAlwaysModeCtrls, screenInstance)
           }
@@ -202,33 +202,49 @@ export class torus_cs_show_hideService {
 
 
   setLockingMode(Rows, screenInstance) {
+    let filterLockRow: any = []
     if (this.MiLevelStatus) {
-      let filterLockRow = Rows.filter((value) => {
-        if(value.process_queue_status && value.screen_module && value.screen_menu_group && value.screen_name){
-            return value.process_queue_status == this.MiLevelStatus && value.screen_module == this.CurModuleId && value.screen_menu_group == this.CurMenuGroupId && value.screen_name == this.CurMenuItemId  
-          }
-          else if((value.process_queue_status == null || value.process_queue_status == '') && value.screen_module && value.screen_menu_group && value.screen_name){
-            return value.screen_module == this.CurModuleId && value.screen_menu_group == this.CurMenuGroupId && value.screen_name == this.CurMenuItemId  
-          }
-          else{
-        return value.process_queue_status == this.MiLevelStatus
-          }  
-      })
-
-      if (filterLockRow.length) {
-
-        for (var i = 0; i < filterLockRow.length; i++) {
-          if (!screenInstance[filterLockRow[i].ui_component_name.toLowerCase().split(' ').join('_')]) {
-            screenInstance[filterLockRow[i].ui_component_name.toLowerCase().split(' ').join('_')] = {}
-          }
-          screenInstance[filterLockRow[i].ui_component_name.toLowerCase().split(' ').join('_')]['locking_mode'] = filterLockRow[i].locking_mode;
-          if (filterLockRow[i].locking_count) {
-            screenInstance[filterLockRow[i].ui_component_name.toLowerCase().split(' ').join('_')]['locking_parameter'] = filterLockRow[i].locking_count
-          }
+      filterLockRow = Rows.filter((value) => {
+        if (value.vph_app_id && value.process_queue_status && value.screen_module && value.screen_menu_group && value.screen_name) {
+          return value.vph_app_id == this.CurrentAppId && value.process_queue_status == this.MiLevelStatus && value.screen_module == this.CurModuleId && value.screen_menu_group == this.CurMenuGroupId && value.screen_name == this.CurMenuItemId
         }
+        // else if (value.vph_app_id && (value.process_queue_status == null || value.process_queue_status == '') && value.screen_module && value.screen_menu_group && value.screen_name) {
+        //   return value.vph_app_id == this.CurrentAppId && value.screen_module == this.CurModuleId && value.screen_menu_group == this.CurMenuGroupId && value.screen_name == this.CurMenuItemId
+        // }
+        else if (value.vph_app_id && !value.process_queue_status && value.screen_module && value.screen_menu_group && value.screen_name) {
+          return value.vph_app_id == this.CurrentAppId && value.screen_module == this.CurModuleId && value.screen_menu_group == this.CurMenuGroupId && value.screen_name == this.CurMenuItemId
+        }
+        else if (value.vph_app_id && !value.process_queue_status && !value.screen_module && !value.screen_menu_group && !value.screen_name) {
+          return value.vph_app_id == this.CurrentAppId
+        }
+        else {
+          return value.process_queue_status == this.MiLevelStatus
+        }
+      })
+    }
+    else {
+      filterLockRow = Rows.filter((value) => {
+        if (value.vph_app_id && !value.process_queue_status && value.screen_module && value.screen_menu_group && value.screen_name) {
+          return value.vph_app_id == this.CurrentAppId && value.screen_module == this.CurModuleId && value.screen_menu_group == this.CurMenuGroupId && value.screen_name == this.CurMenuItemId
+        }
+        else if (value.vph_app_id && !value.process_queue_status && !value.screen_module && !value.screen_menu_group && !value.screen_name) {
+          return value.vph_app_id == this.CurrentAppId
+        }
+      })
+    }
 
+    if (filterLockRow.length) {
+      for (var i = 0; i < filterLockRow.length; i++) {
+        if (!screenInstance[filterLockRow[i].ui_component_name.toLowerCase().split(' ').join('_')]) {
+          screenInstance[filterLockRow[i].ui_component_name.toLowerCase().split(' ').join('_')] = {}
+        }
+        screenInstance[filterLockRow[i].ui_component_name.toLowerCase().split(' ').join('_')]['locking_mode'] = filterLockRow[i].locking_mode;
+        if (filterLockRow[i].locking_count) {
+          screenInstance[filterLockRow[i].ui_component_name.toLowerCase().split(' ').join('_')]['locking_parameter'] = filterLockRow[i].locking_count
+        }
       }
     }
+
 
   }
 
@@ -236,15 +252,15 @@ export class torus_cs_show_hideService {
 
     if (this.CurRoleId) {
       let filterListingModeRow = Rows.filter((value) => {
-          if(value.role_id && value.screen_module && value.screen_menu_group && value.screen_name){
-            return value.role_id == this.CurRoleId && value.screen_module == this.CurModuleId && value.screen_menu_group == this.CurMenuGroupId && value.screen_name == this.CurMenuItemId  
-          }
-          else if((value.role_id == null || value.role_id == '') && value.screen_module && value.screen_menu_group && value.screen_name){
-            return value.screen_module == this.CurModuleId && value.screen_menu_group == this.CurMenuGroupId && value.screen_name == this.CurMenuItemId  
-          }
-          else{
-        return value.role_id == this.CurRoleId
-          }
+        if (value.role_id && value.screen_module && value.screen_menu_group && value.screen_name) {
+          return value.role_id == this.CurRoleId && value.screen_module == this.CurModuleId && value.screen_menu_group == this.CurMenuGroupId && value.screen_name == this.CurMenuItemId
+        }
+        else if ((value.role_id == null || value.role_id == '') && value.screen_module && value.screen_menu_group && value.screen_name) {
+          return value.screen_module == this.CurModuleId && value.screen_menu_group == this.CurMenuGroupId && value.screen_name == this.CurMenuItemId
+        }
+        else {
+          return value.role_id == this.CurRoleId
+        }
       })
 
       if (filterListingModeRow.length) {

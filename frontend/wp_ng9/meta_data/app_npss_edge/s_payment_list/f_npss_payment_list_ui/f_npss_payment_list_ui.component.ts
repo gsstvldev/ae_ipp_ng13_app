@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28560 
+Build ID        : 28567 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 10:32 AM 
+Modified Date   : 2023-Mar-08 12:30 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_list
@@ -200,11 +200,87 @@ focustoelement(){
 		this.ctrl.npss_payment_list_ui_todate = {}
 		this.ctrl.npss_payment_list_ui_todate.onChangecomponent = new EventEmitter<any>()
 	
+		//Properties of fromtime
+		this.ctrl.fromtime = {}
+		this.ctrl.fromtime.id = "RN31CN6"
+		this.ctrl.fromtime.desc = "From Time"
+		this.ctrl.fromtime.visible = false
+		this.ctrl.fromtime.label_name = "From Time"
+		this.ctrl.fromtime.df_code = "DF_1304_1670589236195"
+		this.ctrl.fromtime.df_description = "Column Group 1"
+		this.ctrl.fromtime.uictrl_code = "TMR"
+		this.ctrl.fromtime.target_column = "FROMTIME"
+		this.ctrl.fromtime.data_type = "TEXT"
+		this.ctrl.fromtime.data_length = 16
+		this.ctrl.fromtime.zone_df_code = "DF_1304_1670589236195"
+		this.ctrl.fromtime.default_value = ""
+		this.ctrl.fromtime.is_memory_ctrl = ""
+		this.ctrl.fromtime.field_coordinates = ""
+		this.ctrl.fromtime.sub_details = ""
+		this.ctrl.fromtime.accept_char = ""
+		this.ctrl.fromtime.currency_format = ""
+		this.ctrl.fromtime.data_scale = ""
+		this.ctrl.fromtime.hide_label = false
+		this.ctrl.fromtime.depends_on = ""
+		this.ctrl.fromtime.placeholder = ""
+		this.ctrl.fromtime.dynamic_param = ""
+		this.ctrl.fromtime.style_code = ""
+		this.ctrl.fromtime.data_source = ""
+		this.ctrl.fromtime.image_association = ""
+		this.ctrl.fromtime.show = true
+		this.ctrl.fromtime.sub_content = ""
+		this.ctrl.fromtime.required = false
+		this.ctrl.fromtime.vld_rules = []
+		this.ctrl.fromtime.targetcolumn_lower = "fromtime"
+		this.ctrl.fromtime.disabled = false
+		this.ctrl.fromtime.view_name = "f_npss_payment_list_ui"
+		this.ctrl.fromtime.ctrl_id = "npss_payment_list_ui_fromtime"
+		this.ctrl.npss_payment_list_ui_fromtime = {}
+		this.ctrl.npss_payment_list_ui_fromtime.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of totime
+		this.ctrl.totime = {}
+		this.ctrl.totime.id = "RN21CN7"
+		this.ctrl.totime.desc = "To Time"
+		this.ctrl.totime.visible = true
+		this.ctrl.totime.label_name = "To Time"
+		this.ctrl.totime.df_code = "DF_1304_1670589236195"
+		this.ctrl.totime.df_description = "Column Group 1"
+		this.ctrl.totime.uictrl_code = "TMR"
+		this.ctrl.totime.target_column = "TOTIME"
+		this.ctrl.totime.data_type = "TEXT"
+		this.ctrl.totime.data_length = 16
+		this.ctrl.totime.zone_df_code = "DF_1304_1670589236195"
+		this.ctrl.totime.default_value = ""
+		this.ctrl.totime.is_memory_ctrl = ""
+		this.ctrl.totime.field_coordinates = ""
+		this.ctrl.totime.sub_details = ""
+		this.ctrl.totime.accept_char = ""
+		this.ctrl.totime.currency_format = ""
+		this.ctrl.totime.data_scale = ""
+		this.ctrl.totime.hide_label = false
+		this.ctrl.totime.depends_on = ""
+		this.ctrl.totime.placeholder = ""
+		this.ctrl.totime.dynamic_param = ""
+		this.ctrl.totime.style_code = ""
+		this.ctrl.totime.data_source = ""
+		this.ctrl.totime.image_association = ""
+		this.ctrl.totime.show = true
+		this.ctrl.totime.sub_content = ""
+		this.ctrl.totime.required = false
+		this.ctrl.totime.vld_rules = []
+		this.ctrl.totime.targetcolumn_lower = "totime"
+		this.ctrl.totime.disabled = false
+		this.ctrl.totime.view_name = "f_npss_payment_list_ui"
+		this.ctrl.totime.ctrl_id = "npss_payment_list_ui_totime"
+		this.ctrl.npss_payment_list_ui_totime = {}
+		this.ctrl.npss_payment_list_ui_totime.onChangecomponent = new EventEmitter<any>()
+	
 		//Properties of datasource
 		this.ctrl.datasource = {}
 		this.ctrl.datasource.id = "RN21CN5"
 		this.ctrl.datasource.desc = "Data Source"
-		this.ctrl.datasource.visible = false
+		this.ctrl.datasource.visible = true
 		this.ctrl.datasource.label_name = "Data Source"
 		this.ctrl.datasource.df_code = "DF_1304_1670589236195"
 		this.ctrl.datasource.df_description = "Column Group 1"
@@ -237,8 +313,47 @@ focustoelement(){
 		this.ctrl.datasource.ctrl_id = "npss_payment_list_ui_datasource"
 		this.ctrl.npss_payment_list_ui_datasource = {}
 		this.ctrl.npss_payment_list_ui_datasource.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_payment_list_ui.model = {"PROCESS_NAME":"paymentList","SENDERBIC":"","FROMDATE":"setcurrentdate(),{}","TODATE":"setcurrentdate(),{}","DATASOURCE":"PRODUCTION"}
-		this.screen_instance[this.comp_id].f_npss_payment_list_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SENDERBIC"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"FROMDATE"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"TODATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DATASOURCE"}]
+	
+		//Properties of pl_status
+		this.ctrl.pl_status = {}
+		this.ctrl.pl_status.id = "RN31CN8"
+		this.ctrl.pl_status.desc = "Status"
+		this.ctrl.pl_status.visible = true
+		this.ctrl.pl_status.label_name = "Status"
+		this.ctrl.pl_status.df_code = "DF_1304_1670589236195"
+		this.ctrl.pl_status.df_description = "Column Group 1"
+		this.ctrl.pl_status.uictrl_code = "CBO"
+		this.ctrl.pl_status.target_column = "PL_STATUS"
+		this.ctrl.pl_status.data_type = "TEXT"
+		this.ctrl.pl_status.data_length = 256
+		this.ctrl.pl_status.zone_df_code = "DF_1304_1670589236195"
+		this.ctrl.pl_status.default_value = ""
+		this.ctrl.pl_status.is_memory_ctrl = ""
+		this.ctrl.pl_status.field_coordinates = ""
+		this.ctrl.pl_status.sub_details = ""
+		this.ctrl.pl_status.accept_char = ""
+		this.ctrl.pl_status.currency_format = ""
+		this.ctrl.pl_status.data_scale = ""
+		this.ctrl.pl_status.hide_label = false
+		this.ctrl.pl_status.depends_on = ""
+		this.ctrl.pl_status.placeholder = ""
+		this.ctrl.pl_status.dynamic_param = ""
+		this.ctrl.pl_status.style_code = ""
+		this.ctrl.pl_status.data_source = {"ds_code":"UDS_1304_1678277557865","ds_description":"NPSS PL Status CDB","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"CD_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"SORT_ORDER ASC","target_table":"CORE_NC_CODE_DESCRIPTIONS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1678277785480","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter2","binding_name":"CD_CATEGORY","id":"DF_1678277785480","binding_value":"CORE_API_PL_STATUS","source_name":"CD_CATEGORY","source_value":"CORE_API_PL_STATUS","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"},{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"CORE_API_PL_STATUS","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"CORE_API_PL_STATUS"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID AND CD_CATEGORY = CORE_API_PL_STATUS)"},"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
+		this.ctrl.pl_status.image_association = ""
+		this.ctrl.pl_status.show = true
+		this.ctrl.pl_status.sub_content = ""
+		this.ctrl.pl_status.required = false
+		this.ctrl.pl_status.vld_rules = []
+		this.ctrl.pl_status.targetcolumn_lower = "pl_status"
+		this.ctrl.pl_status.disabled = false
+		this.ctrl.pl_status.view_name = "f_npss_payment_list_ui"
+		this.ctrl.pl_status.ctrl_id = "npss_payment_list_ui_pl_status"
+		this.ctrl.npss_payment_list_ui_pl_status = {}
+		this.ctrl.npss_payment_list_ui_pl_status.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_payment_list_ui.pl_status = {}
+		this.screen_instance[this.comp_id].f_npss_payment_list_ui.model = {"PROCESS_NAME":"paymentList","SENDERBIC":"","FROMDATE":"setcurrentdate(),{}","TODATE":"setcurrentdate(),{}","FROMTIME":"","TOTIME":"","DATASOURCE":"PRODUCTION","PL_STATUS":""}
+		this.screen_instance[this.comp_id].f_npss_payment_list_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_NAME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SENDERBIC"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"FROMDATE"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"TODATE"},{"CTLR_CODE":"TMR","DATA_TYPE":"TEXT","TARGET_COLUMN":"FROMTIME"},{"CTLR_CODE":"TMR","DATA_TYPE":"TEXT","TARGET_COLUMN":"TOTIME"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DATASOURCE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PL_STATUS"}]
 		this.screen_instance[this.comp_id].f_npss_payment_list_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_payment_list_ui.dtt_code = "dtt_1304_1670589169341"
 		this.screen_instance[this.comp_id].f_npss_payment_list_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

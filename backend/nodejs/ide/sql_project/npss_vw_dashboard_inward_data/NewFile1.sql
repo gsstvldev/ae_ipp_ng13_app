@@ -68,6 +68,3 @@ CREATE OR REPLACE VIEW vw_dashboard_inward_data
           WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Place Pacs008'::character varying::text, 'Place Pacs007'::character varying::text, 'Place Pacs004'::character varying::text]))
           GROUP BY nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group, npl.status, npl.process_status, (npl.created_date::timestamp with time zone)) res
   GROUP BY res.type, res.created_date;
-
-ALTER TABLE ad_gss_tran.vw_dashboard_inward_data
-    OWNER TO postgres;

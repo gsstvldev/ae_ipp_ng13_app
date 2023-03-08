@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28564 
+Build ID        : 28572 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 11:1 AM 
+Modified Date   : 2023-Mar-08 13:48 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of tran_charge
 		this.ctrl.tran_charge = {}
 		this.ctrl.tran_charge.id = "RN01CN1"
-		this.ctrl.tran_charge.desc = "Original Txn Charges AED"
+		this.ctrl.tran_charge.desc = "Txn Charges AED"
 		this.ctrl.tran_charge.visible = true
-		this.ctrl.tran_charge.label_name = "Original Txn Charges AED"
+		this.ctrl.tran_charge.label_name = "Txn Charges AED"
 		this.ctrl.tran_charge.df_code = "DF_1304_1665901396659"
 		this.ctrl.tran_charge.df_description = "Column Group 1"
 		this.ctrl.tran_charge.uictrl_code = "CUR"
@@ -85,6 +85,44 @@ focustoelement(){
 		this.ctrl.tran_charge.ctrl_id = "npss_reversal_n_ui_tran_charge"
 		this.ctrl.npss_reversal_n_ui_tran_charge = {}
 		this.ctrl.npss_reversal_n_ui_tran_charge.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of buy_rate
+		this.ctrl.buy_rate = {}
+		this.ctrl.buy_rate.id = "RN01CN4"
+		this.ctrl.buy_rate.desc = "Buy Rate"
+		this.ctrl.buy_rate.visible = true
+		this.ctrl.buy_rate.label_name = "Buy Rate"
+		this.ctrl.buy_rate.df_code = "DF_1304_1665901396659"
+		this.ctrl.buy_rate.df_description = "Column Group 1"
+		this.ctrl.buy_rate.uictrl_code = "CUR"
+		this.ctrl.buy_rate.target_column = "BUY_RATE"
+		this.ctrl.buy_rate.data_type = "NUMBER"
+		this.ctrl.buy_rate.data_length = 19
+		this.ctrl.buy_rate.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.buy_rate.default_value = ""
+		this.ctrl.buy_rate.is_memory_ctrl = ""
+		this.ctrl.buy_rate.field_coordinates = ""
+		this.ctrl.buy_rate.sub_details = ""
+		this.ctrl.buy_rate.accept_char = ""
+		this.ctrl.buy_rate.currency_format = ""
+		this.ctrl.buy_rate.data_scale = "6"
+		this.ctrl.buy_rate.hide_label = false
+		this.ctrl.buy_rate.depends_on = ""
+		this.ctrl.buy_rate.placeholder = ""
+		this.ctrl.buy_rate.dynamic_param = ""
+		this.ctrl.buy_rate.style_code = ""
+		this.ctrl.buy_rate.data_source = ""
+		this.ctrl.buy_rate.image_association = ""
+		this.ctrl.buy_rate.show = true
+		this.ctrl.buy_rate.sub_content = ""
+		this.ctrl.buy_rate.required = false
+		this.ctrl.buy_rate.vld_rules = []
+		this.ctrl.buy_rate.targetcolumn_lower = "buy_rate"
+		this.ctrl.buy_rate.disabled = false
+		this.ctrl.buy_rate.view_name = "f_npss_reversal_n_ui"
+		this.ctrl.buy_rate.ctrl_id = "npss_reversal_n_ui_buy_rate"
+		this.ctrl.npss_reversal_n_ui_buy_rate = {}
+		this.ctrl.npss_reversal_n_ui_buy_rate.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of buy_margin
 		this.ctrl.buy_margin = {}
@@ -161,46 +199,8 @@ focustoelement(){
 		this.ctrl.tran_amount.ctrl_id = "npss_reversal_n_ui_tran_amount"
 		this.ctrl.npss_reversal_n_ui_tran_amount = {}
 		this.ctrl.npss_reversal_n_ui_tran_amount.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of buy_rate
-		this.ctrl.buy_rate = {}
-		this.ctrl.buy_rate.id = "RN01CN4"
-		this.ctrl.buy_rate.desc = "Buy Rate"
-		this.ctrl.buy_rate.visible = true
-		this.ctrl.buy_rate.label_name = "Buy Rate"
-		this.ctrl.buy_rate.df_code = "DF_1304_1665901396659"
-		this.ctrl.buy_rate.df_description = "Column Group 1"
-		this.ctrl.buy_rate.uictrl_code = "CUR"
-		this.ctrl.buy_rate.target_column = "BUY_RATE"
-		this.ctrl.buy_rate.data_type = "NUMBER"
-		this.ctrl.buy_rate.data_length = 19
-		this.ctrl.buy_rate.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.buy_rate.default_value = ""
-		this.ctrl.buy_rate.is_memory_ctrl = ""
-		this.ctrl.buy_rate.field_coordinates = ""
-		this.ctrl.buy_rate.sub_details = ""
-		this.ctrl.buy_rate.accept_char = ""
-		this.ctrl.buy_rate.currency_format = ""
-		this.ctrl.buy_rate.data_scale = "6"
-		this.ctrl.buy_rate.hide_label = false
-		this.ctrl.buy_rate.depends_on = ""
-		this.ctrl.buy_rate.placeholder = ""
-		this.ctrl.buy_rate.dynamic_param = ""
-		this.ctrl.buy_rate.style_code = ""
-		this.ctrl.buy_rate.data_source = ""
-		this.ctrl.buy_rate.image_association = ""
-		this.ctrl.buy_rate.show = true
-		this.ctrl.buy_rate.sub_content = ""
-		this.ctrl.buy_rate.required = false
-		this.ctrl.buy_rate.vld_rules = []
-		this.ctrl.buy_rate.targetcolumn_lower = "buy_rate"
-		this.ctrl.buy_rate.disabled = false
-		this.ctrl.buy_rate.view_name = "f_npss_reversal_n_ui"
-		this.ctrl.buy_rate.ctrl_id = "npss_reversal_n_ui_buy_rate"
-		this.ctrl.npss_reversal_n_ui_buy_rate = {}
-		this.ctrl.npss_reversal_n_ui_buy_rate.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.model = {"TRAN_CHARGE":"","BUY_MARGIN":"","TRAN_AMOUNT":"","BUY_RATE":""}
-		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.Meta = [{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_CHARGE"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_MARGIN"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_AMOUNT"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_RATE"}]
+		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.model = {"TRAN_CHARGE":"","BUY_RATE":"","BUY_MARGIN":"","TRAN_AMOUNT":""}
+		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.Meta = [{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_CHARGE"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_RATE"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_MARGIN"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_AMOUNT"}]
 		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

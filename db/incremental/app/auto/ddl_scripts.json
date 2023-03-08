@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_CORE_API_PROCESS_LOG add column PL_STATUS CHARACTER VARYING(256), add column FROMTIME CHARACTER VARYING(16), add column TOTIME CHARACTER VARYING(16);","params" : [] }]
+[]

@@ -170,6 +170,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objCusTranInst.CPR_REJECT_REASON = arrdata[0].cpr_reject_reason
                                                         objCusTranInst.REMARKS = arrdata[0].remarks
                                                         objCusTranInst.DISPUTE_REF_NO = params.DISPUTE_REF_NO || null
+                                                        objCusTranInst.BUY_MARGIN = params.BUY_MARGIN || null
                                                         objCusTranInst.REVERSAL_AMOUNT = arrdata[0].reversal_amount
                                                         objCusTranInst.CHARGE_AMOUNT = params.CHARGE_AMOUNT || null
                                                         arrCusTranInst.push(objCusTranInst)
@@ -182,6 +183,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 objcusTranprslog.UETR = uetr;
                                                                 objcusTranprslog.NPSSTRRD_REFNO = arrdata[0].tran_ref_id;
                                                                 objcusTranprslog.PROCESS_NAME = 'Initiate Dispute Tran'
+                                                                objcusTranprslog.EXCHANGE_RATE = params.EXCHANGE_RATE || null;
                                                                 objcusTranprslog.PROCESSING_SYSTEM = 'NPSS';
                                                                 objcusTranprslog.PROCESS_STATUS = success_process_status;
                                                                 objcusTranprslog.STATUS = success_status;

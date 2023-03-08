@@ -1,4 +1,5 @@
 <div class="s_rct_reversal">
+<p_fab_reversal_new_layout [screen_instance]="this" [hidden]="!(current_profile=='p_fab_reversal_new_layout')"></p_fab_reversal_new_layout>
 <p_reversal_new__layout [screen_instance]="this" [hidden]="!(current_profile=='p_reversal_new__layout')"></p_reversal_new__layout>
 <p_fh_review_layout [screen_instance]="this" [hidden]="!(current_profile=='p_fh_review_layout')"></p_fh_review_layout>
 <p_view_req_and_res_profile [screen_instance]="this" [hidden]="!(current_profile=='p_view_req_and_res_profile')"></p_view_req_and_res_profile>
@@ -8,7 +9,6 @@
 <p_view_request_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_request_layout')"></p_view_request_layout>
 <p_view_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_history_layout')"></p_view_history_layout>
 <p_vertical_layout [screen_instance]="this" [hidden]="!(current_profile=='p_vertical_layout')"></p_vertical_layout>
-<p_fab_review_layout [screen_instance]="this" [hidden]="!(current_profile=='p_fab_review_layout')"></p_fab_review_layout>
 <p_main_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_layout')"></p_main_layout>
 
 <p-dialog header="{{'Change Return Reason' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_change_return_layout__crr_for_spap_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '300px','width': '600px'}" [draggable]="true" [modal]="true">

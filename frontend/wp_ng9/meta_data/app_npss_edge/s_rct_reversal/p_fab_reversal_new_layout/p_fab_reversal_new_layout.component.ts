@@ -1,32 +1,32 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28528 
+Build ID        : 28553 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 5:51 AM 
+Modified Date   : 2023-Mar-08 8:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_rct_reversal_non_aed
-Profile Name    : Reversal Non AED Layout--------------------------------------------------------------------------- */
+Screen Name     : s_rct_reversal
+Profile Name    : FAB Reversal New Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_reversal_non_aed_layout',
-  templateUrl: './p_reversal_non_aed_layout.component.html',
-  styleUrls: ['./p_reversal_non_aed_layout.component.css']
+  selector: 'p_fab_reversal_new_layout',
+  templateUrl: './p_fab_reversal_new_layout.component.html',
+  styleUrls: ['./p_fab_reversal_new_layout.component.css']
 })
 
 // Start of class 
-export class p_reversal_non_aed_layoutComponent implements OnInit {
+export class p_fab_reversal_new_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	tran_details : any = {}
-	cbs_accounts : any = {}
+  	original_transaction_details : any = {}
+	refund_processing_details : any = {}
 	reversal_ui : any = {}
-	deal_ui : any = {}
 	process_log_control_ui : any = {}
+	cbs_accounts : any = {}
 	get_usable_balance_widget : any = {}
 	process_log_list : any = {}
 	reversal_action_ui : any = {}
@@ -37,16 +37,16 @@ export class p_reversal_non_aed_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.tran_details.desc = "Tran Details"
-		this.tran_details.need_header = true
-		this.cbs_accounts.desc = "CBS Accounts"
-		this.cbs_accounts.need_header = true
+    	this.original_transaction_details.desc = "Original Transaction Details"
+		this.original_transaction_details.need_header = true
+		this.refund_processing_details.desc = "Refund Processing Details"
+		this.refund_processing_details.need_header = true
 		this.reversal_ui.desc = "Reversal UI"
 		this.reversal_ui.need_header = ""
-		this.deal_ui.desc = "Deal UI"
-		this.deal_ui.need_header = ""
 		this.process_log_control_ui.desc = "Process Log Control UI"
 		this.process_log_control_ui.need_header = ""
+		this.cbs_accounts.desc = "CBS Accounts"
+		this.cbs_accounts.need_header = true
 		this.get_usable_balance_widget.desc = "Get Usable Balance Widget"
 		this.get_usable_balance_widget.need_header = ""
 		this.process_log_list.desc = "Process Log List"
@@ -55,8 +55,8 @@ export class p_reversal_non_aed_layoutComponent implements OnInit {
 		this.reversal_action_ui.need_header = ""
 	
 
-    this.screen_instance['p_reversal_non_aed_layout'] = {};
-    this.screen_instance['p_reversal_non_aed_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_fab_reversal_new_layout'] = {};
+    this.screen_instance['p_fab_reversal_new_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28528 
+Build ID        : 28548 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 5:51 AM 
+Modified Date   : 2023-Mar-08 6:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -317,9 +317,9 @@ focustoelement(){
 		//Properties of memory120
 		this.ctrl.memory120 = {}
 		this.ctrl.memory120.id = "RN21CN8"
-		this.ctrl.memory120.desc = "Exchange Rate"
+		this.ctrl.memory120.desc = "Buy Rate"
 		this.ctrl.memory120.visible = true
-		this.ctrl.memory120.label_name = "Exchange Rate"
+		this.ctrl.memory120.label_name = "Buy Rate"
 		this.ctrl.memory120.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory120.df_description = "Column Group 1"
 		this.ctrl.memory120.uictrl_code = "TXT"

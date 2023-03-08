@@ -59,12 +59,15 @@ CREATE OR REPLACE VIEW vw_dashboard_inward_data
                     ELSE NULL::bigint
                 END AS pending_returns_checker,
                 CASE
-                    WHEN nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['IP_RCT_RR_POSTING_FAILURE'::text, 'IP_RCT_RETURN_POSTING_FAILURE'::text, 'IP_RCT_RR_POSTING_RETRY'::text, 'IP_RCT_RETURN_POSTING_RETRY'::text, 'IP_RCT_RR_POSTING_SUSPICIOUS'::text])) AND to_char(npl.created_date::date::timestamp with time zone, 'dd-mm-yyyy'::text)::timestamp without time zone = (to_char(npl.created_date::date::timestamp with time zone, 'dd-mm-yyyy'::text)::timestamp without time zone - '1 day'::interval) THEN count(*)
+                    WHEN nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['IP_RCT_RR_POSTING_FAILURE'::text, 'IP_RCT_RETURN_POSTING_FAILURE'::text, 'IP_RCT_RR_POSTING_RETRY'::text, 'IP_RCT_RETURN_POSTING_RETRY'::text, 'IP_RCT_RR_POSTING_SUSPICIOUS'::text])) THEN count(*)
                     ELSE NULL::bigint
                 END AS pending_t_1,
-            to_char(npl.created_date::date::timestamp with time zone, 'dd-mm-yyyy'::text)::timestamp without time zone AS created_date
+            npl.created_date::timestamp with time zone AS created_date
            FROM npss_transactions nppst
              JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
           WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Place Pacs008'::character varying::text, 'Place Pacs007'::character varying::text, 'Place Pacs004'::character varying::text]))
-          GROUP BY nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group, npl.status, npl.process_status, (to_char(npl.created_date::date::timestamp with time zone, 'dd-mm-yyyy'::text))) res
+          GROUP BY nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group, npl.status, npl.process_status, (npl.created_date::timestamp with time zone)) res
   GROUP BY res.type, res.created_date;
+
+ALTER TABLE ad_gss_tran.vw_dashboard_inward_data
+    OWNER TO postgres;

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28538 
+Build ID        : 28545 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 4:45 AM 
+Modified Date   : 2023-Mar-08 5:35 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_ip_home_dashboard
@@ -12,12 +12,13 @@ Screen Name     : s_ip_home_dashboard
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
+import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 
 @Component({
 	selector: 's_ip_home_dashboard',
 	templateUrl: './s_ip_home_dashboard.component.html',
 	styleUrls: ['./s_ip_home_dashboard.component.css'],
-	providers:[]
+	providers:[torus_cs_show_hideService]
 })
     
 // Start of class 
@@ -48,7 +49,7 @@ export class s_ip_home_dashboardComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
     
 	}
     
@@ -133,8 +134,13 @@ export class s_ip_home_dashboardComponent implements OnInit,AfterViewInit {
 	}
 
 	//Handler for INTERNAL event of "cf from pag load"
-	cf_from_pag_load__internal(){
-		this.cf_from_pag_load__tbc_from_cf_pgload()
+	cf_from_pag_load__internal(parent_event_result){
+		this.cf_from_pag_load__cc_show_hide_ide(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "cc show hide ide"
+	cc_show_hide_ide__internal(parent_event_result){
+		this.cc_show_hide_ide__tbc_from_show_hide_cc(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
@@ -179,7 +185,7 @@ export class s_ip_home_dashboardComponent implements OnInit,AfterViewInit {
 		let event_code="e_1598521589606"
 		let event_params={"caller_name":"page_load__cf_from_pag_load","event_desc":"CF from pag load","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""}}
 		let handler_code="create_form"
-		let internals="cf_from_pag_load__tbc_from_cf_pgload,"
+		let internals="cf_from_pag_load__cc_show_hide_ide,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -191,14 +197,37 @@ export class s_ip_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "cf from pag load"
-	cf_from_pag_load__tbc_from_cf_pgload() { 
+	cf_from_pag_load__cc_show_hide_ide(parent_event_result) { 
 		let Dest_Is_ctrl=true
-		
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
 		let source_id="cf_from_pag_load"
-		let destn_id="search_search"
+		let destn_id=""
 		let parent_source_id="page_load"
-		let event_code="e_1678168508975"
-		let event_params={"caller_name":"cf_from_pag_load__tbc_from_cf_pgload","event_desc":"TBC from CF Pgload","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let event_code="e_1678252628866"
+		let event_params={"caller_name":"cf_from_pag_load__cc_show_hide_ide","event_desc":"CC Show Hide IDE","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals="cc_show_hide_ide__tbc_from_show_hide_cc,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc show hide ide"
+	cc_show_hide_ide__tbc_from_show_hide_cc(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_show_hide_ide"
+		let destn_id="search_search"
+		let parent_source_id="cf_from_pag_load"
+		let event_code="e_1678252667787"
+		let event_params={"caller_name":"cc_show_hide_ide__tbc_from_show_hide_cc","event_desc":"TBC from Show Hide CC","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="trigger_button_click"
 		let internals=""
 		let event_data={}

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28467 
+Build ID        : 28528 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-07 15:45 PM 
+Modified Date   : 2023-Mar-08 5:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -295,7 +295,7 @@ focustoelement(){
 		this.ctrl.buy_margin.sub_details = ""
 		this.ctrl.buy_margin.accept_char = ""
 		this.ctrl.buy_margin.currency_format = ""
-		this.ctrl.buy_margin.data_scale = "4"
+		this.ctrl.buy_margin.data_scale = "6"
 		this.ctrl.buy_margin.hide_label = false
 		this.ctrl.buy_margin.depends_on = ""
 		this.ctrl.buy_margin.placeholder = ""
@@ -313,7 +313,45 @@ focustoelement(){
 		this.ctrl.buy_margin.ctrl_id = "npss_manual_initiation_ui_buy_margin"
 		this.ctrl.npss_manual_initiation_ui_buy_margin = {}
 		this.ctrl.npss_manual_initiation_ui_buy_margin.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY95":"AED","CHARGE_AMOUNT":"","INTRBK_STTLM_CUR":"","MEMORY92":"","DISPUTE_REF_NO":"","BUY_MARGIN":""}
+	
+		//Properties of memory120
+		this.ctrl.memory120 = {}
+		this.ctrl.memory120.id = "RN21CN8"
+		this.ctrl.memory120.desc = "Exchange Rate"
+		this.ctrl.memory120.visible = true
+		this.ctrl.memory120.label_name = "Exchange Rate"
+		this.ctrl.memory120.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory120.df_description = "Column Group 1"
+		this.ctrl.memory120.uictrl_code = "TXT"
+		this.ctrl.memory120.target_column = "memory120"
+		this.ctrl.memory120.data_type = "TEXT"
+		this.ctrl.memory120.data_length = 0
+		this.ctrl.memory120.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory120.default_value = ""
+		this.ctrl.memory120.is_memory_ctrl = "Y"
+		this.ctrl.memory120.field_coordinates = ""
+		this.ctrl.memory120.sub_details = ""
+		this.ctrl.memory120.accept_char = ""
+		this.ctrl.memory120.currency_format = ""
+		this.ctrl.memory120.data_scale = ""
+		this.ctrl.memory120.hide_label = false
+		this.ctrl.memory120.depends_on = ""
+		this.ctrl.memory120.placeholder = ""
+		this.ctrl.memory120.dynamic_param = ""
+		this.ctrl.memory120.style_code = ""
+		this.ctrl.memory120.data_source = ""
+		this.ctrl.memory120.image_association = ""
+		this.ctrl.memory120.show = true
+		this.ctrl.memory120.sub_content = ""
+		this.ctrl.memory120.required = false
+		this.ctrl.memory120.vld_rules = []
+		this.ctrl.memory120.targetcolumn_lower = "memory120"
+		this.ctrl.memory120.disabled = false
+		this.ctrl.memory120.view_name = "f_npss_manual_initiation_ui"
+		this.ctrl.memory120.ctrl_id = "npss_manual_initiation_ui_memory120"
+		this.ctrl.npss_manual_initiation_ui_memory120 = {}
+		this.ctrl.npss_manual_initiation_ui_memory120.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY95":"AED","CHARGE_AMOUNT":"","INTRBK_STTLM_CUR":"","MEMORY92":"","DISPUTE_REF_NO":"","BUY_MARGIN":"","MEMORY120":""}
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DISPUTE_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_MARGIN"}]
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.dtt_code = "dtt_1304_1665901217208"

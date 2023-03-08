@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS alter column TRAN_CHARGE type NUMERIC(19,6),alter column BUY_MARGIN type NUMERIC(19,6),alter column TRAN_AMOUNT type NUMERIC(19,6);","params" : [] },{"query" : "alter table NPSS_TRN_PROCESS_LOG alter column GM_MARGIN type NUMERIC(19,6);","params" : [] }]

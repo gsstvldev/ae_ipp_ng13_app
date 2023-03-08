@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28548 
+Build ID        : 28562 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 6:14 AM 
+Modified Date   : 2023-Mar-08 10:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -295,7 +295,7 @@ focustoelement(){
 		this.ctrl.buy_margin.sub_details = ""
 		this.ctrl.buy_margin.accept_char = ""
 		this.ctrl.buy_margin.currency_format = ""
-		this.ctrl.buy_margin.data_scale = "6"
+		this.ctrl.buy_margin.data_scale = "2"
 		this.ctrl.buy_margin.hide_label = false
 		this.ctrl.buy_margin.depends_on = ""
 		this.ctrl.buy_margin.placeholder = ""

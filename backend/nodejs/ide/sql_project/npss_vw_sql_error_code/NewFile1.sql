@@ -7,7 +7,8 @@ CREATE OR REPLACE VIEW  NPSS_VW_SQL_ERROR_CODE AS
 	status,
 	PROCESSING_SYSTEM,
 	error_category,
-	process_status
+	process_status,
+	need_sync
 	from ( select
 		concat(a.ERROR_CODE, '_', a.ERROR_DESCRIPTION) ERROR_DESC,
 		a.tenant_id ,
@@ -16,6 +17,7 @@ CREATE OR REPLACE VIEW  NPSS_VW_SQL_ERROR_CODE AS
 		a.ERROR_CODE,
 		A.PROCESSING_SYSTEM,
 		a.error_category,
-		a.process_status
+		a.process_status,
+		a.need_sync
 	from
 		core_nc_error_codes A ) V

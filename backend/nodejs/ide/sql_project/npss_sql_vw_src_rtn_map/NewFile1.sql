@@ -6,7 +6,8 @@ source_return_code,
 tenant_id,
 product_code,
 mapping_code,
-status
+status,
+need_sync
 from 
 (
 select
@@ -15,9 +16,10 @@ select
 	a.source_return_code,
 	a.tenant_id ,
 	a.status ,
+	a.need_sync,
 	a.product_code,
 	a.mapping_code
 from
 	core_nc_return_mapping a
 inner join core_nc_return_codes b on
-	b.return_code = a.source_return_code and b.status='APPROVED') V
+	b.return_code = a.source_return_code and b.need_sync='Y') V

@@ -37,6 +37,14 @@ export class npss_cs_ip_rev_accept_inau_reserve_fundService {
         ClientParams.TENANT_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
         ClientParams.RULE_CODE = 'RCT_IP_REV_REQ_ACCEPT'
         ClientParams.screenName = screenInstance.wftpa_description
+       if (screenInstance.wftpa_description == 's_rct_reversal_non_aed') {
+            var CtrlScope1 = screenInstance['reversal_ui'].f_npss_reversal_n_ui.model
+            ClientParams.buy_rate = CtrlScope1.BUY_RATE
+            ClientParams.buy_margin = CtrlScope1.BUY_MARGIN
+        }else{
+            ClientParams.buy_rate = ''
+            ClientParams.buy_margin = ''
+        }
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     CallUrlWithData(ClientParams, screenInstance, internals) {

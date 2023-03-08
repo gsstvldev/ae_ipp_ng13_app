@@ -7,8 +7,9 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-    
+
+
+
 
 
 
@@ -61,7 +62,7 @@ app.post('/', function(appRequest, appResponse, next) {
                 reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
                     try {
 
-                        var Takeapiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_LIQUIDITY' and param_code='URL'`
+                        var Takeapiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_LIQUIDITY' and param_code='URL' and need_sync='Y'`
                         ExecuteQuery1(Takeapiurl, function (arrUrl) {
                             if (arrUrl.length > 0) {
                                 var PRCT_ID = prct_id;
@@ -70,12 +71,12 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                 objCoreApiInst.PROCESS_NAME = params.PROCESS_NAME;
                                 objCoreApiInst.REF = params.REF;
-                                objCoreApiInst.SENDERBIC=params.SENDERBIC
-                                objCoreApiInst.FROMDATE=params.FROMDATE
-                                objCoreApiInst.TODATE=params.TODATE
-                                objCoreApiInst.REFTYPE=params.REFTYPE
-                                
-                             
+                                objCoreApiInst.SENDERBIC = params.SENDERBIC
+                                objCoreApiInst.FROMDATE = params.FROMDATE
+                                objCoreApiInst.TODATE = params.TODATE
+                                objCoreApiInst.REFTYPE = params.REFTYPE
+                                objCoreApiInst.FROMTIME = params.FROMTIME;
+                                objCoreApiInst.TOTIME = params.TOTIME;
                                 objCoreApiInst.DATASOURCE = params.DATASOURCE;
                                 objCoreApiInst.PRCT_ID = PRCT_ID;
                                 objCoreApiInst.TENANT_ID = params.TENANT_ID;
@@ -111,15 +112,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 var doapicall = await apiCall(arrTran, arrUrl);
                                                 if (doapicall == 'SUCCESS') {
                                                     reqInstanceHelper.PrintInfo(serviceName, '-----------Liquidity   api call success for-------' + CoreTranInsertRes.npsscapl_id, objSessionLogInfo);
-                                                  //  if (doapicall.data.status == 200 || doapicall.data.status == 201)
-                                                        objresponse.status = 'SUCCESS';
-                                                 
+                                                    //  if (doapicall.data.status == 200 || doapicall.data.status == 201)
+                                                    objresponse.status = 'SUCCESS';
+
                                                     sendResponse(null, objresponse)
                                                 }
                                                 else {
                                                     reqInstanceHelper.PrintInfo(serviceName, '-----------Liquidity   api call not success for-------' + CoreTranInsertRes.npsscapl_id, objSessionLogInfo);
                                                     objresponse.status = 'SUCCESS';
-                                                    objresponse.data='Error response from API Call'
+                                                    objresponse.data = 'Error response from API Call'
                                                     sendResponse(null, objresponse)
                                                 }
                                             } else {
@@ -152,12 +153,15 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                 try {
-                                   
+
                                     var request = require('request');
-                                    var fd = moment(arrTran[0].fromdate).format("YYYY-MM-DD")+'T00:00:00.000'
-                                     var td = moment(arrTran[0].todate).format("YYYY-MM-DD")+'T23:00:00.000'
+                                    var tt = moment(arrTran[0].totime, ["h:mm A"]).format("HH:mm");
+                                    var ft = moment(arrTran[0].fromtime, ["h:mm A"]).format("HH:mm");
+                                    var fd = moment(arrTran[0].fromdate).format("YYYY-MM-DD") + 'T' + ft + ':00.000'
+                                    var td = moment(arrTran[0].todate).format("YYYY-MM-DD") + 'T' + tt + ':00.000'
+
                                     var apiURL =
-                                        apiURL = arrUrl[0].param_detail +'/findLinkedRMessages?ref-type=' + arrTran[0].reftype + '&ref='+arrTran[0].ref +'&sender='+arrTran[0].senderbic+'&from-date='+fd+'&to-date='+td+'&datasource='+arrTran[0].datasource;
+                                        apiURL = arrUrl[0].param_detail + '/findLinkedRMessages?ref-type=' + arrTran[0].reftype + '&ref=' + arrTran[0].ref + '&sender=' + arrTran[0].senderbic + '&from-date=' + fd + '&to-date=' + td + '&datasource=' + arrTran[0].datasource;
                                     var options = {
                                         url: apiURL,
                                         timeout: 99999999,
@@ -294,6 +298,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

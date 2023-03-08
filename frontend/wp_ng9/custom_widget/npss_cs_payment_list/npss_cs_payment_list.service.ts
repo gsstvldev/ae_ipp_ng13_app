@@ -28,6 +28,10 @@ export class npss_cs_payment_listService {
         ClientParams.FROMDATE = CtrlScope.FROMDATE;
         ClientParams.TODATE = CtrlScope.TODATE;
         ClientParams.DATASOURCE = CtrlScope.DATASOURCE;
+        ClientParams.FROMTIME = CtrlScope.FROMTIME;
+        ClientParams.TOTIME = CtrlScope.TOTIME;
+        ClientParams.PL_STATUS = CtrlScope.PL_STATUS;
+
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
         ClientParams.TENANT_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");

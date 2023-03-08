@@ -7,7 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
+
     /*  Created By :Siva Harish
     Created Date :25/02/2023
     Modified By : Daseen 07-03-2023 - Before insert api call 
@@ -54,7 +55,7 @@ app.post('/', function(appRequest, appResponse, next) {
                 reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
                     try {
 
-                        var Takeapiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_LIQUIDITY' and param_code='URL'`
+                        var Takeapiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_LIQUIDITY' and param_code='URL' and need_sync='Y'`
                         ExecuteQuery1(Takeapiurl, function (arrUrl) {
                             if (arrUrl.length > 0) {
                                 var PRCT_ID = prct_id;
@@ -66,7 +67,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                 objCoreApiInst.FROMDATE = params.FROMDATE;
                                 objCoreApiInst.TODATE = params.TODATE;
                                 objCoreApiInst.DATASOURCE = params.DATASOURCE;
-                                
+                                objCoreApiInst.FROMTIME = params.FROMTIME;
+                                objCoreApiInst.TOTIME = params.TOTIME;
                                 objCoreApiInst.PRCT_ID = PRCT_ID;
                                 objCoreApiInst.TENANT_ID = params.TENANT_ID;
                                 objCoreApiInst.APP_ID = '222'
@@ -101,15 +103,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 var doapicall = await apiCall(arrTran, arrUrl);
                                                 if (doapicall == 'SUCCESS') {
                                                     reqInstanceHelper.PrintInfo(serviceName, '-----------Liquidity   api call success for-------' + CoreTranInsertRes.npsscapl_id, objSessionLogInfo);
-                                                  //  if (doapicall.data.status == 200 || doapicall.data.status == 201)
-                                                        objresponse.status = 'SUCCESS';
-                                                 
+                                                    //  if (doapicall.data.status == 200 || doapicall.data.status == 201)
+                                                    objresponse.status = 'SUCCESS';
+
                                                     sendResponse(null, objresponse)
                                                 }
                                                 else {
                                                     reqInstanceHelper.PrintInfo(serviceName, '-----------Liquidity   api call not success for-------' + CoreTranInsertRes.npsscapl_id, objSessionLogInfo);
                                                     objresponse.status = 'SUCCESS';
-                                                    objresponse.data='Error response from API Call'
+                                                    objresponse.data = 'Error response from API Call'
                                                     sendResponse(null, objresponse)
                                                 }
                                             } else {
@@ -136,23 +138,26 @@ app.post('/', function(appRequest, appResponse, next) {
 
                         function apiCall(arrTran, arrUrl) {
                             return new Promise((resolve, reject) => {
-                                var Fromdate = moment(arrTran[0].fromdate).format('YYYY-MM-DD')+'T00:00:00.000'
-                                var todate = moment(arrTran[0].todate).format('YYYY-MM-DD')+'T00:00:00.000'
+                                var tt = moment(arrTran[0].totime, ["h:mm A"]).format("HH:mm");
+                                var ft = moment(arrTran[0].fromtime, ["h:mm A"]).format("HH:mm");
+                                var Fromdate = moment(arrTran[0].fromdate).format('YYYY-MM-DD') + 'T' + ft + ':00.000'
+                                var todate = moment(arrTran[0].todate).format('YYYY-MM-DD') + 'T' + tt + ':00.000'
+
                                 try {
-    
+
                                     var request = require('request');
-                                    
-                                    var apiURL =    
-                                    apiURL = arrUrl[0].param_detail+'/paymentList?senderBic='+arrTran[0].senderbic+'&dateTo='+todate+'&dateFrom='+Fromdate+'&datasource='+arrTran[0].datasource
+
+                                    var apiURL =
+                                        apiURL = arrUrl[0].param_detail + '/paymentList?senderBic=' + arrTran[0].senderbic + '&dateTo=' + todate + '&dateFrom=' + Fromdate + '&datasource=' + arrTran[0].datasource
                                     var options = {
                                         url: apiURL,
                                         timeout: 99999999,
                                         method: 'GET',
                                         json: {
-    
+
                                         },
                                         headers: {
-                                            'capl_id':arrTran[0].npsscapl_id,
+                                            'capl_id': arrTran[0].npsscapl_id,
                                             'content-type': 'application/json'
                                         }
                                     };
@@ -163,30 +168,30 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                 resolve(error);
                                             } else {
-                                               try{
-                                                reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseBody) + '---for npsscapl_id....' + arrTran[0].npsscapl_id, objSessionLogInfo);
-                                                resolve('SUCCESS');
-    
-                                               }catch(error){
-                                                reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBody + '---for npsscapl_id....' + arrTran[0].npsscapl_id, objSessionLogInfo);
-                                                resolve('SUCCESS');
-                                               }
+                                                try {
+                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseBody) + '---for npsscapl_id....' + arrTran[0].npsscapl_id, objSessionLogInfo);
+                                                    resolve('SUCCESS');
+
+                                                } catch (error) {
+                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBody + '---for npsscapl_id....' + arrTran[0].npsscapl_id, objSessionLogInfo);
+                                                    resolve('SUCCESS');
+                                                }
                                             }
                                         } catch (error) {
                                             resolve('SUCCESS')
                                         }
-    
+
                                     });
                                 } catch (error) {
                                     reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
                                     sendResponse(error, null);
                                 }
-    
-    
+
+
                             })
-                        }              
-    
-                   
+                        }
+
+
 
 
 
@@ -282,6 +287,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

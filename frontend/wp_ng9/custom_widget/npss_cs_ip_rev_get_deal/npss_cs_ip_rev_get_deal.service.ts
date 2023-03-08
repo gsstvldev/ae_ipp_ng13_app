@@ -44,13 +44,16 @@ export class npss_cs_ip_rev_get_dealService {
                  
                 var response =JSON.parse(dat1)
                   
-                  
+                 
                 var ctrlscope= screenInstance['deal_ui'].f_npss_reversal_deal_plog_ui.model;
                 ctrlscope.BUY_CURRENCY = response.buy_currency
                 ctrlscope.SELL_CURRENCY = response.sell_currency
-                ctrlscope.EXCHANGE_RATE = response.rate
+               
                 ctrlscope.DEALT_AMOUNT = response.dealt_amount
                 ctrlscope.CONTRA_AMOUNT = response.contra_amount
+                
+                var Ctrlscope1 = screenInstance['reversal_ui'].f_npss_reversal_n_ui.model
+                 Ctrlscope1.buy_rate = response.rate
                 this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 }
                
@@ -58,9 +61,10 @@ export class npss_cs_ip_rev_get_dealService {
                      var ctrlscope= screenInstance['deal_ui'].f_npss_reversal_deal_plog_ui.model;
                 ctrlscope.BUY_CURRENCY = ''
                 ctrlscope.SELL_CURRENCY = ''
-                ctrlscope.EXCHANGE_RATE = ''
                 ctrlscope.DEALT_AMOUNT = ''
                 ctrlscope.CONTRA_AMOUNT = ''
+                 var Ctrlscope1 = screenInstance['reversal_ui'].f_npss_reversal_n_ui.model
+                 Ctrlscope1.buy_rate = ''
                     this.dialogHelper.ShowErrorDialog(res.data.status)
                 }
             });

@@ -26,7 +26,8 @@ export class npss_cs_find_messageService {
       ClientParams.DATASOURCE = CtrlScope.DATASOURCE;
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
-    
+        ClientParams.FROMTIME = CtrlScope.FROMTIME;
+        ClientParams.TOTIME = CtrlScope.TOTIME;
         
         ClientParams.PROD_CODE = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "PRODUCT_CODE");
         ClientParams.AppId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");

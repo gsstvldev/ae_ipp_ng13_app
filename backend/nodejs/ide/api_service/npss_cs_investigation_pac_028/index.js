@@ -55,7 +55,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         try {
                             try {
                                 var TakeStsPsts = `select * from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                var TakeApiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INVESTIGATION_PAC_028' and param_code='URL'`
+                                var TakeApiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INVESTIGATION_PAC_028' and param_code='URL' and need_sync = 'Y'`
                                 var Takstatus = `Select success_process_status,success_status from core_nc_workflow_setup where rule_code='${params.rule_code}' and eligible_status='${params.eligible_status}' and  eligible_process_status='${params.eligible_process_status}'`
                                 ExecuteQuery1(TakeApiurl, function (arrUrl) {
                                     if (arrUrl.length) {

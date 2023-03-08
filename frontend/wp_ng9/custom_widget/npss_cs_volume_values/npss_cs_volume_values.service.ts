@@ -25,8 +25,10 @@ export class npss_cs_volume_valuesService {
         var CtrlScope = screenInstance['api_details'].f_npss_volume_values_ui.model;
         ClientParams.PROCESS_NAME = CtrlScope.PROCESS_NAME;
         ClientParams.FROMDATE = CtrlScope.FROMDATE;
+        ClientParams.FROMTIME = CtrlScope.FROMTIME;
         ClientParams.SENDERBIC = CtrlScope.SENDERBIC;
         ClientParams.TODATE = CtrlScope.TODATE;
+        ClientParams.TOTIME = CtrlScope.TOTIME;
         ClientParams.DATASOURCE = CtrlScope.DATASOURCE;
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");

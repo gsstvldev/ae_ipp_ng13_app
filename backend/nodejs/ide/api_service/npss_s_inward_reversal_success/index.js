@@ -53,7 +53,7 @@ app.post('/', function(appRequest, appResponse, next) {
                try {
                    //  var takeTrn = `select l.npsstpl_id,l.additional_info,l.status,l.uetr,nt.cdtr_iban, fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,nt.base_amount,nt.dbtr_iban ,ac.customer_email_id  from npss_trn_process_log l left join  npss_transactions nt on l.uetr=nt.uetr    left join core_nc_cbs_accounts ac on nt.cdtr_iban = ac.alternate_account_id    where l.status ='${params.status}' and( l.additional_info <>('Mail_Triggered') OR  l.additional_info ISNULL)`
                    var takeTrn = `select l.npsstpl_id,l.additional_info,l.status,l.uetr,nt.cdtr_iban,fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification,nt.intrbk_sttlm_amnt,nt.dbtr_iban ,ac.customer_email_id from npss_trn_process_log l left join npss_transactions nt on l.uetr=nt.uetr left join core_nc_cbs_accounts ac on ac.alternate_account_id in(nt.cdtr_iban,cr_acct_identification)where l.status ='${params.status}'and coalesce(l.additional_info,'') <>'Mail_Triggered'`
-                   var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL'`
+                   var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync='Y'`
 
                    ExecuteQuery1(takeurl, function (arrUrl) {
                        //   for(var i=0;i<=arrCount.length;arrCount++){
@@ -63,13 +63,13 @@ app.post('/', function(appRequest, appResponse, next) {
                            objresponse.msg = 'No URL found';
                            sendResponse(null, objresponse)
                        } else {
-                           var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'ORIGIN'`
+                           var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'ORIGIN' and need_sync='Y'`
                            ExecuteQuery1(Takeorg, function (arrorg) {
-                               var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_GROUP'`
+                               var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_GROUP' and need_sync='Y'`
                                ExecuteQuery1(tkcomgp, function (arrcomgp) {
-                                   var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_CC'`
+                                   var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_CC' and need_sync='Y'`
                                    ExecuteQuery1(Takecmcc, function (arrcomcc) {
-                                       var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COM_CATEGORY'`
+                                       var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COM_CATEGORY' and need_sync='Y'`
                                        ExecuteQuery1(TakecomCat, function (arrCatgory) {
                                            ExecuteQuery1(takeTrn, function (arrTrn) {
                                                if (arrTrn.length > 0) {

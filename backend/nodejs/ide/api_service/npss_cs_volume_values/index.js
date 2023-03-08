@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
     /*  Created By :Siva Harish
     Created Date :25/02/2023
     Modified By : Daseen 07-03-2023 - Before insert api call 
@@ -53,8 +54,8 @@ app.post('/', function(appRequest, appResponse, next) {
                 mTranConn = pSession; //  assign connection     
                 reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
                     try {
-
-                        var Takeapiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_LIQUIDITY' and param_code='URL'`
+                      
+                        var Takeapiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_LIQUIDITY' and param_code='URL' and need_sync='Y'`
                         ExecuteQuery1(Takeapiurl, function (arrUrl) {
                             if (arrUrl.length > 0) {
                                 var PRCT_ID = prct_id;
@@ -64,7 +65,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                 objCoreApiInst.PROCESS_NAME = params.PROCESS_NAME;
                                 objCoreApiInst.SENDERBIC = params.SENDERBIC;
                                 objCoreApiInst.FROMDATE = params.FROMDATE;
+                                objCoreApiInst.FROMTIME = params.FROMTIME;
                                 objCoreApiInst.TODATE = params.TODATE;
+                                objCoreApiInst.TOTIME = params.TOTIME;
                                 objCoreApiInst.DATASOURCE = params.DATASOURCE;
                                 objCoreApiInst.PRCT_ID = PRCT_ID;
                                 objCoreApiInst.TENANT_ID = params.TENANT_ID;
@@ -136,8 +139,10 @@ app.post('/', function(appRequest, appResponse, next) {
 
                         function apiCall(arrTran, arrUrl) {
                             return new Promise((resolve, reject) => {
-                                var Fromdate = moment(arrTran[0].fromdate).format('YYYY-MM-DD')+'T00:00:00.000'
-                                var todate = moment(arrTran[0].todate).format('YYYY-MM-DD')+'T00:00:00.000'
+                                var tt = moment(arrTran[0].totime, ["h:mm A"]).format("HH:mm");
+                                var ft = moment(arrTran[0].fromtime, ["h:mm A"]).format("HH:mm");
+                                var Fromdate = moment(arrTran[0].fromdate).format('YYYY-MM-DD')+'T'+ft+':00.000'
+                                var todate = moment(arrTran[0].todate).format('YYYY-MM-DD')+'T'+tt+':00.000'
                                 try {
     
                                     var request = require('request');
@@ -284,6 +289,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

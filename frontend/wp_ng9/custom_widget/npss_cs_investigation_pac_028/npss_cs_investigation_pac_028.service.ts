@@ -52,9 +52,9 @@ export class npss_cs_investigation_pac_028Service {
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
 
         if(screenInstance.wftpa_description=="s_op_rct_investigation"){
-            ClientParams.rule_code = "RCT_OP_INVEST_INITIATE";
+            ClientParams.rule_code = "RCT_OP_INVEST_APPROVE";
         }else if(screenInstance.wftpa_description=="s_rct_investigation"){
-            ClientParams.rule_code = "RCT_IP_INVEST_INITIATE";
+            ClientParams.rule_code = "RCT_IP_INVEST_APPROVE";
         }
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

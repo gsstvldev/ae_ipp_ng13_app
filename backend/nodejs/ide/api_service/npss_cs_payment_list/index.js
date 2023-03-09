@@ -72,6 +72,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 objCoreApiInst.PRCT_ID = PRCT_ID;
                                 objCoreApiInst.TENANT_ID = params.TENANT_ID;
                                 objCoreApiInst.APP_ID = '222'
+                                 objCoreApiInst.PL_STATUS = params.PL_STATUS
                                 objCoreApiInst.STATUS = 'CREATED'
                                 objCoreApiInst.PROCESS_STATUS = 'CREATED'
                                 objCoreApiInst.DT_CODE = 'DT_1304_1665901130705'
@@ -148,7 +149,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     var request = require('request');
 
                                     var apiURL =
-                                        apiURL = arrUrl[0].param_detail + '/paymentList?senderBic=' + arrTran[0].senderbic + '&dateTo=' + todate + '&dateFrom=' + Fromdate + '&datasource=' + arrTran[0].datasource
+                                        //apiURL = arrUrl[0].param_detail + '/paymentList?senderBic=' + arrTran[0].senderbic + '&dateTo=' + todate + '&dateFrom=' + Fromdate + '&datasource=' + arrTran[0].datasource
+                                        apiURL = arrUrl[0].param_detail + '/paymentList?senderBic=' + arrTran[0].senderbic + '&dateTo=' + todate + '&dateFrom=' + Fromdate +'&status='+params.PL_STATUS+ '&datasource=' + arrTran[0].datasource
                                     var options = {
                                         url: apiURL,
                                         timeout: 99999999,

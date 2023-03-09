@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28573 
+Build ID        : 28594 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 13:5 PM 
+Modified Date   : 2023-Mar-09 8:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_volume_values
@@ -19,7 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
-import {npss_cs_liquidity_position_responseModule} from '../../../custom_widget/npss_cs_liquidity_position_response/npss_cs_liquidity_position_response.module'
+import {npss_cs_daily_liquidity_position_responseModule} from '../../../custom_widget/npss_cs_daily_liquidity_position_response/npss_cs_daily_liquidity_position_response.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_cs_volume_valuesModule} from '../../../custom_widget/npss_cs_volume_values/npss_cs_volume_values.module'
 
@@ -53,7 +53,7 @@ import { f_npss_volume_values_srchComponent } from './f_npss_volume_values_srch/
     OverlayPanelModule,
     
     s_volume_valuesRoutingModule,
-    npss_cs_liquidity_position_responseModule,torus_cs_show_hideModule,npss_cs_volume_valuesModule
+    npss_cs_daily_liquidity_position_responseModule,torus_cs_show_hideModule,npss_cs_volume_valuesModule
   ],
   declarations: [s_volume_valuesComponent,p_main_layoutComponent,f_npss_volume_values_uiComponent,f_api_input_ui_actionsComponent,p_search_layoutComponent,f_npss_volume_values_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]

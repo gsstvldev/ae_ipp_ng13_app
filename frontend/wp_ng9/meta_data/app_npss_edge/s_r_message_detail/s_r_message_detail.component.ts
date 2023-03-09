@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28573 
+Build ID        : 28593 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 13:5 PM 
+Modified Date   : 2023-Mar-09 7:29 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_r_message_detail
@@ -638,7 +638,7 @@ export class s_r_message_detailComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="ve_for_save_to_api"
 		let event_code="e_1678099530491"
-		let event_params={"caller_name":"cc_from_fetch_btn_click__im_from_fetch_btn_click","event_desc":"IM from fetch btn click","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Core API findRMessages has been called successfully.","root_source_id":"api_input_ui_actions_fetch","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_from_fetch_btn_click__im_from_fetch_btn_click","event_desc":"IM from fetch btn click","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Core API rMessageDetail has been called successfully.","root_source_id":"api_input_ui_actions_fetch","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="im_from_fetch_btn_click__tbc_from_pass_im,"
 		let event_data={}

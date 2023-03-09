@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28564 
+Build ID        : 28595 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 11:1 AM 
+Modified Date   : 2023-Mar-09 8:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -26,7 +26,7 @@ export class f_npss_manual_initiation_uiComponent implements OnInit {
   hasHeader:boolean;
   component_header:string;
   @ViewChild('f_npss_manual_initiation_ui') form;
-  @ViewChild('npss_manual_initiation_ui_value_date') element: ElementRef;
+  @ViewChild('npss_manual_initiation_ui_memory95') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -48,44 +48,6 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
-		//Properties of value_date
-		this.ctrl.value_date = {}
-		this.ctrl.value_date.id = "RN31CN6"
-		this.ctrl.value_date.desc = "Txn Value Date"
-		this.ctrl.value_date.visible = true
-		this.ctrl.value_date.label_name = "Txn Value Date"
-		this.ctrl.value_date.df_code = "DF_1304_1665901396659"
-		this.ctrl.value_date.df_description = "Column Group 1"
-		this.ctrl.value_date.uictrl_code = "DTP"
-		this.ctrl.value_date.target_column = "VALUE_DATE"
-		this.ctrl.value_date.data_type = "DATETIME"
-		this.ctrl.value_date.data_length = 0
-		this.ctrl.value_date.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.value_date.default_value = "setcurrentdate(),{}"
-		this.ctrl.value_date.is_memory_ctrl = ""
-		this.ctrl.value_date.field_coordinates = ""
-		this.ctrl.value_date.sub_details = ""
-		this.ctrl.value_date.accept_char = ""
-		this.ctrl.value_date.currency_format = ""
-		this.ctrl.value_date.data_scale = ""
-		this.ctrl.value_date.hide_label = false
-		this.ctrl.value_date.depends_on = ""
-		this.ctrl.value_date.placeholder = ""
-		this.ctrl.value_date.dynamic_param = ""
-		this.ctrl.value_date.style_code = ""
-		this.ctrl.value_date.data_source = ""
-		this.ctrl.value_date.image_association = ""
-		this.ctrl.value_date.show = true
-		this.ctrl.value_date.sub_content = ""
-		this.ctrl.value_date.required = false
-		this.ctrl.value_date.vld_rules = []
-		this.ctrl.value_date.targetcolumn_lower = "value_date"
-		this.ctrl.value_date.disabled = false
-		this.ctrl.value_date.view_name = "f_npss_manual_initiation_ui"
-		this.ctrl.value_date.ctrl_id = "npss_manual_initiation_ui_value_date"
-		this.ctrl.npss_manual_initiation_ui_value_date = {}
-		this.ctrl.npss_manual_initiation_ui_value_date.onChangecomponent = new EventEmitter<any>()
-	
 		//Properties of memory95
 		this.ctrl.memory95 = {}
 		this.ctrl.memory95.id = "RN31CN6001"
@@ -165,9 +127,9 @@ focustoelement(){
 		//Properties of intrbk_sttlm_cur
 		this.ctrl.intrbk_sttlm_cur = {}
 		this.ctrl.intrbk_sttlm_cur.id = "RN01CN2"
-		this.ctrl.intrbk_sttlm_cur.desc = "TXN Currency"
+		this.ctrl.intrbk_sttlm_cur.desc = "TXN Amount Account Currency"
 		this.ctrl.intrbk_sttlm_cur.visible = true
-		this.ctrl.intrbk_sttlm_cur.label_name = "TXN Currency"
+		this.ctrl.intrbk_sttlm_cur.label_name = "TXN Amount Account Currency"
 		this.ctrl.intrbk_sttlm_cur.df_code = "DF_1304_1665901396659"
 		this.ctrl.intrbk_sttlm_cur.df_description = "Column Group 1"
 		this.ctrl.intrbk_sttlm_cur.uictrl_code = "TXT"
@@ -351,8 +313,8 @@ focustoelement(){
 		this.ctrl.memory120.ctrl_id = "npss_manual_initiation_ui_memory120"
 		this.ctrl.npss_manual_initiation_ui_memory120 = {}
 		this.ctrl.npss_manual_initiation_ui_memory120.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY95":"AED","CHARGE_AMOUNT":"","INTRBK_STTLM_CUR":"","MEMORY92":"","DISPUTE_REF_NO":"","BUY_MARGIN":"","MEMORY120":""}
-		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.Meta = [{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DISPUTE_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_MARGIN"}]
+		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.model = {"MEMORY95":"AED","CHARGE_AMOUNT":"","INTRBK_STTLM_CUR":"","MEMORY92":"","DISPUTE_REF_NO":"","BUY_MARGIN":"","MEMORY120":""}
+		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DISPUTE_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_MARGIN"}]
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

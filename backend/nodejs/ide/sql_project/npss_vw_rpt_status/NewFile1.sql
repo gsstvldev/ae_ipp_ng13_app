@@ -2,7 +2,8 @@ drop view if exists npss_vw_rpt_status;
 @SPL@
 create or replace view npss_vw_rpt_status as
 select
-	distinct STATUS
+	distinct STATUS,
+	PROCESS_TYPE
 from
 	(
 	select

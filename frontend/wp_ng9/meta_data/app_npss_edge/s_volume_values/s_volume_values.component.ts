@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28573 
+Build ID        : 28594 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 13:5 PM 
+Modified Date   : 2023-Mar-09 8:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_volume_values
@@ -14,13 +14,13 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_volume_valuesService} from '../../../custom_widget/npss_cs_volume_values/npss_cs_volume_values.service'
-import {npss_cs_liquidity_position_responseService} from '../../../custom_widget/npss_cs_liquidity_position_response/npss_cs_liquidity_position_response.service'
+import {npss_cs_daily_liquidity_position_responseService} from '../../../custom_widget/npss_cs_daily_liquidity_position_response/npss_cs_daily_liquidity_position_response.service'
 
 @Component({
 	selector: 's_volume_values',
 	templateUrl: './s_volume_values.component.html',
 	styleUrls: ['./s_volume_values.component.css'],
-	providers:[torus_cs_show_hideService,npss_cs_volume_valuesService,npss_cs_liquidity_position_responseService]
+	providers:[torus_cs_show_hideService,npss_cs_volume_valuesService,npss_cs_daily_liquidity_position_responseService]
 })
     
 // Start of class 
@@ -59,7 +59,7 @@ export class s_volume_valuesComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_volume_valuesService:npss_cs_volume_valuesService,private npss_cs_liquidity_position_responseService:npss_cs_liquidity_position_responseService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_volume_valuesService:npss_cs_volume_valuesService,private npss_cs_daily_liquidity_position_responseService:npss_cs_daily_liquidity_position_responseService) {
     
 	}
     
@@ -638,7 +638,7 @@ export class s_volume_valuesComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="ve_for_save_to_api"
 		let event_code="e_1678182051729"
-		let event_params={"caller_name":"cc_from_fetch_btn_click__im_from_fetch_btn_click","event_desc":"IM from fetch btn click","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Core API VolumeValues has been called successfully","root_source_id":"api_input_ui_actions_fetch","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_from_fetch_btn_click__im_from_fetch_btn_click","event_desc":"IM from fetch btn click","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Core volumeValues has been called successfully","root_source_id":"api_input_ui_actions_fetch","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="im_from_fetch_btn_click__tbc_from_im_success,"
 		let event_data={}
@@ -687,7 +687,7 @@ export class s_volume_valuesComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_liquidity_position_responseService.fn_npss_cs_liquidity_position_response(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_daily_liquidity_position_responseService.fn_npss_cs_daily_liquidity_position_response(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

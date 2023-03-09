@@ -25,11 +25,10 @@ export class npss_cs_outward_manual_initiationService {
         var ClientParams: any = {}
         var CtrlScope = screenInstance['payment_processing_details_ui'].f_npss_manual_initiation_ui.model;
         ClientParams.VALUE_DATE = CtrlScope.VALUE_DATE;
-         ClientParams.BASE_CURRENCY = CtrlScope.memory95;
          ClientParams.CHARGE_AMOUNT = CtrlScope.CHARGE_AMOUNT;
          ClientParams.INTRBK_STTLM_CUR = CtrlScope.INTRBK_STTLM_CUR;
         ClientParams.INTRBK_STTLM_AMNT = CtrlScope.memory92;
-        ClientParams.EXCHANGE_RATE = CtrlScope.memory120;
+       ClientParams.BUY_RATE = CtrlScope.BUY_RATE;
         ClientParams.BUY_MARGIN = CtrlScope.BUY_MARGIN;
          ClientParams.DISPUTE_REF_NO = CtrlScope.DISPUTE_REF_NO;
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");

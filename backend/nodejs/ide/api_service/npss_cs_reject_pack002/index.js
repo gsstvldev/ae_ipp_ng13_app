@@ -61,7 +61,7 @@ Modified By : Daseen
                        var ApitrnId
                        var app_id
                        try {
-                           var urlqry = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
+                           var urlqry = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL' and need_sync = 'Y'`
                            var seltranqry = `select * from npss_transactions where npsst_id='${params.Id}'`
                            var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                            // var selplqry=`select tpl.cbuae_return_code,crn.return_description,tpl.npsstrrd_refno from npss_trn_process_log tpl inner join core_nc_return_codes crn on  tpl.cbuae_return_code=crn.return_code where npsstpl_id='${params.tpl_id}'`
@@ -76,10 +76,10 @@ Modified By : Daseen
                                            api_url = urlresult[0].param_detail;
                                            ExecuteQuery1(seltranqry, function (tranresult) {
                                                if (tranresult.length > 0) {
-                                                   var selplqry = `select CBUAE_RETURN_CODE from npss_trn_process_log where status = 'IP_RCT_REV_REQ_REJECTED' and uetr = '${tranresult[0].uetr}'`
+                                                     var selplqry = `select CBUAE_RETURN_CODE from npss_trn_process_log where status = 'IP_RCT_REV_REQ_REJECTED' and uetr = '${tranresult[0].uetr}'`
                                                    ExecuteQuery1(selplqry, function (tplresult) {
                                                        if (tplresult.length > 0) {
-                                                           var hdrqry = `select process_name,status,uetr,msg_id,fx_resv_text1 from npss_trn_process_log where process_name='Receive pacs.007' and  status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr =  '${tranresult[0].uetr}'`
+                                                           var hdrqry = `select process_name,status,uetr,msg_id,fx_resv_text1 from npss_trn_process_log where process_name='Receive Pacs.007' and  status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr =  '${tranresult[0].uetr}'`
                                                            ExecuteQuery1(hdrqry, function (hdrresult) {
                                                                if (hdrresult.length > 0) {
                                                                    fn_DoAPIServiceCall(tranresult, tplresult, api_url, rule_code, hdrresult, function (apiresult) {

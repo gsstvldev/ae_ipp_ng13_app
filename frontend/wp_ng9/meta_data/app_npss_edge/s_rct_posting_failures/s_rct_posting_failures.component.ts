@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28564 
+Build ID        : 28587 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 11:1 AM 
+Modified Date   : 2023-Mar-09 11:17 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -17,12 +17,17 @@ import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hi
 import {npss_c_disable_action_by_multiselectService} from '../../../custom_widget/npss_c_disable_action_by_multiselect/npss_c_disable_action_by_multiselect.service'
 import {npss_cs_rct_inward_posting_failure_retry_repostService} from '../../../custom_widget/npss_cs_rct_inward_posting_failure_retry_repost/npss_cs_rct_inward_posting_failure_retry_repost.service'
 import {npss_cs_rct_inward_posting_failure_closeService} from '../../../custom_widget/npss_cs_rct_inward_posting_failure_close/npss_cs_rct_inward_posting_failure_close.service'
+import {npss_cs_rct_already_postingService} from '../../../custom_widget/npss_cs_rct_already_posting/npss_cs_rct_already_posting.service'
+import {npss_cs_cc_postingService} from '../../../custom_widget/npss_cs_cc_posting/npss_cs_cc_posting.service'
+import {npss_cs_enquiryService} from '../../../custom_widget/npss_cs_enquiry/npss_cs_enquiry.service'
+import {npss_cs_t24_postingService} from '../../../custom_widget/npss_cs_t24_posting/npss_cs_t24_posting.service'
+import {npss_cs_rct_completeService} from '../../../custom_widget/npss_cs_rct_complete/npss_cs_rct_complete.service'
 
 @Component({
 	selector: 's_rct_posting_failures',
 	templateUrl: './s_rct_posting_failures.component.html',
 	styleUrls: ['./s_rct_posting_failures.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_rct_inward_posting_failure_retry_repostService,npss_cs_rct_inward_posting_failure_closeService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_rct_inward_posting_failure_retry_repostService,npss_cs_rct_inward_posting_failure_closeService,npss_cs_rct_already_postingService,npss_cs_cc_postingService,npss_cs_enquiryService,npss_cs_t24_postingService,npss_cs_rct_completeService]
 })
     
 // Start of class 
@@ -68,16 +73,22 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	btl_1304_1666856599156 : string = "p_main_layout"
 	forms : any = ["uicgc_14","uicgc_4","uicgc_18","uicgc_6","uicgc_16","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
+	p_cbs_layout__spap_for_cbs_ui_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
-	navigation_ui_view_tran : any = {}
 	navigation_ui_view_process_log : any = {}
 	navigation_ui_view_message_log : any = {}
 	navigation_ui_retry : any = {}
 	navigation_ui_close : any = {}
 	navigation_ui_repost : any = {}
+	navigation_ui_already_posted : any = {}
+	navigation_ui_call_enquiry : any = {}
+	navigation_ui_call_t24_posting : any = {}
+	navigation_ui_view_tran : any = {}
+	navigation_ui_call_cc_posting : any = {}
+	navigation_ui_complete : any = {}
 	navigation_ui_trg_btn : any = {}
 	search : any = {}
 	search_search : any = {}
@@ -110,7 +121,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_rct_inward_posting_failure_retry_repostService:npss_cs_rct_inward_posting_failure_retry_repostService,private npss_cs_rct_inward_posting_failure_closeService:npss_cs_rct_inward_posting_failure_closeService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_rct_inward_posting_failure_retry_repostService:npss_cs_rct_inward_posting_failure_retry_repostService,private npss_cs_rct_inward_posting_failure_closeService:npss_cs_rct_inward_posting_failure_closeService,private npss_cs_rct_already_postingService:npss_cs_rct_already_postingService,private npss_cs_cc_postingService:npss_cs_cc_postingService,private npss_cs_enquiryService:npss_cs_enquiryService,private npss_cs_t24_postingService:npss_cs_t24_postingService,private npss_cs_rct_completeService:npss_cs_rct_completeService) {
     
 	}
     
@@ -163,15 +174,6 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_search.role = []
 		this.navigation_ui_search.action = ""
 		
-		// "View Tran" Button of "Navigation UI" component
-		this.navigation_ui_view_tran.label_name = "View Tran"
-		this.navigation_ui_view_tran.show = true
-		this.navigation_ui_view_tran.disabled = true
-		this.navigation_ui_view_tran.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.navigation_ui_view_tran.dynamic_param = {}
-		this.navigation_ui_view_tran.role = []
-		this.navigation_ui_view_tran.action = ""
-		
 		// "View Process Log" Button of "Navigation UI" component
 		this.navigation_ui_view_process_log.label_name = "View Process Log"
 		this.navigation_ui_view_process_log.show = true
@@ -216,6 +218,60 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_repost.dynamic_param = {}
 		this.navigation_ui_repost.role = []
 		this.navigation_ui_repost.action = ""
+		
+		// "Already Posted" Button of "Navigation UI" component
+		this.navigation_ui_already_posted.label_name = "Already Posted"
+		this.navigation_ui_already_posted.show = true
+		this.navigation_ui_already_posted.disabled = false
+		this.navigation_ui_already_posted.params = {"icon_only":false,"uicgcc_style":"fa fa-gg"}
+		this.navigation_ui_already_posted.dynamic_param = {}
+		this.navigation_ui_already_posted.role = []
+		this.navigation_ui_already_posted.action = ""
+		
+		// "Call Enquiry" Button of "Navigation UI" component
+		this.navigation_ui_call_enquiry.label_name = "Call Enquiry"
+		this.navigation_ui_call_enquiry.show = true
+		this.navigation_ui_call_enquiry.disabled = false
+		this.navigation_ui_call_enquiry.params = {"icon_only":false,"uicgcc_style":"fa fa-info"}
+		this.navigation_ui_call_enquiry.dynamic_param = {}
+		this.navigation_ui_call_enquiry.role = []
+		this.navigation_ui_call_enquiry.action = ""
+		
+		// "Call T24 Posting" Button of "Navigation UI" component
+		this.navigation_ui_call_t24_posting.label_name = "Call T24 Posting"
+		this.navigation_ui_call_t24_posting.show = true
+		this.navigation_ui_call_t24_posting.disabled = false
+		this.navigation_ui_call_t24_posting.params = {"icon_only":false,"uicgcc_style":"fa fa-toggle-off"}
+		this.navigation_ui_call_t24_posting.dynamic_param = {}
+		this.navigation_ui_call_t24_posting.role = []
+		this.navigation_ui_call_t24_posting.action = ""
+		
+		// "View Tran" Button of "Navigation UI" component
+		this.navigation_ui_view_tran.label_name = "View Tran"
+		this.navigation_ui_view_tran.show = true
+		this.navigation_ui_view_tran.disabled = true
+		this.navigation_ui_view_tran.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_ui_view_tran.dynamic_param = {}
+		this.navigation_ui_view_tran.role = []
+		this.navigation_ui_view_tran.action = ""
+		
+		// "Call CC Posting" Button of "Navigation UI" component
+		this.navigation_ui_call_cc_posting.label_name = "Call CC Posting"
+		this.navigation_ui_call_cc_posting.show = true
+		this.navigation_ui_call_cc_posting.disabled = false
+		this.navigation_ui_call_cc_posting.params = {"icon_only":false,"uicgcc_style":"fa fa-cc"}
+		this.navigation_ui_call_cc_posting.dynamic_param = {}
+		this.navigation_ui_call_cc_posting.role = []
+		this.navigation_ui_call_cc_posting.action = ""
+		
+		// "Complete" Button of "Navigation UI" component
+		this.navigation_ui_complete.label_name = "Complete"
+		this.navigation_ui_complete.show = true
+		this.navigation_ui_complete.disabled = false
+		this.navigation_ui_complete.params = {"icon_only":false,"uicgcc_style":"fa fa-thumbs-up"}
+		this.navigation_ui_complete.dynamic_param = {}
+		this.navigation_ui_complete.role = []
+		this.navigation_ui_complete.action = ""
 		
 		// "TRG BTN" Button of "Navigation UI" component
 		this.navigation_ui_trg_btn.label_name = "TRG BTN"
@@ -559,6 +615,10 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.page_load__he_for_pl_to_vm()
 		this.page_load__e_1678108677115()
 		this.page_load__e_1678111397185()
+		this.page_load__he_for_call_cc_posting()
+		this.page_load__he_for_call_enquiry()
+		this.page_load__he_for_call_t24_posting()
+		this.page_load__he_for_complete_btn()
 	}
 
 	//Handler for INTERNAL event of "cf for routing key"
@@ -625,6 +685,15 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.transaction_list__cc_for_disable()
 		this.transaction_list__ee_for_repost_btn()
 		this.transaction_list__ee_for_close_btn()
+	}
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__selection_changed(){
+		this.transaction_list__ee_for_already_posted()
+		this.transaction_list__ee_for_call_cc_posting()
+		this.transaction_list__ee_for_call_enquiry()
+		this.transaction_list__ee_for_call_t24_posting()
+		this.transaction_list__ee_for_complete_btn()
 	}
 
 	//Handler for INTERNAL event of "svm for tl"
@@ -808,6 +877,86 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_trg_btn__e_1678111417332()
 	}
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui already posted"
+	navigation_ui_already_posted__action_button_click(){
+		this.navigation_ui_already_posted__spap_for_cbs_ui()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "cbs ref ui save"
+	cbs_ref_ui_save__action_button_click(){
+		this.cbs_ref_ui_save__cc_for_cbs_save()
+	}
+
+	//Handler for INTERNAL event of "cc for cbs save"
+	cc_for_cbs_save__internal(parent_event_result){
+		this.cc_for_cbs_save__info__for_cbs_save(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "info  for cbs save"
+	info__for_cbs_save__internal(parent_event_result){
+		this.info__for_cbs_save__rs_for_cbs_save(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui call cc posting"
+	navigation_ui_call_cc_posting__action_button_click(){
+		this.navigation_ui_call_cc_posting__cc_for_cc_posting()
+	}
+
+	//Handler for INTERNAL event of "cc for cc posting"
+	cc_for_cc_posting__internal(parent_event_result){
+		this.cc_for_cc_posting__info_for_cc_posting(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "info for cc posting"
+	info_for_cc_posting__internal(parent_event_result){
+		this.info_for_cc_posting__rs_for_cc_posting(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui call enquiry"
+	navigation_ui_call_enquiry__action_button_click(){
+		this.navigation_ui_call_enquiry__cc_for_call_enquiry()
+	}
+
+	//Handler for INTERNAL event of "cc for call enquiry"
+	cc_for_call_enquiry__internal(parent_event_result){
+		this.cc_for_call_enquiry__info_for_call_enquiry(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "info for call enquiry"
+	info_for_call_enquiry__internal(parent_event_result){
+		this.info_for_call_enquiry__rs_for_call_enquiry(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui call t24 posting"
+	navigation_ui_call_t24_posting__action_button_click(){
+		this.navigation_ui_call_t24_posting__cc_for_initial_enable()
+	}
+
+	//Handler for INTERNAL event of "cc for initial enable"
+	cc_for_initial_enable__internal(parent_event_result){
+		this.cc_for_initial_enable__info_for_initial_enable(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "info for initial enable"
+	info_for_initial_enable__internal(parent_event_result){
+		this.info_for_initial_enable__rs_for_initial_enable(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui complete"
+	navigation_ui_complete__action_button_click(){
+		this.navigation_ui_complete__cc_for_complete_btn()
+	}
+
+	//Handler for INTERNAL event of "cc for complete btn"
+	cc_for_complete_btn__internal(parent_event_result){
+		this.cc_for_complete_btn__im_for_complete_btn(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "im for complete btn"
+	im_for_complete_btn__internal(parent_event_result){
+		this.im_for_complete_btn__rs_for_complete_btn(parent_event_result)
+	}
+
 	//Handler for DPSINIT event of "page_load"
 	page_load__he_from_pg_to_view_details() { 
 		let Dest_Is_ctrl=true
@@ -905,6 +1054,90 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let internals=""
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678112092188","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Posting Failure List MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"process_name","alias_name":"","mq_id":"MQ_1678109278751","date_format":false},{"column_name":"t24_return_code","alias_name":"","mq_id":"MQ_1678109278902","date_format":false},{"column_name":"error_description","alias_name":"","mq_id":"MQ_1678109279238","date_format":false}],"joins":[]},"eq_text":"select  uetr,  STATUS,  process_status,  process_name,error_description,t24_return_code,tenant_id from  (  select   ntpl.uetr,   ntpl.STATUS,   ntpl.process_status,   ntpl.t24_return_code,   ntpl.process_name,   ntpl.tenant_id,   cnec.error_description   from   npss_trn_process_log ntpl  left join core_nc_error_codes cnec on cnec.error_code = ntpl.t24_return_code   and cnec.NEED_SYNC = 'Y')V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Posting Failure Vertical CCD","filter":[{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"IP_RCT_PC_T24_POSTING_FAILURE,IP_RCT_CC_T24_POSTING_FAILURE,IP_RCT_RR_POSTING_FAILURE,IP_RCT_RETURN_POSTING_FAILURE","source_value":"","source_type":"HARDCODED","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"UETR","binding_name":"UETR","binding_value":"","source_name":"MI_LEVEL_LOCAL_UETR","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Payment Type","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Reason","target_column":"t24_return_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Description","target_column":"error_description","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_call_cc_posting() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_call_cc_posting"
+		let parent_source_id=""
+		let event_code="e_1678348887119"
+		let event_params={"caller_name":"page_load__he_for_call_cc_posting","event_desc":"HE for call cc posting","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_call_enquiry() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_call_enquiry"
+		let parent_source_id=""
+		let event_code="e_1678349152020"
+		let event_params={"caller_name":"page_load__he_for_call_enquiry","event_desc":"HE for call enquiry","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_call_t24_posting() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_call_t24_posting"
+		let parent_source_id=""
+		let event_code="e_1678354763941"
+		let event_params={"caller_name":"page_load__he_for_call_t24_posting","event_desc":"HE for call T24 posting","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_complete_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_complete"
+		let parent_source_id=""
+		let event_code="e_1678356623775"
+		let event_params={"caller_name":"page_load__he_for_complete_btn","event_desc":"HE for Complete btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1319,6 +1552,111 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_already_posted() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_already_posted"
+		let parent_source_id=""
+		let event_code="e_1678348349789"
+		let event_params={"caller_name":"transaction_list__ee_for_already_posted","event_desc":"EE FOR ALREADY POSTED","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_call_cc_posting() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_call_cc_posting"
+		let parent_source_id=""
+		let event_code="e_1678348944085"
+		let event_params={"caller_name":"transaction_list__ee_for_call_cc_posting","event_desc":"EE FOR CALL CC POSTING","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_call_enquiry() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_call_enquiry"
+		let parent_source_id=""
+		let event_code="e_1678349198647"
+		let event_params={"caller_name":"transaction_list__ee_for_call_enquiry","event_desc":"EE FOR CALL ENQUIRY","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_call_t24_posting() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_call_t24_posting"
+		let parent_source_id=""
+		let event_code="e_1678354809753"
+		let event_params={"caller_name":"transaction_list__ee_for_call_t24_posting","event_desc":"EE FOR CALL T24 POSTING","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_complete_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_complete"
+		let parent_source_id=""
+		let event_code="e_1678356582752"
+		let event_params={"caller_name":"transaction_list__ee_for_complete_btn","event_desc":"EE for Complete btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for CHECKED_CHANGED event of "transaction list"
 	transaction_list__cc_for_disable() { 
 		let Dest_Is_ctrl=true
@@ -1584,7 +1922,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="navigation_ui_retry"
 		let event_code="e_1668850767975"
-		let event_params={"caller_name":"cc_for_retry__info_for_retry","event_desc":"INFO for Retry","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been sent to checker successfully.","root_source_id":"navigation_ui_retry","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_retry__info_for_retry","event_desc":"INFO for Retry","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been sent to checker successfully for reposting.","root_source_id":"navigation_ui_retry","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="info_for_retry__rs_for_retry,"
 		let event_data={}
@@ -2345,7 +2683,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="navigation_ui_repost"
 		let event_code="e_1676292268031"
-		let event_params={"caller_name":"cc_for_repost_btn__im_for_repost_btn","event_desc":"IM for Re-Post btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been sent to posting successfully.","root_source_id":"navigation_ui_repost","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_repost_btn__im_for_repost_btn","event_desc":"IM for Re-Post btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been sent to posting successfully","root_source_id":"navigation_ui_repost","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="im_for_repost_btn__rs_for_repost_btn,"
 		let event_data={}
@@ -2416,6 +2754,352 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678112092188","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Posting Failure List MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"process_name","alias_name":"","mq_id":"MQ_1678109278751","date_format":false},{"column_name":"t24_return_code","alias_name":"","mq_id":"MQ_1678109278902","date_format":false},{"column_name":"error_description","alias_name":"","mq_id":"MQ_1678109279238","date_format":false}],"joins":[]},"eq_text":"select  uetr,  STATUS,  process_status,  process_name,error_description,t24_return_code,tenant_id from  (  select   ntpl.uetr,   ntpl.STATUS,   ntpl.process_status,   ntpl.t24_return_code,   ntpl.process_name,   ntpl.tenant_id,   cnec.error_description   from   npss_trn_process_log ntpl  left join core_nc_error_codes cnec on cnec.error_code = ntpl.t24_return_code   and cnec.NEED_SYNC = 'Y')V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Posting Failure Vertical CCD","filter":[{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"IP_RCT_PC_T24_POSTING_FAILURE,IP_RCT_CC_T24_POSTING_FAILURE,IP_RCT_RR_POSTING_FAILURE,IP_RCT_RETURN_POSTING_FAILURE","source_value":"","source_type":"HARDCODED","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"UETR","binding_name":"UETR","binding_value":"","source_name":"MI_LEVEL_LOCAL_UETR","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Payment Type","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Reason","target_column":"t24_return_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Description","target_column":"error_description","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui already posted"
+	navigation_ui_already_posted__spap_for_cbs_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_already_posted"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678348063484"
+		let event_params={"caller_name":"navigation_ui_already_posted__spap_for_cbs_ui","event_desc":"SPAP for CBS UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_already_posted","raiseparam":{"popup_category":"profile","variable":"p_cbs_layout__spap_for_cbs_ui","selector":"p_cbs_layout","profile_code":"BTL_1304_1668850424944","window_title":"","window_height":170,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_cbs_ui","eventcode":"E_1678348063484"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cbs ref ui save"
+	cbs_ref_ui_save__cc_for_cbs_save() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cbs_ref_ui_save"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678348187439"
+		let event_params={"caller_name":"cbs_ref_ui_save__cc_for_cbs_save","event_desc":"CC for CBS save","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cbs_ref_ui_save","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_cbs_save__info__for_cbs_save,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_rct_already_postingService.fn_npss_cs_rct_already_posting(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for cbs save"
+	cc_for_cbs_save__info__for_cbs_save(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_cbs_save"
+		let destn_id=""
+		let parent_source_id="cbs_ref_ui_save"
+		let event_code="e_1678348231078"
+		let event_params={"caller_name":"cc_for_cbs_save__info__for_cbs_save","event_desc":"INFO  for CBS save","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been sent to checker successfully to mark already posted","root_source_id":"cbs_ref_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="info__for_cbs_save__rs_for_cbs_save,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "info  for cbs save"
+	info__for_cbs_save__rs_for_cbs_save(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="info__for_cbs_save"
+		let destn_id=""
+		let parent_source_id="cc_for_cbs_save"
+		let event_code="e_1678348258860"
+		let event_params={"caller_name":"info__for_cbs_save__rs_for_cbs_save","event_desc":"RS for CBS save","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"cbs_ref_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui call cc posting"
+	navigation_ui_call_cc_posting__cc_for_cc_posting() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_call_cc_posting"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678348773927"
+		let event_params={"caller_name":"navigation_ui_call_cc_posting__cc_for_cc_posting","event_desc":"CC for cc posting","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_call_cc_posting","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_cc_posting__info_for_cc_posting,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_cc_postingService.fn_npss_cs_cc_posting(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for cc posting"
+	cc_for_cc_posting__info_for_cc_posting(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_cc_posting"
+		let destn_id=""
+		let parent_source_id="navigation_ui_call_cc_posting"
+		let event_code="e_1678348782974"
+		let event_params={"caller_name":"cc_for_cc_posting__info_for_cc_posting","event_desc":"INFO for cc posting","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been sent to Credit Card posting successfully","root_source_id":"navigation_ui_call_cc_posting","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="info_for_cc_posting__rs_for_cc_posting,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "info for cc posting"
+	info_for_cc_posting__rs_for_cc_posting(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="info_for_cc_posting"
+		let destn_id=""
+		let parent_source_id="cc_for_cc_posting"
+		let event_code="e_1678348789978"
+		let event_params={"caller_name":"info_for_cc_posting__rs_for_cc_posting","event_desc":"RS for cc posting","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_call_cc_posting","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui call enquiry"
+	navigation_ui_call_enquiry__cc_for_call_enquiry() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_call_enquiry"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678349038419"
+		let event_params={"caller_name":"navigation_ui_call_enquiry__cc_for_call_enquiry","event_desc":"CC for call enquiry","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_call_enquiry","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_call_enquiry__info_for_call_enquiry,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_enquiryService.fn_npss_cs_enquiry(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for call enquiry"
+	cc_for_call_enquiry__info_for_call_enquiry(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_call_enquiry"
+		let destn_id=""
+		let parent_source_id="navigation_ui_call_enquiry"
+		let event_code="e_1678349044344"
+		let event_params={"caller_name":"cc_for_call_enquiry__info_for_call_enquiry","event_desc":"INFO for call enquiry","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been sent to posting enquiry successfully","root_source_id":"navigation_ui_call_enquiry","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="info_for_call_enquiry__rs_for_call_enquiry,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "info for call enquiry"
+	info_for_call_enquiry__rs_for_call_enquiry(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="info_for_call_enquiry"
+		let destn_id=""
+		let parent_source_id="cc_for_call_enquiry"
+		let event_code="e_1678349051406"
+		let event_params={"caller_name":"info_for_call_enquiry__rs_for_call_enquiry","event_desc":"RS for call enquiry","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_call_enquiry","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui call t24 posting"
+	navigation_ui_call_t24_posting__cc_for_initial_enable() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_call_t24_posting"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678349265866"
+		let event_params={"caller_name":"navigation_ui_call_t24_posting__cc_for_initial_enable","event_desc":"CC for initial enable","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_call_t24_posting","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_initial_enable__info_for_initial_enable,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_t24_postingService.fn_npss_cs_t24_posting(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for initial enable"
+	cc_for_initial_enable__info_for_initial_enable(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_initial_enable"
+		let destn_id=""
+		let parent_source_id="navigation_ui_call_t24_posting"
+		let event_code="e_1678354387915"
+		let event_params={"caller_name":"cc_for_initial_enable__info_for_initial_enable","event_desc":"INFO for initial enable","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been sent to T24 posting successfully","root_source_id":"navigation_ui_call_t24_posting","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="info_for_initial_enable__rs_for_initial_enable,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "info for initial enable"
+	info_for_initial_enable__rs_for_initial_enable(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="info_for_initial_enable"
+		let destn_id=""
+		let parent_source_id="cc_for_initial_enable"
+		let event_code="e_1678354395600"
+		let event_params={"caller_name":"info_for_initial_enable__rs_for_initial_enable","event_desc":"RS for initial enable","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_call_t24_posting","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui complete"
+	navigation_ui_complete__cc_for_complete_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_complete"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678356021928"
+		let event_params={"caller_name":"navigation_ui_complete__cc_for_complete_btn","event_desc":"CC for Complete btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_complete","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_complete_btn__im_for_complete_btn,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_rct_completeService.fn_npss_cs_rct_complete(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for complete btn"
+	cc_for_complete_btn__im_for_complete_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_complete_btn"
+		let destn_id=""
+		let parent_source_id="navigation_ui_complete"
+		let event_code="e_1678356030686"
+		let event_params={"caller_name":"cc_for_complete_btn__im_for_complete_btn","event_desc":"IM for Complete btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been marked as already posted successfully","root_source_id":"navigation_ui_complete","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="im_for_complete_btn__rs_for_complete_btn,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "im for complete btn"
+	im_for_complete_btn__rs_for_complete_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="im_for_complete_btn"
+		let destn_id=""
+		let parent_source_id="cc_for_complete_btn"
+		let event_code="e_1678356039617"
+		let event_params={"caller_name":"im_for_complete_btn__rs_for_complete_btn","event_desc":"RS for Complete btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_complete","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

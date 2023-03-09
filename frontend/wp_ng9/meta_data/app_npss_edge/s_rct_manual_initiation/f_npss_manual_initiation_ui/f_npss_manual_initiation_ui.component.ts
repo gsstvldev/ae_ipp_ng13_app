@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28595 
+Build ID        : 28604 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-09 8:15 AM 
+Modified Date   : 2023-Mar-09 13:31 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -26,7 +26,7 @@ export class f_npss_manual_initiation_uiComponent implements OnInit {
   hasHeader:boolean;
   component_header:string;
   @ViewChild('f_npss_manual_initiation_ui') form;
-  @ViewChild('npss_manual_initiation_ui_memory95') element: ElementRef;
+  @ViewChild('npss_manual_initiation_ui_charge_amount') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -48,44 +48,6 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
-		//Properties of memory95
-		this.ctrl.memory95 = {}
-		this.ctrl.memory95.id = "RN31CN6001"
-		this.ctrl.memory95.desc = "DR Account Currency"
-		this.ctrl.memory95.visible = true
-		this.ctrl.memory95.label_name = "DR Account Currency"
-		this.ctrl.memory95.df_code = "DF_1304_1665901396659"
-		this.ctrl.memory95.df_description = "Column Group 1"
-		this.ctrl.memory95.uictrl_code = "TXT"
-		this.ctrl.memory95.target_column = "memory95"
-		this.ctrl.memory95.data_type = "TEXT"
-		this.ctrl.memory95.data_length = 32
-		this.ctrl.memory95.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory95.default_value = "AED"
-		this.ctrl.memory95.is_memory_ctrl = "Y"
-		this.ctrl.memory95.field_coordinates = ""
-		this.ctrl.memory95.sub_details = ""
-		this.ctrl.memory95.accept_char = ""
-		this.ctrl.memory95.currency_format = ""
-		this.ctrl.memory95.data_scale = ""
-		this.ctrl.memory95.hide_label = false
-		this.ctrl.memory95.depends_on = ""
-		this.ctrl.memory95.placeholder = ""
-		this.ctrl.memory95.dynamic_param = ""
-		this.ctrl.memory95.style_code = ""
-		this.ctrl.memory95.data_source = ""
-		this.ctrl.memory95.image_association = ""
-		this.ctrl.memory95.show = true
-		this.ctrl.memory95.sub_content = ""
-		this.ctrl.memory95.required = false
-		this.ctrl.memory95.vld_rules = []
-		this.ctrl.memory95.targetcolumn_lower = "memory95"
-		this.ctrl.memory95.disabled = false
-		this.ctrl.memory95.view_name = "f_npss_manual_initiation_ui"
-		this.ctrl.memory95.ctrl_id = "npss_manual_initiation_ui_memory95"
-		this.ctrl.npss_manual_initiation_ui_memory95 = {}
-		this.ctrl.npss_manual_initiation_ui_memory95.onChangecomponent = new EventEmitter<any>()
-	
 		//Properties of charge_amount
 		this.ctrl.charge_amount = {}
 		this.ctrl.charge_amount.id = "RN01CN1"
@@ -276,45 +238,45 @@ focustoelement(){
 		this.ctrl.npss_manual_initiation_ui_buy_margin = {}
 		this.ctrl.npss_manual_initiation_ui_buy_margin.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of memory120
-		this.ctrl.memory120 = {}
-		this.ctrl.memory120.id = "RN21CN8"
-		this.ctrl.memory120.desc = "Buy Rate"
-		this.ctrl.memory120.visible = true
-		this.ctrl.memory120.label_name = "Buy Rate"
-		this.ctrl.memory120.df_code = "DF_1304_1665901396659"
-		this.ctrl.memory120.df_description = "Column Group 1"
-		this.ctrl.memory120.uictrl_code = "TXT"
-		this.ctrl.memory120.target_column = "memory120"
-		this.ctrl.memory120.data_type = "TEXT"
-		this.ctrl.memory120.data_length = 0
-		this.ctrl.memory120.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory120.default_value = ""
-		this.ctrl.memory120.is_memory_ctrl = "Y"
-		this.ctrl.memory120.field_coordinates = ""
-		this.ctrl.memory120.sub_details = ""
-		this.ctrl.memory120.accept_char = ""
-		this.ctrl.memory120.currency_format = ""
-		this.ctrl.memory120.data_scale = ""
-		this.ctrl.memory120.hide_label = false
-		this.ctrl.memory120.depends_on = ""
-		this.ctrl.memory120.placeholder = ""
-		this.ctrl.memory120.dynamic_param = ""
-		this.ctrl.memory120.style_code = ""
-		this.ctrl.memory120.data_source = ""
-		this.ctrl.memory120.image_association = ""
-		this.ctrl.memory120.show = true
-		this.ctrl.memory120.sub_content = ""
-		this.ctrl.memory120.required = false
-		this.ctrl.memory120.vld_rules = []
-		this.ctrl.memory120.targetcolumn_lower = "memory120"
-		this.ctrl.memory120.disabled = false
-		this.ctrl.memory120.view_name = "f_npss_manual_initiation_ui"
-		this.ctrl.memory120.ctrl_id = "npss_manual_initiation_ui_memory120"
-		this.ctrl.npss_manual_initiation_ui_memory120 = {}
-		this.ctrl.npss_manual_initiation_ui_memory120.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.model = {"MEMORY95":"AED","CHARGE_AMOUNT":"","INTRBK_STTLM_CUR":"","MEMORY92":"","DISPUTE_REF_NO":"","BUY_MARGIN":"","MEMORY120":""}
-		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DISPUTE_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_MARGIN"}]
+		//Properties of buy_rate
+		this.ctrl.buy_rate = {}
+		this.ctrl.buy_rate.id = "RN21CN8"
+		this.ctrl.buy_rate.desc = "Buy Rate"
+		this.ctrl.buy_rate.visible = true
+		this.ctrl.buy_rate.label_name = "Buy Rate"
+		this.ctrl.buy_rate.df_code = "DF_1304_1665901396659"
+		this.ctrl.buy_rate.df_description = "Column Group 1"
+		this.ctrl.buy_rate.uictrl_code = "CUR"
+		this.ctrl.buy_rate.target_column = "BUY_RATE"
+		this.ctrl.buy_rate.data_type = "NUMBER"
+		this.ctrl.buy_rate.data_length = 19
+		this.ctrl.buy_rate.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.buy_rate.default_value = ""
+		this.ctrl.buy_rate.is_memory_ctrl = ""
+		this.ctrl.buy_rate.field_coordinates = ""
+		this.ctrl.buy_rate.sub_details = ""
+		this.ctrl.buy_rate.accept_char = ""
+		this.ctrl.buy_rate.currency_format = ""
+		this.ctrl.buy_rate.data_scale = "6"
+		this.ctrl.buy_rate.hide_label = false
+		this.ctrl.buy_rate.depends_on = ""
+		this.ctrl.buy_rate.placeholder = ""
+		this.ctrl.buy_rate.dynamic_param = ""
+		this.ctrl.buy_rate.style_code = ""
+		this.ctrl.buy_rate.data_source = ""
+		this.ctrl.buy_rate.image_association = ""
+		this.ctrl.buy_rate.show = true
+		this.ctrl.buy_rate.sub_content = ""
+		this.ctrl.buy_rate.required = false
+		this.ctrl.buy_rate.vld_rules = []
+		this.ctrl.buy_rate.targetcolumn_lower = "buy_rate"
+		this.ctrl.buy_rate.disabled = false
+		this.ctrl.buy_rate.view_name = "f_npss_manual_initiation_ui"
+		this.ctrl.buy_rate.ctrl_id = "npss_manual_initiation_ui_buy_rate"
+		this.ctrl.npss_manual_initiation_ui_buy_rate = {}
+		this.ctrl.npss_manual_initiation_ui_buy_rate.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.model = {"CHARGE_AMOUNT":"","INTRBK_STTLM_CUR":"","MEMORY92":"","DISPUTE_REF_NO":"","BUY_MARGIN":"","BUY_RATE":""}
+		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DISPUTE_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_MARGIN"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_RATE"}]
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

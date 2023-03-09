@@ -64,7 +64,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         success_status = arrrule[0].success_status;
                                         var TakedatafrmTrn = `select fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,* from npss_transactions ns where npsst_id = '${params.Tran_Id}'`
                                         ExecuteQuery1(TakedatafrmTrn, async function (arrdata) {
-                                        var takeUetr = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_GET_UETR' and param_code='URL'`
+                                        var takeUetr = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_GET_UETR' and param_code='URL' and NEED_SYNC = 'Y'`
                                             ExecuteQuery1(takeUetr, async function (arruetr) {
                                                 if(arruetr.length > 0){
                                                     uetr = await GetUetr(arruetr)
@@ -118,11 +118,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objCusTranInst.VALUE_DATE = reqDateFormatter.GetDateAt12AM(headers, objSessionLogInfo, params.VALUE_DATE)
                                                         objCusTranInst.DBTR_ACCT_NO = arrdata[0].cdtr_acct_no
                                                         objCusTranInst.BASE_AMOUNT = arrdata[0].base_amount
-                                                        objCusTranInst.BASE_CURRENCY = params.BASE_CURRENCY || null
+                                                       
                                                         objCusTranInst.HDR_CREATED_DATE = arrdata[0].hdr_created_date
                                                         objCusTranInst.HDR_TOTAL_RECORDS = arrdata[0].hdr_total_records
                                                         objCusTranInst.RATE_CODE = arrdata[0].rate_code
-                                                        objCusTranInst.EXCHANGE_RATE = arrdata[0].exchange_rate
+                                                        objCusTranInst.BUY_RATE = params.BUY_RATE
                                                         objCusTranInst.HDR_TOTAL_AMOUNT = arrdata[0].hdr_total_amount
                                                         objCusTranInst.CATEGORY_PURPOSE = arrdata[0].category_purpose
                                                         objCusTranInst.HDR_SETTLEMENT_DATE = arrdata[0].hdr_settlement_date
@@ -183,7 +183,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 objcusTranprslog.UETR = uetr;
                                                                 objcusTranprslog.NPSSTRRD_REFNO = arrdata[0].tran_ref_id;
                                                                 objcusTranprslog.PROCESS_NAME = 'Initiate Dispute Tran'
-                                                                objcusTranprslog.EXCHANGE_RATE = params.EXCHANGE_RATE || null;
                                                                 objcusTranprslog.PROCESSING_SYSTEM = 'NPSS';
                                                                 objcusTranprslog.PROCESS_STATUS = success_process_status;
                                                                 objcusTranprslog.STATUS = success_status;

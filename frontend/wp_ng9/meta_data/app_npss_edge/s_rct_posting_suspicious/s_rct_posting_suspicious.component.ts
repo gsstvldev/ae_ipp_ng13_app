@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28564 
+Build ID        : 28602 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 11:1 AM 
+Modified Date   : 2023-Mar-09 12:20 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_suspicious
@@ -67,7 +67,7 @@ export class s_rct_posting_suspiciousComponent implements OnInit,AfterViewInit {
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_4","uicgc_11","uicgc_6","uicgc_12","uicgc_14","uicgc_10","uicgc_17","uicgc_15","uicgc_13","uicgc_7","uicgc_3"]
+	forms : any = ["uicgc_4","uicgc_6","uicgc_11","uicgc_12","uicgc_14","uicgc_10","uicgc_17","uicgc_15","uicgc_13","uicgc_7","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	p_cbs_layout__spap_for_cbs_ui_showpopup : boolean = false
 	queue : any = {}

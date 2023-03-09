@@ -86,7 +86,7 @@ CallDLL(ClientParams, screenInstance, internals) {
             if (res.data == "SUCCESS" || res.data.status == "SUCCESS") {
                 this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
             } else {
-                this.appHandler.callInternals(internals, screenInstance, "FAILURE");
+                this.dialogHelper.ShowInfoDialog(res.data.status);
             }
         });
 }

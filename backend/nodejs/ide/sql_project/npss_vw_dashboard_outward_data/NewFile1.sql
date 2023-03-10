@@ -4,7 +4,7 @@ drop view if exists vw_dashboard_outward_data;
 @SPL@
 CREATE OR REPLACE VIEW vw_dashboard_outward_data
  AS
- SELECT res.type,
+  SELECT res.type,
     COALESCE(sum(res.total), 0::numeric) AS total,
     COALESCE(sum(res.ibmb), 0::numeric) AS ibmb,
     COALESCE(sum(res.rib), 0::numeric) AS rib,
@@ -106,9 +106,10 @@ CREATE OR REPLACE VIEW vw_dashboard_outward_data
                     WHEN nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = 'OR_P2P_POSTING_FAILURE'::text OR nppst.status::text = 'OR_P2P_POSTING_RETRY'::text OR nppst.status::text = 'OP_P2P_REV_POSTING_FAILURE'::text OR nppst.status::text = 'OR_P2B_POSTING_RETRY'::text) AND to_char(npl.created_date::date::timestamp with time zone, 'dd-mm-yyyy'::text)::timestamp without time zone = (to_char(npl.created_date::date::timestamp with time zone, 'dd-mm-yyyy'::text)::timestamp without time zone - '1 day'::interval) THEN count(*)
                     ELSE NULL::bigint
                 END AS pending_t_1,
-            to_char(npl.created_date::date::timestamp with time zone, 'dd-mm-yyyy'::text)::timestamp without time zone AS created_date
+		 to_char(npl.created_date::date::timestamp with time zone, 'dd-mm-yyyy'::text)::timestamp without time zone AS created_date
            FROM npss_transactions nppst
              JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
           WHERE nppst.process_type::text = 'OP'::text AND (npl.process_name::text = ANY (ARRAY['Place Pacs008'::character varying::text, 'Place Pacs007'::character varying::text, 'Place Pacs004'::character varying::text]))
-          GROUP BY nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group, npl.status, npl.process_status, (to_char(npl.created_date::date::timestamp with time zone, 'dd-mm-yyyy'::text))) res
+          GROUP BY nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group, npl.status, npl.process_status,
+		 (to_char(npl.created_date::date::timestamp with time zone, 'dd-mm-yyyy'::text))) res
   GROUP BY res.type, res.created_date;

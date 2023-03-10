@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28612 
+Build ID        : 28623 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-10 11:23 AM 
+Modified Date   : 2023-Mar-10 13:6 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -705,6 +705,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "cc for check uetr ide"
 	cc_for_check_uetr_ide__internal(parent_event_result){
 		this.cc_for_check_uetr_ide__e_1678446861462(parent_event_result)
+		this.cc_for_check_uetr_ide__cui_for_failure(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui search"
@@ -1738,7 +1739,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let event_code="e_1678446828227"
 		let event_params={"caller_name":"svm_for_tl__cc_for_check_uetr_ide","event_desc":"CC for check uetr ide","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals="cc_for_check_uetr_ide__e_1678446861462,"
+		let internals="cc_for_check_uetr_ide__e_1678446861462,cc_for_check_uetr_ide__cui_for_failure,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -1765,6 +1766,28 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for check uetr ide"
+	cc_for_check_uetr_ide__cui_for_failure(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="FAILURE"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_check_uetr_ide"
+		let destn_id="failure_list"
+		let parent_source_id="svm_for_tl"
+		let event_code="e_1678451590833"
+		let event_params={"caller_name":"cc_for_check_uetr_ide__cui_for_failure","event_desc":"CUI for failure","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"need_reset_key_column":"N"},"parent_event_result":"FAILURE"}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_19","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678112092188","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Posting Failure List MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"process_name","alias_name":"","mq_id":"MQ_1678109278751","date_format":false},{"column_name":"t24_return_code","alias_name":"","mq_id":"MQ_1678109278902","date_format":false},{"column_name":"error_description","alias_name":"","mq_id":"MQ_1678109279238","date_format":false}],"joins":[]},"eq_text":"select  uetr,  STATUS,  process_status,  process_name,error_description,t24_return_code,tenant_id from  (  select   ntpl.uetr,   ntpl.STATUS,   ntpl.process_status,   ntpl.t24_return_code,   ntpl.process_name,   ntpl.tenant_id,   cnec.error_description   from   npss_trn_process_log ntpl  left join core_nc_error_codes cnec on cnec.error_code = ntpl.t24_return_code   and cnec.NEED_SYNC = 'Y')V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Posting Failure Vertical CCD","filter":[{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"IP_RCT_PC_T24_POSTING_FAILURE,IP_RCT_CC_T24_POSTING_FAILURE,IP_RCT_RR_POSTING_FAILURE,IP_RCT_RETURN_POSTING_FAILURE","source_value":"","source_type":"HARDCODED","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"UETR","binding_name":"UETR","binding_value":"","source_name":"MI_LEVEL_LOCAL_UETR","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Payment Type","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Reason","target_column":"t24_return_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Description","target_column":"error_description","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

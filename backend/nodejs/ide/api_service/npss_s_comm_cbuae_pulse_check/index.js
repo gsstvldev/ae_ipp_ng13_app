@@ -52,8 +52,8 @@ app.post('/', function(appRequest, appResponse, next) {
             reqTranDBInstance.GetTranDBConn(headers, false, async function (pSession) {
                 mTranConn = pSession; //  assign connection     
                 try {
-                    var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL'`
-                    var TakeprocessNameData = `select param_name,param_value,process_name from core_ns_params where param_name in ('CHECK_FREQ','CHECK_INTERVAL','COMM_CC','COMM_GROUP','COMM_TO','ORIGIN','COM_CATEGORY')and process_name ='CBUAE_NOT_AVAILABLE' order by param_name asc`
+                    var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync = 'Y'`
+                    var TakeprocessNameData = `select param_name,param_value,process_name from core_ns_params where need_sync = 'Y' and  param_name in ('CHECK_FREQ','CHECK_INTERVAL','COMM_CC','COMM_GROUP','COMM_TO','ORIGIN','COM_CATEGORY')and process_name ='CBUAE_NOT_AVAILABLE' order by param_name asc`
                     ExecuteQuery1(TakeprocessNameData, function (arrprsname) {
                         if (arrprsname.length == 7) {
                             var objtrndetail = [{

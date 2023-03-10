@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { HttphelperService } from '../../scripts/fx/httphelper.service'; // for server call only use http services
+import { HttphelperService } from '../../scripts/fx/httphelper.service'; // for  server call only use http services
 import { AppHandlerService } from '../../scripts/fx/app.handler.service'; //Show for Dialog for Screen
 import { SCOPE, SESSION } from '../../scripts/fx/session.enum';
 import { SessionService } from '../../scripts/fx/session.service'; // get Session information

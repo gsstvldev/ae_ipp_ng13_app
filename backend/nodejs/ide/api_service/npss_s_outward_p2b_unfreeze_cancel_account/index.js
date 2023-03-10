@@ -80,7 +80,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
 
 
-                    takehour = `select * from Core_nc_system_setup where param_category='${params.param_category}' and param_code='${params.param_code}' `
+                    takehour = `select * from Core_nc_system_setup where param_category='${params.param_category}' and param_code='${params.param_code}' and need_sync = 'Y'`
                     ExecuteQuery1(takehour, function (arrhour) {
                         if (arrhour.length > 0) {
                             var utcMoment = moment.utc();
@@ -105,7 +105,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                     var check = `select * from npss_trn_process_log where status = 'OP_P2B_FUND_UNFREEZED' and npsstrrd_refno='${arrpayverobj.npsstrrd_refno}'`
                                                     ExecuteQuery1(check, async function (checkdata) {
                                                         if (checkdata.length == 0) {
-                                                            var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL'`
+                                                            var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL' and need_sync = 'Y'`
                                                             ExecuteQuery1(Takekafkaurl, async function (arrurl) {
                                                                 if (arrurl.length) {
 

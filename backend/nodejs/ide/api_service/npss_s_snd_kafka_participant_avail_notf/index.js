@@ -54,17 +54,17 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqTranDBInstance.GetTranDBConn(headers, false, async function (pSession) {
             mTranConn = pSession; //  assign connection     
             try {
-                var TakeUrl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL'`
+                var TakeUrl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync = 'Y'`
                 ExecuteQuery1(TakeUrl, function (arrUrl) {
                     if (arrUrl.length) {
-                        var Takechnl = `select process_name,destination_system from core_ns_params where process_name = '${params.processName}' group by process_name,destination_system`
+                        var Takechnl = `select process_name,destination_system from core_ns_params where  need_sync = 'Y' and process_name = '${params.processName}' group by process_name,destination_system`
                         ExecuteQuery1(Takechnl, function (arrChnl) {
                             if (arrChnl.length > 0) {
                                 reqAsync.forEachOfSeries(arrChnl, function (arrrearrChnlsultObj, i, channelnextobjctfunc) {
-                                    var TakeKafkaTp = `select param_value from core_ns_params where process_name = '${params.processName}' and destination_system ='${arrrearrChnlsultObj.destination_system}' and param_name = 'KAFKA_TOPIC'`
+                                    var TakeKafkaTp = `select param_value from core_ns_params where process_name = '${params.processName}' and destination_system ='${arrrearrChnlsultObj.destination_system}' and param_name = 'KAFKA_TOPIC' and need_sync = 'Y'`
                                     ExecuteQuery1(TakeKafkaTp, function (arrTopic) {
                                         if (arrTopic.length > 0) {
-                                            var TakeComCat = `select param_value from core_ns_params where process_name = '${params.processName}' and destination_system ='${arrrearrChnlsultObj.destination_system}' and param_name = 'COMM_GROUP'`
+                                            var TakeComCat = `select param_value from core_ns_params where process_name = '${params.processName}' and destination_system ='${arrrearrChnlsultObj.destination_system}' and param_name = 'COMM_GROUP' and need_sync = 'Y'`
                                             ExecuteQuery1(TakeComCat, function (arrComCat) {
                                                 if (arrComCat.length > 0) {
                                                     var TakeOffset = `SELECT setup_json FROM clt_tran.TENANT_SETUP WHERE TENANT_ID ='aefab' AND CATEGORY='TIMEZONE'`
@@ -82,14 +82,14 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                         var AEFrmtime = await tConvert(splitTime[0] + ':' + splitTime[1])
 
 
-                                                        var takeparticipantList = `select * from core_nc_bank_part_avail where  from_date = '${currdate}' and to_time  <= '${AEFrmtime}'`
+                                                        var takeparticipantList = `select * from core_nc_bank_part_avail where  from_date = '${currdate}' and to_time  <= '${AEFrmtime}' and need_sync = 'Y'`
                                                         ExecuteQuery1(takeparticipantList, async function (arrresult) {
                                                             if (arrresult.length > 0) {
 
 
                                                                 reqAsync.forEachOfSeries(arrresult, function (arrresultObj, i, nextobjctfunc) {
                                                                     try {
-                                                                        var TakeBnkName = `select bank_name from core_nc_bank_part_avail where bank_bic = '${arrresultObj.bank_bic}'`
+                                                                        var TakeBnkName = `select bank_name from core_nc_bank_part_avail where bank_bic = '${arrresultObj.bank_bic}' and need_sync = 'Y'`
                                                                         ExecuteQuery1(TakeBnkName, async function (arrBankNm) {
                                                                             if (arrBankNm.length > 0) {
                                                                                 var UpdateActFlag = `Update core_nc_bank_part_avail set availability_flag = 'Y' where cncbpa_id = '${arrresultObj.cncbpa_id}'`

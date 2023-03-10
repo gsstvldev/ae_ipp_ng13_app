@@ -56,7 +56,7 @@ app.post('/', function(appRequest, appResponse, next) {
                      
                       
                         try {
-                            var urlqry = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
+                            var urlqry = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL' and need_sync = 'Y'`
                             var Takehours = `select tat_frequency,tat_expected from core_nc_rule_book_setup where rule_code = 'RCT_IP_REVERSAL_SLA'`
                             ExecuteQuery1(urlqry, function (arrurl) {
                                 if(arrurl.length){

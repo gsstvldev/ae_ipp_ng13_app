@@ -49,7 +49,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         var ApitrnId
                         var app_id
                         try {
-                            var takecomg = `select * from core_ns_params where param_name = 'COMM_GROUP' AND process_name = '${params.PROCESS_NAME}'`
+                            var takecomg = `select * from core_ns_params where param_name = 'COMM_GROUP' AND process_name = '${params.PROCESS_NAME}' and need_sync = 'Y'`
                             ExecuteQuery1(takecomg, function (comCatcode) {
                                 if (comCatcode.length) {
                                     reqAsync.forEachOfSeries(comCatcode, function (comCatcodeObj, i, nextobjctfunc) {

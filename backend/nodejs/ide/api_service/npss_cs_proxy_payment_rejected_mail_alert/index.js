@@ -51,7 +51,7 @@ app.post('/', function(appRequest, appResponse, next) {
                    try {
                        var PRCT_ID = prct_id
 
-                       var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL'`
+                       var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and  need_sync = 'Y'`
                        ExecuteQuery1(takeurl, function (arrUrl) {
                            if (arrUrl.length == 0) {
 
@@ -72,17 +72,17 @@ app.post('/', function(appRequest, appResponse, next) {
                                var Tempdata = '(' + "'" + arrstatus.toString().split(',').join("','") + "'" + ')';
 
                                var Takedata = `select * from npss_trn_process_log where TO_DATE(TO_CHAR(CREATED_DATE, 'DD-MON-YY'),'DD-MON-YY') = CURRENT_DATE  and status in ${Tempdata}`
-                               var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'ORIGIN'`
+                               var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'ORIGIN' and  need_sync = 'Y' `
                                ExecuteQuery1(Takeorg, function (arrorg) {
-                                   var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_GROUP'`
+                                   var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_GROUP' and  need_sync = 'Y'`
                                    ExecuteQuery1(tkcomgp, function (arrcomgp) {
-                                       var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_CC'`
+                                       var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_CC' and  need_sync = 'Y'`
                                        ExecuteQuery1(Takecmcc, function (arrcomcc) {
-                                           var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COM_CATEGORY'`
+                                           var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COM_CATEGORY'  and  need_sync = 'Y'`
                                            ExecuteQuery1(TakecomCat, function (arrCatgory) {
                                                ExecuteQuery1(Takedata, function (arrData) {
                                                    if (arrData.length > 0) {
-                                                       var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name='COMM_TO'`
+                                                       var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name='COMM_TO'  and  need_sync = 'Y'`
                                                        ExecuteQuery1(TakeCometo, function (arrCometo) {
                                                            if (arrCometo.length > 0) {
                                                                reqAsync.forEachOfSeries(arrData, function (arrDataobj, i, nextobjctfunc) {    

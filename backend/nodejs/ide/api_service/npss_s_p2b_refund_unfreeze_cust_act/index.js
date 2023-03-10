@@ -62,7 +62,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     var Secondaddinfo = await Prepareparam(params.checkaddinfo)
                     var TakerequestData = await Prepareparam(params.RequestprocessName)
                    
-                    var Takehours = `select param_detail from core_nc_system_setup where param_category = '${params.param_category}' and param_code = '${params.param_code}'`
+                    var Takehours = `select param_detail from core_nc_system_setup where param_category = '${params.param_category}' and param_code = '${params.param_code}' and need_sync = 'Y'`
                     ExecuteQuery1(Takehours, function (arrTakehrs) {
                         if (arrTakehrs.length > 0) {
                             var utcMoment = moment.utc();
@@ -79,7 +79,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                 var CheckalreadyTryTran = `select * from npss_trn_process_log where status = 'OP_P2B_FUND_UNFREEZED' and npsstrrd_refno='${arrDataobj.npsstrrd_refno}'`
                                                 ExecuteQuery1(CheckalreadyTryTran, async function (altryTran) {
                                                     if (altryTran.length == 0) {
-                                                        var Takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL'`
+                                                        var Takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL' and need_sync = 'Y'`
                                                         ExecuteQuery1(Takeurl, async function (arrurl) {
                                                             if (arrurl.length > 0) {
                                                               

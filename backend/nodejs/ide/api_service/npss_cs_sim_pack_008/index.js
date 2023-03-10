@@ -55,7 +55,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         var app_id
                        
                         try {
-                            var TakeExtraValue = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_SIM_PACK_008' and param_code='URL'`
+                            var TakeExtraValue = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_SIM_PACK_008' and param_code='URL' and need_sync='Y'`
                             // Take Value from API Manager Table
 
                             ExecuteQuery1(TakeExtraValue, function (arrApiManRes) {

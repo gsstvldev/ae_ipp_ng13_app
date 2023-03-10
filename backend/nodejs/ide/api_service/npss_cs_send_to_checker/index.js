@@ -73,7 +73,7 @@ try {
 
                         var TakeStsPsts = `select success_process_status,success_status,processing_system,process_type from core_nc_workflow_setup where rule_code = 'RCT_OP_MAN_SENDTOCHECKER' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                         var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
-                        var Takeretcode = `select param_code,param_detail from core_nc_system_setup where param_category='REVERSAL RETURN CODE' and product_code = '${params.PROD_CODE}' and status = 'APPROVED'`
+                        var Takeretcode = `select param_code,param_detail from core_nc_system_setup where param_category='REVERSAL RETURN CODE' and product_code = '${params.PROD_CODE}' and status = 'APPROVED'  and need_sync = 'Y'`
                         if (params.PROD_CODE == 'NPSS_AEFAB') {
                             ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
                                 if (arrurlResult.length) {
@@ -101,7 +101,7 @@ try {
                                                         checkForceTopost = await ForcetoPost(arrprocesslog)
                                                         if (checkForceTopost == 'Call_Reserve_Fund_Api') {
                                                             reverseAcinfparam = await TakereversalIdandActInfm(arrprocesslog)
-                                                            take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL'`;
+                                                            take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL' and need_sync = 'Y'`;
                                                             ExecuteQuery1(take_api_url, function (arrurl) {
                                                                 if (arrurl.length) {
                                                                     var url = arrurl[0].param_detail;
@@ -539,7 +539,7 @@ try {
                                         checkingRestrictId = arrCode[0].customer_posting_restriction_code || ''
                                     }
 
-                                    var TakingResid = `select applicable_dr_ac from CORE_NC_POST_RESTRICTIONS where restriction_id = '${checkingRestrictId}'`
+                                    var TakingResid = `select applicable_dr_ac from CORE_NC_POST_RESTRICTIONS where restriction_id = '${checkingRestrictId}' and need_sync = 'Y'`
                                     ExecuteQuery1(TakingResid, function (arrRestid) {
                                         if (arrRestid.length) {
 

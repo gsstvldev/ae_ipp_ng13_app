@@ -68,7 +68,7 @@ try {
                         var app_id
                         var success_process_status
                         var success_status
-                        var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='RCT_OP_REV_APPROVE' and param_code='URL'`;
+                        var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='RCT_OP_REV_APPROVE' and param_code='URL' and need_sync = 'Y'`;
                         //  var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_IP_REV_REQ_ACCEPT' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                         var take_status = `Select success_process_status,success_status from core_nc_workflow_setup where rule_code='RCT_OP_REV_APPROVE'`;
                         //var take_batch_name = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='BATCH_NAME'`;

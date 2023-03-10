@@ -65,7 +65,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                   var success_status
                                   try {
                                       var ruleqry = `select success_process_status,success_status,processing_system,process_type  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
-                                      var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_REVERSAL_CANCEL' and param_code='URL'`;
+                                      var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_REVERSAL_CANCEL' and param_code='URL'  and need_sync = 'Y'`;
           
                                       // Take Value from API Manager Table
                                       if (params.PROD_CODE == 'NPSS_AEFAB') {
@@ -87,7 +87,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                               if (arrpostno.length > 0) {
                                                                                   fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno, function (apiresult) {
                                                                                       if (apiresult.status === "SUCCESS") {
-                                                                                          var Takeurl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
+                                                                                          var Takeurl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL' and need_sync = 'Y'`
                                                                                           ExecuteQuery1(Takeurl, function (arrgeturl) {
                                                                                               if (arrgeturl.length > 0) {
                                                                                                   var hdrqry = `select process_name,status,uetr,msg_id,fx_resv_text1 from npss_trn_process_log where process_name='Receive Pacs.007' and  status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr =  '${arrdata[0].uetr}'`
@@ -228,7 +228,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                           var TakedatafrmTrn = `select * from npss_transactions where npsst_id = '${params.Id}'`
                                           ExecuteQuery1(TakedatafrmTrn, function (arrdata) {
                                               if (arrdata.length > 0) {
-                                                  var Takeurl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL'`
+                                                  var Takeurl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL' and need_sync = 'Y'`
                                                   ExecuteQuery1(Takeurl, function (arrgeturl) {
                                                       var hdrqry = `select process_name,status,uetr,msg_id,fx_resv_text1 from npss_trn_process_log where process_name='Receive pacs.007' and  status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr =  '${arrdata[0].uetr}'`
                                                       ExecuteQuery1(hdrqry, function (hdrresult) {

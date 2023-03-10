@@ -57,8 +57,8 @@ app.post('/', function(appRequest, appResponse, next) {
                 reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
                     try {
                         var PRCT_ID = prct_id
-                        var Takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INVESTIGATION_PAC_028' and param_code='URL'`
-                        var Taketime = `select * from core_nc_rule_book_setup where rule_code = '${params.rule_code}' and processing_system = '${params.process_system}'`
+                        var Takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INVESTIGATION_PAC_028' and param_code='URL' and need_sync = 'Y'`
+                        var Taketime = `select * from core_nc_rule_book_setup where rule_code = '${params.rule_code}' and processing_system = '${params.process_system}' and need_sync = 'Y'`
                         ExecuteQuery1(Takeurl, function (arrUrl) {
                             if (arrUrl.length > 0) {
                                 ExecuteQuery1(Taketime, function (arrTakehrs) {

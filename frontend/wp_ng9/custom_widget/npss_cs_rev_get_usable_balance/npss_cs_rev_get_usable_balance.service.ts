@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-//Uncomment below lines when it is   required
+//Uncomment below lines when it is    required
 //import { Http, Response, Headers, RequestOptions, HttpModule } from '@angular/http';
 //import { Observable } from 'rxjs/Observable';
 //import { HttpClient } from '@angular/common/http';

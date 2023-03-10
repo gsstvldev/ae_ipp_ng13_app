@@ -78,7 +78,7 @@ try {
                                     final_status = arrurlResult[0].success_status
                                     ExecuteQuery1(take_api_params, function (arrprocesslog) {
                                         if (arrprocesslog.length) {
-                                            var Takepac008url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_MANUAL_INT_PAC008' and param_code='URL'`;
+                                            var Takepac008url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_MANUAL_INT_PAC008' and param_code='URL' and need_sync = 'Y'`;
                                             ExecuteQuery1(Takepac008url, function (pac008url) {
                                                 if (pac008url.length > 0) {
                                                     var pacurl = pac008url[0].param_detail

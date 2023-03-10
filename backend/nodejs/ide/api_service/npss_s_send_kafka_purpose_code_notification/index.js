@@ -55,20 +55,20 @@ app.post('/', function(appRequest, appResponse, next) {
                   reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
                      try {
                          var PRCT_ID = prct_id
-                         var TakeUrl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL'`
+                         var TakeUrl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync = 'Y'`
                         var taketrnlist = `select cncpc_id,purpose_code,purpose_description,enable_flag,action_flag from core_nc_purpose_codes where published is null or published = 'N'`
                         ExecuteQuery1(TakeUrl, function (arrUrl) {
                             if(arrUrl.length > 0){
                                 ExecuteQuery1(taketrnlist,  function (arrresult) {
                                     if (arrresult.length > 0) {
-                                        var Takechnl = `select process_name,destination_system from core_ns_params where process_name = '${params.processName}' group by process_name,destination_system`
+                                        var Takechnl = `select process_name,destination_system from core_ns_params where need_sync = 'Y' and process_name = '${params.processName}' group by process_name,destination_system`
                                         ExecuteQuery1(Takechnl,  function (arrChnl) {
                                             if (arrChnl.length > 0) {
                                                 reqAsync.forEachOfSeries(arrChnl, function (arrrearrChnlsultObj, i, channelnextobjctfunc) {
-                                                    var TakeKafkaTp = `select param_value from core_ns_params where process_name = '${params.processName}' and destination_system ='${arrrearrChnlsultObj.destination_system}' and param_name = 'KAFKA_TOPIC'`
+                                                    var TakeKafkaTp = `select param_value from core_ns_params where process_name = '${params.processName}' and destination_system ='${arrrearrChnlsultObj.destination_system}' and param_name = 'KAFKA_TOPIC' and need_sync = 'Y'`
                                                     ExecuteQuery1(TakeKafkaTp, function (arrTopic) {
                                                         if(arrTopic.length > 0){
-                                                            var TakeComCat = `select param_value from core_ns_params where process_name = '${params.processName}' and destination_system ='${arrrearrChnlsultObj.destination_system}' and param_name = 'COMM_GROUP'`
+                                                            var TakeComCat = `select param_value from core_ns_params where process_name = '${params.processName}' and destination_system ='${arrrearrChnlsultObj.destination_system}' and param_name = 'COMM_GROUP' and need_sync = 'Y'`
                                                             ExecuteQuery1(TakeComCat,  function (arrComCat) {
                                                                 if(arrComCat.length > 0){
                                                                     reqAsync.forEachOfSeries(arrresult, function (arrresultObj, i, nextobjctfunc) {

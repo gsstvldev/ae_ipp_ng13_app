@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { HttphelperService } from '../../scripts/fx/httphelper.service'; // for server call only use http services
+import { HttphelperService } from '../../scripts/fx/httphelper.service'; //  for server call only use http services
 import { CoreService } from '../../scripts/fx/core.service'; //core services used for get screen values from memory variables
 import { AppHandlerService } from '../../scripts/fx/app.handler.service'; //Show for Dialog for Screen
 import { SessionService } from '../../scripts/fx/session.service'; // get Session information

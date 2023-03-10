@@ -77,7 +77,7 @@ app.post('/', function(appRequest, appResponse, next) {
     
     
     
-                        takehour = `select * from Core_nc_system_setup where param_category='${params.param_category}' and param_code='${params.param_code}' `
+                        takehour = `select * from Core_nc_system_setup where param_category='${params.param_category}' and param_code='${params.param_code}'  and need_sync = 'Y' `
                         ExecuteQuery1(takehour, function (arrhour) {
                             if (arrhour.length > 0) {
                                 var utcMoment = moment.utc();
@@ -106,7 +106,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 
                             
                                                                     
-                                                                    var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL'`
+                                                                    var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL'  and need_sync = 'Y'`
                                                                     ExecuteQuery1(Takekafkaurl, async function (arrurl) {
                                                                         if (arrurl.length) {
                                                                             var url = arrurl[0].param_detail;

@@ -54,7 +54,7 @@ app.post('/', function(appRequest, appResponse, next) {
                 reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
                     try {
 
-                        var Takeapiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_LIQUIDITY' and param_code='URL'`
+                        var Takeapiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_LIQUIDITY' and param_code='URL' and need_sync='Y'`
                         ExecuteQuery1(Takeapiurl, function (arrUrl) {
                             if (arrUrl.length > 0) {
                                 var PRCT_ID = prct_id;

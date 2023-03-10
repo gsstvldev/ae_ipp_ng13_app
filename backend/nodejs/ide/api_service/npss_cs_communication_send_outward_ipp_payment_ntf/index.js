@@ -53,9 +53,9 @@ app.post('/', function(appRequest, appResponse, next) {
             reqTranDBInstance.GetTranDBConn(headers, false, async function (pSession) {
                 mTranConn = pSession; //  assign connection     
                 try {
-                    var Takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL'`
+                    var Takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync = 'Y'`
                     var TakeStatus = `select process_queue_status  from core_q_status_roles where screen_name = '${params.screenName}' and role_id = '${params.roleId}'`
-                    var TakeTempCode = `select param_value from core_ns_params cnp where process_name = 'Outward IPP Payment'`
+                    var TakeTempCode = `select param_value from core_ns_params  where process_name = 'Outward IPP Payment' and need_sync = 'Y'`
                     ExecuteQuery1(Takeurl, function (arrUrl) {
                         if (arrUrl.length > 0) {
                          
@@ -65,10 +65,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                     ExecuteQuery1(TakedatafrmntfTbl, function (arrTran) {
                                         if (arrTran.length > 0) {
                                             reqAsync.forEachOfSeries(arrTran, function (arrTranobj, i, nextobjctfunc) {
-                                                var TakeTopicName = `select param_value,process_name from core_ns_params where destination_system = '${arrTranobj.channel_id}' and param_name = 'KAFKA_TOPIC'`
+                                                var TakeTopicName = `select param_value,process_name from core_ns_params where destination_system = '${arrTranobj.channel_id}' and param_name = 'KAFKA_TOPIC' and need_sync = 'Y'`
                                                 ExecuteQuery1(TakeTopicName, function (TopicName) {
                                                     if (TopicName.length > 0) {
-                                                        var TakeCmCategory = `select param_value  from core_ns_params where destination_system = '${arrTranobj.channel_id}' and param_name = 'COMM_GROUP'`
+                                                        var TakeCmCategory = `select param_value  from core_ns_params where destination_system = '${arrTranobj.channel_id}' and param_name = 'COMM_GROUP' and need_sync = 'Y'`
                                                         ExecuteQuery1(TakeCmCategory, function (arrComCategory) {
                                                             if (arrComCategory.length > 0) {
                                                                 try {

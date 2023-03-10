@@ -50,8 +50,8 @@ console.log('tran.......................',serviceName )
            console.log('Tran connection');
                try {
                    var takeCount = `select count(*) from npss_transactions where status in('IP_RCT_REVERSAL_REQ_RECEIVED' , 'IP_RCT_REVERSAL_VLD_FAILED')`
-                   var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL'`
-                   var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_TO'`
+                   var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync = 'Y'`
+                   var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_TO' and need_sync = 'Y'`
                    ExecuteQuery1(takeCount, function (arrCount) {
 console.log(params.process_name)
                        if (arrCount == 0) {
@@ -67,18 +67,18 @@ console.log(params.process_name)
                                    ExecuteQuery1(TakeCometo, function (arrcomto) {
 console.log('arrcomto');
 
-                                       var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'ORIGIN'`
+                                       var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'ORIGIN' and need_sync = 'Y'`
                                        ExecuteQuery1(Takeorg, function (arrorg) {
 console.log('arrorg');
 
-                                           var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_GROUP'`
+                                           var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_GROUP' and need_sync = 'Y'`
                                            ExecuteQuery1(tkcomgp, function (arrcomgp) {
 console.log('arrcomgp');
-                                               var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_CC'`
+                                               var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_CC' and need_sync = 'Y'`
                                                ExecuteQuery1(Takecmcc, function (arrcomcc) {
 console.log('arrcomcc');
 
-                                                   var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COM_CATEGORY'`
+                                                   var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COM_CATEGORY' and need_sync = 'Y'`
                                                    ExecuteQuery1(TakecomCat, function (arrCatgory) {
 console.log('arrCatgory');
 

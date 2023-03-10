@@ -55,18 +55,18 @@ app.post('/', function(appRequest, appResponse, next) {
             reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
                 mTranConn = pSession; //  assign connection     
                 try {
-                    var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL'`
-                    var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_TO'`
+                    var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync = 'Y'`
+                    var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_TO' and need_sync = 'Y'`
                     ExecuteQuery1(takeurl, function (arrUrl) {
                         if (arrUrl.length > 0) {
                             ExecuteQuery1(TakeCometo, function (arrcomto) {
-                                var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'ORIGIN'`
+                                var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'ORIGIN' and need_sync = 'Y'`
                                 ExecuteQuery1(Takeorg, function (arrorg) {
-                                    var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_GROUP'`
+                                    var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_GROUP' and need_sync = 'Y'`
                                     ExecuteQuery1(tkcomgp, function (arrcomgp) {
-                                        var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_CC'`
+                                        var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_CC' and need_sync = 'Y'`
                                         ExecuteQuery1(Takecmcc, function (arrcomcc) {
-                                            var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COM_CATEGORY'`
+                                            var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COM_CATEGORY' and need_sync = 'Y'`
                                             ExecuteQuery1(TakecomCat, function (arrCatgory) {
                                                 var Takedata = `select uetr from npss_transactions order by created_date desc`
                                                 ExecuteQuery1(Takedata, function (arrData) {

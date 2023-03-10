@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
     /*  Created By : Siva   Harish
     Created Date :19/11/2022
@@ -48,7 +49,13 @@ app.post('/', function(appRequest, appResponse, next) {
                     } else {
                         var PRCT_ID = prct_id
                         try {
-
+                            if (Array.isArray(params.Id)) {
+                                arrTranID = params.Id.map(function (eachTran) { return eachTran.toString(); });
+                            }
+                            else {
+                                arrTranID = [params.Id.toString()];
+                            }
+                            TempTranID = '(' + "'" + arrTranID.toString().split(',').join("','") + "'" + ')';
                             //  var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'`
                             var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                             ExecuteQuery1(ruleqry, function (result) {
@@ -56,22 +63,22 @@ app.post('/', function(appRequest, appResponse, next) {
                                     success_process_status = result[0].success_process_status;
                                     success_status = result[0].success_status;
                                     // var updtranqry = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',cbs_ref_no = '${params.Refno}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id='${params.Id}' `
-                                    var updtranqry = `update npss_transactions set  cbs_ref_no = '${params.Refno}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id='${params.Id}' `
+                                    var updtranqry = `update npss_transactions set  cbs_ref_no = '${params.Refno}',status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id in${TempTranID} `
                                     ExecuteQuery(updtranqry, function (tranresult) {
                                         if (tranresult == 'SUCCESS') {
-                                            var updprclogqry = `update npss_trn_process_log set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where uetr='${params.UETR}' `
-                                            ExecuteQuery(updprclogqry, function (prclogresult) {
-                                                if (prclogresult == 'SUCCESS') {
+                                           //var updprclogqry = `update npss_trn_process_log set  status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where uetr='${params.UETR}' `
+                                            //ExecuteQuery(updprclogqry, function (prclogresult) {
+                                             //   if (prclogresult == 'SUCCESS') {
                                                     objresponse.status = 'SUCCESS';
                                                     sendResponse(null, objresponse)
-                                                }
-                                                else {
-                                                    console.log("Error in Process Log Updation");
-                                                    objresponse.status = 'FAILURE';
-                                                    sendResponse(null, objresponse)
-                                                }
+                                               // }
+                                               // else {
+                                              //      console.log("Error in Process Log Updation");
+                                               //     objresponse.status = 'FAILURE';
+                                              //      sendResponse(null, objresponse)
+                                              //  }
 
-                                            })
+                                           // })
 
 
 
@@ -159,6 +166,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

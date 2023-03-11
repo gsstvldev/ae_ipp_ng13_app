@@ -832,10 +832,10 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     function GetgmMargin(arrprocesslog) {
                         return new Promise((resolve, reject) => {
-                            var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}'`
+                            var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' order by npsstpl_id desc`
                             ExecuteQuery1(Takedata, function (arrresponse) {
                                 var senddata = {}
-                            var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where uetr = '${arrprocesslog[0].uetr}'`
+                            var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
                             ExecuteQuery1(Takeloccur, function (localcur) {
                                 if(localcur.length == 0){
                                     senddata.amount_credited_loc_cur = ''

@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -19,6 +20,7 @@ app.post('/', function(appRequest, appResponse, next) {
          Modified By : Siva Harish
         Modified Date :17-01-2023  
         Reason for :Remove Console log
+        Reason for changing payload
         */
         var serviceName = ' NPSS_IP_REV_GET_DEAL';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -79,31 +81,64 @@ app.post('/', function(appRequest, appResponse, next) {
                                             ExecuteQuery1(take_api_url, function (arrurl) {
                                                 if (arrurl.length) {
                                                     var url = arrurl[0].param_detail;
-
-                                                    fn_doapicall(url, arrprocesslog, arrActInf, function (result) {
-                                                        reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
-
-                                                        if (result == 'FAILURE') {
-                                                            var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                            ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_DEAL_FAILURE'`
-                                                                ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                    if (arrFail.length) {
-                                                                        objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
-                                                                        sendResponse(null, objresponse);
-                                                                    } else {
-                                                                        objresponse.status = 'Api Call Failure No Error Code Found'
-                                                                        sendResponse(null, objresponse);
-                                                                    }
-                                                                })
+                                                    var senddata = {}
+                                                    var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where uetr = '${arrprocesslog[0].uetr}'`
+                                                    ExecuteQuery1(Takeloccur, function (localcur) {
+                                                        if(localcur.length == 0){
+                                                            senddata.amount_credited_loc_cur = ''
+                                                            fn_doapicall(url, arrprocesslog, arrActInf,senddata, function (result) {
+                                                                reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
+        
+                                                                if (result == 'FAILURE') {
+                                                                    var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                                                                    ExecuteQuery1(Takeuetr, function (arruetr) {
+                                                                        var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_DEAL_FAILURE'`
+                                                                        ExecuteQuery1(TakeFailureresult, function (arrFail) {
+                                                                            if (arrFail.length) {
+                                                                                objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
+                                                                                sendResponse(null, objresponse);
+                                                                            } else {
+                                                                                objresponse.status = 'Api Call Failure No Error Code Found'
+                                                                                sendResponse(null, objresponse);
+                                                                            }
+                                                                        })
+                                                                    })
+                                                                }
+                                                                else {
+                                                                    objresponse.status = 'SUCCESS';
+                                                                    objresponse.data = result;
+                                                                    sendResponse(null, objresponse);
+                                                                }
+                                                            })
+                                                        }else{
+                                                            senddata.amount_credited_loc_cur = localcur[0].amount_credited_loc_cur || ''
+                                                            fn_doapicall(url, arrprocesslog, arrActInf,senddata, function (result) {
+                                                                reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
+        
+                                                                if (result == 'FAILURE') {
+                                                                    var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                                                                    ExecuteQuery1(Takeuetr, function (arruetr) {
+                                                                        var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_DEAL_FAILURE'`
+                                                                        ExecuteQuery1(TakeFailureresult, function (arrFail) {
+                                                                            if (arrFail.length) {
+                                                                                objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
+                                                                                sendResponse(null, objresponse);
+                                                                            } else {
+                                                                                objresponse.status = 'Api Call Failure No Error Code Found'
+                                                                                sendResponse(null, objresponse);
+                                                                            }
+                                                                        })
+                                                                    })
+                                                                }
+                                                                else {
+                                                                    objresponse.status = 'SUCCESS';
+                                                                    objresponse.data = result;
+                                                                    sendResponse(null, objresponse);
+                                                                }
                                                             })
                                                         }
-                                                        else {
-                                                            objresponse.status = 'SUCCESS';
-                                                            objresponse.data = result;
-                                                            sendResponse(null, objresponse);
-                                                        }
                                                     })
+                                                   
                                                 }
                                                 else {
                                                   
@@ -145,7 +180,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     // Do API Call for Service 
-                    function fn_doapicall(url, arrprocesslog, arrActInf, callbackapi) {
+                    function fn_doapicall(url, arrprocesslog, arrActInf,senddata, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Get Deal'
                             var request = require('request');
@@ -166,8 +201,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "process_type": "IP",
                                         "process": "",
-                                        "uetr": params.UETR,
-                                        "deal_process": "GetDeal"
+                                        "uetr": arrprocesslog[0].uetr || '',
+                                        "deal_process": "GetDeal",
+                                        "amount_credited_loc_cur":senddata.amount_credited_loc_cur
 
 
                                     },
@@ -258,6 +294,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

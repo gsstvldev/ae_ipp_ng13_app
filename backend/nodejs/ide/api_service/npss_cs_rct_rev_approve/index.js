@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -27,6 +28,7 @@ try {
          Modified By : Daseen 18/02/2023 -  Process log INSERT BEFORE api call
            Modified By : Siva Harish 1/03/2023 -  changing payload
            Modified By : Siva Harish 3/03/2023 -  removing trnprslog tbl update
+             Modified By : Siva Harish 10/03/2023 -  Handling AED and Non AED currency
     */
     var serviceName = 'NPSS RCT Outward Reversal Approve';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -397,19 +399,26 @@ try {
                 //Get sell Rate and Margin
                 function GetsellMarRate(acctInfm) {
                     return new Promise((resolve, reject) => {
-                        var Takesellrate = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${acctInfm.customer_id}'`
-                        ExecuteQuery1(Takesellrate, function (arrselldet) {
-                            var Getselldetails = {}
-                            if (arrselldet.length == 0) {
-                                Getselldetails.sell_margin = ''
-                                Getselldetails.sell_rate = ''
-                            } else {
-                                Getselldetails.sell_margin = arrselldet[0].sell_margin
-                                Getselldetails.sell_rate = arrselldet[0].sell_rate
-                            }
+                        var Getselldetails = {}
+                        if(acctInfm.currency == 'AED'){
+                            Getselldetails.sell_margin = ''
+                            Getselldetails.sell_rate = ''
                             resolve(Getselldetails)
-
-                        })
+                        }else{
+                            var Takesellrate = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${acctInfm.customer_id}'`
+                            ExecuteQuery1(Takesellrate, function (arrselldet) {
+                                if (arrselldet.length == 0) {
+                                    Getselldetails.sell_margin = ''
+                                    Getselldetails.sell_rate = ''
+                                } else {
+                                    Getselldetails.sell_margin = arrselldet[0].sell_margin
+                                    Getselldetails.sell_rate = arrselldet[0].sell_rate
+                                }
+                                resolve(Getselldetails)
+    
+                            })
+                        }
+                        
                     })
                 }
 
@@ -500,6 +509,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

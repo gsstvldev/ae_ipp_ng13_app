@@ -64,9 +64,9 @@ export class npss_cs_reversal_set_status_and_bind_valueService {
                     if (roleId == '738' && screenInstance.wftpa_description == 's_rct_reversal_non_aed') {
                         var CtrlScope1 = screenInstance['deal_ui'].f_npss_reversal_deal_plog_ui.model
                         CtrlScope1.EXCHANGE_RATE = res.data.data.exchange_rate
-                        CtrlScope1.BUY_CURRENCY = res.data.data.contra_amount
+                        CtrlScope1.BUY_CURRENCY = res.data.data.buy_currency
                         CtrlScope1.SELL_CURRENCY = res.data.data.sell_currency
-                        CtrlScope1.CONTRA_AMOUNT = res.data.data.buy_currency
+                        CtrlScope1.CONTRA_AMOUNT = res.data.data.contra_amount
                         CtrlScope1.DEALT_AMOUNT = res.data.data.dealt_amount
                         this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
 

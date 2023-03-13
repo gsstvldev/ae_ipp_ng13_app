@@ -6,7 +6,28 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
+const { rejects } = require('assert');
+const { query } = require('express');
+var reqExpress = require('express');
+const { resolve } = require('path');
+var router = reqExpress.Router();
+var Path = require('path');
+const { createInflate } = require('zlib');
 
+
+const { GetDateTimeWithTenantTZ } = require('../../../../torus-references/common/dateconverter/DateFormatter');
+const { GetAllUniqueTranDBKeys } = require('../../../../torus-references/common/InstanceHelper');
+var $REFPATH = Path.join(__dirname, '../../../../torus-references/');
+
+// router.post("/vph_test1", function (appRequest, appResponse) {
+//     var $MODULEPATH = '../../node_modules/';
+// var express = require('express');
+// var Path = require('path');
+// var $REFPATH = Path.join(__dirname, '../../torus-references/');
+
+
+router.post('/vph_test', function (appRequest, appResponse, next) {
+    
 
 
 
@@ -45,6 +66,7 @@ try {
                Reason for : changes contra amount logic 18/02/2023
                 Reason for : changes Authpac004 07/03/2023
                 Reason for : changes Authpac004 12/03/2023
+                Reason for : changes Authpac004 13/03/2023
     */
     var serviceName = 'NPSS IP REV Ret Auth PACS004';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -59,7 +81,7 @@ try {
     var xml2js = require('xml2js');
     var mTranConn = "";
     var addquery = "";
-
+    var Objfiledata
 
     var objresponse = {
         'status': 'FAILURE',
@@ -157,6 +179,13 @@ try {
                                                     } else {
                                                         Getdata = {}
                                                     }
+
+                                                    if(apicalls == 0){
+                                                        Objfiledata = await  Getorgdata(arrprocesslog)
+                                                    }else{
+                                                        Objfiledata = ''
+                                                    }
+                                                   
                                                     if (params.screenName == 's_rct_reversal_non_aed') {
 
                                                         var ContraAmount = await getconamount(arrprocesslog, apicalls)
@@ -166,7 +195,7 @@ try {
                                                             if (arrurl.length) {
                                                                 var url = arrurl[0].param_detail;
                                                                 if (apicalls == 0 || apicalls == '0') {
-                                                                    fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName, function (firstapiresult) {
+                                                                    fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName,Objfiledata, function (firstapiresult) {
                                                                         if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
 
                                                                             ExecuteQuery1(take_return_url, function (arrreturnurl) {
@@ -314,7 +343,7 @@ try {
                                                                         var url = arrurl[0].param_detail;
                                                                         if (apicalls == 0 || apicalls == '0') {
                                                                             var Amount
-                                                                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName, function (firstapiresult) {
+                                                                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName,Objfiledata, function (firstapiresult) {
                                                                                 if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
 
                                                                                     ExecuteQuery1(take_return_url, function (arrreturnurl) {
@@ -603,7 +632,7 @@ try {
 
 
                 // Do API Call for Service 
-                function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, screenName, callbackapi) {
+                function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, screenName,Objfiledata, callbackapi) {
                     try {
                         var apiName = 'NPSS IP REV RET AUTH PACS004'
                         var request = require('request');
@@ -617,6 +646,7 @@ try {
 
 
                                 "payload": {
+                                    "org_field_data":Objfiledata || '',
                                     "department_code": arrprocesslog[0].department_code || '',
                                     "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
                                     "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
@@ -906,7 +936,20 @@ try {
                     })
                 }
 
+                function Getorgdata(arrprocesslog) {
+                    return new Promise((resolve, reject) => {
+                        var orgflddata = `select process_ref_no from npss_trn_process_log where process_name = 'Inward Credit Posting' and uetr = '${arrprocesslog[0].uetr}' and status = 'IP_RCT_POSTING_SUCCESS'`
+                        ExecuteQuery1(orgflddata, function (arrflddata) {
+                            if (arrflddata.length > 0) {
+                                resolve(arrflddata[0].process_ref_no)
+                            } else {
+                                objresponse.status = "ORG Field Data is Not Found"
+                                sendResponse(null, objresponse)
+                            }
 
+                        })
+                    })
+                }
 
 
                 //Function to call Credit Card api
@@ -1334,6 +1377,16 @@ catch (error) {
 
 
 
+
+
+});
+
+module.exports = router;
+
+// });
+
+
+module.exports = router;
 
 
 

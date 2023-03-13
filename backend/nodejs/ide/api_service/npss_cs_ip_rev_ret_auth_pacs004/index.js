@@ -6,35 +6,8 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
-const { rejects } = require('assert');
-const { query } = require('express');
-var reqExpress = require('express');
-const { resolve } = require('path');
-var router = reqExpress.Router();
-var Path = require('path');
-const { createInflate } = require('zlib');
 
-
-const { GetDateTimeWithTenantTZ } = require('../../../../torus-references/common/dateconverter/DateFormatter');
-const { GetAllUniqueTranDBKeys } = require('../../../../torus-references/common/InstanceHelper');
-var $REFPATH = Path.join(__dirname, '../../../../torus-references/');
-
-// router.post("/vph_test1", function (appRequest, appResponse) {
-//     var $MODULEPATH = '../../node_modules/';
-// var express = require('express');
-// var Path = require('path');
-// var $REFPATH = Path.join(__dirname, '../../torus-references/');
-
-
-router.post('/vph_test', function (appRequest, appResponse, next) {
     
-
-
-
-
-
-
-
 try {
     /*   Created By :Daseen
     Created Date :04-11-2022
@@ -1378,15 +1351,6 @@ catch (error) {
 
 
 
-
-});
-
-module.exports = router;
-
-// });
-
-
-module.exports = router;
 
 
 

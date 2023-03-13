@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28588 
+Build ID        : 28660 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-09 6:33 AM 
+Modified Date   : 2023-Mar-13 14:7 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_ip_transactions
@@ -168,9 +168,9 @@ focustoelement(){
 		//Properties of cr_acct_identification
 		this.ctrl.cr_acct_identification = {}
 		this.ctrl.cr_acct_identification.id = "RN11CN4"
-		this.ctrl.cr_acct_identification.desc = "Cr Account Identification"
+		this.ctrl.cr_acct_identification.desc = "Card Number"
 		this.ctrl.cr_acct_identification.visible = true
-		this.ctrl.cr_acct_identification.label_name = "Cr Account Identification"
+		this.ctrl.cr_acct_identification.label_name = "Card Number"
 		this.ctrl.cr_acct_identification.df_code = "DF_1304_1665901396659"
 		this.ctrl.cr_acct_identification.df_description = "Column Group 1"
 		this.ctrl.cr_acct_identification.uictrl_code = "TXT"

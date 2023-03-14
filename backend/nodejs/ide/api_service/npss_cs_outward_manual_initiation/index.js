@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
     /*  Created By :sIVA hARISH
     Created Date : 31-12-2022
@@ -16,6 +17,8 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified Date : 25/01/2023
      Modified By : Siva Harish
     Modified Date : 26/01/2023
+     Modified By : Siva Harish
+    Modified Date : 14/03/2023
     Reason for : 
      
     */
@@ -122,7 +125,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objCusTranInst.HDR_CREATED_DATE = arrdata[0].hdr_created_date
                                                         objCusTranInst.HDR_TOTAL_RECORDS = arrdata[0].hdr_total_records
                                                         objCusTranInst.RATE_CODE = arrdata[0].rate_code
-                                                        objCusTranInst.BUY_RATE = params.BUY_RATE
+                                                        objCusTranInst.BUY_RATE = params.BUY_RATE || null
                                                         objCusTranInst.HDR_TOTAL_AMOUNT = arrdata[0].hdr_total_amount
                                                         objCusTranInst.CATEGORY_PURPOSE = arrdata[0].category_purpose
                                                         objCusTranInst.HDR_SETTLEMENT_DATE = arrdata[0].hdr_settlement_date
@@ -389,6 +392,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

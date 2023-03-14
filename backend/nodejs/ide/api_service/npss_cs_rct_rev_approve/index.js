@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 try {
@@ -28,6 +29,7 @@ try {
            Modified By : Siva Harish 3/03/2023 -  removing trnprslog tbl update
              Modified By : Siva Harish 10/03/2023 -  Handling AED and Non AED currency
               Modified By : Daseen 13/03/2023 -  Handling FH 
+               Modified By : payload modified 14/02/2023
     */
     var serviceName = 'NPSS RCT Outward Reversal Approve';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -256,8 +258,18 @@ try {
                             if (TakeAccountInformation.currency == 'AED') {
                                 console.log('AED Tran')
                             } else {
-                                options.json.dr_sell_margin = TakeSellRatemargin.sell_margin || '',
+                                if(TakeSellRatemargin.sell_margin  && TakeSellRatemargin.sell_rate){
+                                    options.json.dr_sell_margin = TakeSellRatemargin.sell_margin
+                                    options.json.dr_sell_rate = TakeSellRatemargin.sell_rate
+                                }else if(TakeSellRatemargin.sell_margin != '' && TakeSellRatemargin.sell_rate == ''){
+                                    options.json.dr_sell_margin = TakeSellRatemargin.sell_margin || ''
+                                    options.json.dr_sell_rate = ''
+                                }else if(TakeSellRatemargin.sell_rate != ''  && TakeSellRatemargin.sell_margin == ''){
                                     options.json.dr_sell_rate = TakeSellRatemargin.sell_rate || ''
+                                    options.json.dr_sell_margin = ''
+                                }
+                                
+                                   
                             }
                         }
 
@@ -419,8 +431,8 @@ try {
                                     Getselldetails.sell_margin = ''
                                     Getselldetails.sell_rate = ''
                                 } else {
-                                    Getselldetails.sell_margin = arrselldet[0].sell_margin
-                                    Getselldetails.sell_rate = arrselldet[0].sell_rate
+                                    Getselldetails.sell_margin = arrselldet[0].sell_margin != null ? arrselldet[0].sell_margin : ''
+                                    Getselldetails.sell_rate = arrselldet[0].sell_rate != null ? arrselldet[0].sell_rate : ''
                                 }
                                 resolve(Getselldetails)
 
@@ -517,6 +529,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

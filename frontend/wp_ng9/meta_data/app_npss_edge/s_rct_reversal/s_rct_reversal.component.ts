@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28605 
+Build ID        : 28667 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-11 7:34 AM 
+Modified Date   : 2023-Mar-14 5:48 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -894,7 +894,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.original_transaction_details.views = {}
 		this.original_transaction_details.onChangecomponent = new EventEmitter<any>()
 		this.original_transaction_details.show = true
-		this.original_transaction_details.dynamic_param = {}
+		this.original_transaction_details.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
 	
 		// Component level properties - "Refund Processing Details" 
 		this.refund_processing_details.uictrl_code = "datatable"
@@ -906,7 +906,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.refund_processing_details.views = {}
 		this.refund_processing_details.onChangecomponent = new EventEmitter<any>()
 		this.refund_processing_details.show = true
-		this.refund_processing_details.dynamic_param = {}
+		this.refund_processing_details.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
 	}
 	// Methods
 	ngAfterViewInit() {

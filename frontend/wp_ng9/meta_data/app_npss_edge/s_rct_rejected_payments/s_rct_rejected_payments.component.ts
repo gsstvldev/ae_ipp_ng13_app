@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28588 
+Build ID        : 28667 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-09 6:33 AM 
+Modified Date   : 2023-Mar-14 5:48 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_payments
@@ -627,7 +627,7 @@ export class s_rct_rejected_paymentsComponent implements OnInit,AfterViewInit {
 		this.failure_list.views = {}
 		this.failure_list.onChangecomponent = new EventEmitter<any>()
 		this.failure_list.show = true
-		this.failure_list.dynamic_param = {}
+		this.failure_list.dynamic_param = {"column_header_name":"","value_header_name":""}
 	
 		// Component level properties - "Tran List" 
 		this.tran_list.uictrl_code = "datatable"

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28623 
+Build ID        : 28667 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-10 13:6 PM 
+Modified Date   : 2023-Mar-14 5:48 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_failures
@@ -514,7 +514,7 @@ export class s_bct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.failure_list.views = {}
 		this.failure_list.onChangecomponent = new EventEmitter<any>()
 		this.failure_list.show = true
-		this.failure_list.dynamic_param = {}
+		this.failure_list.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
 	}
 	// Methods
 	ngAfterViewInit() {

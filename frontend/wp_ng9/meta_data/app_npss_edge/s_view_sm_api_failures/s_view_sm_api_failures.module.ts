@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27598 
+Build ID        : 28667 
 Modified By     : Admin 
-Modified Date   : 2022-Dec-29 6:21 AM 
+Modified Date   : 2023-Mar-14 5:48 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_sm_api_failures

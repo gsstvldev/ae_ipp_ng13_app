@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28564 
+Build ID        : 28667 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-08 11:1 AM 
+Modified Date   : 2023-Mar-14 5:48 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -267,7 +267,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.view_dr_cr_details.views = {}
 		this.view_dr_cr_details.onChangecomponent = new EventEmitter<any>()
 		this.view_dr_cr_details.show = true
-		this.view_dr_cr_details.dynamic_param = {"column_header_name":"","value_header_name":""}
+		this.view_dr_cr_details.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
 	
 		// Component level properties - "Back UI" 
 		this.back_ui.uictrl_code = "dynamic_ui"

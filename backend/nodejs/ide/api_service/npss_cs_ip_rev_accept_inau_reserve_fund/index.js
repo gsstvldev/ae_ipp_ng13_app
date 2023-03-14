@@ -9,17 +9,6 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
     
-
-
-
-
-
-
-
-
-
-
-
     try {
         /*   Created By :Daseen
         Created Date :04-11-2022
@@ -50,6 +39,7 @@ app.post('/', function(appRequest, appResponse, next) {
                Reason for : CHANGING Reserve Fund api payload 07/03/2023
                Reason for : Changing core table query
                 Reason for : Take gmmargin and rate for only non aed 11/3/23
+                Reason for : changes done for finance house 14/03/2023
         */
         var serviceName = 'NPSS IP REV Accept INAU Reserve Fund';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -412,21 +402,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         arrCusTranInst.push(objCusTranInst)
 
                                                         _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
-                                                            var UpdateTrnTble = `Update npss_transactions set status ='${arrurlResult[0].success_status}',process_status = '${arrurlResult[0].success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                            var UpdateProcessLogTbl = `Update npss_trn_process_log set t24_return_code = '${params.T24_Return_Code}',cbuae_return_code = '${params.CBUAE_Return_Code}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsstpl_id = '${params.NPSSTPL_Id}'`
+                                                            var UpdateTrnTble = `Update npss_transactions set status ='${arrurlResult[0].success_status}',process_status = '${arrurlResult[0].success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`                                                      
                                                             ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                if (arrUpdTranTbl == 'SUCCESS') {
-
-                                                                    ExecuteQuery(UpdateProcessLogTbl, function (arrUpdPrcsTbl) {
-                                                                        if (arrUpdPrcsTbl == 'SUCCESS') {
-                                                                            objresponse.status = 'SUCCESS';
-                                                                            sendResponse(null, objresponse);
-                                                                        } else {
-                                                                            objresponse.status = 'No Data Updated in Processlog Table';
-                                                                            sendResponse(null, objresponse);
-
-                                                                        }
-                                                                    })
+                                                                if (arrUpdTranTbl == 'SUCCESS') {                                                                                                                     
+                                                                 objresponse.status = 'SUCCESS';
+                                                                sendResponse(null, objresponse);                                                                                                                                       
                                                                 } else {
                                                                     objresponse.status = 'No Data Updated in Transaction Table';
                                                                     sendResponse(null, objresponse);
@@ -1218,6 +1198,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

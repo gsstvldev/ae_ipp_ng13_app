@@ -1,1 +1,1 @@
-[{ "key": "215~873", "target" : "APP_RPT_DEFINITIONS_INFO", "content" :"{ \"query\" : \"delete from app_rpt_definitions_info where app_id=? and arptd_id=?\", \"params\" : [$DQ$215$DQ$, $DQ$873$DQ$] }", "qry_type" : "D"  },{ "key": "215~874", "target" : "APP_RPT_DEFINITIONS_INFO", "content" :"{ \"query\" : \"delete from app_rpt_definitions_info where app_id=? and arptd_id=?\", \"params\" : [$DQ$215$DQ$, $DQ$874$DQ$] }", "qry_type" : "D"  }]
+[]

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28667 
+Build ID        : 28693 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-14 5:48 AM 
+Modified Date   : 2023-Mar-15 8:6 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -17,12 +17,13 @@ import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hi
 import {torus_cs_set_rule_mi_paramService} from '../../../custom_widget/torus_cs_set_rule_mi_param/torus_cs_set_rule_mi_param.service'
 import {npss_cs_rev_get_usable_balanceService} from '../../../custom_widget/npss_cs_rev_get_usable_balance/npss_cs_rev_get_usable_balance.service'
 import {npss_cs_outward_manual_initiationService} from '../../../custom_widget/npss_cs_outward_manual_initiation/npss_cs_outward_manual_initiation.service'
+import {npss_cs_manual_initiation_get_dealService} from '../../../custom_widget/npss_cs_manual_initiation_get_deal/npss_cs_manual_initiation_get_deal.service'
 
 @Component({
 	selector: 's_rct_manual_initiation',
 	templateUrl: './s_rct_manual_initiation.component.html',
 	styleUrls: ['./s_rct_manual_initiation.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,torus_cs_set_rule_mi_paramService,npss_cs_rev_get_usable_balanceService,npss_cs_outward_manual_initiationService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,torus_cs_set_rule_mi_paramService,npss_cs_rev_get_usable_balanceService,npss_cs_outward_manual_initiationService,npss_cs_manual_initiation_get_dealService]
 })
     
 // Start of class 
@@ -59,6 +60,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	uicgc_21 : string = "payment_processing_details_ui"
 	uicgc_22 : string = "search_info_ui"
 	uicgc_23 : string = "get_usable_balance_widget"
+	uicgc_24 : string = "get_deal_ui"
 	key_events : any = {}
 	btl_1304_1672489774529 : string = "p_initate_layout"
 	btl_1304_1670245368385 : string = "p_view_req_and_res"
@@ -71,7 +73,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_16","uicgc_6","uicgc_14","uicgc_21","uicgc_4","uicgc_18","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
+	forms : any = ["uicgc_16","uicgc_6","uicgc_14","uicgc_21","uicgc_4","uicgc_18","uicgc_24","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
@@ -113,12 +115,14 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	payment_processing_details_ui : any = {}
 	payment_processing_details_ui_back : any = {}
 	payment_processing_details_ui_save : any = {}
+	payment_processing_details_ui_get_deal : any = {}
 	search_info_ui : any = {}
 	get_usable_balance_widget : any = {}
+	get_deal_ui : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private torus_cs_set_rule_mi_paramService:torus_cs_set_rule_mi_paramService,private npss_cs_rev_get_usable_balanceService:npss_cs_rev_get_usable_balanceService,private npss_cs_outward_manual_initiationService:npss_cs_outward_manual_initiationService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private torus_cs_set_rule_mi_paramService:torus_cs_set_rule_mi_paramService,private npss_cs_rev_get_usable_balanceService:npss_cs_rev_get_usable_balanceService,private npss_cs_outward_manual_initiationService:npss_cs_outward_manual_initiationService,private npss_cs_manual_initiation_get_dealService:npss_cs_manual_initiation_get_dealService) {
     
 	}
     
@@ -570,6 +574,15 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.payment_processing_details_ui_save.dynamic_param = {}
 		this.payment_processing_details_ui_save.role = []
 		this.payment_processing_details_ui_save.action = ""
+		
+		// "Get Deal" Button of "Payment Processing Details UI" component
+		this.payment_processing_details_ui_get_deal.label_name = "Get Deal"
+		this.payment_processing_details_ui_get_deal.show = true
+		this.payment_processing_details_ui_get_deal.disabled = false
+		this.payment_processing_details_ui_get_deal.params = {"icon_only":false,"uicgcc_style":"fa fa-dollar"}
+		this.payment_processing_details_ui_get_deal.dynamic_param = {}
+		this.payment_processing_details_ui_get_deal.role = []
+		this.payment_processing_details_ui_get_deal.action = ""
 	
 		// Component level properties - "Search Info UI" 
 		this.search_info_ui.uictrl_code = "dynamic_form_search"
@@ -594,6 +607,20 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.get_usable_balance_widget.onChangecomponent = new EventEmitter<any>()
 		this.get_usable_balance_widget.show = true
 		this.get_usable_balance_widget.dynamic_param = {}
+	
+		// Component level properties - "Get Deal UI" 
+		this.get_deal_ui.uictrl_code = "dynamic_ui"
+		this.get_deal_ui.uicgc_desc = "Get Deal UI"
+		this.get_deal_ui.uicgc_code = "uicgc_24"
+		this.get_deal_ui.params = {}
+		this.get_deal_ui.datasource = {}
+		this.get_deal_ui.context_menu = []
+		this.get_deal_ui.views = {"first":"DTT_1304_1665905039255","is_tab_mode":"N","dtt_1304_1665905039255":{"0":[{"dttv_id":"NPSS MI Get Deal UI","tab_order":0,"tab_name":"","uicgc_description":"Get Deal UI","role_description":"default","dtt_description":"NPSS Trn Process Log"}]}}
+		this.get_deal_ui.onChangecomponent = new EventEmitter<any>()
+		this.get_deal_ui.show = true
+		this.get_deal_ui.dynamic_param = {}
+		this.get_deal_ui.f_npss_mi_get_deal_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.get_deal_ui.form_name = "f_npss_mi_get_deal_ui"
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -731,6 +758,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_initiate__brfq_for_fh_otd(peventcontext)
 		this.navigation_ui_initiate__brfq_for_fh_ppd(peventcontext)
 		this.navigation_ui_initiate__e_1678368608079()
+		this.navigation_ui_initiate__de_for_get_deal_ui()
 	}
 
 	//Handler for INTERNAL event of "brfq for fab ppd"
@@ -884,6 +912,11 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "payment processing details ui back"
 	payment_processing_details_ui_back__action_button_click(){
 		this.payment_processing_details_ui_back__rs_for_initate_back()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "payment processing details ui get deal"
+	payment_processing_details_ui_get_deal__action_button_click(){
+		this.payment_processing_details_ui_get_deal__cc_for_get_deal_btn()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1780,6 +1813,27 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.npss_cs_rev_get_usable_balanceService.fn_npss_cs_rev_get_usable_balance(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui initiate"
+	navigation_ui_initiate__de_for_get_deal_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_initiate"
+		let destn_id="get_deal_ui"
+		let parent_source_id=""
+		let event_code="e_1678865788345"
+		let event_params={"caller_name":"navigation_ui_initiate__de_for_get_deal_ui","event_desc":"DE for Get deal ui","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2732,6 +2786,27 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "payment processing details ui get deal"
+	payment_processing_details_ui_get_deal__cc_for_get_deal_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="payment_processing_details_ui_get_deal"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678865384305"
+		let event_params={"caller_name":"payment_processing_details_ui_get_deal__cc_for_get_deal_btn","event_desc":"CC for Get deal btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"payment_processing_details_ui_get_deal","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_manual_initiation_get_dealService.fn_npss_cs_manual_initiation_get_deal(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

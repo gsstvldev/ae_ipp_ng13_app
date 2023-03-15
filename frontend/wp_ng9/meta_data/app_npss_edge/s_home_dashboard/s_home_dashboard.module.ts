@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28692 
+Build ID        : 28693 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-15 7:13 AM 
+Modified Date   : 2023-Mar-15 8:6 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -44,7 +44,7 @@ import { p_view_message_list_layoutComponent } from './p_view_message_list_layou
 import { f_message_detail_actionComponent } from './f_message_detail_action/f_message_detail_action.component'
 import { p_view_message_ui_layoutComponent } from './p_view_message_ui_layout/p_view_message_ui_layout.component'
 import { f_message_back_uiComponent } from './f_message_back_ui/f_message_back_ui.component'
-import { f_message_detail_uiComponent } from './f_message_detail_ui/f_message_detail_ui.component'
+import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss_message_data_ui.component'
 
 
 
@@ -61,7 +61,7 @@ import { f_message_detail_uiComponent } from './f_message_detail_ui/f_message_de
     s_home_dashboardRoutingModule,
     torus_cs_show_hideModule
   ],
-  declarations: [s_home_dashboardComponent,p_default_profileComponent,f_navigationComponent,f_back_uiComponent,f_process_log_uiComponent,p_search_layoutComponent,f_npss_home_dashboard_uiComponent,p_view_tran_detail_layoutComponent,p_view_history_layoutComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_message_detail_uiComponent,],
+  declarations: [s_home_dashboardComponent,p_default_profileComponent,f_navigationComponent,f_back_uiComponent,f_process_log_uiComponent,p_search_layoutComponent,f_npss_home_dashboard_uiComponent,p_view_tran_detail_layoutComponent,p_view_history_layoutComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

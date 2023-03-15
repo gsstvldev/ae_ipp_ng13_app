@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28667 
+Build ID        : 28693 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-14 5:48 AM 
+Modified Date   : 2023-Mar-15 8:6 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -24,6 +24,7 @@ import {torus_cs_change_routingkeyModule} from '../../../custom_widget/torus_cs_
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {torus_cs_set_rule_mi_paramModule} from '../../../custom_widget/torus_cs_set_rule_mi_param/torus_cs_set_rule_mi_param.module'
 import {npss_cs_outward_manual_initiationModule} from '../../../custom_widget/npss_cs_outward_manual_initiation/npss_cs_outward_manual_initiation.module'
+import {npss_cs_manual_initiation_get_dealModule} from '../../../custom_widget/npss_cs_manual_initiation_get_deal/npss_cs_manual_initiation_get_deal.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -42,6 +43,7 @@ import { f_search_info_uiComponent } from './f_search_info_ui/f_search_info_ui.c
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
 import { f_npss_manual_initiation_srchComponent } from './f_npss_manual_initiation_srch/f_npss_manual_initiation_srch.component'
 import { p_initate_layoutComponent } from './p_initate_layout/p_initate_layout.component'
+import { f_npss_mi_get_deal_uiComponent } from './f_npss_mi_get_deal_ui/f_npss_mi_get_deal_ui.component'
 import { f_npss_manual_initiation_uiComponent } from './f_npss_manual_initiation_ui/f_npss_manual_initiation_ui.component'
 import { p_vertical_tran_detail_profileComponent } from './p_vertical_tran_detail_profile/p_vertical_tran_detail_profile.component'
 import { f_back_uiComponent } from './f_back_ui/f_back_ui.component'
@@ -72,9 +74,9 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     OverlayPanelModule,
     
     s_rct_manual_initiationRoutingModule,
-    npss_cs_rev_get_usable_balanceModule,torus_cs_change_routingkeyModule,torus_cs_show_hideModule,torus_cs_set_rule_mi_paramModule,npss_cs_outward_manual_initiationModule
+    npss_cs_rev_get_usable_balanceModule,torus_cs_change_routingkeyModule,torus_cs_show_hideModule,torus_cs_set_rule_mi_paramModule,npss_cs_outward_manual_initiationModule,npss_cs_manual_initiation_get_dealModule
   ],
-  declarations: [s_rct_manual_initiationComponent,p_main_layoutComponent,f_navigation_uiComponent,f_search_info_uiComponent,p_search_layoutComponent,f_npss_manual_initiation_srchComponent,p_initate_layoutComponent,f_npss_manual_initiation_uiComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
+  declarations: [s_rct_manual_initiationComponent,p_main_layoutComponent,f_navigation_uiComponent,f_search_info_uiComponent,p_search_layoutComponent,f_npss_manual_initiation_srchComponent,p_initate_layoutComponent,f_npss_mi_get_deal_uiComponent,f_npss_manual_initiation_uiComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

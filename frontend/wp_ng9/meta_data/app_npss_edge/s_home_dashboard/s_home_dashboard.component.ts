@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28696 
+Build ID        : 28699 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-15 9:56 AM 
+Modified Date   : 2023-Mar-15 10:32 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -51,16 +51,16 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	uicgc_28 : string = "back_ui"
 	uicgc_29 : string = "process_log_ui"
 	key_events : any = {}
+	btl_1304_1678876184454 : string = "p_view_history_layout"
+	btl_1304_1678876095161 : string = "p_view_tran_detail_layout"
 	btl_1304_1678803372109 : string = "p_view_req_and_res_profile"
 	btl_1304_1678803301898 : string = "p_view_message_ui_layout"
 	btl_1304_1678803243440 : string = "p_view_message_list_layout"
 	btl_1304_1678803171306 : string = "p_view_request_layout"
 	btl_1304_1678803096664 : string = "p_view_response_layout"
-	btl_1304_1678802866576 : string = "p_view_history_layout"
-	btl_1304_1678802723046 : string = "p_view_tran_detail_layout"
 	btl_1408_1598521300065 : string = "p_search_layout"
 	btl_1408_1598521214410 : string = "p_default_profile"
-	forms : any = ["uicgc_22","uicgc_1","uicgc_23","uicgc_24","uicgc_25","uicgc_19","uicgc_21","uicgc_4"]
+	forms : any = ["uicgc_22","uicgc_1","uicgc_23","uicgc_24","uicgc_29","uicgc_28","uicgc_25","uicgc_19","uicgc_21","uicgc_4"]
 	p_search_layout__spap_from_nav_search_showpopup : boolean = false
 	search : any = {}
 	search_search : any = {}
@@ -423,6 +423,8 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.back_ui.onChangecomponent = new EventEmitter<any>()
 		this.back_ui.show = true
 		this.back_ui.dynamic_param = {}
+		this.back_ui.f_back_ui = {"show":true}
+		this.back_ui.current_view = "f_back_ui"
 		
 		// "Back" Button of "Back UI" component
 		this.back_ui_back.label_name = "Back"
@@ -444,6 +446,8 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.process_log_ui.onChangecomponent = new EventEmitter<any>()
 		this.process_log_ui.show = true
 		this.process_log_ui.dynamic_param = {}
+		this.process_log_ui.f_process_log_ui = {"show":true}
+		this.process_log_ui.current_view = "f_process_log_ui"
 		
 		// "Back" Button of "Process Log UI" component
 		this.process_log_ui_back.label_name = "Back"
@@ -1156,7 +1160,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1678803572113"
-		let event_params={"caller_name":"navigation_view_tran__sp_for_view_detail_tran","event_desc":"SP for View Detail Tran","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_tran","raiseparam":{"profile_code":"BTL_1304_1678802723046"}}
+		let event_params={"caller_name":"navigation_view_tran__sp_for_view_detail_tran","event_desc":"SP for View Detail Tran","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_tran","raiseparam":{"profile_code":"BTL_1304_1678876095161"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1219,7 +1223,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1678854802450"
-		let event_params={"caller_name":"navigation_view_process_log__sp_for_vlh","event_desc":"SP for VLH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_process_log","raiseparam":{"profile_code":"BTL_1304_1678802866576"}}
+		let event_params={"caller_name":"navigation_view_process_log__sp_for_vlh","event_desc":"SP for VLH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_process_log","raiseparam":{"profile_code":"BTL_1304_1678876184454"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1725,7 +1729,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1678856356412"
-		let event_params={"caller_name":"single_back_ui_back__sp_for_sb_back","event_desc":"SP for SB Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"single_back_ui_back","raiseparam":{"profile_code":"BTL_1304_1678802866576"}}
+		let event_params={"caller_name":"single_back_ui_back__sp_for_sb_back","event_desc":"SP for SB Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"single_back_ui_back","raiseparam":{"profile_code":"BTL_1304_1678876184454"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

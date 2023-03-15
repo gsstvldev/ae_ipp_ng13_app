@@ -1,13 +1,13 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28696 
+Build ID        : 28699 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-15 9:56 AM 
+Modified Date   : 2023-Mar-15 10:32 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
-Profile Name    : View History Layout--------------------------------------------------------------------------- */
+Profile Name    : View history layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
@@ -22,7 +22,8 @@ export class p_view_history_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	history_detail : any = {}
+  	process_log_ui : any = {}
+	history_detail : any = {}
 
 
   // Constructor 
@@ -30,8 +31,10 @@ export class p_view_history_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.history_detail.desc = "History Detail"
-		this.history_detail.need_header = true
+    	this.process_log_ui.desc = "Process Log UI"
+		this.process_log_ui.need_header = ""
+		this.history_detail.desc = "History Detail"
+		this.history_detail.need_header = ""
 	
 
     this.screen_instance['p_view_history_layout'] = {};

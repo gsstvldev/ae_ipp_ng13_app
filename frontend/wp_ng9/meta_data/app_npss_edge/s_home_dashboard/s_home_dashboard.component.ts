@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28674 
+Build ID        : 28687 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-15 5:0 AM 
+Modified Date   : 2023-Mar-15 5:24 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -193,7 +193,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		// "View Process Log" Button of "Navigation" component
 		this.navigation_view_process_log.label_name = "View Process Log"
 		this.navigation_view_process_log.show = true
-		this.navigation_view_process_log.disabled = false
+		this.navigation_view_process_log.disabled = true
 		this.navigation_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
 		this.navigation_view_process_log.dynamic_param = {}
 		this.navigation_view_process_log.role = []
@@ -202,7 +202,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		// "View Message Log" Button of "Navigation" component
 		this.navigation_view_message_log.label_name = "View Message Log"
 		this.navigation_view_message_log.show = true
-		this.navigation_view_message_log.disabled = false
+		this.navigation_view_message_log.disabled = true
 		this.navigation_view_message_log.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
 		this.navigation_view_message_log.dynamic_param = {}
 		this.navigation_view_message_log.role = []
@@ -623,6 +623,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	//Handler for SELECTION_CHANGED event of "message detail"
 	message_detail__selection_changed(){
 		this.message_detail__ssr_for_md_ui()
+		this.message_detail__ee_for_vm()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
@@ -1537,6 +1538,27 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "message detail"
+	message_detail__ee_for_vm() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_detail"
+		let destn_id="message_detail_action_view_message"
+		let parent_source_id=""
+		let event_code="e_1678857841614"
+		let event_params={"caller_name":"message_detail__ee_for_vm","event_desc":"EE for VM","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"message_detail","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

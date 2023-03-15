@@ -1,0 +1,39 @@
+<div class="p_default_profile">
+ <!-- PROFILE HTML - p_default_profile --> 
+<div id="R21" class="row">
+	<div id="R21C1" class="column col-md-8 col-sm-6 col-xs-6 col-md-offset-4 col-sm-offset-0 col-xs-offset-0" >
+		<div class="navigation" >
+			<f_navigation [comp_id]="'navigation'" [screen_instance]="screen_instance" [hidden]="isHidden('navigation','f_navigation')" profile_name="p_default_profile"></f_navigation >
+		</div>
+	</div>
+</div>
+<div id="R11" class="row">
+	<div id="R11C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="outward_list"  [hidden]="!screen_instance['outward_list'].show" >
+			<datatable [comp_id]="'outward_list'" [screen_instance]="screen_instance" profile_name="p_default_profile"></datatable>
+		</div>
+	</div>
+</div>
+<div id="R31" class="row">
+	<div id="R31C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="inward_list"  [hidden]="!screen_instance['inward_list'].show" >
+			<datatable [comp_id]="'inward_list'" [screen_instance]="screen_instance" profile_name="p_default_profile"></datatable>
+		</div>
+	</div>
+</div>
+<div id="R41" class="row">
+	<div id="R41C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="inward_queue"  [hidden]="!screen_instance['inward_queue'].show" >
+			<chart [comp_id]="'inward_queue'" [screen_instance]="screen_instance" profile_name="p_default_profile"></chart>
+		</div>
+	</div>
+</div>
+<div id="R51" class="row">
+	<div id="R51C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="transaction_list"  [hidden]="!screen_instance['transaction_list'].show" >
+			<datatable [comp_id]="'transaction_list'" [screen_instance]="screen_instance" profile_name="p_default_profile"></datatable>
+		</div>
+	</div>
+</div>
+
+</div>

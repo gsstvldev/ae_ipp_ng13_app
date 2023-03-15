@@ -1,0 +1,20 @@
+<div class="p_view_tran_detail_layout">
+ <!-- PROFILE HTML - p_view_tran_detail_layout --> 
+<div id="R11" class="row">
+	<div id="R11C1" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-6 col-sm-offset-0 col-xs-offset-0" >
+	</div>
+</div>
+<div id="R21" class="row">
+	<div id="R21C1" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="view_dr_cr_details"  [hidden]="!screen_instance['view_dr_cr_details'].show" >
+			<datatable [comp_id]="'view_dr_cr_details'" [screen_instance]="screen_instance" profile_name="p_view_tran_detail_layout"></datatable>
+		</div>
+	</div>
+	<div id="R21C2" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="view_payment_details"  [hidden]="!screen_instance['view_payment_details'].show" >
+			<datatable [comp_id]="'view_payment_details'" [screen_instance]="screen_instance" profile_name="p_view_tran_detail_layout"></datatable>
+		</div>
+	</div>
+</div>
+
+</div>

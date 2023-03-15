@@ -1,0 +1,1664 @@
+/* ---------------------------------------------------------------------------
+UI Framework    : Angular
+Version         : 5.0 
+Build ID        : 28674 
+Modified By     : Admin 
+Modified Date   : 2023-Mar-15 5:0 AM 
+Generated From  : TORUS Low Code Platform 
+Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
+Screen Name     : s_home_dashboard
+--------------------------------------------------------------------------- */
+
+// Component Definition 
+import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
+import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
+import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+
+@Component({
+	selector: 's_home_dashboard',
+	templateUrl: './s_home_dashboard.component.html',
+	styleUrls: ['./s_home_dashboard.component.css'],
+	providers:[torus_cs_show_hideService]
+})
+    
+// Start of class 
+export class s_home_dashboardComponent implements OnInit,AfterViewInit {
+	// Variables 
+  	wftpa_description : string = "s_home_dashboard"
+	wftpa_id : string = "WFT_NPSS_P_1304_1678779853154_0"
+	cg_code : string = "CG_1304_1678778916539"
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID"}
+	show_info_dialog : boolean = false
+	show_confirm_dialog : boolean = false
+	components : any = []
+	current_profile : string = "p_default_profile"
+	uicgc_1 : string = "search"
+	uicgc_2 : string = "outward_list"
+	uicgc_4 : string = "navigation"
+	uicgc_12 : string = "inward_list"
+	uicgc_13 : string = "inward_queue"
+	uicgc_14 : string = "transaction_list"
+	uicgc_15 : string = "history_detail"
+	uicgc_19 : string = "message_back_ui"
+	uicgc_20 : string = "message_detail"
+	uicgc_21 : string = "message_detail_action"
+	uicgc_22 : string = "message_detail_ui"
+	uicgc_23 : string = "request_ui"
+	uicgc_24 : string = "response_ui"
+	uicgc_25 : string = "single_back_ui"
+	uicgc_26 : string = "view_dr_cr_details"
+	uicgc_27 : string = "view_payment_details"
+	uicgc_28 : string = "back_ui"
+	uicgc_29 : string = "process_log_ui"
+	key_events : any = {}
+	btl_1304_1678803372109 : string = "p_view_req_and_res_profile"
+	btl_1304_1678803301898 : string = "p_view_message_ui_layout"
+	btl_1304_1678803243440 : string = "p_view_message_list_layout"
+	btl_1304_1678803171306 : string = "p_view_request_layout"
+	btl_1304_1678803096664 : string = "p_view_response_layout"
+	btl_1304_1678802866576 : string = "p_view_history_layout"
+	btl_1304_1678802723046 : string = "p_view_tran_detail_layout"
+	btl_1408_1598521300065 : string = "p_search_layout"
+	btl_1408_1598521214410 : string = "p_default_profile"
+	forms : any = ["uicgc_1","uicgc_25","uicgc_23","uicgc_24","uicgc_19","uicgc_22","uicgc_21","uicgc_4"]
+	p_search_layout__spap_from_nav_search_showpopup : boolean = false
+	search : any = {}
+	search_search : any = {}
+	search_clear : any = {}
+	outward_list : any = {}
+	navigation : any = {}
+	navigation_search : any = {}
+	navigation_trg_btn : any = {}
+	navigation_view_tran : any = {}
+	navigation_view_process_log : any = {}
+	navigation_view_message_log : any = {}
+	inward_list : any = {}
+	inward_queue : any = {}
+	transaction_list : any = {}
+	history_detail : any = {}
+	message_back_ui : any = {}
+	message_back_ui_back : any = {}
+	message_detail : any = {}
+	message_detail_action : any = {}
+	message_detail_action_back : any = {}
+	message_detail_action_view_message : any = {}
+	message_detail_ui : any = {}
+	request_ui : any = {}
+	response_ui : any = {}
+	single_back_ui : any = {}
+	single_back_ui_back : any = {}
+	view_dr_cr_details : any = {}
+	view_payment_details : any = {}
+	back_ui : any = {}
+	back_ui_back : any = {}
+	process_log_ui : any = {}
+	process_log_ui_back : any = {}
+	process_log_ui_view_response : any = {}
+	process_log_ui_view_request : any = {}
+	process_log_ui_view_req_and_res : any = {}
+
+
+	// Constructor 
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
+    
+	}
+    
+	ngOnInit() {
+
+		// Component level properties - "Search" 
+		this.search.uictrl_code = "dynamic_form_search"
+		this.search.uicgc_desc = "Search"
+		this.search.uicgc_code = "uicgc_1"
+		this.search.params = {}
+		this.search.datasource = {}
+		this.search.context_menu = []
+		this.search.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Home Dashboard UI","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"NPSS Transactions"}]}}
+		this.search.onChangecomponent = new EventEmitter<any>()
+		this.search.show = true
+		this.search.dynamic_param = {}
+		this.search.f_npss_home_dashboard_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.search.form_name = "f_npss_home_dashboard_ui"
+		
+		// "Search" Button of "Search" component
+		this.search_search.label_name = "Search"
+		this.search_search.show = true
+		this.search_search.disabled = false
+		this.search_search.params = {"icon_only":false,"uicgcc_style":"fa fa-search"}
+		this.search_search.dynamic_param = {}
+		this.search_search.role = []
+		this.search_search.action = ""
+		
+		// "Clear" Button of "Search" component
+		this.search_clear.label_name = "Clear"
+		this.search_clear.show = true
+		this.search_clear.disabled = false
+		this.search_clear.params = {"icon_only":false,"uicgcc_style":"fa fa-eraser"}
+		this.search_clear.dynamic_param = {}
+		this.search_clear.role = []
+		this.search_clear.action = ""
+	
+		// Component level properties - "Outward List" 
+		this.outward_list.uictrl_code = "datatable"
+		this.outward_list.uicgc_desc = "Outward List"
+		this.outward_list.uicgc_code = "uicgc_2"
+		this.outward_list.params = {"need_pag_datatable":"Y","need_search":"N","advance_dynamic_search":"N"}
+		this.outward_list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678780847259","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Home Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Type","alias_name":"","mq_id":"MQ_1677928433068","date_format":false},{"column_name":"Total","alias_name":"","mq_id":"MQ_1677928433241","date_format":false},{"column_name":"IBMB","alias_name":"","mq_id":"MQ_1677928433417","date_format":false},{"column_name":"RMB","alias_name":"","mq_id":"MQ_1677928433585","date_format":false},{"column_name":"RIB","alias_name":"","mq_id":"MQ_1677928433769","date_format":false},{"column_name":"CMB","alias_name":"","mq_id":"MQ_1677928433945","date_format":false},{"column_name":"CIB","alias_name":"","mq_id":"MQ_1677928434130","date_format":false},{"column_name":"CMS","alias_name":"","mq_id":"MQ_1677928467185","date_format":false},{"column_name":"Manual","alias_name":"","mq_id":"MQ_1677928467361","date_format":false},{"column_name":"Pending_Screening","alias_name":"","mq_id":"MQ_1677928467521","date_format":false},{"column_name":"Pending_Maker","alias_name":"","mq_id":"MQ_1677928484313","date_format":false},{"column_name":"Pending_Checker","alias_name":"","mq_id":"MQ_1677928484473","date_format":false},{"column_name":"Send_to_CB","alias_name":"","mq_id":"MQ_1677928484633","date_format":false},{"column_name":"CBACK","alias_name":"","mq_id":"MQ_1677928498570","date_format":false},{"column_name":"CBNACK","alias_name":"","mq_id":"MQ_1677928498753","date_format":false},{"column_name":"Pending_T_1","alias_name":"","mq_id":"MQ_1677928498969","date_format":false},{"column_name":"Created_Date","alias_name":"","mq_id":"MQ_1677928517681","date_format":true}],"joins":[]},"eq_text":"SELECT Type,        Total,        IBMB,        RMB,        RIB,        CMB,        CIB,        CMS,        Manual,        Pending_Screening,        Pending_Maker,        Pending_Checker,        Send_to_CB,        CBACK,        CBNACK,        Pending_T_1,     Created_Date   FROM vw_dashboard_outward_data $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Home Dashboard MQ CCD","filter":[],"databinding":[{"header":"Type","target_column":"Type","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total","target_column":"Total","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"IBMB","target_column":"IBMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RMB","target_column":"RMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RIB","target_column":"RIB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CMB","target_column":"CMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CIB","target_column":"CIB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CMS","target_column":"CMS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Manual","target_column":"Manual","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Screening","target_column":"Pending_Screening","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Maker)","target_column":"Pending_Maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Checker)","target_column":"Pending_Checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Send to CB","target_column":"Send_to_CB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB ACK","target_column":"CBACK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB NAK","target_column":"CBNACK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (T-1)","target_column":"Pending_T_1","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.outward_list.context_menu = []
+		this.outward_list.views = {}
+		this.outward_list.onChangecomponent = new EventEmitter<any>()
+		this.outward_list.show = true
+		this.outward_list.dynamic_param = {}
+	
+		// Component level properties - "Navigation" 
+		this.navigation.uictrl_code = "dynamic_ui"
+		this.navigation.uicgc_desc = "Navigation"
+		this.navigation.uicgc_code = "uicgc_4"
+		this.navigation.params = {}
+		this.navigation.datasource = {}
+		this.navigation.context_menu = []
+		this.navigation.views = {}
+		this.navigation.onChangecomponent = new EventEmitter<any>()
+		this.navigation.show = true
+		this.navigation.dynamic_param = {}
+		this.navigation.f_navigation = {"show":true}
+		this.navigation.current_view = "f_navigation"
+		
+		// "Search" Button of "Navigation" component
+		this.navigation_search.label_name = "Search"
+		this.navigation_search.show = true
+		this.navigation_search.disabled = false
+		this.navigation_search.params = {"icon_only":false,"uicgcc_style":"fa fa-search"}
+		this.navigation_search.dynamic_param = {}
+		this.navigation_search.role = []
+		this.navigation_search.action = ""
+		
+		// "TRG btn" Button of "Navigation" component
+		this.navigation_trg_btn.label_name = "TRG btn"
+		this.navigation_trg_btn.show = true
+		this.navigation_trg_btn.disabled = false
+		this.navigation_trg_btn.params = {"icon_only":false,"uicgcc_style":""}
+		this.navigation_trg_btn.dynamic_param = {}
+		this.navigation_trg_btn.role = []
+		this.navigation_trg_btn.action = ""
+		
+		// "View Tran" Button of "Navigation" component
+		this.navigation_view_tran.label_name = "View Tran"
+		this.navigation_view_tran.show = true
+		this.navigation_view_tran.disabled = true
+		this.navigation_view_tran.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_view_tran.dynamic_param = {}
+		this.navigation_view_tran.role = []
+		this.navigation_view_tran.action = ""
+		
+		// "View Process Log" Button of "Navigation" component
+		this.navigation_view_process_log.label_name = "View Process Log"
+		this.navigation_view_process_log.show = true
+		this.navigation_view_process_log.disabled = false
+		this.navigation_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
+		this.navigation_view_process_log.dynamic_param = {}
+		this.navigation_view_process_log.role = []
+		this.navigation_view_process_log.action = ""
+		
+		// "View Message Log" Button of "Navigation" component
+		this.navigation_view_message_log.label_name = "View Message Log"
+		this.navigation_view_message_log.show = true
+		this.navigation_view_message_log.disabled = false
+		this.navigation_view_message_log.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_view_message_log.dynamic_param = {}
+		this.navigation_view_message_log.role = []
+		this.navigation_view_message_log.action = ""
+	
+		// Component level properties - "Inward List" 
+		this.inward_list.uictrl_code = "datatable"
+		this.inward_list.uicgc_desc = "Inward List"
+		this.inward_list.uicgc_code = "uicgc_12"
+		this.inward_list.params = {"need_pag_datatable":"Y","need_search":"N","advance_dynamic_search":"N"}
+		this.inward_list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_12","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678780879597","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS IP Home Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"type","alias_name":"","mq_id":"MQ_1677933613596","date_format":false},{"column_name":"total","alias_name":"","mq_id":"MQ_1678169755516","date_format":false},{"column_name":"pending_maker","alias_name":"","mq_id":"MQ_1678169755682","date_format":false},{"column_name":"pending_checker","alias_name":"","mq_id":"MQ_1678169755850","date_format":false},{"column_name":"pending_screening","alias_name":"","mq_id":"MQ_1678169756042","date_format":false},{"column_name":"successfullyposted","alias_name":"","mq_id":"MQ_1678169756202","date_format":false},{"column_name":"pending_returns_maker","alias_name":"","mq_id":"MQ_1678169780171","date_format":false},{"column_name":"pending_returns_checker","alias_name":"","mq_id":"MQ_1678169780331","date_format":false},{"column_name":"returned","alias_name":"","mq_id":"MQ_1678169780499","date_format":false},{"column_name":"pending_t_1","alias_name":"","mq_id":"MQ_1678169862467","date_format":false},{"column_name":"created_date","alias_name":"","mq_id":"MQ_1678170105508","date_format":true}],"joins":[]},"eq_text":"SELECT type,        total,        pending_maker,        pending_checker,        pending_screening,        successfullyposted,        pending_returns_maker,        pending_returns_checker,        returned,        pending_t_1,        created_date   FROM vw_dashboard_inward_data $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS IP Home Dashboard MQ CCD","filter":[],"databinding":[{"header":"Type","target_column":"type","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total","target_column":"total","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Maker)","target_column":"pending_maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Checker)","target_column":"pending_checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Screening","target_column":"pending_screening","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Successfully Posted","target_column":"successfullyposted","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Returns (Maker)","target_column":"pending_returns_maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Returns (Checker)","target_column":"pending_returns_checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Returned","target_column":"returned","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (T-1)","target_column":"pending_t_1","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.inward_list.context_menu = []
+		this.inward_list.views = {}
+		this.inward_list.onChangecomponent = new EventEmitter<any>()
+		this.inward_list.show = true
+		this.inward_list.dynamic_param = {}
+	
+		// Component level properties - "Inward Queue" 
+		this.inward_queue.uictrl_code = "chart"
+		this.inward_queue.uicgc_desc = "Inward Queue"
+		this.inward_queue.uicgc_code = "uicgc_13"
+		this.inward_queue.params = {}
+		this.inward_queue.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_13","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678787742404","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Queue Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS_COUNT","alias_name":"","mq_id":"MQ_1672833641472","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1672833641606","date_format":false}],"joins":[]},"eq_text":"select  COUNT(PROCESS_STATUS) as PROCESS_STATUS_COUNT,  PROCESS_STATUS from  (  select   T.CREATED_DATE,   T.PROCESS_TYPE ,   T.TENANT_ID,   case    when T.channel_id is null then UPPER('UNKOWN')    else t.channel_id   end as channel_id,   case    when T.PROCESSING_SYSTEM is null then upper('unknown')    else T.PROCESSING_SYSTEM   end as PROCESSING_SYSTEM,   T.DEPARTMENT_CODE,   case    when T.PROCESS_GROUP is null then UPPER('UNKOWN')    else t.PROCESS_GROUP   end as PROCESS_GROUP,   case    when T.EXHF_ID is null then UPPER('RCT')    else UPPER('BCT')   end as PAYMENT_TYPE,   case    when T.PROCESS_STATUS is null then UPPER('UNKNOWN')    else T.PROCESS_STATUS   end as PROCESS_STATUS  from   NPSS_TRANSACTIONS T) V $WHERE group by  PROCESS_STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Queue Dashboard CCD","filter":[{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENENT_ID","binding_name":"TENENT_ID","binding_value":"","source_name":"TENENT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"PROCESS_STATUS_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.inward_queue.context_menu = []
+		this.inward_queue.views = {}
+		this.inward_queue.onChangecomponent = new EventEmitter<any>()
+		this.inward_queue.show = true
+		this.inward_queue.dynamic_param = {}
+	
+		// Component level properties - "Transaction List" 
+		this.transaction_list.uictrl_code = "datatable"
+		this.transaction_list.uicgc_desc = "Transaction List"
+		this.transaction_list.uicgc_code = "uicgc_14"
+		this.transaction_list.params = {"advance_dynamic_search":"N","need_search":"N","need_pag_datatable":"Y"}
+		this.transaction_list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_14","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678796509061","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"NPSST_ID","alias_name":"","mq_id":"MQ_1678795579493","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1678795579892","date_format":false},{"column_name":"VALUE_DATE","alias_name":"","mq_id":"MQ_1678795580083","date_format":true},{"column_name":"CLRSYSREF","alias_name":"","mq_id":"MQ_1678795580252","date_format":false},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1678795580443","date_format":false},{"column_name":"INTRBK_STTLM_CUR","alias_name":"","mq_id":"MQ_1678795580651","date_format":false},{"column_name":"INTRBK_STTLM_AMNT","alias_name":"","mq_id":"MQ_1678795581011","date_format":false,"currency_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678795648225","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1678795648809","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1678795649097","date_format":false},{"column_name":"DEPARTMENT_CODE","alias_name":"","mq_id":"MQ_1678795649417","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1678795649737","date_format":false},{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1678795721503","date_format":false},{"column_name":"PROCESS_GROUP","alias_name":"","mq_id":"MQ_1678795721671","date_format":false},{"column_name":"DBTR_IBAN","alias_name":"","mq_id":"MQ_1678795721847","date_format":false},{"column_name":"cr_acct_identification_mask","alias_name":"","mq_id":"MQ_1678795722007","date_format":false},{"column_name":"dr_acct_identification_mask","alias_name":"","mq_id":"MQ_1678800278062","date_format":false}],"joins":[]},"eq_text":"select  NPSST_ID,  cr_acct_identification_mask,  dr_acct_identification_mask  ,CR_ACCT_IDENTIFICATION,  UETR,  VALUE_DATE,  ACCP_DATE_TIME,  CREATED_DATE,  DATEMI,  EXHF_ID,  CDTR_IBAN,  TENANT_ID,  TRAN_REF_ID,  DEPARTMENT_CODE,  PAYMENT_ENDTOEND_ID,  CLRSYSREF,  CDTR_ACCT_NO,  DBTR_ACCT_NO,  INTRBK_STTLM_CUR,  INTRBK_STTLM_AMNT,  STATUS,  PROCESSING_SYSTEM,  PROCESS_STATUS,  DBTR_ACCT_NAME,  DBTR_PHONE_NO,  DBTR_EMAIL_ID,  DBTR_DOCUMENT_ID,  DBTR_IBAN,  DBTR_CUST_TYPE,  DBTR_PRVT_ID,  DBTR_OTHER_ISSUER,  CDTR_ACCT_NAME,  CDTR_PHONE_NO,  CDTR_EMAIL_ID,  CDTR_DOCUMENT_ID,  DR_SORT_CODE,  CR_SORT_CODE,  CATEGORY_PURPOSE,  CATEGORY_PURPOSE_PRTY,  BASE_CURRENCY,  BASE_AMOUNT,  HDR_TOTAL_RECORDS,  HDR_TOTAL_AMOUNT,  HDR_CLEARING_SYSTEM,  CHARGE_BEARER,  REMITTANCE_INFO,  ACCOUNT_CURRENCY,  CHANNEL_ID,  CHANNEL_REFNO,  CHANNEL_USERID,  CHANNEL_PRODUCT,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  ISSUER_TYPE_CODE,  CBS_REF_NO,  CBS_POSTING_FLAG,  PROCESS_TYPE,  PROCESS_GROUP from  (  select   NT.NPSST_ID,   Fn_card_decrypt_and_mask_rpt(nt.cr_acct_identification) as cr_acct_identification_mask,   Fn_card_decrypt_and_mask_rpt(nt.DBTR_ACCT_NO) as dr_acct_identification_mask,   NT.UETR,   NT.VALUE_DATE,   NT.ACCP_DATE_TIME,   NT.CREATED_DATE,   TO_CHAR(NT.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   NT.DEPARTMENT_CODE,   NT.TENANT_ID,   NT.EXHF_ID,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.PAYMENT_ENDTOEND_ID,   NT.CLRSYSREF,   NT.CDTR_ACCT_NO,   NT.DBTR_ACCT_NO,   NT.INTRBK_STTLM_CUR,   NT.INTRBK_STTLM_AMNT,   NT.STATUS,   NT.PROCESSING_SYSTEM,   NT.PROCESS_STATUS,   NT.DBTR_ACCT_NAME,   NT.DBTR_PHONE_NO,   NT.DBTR_EMAIL_ID,   NT.DBTR_DOCUMENT_ID,   NT.DBTR_IBAN,   NT.DBTR_CUST_TYPE,   NT.DBTR_PRVT_ID,   NT.DBTR_OTHER_ISSUER,   NT.CDTR_ACCT_NAME,   NT.CDTR_PHONE_NO,   NT.CDTR_EMAIL_ID,   NT.CDTR_DOCUMENT_ID,   NT.DR_SORT_CODE,   NT.CR_SORT_CODE,   NT.CATEGORY_PURPOSE,   NT.CATEGORY_PURPOSE_PRTY,   NT.CR_ACCT_IDENTIFICATION,   NT.BASE_CURRENCY,   NT.BASE_AMOUNT,   NT.HDR_TOTAL_RECORDS,   NT.HDR_TOTAL_AMOUNT,   NT.HDR_CLEARING_SYSTEM,   NT.CHARGE_BEARER,   NT.REMITTANCE_INFO,   NT.ACCOUNT_CURRENCY,   NT.CHANNEL_ID,   NT.CHANNEL_REFNO,   NT.CHANNEL_USERID,   NT.CHANNEL_PRODUCT,   NT.CHANNEL_SUB_PRODUCT,   NT.CHANNEL_TRAN_CODE,   NT.ISSUER_TYPE_CODE,   NT.CBS_REF_NO,   NT.CBS_POSTING_FLAG,   NT.PROCESS_TYPE,   NT.PROCESS_GROUP  from   NPSS_TRANSACTIONS NT ) V $WHERE order by  NPSST_ID desc"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard Tran MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"INTRBK_STTLM_CUR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"INTRBK_STTLM_AMNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false,"currency_format":true},{"header":"Cr IBAN","target_column":"CDTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr IBAN","target_column":"DBTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr Card Number","target_column":"cr_acct_identification_mask","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr Card Number","target_column":"dr_acct_identification_mask","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E Ref ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing System Ref No","target_column":"CLRSYSREF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Group","target_column":"PROCESS_GROUP","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Department Code","target_column":"DEPARTMENT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.transaction_list.context_menu = []
+		this.transaction_list.views = {}
+		this.transaction_list.onChangecomponent = new EventEmitter<any>()
+		this.transaction_list.show = true
+		this.transaction_list.dynamic_param = {}
+	
+		// Component level properties - "History Detail" 
+		this.history_detail.uictrl_code = "datatable"
+		this.history_detail.uicgc_desc = "History Detail"
+		this.history_detail.uicgc_code = "uicgc_15"
+		this.history_detail.params = {"need_search":"N"}
+		this.history_detail.datasource = {}
+		this.history_detail.context_menu = []
+		this.history_detail.views = {}
+		this.history_detail.onChangecomponent = new EventEmitter<any>()
+		this.history_detail.show = true
+		this.history_detail.dynamic_param = {}
+	
+		// Component level properties - "Message Back UI" 
+		this.message_back_ui.uictrl_code = "dynamic_ui"
+		this.message_back_ui.uicgc_desc = "Message Back UI"
+		this.message_back_ui.uicgc_code = "uicgc_19"
+		this.message_back_ui.params = {}
+		this.message_back_ui.datasource = {}
+		this.message_back_ui.context_menu = []
+		this.message_back_ui.views = {}
+		this.message_back_ui.onChangecomponent = new EventEmitter<any>()
+		this.message_back_ui.show = true
+		this.message_back_ui.dynamic_param = {}
+		this.message_back_ui.f_message_back_ui = {"show":true}
+		this.message_back_ui.current_view = "f_message_back_ui"
+		
+		// "Back" Button of "Message Back UI" component
+		this.message_back_ui_back.label_name = "Back"
+		this.message_back_ui_back.show = true
+		this.message_back_ui_back.disabled = false
+		this.message_back_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.message_back_ui_back.dynamic_param = {}
+		this.message_back_ui_back.role = []
+		this.message_back_ui_back.action = ""
+	
+		// Component level properties - "Message Detail" 
+		this.message_detail.uictrl_code = "datatable"
+		this.message_detail.uicgc_desc = "Message Detail"
+		this.message_detail.uicgc_code = "uicgc_20"
+		this.message_detail.params = {"need_pag_datatable":"Y","need_responsive":"N"}
+		this.message_detail.datasource = {}
+		this.message_detail.context_menu = []
+		this.message_detail.views = {}
+		this.message_detail.onChangecomponent = new EventEmitter<any>()
+		this.message_detail.show = true
+		this.message_detail.dynamic_param = {}
+	
+		// Component level properties - "Message Detail Action" 
+		this.message_detail_action.uictrl_code = "dynamic_ui"
+		this.message_detail_action.uicgc_desc = "Message Detail Action"
+		this.message_detail_action.uicgc_code = "uicgc_21"
+		this.message_detail_action.params = {}
+		this.message_detail_action.datasource = {}
+		this.message_detail_action.context_menu = []
+		this.message_detail_action.views = {}
+		this.message_detail_action.onChangecomponent = new EventEmitter<any>()
+		this.message_detail_action.show = true
+		this.message_detail_action.dynamic_param = {}
+		this.message_detail_action.f_message_detail_action = {"show":true}
+		this.message_detail_action.current_view = "f_message_detail_action"
+		
+		// "Back" Button of "Message Detail Action" component
+		this.message_detail_action_back.label_name = "Back"
+		this.message_detail_action_back.show = true
+		this.message_detail_action_back.disabled = false
+		this.message_detail_action_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.message_detail_action_back.dynamic_param = {}
+		this.message_detail_action_back.role = []
+		this.message_detail_action_back.action = ""
+		
+		// "View Message" Button of "Message Detail Action" component
+		this.message_detail_action_view_message.label_name = "View Message"
+		this.message_detail_action_view_message.show = true
+		this.message_detail_action_view_message.disabled = true
+		this.message_detail_action_view_message.params = {"icon_only":false,"uicgcc_style":"fa fa-css3"}
+		this.message_detail_action_view_message.dynamic_param = {}
+		this.message_detail_action_view_message.role = []
+		this.message_detail_action_view_message.action = ""
+	
+		// Component level properties - "Message Detail UI" 
+		this.message_detail_ui.uictrl_code = "dynamic_ui"
+		this.message_detail_ui.uicgc_desc = "Message Detail UI"
+		this.message_detail_ui.uicgc_code = "uicgc_22"
+		this.message_detail_ui.params = {}
+		this.message_detail_ui.datasource = {}
+		this.message_detail_ui.context_menu = []
+		this.message_detail_ui.views = {}
+		this.message_detail_ui.onChangecomponent = new EventEmitter<any>()
+		this.message_detail_ui.show = true
+		this.message_detail_ui.dynamic_param = {}
+		this.message_detail_ui.f_message_detail_ui = {"show":true}
+		this.message_detail_ui.current_view = "f_message_detail_ui"
+	
+		// Component level properties - "Request UI" 
+		this.request_ui.uictrl_code = "dynamic_ui"
+		this.request_ui.uicgc_desc = "Request UI"
+		this.request_ui.uicgc_code = "uicgc_23"
+		this.request_ui.params = {}
+		this.request_ui.datasource = {}
+		this.request_ui.context_menu = []
+		this.request_ui.views = {}
+		this.request_ui.onChangecomponent = new EventEmitter<any>()
+		this.request_ui.show = true
+		this.request_ui.dynamic_param = {}
+		this.request_ui.f_request_ui = {"show":true}
+		this.request_ui.current_view = "f_request_ui"
+	
+		// Component level properties - "Response UI" 
+		this.response_ui.uictrl_code = "dynamic_ui"
+		this.response_ui.uicgc_desc = "Response UI"
+		this.response_ui.uicgc_code = "uicgc_24"
+		this.response_ui.params = {}
+		this.response_ui.datasource = {}
+		this.response_ui.context_menu = []
+		this.response_ui.views = {}
+		this.response_ui.onChangecomponent = new EventEmitter<any>()
+		this.response_ui.show = true
+		this.response_ui.dynamic_param = {}
+		this.response_ui.f_response_ui = {"show":true}
+		this.response_ui.current_view = "f_response_ui"
+	
+		// Component level properties - "Single Back UI" 
+		this.single_back_ui.uictrl_code = "dynamic_ui"
+		this.single_back_ui.uicgc_desc = "Single Back UI"
+		this.single_back_ui.uicgc_code = "uicgc_25"
+		this.single_back_ui.params = {}
+		this.single_back_ui.datasource = {}
+		this.single_back_ui.context_menu = []
+		this.single_back_ui.views = {}
+		this.single_back_ui.onChangecomponent = new EventEmitter<any>()
+		this.single_back_ui.show = true
+		this.single_back_ui.dynamic_param = {}
+		this.single_back_ui.f_single_back_ui = {"show":true}
+		this.single_back_ui.current_view = "f_single_back_ui"
+		
+		// "Back" Button of "Single Back UI" component
+		this.single_back_ui_back.label_name = "Back"
+		this.single_back_ui_back.show = true
+		this.single_back_ui_back.disabled = false
+		this.single_back_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-fast-backward"}
+		this.single_back_ui_back.dynamic_param = {}
+		this.single_back_ui_back.role = []
+		this.single_back_ui_back.action = ""
+	
+		// Component level properties - "View Dr Cr Details" 
+		this.view_dr_cr_details.uictrl_code = "datatable"
+		this.view_dr_cr_details.uicgc_desc = "View Dr Cr Details"
+		this.view_dr_cr_details.uicgc_code = "uicgc_26"
+		this.view_dr_cr_details.params = {"need_search":"N","need_vertical":"Y"}
+		this.view_dr_cr_details.datasource = {}
+		this.view_dr_cr_details.context_menu = []
+		this.view_dr_cr_details.views = {}
+		this.view_dr_cr_details.onChangecomponent = new EventEmitter<any>()
+		this.view_dr_cr_details.show = true
+		this.view_dr_cr_details.dynamic_param = {}
+	
+		// Component level properties - "View Payment Details" 
+		this.view_payment_details.uictrl_code = "datatable"
+		this.view_payment_details.uicgc_desc = "View Payment Details"
+		this.view_payment_details.uicgc_code = "uicgc_27"
+		this.view_payment_details.params = {"need_search":"N","need_vertical":"Y"}
+		this.view_payment_details.datasource = {}
+		this.view_payment_details.context_menu = []
+		this.view_payment_details.views = {}
+		this.view_payment_details.onChangecomponent = new EventEmitter<any>()
+		this.view_payment_details.show = true
+		this.view_payment_details.dynamic_param = {}
+	
+		// Component level properties - "Back UI" 
+		this.back_ui.uictrl_code = "dynamic_ui"
+		this.back_ui.uicgc_desc = "Back UI"
+		this.back_ui.uicgc_code = "uicgc_28"
+		this.back_ui.params = {}
+		this.back_ui.datasource = {}
+		this.back_ui.context_menu = []
+		this.back_ui.views = {}
+		this.back_ui.onChangecomponent = new EventEmitter<any>()
+		this.back_ui.show = true
+		this.back_ui.dynamic_param = {}
+		
+		// "Back" Button of "Back UI" component
+		this.back_ui_back.label_name = "Back"
+		this.back_ui_back.show = true
+		this.back_ui_back.disabled = false
+		this.back_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-fast-backward"}
+		this.back_ui_back.dynamic_param = {}
+		this.back_ui_back.role = []
+		this.back_ui_back.action = ""
+	
+		// Component level properties - "Process Log UI" 
+		this.process_log_ui.uictrl_code = "dynamic_ui"
+		this.process_log_ui.uicgc_desc = "Process Log UI"
+		this.process_log_ui.uicgc_code = "uicgc_29"
+		this.process_log_ui.params = {}
+		this.process_log_ui.datasource = {}
+		this.process_log_ui.context_menu = []
+		this.process_log_ui.views = {}
+		this.process_log_ui.onChangecomponent = new EventEmitter<any>()
+		this.process_log_ui.show = true
+		this.process_log_ui.dynamic_param = {}
+		
+		// "Back" Button of "Process Log UI" component
+		this.process_log_ui_back.label_name = "Back"
+		this.process_log_ui_back.show = true
+		this.process_log_ui_back.disabled = false
+		this.process_log_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-fast-backward"}
+		this.process_log_ui_back.dynamic_param = {}
+		this.process_log_ui_back.role = []
+		this.process_log_ui_back.action = ""
+		
+		// "View Response" Button of "Process Log UI" component
+		this.process_log_ui_view_response.label_name = "View Response"
+		this.process_log_ui_view_response.show = true
+		this.process_log_ui_view_response.disabled = true
+		this.process_log_ui_view_response.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.process_log_ui_view_response.dynamic_param = {}
+		this.process_log_ui_view_response.role = []
+		this.process_log_ui_view_response.action = ""
+		
+		// "View Request" Button of "Process Log UI" component
+		this.process_log_ui_view_request.label_name = "View Request"
+		this.process_log_ui_view_request.show = true
+		this.process_log_ui_view_request.disabled = true
+		this.process_log_ui_view_request.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.process_log_ui_view_request.dynamic_param = {}
+		this.process_log_ui_view_request.role = []
+		this.process_log_ui_view_request.action = ""
+		
+		// "View Req and Res" Button of "Process Log UI" component
+		this.process_log_ui_view_req_and_res.label_name = "View Req and Res"
+		this.process_log_ui_view_req_and_res.show = true
+		this.process_log_ui_view_req_and_res.disabled = true
+		this.process_log_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.process_log_ui_view_req_and_res.dynamic_param = {}
+		this.process_log_ui_view_req_and_res.role = []
+		this.process_log_ui_view_req_and_res.action = ""
+	}
+	// Methods
+	ngAfterViewInit() {
+		this.page_load();
+	}
+
+  
+	// To handle page_load event
+	page_load(){
+		this.page_load__cf_from_pag_load()
+		this.page_load__he_for_trg_btn()
+		this.page_load__he_from_pg_to_view_details()
+		this.page_load__he_for_vml()
+	}
+
+	//Handler for INTERNAL event of "cf from pag load"
+	cf_from_pag_load__internal(parent_event_result){
+		this.cf_from_pag_load__cc_show_hide_ide(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "cc show hide ide"
+	cc_show_hide_ide__internal(parent_event_result){
+		this.cc_show_hide_ide__tbc_from_show_hide_cc(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "search search"
+	search_search__action_button_click(){
+		this.search_search__ve_from_search()
+		this.search_search__de_for_vpl()
+	}
+
+	//Handler for INTERNAL event of "ve from search"
+	ve_from_search__internal(parent_event_result){
+		this.ve_from_search__ssp_from_search_ve(parent_event_result)
+		this.ve_from_search__cp_from_search_ve(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "ssp from search ve"
+	ssp_from_search_ve__internal(parent_event_result){
+		this.ssp_from_search_ve__bfrq_to_tl_from_ssp(parent_event_result)
+		this.ssp_from_search_ve__brfq_for_ip_list(parent_event_result)
+		this.ssp_from_search_ve__brfq_for_pstatus(parent_event_result)
+	}
+
+	//Handler for SELECTION_CHANGED event of "outward list"
+	outward_list__selection_changed(){
+		this.outward_list__svm_by_click_on_tl()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
+	navigation_search__action_button_click(){
+		this.navigation_search__spap_from_nav_search()
+		this.navigation_search__cui_from_nav_search_btn_click()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "search clear"
+	search_clear__action_button_click(){
+		this.search_clear__cui_from_clear_btn_click()
+	}
+
+	//Handler for SELECTION_CHANGED event of "inward list"
+	inward_list__selection_changed(){
+		this.inward_list__svm_for_ip_list()
+	}
+
+	//Handler for SELECTION_CHANGED event of "inward queue"
+	inward_queue__selection_changed(){
+		this.inward_queue__svm_for_pstatus()
+	}
+
+	//Handler for INTERNAL event of "svm for pstatus"
+	svm_for_pstatus__internal(parent_event_result){
+		this.svm_for_pstatus__tbc_from_iq(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation trg btn"
+	navigation_trg_btn__action_button_click(){
+		this.navigation_trg_btn__ssp_from_trg_btn()
+	}
+
+	//Handler for INTERNAL event of "ssp from trg btn"
+	ssp_from_trg_btn__internal(parent_event_result){
+		this.ssp_from_trg_btn__brfq_for_tran_list(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view tran"
+	navigation_view_tran__action_button_click(){
+		this.navigation_view_tran__sp_for_view_detail_tran()
+		this.navigation_view_tran__brfq_for_vertical_tran_detail()
+		this.navigation_view_tran__brfq_vprdl()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view process log"
+	navigation_view_process_log__action_button_click(){
+		this.navigation_view_process_log__sp_for_vlh()
+		this.navigation_view_process_log__brfq_for_hd()
+	}
+
+	//Handler for INTERNAL event of "brfq for hd"
+	brfq_for_hd__internal(parent_event_result){
+		this.brfq_for_hd__sfr_for_hd(parent_event_result)
+	}
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__selection_changed(){
+		this.transaction_list__ee_for_vpl()
+		this.transaction_list__ee_for_vml()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view message log"
+	navigation_view_message_log__action_button_click(){
+		this.navigation_view_message_log__sp_for_vmd()
+		this.navigation_view_message_log__brfq_for_vmd()
+	}
+
+	//Handler for INTERNAL event of "brfq for vmd"
+	brfq_for_vmd__internal(parent_event_result){
+		this.brfq_for_vmd__sfr__for_vmd(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__action_button_click(){
+		this.process_log_ui_view_req_and_res__bt_for_req_ui()
+		this.process_log_ui_view_req_and_res__bt_for_res_ui()
+		this.process_log_ui_view_req_and_res__sp_for_vreq_and_vres()
+	}
+
+	//Handler for SELECTION_CHANGED event of "history detail"
+	history_detail__selection_changed(){
+		this.history_detail__ee_for_vrar()
+		this.history_detail__ssr_for_req_ui()
+		this.history_detail__ssr_for_res_ui()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message"
+	message_detail_action_view_message__action_button_click(){
+		this.message_detail_action_view_message__sp_for_view_message_data()
+		this.message_detail_action_view_message__bt_for_md_ui()
+	}
+
+	//Handler for SELECTION_CHANGED event of "message detail"
+	message_detail__selection_changed(){
+		this.message_detail__ssr_for_md_ui()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
+	back_ui_back__action_button_click(){
+		this.back_ui_back__sp_for_back_from_main()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "message back ui back"
+	message_back_ui_back__action_button_click(){
+		this.message_back_ui_back__sp_for_mb_back()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action back"
+	message_detail_action_back__action_button_click(){
+		this.message_detail_action_back__sp_for_mda_back()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui back"
+	process_log_ui_back__action_button_click(){
+		this.process_log_ui_back__sp_for_pl_back()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "single back ui back"
+	single_back_ui_back__action_button_click(){
+		this.single_back_ui_back__sp_for_sb_back()
+	}
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__cf_from_pag_load() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1598521589606"
+		let event_params={"caller_name":"page_load__cf_from_pag_load","event_desc":"CF from pag load","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""}}
+		let handler_code="create_form"
+		let internals="cf_from_pag_load__cc_show_hide_ide,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_trg_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_trg_btn"
+		let parent_source_id=""
+		let event_code="e_1678795239854"
+		let event_params={"caller_name":"page_load__he_for_trg_btn","event_desc":"HE for trg btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_from_pg_to_view_details() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_view_tran"
+		let parent_source_id=""
+		let event_code="e_1678854744275"
+		let event_params={"caller_name":"page_load__he_from_pg_to_view_details","event_desc":"HE from PG to View Details","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_vml() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_view_message_log"
+		let parent_source_id=""
+		let event_code="e_1678855503543"
+		let event_params={"caller_name":"page_load__he_for_vml","event_desc":"HE for VML","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cf from pag load"
+	cf_from_pag_load__cc_show_hide_ide(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cf_from_pag_load"
+		let destn_id=""
+		let parent_source_id="page_load"
+		let event_code="e_1678252628866"
+		let event_params={"caller_name":"cf_from_pag_load__cc_show_hide_ide","event_desc":"CC Show Hide IDE","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals="cc_show_hide_ide__tbc_from_show_hide_cc,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc show hide ide"
+	cc_show_hide_ide__tbc_from_show_hide_cc(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_show_hide_ide"
+		let destn_id="search_search"
+		let parent_source_id="cf_from_pag_load"
+		let event_code="e_1678252667787"
+		let event_params={"caller_name":"cc_show_hide_ide__tbc_from_show_hide_cc","event_desc":"TBC from Show Hide CC","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "search search"
+	search_search__ve_from_search() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="search_search"
+		let destn_id="search"
+		let parent_source_id=""
+		let event_code="e_1678167968788"
+		let event_params={"caller_name":"search_search__ve_from_search","event_desc":"VE from Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
+		let handler_code="validate_elements"
+		let internals="ve_from_search__ssp_from_search_ve,ve_from_search__cp_from_search_ve,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "search search"
+	search_search__de_for_vpl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="search_search"
+		let destn_id="navigation_view_process_log"
+		let parent_source_id=""
+		let event_code="e_1678855012838"
+		let event_params={"caller_name":"search_search__de_for_vpl","event_desc":"DE for VPL","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ve from search"
+	ve_from_search__ssp_from_search_ve(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ve_from_search"
+		let destn_id="search"
+		let parent_source_id="search_search"
+		let event_code="e_1678168003324"
+		let event_params={"caller_name":"ve_from_search__ssp_from_search_ve","event_desc":"SSP from Search VE","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="set_search_params"
+		let internals="ssp_from_search_ve__bfrq_to_tl_from_ssp,ssp_from_search_ve__brfq_for_ip_list,ssp_from_search_ve__brfq_for_pstatus,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ve from search"
+	ve_from_search__cp_from_search_ve(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ve_from_search"
+		let destn_id=""
+		let parent_source_id="search_search"
+		let event_code="e_1678169049841"
+		let event_params={"popup_info":{"context":""},"caller_name":"ve_from_search__cp_from_search_ve","event_desc":"CP from Search VE","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="close_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.close_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ssp from search ve"
+	ssp_from_search_ve__bfrq_to_tl_from_ssp(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ssp_from_search_ve"
+		let destn_id="outward_list"
+		let parent_source_id="ve_from_search"
+		let event_code="e_1678168022581"
+		let event_params={"caller_name":"ssp_from_search_ve__bfrq_to_tl_from_ssp","event_desc":"BFRQ to TL from SSP","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678780847259","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Home Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Type","alias_name":"","mq_id":"MQ_1677928433068","date_format":false},{"column_name":"Total","alias_name":"","mq_id":"MQ_1677928433241","date_format":false},{"column_name":"IBMB","alias_name":"","mq_id":"MQ_1677928433417","date_format":false},{"column_name":"RMB","alias_name":"","mq_id":"MQ_1677928433585","date_format":false},{"column_name":"RIB","alias_name":"","mq_id":"MQ_1677928433769","date_format":false},{"column_name":"CMB","alias_name":"","mq_id":"MQ_1677928433945","date_format":false},{"column_name":"CIB","alias_name":"","mq_id":"MQ_1677928434130","date_format":false},{"column_name":"CMS","alias_name":"","mq_id":"MQ_1677928467185","date_format":false},{"column_name":"Manual","alias_name":"","mq_id":"MQ_1677928467361","date_format":false},{"column_name":"Pending_Screening","alias_name":"","mq_id":"MQ_1677928467521","date_format":false},{"column_name":"Pending_Maker","alias_name":"","mq_id":"MQ_1677928484313","date_format":false},{"column_name":"Pending_Checker","alias_name":"","mq_id":"MQ_1677928484473","date_format":false},{"column_name":"Send_to_CB","alias_name":"","mq_id":"MQ_1677928484633","date_format":false},{"column_name":"CBACK","alias_name":"","mq_id":"MQ_1677928498570","date_format":false},{"column_name":"CBNACK","alias_name":"","mq_id":"MQ_1677928498753","date_format":false},{"column_name":"Pending_T_1","alias_name":"","mq_id":"MQ_1677928498969","date_format":false},{"column_name":"Created_Date","alias_name":"","mq_id":"MQ_1677928517681","date_format":true}],"joins":[]},"eq_text":"SELECT Type,        Total,        IBMB,        RMB,        RIB,        CMB,        CIB,        CMS,        Manual,        Pending_Screening,        Pending_Maker,        Pending_Checker,        Send_to_CB,        CBACK,        CBNACK,        Pending_T_1,     Created_Date   FROM vw_dashboard_outward_data $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Home Dashboard MQ CCD","filter":[],"databinding":[{"header":"Type","target_column":"Type","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total","target_column":"Total","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"IBMB","target_column":"IBMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RMB","target_column":"RMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RIB","target_column":"RIB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CMB","target_column":"CMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CIB","target_column":"CIB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CMS","target_column":"CMS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Manual","target_column":"Manual","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Screening","target_column":"Pending_Screening","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Maker)","target_column":"Pending_Maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Checker)","target_column":"Pending_Checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Send to CB","target_column":"Send_to_CB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB ACK","target_column":"CBACK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB NAK","target_column":"CBNACK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (T-1)","target_column":"Pending_T_1","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ssp from search ve"
+	ssp_from_search_ve__brfq_for_ip_list(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ssp_from_search_ve"
+		let destn_id="inward_list"
+		let parent_source_id="ve_from_search"
+		let event_code="e_1678779150168"
+		let event_params={"caller_name":"ssp_from_search_ve__brfq_for_ip_list","event_desc":"BRFQ for IP list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_12","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678780879597","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS IP Home Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"type","alias_name":"","mq_id":"MQ_1677933613596","date_format":false},{"column_name":"total","alias_name":"","mq_id":"MQ_1678169755516","date_format":false},{"column_name":"pending_maker","alias_name":"","mq_id":"MQ_1678169755682","date_format":false},{"column_name":"pending_checker","alias_name":"","mq_id":"MQ_1678169755850","date_format":false},{"column_name":"pending_screening","alias_name":"","mq_id":"MQ_1678169756042","date_format":false},{"column_name":"successfullyposted","alias_name":"","mq_id":"MQ_1678169756202","date_format":false},{"column_name":"pending_returns_maker","alias_name":"","mq_id":"MQ_1678169780171","date_format":false},{"column_name":"pending_returns_checker","alias_name":"","mq_id":"MQ_1678169780331","date_format":false},{"column_name":"returned","alias_name":"","mq_id":"MQ_1678169780499","date_format":false},{"column_name":"pending_t_1","alias_name":"","mq_id":"MQ_1678169862467","date_format":false},{"column_name":"created_date","alias_name":"","mq_id":"MQ_1678170105508","date_format":true}],"joins":[]},"eq_text":"SELECT type,        total,        pending_maker,        pending_checker,        pending_screening,        successfullyposted,        pending_returns_maker,        pending_returns_checker,        returned,        pending_t_1,        created_date   FROM vw_dashboard_inward_data $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS IP Home Dashboard MQ CCD","filter":[],"databinding":[{"header":"Type","target_column":"type","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total","target_column":"total","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Maker)","target_column":"pending_maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Checker)","target_column":"pending_checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Screening","target_column":"pending_screening","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Successfully Posted","target_column":"successfullyposted","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Returns (Maker)","target_column":"pending_returns_maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Returns (Checker)","target_column":"pending_returns_checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Returned","target_column":"returned","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (T-1)","target_column":"pending_t_1","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ssp from search ve"
+	ssp_from_search_ve__brfq_for_pstatus(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ssp_from_search_ve"
+		let destn_id="inward_queue"
+		let parent_source_id="ve_from_search"
+		let event_code="e_1678779473157"
+		let event_params={"caller_name":"ssp_from_search_ve__brfq_for_pstatus","event_desc":"BRFQ for PSTATUS","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"BAR","chart_label":"PROCESS_STATUS","chart_series":"","chart_data":"PROCESS_STATUS_COUNT","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_13","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678787742404","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Queue Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS_COUNT","alias_name":"","mq_id":"MQ_1672833641472","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1672833641606","date_format":false}],"joins":[]},"eq_text":"select  COUNT(PROCESS_STATUS) as PROCESS_STATUS_COUNT,  PROCESS_STATUS from  (  select   T.CREATED_DATE,   T.PROCESS_TYPE ,   T.TENANT_ID,   case    when T.channel_id is null then UPPER('UNKOWN')    else t.channel_id   end as channel_id,   case    when T.PROCESSING_SYSTEM is null then upper('unknown')    else T.PROCESSING_SYSTEM   end as PROCESSING_SYSTEM,   T.DEPARTMENT_CODE,   case    when T.PROCESS_GROUP is null then UPPER('UNKOWN')    else t.PROCESS_GROUP   end as PROCESS_GROUP,   case    when T.EXHF_ID is null then UPPER('RCT')    else UPPER('BCT')   end as PAYMENT_TYPE,   case    when T.PROCESS_STATUS is null then UPPER('UNKNOWN')    else T.PROCESS_STATUS   end as PROCESS_STATUS  from   NPSS_TRANSACTIONS T) V $WHERE group by  PROCESS_STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Queue Dashboard CCD","filter":[{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENENT_ID","binding_name":"TENENT_ID","binding_value":"","source_name":"TENENT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"PROCESS_STATUS_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "outward list"
+	outward_list__svm_by_click_on_tl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="outward_list"
+		let destn_id="outward_list"
+		let parent_source_id=""
+		let event_code="e_1598531297905"
+		let event_params={"caller_name":"outward_list__svm_by_click_on_tl","event_desc":"SVM by click on TL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"outward_list","raiseparam":{}}
+		let handler_code="set_value_to_memory"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678780847259","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Home Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Type","alias_name":"","mq_id":"MQ_1677928433068","date_format":false},{"column_name":"Total","alias_name":"","mq_id":"MQ_1677928433241","date_format":false},{"column_name":"IBMB","alias_name":"","mq_id":"MQ_1677928433417","date_format":false},{"column_name":"RMB","alias_name":"","mq_id":"MQ_1677928433585","date_format":false},{"column_name":"RIB","alias_name":"","mq_id":"MQ_1677928433769","date_format":false},{"column_name":"CMB","alias_name":"","mq_id":"MQ_1677928433945","date_format":false},{"column_name":"CIB","alias_name":"","mq_id":"MQ_1677928434130","date_format":false},{"column_name":"CMS","alias_name":"","mq_id":"MQ_1677928467185","date_format":false},{"column_name":"Manual","alias_name":"","mq_id":"MQ_1677928467361","date_format":false},{"column_name":"Pending_Screening","alias_name":"","mq_id":"MQ_1677928467521","date_format":false},{"column_name":"Pending_Maker","alias_name":"","mq_id":"MQ_1677928484313","date_format":false},{"column_name":"Pending_Checker","alias_name":"","mq_id":"MQ_1677928484473","date_format":false},{"column_name":"Send_to_CB","alias_name":"","mq_id":"MQ_1677928484633","date_format":false},{"column_name":"CBACK","alias_name":"","mq_id":"MQ_1677928498570","date_format":false},{"column_name":"CBNACK","alias_name":"","mq_id":"MQ_1677928498753","date_format":false},{"column_name":"Pending_T_1","alias_name":"","mq_id":"MQ_1677928498969","date_format":false},{"column_name":"Created_Date","alias_name":"","mq_id":"MQ_1677928517681","date_format":true}],"joins":[]},"eq_text":"SELECT Type,        Total,        IBMB,        RMB,        RIB,        CMB,        CIB,        CMS,        Manual,        Pending_Screening,        Pending_Maker,        Pending_Checker,        Send_to_CB,        CBACK,        CBNACK,        Pending_T_1,     Created_Date   FROM vw_dashboard_outward_data $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Home Dashboard MQ CCD","filter":[],"databinding":[{"header":"Type","target_column":"Type","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total","target_column":"Total","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"IBMB","target_column":"IBMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RMB","target_column":"RMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RIB","target_column":"RIB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CMB","target_column":"CMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CIB","target_column":"CIB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CMS","target_column":"CMS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Manual","target_column":"Manual","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Screening","target_column":"Pending_Screening","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Maker)","target_column":"Pending_Maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Checker)","target_column":"Pending_Checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Send to CB","target_column":"Send_to_CB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB ACK","target_column":"CBACK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB NAK","target_column":"CBNACK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (T-1)","target_column":"Pending_T_1","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
+	navigation_search__spap_from_nav_search() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_search"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1598521737693"
+		let event_params={"caller_name":"navigation_search__spap_from_nav_search","event_desc":"SPAP from Nav search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_from_nav_search","selector":"p_search_layout","profile_code":"BTL_1408_1598521300065","window_title":"Search","window_height":400,"window_width":"400px","window_close_icon":"Y","eventdes":"spap_from_nav_search","eventcode":"E_1598521737693"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
+	navigation_search__cui_from_nav_search_btn_click() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_search"
+		let destn_id="search"
+		let parent_source_id=""
+		let event_code="e_1598524561075"
+		let event_params={"caller_name":"navigation_search__cui_from_nav_search_btn_click","event_desc":"CUi from Nav search btn click","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_search","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "search clear"
+	search_clear__cui_from_clear_btn_click() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="search_clear"
+		let destn_id="search"
+		let parent_source_id=""
+		let event_code="e_1598521932422"
+		let event_params={"caller_name":"search_clear__cui_from_clear_btn_click","event_desc":"CUi from clear btn click","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_clear","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "inward list"
+	inward_list__svm_for_ip_list() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="inward_list"
+		let destn_id="inward_list"
+		let parent_source_id=""
+		let event_code="e_1678779197624"
+		let event_params={"caller_name":"inward_list__svm_for_ip_list","event_desc":"SVM for IP list","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"inward_list","raiseparam":{}}
+		let handler_code="set_value_to_memory"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_12","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678780879597","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS IP Home Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"type","alias_name":"","mq_id":"MQ_1677933613596","date_format":false},{"column_name":"total","alias_name":"","mq_id":"MQ_1678169755516","date_format":false},{"column_name":"pending_maker","alias_name":"","mq_id":"MQ_1678169755682","date_format":false},{"column_name":"pending_checker","alias_name":"","mq_id":"MQ_1678169755850","date_format":false},{"column_name":"pending_screening","alias_name":"","mq_id":"MQ_1678169756042","date_format":false},{"column_name":"successfullyposted","alias_name":"","mq_id":"MQ_1678169756202","date_format":false},{"column_name":"pending_returns_maker","alias_name":"","mq_id":"MQ_1678169780171","date_format":false},{"column_name":"pending_returns_checker","alias_name":"","mq_id":"MQ_1678169780331","date_format":false},{"column_name":"returned","alias_name":"","mq_id":"MQ_1678169780499","date_format":false},{"column_name":"pending_t_1","alias_name":"","mq_id":"MQ_1678169862467","date_format":false},{"column_name":"created_date","alias_name":"","mq_id":"MQ_1678170105508","date_format":true}],"joins":[]},"eq_text":"SELECT type,        total,        pending_maker,        pending_checker,        pending_screening,        successfullyposted,        pending_returns_maker,        pending_returns_checker,        returned,        pending_t_1,        created_date   FROM vw_dashboard_inward_data $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS IP Home Dashboard MQ CCD","filter":[],"databinding":[{"header":"Type","target_column":"type","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total","target_column":"total","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Maker)","target_column":"pending_maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Checker)","target_column":"pending_checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Screening","target_column":"pending_screening","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Successfully Posted","target_column":"successfullyposted","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Returns (Maker)","target_column":"pending_returns_maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Returns (Checker)","target_column":"pending_returns_checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Returned","target_column":"returned","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (T-1)","target_column":"pending_t_1","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "inward queue"
+	inward_queue__svm_for_pstatus() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="inward_queue"
+		let destn_id="inward_queue"
+		let parent_source_id=""
+		let event_code="e_1678779544515"
+		let event_params={"caller_name":"inward_queue__svm_for_pstatus","event_desc":"SVM for Pstatus","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"inward_queue","raiseparam":{}}
+		let handler_code="set_value_to_memory"
+		let internals="svm_for_pstatus__tbc_from_iq,"
+		let event_data={"inward_queue":{"e_1678779544515":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_13","event_code":"E_1678779544515","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_13","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678787742404","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Queue Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS_COUNT","alias_name":"","mq_id":"MQ_1672833641472","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1672833641606","date_format":false}],"joins":[]},"eq_text":"select  COUNT(PROCESS_STATUS) as PROCESS_STATUS_COUNT,  PROCESS_STATUS from  (  select   T.CREATED_DATE,   T.PROCESS_TYPE ,   T.TENANT_ID,   case    when T.channel_id is null then UPPER('UNKOWN')    else t.channel_id   end as channel_id,   case    when T.PROCESSING_SYSTEM is null then upper('unknown')    else T.PROCESSING_SYSTEM   end as PROCESSING_SYSTEM,   T.DEPARTMENT_CODE,   case    when T.PROCESS_GROUP is null then UPPER('UNKOWN')    else t.PROCESS_GROUP   end as PROCESS_GROUP,   case    when T.EXHF_ID is null then UPPER('RCT')    else UPPER('BCT')   end as PAYMENT_TYPE,   case    when T.PROCESS_STATUS is null then UPPER('UNKNOWN')    else T.PROCESS_STATUS   end as PROCESS_STATUS  from   NPSS_TRANSACTIONS T) V $WHERE group by  PROCESS_STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Queue Dashboard CCD","filter":[{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENENT_ID","binding_name":"TENENT_ID","binding_value":"","source_name":"TENENT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"PROCESS_STATUS_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "svm for pstatus"
+	svm_for_pstatus__tbc_from_iq(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="svm_for_pstatus"
+		let destn_id="navigation_trg_btn"
+		let parent_source_id="inward_queue"
+		let event_code="e_1678795267979"
+		let event_params={"caller_name":"svm_for_pstatus__tbc_from_iq","event_desc":"TBC from IQ","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"inward_queue","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation trg btn"
+	navigation_trg_btn__ssp_from_trg_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_trg_btn"
+		let destn_id="search"
+		let parent_source_id=""
+		let event_code="e_1678795301433"
+		let event_params={"caller_name":"navigation_trg_btn__ssp_from_trg_btn","event_desc":"SSP from TRG btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_trg_btn","raiseparam":{}}
+		let handler_code="set_search_params"
+		let internals="ssp_from_trg_btn__brfq_for_tran_list,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ssp from trg btn"
+	ssp_from_trg_btn__brfq_for_tran_list(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ssp_from_trg_btn"
+		let destn_id="transaction_list"
+		let parent_source_id="navigation_trg_btn"
+		let event_code="e_1678795328024"
+		let event_params={"caller_name":"ssp_from_trg_btn__brfq_for_tran_list","event_desc":"BRFQ for tran list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_trg_btn","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_14","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678796509061","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"NPSST_ID","alias_name":"","mq_id":"MQ_1678795579493","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1678795579892","date_format":false},{"column_name":"VALUE_DATE","alias_name":"","mq_id":"MQ_1678795580083","date_format":true},{"column_name":"CLRSYSREF","alias_name":"","mq_id":"MQ_1678795580252","date_format":false},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1678795580443","date_format":false},{"column_name":"INTRBK_STTLM_CUR","alias_name":"","mq_id":"MQ_1678795580651","date_format":false},{"column_name":"INTRBK_STTLM_AMNT","alias_name":"","mq_id":"MQ_1678795581011","date_format":false,"currency_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678795648225","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1678795648809","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1678795649097","date_format":false},{"column_name":"DEPARTMENT_CODE","alias_name":"","mq_id":"MQ_1678795649417","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1678795649737","date_format":false},{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1678795721503","date_format":false},{"column_name":"PROCESS_GROUP","alias_name":"","mq_id":"MQ_1678795721671","date_format":false},{"column_name":"DBTR_IBAN","alias_name":"","mq_id":"MQ_1678795721847","date_format":false},{"column_name":"cr_acct_identification_mask","alias_name":"","mq_id":"MQ_1678795722007","date_format":false},{"column_name":"dr_acct_identification_mask","alias_name":"","mq_id":"MQ_1678800278062","date_format":false}],"joins":[]},"eq_text":"select  NPSST_ID,  cr_acct_identification_mask,  dr_acct_identification_mask  ,CR_ACCT_IDENTIFICATION,  UETR,  VALUE_DATE,  ACCP_DATE_TIME,  CREATED_DATE,  DATEMI,  EXHF_ID,  CDTR_IBAN,  TENANT_ID,  TRAN_REF_ID,  DEPARTMENT_CODE,  PAYMENT_ENDTOEND_ID,  CLRSYSREF,  CDTR_ACCT_NO,  DBTR_ACCT_NO,  INTRBK_STTLM_CUR,  INTRBK_STTLM_AMNT,  STATUS,  PROCESSING_SYSTEM,  PROCESS_STATUS,  DBTR_ACCT_NAME,  DBTR_PHONE_NO,  DBTR_EMAIL_ID,  DBTR_DOCUMENT_ID,  DBTR_IBAN,  DBTR_CUST_TYPE,  DBTR_PRVT_ID,  DBTR_OTHER_ISSUER,  CDTR_ACCT_NAME,  CDTR_PHONE_NO,  CDTR_EMAIL_ID,  CDTR_DOCUMENT_ID,  DR_SORT_CODE,  CR_SORT_CODE,  CATEGORY_PURPOSE,  CATEGORY_PURPOSE_PRTY,  BASE_CURRENCY,  BASE_AMOUNT,  HDR_TOTAL_RECORDS,  HDR_TOTAL_AMOUNT,  HDR_CLEARING_SYSTEM,  CHARGE_BEARER,  REMITTANCE_INFO,  ACCOUNT_CURRENCY,  CHANNEL_ID,  CHANNEL_REFNO,  CHANNEL_USERID,  CHANNEL_PRODUCT,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  ISSUER_TYPE_CODE,  CBS_REF_NO,  CBS_POSTING_FLAG,  PROCESS_TYPE,  PROCESS_GROUP from  (  select   NT.NPSST_ID,   Fn_card_decrypt_and_mask_rpt(nt.cr_acct_identification) as cr_acct_identification_mask,   Fn_card_decrypt_and_mask_rpt(nt.DBTR_ACCT_NO) as dr_acct_identification_mask,   NT.UETR,   NT.VALUE_DATE,   NT.ACCP_DATE_TIME,   NT.CREATED_DATE,   TO_CHAR(NT.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   NT.DEPARTMENT_CODE,   NT.TENANT_ID,   NT.EXHF_ID,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.PAYMENT_ENDTOEND_ID,   NT.CLRSYSREF,   NT.CDTR_ACCT_NO,   NT.DBTR_ACCT_NO,   NT.INTRBK_STTLM_CUR,   NT.INTRBK_STTLM_AMNT,   NT.STATUS,   NT.PROCESSING_SYSTEM,   NT.PROCESS_STATUS,   NT.DBTR_ACCT_NAME,   NT.DBTR_PHONE_NO,   NT.DBTR_EMAIL_ID,   NT.DBTR_DOCUMENT_ID,   NT.DBTR_IBAN,   NT.DBTR_CUST_TYPE,   NT.DBTR_PRVT_ID,   NT.DBTR_OTHER_ISSUER,   NT.CDTR_ACCT_NAME,   NT.CDTR_PHONE_NO,   NT.CDTR_EMAIL_ID,   NT.CDTR_DOCUMENT_ID,   NT.DR_SORT_CODE,   NT.CR_SORT_CODE,   NT.CATEGORY_PURPOSE,   NT.CATEGORY_PURPOSE_PRTY,   NT.CR_ACCT_IDENTIFICATION,   NT.BASE_CURRENCY,   NT.BASE_AMOUNT,   NT.HDR_TOTAL_RECORDS,   NT.HDR_TOTAL_AMOUNT,   NT.HDR_CLEARING_SYSTEM,   NT.CHARGE_BEARER,   NT.REMITTANCE_INFO,   NT.ACCOUNT_CURRENCY,   NT.CHANNEL_ID,   NT.CHANNEL_REFNO,   NT.CHANNEL_USERID,   NT.CHANNEL_PRODUCT,   NT.CHANNEL_SUB_PRODUCT,   NT.CHANNEL_TRAN_CODE,   NT.ISSUER_TYPE_CODE,   NT.CBS_REF_NO,   NT.CBS_POSTING_FLAG,   NT.PROCESS_TYPE,   NT.PROCESS_GROUP  from   NPSS_TRANSACTIONS NT ) V $WHERE order by  NPSST_ID desc"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard Tran MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"INTRBK_STTLM_CUR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"INTRBK_STTLM_AMNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false,"currency_format":true},{"header":"Cr IBAN","target_column":"CDTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr IBAN","target_column":"DBTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr Card Number","target_column":"cr_acct_identification_mask","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr Card Number","target_column":"dr_acct_identification_mask","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E Ref ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing System Ref No","target_column":"CLRSYSREF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Group","target_column":"PROCESS_GROUP","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Department Code","target_column":"DEPARTMENT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view tran"
+	navigation_view_tran__sp_for_view_detail_tran() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_tran"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678803572113"
+		let event_params={"caller_name":"navigation_view_tran__sp_for_view_detail_tran","event_desc":"SP for View Detail Tran","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_tran","raiseparam":{"profile_code":"BTL_1304_1678802723046"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view tran"
+	navigation_view_tran__brfq_for_vertical_tran_detail() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_tran"
+		let destn_id="view_dr_cr_details"
+		let parent_source_id=""
+		let event_code="e_1678803628046"
+		let event_params={"caller_name":"navigation_view_tran__brfq_for_vertical_tran_detail","event_desc":"BRFQ for Vertical Tran Detail","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_tran","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view tran"
+	navigation_view_tran__brfq_vprdl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_tran"
+		let destn_id="view_payment_details"
+		let parent_source_id=""
+		let event_code="e_1678803673030"
+		let event_params={"caller_name":"navigation_view_tran__brfq_vprdl","event_desc":"BRFQ VPRDL","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_tran","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view process log"
+	navigation_view_process_log__sp_for_vlh() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_process_log"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678854802450"
+		let event_params={"caller_name":"navigation_view_process_log__sp_for_vlh","event_desc":"SP for VLH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_process_log","raiseparam":{"profile_code":"BTL_1304_1678802866576"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view process log"
+	navigation_view_process_log__brfq_for_hd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_process_log"
+		let destn_id="history_detail"
+		let parent_source_id=""
+		let event_code="e_1678854852122"
+		let event_params={"caller_name":"navigation_view_process_log__brfq_for_hd","event_desc":"BRFQ for HD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_process_log","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let handler_code="bind_record_from_query"
+		let internals="brfq_for_hd__sfr_for_hd,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq for hd"
+	brfq_for_hd__sfr_for_hd(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_for_hd"
+		let destn_id="history_detail"
+		let parent_source_id="navigation_view_process_log"
+		let event_code="e_1678854868312"
+		let event_params={"caller_name":"brfq_for_hd__sfr_for_hd","event_desc":"SFR for HD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_view_process_log","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_vpl() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_view_process_log"
+		let parent_source_id=""
+		let event_code="e_1678855103933"
+		let event_params={"caller_name":"transaction_list__ee_for_vpl","event_desc":"EE for VPL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_vml() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_view_message_log"
+		let parent_source_id=""
+		let event_code="e_1678855554837"
+		let event_params={"caller_name":"transaction_list__ee_for_vml","event_desc":"EE for VML","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view message log"
+	navigation_view_message_log__sp_for_vmd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_message_log"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678855275946"
+		let event_params={"caller_name":"navigation_view_message_log__sp_for_vmd","event_desc":"SP for VMD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_message_log","raiseparam":{"profile_code":"BTL_1304_1678803243440"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation view message log"
+	navigation_view_message_log__brfq_for_vmd() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_view_message_log"
+		let destn_id="message_detail"
+		let parent_source_id=""
+		let event_code="e_1678855310922"
+		let event_params={"caller_name":"navigation_view_message_log__brfq_for_vmd","event_desc":"BRFQ for VMD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_message_log","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}
+		let handler_code="bind_record_from_query"
+		let internals="brfq_for_vmd__sfr__for_vmd,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq for vmd"
+	brfq_for_vmd__sfr__for_vmd(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_for_vmd"
+		let destn_id="message_detail"
+		let parent_source_id="navigation_view_message_log"
+		let event_code="e_1678855389929"
+		let event_params={"caller_name":"brfq_for_vmd__sfr__for_vmd","event_desc":"SFR  for VMD","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_view_message_log","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__bt_for_req_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id="request_ui"
+		let parent_source_id=""
+		let event_code="e_1678855608805"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_for_req_ui","event_desc":"BT for Req UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__bt_for_res_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id="response_ui"
+		let parent_source_id=""
+		let event_code="e_1678855617033"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_for_res_ui","event_desc":"BT for Res UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
+	process_log_ui_view_req_and_res__sp_for_vreq_and_vres() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_req_and_res"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678855656564"
+		let event_params={"caller_name":"process_log_ui_view_req_and_res__sp_for_vreq_and_vres","event_desc":"SP for VREQ and VRES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1678803372109"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "history detail"
+	history_detail__ee_for_vrar() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="history_detail"
+		let destn_id="process_log_ui_view_req_and_res"
+		let parent_source_id=""
+		let event_code="e_1678855751403"
+		let event_params={"caller_name":"history_detail__ee_for_vrar","event_desc":"EE for VRAR","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "history detail"
+	history_detail__ssr_for_req_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="history_detail"
+		let destn_id="request_ui"
+		let parent_source_id=""
+		let event_code="e_1678855785906"
+		let event_params={"caller_name":"history_detail__ssr_for_req_ui","event_desc":"SSR for req ui","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "history detail"
+	history_detail__ssr_for_res_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="history_detail"
+		let destn_id="response_ui"
+		let parent_source_id=""
+		let event_code="e_1678855798156"
+		let event_params={"caller_name":"history_detail__ssr_for_res_ui","event_desc":"SSR for res ui","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message"
+	message_detail_action_view_message__sp_for_view_message_data() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_detail_action_view_message"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678855887404"
+		let event_params={"caller_name":"message_detail_action_view_message__sp_for_view_message_data","event_desc":"SP for view message DATA","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message","raiseparam":{"profile_code":"BTL_1304_1678803301898"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message"
+	message_detail_action_view_message__bt_for_md_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_detail_action_view_message"
+		let destn_id="message_detail_ui"
+		let parent_source_id=""
+		let event_code="e_1678855946032"
+		let event_params={"caller_name":"message_detail_action_view_message__bt_for_md_ui","event_desc":"BT for MD UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "message detail"
+	message_detail__ssr_for_md_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_detail"
+		let destn_id="message_detail_ui"
+		let parent_source_id=""
+		let event_code="e_1678855963255"
+		let event_params={"caller_name":"message_detail__ssr_for_md_ui","event_desc":"SSR for MD UI","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"message_detail","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
+	back_ui_back__sp_for_back_from_main() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="back_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678856012575"
+		let event_params={"caller_name":"back_ui_back__sp_for_back_from_main","event_desc":"SP for back from Main","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"back_ui_back","raiseparam":{"profile_code":"BTL_1408_1598521214410"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "message back ui back"
+	message_back_ui_back__sp_for_mb_back() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_back_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678856070249"
+		let event_params={"caller_name":"message_back_ui_back__sp_for_mb_back","event_desc":"SP for MB Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_back_ui_back","raiseparam":{"profile_code":"BTL_1304_1678803243440"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action back"
+	message_detail_action_back__sp_for_mda_back() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_detail_action_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678856129298"
+		let event_params={"caller_name":"message_detail_action_back__sp_for_mda_back","event_desc":"SP for MDA Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_back","raiseparam":{"profile_code":"BTL_1408_1598521214410"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui back"
+	process_log_ui_back__sp_for_pl_back() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678856190577"
+		let event_params={"caller_name":"process_log_ui_back__sp_for_pl_back","event_desc":"SP for PL Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_back","raiseparam":{"profile_code":"BTL_1408_1598521214410"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "single back ui back"
+	single_back_ui_back__sp_for_sb_back() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="single_back_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1678856356412"
+		let event_params={"caller_name":"single_back_ui_back__sp_for_sb_back","event_desc":"SP for SB Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"single_back_ui_back","raiseparam":{"profile_code":"BTL_1304_1678802866576"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+ 
+	customProject_customValidation(projectName,validation,callback) {
+		if(this[projectName+'Service']) {
+			this[projectName+'Service'].fn_customValidation(projectName,this,validation,callback)
+		}
+	}
+	closePopup(){
+		setTimeout(()=>{
+			this.handler.close_popup('','','','','',this,'','','','');
+		},100)
+	}
+}
+
+// End of class 

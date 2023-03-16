@@ -7,20 +7,20 @@ Modified Date   : 2023-Mar-16 14:41 PM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
-Form Name       : Process Log UI--------------------------------------------------------------------------- */
+Form Name       : Nav UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_process_log_ui',
-  templateUrl: './f_process_log_ui.component.html',
-  styleUrls: ['./f_process_log_ui.component.css'],
+  selector: 'f_nav_ui',
+  templateUrl: './f_nav_ui.component.html',
+  styleUrls: ['./f_nav_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_process_log_uiComponent implements OnInit {
+export class f_nav_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_process_log_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_process_log_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_process_log_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_nav_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_nav_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_process_log_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_nav_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

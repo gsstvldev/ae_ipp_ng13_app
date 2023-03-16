@@ -1,13 +1,12 @@
 <div class="s_home_dashboard">
+<p_op_layout [screen_instance]="this" [hidden]="!(current_profile=='p_op_layout')"></p_op_layout>
+<p_ip_queue_layout [screen_instance]="this" [hidden]="!(current_profile=='p_ip_queue_layout')"></p_ip_queue_layout>
 <p_view_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_history_layout')"></p_view_history_layout>
 <p_view_tran_detail_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_tran_detail_layout')"></p_view_tran_detail_layout>
 <p_view_req_and_res_profile [screen_instance]="this" [hidden]="!(current_profile=='p_view_req_and_res_profile')"></p_view_req_and_res_profile>
 <p_view_message_ui_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_ui_layout')"></p_view_message_ui_layout>
 <p_view_message_list_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_list_layout')"></p_view_message_list_layout>
 <p_default_profile [screen_instance]="this" [hidden]="!(current_profile=='p_default_profile')"></p_default_profile>
-
-<p-dialog header="{{'Outward Pending Tran' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_outward_chart_layout__spap_for_op_chart_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '350px','width': '500px'}" [draggable]="true" [modal]="true">
-	<p_outward_chart_layout [screen_instance]="this" ></p_outward_chart_layout></p-dialog>
 
 <p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_from_nav_search_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '400px','width': '400px'}" [draggable]="true" [modal]="true">
 	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>

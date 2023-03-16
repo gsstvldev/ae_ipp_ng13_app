@@ -36,12 +36,16 @@ CREATE OR REPLACE VIEW vw_dashboard_inward_data
                     WHEN npl.process_name::text = 'Receive Pacs008'::text THEN 1
                     WHEN npl.process_name::text = 'Receive Pacs.007'::text THEN 3
                     WHEN npl.process_name::text = 'Place Pacs004'::text THEN 2
+                    WHEN npl.process_name::text = 'PACS.008'::text THEN 1
+                    WHEN npl.process_name::text = 'PACS.007'::text THEN 3                    
                     ELSE NULL::integer
                 END AS sno,
                 CASE
                     WHEN npl.process_name::text = 'Receive Pacs008'::text THEN 'pacs.008'::text
                     WHEN npl.process_name::text = 'Receive Pacs.007'::text THEN 'pacs.007'::text
                     WHEN npl.process_name::text = 'Place Pacs004'::text THEN 'pacs.004'::text
+                    WHEN npl.process_name::text = 'PACS.008'::text THEN 'pacs.008'::text
+                    WHEN npl.process_name::text = 'PACS.007'::text THEN 'pacs.007'::text
                     ELSE NULL::text
                 END AS type,
             count(DISTINCT
@@ -53,9 +57,9 @@ CREATE OR REPLACE VIEW vw_dashboard_inward_data
                 END) AS total,
             count(DISTINCT
                 CASE
-                    WHEN npl.process_name::text = 'Receive Pacs008'::text AND nppst.process_status::text = 'RCTInProcess'::text AND nppst.status::text = 'IP_RCT_RECEIVED'::text THEN nppst.npsst_id
-                    WHEN npl.process_name::text = 'Receive Pacs.007'::text AND npl.processing_system::text <> 'IBM_MQ'::text AND nppst.status::text = 'IP_RCT_RECEIVED'::text THEN nppst.npsst_id
-                    ELSE NULL::integer
+                    WHEN (npl.process_name::text = 'PACS.008'::text AND npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text) OR (npl.process_name::text = 'PACS.008'::text AND npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text AND npl.status='IP_RCT_EXCEPTION') THEN nppst.npsst_id::bigint
+		            WHEN (npl.process_name::text = 'PACS.007'::text AND npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text) OR (npl.process_name::text = 'PACS.007'::text AND npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text AND npl.status='IP_RCT_EXCEPTION') THEN nppst.npsst_id::bigint	
+                    ELSE NULL::bigint
                 END) AS pending_screening,
             count(DISTINCT
                 CASE
@@ -96,7 +100,7 @@ CREATE OR REPLACE VIEW vw_dashboard_inward_data
             to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date
            FROM npss_transactions nppst
              JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-          WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs008'::character varying::text, 'Receive Pacs.007'::character varying::text, 'Place Pacs004'::character varying::text]))
+          WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs008'::character varying::text, 'Receive Pacs.007'::character varying::text, 'Place Pacs004'::character varying::text,'PACS.008'::character varying::text, 'PACS.007'::character varying::text]))
           GROUP BY nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group, (to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text))
         UNION ALL (
                  SELECT 1 AS sno,

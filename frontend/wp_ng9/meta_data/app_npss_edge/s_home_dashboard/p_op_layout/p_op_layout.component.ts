@@ -1,29 +1,31 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28723 
+Build ID        : 28726 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-16 12:21 PM 
+Modified Date   : 2023-Mar-16 14:41 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
-Profile Name    : Outward Chart layout--------------------------------------------------------------------------- */
+Profile Name    : OP Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_outward_chart_layout',
-  templateUrl: './p_outward_chart_layout.component.html',
-  styleUrls: ['./p_outward_chart_layout.component.css']
+  selector: 'p_op_layout',
+  templateUrl: './p_op_layout.component.html',
+  styleUrls: ['./p_op_layout.component.css']
 })
 
 // Start of class 
-export class p_outward_chart_layoutComponent implements OnInit {
+export class p_op_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	outward_chart : any = {}
-	close_ui : any = {}
+  	navigation : any = {}
+	default_back_ui : any = {}
+	outward_chart : any = {}
+	transaction_list : any = {}
 
 
   // Constructor 
@@ -31,14 +33,18 @@ export class p_outward_chart_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.outward_chart.desc = "Outward Chart"
+    	this.navigation.desc = "Navigation"
+		this.navigation.need_header = ""
+		this.default_back_ui.desc = "Default Back UI"
+		this.default_back_ui.need_header = ""
+		this.outward_chart.desc = "Outward Chart"
 		this.outward_chart.need_header = ""
-		this.close_ui.desc = "CLOSE UI"
-		this.close_ui.need_header = ""
+		this.transaction_list.desc = "Transaction List"
+		this.transaction_list.need_header = true
 	
 
-    this.screen_instance['p_outward_chart_layout'] = {};
-    this.screen_instance['p_outward_chart_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_op_layout'] = {};
+    this.screen_instance['p_op_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

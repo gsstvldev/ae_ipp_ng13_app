@@ -1,26 +1,26 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28723 
+Build ID        : 28726 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-16 12:21 PM 
+Modified Date   : 2023-Mar-16 14:41 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
-Form Name       : CLOSE UI--------------------------------------------------------------------------- */
+Form Name       : Default Back UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_close_ui',
-  templateUrl: './f_close_ui.component.html',
-  styleUrls: ['./f_close_ui.component.css'],
+  selector: 'f_default_back_ui',
+  templateUrl: './f_default_back_ui.component.html',
+  styleUrls: ['./f_default_back_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_close_uiComponent implements OnInit {
+export class f_default_back_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_close_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_close_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_close_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_default_back_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_default_back_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_close_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_default_back_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

@@ -7,23 +7,25 @@ Modified Date   : 2023-Mar-16 14:41 PM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
-Profile Name    : View history layout--------------------------------------------------------------------------- */
+Profile Name    : IP Queue Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_view_history_layout',
-  templateUrl: './p_view_history_layout.component.html',
-  styleUrls: ['./p_view_history_layout.component.css']
+  selector: 'p_ip_queue_layout',
+  templateUrl: './p_ip_queue_layout.component.html',
+  styleUrls: ['./p_ip_queue_layout.component.css']
 })
 
 // Start of class 
-export class p_view_history_layoutComponent implements OnInit {
+export class p_ip_queue_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	process_log_ui : any = {}
-	history_detail : any = {}
+  	navigation : any = {}
+	default_back_ui : any = {}
+	inward_queue : any = {}
+	transaction_list : any = {}
 
 
   // Constructor 
@@ -31,14 +33,18 @@ export class p_view_history_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.process_log_ui.desc = "Process Log UI"
-		this.process_log_ui.need_header = ""
-		this.history_detail.desc = "History Detail"
-		this.history_detail.need_header = ""
+    	this.navigation.desc = "Navigation"
+		this.navigation.need_header = ""
+		this.default_back_ui.desc = "Default Back UI"
+		this.default_back_ui.need_header = ""
+		this.inward_queue.desc = "Inward Queue"
+		this.inward_queue.need_header = ""
+		this.transaction_list.desc = "Transaction List"
+		this.transaction_list.need_header = ""
 	
 
-    this.screen_instance['p_view_history_layout'] = {};
-    this.screen_instance['p_view_history_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_ip_queue_layout'] = {};
+    this.screen_instance['p_ip_queue_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

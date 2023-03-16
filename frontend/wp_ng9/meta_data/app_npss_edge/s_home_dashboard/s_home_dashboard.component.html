@@ -6,6 +6,9 @@
 <p_view_message_list_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_list_layout')"></p_view_message_list_layout>
 <p_default_profile [screen_instance]="this" [hidden]="!(current_profile=='p_default_profile')"></p_default_profile>
 
+<p-dialog header="{{'Chart' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_outward_chart_layout__spap_for_op_chart_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '600px','width': '800px'}" [draggable]="true" [modal]="true">
+	<p_outward_chart_layout [screen_instance]="this" ></p_outward_chart_layout></p-dialog>
+
 <p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_from_nav_search_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '400px','width': '400px'}" [draggable]="true" [modal]="true">
 	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>
 

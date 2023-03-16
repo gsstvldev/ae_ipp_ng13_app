@@ -7,32 +7,32 @@ Modified Date   : 2023-Mar-16 11:35 AM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
-Form Name       : NPSS Message Data UI--------------------------------------------------------------------------- */
+Form Name       : Npss Home Dashboard Header SRCH--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_message_data_ui',
-  templateUrl: './f_npss_message_data_ui.component.html',
-  styleUrls: ['./f_npss_message_data_ui.component.css'],
+  selector: 'f_npss_home_dashboard_header_srch',
+  templateUrl: './f_npss_home_dashboard_header_srch.component.html',
+  styleUrls: ['./f_npss_home_dashboard_header_srch.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_message_data_uiComponent implements OnInit {
+export class f_npss_home_dashboard_header_srchComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_message_data_ui') form;
-  @ViewChild('npss_message_data_ui_message_data') element: ElementRef;
+  @ViewChild('f_npss_home_dashboard_header_srch') form;
+  @ViewChild('npss_home_dashboard_header_srch_memory63') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
 	ctrl : any = {}
 	dt_code : string = "dt_1304_1665901130705"
-	dtt_code : string = "dtt_1304_1665903906193"
+	dtt_code : string = "dtt_1304_1665901217208"
 
   
   // Constructor 
@@ -48,48 +48,49 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
-		//Properties of message_data
-		this.ctrl.message_data = {}
-		this.ctrl.message_data.id = "RN01CN1"
-		this.ctrl.message_data.desc = "Message Data"
-		this.ctrl.message_data.visible = false
-		this.ctrl.message_data.label_name = "Message Data"
-		this.ctrl.message_data.df_code = "DF_1304_1665904016567"
-		this.ctrl.message_data.df_description = "Column Group 1"
-		this.ctrl.message_data.uictrl_code = "RICH_TXT"
-		this.ctrl.message_data.target_column = "MESSAGE_DATA"
-		this.ctrl.message_data.data_type = "TEXT"
-		this.ctrl.message_data.data_length = 80000
-		this.ctrl.message_data.zone_df_code = "DF_1304_1665904016567"
-		this.ctrl.message_data.default_value = ""
-		this.ctrl.message_data.is_memory_ctrl = ""
-		this.ctrl.message_data.field_coordinates = ""
-		this.ctrl.message_data.sub_details = ""
-		this.ctrl.message_data.accept_char = ""
-		this.ctrl.message_data.currency_format = ""
-		this.ctrl.message_data.data_scale = ""
-		this.ctrl.message_data.hide_label = false
-		this.ctrl.message_data.depends_on = ""
-		this.ctrl.message_data.placeholder = ""
-		this.ctrl.message_data.dynamic_param = ""
-		this.ctrl.message_data.style_code = ""
-		this.ctrl.message_data.data_source = ""
-		this.ctrl.message_data.image_association = ""
-		this.ctrl.message_data.show = true
-		this.ctrl.message_data.sub_content = ""
-		this.ctrl.message_data.required = false
-		this.ctrl.message_data.vld_rules = []
-		this.ctrl.message_data.targetcolumn_lower = "message_data"
-		this.ctrl.message_data.disabled = false
-		this.ctrl.message_data.view_name = "f_npss_message_data_ui"
-		this.ctrl.message_data.ctrl_id = "npss_message_data_ui_message_data"
-		this.ctrl.npss_message_data_ui_message_data = {}
-		this.ctrl.npss_message_data_ui_message_data.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_message_data_ui.model = {"MESSAGE_DATA":""}
-		this.screen_instance[this.comp_id].f_npss_message_data_ui.Meta = [{"CTLR_CODE":"RICH_TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"MESSAGE_DATA"}]
-		this.screen_instance[this.comp_id].f_npss_message_data_ui.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_message_data_ui.dtt_code = "dtt_1304_1665903906193"
-		this.screen_instance[this.comp_id].f_npss_message_data_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		//Properties of memory63
+		this.ctrl.memory63 = {}
+		this.ctrl.memory63.id = "RN01CN1"
+		this.ctrl.memory63.desc = "Date"
+		this.ctrl.memory63.visible = false
+		this.ctrl.memory63.label_name = "Date"
+		this.ctrl.memory63.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory63.df_description = "Column Group 1"
+		this.ctrl.memory63.uictrl_code = "DTP"
+		this.ctrl.memory63.target_column = "memory63"
+		this.ctrl.memory63.data_type = "DATETIME"
+		this.ctrl.memory63.data_length = 0
+		this.ctrl.memory63.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory63.default_value = "setcurrentdate(),{}"
+		this.ctrl.memory63.is_memory_ctrl = "Y"
+		this.ctrl.memory63.field_coordinates = ""
+		this.ctrl.memory63.sub_details = ""
+		this.ctrl.memory63.accept_char = ""
+		this.ctrl.memory63.currency_format = ""
+		this.ctrl.memory63.data_scale = ""
+		this.ctrl.memory63.binding_name = "CREATED_DATE"
+		this.ctrl.memory63.hide_label = true
+		this.ctrl.memory63.depends_on = ""
+		this.ctrl.memory63.placeholder = ""
+		this.ctrl.memory63.dynamic_param = ""
+		this.ctrl.memory63.style_code = ""
+		this.ctrl.memory63.data_source = ""
+		this.ctrl.memory63.image_association = ""
+		this.ctrl.memory63.show = true
+		this.ctrl.memory63.sub_content = ""
+		this.ctrl.memory63.required = false
+		this.ctrl.memory63.vld_rules = []
+		this.ctrl.memory63.targetcolumn_lower = "memory63"
+		this.ctrl.memory63.disabled = false
+		this.ctrl.memory63.view_name = "f_npss_home_dashboard_header_srch"
+		this.ctrl.memory63.ctrl_id = "npss_home_dashboard_header_srch_memory63"
+		this.ctrl.npss_home_dashboard_header_srch_memory63 = {}
+		this.ctrl.npss_home_dashboard_header_srch_memory63.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_home_dashboard_header_srch.model = {"MEMORY63":"setcurrentdate(),{}"}
+		this.screen_instance[this.comp_id].f_npss_home_dashboard_header_srch.Meta = []
+		this.screen_instance[this.comp_id].f_npss_home_dashboard_header_srch.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_npss_home_dashboard_header_srch.dtt_code = "dtt_1304_1665901217208"
+		this.screen_instance[this.comp_id].f_npss_home_dashboard_header_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -136,10 +137,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_message_data_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_message_data_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_home_dashboard_header_srch[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_home_dashboard_header_srch[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_message_data_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_home_dashboard_header_srch[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

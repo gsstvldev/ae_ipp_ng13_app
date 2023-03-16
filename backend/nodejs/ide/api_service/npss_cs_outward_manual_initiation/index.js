@@ -89,8 +89,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objCusTranInst.CDTR_PHONE_NO = arrdata[0].dbtr_phone_no
                                                         objCusTranInst.DBTR_EMAIL_ID = arrdata[0].cdtr_email_id
                                                         objCusTranInst.CDTR_EMAIL_ID = arrdata[0].dbtr_email_id
-                                                        objCusTranInst.DBTR_DOCUMENT_ID = arrdata[0].cdtr_document_id
-                                                        objCusTranInst.CDTR_DOCUMENT_ID = arrdata[0].dbtr_document_id
+                                                        objCusTranInst.DBTR_DOCUMENT_ID = arrdata[0].dbtr_document_id
+                                                        objCusTranInst.CDTR_DOCUMENT_ID = arrdata[0].cdtr_document_id 
                                                         objCusTranInst.TRAN_INFO = params.Tran_Id
                                                         objCusTranInst.PROCESS_STATUS = success_process_status;
                                                         objCusTranInst.STATUS = success_status;

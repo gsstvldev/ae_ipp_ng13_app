@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
     try {
         /*   Created By :Siva Harish
         Created Date :02-01-2023
@@ -18,6 +19,7 @@ app.post('/', function(appRequest, appResponse, next) {
            Reason for Adding Update query
            Reason for adding two api param for pac008 25/01/2023
            Reason for removing updt query 17/02/2023
+           Reason for : Changing pacs008 payload
        
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -33,6 +35,7 @@ app.post('/', function(appRequest, appResponse, next) {
         var xml2js = require('xml2js');
         var mTranConn = "";
         var addquery = "";
+        var moment = require('moment')
 
 
         var objresponse = {
@@ -481,6 +484,12 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     function fn_doPac008apicall(url, arrprocesslog, callbackapi) {
                         try {
+                           var category_prty 
+                            if(arrprocesslog[0].category_purpose_prty == null || arrprocesslog[0].category_purpose_prty == ''){
+                                category_prty = 'MIS'
+                            }else{
+                                category_prty = arrprocesslog[0].category_purpose_prty
+                            }
                             var apiName = 'NPSS Pac008 Api'
                             var request = require('request');
                             var apiURL =
@@ -492,7 +501,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 json: {
                                     "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
                                     "hdr_total_amount": arrprocesslog[0].hdr_total_amount || '',
-                                    "value_date": arrprocesslog[0].value_date || '',
+                                    "value_date": moment().format('YYYY-MM-DD'),
                                     "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
                                     "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
                                     "tran_ref_id":  arrprocesslog[0].tran_ref_id || '',
@@ -516,7 +525,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     "remittance_information": arrprocesslog[0].remittance_info || '',
                                     "category_purpose":arrprocesslog[0].category_purpose || '',
                                     "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
-                                    "category_purpose_prty":arrprocesslog[0].category_purpose_prty || '',
+                                    "category_purpose_prty": category_prty || '',
 
                                 },
                                 headers: {
@@ -689,6 +698,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

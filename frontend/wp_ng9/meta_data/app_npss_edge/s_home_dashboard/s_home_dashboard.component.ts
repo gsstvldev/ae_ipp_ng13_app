@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28726 
+Build ID        : 28729 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-16 14:41 PM 
+Modified Date   : 2023-Mar-17 4:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -52,7 +52,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	uicgc_30 : string = "outward_chart"
 	uicgc_31 : string = "default_back_ui"
 	uicgc_34 : string = "nav_ui"
-	uicgc_35 : string = "date_widget"
+	uicgc_35 : string = "home_dashboard_title"
 	key_events : any = {}
 	btl_1304_1678973592738 : string = "p_op_layout"
 	btl_1304_1678973453692 : string = "p_ip_queue_layout"
@@ -108,7 +108,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	default_back_ui_back : any = {}
 	nav_ui : any = {}
 	nav_ui_view_ip_queue : any = {}
-	date_widget : any = {}
+	home_dashboard_title : any = {}
 
 
 	// Constructor 
@@ -565,17 +565,17 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.nav_ui_view_ip_queue.role = []
 		this.nav_ui_view_ip_queue.action = ""
 	
-		// Component level properties - "Date Widget" 
-		this.date_widget.uictrl_code = "custom_widget"
-		this.date_widget.uicgc_desc = "Date Widget"
-		this.date_widget.uicgc_code = "uicgc_35"
-		this.date_widget.params = {}
-		this.date_widget.datasource = {}
-		this.date_widget.context_menu = []
-		this.date_widget.views = {}
-		this.date_widget.onChangecomponent = new EventEmitter<any>()
-		this.date_widget.show = true
-		this.date_widget.dynamic_param = {}
+		// Component level properties - "Home Dashboard Title" 
+		this.home_dashboard_title.uictrl_code = "custom_widget"
+		this.home_dashboard_title.uicgc_desc = "Home Dashboard Title"
+		this.home_dashboard_title.uicgc_code = "uicgc_35"
+		this.home_dashboard_title.params = {}
+		this.home_dashboard_title.datasource = {}
+		this.home_dashboard_title.context_menu = []
+		this.home_dashboard_title.views = {}
+		this.home_dashboard_title.onChangecomponent = new EventEmitter<any>()
+		this.home_dashboard_title.show = true
+		this.home_dashboard_title.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {

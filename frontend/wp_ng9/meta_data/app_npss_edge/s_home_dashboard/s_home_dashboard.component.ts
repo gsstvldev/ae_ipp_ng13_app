@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28741 
+Build ID        : 28743 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-17 6:37 AM 
+Modified Date   : 2023-Mar-17 6:59 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -12,13 +12,12 @@ Screen Name     : s_home_dashboard
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {npss_cs_home_dashboars_tittleService} from '../../../custom_widget/npss_cs_home_dashboars_tittle/npss_cs_home_dashboars_tittle.service'
 
 @Component({
 	selector: 's_home_dashboard',
 	templateUrl: './s_home_dashboard.component.html',
 	styleUrls: ['./s_home_dashboard.component.css'],
-	providers:[npss_cs_home_dashboars_tittleService]
+	providers:[]
 })
     
 // Start of class 
@@ -52,7 +51,6 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	uicgc_29 : string = "process_log_ui"
 	uicgc_30 : string = "outward_chart"
 	uicgc_34 : string = "nav_ui"
-	uicgc_35 : string = "home_dashboard_title"
 	key_events : any = {}
 	btl_1304_1678973592738 : string = "p_op_layout"
 	btl_1304_1678973453692 : string = "p_ip_queue_layout"
@@ -105,11 +103,10 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	nav_ui_view_ip_queue : any = {}
 	nav_ui_search_trg : any = {}
 	nav_ui_trg_for_hide_tran_list : any = {}
-	home_dashboard_title : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private npss_cs_home_dashboars_tittleService:npss_cs_home_dashboars_tittleService) {
+	constructor(private handler:AppHandlerService ) {
     
 	}
     
@@ -538,18 +535,6 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.nav_ui_trg_for_hide_tran_list.dynamic_param = {}
 		this.nav_ui_trg_for_hide_tran_list.role = []
 		this.nav_ui_trg_for_hide_tran_list.action = ""
-	
-		// Component level properties - "Home Dashboard Title" 
-		this.home_dashboard_title.uictrl_code = "custom_widget"
-		this.home_dashboard_title.uicgc_desc = "Home Dashboard Title"
-		this.home_dashboard_title.uicgc_code = "uicgc_35"
-		this.home_dashboard_title.params = {}
-		this.home_dashboard_title.datasource = {}
-		this.home_dashboard_title.context_menu = []
-		this.home_dashboard_title.views = {}
-		this.home_dashboard_title.onChangecomponent = new EventEmitter<any>()
-		this.home_dashboard_title.show = true
-		this.home_dashboard_title.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -562,7 +547,6 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.page_load__cf_from_pag_load()
 		this.page_load__he_from_pg_to_view_details()
 		this.page_load__he_for_vml()
-		this.page_load__cc_for_widget()
 		this.page_load__he_for_search_trg()
 		this.page_load__he_for_plog()
 		this.page_load__he_for_trg_hide_tran_lkist()
@@ -800,27 +784,6 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__cc_for_widget() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1679030362212"
-		let event_params={"caller_name":"page_load__cc_for_widget","event_desc":"CC for widget","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_cs_home_dashboars_tittleService.fn_npss_cs_home_dashboars_tittle(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

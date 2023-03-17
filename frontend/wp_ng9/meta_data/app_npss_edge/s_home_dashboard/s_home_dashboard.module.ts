@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28741 
+Build ID        : 28743 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-17 6:37 AM 
+Modified Date   : 2023-Mar-17 6:59 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -19,8 +19,6 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
-import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
-import {npss_cs_home_dashboars_tittleModule} from '../../../custom_widget/npss_cs_home_dashboars_tittle/npss_cs_home_dashboars_tittle.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -67,7 +65,7 @@ import { f_npss_home_dashboard_uiComponent } from './f_npss_home_dashboard_ui/f_
     OverlayPanelModule,
     
     s_home_dashboardRoutingModule,
-    torus_cs_show_hideModule,npss_cs_home_dashboars_tittleModule
+    
   ],
   declarations: [s_home_dashboardComponent,p_default_profileComponent,f_nav_uiComponent,p_op_layoutComponent,f_navigationComponent,p_view_tran_detail_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_req_and_res_profileComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_ip_queue_layoutComponent,p_search_layoutComponent,f_npss_home_dashboard_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

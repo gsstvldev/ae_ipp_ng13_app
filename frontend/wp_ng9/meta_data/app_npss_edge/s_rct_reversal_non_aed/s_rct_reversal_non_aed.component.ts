@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28737 
+Build ID        : 28744 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-17 6:4 AM 
+Modified Date   : 2023-Mar-17 6:58 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -1269,7 +1269,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 
 	//Handler for INTERNAL event of "cc for deal"
 	cc_for_deal__internal(parent_event_result){
-		this.cc_for_deal__refresh_element_for_ide_success(parent_event_result)
+		this.cc_for_deal__refresh_element_for_ide_success_for_chanes(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui cancel  send to maker"
@@ -3763,7 +3763,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let event_code="e_1671168190906"
 		let event_params={"caller_name":"reversal_action_ui_get_deal__cc_for_deal","event_desc":"CC for Deal","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_get_deal","raiseparam":{}}
 		let handler_code="custom_connectors"
-		let internals="cc_for_deal__refresh_element_for_ide_success,"
+		let internals="cc_for_deal__refresh_element_for_ide_success_for_chanes,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -3775,7 +3775,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "cc for deal"
-	cc_for_deal__refresh_element_for_ide_success(parent_event_result) { 
+	cc_for_deal__refresh_element_for_ide_success_for_chanes(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
@@ -3783,7 +3783,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let destn_id="original_transaction_details"
 		let parent_source_id="reversal_action_ui_get_deal"
 		let event_code="e_1679032922156"
-		let event_params={"caller_name":"cc_for_deal__refresh_element_for_ide_success","event_desc":"refresh element for ide success","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_get_deal","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_deal__refresh_element_for_ide_success_for_chanes","event_desc":"refresh element for ide success for chanes","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_get_deal","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_element"
 		let internals=""
 		let event_data={}

@@ -7,24 +7,24 @@ Modified Date   : 2023-Mar-17 8:30 AM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
-Profile Name    : View Req and Res Profile--------------------------------------------------------------------------- */
+Profile Name    : IP Pending Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_view_req_and_res_profile',
-  templateUrl: './p_view_req_and_res_profile.component.html',
-  styleUrls: ['./p_view_req_and_res_profile.component.css']
+  selector: 'p_ip_pending_layout',
+  templateUrl: './p_ip_pending_layout.component.html',
+  styleUrls: ['./p_ip_pending_layout.component.css']
 })
 
 // Start of class 
-export class p_view_req_and_res_profileComponent implements OnInit {
+export class p_ip_pending_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	single_back_ui : any = {}
-	request_ui : any = {}
-	response_ui : any = {}
+  	navigation : any = {}
+	inward_chart : any = {}
+	transaction_list : any = {}
 
 
   // Constructor 
@@ -32,16 +32,16 @@ export class p_view_req_and_res_profileComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.single_back_ui.desc = "Single Back UI"
-		this.single_back_ui.need_header = ""
-		this.request_ui.desc = "Request UI"
-		this.request_ui.need_header = ""
-		this.response_ui.desc = "Response UI"
-		this.response_ui.need_header = ""
+    	this.navigation.desc = "Navigation"
+		this.navigation.need_header = ""
+		this.inward_chart.desc = "Inward Chart"
+		this.inward_chart.need_header = ""
+		this.transaction_list.desc = "Transaction List"
+		this.transaction_list.need_header = ""
 	
 
-    this.screen_instance['p_view_req_and_res_profile'] = {};
-    this.screen_instance['p_view_req_and_res_profile']['checkHeader']=(component)=>{
+    this.screen_instance['p_ip_pending_layout'] = {};
+    this.screen_instance['p_ip_pending_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

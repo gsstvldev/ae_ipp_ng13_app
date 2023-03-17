@@ -74,7 +74,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         var arrCusTranInst = [];
                                                         var objCusTranInst = {};
         
-                                                        objCusTranInst.CR_SORT_CODE = arrdata[0].dr_sort_code;
+                                                          objCusTranInst.CR_SORT_CODE = arrdata[0].dr_sort_code;
                                                         objCusTranInst.PRCT_ID = PRCT_ID;
                                                         objCusTranInst.DR_SORT_CODE = arrdata[0].cr_sort_code;
                                                         objCusTranInst.HDR_MSG_ID = arrdata[0].hdr_msg_id;

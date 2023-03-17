@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28729 
+Build ID        : 28735 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-17 4:42 AM 
+Modified Date   : 2023-Mar-17 5:41 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -12,12 +12,13 @@ Screen Name     : s_home_dashboard
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
+import {npss_cs_home_dashboars_tittleService} from '../../../custom_widget/npss_cs_home_dashboars_tittle/npss_cs_home_dashboars_tittle.service'
 
 @Component({
 	selector: 's_home_dashboard',
 	templateUrl: './s_home_dashboard.component.html',
 	styleUrls: ['./s_home_dashboard.component.css'],
-	providers:[]
+	providers:[npss_cs_home_dashboars_tittleService]
 })
     
 // Start of class 
@@ -67,18 +68,15 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	btl_1408_1598521300065 : string = "p_search_layout"
 	btl_1408_1598521214410 : string = "p_default_profile"
 	forms : any = ["uicgc_22","uicgc_1","uicgc_23","uicgc_24","uicgc_4","uicgc_31","uicgc_29","uicgc_28","uicgc_25","uicgc_19","uicgc_21","uicgc_34"]
-	p_search_layout__spap_from_nav_search_showpopup : boolean = false
+	p_search_layout__spap_for_search_trg_showpopup : boolean = false
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
 	outward_list : any = {}
 	navigation : any = {}
-	navigation_searches : any = {}
-	navigation_trg_btn : any = {}
 	navigation_view_tran : any = {}
 	navigation_view_process_log : any = {}
 	navigation_view_message_log : any = {}
-	navigation_trg_btn_for_op_chart : any = {}
 	inward_list : any = {}
 	inward_queue : any = {}
 	transaction_list : any = {}
@@ -108,11 +106,12 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	default_back_ui_back : any = {}
 	nav_ui : any = {}
 	nav_ui_view_ip_queue : any = {}
+	nav_ui_search_trg : any = {}
 	home_dashboard_title : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ) {
+	constructor(private handler:AppHandlerService ,private npss_cs_home_dashboars_tittleService:npss_cs_home_dashboars_tittleService) {
     
 	}
     
@@ -176,28 +175,10 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.navigation.f_navigation = {"show":true}
 		this.navigation.current_view = "f_navigation"
 		
-		// "Searches" Button of "Navigation" component
-		this.navigation_searches.label_name = "Searches"
-		this.navigation_searches.show = true
-		this.navigation_searches.disabled = false
-		this.navigation_searches.params = {"icon_only":false,"uicgcc_style":"fa fa-search"}
-		this.navigation_searches.dynamic_param = {}
-		this.navigation_searches.role = []
-		this.navigation_searches.action = ""
-		
-		// "TRG btn" Button of "Navigation" component
-		this.navigation_trg_btn.label_name = "TRG btn"
-		this.navigation_trg_btn.show = true
-		this.navigation_trg_btn.disabled = false
-		this.navigation_trg_btn.params = {"icon_only":false,"uicgcc_style":""}
-		this.navigation_trg_btn.dynamic_param = {}
-		this.navigation_trg_btn.role = []
-		this.navigation_trg_btn.action = ""
-		
 		// "View Tran" Button of "Navigation" component
 		this.navigation_view_tran.label_name = "View Tran"
 		this.navigation_view_tran.show = true
-		this.navigation_view_tran.disabled = true
+		this.navigation_view_tran.disabled = false
 		this.navigation_view_tran.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
 		this.navigation_view_tran.dynamic_param = {}
 		this.navigation_view_tran.role = []
@@ -206,7 +187,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		// "View Process Log" Button of "Navigation" component
 		this.navigation_view_process_log.label_name = "View Process Log"
 		this.navigation_view_process_log.show = true
-		this.navigation_view_process_log.disabled = true
+		this.navigation_view_process_log.disabled = false
 		this.navigation_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
 		this.navigation_view_process_log.dynamic_param = {}
 		this.navigation_view_process_log.role = []
@@ -215,20 +196,11 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		// "View Message Log" Button of "Navigation" component
 		this.navigation_view_message_log.label_name = "View Message Log"
 		this.navigation_view_message_log.show = true
-		this.navigation_view_message_log.disabled = true
+		this.navigation_view_message_log.disabled = false
 		this.navigation_view_message_log.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
 		this.navigation_view_message_log.dynamic_param = {}
 		this.navigation_view_message_log.role = []
 		this.navigation_view_message_log.action = ""
-		
-		// "TRG btn for OP Chart" Button of "Navigation" component
-		this.navigation_trg_btn_for_op_chart.label_name = "TRG btn for OP Chart"
-		this.navigation_trg_btn_for_op_chart.show = true
-		this.navigation_trg_btn_for_op_chart.disabled = false
-		this.navigation_trg_btn_for_op_chart.params = {"icon_only":false,"uicgcc_style":""}
-		this.navigation_trg_btn_for_op_chart.dynamic_param = {}
-		this.navigation_trg_btn_for_op_chart.role = []
-		this.navigation_trg_btn_for_op_chart.action = ""
 	
 		// Component level properties - "Inward List" 
 		this.inward_list.uictrl_code = "datatable"
@@ -512,7 +484,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.outward_chart.uicgc_desc = "Outward Chart"
 		this.outward_chart.uicgc_code = "uicgc_30"
 		this.outward_chart.params = {}
-		this.outward_chart.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_30","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678960313277","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard OP CHART MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Pending_Detais","alias_name":"","mq_id":"MQ_1678960123198","date_format":false},{"column_name":"p_count","alias_name":"","mq_id":"MQ_1678960123388","date_format":false}],"joins":[]},"eq_text":"select  Pending_Detais,  count (Pending_Detais) as p_count from  (  select   Process_Name,   type,   Pending_Detais,   Process_Type,   tenant_id,   created_date  from   (   select    npl.process_name,    case     when npl.process_name::text IN ('Place Pacs008','PACS.008') then 'pacs.008'::text     when npl.process_name::text IN ('Place Pacs.007','PACS.007') then 'pacs.007'::text     when npl.process_name::text = 'Receive Pacs004'::text then 'pacs.004'::text    end as type,    case     WHEN ((npl.process_name::text = 'PACS.008'::text AND npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text) OR (npl.process_name::text = 'PACS.008'::text AND npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text AND npl.status='IP_RCT_EXCEPTION')) and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date     then 'Pending Screening'     WHEN ((npl.process_name::text = 'PACS.007'::text AND npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text) OR (npl.process_name::text = 'PACS.007'::text AND npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text AND npl.status='IP_RCT_EXCEPTION')) and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date      then 'Pending Screening'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_FAILURE', 'OP_AC_RET_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE' , 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_REV_POSTING_FAILURE')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_FAILURE', 'OR_P2B_POSTING_FAILURE')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_REPAIR')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)) then 'Pending (Maker)'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_RETRY', 'OP_AC_RET_POSTING_RETRY', 'OP_P2P_REV_POSTING_RETRY', 'OP_P2B_FUND_UNFR_RETRY', 'OP_P2B_REV_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_RETRY', 'OR_P2B_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_INITIATED')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)) then 'Pending (Checker)'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_FAILURE', 'OP_AC_RET_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE' , 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_REV_POSTING_FAILURE', 'OP_AC_REV_POSTING_RETRY', 'OP_AC_RET_POSTING_RETRY', 'OP_P2P_REV_POSTING_RETRY', 'OP_P2B_FUND_UNFR_RETRY', 'OP_P2B_REV_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_FAILURE', 'OR_P2B_POSTING_FAILURE', 'OR_P2P_POSTING_RETRY', 'OR_P2B_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_REPAIR', 'OP_REVERSAL_REQ_INITIATED')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)) then 'Pending (T-1)'     else 'Others'    end as Pending_Detais,    nppst.process_type,    nppst.created_date,    nppst.tenant_id   from    npss_transactions nppst   join npss_trn_process_log npl on    npl.uetr = nppst.uetr   where    nppst.process_type = 'OP'    and (npl.process_name in ('Place Pacs008','PACS.008','Place Pacs.007','PACS.007','Receive Pacs004')) ) as Res  where   Res.Pending_Detais <> 'Others') a $WHERE group by  Pending_Detais"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard OP Chart CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Type","binding_name":"Type","binding_value":"","source_name":"Type","source_value":"","source_type":"LOCAL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Pending_Detais","target_column":"Pending_Detais","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"p_count","target_column":"p_count","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.outward_chart.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_30","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678960313277","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard OP CHART MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Pending_Detais","alias_name":"","mq_id":"MQ_1678960123198","date_format":false},{"column_name":"p_count","alias_name":"","mq_id":"MQ_1678960123388","date_format":false}],"joins":[]},"eq_text":"select  Pending_Detais,  count (Pending_Detais) as p_count,  Process_Type from  (  select   Process_Name,   type,   Pending_Detais,   Process_Type,   tenant_id,   created_date  from   (   select    npl.process_name,    case     when npl.process_name::text in ('Place Pacs008', 'PACS.008') then 'pacs.008'::text     when npl.process_name::text in ('Place Pacs.007', 'PACS.007') then 'pacs.007'::text     when npl.process_name::text = 'Receive Pacs004'::text then 'pacs.004'::text    end as type,    case     when ((npl.process_name::text = 'PACS.008'::text     and npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text)     or (npl.process_name::text = 'PACS.008'::text     and npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text     and npl.status = 'IP_RCT_EXCEPTION'))     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date then 'Pending Screening'     when ((npl.process_name::text = 'PACS.007'::text     and npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text)     or (npl.process_name::text = 'PACS.007'::text     and npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text     and npl.status = 'IP_RCT_EXCEPTION'))     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date then 'Pending Screening'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_FAILURE', 'OP_AC_RET_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE' , 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_REV_POSTING_FAILURE')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_FAILURE', 'OR_P2B_POSTING_FAILURE')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_REPAIR')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)) then 'Pending (Maker)'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_RETRY', 'OP_AC_RET_POSTING_RETRY', 'OP_P2P_REV_POSTING_RETRY', 'OP_P2B_FUND_UNFR_RETRY', 'OP_P2B_REV_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_RETRY', 'OR_P2B_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_INITIATED')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)) then 'Pending (Checker)'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_FAILURE', 'OP_AC_RET_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE' , 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_REV_POSTING_FAILURE', 'OP_AC_REV_POSTING_RETRY', 'OP_AC_RET_POSTING_RETRY', 'OP_P2P_REV_POSTING_RETRY', 'OP_P2B_FUND_UNFR_RETRY', 'OP_P2B_REV_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_FAILURE', 'OR_P2B_POSTING_FAILURE', 'OR_P2P_POSTING_RETRY', 'OR_P2B_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_REPAIR', 'OP_REVERSAL_REQ_INITIATED')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)) then 'Pending (T-1)'     else 'Others'    end as Pending_Detais,    nppst.process_type,    nppst.created_date,    nppst.tenant_id   from    npss_transactions nppst   join npss_trn_process_log npl on    npl.uetr = nppst.uetr   where    nppst.process_type = 'OP'    and (npl.process_name in ('Place Pacs008', 'PACS.008', 'Place Pacs.007', 'PACS.007', 'Receive Pacs004')) ) as Res  where   Res.Pending_Detais <> 'Others') a $WHERE group by  Pending_Detais,Process_Type"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard OP Chart CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Type","binding_name":"Type","binding_value":"","source_name":"Type","source_value":"","source_type":"LOCAL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Pending_Detais","target_column":"Pending_Detais","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"p_count","target_column":"p_count","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.outward_chart.context_menu = []
 		this.outward_chart.views = {}
 		this.outward_chart.onChangecomponent = new EventEmitter<any>()
@@ -564,6 +536,15 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.nav_ui_view_ip_queue.dynamic_param = {}
 		this.nav_ui_view_ip_queue.role = []
 		this.nav_ui_view_ip_queue.action = ""
+		
+		// "search trg" Button of "Nav UI" component
+		this.nav_ui_search_trg.label_name = "search trg"
+		this.nav_ui_search_trg.show = true
+		this.nav_ui_search_trg.disabled = false
+		this.nav_ui_search_trg.params = {"icon_only":false,"uicgcc_style":""}
+		this.nav_ui_search_trg.dynamic_param = {}
+		this.nav_ui_search_trg.role = []
+		this.nav_ui_search_trg.action = ""
 	
 		// Component level properties - "Home Dashboard Title" 
 		this.home_dashboard_title.uictrl_code = "custom_widget"
@@ -586,17 +567,16 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	// To handle page_load event
 	page_load(){
 		this.page_load__cf_from_pag_load()
-		this.page_load__he_for_trg_btn()
 		this.page_load__he_from_pg_to_view_details()
 		this.page_load__he_for_vml()
-		this.page_load__he_from_pl_to_search_header()
-		this.page_load__he_for_search_btn()
-		this.page_load__tbc_from_pl_to_search_header()
+		this.page_load__cc_for_widget()
+		this.page_load__he_for_search_trg()
+		this.page_load__he_for_plog()
 	}
 
 	//Handler for INTERNAL event of "cf from pag load"
-	cf_from_pag_load__internal(){
-		this.cf_from_pag_load__tbc_from_show_hide_cc()
+	cf_from_pag_load__internal(parent_event_result){
+		this.cf_from_pag_load__tbc_from_show_hide_cc(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
@@ -613,9 +593,9 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 
 	//Handler for INTERNAL event of "ssp from search ve"
 	ssp_from_search_ve__internal(parent_event_result){
-		this.ssp_from_search_ve__bfrq_to_tl_from_ssp(parent_event_result)
-		this.ssp_from_search_ve__brfq_for_ip_list(parent_event_result)
-		this.ssp_from_search_ve__brfq_for_pstatus(parent_event_result)
+		this.ssp_from_search_ve__bfrq_to_tl_from_sss(parent_event_result)
+		this.ssp_from_search_ve__brfq_for_ip_lis(parent_event_result)
+		this.ssp_from_search_ve__brfq_for_pstatusq(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "outward list"
@@ -623,12 +603,6 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.outward_list__svm_by_click_on_tl()
 		this.outward_list__brfq_for_op_chart()
 		this.outward_list__sp_from_outward_list()
-	}
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation searches"
-	navigation_searches__action_button_click(){
-		this.navigation_searches__spap_from_nav_search()
-		this.navigation_searches__cui_from_nav_search_btn_click()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search clear"
@@ -648,18 +622,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 
 	//Handler for INTERNAL event of "svm for pstatus"
 	svm_for_pstatus__internal(parent_event_result){
-		this.svm_for_pstatus__tbc_from_iq(parent_event_result)
 		this.svm_for_pstatus__brfq_to_tran_list(parent_event_result)
-	}
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation trg btn"
-	navigation_trg_btn__action_button_click(peventcontext){
-		this.navigation_trg_btn__ssp_from_trg_btn(peventcontext)
-	}
-
-	//Handler for INTERNAL event of "ssp from trg btn"
-	ssp_from_trg_btn__internal(parent_event_result){
-		this.ssp_from_trg_btn__brfq_for_tran_list(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation view tran"
@@ -682,12 +645,10 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 
 	//Handler for SELECTION_CHANGED event of "transaction list"
 	transaction_list__selection_changed(){
-		this.transaction_list__ee_for_vpl()
-		this.transaction_list__ee_for_vml()
-		this.transaction_list__ee_for_view_tran_btn()
 		this.transaction_list__svm_for_tran_list()
 		this.transaction_list__se_for_view_tran_btn()
 		this.transaction_list__se_for_vml()
+		this.transaction_list__se_for_plog()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation view message log"
@@ -772,6 +733,11 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.default_back_ui_back__sp_for_d_layout()
 	}
 
+	//Handler for ACTION_BUTTON_CLICK event of "nav ui search trg"
+	nav_ui_search_trg__action_button_click(){
+		this.nav_ui_search_trg__spap_for_search_trg()
+	}
+
 	//Handler for DPSINIT event of "page_load"
 	page_load__cf_from_pag_load() { 
 		let Dest_Is_ctrl=true
@@ -787,27 +753,6 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_trg_btn() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_trg_btn"
-		let parent_source_id=""
-		let event_code="e_1678795239854"
-		let event_params={"caller_name":"page_load__he_for_trg_btn","event_desc":"HE for trg btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -857,14 +802,35 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__he_from_pl_to_search_header() { 
+	page_load__cc_for_widget() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_trg_btn_for_op_chart"
+		let destn_id=""
 		let parent_source_id=""
-		let event_code="e_1678959881292"
-		let event_params={"caller_name":"page_load__he_from_pl_to_search_header","event_desc":"HE from PL to search header","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let event_code="e_1679030362212"
+		let event_params={"caller_name":"page_load__cc_for_widget","event_desc":"CC for widget","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_home_dashboars_tittleService.fn_npss_cs_home_dashboars_tittle(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_search_trg() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="nav_ui_search_trg"
+		let parent_source_id=""
+		let event_code="e_1679030914228"
+		let event_params={"caller_name":"page_load__he_for_search_trg","event_desc":"HE for search trg","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -878,41 +844,20 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__he_for_search_btn() { 
+	page_load__he_for_plog() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_searches"
+		let destn_id="navigation_view_process_log"
 		let parent_source_id=""
-		let event_code="e_1678962619640"
-		let event_params={"caller_name":"page_load__he_for_search_btn","event_desc":"HE for search btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let event_code="e_1679031104766"
+		let event_params={"caller_name":"page_load__he_for_plog","event_desc":"HE for PLOG","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__tbc_from_pl_to_search_header() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_trg_btn_for_op_chart"
-		let parent_source_id=""
-		let event_code="e_1678966331819"
-		let event_params={"caller_name":"page_load__tbc_from_pl_to_search_header","event_desc":"TBC from PL to search header","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
-		let handler_code="trigger_button_click"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -920,14 +865,15 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "cf from pag load"
-	cf_from_pag_load__tbc_from_show_hide_cc() { 
+	cf_from_pag_load__tbc_from_show_hide_cc(parent_event_result) { 
 		let Dest_Is_ctrl=true
-		
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
 		let source_id="cf_from_pag_load"
 		let destn_id="search_search"
 		let parent_source_id="page_load"
 		let event_code="e_1678974367085"
-		let event_params={"caller_name":"cf_from_pag_load__tbc_from_show_hide_cc","event_desc":"TBC from Show Hide CC","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let event_params={"caller_name":"cf_from_pag_load__tbc_from_show_hide_cc","event_desc":"TBC from Show Hide CC","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="trigger_button_click"
 		let internals=""
 		let event_data={}
@@ -993,7 +939,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let event_code="e_1678168003324"
 		let event_params={"caller_name":"ve_from_search__ssp_from_search_ve","event_desc":"SSP from Search VE","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="set_search_params"
-		let internals="ssp_from_search_ve__bfrq_to_tl_from_ssp,ssp_from_search_ve__brfq_for_ip_list,ssp_from_search_ve__brfq_for_pstatus,"
+		let internals="ssp_from_search_ve__bfrq_to_tl_from_sss,ssp_from_search_ve__brfq_for_ip_lis,ssp_from_search_ve__brfq_for_pstatusq,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -1027,7 +973,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "ssp from search ve"
-	ssp_from_search_ve__bfrq_to_tl_from_ssp(parent_event_result) { 
+	ssp_from_search_ve__bfrq_to_tl_from_sss(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
@@ -1035,7 +981,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let destn_id="outward_list"
 		let parent_source_id="ve_from_search"
 		let event_code="e_1678168022581"
-		let event_params={"caller_name":"ssp_from_search_ve__bfrq_to_tl_from_ssp","event_desc":"BFRQ to TL from SSP","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"ssp_from_search_ve__bfrq_to_tl_from_sss","event_desc":"BFRQ to TL from SSs","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
@@ -1049,7 +995,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "ssp from search ve"
-	ssp_from_search_ve__brfq_for_ip_list(parent_event_result) { 
+	ssp_from_search_ve__brfq_for_ip_lis(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
@@ -1057,7 +1003,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let destn_id="inward_list"
 		let parent_source_id="ve_from_search"
 		let event_code="e_1678779150168"
-		let event_params={"caller_name":"ssp_from_search_ve__brfq_for_ip_list","event_desc":"BRFQ for IP list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"ssp_from_search_ve__brfq_for_ip_lis","event_desc":"BRFQ for IP lis","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
@@ -1071,7 +1017,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "ssp from search ve"
-	ssp_from_search_ve__brfq_for_pstatus(parent_event_result) { 
+	ssp_from_search_ve__brfq_for_pstatusq(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
@@ -1079,7 +1025,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let destn_id="inward_queue"
 		let parent_source_id="ve_from_search"
 		let event_code="e_1678779473157"
-		let event_params={"caller_name":"ssp_from_search_ve__brfq_for_pstatus","event_desc":"BRFQ for PSTATUS","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"BAR","chart_label":"PROCESS_STATUS","chart_series":"","chart_data":"PROCESS_STATUS_COUNT","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"ssp_from_search_ve__brfq_for_pstatusq","event_desc":"BRFQ for PSTATUSq","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"BAR","chart_label":"PROCESS_STATUS","chart_series":"","chart_data":"PROCESS_STATUS_COUNT","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
@@ -1125,7 +1071,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_30","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678960313277","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard OP CHART MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Pending_Detais","alias_name":"","mq_id":"MQ_1678960123198","date_format":false},{"column_name":"p_count","alias_name":"","mq_id":"MQ_1678960123388","date_format":false}],"joins":[]},"eq_text":"select  Pending_Detais,  count (Pending_Detais) as p_count from  (  select   Process_Name,   type,   Pending_Detais,   Process_Type,   tenant_id,   created_date  from   (   select    npl.process_name,    case     when npl.process_name::text IN ('Place Pacs008','PACS.008') then 'pacs.008'::text     when npl.process_name::text IN ('Place Pacs.007','PACS.007') then 'pacs.007'::text     when npl.process_name::text = 'Receive Pacs004'::text then 'pacs.004'::text    end as type,    case     WHEN ((npl.process_name::text = 'PACS.008'::text AND npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text) OR (npl.process_name::text = 'PACS.008'::text AND npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text AND npl.status='IP_RCT_EXCEPTION')) and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date     then 'Pending Screening'     WHEN ((npl.process_name::text = 'PACS.007'::text AND npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text) OR (npl.process_name::text = 'PACS.007'::text AND npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text AND npl.status='IP_RCT_EXCEPTION')) and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date      then 'Pending Screening'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_FAILURE', 'OP_AC_RET_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE' , 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_REV_POSTING_FAILURE')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_FAILURE', 'OR_P2B_POSTING_FAILURE')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_REPAIR')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)) then 'Pending (Maker)'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_RETRY', 'OP_AC_RET_POSTING_RETRY', 'OP_P2P_REV_POSTING_RETRY', 'OP_P2B_FUND_UNFR_RETRY', 'OP_P2B_REV_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_RETRY', 'OR_P2B_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_INITIATED')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)) then 'Pending (Checker)'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_FAILURE', 'OP_AC_RET_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE' , 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_REV_POSTING_FAILURE', 'OP_AC_REV_POSTING_RETRY', 'OP_AC_RET_POSTING_RETRY', 'OP_P2P_REV_POSTING_RETRY', 'OP_P2B_FUND_UNFR_RETRY', 'OP_P2B_REV_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_FAILURE', 'OR_P2B_POSTING_FAILURE', 'OR_P2P_POSTING_RETRY', 'OR_P2B_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_REPAIR', 'OP_REVERSAL_REQ_INITIATED')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)) then 'Pending (T-1)'     else 'Others'    end as Pending_Detais,    nppst.process_type,    nppst.created_date,    nppst.tenant_id   from    npss_transactions nppst   join npss_trn_process_log npl on    npl.uetr = nppst.uetr   where    nppst.process_type = 'OP'    and (npl.process_name in ('Place Pacs008','PACS.008','Place Pacs.007','PACS.007','Receive Pacs004')) ) as Res  where   Res.Pending_Detais <> 'Others') a $WHERE group by  Pending_Detais"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard OP Chart CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Type","binding_name":"Type","binding_value":"","source_name":"Type","source_value":"","source_type":"LOCAL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Pending_Detais","target_column":"Pending_Detais","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"p_count","target_column":"p_count","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_30","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678960313277","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard OP CHART MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Pending_Detais","alias_name":"","mq_id":"MQ_1678960123198","date_format":false},{"column_name":"p_count","alias_name":"","mq_id":"MQ_1678960123388","date_format":false}],"joins":[]},"eq_text":"select  Pending_Detais,  count (Pending_Detais) as p_count,  Process_Type from  (  select   Process_Name,   type,   Pending_Detais,   Process_Type,   tenant_id,   created_date  from   (   select    npl.process_name,    case     when npl.process_name::text in ('Place Pacs008', 'PACS.008') then 'pacs.008'::text     when npl.process_name::text in ('Place Pacs.007', 'PACS.007') then 'pacs.007'::text     when npl.process_name::text = 'Receive Pacs004'::text then 'pacs.004'::text    end as type,    case     when ((npl.process_name::text = 'PACS.008'::text     and npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text)     or (npl.process_name::text = 'PACS.008'::text     and npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text     and npl.status = 'IP_RCT_EXCEPTION'))     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date then 'Pending Screening'     when ((npl.process_name::text = 'PACS.007'::text     and npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text)     or (npl.process_name::text = 'PACS.007'::text     and npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text     and npl.status = 'IP_RCT_EXCEPTION'))     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date then 'Pending Screening'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_FAILURE', 'OP_AC_RET_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE' , 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_REV_POSTING_FAILURE')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_FAILURE', 'OR_P2B_POSTING_FAILURE')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_REPAIR')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)) then 'Pending (Maker)'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_RETRY', 'OP_AC_RET_POSTING_RETRY', 'OP_P2P_REV_POSTING_RETRY', 'OP_P2B_FUND_UNFR_RETRY', 'OP_P2B_REV_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_RETRY', 'OR_P2B_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_INITIATED')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)) then 'Pending (Checker)'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_FAILURE', 'OP_AC_RET_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE' , 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_REV_POSTING_FAILURE', 'OP_AC_REV_POSTING_RETRY', 'OP_AC_RET_POSTING_RETRY', 'OP_P2P_REV_POSTING_RETRY', 'OP_P2B_FUND_UNFR_RETRY', 'OP_P2B_REV_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_FAILURE', 'OR_P2B_POSTING_FAILURE', 'OR_P2P_POSTING_RETRY', 'OR_P2B_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_REPAIR', 'OP_REVERSAL_REQ_INITIATED')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)) then 'Pending (T-1)'     else 'Others'    end as Pending_Detais,    nppst.process_type,    nppst.created_date,    nppst.tenant_id   from    npss_transactions nppst   join npss_trn_process_log npl on    npl.uetr = nppst.uetr   where    nppst.process_type = 'OP'    and (npl.process_name in ('Place Pacs008', 'PACS.008', 'Place Pacs.007', 'PACS.007', 'Receive Pacs004')) ) as Res  where   Res.Pending_Detais <> 'Others') a $WHERE group by  Pending_Detais,Process_Type"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard OP Chart CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Type","binding_name":"Type","binding_value":"","source_name":"Type","source_value":"","source_type":"LOCAL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Pending_Detais","target_column":"Pending_Detais","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"p_count","target_column":"p_count","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1149,48 +1095,6 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation searches"
-	navigation_searches__spap_from_nav_search() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_searches"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1598521737693"
-		let event_params={"caller_name":"navigation_searches__spap_from_nav_search","event_desc":"SPAP from Nav search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_searches","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_from_nav_search","selector":"p_search_layout","profile_code":"BTL_1408_1598521300065","window_title":"Search","window_height":400,"window_width":"400px","window_close_icon":"Y","eventdes":"spap_from_nav_search","eventcode":"E_1598521737693"}}
-		let handler_code="show_profile_as_popup"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation searches"
-	navigation_searches__cui_from_nav_search_btn_click() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_searches"
-		let destn_id="search"
-		let parent_source_id=""
-		let event_code="e_1598524561075"
-		let event_params={"caller_name":"navigation_searches__cui_from_nav_search_btn_click","event_desc":"CUi from Nav search btn click","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_searches","raiseparam":{"need_reset_key_column":"N"}}
-		let handler_code="clear_ui"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1249,33 +1153,11 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let event_code="e_1678779544515"
 		let event_params={"caller_name":"inward_queue__svm_for_pstatus","event_desc":"SVM for Pstatus","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"inward_queue","raiseparam":{}}
 		let handler_code="set_value_to_memory"
-		let internals="svm_for_pstatus__tbc_from_iq,svm_for_pstatus__brfq_to_tran_list,"
+		let internals="svm_for_pstatus__brfq_to_tran_list,"
 		let event_data={"inward_queue":{"e_1678779544515":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_13","event_code":"E_1678779544515","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_13","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678787742404","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Queue Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS_COUNT","alias_name":"","mq_id":"MQ_1672833641472","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1672833641606","date_format":false}],"joins":[]},"eq_text":"select  COUNT(PROCESS_STATUS) as PROCESS_STATUS_COUNT,PROCESS_TYPE,  PROCESS_STATUS from  (  select   T.CREATED_DATE,   T.PROCESS_TYPE ,   T.TENANT_ID,   case    when T.channel_id is null then UPPER('UNKOWN')    else t.channel_id   end as channel_id,   case    when T.PROCESSING_SYSTEM is null then upper('unknown')    else T.PROCESSING_SYSTEM   end as PROCESSING_SYSTEM,   T.DEPARTMENT_CODE,   case    when T.PROCESS_GROUP is null then UPPER('UNKOWN')    else t.PROCESS_GROUP   end as PROCESS_GROUP,   case    when T.EXHF_ID is null then UPPER('RCT')    else UPPER('BCT')   end as PAYMENT_TYPE,   case    when T.PROCESS_STATUS is null then UPPER('UNKNOWN')    else T.PROCESS_STATUS   end as PROCESS_STATUS  from   NPSS_TRANSACTIONS T) V $WHERE group by  PROCESS_STATUS,PROCESS_TYPE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Queue Dashboard CCD","filter":[{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENENT_ID","binding_name":"TENENT_ID","binding_value":"","source_name":"TENENT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"PROCESS_STATUS_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "svm for pstatus"
-	svm_for_pstatus__tbc_from_iq(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="svm_for_pstatus"
-		let destn_id="navigation_trg_btn"
-		let parent_source_id="inward_queue"
-		let event_code="e_1678795267979"
-		let event_params={"caller_name":"svm_for_pstatus__tbc_from_iq","event_desc":"TBC from IQ","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"inward_queue","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="trigger_button_click"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1292,50 +1174,6 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let parent_source_id="inward_queue"
 		let event_code="e_1678864225755"
 		let event_params={"caller_name":"svm_for_pstatus__brfq_to_tran_list","event_desc":"BRFQ to tran list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"inward_queue","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
-		let handler_code="bind_record_from_query"
-		let internals=""
-		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_14","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678796509061","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"NPSST_ID","alias_name":"","mq_id":"MQ_1678795579493","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1678795579892","date_format":false},{"column_name":"VALUE_DATE","alias_name":"","mq_id":"MQ_1678795580083","date_format":true},{"column_name":"CLRSYSREF","alias_name":"","mq_id":"MQ_1678795580252","date_format":false},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1678795580443","date_format":false},{"column_name":"INTRBK_STTLM_CUR","alias_name":"","mq_id":"MQ_1678795580651","date_format":false},{"column_name":"INTRBK_STTLM_AMNT","alias_name":"","mq_id":"MQ_1678795581011","date_format":false,"currency_format":true},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1678795648225","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1678795648809","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1678795649097","date_format":false},{"column_name":"DEPARTMENT_CODE","alias_name":"","mq_id":"MQ_1678795649417","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1678795649737","date_format":false},{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1678795721503","date_format":false},{"column_name":"PROCESS_GROUP","alias_name":"","mq_id":"MQ_1678795721671","date_format":false},{"column_name":"DBTR_IBAN","alias_name":"","mq_id":"MQ_1678795721847","date_format":false},{"column_name":"cr_acct_identification_mask","alias_name":"","mq_id":"MQ_1678795722007","date_format":false},{"column_name":"dr_acct_identification_mask","alias_name":"","mq_id":"MQ_1678800278062","date_format":false}],"joins":[]},"eq_text":"select  NPSST_ID,  Fn_card_decrypt_and_mask_rpt(cr_acct_identification) as cr_acct_identification_mask,  Fn_card_decrypt_and_mask_rpt(DBTR_ACCT_NO) as dr_acct_identification_mask,  CR_ACCT_IDENTIFICATION,  UETR,  VALUE_DATE,  ACCP_DATE_TIME,  CREATED_DATE,  DATEMI,  EXHF_ID,  CDTR_IBAN,  TENANT_ID,  TRAN_REF_ID,  DEPARTMENT_CODE,  PAYMENT_ENDTOEND_ID,  CLRSYSREF,  CDTR_ACCT_NO,  DBTR_ACCT_NO,  INTRBK_STTLM_CUR,  INTRBK_STTLM_AMNT,  STATUS,  PROCESSING_SYSTEM,  PROCESS_STATUS,  DBTR_ACCT_NAME,  DBTR_PHONE_NO,  DBTR_EMAIL_ID,  DBTR_DOCUMENT_ID,  DBTR_IBAN,  DBTR_CUST_TYPE,  DBTR_PRVT_ID,  DBTR_OTHER_ISSUER,  CDTR_ACCT_NAME,  CDTR_PHONE_NO,  CDTR_EMAIL_ID,  CDTR_DOCUMENT_ID,  DR_SORT_CODE,  CR_SORT_CODE,  CATEGORY_PURPOSE,  CATEGORY_PURPOSE_PRTY,  BASE_CURRENCY,  BASE_AMOUNT,  HDR_TOTAL_RECORDS,  HDR_TOTAL_AMOUNT,  HDR_CLEARING_SYSTEM,  CHARGE_BEARER,  REMITTANCE_INFO,  ACCOUNT_CURRENCY,  CHANNEL_ID,  CHANNEL_REFNO,  CHANNEL_USERID,  CHANNEL_PRODUCT,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  ISSUER_TYPE_CODE,  CBS_REF_NO,  CBS_POSTING_FLAG,  PROCESS_TYPE,  PROCESS_GROUP from  (  select   NT.NPSST_ID,   NT.UETR,   NT.VALUE_DATE,   NT.ACCP_DATE_TIME,   NT.CREATED_DATE,   TO_CHAR(NT.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   NT.DEPARTMENT_CODE,   NT.TENANT_ID,   NT.EXHF_ID,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.PAYMENT_ENDTOEND_ID,   NT.CLRSYSREF,   NT.CDTR_ACCT_NO,   NT.DBTR_ACCT_NO,   NT.INTRBK_STTLM_CUR,   NT.INTRBK_STTLM_AMNT,   NT.STATUS,   NT.PROCESSING_SYSTEM,   NT.PROCESS_STATUS,   NT.DBTR_ACCT_NAME,   NT.DBTR_PHONE_NO,   NT.DBTR_EMAIL_ID,   NT.DBTR_DOCUMENT_ID,   NT.DBTR_IBAN,   NT.DBTR_CUST_TYPE,   NT.DBTR_PRVT_ID,   NT.DBTR_OTHER_ISSUER,   NT.CDTR_ACCT_NAME,   NT.CDTR_PHONE_NO,   NT.CDTR_EMAIL_ID,   NT.CDTR_DOCUMENT_ID,   NT.DR_SORT_CODE,   NT.CR_SORT_CODE,   NT.CATEGORY_PURPOSE,   NT.CATEGORY_PURPOSE_PRTY,   NT.CR_ACCT_IDENTIFICATION,   NT.BASE_CURRENCY,   NT.BASE_AMOUNT,   NT.HDR_TOTAL_RECORDS,   NT.HDR_TOTAL_AMOUNT,   NT.HDR_CLEARING_SYSTEM,   NT.CHARGE_BEARER,   NT.REMITTANCE_INFO,   NT.ACCOUNT_CURRENCY,   NT.CHANNEL_ID,   NT.CHANNEL_REFNO,   NT.CHANNEL_USERID,   NT.CHANNEL_PRODUCT,   NT.CHANNEL_SUB_PRODUCT,   NT.CHANNEL_TRAN_CODE,   NT.ISSUER_TYPE_CODE,   NT.CBS_REF_NO,   NT.CBS_POSTING_FLAG,   NT.PROCESS_TYPE,   NT.PROCESS_GROUP  from   NPSS_TRANSACTIONS NT ) V $WHERE order by  NPSST_ID desc"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard Tran MQ CCD","filter":[{"filter_name":"CREATED_DATE","binding_name":"CREATED_DATE","binding_value":"","source_name":"CREATED_DATE","source_value":"","source_type":"LOCAL","oprtr":"=","data_type":"DATE","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"PROCESS_STATUS","source_value":"","source_type":"LOCAL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"PROCESS_TYPE","source_value":"","source_type":"LOCAL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"INTRBK_STTLM_CUR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"INTRBK_STTLM_AMNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false,"currency_format":true},{"header":"Cr IBAN","target_column":"CDTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr IBAN","target_column":"DBTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr Card Number","target_column":"cr_acct_identification_mask","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr Card Number","target_column":"dr_acct_identification_mask","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E Ref ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing System Ref No","target_column":"CLRSYSREF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Group","target_column":"PROCESS_GROUP","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Department Code","target_column":"DEPARTMENT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
-		try {
-			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation trg btn"
-	navigation_trg_btn__ssp_from_trg_btn(peventcontext) { 
-		let Dest_Is_ctrl=true
-		let eventcontext =["DONT CALL"]
-		if(eventcontext.indexOf(peventcontext)==-1) return true;
-		let source_id="navigation_trg_btn"
-		let destn_id="search"
-		let parent_source_id=""
-		let event_code="e_1678795301433"
-		let event_params={"caller_name":"navigation_trg_btn__ssp_from_trg_btn","event_desc":"SSP from TRG btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"DONT CALL","root_source_id":"navigation_trg_btn","raiseparam":{},"eventcontext":["DONT CALL"]}
-		let handler_code="set_search_params"
-		let internals="ssp_from_trg_btn__brfq_for_tran_list,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "ssp from trg btn"
-	ssp_from_trg_btn__brfq_for_tran_list(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="ssp_from_trg_btn"
-		let destn_id="transaction_list"
-		let parent_source_id="navigation_trg_btn"
-		let event_code="e_1678795328024"
-		let event_params={"caller_name":"ssp_from_trg_btn__brfq_for_tran_list","event_desc":"BRFQ for tran list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_trg_btn","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
@@ -1476,69 +1314,6 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "transaction list"
-	transaction_list__ee_for_vpl() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="transaction_list"
-		let destn_id="navigation_view_process_log"
-		let parent_source_id=""
-		let event_code="e_1678855103933"
-		let event_params={"caller_name":"transaction_list__ee_for_vpl","event_desc":"EE for VPL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "transaction list"
-	transaction_list__ee_for_vml() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="transaction_list"
-		let destn_id="navigation_view_message_log"
-		let parent_source_id=""
-		let event_code="e_1678855554837"
-		let event_params={"caller_name":"transaction_list__ee_for_vml","event_desc":"EE for VML","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "transaction list"
-	transaction_list__ee_for_view_tran_btn() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="transaction_list"
-		let destn_id="navigation_view_tran"
-		let parent_source_id=""
-		let event_code="e_1678866220053"
-		let event_params={"caller_name":"transaction_list__ee_for_view_tran_btn","event_desc":"EE for view tran btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "transaction list"
 	transaction_list__svm_for_tran_list() { 
 		let Dest_Is_ctrl=true
 		
@@ -1589,6 +1364,27 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1678975854986"
 		let event_params={"caller_name":"transaction_list__se_for_vml","event_desc":"SE for VML","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__se_for_plog() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_view_process_log"
+		let parent_source_id=""
+		let event_code="e_1679031156281"
+		let event_params={"caller_name":"transaction_list__se_for_plog","event_desc":"SE for PLOG","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -2013,7 +1809,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_op_chart__brfq_op_chart_to_tran_list,"
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_30","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678960313277","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard OP CHART MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Pending_Detais","alias_name":"","mq_id":"MQ_1678960123198","date_format":false},{"column_name":"p_count","alias_name":"","mq_id":"MQ_1678960123388","date_format":false}],"joins":[]},"eq_text":"select  Pending_Detais,  count (Pending_Detais) as p_count from  (  select   Process_Name,   type,   Pending_Detais,   Process_Type,   tenant_id,   created_date  from   (   select    npl.process_name,    case     when npl.process_name::text IN ('Place Pacs008','PACS.008') then 'pacs.008'::text     when npl.process_name::text IN ('Place Pacs.007','PACS.007') then 'pacs.007'::text     when npl.process_name::text = 'Receive Pacs004'::text then 'pacs.004'::text    end as type,    case     WHEN ((npl.process_name::text = 'PACS.008'::text AND npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text) OR (npl.process_name::text = 'PACS.008'::text AND npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text AND npl.status='IP_RCT_EXCEPTION')) and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date     then 'Pending Screening'     WHEN ((npl.process_name::text = 'PACS.007'::text AND npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text) OR (npl.process_name::text = 'PACS.007'::text AND npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text AND npl.status='IP_RCT_EXCEPTION')) and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date      then 'Pending Screening'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_FAILURE', 'OP_AC_RET_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE' , 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_REV_POSTING_FAILURE')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_FAILURE', 'OR_P2B_POSTING_FAILURE')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_REPAIR')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)) then 'Pending (Maker)'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_RETRY', 'OP_AC_RET_POSTING_RETRY', 'OP_P2P_REV_POSTING_RETRY', 'OP_P2B_FUND_UNFR_RETRY', 'OP_P2B_REV_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_RETRY', 'OR_P2B_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_INITIATED')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)) then 'Pending (Checker)'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_FAILURE', 'OP_AC_RET_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE' , 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_REV_POSTING_FAILURE', 'OP_AC_REV_POSTING_RETRY', 'OP_AC_RET_POSTING_RETRY', 'OP_P2P_REV_POSTING_RETRY', 'OP_P2B_FUND_UNFR_RETRY', 'OP_P2B_REV_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_FAILURE', 'OR_P2B_POSTING_FAILURE', 'OR_P2P_POSTING_RETRY', 'OR_P2B_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_REPAIR', 'OP_REVERSAL_REQ_INITIATED')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)) then 'Pending (T-1)'     else 'Others'    end as Pending_Detais,    nppst.process_type,    nppst.created_date,    nppst.tenant_id   from    npss_transactions nppst   join npss_trn_process_log npl on    npl.uetr = nppst.uetr   where    nppst.process_type = 'OP'    and (npl.process_name in ('Place Pacs008','PACS.008','Place Pacs.007','PACS.007','Receive Pacs004')) ) as Res  where   Res.Pending_Detais <> 'Others') a $WHERE group by  Pending_Detais"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard OP Chart CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Type","binding_name":"Type","binding_value":"","source_name":"Type","source_value":"","source_type":"LOCAL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Pending_Detais","target_column":"Pending_Detais","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"p_count","target_column":"p_count","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_30","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678960313277","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard OP CHART MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Pending_Detais","alias_name":"","mq_id":"MQ_1678960123198","date_format":false},{"column_name":"p_count","alias_name":"","mq_id":"MQ_1678960123388","date_format":false}],"joins":[]},"eq_text":"select  Pending_Detais,  count (Pending_Detais) as p_count,  Process_Type from  (  select   Process_Name,   type,   Pending_Detais,   Process_Type,   tenant_id,   created_date  from   (   select    npl.process_name,    case     when npl.process_name::text in ('Place Pacs008', 'PACS.008') then 'pacs.008'::text     when npl.process_name::text in ('Place Pacs.007', 'PACS.007') then 'pacs.007'::text     when npl.process_name::text = 'Receive Pacs004'::text then 'pacs.004'::text    end as type,    case     when ((npl.process_name::text = 'PACS.008'::text     and npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text)     or (npl.process_name::text = 'PACS.008'::text     and npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text     and npl.status = 'IP_RCT_EXCEPTION'))     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date then 'Pending Screening'     when ((npl.process_name::text = 'PACS.007'::text     and npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text)     or (npl.process_name::text = 'PACS.007'::text     and npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text     and npl.status = 'IP_RCT_EXCEPTION'))     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date then 'Pending Screening'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_FAILURE', 'OP_AC_RET_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE' , 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_REV_POSTING_FAILURE')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_FAILURE', 'OR_P2B_POSTING_FAILURE')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_REPAIR')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)) then 'Pending (Maker)'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_RETRY', 'OP_AC_RET_POSTING_RETRY', 'OP_P2P_REV_POSTING_RETRY', 'OP_P2B_FUND_UNFR_RETRY', 'OP_P2B_REV_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_RETRY', 'OR_P2B_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_INITIATED')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date)) then 'Pending (Checker)'     when ((npl.process_name = 'Place Pacs008'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OP_AC_REV_POSTING_FAILURE', 'OP_AC_RET_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE' , 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_REV_POSTING_FAILURE', 'OP_AC_REV_POSTING_RETRY', 'OP_AC_RET_POSTING_RETRY', 'OP_P2P_REV_POSTING_RETRY', 'OP_P2B_FUND_UNFR_RETRY', 'OP_P2B_REV_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)     or (npl.process_name = 'Receive Pacs004'     and nppst.process_status = 'RCTExceptionFailure'     and nppst.status in ('OR_P2P_POSTING_FAILURE', 'OR_P2B_POSTING_FAILURE', 'OR_P2P_POSTING_RETRY', 'OR_P2B_POSTING_RETRY')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)     or (npl.process_name = 'Place Pacs.007'     and nppst.status in ('OP_REVERSAL_REQ_REPAIR', 'OP_REVERSAL_REQ_INITIATED')     and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < current_date)) then 'Pending (T-1)'     else 'Others'    end as Pending_Detais,    nppst.process_type,    nppst.created_date,    nppst.tenant_id   from    npss_transactions nppst   join npss_trn_process_log npl on    npl.uetr = nppst.uetr   where    nppst.process_type = 'OP'    and (npl.process_name in ('Place Pacs008', 'PACS.008', 'Place Pacs.007', 'PACS.007', 'Receive Pacs004')) ) as Res  where   Res.Pending_Detais <> 'Others') a $WHERE group by  Pending_Detais,Process_Type"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard OP Chart CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Type","binding_name":"Type","binding_value":"","source_name":"Type","source_value":"","source_type":"LOCAL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Pending_Detais","target_column":"Pending_Detais","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"p_count","target_column":"p_count","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -2059,6 +1855,27 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "nav ui search trg"
+	nav_ui_search_trg__spap_for_search_trg() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="nav_ui_search_trg"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1679030820022"
+		let event_params={"caller_name":"nav_ui_search_trg__spap_for_search_trg","event_desc":"SPAP for search trg","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"nav_ui_search_trg","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_for_search_trg","selector":"p_search_layout","profile_code":"BTL_1408_1598521300065","window_title":"Search","window_height":"","window_width":"auto","window_close_icon":"Y","eventdes":"spap_for_search_trg","eventcode":"E_1679030820022"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

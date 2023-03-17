@@ -108,9 +108,11 @@ AS SELECT res.type,
                 END) AS manual,
             count(DISTINCT
                 CASE
-                    WHEN (npl.process_name::text = 'PACS.008'::text AND npl.processing_system::text <> 'IBM_MQ'::text) OR (npl.process_name::text = 'PACS.008'::text AND npl.processing_system::text = 'IBM_MQ'::text AND npl.status::text = 'IP_RCT_EXCEPTION'::text) THEN nppst.npsst_id::bigint
-                    WHEN (npl.process_name::text = 'PACS.007'::text AND npl.processing_system::text <> 'IBM_MQ'::text) OR (npl.process_name::text = 'PACS.007'::text AND npl.processing_system::text = 'IBM_MQ'::text AND npl.status::text = 'IP_RCT_EXCEPTION'::text) THEN nppst.npsst_id::bigint
-                    ELSE NULL::bigint
+                     When npl.process_name::text = 'Place Pacs008' AND ((select Count(*) from npss_trn_process_log where process_name = 'PACS.008' and uetr=npl.uetr)=0) THEN nppst.npsst_id::bigint		  		  
+					 When npl.process_name::text = 'Place Pacs.007' AND ((select Count(*) from npss_trn_process_log where process_name = 'PACS.007' and uetr=npl.uetr)=0) THEN nppst.npsst_id::bigint		  		  
+                     When (npl.process_name::text = 'PACS.008'::text AND npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text) OR (npl.process_name::text = 'PACS.008'::text AND npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text AND npl.status='IP_RCT_EXCEPTION') OR
+				 (npl.process_name::text = 'PACS.007'::text AND npl.PROCESSING_SYSTEM::text <> 'IBM_MQ'::text) OR (npl.process_name::text = 'PACS.007'::text AND npl.PROCESSING_SYSTEM::text = 'IBM_MQ'::text AND npl.status='IP_RCT_EXCEPTION')
+				 THEN nppst.npsst_id::bigint		  		  
                 END) AS pending_screening,
             count(DISTINCT
                 CASE

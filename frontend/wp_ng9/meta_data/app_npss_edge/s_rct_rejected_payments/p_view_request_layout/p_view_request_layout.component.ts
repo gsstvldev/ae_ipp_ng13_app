@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28718 
+Build ID        : 28601 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-16 10:32 AM 
+Modified Date   : 2023-Mar-17 10:22 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_payments

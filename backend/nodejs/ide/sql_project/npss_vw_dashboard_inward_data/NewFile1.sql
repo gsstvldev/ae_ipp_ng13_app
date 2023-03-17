@@ -16,18 +16,32 @@ CREATE OR REPLACE VIEW vw_dashboard_inward_data
     COALESCE(sum(res.pending_returns_checker), 0::numeric) AS pending_returns_checker,
     COALESCE(sum(res.returned), 0::numeric) AS returned,
         CASE
-            WHEN res.type = 'pacs.008'::text THEN ( SELECT count(*) AS count
+            WHEN res.type = 'pacs.008'::text THEN ( select count(*) from (
+          SELECT distinct  process_NAME,nppst.npsst_id  
                FROM npss_transactions nppst
                  LEFT JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-              WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs008'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['IP_RCT_RR_POSTING_FAILURE'::text, 'IP_RCT_RR_POSTING_RETRY'::text, 'IP_RCT_PC_T24_POSTING_RETRY'::text, 'IP_RCT_CC_T24_POSTING_RETRY'::text, 'IP_RCT_POSTING_SUSPICIOUS'::text, 'IP_RCT_PC_POSTING_SUSPICIOUS'::text, 'IP_RCT_PC_T24_POSTING_FAILURE'::text, 'IP_RCT_CC_T24_POSTING_FAILURE'::text])) AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE)
-            WHEN res.type = 'pacs.004'::text THEN ( SELECT count(*) AS count
+              WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY 
+              (ARRAY['Receive Pacs008'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text 
+              AND (nppst.status::text = ANY (ARRAY['IP_RCT_RR_POSTING_FAILURE'::text, 'IP_RCT_RR_POSTING_RETRY'::text, 'IP_RCT_PC_T24_POSTING_RETRY'::text, 'IP_RCT_CC_T24_POSTING_RETRY'::text, 'IP_RCT_POSTING_SUSPICIOUS'::text, 'IP_RCT_PC_POSTING_SUSPICIOUS'::text, 'IP_RCT_PC_T24_POSTING_FAILURE'::text, 'IP_RCT_CC_T24_POSTING_FAILURE'::text])) 
+              AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) as Pen08t1
+         )
+            WHEN res.type = 'pacs.004'::text THEN ( select count(*) from (
+              SELECT distinct  process_NAME,nppst.npsst_id  
                FROM npss_transactions nppst
                  LEFT JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-              WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Place Pacs004'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['IP_RCT_RETURN_POSTING_FAILURE'::character varying::text, 'IP_RCT_RETURN_POSTING_RETRY'::character varying::text, 'IP_RCT_RR_POSTING_SUSPICIOUS'::character varying::text])) AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE)
-            WHEN res.type = 'pacs.007'::text THEN ( SELECT count(*) AS count
+              WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY 
+              (ARRAY['Place Pacs004'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text AND 
+              (nppst.status::text = ANY (ARRAY['IP_RCT_RETURN_POSTING_FAILURE'::character varying::text, 'IP_RCT_RETURN_POSTING_RETRY'::character varying::text, 'IP_RCT_RR_POSTING_SUSPICIOUS'::character varying::text])) 
+              AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE ) as Pen04t1
+           )
+            WHEN res.type = 'pacs.007'::text THEN ( select count(*) from (
+                SELECT distinct  process_NAME,nppst.npsst_id 
                FROM npss_transactions nppst
-                 LEFT JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-              WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs.007'::character varying::text])) AND (nppst.status::text = ANY (ARRAY['IP_RCT_REVERSAL_REQ_RECEIVED'::character varying::text, 'IP_RCT_REVERSAL_VLD_FAILED'::character varying::text, 'IP_RCT_REV_REQ_REJECTED'::character varying::text, 'IP_RCT_RR_RETURN_READY'::character varying::text])) AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE)
+                 inner JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
+              WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs.007'::character varying::text]))
+              AND (nppst.status::text = ANY (ARRAY['IP_RCT_REVERSAL_REQ_RECEIVED'::character varying::text, 'IP_RCT_REVERSAL_VLD_FAILED'::character varying::text, 'IP_RCT_REV_REQ_REJECTED'::character varying::text, 'IP_RCT_RR_RETURN_READY'::character varying::text])) 
+              AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE ) as Pen07t1
+             )
             ELSE 0::bigint
         END AS pending_t_1,
     res.created_date

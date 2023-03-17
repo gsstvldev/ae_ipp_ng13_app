@@ -19,18 +19,22 @@ AS SELECT res.type,
     COALESCE(sum(res.cback), 0::numeric) AS cback,
     COALESCE(sum(res.cbnack), 0::numeric) AS cbnack,
         CASE
-            WHEN res.type = 'pacs.008'::text THEN ( SELECT count(*) AS count
+            WHEN res.type = 'pacs.008'::text THEN ( select count(*) from (
+          SELECT distinct  process_NAME,nppst.npsst_id  
                FROM npss_transactions nppst
                  LEFT JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-              WHERE nppst.process_type::text = 'OP'::text AND (npl.process_name::text = ANY (ARRAY['Place Pacs008'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['OP_AC_REV_POSTING_FAILURE'::character varying::text, 'OP_AC_RET_POSTING_FAILURE'::character varying::text, 'OP_P2P_REV_POSTING_FAILURE'::character varying::text, 'OP_P2B_FUND_UNFR_FAILURE'::character varying::text, 'OP_P2B_REV_POSTING_FAILURE'::character varying::text, 'OP_AC_REV_POSTING_RETRY'::character varying::text, 'OP_AC_RET_POSTING_RETRY'::character varying::text, 'OP_P2P_REV_POSTING_RETRY'::character varying::text, 'OP_P2B_FUND_UNFR_RETRY'::character varying::text, 'OP_P2B_REV_POSTING_RETRY'::character varying::text])) AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE)
-            WHEN res.type = 'pacs.004'::text THEN ( SELECT count(*) AS count
+              WHERE nppst.process_type::text = 'OP'::text AND (npl.process_name::text = ANY (ARRAY['Place Pacs008'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['OP_AC_REV_POSTING_FAILURE'::character varying::text, 'OP_AC_RET_POSTING_FAILURE'::character varying::text, 'OP_P2P_REV_POSTING_FAILURE'::character varying::text, 'OP_P2B_FUND_UNFR_FAILURE'::character varying::text, 'OP_P2B_REV_POSTING_FAILURE'::character varying::text, 'OP_AC_REV_POSTING_RETRY'::character varying::text, 'OP_AC_RET_POSTING_RETRY'::character varying::text, 'OP_P2P_REV_POSTING_RETRY'::character varying::text, 'OP_P2B_FUND_UNFR_RETRY'::character varying::text, 'OP_P2B_REV_POSTING_RETRY'::character varying::text])) 
+              AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) as Pen08t1)
+            WHEN res.type = 'pacs.004'::text THEN ( select count(*) from (
+          SELECT distinct  process_NAME,nppst.npsst_id 
                FROM npss_transactions nppst
                  LEFT JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-              WHERE nppst.process_type::text = 'OP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs004'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['OR_P2B_POSTING_FAILURE'::character varying::text, 'OR_P2P_POSTING_FAILURE'::character varying::text, 'OR_P2P_POSTING_RETRY'::character varying::text, 'OR_P2B_POSTING_RETRY'::character varying::text])) AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE)
-            WHEN res.type = 'pacs.007'::text THEN ( SELECT count(*) AS count
+              WHERE nppst.process_type::text = 'OP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs004'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['OR_P2B_POSTING_FAILURE'::character varying::text, 'OR_P2P_POSTING_FAILURE'::character varying::text, 'OR_P2P_POSTING_RETRY'::character varying::text, 'OR_P2B_POSTING_RETRY'::character varying::text])) AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) as Pen04t1)
+            WHEN res.type = 'pacs.007'::text THEN ( select count(*) from (
+          SELECT distinct  process_NAME,nppst.npsst_id 
                FROM npss_transactions nppst
                  LEFT JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-              WHERE nppst.process_type::text = 'OP'::text AND (npl.process_name::text = ANY (ARRAY['Place Pacs.007'::character varying::text])) AND (nppst.status::text = ANY (ARRAY['OP_REVERSAL_REQ_REPAIR'::character varying::text, 'OP_REVERSAL_REQ_INITIATED'::character varying::text])) AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE)
+              WHERE nppst.process_type::text = 'OP'::text AND (npl.process_name::text = ANY (ARRAY['Place Pacs.007'::character varying::text])) AND (nppst.status::text = ANY (ARRAY['OP_REVERSAL_REQ_REPAIR'::character varying::text, 'OP_REVERSAL_REQ_INITIATED'::character varying::text])) AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) as Pen07t1)
             ELSE 0::bigint
         END AS pending_t_1,
     res.created_date,

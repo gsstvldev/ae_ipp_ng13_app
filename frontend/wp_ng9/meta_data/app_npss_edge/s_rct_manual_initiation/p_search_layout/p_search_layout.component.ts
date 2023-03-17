@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28768 
+Build ID        : 28770 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-17 14:23 PM 
+Modified Date   : 2023-Mar-17 15:8 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation

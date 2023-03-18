@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
 
+
 try {
     /*   Created By :Siva Harish
     Created Date :02-01-2023
@@ -22,6 +23,7 @@ try {
      Reason for remove update query 17/02/2023
      Reason for changing insert logic 20/02/2023
       Reason for changing payload and implement credit and prepaid card 17/03/2023
+      Reason for declare ojfiledata 18/03/2023
     
     */
     var serviceName = 'NPSS (CS) Send To Checker';
@@ -37,7 +39,7 @@ try {
     var xml2js = require('xml2js');
     var mTranConn = "";
     var addquery = "";
-
+     var Objfiledata
     var checkForceTopost
     var objresponse = {
         'status': 'FAILURE',
@@ -120,7 +122,7 @@ try {
                                                                         var amount
 
                                                                         amount = arrprocesslog[0].intrbk_sttlm_amnt
-                                                                       
+
 
                                                                         if (apicalls == 0) {
                                                                             TakegmMargin = await GetgmMargin(arrprocesslog)
@@ -595,13 +597,13 @@ try {
 
                 }
 
-                
+
 
                 function GetgmMargin(arrprocesslog) {
                     return new Promise((resolve, reject) => {
-                        if(arrprocesslog[0].account_currency == '' || arrprocesslog[0].account_currency == null){
+                        if (arrprocesslog[0].account_currency == '' || arrprocesslog[0].account_currency == null) {
                             resolve('')
-                        }else{
+                        } else {
                             if (arrprocesslog[0].account_currency != 'AED') {
                                 var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' order by npsstpl_id desc`
                                 ExecuteQuery1(Takedata, function (arrresponse) {
@@ -641,7 +643,7 @@ try {
                                 resolve('')
                             }
                         }
-                       
+
 
                     })
                 }
@@ -1053,6 +1055,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

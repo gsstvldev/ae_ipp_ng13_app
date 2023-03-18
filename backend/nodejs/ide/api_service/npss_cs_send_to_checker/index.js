@@ -23,7 +23,7 @@ try {
      Reason for remove update query 17/02/2023
      Reason for changing insert logic 20/02/2023
       Reason for changing payload and implement credit and prepaid card 17/03/2023
-      Reason for declare ojfiledata 18/03/2023
+        Reason for declare ojfiledata 18/03/2023
     
     */
     var serviceName = 'NPSS (CS) Send To Checker';

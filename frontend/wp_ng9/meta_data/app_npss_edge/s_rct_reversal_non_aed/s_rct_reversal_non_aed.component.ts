@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28601 
+Build ID        : 28781 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-17 10:22 AM 
+Modified Date   : 2023-Mar-20 7:8 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -50,7 +50,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 	uicgc_5 : string = "accept_ui"
 	uicgc_6 : string = "change_return_ui"
 	uicgc_7 : string = "process_log_list"
-	uicgc_8 : string = "comment_list"
+	uicgc_8 : string = "reversal_list"
 	uicgc_9 : string = "reversal_ui"
 	uicgc_10 : string = "remarks_ui"
 	uicgc_11 : string = "view_dr_cr_details"
@@ -76,6 +76,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 	uicgc_36 : string = "cbs_accounts"
 	uicgc_37 : string = "original_transaction_details"
 	uicgc_38 : string = "refund_processing_details"
+	uicgc_39 : string = "remarks_list"
 	key_events : any = {}
 	btl_1304_1678260505149 : string = "p_fab_reversal_non_aed_n_layout"
 	btl_1304_1677742578614 : string = "p_reversal_non_aed_layout"
@@ -125,7 +126,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 	change_return_ui : any = {}
 	change_return_ui_save : any = {}
 	process_log_list : any = {}
-	comment_list : any = {}
+	reversal_list : any = {}
 	reversal_ui : any = {}
 	remarks_ui : any = {}
 	remarks_ui_save : any = {}
@@ -165,6 +166,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 	cbs_accounts : any = {}
 	original_transaction_details : any = {}
 	refund_processing_details : any = {}
+	remarks_list : any = {}
 
 
 	// Constructor 
@@ -428,17 +430,17 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		this.process_log_list.show = true
 		this.process_log_list.dynamic_param = {}
 	
-		// Component level properties - "Comment List" 
-		this.comment_list.uictrl_code = "datatable"
-		this.comment_list.uicgc_desc = "Comment List"
-		this.comment_list.uicgc_code = "uicgc_8"
-		this.comment_list.params = {"need_pag_datatable":"Y","need_search":"N"}
-		this.comment_list.datasource = {}
-		this.comment_list.context_menu = []
-		this.comment_list.views = {}
-		this.comment_list.onChangecomponent = new EventEmitter<any>()
-		this.comment_list.show = true
-		this.comment_list.dynamic_param = {}
+		// Component level properties - "Reversal List" 
+		this.reversal_list.uictrl_code = "datatable"
+		this.reversal_list.uicgc_desc = "Reversal List"
+		this.reversal_list.uicgc_code = "uicgc_8"
+		this.reversal_list.params = {"need_pag_datatable":"Y","need_search":"N"}
+		this.reversal_list.datasource = {}
+		this.reversal_list.context_menu = []
+		this.reversal_list.views = {}
+		this.reversal_list.onChangecomponent = new EventEmitter<any>()
+		this.reversal_list.show = true
+		this.reversal_list.dynamic_param = {}
 	
 		// Component level properties - "Reversal UI" 
 		this.reversal_ui.uictrl_code = "dynamic_ui"
@@ -899,6 +901,18 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		this.refund_processing_details.onChangecomponent = new EventEmitter<any>()
 		this.refund_processing_details.show = true
 		this.refund_processing_details.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
+	
+		// Component level properties - "Remarks List" 
+		this.remarks_list.uictrl_code = "datatable"
+		this.remarks_list.uicgc_desc = "Remarks List"
+		this.remarks_list.uicgc_code = "uicgc_39"
+		this.remarks_list.params = {"need_pag_datatable":"Y","need_search":"N"}
+		this.remarks_list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_39","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1679295981317","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Remarks MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"remarks","alias_name":"","mq_id":"MQ_1679295852705","date_format":false}],"joins":[]},"eq_text":"select remarks,npsst_id,tenant_id  from npss_transactions nt $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Remarks CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"NPSST_ID","binding_name":"NPSST_ID","binding_value":"","source_name":"MI_LEVEL_NPSST_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"","group_no":""}],"databinding":[{"header":"Remarks","target_column":"remarks","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.remarks_list.context_menu = []
+		this.remarks_list.views = {}
+		this.remarks_list.onChangecomponent = new EventEmitter<any>()
+		this.remarks_list.show = true
+		this.remarks_list.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -990,6 +1004,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		this.navigation_review__brfq_vertical_list()
 		this.navigation_review__brfq_success_sp()
 		this.navigation_review__brfq_for_list_review()
+		this.navigation_review__brfq_for_remark_list()
 		this.navigation_review__e_1677768187578__deal_ui()
 		this.navigation_review__e_1677768213736__deal_ui()
 		this.navigation_review__e_1677768229606__deal_ui()
@@ -2183,6 +2198,27 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
+	navigation_review__brfq_for_remark_list() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_review"
+		let destn_id="remarks_list"
+		let parent_source_id=""
+		let event_code="e_1679293548715"
+		let event_params={"caller_name":"navigation_review__brfq_for_remark_list","event_desc":"BRFQ for remark list","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_review","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"}}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_39","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1679295981317","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Remarks MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"remarks","alias_name":"","mq_id":"MQ_1679295852705","date_format":false}],"joins":[]},"eq_text":"select remarks,npsst_id,tenant_id  from npss_transactions nt $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Remarks CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"NPSST_ID","binding_name":"NPSST_ID","binding_value":"","source_name":"MI_LEVEL_NPSST_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"","group_no":""}],"databinding":[{"header":"Remarks","target_column":"remarks","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
 	navigation_review__e_1677768187578__deal_ui() { 
 		let Dest_Is_ctrl=true
 		
@@ -2743,7 +2779,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="reversal_action_ui_trigger_btn"
-		let destn_id="comment_list"
+		let destn_id="reversal_list"
 		let parent_source_id=""
 		let event_code="e_1666866840507"
 		let event_params={"caller_name":"reversal_action_ui_trigger_btn__brfq_for_comment_list","event_desc":"BRFQ for Comment List","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_trigger_btn","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}

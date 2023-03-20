@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28781 
+Build ID        : 28784 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-20 7:8 AM 
+Modified Date   : 2023-Mar-20 7:53 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -27,7 +27,7 @@ export class p_fab_reversal_new_layoutComponent implements OnInit {
 	reversal_ui : any = {}
 	process_log_control_ui : any = {}
 	cbs_accounts : any = {}
-	remark_list : any = {}
+	remarks_list : any = {}
 	get_usable_balance_widget : any = {}
 	process_log_list : any = {}
 	reversal_action_ui : any = {}
@@ -48,8 +48,8 @@ export class p_fab_reversal_new_layoutComponent implements OnInit {
 		this.process_log_control_ui.need_header = ""
 		this.cbs_accounts.desc = "CBS Accounts"
 		this.cbs_accounts.need_header = true
-		this.remark_list.desc = "Remark List"
-		this.remark_list.need_header = true
+		this.remarks_list.desc = "Remarks List"
+		this.remarks_list.need_header = true
 		this.get_usable_balance_widget.desc = "Get Usable Balance Widget"
 		this.get_usable_balance_widget.need_header = ""
 		this.process_log_list.desc = "Process Log List"

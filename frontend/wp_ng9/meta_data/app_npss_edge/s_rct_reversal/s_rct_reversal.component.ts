@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28781 
+Build ID        : 28784 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-20 7:8 AM 
+Modified Date   : 2023-Mar-20 7:53 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -49,7 +49,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	uicgc_5 : string = "accept_ui"
 	uicgc_6 : string = "change_return_ui"
 	uicgc_7 : string = "process_log_list"
-	uicgc_8 : string = "remark_list"
+	uicgc_8 : string = "remarks_list"
 	uicgc_9 : string = "reversal_ui"
 	uicgc_10 : string = "remarks_ui"
 	uicgc_11 : string = "view_dr_cr_details"
@@ -124,7 +124,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	change_return_ui : any = {}
 	change_return_ui_save : any = {}
 	process_log_list : any = {}
-	remark_list : any = {}
+	remarks_list : any = {}
 	reversal_ui : any = {}
 	remarks_ui : any = {}
 	remarks_ui_save : any = {}
@@ -420,17 +420,17 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.process_log_list.show = true
 		this.process_log_list.dynamic_param = {}
 	
-		// Component level properties - "Remark List" 
-		this.remark_list.uictrl_code = "datatable"
-		this.remark_list.uicgc_desc = "Remark List"
-		this.remark_list.uicgc_code = "uicgc_8"
-		this.remark_list.params = {"need_pag_datatable":"Y","need_search":"N"}
-		this.remark_list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_8","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1666863771649","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Remarks MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"remarks","alias_name":"","mq_id":"MQ_1679295852705","date_format":false}],"joins":[]},"eq_text":"select remarks,npsst_id,tenant_id  from npss_transactions nt $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Remarks CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"NPSST_ID","binding_name":"NPSST_ID","binding_value":"","source_name":"MI_LEVEL_NPSST_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"","group_no":""}],"databinding":[{"header":"Remarks","target_column":"remarks","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
-		this.remark_list.context_menu = []
-		this.remark_list.views = {}
-		this.remark_list.onChangecomponent = new EventEmitter<any>()
-		this.remark_list.show = true
-		this.remark_list.dynamic_param = {}
+		// Component level properties - "Remarks List" 
+		this.remarks_list.uictrl_code = "datatable"
+		this.remarks_list.uicgc_desc = "Remarks List"
+		this.remarks_list.uicgc_code = "uicgc_8"
+		this.remarks_list.params = {"need_pag_datatable":"Y","need_search":"N"}
+		this.remarks_list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_8","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1666863771649","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Remarks MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"remarks","alias_name":"","mq_id":"MQ_1679295852705","date_format":false}],"joins":[]},"eq_text":"select remarks,npsst_id,tenant_id  from npss_transactions nt $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Remarks CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"NPSST_ID","binding_name":"NPSST_ID","binding_value":"","source_name":"MI_LEVEL_NPSST_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"","group_no":""}],"databinding":[{"header":"Remarks","target_column":"remarks","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.remarks_list.context_menu = []
+		this.remarks_list.views = {}
+		this.remarks_list.onChangecomponent = new EventEmitter<any>()
+		this.remarks_list.show = true
+		this.remarks_list.dynamic_param = {}
 	
 		// Component level properties - "Reversal UI" 
 		this.reversal_ui.uictrl_code = "dynamic_ui"
@@ -2816,7 +2816,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="reversal_action_ui_trigger_btn"
-		let destn_id="remark_list"
+		let destn_id="remarks_list"
 		let parent_source_id=""
 		let event_code="e_1666866840507"
 		let event_params={"caller_name":"reversal_action_ui_trigger_btn__brfq_for_comment_list","event_desc":"BRFQ for Comment List","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_trigger_btn","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"}}

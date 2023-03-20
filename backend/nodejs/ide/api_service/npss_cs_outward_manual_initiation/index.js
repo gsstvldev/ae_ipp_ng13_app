@@ -178,6 +178,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                     objCusTranInst.BUY_MARGIN = params.BUY_MARGIN || null
                                                     objCusTranInst.REVERSAL_AMOUNT = arrdata[0].reversal_amount
                                                     objCusTranInst.CHARGE_AMOUNT = params.CHARGE_AMOUNT || null
+                                                    objCusTranInst.AMOUNT_CREDITED_LOC_CUR = arrdata[0].amount_credited_loc_cur || null
                                                     arrCusTranInst.push(objCusTranInst)
                                                     _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRANSACTIONS', function callbackInsert(CusTranInsertRes) {
                                                         if (CusTranInsertRes.length > 0) {

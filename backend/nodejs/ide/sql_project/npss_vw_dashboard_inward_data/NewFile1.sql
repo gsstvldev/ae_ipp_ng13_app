@@ -1,11 +1,20 @@
 -- View: ad_gss_tran.vw_dashboard_inward_data
 -- DROP VIEW ad_gss_tran.vw_dashboard_inward_data;
-
 drop view if exists vw_dashboard_inward_data;
 @SPL@
 CREATE OR REPLACE VIEW vw_dashboard_inward_data
  AS
- SELECT res.sno,
+select v.sno,
+    v.type,
+    sum(v.total) AS total,
+    sum(v.pending_maker) AS pending_maker,
+    sum(v.pending_checker) AS pending_checker,
+    sum(v.pending_screening) AS pending_screening,
+    sum(v.successfullyposted) AS successfullyposted,
+    sum(v.pending_returns_maker) AS pending_returns_maker,
+    sum(v.pending_returns_checker) AS pending_returns_checker,
+    sum(v.returned) AS returned,
+    sum(v.pending_t_1) as pending_t_1,v.created_date,v.department_code from (SELECT res.sno,
     res.type,
     COALESCE(sum(res.total), 0::numeric) AS total,
     COALESCE(sum(res.pending_maker), 0::numeric) AS pending_maker,
@@ -20,7 +29,9 @@ CREATE OR REPLACE VIEW vw_dashboard_inward_data
           SELECT distinct  process_NAME,nppst.npsst_id  
                FROM npss_transactions nppst
                  LEFT JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-              WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY 
+              WHERE nppst.process_type::text = 'IP'::text 
+              and nppst.department_code = res.DEPARTMENT_CODE
+              AND (npl.process_name::text = ANY 
               (ARRAY['Receive Pacs008'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text 
               AND (nppst.status::text = ANY (ARRAY['IP_RCT_RR_POSTING_FAILURE'::text, 'IP_RCT_RR_POSTING_RETRY'::text, 'IP_RCT_PC_T24_POSTING_RETRY'::text, 'IP_RCT_CC_T24_POSTING_RETRY'::text, 'IP_RCT_POSTING_SUSPICIOUS'::text, 'IP_RCT_PC_POSTING_SUSPICIOUS'::text, 'IP_RCT_PC_T24_POSTING_FAILURE'::text, 'IP_RCT_CC_T24_POSTING_FAILURE'::text])) 
               AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) as Pen08t1
@@ -29,7 +40,9 @@ CREATE OR REPLACE VIEW vw_dashboard_inward_data
               SELECT distinct  process_NAME,nppst.npsst_id  
                FROM npss_transactions nppst
                  LEFT JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-              WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY 
+              WHERE nppst.process_type::text = 'IP'::text 
+              and nppst.department_code = res.DEPARTMENT_CODE
+              AND (npl.process_name::text = ANY 
               (ARRAY['Place Pacs004'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text AND 
               (nppst.status::text = ANY (ARRAY['IP_RCT_RETURN_POSTING_FAILURE'::character varying::text, 'IP_RCT_RETURN_POSTING_RETRY'::character varying::text, 'IP_RCT_RR_POSTING_SUSPICIOUS'::character varying::text])) 
               AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE ) as Pen04t1
@@ -38,13 +51,16 @@ CREATE OR REPLACE VIEW vw_dashboard_inward_data
                 SELECT distinct  process_NAME,nppst.npsst_id 
                FROM npss_transactions nppst
                  inner JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-              WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs.007'::character varying::text]))
+              WHERE nppst.process_type::text = 'IP'::text 
+              and nppst.department_code = res.DEPARTMENT_CODE
+              AND (npl.process_name::text = ANY (ARRAY['Receive Pacs.007'::character varying::text]))
               AND (nppst.status::text = ANY (ARRAY['IP_RCT_REVERSAL_REQ_RECEIVED'::character varying::text, 'IP_RCT_REVERSAL_VLD_FAILED'::character varying::text, 'IP_RCT_REV_REQ_REJECTED'::character varying::text, 'IP_RCT_RR_RETURN_READY'::character varying::text])) 
               AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE ) as Pen07t1
              )
             ELSE 0::bigint
         END AS pending_t_1,
-    res.created_date
+    res.created_date,
+    res.department_code
    FROM ( SELECT
                 CASE
                     WHEN npl.process_name::text = 'Receive Pacs008'::text THEN 1
@@ -113,11 +129,15 @@ CREATE OR REPLACE VIEW vw_dashboard_inward_data
                     WHEN npl.process_name::text = 'Place Pacs004'::text AND nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['IP_RCT_RR_POSTING_RETRY'::text, 'IP_RCT_RETURN_POSTING_RETRY'::text, 'IP_RCT_RR_POSTING_SUSPICIOUS'::text])) THEN nppst.npsst_id::bigint
                     ELSE NULL::bigint
                 END) AS pending_returns_checker,
-            to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date
+            to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
+            case when 
+            (nppst.department_code = '') or (nppst.department_code = NULL) then 'NA'
+            else department_code end department_code
            FROM npss_transactions nppst
              JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-          WHERE nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs008'::character varying::text, 'Receive Pacs.007'::character varying::text, 'Place Pacs004'::character varying::text,'PACS.008'::character varying::text, 'PACS.007'::character varying::text]))
-          GROUP BY nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group, (to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text))
+          WHERE to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE AND
+          nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs008'::character varying::text, 'Receive Pacs.007'::character varying::text, 'Place Pacs004'::character varying::text,'PACS.008'::character varying::text, 'PACS.007'::character varying::text]))
+          GROUP BY nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group,nppst.department_code, (to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text))
         UNION ALL (
                  SELECT 1 AS sno,
                     'pacs.008'::text AS type,
@@ -129,7 +149,8 @@ CREATE OR REPLACE VIEW vw_dashboard_inward_data
                     0 AS successfullyposted,
                     0 AS pending_returns_maker,
                     0 AS pending_returns_checker,
-                    to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date
+                    to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
+                    'NA' department_code
                 UNION
                  SELECT 3 AS sno,
                     'pacs.007'::text AS type,
@@ -141,7 +162,8 @@ CREATE OR REPLACE VIEW vw_dashboard_inward_data
                     0 AS successfullyposted,
                     0 AS pending_returns_maker,
                     0 AS pending_returns_checker,
-                    to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date
+                    to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
+                    'NA' department_code
                 UNION
                  SELECT 2 AS sno,
                     'pacs.004'::text AS type,
@@ -153,7 +175,10 @@ CREATE OR REPLACE VIEW vw_dashboard_inward_data
                     0 AS successfullyposted,
                     0 AS pending_returns_maker,
                     0 AS pending_returns_checker,
-                    to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date
+                    to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
+                    'NA' department_code
         )) res
-  GROUP BY res.type, res.created_date, res.sno
-  ORDER BY res.sno;
+  GROUP BY res.type, res.created_date, res.sno,res.department_code
+  ) as v
+  group by v.sno,v.type,v.created_date,v.department_code
+  order by v.sno;

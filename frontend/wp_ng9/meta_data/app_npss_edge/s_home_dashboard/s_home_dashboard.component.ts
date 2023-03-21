@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28771 
+Build ID        : 28787 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-17 15:19 PM 
+Modified Date   : 2023-Mar-21 10:46 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -705,26 +705,31 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
 	back_ui_back__action_button_click(){
 		this.back_ui_back__sp_for_back_from_main()
+		this.back_ui_back__tbc_for_back_back_to_hist_list_trg()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "message back ui back"
 	message_back_ui_back__action_button_click(){
 		this.message_back_ui_back__sp_for_mb_back()
+		this.message_back_ui_back__tbc_from_message__back_to_hist_list_trg()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "message detail action back"
 	message_detail_action_back__action_button_click(){
 		this.message_detail_action_back__sp_for_mda_back()
+		this.message_detail_action_back__tbc_form_message_action_detaul_back_to_hist_list_trg()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "process log ui back"
 	process_log_ui_back__action_button_click(){
 		this.process_log_ui_back__sp_for_pl_back()
+		this.process_log_ui_back__tbc_for_process_log_back_to_hist_list_trg()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "single back ui back"
 	single_back_ui_back__action_button_click(){
 		this.single_back_ui_back__sp_for_sb_back()
+		this.single_back_ui_back__tbc_for_m_single_back_to_hist_list_trg()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "nav ui view ip queue"
@@ -1823,6 +1828,27 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "back ui back"
+	back_ui_back__tbc_for_back_back_to_hist_list_trg() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="back_ui_back"
+		let destn_id="nav_ui_trg_for_hide_tran_list"
+		let parent_source_id=""
+		let event_code="e_1679395115173"
+		let event_params={"caller_name":"back_ui_back__tbc_for_back_back_to_hist_list_trg","event_desc":"TBC for Back Back to Hist List TRG","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"back_ui_back","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "message back ui back"
 	message_back_ui_back__sp_for_mb_back() { 
 		let Dest_Is_ctrl=true
@@ -1838,6 +1864,27 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "message back ui back"
+	message_back_ui_back__tbc_from_message__back_to_hist_list_trg() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_back_ui_back"
+		let destn_id="nav_ui_trg_for_hide_tran_list"
+		let parent_source_id=""
+		let event_code="e_1679394986428"
+		let event_params={"caller_name":"message_back_ui_back__tbc_from_message__back_to_hist_list_trg","event_desc":"TBC from message  Back to Hist List TRG","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_back_ui_back","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1865,6 +1912,27 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action back"
+	message_detail_action_back__tbc_form_message_action_detaul_back_to_hist_list_trg() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="message_detail_action_back"
+		let destn_id="nav_ui_trg_for_hide_tran_list"
+		let parent_source_id=""
+		let event_code="e_1679395169791"
+		let event_params={"caller_name":"message_detail_action_back__tbc_form_message_action_detaul_back_to_hist_list_trg","event_desc":"TBC form message action detaul Back to Hist List TRG","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_back","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "process log ui back"
 	process_log_ui_back__sp_for_pl_back() { 
 		let Dest_Is_ctrl=true
@@ -1886,6 +1954,27 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui back"
+	process_log_ui_back__tbc_for_process_log_back_to_hist_list_trg() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_back"
+		let destn_id="nav_ui_trg_for_hide_tran_list"
+		let parent_source_id=""
+		let event_code="e_1679395472621"
+		let event_params={"caller_name":"process_log_ui_back__tbc_for_process_log_back_to_hist_list_trg","event_desc":"TBC for Process Log Back to Hist List TRG","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_back","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "single back ui back"
 	single_back_ui_back__sp_for_sb_back() { 
 		let Dest_Is_ctrl=true
@@ -1901,6 +1990,27 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "single back ui back"
+	single_back_ui_back__tbc_for_m_single_back_to_hist_list_trg() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="single_back_ui_back"
+		let destn_id="nav_ui_trg_for_hide_tran_list"
+		let parent_source_id=""
+		let event_code="e_1679395227866"
+		let event_params={"caller_name":"single_back_ui_back__tbc_for_m_single_back_to_hist_list_trg","event_desc":"TBC for m single Back to Hist List TRG","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"single_back_ui_back","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

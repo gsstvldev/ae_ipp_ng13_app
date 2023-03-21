@@ -1,5 +1,5 @@
 -- View: ad_gss_tran.vw_dashboard_outward_data
--- DROP VIEW ad_gss_tran.vw_dashboard_outward_data;
+-- DROP VIEW ad_gss_tran.vw_dashboard_outward_data ;
 drop view if exists vw_dashboard_outward_data;
 @SPL@
 CREATE OR REPLACE VIEW ad_gss_tran.vw_dashboard_outward_data

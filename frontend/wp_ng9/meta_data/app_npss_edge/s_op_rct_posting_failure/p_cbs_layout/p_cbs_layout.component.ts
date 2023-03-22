@@ -1,29 +1,28 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28847 
+Build ID        : 28848 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-22 19:16 PM 
+Modified Date   : 2023-Mar-22 20:45 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_master_dashboard
-Profile Name    : View Message UI Layout--------------------------------------------------------------------------- */
+Screen Name     : s_op_rct_posting_failure
+Profile Name    : CBS Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_view_message_ui_layout',
-  templateUrl: './p_view_message_ui_layout.component.html',
-  styleUrls: ['./p_view_message_ui_layout.component.css']
+  selector: 'p_cbs_layout',
+  templateUrl: './p_cbs_layout.component.html',
+  styleUrls: ['./p_cbs_layout.component.css']
 })
 
 // Start of class 
-export class p_view_message_ui_layoutComponent implements OnInit {
+export class p_cbs_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	message_back_ui : any = {}
-	message_detail_ui : any = {}
+  	cbs_ref_ui : any = {}
 
 
   // Constructor 
@@ -31,14 +30,12 @@ export class p_view_message_ui_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.message_back_ui.desc = "Message Back UI"
-		this.message_back_ui.need_header = ""
-		this.message_detail_ui.desc = "Message Detail UI"
-		this.message_detail_ui.need_header = ""
+    	this.cbs_ref_ui.desc = "CBS REF UI"
+		this.cbs_ref_ui.need_header = ""
 	
 
-    this.screen_instance['p_view_message_ui_layout'] = {};
-    this.screen_instance['p_view_message_ui_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_cbs_layout'] = {};
+    this.screen_instance['p_cbs_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

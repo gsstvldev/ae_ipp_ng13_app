@@ -79,7 +79,7 @@ try {
 
                         ExecuteQuery1(take_status, function (arrrule) {
 
-                            if (arrrule.length > 0) {
+                              if (arrrule.length > 0) {
                                 success_process_status = arrrule[0].success_process_status;
                                 success_status = arrrule[0].success_status;
 
@@ -246,7 +246,7 @@ try {
                                 "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                 "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                 "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
-                                "dr_department_code": arrprocesslog[0].department_code || ''
+                                "dr_department_code": arrprocesslog[0].department_code || 'DEFAULT'
 
                             },
                             headers: {
@@ -310,7 +310,7 @@ try {
                                     parameter.account_officer = '',
                                     parameter.curr_rate_segment = '',
                                     parameter.customer_id = '',
-                                    parameter.department_code = ''
+                                    parameter.department_code = 'DEFAULT'
                                 resolve(parameter)
                             } else {
                                 if (arrprocesslog[0].cr_acct_identification && arrprocesslog[0].cr_acct_id_code == 'AIIN') {
@@ -327,7 +327,7 @@ try {
                                                 parameter.account_officer = '',
                                                 parameter.curr_rate_segment = '',
                                                 parameter.customer_id = '',
-                                                parameter.department_code = ''
+                                                parameter.department_code =  'DEFAULT'
                                             resolve(parameter)
                                         } else {
 
@@ -349,7 +349,7 @@ try {
                                                 parameter.account_officer = arrActInf[0].account_officer || '',
                                                 parameter.curr_rate_segment = arrActInf[0].curr_rate_segment || '',
                                                 parameter.customer_id = arrActInf[0].customer_id || '',
-                                                parameter.department_code = arrprocesslog[0].department_code || ''
+                                                parameter.department_code = arrprocesslog[0].department_code || 'DEFAULT'
                                             resolve(parameter)
                                         } else {
                                             objresponse.status = 'No data Found in core nc cbs account table'
@@ -376,7 +376,7 @@ try {
                                             parameter.account_officer = '',
                                             parameter.curr_rate_segment = '',
                                             parameter.customer_id = '',
-                                            parameter.department_code = ''
+                                            parameter.department_code = 'DEFAULT'
                                         resolve(parameter)
 
                                     } else {
@@ -400,7 +400,7 @@ try {
                                             parameter.account_officer = arrActInf[0].account_officer || '',
                                             parameter.curr_rate_segment = arrActInf[0].curr_rate_segment || '',
                                             parameter.customer_id = arrActInf[0].customer_id || '',
-                                            parameter.department_code = arrprocesslog[0].department_code || ''
+                                            parameter.department_code = arrprocesslog[0].department_code || 'DEFAULT'
                                         resolve(parameter)
                                     } else {
                                         objresponse.status = 'No data Found in core nc cbs account table'

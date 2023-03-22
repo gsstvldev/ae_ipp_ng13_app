@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28847 
+Build ID        : 28849 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-22 19:16 PM 
+Modified Date   : 2023-Mar-22 21:9 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_master_dashboard
@@ -35,9 +35,9 @@ export class p_view_tran_detail_layoutComponent implements OnInit {
     	this.back_ui.desc = "Back UI"
 		this.back_ui.need_header = ""
 		this.view_dr_cr_details.desc = "View Dr Cr Details"
-		this.view_dr_cr_details.need_header = ""
+		this.view_dr_cr_details.need_header = true
 		this.view_payment_details.desc = "View Payment Details"
-		this.view_payment_details.need_header = ""
+		this.view_payment_details.need_header = true
 	
 
     this.screen_instance['p_view_tran_detail_layout'] = {};

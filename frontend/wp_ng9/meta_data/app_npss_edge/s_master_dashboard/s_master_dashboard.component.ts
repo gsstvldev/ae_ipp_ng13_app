@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28847 
+Build ID        : 28849 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-22 19:16 PM 
+Modified Date   : 2023-Mar-22 21:9 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_master_dashboard
@@ -51,18 +51,15 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
 	uicgc_28 : string = "back_ui"
 	uicgc_29 : string = "process_log_ui"
 	uicgc_34 : string = "nav_ui"
-	uicgc_38 : string = "inward_chart"
-	uicgc_39 : string = "outward_chart"
+	uicgc_38 : string = "inward"
+	uicgc_39 : string = "outward"
 	key_events : any = {}
-	btl_1304_1679039802877 : string = "p_ip_pending_layout"
-	btl_1304_1678973592738 : string = "p_op_layout"
-	btl_1304_1678876184454 : string = "p_view_history_layout"
+	btl_1304_1678973592738 : string = "p_transaction_list_layout"
+	btl_1304_1678876184454 : string = "p_process_log_history_list_layout"
 	btl_1304_1678876095161 : string = "p_view_tran_detail_layout"
 	btl_1304_1678803372109 : string = "p_view_req_and_res_profile"
-	btl_1304_1678803301898 : string = "p_view_message_ui_layout"
-	btl_1304_1678803243440 : string = "p_view_message_list_layout"
-	btl_1304_1678803171306 : string = "p_view_request_layout"
-	btl_1304_1678803096664 : string = "p_view_response_layout"
+	btl_1304_1678803301898 : string = "p_view_message_data_layout"
+	btl_1304_1678803243440 : string = "p_message_list_layout"
 	btl_1408_1598521300065 : string = "p_search_layout"
 	btl_1408_1598521214410 : string = "p_default_profile"
 	forms : any = ["uicgc_22","uicgc_23","uicgc_1","uicgc_24","uicgc_4","uicgc_29","uicgc_28","uicgc_25","uicgc_19","uicgc_21","uicgc_34"]
@@ -97,15 +94,13 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
 	back_ui_back : any = {}
 	process_log_ui : any = {}
 	process_log_ui_back : any = {}
-	process_log_ui_view_response : any = {}
-	process_log_ui_view_request : any = {}
 	process_log_ui_view_req_and_res : any = {}
 	nav_ui : any = {}
 	nav_ui_search : any = {}
 	nav_ui_search_trg : any = {}
 	nav_ui_trg_for_hide_tran_list : any = {}
-	inward_chart : any = {}
-	outward_chart : any = {}
+	inward : any = {}
+	outward : any = {}
 
 
 	// Constructor 
@@ -447,24 +442,6 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
 		this.process_log_ui_back.role = []
 		this.process_log_ui_back.action = ""
 		
-		// "View Response" Button of "Process Log UI" component
-		this.process_log_ui_view_response.label_name = "View Response"
-		this.process_log_ui_view_response.show = true
-		this.process_log_ui_view_response.disabled = true
-		this.process_log_ui_view_response.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.process_log_ui_view_response.dynamic_param = {}
-		this.process_log_ui_view_response.role = []
-		this.process_log_ui_view_response.action = ""
-		
-		// "View Request" Button of "Process Log UI" component
-		this.process_log_ui_view_request.label_name = "View Request"
-		this.process_log_ui_view_request.show = true
-		this.process_log_ui_view_request.disabled = true
-		this.process_log_ui_view_request.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
-		this.process_log_ui_view_request.dynamic_param = {}
-		this.process_log_ui_view_request.role = []
-		this.process_log_ui_view_request.action = ""
-		
 		// "View Req and Res" Button of "Process Log UI" component
 		this.process_log_ui_view_req_and_res.label_name = "View Req and Res"
 		this.process_log_ui_view_req_and_res.show = true
@@ -515,29 +492,29 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
 		this.nav_ui_trg_for_hide_tran_list.role = []
 		this.nav_ui_trg_for_hide_tran_list.action = ""
 	
-		// Component level properties - "Inward chart" 
-		this.inward_chart.uictrl_code = "chart"
-		this.inward_chart.uicgc_desc = "Inward chart"
-		this.inward_chart.uicgc_code = "uicgc_38"
-		this.inward_chart.params = {}
-		this.inward_chart.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_38","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679505830432","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS IP Master Dashboard","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"RESPONSE_DETAIL","alias_name":"","mq_id":"MQ_1679505720928","date_format":false},{"column_name":"RESPONSE_DETAIL_COUNT","alias_name":"","mq_id":"MQ_1679505721344","date_format":false},{"column_name":"PROCESS_TYPE","alias_name":"","mq_id":"MQ_1679505721608","date_format":false}],"joins":[]},"eq_text":"select  X.RESPONSE_DETAIL,  x.RESPONSE_DETAIL_COUNT,  X.PROCESS_TYPE,  x.createddate from  (  select   RES.PROCESS_TYPE,   createddate,   coalesce(sum(res.Payment_Status), 0::numeric) as Payment_Status,   coalesce(sum(res.Final_pacs002_status_received), 0::numeric) as Final_pacs002_status_received,   coalesce(sum(res.Posting_Completed_to_T24), 0::numeric) as Posting_Completed_to_T24,   coalesce(sum(res.Posting_Completed_to_Elpaso), 0::numeric) as Posting_Completed_to_Elpaso,   coalesce(sum(res.Posting_Completed_to_FD), 0::numeric) as Posting_Completed_to_FD,   coalesce(sum(res.response_sent_to_CB_count), 0::numeric) as response_sent_to_CB_count,   coalesce(sum(res.repair_queue), 0::numeric) as repair_queue  from   (   select    count(distinct case when nt.process_status in (UPPER('RCTInProcess'), UPPER('RCTReturned'), UPPER('RCTCompleted'), UPPER('RCTExceptionFailure'), UPPER('RCTExceptionSuspicious'), UPPER('BCTInProcess'), UPPER('BCTReturned'), UPPER('BCTCompleted'), UPPER('BCTExceptionFailure'), UPPER('BCTExceptionSuspicious')) then nt.npsst_id end) as Payment_Status,    count(distinct case when ntpl.process_name = 'Receive pacs002' then nt.npsst_id end) as Final_pacs002_status_received,    count(distinct case when ntpl.status in (UPPER('IP_RCT_POSTING_SUCCESS')) then nt.npsst_id end) as Posting_Completed_to_T24,    count(distinct case when ntpl.status in (UPPER('IP_RCT_PC_POSTING_SUCCESS')) then nt.npsst_id end) as Posting_Completed_to_Elpaso,    count(distinct case when ntpl.status in (UPPER('IP_RCT_CC_POSTING_SUCCESS')) then nt.npsst_id end) as Posting_Completed_to_FD,    count(distinct case when NTPL.process_name = 'Place pacs002' then nt.npsst_id end) as response_sent_to_CB_count,    count(distinct case when ntpl.status in (UPPER('IP_RCT_PC_POSTING_FAILURE'), UPPER('IP_RCT_POSTING_SUSPICIOUS'), UPPER('IP_RCT_POSTING_FAILURE'),('IP_RCT_CC_POSTING_FAILURE'), UPPER('IP_RCT_PC_POSTING_SUSPICIOUS'), UPPER('IP_RCT_CC_POSTING_SUSPICIOUS')) then nt.npsst_id end) as repair_queue,    NT.CREATED_DATE,    NT.TENANT_ID,    case     when nt.process_status like UPPER('RCT%') then 'Online'     when nt.process_status like UPPER('BCT%') then 'Batch'    end as process_group,    NT.department_code,    NT.process_type,    NT.uetr,    to_char(nt.created_date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone as createddate   from    npss_trn_process_log ntpl   inner join npss_transactions nt on    NT.uetr = NTPL.uetr   where    NT.process_type = 'IP'   group by    NT.CREATED_DATE,    NT.TENANT_ID,    NT.process_group,    NT.department_code,    NT.process_type,    NT.uetr,    NT.process_status) res $WHERE  group by   RES.PROCESS_TYPE,   res.createddate) T cross join lateral( values ('Payment Status', T.PAYMENT_STATUS, T.PROCESS_TYPE, t.createddate), ('Final pacs002 status received', T.Final_pacs002_status_received, T.PROCESS_TYPE, t.createddate), ('Posting Completed to T24', T.Posting_Completed_to_T24, T.PROCESS_TYPE, t.createddate), ('Posting Completed to Elpaso', T.Posting_Completed_to_Elpaso, T.PROCESS_TYPE, t.createddate), ('Posting Completed to FD', T.Posting_Completed_to_FD, T.PROCESS_TYPE, t.createddate), ('Response sent to CB', T.response_sent_to_CB_count, T.PROCESS_TYPE, t.createddate), ('Repair Queue', T.repair_queue, T.PROCESS_TYPE, t.createddate) ) X (RESPONSE_DETAIL,  RESPONSE_DETAIL_COUNT,  PROCESS_TYPE,  createddate)"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS IP Master Dashboard","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"RESPONSE_DETAIL","target_column":"RESPONSE_DETAIL","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RESPONSE_DETAIL_COUNT","target_column":"RESPONSE_DETAIL_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
-		this.inward_chart.context_menu = []
-		this.inward_chart.views = {}
-		this.inward_chart.onChangecomponent = new EventEmitter<any>()
-		this.inward_chart.show = true
-		this.inward_chart.dynamic_param = {}
+		// Component level properties - "Inward" 
+		this.inward.uictrl_code = "chart"
+		this.inward.uicgc_desc = "Inward"
+		this.inward.uicgc_code = "uicgc_38"
+		this.inward.params = {}
+		this.inward.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_38","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679505830432","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS IP Master Dashboard","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"RESPONSE_DETAIL","alias_name":"","mq_id":"MQ_1679505720928","date_format":false},{"column_name":"RESPONSE_DETAIL_COUNT","alias_name":"","mq_id":"MQ_1679505721344","date_format":false},{"column_name":"PROCESS_TYPE","alias_name":"","mq_id":"MQ_1679505721608","date_format":false}],"joins":[]},"eq_text":"select  X.RESPONSE_DETAIL,  x.RESPONSE_DETAIL_COUNT,  X.PROCESS_TYPE,  x.createddate from  (  select   RES.PROCESS_TYPE,   createddate,   coalesce(sum(res.Payment_Status), 0::numeric) as Payment_Status,   coalesce(sum(res.Final_pacs002_status_received), 0::numeric) as Final_pacs002_status_received,   coalesce(sum(res.Posting_Completed_to_T24), 0::numeric) as Posting_Completed_to_T24,   coalesce(sum(res.Posting_Completed_to_Elpaso), 0::numeric) as Posting_Completed_to_Elpaso,   coalesce(sum(res.Posting_Completed_to_FD), 0::numeric) as Posting_Completed_to_FD,   coalesce(sum(res.response_sent_to_CB_count), 0::numeric) as response_sent_to_CB_count,   coalesce(sum(res.repair_queue), 0::numeric) as repair_queue  from   (   select    count(distinct case when nt.process_status in (UPPER('RCTInProcess'), UPPER('RCTReturned'), UPPER('RCTCompleted'), UPPER('RCTExceptionFailure'), UPPER('RCTExceptionSuspicious'), UPPER('BCTInProcess'), UPPER('BCTReturned'), UPPER('BCTCompleted'), UPPER('BCTExceptionFailure'), UPPER('BCTExceptionSuspicious')) then nt.npsst_id end) as Payment_Status,    count(distinct case when ntpl.process_name = 'Receive pacs002' then nt.npsst_id end) as Final_pacs002_status_received,    count(distinct case when ntpl.status in (UPPER('IP_RCT_POSTING_SUCCESS')) then nt.npsst_id end) as Posting_Completed_to_T24,    count(distinct case when ntpl.status in (UPPER('IP_RCT_PC_POSTING_SUCCESS')) then nt.npsst_id end) as Posting_Completed_to_Elpaso,    count(distinct case when ntpl.status in (UPPER('IP_RCT_CC_POSTING_SUCCESS')) then nt.npsst_id end) as Posting_Completed_to_FD,    count(distinct case when NTPL.process_name = 'Place pacs002' then nt.npsst_id end) as response_sent_to_CB_count,    count(distinct case when ntpl.status in (UPPER('IP_RCT_PC_POSTING_FAILURE'), UPPER('IP_RCT_POSTING_SUSPICIOUS'), UPPER('IP_RCT_POSTING_FAILURE'),('IP_RCT_CC_POSTING_FAILURE'), UPPER('IP_RCT_PC_POSTING_SUSPICIOUS'), UPPER('IP_RCT_CC_POSTING_SUSPICIOUS')) then nt.npsst_id end) as repair_queue,    NT.CREATED_DATE,    NT.TENANT_ID,    case     when nt.process_status like UPPER('RCT%') then 'Online'     when nt.process_status like UPPER('BCT%') then 'Batch'    end as process_group,    NT.department_code,    NT.process_type,    NT.uetr,    to_char(nt.created_date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone as createddate   from    npss_trn_process_log ntpl   inner join npss_transactions nt on    NT.uetr = NTPL.uetr   where    NT.process_type = 'IP'   group by    NT.CREATED_DATE,    NT.TENANT_ID,    NT.process_group,    NT.department_code,    NT.process_type,    NT.uetr,    NT.process_status) res $WHERE  group by   RES.PROCESS_TYPE,   res.createddate) T cross join lateral( values ('Payment Status', T.PAYMENT_STATUS, T.PROCESS_TYPE, t.createddate), ('Final pacs002 status received', T.Final_pacs002_status_received, T.PROCESS_TYPE, t.createddate), ('Posting Completed to T24', T.Posting_Completed_to_T24, T.PROCESS_TYPE, t.createddate), ('Posting Completed to Elpaso', T.Posting_Completed_to_Elpaso, T.PROCESS_TYPE, t.createddate), ('Posting Completed to FD', T.Posting_Completed_to_FD, T.PROCESS_TYPE, t.createddate), ('Response sent to CB', T.response_sent_to_CB_count, T.PROCESS_TYPE, t.createddate), ('Repair Queue', T.repair_queue, T.PROCESS_TYPE, t.createddate) ) X (RESPONSE_DETAIL,  RESPONSE_DETAIL_COUNT,  PROCESS_TYPE,  createddate)"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS IP Master Dashboard","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"RESPONSE_DETAIL","target_column":"RESPONSE_DETAIL","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RESPONSE_DETAIL_COUNT","target_column":"RESPONSE_DETAIL_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.inward.context_menu = []
+		this.inward.views = {}
+		this.inward.onChangecomponent = new EventEmitter<any>()
+		this.inward.show = true
+		this.inward.dynamic_param = {}
 	
-		// Component level properties - "Outward chart" 
-		this.outward_chart.uictrl_code = "chart"
-		this.outward_chart.uicgc_desc = "Outward chart"
-		this.outward_chart.uicgc_code = "uicgc_39"
-		this.outward_chart.params = {}
-		this.outward_chart.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_39","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679497533134","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Master Dashboard","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"RESPONSE_DETAIL","alias_name":"","mq_id":"MQ_1679492405454","date_format":false},{"column_name":"RESPONSE_DETAIL_COUNT","alias_name":"","mq_id":"MQ_1679492405596","date_format":false},{"column_name":"PROCESS_TYPE","alias_name":"","mq_id":"MQ_1679492785033","date_format":false}],"joins":[]},"eq_text":"select  X.RESPONSE_DETAIL,  x.RESPONSE_DETAIL_COUNT,  X.PROCESS_TYPE,  x.createddate from  (  select   RES.PROCESS_TYPE,   createddate,   coalesce(sum(res.Total), 0::numeric) as Total,   coalesce(sum(res.ACK_response_received_from_CB), 0::numeric) as ACK_response_received_from_CB,   coalesce(sum(res.NAK_Response_received_from_CB), 0::numeric) as NAK_Response_received_from_CB,   coalesce(sum(res.Accepted_by_Bene_Bank), 0::numeric) as Accepted_by_Bene_Bank,   coalesce(sum(res.Rejected_by_Bene), 0::numeric) as Rejected_by_Bene,   coalesce(sum(res.Posting_Completed), 0::numeric) as Posting_Completed,   coalesce(sum(res.Send_to_CB), 0::numeric) as Send_to_CB,   coalesce(sum(res.CB_ACK), 0::numeric) as CB_ACK,   coalesce(sum(res.CB_NACK), 0::numeric) as CB_NACK  from   (   select    count(distinct case when nt.process_type = 'OP' then nt.npsst_id end) as Total,    count(distinct case when response_code = UPPER('ACCP') and cbuae_return_code is null then nt.npsst_id end) as ACK_response_received_from_CB,    count(distinct case when response_code = UPPER('RJCT') and cbuae_return_code is null then nt.npsst_id end) as NAK_Response_received_from_CB,    count(distinct case when response_code = UPPER('ACCP') and cbuae_return_code is not null and process_name not in ('Receive pacs004') then nt.npsst_id end) as Accepted_by_Bene_Bank,    count(distinct case when response_code = UPPER('RJCT') and cbuae_return_code is not null then nt.npsst_id end) as Rejected_by_Bene,    count(distinct case when ntpl.status in (UPPER('OP_P2P_POSTING_SUCCESS'), UPPER('OP_P2B_FUND_AUTHORIZED')) then nt.npsst_id end) as Posting_Completed,    count(distinct case when NT.process_status in ('RCTCompleted', 'RCTReturned') and NTPL.process_name = 'Place Pacs008' then nt.npsst_id end) as Send_to_CB,    count(distinct case when ntpl.status in (UPPER('OP_AC_STATUS_ACCEPTED'), UPPER('OP_P2P_STATUS_ACCEPTED'), UPPER('OP_P2B_STATUS_ACCEPTED')) then nt.npsst_id end) as CB_ACK,    count(distinct case when ntpl.status in (UPPER('OP_AC_REV_POSTING_SUCCESS'), UPPER('OP_AC_STATUS_REJECTED'), UPPER('OP_P2B_STATUS_REJECTED'), UPPER('OP_P2B_REV_POSTING_SUCCESS'), UPPER('OP_P2P_STATUS_REJECTED'), UPPER('OP_P2P_REV_POSTING_SUCCESS')) then nt.npsst_id end) as CB_NACK,    NT.CREATED_DATE,    NT.TENANT_ID,    case     when nt.process_status like UPPER('RCT%') then 'Online'     when nt.process_status like UPPER('BCT%') then 'Batch'    end as processgroup,    NT.department_code,    NT.process_type,    NT.uetr,    to_char(nt.created_date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone as createddate   from    npss_trn_process_log ntpl   inner join npss_transactions nt on    NT.uetr = NTPL.uetr   where    NT.process_type = 'OP'   group by    NT.CREATED_DATE,    NT.TENANT_ID,    NT.process_group,    NT.department_code,    NT.process_type,    NT.uetr,    NT.process_status) res  $WHERE  group by   RES.PROCESS_TYPE,   res.createddate) T cross join lateral( values ('Total', T.TOTAL, T.PROCESS_TYPE, t.createddate), ('ACK response received from CB', T.ACK_response_received_from_CB, T.PROCESS_TYPE, t.createddate), ('NAK response received from CB', T.NAK_Response_received_from_CB, T.PROCESS_TYPE, t.createddate), ('Accepted by Bene Bank', T.Accepted_by_Bene_Bank, T.PROCESS_TYPE, t.createddate), ('Rejected by Bene', T.Rejected_by_Bene, T.PROCESS_TYPE, t.createddate), ('Posting Completed', T.Posting_Completed, T.PROCESS_TYPE, t.createddate), ('Send to CB', T.Send_to_CB, T.PROCESS_TYPE, t.createddate), ('CB ACK', T.CB_ACK, T.PROCESS_TYPE, t.createddate), ('CB NACK', T.CB_NACK, T.PROCESS_TYPE, t.createddate)) X (RESPONSE_DETAIL,  RESPONSE_DETAIL_COUNT,  PROCESS_TYPE,  createddate)"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Master Dashboard","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"RESPONSE_DETAIL","target_column":"RESPONSE_DETAIL","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RESPONSE_DETAIL_COUNT","target_column":"RESPONSE_DETAIL_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
-		this.outward_chart.context_menu = []
-		this.outward_chart.views = {}
-		this.outward_chart.onChangecomponent = new EventEmitter<any>()
-		this.outward_chart.show = true
-		this.outward_chart.dynamic_param = {}
+		// Component level properties - "Outward" 
+		this.outward.uictrl_code = "chart"
+		this.outward.uicgc_desc = "Outward"
+		this.outward.uicgc_code = "uicgc_39"
+		this.outward.params = {}
+		this.outward.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_39","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679497533134","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Master Dashboard","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"RESPONSE_DETAIL","alias_name":"","mq_id":"MQ_1679492405454","date_format":false},{"column_name":"RESPONSE_DETAIL_COUNT","alias_name":"","mq_id":"MQ_1679492405596","date_format":false},{"column_name":"PROCESS_TYPE","alias_name":"","mq_id":"MQ_1679492785033","date_format":false}],"joins":[]},"eq_text":"select  X.RESPONSE_DETAIL,  x.RESPONSE_DETAIL_COUNT,  X.PROCESS_TYPE,  x.createddate from  (  select   RES.PROCESS_TYPE,   createddate,   coalesce(sum(res.Total), 0::numeric) as Total,   coalesce(sum(res.ACK_response_received_from_CB), 0::numeric) as ACK_response_received_from_CB,   coalesce(sum(res.NAK_Response_received_from_CB), 0::numeric) as NAK_Response_received_from_CB,   coalesce(sum(res.Accepted_by_Bene_Bank), 0::numeric) as Accepted_by_Bene_Bank,   coalesce(sum(res.Rejected_by_Bene), 0::numeric) as Rejected_by_Bene,   coalesce(sum(res.Posting_Completed), 0::numeric) as Posting_Completed,   coalesce(sum(res.Send_to_CB), 0::numeric) as Send_to_CB,   coalesce(sum(res.CB_ACK), 0::numeric) as CB_ACK,   coalesce(sum(res.CB_NACK), 0::numeric) as CB_NACK  from   (   select    count(distinct case when nt.process_type = 'OP' then nt.npsst_id end) as Total,    count(distinct case when response_code = UPPER('ACCP') and cbuae_return_code is null then nt.npsst_id end) as ACK_response_received_from_CB,    count(distinct case when response_code = UPPER('RJCT') and cbuae_return_code is null then nt.npsst_id end) as NAK_Response_received_from_CB,    count(distinct case when response_code = UPPER('ACCP') and cbuae_return_code is not null and process_name not in ('Receive pacs004') then nt.npsst_id end) as Accepted_by_Bene_Bank,    count(distinct case when response_code = UPPER('RJCT') and cbuae_return_code is not null then nt.npsst_id end) as Rejected_by_Bene,    count(distinct case when ntpl.status in (UPPER('OP_P2P_POSTING_SUCCESS'), UPPER('OP_P2B_FUND_AUTHORIZED')) then nt.npsst_id end) as Posting_Completed,    count(distinct case when NT.process_status in ('RCTCompleted', 'RCTReturned') and NTPL.process_name = 'Place Pacs008' then nt.npsst_id end) as Send_to_CB,    count(distinct case when ntpl.status in (UPPER('OP_AC_STATUS_ACCEPTED'), UPPER('OP_P2P_STATUS_ACCEPTED'), UPPER('OP_P2B_STATUS_ACCEPTED')) then nt.npsst_id end) as CB_ACK,    count(distinct case when ntpl.status in (UPPER('OP_AC_REV_POSTING_SUCCESS'), UPPER('OP_AC_STATUS_REJECTED'), UPPER('OP_P2B_STATUS_REJECTED'), UPPER('OP_P2B_REV_POSTING_SUCCESS'), UPPER('OP_P2P_STATUS_REJECTED'), UPPER('OP_P2P_REV_POSTING_SUCCESS')) then nt.npsst_id end) as CB_NACK,    NT.CREATED_DATE,    NT.TENANT_ID,    case     when nt.process_status like UPPER('RCT%') then 'Online'     when nt.process_status like UPPER('BCT%') then 'Batch'    end as process_group,    NT.department_code,    NT.process_type,    NT.uetr,    to_char(nt.created_date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone as createddate   from    npss_trn_process_log ntpl   inner join npss_transactions nt on    NT.uetr = NTPL.uetr   where    NT.process_type = 'OP'   group by    NT.CREATED_DATE,    NT.TENANT_ID,    NT.process_group,    NT.department_code,    NT.process_type,    NT.uetr,    NT.process_status) res $WHERE  group by   RES.PROCESS_TYPE,   res.createddate) T cross join lateral( values ('Total', T.TOTAL, T.PROCESS_TYPE, t.createddate), ('ACK response received from CB', T.ACK_response_received_from_CB, T.PROCESS_TYPE, t.createddate), ('NAK response received from CB', T.NAK_Response_received_from_CB, T.PROCESS_TYPE, t.createddate), ('Accepted by Bene Bank', T.Accepted_by_Bene_Bank, T.PROCESS_TYPE, t.createddate), ('Rejected by Bene', T.Rejected_by_Bene, T.PROCESS_TYPE, t.createddate), ('Posting Completed', T.Posting_Completed, T.PROCESS_TYPE, t.createddate), ('Send to CB', T.Send_to_CB, T.PROCESS_TYPE, t.createddate), ('CB ACK', T.CB_ACK, T.PROCESS_TYPE, t.createddate), ('CB NACK', T.CB_NACK, T.PROCESS_TYPE, t.createddate)) X (RESPONSE_DETAIL,  RESPONSE_DETAIL_COUNT,  PROCESS_TYPE,  createddate)"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Master Dashboard","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"RESPONSE_DETAIL","target_column":"RESPONSE_DETAIL","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RESPONSE_DETAIL_COUNT","target_column":"RESPONSE_DETAIL_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.outward.context_menu = []
+		this.outward.views = {}
+		this.outward.onChangecomponent = new EventEmitter<any>()
+		this.outward.show = true
+		this.outward.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -588,11 +565,6 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "search clear"
 	search_clear__action_button_click(){
 		this.search_clear__cui_from_clear_btn_click()
-	}
-
-	//Handler for SELECTION_CHANGED event of "inward list"
-	inward_list__selection_changed(){
-		this.inward_list__sp_for_ip_tran_list()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation view tran"
@@ -718,19 +690,19 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
 		this.nav_ui_search__cu_from_nav_search_btn()
 	}
 
-	//Handler for SELECTION_CHANGED event of "inward chart"
-	inward_chart__selection_changed(){
-		this.inward_chart__se_for_tran_list_from_ip_chart()
-		this.inward_chart__brfq_for_tran_list_from_ip_chart()
-		this.inward_chart__sp_for_ip_chart()
+	//Handler for SELECTION_CHANGED event of "inward"
+	inward__selection_changed(){
+		this.inward__se_for_tran_list_from_ip_chart()
+		this.inward__brfq_for_tran_list_from_ip_chart()
+		this.inward__sp_for_ip_chart()
 	}
 
-	//Handler for SELECTION_CHANGED event of "outward chart"
-	outward_chart__selection_changed(){
-		this.outward_chart__brfq_for_tran_list_from_op_chart()
-		this.outward_chart__se_for_tran_list_from_op_chart()
-		this.outward_chart__svm_for_op_chart()
-		this.outward_chart__sp_for_op_layout()
+	//Handler for SELECTION_CHANGED event of "outward"
+	outward__selection_changed(){
+		this.outward__brfq_for_tran_list_from_op_chart()
+		this.outward__se_for_tran_list_from_op_chart()
+		this.outward__svm_for_op_chart()
+		this.outward__sp_for_op_layout()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -992,7 +964,7 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="ssp_for_op_list_from_srch_btn"
-		let destn_id="inward_chart"
+		let destn_id="inward"
 		let parent_source_id="search_search"
 		let event_code="e_1679496701563"
 		let event_params={"caller_name":"ssp_for_op_list_from_srch_btn__brfq_for_ip_chart_from_srch_btn","event_desc":"BRFQ for IP Chart from SRCH btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"BAR","chart_label":"RESPONSE_DETAIL","chart_series":"","chart_data":"RESPONSE_DETAIL_COUNT","avoid_parent_search_param":"N","avoid_key_column_filter":"N"}}
@@ -1014,14 +986,14 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="ssp_for_op_list_from_srch_btn"
-		let destn_id="outward_chart"
+		let destn_id="outward"
 		let parent_source_id="search_search"
 		let event_code="e_1679496919112"
 		let event_params={"caller_name":"ssp_for_op_list_from_srch_btn__e_1679496919112","event_desc":"E_1679496919112","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"BAR","chart_label":"RESPONSE_DETAIL","chart_series":"","chart_data":"RESPONSE_DETAIL_COUNT","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_39","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679497533134","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Master Dashboard","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"RESPONSE_DETAIL","alias_name":"","mq_id":"MQ_1679492405454","date_format":false},{"column_name":"RESPONSE_DETAIL_COUNT","alias_name":"","mq_id":"MQ_1679492405596","date_format":false},{"column_name":"PROCESS_TYPE","alias_name":"","mq_id":"MQ_1679492785033","date_format":false}],"joins":[]},"eq_text":"select  X.RESPONSE_DETAIL,  x.RESPONSE_DETAIL_COUNT,  X.PROCESS_TYPE,  x.createddate from  (  select   RES.PROCESS_TYPE,   createddate,   coalesce(sum(res.Total), 0::numeric) as Total,   coalesce(sum(res.ACK_response_received_from_CB), 0::numeric) as ACK_response_received_from_CB,   coalesce(sum(res.NAK_Response_received_from_CB), 0::numeric) as NAK_Response_received_from_CB,   coalesce(sum(res.Accepted_by_Bene_Bank), 0::numeric) as Accepted_by_Bene_Bank,   coalesce(sum(res.Rejected_by_Bene), 0::numeric) as Rejected_by_Bene,   coalesce(sum(res.Posting_Completed), 0::numeric) as Posting_Completed,   coalesce(sum(res.Send_to_CB), 0::numeric) as Send_to_CB,   coalesce(sum(res.CB_ACK), 0::numeric) as CB_ACK,   coalesce(sum(res.CB_NACK), 0::numeric) as CB_NACK  from   (   select    count(distinct case when nt.process_type = 'OP' then nt.npsst_id end) as Total,    count(distinct case when response_code = UPPER('ACCP') and cbuae_return_code is null then nt.npsst_id end) as ACK_response_received_from_CB,    count(distinct case when response_code = UPPER('RJCT') and cbuae_return_code is null then nt.npsst_id end) as NAK_Response_received_from_CB,    count(distinct case when response_code = UPPER('ACCP') and cbuae_return_code is not null and process_name not in ('Receive pacs004') then nt.npsst_id end) as Accepted_by_Bene_Bank,    count(distinct case when response_code = UPPER('RJCT') and cbuae_return_code is not null then nt.npsst_id end) as Rejected_by_Bene,    count(distinct case when ntpl.status in (UPPER('OP_P2P_POSTING_SUCCESS'), UPPER('OP_P2B_FUND_AUTHORIZED')) then nt.npsst_id end) as Posting_Completed,    count(distinct case when NT.process_status in ('RCTCompleted', 'RCTReturned') and NTPL.process_name = 'Place Pacs008' then nt.npsst_id end) as Send_to_CB,    count(distinct case when ntpl.status in (UPPER('OP_AC_STATUS_ACCEPTED'), UPPER('OP_P2P_STATUS_ACCEPTED'), UPPER('OP_P2B_STATUS_ACCEPTED')) then nt.npsst_id end) as CB_ACK,    count(distinct case when ntpl.status in (UPPER('OP_AC_REV_POSTING_SUCCESS'), UPPER('OP_AC_STATUS_REJECTED'), UPPER('OP_P2B_STATUS_REJECTED'), UPPER('OP_P2B_REV_POSTING_SUCCESS'), UPPER('OP_P2P_STATUS_REJECTED'), UPPER('OP_P2P_REV_POSTING_SUCCESS')) then nt.npsst_id end) as CB_NACK,    NT.CREATED_DATE,    NT.TENANT_ID,    case     when nt.process_status like UPPER('RCT%') then 'Online'     when nt.process_status like UPPER('BCT%') then 'Batch'    end as processgroup,    NT.department_code,    NT.process_type,    NT.uetr,    to_char(nt.created_date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone as createddate   from    npss_trn_process_log ntpl   inner join npss_transactions nt on    NT.uetr = NTPL.uetr   where    NT.process_type = 'OP'   group by    NT.CREATED_DATE,    NT.TENANT_ID,    NT.process_group,    NT.department_code,    NT.process_type,    NT.uetr,    NT.process_status) res  $WHERE  group by   RES.PROCESS_TYPE,   res.createddate) T cross join lateral( values ('Total', T.TOTAL, T.PROCESS_TYPE, t.createddate), ('ACK response received from CB', T.ACK_response_received_from_CB, T.PROCESS_TYPE, t.createddate), ('NAK response received from CB', T.NAK_Response_received_from_CB, T.PROCESS_TYPE, t.createddate), ('Accepted by Bene Bank', T.Accepted_by_Bene_Bank, T.PROCESS_TYPE, t.createddate), ('Rejected by Bene', T.Rejected_by_Bene, T.PROCESS_TYPE, t.createddate), ('Posting Completed', T.Posting_Completed, T.PROCESS_TYPE, t.createddate), ('Send to CB', T.Send_to_CB, T.PROCESS_TYPE, t.createddate), ('CB ACK', T.CB_ACK, T.PROCESS_TYPE, t.createddate), ('CB NACK', T.CB_NACK, T.PROCESS_TYPE, t.createddate)) X (RESPONSE_DETAIL,  RESPONSE_DETAIL_COUNT,  PROCESS_TYPE,  createddate)"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Master Dashboard","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"RESPONSE_DETAIL","target_column":"RESPONSE_DETAIL","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RESPONSE_DETAIL_COUNT","target_column":"RESPONSE_DETAIL_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_39","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679497533134","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Master Dashboard","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"RESPONSE_DETAIL","alias_name":"","mq_id":"MQ_1679492405454","date_format":false},{"column_name":"RESPONSE_DETAIL_COUNT","alias_name":"","mq_id":"MQ_1679492405596","date_format":false},{"column_name":"PROCESS_TYPE","alias_name":"","mq_id":"MQ_1679492785033","date_format":false}],"joins":[]},"eq_text":"select  X.RESPONSE_DETAIL,  x.RESPONSE_DETAIL_COUNT,  X.PROCESS_TYPE,  x.createddate from  (  select   RES.PROCESS_TYPE,   createddate,   coalesce(sum(res.Total), 0::numeric) as Total,   coalesce(sum(res.ACK_response_received_from_CB), 0::numeric) as ACK_response_received_from_CB,   coalesce(sum(res.NAK_Response_received_from_CB), 0::numeric) as NAK_Response_received_from_CB,   coalesce(sum(res.Accepted_by_Bene_Bank), 0::numeric) as Accepted_by_Bene_Bank,   coalesce(sum(res.Rejected_by_Bene), 0::numeric) as Rejected_by_Bene,   coalesce(sum(res.Posting_Completed), 0::numeric) as Posting_Completed,   coalesce(sum(res.Send_to_CB), 0::numeric) as Send_to_CB,   coalesce(sum(res.CB_ACK), 0::numeric) as CB_ACK,   coalesce(sum(res.CB_NACK), 0::numeric) as CB_NACK  from   (   select    count(distinct case when nt.process_type = 'OP' then nt.npsst_id end) as Total,    count(distinct case when response_code = UPPER('ACCP') and cbuae_return_code is null then nt.npsst_id end) as ACK_response_received_from_CB,    count(distinct case when response_code = UPPER('RJCT') and cbuae_return_code is null then nt.npsst_id end) as NAK_Response_received_from_CB,    count(distinct case when response_code = UPPER('ACCP') and cbuae_return_code is not null and process_name not in ('Receive pacs004') then nt.npsst_id end) as Accepted_by_Bene_Bank,    count(distinct case when response_code = UPPER('RJCT') and cbuae_return_code is not null then nt.npsst_id end) as Rejected_by_Bene,    count(distinct case when ntpl.status in (UPPER('OP_P2P_POSTING_SUCCESS'), UPPER('OP_P2B_FUND_AUTHORIZED')) then nt.npsst_id end) as Posting_Completed,    count(distinct case when NT.process_status in ('RCTCompleted', 'RCTReturned') and NTPL.process_name = 'Place Pacs008' then nt.npsst_id end) as Send_to_CB,    count(distinct case when ntpl.status in (UPPER('OP_AC_STATUS_ACCEPTED'), UPPER('OP_P2P_STATUS_ACCEPTED'), UPPER('OP_P2B_STATUS_ACCEPTED')) then nt.npsst_id end) as CB_ACK,    count(distinct case when ntpl.status in (UPPER('OP_AC_REV_POSTING_SUCCESS'), UPPER('OP_AC_STATUS_REJECTED'), UPPER('OP_P2B_STATUS_REJECTED'), UPPER('OP_P2B_REV_POSTING_SUCCESS'), UPPER('OP_P2P_STATUS_REJECTED'), UPPER('OP_P2P_REV_POSTING_SUCCESS')) then nt.npsst_id end) as CB_NACK,    NT.CREATED_DATE,    NT.TENANT_ID,    case     when nt.process_status like UPPER('RCT%') then 'Online'     when nt.process_status like UPPER('BCT%') then 'Batch'    end as process_group,    NT.department_code,    NT.process_type,    NT.uetr,    to_char(nt.created_date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone as createddate   from    npss_trn_process_log ntpl   inner join npss_transactions nt on    NT.uetr = NTPL.uetr   where    NT.process_type = 'OP'   group by    NT.CREATED_DATE,    NT.TENANT_ID,    NT.process_group,    NT.department_code,    NT.process_type,    NT.uetr,    NT.process_status) res $WHERE  group by   RES.PROCESS_TYPE,   res.createddate) T cross join lateral( values ('Total', T.TOTAL, T.PROCESS_TYPE, t.createddate), ('ACK response received from CB', T.ACK_response_received_from_CB, T.PROCESS_TYPE, t.createddate), ('NAK response received from CB', T.NAK_Response_received_from_CB, T.PROCESS_TYPE, t.createddate), ('Accepted by Bene Bank', T.Accepted_by_Bene_Bank, T.PROCESS_TYPE, t.createddate), ('Rejected by Bene', T.Rejected_by_Bene, T.PROCESS_TYPE, t.createddate), ('Posting Completed', T.Posting_Completed, T.PROCESS_TYPE, t.createddate), ('Send to CB', T.Send_to_CB, T.PROCESS_TYPE, t.createddate), ('CB ACK', T.CB_ACK, T.PROCESS_TYPE, t.createddate), ('CB NACK', T.CB_NACK, T.PROCESS_TYPE, t.createddate)) X (RESPONSE_DETAIL,  RESPONSE_DETAIL_COUNT,  PROCESS_TYPE,  createddate)"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Master Dashboard","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"RESPONSE_DETAIL","target_column":"RESPONSE_DETAIL","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RESPONSE_DETAIL_COUNT","target_column":"RESPONSE_DETAIL_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1087,27 +1059,6 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "inward list"
-	inward_list__sp_for_ip_tran_list() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="inward_list"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1679039887060"
-		let event_params={"caller_name":"inward_list__sp_for_ip_tran_list","event_desc":"SP for IP tran list","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"inward_list","raiseparam":{"profile_code":"BTL_1304_1679039802877"}}
-		let handler_code="show_profile"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1628,7 +1579,7 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1678856012575"
-		let event_params={"caller_name":"back_ui_back__sp_for_back_from_main","event_desc":"SP for back from Main","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"back_ui_back","raiseparam":{"profile_code":"BTL_1408_1598521214410"}}
+		let event_params={"caller_name":"back_ui_back__sp_for_back_from_main","event_desc":"SP for back from Main","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"back_ui_back","raiseparam":{"profile_code":"BTL_1304_1678973592738"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1754,7 +1705,7 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1678856190577"
-		let event_params={"caller_name":"process_log_ui_back__sp_for_pl_back","event_desc":"SP for PL Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_back","raiseparam":{"profile_code":"BTL_1408_1598521214410"}}
+		let event_params={"caller_name":"process_log_ui_back__sp_for_pl_back","event_desc":"SP for PL Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_back","raiseparam":{"profile_code":"BTL_1304_1678973592738"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2019,15 +1970,15 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "inward chart"
-	inward_chart__se_for_tran_list_from_ip_chart() { 
+	//Handler for SELECTION_CHANGED event of "inward"
+	inward__se_for_tran_list_from_ip_chart() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="inward_chart"
+		let source_id="inward"
 		let destn_id="transaction_list"
 		let parent_source_id=""
 		let event_code="e_1679496653860"
-		let event_params={"caller_name":"inward_chart__se_for_tran_list_from_ip_chart","event_desc":"SE for tran list from IP Chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"inward_chart","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"inward__se_for_tran_list_from_ip_chart","event_desc":"SE for tran list from IP Chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"inward","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -2040,15 +1991,15 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "inward chart"
-	inward_chart__brfq_for_tran_list_from_ip_chart() { 
+	//Handler for SELECTION_CHANGED event of "inward"
+	inward__brfq_for_tran_list_from_ip_chart() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="inward_chart"
+		let source_id="inward"
 		let destn_id="transaction_list"
 		let parent_source_id=""
 		let event_code="e_1679496674604"
-		let event_params={"caller_name":"inward_chart__brfq_for_tran_list_from_ip_chart","event_desc":"BRFQ for tran list from IP Chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"inward_chart","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"}}
+		let event_params={"caller_name":"inward__brfq_for_tran_list_from_ip_chart","event_desc":"BRFQ for tran list from IP Chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"inward","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
@@ -2061,15 +2012,15 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "inward chart"
-	inward_chart__sp_for_ip_chart() { 
+	//Handler for SELECTION_CHANGED event of "inward"
+	inward__sp_for_ip_chart() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="inward_chart"
+		let source_id="inward"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1679497331214"
-		let event_params={"caller_name":"inward_chart__sp_for_ip_chart","event_desc":"SP for IP chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"inward_chart","raiseparam":{"profile_code":"BTL_1304_1678973592738"}}
+		let event_params={"caller_name":"inward__sp_for_ip_chart","event_desc":"SP for IP chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"inward","raiseparam":{"profile_code":"BTL_1304_1678973592738"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2082,15 +2033,15 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "outward chart"
-	outward_chart__brfq_for_tran_list_from_op_chart() { 
+	//Handler for SELECTION_CHANGED event of "outward"
+	outward__brfq_for_tran_list_from_op_chart() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="outward_chart"
+		let source_id="outward"
 		let destn_id="transaction_list"
 		let parent_source_id=""
 		let event_code="e_1679496958893"
-		let event_params={"caller_name":"outward_chart__brfq_for_tran_list_from_op_chart","event_desc":"BRFQ for tran list from OP Chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"outward_chart","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"outward__brfq_for_tran_list_from_op_chart","event_desc":"BRFQ for tran list from OP Chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"outward","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}
@@ -2103,15 +2054,15 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "outward chart"
-	outward_chart__se_for_tran_list_from_op_chart() { 
+	//Handler for SELECTION_CHANGED event of "outward"
+	outward__se_for_tran_list_from_op_chart() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="outward_chart"
+		let source_id="outward"
 		let destn_id="transaction_list"
 		let parent_source_id=""
 		let event_code="e_1679496970198"
-		let event_params={"caller_name":"outward_chart__se_for_tran_list_from_op_chart","event_desc":"SE for tran list from OP Chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"outward_chart","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"}}
+		let event_params={"caller_name":"outward__se_for_tran_list_from_op_chart","event_desc":"SE for tran list from OP Chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"outward","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
@@ -2124,19 +2075,19 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "outward chart"
-	outward_chart__svm_for_op_chart() { 
+	//Handler for SELECTION_CHANGED event of "outward"
+	outward__svm_for_op_chart() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="outward_chart"
-		let destn_id="outward_chart"
+		let source_id="outward"
+		let destn_id="outward"
 		let parent_source_id=""
 		let event_code="e_1679497013317"
-		let event_params={"caller_name":"outward_chart__svm_for_op_chart","event_desc":"SVM for OP chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"outward_chart","raiseparam":{}}
+		let event_params={"caller_name":"outward__svm_for_op_chart","event_desc":"SVM for OP chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"outward","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_39","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679497533134","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Master Dashboard","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"RESPONSE_DETAIL","alias_name":"","mq_id":"MQ_1679492405454","date_format":false},{"column_name":"RESPONSE_DETAIL_COUNT","alias_name":"","mq_id":"MQ_1679492405596","date_format":false},{"column_name":"PROCESS_TYPE","alias_name":"","mq_id":"MQ_1679492785033","date_format":false}],"joins":[]},"eq_text":"select  X.RESPONSE_DETAIL,  x.RESPONSE_DETAIL_COUNT,  X.PROCESS_TYPE,  x.createddate from  (  select   RES.PROCESS_TYPE,   createddate,   coalesce(sum(res.Total), 0::numeric) as Total,   coalesce(sum(res.ACK_response_received_from_CB), 0::numeric) as ACK_response_received_from_CB,   coalesce(sum(res.NAK_Response_received_from_CB), 0::numeric) as NAK_Response_received_from_CB,   coalesce(sum(res.Accepted_by_Bene_Bank), 0::numeric) as Accepted_by_Bene_Bank,   coalesce(sum(res.Rejected_by_Bene), 0::numeric) as Rejected_by_Bene,   coalesce(sum(res.Posting_Completed), 0::numeric) as Posting_Completed,   coalesce(sum(res.Send_to_CB), 0::numeric) as Send_to_CB,   coalesce(sum(res.CB_ACK), 0::numeric) as CB_ACK,   coalesce(sum(res.CB_NACK), 0::numeric) as CB_NACK  from   (   select    count(distinct case when nt.process_type = 'OP' then nt.npsst_id end) as Total,    count(distinct case when response_code = UPPER('ACCP') and cbuae_return_code is null then nt.npsst_id end) as ACK_response_received_from_CB,    count(distinct case when response_code = UPPER('RJCT') and cbuae_return_code is null then nt.npsst_id end) as NAK_Response_received_from_CB,    count(distinct case when response_code = UPPER('ACCP') and cbuae_return_code is not null and process_name not in ('Receive pacs004') then nt.npsst_id end) as Accepted_by_Bene_Bank,    count(distinct case when response_code = UPPER('RJCT') and cbuae_return_code is not null then nt.npsst_id end) as Rejected_by_Bene,    count(distinct case when ntpl.status in (UPPER('OP_P2P_POSTING_SUCCESS'), UPPER('OP_P2B_FUND_AUTHORIZED')) then nt.npsst_id end) as Posting_Completed,    count(distinct case when NT.process_status in ('RCTCompleted', 'RCTReturned') and NTPL.process_name = 'Place Pacs008' then nt.npsst_id end) as Send_to_CB,    count(distinct case when ntpl.status in (UPPER('OP_AC_STATUS_ACCEPTED'), UPPER('OP_P2P_STATUS_ACCEPTED'), UPPER('OP_P2B_STATUS_ACCEPTED')) then nt.npsst_id end) as CB_ACK,    count(distinct case when ntpl.status in (UPPER('OP_AC_REV_POSTING_SUCCESS'), UPPER('OP_AC_STATUS_REJECTED'), UPPER('OP_P2B_STATUS_REJECTED'), UPPER('OP_P2B_REV_POSTING_SUCCESS'), UPPER('OP_P2P_STATUS_REJECTED'), UPPER('OP_P2P_REV_POSTING_SUCCESS')) then nt.npsst_id end) as CB_NACK,    NT.CREATED_DATE,    NT.TENANT_ID,    case     when nt.process_status like UPPER('RCT%') then 'Online'     when nt.process_status like UPPER('BCT%') then 'Batch'    end as processgroup,    NT.department_code,    NT.process_type,    NT.uetr,    to_char(nt.created_date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone as createddate   from    npss_trn_process_log ntpl   inner join npss_transactions nt on    NT.uetr = NTPL.uetr   where    NT.process_type = 'OP'   group by    NT.CREATED_DATE,    NT.TENANT_ID,    NT.process_group,    NT.department_code,    NT.process_type,    NT.uetr,    NT.process_status) res  $WHERE  group by   RES.PROCESS_TYPE,   res.createddate) T cross join lateral( values ('Total', T.TOTAL, T.PROCESS_TYPE, t.createddate), ('ACK response received from CB', T.ACK_response_received_from_CB, T.PROCESS_TYPE, t.createddate), ('NAK response received from CB', T.NAK_Response_received_from_CB, T.PROCESS_TYPE, t.createddate), ('Accepted by Bene Bank', T.Accepted_by_Bene_Bank, T.PROCESS_TYPE, t.createddate), ('Rejected by Bene', T.Rejected_by_Bene, T.PROCESS_TYPE, t.createddate), ('Posting Completed', T.Posting_Completed, T.PROCESS_TYPE, t.createddate), ('Send to CB', T.Send_to_CB, T.PROCESS_TYPE, t.createddate), ('CB ACK', T.CB_ACK, T.PROCESS_TYPE, t.createddate), ('CB NACK', T.CB_NACK, T.PROCESS_TYPE, t.createddate)) X (RESPONSE_DETAIL,  RESPONSE_DETAIL_COUNT,  PROCESS_TYPE,  createddate)"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Master Dashboard","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"RESPONSE_DETAIL","target_column":"RESPONSE_DETAIL","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RESPONSE_DETAIL_COUNT","target_column":"RESPONSE_DETAIL_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_39","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679497533134","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Master Dashboard","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"RESPONSE_DETAIL","alias_name":"","mq_id":"MQ_1679492405454","date_format":false},{"column_name":"RESPONSE_DETAIL_COUNT","alias_name":"","mq_id":"MQ_1679492405596","date_format":false},{"column_name":"PROCESS_TYPE","alias_name":"","mq_id":"MQ_1679492785033","date_format":false}],"joins":[]},"eq_text":"select  X.RESPONSE_DETAIL,  x.RESPONSE_DETAIL_COUNT,  X.PROCESS_TYPE,  x.createddate from  (  select   RES.PROCESS_TYPE,   createddate,   coalesce(sum(res.Total), 0::numeric) as Total,   coalesce(sum(res.ACK_response_received_from_CB), 0::numeric) as ACK_response_received_from_CB,   coalesce(sum(res.NAK_Response_received_from_CB), 0::numeric) as NAK_Response_received_from_CB,   coalesce(sum(res.Accepted_by_Bene_Bank), 0::numeric) as Accepted_by_Bene_Bank,   coalesce(sum(res.Rejected_by_Bene), 0::numeric) as Rejected_by_Bene,   coalesce(sum(res.Posting_Completed), 0::numeric) as Posting_Completed,   coalesce(sum(res.Send_to_CB), 0::numeric) as Send_to_CB,   coalesce(sum(res.CB_ACK), 0::numeric) as CB_ACK,   coalesce(sum(res.CB_NACK), 0::numeric) as CB_NACK  from   (   select    count(distinct case when nt.process_type = 'OP' then nt.npsst_id end) as Total,    count(distinct case when response_code = UPPER('ACCP') and cbuae_return_code is null then nt.npsst_id end) as ACK_response_received_from_CB,    count(distinct case when response_code = UPPER('RJCT') and cbuae_return_code is null then nt.npsst_id end) as NAK_Response_received_from_CB,    count(distinct case when response_code = UPPER('ACCP') and cbuae_return_code is not null and process_name not in ('Receive pacs004') then nt.npsst_id end) as Accepted_by_Bene_Bank,    count(distinct case when response_code = UPPER('RJCT') and cbuae_return_code is not null then nt.npsst_id end) as Rejected_by_Bene,    count(distinct case when ntpl.status in (UPPER('OP_P2P_POSTING_SUCCESS'), UPPER('OP_P2B_FUND_AUTHORIZED')) then nt.npsst_id end) as Posting_Completed,    count(distinct case when NT.process_status in ('RCTCompleted', 'RCTReturned') and NTPL.process_name = 'Place Pacs008' then nt.npsst_id end) as Send_to_CB,    count(distinct case when ntpl.status in (UPPER('OP_AC_STATUS_ACCEPTED'), UPPER('OP_P2P_STATUS_ACCEPTED'), UPPER('OP_P2B_STATUS_ACCEPTED')) then nt.npsst_id end) as CB_ACK,    count(distinct case when ntpl.status in (UPPER('OP_AC_REV_POSTING_SUCCESS'), UPPER('OP_AC_STATUS_REJECTED'), UPPER('OP_P2B_STATUS_REJECTED'), UPPER('OP_P2B_REV_POSTING_SUCCESS'), UPPER('OP_P2P_STATUS_REJECTED'), UPPER('OP_P2P_REV_POSTING_SUCCESS')) then nt.npsst_id end) as CB_NACK,    NT.CREATED_DATE,    NT.TENANT_ID,    case     when nt.process_status like UPPER('RCT%') then 'Online'     when nt.process_status like UPPER('BCT%') then 'Batch'    end as process_group,    NT.department_code,    NT.process_type,    NT.uetr,    to_char(nt.created_date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone as createddate   from    npss_trn_process_log ntpl   inner join npss_transactions nt on    NT.uetr = NTPL.uetr   where    NT.process_type = 'OP'   group by    NT.CREATED_DATE,    NT.TENANT_ID,    NT.process_group,    NT.department_code,    NT.process_type,    NT.uetr,    NT.process_status) res $WHERE  group by   RES.PROCESS_TYPE,   res.createddate) T cross join lateral( values ('Total', T.TOTAL, T.PROCESS_TYPE, t.createddate), ('ACK response received from CB', T.ACK_response_received_from_CB, T.PROCESS_TYPE, t.createddate), ('NAK response received from CB', T.NAK_Response_received_from_CB, T.PROCESS_TYPE, t.createddate), ('Accepted by Bene Bank', T.Accepted_by_Bene_Bank, T.PROCESS_TYPE, t.createddate), ('Rejected by Bene', T.Rejected_by_Bene, T.PROCESS_TYPE, t.createddate), ('Posting Completed', T.Posting_Completed, T.PROCESS_TYPE, t.createddate), ('Send to CB', T.Send_to_CB, T.PROCESS_TYPE, t.createddate), ('CB ACK', T.CB_ACK, T.PROCESS_TYPE, t.createddate), ('CB NACK', T.CB_NACK, T.PROCESS_TYPE, t.createddate)) X (RESPONSE_DETAIL,  RESPONSE_DETAIL_COUNT,  PROCESS_TYPE,  createddate)"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Master Dashboard","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"RESPONSE_DETAIL","target_column":"RESPONSE_DETAIL","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RESPONSE_DETAIL_COUNT","target_column":"RESPONSE_DETAIL_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -2145,15 +2096,15 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "outward chart"
-	outward_chart__sp_for_op_layout() { 
+	//Handler for SELECTION_CHANGED event of "outward"
+	outward__sp_for_op_layout() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="outward_chart"
+		let source_id="outward"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1679497428988"
-		let event_params={"caller_name":"outward_chart__sp_for_op_layout","event_desc":"SP for OP layout","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"outward_chart","raiseparam":{"profile_code":"BTL_1304_1679039802877"}}
+		let event_params={"caller_name":"outward__sp_for_op_layout","event_desc":"SP for OP layout","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"outward","raiseparam":{"profile_code":"BTL_1304_1678973592738"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

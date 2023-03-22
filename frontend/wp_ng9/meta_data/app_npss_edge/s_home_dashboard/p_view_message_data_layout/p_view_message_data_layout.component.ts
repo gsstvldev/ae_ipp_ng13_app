@@ -1,24 +1,24 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28845 
+Build ID        : 28846 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-22 18:39 PM 
+Modified Date   : 2023-Mar-22 21:1 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
-Profile Name    : View Message UI Layout--------------------------------------------------------------------------- */
+Profile Name    : View Message Data Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_view_message_ui_layout',
-  templateUrl: './p_view_message_ui_layout.component.html',
-  styleUrls: ['./p_view_message_ui_layout.component.css']
+  selector: 'p_view_message_data_layout',
+  templateUrl: './p_view_message_data_layout.component.html',
+  styleUrls: ['./p_view_message_data_layout.component.css']
 })
 
 // Start of class 
-export class p_view_message_ui_layoutComponent implements OnInit {
+export class p_view_message_data_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
@@ -37,8 +37,8 @@ export class p_view_message_ui_layoutComponent implements OnInit {
 		this.message_detail_ui.need_header = ""
 	
 
-    this.screen_instance['p_view_message_ui_layout'] = {};
-    this.screen_instance['p_view_message_ui_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_view_message_data_layout'] = {};
+    this.screen_instance['p_view_message_data_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

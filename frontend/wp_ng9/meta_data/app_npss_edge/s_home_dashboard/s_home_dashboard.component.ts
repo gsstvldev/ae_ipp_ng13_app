@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28845 
+Build ID        : 28846 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-22 18:39 PM 
+Modified Date   : 2023-Mar-22 21:1 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -59,13 +59,11 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	btl_1304_1679039802877 : string = "p_ip_pending_layout"
 	btl_1304_1678973592738 : string = "p_op_layout"
 	btl_1304_1678973453692 : string = "p_ip_queue_layout"
-	btl_1304_1678876184454 : string = "p_view_history_layout"
+	btl_1304_1678876184454 : string = "p_process_log_list_history_layout"
 	btl_1304_1678876095161 : string = "p_view_tran_detail_layout"
 	btl_1304_1678803372109 : string = "p_view_req_and_res_profile"
-	btl_1304_1678803301898 : string = "p_view_message_ui_layout"
-	btl_1304_1678803243440 : string = "p_view_message_list_layout"
-	btl_1304_1678803171306 : string = "p_view_request_layout"
-	btl_1304_1678803096664 : string = "p_view_response_layout"
+	btl_1304_1678803301898 : string = "p_view_message_data_layout"
+	btl_1304_1678803243440 : string = "p_message_list_layout"
 	btl_1408_1598521300065 : string = "p_search_layout"
 	btl_1408_1598521214410 : string = "p_default_profile"
 	forms : any = ["uicgc_22","uicgc_1","uicgc_23","uicgc_24","uicgc_4","uicgc_29","uicgc_28","uicgc_25","uicgc_19","uicgc_21","uicgc_34"]
@@ -100,8 +98,6 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	back_ui_back : any = {}
 	process_log_ui : any = {}
 	process_log_ui_back : any = {}
-	process_log_ui_view_response : any = {}
-	process_log_ui_view_request : any = {}
 	process_log_ui_view_req_and_res : any = {}
 	outward_chart : any = {}
 	nav_ui : any = {}
@@ -462,24 +458,6 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.process_log_ui_back.dynamic_param = {}
 		this.process_log_ui_back.role = []
 		this.process_log_ui_back.action = ""
-		
-		// "View Response" Button of "Process Log UI" component
-		this.process_log_ui_view_response.label_name = "View Response"
-		this.process_log_ui_view_response.show = true
-		this.process_log_ui_view_response.disabled = true
-		this.process_log_ui_view_response.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.process_log_ui_view_response.dynamic_param = {}
-		this.process_log_ui_view_response.role = []
-		this.process_log_ui_view_response.action = ""
-		
-		// "View Request" Button of "Process Log UI" component
-		this.process_log_ui_view_request.label_name = "View Request"
-		this.process_log_ui_view_request.show = true
-		this.process_log_ui_view_request.disabled = true
-		this.process_log_ui_view_request.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
-		this.process_log_ui_view_request.dynamic_param = {}
-		this.process_log_ui_view_request.role = []
-		this.process_log_ui_view_request.action = ""
 		
 		// "View Req and Res" Button of "Process Log UI" component
 		this.process_log_ui_view_req_and_res.label_name = "View Req and Res"

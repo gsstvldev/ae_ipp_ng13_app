@@ -2,11 +2,11 @@
 <p_ip_pending_layout [screen_instance]="this" [hidden]="!(current_profile=='p_ip_pending_layout')"></p_ip_pending_layout>
 <p_op_layout [screen_instance]="this" [hidden]="!(current_profile=='p_op_layout')"></p_op_layout>
 <p_ip_queue_layout [screen_instance]="this" [hidden]="!(current_profile=='p_ip_queue_layout')"></p_ip_queue_layout>
-<p_view_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_history_layout')"></p_view_history_layout>
+<p_process_log_list_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_process_log_list_history_layout')"></p_process_log_list_history_layout>
 <p_view_tran_detail_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_tran_detail_layout')"></p_view_tran_detail_layout>
 <p_view_req_and_res_profile [screen_instance]="this" [hidden]="!(current_profile=='p_view_req_and_res_profile')"></p_view_req_and_res_profile>
-<p_view_message_ui_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_ui_layout')"></p_view_message_ui_layout>
-<p_view_message_list_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_list_layout')"></p_view_message_list_layout>
+<p_view_message_data_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_message_data_layout')"></p_view_message_data_layout>
+<p_message_list_layout [screen_instance]="this" [hidden]="!(current_profile=='p_message_list_layout')"></p_message_list_layout>
 <p_default_profile [screen_instance]="this" [hidden]="!(current_profile=='p_default_profile')"></p_default_profile>
 
 <p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_for_search_trg_showpopup" [contentStyle]="{'overflow-y': 'auto','width': 'auto'}" [draggable]="true" [modal]="true">

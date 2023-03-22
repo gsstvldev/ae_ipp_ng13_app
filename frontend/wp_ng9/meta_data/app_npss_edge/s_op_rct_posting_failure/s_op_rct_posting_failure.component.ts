@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28845 
+Build ID        : 28848 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-22 18:39 PM 
+Modified Date   : 2023-Mar-22 20:45 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_posting_failure
@@ -18,12 +18,13 @@ import {npss_c_disable_action_by_multiselectService} from '../../../custom_widge
 import {npss_cs_check_uetrService} from '../../../custom_widget/npss_cs_check_uetr/npss_cs_check_uetr.service'
 import {npss_cs_rct_outward_posting_failure_retry_repostService} from '../../../custom_widget/npss_cs_rct_outward_posting_failure_retry_repost/npss_cs_rct_outward_posting_failure_retry_repost.service'
 import {npss_cs_rct_outward_posting_failure_closeService} from '../../../custom_widget/npss_cs_rct_outward_posting_failure_close/npss_cs_rct_outward_posting_failure_close.service'
+import {npss_cs_rct_outward_already_postingService} from '../../../custom_widget/npss_cs_rct_outward_already_posting/npss_cs_rct_outward_already_posting.service'
 
 @Component({
 	selector: 's_op_rct_posting_failure',
 	templateUrl: './s_op_rct_posting_failure.component.html',
 	styleUrls: ['./s_op_rct_posting_failure.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_check_uetrService,npss_cs_rct_outward_posting_failure_retry_repostService,npss_cs_rct_outward_posting_failure_closeService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_check_uetrService,npss_cs_rct_outward_posting_failure_retry_repostService,npss_cs_rct_outward_posting_failure_closeService,npss_cs_rct_outward_already_postingService]
 })
     
 // Start of class 
@@ -69,8 +70,9 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_18","uicgc_16","uicgc_14","uicgc_4","uicgc_19","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_6","uicgc_3"]
+	forms : any = ["uicgc_18","uicgc_16","uicgc_14","uicgc_4","uicgc_6","uicgc_19","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
+	p_cbs_layout__e_1679517072428_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation_ui : any = {}
@@ -81,6 +83,7 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	navigation_ui_retry : any = {}
 	navigation_ui_close : any = {}
 	navigation_ui_repost : any = {}
+	navigation_ui_already_posted : any = {}
 	navigation_ui_trg_btn : any = {}
 	search : any = {}
 	search_search : any = {}
@@ -115,7 +118,7 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_check_uetrService:npss_cs_check_uetrService,private npss_cs_rct_outward_posting_failure_retry_repostService:npss_cs_rct_outward_posting_failure_retry_repostService,private npss_cs_rct_outward_posting_failure_closeService:npss_cs_rct_outward_posting_failure_closeService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_check_uetrService:npss_cs_check_uetrService,private npss_cs_rct_outward_posting_failure_retry_repostService:npss_cs_rct_outward_posting_failure_retry_repostService,private npss_cs_rct_outward_posting_failure_closeService:npss_cs_rct_outward_posting_failure_closeService,private npss_cs_rct_outward_already_postingService:npss_cs_rct_outward_already_postingService) {
     
 	}
     
@@ -222,6 +225,15 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_repost.role = []
 		this.navigation_ui_repost.action = ""
 		
+		// "Already Posted" Button of "Navigation UI" component
+		this.navigation_ui_already_posted.label_name = "Already Posted"
+		this.navigation_ui_already_posted.show = true
+		this.navigation_ui_already_posted.disabled = false
+		this.navigation_ui_already_posted.params = {"icon_only":false,"uicgcc_style":"fa fa-gg"}
+		this.navigation_ui_already_posted.dynamic_param = {}
+		this.navigation_ui_already_posted.role = []
+		this.navigation_ui_already_posted.action = ""
+		
 		// "Trg BTN" Button of "Navigation UI" component
 		this.navigation_ui_trg_btn.label_name = "Trg BTN"
 		this.navigation_ui_trg_btn.show = true
@@ -282,12 +294,12 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		this.cbs_ref_ui.params = {}
 		this.cbs_ref_ui.datasource = {}
 		this.cbs_ref_ui.context_menu = []
-		this.cbs_ref_ui.views = {}
+		this.cbs_ref_ui.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS BCT REF NO UI","tab_order":0,"tab_name":"","uicgc_description":"CBS REF UI","role_description":"default","dtt_description":"NPSS Transactions"}]}}
 		this.cbs_ref_ui.onChangecomponent = new EventEmitter<any>()
 		this.cbs_ref_ui.show = true
 		this.cbs_ref_ui.dynamic_param = {}
-		this.cbs_ref_ui.f_cbs_ref_ui = {"show":true}
-		this.cbs_ref_ui.current_view = "f_cbs_ref_ui"
+		this.cbs_ref_ui.f_npss_bct_ref_no_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.cbs_ref_ui.form_name = "f_npss_bct_ref_no_ui"
 		
 		// "Save" Button of "CBS REF UI" component
 		this.cbs_ref_ui_save.label_name = "Save"
@@ -861,6 +873,26 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	navigation_ui_trg_btn__action_button_click(){
 		this.navigation_ui_trg_btn__e_1678108424849()
 		this.navigation_ui_trg_btn__e_1678111934525()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui already posted"
+	navigation_ui_already_posted__action_button_click(){
+		this.navigation_ui_already_posted__e_1679517072428()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "cbs ref ui save"
+	cbs_ref_ui_save__action_button_click(){
+		this.cbs_ref_ui_save__e_1679517217745()
+	}
+
+	//Handler for INTERNAL event of "e 1679517217745"
+	e_1679517217745__internal(parent_event_result){
+		this.e_1679517217745__e_1679517252925(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1679517252925"
+	e_1679517252925__internal(parent_event_result){
+		this.e_1679517252925__e_1679517268869(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2624,6 +2656,92 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_20","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678109575427","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Posting Failure Vertical MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"error_description","alias_name":"","mq_id":"MQ_1679482523480","date_format":false},{"column_name":"t24_return_code","alias_name":"","mq_id":"MQ_1679482523631","date_format":false},{"column_name":"Reversal_flag","alias_name":"","mq_id":"MQ_1679482523814","date_format":false},{"column_name":"process_name","alias_name":"","mq_id":"MQ_1679482523974","date_format":false}],"joins":[]},"eq_text":"select  uetr,  STATUS,  process_status,  process_name,  error_description,  t24_return_code,  tenant_id,  Reversal_flag from  (  select   ntpl.uetr,   ntpl.STATUS,   ntpl.process_status,   ntpl.t24_return_code,   ntpl.process_name,   ntpl.tenant_id,   cnec.error_description,   nt.npsst_id,   case    when nt.status in ('OP_P2B_REV_POSTING_FAILURE', 'OP_AC_REV_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE') then 'Y'    else 'N'   end as Reversal_flag  from   npss_trn_process_log ntpl  left join core_nc_error_codes cnec on   cnec.error_code = ntpl.t24_return_code   and cnec.NEED_SYNC = 'Y'  left join npss_transactions nt on   nt.uetr = ntpl.uetr )V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Posting Failure Dashboard CCD","filter":[{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"OR_P2P_POSTING_FAILURE,OP_P2B_FUND_UNFR_FAILURE,OP_P2B_REV_POSTING_FAILURE,OP_AC_REV_POSTING_FAILURE,OP_AC_RET_POSTING_FAILURE,OR_P2B_POSTING_FAILURE,OP_P2P_REV_POSTING_FAILURE","source_value":"","source_type":"HARDCODED","oprtr":"IN","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"UETR","binding_name":"UETR","binding_value":"","source_name":"MI_LEVEL_LOCAL_UETR","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Payment Type","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Reason","target_column":"t24_return_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Description","target_column":"error_description","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Reversal Flag","target_column":"Reversal_flag","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui already posted"
+	navigation_ui_already_posted__e_1679517072428() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_already_posted"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1679517072428"
+		let event_params={"caller_name":"navigation_ui_already_posted__e_1679517072428","event_desc":"E_1679517072428","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_already_posted","raiseparam":{"popup_category":"profile","variable":"p_cbs_layout__e_1679517072428","selector":"p_cbs_layout","profile_code":"BTL_1304_1668850424944","window_title":"","window_height":170,"window_width":"600px","window_close_icon":"Y","eventdes":"e_1679517072428","eventcode":"E_1679517072428"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "cbs ref ui save"
+	cbs_ref_ui_save__e_1679517217745() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="cbs_ref_ui_save"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1679517217745"
+		let event_params={"caller_name":"cbs_ref_ui_save__e_1679517217745","event_desc":"E_1679517217745","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cbs_ref_ui_save","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1679517217745__e_1679517252925,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_rct_outward_already_postingService.fn_npss_cs_rct_outward_already_posting(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1679517217745"
+	e_1679517217745__e_1679517252925(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1679517217745"
+		let destn_id=""
+		let parent_source_id="cbs_ref_ui_save"
+		let event_code="e_1679517252925"
+		let event_params={"caller_name":"e_1679517217745__e_1679517252925","event_desc":"E_1679517252925","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been sent to checker successfully to mark already posted","root_source_id":"cbs_ref_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1679517252925__e_1679517268869,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1679517252925"
+	e_1679517252925__e_1679517268869(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1679517252925"
+		let destn_id=""
+		let parent_source_id="e_1679517217745"
+		let event_code="e_1679517268869"
+		let event_params={"caller_name":"e_1679517252925__e_1679517268869","event_desc":"E_1679517268869","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"cbs_ref_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

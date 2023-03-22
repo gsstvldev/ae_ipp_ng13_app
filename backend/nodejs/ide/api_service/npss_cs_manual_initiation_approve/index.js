@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
  try {
     /*   Created By :Siva Harish
     Created Date :02-01-2023
@@ -18,7 +19,8 @@ app.post('/', function(appRequest, appResponse, next) {
         Reason for adding two api param for pac008 25/01/2023
        Reason for removing updt query 17/02/2023
        Reason for : Changing pacs008 payload
-        Reason for : Changing pacs004 payload 17/03/2023
+    Reason for : Changing pacs004 payload 17/03/2023
+    Reason for : Changing pacs008 payload 22/03/2023
    
     */
     var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -520,7 +522,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 "ext_org_id_code": arrprocesslog[0].ext_org_id_code || '',
                                 "issuer_type_code": arrprocesslog[0].issuer_type_code || '',
                                 "dbtr_document_id": arrprocesslog[0].dbtr_document_id || '',
-                                "dbtr_birth_date": arrprocesslog[0].dbtr_birth_date || '',
+                                "dbtr_birth_date": arrprocesslog[0].dbtr_birth_date ? moment(arrprocesslog[0].dbtr_birth_date).format('YYYY-MM-DD') : '',
                                 "dbtr_city_birth": arrprocesslog[0].dbtr_city_birth || '',
                                 "dbtr_country": arrprocesslog[0].dbtr_country || '',
                                 "ext_person_id_code": arrprocesslog[0].ext_person_id_code || '',
@@ -752,6 +754,7 @@ app.post('/', function(appRequest, appResponse, next) {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

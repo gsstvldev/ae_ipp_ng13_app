@@ -15,12 +15,14 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By :Siva Harish
         Created Date :04-11-2022
         Modified By : Siva Harish
         Modified Date : 18/02/2022    
          Modified By : Siva Harish
+         Reason for Changes in payload 22/03/2023
         
         */
         var serviceName = 'NPSS (CS) Reversal Force to Post';
@@ -36,8 +38,8 @@ app.post('/', function(appRequest, appResponse, next) {
         var xml2js = require('xml2js');
         var mTranConn = "";
         var addquery = "";
-
-
+        var TakegmMargin
+        var Objfiledata
         var objresponse = {
             'status': 'FAILURE',
             'data': '',
@@ -73,7 +75,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var TakeStsPsts = `select success_process_status,success_status,processing_system,process_type from core_nc_workflow_setup where rule_code = 'RCT_IP_REV_REQ_ACCEPT' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
 
 
-                            var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.accp_date_time,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`
+                            var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.department_code,ns.accp_date_time,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`
                             var Takeretcode = `select param_code,param_detail from core_nc_system_setup where param_category='REVERSAL RETURN CODE' and product_code = '${params.PROD_CODE}' and need_sync = 'Y'`
                             if (params.PROD_CODE == 'NPSS_AEFAB') {
                                 ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
@@ -86,19 +88,24 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 ExecuteQuery1(take_api_params, async function (arrprocesslog) {
                                                     if (arrprocesslog.length) {
                                                         var lclinstrm
-                                                        if (arrprocesslog[0].message_data !== null) {
+                                                        try {
+                                                            if (arrprocesslog[0].message_data !== null) {
 
-                                                            var parser = new xml2js.Parser({ strict: false, trim: true });
-                                                            parser.parseString(arrprocesslog[0].message_data, function (err, result) {
+                                                                var parser = new xml2js.Parser({ strict: false, trim: true });
+                                                                parser.parseString(arrprocesslog[0].message_data, function (err, result) {
 
-                                                                lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
+                                                                    lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
 
-                                                            });
+                                                                });
 
-                                                        }
-                                                        else {
+                                                            }
+                                                            else {
+                                                                lclinstrm = ""
+                                                            }
+                                                        } catch (error) {
                                                             lclinstrm = ""
                                                         }
+
 
                                                         var InsertTable = await ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode, arrurlResult)
                                                         if (InsertTable.length > 0) {
@@ -143,26 +150,37 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     if (arrurl.length) {
                                                                         var url = arrurl[0].param_detail;
                                                                         var amount
+                                                                        if (apicalls == 0) {
+                                                                            Objfiledata = await Getorgdata(arrprocesslog)
+                                                                        } else {
+                                                                            Objfiledata = {}
+                                                                        }
                                                                         if (params.screenName == 's_rct_reversal_non_aed') {
 
                                                                             var ContraAmount = await getconamount(arrprocesslog, apicalls)
                                                                             amount = ContraAmount
-                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls)
+
+                                                                            if (apicalls == 0) {
+                                                                                TakegmMargin = await GetgmMargin(arrprocesslog)
+                                                                            } else {
+                                                                                TakegmMargin = {}
+                                                                            }
+                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, TakegmMargin,Objfiledata)
                                                                             if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
-                                                                               
-                                                                                    var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                                                    ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                                        if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                            objresponse.status = 'SUCCESS';
-                                                                                            sendResponse(null, objresponse);
 
-                                                                                        } else {
-                                                                                            objresponse.status = 'No Data Updated in Transaction Table';
-                                                                                            sendResponse(null, objresponse);
+                                                                                var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                                    if (arrUpdTranTbl == 'SUCCESS') {
+                                                                                        objresponse.status = 'SUCCESS';
+                                                                                        sendResponse(null, objresponse);
 
-                                                                                        }
-                                                                                    })
-                                                                               
+                                                                                    } else {
+                                                                                        objresponse.status = 'No Data Updated in Transaction Table';
+                                                                                        sendResponse(null, objresponse);
+
+                                                                                    }
+                                                                                })
+
 
 
                                                                             } else if (apistatus.status == 'TIMEOUT') {
@@ -213,25 +231,25 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                                     ExecuteQuery1(take_api_params, async function (arrprocesslog) {
 
-                                                                                        var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls)
+                                                                                        var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, TakegmMargin,Objfiledata)
 
                                                                                         if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
 
-                                                                                           
-                                                                                                var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
 
-                                                                                                ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                                                    if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                                        objresponse.status = 'SUCCESS';
-                                                                                                        sendResponse(null, objresponse);
+                                                                                            var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
 
-                                                                                                    } else {
-                                                                                                        objresponse.status = 'No Data Updated in Transaction Table';
-                                                                                                        sendResponse(null, objresponse);
+                                                                                            ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                                                if (arrUpdTranTbl == 'SUCCESS') {
+                                                                                                    objresponse.status = 'SUCCESS';
+                                                                                                    sendResponse(null, objresponse);
 
-                                                                                                    }
-                                                                                                })
-                                                                                            
+                                                                                                } else {
+                                                                                                    objresponse.status = 'No Data Updated in Transaction Table';
+                                                                                                    sendResponse(null, objresponse);
+
+                                                                                                }
+                                                                                            })
+
 
 
                                                                                         } else if (apistatus.status == 'TIMEOUT') {
@@ -426,7 +444,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         }
                     })
                     // Do API Call for Service 
-                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, callbackapi) {
+                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, TakegmMargin, Objfiledata, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Accept INAU Reserve Fund'
                             var request = require('request');
@@ -440,6 +458,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                     "payload": {
+                                        "department_code": arrprocesslog[0].department_code || '',
+                                        "org_field_data": Objfiledata,
                                         "force_post_flag": "Y",
                                         "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
                                         "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
@@ -493,6 +513,11 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
 
 
+                            if (params.screenName == 's_rct_reversal_non_aed') {
+                                options.json.payload.GMMargin = TakegmMargin.GMMargin || '',
+                                    options.json.payload.GMRate = TakegmMargin.GMRate || '',
+                                    options.json.payload.amount_credited_loc_cur = TakegmMargin.amount_credited_loc_cur || ''
+                            }
                             var PrintInfo = {}
                             PrintInfo.url = url
                             PrintInfo.uetr = arrprocesslog[0].uetr || ''
@@ -767,8 +792,61 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
 
+                    function GetgmMargin(arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' order by npsstpl_id desc`
+                            ExecuteQuery1(Takedata, function (arrresponse) {
+                                var senddata = {}
+                                var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                                ExecuteQuery1(Takeloccur, function (localcur) {
+                                    if (localcur.length == 0) {
+                                        senddata.amount_credited_loc_cur = ''
+                                        if (arrresponse.length == 0) {
+                                            senddata.GMRate = '',
+                                                senddata.GMMargin = ''
+                                            resolve(senddata)
+                                        } else {
+                                            senddata.GMRate = arrresponse[0].exchange_rate,
+                                                senddata.GMMargin = arrresponse[0].gm_margin
+                                            resolve(senddata)
+                                        }
+                                    } else {
+                                        senddata.amount_credited_loc_cur = localcur[0].amount_credited_loc_cur
+                                        if (arrresponse.length == 0) {
+                                            senddata.GMRate = '',
+                                                senddata.GMMargin = ''
+                                            resolve(senddata)
+                                        } else {
+                                            senddata.GMRate = arrresponse[0].exchange_rate,
+                                                senddata.GMMargin = arrresponse[0].gm_margin
+                                            resolve(senddata)
+                                        }
+                                    }
 
 
+                                })
+
+
+                            })
+                        })
+                    }
+
+
+                    
+                    function Getorgdata(arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            var orgflddata = `select process_ref_no from npss_trn_process_log where process_name = 'Inward Credit Posting' and uetr = '${arrprocesslog[0].uetr}' and status = 'IP_RCT_POSTING_SUCCESS'`
+                            ExecuteQuery1(orgflddata, function (arrflddata) {
+                                if (arrflddata.length > 0) {
+                                    resolve(arrflddata[0].process_ref_no)
+                                } else {
+                                    objresponse.status = "ORG Field Data is Not Found"
+                                    sendResponse(null, objresponse)
+                                }
+
+                            })
+                        })
+                    }
 
 
 
@@ -949,10 +1027,10 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     //function to call all api calls(reservefund,prepaid,credit)
-                    function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls) {
+                    function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, TakegmMargin,Objfiledata) {
                         return new Promise((resolve, reject) => {
                             if (apicalls == 0 || apicalls == 0) { // reserve fund
-                                fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, function (result) {
+                                fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, TakegmMargin,Objfiledata, function (result) {
 
                                     resolve(result)
 
@@ -1116,6 +1194,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

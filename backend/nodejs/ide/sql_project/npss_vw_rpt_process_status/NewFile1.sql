@@ -2,7 +2,8 @@ DROP VIEW IF EXISTS NPSS_VW_RPT_PROCESS_STATUS;
 @SPL@
 CREATE OR REPLACE VIEW NPSS_VW_RPT_PROCESS_STATUS AS
 select
-	distinct API_Success_Failure
+	distinct API_Success_Failure,
+	         tenant_id
 from
 	(
 	select

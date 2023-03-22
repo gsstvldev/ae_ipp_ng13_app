@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28826 
+Build ID        : 28827 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-22 7:55 AM 
+Modified Date   : 2023-Mar-22 8:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_investigation
@@ -17,12 +17,13 @@ import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hi
 import {npss_cs_maker_initiateService} from '../../../custom_widget/npss_cs_maker_initiate/npss_cs_maker_initiate.service'
 import {npss_cs_bct_checker_approveService} from '../../../custom_widget/npss_cs_bct_checker_approve/npss_cs_bct_checker_approve.service'
 import {npss_cs_rev_rejectService} from '../../../custom_widget/npss_cs_rev_reject/npss_cs_rev_reject.service'
+import {npss_cs_maker_closeService} from '../../../custom_widget/npss_cs_maker_close/npss_cs_maker_close.service'
 
 @Component({
 	selector: 's_bct_investigation',
 	templateUrl: './s_bct_investigation.component.html',
 	styleUrls: ['./s_bct_investigation.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_maker_initiateService,npss_cs_bct_checker_approveService,npss_cs_rev_rejectService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_maker_initiateService,npss_cs_bct_checker_approveService,npss_cs_rev_rejectService,npss_cs_maker_closeService]
 })
     
 // Start of class 
@@ -65,7 +66,7 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 	btl_1304_1669201548920 : string = "p_vertical_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_15","uicgc_16","uicgc_4","uicgc_13","uicgc_18","uicgc_17","uicgc_10","uicgc_12","uicgc_14","uicgc_6","uicgc_3"]
+	forms : any = ["uicgc_15","uicgc_18","uicgc_16","uicgc_4","uicgc_13","uicgc_17","uicgc_10","uicgc_12","uicgc_14","uicgc_6","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	p_close_layout__spap_for_close_btn_showpopup : boolean = false
 	queue : any = {}
@@ -108,7 +109,7 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_maker_initiateService:npss_cs_maker_initiateService,private npss_cs_bct_checker_approveService:npss_cs_bct_checker_approveService,private npss_cs_rev_rejectService:npss_cs_rev_rejectService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_maker_initiateService:npss_cs_maker_initiateService,private npss_cs_bct_checker_approveService:npss_cs_bct_checker_approveService,private npss_cs_rev_rejectService:npss_cs_rev_rejectService,private npss_cs_maker_closeService:npss_cs_maker_closeService) {
     
 	}
     
@@ -507,12 +508,12 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		this.close_ui.params = {}
 		this.close_ui.datasource = {}
 		this.close_ui.context_menu = []
-		this.close_ui.views = {}
+		this.close_ui.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Remarks UI","tab_order":0,"tab_name":"","uicgc_description":"Close UI","role_description":"default","dtt_description":"NPSS Transactions"}]}}
 		this.close_ui.onChangecomponent = new EventEmitter<any>()
 		this.close_ui.show = true
 		this.close_ui.dynamic_param = {}
-		this.close_ui.f_close_ui = {"show":true}
-		this.close_ui.current_view = "f_close_ui"
+		this.close_ui.f_npss_remarks_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.close_ui.form_name = "f_npss_remarks_ui"
 		
 		// "Save" Button of "Close UI" component
 		this.close_ui_save.label_name = "Save"
@@ -768,6 +769,26 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
 	navigation_ui_close__action_button_click(){
 		this.navigation_ui_close__spap_for_close_btn()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "close ui save"
+	close_ui_save__action_button_click(){
+		this.close_ui_save__ve_for_c_save_btn()
+	}
+
+	//Handler for INTERNAL event of "ve for c save btn"
+	ve_for_c_save_btn__internal(parent_event_result){
+		this.ve_for_c_save_btn__cc_for_c_save_btn(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "cc for c save btn"
+	cc_for_c_save_btn__internal(parent_event_result){
+		this.cc_for_c_save_btn__im_for_c_save_btn(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "im for c save btn"
+	im_for_c_save_btn__internal(parent_event_result){
+		this.im_for_c_save_btn__e_1679471031964(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2314,6 +2335,93 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "close ui save"
+	close_ui_save__ve_for_c_save_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="close_ui_save"
+		let destn_id="close_ui"
+		let parent_source_id=""
+		let event_code="e_1679470964779"
+		let event_params={"caller_name":"close_ui_save__ve_for_c_save_btn","event_desc":"VE for C Save btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"close_ui_save","raiseparam":{}}
+		let handler_code="validate_elements"
+		let internals="ve_for_c_save_btn__cc_for_c_save_btn,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ve for c save btn"
+	ve_for_c_save_btn__cc_for_c_save_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ve_for_c_save_btn"
+		let destn_id=""
+		let parent_source_id="close_ui_save"
+		let event_code="e_1679470979657"
+		let event_params={"caller_name":"ve_for_c_save_btn__cc_for_c_save_btn","event_desc":"CC for C Save btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"close_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals="cc_for_c_save_btn__im_for_c_save_btn,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_maker_closeService.fn_npss_cs_maker_close(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for c save btn"
+	cc_for_c_save_btn__im_for_c_save_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_c_save_btn"
+		let destn_id=""
+		let parent_source_id="ve_for_c_save_btn"
+		let event_code="e_1679471026000"
+		let event_params={"caller_name":"cc_for_c_save_btn__im_for_c_save_btn","event_desc":"IM for C Save btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been closed successfully","root_source_id":"close_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="im_for_c_save_btn__e_1679471031964,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "im for c save btn"
+	im_for_c_save_btn__e_1679471031964(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="im_for_c_save_btn"
+		let destn_id=""
+		let parent_source_id="cc_for_c_save_btn"
+		let event_code="e_1679471031964"
+		let event_params={"caller_name":"im_for_c_save_btn__e_1679471031964","event_desc":"E_1679471031964","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"close_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -6,7 +6,7 @@ Modified By     : Admin
 Modified Date   : 2023-Mar-22 8:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_op_rct_investigation
+Screen Name     : s_bct_investigation
 Form Name       : NPSS Remarks UI--------------------------------------------------------------------------- */
 
 // Component Definition 

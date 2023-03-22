@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28833 
+Build ID        : 28840 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-22 11:44 AM 
+Modified Date   : 2023-Mar-22 14:6 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_posting_failure
@@ -612,6 +612,7 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		this.search_search__cu_for_tl()
 		this.search_search__de_from_search_to_view_log_hst()
 		this.search_search__de_from_search_to_view_message_details()
+		this.search_search__e_1679493924715()
 	}
 
 	//Handler for INTERNAL event of "ssp for pl queue"
@@ -1152,6 +1153,27 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "search search"
+	search_search__e_1679493924715() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="search_search"
+		let destn_id="failure_list"
+		let parent_source_id=""
+		let event_code="e_1679493924715"
+		let event_params={"caller_name":"search_search__e_1679493924715","event_desc":"E_1679493924715","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_20","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1678109575427","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Posting Failure Vertical MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"error_description","alias_name":"","mq_id":"MQ_1679482523480","date_format":false},{"column_name":"t24_return_code","alias_name":"","mq_id":"MQ_1679482523631","date_format":false},{"column_name":"Reversal_flag","alias_name":"","mq_id":"MQ_1679482523814","date_format":false},{"column_name":"process_name","alias_name":"","mq_id":"MQ_1679482523974","date_format":false}],"joins":[]},"eq_text":"select  uetr,  STATUS,  process_status,  process_name,  error_description,  t24_return_code,  tenant_id,  Reversal_flag from  (  select   ntpl.uetr,   ntpl.STATUS,   ntpl.process_status,   ntpl.t24_return_code,   ntpl.process_name,   ntpl.tenant_id,   cnec.error_description,   nt.npsst_id,   case    when nt.status in ('OP_P2B_REV_POSTING_FAILURE', 'OP_AC_REV_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE') then 'Y'    else 'N'   end as Reversal_flag  from   npss_trn_process_log ntpl  left join core_nc_error_codes cnec on   cnec.error_code = ntpl.t24_return_code   and cnec.NEED_SYNC = 'Y'  left join npss_transactions nt on   nt.uetr = ntpl.uetr )V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Posting Failure Dashboard CCD","filter":[{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"OR_P2P_POSTING_FAILURE,OP_P2B_FUND_UNFR_FAILURE,OP_P2B_REV_POSTING_FAILURE,OP_AC_REV_POSTING_FAILURE,OP_AC_RET_POSTING_FAILURE,OR_P2B_POSTING_FAILURE,OP_P2P_REV_POSTING_FAILURE","source_value":"","source_type":"HARDCODED","oprtr":"IN","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"UETR","binding_name":"UETR","binding_value":"","source_name":"MI_LEVEL_LOCAL_UETR","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Payment Type","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Reason","target_column":"t24_return_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Description","target_column":"error_description","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Reversal Flag","target_column":"Reversal_flag","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

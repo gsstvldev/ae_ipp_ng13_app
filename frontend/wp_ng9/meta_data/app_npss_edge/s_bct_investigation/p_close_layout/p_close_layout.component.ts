@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28827 
+Build ID        : 28834 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-22 8:38 AM 
+Modified Date   : 2023-Mar-22 11:3 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_investigation
@@ -22,7 +22,7 @@ export class p_close_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	close_ui : any = {}
+  	remark_ui : any = {}
 
 
   // Constructor 
@@ -30,8 +30,8 @@ export class p_close_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.close_ui.desc = "Close UI"
-		this.close_ui.need_header = ""
+    	this.remark_ui.desc = "Remark UI"
+		this.remark_ui.need_header = ""
 	
 
     this.screen_instance['p_close_layout'] = {};

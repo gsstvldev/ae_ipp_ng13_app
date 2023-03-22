@@ -21,10 +21,8 @@ export class npss_cs_maker_closeService {
         private dialogHelper: DialogService) { }
     //Default calling function
     fn_npss_cs_maker_close(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
+        let ctrlscope = screenInstance['remark_ui'].f_npss_remarks_ui.model;
         let Product_Code: any;
-
-
-
         let App_Id: any = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID")
         if (App_Id == "3") {
             Product_Code = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_CODE");
@@ -41,6 +39,7 @@ export class npss_cs_maker_closeService {
 
         let ClientParams: any = {};
         ///  Prepare input for Server call
+        ClientParams.remarks = ctrlscope.memory90
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
         ClientParams.SYSTEM_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_ID");

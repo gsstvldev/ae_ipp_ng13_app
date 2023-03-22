@@ -11,10 +11,12 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By :Siva Harish
         Created Date :17-02-2023
         mdified_date : 18/02/2023
+        Reason for: Adding extra parameter 22/03/2023
        
         
         */
@@ -31,7 +33,8 @@ app.post('/', function(appRequest, appResponse, next) {
         var xml2js = require('xml2js');
         var mTranConn = "";
         var addquery = "";
-
+        var TakegmMargin
+        var Objfiledata
         var checkForceTopost
         var objresponse = {
             'status': 'FAILURE',
@@ -64,12 +67,11 @@ app.post('/', function(appRequest, appResponse, next) {
                             var final_process_status
 
                             var TakeStsPsts = `select success_process_status,success_status,processing_system,process_type from core_nc_workflow_setup where rule_code = 'RCT_OP_MAN_SENDTOCHECKER' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                            var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
+                            var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.fx_resv_text2,ns.account_currency,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
                             var Takeretcode = `select param_code,param_detail from core_nc_system_setup where param_category='REVERSAL RETURN CODE' and product_code = '${params.PROD_CODE}' and status = 'APPROVED' and need_sync = 'Y'`
                             if (params.PROD_CODE == 'NPSS_AEFAB') {
                                 ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
                                     if (arrurlResult.length) {
-
                                         final_process_status = arrurlResult[0].success_process_status
                                         final_status = arrurlResult[0].success_status
                                         ExecuteQuery1(Takeretcode, function (arrcode) {
@@ -77,27 +79,51 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 ExecuteQuery1(take_api_params, function (arrprocesslog) {
                                                     if (arrprocesslog.length) {
                                                         var lclinstrm
-                                                        if (arrprocesslog[0].message_data !== null) {
-                                                            var parser = new xml2js.Parser({ strict: false, trim: true });
-                                                            parser.parseString(arrprocesslog[0].message_data, function (err, result) {
-                                                                lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
-                                                            });
+                                                        try {
+                                                            if (arrprocesslog[0].message_data !== null) {
+                                                                var parser = new xml2js.Parser({ strict: false, trim: true });
+                                                                parser.parseString(arrprocesslog[0].message_data, function (err, result) {
+                                                                    lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
+                                                                });
 
-                                                        }
-                                                        else {
+                                                            }
+                                                            else {
+                                                                lclinstrm = ""
+                                                            }
+                                                        } catch (error) {
                                                             lclinstrm = ""
                                                         }
 
-                                                        var takedata = async () => {
 
-                                                            reverseAcinfparam = await TakereversalIdandActInfm(arrprocesslog)
-                                                            take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL'  and need_sync = 'Y'`;
+                                                        var takedata = async () => {
+                                                            apicalls = await checkprepaidorcredit(arrprocesslog)
+
+                                                            if (apicalls == 0) {// Resurve Fund api call
+                                                                reverseAcinfparam = await TakereversalIdandActInfm(arrprocesslog)
+                                                            } else { // for both prepaid card and credit card api calls 
+                                                                reverseAcinfparam = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
+                                                            }
+
+
+                                                            if (apicalls == 0 || apicalls == '0') { // Reserve api call
+                                                                take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL' AND need_sync = 'Y'`;
+                                                            } else if (apicalls == 1 || apicalls == '1') { //Prepaid  api Call
+                                                                take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_PREPAID_CARD' and param_code='URL' AND need_sync = 'Y'`;
+                                                            } else if (apicalls == 2 || apicalls == '2') { // Credit  api call
+                                                                take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_CREDIT_CARD' and param_code='URL' AND need_sync = 'Y'`;
+                                                            }
+                                                            // take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL'  and need_sync = 'Y'`;
                                                             ExecuteQuery1(take_api_url, async function (arrurl) {
                                                                 if (arrurl.length) {
                                                                     var url = arrurl[0].param_detail;
                                                                     var amount
 
                                                                     amount = arrprocesslog[0].intrbk_sttlm_amnt
+                                                                    if (apicalls == 0) {
+                                                                        TakegmMargin = await GetgmMargin(arrprocesslog)
+                                                                    } else {
+                                                                        TakegmMargin = {}
+                                                                    }
 
 
                                                                     apiName = 'Manual Initiation Reserve Fund Api'
@@ -105,20 +131,15 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                     if (InsertTable.length > 0) {
                                                                         var callapi = async () => {
-                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam)
+                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, TakegmMargin, apicalls)
 
                                                                             if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
 
-
-
-
-                                                                                var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',force_post_flag = 'Y',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                                 ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
                                                                                     if (arrUpdTranTbl == 'SUCCESS') {
                                                                                         objresponse.status = 'SUCCESS';
                                                                                         sendResponse(null, objresponse);
-
-
 
                                                                                     } else {
                                                                                         objresponse.status = 'No Data Updated in Transaction Table';
@@ -169,7 +190,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                         objresponse.status = "No Data found in Transaction table"
 
-                                                        objresponse.status = "No Data found in Transaction table"
+
                                                         sendResponse(null, objresponse)
                                                     }
 
@@ -236,20 +257,12 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                         _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
                                                             var UpdateTrnTble = `Update npss_transactions set status ='${arrurlResult[0].success_status}',process_status = '${arrurlResult[0].success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                            var UpdateTrnProcessLog = `update npss_trn_process_log set  additional_info = 'Maker_Approved',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsstpl_id ='${params.NPSSTPL_Id}'`
+
                                                             ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
                                                                 if (arrUpdTranTbl == 'SUCCESS') {
+                                                                    objresponse.status = 'SUCCESS';
+                                                                    sendResponse(null, objresponse);
 
-                                                                    ExecuteQuery(UpdateTrnProcessLog, function (arrUpdPrcsTbl) {
-                                                                        if (arrUpdPrcsTbl == 'SUCCESS') {
-                                                                            objresponse.status = 'SUCCESS';
-                                                                            sendResponse(null, objresponse);
-                                                                        } else {
-                                                                            objresponse.status = 'No Data Updated in Processlog Table';
-                                                                            sendResponse(null, objresponse);
-
-                                                                        }
-                                                                    })
                                                                 } else {
                                                                     objresponse.status = 'No Data Updated in Transaction Table';
                                                                     sendResponse(null, objresponse);
@@ -291,7 +304,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         }
                     })
                     // Do API Call for Service 
-                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, callbackapi) {
+                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, TakegmMargin, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Accept INAU Reserve Fund'
                             var request = require('request');
@@ -305,6 +318,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                     "payload": {
+                                        "org_field_data": arrprocesslog[0].fx_resv_text2 || '',
                                         "force_post_flag": "Y",
                                         "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
                                         "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
@@ -357,7 +371,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                 }
                             }
 
-
+                            if (TakegmMargin != '') {
+                                if (arrprocesslog[0].account_currency != 'AED') {
+                                    options.json.payload.GMMargin = TakegmMargin.GMMargin || '',
+                                        options.json.payload.GMRate = TakegmMargin.GMRate || '',
+                                        options.json.payload.amount_credited_loc_cur = TakegmMargin.amount_credited_loc_cur || ''
+                                }
+                            }
                             var PrintInfo = {}
                             PrintInfo.url = url || ''
                             PrintInfo.uetr = arrprocesslog[0].uetr || ''
@@ -370,14 +390,21 @@ app.post('/', function(appRequest, appResponse, next) {
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
                                     reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
-                                    sendResponse(error, null);
+                                    objresponse.status = error
+                                        sendResponse(null,objresponse)
 
 
                                 } else {
-                                    responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-                                    var responseData = JSON.parse(responseBodyFromImagingService)
-                                    callbackapi(responseData)
+                                    try {
+                                        responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                        var responseData = JSON.parse(responseBodyFromImagingService)
+                                        callbackapi(responseData)
+                                    } catch (error) {
+                                        objresponse.status = error
+                                        sendResponse(null,objresponse)
+                                    }
+
                                 }
                             });
 
@@ -447,21 +474,190 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
 
                     }
-
-
-                    //function to call all api calls(reservefund,prepaid,credit)
-                    function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam) {
+                    //function to check prepaid or credit
+                    function checkprepaidorcredit(arrprocesslog) { //for checking prepid or credit card
                         return new Promise((resolve, reject) => {
-                            // reserve fund
-                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, function (result) {
-                                if (result === "SUCCESS" || result === "Success" || result === "success") {
 
-                                    resolve(result)
+                            if (arrprocesslog[0].cdtr_iban) {
+                                Iban = arrprocesslog[0].cdtr_iban.slice(-16)
+                                FrmIban = Iban.substring(0, 3)
+                                if (FrmIban == '564' || FrmIban == 564) {
+                                    resolve(1)
                                 } else {
-                                    resolve(result)
+                                    if (arrprocesslog[0].cr_acct_identification && arrprocesslog[0].cr_acct_id_code == 'AIIN') {
+                                        var TakeacctIden = arrprocesslog[0].cr_acct_identification.substring(0, 6)
+                                        var checkCard = `select * from CORE_NC_CARD_BIN_SETUP where bin_number = '${TakeacctIden}' and need_sync = 'Y'`
+                                        ExecuteQuery1(checkCard, function (arrCradType) {
+                                            if (arrCradType.length) {
+                                                if (arrCradType[0].card_type == 'PREPAID_CARD') {
+                                                    resolve(1)
+                                                } else {
+                                                    resolve(2)
+                                                }
+                                            } else {
+
+                                                objresponse.status = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden
+                                                sendResponse(null, objresponse)
+                                            }
+
+                                        })
+                                    } else {
+                                        resolve(0)
+                                    }
 
                                 }
+
+                            } else {
+                                if (arrprocesslog[0].cr_acct_identification && arrprocesslog[0].cr_acct_id_code == 'AIIN') {
+                                    var TakeacctIden1 = arrprocesslog[0].cr_acct_identification.substring(0, 6)
+                                    var checkCard1 = `select * from CORE_NC_CARD_BIN_SETUP where bin_number = '${TakeacctIden1}' and need_sync = 'Y'`
+                                    ExecuteQuery1(checkCard1, function (arrCradType) {
+                                        if (arrCradType.length) {
+                                            if (arrCradType[0].card_type == 'PREPAID_CARD') {
+                                                resolve(1)
+                                            } else {
+                                                resolve(2)
+                                            }
+
+                                        } else {
+
+                                            objresponse.status = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden
+                                            sendResponse(null, objresponse)
+                                        }
+
+                                    })
+
+                                } else {
+                                    resolve(0)
+                                }
+
+                            }
+
+
+                        })
+
+                    }
+                    //function find reversal Id for credit and debit card api calls
+                    function ReverseIdFrcdtpdt(arrprocesslog, apicalls) {
+                        return new Promise((resolve, reject) => {
+                            parameter = {}
+                            var TakeReversePrsno = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
+                            ExecuteQuery1(TakeReversePrsno, function (arrRevno) {
+                                if (arrRevno[0].process_ref_no != null) {
+
+                                    var Takecount
+                                    if (apicalls == 1) { //prepaid
+                                        Takecount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('IP_RCT_PC_POSTING_SUCCESS','IP_RCT_PC_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
+                                    } else if (apicalls == 2) { //credit
+                                        Takecount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('IP_RCT_CC_POSTING_SUCCESS','IP_RCT_CC_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
+                                    }
+                                    ExecuteQuery1(Takecount, function (arrCount) {
+                                        if (arrCount[0].counts.length == 1) {
+                                            var count = Number(arrCount[0].counts)
+                                            count++
+                                            parameter.reverseId = arrRevno[0].process_ref_no + '.0' + count
+                                            resolve(parameter)
+                                        } else {
+                                            var count = Number(arrCount[0].counts)
+                                            count++
+                                            parameter.reverseId = arrRevno[0].process_ref_no + '.' + count
+                                            resolve(parameter)
+                                        }
+                                    })
+
+                                } else {
+
+                                    objresponse.status = "Process Refno for reversal Id is missing"
+                                    sendResponse(null, objresponse)
+                                }
+
                             })
+
+                        })
+
+                    }
+
+                    function GetgmMargin(arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            if (arrprocesslog[0].account_currency == '' || arrprocesslog[0].account_currency == null) {
+                                resolve('')
+                            } else {
+                                if (arrprocesslog[0].account_currency != 'AED') {
+                                    var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' order by npsstpl_id desc`
+                                    ExecuteQuery1(Takedata, function (arrresponse) {
+                                        var senddata = {}
+                                        var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                                        ExecuteQuery1(Takeloccur, function (localcur) {
+                                            if (localcur.length == 0) {
+                                                senddata.amount_credited_loc_cur = ''
+                                                if (arrresponse.length == 0) {
+                                                    senddata.GMRate = '',
+                                                        senddata.GMMargin = ''
+                                                    resolve(senddata)
+                                                } else {
+                                                    senddata.GMRate = arrresponse[0].exchange_rate,
+                                                        senddata.GMMargin = arrresponse[0].gm_margin
+                                                    resolve(senddata)
+                                                }
+                                            } else {
+                                                senddata.amount_credited_loc_cur = localcur[0].amount_credited_loc_cur
+                                                if (arrresponse.length == 0) {
+                                                    senddata.GMRate = '',
+                                                        senddata.GMMargin = ''
+                                                    resolve(senddata)
+                                                } else {
+                                                    senddata.GMRate = arrresponse[0].exchange_rate,
+                                                        senddata.GMMargin = arrresponse[0].gm_margin
+                                                    resolve(senddata)
+                                                }
+                                            }
+
+
+                                        })
+
+
+                                    })
+                                } else {
+                                    resolve('')
+                                }
+                            }
+
+
+                        })
+                    }
+
+                    //function to call all api calls(reservefund,prepaid,credit)
+                    function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, TakegmMargin, apicalls) {
+                        return new Promise((resolve, reject) => {
+                            // reserve fund
+                            if (apicalls == 0) {
+                                fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, TakegmMargin, function (result) {
+                                    if (result === "SUCCESS" || result === "Success" || result === "success") {
+
+                                        resolve(result)
+                                    } else {
+                                        resolve(result)
+
+                                    }
+                                })
+                            } else if (apicalls == 1 || apicalls == 1) { // prepaid api call
+                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, function (result) {
+
+                                    resolve(result)
+
+
+                                })
+
+                            } else if (apicalls == 2 || apicalls == 2) { // credit api call
+                                fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, function (result) {
+
+                                    resolve(result)
+
+
+                                })
+
+                            }
+
 
                         })
                     }
@@ -517,6 +713,183 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     }
 
+
+                    // Do Prepaid API Call for Service 
+                    function fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, callbackapi) {
+                        try {
+                            var apiName = 'NPSS IP REV Prepaid Card'
+                            var request = require('request');
+                            var apiURL =
+                                apiURL = url // apiURL + apiName
+                            var options = {
+                                url: apiURL,
+                                timeout: 18000000,
+                                method: 'POST',
+                                json: {
+
+
+                                    "payload": {
+                                        "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
+                                        "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
+                                        "hdr_total_records": arrprocesslog[0].hdr_total_records || '',
+                                        "hdr_total_amount": arrprocesslog[0].hdr_total_amount || '',
+                                        "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date || '',
+                                        "hdr_settlement_method": arrprocesslog[0].hdr_settlement_method || '',
+                                        "hdr_clearing_system": arrprocesslog[0].hdr_clearing_system || '',
+                                        "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
+                                        "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
+                                        "category_purpose": arrprocesslog[0].category_purpose || '',
+                                        "category_purpose_prty": arrprocesslog[0].category_purpose_prty || '',
+                                        "ext_purpose_code": arrprocesslog[0].ext_purpose_code || '',
+                                        "lclinstrm": lclinstrm || '',
+                                        "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
+                                        "intrbk_sttlm_amnt": amount || '',
+                                        "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                        "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
+                                        "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
+                                        "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
+                                        "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
+                                        "charge_bearer": arrprocesslog[0].charge_bearer || '',
+                                        "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
+                                        "uetr": arrprocesslog[0].uetr || '',
+                                        "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
+                                        "cr_acct_id_code": arrprocesslog[0].cr_acct_id_code || '',
+                                        "message_data": arrprocesslog[0].message_data || '',
+                                        "accp_dt_tm": arrprocesslog[0].accp_date_time || '',
+                                        "process_type": arrprocesslog[0].process_type || '',
+                                        "status": params.eligible_status || '',
+                                        "process_status": params.eligible_process_status || '',
+                                        "clrsysref": arrprocesslog[0].clrsysref,
+                                        "card_type": "PREPAID_CARD",
+                                        "process": "",
+                                        "remittance_information": arrprocesslog[0].remittance_info || '',
+                                        "reversal_id": reverseAcinfparam.reverseId
+                                    }
+                                },
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            }
+
+
+                            var PrintInfo = {}
+                            PrintInfo.url = url
+                            PrintInfo.uetr = arrprocesslog[0].uetr || ''
+                            PrintInfo.card_type = "Prepaid Card" || ''
+                            PrintInfo.reversal_id = reverseAcinfparam.reverseId || ''
+                            PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
+                            PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
+
+                            reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                            request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
+                                if (error) {
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
+                                    sendResponse(error, null);
+
+
+                                } else {
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                    responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
+
+                                    var Responsedata = JSON.parse(responseBodyFromImagingService)
+                                    callbackapi(Responsedata)
+                                }
+                            });
+
+                        } catch (error) {
+                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
+                            sendResponse(error, null);
+                        }
+                    }
+
+
+                    // Do API Call for Service 
+                    function fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, callbackapi) {
+                        try {
+                            var apiName = 'NPSS IP REV Credit Card'
+                            var request = require('request');
+                            var apiURL =
+                                apiURL = url // apiURL + apiName
+                            var options = {
+                                url: apiURL,
+                                timeout: 18000000,
+                                method: 'POST',
+                                json: {
+
+
+                                    "payload": {
+                                        "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
+                                        "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
+                                        "hdr_total_records": arrprocesslog[0].hdr_total_records || '',
+                                        "hdr_total_amount": arrprocesslog[0].hdr_total_amount || '',
+                                        "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date || '',
+                                        "hdr_settlement_method": arrprocesslog[0].hdr_settlement_method || '',
+                                        "hdr_clearing_system": arrprocesslog[0].hdr_clearing_system || '',
+                                        "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
+                                        "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
+                                        "category_purpose": arrprocesslog[0].category_purpose || '',
+                                        "category_purpose_prty": arrprocesslog[0].category_purpose_prty || '',
+                                        "ext_purpose_code": arrprocesslog[0].ext_purpose_code || '',
+                                        "lclinstrm": lclinstrm || '',
+                                        "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
+                                        "intrbk_sttlm_amnt": amount || '',
+                                        "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                        "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
+                                        "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
+                                        "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
+                                        "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
+                                        "charge_bearer": arrprocesslog[0].charge_bearer || '',
+                                        "txid": arrprocesslog[0].tran_ref_id || '',
+                                        "uetr": arrprocesslog[0].uetr || '',
+                                        "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
+                                        "cr_acct_id_code": arrprocesslog[0].cr_acct_id_code || '',
+                                        "message_data": arrprocesslog[0].message_data || '',
+
+                                        "process_type": arrprocesslog[0].process_type || '',
+                                        "status": params.eligible_status || '',
+                                        "process_status": params.eligible_process_status || '',
+                                        "clrsysref": arrprocesslog[0].clrsysref,
+                                        "card_type": "CREDIT_CARD",
+                                        "process": "",
+                                        "remittance_information": arrprocesslog[0].remittance_info || '',
+                                        "reversal_id": reverseAcinfparam.reverseId
+                                    }
+                                },
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            }
+
+
+
+                            var PrintInfo = {}
+                            PrintInfo.url = url
+                            PrintInfo.uetr = arrprocesslog[0].uetr || ''
+                            PrintInfo.card_type = "Credit Card" || ''
+                            PrintInfo.reversal_id = reverseAcinfparam.reverseId || ''
+                            PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
+                            PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
+
+                            reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                            request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
+                                if (error) {
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
+                                    sendResponse(error, null);
+
+
+                                } else {
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                    responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
+                                    var Responsedata = JSON.parse(responseBodyFromImagingService)
+                                    callbackapi(Responsedata)
+                                }
+                            });
+
+                        } catch (error) {
+                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
+                            sendResponse(error, null);
+                        }
+                    }
 
 
 
@@ -604,6 +977,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

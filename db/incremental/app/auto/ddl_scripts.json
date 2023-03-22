@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column FORCE_POST_FLAG CHARACTER VARYING(1);","params" : [] }]

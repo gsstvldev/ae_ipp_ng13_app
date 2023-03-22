@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28601 
+Build ID        : 28826 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-17 10:23 AM 
+Modified Date   : 2023-Mar-22 7:55 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_investigation
@@ -53,7 +53,9 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 	uicgc_15 : string = "request_ui"
 	uicgc_16 : string = "response_ui"
 	uicgc_17 : string = "single_back_ui"
+	uicgc_18 : string = "close_ui"
 	key_events : any = {}
+	btl_1304_1679470498811 : string = "p_close_layout"
 	btl_1304_1670246728943 : string = "p_view_req_and_res_profile"
 	btl_1304_1669372551225 : string = "p_view_message_ui_layout"
 	btl_1304_1669372491875 : string = "p_view_message_list_layout"
@@ -63,17 +65,19 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 	btl_1304_1669201548920 : string = "p_vertical_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_15","uicgc_16","uicgc_4","uicgc_13","uicgc_17","uicgc_10","uicgc_12","uicgc_14","uicgc_6","uicgc_3"]
+	forms : any = ["uicgc_15","uicgc_16","uicgc_4","uicgc_13","uicgc_18","uicgc_17","uicgc_10","uicgc_12","uicgc_14","uicgc_6","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
+	p_close_layout__spap_for_close_btn_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
 	navigation_ui_view_tran : any = {}
 	navigation_ui_view_process_log : any = {}
-	navigation_ui_approve : any = {}
 	navigation_ui_initiate : any = {}
+	navigation_ui_approve : any = {}
 	navigation_ui_reject : any = {}
+	navigation_ui_close : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -99,6 +103,8 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 	response_ui : any = {}
 	single_back_ui : any = {}
 	single_back_ui_back : any = {}
+	close_ui : any = {}
+	close_ui_save : any = {}
 
 
 	// Constructor 
@@ -173,15 +179,6 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_process_log.role = []
 		this.navigation_ui_view_process_log.action = ""
 		
-		// "Approve" Button of "Navigation UI" component
-		this.navigation_ui_approve.label_name = "Approve"
-		this.navigation_ui_approve.show = true
-		this.navigation_ui_approve.disabled = false
-		this.navigation_ui_approve.params = {"icon_only":false,"uicgcc_style":"fa fa-check"}
-		this.navigation_ui_approve.dynamic_param = {}
-		this.navigation_ui_approve.role = []
-		this.navigation_ui_approve.action = ""
-		
 		// "Initiate" Button of "Navigation UI" component
 		this.navigation_ui_initiate.label_name = "Initiate"
 		this.navigation_ui_initiate.show = true
@@ -191,6 +188,15 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_initiate.role = []
 		this.navigation_ui_initiate.action = ""
 		
+		// "Approve" Button of "Navigation UI" component
+		this.navigation_ui_approve.label_name = "Approve"
+		this.navigation_ui_approve.show = true
+		this.navigation_ui_approve.disabled = false
+		this.navigation_ui_approve.params = {"icon_only":false,"uicgcc_style":"fa fa-check"}
+		this.navigation_ui_approve.dynamic_param = {}
+		this.navigation_ui_approve.role = []
+		this.navigation_ui_approve.action = ""
+		
 		// "Reject" Button of "Navigation UI" component
 		this.navigation_ui_reject.label_name = "Reject"
 		this.navigation_ui_reject.show = true
@@ -199,6 +205,15 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_reject.dynamic_param = {}
 		this.navigation_ui_reject.role = []
 		this.navigation_ui_reject.action = ""
+		
+		// "Close" Button of "Navigation UI" component
+		this.navigation_ui_close.label_name = "Close"
+		this.navigation_ui_close.show = true
+		this.navigation_ui_close.disabled = false
+		this.navigation_ui_close.params = {"icon_only":false,"uicgcc_style":"fa fa-close"}
+		this.navigation_ui_close.dynamic_param = {}
+		this.navigation_ui_close.role = []
+		this.navigation_ui_close.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -484,6 +499,29 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		this.single_back_ui_back.dynamic_param = {}
 		this.single_back_ui_back.role = []
 		this.single_back_ui_back.action = ""
+	
+		// Component level properties - "Close UI" 
+		this.close_ui.uictrl_code = "dynamic_ui"
+		this.close_ui.uicgc_desc = "Close UI"
+		this.close_ui.uicgc_code = "uicgc_18"
+		this.close_ui.params = {}
+		this.close_ui.datasource = {}
+		this.close_ui.context_menu = []
+		this.close_ui.views = {}
+		this.close_ui.onChangecomponent = new EventEmitter<any>()
+		this.close_ui.show = true
+		this.close_ui.dynamic_param = {}
+		this.close_ui.f_close_ui = {"show":true}
+		this.close_ui.current_view = "f_close_ui"
+		
+		// "Save" Button of "Close UI" component
+		this.close_ui_save.label_name = "Save"
+		this.close_ui_save.show = true
+		this.close_ui_save.disabled = false
+		this.close_ui_save.params = {"icon_only":false,"uicgcc_style":"fa fa-floppy-o"}
+		this.close_ui_save.dynamic_param = {}
+		this.close_ui_save.role = []
+		this.close_ui_save.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -499,6 +537,7 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		this.page_load__routing_key()
 		this.page_load__he_for_approve()
 		this.page_load__he_for_reject()
+		this.page_load__he_for_close_btn()
 	}
 
 	//Handler for INTERNAL event of "routing key"
@@ -563,6 +602,7 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		this.transaction_list__ee_for_initiate_btn()
 		this.transaction_list__ee_for_approve()
 		this.transaction_list__ee_for_reject()
+		this.transaction_list__ee_for_close_btn()
 	}
 
 	//Handler for INTERNAL event of "svm for tl"
@@ -725,6 +765,11 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		this.bct_info_for_reject_info__bct_info_for_reject_rs(parent_event_result)
 	}
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
+	navigation_ui_close__action_button_click(){
+		this.navigation_ui_close__spap_for_close_btn()
+	}
+
 	//Handler for DPSINIT event of "page_load"
 	page_load__he_for_initiate() { 
 		let Dest_Is_ctrl=true
@@ -839,6 +884,27 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1678278150101"
 		let event_params={"caller_name":"page_load__he_for_reject","event_desc":"he for reject","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_close_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_close"
+		let parent_source_id=""
+		let event_code="e_1679470702587"
+		let event_params={"caller_name":"page_load__he_for_close_btn","event_desc":"HE for close btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -1267,6 +1333,27 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1678278246255"
 		let event_params={"caller_name":"transaction_list__ee_for_reject","event_desc":"ee for reject","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__ee_for_close_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_close"
+		let parent_source_id=""
+		let event_code="e_1679470771471"
+		let event_params={"caller_name":"transaction_list__ee_for_close_btn","event_desc":"EE for close btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
@@ -2206,6 +2293,27 @@ export class s_bct_investigationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
+	navigation_ui_close__spap_for_close_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_close"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1679470592773"
+		let event_params={"caller_name":"navigation_ui_close__spap_for_close_btn","event_desc":"SPAP for close btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_close","raiseparam":{"popup_category":"profile","variable":"p_close_layout__spap_for_close_btn","selector":"p_close_layout","profile_code":"BTL_1304_1679470498811","window_title":"Remarks","window_height":250,"window_width":"400px","window_close_icon":"Y","eventdes":"spap_for_close_btn","eventcode":"E_1679470592773"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

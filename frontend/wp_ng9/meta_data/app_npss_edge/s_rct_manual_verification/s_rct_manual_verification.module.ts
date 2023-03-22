@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28770 
+Build ID        : 28826 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-17 15:8 PM 
+Modified Date   : 2023-Mar-22 7:55 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_verification
@@ -60,6 +60,8 @@ import { p_view_req_and_resComponent } from './p_view_req_and_res/p_view_req_and
 import { f_single_back_uiComponent } from './f_single_back_ui/f_single_back_ui.component'
 import { f_npss_target_request_uiComponent } from './f_npss_target_request_ui/f_npss_target_request_ui.component'
 import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/f_npss_target_response_ui.component'
+import { p_force_post_flag_layoutComponent } from './p_force_post_flag_layout/p_force_post_flag_layout.component'
+import { f_npss_force_post_flag_uiComponent } from './f_npss_force_post_flag_ui/f_npss_force_post_flag_ui.component'
 import { p_view_request_layoutComponent } from './p_view_request_layout/p_view_request_layout.component'
 import { p_view_response_layoutComponent } from './p_view_response_layout/p_view_response_layout.component'
 
@@ -78,7 +80,7 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     s_rct_manual_verificationRoutingModule,
     npss_cs_rev_get_usable_balanceModule,torus_cs_change_routingkeyModule,torus_cs_show_hideModule,torus_cs_set_rule_mi_paramModule,npss_cs_manual_initiation_rejectModule,npss_cs_send_to_checkerModule,npss_cs_manual_initiation_approveModule,npss_cs_manual_initiation_force_to_postModule
   ],
-  declarations: [s_rct_manual_verificationComponent,p_main_layoutComponent,f_navigation_uiComponent,f_search_info_uiComponent,p_search_layoutComponent,f_npss_manual_verification_srchComponent,p_initate_layoutComponent,f_npss_manual_verification_uiComponent,f_payment_processing_details_uiComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
+  declarations: [s_rct_manual_verificationComponent,p_main_layoutComponent,f_navigation_uiComponent,f_search_info_uiComponent,p_search_layoutComponent,f_npss_manual_verification_srchComponent,p_initate_layoutComponent,f_npss_manual_verification_uiComponent,f_payment_processing_details_uiComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_force_post_flag_layoutComponent,f_npss_force_post_flag_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

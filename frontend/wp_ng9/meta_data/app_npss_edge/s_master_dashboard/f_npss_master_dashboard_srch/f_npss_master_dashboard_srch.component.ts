@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28855 
+Build ID        : 28860 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-23 11:28 AM 
+Modified Date   : 2023-Mar-23 13:17 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_master_dashboard
@@ -87,47 +87,47 @@ focustoelement(){
 		this.ctrl.npss_master_dashboard_srch_memory63 = {}
 		this.ctrl.npss_master_dashboard_srch_memory63.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of process_group
-		this.ctrl.process_group = {}
-		this.ctrl.process_group.id = "RN01CN2"
-		this.ctrl.process_group.desc = "Process Group"
-		this.ctrl.process_group.visible = true
-		this.ctrl.process_group.label_name = "Process Group"
-		this.ctrl.process_group.df_code = "DF_1304_1665901396659"
-		this.ctrl.process_group.df_description = "Column Group 1"
-		this.ctrl.process_group.uictrl_code = "CBO"
-		this.ctrl.process_group.target_column = "PROCESS_GROUP"
-		this.ctrl.process_group.data_type = "TEXT"
-		this.ctrl.process_group.data_length = 32
-		this.ctrl.process_group.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.process_group.default_value = ""
-		this.ctrl.process_group.is_memory_ctrl = ""
-		this.ctrl.process_group.field_coordinates = ""
-		this.ctrl.process_group.sub_details = ""
-		this.ctrl.process_group.accept_char = ""
-		this.ctrl.process_group.currency_format = ""
-		this.ctrl.process_group.data_scale = ""
-		this.ctrl.process_group.binding_name = "PROCESS_GROUP"
-		this.ctrl.process_group.hide_label = false
-		this.ctrl.process_group.depends_on = ""
-		this.ctrl.process_group.placeholder = ""
-		this.ctrl.process_group.dynamic_param = ""
-		this.ctrl.process_group.style_code = ""
-		this.ctrl.process_group.data_source = {"ds_code":"UDS_1304_1679510002946","ds_description":"NPSS Online Batch Static","rows":[{"value":"Select","code":""},{"value":"Online","code":"Online"},{"value":"Batch","code":"Batch"}],"type":"DPS_STATIC","value_member":"CODE","display_member":"VALUE","first_record_display":"Select","column_list":"CODE;VALUE","order_by":"","target_table":"","context":"","filters":[],"type_desc":"Combo Binding Static","conditional_operator":"CONTAINS","sel_columns":[]}
-		this.ctrl.process_group.image_association = ""
-		this.ctrl.process_group.show = true
-		this.ctrl.process_group.sub_content = ""
-		this.ctrl.process_group.required = false
-		this.ctrl.process_group.vld_rules = []
-		this.ctrl.process_group.targetcolumn_lower = "process_group"
-		this.ctrl.process_group.disabled = false
-		this.ctrl.process_group.view_name = "f_npss_master_dashboard_srch"
-		this.ctrl.process_group.ctrl_id = "npss_master_dashboard_srch_process_group"
-		this.ctrl.npss_master_dashboard_srch_process_group = {}
-		this.ctrl.npss_master_dashboard_srch_process_group.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_master_dashboard_srch.process_group = {}
-		this.screen_instance[this.comp_id].f_npss_master_dashboard_srch.model = {"MEMORY63":"setcurrentdate(),{}","PROCESS_GROUP":""}
-		this.screen_instance[this.comp_id].f_npss_master_dashboard_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_GROUP"}]
+		//Properties of memory124
+		this.ctrl.memory124 = {}
+		this.ctrl.memory124.id = "RN01CN2"
+		this.ctrl.memory124.desc = "Process Group"
+		this.ctrl.memory124.visible = true
+		this.ctrl.memory124.label_name = "Process Group"
+		this.ctrl.memory124.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory124.df_description = "Column Group 1"
+		this.ctrl.memory124.uictrl_code = "CBO"
+		this.ctrl.memory124.target_column = "memory124"
+		this.ctrl.memory124.data_type = "TEXT"
+		this.ctrl.memory124.data_length = 64
+		this.ctrl.memory124.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory124.default_value = ""
+		this.ctrl.memory124.is_memory_ctrl = "Y"
+		this.ctrl.memory124.field_coordinates = ""
+		this.ctrl.memory124.sub_details = ""
+		this.ctrl.memory124.accept_char = ""
+		this.ctrl.memory124.currency_format = ""
+		this.ctrl.memory124.data_scale = ""
+		this.ctrl.memory124.binding_name = "PROCESSGROUP"
+		this.ctrl.memory124.hide_label = false
+		this.ctrl.memory124.depends_on = ""
+		this.ctrl.memory124.placeholder = ""
+		this.ctrl.memory124.dynamic_param = ""
+		this.ctrl.memory124.style_code = ""
+		this.ctrl.memory124.data_source = {"ds_code":"UDS_1304_1679510002946","ds_description":"NPSS Online Batch Static","rows":[{"value":"Select","code":""},{"value":"Online","code":"Online"},{"value":"Batch","code":"Batch"}],"type":"DPS_STATIC","value_member":"CODE","display_member":"VALUE","first_record_display":"Select","column_list":"CODE;VALUE","order_by":"","target_table":"","context":"","filters":[],"type_desc":"Combo Binding Static","conditional_operator":"CONTAINS","sel_columns":[]}
+		this.ctrl.memory124.image_association = ""
+		this.ctrl.memory124.show = true
+		this.ctrl.memory124.sub_content = ""
+		this.ctrl.memory124.required = false
+		this.ctrl.memory124.vld_rules = []
+		this.ctrl.memory124.targetcolumn_lower = "memory124"
+		this.ctrl.memory124.disabled = false
+		this.ctrl.memory124.view_name = "f_npss_master_dashboard_srch"
+		this.ctrl.memory124.ctrl_id = "npss_master_dashboard_srch_memory124"
+		this.ctrl.npss_master_dashboard_srch_memory124 = {}
+		this.ctrl.npss_master_dashboard_srch_memory124.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_master_dashboard_srch.memory124 = {}
+		this.screen_instance[this.comp_id].f_npss_master_dashboard_srch.model = {"MEMORY63":"setcurrentdate(),{}","MEMORY124":""}
+		this.screen_instance[this.comp_id].f_npss_master_dashboard_srch.Meta = []
 		this.screen_instance[this.comp_id].f_npss_master_dashboard_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_master_dashboard_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_master_dashboard_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

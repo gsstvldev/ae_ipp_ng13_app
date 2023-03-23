@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28861 
+Build ID        : 28864 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-23 13:16 PM 
+Modified Date   : 2023-Mar-23 15:4 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_payments_by_cb
@@ -26,6 +26,7 @@ export class p_rejected_payments_layoutComponent implements OnInit {
 	search : any = {}
 	queue : any = {}
 	transaction_list : any = {}
+	error_details : any = {}
 
 
   // Constructor 
@@ -41,6 +42,8 @@ export class p_rejected_payments_layoutComponent implements OnInit {
 		this.queue.need_header = true
 		this.transaction_list.desc = "Transaction List"
 		this.transaction_list.need_header = true
+		this.error_details.desc = "Error Details"
+		this.error_details.need_header = true
 	
 
     this.screen_instance['p_rejected_payments_layout'] = {};

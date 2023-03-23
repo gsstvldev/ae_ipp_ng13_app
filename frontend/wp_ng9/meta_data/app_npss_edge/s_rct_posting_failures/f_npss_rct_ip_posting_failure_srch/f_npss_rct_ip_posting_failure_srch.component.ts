@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28845 
+Build ID        : 28864 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-22 18:39 PM 
+Modified Date   : 2023-Mar-23 15:4 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -516,6 +516,46 @@ focustoelement(){
 		this.ctrl.npss_rct_ip_posting_failure_srch_account_currency = {}
 		this.ctrl.npss_rct_ip_posting_failure_srch_account_currency.onChangecomponent = new EventEmitter<any>()
 	
+		//Properties of memory124
+		this.ctrl.memory124 = {}
+		this.ctrl.memory124.id = "r3CN20"
+		this.ctrl.memory124.desc = "Process Group"
+		this.ctrl.memory124.visible = true
+		this.ctrl.memory124.label_name = "Process Group"
+		this.ctrl.memory124.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory124.df_description = "Column Group 1"
+		this.ctrl.memory124.uictrl_code = "CBO"
+		this.ctrl.memory124.target_column = "memory124"
+		this.ctrl.memory124.data_type = "TEXT"
+		this.ctrl.memory124.data_length = 64
+		this.ctrl.memory124.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory124.default_value = ""
+		this.ctrl.memory124.is_memory_ctrl = "Y"
+		this.ctrl.memory124.field_coordinates = ""
+		this.ctrl.memory124.sub_details = ""
+		this.ctrl.memory124.accept_char = ""
+		this.ctrl.memory124.currency_format = ""
+		this.ctrl.memory124.data_scale = ""
+		this.ctrl.memory124.binding_name = "PROCESSGROUP"
+		this.ctrl.memory124.hide_label = false
+		this.ctrl.memory124.depends_on = ""
+		this.ctrl.memory124.placeholder = ""
+		this.ctrl.memory124.dynamic_param = ""
+		this.ctrl.memory124.style_code = ""
+		this.ctrl.memory124.data_source = {"ds_code":"UDS_1304_1679510002946","ds_description":"NPSS Online Batch Static","rows":[{"value":"Select","code":""},{"value":"Online","code":"Online"},{"value":"Batch","code":"Batch"}],"type":"DPS_STATIC","value_member":"CODE","display_member":"VALUE","first_record_display":"Select","column_list":"CODE;VALUE","order_by":"","target_table":"","context":"","filters":[],"type_desc":"Combo Binding Static","conditional_operator":"CONTAINS","sel_columns":[]}
+		this.ctrl.memory124.image_association = ""
+		this.ctrl.memory124.show = true
+		this.ctrl.memory124.sub_content = ""
+		this.ctrl.memory124.required = false
+		this.ctrl.memory124.vld_rules = []
+		this.ctrl.memory124.targetcolumn_lower = "memory124"
+		this.ctrl.memory124.disabled = false
+		this.ctrl.memory124.view_name = "f_npss_rct_ip_posting_failure_srch"
+		this.ctrl.memory124.ctrl_id = "npss_rct_ip_posting_failure_srch_memory124"
+		this.ctrl.npss_rct_ip_posting_failure_srch_memory124 = {}
+		this.ctrl.npss_rct_ip_posting_failure_srch_memory124.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.memory124 = {}
+	
 		//Properties of memory114
 		this.ctrl.memory114 = {}
 		this.ctrl.memory114.id = "r2CN13"
@@ -599,9 +639,9 @@ focustoelement(){
 		//Properties of intrbk_sttlm_amnt
 		this.ctrl.intrbk_sttlm_amnt = {}
 		this.ctrl.intrbk_sttlm_amnt.id = "1677571954675CN11"
-		this.ctrl.intrbk_sttlm_amnt.desc = "Intrbk Sttlm Amnt"
+		this.ctrl.intrbk_sttlm_amnt.desc = "Amount"
 		this.ctrl.intrbk_sttlm_amnt.visible = true
-		this.ctrl.intrbk_sttlm_amnt.label_name = "Intrbk Sttlm Amnt"
+		this.ctrl.intrbk_sttlm_amnt.label_name = "Amount"
 		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
 		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
 		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CDN_CUR_CTRL"
@@ -792,7 +832,7 @@ focustoelement(){
 		this.ctrl.npss_rct_ip_posting_failure_srch_memory113 = {}
 		this.ctrl.npss_rct_ip_posting_failure_srch_memory113.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.memory113 = {}
-		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","CDTR_ACCT_NAME":"","DBTR_IBAN":"","UETR":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","PROCESSING_SYSTEM":"","MEMORY108":"","ACCOUNT_CURRENCY":"","MEMORY114":"","MEMORY109":"","INTRBK_STTLM_AMNT":"","MEMORY110":"","MEMORY111":"","MEMORY112":"","MEMORY113":""}
+		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","CDTR_ACCT_NAME":"","DBTR_IBAN":"","UETR":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","PROCESSING_SYSTEM":"","MEMORY108":"","ACCOUNT_CURRENCY":"","MEMORY124":"","MEMORY114":"","MEMORY109":"","INTRBK_STTLM_AMNT":"","MEMORY110":"","MEMORY111":"","MEMORY112":"","MEMORY113":""}
 		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNT_CURRENCY"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
 		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.dtt_code = "dtt_1304_1665901217208"

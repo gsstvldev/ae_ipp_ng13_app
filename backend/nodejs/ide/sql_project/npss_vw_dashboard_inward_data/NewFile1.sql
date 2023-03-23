@@ -4,17 +4,7 @@ drop view if exists vw_dashboard_inward_data;
 @SPL@
 CREATE OR REPLACE VIEW vw_dashboard_inward_data
  AS
-select v.sno,
-    v.type,
-    sum(v.total) AS total,
-    sum(v.pending_maker) AS pending_maker,
-    sum(v.pending_checker) AS pending_checker,
-    sum(v.pending_screening) AS pending_screening,
-    sum(v.successfullyposted) AS successfullyposted,
-    sum(v.pending_returns_maker) AS pending_returns_maker,
-    sum(v.pending_returns_checker) AS pending_returns_checker,
-    sum(v.returned) AS returned,
-    sum(v.pending_t_1) as pending_t_1,v.created_date,v.department_code from (SELECT res.sno,
+SELECT res.sno,
     res.type,
     COALESCE(sum(res.total), 0::numeric) AS total,
     COALESCE(sum(res.pending_maker), 0::numeric) AS pending_maker,
@@ -138,47 +128,6 @@ select v.sno,
           WHERE to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE AND
           nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs008'::character varying::text, 'Receive Pacs.007'::character varying::text, 'Place Pacs004'::character varying::text,'PACS.008'::character varying::text, 'PACS.007'::character varying::text]))
           GROUP BY nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group,nppst.department_code, (to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text))
-        UNION ALL (
-                 SELECT 1 AS sno,
-                    'pacs.008'::text AS type,
-                    0 AS total,
-                    0 AS pending_screening,
-                    0 AS returned,
-                    0 AS pending_maker,
-                    0 AS pending_checker,
-                    0 AS successfullyposted,
-                    0 AS pending_returns_maker,
-                    0 AS pending_returns_checker,
-                    to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
-                    'NA' department_code
-                UNION
-                 SELECT 3 AS sno,
-                    'pacs.007'::text AS type,
-                    0 AS total,
-                    0 AS pending_screening,
-                    0 AS returned,
-                    0 AS pending_maker,
-                    0 AS pending_checker,
-                    0 AS successfullyposted,
-                    0 AS pending_returns_maker,
-                    0 AS pending_returns_checker,
-                    to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
-                    'NA' department_code
-                UNION
-                 SELECT 2 AS sno,
-                    'pacs.004'::text AS type,
-                    0 AS total,
-                    0 AS pending_screening,
-                    0 AS returned,
-                    0 AS pending_maker,
-                    0 AS pending_checker,
-                    0 AS successfullyposted,
-                    0 AS pending_returns_maker,
-                    0 AS pending_returns_checker,
-                    to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
-                    'NA' department_code
-        )) res
+        ) res
   GROUP BY res.type, res.created_date, res.sno,res.department_code
-  ) as v
-  group by v.sno,v.type,v.created_date,v.department_code
-  order by v.sno;
+   order by res.sno

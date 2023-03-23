@@ -1,5 +1,4 @@
 <div class="s_home_dashboard">
-<p_ip_pending_layout [screen_instance]="this" [hidden]="!(current_profile=='p_ip_pending_layout')"></p_ip_pending_layout>
 <p_op_layout [screen_instance]="this" [hidden]="!(current_profile=='p_op_layout')"></p_op_layout>
 <p_ip_queue_layout [screen_instance]="this" [hidden]="!(current_profile=='p_ip_queue_layout')"></p_ip_queue_layout>
 <p_process_log_list_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_process_log_list_history_layout')"></p_process_log_list_history_layout>
@@ -12,4 +11,7 @@
 <p-dialog header="{{'Search' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_for_search_trg_showpopup" [contentStyle]="{'overflow-y': 'auto','width': 'auto'}" [draggable]="true" [modal]="true">
 	<p_search_layout [screen_instance]="this" ></p_search_layout></p-dialog>
 <app-dialog [screen_instance]="this" ></app-dialog>
+<div style="display:none">
+	<chart [comp_id]="'inward_chart'" [screen_instance]="this"></chart>
+</div>
 </div>

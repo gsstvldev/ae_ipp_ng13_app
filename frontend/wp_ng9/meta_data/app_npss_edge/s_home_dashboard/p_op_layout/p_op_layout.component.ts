@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28850 
+Build ID        : 28855 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-22 21:41 PM 
+Modified Date   : 2023-Mar-23 11:28 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -35,7 +35,7 @@ export class p_op_layoutComponent implements OnInit {
     	this.navigation.desc = "Navigation"
 		this.navigation.need_header = ""
 		this.outward_chart.desc = "Outward Chart"
-		this.outward_chart.need_header = true
+		this.outward_chart.need_header = false
 		this.transaction_list.desc = "Transaction List"
 		this.transaction_list.need_header = true
 	

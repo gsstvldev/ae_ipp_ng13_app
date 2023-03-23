@@ -3,23 +3,7 @@
 drop view if exists vw_dashboard_outward_data;
 @SPL@
 CREATE OR REPLACE VIEW ad_gss_tran.vw_dashboard_outward_data
-AS select V.sno,V.type,SUM (V.total) as total,
-                    SUM (V.ibmb) as ibmb,
-                    SUM (V.rib) as rib,
-                    SUM (V.rmb) as rmb,
-                    SUM (V.cib) as cib,
-                    SUM (V.cms) as cms,
-                    SUM (V.cmb) as cmb,
-                    SUM (V.manual) as manual,
-                    SUM (V.pending_screening) as pending_screening,
-                    SUM (V.pending_maker) as pending_maker,
-                    SUM (V.pending_checker) as pending_checker,
-                    SUM (V.send_to_cb) as send_to_cb,
-                    SUM (V.cback) as cback,
-                    SUM (V.cbnack) as cbnack,
-                    V.created_date,
-                    SUM (V.pending_t_1) as pending_t_1,
-                    V.DEPARTMENT_CODE from (SELECT res.type,
+AS SELECT res.type,
     COALESCE(sum(res.total), 0::numeric) AS total,
     COALESCE(sum(res.ibmb), 0::numeric) AS ibmb,
     COALESCE(sum(res.rib), 0::numeric) AS rib,
@@ -179,64 +163,6 @@ AS select V.sno,V.type,SUM (V.total) as total,
           WHERE to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE AND 
           nppst.process_type::text = 'OP'::text AND (npl.process_name::text = ANY (ARRAY['Place Pacs008'::character varying::text, 'Place Pacs.007'::character varying::text, 'Receive Pacs004'::character varying::text, 'PACS.008'::character varying::text, 'PACS.007'::character varying::text]))
           GROUP BY nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group, npl.status, npl.process_status,nppst.department_code, (to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text))
-          UNION ALL (
-                 SELECT 1 AS sno,
-                    'pacs.008'::text AS type,
-                    0 AS total,
-                    0 AS ibmb,
-                    0 AS rib,
-                    0 AS rmb,
-                    0 AS cib,
-                    0 AS cms,
-                    0 AS cmb,
-                    0 AS manual,
-                    0 AS pending_screening,
-                    0 AS pending_maker,
-                    0 AS pending_checker,
-                    0 AS send_to_cb,
-                    0 AS cback,
-                    0 AS cbnack,
-                    to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
-                    'NA' as DEPARTMENT_CODE
-                UNION
-                 SELECT 3 AS sno,
-                    'pacs.007'::text AS type,
-                    0 AS total,
-                    0 AS ibmb,
-                    0 AS rib,
-                    0 AS rmb,
-                    0 AS cib,
-                    0 AS cms,
-                    0 AS cmb,
-                    0 AS manual,
-                    0 AS pending_screening,
-                    0 AS pending_maker,
-                    0 AS pending_checker,
-                    0 AS send_to_cb,
-                    0 AS cback,
-                    0 AS cbnack,
-                    to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
-                    'NA' as DEPARTMENT_CODE
-                UNION
-                 SELECT 2 AS sno,
-                    'pacs.004'::text AS type,
-                    0 AS total,
-                    0 AS ibmb,
-                    0 AS rib,
-                    0 AS rmb,
-                    0 AS cib,
-                    0 AS cms,
-                    0 AS cmb,
-                    0 AS manual,
-                    0 AS pending_screening,
-                    0 AS pending_maker,
-                    0 AS pending_checker,
-                    0 AS send_to_cb,
-                    0 AS cback,
-                    0 AS cbnack,
-                    to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
-                    'NA' as DEPARTMENT_CODE
-        )) res
+          ) res
   GROUP BY res.type, res.created_date, res.sno,res.department_code
-  ) as V 
-  group by V.sno,V.type,V.created_date,V.DEPARTMENT_CODE;
+  order by res.sno

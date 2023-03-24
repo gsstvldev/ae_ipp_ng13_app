@@ -6,9 +6,7 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
-
-
-    try {
+  try {
         /*   Created By : Daseen
         Created Date : 11-11-2022
         Modified By : Siva Harish

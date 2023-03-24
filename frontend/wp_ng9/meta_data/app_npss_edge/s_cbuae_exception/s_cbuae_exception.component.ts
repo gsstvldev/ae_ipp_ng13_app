@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28866 
+Build ID        : 28882 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-24 7:43 AM 
+Modified Date   : 2023-Mar-24 11:0 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_cbuae_exception
@@ -14,12 +14,13 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_cs_cbuae_exception_retryService} from '../../../custom_widget/npss_cs_cbuae_exception_retry/npss_cs_cbuae_exception_retry.service'
 
 @Component({
 	selector: 's_cbuae_exception',
 	templateUrl: './s_cbuae_exception.component.html',
 	styleUrls: ['./s_cbuae_exception.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_cbuae_exception_retryService]
 })
     
 // Start of class 
@@ -102,7 +103,7 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_cbuae_exception_retryService:npss_cs_cbuae_exception_retryService) {
     
 	}
     
@@ -718,8 +719,8 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 	}
 
 	//Handler for INTERNAL event of "im for retry btn"
-	im_for_retry_btn__internal(){
-		this.im_for_retry_btn__rs_for_retry_btn()
+	im_for_retry_btn__internal(parent_event_result){
+		this.im_for_retry_btn__rs_for_retry_btn(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2052,7 +2053,7 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_cbuae_exception_retryService.fn_npss_cs_cbuae_exception_retry(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2068,7 +2069,7 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="navigation_ui_retry"
 		let event_code="e_1679581347000"
-		let event_params={"caller_name":"cc_for_for_retry_btn__im_for_retry_btn","event_desc":"IM for Retry Btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_retry","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_for_retry_btn__im_for_retry_btn","event_desc":"IM for Retry Btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been sent to CB successfully","root_source_id":"navigation_ui_retry","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="im_for_retry_btn__rs_for_retry_btn,"
 		let event_data={}
@@ -2082,14 +2083,15 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "im for retry btn"
-	im_for_retry_btn__rs_for_retry_btn() { 
+	im_for_retry_btn__rs_for_retry_btn(parent_event_result) { 
 		let Dest_Is_ctrl=true
-		
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
 		let source_id="im_for_retry_btn"
 		let destn_id=""
 		let parent_source_id="cc_for_for_retry_btn"
 		let event_code="e_1679581429251"
-		let event_params={"caller_name":"im_for_retry_btn__rs_for_retry_btn","event_desc":"RS for Retry Btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_retry","raiseparam":{}}
+		let event_params={"caller_name":"im_for_retry_btn__rs_for_retry_btn","event_desc":"RS for Retry Btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_retry","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

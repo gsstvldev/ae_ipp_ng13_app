@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28866 
+Build ID        : 28882 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-24 7:43 AM 
+Modified Date   : 2023-Mar-24 11:0 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_cbuae_exception
@@ -21,6 +21,7 @@ import { SharedModule } from '../../../shared/shared.module'
 
 import {torus_cs_change_routingkeyModule} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
+import {npss_cs_cbuae_exception_retryModule} from '../../../custom_widget/npss_cs_cbuae_exception_retry/npss_cs_cbuae_exception_retry.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -66,7 +67,7 @@ import { p_view_req_and_res_profileComponent } from './p_view_req_and_res_profil
     OverlayPanelModule,
     
     s_cbuae_exceptionRoutingModule,
-    torus_cs_change_routingkeyModule,torus_cs_show_hideModule
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_cbuae_exception_retryModule
   ],
   declarations: [s_cbuae_exceptionComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_exception_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_single_back_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,],
   providers:[AppHandlerService,ComponenthelperService]

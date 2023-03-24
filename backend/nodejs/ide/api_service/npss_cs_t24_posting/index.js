@@ -376,7 +376,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     let TakepostingRefno = `select  process_ref_no,status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs002'`
                                     let arrrefno = await ExecuteQuery1(TakepostingRefno)
                                     if (arrrefno.length > 0) {
-                                        if (arrrefno[0].process_ref_no != null) {
+                                        // if (arrrefno[0].process_ref_no != null) {
                                             let TakenpsstrdRefno = `select npsstrrd_refno from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs008'`
                                             let arrnpssRefno = await ExecuteQuery1(TakenpsstrdRefno)
                                             if(arrnpssRefno.length > 0){
@@ -443,7 +443,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09",
                                                                 "card_type": "CREDIT_CARD",
                                                                 "active_status": "ACCP",
-                                                                "process_ref_no": arrrefno[0].process_ref_no,
+                                                                
                                                                 "originalTrasactionId": '',
                                                                 "status_accp_date": arrrefno[0].status_accp_date || '',
                                                                 "status_resp_amount": arrrefno[0].status_resp_amount || '',
@@ -488,10 +488,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 objresponse.status = 'NPSSTRRD_REFNO is not found'
                                                 sendResponse(null,objresponse)
                                             }
-                                        }else{
-                                            objresponse.status = 'Posting Ref not  is Missing'
-                                            sendResponse(null,objresponse)
-                                        }
+                                        // }else{
+                                        //     objresponse.status = 'Posting Ref not  is Missing'
+                                        //     sendResponse(null,objresponse)
+                                        // }
                                     }else{
                                         objresponse.status = 'Posting Ref not found'
                                         sendResponse(null,objresponse)
@@ -513,7 +513,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     let TakepostingRefno = `select  process_ref_no,status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs002'`
                                     let arrrefno = await ExecuteQuery1(TakepostingRefno)
                                     if (arrrefno.length > 0) {
-                                        if (arrrefno[0].process_ref_no != null) {
+                                        // if (arrrefno[0].process_ref_no != null) {
                                             let TakenpsstrdRefno = `select npsstrrd_refno from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs008'`
                                             let arrnpssRefno = await ExecuteQuery1(TakenpsstrdRefno)
                                             if(arrnpssRefno.length > 0){
@@ -580,7 +580,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09",
                                                                 "card_type": "PREPAID_CARD",
                                                                 "active_status": "ACCP",
-                                                                "process_ref_no": arrrefno[0].process_ref_no,
+                                                               
                                                                 "originalTrasactionId": '',
                                                                 "status_accp_date": arrrefno[0].status_accp_date || '',
                                                                 "status_resp_amount": arrrefno[0].status_resp_amount || '',
@@ -601,7 +601,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 }
 
                                                 var PrintInfo = {}
-                                                PrintInfo.url = arrurl[0].param_detail
+                                                PrintInfo.url = url
                                                 PrintInfo.card = 'RCT Prepaid CARD  POSTING'
                                                 PrintInfo.uetr = arrTranparamsObj.uetr || ''
                                                 PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
@@ -625,10 +625,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 objresponse.status = 'NPSSTRRD_REFNO is not found'
                                                 sendResponse(null,objresponse)
                                             }
-                                        }else{
-                                            objresponse.status = 'Posting Ref not  is Missing'
-                                            sendResponse(null,objresponse)
-                                        }
+                                        // }else{
+                                        //     objresponse.status = 'Posting Ref not  is Missing'
+                                        //     sendResponse(null,objresponse)
+                                        // }
                                     }else{
                                         objresponse.status = 'Posting Ref not found'
                                         sendResponse(null,objresponse)

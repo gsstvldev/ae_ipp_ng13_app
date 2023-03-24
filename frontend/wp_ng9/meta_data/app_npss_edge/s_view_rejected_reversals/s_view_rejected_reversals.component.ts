@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28880 
+Build ID        : 28891 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-24 13:24 PM 
+Modified Date   : 2023-Mar-24 15:1 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_rejected_reversals
@@ -53,8 +53,8 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 	navigation_ui_search : any = {}
 	navigation_ui_view_response : any = {}
 	navigation_ui_view_request : any = {}
-	navigation_ui_view_req_and_res : any = {}
-	navigation_ui_view_failure : any = {}
+	navigation_ui_view_req_and_ress : any = {}
+	navigation_ui_view_failures : any = {}
 	process_log_list : any = {}
 	queue : any = {}
 	request_ui : any = {}
@@ -115,30 +115,30 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		this.navigation_ui_view_request.role = []
 		this.navigation_ui_view_request.action = ""
 		
-		// "View Req and Res" Button of "Navigation UI" component
-		this.navigation_ui_view_req_and_res.label_name = "View Req and Res"
-		this.navigation_ui_view_req_and_res.show = true
-		this.navigation_ui_view_req_and_res.disabled = true
-		this.navigation_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
-		this.navigation_ui_view_req_and_res.dynamic_param = {}
-		this.navigation_ui_view_req_and_res.role = []
-		this.navigation_ui_view_req_and_res.action = ""
+		// "View Req and Ress" Button of "Navigation UI" component
+		this.navigation_ui_view_req_and_ress.label_name = "View Req and Ress"
+		this.navigation_ui_view_req_and_ress.show = true
+		this.navigation_ui_view_req_and_ress.disabled = true
+		this.navigation_ui_view_req_and_ress.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.navigation_ui_view_req_and_ress.dynamic_param = {}
+		this.navigation_ui_view_req_and_ress.role = []
+		this.navigation_ui_view_req_and_ress.action = ""
 		
-		// "View Failure" Button of "Navigation UI" component
-		this.navigation_ui_view_failure.label_name = "View Failure"
-		this.navigation_ui_view_failure.show = true
-		this.navigation_ui_view_failure.disabled = false
-		this.navigation_ui_view_failure.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.navigation_ui_view_failure.dynamic_param = {}
-		this.navigation_ui_view_failure.role = []
-		this.navigation_ui_view_failure.action = ""
+		// "View Failures" Button of "Navigation UI" component
+		this.navigation_ui_view_failures.label_name = "View Failures"
+		this.navigation_ui_view_failures.show = true
+		this.navigation_ui_view_failures.disabled = false
+		this.navigation_ui_view_failures.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_ui_view_failures.dynamic_param = {}
+		this.navigation_ui_view_failures.role = []
+		this.navigation_ui_view_failures.action = ""
 	
 		// Component level properties - "Process Log List" 
 		this.process_log_list.uictrl_code = "datatable"
 		this.process_log_list.uicgc_desc = "Process Log List"
 		this.process_log_list.uicgc_code = "uicgc_2"
 		this.process_log_list.params = {"need_pag_datatable":"Y","advance_dynamic_search":"N","need_search":"N"}
-		this.process_log_list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654225845","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"uetr","alias_name":"","mq_id":"MQ_1679661994729","date_format":false},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1679661994873","date_format":false},{"column_name":"process_name","alias_name":"","mq_id":"MQ_1679661995032","date_format":false},{"column_name":"v_code","alias_name":"","mq_id":"MQ_1679661995208","date_format":false},{"column_name":"response_code","alias_name":"","mq_id":"MQ_1679661995360","date_format":false},{"column_name":"msg_id","alias_name":"","mq_id":"MQ_1679662015248","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  DATEMI,  process_name,  v_code,  response_code,  msg_id,  RESPONSE_DATA,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON from  (  select   ntpl.uetr,   nt.uetr as tran_uetr,   ntpl.process_status,   ntpl.status,   ntpl.processing_system,   TO_CHAR(ntpl.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   ntpl.process_name,   ntpl.v_code,   ntpl.response_code,   ntpl.msg_id,   ntpl.npsstpl_id,   ntpl.dt_code,   ntpl.dtt_code,   ntpl.RESPONSE_DATA,   ntpl.REQUEST_DATA_JSON,   ntpl.RESPONSE_DATA_JSON  from   npss_trn_process_log ntpl  left join npss_transactions nt on   ntpl.uetr = nt.uetr  where   nt.uetr is null) A $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Tran CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Validation Code","target_column":"v_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Error Code","target_column":"response_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"msg_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.process_log_list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654225845","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"uetr","alias_name":"","mq_id":"MQ_1679661994729","date_format":false},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1679661994873","date_format":false},{"column_name":"process_name","alias_name":"","mq_id":"MQ_1679661995032","date_format":false},{"column_name":"v_code","alias_name":"","mq_id":"MQ_1679661995208","date_format":false},{"column_name":"response_code","alias_name":"","mq_id":"MQ_1679661995360","date_format":false},{"column_name":"msg_id","alias_name":"","mq_id":"MQ_1679662015248","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  DATEMI,  process_name,  v_code,  response_code,  msg_id,  RESPONSE_DATA,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  tenant_id from  (  select   ntpl.uetr,   nt.uetr as tran_uetr,   ntpl.process_status,   ntpl.status,   ntpl.processing_system,   TO_CHAR(ntpl.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   ntpl.process_name,   ntpl.v_code,   ntpl.response_code,   ntpl.msg_id,   ntpl.npsstpl_id,   ntpl.dt_code,   ntpl.dtt_code,   ntpl.RESPONSE_DATA,   ntpl.REQUEST_DATA_JSON,   ntpl.RESPONSE_DATA_JSON,   ntpl.tenant_id  from   npss_trn_process_log ntpl  left join npss_transactions nt on   ntpl.uetr = nt.uetr  where   nt.uetr is null) A $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Tran CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Validation Code","target_column":"v_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Error Code","target_column":"response_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"msg_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.process_log_list.context_menu = []
 		this.process_log_list.views = {}
 		this.process_log_list.onChangecomponent = new EventEmitter<any>()
@@ -150,7 +150,7 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		this.queue.uicgc_desc = "Queue"
 		this.queue.uicgc_code = "uicgc_3"
 		this.queue.params = {"need_pag_datatable":"Y","need_search":"N","advance_dynamic_search":"N"}
-		this.queue.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654014863","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"process_status","alias_name":"","mq_id":"MQ_1679661850989","date_format":false},{"column_name":"status","alias_name":"","mq_id":"MQ_1679661851157","date_format":false},{"column_name":"processing_system","alias_name":"","mq_id":"MQ_1679661851309","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  created_date,  process_name,  v_code,  response_code,  msg_id from  (  select   uetr,   A.process_status,   A.status,   A.processing_system,   A.CREATED_DATE,   A.process_name,   A.v_code,   A.response_code,   A.msg_id,   ROLE_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   (   select    ntpl.uetr,    nt.uetr as tran_uetr,    ntpl.process_status,    ntpl.status,    ntpl.processing_system,    ntpl.created_date,    ntpl.process_name,    ntpl.v_code,    ntpl.response_code,    ntpl.msg_id,    ntpl.CREATED_BY,    ntpl.CREATED_BY_NAME,    ntpl.SYSTEM_ID   from    npss_trn_process_log ntpl   left join npss_transactions nt on    ntpl.uetr = nt.uetr   where    nt.uetr is null) a  inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on   a.status = QR.PROCESS_QUEUE_STATUS   and a.process_status = QR.QUEUE_CODE  inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on   a.process_status = PQ.QUEUE_CODE)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"processing_system","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"process_status","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"status","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.queue.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654014863","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"process_status","alias_name":"","mq_id":"MQ_1679661850989","date_format":false},{"column_name":"status","alias_name":"","mq_id":"MQ_1679661851157","date_format":false},{"column_name":"processing_system","alias_name":"","mq_id":"MQ_1679661851309","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  created_date,  process_name,  v_code,  response_code,  msg_id from  (  select   uetr,   A.process_status,   A.status,   A.processing_system,   A.CREATED_DATE,   A.process_name,   A.v_code,   A.response_code,   A.msg_id,   A.TENANT_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   (   select    ntpl.uetr,    nt.uetr as tran_uetr,    ntpl.process_status,    ntpl.status,    ntpl.processing_system,    ntpl.created_date,    ntpl.process_name,    ntpl.v_code,    ntpl.response_code,    ntpl.msg_id,    ntpl.CREATED_BY,    ntpl.CREATED_BY_NAME,    ntpl.SYSTEM_ID,    ntpl.tenant_id   from    npss_trn_process_log ntpl   left join npss_transactions nt on    ntpl.uetr = nt.uetr   where    nt.uetr is null) a  inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on   a.status = QR.PROCESS_QUEUE_STATUS   and a.process_status = QR.QUEUE_CODE  inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on   a.process_status = PQ.QUEUE_CODE)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"processing_system","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"process_status","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"status","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.queue.context_menu = []
 		this.queue.views = {}
 		this.queue.onChangecomponent = new EventEmitter<any>()
@@ -266,6 +266,10 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		this.page_load__de_for_view_req()
 		this.page_load__de_for_view_response()
 		this.page_load__e_1677936067268()
+		this.page_load__e_1679669932260()
+		this.page_load__e_1679669946111()
+		this.page_load__e_1679669974507()
+		this.page_load__e_1679669980995()
 	}
 
 	//Handler for SELECTION_CHANGED event of "queue"
@@ -358,17 +362,17 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		this.process_log_list__e_1678078824536()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
-	navigation_ui_view_req_and_res__action_button_click(){
-		this.navigation_ui_view_req_and_res__sp_for_view_main_req_and_res_layout()
-		this.navigation_ui_view_req_and_res__bt_from_view_req_and_res_to_req()
-		this.navigation_ui_view_req_and_res__bt_from_view_req_and_res_to_res()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and ress"
+	navigation_ui_view_req_and_ress__action_button_click(){
+		this.navigation_ui_view_req_and_ress__sp_for_view_main_req_and_res_layout()
+		this.navigation_ui_view_req_and_ress__bt_from_view_req_and_res_to_req()
+		this.navigation_ui_view_req_and_ress__bt_from_view_req_and_res_to_res()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view failure"
-	navigation_ui_view_failure__action_button_click(){
-		this.navigation_ui_view_failure__e_1677935415412()
-		this.navigation_ui_view_failure__e_1677935451999()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view failures"
+	navigation_ui_view_failures__action_button_click(){
+		this.navigation_ui_view_failures__e_1677935415412()
+		this.navigation_ui_view_failures__e_1677935451999()
 	}
 
 	//Handler for SELECTION_CHANGED event of "queue"
@@ -383,7 +387,7 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_queue__cc_for_queue,"
 		let event_data={"queue":{"e_1670063623717":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_3","event_code":"E_1670063623717","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"},{"type":"LOCAL","column_name":"PROCESSING_SYSTEM","level":"MI_LEVEL","name":"MI_LEVEL_PROCESSING_SYSTEM","setd3name":"PROCESSING_SYSTEM"},{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654014863","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"process_status","alias_name":"","mq_id":"MQ_1679661850989","date_format":false},{"column_name":"status","alias_name":"","mq_id":"MQ_1679661851157","date_format":false},{"column_name":"processing_system","alias_name":"","mq_id":"MQ_1679661851309","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  created_date,  process_name,  v_code,  response_code,  msg_id from  (  select   uetr,   A.process_status,   A.status,   A.processing_system,   A.CREATED_DATE,   A.process_name,   A.v_code,   A.response_code,   A.msg_id,   ROLE_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   (   select    ntpl.uetr,    nt.uetr as tran_uetr,    ntpl.process_status,    ntpl.status,    ntpl.processing_system,    ntpl.created_date,    ntpl.process_name,    ntpl.v_code,    ntpl.response_code,    ntpl.msg_id,    ntpl.CREATED_BY,    ntpl.CREATED_BY_NAME,    ntpl.SYSTEM_ID   from    npss_trn_process_log ntpl   left join npss_transactions nt on    ntpl.uetr = nt.uetr   where    nt.uetr is null) a  inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on   a.status = QR.PROCESS_QUEUE_STATUS   and a.process_status = QR.QUEUE_CODE  inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on   a.process_status = PQ.QUEUE_CODE)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"processing_system","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"process_status","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"status","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654014863","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"process_status","alias_name":"","mq_id":"MQ_1679661850989","date_format":false},{"column_name":"status","alias_name":"","mq_id":"MQ_1679661851157","date_format":false},{"column_name":"processing_system","alias_name":"","mq_id":"MQ_1679661851309","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  created_date,  process_name,  v_code,  response_code,  msg_id from  (  select   uetr,   A.process_status,   A.status,   A.processing_system,   A.CREATED_DATE,   A.process_name,   A.v_code,   A.response_code,   A.msg_id,   A.TENANT_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   (   select    ntpl.uetr,    nt.uetr as tran_uetr,    ntpl.process_status,    ntpl.status,    ntpl.processing_system,    ntpl.created_date,    ntpl.process_name,    ntpl.v_code,    ntpl.response_code,    ntpl.msg_id,    ntpl.CREATED_BY,    ntpl.CREATED_BY_NAME,    ntpl.SYSTEM_ID,    ntpl.tenant_id   from    npss_trn_process_log ntpl   left join npss_transactions nt on    ntpl.uetr = nt.uetr   where    nt.uetr is null) a  inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on   a.status = QR.PROCESS_QUEUE_STATUS   and a.process_status = QR.QUEUE_CODE  inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on   a.process_status = PQ.QUEUE_CODE)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"processing_system","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"process_status","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"status","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -439,7 +443,7 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="queue"
-		let destn_id="navigation_ui_view_req_and_res"
+		let destn_id="navigation_ui_view_req_and_ress"
 		let parent_source_id=""
 		let event_code="e_1670245706474"
 		let event_params={"caller_name":"queue__de_from_queue_to_view_req_and_res","event_desc":"DE from Queue to View Req and Res","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
@@ -460,7 +464,7 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="queue"
-		let destn_id="navigation_ui_view_failure"
+		let destn_id="navigation_ui_view_failures"
 		let parent_source_id=""
 		let event_code="e_1677936103783"
 		let event_params={"caller_name":"queue__e_1677936103783","event_desc":"E_1677936103783","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
@@ -533,7 +537,7 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_plog_list__ssf_for_plog_list,"
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654225845","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"uetr","alias_name":"","mq_id":"MQ_1679661994729","date_format":false},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1679661994873","date_format":false},{"column_name":"process_name","alias_name":"","mq_id":"MQ_1679661995032","date_format":false},{"column_name":"v_code","alias_name":"","mq_id":"MQ_1679661995208","date_format":false},{"column_name":"response_code","alias_name":"","mq_id":"MQ_1679661995360","date_format":false},{"column_name":"msg_id","alias_name":"","mq_id":"MQ_1679662015248","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  DATEMI,  process_name,  v_code,  response_code,  msg_id,  RESPONSE_DATA,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON from  (  select   ntpl.uetr,   nt.uetr as tran_uetr,   ntpl.process_status,   ntpl.status,   ntpl.processing_system,   TO_CHAR(ntpl.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   ntpl.process_name,   ntpl.v_code,   ntpl.response_code,   ntpl.msg_id,   ntpl.npsstpl_id,   ntpl.dt_code,   ntpl.dtt_code,   ntpl.RESPONSE_DATA,   ntpl.REQUEST_DATA_JSON,   ntpl.RESPONSE_DATA_JSON  from   npss_trn_process_log ntpl  left join npss_transactions nt on   ntpl.uetr = nt.uetr  where   nt.uetr is null) A $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Tran CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Validation Code","target_column":"v_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Error Code","target_column":"response_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"msg_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654225845","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"uetr","alias_name":"","mq_id":"MQ_1679661994729","date_format":false},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1679661994873","date_format":false},{"column_name":"process_name","alias_name":"","mq_id":"MQ_1679661995032","date_format":false},{"column_name":"v_code","alias_name":"","mq_id":"MQ_1679661995208","date_format":false},{"column_name":"response_code","alias_name":"","mq_id":"MQ_1679661995360","date_format":false},{"column_name":"msg_id","alias_name":"","mq_id":"MQ_1679662015248","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  DATEMI,  process_name,  v_code,  response_code,  msg_id,  RESPONSE_DATA,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  tenant_id from  (  select   ntpl.uetr,   nt.uetr as tran_uetr,   ntpl.process_status,   ntpl.status,   ntpl.processing_system,   TO_CHAR(ntpl.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   ntpl.process_name,   ntpl.v_code,   ntpl.response_code,   ntpl.msg_id,   ntpl.npsstpl_id,   ntpl.dt_code,   ntpl.dtt_code,   ntpl.RESPONSE_DATA,   ntpl.REQUEST_DATA_JSON,   ntpl.RESPONSE_DATA_JSON,   ntpl.tenant_id  from   npss_trn_process_log ntpl  left join npss_transactions nt on   ntpl.uetr = nt.uetr  where   nt.uetr is null) A $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Tran CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Validation Code","target_column":"v_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Error Code","target_column":"response_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"msg_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -555,7 +559,7 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654225845","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"uetr","alias_name":"","mq_id":"MQ_1679661994729","date_format":false},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1679661994873","date_format":false},{"column_name":"process_name","alias_name":"","mq_id":"MQ_1679661995032","date_format":false},{"column_name":"v_code","alias_name":"","mq_id":"MQ_1679661995208","date_format":false},{"column_name":"response_code","alias_name":"","mq_id":"MQ_1679661995360","date_format":false},{"column_name":"msg_id","alias_name":"","mq_id":"MQ_1679662015248","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  DATEMI,  process_name,  v_code,  response_code,  msg_id,  RESPONSE_DATA,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON from  (  select   ntpl.uetr,   nt.uetr as tran_uetr,   ntpl.process_status,   ntpl.status,   ntpl.processing_system,   TO_CHAR(ntpl.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   ntpl.process_name,   ntpl.v_code,   ntpl.response_code,   ntpl.msg_id,   ntpl.npsstpl_id,   ntpl.dt_code,   ntpl.dtt_code,   ntpl.RESPONSE_DATA,   ntpl.REQUEST_DATA_JSON,   ntpl.RESPONSE_DATA_JSON  from   npss_trn_process_log ntpl  left join npss_transactions nt on   ntpl.uetr = nt.uetr  where   nt.uetr is null) A $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Tran CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Validation Code","target_column":"v_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Error Code","target_column":"response_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"msg_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654225845","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"uetr","alias_name":"","mq_id":"MQ_1679661994729","date_format":false},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1679661994873","date_format":false},{"column_name":"process_name","alias_name":"","mq_id":"MQ_1679661995032","date_format":false},{"column_name":"v_code","alias_name":"","mq_id":"MQ_1679661995208","date_format":false},{"column_name":"response_code","alias_name":"","mq_id":"MQ_1679661995360","date_format":false},{"column_name":"msg_id","alias_name":"","mq_id":"MQ_1679662015248","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  DATEMI,  process_name,  v_code,  response_code,  msg_id,  RESPONSE_DATA,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  tenant_id from  (  select   ntpl.uetr,   nt.uetr as tran_uetr,   ntpl.process_status,   ntpl.status,   ntpl.processing_system,   TO_CHAR(ntpl.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   ntpl.process_name,   ntpl.v_code,   ntpl.response_code,   ntpl.msg_id,   ntpl.npsstpl_id,   ntpl.dt_code,   ntpl.dtt_code,   ntpl.RESPONSE_DATA,   ntpl.REQUEST_DATA_JSON,   ntpl.RESPONSE_DATA_JSON,   ntpl.tenant_id  from   npss_trn_process_log ntpl  left join npss_transactions nt on   ntpl.uetr = nt.uetr  where   nt.uetr is null) A $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Tran CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Validation Code","target_column":"v_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Error Code","target_column":"response_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"msg_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -632,7 +636,7 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_failure"
+		let destn_id="navigation_ui_view_failures"
 		let parent_source_id=""
 		let event_code="e_1677936067268"
 		let event_params={"caller_name":"page_load__e_1677936067268","event_desc":"E_1677936067268","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -642,6 +646,90 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1679669932260() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_view_failures"
+		let parent_source_id=""
+		let event_code="e_1679669932260"
+		let event_params={"caller_name":"page_load__e_1679669932260","event_desc":"E_1679669932260","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1679669946111() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_view_req_and_ress"
+		let parent_source_id=""
+		let event_code="e_1679669946111"
+		let event_params={"caller_name":"page_load__e_1679669946111","event_desc":"E_1679669946111","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1679669974507() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_view_request"
+		let parent_source_id=""
+		let event_code="e_1679669974507"
+		let event_params={"caller_name":"page_load__e_1679669974507","event_desc":"E_1679669974507","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1679669980995() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_view_response"
+		let parent_source_id=""
+		let event_code="e_1679669980995"
+		let event_params={"caller_name":"page_load__e_1679669980995","event_desc":"E_1679669980995","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -830,7 +918,7 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		let handler_code="clear_ui"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654225845","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"uetr","alias_name":"","mq_id":"MQ_1679661994729","date_format":false},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1679661994873","date_format":false},{"column_name":"process_name","alias_name":"","mq_id":"MQ_1679661995032","date_format":false},{"column_name":"v_code","alias_name":"","mq_id":"MQ_1679661995208","date_format":false},{"column_name":"response_code","alias_name":"","mq_id":"MQ_1679661995360","date_format":false},{"column_name":"msg_id","alias_name":"","mq_id":"MQ_1679662015248","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  DATEMI,  process_name,  v_code,  response_code,  msg_id,  RESPONSE_DATA,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON from  (  select   ntpl.uetr,   nt.uetr as tran_uetr,   ntpl.process_status,   ntpl.status,   ntpl.processing_system,   TO_CHAR(ntpl.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   ntpl.process_name,   ntpl.v_code,   ntpl.response_code,   ntpl.msg_id,   ntpl.npsstpl_id,   ntpl.dt_code,   ntpl.dtt_code,   ntpl.RESPONSE_DATA,   ntpl.REQUEST_DATA_JSON,   ntpl.RESPONSE_DATA_JSON  from   npss_trn_process_log ntpl  left join npss_transactions nt on   ntpl.uetr = nt.uetr  where   nt.uetr is null) A $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Tran CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Validation Code","target_column":"v_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Error Code","target_column":"response_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"msg_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654225845","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"uetr","alias_name":"","mq_id":"MQ_1679661994729","date_format":false},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1679661994873","date_format":false},{"column_name":"process_name","alias_name":"","mq_id":"MQ_1679661995032","date_format":false},{"column_name":"v_code","alias_name":"","mq_id":"MQ_1679661995208","date_format":false},{"column_name":"response_code","alias_name":"","mq_id":"MQ_1679661995360","date_format":false},{"column_name":"msg_id","alias_name":"","mq_id":"MQ_1679662015248","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  DATEMI,  process_name,  v_code,  response_code,  msg_id,  RESPONSE_DATA,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  tenant_id from  (  select   ntpl.uetr,   nt.uetr as tran_uetr,   ntpl.process_status,   ntpl.status,   ntpl.processing_system,   TO_CHAR(ntpl.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   ntpl.process_name,   ntpl.v_code,   ntpl.response_code,   ntpl.msg_id,   ntpl.npsstpl_id,   ntpl.dt_code,   ntpl.dtt_code,   ntpl.RESPONSE_DATA,   ntpl.REQUEST_DATA_JSON,   ntpl.RESPONSE_DATA_JSON,   ntpl.tenant_id  from   npss_trn_process_log ntpl  left join npss_transactions nt on   ntpl.uetr = nt.uetr  where   nt.uetr is null) A $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Tran CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"process_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Validation Code","target_column":"v_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Error Code","target_column":"response_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message ID","target_column":"msg_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -894,7 +982,7 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654014863","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"process_status","alias_name":"","mq_id":"MQ_1679661850989","date_format":false},{"column_name":"status","alias_name":"","mq_id":"MQ_1679661851157","date_format":false},{"column_name":"processing_system","alias_name":"","mq_id":"MQ_1679661851309","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  created_date,  process_name,  v_code,  response_code,  msg_id from  (  select   uetr,   A.process_status,   A.status,   A.processing_system,   A.CREATED_DATE,   A.process_name,   A.v_code,   A.response_code,   A.msg_id,   ROLE_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   (   select    ntpl.uetr,    nt.uetr as tran_uetr,    ntpl.process_status,    ntpl.status,    ntpl.processing_system,    ntpl.created_date,    ntpl.process_name,    ntpl.v_code,    ntpl.response_code,    ntpl.msg_id,    ntpl.CREATED_BY,    ntpl.CREATED_BY_NAME,    ntpl.SYSTEM_ID   from    npss_trn_process_log ntpl   left join npss_transactions nt on    ntpl.uetr = nt.uetr   where    nt.uetr is null) a  inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on   a.status = QR.PROCESS_QUEUE_STATUS   and a.process_status = QR.QUEUE_CODE  inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on   a.process_status = PQ.QUEUE_CODE)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"processing_system","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"process_status","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"status","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_3","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1679654014863","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rejected Reversals MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"process_status","alias_name":"","mq_id":"MQ_1679661850989","date_format":false},{"column_name":"status","alias_name":"","mq_id":"MQ_1679661851157","date_format":false},{"column_name":"processing_system","alias_name":"","mq_id":"MQ_1679661851309","date_format":false}],"joins":[]},"eq_text":"select  uetr,  process_status,  status,  processing_system,  created_date,  process_name,  v_code,  response_code,  msg_id from  (  select   uetr,   A.process_status,   A.status,   A.processing_system,   A.CREATED_DATE,   A.process_name,   A.v_code,   A.response_code,   A.msg_id,   A.TENANT_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER  from   (   select    ntpl.uetr,    nt.uetr as tran_uetr,    ntpl.process_status,    ntpl.status,    ntpl.processing_system,    ntpl.created_date,    ntpl.process_name,    ntpl.v_code,    ntpl.response_code,    ntpl.msg_id,    ntpl.CREATED_BY,    ntpl.CREATED_BY_NAME,    ntpl.SYSTEM_ID,    ntpl.tenant_id   from    npss_trn_process_log ntpl   left join npss_transactions nt on    ntpl.uetr = nt.uetr   where    nt.uetr is null) a  inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on   a.status = QR.PROCESS_QUEUE_STATUS   and a.process_status = QR.QUEUE_CODE  inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on   a.process_status = PQ.QUEUE_CODE)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rejected Reversals Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"processing_system","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"process_status","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"status","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1034,7 +1122,7 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="process_log_list"
-		let destn_id="navigation_ui_view_req_and_res"
+		let destn_id="navigation_ui_view_req_and_ress"
 		let parent_source_id=""
 		let event_code="e_1670246342017"
 		let event_params={"caller_name":"process_log_list__ee_for_req_and_res_button","event_desc":"EE for REQ and RES button","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1055,7 +1143,7 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
 		let Dest_Is_ctrl=true
 		
 		let source_id="process_log_list"
-		let destn_id="navigation_ui_view_failure"
+		let destn_id="navigation_ui_view_failures"
 		let parent_source_id=""
 		let event_code="e_1677936091194"
 		let event_params={"caller_name":"process_log_list__e_1677936091194","event_desc":"E_1677936091194","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1092,15 +1180,15 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
-	navigation_ui_view_req_and_res__sp_for_view_main_req_and_res_layout() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and ress"
+	navigation_ui_view_req_and_ress__sp_for_view_main_req_and_res_layout() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_req_and_res"
+		let source_id="navigation_ui_view_req_and_ress"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1670246135536"
-		let event_params={"caller_name":"navigation_ui_view_req_and_res__sp_for_view_main_req_and_res_layout","event_desc":"SP for view main req and res layout","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1670245566284"}}
+		let event_params={"caller_name":"navigation_ui_view_req_and_ress__sp_for_view_main_req_and_res_layout","event_desc":"SP for view main req and res layout","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_ress","raiseparam":{"profile_code":"BTL_1304_1670245566284"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1113,15 +1201,15 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
-	navigation_ui_view_req_and_res__bt_from_view_req_and_res_to_req() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and ress"
+	navigation_ui_view_req_and_ress__bt_from_view_req_and_res_to_req() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_req_and_res"
+		let source_id="navigation_ui_view_req_and_ress"
 		let destn_id="request_ui"
 		let parent_source_id=""
 		let event_code="e_1670246259231"
-		let event_params={"caller_name":"navigation_ui_view_req_and_res__bt_from_view_req_and_res_to_req","event_desc":"BT from View Req and Res to Req","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let event_params={"caller_name":"navigation_ui_view_req_and_ress__bt_from_view_req_and_res_to_req","event_desc":"BT from View Req and Res to Req","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_ress","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
 		let handler_code="bind_tran"
 		let internals=""
 		let event_data={}
@@ -1134,15 +1222,15 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and res"
-	navigation_ui_view_req_and_res__bt_from_view_req_and_res_to_res() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view req and ress"
+	navigation_ui_view_req_and_ress__bt_from_view_req_and_res_to_res() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_req_and_res"
+		let source_id="navigation_ui_view_req_and_ress"
 		let destn_id="response_ui"
 		let parent_source_id=""
 		let event_code="e_1670246314873"
-		let event_params={"caller_name":"navigation_ui_view_req_and_res__bt_from_view_req_and_res_to_res","event_desc":"BT from View Req and Res to Res","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let event_params={"caller_name":"navigation_ui_view_req_and_ress__bt_from_view_req_and_res_to_res","event_desc":"BT from View Req and Res to Res","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_req_and_ress","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
 		let handler_code="bind_tran"
 		let internals=""
 		let event_data={}
@@ -1155,15 +1243,15 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view failure"
-	navigation_ui_view_failure__e_1677935415412() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view failures"
+	navigation_ui_view_failures__e_1677935415412() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_failure"
+		let source_id="navigation_ui_view_failures"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1677935415412"
-		let event_params={"caller_name":"navigation_ui_view_failure__e_1677935415412","event_desc":"E_1677935415412","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_failure","raiseparam":{"profile_code":"BTL_1304_1677935249021"}}
+		let event_params={"caller_name":"navigation_ui_view_failures__e_1677935415412","event_desc":"E_1677935415412","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_failures","raiseparam":{"profile_code":"BTL_1304_1677935249021"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -1176,15 +1264,15 @@ export class s_view_rejected_reversalsComponent implements OnInit,AfterViewInit 
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view failure"
-	navigation_ui_view_failure__e_1677935451999() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view failures"
+	navigation_ui_view_failures__e_1677935451999() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_failure"
+		let source_id="navigation_ui_view_failures"
 		let destn_id="view_failure_ui"
 		let parent_source_id=""
 		let event_code="e_1677935451999"
-		let event_params={"caller_name":"navigation_ui_view_failure__e_1677935451999","event_desc":"E_1677935451999","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_failure","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let event_params={"caller_name":"navigation_ui_view_failures__e_1677935451999","event_desc":"E_1677935451999","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_failures","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
 		let handler_code="bind_tran"
 		let internals=""
 		let event_data={}

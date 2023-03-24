@@ -46,7 +46,7 @@ export class npss_cs_cbuae_exception_retryService {
                 if (res.data.status == "SUCCESS" || res.data.status == "SUCCESS" || res.data.status == "Success" || res.data.status == "Success") {
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 } else {
-                    this.appHandler.callInternals(internals, screenInstance, res.data.status);
+                   this.dialogHelper.ShowInfoDialog(res.data.status); 
                 }
             });
     }

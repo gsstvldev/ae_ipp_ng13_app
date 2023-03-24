@@ -1,29 +1,30 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28860 
+Build ID        : 28869 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-23 13:17 PM 
+Modified Date   : 2023-Mar-24 7:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
-Profile Name    : View Message Data Layout--------------------------------------------------------------------------- */
+Profile Name    : View Req and Res UI Profile--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_view_message_data_layout',
-  templateUrl: './p_view_message_data_layout.component.html',
-  styleUrls: ['./p_view_message_data_layout.component.css']
+  selector: 'p_view_req_and_res_ui_profile',
+  templateUrl: './p_view_req_and_res_ui_profile.component.html',
+  styleUrls: ['./p_view_req_and_res_ui_profile.component.css']
 })
 
 // Start of class 
-export class p_view_message_data_layoutComponent implements OnInit {
+export class p_view_req_and_res_ui_profileComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	message_back_ui : any = {}
-	message_detail_ui : any = {}
+  	single_back_ui : any = {}
+	request_ui : any = {}
+	response_ui : any = {}
 
 
   // Constructor 
@@ -31,14 +32,16 @@ export class p_view_message_data_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.message_back_ui.desc = "Message Back UI"
-		this.message_back_ui.need_header = ""
-		this.message_detail_ui.desc = "Message Detail UI"
-		this.message_detail_ui.need_header = ""
+    	this.single_back_ui.desc = "Single Back UI"
+		this.single_back_ui.need_header = ""
+		this.request_ui.desc = "Request UI"
+		this.request_ui.need_header = ""
+		this.response_ui.desc = "Response UI"
+		this.response_ui.need_header = ""
 	
 
-    this.screen_instance['p_view_message_data_layout'] = {};
-    this.screen_instance['p_view_message_data_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_view_req_and_res_ui_profile'] = {};
+    this.screen_instance['p_view_req_and_res_ui_profile']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

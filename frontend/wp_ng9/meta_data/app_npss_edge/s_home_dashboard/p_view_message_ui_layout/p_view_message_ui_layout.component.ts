@@ -1,30 +1,29 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28860 
+Build ID        : 28869 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-23 13:17 PM 
+Modified Date   : 2023-Mar-24 7:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
-Profile Name    : IP Queue Layout--------------------------------------------------------------------------- */
+Profile Name    : View Message UI Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_ip_queue_layout',
-  templateUrl: './p_ip_queue_layout.component.html',
-  styleUrls: ['./p_ip_queue_layout.component.css']
+  selector: 'p_view_message_ui_layout',
+  templateUrl: './p_view_message_ui_layout.component.html',
+  styleUrls: ['./p_view_message_ui_layout.component.css']
 })
 
 // Start of class 
-export class p_ip_queue_layoutComponent implements OnInit {
+export class p_view_message_ui_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	navigation : any = {}
-	inward_queue : any = {}
-	transaction_list : any = {}
+  	message_back_ui : any = {}
+	message_detail_ui : any = {}
 
 
   // Constructor 
@@ -32,16 +31,14 @@ export class p_ip_queue_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.navigation.desc = "Navigation"
-		this.navigation.need_header = ""
-		this.inward_queue.desc = "Inward Queue"
-		this.inward_queue.need_header = ""
-		this.transaction_list.desc = "Transaction List"
-		this.transaction_list.need_header = ""
+    	this.message_back_ui.desc = "Message Back UI"
+		this.message_back_ui.need_header = ""
+		this.message_detail_ui.desc = "Message Detail UI"
+		this.message_detail_ui.need_header = ""
 	
 
-    this.screen_instance['p_ip_queue_layout'] = {};
-    this.screen_instance['p_ip_queue_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_view_message_ui_layout'] = {};
+    this.screen_instance['p_view_message_ui_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

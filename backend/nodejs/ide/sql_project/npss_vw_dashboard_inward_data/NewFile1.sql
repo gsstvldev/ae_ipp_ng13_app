@@ -20,7 +20,6 @@ SELECT res.sno,
                FROM npss_transactions nppst
                  LEFT JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
               WHERE nppst.process_type::text = 'IP'::text 
-              and nppst.department_code = res.DEPARTMENT_CODE
               AND (npl.process_name::text = ANY 
               (ARRAY['Receive Pacs008'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text 
               AND (nppst.status::text = ANY (ARRAY['IP_RCT_RR_POSTING_FAILURE'::text, 'IP_RCT_RR_POSTING_RETRY'::text, 'IP_RCT_PC_T24_POSTING_RETRY'::text, 'IP_RCT_CC_T24_POSTING_RETRY'::text, 'IP_RCT_POSTING_SUSPICIOUS'::text, 'IP_RCT_PC_POSTING_SUSPICIOUS'::text, 'IP_RCT_PC_T24_POSTING_FAILURE'::text, 'IP_RCT_CC_T24_POSTING_FAILURE'::text])) 
@@ -31,7 +30,6 @@ SELECT res.sno,
                FROM npss_transactions nppst
                  LEFT JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
               WHERE nppst.process_type::text = 'IP'::text 
-              and nppst.department_code = res.DEPARTMENT_CODE
               AND (npl.process_name::text = ANY 
               (ARRAY['Place Pacs004'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text AND 
               (nppst.status::text = ANY (ARRAY['IP_RCT_RETURN_POSTING_FAILURE'::character varying::text, 'IP_RCT_RETURN_POSTING_RETRY'::character varying::text, 'IP_RCT_RR_POSTING_SUSPICIOUS'::character varying::text])) 
@@ -42,7 +40,6 @@ SELECT res.sno,
                FROM npss_transactions nppst
                  inner JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
               WHERE nppst.process_type::text = 'IP'::text 
-              and nppst.department_code = res.DEPARTMENT_CODE
               AND (npl.process_name::text = ANY (ARRAY['Receive Pacs.007'::character varying::text]))
               AND (nppst.status::text = ANY (ARRAY['IP_RCT_REVERSAL_REQ_RECEIVED'::character varying::text, 'IP_RCT_REVERSAL_VLD_FAILED'::character varying::text, 'IP_RCT_REV_REQ_REJECTED'::character varying::text, 'IP_RCT_RR_RETURN_READY'::character varying::text])) 
               AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE ) as Pen07t1

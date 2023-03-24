@@ -6,7 +6,8 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
-  try {
+
+    try {
         /*   Created By : Daseen
         Created Date : 11-11-2022
         Modified By : Siva Harish
@@ -66,7 +67,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 QueName = 'NPSS_RCT_POSTING_QUEUE'
                                 Apiformat = 'RCT'
                             }
-                            let take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.issuer_type_code,ns.dbtr_birth_date,ns.dbtr_city_birth,ns.dbtr_country,ns.dbtr_document_id,ns.ext_person_id_code,ns.dbtr_other_issuer,ns.dbtr_prvt_id,ns.dbtr_cust_type,ns.ext_acct_id_code,ns.instruction_id,ns.instrument_type,ns.npsst_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ns.ext_org_id_code,ns.clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id in ${TempTranID}`;
+                            let take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.issuer_type_code,ns.intrbk_sttlm_amnt,ns.dbtr_birth_date,ns.dbtr_city_birth,ns.dbtr_country,ns.dbtr_document_id,ns.ext_person_id_code,ns.dbtr_other_issuer,ns.dbtr_prvt_id,ns.dbtr_cust_type,ns.ext_acct_id_code,ns.instruction_id,ns.instrument_type,ns.npsst_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ns.ext_org_id_code,ns.clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id in ${TempTranID}`;
                             let take_batch_name = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='${QueName}' and param_code='BATCH_NAME'`;
                             let Apiurl = await ExecuteQuery1(take_api_url)
                             if (Apiurl.length) {
@@ -190,7 +191,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         "process_status": params.ELIGIBLE_PROCESS_STATUS || '',
                                                         "process": "Pacs.008 INWARD POSTING",
                                                         "remittance_information": arrprocesslog.remittance_info,
-                                                        "extIdentifier": arrTranparamsObj.clrsysref || '',
+                                                        "extIdentifier": arrprocesslog.clrsysref || '',
                                                         "clrsysref": arrprocesslog.clrsysref || '',
                                                         "department_code": arrprocesslog.department_code || '',
                                                         "charge_code": "WAIVE",
@@ -304,7 +305,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         "process_status": params.ELIGIBLE_PROCESS_STATUS || '',
                                                         "process": "Pacs.008 INWARD POSTING",
                                                         "remittance_information": arrprocesslog.remittance_info,
-                                                        "extIdentifier": arrTranparamsObj.clrsysref || '',
+                                                        "extIdentifier": arrprocesslog.clrsysref || '',
                                                         "clrsysref": arrprocesslog.clrsysref || '',
                                                         "department_code": arrprocesslog.department_code || '',
                                                         "charge_code": "WAIVE",
@@ -509,11 +510,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                     } catch (error) {
                                         lclinstrm = ''
                                     }
-                                    let TakepostingRefno = `select  process_ref_no,status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where uetr = '${TakeTranParamsgObj.uetr}' and process_name = 'Receive Pacs002'`
+                                    let TakepostingRefno = `select  process_ref_no,status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs002'`
                                     let arrrefno = await ExecuteQuery1(TakepostingRefno)
                                     if (arrrefno.length > 0) {
                                         if (arrrefno[0].process_ref_no != null) {
-                                            let TakenpsstrdRefno = `select npsstrrd_refno from npss_trn_process_log where uetr = '${TakeTranParamsgObj.uetr}' and process_name = 'Receive Pacs008'`
+                                            let TakenpsstrdRefno = `select npsstrrd_refno from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs008'`
                                             let arrnpssRefno = await ExecuteQuery1(TakenpsstrdRefno)
                                             if(arrnpssRefno.length > 0){
                                                 var request = require('request');
@@ -716,6 +717,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

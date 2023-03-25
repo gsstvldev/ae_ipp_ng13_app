@@ -1,8 +1,5 @@
 <div class="s_view_rejected_reversals">
-<p_view_failure_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_failure_layout')"></p_view_failure_layout>
-<p_view_main_req_and_res_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_main_req_and_res_layout')"></p_view_main_req_and_res_layout>
-<p_view_response_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_response_layout')"></p_view_response_layout>
-<p_view_request_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_request_layout')"></p_view_request_layout>
+<p_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_history_layout')"></p_history_layout>
 <p_main_layout [screen_instance]="this" [hidden]="!(current_profile=='p_main_layout')"></p_main_layout>
 
 <p-dialog header="{{'' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_search_layout__spap_for_search_showpopup" [contentStyle]="{'overflow-y': 'auto','width': 'auto'}" [draggable]="true" [modal]="true">

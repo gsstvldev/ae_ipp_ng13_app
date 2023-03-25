@@ -1,26 +1,26 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28891 
+Build ID        : 28904 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-24 15:1 PM 
+Modified Date   : 2023-Mar-25 8:8 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_rejected_reversals
-Form Name       : Single Back UI--------------------------------------------------------------------------- */
+Form Name       : Process Log Action--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_single_back_ui',
-  templateUrl: './f_single_back_ui.component.html',
-  styleUrls: ['./f_single_back_ui.component.css'],
+  selector: 'f_process_log_action',
+  templateUrl: './f_process_log_action.component.html',
+  styleUrls: ['./f_process_log_action.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_single_back_uiComponent implements OnInit {
+export class f_process_log_actionComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_single_back_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_single_back_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_single_back_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_process_log_action[control]==undefined) {
+      this.screen_instance[this.comp_id].f_process_log_action[control] = {}
     }
-    this.screen_instance[this.comp_id].f_single_back_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_process_log_action[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

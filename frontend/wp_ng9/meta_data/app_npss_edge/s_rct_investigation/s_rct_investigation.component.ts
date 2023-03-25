@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28908 
+Build ID        : 28914 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-25 10:53 AM 
+Modified Date   : 2023-Mar-25 13:8 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_investigation
@@ -804,6 +804,7 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
 	navigation_ui_close__action_button_click(){
 		this.navigation_ui_close__e_1677933677254()
+		this.navigation_ui_close__clear_ui_for_save()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "remark ui save"
@@ -819,6 +820,7 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "cc for c save btn"
 	cc_for_c_save_btn__internal(parent_event_result){
 		this.cc_for_c_save_btn__ssp_after_close_cc_success(parent_event_result)
+		this.cc_for_c_save_btn__e_1679748422227(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "ssp after close cc success"
@@ -2585,6 +2587,27 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui close"
+	navigation_ui_close__clear_ui_for_save() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_close"
+		let destn_id="remark_ui"
+		let parent_source_id=""
+		let event_code="e_1679748216924"
+		let event_params={"caller_name":"navigation_ui_close__clear_ui_for_save","event_desc":"Clear UI For save","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_close","raiseparam":{"need_reset_key_column":"N"}}
+		let handler_code="clear_ui"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for ACTION_BUTTON_CLICK event of "remark ui save"
 	remark_ui_save__ve_for_c_save_btn() { 
 		let Dest_Is_ctrl=true
@@ -2617,7 +2640,7 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 		let event_code="e_1677933726833"
 		let event_params={"caller_name":"ve_for_c_save_btn__cc_for_c_save_btn","event_desc":"CC for C Save Btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"remark_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals="cc_for_c_save_btn__ssp_after_close_cc_success,"
+		let internals="cc_for_c_save_btn__ssp_after_close_cc_success,cc_for_c_save_btn__e_1679748422227,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -2644,6 +2667,28 @@ export class s_rct_investigationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for c save btn"
+	cc_for_c_save_btn__e_1679748422227(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_c_save_btn"
+		let destn_id=""
+		let parent_source_id="ve_for_c_save_btn"
+		let event_code="e_1679748422227"
+		let event_params={"popup_info":{"context":""},"caller_name":"cc_for_c_save_btn__e_1679748422227","event_desc":"E_1679748422227","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"remark_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="close_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.close_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

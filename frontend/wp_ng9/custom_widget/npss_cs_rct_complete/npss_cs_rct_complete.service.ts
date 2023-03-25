@@ -46,6 +46,7 @@ export class npss_cs_rct_completeService {
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
         ClientParams.Tran_id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_NPSST_ID') || '';
         ClientParams.system = system
+        ClientParams.rule_code = 'RCT_IP_POSTING_ALR_POST'
       this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     //Custom validation logics

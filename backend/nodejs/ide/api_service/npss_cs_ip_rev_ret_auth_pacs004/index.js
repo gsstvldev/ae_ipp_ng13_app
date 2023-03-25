@@ -40,6 +40,7 @@ try {
                 Reason for : changes Authpac004 07/03/2023
                 Reason for : changes Authpac004 12/03/2023
                 Reason for : changes Authpac004 13/03/2023
+                Reason for : changes in auth response 25/03/2023
     */
     var serviceName = 'NPSS IP REV Ret Auth PACS004';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -176,13 +177,13 @@ try {
                                                                                     var returnurl = arrreturnurl[0].param_detail;
                                                                                     var Amount
                                                                                     try {
-                                                                                        if (firstapiresult.LocAmtDebited) {
+                                                                                        if (firstapiresult.amountCredited) {
                                                                                             try {
-                                                                                                if (firstapiresult.LocAmtDebited && arrprocesslog[0].intrbk_sttlm_amnt) {
-                                                                                                    if (Number(firstapiresult.LocAmtDebited) > Number(arrprocesslog[0].intrbk_sttlm_amnt)) {
+                                                                                                if (firstapiresult.amountCredited && arrprocesslog[0].intrbk_sttlm_amnt) {
+                                                                                                    if (Number(firstapiresult.amountCredited) > Number(arrprocesslog[0].intrbk_sttlm_amnt)) {
                                                                                                         Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
                                                                                                     } else {
-                                                                                                        Amount = firstapiresult.LocAmtDebited
+                                                                                                        Amount = firstapiresult.amountCredited
                                                                                                     }
                                                                                                 } else {
                                                                                                     Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''

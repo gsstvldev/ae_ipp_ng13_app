@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28601 
+Build ID        : 28918 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-17 10:22 AM 
+Modified Date   : 2023-Mar-25 13:35 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_view_api_failures
@@ -152,7 +152,7 @@ focustoelement(){
 		this.ctrl.process_name.placeholder = ""
 		this.ctrl.process_name.dynamic_param = ""
 		this.ctrl.process_name.style_code = ""
-		this.ctrl.process_name.data_source = {"ds_code":"UDS_1304_1666098232469","ds_description":"NPSS Process name CDB","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"CD_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CODE_DESCRIPTIONS","context":"","filters":[{"filter_name":"Filter1","binding_name":"CD_CATEGORY","id":"DF_1666098368356","binding_value":"PROCESS_NAME","source_name":"CD_CATEGORY","source_value":"PROCESS_NAME","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"PROCESS_NAME","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"PROCESS_NAME"}]},"query":"(CD_CATEGORY = PROCESS_NAME)"},"sel_columns":[]}
+		this.ctrl.process_name.data_source = {"ds_code":"UDS_1304_1679751219868","ds_description":"NPSS Process name CDB","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"CD_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CODE_DESCRIPTIONS","context":"","filters":[{"filter_name":"Filter1","binding_name":"CD_CATEGORY","id":"DF_1679751280200","binding_value":"PROCESS_NAME","source_name":"CD_CATEGORY","source_value":"PROCESS_NAME","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"PROCESS_NAME","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","temp_value":"PROCESS_NAME","filter_values":"HARDCODED"}]},"query":"(CD_CATEGORY = PROCESS_NAME)"},"sel_columns":[]}
 		this.ctrl.process_name.image_association = ""
 		this.ctrl.process_name.show = true
 		this.ctrl.process_name.sub_content = ""

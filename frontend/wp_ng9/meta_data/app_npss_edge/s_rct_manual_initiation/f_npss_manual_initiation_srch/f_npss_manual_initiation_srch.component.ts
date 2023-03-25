@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28845 
+Build ID        : 28896 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-22 18:39 PM 
+Modified Date   : 2023-Mar-25 6:4 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -242,8 +242,47 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.ctrl_id = "npss_manual_initiation_srch_payment_endtoend_id"
 		this.ctrl.npss_manual_initiation_srch_payment_endtoend_id = {}
 		this.ctrl.npss_manual_initiation_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_manual_initiation_srch.model = {"MEMORY91":"","MEMORY89":"setcurrentdate(),{}","MEMORY92":"","UETR":"","PAYMENT_ENDTOEND_ID":""}
-		this.screen_instance[this.comp_id].f_npss_manual_initiation_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"}]
+	
+		//Properties of clrsysref
+		this.ctrl.clrsysref = {}
+		this.ctrl.clrsysref.id = "RN51CN6"
+		this.ctrl.clrsysref.desc = "IPP Reference Number"
+		this.ctrl.clrsysref.visible = false
+		this.ctrl.clrsysref.label_name = "IPP Reference Number"
+		this.ctrl.clrsysref.df_code = "DF_1304_1665901396659"
+		this.ctrl.clrsysref.df_description = "Column Group 1"
+		this.ctrl.clrsysref.uictrl_code = "CDN_CTRL"
+		this.ctrl.clrsysref.target_column = "CLRSYSREF"
+		this.ctrl.clrsysref.data_type = "TEXT"
+		this.ctrl.clrsysref.data_length = 35
+		this.ctrl.clrsysref.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.clrsysref.default_value = ""
+		this.ctrl.clrsysref.is_memory_ctrl = ""
+		this.ctrl.clrsysref.field_coordinates = ""
+		this.ctrl.clrsysref.sub_details = ""
+		this.ctrl.clrsysref.accept_char = ""
+		this.ctrl.clrsysref.currency_format = ""
+		this.ctrl.clrsysref.data_scale = ""
+		this.ctrl.clrsysref.binding_name = "CLRSYSREF"
+		this.ctrl.clrsysref.hide_label = false
+		this.ctrl.clrsysref.depends_on = ""
+		this.ctrl.clrsysref.placeholder = ""
+		this.ctrl.clrsysref.dynamic_param = ""
+		this.ctrl.clrsysref.style_code = ""
+		this.ctrl.clrsysref.data_source = ""
+		this.ctrl.clrsysref.image_association = ""
+		this.ctrl.clrsysref.show = true
+		this.ctrl.clrsysref.sub_content = ""
+		this.ctrl.clrsysref.required = false
+		this.ctrl.clrsysref.vld_rules = []
+		this.ctrl.clrsysref.targetcolumn_lower = "clrsysref"
+		this.ctrl.clrsysref.disabled = false
+		this.ctrl.clrsysref.view_name = "f_npss_manual_initiation_srch"
+		this.ctrl.clrsysref.ctrl_id = "npss_manual_initiation_srch_clrsysref"
+		this.ctrl.npss_manual_initiation_srch_clrsysref = {}
+		this.ctrl.npss_manual_initiation_srch_clrsysref.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_manual_initiation_srch.model = {"MEMORY91":"","MEMORY89":"setcurrentdate(),{}","MEMORY92":"","UETR":"","PAYMENT_ENDTOEND_ID":"","CLRSYSREF":""}
+		this.screen_instance[this.comp_id].f_npss_manual_initiation_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"}]
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_manual_initiation_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

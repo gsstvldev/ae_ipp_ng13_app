@@ -10,12 +10,14 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By :Siva Harish
         Created Date :10-03-2023
         Modified By : Daseen 21-03-2023 for adding retry_count param in T24 inward return api 
         Modified By : Siva Harish-- Changing code for bct 23/03/2023
          Modified By : Siva Harish-- Changing PAYLOAD for T24posting 24/03/2023
+          Modified By : Siva Harish-- Changing PAYLOAD for all apis 25/03/2023
       
          
        
@@ -73,7 +75,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var final_process_status
 
                             var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_IP_POSTING_FAIL_REPOST'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                            var take_api_params = `select ns.reversal_amount,ns.npsst_id,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY ) as dbtr_acct_no,ns.dbtr_prvt_id,ns.department_code,ns.dbtr_cust_type,ns.ext_acct_id_code,ns.intrbk_sttlm_amnt,ns.instrument_type,ns.instruction_id,ns.hdr_msg_id,ns.hdr_clearing_system,ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,ns.accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id in ${TempTranID}`;
+                            var take_api_params = `select ns.account_currency,ns.reversal_amount,ns.npsst_id,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY ) as dbtr_acct_no,ns.dbtr_prvt_id,ns.department_code,ns.dbtr_cust_type,ns.ext_acct_id_code,ns.intrbk_sttlm_amnt,ns.instrument_type,ns.instruction_id,ns.hdr_msg_id,ns.hdr_clearing_system,ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,ns.accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id in ${TempTranID}`;
                             var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL' and need_sync = 'Y'`
                             ExecuteQuery1(TakeStsPsts, async function (arrurlResult) {
                                 if (arrurlResult.length) {
@@ -286,7 +288,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
                                                                     "dbtr_acct_no": arrTranparamsObj.dbtr_acct_no || '',
                                                                     "ext_acct_id_code": arrTranparamsObj.ext_acct_id_code || '',
-                                                                    "charge_code": arrTranparamsObj.charge_code || '',
+                                                                    "charge_code":arrTranparamsObj.dbtr_cust_type || '',
                                                                     "dbtr_cust_type": arrTranparamsObj.dbtr_cust_type || '',
                                                                     "ext_org_id_code": arrTranparamsObj.ext_org_id_code || '',
                                                                     "issuer_type_code": arrTranparamsObj.issuer_type_code || '',
@@ -439,7 +441,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     "hdr_total_records": arrTranparamsObj.hdr_total_records || '',
                                                                     "hdr_total_amount": arrTranparamsObj.hdr_total_amount || '',
                                                                     "hdr_settlement_date": arrTranparamsObj.hdr_settlement_date || '',
-                                                                    "value_date": arrTranparamsObj.value_date || '',
+                                                                    "value_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD") || '',
                                                                     "hdr_settlement_method": arrTranparamsObj.hdr_settlement_method || '',
                                                                     "hdr_clearing_system": arrTranparamsObj.hdr_clearing_system || '',
                                                                     "instruction_id": arrTranparamsObj.instruction_id || '',
@@ -457,7 +459,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
                                                                     "dbtr_acct_no": arrTranparamsObj.dbtr_acct_no || '',
                                                                     "ext_acct_id_code": arrTranparamsObj.ext_acct_id_code || '',
-                                                                    "charge_code": arrTranparamsObj.charge_code || '',
+                                                                    "charge_code":  arrTranparamsObj.dbtr_cust_type || '',
                                                                     "dbtr_cust_type": arrTranparamsObj.dbtr_cust_type || '',
                                                                     "ext_org_id_code": arrTranparamsObj.ext_org_id_code || '',
                                                                     "issuer_type_code": arrTranparamsObj.issuer_type_code || '',
@@ -587,7 +589,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         var cbsaccount = `select company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${arrTranparamsObj.cdtr_iban}'`
                                         ExecuteQuery1(cbsaccount, function (arrcbsdata) {
                                             if (arrcbsdata.length > 0) {
-                                                var TakenpsstrdRefno = `select npsstrrd_refno from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs008'`
+                                                var TakenpsstrdRefno = `select npsstrrd_refno,msg_id from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs008'`
                                                 ExecuteQuery1(TakenpsstrdRefno, function (arrnpssRefno) {
                                                     if (arrnpssRefno.length > 0) {
                                                         var Virtual_account
@@ -618,7 +620,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     "payload": {
                                                                         "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                         "account_officer": arrcbsdata[0].account_officer || '',
-                                                                        "msg_id": arrTranparamsObj.hdr_msg_id || '',
+                                                                        "msg_id": arrnpssRefno[0].msg_id  || '',
                                                                         "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
                                                                         "hdr_total_records": arrTranparamsObj.hdr_total_records || '',
                                                                         "hdr_total_amount": arrTranparamsObj.hdr_total_amount || '',
@@ -634,14 +636,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         "category_purpose_prty": arrTranparamsObj.category_purpose_prty || '',
                                                                         "ext_purpose_code": arrTranparamsObj.ext_purpose_code || '',
                                                                         "ext_purpose_prty": arrTranparamsObj.ext_purpose_prty || '',
-                                                                        "lclinstrm": lclinstrm,
+                                                                        "lclinstrm": lclinstrm || '',
                                                                         "instrument_type": arrTranparamsObj.instrument_type || '',
                                                                         "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
                                                                         "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt || '',
                                                                         "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
                                                                         "dbtr_acct_no": arrTranparamsObj.dbtr_acct_no || '',
                                                                         "ext_acct_id_code": arrTranparamsObj.ext_acct_id_code || '',
-                                                                        "charge_code": arrTranparamsObj.charge_code || '',
+                                                                        "charge_code":  arrTranparamsObj.dbtr_cust_type || '',
                                                                         "dbtr_cust_type": arrTranparamsObj.dbtr_cust_type || '',
                                                                         "ext_org_id_code": arrTranparamsObj.ext_org_id_code || '',
                                                                         "issuer_type_code": arrTranparamsObj.issuer_type_code || '',
@@ -662,7 +664,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         "cr_acct_identification": arrTranparamsObj.cr_acct_identification || '',
                                                                         "cr_acct_id_code": arrTranparamsObj.cr_acct_id_code || '',
                                                                         "message_data": arrTranparamsObj.message_data || '',
-                                                                        "process_type": arrTranparamsObj.process_type || '',
+                                                                        "process_type": 'IR',
                                                                         "status": arrTranparamsObj.status || '',
                                                                         "process_status": arrTranparamsObj.process_status || '',
                                                                         "process": "Pacs.002 Payment Status Report",
@@ -680,7 +682,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         "status_resp_amount": arrrefno[0].status_resp_amount || '',
                                                                         "status_intrbksttlmdt": arrrefno[0].status_intrbksttlmdt || '',
                                                                         "cbuae_return_code": "",
-                                                                        "npsstrrd_refno": arrTranparamsObj.tran_ref_id || '',
+                                                                        "npsstrrd_refno": arrnpssRefno[0].npsstrrd_refno || '',
                                                                         "process_name": "Pacs.002 Payment Status Report",
                                                                         "request_data_json": "",
                                                                         "participant_clearing_system": "",
@@ -774,7 +776,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     if (arrcbsdata.length > 0) {
                                     var CallApi = async() =>{
                                         var TakesellRate = await GetsellRate(arrcbsdata)
-                                        var TakenpsstrdRefno = `select npsstrrd_refno from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs008'`
+                                        var TakenpsstrdRefno = `select npsstrrd_refno,msg_id from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs008'`
                                         ExecuteQuery1(TakenpsstrdRefno, function (arrnpssRefno) {
                                             if (arrnpssRefno.length > 0) {
                                                 var Virtual_account
@@ -802,43 +804,43 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 "intrbk_sttlmt_amt_ccy": arrTranparamsObj.intrbk_sttlm_cur || '',
                                                                 "clrsysref": arrTranparamsObj.clrsysref,
                                                                 "reversal_amount": arrTranparamsObj.reversal_amount,
-                                                                "reversal_amount_ccy": arrTranparamsObj.intrbk_sttlm_cur || '',
+                                                                "reversal_amount_ccy": arrTranparamsObj.account_currency || '',
                                                                 "reversal_code": "",
                                                                 "reversal_id": "",
-                                                                "hdr_total_amount": arrTranparamsObj.hdr_total_amount,
+                                                                "hdr_total_amount": arrTranparamsObj.hdr_total_amount || '',
                                                                 "process": "pacs.007 Payment Return Request",
-                                                                "msg_id": arrTranparamsObj.hdr_msg_id,
-                                                                "hdr_created_date": arrTranparamsObj.hdr_created_date,
+                                                                "msg_id": arrnpssRefno[0].msg_id || '',
+                                                                "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
                                                                 "org_msg_id": "",
                                                                 "org_msgnm_id": "",
-                                                                "hdr_settlement_method": arrTranparamsObj.hdr_settlement_method,
-                                                                "company_code": arrcbsdata[0].company_code,
-                                                                "cr_acc_ccy": arrcbsdata[0].currency,
-                                                                "is_virtual_acc": Virtual_account,
-                                                                "hdr_settlement_date": arrTranparamsObj.hdr_settlement_date,
-                                                                "dbtr_acct_name": arrTranparamsObj.dbtr_acct_name,
-                                                                "category_purpose_prty": arrTranparamsObj.category_purpose_prty,
-                                                                "charge_bearer": arrTranparamsObj.charge_bearer,
-                                                                "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur,
-                                                                "cdtr_iban": arrTranparamsObj.intrbk_sttlm_cur,
-                                                                "category_purpose": arrTranparamsObj.category_purpose,
-                                                                "npsstrrd_refno": arrnpssRefno[0].npsstrrd_refno,
-                                                                "remittance_information": arrTranparamsObj.remittance_info,
-                                                                "cr_sort_code": arrTranparamsObj.dr_sort_code,
-                                                                "dr_sort_code": arrTranparamsObj.dr_sort_code,
-                                                                "tran_ref_no": arrTranparamsObj.tran_ref_no,
+                                                                "hdr_settlement_method": arrTranparamsObj.hdr_settlement_method || '',
+                                                                "company_code": arrcbsdata[0].company_code || '',
+                                                                "cr_acc_ccy": arrcbsdata[0].currency || '',
+                                                                "is_virtual_acc": Virtual_account || '',
+                                                                "hdr_settlement_date": arrTranparamsObj.hdr_settlement_date || '',
+                                                                "dbtr_acct_name": arrTranparamsObj.dbtr_acct_name || '',
+                                                                "category_purpose_prty": arrTranparamsObj.category_purpose_prty || '',
+                                                                "charge_bearer": arrTranparamsObj.charge_bearer || '',
+                                                                "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
+                                                                "cdtr_iban": arrTranparamsObj.cdtr_iban || '',
+                                                                "category_purpose": arrTranparamsObj.category_purpose || '',
+                                                                "npsstrrd_refno": arrnpssRefno[0].npsstrrd_refno || '',
+                                                                "remittance_information": arrTranparamsObj.remittance_info || '',
+                                                                "cr_sort_code": arrTranparamsObj.dr_sort_code || '',
+                                                                "dr_sort_code": arrTranparamsObj.dr_sort_code || '',
+                                                                "tran_ref_no": arrTranparamsObj.tran_ref_no || '',
                                                                 "process_type": 'RR',
                                                                 "retry_count": "0",
                                                                 "AccountInformation": {
-                                                                    "account_number": arrcbsdata[0].account_number,
-                                                                    "company_code": arrcbsdata[0].company_code,
-                                                                    "inactive_marker": arrcbsdata[0].inactive_marker,
-                                                                    "currency": arrcbsdata[0].currency,
-                                                                    "alternate_account_type": arrcbsdata[0].alternate_account_type,
-                                                                    "alternate_account_id": arrcbsdata[0].alternate_account_id,
-                                                                    "account_officer": arrcbsdata[0].account_officer,
-                                                                    "curr_rate_segment": arrcbsdata[0].curr_rate_segment,
-                                                                    "customer_id": arrcbsdata[0].customer_id
+                                                                    "account_number": arrcbsdata[0].account_number || '',
+                                                                    "company_code": arrcbsdata[0].company_code || '',
+                                                                    "inactive_marker": arrcbsdata[0].inactive_marker || '',
+                                                                    "currency": arrcbsdata[0].currency || '',
+                                                                    "alternate_account_type": arrcbsdata[0].alternate_account_type || '',
+                                                                    "alternate_account_id": arrcbsdata[0].alternate_account_id || '',
+                                                                    "account_officer": arrcbsdata[0].account_officer || '',
+                                                                    "curr_rate_segment": arrcbsdata[0].curr_rate_segment || '',
+                                                                    "customer_id": arrcbsdata[0].customer_id || ''
                                                                 }
                                                             }
                                                         }
@@ -1014,7 +1016,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         "cbuae_return_code": "",
                                                                         "npsstrrd_refno": arrnpsstrdrefno[0].npsstrrd_refno || '',
                                                                         "process_name": "Pacs.002 Payment Status Report",
-                                                                        "request_data_json": NULL,
+                                                                        "request_data_json": '',
                                                                         "retry_count": "0"
                                                                     }
                                                                 }
@@ -1146,7 +1148,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             "category_purpose_prty": arrTranparamsObj.category_purpose_prty || '',
                                                                             "ext_purpose_code": arrTranparamsObj.ext_purpose_code || '',
                                                                             "ext_purpose_prty": arrTranparamsObj.ext_purpose_prty || '',
-                                                                            "lclinstrm": lclinstrm,
+                                                                            "lclinstrm": lclinstrm || '',
                                                                             "cr_acc_ccy": arrcbsdata[0].currency || '',
                                                                             "instrument_type": arrTranparamsObj.instrument_type || '',
                                                                             "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
@@ -1154,7 +1156,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
                                                                             "dbtr_acct_no": arrTranparamsObj.dbtr_acct_no || '',
                                                                             "ext_acct_id_code": arrTranparamsObj.ext_acct_id_code || '',
-                                                                            "charge_code": arrTranparamsObj.charge_code || '',
+                                                                            "charge_code": arrTranparamsObj.dbtr_cust_type || '',
                                                                             "dbtr_cust_type": arrTranparamsObj.dbtr_cust_type || '',
                                                                             "ext_org_id_code": arrTranparamsObj.ext_org_id_code || '',
                                                                             "issuer_type_code": arrTranparamsObj.issuer_type_code || '',
@@ -1193,7 +1195,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             "status_resp_amount": arrrefno[0].status_resp_amount || '',
                                                                             "status_intrbksttlmdt": arrrefno[0].status_intrbksttlmdt || '',
                                                                             "cbuae_return_code": "",
-                                                                            "npsstrrd_refno": arrTranparamsObj.tran_ref_id || '',
+                                                                            "npsstrrd_refno": arrnpssRefno[0].npsstrrd_refno || '',
                                                                             "process_name": "Pacs.002 Payment Status Report",
                                                                             "request_data_json": "",
                                                                             "participant_clearing_system": "",
@@ -1387,6 +1389,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

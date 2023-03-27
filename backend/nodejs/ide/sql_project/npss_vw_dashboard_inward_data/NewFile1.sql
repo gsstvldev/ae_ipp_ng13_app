@@ -118,13 +118,52 @@ SELECT res.sno,
                 END) AS pending_returns_checker,
             to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
             case when 
-            (nppst.department_code = '') or (nppst.department_code = NULL) then 'NA'
+            (nppst.department_code = '') or (nppst.department_code IS NULL) then 'DEFAULT'
             else department_code end department_code
            FROM npss_transactions nppst
              JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
           WHERE to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE AND
           nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs008'::character varying::text, 'Receive Pacs.007'::character varying::text, 'Place Pacs004'::character varying::text,'PACS.008'::character varying::text, 'PACS.007'::character varying::text]))
           GROUP BY nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group,nppst.department_code, (to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text))
-        ) res
+        UNION ALL (
+                         SELECT 1 AS sno,
+                            'pacs.008'::text AS type,
+                            0 AS total,
+                            0 AS pending_screening,
+                            0 AS returned,
+                            0 AS pending_maker,
+                            0 AS pending_checker,
+                            0 AS successfullyposted,
+                            0 AS pending_returns_maker,
+                            0 AS pending_returns_checker,
+                            to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
+                            'DEFAULT'::text AS department_code
+                        UNION
+                         SELECT 3 AS sno,
+                            'pacs.007'::text AS type,
+                            0 AS total,
+                            0 AS pending_screening,
+                            0 AS returned,
+                            0 AS pending_maker,
+                            0 AS pending_checker,
+                            0 AS successfullyposted,
+                            0 AS pending_returns_maker,
+                            0 AS pending_returns_checker,
+                            to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
+                            'DEFAULT'::text AS department_code
+                        UNION
+                         SELECT 2 AS sno,
+                            'pacs.004'::text AS type,
+                            0 AS total,
+                            0 AS pending_screening,
+                            0 AS returned,
+                            0 AS pending_maker,
+                            0 AS pending_checker,
+                            0 AS successfullyposted,
+                            0 AS pending_returns_maker,
+                            0 AS pending_returns_checker,
+                            to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
+                            'DEFAULT'::text AS department_code
+                )) res
   GROUP BY res.type, res.created_date, res.sno,res.department_code
    order by res.sno

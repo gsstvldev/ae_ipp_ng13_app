@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28902 
+Build ID        : 28922 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-25 8:10 AM 
+Modified Date   : 2023-Mar-27 10:7 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -23,12 +23,13 @@ import {npss_cs_cc_postingService} from '../../../custom_widget/npss_cs_cc_posti
 import {npss_cs_enquiryService} from '../../../custom_widget/npss_cs_enquiry/npss_cs_enquiry.service'
 import {npss_cs_t24_postingService} from '../../../custom_widget/npss_cs_t24_posting/npss_cs_t24_posting.service'
 import {npss_cs_rct_completeService} from '../../../custom_widget/npss_cs_rct_complete/npss_cs_rct_complete.service'
+import {npss_cs_inward_posting_failure_force_to_postService} from '../../../custom_widget/npss_cs_inward_posting_failure_force_to_post/npss_cs_inward_posting_failure_force_to_post.service'
 
 @Component({
 	selector: 's_rct_posting_failures',
 	templateUrl: './s_rct_posting_failures.component.html',
 	styleUrls: ['./s_rct_posting_failures.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_check_uetrService,npss_cs_rct_inward_posting_failure_retry_repostService,npss_cs_rct_inward_posting_failure_closeService,npss_cs_rct_already_postingService,npss_cs_cc_postingService,npss_cs_enquiryService,npss_cs_t24_postingService,npss_cs_rct_completeService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_check_uetrService,npss_cs_rct_inward_posting_failure_retry_repostService,npss_cs_rct_inward_posting_failure_closeService,npss_cs_rct_already_postingService,npss_cs_cc_postingService,npss_cs_enquiryService,npss_cs_t24_postingService,npss_cs_rct_completeService,npss_cs_inward_posting_failure_force_to_postService]
 })
     
 // Start of class 
@@ -90,6 +91,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	navigation_ui_view_tran : any = {}
 	navigation_ui_call_cc_posting : any = {}
 	navigation_ui_complete : any = {}
+	navigation_ui_force_post : any = {}
 	navigation_ui_trg_btn : any = {}
 	search : any = {}
 	search_search : any = {}
@@ -122,7 +124,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_check_uetrService:npss_cs_check_uetrService,private npss_cs_rct_inward_posting_failure_retry_repostService:npss_cs_rct_inward_posting_failure_retry_repostService,private npss_cs_rct_inward_posting_failure_closeService:npss_cs_rct_inward_posting_failure_closeService,private npss_cs_rct_already_postingService:npss_cs_rct_already_postingService,private npss_cs_cc_postingService:npss_cs_cc_postingService,private npss_cs_enquiryService:npss_cs_enquiryService,private npss_cs_t24_postingService:npss_cs_t24_postingService,private npss_cs_rct_completeService:npss_cs_rct_completeService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_check_uetrService:npss_cs_check_uetrService,private npss_cs_rct_inward_posting_failure_retry_repostService:npss_cs_rct_inward_posting_failure_retry_repostService,private npss_cs_rct_inward_posting_failure_closeService:npss_cs_rct_inward_posting_failure_closeService,private npss_cs_rct_already_postingService:npss_cs_rct_already_postingService,private npss_cs_cc_postingService:npss_cs_cc_postingService,private npss_cs_enquiryService:npss_cs_enquiryService,private npss_cs_t24_postingService:npss_cs_t24_postingService,private npss_cs_rct_completeService:npss_cs_rct_completeService,private npss_cs_inward_posting_failure_force_to_postService:npss_cs_inward_posting_failure_force_to_postService) {
     
 	}
     
@@ -273,6 +275,15 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_complete.dynamic_param = {}
 		this.navigation_ui_complete.role = []
 		this.navigation_ui_complete.action = ""
+		
+		// "Force Post" Button of "Navigation UI" component
+		this.navigation_ui_force_post.label_name = "Force Post"
+		this.navigation_ui_force_post.show = true
+		this.navigation_ui_force_post.disabled = false
+		this.navigation_ui_force_post.params = {"icon_only":false,"uicgcc_style":"fa fa-dot-circle-o"}
+		this.navigation_ui_force_post.dynamic_param = {}
+		this.navigation_ui_force_post.role = []
+		this.navigation_ui_force_post.action = ""
 		
 		// "TRG BTN" Button of "Navigation UI" component
 		this.navigation_ui_trg_btn.label_name = "TRG BTN"
@@ -620,6 +631,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.page_load__he_for_call_enquiry()
 		this.page_load__he_for_call_t24_posting()
 		this.page_load__he_for_complete_btn()
+		this.page_load__e_1679904187027()
 	}
 
 	//Handler for INTERNAL event of "cf for routing key"
@@ -655,6 +667,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	//Handler for SELECTION_CHANGED event of "queue"
 	queue__selection_changed(){
 		this.queue__svm_for_queue()
+		this.queue__e_1679904170265()
 	}
 
 	//Handler for INTERNAL event of "svm for queue"
@@ -694,6 +707,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.transaction_list__ee_for_call_enquiry()
 		this.transaction_list__ee_for_call_t24_posting()
 		this.transaction_list__ee_for_complete_btn()
+		this.transaction_list__e_1679904213836()
 	}
 
 	//Handler for INTERNAL event of "svm for tl"
@@ -964,6 +978,21 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.im_for_complete_btn__rs_for_complete_btn(parent_event_result)
 	}
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui force post"
+	navigation_ui_force_post__action_button_click(){
+		this.navigation_ui_force_post__e_1679903839936()
+	}
+
+	//Handler for INTERNAL event of "e 1679903839936"
+	e_1679903839936__internal(parent_event_result){
+		this.e_1679903839936__e_1679911453974(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1679911453974"
+	e_1679911453974__internal(parent_event_result){
+		this.e_1679911453974__e_1679911498910(parent_event_result)
+	}
+
 	//Handler for DPSINIT event of "page_load"
 	page_load__he_from_pg_to_view_details() { 
 		let Dest_Is_ctrl=true
@@ -1147,6 +1176,27 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1679904187027() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_force_post"
+		let parent_source_id=""
+		let event_code="e_1679904187027"
+		let event_params={"caller_name":"page_load__e_1679904187027","event_desc":"E_1679904187027","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1381,6 +1431,27 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1670660153211","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"RCT IP Posting Failure Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1677558886041","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1677558886198","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1677558886620","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS,processgroup from  (  select   NT.CREATED_DATE,   NT.STATUS,   NT.PROCESS_STATUS,   NT.UETR,   NT.PROCESSING_SYSTEM,   NT.TENANT_ID,   NT.MODIFIED_DATE,   NT.MODIFIED_DATE_UTC,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   NT.CREATED_BY,   NT.CREATED_BY_NAME,   NT.SYSTEM_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER,   NT.DEPARTMENT_CODE,   NT.VALUE_DATE,   NT.DBTR_ACCT_NO,   NT.DBTR_ACCT_NAME,   NT.CDTR_ACCT_NO,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.INTRBK_STTLM_AMNT,   NT.PROCESS_TYPE,   NT.DBTR_IBAN,   NT.INTRBK_STTLM_CUR,   NT.INTRBK_STTLM_AMNT,   NTPL.PROCESS_NAME,   CNEC.error_description,   ntpl.cbuae_return_code,   cnca.customer_posting_restriction_code,   cnca.account_postring_type_description,   NT.account_currency,   NT.CR_SORT_CODE,   NT.DR_SORT_CODE,   ntpl.T24_return_code,   CASE     WHEN nt.process_status LIKE upper('RCT%') THEN 'Online'     when nt.process_status LIKE upper('BCT%') THEN 'Batch'    END AS processgroup  from   NPSS_TRANSACTIONS NT  left join TRANSACTION_SET TS on   NT.NPSST_ID = TS.TRN_ID   and NT.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NT.STATUS = QR.PROCESS_QUEUE_STATUS   and NT.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NT.PROCESS_STATUS = PQ.QUEUE_CODE  inner join NPSS_TRN_PROCESS_LOG NTPL on   NTPL.UETR = NT.UETR  left join core_nc_cbs_accounts cnca on   cnca.alternate_account_id = NT.CDTR_IBAN  left join <tran_db>.core_member_banks cmb1 on   cmb1.bic_code = NT.CR_SORT_CODE   and cmb1.need_sync = 'Y'  left join <tran_db>.core_member_banks cmb2 on   cmb2.bic_code = NT.DR_SORT_CODE   and cmb2.need_sync = 'Y'  left join <tran_db>.core_nc_error_codes cnec on   CNEC.error_code = ntpl.T24_return_code   and cnec.need_sync = 'Y'  left join <tran_db>.core_nc_post_restrictions cnpr on   cnpr.restriction_id = cnca.customer_posting_restriction_code   and cnpr.need_sync = 'Y' ) VW $WHERE order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS RCT IP Posting Failure Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "queue"
+	queue__e_1679904170265() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="queue"
+		let destn_id="navigation_ui_force_post"
+		let parent_source_id=""
+		let event_code="e_1679904170265"
+		let event_params={"caller_name":"queue__e_1679904170265","event_desc":"E_1679904170265","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1631,6 +1702,27 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1678356582752"
 		let event_params={"caller_name":"transaction_list__ee_for_complete_btn","event_desc":"EE for Complete btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "transaction list"
+	transaction_list__e_1679904213836() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_force_post"
+		let parent_source_id=""
+		let event_code="e_1679904213836"
+		let event_params={"caller_name":"transaction_list__e_1679904213836","event_desc":"E_1679904213836","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
@@ -3146,6 +3238,71 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let parent_source_id="cc_for_complete_btn"
 		let event_code="e_1678356039617"
 		let event_params={"caller_name":"im_for_complete_btn__rs_for_complete_btn","event_desc":"RS for Complete btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_complete","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui force post"
+	navigation_ui_force_post__e_1679903839936() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_force_post"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1679903839936"
+		let event_params={"caller_name":"navigation_ui_force_post__e_1679903839936","event_desc":"E_1679903839936","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_post","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1679903839936__e_1679911453974,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_inward_posting_failure_force_to_postService.fn_npss_cs_inward_posting_failure_force_to_post(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1679903839936"
+	e_1679903839936__e_1679911453974(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1679903839936"
+		let destn_id=""
+		let parent_source_id="navigation_ui_force_post"
+		let event_code="e_1679911453974"
+		let event_params={"caller_name":"e_1679903839936__e_1679911453974","event_desc":"E_1679911453974","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been forced to post successfully","root_source_id":"navigation_ui_force_post","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1679911453974__e_1679911498910,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1679911453974"
+	e_1679911453974__e_1679911498910(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1679911453974"
+		let destn_id=""
+		let parent_source_id="e_1679903839936"
+		let event_code="e_1679911498910"
+		let event_params={"caller_name":"e_1679911453974__e_1679911498910","event_desc":"E_1679911498910","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_post","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

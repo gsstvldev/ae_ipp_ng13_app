@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28916 
+Build ID        : 28935 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-27 12:37 PM 
+Modified Date   : 2023-Mar-27 14:19 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_posting_failure
@@ -19,13 +19,13 @@ import {npss_cs_check_uetrService} from '../../../custom_widget/npss_cs_check_ue
 import {npss_cs_rct_outward_posting_failure_retry_repostService} from '../../../custom_widget/npss_cs_rct_outward_posting_failure_retry_repost/npss_cs_rct_outward_posting_failure_retry_repost.service'
 import {npss_cs_rct_outward_posting_failure_closeService} from '../../../custom_widget/npss_cs_rct_outward_posting_failure_close/npss_cs_rct_outward_posting_failure_close.service'
 import {npss_cs_rct_outward_already_postingService} from '../../../custom_widget/npss_cs_rct_outward_already_posting/npss_cs_rct_outward_already_posting.service'
-import {npss_cs_inward_posting_failure_force_to_postService} from '../../../custom_widget/npss_cs_inward_posting_failure_force_to_post/npss_cs_inward_posting_failure_force_to_post.service'
+import {npss_cs_outward_posting_failure_force_to_postService} from '../../../custom_widget/npss_cs_outward_posting_failure_force_to_post/npss_cs_outward_posting_failure_force_to_post.service'
 
 @Component({
 	selector: 's_op_rct_posting_failure',
 	templateUrl: './s_op_rct_posting_failure.component.html',
 	styleUrls: ['./s_op_rct_posting_failure.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_check_uetrService,npss_cs_rct_outward_posting_failure_retry_repostService,npss_cs_rct_outward_posting_failure_closeService,npss_cs_rct_outward_already_postingService,npss_cs_inward_posting_failure_force_to_postService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_check_uetrService,npss_cs_rct_outward_posting_failure_retry_repostService,npss_cs_rct_outward_posting_failure_closeService,npss_cs_rct_outward_already_postingService,npss_cs_outward_posting_failure_force_to_postService]
 })
     
 // Start of class 
@@ -120,7 +120,7 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_check_uetrService:npss_cs_check_uetrService,private npss_cs_rct_outward_posting_failure_retry_repostService:npss_cs_rct_outward_posting_failure_retry_repostService,private npss_cs_rct_outward_posting_failure_closeService:npss_cs_rct_outward_posting_failure_closeService,private npss_cs_rct_outward_already_postingService:npss_cs_rct_outward_already_postingService,private npss_cs_inward_posting_failure_force_to_postService:npss_cs_inward_posting_failure_force_to_postService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_check_uetrService:npss_cs_check_uetrService,private npss_cs_rct_outward_posting_failure_retry_repostService:npss_cs_rct_outward_posting_failure_retry_repostService,private npss_cs_rct_outward_posting_failure_closeService:npss_cs_rct_outward_posting_failure_closeService,private npss_cs_rct_outward_already_postingService:npss_cs_rct_outward_already_postingService,private npss_cs_outward_posting_failure_force_to_postService:npss_cs_outward_posting_failure_force_to_postService) {
     
 	}
     
@@ -911,12 +911,12 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui force post"
 	navigation_ui_force_post__action_button_click(){
-		this.navigation_ui_force_post__e_1679910145878()
+		this.navigation_ui_force_post__e_1679910145876()
 	}
 
-	//Handler for INTERNAL event of "e 1679910145878"
-	e_1679910145878__internal(parent_event_result){
-		this.e_1679910145878__e_1679910161339(parent_event_result)
+	//Handler for INTERNAL event of "e 1679910145876"
+	e_1679910145876__internal(parent_event_result){
+		this.e_1679910145876__e_1679910161339(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "e 1679910161339"
@@ -2841,36 +2841,36 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui force post"
-	navigation_ui_force_post__e_1679910145878() { 
+	navigation_ui_force_post__e_1679910145876() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_ui_force_post"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1679910145878"
-		let event_params={"caller_name":"navigation_ui_force_post__e_1679910145878","event_desc":"E_1679910145878","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_post","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_force_post__e_1679910145876","event_desc":"E_1679910145876","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_post","raiseparam":{}}
 		let handler_code="custom_connectors"
-		let internals="e_1679910145878__e_1679910161339,"
+		let internals="e_1679910145876__e_1679910161339,"
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_inward_posting_failure_force_to_postService.fn_npss_cs_inward_posting_failure_force_to_post(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_outward_posting_failure_force_to_postService.fn_npss_cs_outward_posting_failure_force_to_post(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
  		} 
 	} 
 
-	//Handler for INTERNAL event of "e 1679910145878"
-	e_1679910145878__e_1679910161339(parent_event_result) { 
+	//Handler for INTERNAL event of "e 1679910145876"
+	e_1679910145876__e_1679910161339(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1679910145878"
+		let source_id="e_1679910145876"
 		let destn_id=""
 		let parent_source_id="navigation_ui_force_post"
 		let event_code="e_1679910161339"
-		let event_params={"caller_name":"e_1679910145878__e_1679910161339","event_desc":"E_1679910161339","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been forced to post successfully","root_source_id":"navigation_ui_force_post","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"e_1679910145876__e_1679910161339","event_desc":"E_1679910161339","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been forced to post successfully","root_source_id":"navigation_ui_force_post","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="e_1679910161339__e_1679910170291,"
 		let event_data={}
@@ -2890,7 +2890,7 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="e_1679910161339"
 		let destn_id=""
-		let parent_source_id="e_1679910145878"
+		let parent_source_id="e_1679910145876"
 		let event_code="e_1679910170291"
 		let event_params={"caller_name":"e_1679910161339__e_1679910170291","event_desc":"E_1679910170291","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_post","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"

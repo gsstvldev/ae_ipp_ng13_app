@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28922 
+Build ID        : 28934 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-27 10:7 AM 
+Modified Date   : 2023-Mar-27 12:28 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -698,6 +698,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.transaction_list__cc_for_disable()
 		this.transaction_list__ee_for_repost_btn()
 		this.transaction_list__ee_for_close_btn()
+		this.transaction_list__e_1679920022772()
 	}
 
 	//Handler for SELECTION_CHANGED event of "transaction list"
@@ -707,7 +708,6 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.transaction_list__ee_for_call_enquiry()
 		this.transaction_list__ee_for_call_t24_posting()
 		this.transaction_list__ee_for_complete_btn()
-		this.transaction_list__e_1679904213836()
 	}
 
 	//Handler for INTERNAL event of "svm for tl"
@@ -1714,27 +1714,6 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "transaction list"
-	transaction_list__e_1679904213836() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="transaction_list"
-		let destn_id="navigation_ui_force_post"
-		let parent_source_id=""
-		let event_code="e_1679904213836"
-		let event_params={"caller_name":"transaction_list__e_1679904213836","event_desc":"E_1679904213836","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
 	//Handler for CHECKED_CHANGED event of "transaction list"
 	transaction_list__cc_for_disable() { 
 		let Dest_Is_ctrl=true
@@ -1786,6 +1765,27 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1676439375606"
 		let event_params={"caller_name":"transaction_list__ee_for_close_btn","event_desc":"EE for close btn","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for CHECKED_CHANGED event of "transaction list"
+	transaction_list__e_1679920022772() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="transaction_list"
+		let destn_id="navigation_ui_force_post"
+		let parent_source_id=""
+		let event_code="e_1679920022772"
+		let event_params={"caller_name":"transaction_list__e_1679920022772","event_desc":"E_1679920022772","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}

@@ -6,9 +6,15 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
+
+
+
+
+
+
     try {
         /*   Created By :Siva Harish
-        Created Date :27-03-2023
+        Created Date :28-03-2023
         Modified By : 
         */
         var serviceName = 'NPSS (CS) Inward Posting Failure Force to Post';
@@ -72,23 +78,34 @@ app.post('/', function(appRequest, appResponse, next) {
                                     final_status = arrurlResult[0].success_status
                                     ExecuteQuery1(Takekafkaurl, async function (arrurl) {
                                         if (arrurl.length > 0) {
-                                         
+                                          
                                                 ExecuteQuery1(take_api_params, async function (arrTranparams) {
                                                     if (arrTranparams.length > 0) {
                                                         var Apicalls
-
+                                                        let processName
+                                                        let ext_ident_value
                                                         if (params.eligible_status == 'IP_RCT_PC_T24_POSTING_RETRY') { //prepaid
-                                                            Apicalls = await Callprepaidapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl)
+                                                            processName = 'Prepaid Card Ac Posting'
+                                                            ext_ident_value = await GetRetrycount(processName, arrTranparams[0].uetr)
+                                                            Apicalls = await Callprepaidapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
                                                         } else if (params.eligible_status == 'IP_RCT_CC_T24_POSTING_RETRY') { //credit
-                                                            Apicalls = await Callcreditapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl)
+                                                            processName = 'Credit Card Pool Ac Posting'
+                                                            ext_ident_value = await GetRetrycount(processName, arrTranparams[0].uetr)
+                                                            Apicalls = await Callcreditapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
                                                         } else if (params.eligible_status == 'IP_RCT_RETURN_POSTING_RETRY') { //inward return Nostro Posting API
-                                                            Apicalls = await CallNostroapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl)
+                                                            processName = 'IR Nostro Posting'
+                                                            ext_ident_value = await GetRetrycount(processName, arrTranparams[0].uetr)
+                                                            Apicalls = await CallNostroapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
                                                         } else if (params.eligible_status == 'IP_RCT_RR_POSTING_RETRY') { //T24 inward return Posting API (Auto Return Case)
-                                                            Apicalls = await CallautoReturn(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl)
+                                                            processName = 'IR Debit Posting'
+                                                            ext_ident_value = await GetRetrycount(processName, arrTranparams[0].uetr)
+                                                            Apicalls = await CallautoReturn(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
                                                         } else if (params.eligible_status == 'IP_RCT_PC_POSTING_RETRY') { //ELPASO Posting
-                                                            Apicalls = await CallELPASOapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl)
+                                                            Apicalls = await CallELPASOapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
                                                         } else if (params.eligible_status == 'IP_RCT_POSTING_RETRY') {//T24 INward 
-                                                            Apicalls = await CallT24Posting(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl)
+                                                            processName = 'Inward Credit Posting'
+                                                            ext_ident_value = await GetRetrycount(processName, arrTranparams[0].uetr)
+                                                            Apicalls = await CallT24Posting(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
                                                         } else {
                                                             objresponse.status = "FAILURE"
                                                             objresponse.errdata = "No Eligible status for checker role"
@@ -147,9 +164,11 @@ app.post('/', function(appRequest, appResponse, next) {
                     function InsertProcess(arrTranparams, success_process_status, success_status, PRCT_ID) {
                         return new Promise((resolve, reject) => {
                             var processName
-                           
+                            if (params.Roleid == '705' || params.Roleid == 705) {
+                                processName = 'Retry - Maker'
+                            } else {
                                 processName = 'Repost - Checker'
-                            
+                            }
                             var arrCusTranInst = [];
 
                             var objCusTranInst = {}
@@ -209,7 +228,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                    function Callprepaidapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl) {
+                    function Callprepaidapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var TakepostingRefno = `select  process_ref_no,status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs002'`
@@ -239,6 +258,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             data: {
                                                                 "payload": {
                                                                     "force_post_flag": "Y",
+                                                                    "ext_iden_retry_value": ext_ident_value || '',
                                                                     "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                     "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
                                                                     "hdr_total_records": arrTranparamsObj.hdr_total_records || '',
@@ -262,7 +282,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
                                                                     "dbtr_acct_no": arrTranparamsObj.dbtr_acct_no || '',
                                                                     "ext_acct_id_code": arrTranparamsObj.ext_acct_id_code || '',
-                                                                    "charge_code":arrTranparamsObj.dbtr_cust_type || '',
+                                                                    "charge_code": arrTranparamsObj.dbtr_cust_type || '',
                                                                     "dbtr_cust_type": arrTranparamsObj.dbtr_cust_type || '',
                                                                     "ext_org_id_code": arrTranparamsObj.ext_org_id_code || '',
                                                                     "issuer_type_code": arrTranparamsObj.issuer_type_code || '',
@@ -380,7 +400,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
 
-                    function Callcreditapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl) {
+                    function Callcreditapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
 
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
@@ -411,6 +431,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             data: {
                                                                 "payload": {
                                                                     "force_post_flag": "Y",
+                                                                    "ext_iden_retry_value": ext_ident_value || '',
                                                                     "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                     "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
                                                                     "hdr_total_records": arrTranparamsObj.hdr_total_records || '',
@@ -434,7 +455,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
                                                                     "dbtr_acct_no": arrTranparamsObj.dbtr_acct_no || '',
                                                                     "ext_acct_id_code": arrTranparamsObj.ext_acct_id_code || '',
-                                                                    "charge_code":  arrTranparamsObj.dbtr_cust_type || '',
+                                                                    "charge_code": arrTranparamsObj.dbtr_cust_type || '',
                                                                     "dbtr_cust_type": arrTranparamsObj.dbtr_cust_type || '',
                                                                     "ext_org_id_code": arrTranparamsObj.ext_org_id_code || '',
                                                                     "issuer_type_code": arrTranparamsObj.issuer_type_code || '',
@@ -553,7 +574,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
 
-                    function CallNostroapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl) {
+                    function CallNostroapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
 
 
                         return new Promise((resolve, reject) => {
@@ -594,9 +615,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 data: {
                                                                     "payload": {
                                                                         "force_post_flag": "Y",
+                                                                        "ext_iden_retry_value": ext_ident_value || '',
                                                                         "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                         "account_officer": arrcbsdata[0].account_officer || '',
-                                                                        "msg_id": arrnpssRefno[0].msg_id  || '',
+                                                                        "msg_id": arrnpssRefno[0].msg_id || '',
                                                                         "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
                                                                         "hdr_total_records": arrTranparamsObj.hdr_total_records || '',
                                                                         "hdr_total_amount": arrTranparamsObj.hdr_total_amount || '',
@@ -619,7 +641,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
                                                                         "dbtr_acct_no": arrTranparamsObj.dbtr_acct_no || '',
                                                                         "ext_acct_id_code": arrTranparamsObj.ext_acct_id_code || '',
-                                                                        "charge_code":  arrTranparamsObj.dbtr_cust_type || '',
+                                                                        "charge_code": arrTranparamsObj.dbtr_cust_type || '',
                                                                         "dbtr_cust_type": arrTranparamsObj.dbtr_cust_type || '',
                                                                         "ext_org_id_code": arrTranparamsObj.ext_org_id_code || '',
                                                                         "issuer_type_code": arrTranparamsObj.issuer_type_code || '',
@@ -743,137 +765,138 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     }
 
-                    function CallautoReturn(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl) {
+                    function CallautoReturn(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
 
                                 var cbsaccount = `select curr_rate_segment,alternate_account_id,currency,account_number,account_officer,company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${arrTranparamsObj.cdtr_iban}'`
                                 ExecuteQuery1(cbsaccount, function (arrcbsdata) {
                                     if (arrcbsdata.length > 0) {
-                                    var CallApi = async() =>{
-                                        var TakesellRate = await GetsellRate(arrcbsdata)
-                                        var TakenpsstrdRefno = `select npsstrrd_refno,msg_id from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs008'`
-                                        ExecuteQuery1(TakenpsstrdRefno, function (arrnpssRefno) {
-                                            if (arrnpssRefno.length > 0) {
-                                                var Virtual_account
-                                                if (arrcbsdata[0].alternate_account_type == 'VA.IBAN' || arrcbsdata[0].alternate_account_type == 'VA.BBAN') {
-                                                    Virtual_account = 'Y'
-                                                } else {
-                                                    Virtual_account = 'N'
-                                                }
-
-                                                var request = require('request');
-                                                var options = {
-                                                    url: arrurl[0].param_detail,
-                                                    timeout: 18000000,
-                                                    method: 'POST',
-                                                    json: {
-                                                        batch_name: "CR-CBS-POSTING-Q",
-                                                        data: {
-                                                            "payload": {
-                                                                "force_post_flag": "Y",
-                                                                "internal_acc_no": arrcbsdata[0].account_number || '',
-                                                                "tran_ref_id": arrTranparamsObj.tran_ref_id || '',
-                                                                "uetr": arrTranparamsObj.uetr || '',
-                                                                "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
-                                                                "payment_endtoend_id": arrTranparamsObj.payment_endtoend_id || '',
-                                                                "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt || '',
-                                                                "intrbk_sttlmt_amt_ccy": arrTranparamsObj.intrbk_sttlm_cur || '',
-                                                                "clrsysref": arrTranparamsObj.clrsysref,
-                                                                "reversal_amount": arrTranparamsObj.reversal_amount,
-                                                                "reversal_amount_ccy": arrTranparamsObj.account_currency || '',
-                                                                "reversal_code": "",
-                                                                "reversal_id": "",
-                                                                "hdr_total_amount": arrTranparamsObj.hdr_total_amount || '',
-                                                                "process": "pacs.007 Payment Return Request",
-                                                                "msg_id": arrnpssRefno[0].msg_id || '',
-                                                                "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
-                                                                "org_msg_id": "",
-                                                                "org_msgnm_id": "",
-                                                                "hdr_settlement_method": arrTranparamsObj.hdr_settlement_method || '',
-                                                                "company_code": arrcbsdata[0].company_code || '',
-                                                                "cr_acc_ccy": arrcbsdata[0].currency || '',
-                                                                "is_virtual_acc": Virtual_account || '',
-                                                                "hdr_settlement_date": arrTranparamsObj.hdr_settlement_date || '',
-                                                                "dbtr_acct_name": arrTranparamsObj.dbtr_acct_name || '',
-                                                                "category_purpose_prty": arrTranparamsObj.category_purpose_prty || '',
-                                                                "charge_bearer": arrTranparamsObj.charge_bearer || '',
-                                                                "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
-                                                                "cdtr_iban": arrTranparamsObj.cdtr_iban || '',
-                                                                "category_purpose": arrTranparamsObj.category_purpose || '',
-                                                                "npsstrrd_refno": arrnpssRefno[0].npsstrrd_refno || '',
-                                                                "remittance_information": arrTranparamsObj.remittance_info || '',
-                                                                "cr_sort_code": arrTranparamsObj.dr_sort_code || '',
-                                                                "dr_sort_code": arrTranparamsObj.dr_sort_code || '',
-                                                                "tran_ref_no": arrTranparamsObj.tran_ref_no || '',
-                                                                "process_type": 'RR',
-                                                                "retry_count": "0",
-                                                                "AccountInformation": {
-                                                                    "account_number": arrcbsdata[0].account_number || '',
-                                                                    "company_code": arrcbsdata[0].company_code || '',
-                                                                    "inactive_marker": arrcbsdata[0].inactive_marker || '',
-                                                                    "currency": arrcbsdata[0].currency || '',
-                                                                    "alternate_account_type": arrcbsdata[0].alternate_account_type || '',
-                                                                    "alternate_account_id": arrcbsdata[0].alternate_account_id || '',
-                                                                    "account_officer": arrcbsdata[0].account_officer || '',
-                                                                    "curr_rate_segment": arrcbsdata[0].curr_rate_segment || '',
-                                                                    "customer_id": arrcbsdata[0].customer_id || ''
-                                                                }
-                                                            }
-                                                        }
-                                                    },
-                                                    headers: {
-                                                        'Content-Type': 'application/json'
-                                                    }
-
-                                                }
-                                                if (TakesellRate != ''){
-                                                    options.json.data.payload.sell_rate = TakesellRate.sell_rate || ''
-                                                    options.json.data.payload.sell_margin = TakesellRate.sell_margin || ''
-                                                }
-                                                var PrintInfo = {}
-                                                PrintInfo.url = arrurl[0].param_detail
-                                                PrintInfo.uetr = arrTranparamsObj.uetr || ''
-                                                PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
-                                                PrintInfo.msg_id = arrTranparamsObj.hdr_msg_id || ''
-                                                PrintInfo.clrsysref = arrTranparamsObj.clrsysref || ''
-
-                                                reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
-                                                request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
-                                                    if (error) {
-                                                        reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
-                                                        sendResponse(error, null);
-
+                                        var CallApi = async () => {
+                                            var TakesellRate = await GetsellRate(arrcbsdata)
+                                            var TakenpsstrdRefno = `select npsstrrd_refno,msg_id from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs008'`
+                                            ExecuteQuery1(TakenpsstrdRefno, function (arrnpssRefno) {
+                                                if (arrnpssRefno.length > 0) {
+                                                    var Virtual_account
+                                                    if (arrcbsdata[0].alternate_account_type == 'VA.IBAN' || arrcbsdata[0].alternate_account_type == 'VA.BBAN') {
+                                                        Virtual_account = 'Y'
                                                     } else {
-                                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-                                                        if (responseBodyFromImagingService == 'SUCCESS') {
-                                                            var InsPrcs = async () => {
-                                                                var InsertTran = await InsertProcess(arrTranparamsObj, final_process_status, final_status, PRCT_ID)
-                                                                if (InsertTran == 'SUCCESS') {
-                                                                    nextobjctfunc()
-                                                                } else {
-                                                                    objresponse.status = 'FAILURE'
-                                                                    objresponse.errdata = "Credit Pool Posting API - Update  Process Failure For TranId" + arrTranparamsObj.npsst_id
-                                                                    sendResponse(null, objresponse)
+                                                        Virtual_account = 'N'
+                                                    }
+
+                                                    var request = require('request');
+                                                    var options = {
+                                                        url: arrurl[0].param_detail,
+                                                        timeout: 18000000,
+                                                        method: 'POST',
+                                                        json: {
+                                                            batch_name: "CR-CBS-POSTING-Q",
+                                                            data: {
+                                                                "payload": {
+                                                                    "force_post_flag": "Y",
+                                                                    "ext_iden_retry_value": ext_ident_value || '',
+                                                                    "internal_acc_no": arrcbsdata[0].account_number || '',
+                                                                    "tran_ref_id": arrTranparamsObj.tran_ref_id || '',
+                                                                    "uetr": arrTranparamsObj.uetr || '',
+                                                                    "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
+                                                                    "payment_endtoend_id": arrTranparamsObj.payment_endtoend_id || '',
+                                                                    "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt || '',
+                                                                    "intrbk_sttlmt_amt_ccy": arrTranparamsObj.intrbk_sttlm_cur || '',
+                                                                    "clrsysref": arrTranparamsObj.clrsysref,
+                                                                    "reversal_amount": arrTranparamsObj.reversal_amount,
+                                                                    "reversal_amount_ccy": arrTranparamsObj.account_currency || '',
+                                                                    "reversal_code": "",
+                                                                    "reversal_id": "",
+                                                                    "hdr_total_amount": arrTranparamsObj.hdr_total_amount || '',
+                                                                    "process": "pacs.007 Payment Return Request",
+                                                                    "msg_id": arrnpssRefno[0].msg_id || '',
+                                                                    "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
+                                                                    "org_msg_id": "",
+                                                                    "org_msgnm_id": "",
+                                                                    "hdr_settlement_method": arrTranparamsObj.hdr_settlement_method || '',
+                                                                    "company_code": arrcbsdata[0].company_code || '',
+                                                                    "cr_acc_ccy": arrcbsdata[0].currency || '',
+                                                                    "is_virtual_acc": Virtual_account || '',
+                                                                    "hdr_settlement_date": arrTranparamsObj.hdr_settlement_date || '',
+                                                                    "dbtr_acct_name": arrTranparamsObj.dbtr_acct_name || '',
+                                                                    "category_purpose_prty": arrTranparamsObj.category_purpose_prty || '',
+                                                                    "charge_bearer": arrTranparamsObj.charge_bearer || '',
+                                                                    "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
+                                                                    "cdtr_iban": arrTranparamsObj.cdtr_iban || '',
+                                                                    "category_purpose": arrTranparamsObj.category_purpose || '',
+                                                                    "npsstrrd_refno": arrnpssRefno[0].npsstrrd_refno || '',
+                                                                    "remittance_information": arrTranparamsObj.remittance_info || '',
+                                                                    "cr_sort_code": arrTranparamsObj.dr_sort_code || '',
+                                                                    "dr_sort_code": arrTranparamsObj.dr_sort_code || '',
+                                                                    "tran_ref_no": arrTranparamsObj.tran_ref_no || '',
+                                                                    "process_type": 'RR',
+                                                                    "retry_count": "0",
+                                                                    "AccountInformation": {
+                                                                        "account_number": arrcbsdata[0].account_number || '',
+                                                                        "company_code": arrcbsdata[0].company_code || '',
+                                                                        "inactive_marker": arrcbsdata[0].inactive_marker || '',
+                                                                        "currency": arrcbsdata[0].currency || '',
+                                                                        "alternate_account_type": arrcbsdata[0].alternate_account_type || '',
+                                                                        "alternate_account_id": arrcbsdata[0].alternate_account_id || '',
+                                                                        "account_officer": arrcbsdata[0].account_officer || '',
+                                                                        "curr_rate_segment": arrcbsdata[0].curr_rate_segment || '',
+                                                                        "customer_id": arrcbsdata[0].customer_id || ''
+                                                                    }
                                                                 }
                                                             }
-                                                            InsPrcs()
-                                                        } else {
-                                                            objresponse.status = 'FAILURE'
-                                                            objresponse.errdata = "AutoReasoncode - Api call Failure for" + arrTranparamsObj.npsst_id
-                                                            sendResponse(null, objresponse)
+                                                        },
+                                                        headers: {
+                                                            'Content-Type': 'application/json'
                                                         }
+
                                                     }
-                                                });
-                                            } else {
-                                                objresponse.status = 'FAILURE'
-                                                objresponse.errdata = "T24 Return Posting - npsstrrd_refno Not Found for tran_id" + arrTranparamsObj.npsst_id
-                                                sendResponse(null, objresponse)
-                                            }
-                                        })
-                                    }
-                                        
-                                    CallApi()
+                                                    if (TakesellRate != '') {
+                                                        options.json.data.payload.sell_rate = TakesellRate.sell_rate || ''
+                                                        options.json.data.payload.sell_margin = TakesellRate.sell_margin || ''
+                                                    }
+                                                    var PrintInfo = {}
+                                                    PrintInfo.url = arrurl[0].param_detail
+                                                    PrintInfo.uetr = arrTranparamsObj.uetr || ''
+                                                    PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
+                                                    PrintInfo.msg_id = arrTranparamsObj.hdr_msg_id || ''
+                                                    PrintInfo.clrsysref = arrTranparamsObj.clrsysref || ''
+
+                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                                                    request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
+                                                        if (error) {
+                                                            reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
+                                                            sendResponse(error, null);
+
+                                                        } else {
+                                                            reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                                            if (responseBodyFromImagingService == 'SUCCESS') {
+                                                                var InsPrcs = async () => {
+                                                                    var InsertTran = await InsertProcess(arrTranparamsObj, final_process_status, final_status, PRCT_ID)
+                                                                    if (InsertTran == 'SUCCESS') {
+                                                                        nextobjctfunc()
+                                                                    } else {
+                                                                        objresponse.status = 'FAILURE'
+                                                                        objresponse.errdata = "Credit Pool Posting API - Update  Process Failure For TranId" + arrTranparamsObj.npsst_id
+                                                                        sendResponse(null, objresponse)
+                                                                    }
+                                                                }
+                                                                InsPrcs()
+                                                            } else {
+                                                                objresponse.status = 'FAILURE'
+                                                                objresponse.errdata = "AutoReasoncode - Api call Failure for" + arrTranparamsObj.npsst_id
+                                                                sendResponse(null, objresponse)
+                                                            }
+                                                        }
+                                                    });
+                                                } else {
+                                                    objresponse.status = 'FAILURE'
+                                                    objresponse.errdata = "T24 Return Posting - npsstrrd_refno Not Found for tran_id" + arrTranparamsObj.npsst_id
+                                                    sendResponse(null, objresponse)
+                                                }
+                                            })
+                                        }
+
+                                        CallApi()
 
 
                                     } else {
@@ -900,7 +923,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                    function CallELPASOapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl) {
+                    function CallELPASOapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var TakeProcessRefno = `select process_ref_no from npss_transactions where process_name = 'Recive Pacs002' and uetr = '${arrTranparamsObj.uetr}'`
@@ -932,6 +955,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 data: {
                                                                     "payload": {
                                                                         "force_post_flag": "Y",
+                                                                        "ext_iden_retry_value": ext_ident_value || '',
                                                                         "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                         "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
                                                                         "hdr_total_records": arrTranparamsObj.hdr_total_records || '',
@@ -1067,7 +1091,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                    function CallT24Posting(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl) {
+                    function CallT24Posting(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var TakepostingRefno = `select  process_ref_no,status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs002'`
@@ -1108,6 +1132,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     data: {
                                                                         "payload": {
                                                                             "force_post_flag": "Y",
+                                                                            "ext_iden_retry_value": ext_ident_value || '',
                                                                             "internal_acc_no": arrcbsdata[0].account_number || '',
                                                                             "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                             "department_code": arrTranparamsObj.department_code || '',
@@ -1188,11 +1213,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 }
 
                                                             }
-                                                            if (TakesellRate != ''){
+                                                            if (TakesellRate != '') {
                                                                 options.json.data.payload.sell_rate = TakesellRate.sell_rate || ''
                                                                 options.json.data.payload.sell_margin = TakesellRate.sell_margin || ''
                                                             }
-                                                                var PrintInfo = {}
+                                                            var PrintInfo = {}
                                                             PrintInfo.processName = 'T24 Inward API Call'
                                                             PrintInfo.url = arrurl[0].param_detail
                                                             PrintInfo.uetr = arrTranparamsObj.uetr || ''
@@ -1261,7 +1286,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     function GetsellRate(arrcbsdata) {
-                        return new Promise((resolve,reject)=>{
+                        return new Promise((resolve, reject) => {
                             var Takesellrate = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrcbsdata[0].customer_id}'`
                             ExecuteQuery1(Takesellrate, function (arrselldet) {
                                 var selldata = {}
@@ -1273,16 +1298,34 @@ app.post('/', function(appRequest, appResponse, next) {
                                     } else {
                                         resolve('')
                                     }
-    
+
                                 } else {
                                     resolve('')
                                 }
                             })
                         })
-                        
+
                     }
 
+                    function GetRetrycount(processName, uetr) {
+                        return new Promise((resolve, reject) => {
+                            var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where process_name = '${processName}' and uetr = '${uetr}' order by npsstpl_id desc`
+                            ExecuteQuery1(TakeretryValue, function (extIdentValue) {
+                                if (extIdentValue.length > 0) {
+                                    if (extIdentValue[0].ext_iden_retry_value != null) {
+                                        var count = Number(extIdentValue[0].ext_iden_retry_value)
+                                        count ++
+                                        resolve(count)
+                                    }else{
+                                        resolve('') 
+                                    }
+                                } else {
+                                    resolve('')
+                                }
 
+                            })
+                        })
+                    }
 
 
                     //Execute Query Function
@@ -1368,6 +1411,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

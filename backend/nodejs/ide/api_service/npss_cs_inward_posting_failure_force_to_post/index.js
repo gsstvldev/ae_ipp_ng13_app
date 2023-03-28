@@ -829,7 +829,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     "cr_sort_code": arrTranparamsObj.dr_sort_code || '',
                                                                     "dr_sort_code": arrTranparamsObj.dr_sort_code || '',
                                                                     "tran_ref_no": arrTranparamsObj.tran_ref_no || '',
-                                                                    "process_type": 'RR',
+                                                                    "process_type": 'IRR',
                                                                     "retry_count": "0",
                                                                     "AccountInformation": {
                                                                         "account_number": arrcbsdata[0].account_number || '',

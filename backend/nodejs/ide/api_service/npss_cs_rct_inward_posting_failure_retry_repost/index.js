@@ -6,7 +6,7 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
-try {
+   try {
         /*   Created By :Siva Harish
         Created Date :10-03-2023
         Modified By : Daseen 21-03-2023 for adding retry_count param in T24 inward return api 
@@ -840,7 +840,7 @@ try {
                                                                     "cr_sort_code": arrTranparamsObj.dr_sort_code || '',
                                                                     "dr_sort_code": arrTranparamsObj.dr_sort_code || '',
                                                                     "tran_ref_no": arrTranparamsObj.tran_ref_no || '',
-                                                                    "process_type": 'RR',
+                                                                    "process_type": 'IRR',
                                                                     "retry_count": "0",
                                                                     "AccountInformation": {
                                                                         "account_number": arrcbsdata[0].account_number || '',

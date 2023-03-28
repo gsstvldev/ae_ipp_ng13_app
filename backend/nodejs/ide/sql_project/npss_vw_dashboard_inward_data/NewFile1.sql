@@ -3,7 +3,7 @@
 drop view if exists vw_dashboard_inward_data;
 @SPL@
 CREATE OR REPLACE VIEW vw_dashboard_inward_data
- AS
+AS
 SELECT res.sno,
     res.type,
     COALESCE(sum(res.total), 0::numeric) AS total,
@@ -14,38 +14,7 @@ SELECT res.sno,
     COALESCE(sum(res.pending_returns_maker), 0::numeric) AS pending_returns_maker,
     COALESCE(sum(res.pending_returns_checker), 0::numeric) AS pending_returns_checker,
     COALESCE(sum(res.returned), 0::numeric) AS returned,
-        CASE
-            WHEN res.type = 'pacs.008'::text THEN ( select count(*) from (
-          SELECT distinct  process_NAME,nppst.npsst_id  
-               FROM npss_transactions nppst
-                 LEFT JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-              WHERE nppst.process_type::text = 'IP'::text 
-              AND (npl.process_name::text = ANY 
-              (ARRAY['Receive Pacs008'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text 
-              AND (nppst.status::text = ANY (ARRAY['IP_RCT_RR_POSTING_FAILURE'::text, 'IP_RCT_RR_POSTING_RETRY'::text, 'IP_RCT_PC_T24_POSTING_RETRY'::text, 'IP_RCT_CC_T24_POSTING_RETRY'::text, 'IP_RCT_POSTING_SUSPICIOUS'::text, 'IP_RCT_PC_POSTING_SUSPICIOUS'::text, 'IP_RCT_PC_T24_POSTING_FAILURE'::text, 'IP_RCT_CC_T24_POSTING_FAILURE'::text])) 
-              AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) as Pen08t1
-         )
-            WHEN res.type = 'pacs.004'::text THEN ( select count(*) from (
-              SELECT distinct  process_NAME,nppst.npsst_id  
-               FROM npss_transactions nppst
-                 LEFT JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-              WHERE nppst.process_type::text = 'IP'::text 
-              AND (npl.process_name::text = ANY 
-              (ARRAY['Place Pacs004'::character varying::text])) AND nppst.process_status::text = 'RCTExceptionFailure'::text AND 
-              (nppst.status::text = ANY (ARRAY['IP_RCT_RETURN_POSTING_FAILURE'::character varying::text, 'IP_RCT_RETURN_POSTING_RETRY'::character varying::text, 'IP_RCT_RR_POSTING_SUSPICIOUS'::character varying::text])) 
-              AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE ) as Pen04t1
-           )
-            WHEN res.type = 'pacs.007'::text THEN ( select count(*) from (
-                SELECT distinct  process_NAME,nppst.npsst_id 
-               FROM npss_transactions nppst
-                 inner JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-              WHERE nppst.process_type::text = 'IP'::text 
-              AND (npl.process_name::text = ANY (ARRAY['Receive Pacs.007'::character varying::text]))
-              AND (nppst.status::text = ANY (ARRAY['IP_RCT_REVERSAL_REQ_RECEIVED'::character varying::text, 'IP_RCT_REVERSAL_VLD_FAILED'::character varying::text, 'IP_RCT_REV_REQ_REJECTED'::character varying::text, 'IP_RCT_RR_RETURN_READY'::character varying::text])) 
-              AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE ) as Pen07t1
-             )
-            ELSE 0::bigint
-        END AS pending_t_1,
+	RES.pending_t_1,
     res.created_date,
     res.department_code
    FROM ( SELECT
@@ -119,14 +88,36 @@ SELECT res.sno,
             to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
             case when 
             (nppst.department_code = '') or (nppst.department_code IS NULL) then 'DEFAULT'
-            else department_code end department_code
+            else department_code end department_code,
+            0 AS pending_t_1
            FROM npss_transactions nppst
              JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
           WHERE to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE AND
           nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs008'::character varying::text, 'Receive Pacs.007'::character varying::text, 'Place Pacs004'::character varying::text,'PACS.008'::character varying::text, 'PACS.007'::character varying::text]))
           GROUP BY nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group,nppst.department_code, (to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text))
         UNION ALL (
-                         SELECT 1 AS sno,
+select
+	sno,
+	type,
+	total,
+	pending_screening,
+	returned,
+	pending_maker,
+	pending_checker,
+	successfullyposted,
+	pending_returns_maker,
+	pending_returns_checker,
+	created_date,
+		case
+			when (D1.department_code = '' or D1.department_code is null) then 'DEFAULT'
+			else D1.department_code end as department_code,
+	case when D1.pending_t_1 is not NULL then D1.pending_t_1
+	else 0
+	end as pending_t_1
+from
+	(
+	select
+		1 as sno,
                             'pacs.008'::text AS type,
                             0 AS total,
                             0 AS pending_screening,
@@ -136,23 +127,59 @@ SELECT res.sno,
                             0 AS successfullyposted,
                             0 AS pending_returns_maker,
                             0 AS pending_returns_checker,
-                            to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
-                            'DEFAULT'::text AS department_code
+                            to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date)A1
+                            left join (select
+	case when typeD = 'pacs.008' then count (npsst_id)
+	ELSE 0
+end as pending_t_1,
+	typeD,
+	department_code
+from
+	(
+	select
+		distinct npl.process_name,
+		'pacs.008' as typeD,
+		nppst.npsst_id,
+		case
+			when nppst.department_code::text = ''::text
+			or nppst.department_code is null then 'DEFAULT'::character varying
+			else nppst.department_code
+		end as department_code
+	from
+				npss_transactions nppst
+	left join npss_trn_process_log npl on
+				npl.uetr = nppst.uetr
+	where
+				nppst.process_type = 'IP'
+		and (npl.process_name in ('Receive Pacs008'))
+		and nppst.process_status = 'RCTExceptionFailure'
+		and (nppst.status in ('IP_RCT_RR_POSTING_FAILURE', 'IP_RCT_RR_POSTING_RETRY',
+				'IP_RCT_PC_T24_POSTING_RETRY', 'IP_RCT_CC_T24_POSTING_RETRY', 'IP_RCT_POSTING_SUSPICIOUS',
+				'IP_RCT_PC_POSTING_SUSPICIOUS', 'IP_RCT_PC_T24_POSTING_FAILURE', 'IP_RCT_CC_T24_POSTING_FAILURE'))
+		and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) D group by typed,department_code)D1 on D1.typeD = A1.TYPE
                         UNION
-                         SELECT 3 AS sno,
-                            'pacs.007'::text AS type,
-                            0 AS total,
-                            0 AS pending_screening,
-                            0 AS returned,
-                            0 AS pending_maker,
-                            0 AS pending_checker,
-                            0 AS successfullyposted,
-                            0 AS pending_returns_maker,
-                            0 AS pending_returns_checker,
-                            to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
-                            'DEFAULT'::text AS department_code
-                        UNION
-                         SELECT 2 AS sno,
+                         select
+	sno,
+	type,
+	total,
+	pending_screening,
+	returned,
+	pending_maker,
+	pending_checker,
+	successfullyposted,
+	pending_returns_maker,
+	pending_returns_checker,
+	created_date,
+		case
+			when (D3.department_code = '' or D3.department_code is null) then 'DEFAULT'
+			else D3.department_code end as department_code,
+	case when D3.pending_t_1 is not NULL then D3.pending_t_1
+	else 0
+	end as pending_t_1
+from
+	(
+	select
+		2 as sno,
                             'pacs.004'::text AS type,
                             0 AS total,
                             0 AS pending_screening,
@@ -162,8 +189,95 @@ SELECT res.sno,
                             0 AS successfullyposted,
                             0 AS pending_returns_maker,
                             0 AS pending_returns_checker,
-                            to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
-                            'DEFAULT'::text AS department_code
+                            to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date)A3
+                            left join (select
+	case when typeD = 'pacs.004' then count (npsst_id)
+	ELSE 0
+end as pending_t_1,
+	typeD,
+	department_code
+from
+	(
+	select
+		distinct npl.process_name,
+		'pacs.004' as typeD,
+		nppst.npsst_id,
+		case
+			when nppst.department_code::text = ''::text
+			or nppst.department_code is null then 'DEFAULT'::character varying
+			else nppst.department_code
+		end as department_code
+	from
+				npss_transactions nppst
+	left join npss_trn_process_log npl on
+				npl.uetr = nppst.uetr
+	where
+				nppst.process_type = 'IP'
+		and (npl.process_name in ('Place Pacs004'))
+		AND nppst.process_status::text = 'RCTExceptionFailure'
+		and (nppst.status in ('IP_RCT_RETURN_POSTING_FAILURE', 'IP_RCT_RETURN_POSTING_RETRY',
+				'IP_RCT_RR_POSTING_SUSPICIOUS'))
+		and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) DA3 group by typed,department_code)D3 on D3.typeD = A3.TYPE
+                        UNION
+                        select
+	sno,
+	type,
+	total,
+	pending_screening,
+	returned,
+	pending_maker,
+	pending_checker,
+	successfullyposted,
+	pending_returns_maker,
+	pending_returns_checker,
+	created_date,
+		case
+			when (D2.department_code = '' or D2.department_code is null) then 'DEFAULT'
+			else D2.department_code end as department_code,
+	case when D2.pending_t_1 is not NULL then D2.pending_t_1
+	else 0
+	end as pending_t_1
+from
+	(
+	select
+		3 as sno,
+                            'pacs.007'::text AS type,
+                            0 AS total,
+                            0 AS pending_screening,
+                            0 AS returned,
+                            0 AS pending_maker,
+                            0 AS pending_checker,
+                            0 AS successfullyposted,
+                            0 AS pending_returns_maker,
+                            0 AS pending_returns_checker,
+                            to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date)A2
+                            left join (select
+	case when typeD = 'pacs.007' then count (npsst_id)
+	ELSE 0
+end as pending_t_1,
+	typeD,
+	department_code
+from
+	(
+	select
+		distinct npl.process_name,
+		'pacs.007' as typeD,
+		nppst.npsst_id,
+		case
+			when nppst.department_code::text = ''::text
+			or nppst.department_code is null then 'DEFAULT'::character varying
+			else nppst.department_code
+		end as department_code
+	from
+				npss_transactions nppst
+	left join npss_trn_process_log npl on
+				npl.uetr = nppst.uetr
+	where
+				nppst.process_type = 'IP'
+		and (npl.process_name in ('Receive Pacs.007'))
+		and (nppst.status in ('IP_RCT_REVERSAL_REQ_RECEIVED', 'IP_RCT_REVERSAL_VLD_FAILED',
+				'IP_RCT_REV_REQ_REJECTED', 'IP_RCT_RR_RETURN_READY'))
+		and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) DA2 group by typed,department_code)D2 on D2.typeD = A2.TYPE
                 )) res
-  GROUP BY res.type, res.created_date, res.sno,res.department_code
+  GROUP BY res.type, res.created_date, res.sno,res.department_code,RES.pending_t_1
    order by res.sno

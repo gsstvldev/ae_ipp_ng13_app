@@ -29,6 +29,7 @@ app.post('/', function(appRequest, appResponse, next) {
               Reason for :Changing Insert After api call success 24/01/2023
                Reason for :Changing INSERT payload and query 8/2/2023
                 Reason for : Removing pacs002 api call for bot fh and fab 16/03/2023
+                 Reason for : adding retry value 28/03/2023
      
     */
     var serviceName = 'NPSS Reversal Cancel';
@@ -65,6 +66,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         var PRCT_ID = prct_id
                         var success_process_status
                         var success_status
+                        var extend_retry_value
                         try {
                             var ruleqry = `select success_process_status,success_status,processing_system,process_type  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
                             var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_REVERSAL_CANCEL' and param_code='URL'  and need_sync = 'Y'`;
@@ -77,9 +79,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                             success_process_status = arrrule[0].success_process_status;
                                             success_status = arrrule[0].success_status;
                                             var TakedatafrmTrn = `select * from npss_transactions where npsst_id = '${params.Id}'`
-
-                                            ExecuteQuery1(TakedatafrmTrn, function (arrdata) {
+                                           
+                                            ExecuteQuery1(TakedatafrmTrn, async function (arrdata) {
                                                 if (arrdata.length > 0) {
+                                                    extend_retry_value = await GetRetrycount(arrdata[0].uetr)
                                                     ExecuteQuery1(take_api_url, function (arrUrl) {
                                                         if (arrUrl.length > 0) {
                                                             var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrdata[0].cdtr_iban}'`
@@ -87,7 +90,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 var Takepostrefno = `select * from npss_trn_process_log where status = 'IP_RCT_REV_INAU_POSTING_SUCCESS' and uetr = '${arrdata[0].uetr}'`
                                                                 ExecuteQuery1(Takepostrefno, function (arrpostno) {
                                                                     if (arrpostno.length > 0) {
-                                                                        fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno, function (apiresult) {
+                                                                        fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno,extend_retry_value, function (apiresult) {
                                                                             if (apiresult.status === "SUCCESS") {
                                                                                 //   var Takeurl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL' and need_sync = 'Y'`
                                                                                 //   ExecuteQuery1(Takeurl, function (arrgeturl) {
@@ -314,7 +317,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                             // Do API Call for Service 
-                            function fn_DoAPI(trndata, url, arrActInf, arrpostno, callbackapi) {
+                            function fn_DoAPI(trndata, url, arrActInf, arrpostno,extend_retry_value, callbackapi) {
                                 try {
 
                                     var request = require('request');
@@ -328,6 +331,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                             "payload": {
+                                                "ext_iden_retry_value": extend_retry_value || '',
                                                 "hdr_settlement_date": trndata[0].hdr_settlement_date,
                                                 "intrbk_sttlm_cur": trndata[0].intrbk_sttlm_cur,
                                                 "intrbk_sttlm_amnt": trndata[0].intrbk_sttlm_amnt,

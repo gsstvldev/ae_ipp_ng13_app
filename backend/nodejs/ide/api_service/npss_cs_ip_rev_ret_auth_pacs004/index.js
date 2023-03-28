@@ -7,8 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-try {
+    try {
     /*   Created By :Daseen
     Created Date :04-11-2022
     Modified By : Siva Harish
@@ -40,7 +39,7 @@ try {
                 Reason for : changes Authpac004 07/03/2023
                 Reason for : changes Authpac004 12/03/2023
                 Reason for : changes Authpac004 13/03/2023
-                Reason for : changes in auth response 25/03/2023
+                Reason for : changes in auth response 28/03/2023
     */
     var serviceName = 'NPSS IP REV Ret Auth PACS004';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -87,6 +86,7 @@ try {
 
                         var final_status
                         var final_process_status
+                        var extend_retry_value
                         var take_api_url
                         var take_return_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL' and need_sync = 'Y'`;
 
@@ -126,7 +126,7 @@ try {
                                                     // apicalls = 1 --> prepaid card api call
                                                     // apicalls = 2 --> credit card api call
 
-
+                                                    extend_retry_value = await GetRetrycount(arrprocesslog[0].uetr)
                                                     if (params.roleId == '708' || params.roleId == 708 || params.roleId == '738' || params.roleId == 738) { //for checking prepaid or credit only for checker
                                                         apicalls = await checkprepaidorcredit(arrprocesslog)
                                                     } else {
@@ -169,7 +169,7 @@ try {
                                                             if (arrurl.length) {
                                                                 var url = arrurl[0].param_detail;
                                                                 if (apicalls == 0 || apicalls == '0') {
-                                                                    fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName,Objfiledata, function (firstapiresult) {
+                                                                    fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName,Objfiledata,extend_retry_value, function (firstapiresult) {
                                                                         if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
 
                                                                             ExecuteQuery1(take_return_url, function (arrreturnurl) {
@@ -317,7 +317,7 @@ try {
                                                                         var url = arrurl[0].param_detail;
                                                                         if (apicalls == 0 || apicalls == '0') {
                                                                             var Amount
-                                                                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName,Objfiledata, function (firstapiresult) {
+                                                                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName,Objfiledata,extend_retry_value, function (firstapiresult) {
                                                                                 if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
 
                                                                                     ExecuteQuery1(take_return_url, function (arrreturnurl) {
@@ -606,7 +606,7 @@ try {
 
 
                 // Do API Call for Service 
-                function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, screenName,Objfiledata, callbackapi) {
+                function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, screenName,Objfiledata,extend_retry_value, callbackapi) {
                     try {
                         var apiName = 'NPSS IP REV RET AUTH PACS004'
                         var request = require('request');
@@ -620,6 +620,7 @@ try {
 
 
                                 "payload": {
+                                    "ext_iden_retry_value": extend_retry_value || '',
                                     "org_field_data":Objfiledata || '',
                                     "department_code": arrprocesslog[0].department_code || '',
                                     "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
@@ -1154,7 +1155,27 @@ try {
 
                 }
 
+                function GetRetrycount(uetr) {
+                    return new Promise((resolve, reject) => {
+                        var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where ext_iden_retry_value IS NOT NULL and uetr = '${uetr}' order by npsstpl_id desc`
+                        ExecuteQuery1(TakeretryValue, function (extIdentValue) {
+                            if (extIdentValue.length > 0) {
+                                if(extIdentValue[0].ext_iden_retry_value != null){
+                                    var count = Number(extIdentValue[0].ext_iden_retry_value)
+                                    count ++
+                                    resolve(count)
+                                }else{
+                                    resolve(1)  
+                                }
+                                    
+                                
+                            } else {
+                                resolve(1)
+                            }
 
+                        })
+                    })
+                }
 
 
 

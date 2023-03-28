@@ -161,7 +161,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         } else {
                                                                             
                                                                                         objresponse.status = "FAILURE"
-                                                                                        objresponse.errdata = 'Auth Pac004 Api Call Failure  Error Code Found-'+firstapiresult.error_code
+                                                                                        objresponse.errdata = 'Auth Api Call Failure  Error Code Found-'+firstapiresult.error_code
                                                                                         sendResponse(null, objresponse);
                                                                                
                                                                         }

@@ -223,7 +223,7 @@ try {
                                                                                         } else {
 
                                                                                             objresponse.status = "FAILURE"
-                                                                                            objresponse.errdata = "Second api call not success"
+                                                                                            objresponse.errdata = "After Auth, Pac004 api call not success"
                                                                                             sendResponse(null, objresponse)
 
                                                                                         }
@@ -350,7 +350,7 @@ try {
                                                                                                 } else {
 
                                                                                                     objresponse.status = "FAILURE"
-                                                                                                    objresponse.errdata = "After Auth004, Pac004 api call not success"
+                                                                                                    objresponse.errdata = "After Auth, Pac004 api call not success"
                                                                                                     sendResponse(null, objresponse)
 
                                                                                                 }

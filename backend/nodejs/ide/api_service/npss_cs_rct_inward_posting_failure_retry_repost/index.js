@@ -6,14 +6,15 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
-   try {
+
+    try {
         /*   Created By :Siva Harish
         Created Date :10-03-2023
         Modified By : Daseen 21-03-2023 for adding retry_count param in T24 inward return api 
         Modified By : Siva Harish-- Changing code for bct 23/03/2023
          Modified By : Siva Harish-- Changing PAYLOAD for T24posting 24/03/2023
           Modified By : Siva Harish-- Changing PAYLOAD for all apis 25/03/2023
-            Modified By : Siva Harish-- Adding ext_iden_rtry_value in payload for all apis 28/03/2023
+            Modified By : Siva Harish-- Adding ext_iden_rtry_value and department_code in payload for all apis 28/03/2023
       
          
        
@@ -97,29 +98,20 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 ExecuteQuery1(take_api_params, async function (arrTranparams) {
                                                     if (arrTranparams.length > 0) {
                                                         var Apicalls
-                                                        let processName
+                                                       
                                                         let ext_ident_value
-                                                        if (params.eligible_status == 'IP_RCT_PC_T24_POSTING_RETRY') { //prepaid
-                                                            processName = 'Prepaid Card Ac Posting'
-                                                            ext_ident_value = await GetRetrycount(processName, arrTranparams[0].uetr)
+                                                        ext_ident_value = await GetRetrycount(arrTranparams[0].uetr)
+                                                        if (params.eligible_status == 'IP_RCT_PC_T24_POSTING_RETRY') { //prepaid                            
                                                             Apicalls = await Callprepaidapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
-                                                        } else if (params.eligible_status == 'IP_RCT_CC_T24_POSTING_RETRY') { //credit
-                                                            processName = 'Credit Card Pool Ac Posting'
-                                                            ext_ident_value = await GetRetrycount(processName, arrTranparams[0].uetr)
+                                                        } else if (params.eligible_status == 'IP_RCT_CC_T24_POSTING_RETRY') { //credit                                     
                                                             Apicalls = await Callcreditapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
-                                                        } else if (params.eligible_status == 'IP_RCT_RETURN_POSTING_RETRY') { //inward return Nostro Posting API
-                                                            processName = 'IR Nostro Posting'
-                                                            ext_ident_value = await GetRetrycount(processName, arrTranparams[0].uetr)
-                                                            Apicalls = await CallNostroapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
-                                                        } else if (params.eligible_status == 'IP_RCT_RR_POSTING_RETRY') { //T24 inward return Posting API (Auto Return Case)
-                                                            processName = 'IR Debit Posting'
-                                                            ext_ident_value = await GetRetrycount(processName, arrTranparams[0].uetr)
+                                                        } else if (params.eligible_status == 'IP_RCT_RETURN_POSTING_RETRY') { //inward return Nostro Posting API                                                                                   
+                                                          Apicalls = await CallNostroapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
+                                                        } else if (params.eligible_status == 'IP_RCT_RR_POSTING_RETRY') { //T24 inward return Posting API (Auto Return Case)                                                                                     
                                                             Apicalls = await CallautoReturn(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
                                                         } else if (params.eligible_status == 'IP_RCT_PC_POSTING_RETRY') { //ELPASO Posting
                                                             Apicalls = await CallELPASOapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
                                                         } else if (params.eligible_status == 'IP_RCT_POSTING_RETRY') {//T24 INward 
-                                                            processName = 'Inward Credit Posting'
-                                                            ext_ident_value = await GetRetrycount(processName, arrTranparams[0].uetr)
                                                             Apicalls = await CallT24Posting(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
                                                         } else {
                                                             objresponse.status = "FAILURE"
@@ -272,6 +264,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             batch_name: "CR-CBS-POSTING-Q",
                                                             data: {
                                                                 "payload": {
+                                                                    "department_code": arrTranparamsObj.department_code || '',
                                                                     "ext_iden_retry_value": ext_ident_value || '',
                                                                     "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                     "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
@@ -444,6 +437,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             batch_name: "CR-CBS-POSTING-Q",
                                                             data: {
                                                                 "payload": {
+                                                                    "department_code": arrTranparamsObj.department_code || '',
                                                                     "ext_iden_retry_value": ext_ident_value || '',
                                                                     "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                     "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
@@ -627,6 +621,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 batch_name: "CR-CBS-POSTING-Q",
                                                                 data: {
                                                                     "payload": {
+                                                                        "department_code": arrTranparamsObj.department_code || '',
                                                                         "ext_iden_retry_value": ext_ident_value || '',
                                                                         "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                         "account_officer": arrcbsdata[0].account_officer || '',
@@ -805,6 +800,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             batch_name: "CR-CBS-POSTING-Q",
                                                             data: {
                                                                 "payload": {
+                                                                    "department_code": arrTranparamsObj.department_code || '',
                                                                     "ext_iden_retry_value": ext_ident_value || '',
                                                                     "internal_acc_no": arrcbsdata[0].account_number || '',
                                                                     "tran_ref_id": arrTranparamsObj.tran_ref_id || '',
@@ -840,7 +836,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     "cr_sort_code": arrTranparamsObj.dr_sort_code || '',
                                                                     "dr_sort_code": arrTranparamsObj.dr_sort_code || '',
                                                                     "tran_ref_no": arrTranparamsObj.tran_ref_no || '',
-                                                                    "process_type": 'IRR',
+                                                                    "process_type": 'RR',
                                                                     "retry_count": "0",
                                                                     "AccountInformation": {
                                                                         "account_number": arrcbsdata[0].account_number || '',
@@ -965,6 +961,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 batch_name: "CR-CBS-POSTING-Q",
                                                                 data: {
                                                                     "payload": {
+                                                                        "department_code": arrTranparamsObj.department_code || '',
                                                                         "ext_iden_retry_value": ext_ident_value || '',
                                                                         "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                         "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
@@ -1316,20 +1313,17 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     }
 
-                    function GetRetrycount(processName, uetr) {
+                    function GetRetrycount(uetr) {
                         return new Promise((resolve, reject) => {
-                            var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where process_name = '${processName}' and uetr = '${uetr}' order by npsstpl_id desc`
+                            var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where ext_iden_retry_value IS NOT NULL and uetr = '${uetr}' order by npsstpl_id desc`
                             ExecuteQuery1(TakeretryValue, function (extIdentValue) {
                                 if (extIdentValue.length > 0) {
-                                    if (extIdentValue[0].ext_iden_retry_value != null) {
                                         var count = Number(extIdentValue[0].ext_iden_retry_value)
                                         count ++
                                         resolve(count)
-                                    }else{
-                                        resolve('') 
-                                    }
+                                    
                                 } else {
-                                    resolve('')
+                                    resolve(1)
                                 }
 
                             })
@@ -1420,6 +1414,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

@@ -20,9 +20,9 @@ app.post('/', function(appRequest, appResponse, next) {
          Modified By : Siva Harish
         Modified Date :17-01-2023  
         Reason for :Remove Console log
-        Reason for changing payload
+        Reason for changing payload 29/03/2023
         */
-        var serviceName = ' NPSS_IP_REV_GET_DEAL';
+        var serviceName = ' NPSS (CS) Manual Initiation Get Deal ';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
         var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
         var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
@@ -48,9 +48,9 @@ app.post('/', function(appRequest, appResponse, next) {
             try {
                 objSessionLogInfo = objLogInfo; // Assing log information
                 // Log Viewer Setup
-                objSessionLogInfo.HANDLER_CODE = ' NPSS_IP_REV_GET_DEAL';
+                objSessionLogInfo.HANDLER_CODE = ' NPSS (CS) Manual Initiation Get Deal ';
                 objSessionLogInfo.ACTION = 'ACTION';
-                objSessionLogInfo.PROCESS = ' NPSS_IP_REV_GET_DEAL';
+                objSessionLogInfo.PROCESS = ' NPSS (CS) Manual Initiation Get Deal ';
                 var cus_iban;
                 // Get DB Connection                                                                                                                                      
                 reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
@@ -83,10 +83,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     var url = arrurl[0].param_detail;
                                                     var senddata = {}
                                                     var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                    ExecuteQuery1(Takeloccur, function (localcur) {
+                                                    ExecuteQuery1(Takeloccur, async function (localcur) {
                                                         if(localcur.length == 0){
                                                             senddata.amount_credited_loc_cur = ''
-                                                            fn_doapicall(url, arrprocesslog, arrActInf,senddata, function (result) {
+                                                            let dealRefno = await GetdelrefNo(arrprocesslog)
+                                                            fn_doapicall(url, arrprocesslog, arrActInf,senddata,dealRefno, function (result) {
                                                                 reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
         
                                                                 if (result == 'FAILURE') {
@@ -112,7 +113,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             })
                                                         }else{
                                                             senddata.amount_credited_loc_cur = localcur[0].amount_credited_loc_cur || ''
-                                                            fn_doapicall(url, arrprocesslog, arrActInf,senddata, function (result) {
+                                                            fn_doapicall(url, arrprocesslog, arrActInf,senddata,dealRefno, function (result) {
                                                                 reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
         
                                                                 if (result == 'FAILURE') {
@@ -180,7 +181,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     // Do API Call for Service 
-                    function fn_doapicall(url, arrprocesslog, arrActInf,senddata, callbackapi) {
+                    function fn_doapicall(url, arrprocesslog, arrActInf,senddata,dealRefno, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Get Deal'
                             var request = require('request');
@@ -194,6 +195,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                     "payload": {
+                                        "deal_ref_no": dealRefno || '',
                                         "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date || '',
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
@@ -249,6 +251,21 @@ app.post('/', function(appRequest, appResponse, next) {
                             reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
                             sendResponse(error, null);
                         }
+                    }
+
+                    function GetdelrefNo(arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            let TakerefNo = `select process_ref_no from npss_trn_process where status = 'IP_RCT_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' and process_type = '${arrprocesslog[0].process_type}'`
+                            ExecuteQuery1(TakerefNo, function (arrrdealNo) {
+                                if (arrrdealNo.length > 0) {
+                                    resolve(arrrdealNo[0].process_ref_no)
+                                } else {
+                                    resolve('')
+                                }
+    
+                            })
+                        })
+    
                     }
                     //Execute Query Function
                     function ExecuteQuery1(query, callback) {

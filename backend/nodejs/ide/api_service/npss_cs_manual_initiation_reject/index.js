@@ -17,6 +17,7 @@ Modified Date : 17/01/2023
 Reason for Remove console log
 Reason for Adding Update Query
 Reason for removing update query
+Reason for Adding ext_ident_retry_value 29/03/2023
 
  
 */
@@ -54,6 +55,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                var PRCT_ID = prct_id
                var success_process_status
                var success_status
+               var extend_retry_value
                try {
                   var ruleqry = `select success_process_status,success_status,processing_system,process_type  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
                   var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_REVERSAL_CANCEL' and param_code='URL' and need_sync = 'Y'`;
@@ -67,8 +69,9 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                               success_status = arrrule[0].success_status;
                               var TakedatafrmTrn = `select * from npss_transactions where npsst_id = '${params.Id}'`
 
-                              ExecuteQuery1(TakedatafrmTrn, function (arrdata) {
+                              ExecuteQuery1(TakedatafrmTrn, async function (arrdata) {
                                  if (arrdata.length > 0) {
+                                    extend_retry_value = await GetRetrycount(arrdata[0].uetr)
                                     ExecuteQuery1(take_api_url, function (arrUrl) {
                                        if (arrUrl.length > 0) {
                                           var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrdata[0].cdtr_iban}'`
@@ -77,7 +80,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                 var Takepostrefno = `select * from npss_trn_process_log where status = 'IP_RCT_REV_INAU_POSTING_SUCCESS' and uetr = '${arrdata[0].uetr}'`
                                                 ExecuteQuery1(Takepostrefno, function (arrpostno) {
                                                  if(arrpostno.length > 0){
-                                                     fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno, function (apiresult) {
+                                                     fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno,extend_retry_value, function (apiresult) {
                                                          if (apiresult.status === "SUCCESS") {
                                                             var arrCusTranInst = [];
                                                             var objCusTranInst = {};
@@ -240,7 +243,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
 
                   // Do API Call for Service 
-                  function fn_DoAPI(trndata, url, arrActInf, arrpostno, callbackapi) {
+                  function fn_DoAPI(trndata, url, arrActInf, arrpostno,extend_retry_value, callbackapi) {
                      try {
 
                         var request = require('request');
@@ -254,6 +257,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
 
                               "payload": {
+                                "ext_iden_retry_value": extend_retry_value || '',
                                  "hdr_settlement_date": trndata[0].hdr_settlement_date,
                                  "intrbk_sttlm_cur": trndata[0].intrbk_sttlm_cur,
                                  "intrbk_sttlm_amnt": trndata[0].intrbk_sttlm_amnt,
@@ -265,7 +269,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                  "posting_ref_no": arrpostno[0].process_ref_no,
                                  "dbtr_acct_name": trndata[0].dbtr_acct_name,
                                  "cdtr_acct_name": trndata[0].cdtr_acct_name,
-                                 "process_type": "IP",
+                                 "process_type": trndata[0].process_type
 
 
 
@@ -310,7 +314,27 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                      }
                   }
 
+                  function GetRetrycount(uetr) {
+                    return new Promise((resolve, reject) => {
+                        var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where ext_iden_retry_value IS NOT NULL and uetr = '${uetr}' order by npsstpl_id desc`
+                        ExecuteQuery1(TakeretryValue, function (extIdentValue) {
+                            if (extIdentValue.length > 0) {
+                                if(extIdentValue[0].ext_iden_retry_value != null){
+                                    var count = Number(extIdentValue[0].ext_iden_retry_value)
+                                    count ++
+                                    resolve(count)
+                                }else{
+                                    resolve(1)  
+                                }
+                                    
+                                
+                            } else {
+                                resolve(1)
+                            }
 
+                        })
+                    })
+                }
                   // Do API Call for Service 
                   function fn_DoAPIServiceCall(tranresult, url,hdrresult, callbackapi) {
                      try {

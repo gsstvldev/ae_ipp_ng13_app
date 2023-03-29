@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 27925 
+Build ID        : 28958 
 Modified By     : Admin 
-Modified Date   : 2023-Jan-27 7:57 AM 
+Modified Date   : 2023-Mar-29 13:6 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details

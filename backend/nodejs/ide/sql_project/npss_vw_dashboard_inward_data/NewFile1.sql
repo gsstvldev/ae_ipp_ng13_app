@@ -16,7 +16,8 @@ SELECT res.sno,
     COALESCE(sum(res.returned), 0::numeric) AS returned,
 	RES.pending_t_1,
     res.created_date,
-    res.department_code
+    res.department_code,
+    res.tenant_id
    FROM ( SELECT
                 CASE
                     WHEN npl.process_name::text = 'Receive Pacs008'::text THEN 1
@@ -89,12 +90,13 @@ SELECT res.sno,
             case when 
             (nppst.department_code = '') or (nppst.department_code IS NULL) then 'DEFAULT'
             else department_code end department_code,
-            0 AS pending_t_1
+            0 AS pending_t_1,
+            nppst.tenant_id
            FROM npss_transactions nppst
              JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
           WHERE to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE AND
           nppst.process_type::text = 'IP'::text AND (npl.process_name::text = ANY (ARRAY['Receive Pacs008'::character varying::text, 'Receive Pacs.007'::character varying::text, 'Place Pacs004'::character varying::text,'PACS.008'::character varying::text, 'PACS.007'::character varying::text]))
-          GROUP BY nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group,nppst.department_code, (to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text))
+          GROUP BY nppst.tenant_id,nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group,nppst.department_code, (to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text))
         UNION ALL (
 select
 	sno,
@@ -113,7 +115,8 @@ select
 			else D1.department_code end as department_code,
 	case when D1.pending_t_1 is not NULL then D1.pending_t_1
 	else 0
-	end as pending_t_1
+	end as pending_t_1,
+	D1.tenant_id
 from
 	(
 	select
@@ -133,7 +136,8 @@ from
 	ELSE 0
 end as pending_t_1,
 	typeD,
-	department_code
+	department_code,
+	tenant_id
 from
 	(
 	select
@@ -144,7 +148,8 @@ from
 			when nppst.department_code::text = ''::text
 			or nppst.department_code is null then 'DEFAULT'::character varying
 			else nppst.department_code
-		end as department_code
+		end as department_code,
+		nppst.tenant_id
 	from
 				npss_transactions nppst
 	left join npss_trn_process_log npl on
@@ -156,7 +161,7 @@ from
 		and (nppst.status in ('IP_RCT_RR_POSTING_FAILURE', 'IP_RCT_RR_POSTING_RETRY',
 				'IP_RCT_PC_T24_POSTING_RETRY', 'IP_RCT_CC_T24_POSTING_RETRY', 'IP_RCT_POSTING_SUSPICIOUS',
 				'IP_RCT_PC_POSTING_SUSPICIOUS', 'IP_RCT_PC_T24_POSTING_FAILURE', 'IP_RCT_CC_T24_POSTING_FAILURE'))
-		and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) D group by typed,department_code)D1 on D1.typeD = A1.TYPE
+		and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) D group by typed,department_code,tenant_id)D1 on D1.typeD = A1.TYPE
                         UNION
                          select
 	sno,
@@ -175,7 +180,8 @@ from
 			else D3.department_code end as department_code,
 	case when D3.pending_t_1 is not NULL then D3.pending_t_1
 	else 0
-	end as pending_t_1
+	end as pending_t_1,
+	D3.tenant_id
 from
 	(
 	select
@@ -195,7 +201,8 @@ from
 	ELSE 0
 end as pending_t_1,
 	typeD,
-	department_code
+	department_code,
+	tenant_id
 from
 	(
 	select
@@ -206,7 +213,8 @@ from
 			when nppst.department_code::text = ''::text
 			or nppst.department_code is null then 'DEFAULT'::character varying
 			else nppst.department_code
-		end as department_code
+		end as department_code,
+		nppst.tenant_id
 	from
 				npss_transactions nppst
 	left join npss_trn_process_log npl on
@@ -217,7 +225,7 @@ from
 		AND nppst.process_status::text = 'RCTExceptionFailure'
 		and (nppst.status in ('IP_RCT_RETURN_POSTING_FAILURE', 'IP_RCT_RETURN_POSTING_RETRY',
 				'IP_RCT_RR_POSTING_SUSPICIOUS'))
-		and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) DA3 group by typed,department_code)D3 on D3.typeD = A3.TYPE
+		and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) DA3 group by typed,department_code,tenant_id)D3 on D3.typeD = A3.TYPE
                         UNION
                         select
 	sno,
@@ -236,7 +244,8 @@ from
 			else D2.department_code end as department_code,
 	case when D2.pending_t_1 is not NULL then D2.pending_t_1
 	else 0
-	end as pending_t_1
+	end as pending_t_1,
+	D2.tenant_id
 from
 	(
 	select
@@ -256,7 +265,8 @@ from
 	ELSE 0
 end as pending_t_1,
 	typeD,
-	department_code
+	department_code,
+	tenant_id
 from
 	(
 	select
@@ -267,7 +277,8 @@ from
 			when nppst.department_code::text = ''::text
 			or nppst.department_code is null then 'DEFAULT'::character varying
 			else nppst.department_code
-		end as department_code
+		end as department_code,
+		nppst.tenant_id
 	from
 				npss_transactions nppst
 	left join npss_trn_process_log npl on
@@ -277,7 +288,7 @@ from
 		and (npl.process_name in ('Receive Pacs.007'))
 		and (nppst.status in ('IP_RCT_REVERSAL_REQ_RECEIVED', 'IP_RCT_REVERSAL_VLD_FAILED',
 				'IP_RCT_REV_REQ_REJECTED', 'IP_RCT_RR_RETURN_READY'))
-		and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) DA2 group by typed,department_code)D2 on D2.typeD = A2.TYPE
+		and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) DA2 group by typed,department_code,tenant_id)D2 on D2.typeD = A2.TYPE
                 )) res
-  GROUP BY res.type, res.created_date, res.sno,res.department_code,RES.pending_t_1
+  GROUP BY res.type, res.created_date, res.sno,res.department_code,RES.pending_t_1,res.tenant_id
    order by res.sno

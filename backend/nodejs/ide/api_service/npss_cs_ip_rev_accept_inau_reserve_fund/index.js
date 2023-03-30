@@ -10,6 +10,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By :Daseen
         Created Date :04-11-2022
@@ -42,6 +43,7 @@ app.post('/', function(appRequest, appResponse, next) {
                 Reason for : Take gmmargin and rate for only non aed 11/3/23
                 Reason for : changes done for finance house 14/03/2023
                 Reason for : changes done for 28/03/2023
+                 Reason for : ADDING DEALREFNO for reserve fund api 30/03/2023
         */
         var serviceName = 'NPSS IP REV Accept INAU Reserve Fund';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -89,7 +91,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var final_process_status
                             var extend_retry_value
 
-
+                            var dealRefno
                             var TakeStsPsts = `select success_process_status,success_status,processing_system,process_type from core_nc_workflow_setup where rule_code = 'RCT_IP_REV_REQ_ACCEPT' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
 
 
@@ -119,7 +121,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         else {
                                                             lclinstrm = ""
                                                         }
-
+                                                       
                                                         var InsertTable = await ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode, arrurlResult)
                                                         if (InsertTable.length > 0) {
                                                             ExecuteQuery1(take_api_params, async function (arrprocesslog) {
@@ -146,6 +148,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                 if (apicalls == 0) {// Resurve Fund api call
                                                                     reverseAcinfparam = await TakereversalIdandActInfm(arrprocesslog)
+                                                                    dealRefno = await GetDealrefno(arrprocesslog)
                                                                 } else { // for both prepaid card and credit card api calls 
                                                                     reverseAcinfparam = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
                                                                 }
@@ -181,7 +184,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 TakegmMargin = {}
                                                                             }
 
-                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, Objfiledata, TakegmMargin, params.screenName,extend_retry_value)
+                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, Objfiledata, TakegmMargin, params.screenName, extend_retry_value,dealRefno)
                                                                             if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
                                                                                 var UpdateTrnTble = `Update npss_transactions set buy_rate = '${params.buy_rate}',buy_margin = '${params.buy_margin}',tran_charge = '${params.tran_charge}',tran_amount = '${params.tran_amount}', status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                                 //var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
@@ -247,7 +250,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                                     ExecuteQuery1(take_api_params, async function (arrprocesslog) {
                                                                                         var TakegmMargin = {}
-                                                                                        var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, Objfiledata, TakegmMargin, params.screenName,extend_retry_value)
+                                                                                        var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, Objfiledata, TakegmMargin, params.screenName, extend_retry_value,dealRefno)
 
                                                                                         if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
 
@@ -450,7 +453,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         }
                     })
                     // Do API Call for Service 
-                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, screenName,extend_retry_value, callbackapi) {
+                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, screenName, extend_retry_value,dealRefno, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Accept INAU Reserve Fund'
                             var request = require('request');
@@ -464,6 +467,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                     "payload": {
+                                        "deal_ref_no": dealRefno || '',
                                         "ext_iden_retry_value": extend_retry_value || '',
                                         "department_code": arrprocesslog[0].department_code || '',
                                         "org_field_data": Objfiledata,
@@ -555,7 +559,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     // Do Prepaid API Call for Service 
-                    function fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam,extend_retry_value, callbackapi) {
+                    function fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, extend_retry_value, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Prepaid Card'
                             var request = require('request');
@@ -645,7 +649,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     // Do API Call for Service 
-                    function fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam,extend_retry_value, callbackapi) {
+                    function fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, extend_retry_value, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Credit Card'
                             var request = require('request');
@@ -932,15 +936,15 @@ app.post('/', function(appRequest, appResponse, next) {
                             var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where ext_iden_retry_value IS NOT NULL and uetr = '${uetr}' order by npsstpl_id desc`
                             ExecuteQuery1(TakeretryValue, function (extIdentValue) {
                                 if (extIdentValue.length > 0) {
-                                    if(extIdentValue[0].ext_iden_retry_value != null){
+                                    if (extIdentValue[0].ext_iden_retry_value != null) {
                                         var count = Number(extIdentValue[0].ext_iden_retry_value)
-                                        count ++
+                                        count++
                                         resolve(count)
-                                    }else{
-                                        resolve(1)  
+                                    } else {
+                                        resolve(1)
                                     }
-                                        
-                                    
+
+
                                 } else {
                                     resolve(1)
                                 }
@@ -1056,17 +1060,17 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     //function to call all api calls(reservefund,prepaid,credit)
-                    function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, Objfiledata, TakegmMargin, screenName,extend_retry_value) {
+                    function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, Objfiledata, TakegmMargin, screenName, extend_retry_value,dealRefno) {
                         return new Promise((resolve, reject) => {
                             if (apicalls == 0 || apicalls == 0) { // reserve fund
-                                fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, screenName,extend_retry_value, function (result) {
+                                fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, screenName, extend_retry_value,dealRefno, function (result) {
 
                                     resolve(result)
 
 
                                 })
                             } else if (apicalls == 1 || apicalls == 1) { // prepaid api call
-                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam,extend_retry_value, function (result) {
+                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, extend_retry_value, function (result) {
 
                                     resolve(result)
 
@@ -1074,7 +1078,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 })
 
                             } else if (apicalls == 2 || apicalls == 2) { // credit api call
-                                fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam,extend_retry_value, function (result) {
+                                fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, extend_retry_value, function (result) {
 
                                     resolve(result)
 
@@ -1138,7 +1142,23 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
 
+                    function GetDealrefno(arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            let Takerefno = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}'`
+                            ExecuteQuery1(Takerefno, function (arrdealrefno) {
+                                if (arrdealrefno.length > 0) {
+                                    if (arrdealrefno[0].process_ref_no != null) {
+                                        resolve(arrdealrefno[0].process_ref_no)
+                                    }else{
+                                        resolve('')  
+                                    }
+                                } else {
+                                    resolve('')
+                                }
 
+                            })
+                        })
+                    }
 
 
                     //Execute Query Function
@@ -1223,6 +1243,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

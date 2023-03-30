@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 try {
@@ -19,7 +20,7 @@ try {
     Modified Date :17-01-2023  
     Reason for :Remove Console log
     Reason for changing payload
-    Reason for Adding DealRefno 30/03/2023
+   
     */
     var serviceName = ' NPSS_IP_REV_GET_DEAL';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -81,7 +82,7 @@ try {
                                             if (arrurl.length) {
                                                 var url = arrurl[0].param_detail;
                                                 var senddata = {}
-                                                 dealRefno = await GetdelrefNo(arrprocesslog)
+                                                 dealRefno = ''
                                                 var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
                                                 ExecuteQuery1(Takeloccur,  function (localcur) {
                                                     if (localcur.length == 0) {
@@ -195,7 +196,7 @@ try {
 
 
                                 "payload": {
-                                    "deal_ref_no": dealRefno || '',
+                                   
                                     "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date || '',
                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
@@ -311,6 +312,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
     try {
@@ -43,6 +44,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     Reason for : changes Authpac004 13/03/2023
                     Reason for : changes in auth response 25/03/2023
                     Reason for : changes in auth payload and calling pac04 alone 29/03/2023
+                      Reason for : ADDING DEALREFNO in pac04 alone 30/03/2023
         */
         var serviceName = 'NPSS IP REV Ret Auth PACS004';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -84,6 +86,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var ApitrnId
                             var app_id
                             var apicalls
+                            var dealRefno
                             var reverandRefno
                             var final_status
                             var final_process_status
@@ -129,6 +132,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             }
                                                             if (apicalls == 0) { // Logic For Taking Reversal Id and Taking PostingRefno and account Information only for auth004 api call
                                                                 reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog)
+                                                                dealRefno = await GetDealrefno(arrprocesslog)
                                                             }
                                                             //else { // Taking Reversal ID for Prepaid and Credit Card
                                                             //     reverandRefno = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
@@ -161,7 +165,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     if (arrurl.length) {
                                                                         var url = arrurl[0].param_detail;
                                                                         if (apicalls == 0 || apicalls == '0') {
-                                                                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName, Objfiledata,ext_ident_retry_value, function (firstapiresult) {
+                                                                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName, Objfiledata,ext_ident_retry_value,dealRefno, function (firstapiresult) {
                                                                                 if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
 
                                                                                     ExecuteQuery1(take_return_url, function (arrreturnurl) {
@@ -309,7 +313,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 var url = arrurl[0].param_detail;
                                                                                 if (apicalls == 0 || apicalls == '0') {
                                                                                     var Amount
-                                                                                    fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName, Objfiledata,ext_ident_retry_value, function (firstapiresult) {
+                                                                                    fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName, Objfiledata,ext_ident_retry_value,dealRefno, function (firstapiresult) {
                                                                                         if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
 
                                                                                             ExecuteQuery1(take_return_url, function (arrreturnurl) {
@@ -600,7 +604,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     // Do API Call for Service 
-                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, screenName, Objfiledata,ext_ident_retry_value, callbackapi) {
+                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, screenName, Objfiledata,ext_ident_retry_value,dealRefno, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV RET AUTH PACS004'
                             var request = require('request');
@@ -614,6 +618,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                     "payload": {
+                                        "deal_ref_no": dealRefno || '',
                                         "ext_iden_retry_value": ext_ident_retry_value || '',
                                         "org_field_data": Objfiledata || '',
                                         "department_code": arrprocesslog[0].department_code || '',
@@ -1323,7 +1328,23 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     }
 
+                    function GetDealrefno(arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            let Takerefno = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}'`
+                            ExecuteQuery1(Takerefno, function (arrdealrefno) {
+                                if (arrdealrefno.length > 0) {
+                                    if (arrdealrefno[0].process_ref_no != null) {
+                                        resolve(arrdealrefno[0].process_ref_no)
+                                    }else{
+                                        resolve('')  
+                                    }
+                                } else {
+                                    resolve('')
+                                }
 
+                            })
+                        })
+                    }
 
 
                     //function find reversal Id for credit and debit card api calls
@@ -1437,6 +1458,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

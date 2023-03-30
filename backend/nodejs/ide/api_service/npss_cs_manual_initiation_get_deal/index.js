@@ -85,7 +85,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 if (arrurl.length) {
                                                     var url = arrurl[0].param_detail;
                                                     var senddata = {}
-                                                     dealRefno = await GetdelrefNo(arrprocesslog)
+                                                      dealRefno = ''
                                                     var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
                                                     ExecuteQuery1(Takeloccur,  function (localcur) {
                                                         if(localcur.length == 0){

@@ -9,9 +9,6 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-
-
-
 try {
     /*   Created By : Daseen
     Created Date :16-12-2022
@@ -22,7 +19,7 @@ try {
     Modified Date :17-01-2023  
     Reason for :Remove Console log
     Reason for changing payload
-    Reason for Adding DealRefno
+    Reason for Adding DealRefno 30/03/2023
     */
     var serviceName = ' NPSS_IP_REV_GET_DEAL';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -37,7 +34,7 @@ try {
     var xml2js = require('xml2js');
     var mTranConn = "";
     var addquery = "";
-
+    let dealRefno
 
     var objresponse = {
         'status': 'FAILURE',
@@ -80,15 +77,16 @@ try {
                                 var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
                                 ExecuteQuery1(TakeAcctInf, function (arrActInf) {
                                     if (arrActInf.length) {
-                                        ExecuteQuery1(take_api_url, function (arrurl) {
+                                        ExecuteQuery1(take_api_url, async function (arrurl) {
                                             if (arrurl.length) {
                                                 var url = arrurl[0].param_detail;
                                                 var senddata = {}
+                                                 dealRefno = await GetdelrefNo(arrprocesslog)
                                                 var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                ExecuteQuery1(Takeloccur, async function (localcur) {
+                                                ExecuteQuery1(Takeloccur,  function (localcur) {
                                                     if (localcur.length == 0) {
                                                         senddata.amount_credited_loc_cur = ''
-                                                        let dealRefno = await GetdelrefNo(arrprocesslog)
+                                                       
                                                         fn_doapicall(url, arrprocesslog, arrActInf, senddata,dealRefno, function (result) {
                                                             reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
 
@@ -257,7 +255,7 @@ try {
 
                 function GetdelrefNo(arrprocesslog) {
                     return new Promise((resolve, reject) => {
-                        let TakerefNo = `select process_ref_no from npss_trn_process where status = 'IP_RCT_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' and process_type = '${arrprocesslog[0].process_type}'`
+                        let TakerefNo = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' and process_type = '${arrprocesslog[0].process_type}'`
                         ExecuteQuery1(TakerefNo, function (arrrdealNo) {
                             if (arrrdealNo.length > 0) {
                                 resolve(arrrdealNo[0].process_ref_no)
@@ -313,6 +311,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

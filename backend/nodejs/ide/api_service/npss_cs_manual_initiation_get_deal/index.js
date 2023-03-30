@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
 
 
@@ -21,6 +22,7 @@ app.post('/', function(appRequest, appResponse, next) {
         Modified Date :17-01-2023  
         Reason for :Remove Console log
         Reason for changing payload 29/03/2023
+        Reason for changing code 30/03/2023
         */
         var serviceName = ' NPSS (CS) Manual Initiation Get Deal ';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -62,6 +64,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var app_id
                             var final_status
                             var final_process_status
+                            var dealRefno
                             var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_GET_DEAL' and param_code='URL' and need_sync = 'Y'`;
 
                             var take_api_params = `select  ns.intrbk_sttlm_amnt,ns.remittance_info,ns.cr_acct_identification,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method,
@@ -78,15 +81,16 @@ app.post('/', function(appRequest, appResponse, next) {
                                     var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
                                     ExecuteQuery1(TakeAcctInf, function (arrActInf) {
                                         if (arrActInf.length) {
-                                            ExecuteQuery1(take_api_url, function (arrurl) {
+                                            ExecuteQuery1(take_api_url, async function (arrurl) {
                                                 if (arrurl.length) {
                                                     var url = arrurl[0].param_detail;
                                                     var senddata = {}
+                                                     dealRefno = await GetdelrefNo(arrprocesslog)
                                                     var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                    ExecuteQuery1(Takeloccur, async function (localcur) {
+                                                    ExecuteQuery1(Takeloccur,  function (localcur) {
                                                         if(localcur.length == 0){
                                                             senddata.amount_credited_loc_cur = ''
-                                                            let dealRefno = await GetdelrefNo(arrprocesslog)
+                                                            
                                                             fn_doapicall(url, arrprocesslog, arrActInf,senddata,dealRefno, function (result) {
                                                                 reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
         
@@ -255,13 +259,18 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     function GetdelrefNo(arrprocesslog) {
                         return new Promise((resolve, reject) => {
-                            let TakerefNo = `select process_ref_no from npss_trn_process where status = 'IP_RCT_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' and process_type = '${arrprocesslog[0].process_type}'`
+                            let TakerefNo = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' and process_type = '${arrprocesslog[0].process_type}'`
                             ExecuteQuery1(TakerefNo, function (arrrdealNo) {
-                                if (arrrdealNo.length > 0) {
-                                    resolve(arrrdealNo[0].process_ref_no)
-                                } else {
-                                    resolve('')
+                                try{
+                                    if (arrrdealNo.length > 0) {
+                                        resolve(arrrdealNo[0].process_ref_no)
+                                    } else {
+                                        resolve('')
+                                    }
+                                }catch(error){
+                                    sendResponse(error, null);
                                 }
+                                
     
                             })
                         })
@@ -311,6 +320,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

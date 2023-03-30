@@ -125,7 +125,7 @@ Modified By : Daseen
                                        }
                                        else {
                                            console.log("No Rule code Found");
-                                           objresponse.status = 'FAILURE';
+                                           objresponse.status = 'Url not found';
                                            sendResponse(null, objresponse)
                                        }
 
@@ -134,7 +134,7 @@ Modified By : Daseen
                                }
                                else {
                                    console.log("No data Found In Rule Code");
-                                   objresponse.status = 'FAILURE';
+                                   objresponse.status = 'no data found in workflow setup table';
                                    sendResponse(null, objresponse)
                                }
 

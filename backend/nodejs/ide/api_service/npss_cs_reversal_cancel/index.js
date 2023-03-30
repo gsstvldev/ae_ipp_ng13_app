@@ -198,7 +198,7 @@ app.post('/', function(appRequest, appResponse, next) {
              
              
                                                                      } else {
-                                                                         objresponse.status = 'FAILURE'
+                                                                         objresponse.status = 'No Url Found'
                                                                          objresponse.data.msg = 'No Url Found'
                                                                          sendResponse(null, objresponse)
                                                                      }
@@ -214,7 +214,7 @@ app.post('/', function(appRequest, appResponse, next) {
              
              
                                                      } else {
-                                                         objresponse.status = 'FAILURE';
+                                                         objresponse.status = 'No data found in core_nc_workflow_setup';
                                                          objresponse.data.msg = 'No data found in core_nc_workflow_setup'
                                                          sendResponse(null, objresponse)
                                                      }
@@ -281,13 +281,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                          }
                                                                      })
                                                                  }else{
-                                                                     objresponse.status = 'FAILURE';
+                                                                     objresponse.status = 'Error in Table Insert'
                                                                      objresponse.data.msg = 'Error in Table Insert'
                                                                      sendResponse(null, objresponse)
                                                                  }
                                                              })
                                                          }else{
-                                                             objresponse.status = 'FAILURE';
+                                                             objresponse.status = 'No data found in core_nc_workflow_setup';
                                                              objresponse.data.msg = 'No data found in core_nc_workflow_setup'
                                                              sendResponse(null, objresponse)
                                                          }

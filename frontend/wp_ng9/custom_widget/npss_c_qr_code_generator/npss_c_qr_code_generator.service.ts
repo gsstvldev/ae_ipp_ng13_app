@@ -59,7 +59,7 @@ export class npss_c_qr_code_generatorService {
       if(mercname){
         json+=` "mercname":${mercname}`
         pipe+=` "mercname":${mercname}`
-        pipewotag+=`${mercname}`
+        pipewotag+=`${mercname}|`
        }
        if(merctag){
         json+=` "merctag":${merctag}`

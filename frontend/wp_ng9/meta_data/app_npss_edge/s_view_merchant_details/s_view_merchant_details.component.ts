@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28988 
+Build ID        : 28989 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-31 10:2 AM 
+Modified Date   : 2023-Mar-31 10:32 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -12,14 +12,14 @@ Screen Name     : s_view_merchant_details
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_cs_update_mch_tagService} from '../../../custom_widget/npss_cs_update_mch_tag/npss_cs_update_mch_tag.service'
 import {npss_c_qr_code_generatorService} from '../../../custom_widget/npss_c_qr_code_generator/npss_c_qr_code_generator.service'
 
 @Component({
 	selector: 's_view_merchant_details',
 	templateUrl: './s_view_merchant_details.component.html',
 	styleUrls: ['./s_view_merchant_details.component.css'],
-	providers:[torus_cs_show_hideService,npss_c_qr_code_generatorService]
+	providers:[npss_cs_update_mch_tagService,npss_c_qr_code_generatorService]
 })
     
 // Start of class 
@@ -92,7 +92,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_qr_code_generatorService:npss_c_qr_code_generatorService) {
+	constructor(private handler:AppHandlerService ,private npss_cs_update_mch_tagService:npss_cs_update_mch_tagService,private npss_c_qr_code_generatorService:npss_c_qr_code_generatorService) {
     
 	}
     
@@ -276,8 +276,8 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_generate_merchant_tag.disabled = false
 		this.navigation_generate_merchant_tag.params = {"icon_only":false,"uicgcc_style":"fa fa-creative-commons"}
 		this.navigation_generate_merchant_tag.dynamic_param = {}
-		this.navigation_generate_merchant_tag.role = ["731"]
-		this.navigation_generate_merchant_tag.action = "show"
+		this.navigation_generate_merchant_tag.role = ["699","705","708","709","730","737","738","741","742"]
+		this.navigation_generate_merchant_tag.action = "hide"
 		
 		// "Generate QR" Button of "Navigation" component
 		this.navigation_generate_qr.label_name = "Generate QR"
@@ -285,8 +285,8 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_generate_qr.disabled = false
 		this.navigation_generate_qr.params = {"icon_only":false,"uicgcc_style":"fa fa-qrcode"}
 		this.navigation_generate_qr.dynamic_param = {}
-		this.navigation_generate_qr.role = ["731"]
-		this.navigation_generate_qr.action = "show"
+		this.navigation_generate_qr.role = ["699","705","708","709","730","737","738","741","742"]
+		this.navigation_generate_qr.action = "hide"
 	
 		// Component level properties - "Back UI" 
 		this.back_ui.uictrl_code = "dynamic_ui"
@@ -2108,7 +2108,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_update_mch_tagService.fn_npss_cs_update_mch_tag(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

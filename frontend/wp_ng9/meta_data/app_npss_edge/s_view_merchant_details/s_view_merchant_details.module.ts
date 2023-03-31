@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28988 
+Build ID        : 28989 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-31 10:2 AM 
+Modified Date   : 2023-Mar-31 10:32 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -20,7 +20,7 @@ import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
 import {npss_c_qr_code_generatorModule} from '../../../custom_widget/npss_c_qr_code_generator/npss_c_qr_code_generator.module'
-import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
+import {npss_cs_update_mch_tagModule} from '../../../custom_widget/npss_cs_update_mch_tag/npss_cs_update_mch_tag.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -59,7 +59,7 @@ import { f_qr_uiComponent } from './f_qr_ui/f_qr_ui.component'
     OverlayPanelModule,
     
     s_view_merchant_detailsRoutingModule,
-    npss_c_qr_code_generatorModule,torus_cs_show_hideModule
+    npss_c_qr_code_generatorModule,npss_cs_update_mch_tagModule
   ],
   declarations: [s_view_merchant_detailsComponent,p_main_layoutComponent,f_navigationComponent,f_back_uiComponent,p_view_account_layoutComponent,p_search_layoutComponent,f_npss_sm_merchant_details_srchComponent,p_view_shop_layoutComponent,p_cash_desk_layoutComponent,p_qr_layoutComponent,f_npss_merchant_qr_uiComponent,f_npss_merchant_payment_type_qr_uiComponent,f_qr_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28993 
+Build ID        : 28954 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-31 11:19 AM 
+Modified Date   : 2023-Mar-31 12:13 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -61,7 +61,7 @@ focustoelement(){
 		this.ctrl.value_date.data_type = "DATETIME"
 		this.ctrl.value_date.data_length = 0
 		this.ctrl.value_date.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.value_date.default_value = "setcurrentdate(),{}"
+		this.ctrl.value_date.default_value = ""
 		this.ctrl.value_date.is_memory_ctrl = ""
 		this.ctrl.value_date.field_coordinates = ""
 		this.ctrl.value_date.sub_details = ""
@@ -360,7 +360,7 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.ctrl_id = "npss_reversal_srch_payment_endtoend_id"
 		this.ctrl.npss_reversal_srch_payment_endtoend_id = {}
 		this.ctrl.npss_reversal_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reversal_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","UETR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","PAYMENT_ENDTOEND_ID":""}
+		this.screen_instance[this.comp_id].f_npss_reversal_srch.model = {"VALUE_DATE":"","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","UETR":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","PAYMENT_ENDTOEND_ID":""}
 		this.screen_instance[this.comp_id].f_npss_reversal_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"}]
 		this.screen_instance[this.comp_id].f_npss_reversal_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_reversal_srch.dtt_code = "dtt_1304_1665901217208"

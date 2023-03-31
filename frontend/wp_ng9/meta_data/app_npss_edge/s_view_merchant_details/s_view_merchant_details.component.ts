@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28999 
+Build ID        : 29001 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-31 12:51 PM 
+Modified Date   : 2023-Mar-31 13:48 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -1085,7 +1085,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let destn_id="navigation_generate_merchant_tag"
 		let parent_source_id=""
 		let event_code="e_1680255222779"
-		let event_params={"caller_name":"merchant_list__e_1680255222779","event_desc":"E_1680255222779","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant_list","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":"MERCHANT_TAG IS NULL"}}
+		let event_params={"caller_name":"merchant_list__e_1680255222779","event_desc":"E_1680255222779","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant_list","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}

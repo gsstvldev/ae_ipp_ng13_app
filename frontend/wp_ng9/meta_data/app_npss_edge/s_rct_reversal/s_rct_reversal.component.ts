@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28958 
+Build ID        : 28965 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-29 13:7 PM 
+Modified Date   : 2023-Mar-31 5:29 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -115,10 +115,10 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	reversal_action_ui_capprove : any = {}
 	reversal_action_ui_approve : any = {}
 	reversal_action_ui_change_return_reason : any = {}
-	reversal_action_ui_cancel__send_to_maker : any = {}
 	reversal_action_ui_send_to_maker : any = {}
-	reversal_action_ui_force_post : any = {}
+	reversal_action_ui_cancel__send_to_maker : any = {}
 	reversal_action_ui_trigger_btn : any = {}
+	reversal_action_ui_force_post : any = {}
 	accept_ui : any = {}
 	accept_ui_save : any = {}
 	change_return_ui : any = {}
@@ -326,15 +326,6 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.reversal_action_ui_change_return_reason.role = []
 		this.reversal_action_ui_change_return_reason.action = ""
 		
-		// "Cancel & Send to Maker" Button of "Reversal Action UI" component
-		this.reversal_action_ui_cancel__send_to_maker.label_name = "Cancel & Send to Maker"
-		this.reversal_action_ui_cancel__send_to_maker.show = true
-		this.reversal_action_ui_cancel__send_to_maker.disabled = false
-		this.reversal_action_ui_cancel__send_to_maker.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
-		this.reversal_action_ui_cancel__send_to_maker.dynamic_param = {}
-		this.reversal_action_ui_cancel__send_to_maker.role = []
-		this.reversal_action_ui_cancel__send_to_maker.action = ""
-		
 		// "Send to Maker" Button of "Reversal Action UI" component
 		this.reversal_action_ui_send_to_maker.label_name = "Send to Maker"
 		this.reversal_action_ui_send_to_maker.show = true
@@ -344,14 +335,14 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.reversal_action_ui_send_to_maker.role = []
 		this.reversal_action_ui_send_to_maker.action = ""
 		
-		// "Force Post" Button of "Reversal Action UI" component
-		this.reversal_action_ui_force_post.label_name = "Force Post"
-		this.reversal_action_ui_force_post.show = true
-		this.reversal_action_ui_force_post.disabled = false
-		this.reversal_action_ui_force_post.params = {"icon_only":false,"uicgcc_style":"fa fa-check-square-o"}
-		this.reversal_action_ui_force_post.dynamic_param = {}
-		this.reversal_action_ui_force_post.role = []
-		this.reversal_action_ui_force_post.action = ""
+		// "Cancel & Send to Maker" Button of "Reversal Action UI" component
+		this.reversal_action_ui_cancel__send_to_maker.label_name = "Cancel & Send to Maker"
+		this.reversal_action_ui_cancel__send_to_maker.show = true
+		this.reversal_action_ui_cancel__send_to_maker.disabled = false
+		this.reversal_action_ui_cancel__send_to_maker.params = {"icon_only":false,"uicgcc_style":"fa fa-remove"}
+		this.reversal_action_ui_cancel__send_to_maker.dynamic_param = {}
+		this.reversal_action_ui_cancel__send_to_maker.role = []
+		this.reversal_action_ui_cancel__send_to_maker.action = ""
 		
 		// "Trigger btn" Button of "Reversal Action UI" component
 		this.reversal_action_ui_trigger_btn.label_name = "Trigger btn"
@@ -361,6 +352,15 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.reversal_action_ui_trigger_btn.dynamic_param = {}
 		this.reversal_action_ui_trigger_btn.role = []
 		this.reversal_action_ui_trigger_btn.action = ""
+		
+		// "Force Post" Button of "Reversal Action UI" component
+		this.reversal_action_ui_force_post.label_name = "Force Post"
+		this.reversal_action_ui_force_post.show = true
+		this.reversal_action_ui_force_post.disabled = false
+		this.reversal_action_ui_force_post.params = {"icon_only":false,"uicgcc_style":"fa fa-check-square-o"}
+		this.reversal_action_ui_force_post.dynamic_param = {}
+		this.reversal_action_ui_force_post.role = []
+		this.reversal_action_ui_force_post.action = ""
 	
 		// Component level properties - "Accept UI" 
 		this.accept_ui.uictrl_code = "dynamic_ui"

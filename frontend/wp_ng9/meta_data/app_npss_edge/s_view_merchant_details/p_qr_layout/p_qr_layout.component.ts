@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28985 
+Build ID        : 28988 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-31 8:15 AM 
+Modified Date   : 2023-Mar-31 10:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -22,9 +22,10 @@ export class p_qr_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	qr_ui : any = {}
-	payor_information : any = {}
+  	payor_information : any = {}
 	payee_information : any = {}
+	qr_ui : any = {}
+	npss_qr_widget : any = {}
 
 
   // Constructor 
@@ -32,12 +33,14 @@ export class p_qr_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.qr_ui.desc = "QR UI"
-		this.qr_ui.need_header = ""
-		this.payor_information.desc = "Payor Information"
-		this.payor_information.need_header = ""
+    	this.payor_information.desc = "Payor Information"
+		this.payor_information.need_header = true
 		this.payee_information.desc = "Payee Information"
-		this.payee_information.need_header = ""
+		this.payee_information.need_header = true
+		this.qr_ui.desc = "QR UI"
+		this.qr_ui.need_header = ""
+		this.npss_qr_widget.desc = "NPSS QR Widget"
+		this.npss_qr_widget.need_header = ""
 	
 
     this.screen_instance['p_qr_layout'] = {};

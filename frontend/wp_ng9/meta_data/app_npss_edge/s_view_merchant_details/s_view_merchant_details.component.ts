@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28985 
+Build ID        : 28988 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-31 8:15 AM 
+Modified Date   : 2023-Mar-31 10:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -13,12 +13,13 @@ Screen Name     : s_view_merchant_details
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_c_qr_code_generatorService} from '../../../custom_widget/npss_c_qr_code_generator/npss_c_qr_code_generator.service'
 
 @Component({
 	selector: 's_view_merchant_details',
 	templateUrl: './s_view_merchant_details.component.html',
 	styleUrls: ['./s_view_merchant_details.component.css'],
-	providers:[torus_cs_show_hideService]
+	providers:[torus_cs_show_hideService,npss_c_qr_code_generatorService]
 })
     
 // Start of class 
@@ -48,6 +49,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	uicgc_14 : string = "payor_information"
 	uicgc_15 : string = "payee_information"
 	uicgc_16 : string = "qr_ui"
+	uicgc_17 : string = "npss_qr_widget"
 	key_events : any = {}
 	btl_1304_1680249522621 : string = "p_qr_layout"
 	btl_1304_1666940042844 : string = "p_cash_desk_layout"
@@ -86,10 +88,11 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	qr_ui : any = {}
 	qr_ui_generate_qr_code : any = {}
 	qr_ui_close : any = {}
+	npss_qr_widget : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_qr_code_generatorService:npss_c_qr_code_generatorService) {
     
 	}
     
@@ -273,8 +276,8 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_generate_merchant_tag.disabled = false
 		this.navigation_generate_merchant_tag.params = {"icon_only":false,"uicgcc_style":"fa fa-creative-commons"}
 		this.navigation_generate_merchant_tag.dynamic_param = {}
-		this.navigation_generate_merchant_tag.role = []
-		this.navigation_generate_merchant_tag.action = ""
+		this.navigation_generate_merchant_tag.role = ["731"]
+		this.navigation_generate_merchant_tag.action = "show"
 		
 		// "Generate QR" Button of "Navigation" component
 		this.navigation_generate_qr.label_name = "Generate QR"
@@ -282,8 +285,8 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_generate_qr.disabled = false
 		this.navigation_generate_qr.params = {"icon_only":false,"uicgcc_style":"fa fa-qrcode"}
 		this.navigation_generate_qr.dynamic_param = {}
-		this.navigation_generate_qr.role = []
-		this.navigation_generate_qr.action = ""
+		this.navigation_generate_qr.role = ["731"]
+		this.navigation_generate_qr.action = "show"
 	
 		// Component level properties - "Back UI" 
 		this.back_ui.uictrl_code = "dynamic_ui"
@@ -413,6 +416,18 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.qr_ui_close.dynamic_param = {}
 		this.qr_ui_close.role = []
 		this.qr_ui_close.action = ""
+	
+		// Component level properties - "NPSS QR Widget" 
+		this.npss_qr_widget.uictrl_code = "custom_widget"
+		this.npss_qr_widget.uicgc_desc = "NPSS QR Widget"
+		this.npss_qr_widget.uicgc_code = "uicgc_17"
+		this.npss_qr_widget.params = {}
+		this.npss_qr_widget.datasource = {}
+		this.npss_qr_widget.context_menu = []
+		this.npss_qr_widget.views = {}
+		this.npss_qr_widget.onChangecomponent = new EventEmitter<any>()
+		this.npss_qr_widget.show = true
+		this.npss_qr_widget.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -441,6 +456,8 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.queue__de_from_queue_to_view_detau()
 		this.queue__de_from_queue_to_cashdesk()
 		this.queue__de_from_queue_to_shop_dtl()
+		this.queue__e_1680256408766()
+		this.queue__e_1680256423639()
 	}
 
 	//Handler for INTERNAL event of "svm from queue"
@@ -464,6 +481,8 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.merchant_list__ee_for_view_detail_from_customer_list()
 		this.merchant_list__ee_for_view_shop_dtl()
 		this.merchant_list__ee_for_view_cash_desk_dtl()
+		this.merchant_list__e_1680255222779()
+		this.merchant_list__e_1680255240615()
 	}
 
 	//Handler for INTERNAL event of "svm from customer list"
@@ -622,6 +641,16 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "qr ui close"
 	qr_ui_close__action_button_click(){
 		this.qr_ui_close__sp_for_qr_close()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "qr ui generate qr code"
+	qr_ui_generate_qr_code__action_button_click(){
+		this.qr_ui_generate_qr_code__cc_for_qr_code()
+	}
+
+	//Handler for SELECTION_CHANGED event of "npss merchant payment type qr ui dbtr cust type"
+	npss_merchant_payment_type_qr_ui_dbtr_cust_type__selection_changed(){
+		this.npss_merchant_payment_type_qr_ui_dbtr_cust_type__e_1680255639877__payee_information()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -856,6 +885,48 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "queue"
+	queue__e_1680256408766() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="queue"
+		let destn_id="navigation_generate_merchant_tag"
+		let parent_source_id=""
+		let event_code="e_1680256408766"
+		let event_params={"caller_name":"queue__e_1680256408766","event_desc":"E_1680256408766","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "queue"
+	queue__e_1680256423639() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="queue"
+		let destn_id="navigation_generate_qr"
+		let parent_source_id=""
+		let event_code="e_1680256423639"
+		let event_params={"caller_name":"queue__e_1680256423639","event_desc":"E_1680256423639","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "svm from queue"
 	svm_from_queue__ssp_from_queue(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -1000,6 +1071,48 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "merchant list"
+	merchant_list__e_1680255222779() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="merchant_list"
+		let destn_id="navigation_generate_merchant_tag"
+		let parent_source_id=""
+		let event_code="e_1680255222779"
+		let event_params={"caller_name":"merchant_list__e_1680255222779","event_desc":"E_1680255222779","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant_list","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "merchant list"
+	merchant_list__e_1680255240615() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="merchant_list"
+		let destn_id="navigation_generate_qr"
+		let parent_source_id=""
+		let event_code="e_1680255240615"
+		let event_params={"caller_name":"merchant_list__e_1680255240615","event_desc":"E_1680255240615","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant_list","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2011,7 +2124,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="navigation_generate_merchant_tag"
 		let event_code="e_1680249282641"
-		let event_params={"caller_name":"cc_for_generate_merchant_tag__im_for_generate_merchant_tag","event_desc":"IM for generate merchant tag","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_generate_merchant_tag","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_generate_merchant_tag__im_for_generate_merchant_tag","event_desc":"IM for generate merchant tag","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Merchant Tag has been generated successfully","root_source_id":"navigation_generate_merchant_tag","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="im_for_generate_merchant_tag__rs_for_generate_merchant_tag,"
 		let event_data={}
@@ -2145,6 +2258,48 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "qr ui generate qr code"
+	qr_ui_generate_qr_code__cc_for_qr_code() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="qr_ui_generate_qr_code"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1680256211944"
+		let event_params={"caller_name":"qr_ui_generate_qr_code__cc_for_qr_code","event_desc":"CC for qr Code","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"qr_ui_generate_qr_code","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_c_qr_code_generatorService.fn_npss_c_qr_code_generator(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "npss merchant payment type qr ui dbtr cust type"
+	npss_merchant_payment_type_qr_ui_dbtr_cust_type__e_1680255639877__payee_information() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="npss_merchant_payment_type_qr_ui_dbtr_cust_type"
+		let destn_id="payee_information"
+		let parent_source_id=""
+		let event_code="e_1680255639877"
+		let event_params={"source_comp_id":"payee_information","source_ctrl_id":"dbtr_cust_type","caller_name":"npss_merchant_payment_type_qr_ui_dbtr_cust_type__e_1680255639877__payee_information","event_desc":"E_1680255639877","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"npss_merchant_payment_type_qr_ui~uicgc_15~ui~df_1304_1665901396659~39","raiseparam":{}}
+		let handler_code="show_hide_controls"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_hide_controls(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

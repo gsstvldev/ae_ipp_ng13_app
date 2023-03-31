@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28985 
+Build ID        : 28988 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-31 8:15 AM 
+Modified Date   : 2023-Mar-31 10:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -19,6 +19,7 @@ import {ComponentModule} from '../../../widgets/component/component.module';
 import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
+import {npss_c_qr_code_generatorModule} from '../../../custom_widget/npss_c_qr_code_generator/npss_c_qr_code_generator.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 
 import {DialogModule} from 'primeng/dialog';
@@ -41,9 +42,9 @@ import { f_npss_sm_merchant_details_srchComponent } from './f_npss_sm_merchant_d
 import { p_view_shop_layoutComponent } from './p_view_shop_layout/p_view_shop_layout.component'
 import { p_cash_desk_layoutComponent } from './p_cash_desk_layout/p_cash_desk_layout.component'
 import { p_qr_layoutComponent } from './p_qr_layout/p_qr_layout.component'
-import { f_qr_uiComponent } from './f_qr_ui/f_qr_ui.component'
 import { f_npss_merchant_qr_uiComponent } from './f_npss_merchant_qr_ui/f_npss_merchant_qr_ui.component'
 import { f_npss_merchant_payment_type_qr_uiComponent } from './f_npss_merchant_payment_type_qr_ui/f_npss_merchant_payment_type_qr_ui.component'
+import { f_qr_uiComponent } from './f_qr_ui/f_qr_ui.component'
 
 
 
@@ -58,9 +59,9 @@ import { f_npss_merchant_payment_type_qr_uiComponent } from './f_npss_merchant_p
     OverlayPanelModule,
     
     s_view_merchant_detailsRoutingModule,
-    torus_cs_show_hideModule
+    npss_c_qr_code_generatorModule,torus_cs_show_hideModule
   ],
-  declarations: [s_view_merchant_detailsComponent,p_main_layoutComponent,f_navigationComponent,f_back_uiComponent,p_view_account_layoutComponent,p_search_layoutComponent,f_npss_sm_merchant_details_srchComponent,p_view_shop_layoutComponent,p_cash_desk_layoutComponent,p_qr_layoutComponent,f_qr_uiComponent,f_npss_merchant_qr_uiComponent,f_npss_merchant_payment_type_qr_uiComponent,],
+  declarations: [s_view_merchant_detailsComponent,p_main_layoutComponent,f_navigationComponent,f_back_uiComponent,p_view_account_layoutComponent,p_search_layoutComponent,f_npss_sm_merchant_details_srchComponent,p_view_shop_layoutComponent,p_cash_desk_layoutComponent,p_qr_layoutComponent,f_npss_merchant_qr_uiComponent,f_npss_merchant_payment_type_qr_uiComponent,f_qr_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

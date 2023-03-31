@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28985 
+Build ID        : 28988 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-31 8:15 AM 
+Modified Date   : 2023-Mar-31 10:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -242,9 +242,9 @@ focustoelement(){
 		//Properties of value_date
 		this.ctrl.value_date = {}
 		this.ctrl.value_date.id = "RN21CN9"
-		this.ctrl.value_date.desc = "Value Date"
+		this.ctrl.value_date.desc = "Invoice Date"
 		this.ctrl.value_date.visible = true
-		this.ctrl.value_date.label_name = "Value Date"
+		this.ctrl.value_date.label_name = "Invoice Date"
 		this.ctrl.value_date.df_code = "DF_1304_1665901396659"
 		this.ctrl.value_date.df_description = "Column Group 1"
 		this.ctrl.value_date.uictrl_code = "DTP"
@@ -252,7 +252,7 @@ focustoelement(){
 		this.ctrl.value_date.data_type = "DATETIME"
 		this.ctrl.value_date.data_length = 0
 		this.ctrl.value_date.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.value_date.default_value = ""
+		this.ctrl.value_date.default_value = "setcurrentdate(),{}"
 		this.ctrl.value_date.is_memory_ctrl = ""
 		this.ctrl.value_date.field_coordinates = ""
 		this.ctrl.value_date.sub_details = ""
@@ -352,7 +352,7 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_merchant_payment_type_qr_ui_intrbk_sttlm_amnt"
 		this.ctrl.npss_merchant_payment_type_qr_ui_intrbk_sttlm_amnt = {}
 		this.ctrl.npss_merchant_payment_type_qr_ui_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_merchant_payment_type_qr_ui.model = {"DBTR_CUST_TYPE":"","DBTR_PHONE_NO":"","DBTR_EMAIL_ID":"","DBTR_IBAN":"","DBTR_DOCUMENT_ID":"","VALUE_DATE":"","REMARKS":"","INTRBK_STTLM_AMNT":""}
+		this.screen_instance[this.comp_id].f_npss_merchant_payment_type_qr_ui.model = {"DBTR_CUST_TYPE":"","DBTR_PHONE_NO":"","DBTR_EMAIL_ID":"","DBTR_IBAN":"","DBTR_DOCUMENT_ID":"","VALUE_DATE":"setcurrentdate(),{}","REMARKS":"","INTRBK_STTLM_AMNT":""}
 		this.screen_instance[this.comp_id].f_npss_merchant_payment_type_qr_ui.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_CUST_TYPE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_PHONE_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_EMAIL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_DOCUMENT_ID"},{"CTLR_CODE":"DTP","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"REMARKS"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
 		this.screen_instance[this.comp_id].f_npss_merchant_payment_type_qr_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_merchant_payment_type_qr_ui.dtt_code = "dtt_1304_1665901217208"

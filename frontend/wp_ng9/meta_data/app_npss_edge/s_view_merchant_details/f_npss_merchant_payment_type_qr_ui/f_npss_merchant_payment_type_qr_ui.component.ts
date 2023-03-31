@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28989 
+Build ID        : 28993 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-31 10:32 AM 
+Modified Date   : 2023-Mar-31 11:19 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -73,12 +73,12 @@ focustoelement(){
 		this.ctrl.dbtr_cust_type.placeholder = ""
 		this.ctrl.dbtr_cust_type.dynamic_param = ""
 		this.ctrl.dbtr_cust_type.style_code = ""
-		this.ctrl.dbtr_cust_type.data_source = {"ds_code":"UDS_1304_1680248659944","ds_description":"NPSS Payment type QR Static","rows":[{"value":"Phone No","code":"Phone No"},{"value":"Email Id","code":"Email Id"},{"value":"IBAN","code":"IBAN"},{"value":"Emirates","code":"Emirates"}],"type":"DPS_STATIC","value_member":"CODE","display_member":"VALUE","first_record_display":"","column_list":"CODE;VALUE","order_by":"","target_table":"","context":"","filters":[],"type_desc":"Combo Binding Static","conditional_operator":"CONTAINS","sel_columns":[]}
+		this.ctrl.dbtr_cust_type.data_source = {"ds_code":"UDS_1304_1680248659944","ds_description":"NPSS Payment type QR Static","rows":[{"value":"Select","code":""},{"value":"Phone No","code":"Phone No"},{"value":"Email Id","code":"Email Id"},{"value":"IBAN","code":"IBAN"},{"value":"Emirates","code":"Emirates"}],"type":"DPS_STATIC","value_member":"CODE","display_member":"VALUE","first_record_display":"Select","column_list":"CODE;VALUE","order_by":"","target_table":"","context":"","filters":[],"type_desc":"Combo Binding Static","conditional_operator":"CONTAINS","sel_columns":[],"need_first_item_selection":false,"has_parent":false}
 		this.ctrl.dbtr_cust_type.image_association = ""
 		this.ctrl.dbtr_cust_type.show = true
 		this.ctrl.dbtr_cust_type.sub_content = ""
 		this.ctrl.dbtr_cust_type.required = false
-		this.ctrl.dbtr_cust_type.vld_rules = []
+		this.ctrl.dbtr_cust_type.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Select the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.dbtr_cust_type.targetcolumn_lower = "dbtr_cust_type"
 		this.ctrl.dbtr_cust_type.disabled = false
 		this.ctrl.dbtr_cust_type.view_name = "f_npss_merchant_payment_type_qr_ui"
@@ -117,7 +117,7 @@ focustoelement(){
 		this.ctrl.dbtr_phone_no.show = false
 		this.ctrl.dbtr_phone_no.sub_content = ""
 		this.ctrl.dbtr_phone_no.required = false
-		this.ctrl.dbtr_phone_no.vld_rules = []
+		this.ctrl.dbtr_phone_no.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.dbtr_phone_no.targetcolumn_lower = "dbtr_phone_no"
 		this.ctrl.dbtr_phone_no.disabled = false
 		this.ctrl.dbtr_phone_no.view_name = "f_npss_merchant_payment_type_qr_ui"
@@ -155,7 +155,7 @@ focustoelement(){
 		this.ctrl.dbtr_email_id.show = false
 		this.ctrl.dbtr_email_id.sub_content = ""
 		this.ctrl.dbtr_email_id.required = false
-		this.ctrl.dbtr_email_id.vld_rules = []
+		this.ctrl.dbtr_email_id.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.dbtr_email_id.targetcolumn_lower = "dbtr_email_id"
 		this.ctrl.dbtr_email_id.disabled = false
 		this.ctrl.dbtr_email_id.view_name = "f_npss_merchant_payment_type_qr_ui"
@@ -193,7 +193,7 @@ focustoelement(){
 		this.ctrl.dbtr_iban.show = false
 		this.ctrl.dbtr_iban.sub_content = ""
 		this.ctrl.dbtr_iban.required = false
-		this.ctrl.dbtr_iban.vld_rules = []
+		this.ctrl.dbtr_iban.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.dbtr_iban.targetcolumn_lower = "dbtr_iban"
 		this.ctrl.dbtr_iban.disabled = false
 		this.ctrl.dbtr_iban.view_name = "f_npss_merchant_payment_type_qr_ui"
@@ -231,7 +231,7 @@ focustoelement(){
 		this.ctrl.dbtr_document_id.show = false
 		this.ctrl.dbtr_document_id.sub_content = ""
 		this.ctrl.dbtr_document_id.required = false
-		this.ctrl.dbtr_document_id.vld_rules = []
+		this.ctrl.dbtr_document_id.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.dbtr_document_id.targetcolumn_lower = "dbtr_document_id"
 		this.ctrl.dbtr_document_id.disabled = false
 		this.ctrl.dbtr_document_id.view_name = "f_npss_merchant_payment_type_qr_ui"
@@ -269,7 +269,7 @@ focustoelement(){
 		this.ctrl.value_date.show = true
 		this.ctrl.value_date.sub_content = ""
 		this.ctrl.value_date.required = false
-		this.ctrl.value_date.vld_rules = []
+		this.ctrl.value_date.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.value_date.targetcolumn_lower = "value_date"
 		this.ctrl.value_date.disabled = false
 		this.ctrl.value_date.view_name = "f_npss_merchant_payment_type_qr_ui"
@@ -307,7 +307,7 @@ focustoelement(){
 		this.ctrl.remarks.show = true
 		this.ctrl.remarks.sub_content = ""
 		this.ctrl.remarks.required = false
-		this.ctrl.remarks.vld_rules = []
+		this.ctrl.remarks.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.remarks.targetcolumn_lower = "remarks"
 		this.ctrl.remarks.disabled = false
 		this.ctrl.remarks.view_name = "f_npss_merchant_payment_type_qr_ui"
@@ -345,7 +345,7 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.show = true
 		this.ctrl.intrbk_sttlm_amnt.sub_content = ""
 		this.ctrl.intrbk_sttlm_amnt.required = false
-		this.ctrl.intrbk_sttlm_amnt.vld_rules = []
+		this.ctrl.intrbk_sttlm_amnt.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
 		this.ctrl.intrbk_sttlm_amnt.disabled = false
 		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_merchant_payment_type_qr_ui"

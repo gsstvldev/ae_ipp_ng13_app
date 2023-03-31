@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28981 
+Build ID        : 28993 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-31 5:29 AM 
+Modified Date   : 2023-Mar-31 11:19 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -78,7 +78,7 @@ focustoelement(){
 		this.ctrl.intrbk_sttlm_amnt.show = true
 		this.ctrl.intrbk_sttlm_amnt.sub_content = ""
 		this.ctrl.intrbk_sttlm_amnt.required = false
-		this.ctrl.intrbk_sttlm_amnt.vld_rules = []
+		this.ctrl.intrbk_sttlm_amnt.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
 		this.ctrl.intrbk_sttlm_amnt.disabled = false
 		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_op_reversal_ui"

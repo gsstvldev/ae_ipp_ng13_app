@@ -1,1 +1,199 @@
 /*CSS FILE*/
+/*CSS FILE*/
+/*CSS FILE*/
+/*CSS FILE*/
+/*CSS FILE*/
+
+.datatable__headercell {
+    background: #8180e0 !important;
+    color: #fff !important;
+    padding: .5rem !important;
+    font-weight: normal;
+    font-size: 1.3rem;
+    white-space: nowrap;
+}
+
+.datatable__headercell.ui-sortable-column.ui-state-highlight {
+    background: linear-gradient(to top, #489ed3, #3786b5) !important;
+}
+
+.datatable__row {
+    transition: all .5s;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+.datatable__row:hover {
+    background: -webkit-linear-gradient(to bottom, #C7C4C4, #B9B3B3) !important;
+    background: -o-linear-gradient(to bottom, #C7C4C4, #B9B3B3) !important;
+    background: -ms-linear-gradient(to bottom, #C7C4C4, #B9B3B3) !important;
+    background: linear-gradient(to bottom, #C7C4C4, #B9B3B3) !important;
+}
+
+.custom-select option:hover {
+    background: #A0531F !important;
+    color: #fff !important;
+}
+
+@media only screen and (max-width: 580px) {
+    .datatable__row:hover {
+        background: #cdeafa !important;
+    }
+}
+
+.datatable__row.ui-state-highlight {
+    background: #cdeafa;
+    background: -webkit-linear-gradient(to bottom, #cdeafa, #b6e0f8) !important;
+    background: -o-linear-gradient(to bottom, #cdeafa, #b6e0f8) !important;
+    background: -ms-linear-gradient(to bottom, #cdeafa, #b6e0f8) !important;
+    background: linear-gradient(to bottom, #cdeafa, #b6e0f8) !important;
+    color: #000 !important;
+}
+
+@media only screen and (max-width: 580px) {
+    .datatable__row.ui-state-highlight {
+        background: #cdeafa !important;
+    }
+}
+
+.datatable__rowcell {
+    padding: .4rem !important;
+}
+
+.comments-comp__textarea {
+    width: 100%;
+    height: 10rem;
+}
+
+.custom-btn--min {
+    border: 1px solid #8180e0 !important;
+    background: #8180e0 !important;
+    color: #fff;
+    font-size: 1em;
+    display: inline-block;
+    margin: .5rem .2rem;
+    transition: all .3s;
+    min-width: 10rem;
+    width: auto;
+    padding: .4rem .6rem;
+}
+
+.custom-btn--min:focus, .custom-btn--min:active, .custom-btn--min:hover, .custom-btn--min:visited, .custom-btn--icon-min:focus, .custom-btn--icon-min:active, .custom-btn--icon-min:hover, .custom-btn--icon-min:visited, .custom-btn--modifier:focus, .custom-btn--modifier:active, .custom-btn--modifier:hover, .custom-btn--modifier:visited, .custom-btn--search:focus, .custom-btn--search:active, .custom-btn--search:hover, .custom-btn--search:visited, .custom-btn--icon:focus, .custom-btn--icon:active, .custom-btn--icon:hover, .custom-btn--icon:visited {
+    color: #fff;
+}
+
+.custom-btn--small.ui-button, .custom-btn--min.ui-button, .custom-btn--icon-min.ui-button, .custom-btn--modifier.ui-button, .custom-btn--search.ui-button, .custom-btn--icon.ui-button {
+    transition: all .3s;
+    border: 1px solid #17678d;
+}
+
+.custom-btn--small.ui-button:enabled:active, .custom-btn--small .ui-button:enabled:hover, .custom-btn--small.ui-button:focus, .custom-btn--small.ui-widget.ui-button:enabled:hover .custom-btn--small.ui-widget.ui-button:focus, .custom-btn--min.ui-button:enabled:active, .custom-btn--min .ui-button:enabled:hover, .custom-btn--min.ui-button:focus, .custom-btn--min.ui-widget.ui-button:enabled:hover .custom-btn--small.ui-widget.ui-button:focus, .custom-btn--icon-min.ui-button:enabled:active, .custom-btn--icon-min .ui-button:enabled:hover, .custom-btn--icon-min.ui-button:focus, .custom-btn--icon-min.ui-widget.ui-button:enabled:hover .custom-btn--small.ui-widget.ui-button:focus, .custom-btn--modifier.ui-button:enabled:active, .custom-btn--modifier .ui-button:enabled:hover, .custom-btn--modifier.ui-button:focus, .custom-btn--modifier.ui-widget.ui-button:enabled:hover .custom-btn--small.ui-widget.ui-button:focus, .custom-btn--search.ui-button:enabled:active, .custom-btn--search .ui-button:enabled:hover, .custom-btn--search.ui-button:focus, .custom-btn--search.ui-widget.ui-button:enabled:hover .custom-btn--small.ui-widget.ui-button:focus, .custom-btn--icon.ui-button:enabled:active, .custom-btn--icon .ui-button:enabled:hover, .custom-btn--icon.ui-button:focus, .custom-btn--icon.ui-widget.ui-button:enabled:hover .custom-btn--small.ui-widget.ui-button:focus, .custom-btn--small.ui-widget.ui-button:enabled:hover .custom-btn--min.ui-widget.ui-button:focus, .custom-btn--min.ui-widget.ui-button:enabled:hover .custom-btn--min.ui-widget.ui-button:focus, .custom-btn--icon-min.ui-widget.ui-button:enabled:hover .custom-btn--min.ui-widget.ui-button:focus, .custom-btn--modifier.ui-widget.ui-button:enabled:hover .custom-btn--min.ui-widget.ui-button:focus, .custom-btn--search.ui-widget.ui-button:enabled:hover .custom-btn--min.ui-widget.ui-button:focus, .custom-btn--icon.ui-widget.ui-button:enabled:hover .custom-btn--min.ui-widget.ui-button:focus, .custom-btn--small.ui-widget.ui-button:enabled:hover .custom-btn--icon-min.ui-widget.ui-button:focus, .custom-btn--min.ui-widget.ui-button:enabled:hover .custom-btn--icon-min.ui-widget.ui-button:focus, .custom-btn--icon-min.ui-widget.ui-button:enabled:hover .custom-btn--icon-min.ui-widget.ui-button:focus, .custom-btn--modifier.ui-widget.ui-button:enabled:hover .custom-btn--icon-min.ui-widget.ui-button:focus, .custom-btn--search.ui-widget.ui-button:enabled:hover .custom-btn--icon-min.ui-widget.ui-button:focus, .custom-btn--icon.ui-widget.ui-button:enabled:hover .custom-btn--icon-min.ui-widget.ui-button:focus, .custom-btn--small.ui-widget.ui-button:enabled:hover .custom-btn--modifier.ui-widget.ui-button:focus, .custom-btn--min.ui-widget.ui-button:enabled:hover .custom-btn--modifier.ui-widget.ui-button:focus, .custom-btn--icon-min.ui-widget.ui-button:enabled:hover .custom-btn--modifier.ui-widget.ui-button:focus, .custom-btn--modifier.ui-widget.ui-button:enabled:hover .custom-btn--modifier.ui-widget.ui-button:focus, .custom-btn--search.ui-widget.ui-button:enabled:hover .custom-btn--modifier.ui-widget.ui-button:focus, .custom-btn--icon.ui-widget.ui-button:enabled:hover .custom-btn--modifier.ui-widget.ui-button:focus, .custom-btn--small.ui-widget.ui-button:enabled:hover .custom-btn--search.ui-widget.ui-button:focus, .custom-btn--min.ui-widget.ui-button:enabled:hover .custom-btn--search.ui-widget.ui-button:focus, .custom-btn--icon-min.ui-widget.ui-button:enabled:hover .custom-btn--search.ui-widget.ui-button:focus, .custom-btn--modifier.ui-widget.ui-button:enabled:hover .custom-btn--search.ui-widget.ui-button:focus, .custom-btn--search.ui-widget.ui-button:enabled:hover .custom-btn--search.ui-widget.ui-button:focus, .custom-btn--icon.ui-widget.ui-button:enabled:hover .custom-btn--search.ui-widget.ui-button:focus, .custom-btn--small.ui-widget.ui-button:enabled:hover .custom-btn--icon.ui-widget.ui-button:focus, .custom-btn--min.ui-widget.ui-button:enabled:hover .custom-btn--icon.ui-widget.ui-button:focus, .custom-btn--icon-min.ui-widget.ui-button:enabled:hover .custom-btn--icon.ui-widget.ui-button:focus, .custom-btn--modifier.ui-widget.ui-button:enabled:hover .custom-btn--icon.ui-widget.ui-button:focus, .custom-btn--search.ui-widget.ui-button:enabled:hover .custom-btn--icon.ui-widget.ui-button:focus, .custom-btn--icon.ui-widget.ui-button:enabled:hover .custom-btn--icon.ui-widget.ui-button:focus {
+    border: 1px solid #17678d !important;
+}
+
+.custom-btn--small::after, .custom-btn--min::after, .custom-btn--icon-min::after, .custom-btn--modifier::after, .custom-btn--search::after, .custom-btn--icon::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background: #222 !important;
+    z-index: -1;
+    transition: all .3s;
+}
+
+.custom-btn--small:hover, .custom-btn--small:visited, .custom-btn--small:focus, .custom-btn--min:hover, .custom-btn--min:visited, .custom-btn--min:focus, .custom-btn--icon-min:hover, .custom-btn--icon-min:visited, .custom-btn--icon-min:focus, .custom-btn--modifier:hover, .custom-btn--modifier:visited, .custom-btn--modifier:focus, .custom-btn--search:hover, .custom-btn--search:visited, .custom-btn--search:focus, .custom-btn--icon:hover, .custom-btn--icon:visited, .custom-btn--icon:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.custom-btn--small:active, .custom-btn--min:active, .custom-btn--icon-min:active, .custom-btn--modifier:active, .custom-btn--search:active, .custom-btn--icon:active {
+    transform: translateY(0);
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.custom-btn--small:hover::after, .custom-btn--small:focus::after, .custom-btn--min:hover::after, .custom-btn--min:focus::after, .custom-btn--icon-min:hover::after, .custom-btn--icon-min:focus::after, .custom-btn--modifier:hover::after, .custom-btn--modifier:focus::after, .custom-btn--search:hover::after, .custom-btn--search:focus::after, .custom-btn--icon:hover::after, .custom-btn--icon:focus::after {
+    width: 100%;
+}
+
+.custom-btn--min {
+    min-width: 10rem;
+    width: auto;
+    padding: .4rem .6rem;
+}
+
+.bootstrap_button_layout .custom-btn--min {
+    min-width: auto;
+    width: 100%;
+    padding: .4rem .6rem;
+}
+
+.search-box__btn .custom-btn--min {
+    width: 4rem;
+    min-width: 0;
+    padding: .6rem .4rem;
+}
+
+:host ::ng-deep .ui-dialog-titlebar {
+    background: #3b8cbd !important;
+    color: white !important;
+}
+
+.ui-dialog .ui-dialog-titlebar-icon:hover {
+    border-color: #0288D1 !important;
+    background: #0288D1 !important;
+    color: white !important;
+}
+
+.ui-dialog .ui-dialog-titlebar-icon {
+    color: white;
+}
+
+.form-control {
+    margin-left: 5px;
+    /* border: 1px solid #3b8cbd; */
+}
+
+.category_label {
+    display: flex;
+    align-items: center;
+}
+
+:host ::ng-deep .ui-dialog-content .ui-widget-content {
+    height: 400px!important;
+}
+
+:host ::ng-deep .need-header, .ui-dialog-titlebar {
+    background: #3C8EBF !important;
+    color: #FFFFFF !important;
+}
+
+.bottom_btn {
+    bottom: -55px;
+    position: relative;
+}
+
+:host ::ng-deep .ui-dialog .ui-dialog-titlebar {
+    padding: .5em .75em;
+    position: relative;
+    border: 0;
+    background: #8180e0 !important;
+    color: #FFF;
+}
+
+:host ::ng-deep .ui-dialog .ui-dialog-titlebar-icon {
+    color: #FFF;
+}
+
+:host ::ng-deep .ui-dialog .ui-dialog-titlebar-icon:hover {
+    background: transparent;
+    color: #FFF;
+    border: none;
+}
+
+:host ::ng-deep .ui-dialog.ui-widget .ui-dialog-content {
+    padding: 1em 1.5em;
+    height: auto !important;
+    min-height: 170px !important;
+}

@@ -1,1 +1,20 @@
 <!--HTML FILE-->
+
+<!--HTML FILE-->
+
+<p-dialog header="QR Code" [(visible)]="ShowPopup" [modal]="true" [responsive]="true" (onHide)="cancel()"
+  >
+  <section>
+    <div style="width:400px;">
+      <div class="col-md-12">
+       
+        <div *ngIf="enable" style="margin-left: 100px;">
+            <ngx-qrcode-styling [data]="qrvalue" [width]="200" [height]="200">
+            </ngx-qrcode-styling>
+            </div>
+        
+       
+      </div>
+    </div>
+  </section>
+</p-dialog>

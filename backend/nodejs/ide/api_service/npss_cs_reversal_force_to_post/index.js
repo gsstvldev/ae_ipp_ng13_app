@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
     try {
         /*   Created By :Siva Harish
@@ -15,6 +16,7 @@ app.post('/', function(appRequest, appResponse, next) {
         Modified Date : 18/02/2022    
          Modified By : Siva Harish
          Reason for Changes in payload 22/03/2023
+           Reason for Adding ext_retry_count and dealrefno 31/03/2023
         
         */
         var serviceName = 'NPSS (CS) Reversal Force to Post';
@@ -61,8 +63,8 @@ app.post('/', function(appRequest, appResponse, next) {
                             var reverseAcinfparam
                             var final_status
                             var final_process_status
-
-
+                            var dealRefno = ''
+                            var extend_retry_value
 
                             var TakeStsPsts = `select success_process_status,success_status,processing_system,process_type from core_nc_workflow_setup where rule_code = 'RCT_IP_REV_REQ_ACCEPT' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
 
@@ -105,7 +107,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 // chkapicall = 0 --> Resurve Fund api call
                                                                 // chkapicall = 1 --> prepaid card api call
                                                                 // chkapicall = 2 --> credit card api call
-
+                                                                extend_retry_value = await GetRetrycount(arrprocesslog[0].uetr)
                                                                 if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') { //for checking prepaid or credit only for maker
                                                                     apicalls = await checkprepaidorcredit(arrprocesslog)
                                                                 } else {
@@ -154,10 +156,11 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                             if (apicalls == 0) {
                                                                                 TakegmMargin = await GetgmMargin(arrprocesslog)
+                                                                                dealRefno = await GetDealrefno(arrprocesslog)
                                                                             } else {
                                                                                 TakegmMargin = {}
                                                                             }
-                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, TakegmMargin,Objfiledata)
+                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, TakegmMargin,Objfiledata,dealRefno,extend_retry_value)
                                                                             if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
 
                                                                                 var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
@@ -223,7 +226,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                                     ExecuteQuery1(take_api_params, async function (arrprocesslog) {
 
-                                                                                        var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, TakegmMargin,Objfiledata)
+                                                                                        var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, TakegmMargin,Objfiledata,dealRefno,extend_retry_value)
 
                                                                                         if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
 
@@ -436,7 +439,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         }
                     })
                     // Do API Call for Service 
-                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, TakegmMargin, Objfiledata, callbackapi) {
+                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, TakegmMargin, Objfiledata,dealRefno,extend_retry_value, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Accept INAU Reserve Fund'
                             var request = require('request');
@@ -450,6 +453,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                     "payload": {
+                                        "ext_iden_retry_value": extend_retry_value || '',
                                         "department_code": arrprocesslog[0].department_code || '',
                                         "org_field_data": Objfiledata,
                                         "force_post_flag": "Y",
@@ -506,6 +510,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                             if (params.screenName == 's_rct_reversal_non_aed') {
+                                options.json.payload.deal_ref_no = dealRefno || '',
                                 options.json.payload.GMMargin = TakegmMargin.GMMargin || '',
                                     options.json.payload.GMRate = TakegmMargin.GMRate || '',
                                     options.json.payload.amount_credited_loc_cur = TakegmMargin.amount_credited_loc_cur || ''
@@ -539,9 +544,29 @@ app.post('/', function(appRequest, appResponse, next) {
                         }
                     }
 
+                    function GetRetrycount(uetr) {
+                        return new Promise((resolve, reject) => {
+                            var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where ext_iden_retry_value IS NOT NULL and uetr = '${uetr}' order by npsstpl_id desc`
+                            ExecuteQuery1(TakeretryValue, function (extIdentValue) {
+                                if (extIdentValue.length > 0) {
+                                    if (extIdentValue[0].ext_iden_retry_value != null) {
+                                        var count = Number(extIdentValue[0].ext_iden_retry_value)
+                                        count++
+                                        resolve(count)
+                                    } else {
+                                        resolve(1)
+                                    }
 
+
+                                } else {
+                                    resolve(1)
+                                }
+
+                            })
+                        })
+                    }
                     // Do Prepaid API Call for Service 
-                    function fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, callbackapi) {
+                    function fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam,extend_retry_value, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Prepaid Card'
                             var request = require('request');
@@ -555,6 +580,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                     "payload": {
+                                        "ext_iden_retry_value": extend_retry_value || '',
                                         "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
                                         "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
                                         "hdr_total_records": arrprocesslog[0].hdr_total_records || '',
@@ -630,7 +656,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     // Do API Call for Service 
-                    function fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, callbackapi) {
+                    function fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam,extend_retry_value, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Credit Card'
                             var request = require('request');
@@ -644,6 +670,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                     "payload": {
+                                        "ext_iden_retry_value": extend_retry_value || '',
                                         "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
                                         "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
                                         "hdr_total_records": arrprocesslog[0].hdr_total_records || '',
@@ -823,7 +850,23 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
                     }
 
+                    function GetDealrefno(arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            let Takerefno = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}'`
+                            ExecuteQuery1(Takerefno, function (arrdealrefno) {
+                                if (arrdealrefno.length > 0) {
+                                    if (arrdealrefno[0].process_ref_no != null) {
+                                        resolve(arrdealrefno[0].process_ref_no)
+                                    } else {
+                                        resolve('')
+                                    }
+                                } else {
+                                    resolve('')
+                                }
 
+                            })
+                        })
+                    }
                     
                     function Getorgdata(arrprocesslog) {
                         return new Promise((resolve, reject) => {
@@ -1019,17 +1062,17 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     //function to call all api calls(reservefund,prepaid,credit)
-                    function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, TakegmMargin,Objfiledata) {
+                    function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, TakegmMargin,Objfiledata,dealRefno,extend_retry_value) {
                         return new Promise((resolve, reject) => {
                             if (apicalls == 0 || apicalls == 0) { // reserve fund
-                                fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, TakegmMargin,Objfiledata, function (result) {
+                                fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, TakegmMargin,Objfiledata,dealRefno,extend_retry_value, function (result) {
 
                                     resolve(result)
 
 
                                 })
                             } else if (apicalls == 1 || apicalls == 1) { // prepaid api call
-                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, function (result) {
+                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam,extend_retry_value, function (result) {
 
                                     resolve(result)
 
@@ -1037,7 +1080,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 })
 
                             } else if (apicalls == 2 || apicalls == 2) { // credit api call
-                                fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, function (result) {
+                                fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam,extend_retry_value, function (result) {
 
                                     resolve(result)
 
@@ -1186,6 +1229,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

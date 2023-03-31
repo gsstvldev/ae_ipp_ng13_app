@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28958 
+Build ID        : 28985 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-29 13:6 PM 
+Modified Date   : 2023-Mar-31 8:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -12,12 +12,13 @@ Screen Name     : s_view_merchant_details
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
+import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 
 @Component({
 	selector: 's_view_merchant_details',
 	templateUrl: './s_view_merchant_details.component.html',
 	styleUrls: ['./s_view_merchant_details.component.css'],
-	providers:[]
+	providers:[torus_cs_show_hideService]
 })
     
 // Start of class 
@@ -26,7 +27,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_view_merchant_details"
 	wftpa_id : string = "WFT_NPSS_P_1304_1666941961881_0"
 	cg_code : string = "CG_1304_1666936639305"
-	key_column : any = {"dtt_1304_1666846129395":"NPSSMP_ID","dtt_1304_1666847369565":"NPSSMA_ID","dtt_1304_1666847660575":"NPSSMS_ID","dtt_1304_1666848298941":"NPSSMC_ID","dtt_1304_1666847230281":"NPSSSMTPL_ID"}
+	key_column : any = {"dtt_1304_1666846129395":"NPSSMP_ID","dtt_1304_1666847369565":"NPSSMA_ID","dtt_1304_1666847660575":"NPSSMS_ID","dtt_1304_1666848298941":"NPSSMC_ID","dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1666847230281":"NPSSSMTPL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -44,13 +45,17 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	uicgc_11 : string = "shop_detail"
 	uicgc_12 : string = "cash_desk_list"
 	uicgc_13 : string = "cash_desk_detail"
+	uicgc_14 : string = "payor_information"
+	uicgc_15 : string = "payee_information"
+	uicgc_16 : string = "qr_ui"
 	key_events : any = {}
+	btl_1304_1680249522621 : string = "p_qr_layout"
 	btl_1304_1666940042844 : string = "p_cash_desk_layout"
 	btl_1304_1666939457517 : string = "p_view_shop_layout"
 	btl_1304_1666887407266 : string = "p_search_layout"
 	btl_1304_1666886156572 : string = "p_view_account_layout"
 	btl_1304_1666886091955 : string = "p_main_layout"
-	forms : any = ["uicgc_7","uicgc_8"]
+	forms : any = ["uicgc_14","uicgc_15","uicgc_7","uicgc_16","uicgc_8"]
 	p_search_layout__sfap_for_search_showpopup : boolean = false
 	queue : any = {}
 	merchant_list : any = {}
@@ -68,16 +73,23 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	navigation_view_shop_detail : any = {}
 	navigation_view_cash_desk_detail : any = {}
 	navigation_process_log_trg : any = {}
+	navigation_generate_merchant_tag : any = {}
+	navigation_generate_qr : any = {}
 	back_ui : any = {}
 	back_ui_back : any = {}
 	shop_list : any = {}
 	shop_detail : any = {}
 	cash_desk_list : any = {}
 	cash_desk_detail : any = {}
+	payor_information : any = {}
+	payee_information : any = {}
+	qr_ui : any = {}
+	qr_ui_generate_qr_code : any = {}
+	qr_ui_close : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
     
 	}
     
@@ -254,6 +266,24 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_process_log_trg.dynamic_param = {}
 		this.navigation_process_log_trg.role = []
 		this.navigation_process_log_trg.action = ""
+		
+		// "Generate Merchant Tag" Button of "Navigation" component
+		this.navigation_generate_merchant_tag.label_name = "Generate Merchant Tag"
+		this.navigation_generate_merchant_tag.show = true
+		this.navigation_generate_merchant_tag.disabled = false
+		this.navigation_generate_merchant_tag.params = {"icon_only":false,"uicgcc_style":"fa fa-creative-commons"}
+		this.navigation_generate_merchant_tag.dynamic_param = {}
+		this.navigation_generate_merchant_tag.role = []
+		this.navigation_generate_merchant_tag.action = ""
+		
+		// "Generate QR" Button of "Navigation" component
+		this.navigation_generate_qr.label_name = "Generate QR"
+		this.navigation_generate_qr.show = true
+		this.navigation_generate_qr.disabled = false
+		this.navigation_generate_qr.params = {"icon_only":false,"uicgcc_style":"fa fa-qrcode"}
+		this.navigation_generate_qr.dynamic_param = {}
+		this.navigation_generate_qr.role = []
+		this.navigation_generate_qr.action = ""
 	
 		// Component level properties - "Back UI" 
 		this.back_ui.uictrl_code = "dynamic_ui"
@@ -323,6 +353,66 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.cash_desk_detail.onChangecomponent = new EventEmitter<any>()
 		this.cash_desk_detail.show = true
 		this.cash_desk_detail.dynamic_param = {"column_header_name":"Field","value_header_name":"Value"}
+	
+		// Component level properties - "Payor Information" 
+		this.payor_information.uictrl_code = "dynamic_ui"
+		this.payor_information.uicgc_desc = "Payor Information"
+		this.payor_information.uicgc_code = "uicgc_14"
+		this.payor_information.params = {}
+		this.payor_information.datasource = {}
+		this.payor_information.context_menu = []
+		this.payor_information.views = {"first":"DTT_1304_1666846129395","is_tab_mode":"N","dtt_1304_1666846129395":{"0":[{"dttv_id":"NPSS Merchant QR UI","tab_order":0,"tab_name":"","uicgc_description":"Payor Information","role_description":"default","dtt_description":"NPSS Merchant Proxy"}]}}
+		this.payor_information.onChangecomponent = new EventEmitter<any>()
+		this.payor_information.show = true
+		this.payor_information.dynamic_param = {}
+		this.payor_information.f_npss_merchant_qr_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.payor_information.form_name = "f_npss_merchant_qr_ui"
+	
+		// Component level properties - "Payee Information" 
+		this.payee_information.uictrl_code = "dynamic_ui"
+		this.payee_information.uicgc_desc = "Payee Information"
+		this.payee_information.uicgc_code = "uicgc_15"
+		this.payee_information.params = {}
+		this.payee_information.datasource = {}
+		this.payee_information.context_menu = []
+		this.payee_information.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Merchant Payment type QR UI","tab_order":0,"tab_name":"","uicgc_description":"Payee Information","role_description":"default","dtt_description":"NPSS Transactions"}]}}
+		this.payee_information.onChangecomponent = new EventEmitter<any>()
+		this.payee_information.show = true
+		this.payee_information.dynamic_param = {}
+		this.payee_information.f_npss_merchant_payment_type_qr_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.payee_information.form_name = "f_npss_merchant_payment_type_qr_ui"
+	
+		// Component level properties - "QR UI" 
+		this.qr_ui.uictrl_code = "dynamic_ui"
+		this.qr_ui.uicgc_desc = "QR UI"
+		this.qr_ui.uicgc_code = "uicgc_16"
+		this.qr_ui.params = {}
+		this.qr_ui.datasource = {}
+		this.qr_ui.context_menu = []
+		this.qr_ui.views = {}
+		this.qr_ui.onChangecomponent = new EventEmitter<any>()
+		this.qr_ui.show = true
+		this.qr_ui.dynamic_param = {}
+		this.qr_ui.f_qr_ui = {"show":true}
+		this.qr_ui.current_view = "f_qr_ui"
+		
+		// "Generate QR Code" Button of "QR UI" component
+		this.qr_ui_generate_qr_code.label_name = "Generate QR Code"
+		this.qr_ui_generate_qr_code.show = true
+		this.qr_ui_generate_qr_code.disabled = false
+		this.qr_ui_generate_qr_code.params = {"icon_only":false,"uicgcc_style":"fa fa-qrcode"}
+		this.qr_ui_generate_qr_code.dynamic_param = {}
+		this.qr_ui_generate_qr_code.role = []
+		this.qr_ui_generate_qr_code.action = ""
+		
+		// "Close" Button of "QR UI" component
+		this.qr_ui_close.label_name = "Close"
+		this.qr_ui_close.show = true
+		this.qr_ui_close.disabled = false
+		this.qr_ui_close.params = {"icon_only":false,"uicgcc_style":"fa fa-close"}
+		this.qr_ui_close.dynamic_param = {}
+		this.qr_ui_close.role = []
+		this.qr_ui_close.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -336,6 +426,8 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.page_load__he_for_pl_trg()
 		this.page_load__pl_to_back_hide()
 		this.page_load__he_for_btm()
+		this.page_load__he_for_generate_qr()
+		this.page_load__he_for_generate_merchant_tag()
 	}
 
 	//Handler for INTERNAL event of "cf on page load"
@@ -504,6 +596,34 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.navigation_back_to_main__rs_for_bck()
 	}
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation generate merchant tag"
+	navigation_generate_merchant_tag__action_button_click(){
+		this.navigation_generate_merchant_tag__cc_for_generate_merchant_tag()
+	}
+
+	//Handler for INTERNAL event of "cc for generate merchant tag"
+	cc_for_generate_merchant_tag__internal(parent_event_result){
+		this.cc_for_generate_merchant_tag__im_for_generate_merchant_tag(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "im for generate merchant tag"
+	im_for_generate_merchant_tag__internal(parent_event_result){
+		this.im_for_generate_merchant_tag__rs_for_generate_merchant_tag(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation generate qr"
+	navigation_generate_qr__action_button_click(){
+		this.navigation_generate_qr__sp_for_generate_qr()
+		this.navigation_generate_qr__de_for_payer_info()
+		this.navigation_generate_qr__bvm_for_merchant_name__payor_information()
+		this.navigation_generate_qr__bvm_for_mer_tag__payor_information()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "qr ui close"
+	qr_ui_close__action_button_click(){
+		this.qr_ui_close__sp_for_qr_close()
+	}
+
 	//Handler for DPSINIT event of "page_load"
 	page_load__cf_on_page_load() { 
 		let Dest_Is_ctrl=true
@@ -576,6 +696,48 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1669094840990"
 		let event_params={"caller_name":"page_load__he_for_btm","event_desc":"HE for BTM","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_generate_qr() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_generate_qr"
+		let parent_source_id=""
+		let event_code="e_1680249193005"
+		let event_params={"caller_name":"page_load__he_for_generate_qr","event_desc":"HE for Generate QR","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_generate_merchant_tag() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_generate_merchant_tag"
+		let parent_source_id=""
+		let event_code="e_1680249224338"
+		let event_params={"caller_name":"page_load__he_for_generate_merchant_tag","event_desc":"HE for generate merchant tag","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -771,7 +933,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let event_params={"caller_name":"merchant_list__svm_from_customer_list","event_desc":"SVM from Customer List","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant_list","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals="svm_from_customer_list__trg_for_md,"
-		let event_data={"merchant_list":{"e_1666886672782":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1666886672782","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS Merchant Proxy DTG","dtt_desc":"NPSS Merchant Proxy","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"BANKUSERID","level":"MI_LEVEL","name":"MI_LEVEL_BANKUSERID","setd3name":"BANKUSERID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let event_data={"merchant_list":{"e_1666886672782":{"dts":{"dt_1304_1666846074129":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1666886672782","dt_code":"DT_1304_1666846074129","dtt_code":"","dt_desc":"NPSS Merchant Proxy DTG","dtt_desc":"NPSS Merchant Proxy","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"BANKUSERID","level":"MI_LEVEL","name":"MI_LEVEL_BANKUSERID","setd3name":"BANKUSERID"},{"type":"LOCAL","column_name":"NPSSMP_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSMP_ID","setd3name":"NPSSMP_ID"},{"type":"LOCAL","column_name":"MERCHANT_NAME","level":"MI_LEVEL","name":"MI_LEVEL_MERCHANT_NAME","setd3name":"MERCHANT_NAME"},{"type":"LOCAL","column_name":"MERCHANT_TAG","level":"MI_LEVEL","name":"MI_LEVEL_MERCHANT_TAG","setd3name":"MERCHANT_TAG"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1666846074129":{"dtt_1304_1666846129395":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Proxy","ds_eligible":"DS_1666942281475","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS SM Merchant Details MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"BANKUSERID","alias_name":"","mq_id":"MQ_1666878546556","date_format":false},{"column_name":"MERCHANT_NAME","alias_name":"","mq_id":"MQ_1666878546755","date_format":false},{"column_name":"MERCHANT_TAG","alias_name":"","mq_id":"MQ_1666878547035","date_format":false},{"column_name":"MCC","alias_name":"","mq_id":"MQ_1666878547491","date_format":false},{"column_name":"MOBILE","alias_name":"","mq_id":"MQ_1666878578991","date_format":false},{"column_name":"DENOMINATION","alias_name":"","mq_id":"MQ_1666878579343","date_format":false},{"column_name":"VAT_NUMBER","alias_name":"","mq_id":"MQ_1666878595391","date_format":false},{"column_name":"SURNAME","alias_name":"","mq_id":"MQ_1666879178543","date_format":false},{"column_name":"GROUP_CODE","alias_name":"","mq_id":"MQ_1666879178805","date_format":false},{"column_name":"BANK_CODE","alias_name":"","mq_id":"MQ_1666879179269","date_format":false},{"column_name":"PROXY_TYPE","alias_name":"","mq_id":"MQ_1666879214612","date_format":false},{"column_name":"PROXY_VALUE","alias_name":"","mq_id":"MQ_1666879214956","date_format":false},{"column_name":"EMAIL","alias_name":"","mq_id":"MQ_1666879215132","date_format":false},{"column_name":"DOCUMENT_ID","alias_name":"","mq_id":"MQ_1666879215308","date_format":false},{"column_name":"CHANNEL_NAME","alias_name":"","mq_id":"MQ_1666879258954","date_format":false},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1666879259178","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1666879259474","date_format":false},{"column_name":"CHANNEL_USERID","alias_name":"","mq_id":"MQ_1666879260146","date_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"","mq_id":"MQ_1666879260394","date_format":false},{"column_name":"CHANNEL_SUB_PRODUCT","alias_name":"","mq_id":"MQ_1666879260634","date_format":false},{"column_name":"CHANNEL_TRAN_CODE","alias_name":"","mq_id":"MQ_1666879353178","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666881334242","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666881334807","date_format":false},{"column_name":"NPSSMP_ID","alias_name":"","mq_id":"MQ_1667366107578","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSMP_ID,BANKUSERID,        MERCHANT_NAME,        MERCHANT_TAG,        MCC,        MOBILE,        DENOMINATION,        VAT_NUMBER,        SURNAME,        GROUP_CODE,        BANK_CODE,        PROXY_TYPE,        PROXY_VALUE,        EMAIL,        DOCUMENT_ID,        CHANNEL_NAME,        CHANNEL_ID,        CHANNEL_REFNO,        CHANNEL_USERID,        CHANNEL_PRODUCT,        CHANNEL_SUB_PRODUCT,        CHANNEL_TRAN_CODE,        CREATED_DATE,        STATUS,        PROCESS_STATUS,        TENANT_ID,        DTT_CODE,        DT_CODE   FROM (SELECT T.NPSSMP_ID,                T.BANKUSERID,                T.MERCHANT_NAME,                T.MERCHANT_TAG,                T.MCC,                T.MOBILE,                T.DENOMINATION,                T.VAT_NUMBER,                T.PRODUCT_CODE,                T.GROUP_CODE,                T.BANK_CODE,                T.SURNAME,                T.PROXY_TYPE,                T.PROXY_VALUE,                T.EMAIL,                T.DOCUMENT_ID,                T.CHANNEL_NAME,                T.LOGO,                T.EXHF_ID,                T.CHANNEL_ID,                T.CHANNEL_USERID,                T.CHANNEL_PRODUCT,                T.CHANNEL_SUB_PRODUCT,                T.CHANNEL_TRAN_CODE,                T.CHANNEL_REFNO,                T.CREATED_DATE,                T.STATUS,                T.PROCESS_STATUS,                T.TENANT_ID,                T.DTT_CODE,                T.DT_CODE           FROM NPSS_MERCHANT_PROXY T) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS SM Merchant Details CCD","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Bank User ID","target_column":"BANKUSERID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Merchant Name","target_column":"MERCHANT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Merchant Tag","target_column":"MERCHANT_TAG","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"MCC","target_column":"MCC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Mobile","target_column":"MOBILE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Denomination","target_column":"DENOMINATION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"VAT Number","target_column":"VAT_NUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
@@ -1813,6 +1975,176 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation generate merchant tag"
+	navigation_generate_merchant_tag__cc_for_generate_merchant_tag() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_generate_merchant_tag"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1680249273546"
+		let event_params={"caller_name":"navigation_generate_merchant_tag__cc_for_generate_merchant_tag","event_desc":"CC for generate merchant tag","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_generate_merchant_tag","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_generate_merchant_tag__im_for_generate_merchant_tag,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for generate merchant tag"
+	cc_for_generate_merchant_tag__im_for_generate_merchant_tag(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_generate_merchant_tag"
+		let destn_id=""
+		let parent_source_id="navigation_generate_merchant_tag"
+		let event_code="e_1680249282641"
+		let event_params={"caller_name":"cc_for_generate_merchant_tag__im_for_generate_merchant_tag","event_desc":"IM for generate merchant tag","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_generate_merchant_tag","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="im_for_generate_merchant_tag__rs_for_generate_merchant_tag,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "im for generate merchant tag"
+	im_for_generate_merchant_tag__rs_for_generate_merchant_tag(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="im_for_generate_merchant_tag"
+		let destn_id=""
+		let parent_source_id="cc_for_generate_merchant_tag"
+		let event_code="e_1680249299343"
+		let event_params={"caller_name":"im_for_generate_merchant_tag__rs_for_generate_merchant_tag","event_desc":"RS for generate merchant tag","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_generate_merchant_tag","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation generate qr"
+	navigation_generate_qr__sp_for_generate_qr() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_generate_qr"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1680249326116"
+		let event_params={"caller_name":"navigation_generate_qr__sp_for_generate_qr","event_desc":"SP for generate QR","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_generate_qr","raiseparam":{"profile_code":"BTL_1304_1680249522621"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation generate qr"
+	navigation_generate_qr__de_for_payer_info() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_generate_qr"
+		let destn_id="payor_information"
+		let parent_source_id=""
+		let event_code="e_1680250013673"
+		let event_params={"caller_name":"navigation_generate_qr__de_for_payer_info","event_desc":"DE for payer info","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_generate_qr","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation generate qr"
+	navigation_generate_qr__bvm_for_merchant_name__payor_information() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_generate_qr"
+		let destn_id="npss_merchant_qr_ui_merchant_name"
+		let parent_source_id=""
+		let event_code="e_1680250363053"
+		let event_params={"destn_comp_id":"payor_information","destn_ctrl_id":"merchant_name","caller_name":"navigation_generate_qr__bvm_for_merchant_name__payor_information","event_desc":"BVM for merchant name","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_generate_qr","raiseparam":{}}
+		let handler_code="bind_value_from_memory"
+		let internals=""
+		let event_data={"control":{"e_1680250363053":{"dts":{"dt_1304_1666846074129":{"dtts":{"dtt_1304_1666846129395":{"uicgc_code":"CONTROL","event_code":"E_1680250363053","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Proxy","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[],"get_from_memory":[{"level":"MI_LEVEL","value":"MI_LEVEL_MERCHANT_NAME","tb_data":"","column":"","d3name":""}],"set_event_context":null,"sec_value":null}}}}}}}}
+		let data_source={}
+		try {
+			this.handler.bind_value_from_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation generate qr"
+	navigation_generate_qr__bvm_for_mer_tag__payor_information() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_generate_qr"
+		let destn_id="npss_merchant_qr_ui_merchant_tag"
+		let parent_source_id=""
+		let event_code="e_1680250409658"
+		let event_params={"destn_comp_id":"payor_information","destn_ctrl_id":"merchant_tag","caller_name":"navigation_generate_qr__bvm_for_mer_tag__payor_information","event_desc":"BVM for Mer tag","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_generate_qr","raiseparam":{}}
+		let handler_code="bind_value_from_memory"
+		let internals=""
+		let event_data={"control":{"e_1680250409658":{"dts":{"dt_1304_1666846074129":{"dtts":{"dtt_1304_1666846129395":{"uicgc_code":"CONTROL","event_code":"E_1680250409658","dt_code":"DT_1304_1666846074129","dt_desc":"NPSS Merchant Proxy DTG","dtt_code":"DTT_1304_1666846129395","dtt_desc":"NPSS Merchant Proxy","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[],"get_from_memory":[{"level":"MI_LEVEL","value":"MI_LEVEL_MERCHANT_TAG","tb_data":"","column":"","d3name":""}],"set_event_context":null,"sec_value":null}}}}}}}}
+		let data_source={}
+		try {
+			this.handler.bind_value_from_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "qr ui close"
+	qr_ui_close__sp_for_qr_close() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="qr_ui_close"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1680249776187"
+		let event_params={"caller_name":"qr_ui_close__sp_for_qr_close","event_desc":"SP for qr close","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"qr_ui_close","raiseparam":{"profile_code":"BTL_1304_1666886091955"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

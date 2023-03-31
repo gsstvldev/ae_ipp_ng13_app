@@ -8,9 +8,6 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
-    
-
-
 
     try {
         /*   Created By :  Daseen
@@ -23,6 +20,7 @@ app.post('/', function(appRequest, appResponse, next) {
         Reason for :Remove Console log
         Reason for changing payload 29/03/2023
         Reason for changing code 30/03/2023
+         Reason for taking acct infm using dbtr_iban 31/03/2023
         */
         var serviceName = ' NPSS (CS) Manual Initiation Get Deal ';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -64,7 +62,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var app_id
                             var final_status
                             var final_process_status
-                            var dealRefno
+                          
                             var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_GET_DEAL' and param_code='URL' and need_sync = 'Y'`;
 
                             var take_api_params = `select  ns.intrbk_sttlm_amnt,ns.remittance_info,ns.cr_acct_identification,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method,
@@ -85,13 +83,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 if (arrurl.length) {
                                                     var url = arrurl[0].param_detail;
                                                     var senddata = {}
-                                                      dealRefno = ''
+                                                    
                                                     var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
                                                     ExecuteQuery1(Takeloccur,  function (localcur) {
                                                         if(localcur.length == 0){
                                                             senddata.amount_credited_loc_cur = ''
                                                             
-                                                            fn_doapicall(url, arrprocesslog, arrActInf,senddata,dealRefno, function (result) {
+                                                            fn_doapicall(url, arrprocesslog, arrActInf,senddata, function (result) {
                                                                 reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
         
                                                                 if (result == 'FAILURE') {
@@ -117,7 +115,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             })
                                                         }else{
                                                             senddata.amount_credited_loc_cur = localcur[0].amount_credited_loc_cur || ''
-                                                            fn_doapicall(url, arrprocesslog, arrActInf,senddata,dealRefno, function (result) {
+                                                            fn_doapicall(url, arrprocesslog, arrActInf,senddata, function (result) {
                                                                 reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
         
                                                                 if (result == 'FAILURE') {
@@ -185,7 +183,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     // Do API Call for Service 
-                    function fn_doapicall(url, arrprocesslog, arrActInf,senddata,dealRefno, callbackapi) {
+                    function fn_doapicall(url, arrprocesslog, arrActInf,senddata, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Get Deal'
                             var request = require('request');
@@ -199,7 +197,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                     "payload": {
-                                        "deal_ref_no": dealRefno || '',
+                                        
                                         "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date || '',
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
@@ -320,6 +318,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

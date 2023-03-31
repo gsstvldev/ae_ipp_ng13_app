@@ -7,16 +7,12 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-
-
-
-
-
     try {
         /*   Created By :Siva Harish
         Created Date :17-02-2023
         mdified_date : 18/02/2023
         Reason for: Adding extra parameter 22/03/2023
+        Reason for: changing cbs accounts query
        
         
         */
@@ -120,7 +116,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                     amount = arrprocesslog[0].intrbk_sttlm_amnt
                                                                     if (apicalls == 0) {
-                                                                        TakegmMargin = await GetgmMargin(arrprocesslog)
+                                                                        TakegmMargin = await GetgmMargin(arrprocesslog,reverseAcinfparam)
                                                                     } else {
                                                                         TakegmMargin = {}
                                                                     }
@@ -372,7 +368,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
 
                             if (TakegmMargin != '') {
-                                if (arrprocesslog[0].account_currency != 'AED') {
+                                if (reverseAcinfparam.currency != 'AED') {
                                     options.json.payload.GMMargin = TakegmMargin.GMMargin || '',
                                         options.json.payload.GMRate = TakegmMargin.GMRate || '',
                                         options.json.payload.amount_credited_loc_cur = TakegmMargin.amount_credited_loc_cur || ''
@@ -424,7 +420,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     function TakereversalIdandActInfm(arrprocesslog) {
                         return new Promise((resolve, reject) => {
-                            var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
+                            var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].dbtr_iban}'`
 
                             var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status = 'IP_RCT_REV_INAU_POSTING_FAILURE' and uetr = '${arrprocesslog[0].uetr}'`
 
@@ -577,12 +573,12 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     }
 
-                    function GetgmMargin(arrprocesslog) {
+                    function GetgmMargin(arrprocesslog,reverseAcinfparam) {
                         return new Promise((resolve, reject) => {
-                            if (arrprocesslog[0].account_currency == '' || arrprocesslog[0].account_currency == null) {
+                            if (reverseAcinfparam.currency == '' || reverseAcinfparam.currency == null) {
                                 resolve('')
                             } else {
-                                if (arrprocesslog[0].account_currency != 'AED') {
+                                if (reverseAcinfparam.currency != 'AED') {
                                     var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' order by npsstpl_id desc`
                                     ExecuteQuery1(Takedata, function (arrresponse) {
                                         var senddata = {}
@@ -977,6 +973,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

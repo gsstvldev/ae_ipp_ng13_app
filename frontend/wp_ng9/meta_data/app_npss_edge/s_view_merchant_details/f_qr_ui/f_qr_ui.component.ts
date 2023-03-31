@@ -7,20 +7,20 @@ Modified Date   : 2023-Mar-31 8:15 AM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
-Form Name       : Navigation--------------------------------------------------------------------------- */
+Form Name       : QR UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_navigation',
-  templateUrl: './f_navigation.component.html',
-  styleUrls: ['./f_navigation.component.css'],
+  selector: 'f_qr_ui',
+  templateUrl: './f_qr_ui.component.html',
+  styleUrls: ['./f_qr_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_navigationComponent implements OnInit {
+export class f_qr_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_navigationComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_navigation[control]==undefined) {
-      this.screen_instance[this.comp_id].f_navigation[control] = {}
+    if(this.screen_instance[this.comp_id].f_qr_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_qr_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_navigation[control][property] = value;
+    this.screen_instance[this.comp_id].f_qr_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

@@ -7,7 +7,6 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-
 try {
     /*   Created By :Siva Harish
     Created Date :02-01-2023
@@ -22,6 +21,7 @@ try {
     Reason for : Changing pacs004 payload 17/03/2023
     Reason for : Changing pacs008 payload 22/03/2023
      Reason for : Adding ext_ident_retry_count 29/03/2023
+      Reason for : changing dbtr_iban query changes 31/03/2023
    
     */
     var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -104,7 +104,7 @@ try {
                                                 // Logic For Taking Reversal Id and Taking PostingRefno and account Information only for auth004 api call
                                                 reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog)
 
-                                                Getdata = await GetgmMargin(arrprocesslog)
+                                                Getdata = await GetgmMargin(arrprocesslog,reverandRefno)
                                                 take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_AUTH_PACS004' and param_code='URL' and need_sync = 'Y'`;
                                                 var amount
 
@@ -397,7 +397,7 @@ try {
                             }
                         }
                         if (Getdata != '') {
-                            if (arrprocesslog[0].account_currency != 'AED') {
+                            if (reverandRefno.currency != 'AED') {
                                 options.json.payload.GMMargin = Getdata.GMMargin || '',
                                     options.json.payload.GMRate = Getdata.GMRate || '',
                                     options.json.payload.amount_credited_loc_cur = Getdata.amount_credited_loc_cur || ''
@@ -411,6 +411,7 @@ try {
                         PrintInfo.reversal_id = reverandRefno.reverseId || ''
                         PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
                         PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
+                        PrintInfo.currency = reverandRefno.currency || ''
 
                         reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
 
@@ -580,7 +581,7 @@ try {
 
                 function TakeReversalIdandPostRefno(arrprocesslog) {
                     return new Promise((resolve, reject) => {
-                        var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
+                        var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].dbtr_iban}'`
                         var TakeprssRefno = `select process_ref_no  from npss_trn_process_log  where uetr = '${arrprocesslog[0].uetr}' and status = 'OP_RCT_MAN_INAU_POSTING_SUCCESS'`;
                         var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('OP_RCT_MAN_INAU_POSTING_SUCCESS','OP_RCT_MAN_INAU_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
 
@@ -649,12 +650,12 @@ try {
 
 
 
-                function GetgmMargin(arrprocesslog) {
+                function GetgmMargin(arrprocesslog,reverandRefno) {
                     return new Promise((resolve, reject) => {
-                        if (arrprocesslog[0].account_currency == '' || arrprocesslog[0].account_currency == null) {
+                        if (reverandRefno.currency == '' || reverandRefno.currency == null) {
                             resolve('')
                         } else {
-                            if (arrprocesslog[0].account_currency != 'AED') {
+                            if (reverandRefno.currency != 'AED') {
                                 var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' order by npsstpl_id desc`
                                 ExecuteQuery1(Takedata, function (arrresponse) {
                                     var senddata = {}
@@ -777,6 +778,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

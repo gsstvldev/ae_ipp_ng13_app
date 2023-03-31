@@ -1,0 +1,23 @@
+<div class="p_qr_layout">
+ <!-- PROFILE HTML - p_qr_layout --> 
+<div id="R11" class="row">
+	<div id="R11C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="qr_ui" >
+			<f_qr_ui [comp_id]="'qr_ui'" [screen_instance]="screen_instance" [hidden]="isHidden('qr_ui','f_qr_ui')" profile_name="p_qr_layout"></f_qr_ui >
+		</div>
+	</div>
+</div>
+<div id="R21" class="row">
+	<div id="R21C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="payor_information" >
+			<f_npss_merchant_qr_ui [comp_id]="'payor_information'" [screen_instance]="screen_instance" [hidden]="isHidden('payor_information','f_npss_merchant_qr_ui')" profile_name="p_qr_layout"></f_npss_merchant_qr_ui >
+		</div>
+	</div>
+	<div id="R21C2" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="payee_information" >
+			<f_npss_merchant_payment_type_qr_ui [comp_id]="'payee_information'" [screen_instance]="screen_instance" [hidden]="isHidden('payee_information','f_npss_merchant_payment_type_qr_ui')" profile_name="p_qr_layout"></f_npss_merchant_payment_type_qr_ui >
+		</div>
+	</div>
+</div>
+
+</div>

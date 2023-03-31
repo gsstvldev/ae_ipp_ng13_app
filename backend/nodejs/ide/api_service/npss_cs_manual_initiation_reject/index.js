@@ -74,7 +74,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                     extend_retry_value = await GetRetrycount(arrdata[0].uetr)
                                     ExecuteQuery1(take_api_url, function (arrUrl) {
                                        if (arrUrl.length > 0) {
-                                          var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrdata[0].cdtr_iban}'`
+                                          var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrdata[0].dbtr_iban}'`
                                           ExecuteQuery1(TakeAcctInf, function (arrcbsact) {
                                              if(arrcbsact.length > 0){
                                                 var Takepostrefno = `select * from npss_trn_process_log where status = 'IP_RCT_REV_INAU_POSTING_SUCCESS' and uetr = '${arrdata[0].uetr}'`

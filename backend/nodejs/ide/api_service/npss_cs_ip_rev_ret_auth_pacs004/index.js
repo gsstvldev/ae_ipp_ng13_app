@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
 
     try {
@@ -44,7 +45,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     Reason for : changes Authpac004 13/03/2023
                     Reason for : changes in auth response 25/03/2023
                     Reason for : changes in auth payload and calling pac04 alone 29/03/2023
-                      Reason for : ADDING DEALREFNO in pac04 alone 30/03/2023
+                      Reason for : ADDING DEALREFNO in pac04 alone 31/03/2023
         */
         var serviceName = 'NPSS IP REV Ret Auth PACS004';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -86,7 +87,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var ApitrnId
                             var app_id
                             var apicalls
-                            var dealRefno
+                            var dealRefno = ''
                             var reverandRefno
                             var final_status
                             var final_process_status
@@ -132,7 +133,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             }
                                                             if (apicalls == 0) { // Logic For Taking Reversal Id and Taking PostingRefno and account Information only for auth004 api call
                                                                 reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog)
-                                                                dealRefno = await GetDealrefno(arrprocesslog)
+                                                               
                                                             }
                                                             //else { // Taking Reversal ID for Prepaid and Credit Card
                                                             //     reverandRefno = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
@@ -146,6 +147,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             var Getdata
                                                             if (apicalls == 0 && params.screenName == 's_rct_reversal_non_aed') {
                                                                 Getdata = await GetgmMargin(arrprocesslog)
+                                                                dealRefno = await GetDealrefno(arrprocesslog)
                                                             } else {
                                                                 Getdata = {}
                                                             }
@@ -618,7 +620,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                     "payload": {
-                                        "deal_ref_no": dealRefno || '',
+                                       
                                         "ext_iden_retry_value": ext_ident_retry_value || '',
                                         "org_field_data": Objfiledata || '',
                                         "department_code": arrprocesslog[0].department_code || '',
@@ -678,6 +680,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
 
                             if (screenName == 's_rct_reversal_non_aed') {
+                                options.json.payload.deal_ref_no = dealRefno || '',
                                 options.json.payload.GMMargin = Getdata.GMMargin || '',
                                     options.json.payload.GMRate = Getdata.GMRate || '',
                                     options.json.payload.amount_credited_loc_cur = Getdata.amount_credited_loc_cur || ''
@@ -1458,6 +1461,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

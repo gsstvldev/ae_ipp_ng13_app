@@ -24,17 +24,17 @@ export class npss_cs_reversal_cancelService {
     fn_npss_cs_reversal_cancel(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         let ClientParams: any = {};
         ///  Prepare input for Server call
-        var CtrlScope = screenInstance['cancel_ui'].f_npss_remarks_ui.model
-       ClientParams.remarks = CtrlScope.REMARKS
-       // if (screenInstance.wftpa_description == 's_rct_reversal_non_aed') {
-           // CtrlScope = screenInstance['cancel_ui'].f_npss_pl_change_cancel_reason_ui.model
-          
+        var CtrlScope 
+     
+        if (screenInstance.wftpa_description == 's_rct_reversal_non_aed') {
+            CtrlScope = screenInstance['cancel_ui'].f_npss_remarks_ui.model
+            ClientParams.remarks = CtrlScope.REMARKS
           //  ClientParams.CBUAE_RETURN_CODE = CtrlScope.CBUAE_RETURN_CODE 
-        //} else {
-          //  CtrlScope = screenInstance['cancel_return_ui'].f_npss_pl_change_cancel_reason_ui.model
-           
+        } else {
+            CtrlScope = screenInstance['cancel_return_ui'].f_npss_remarks_ui.model
+            ClientParams.remarks = CtrlScope.REMARKS
            // ClientParams.CBUAE_RETURN_CODE = CtrlScope.CBUAE_RETURN_CODE 
-       // }
+        }
 
         ClientParams.PROD_CODE = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "PRODUCT_CODE");
         ClientParams.AppId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");

@@ -127,7 +127,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             })
 
                                                         } else {
-                                                            objresponse.status = 'FAILURE';
+                                                            objresponse.status = 'FAILURE in NPSS_TRN_PROCESS_LOG Insert';
                                                             reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
                                                             sendResponse(null, objresponse)
                                                         }
@@ -143,7 +143,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                         } else {
-                                            objresponse.status = 'FAILURE';
+                                            objresponse.status = 'No data found in core_nc_workflow_setup';
                                             objresponse.data.msg = 'No data found in core_nc_workflow_setup'
                                             sendResponse(null, objresponse)
                                         }

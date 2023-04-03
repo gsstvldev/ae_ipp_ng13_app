@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29006 
+Build ID        : 29011 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-03 11:23 AM 
+Modified Date   : 2023-Apr-03 13:21 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -2462,7 +2462,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="cm_accept_btn"
 		let event_code="e_1672212642133"
-		let event_params={"caller_name":"cc_for_ra_ui_accept__im_for_ra_ui_accept","event_desc":"IM for RA UI accept","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Fund has been reserved successfully","root_source_id":"reversal_action_ui_accept","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_ra_ui_accept__im_for_ra_ui_accept","event_desc":"IM for RA UI accept","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Funds reversed and forward to checker","root_source_id":"reversal_action_ui_accept","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="im_for_ra_ui_accept__rs_for_ra_ui_accept,"
 		let event_data={}

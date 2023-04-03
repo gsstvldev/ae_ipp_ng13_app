@@ -18,7 +18,7 @@ Reason for Remove console log
 Reason for Adding Update Query
 Reason for removing update query
 Reason for Adding ext_ident_retry_value 29/03/2023
-
+Reason for Changes for finance house
  
 */
 var serviceName = 'NPSS (CS) Manual Initiation Reject';
@@ -193,52 +193,31 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                            sendResponse(error)
                         }
                      });
-                  } else { //for finance house
-                     var TakedatafrmTrn = `select * from npss_transactions where npsst_id = '${params.Id}'`
-                     ExecuteQuery1(TakedatafrmTrn, function (arrdata) {
-                        if (arrdata.length > 0) {
-                           var Takeurl = `Select param_detail from core_nc_system_setup where param_category = 'NPSS_REJECT_PACK002' and param_code = 'URL' and need_sync = 'Y'`
-                           ExecuteQuery1(Takeurl, function (arrgeturl) {
-                              var hdrqry = `select process_name,status,uetr,msg_id,fx_resv_text1 from npss_trn_process_log where process_name='Receive pacs.007' and  status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr =  '${arrdata[0].uetr}'`
-                              ExecuteQuery1(hdrqry, function (hdrresult) {
-                                 if(hdrresult.length > 0){
-                                    fn_DoAPIServiceCall(arrdata, arrgeturl,hdrresult, function (getresult) {
-                                       if (getresult == 'SUCCESS') {
-                                          var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='RCT_REV_CANCEL_REQ' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
-                                          ExecuteQuery1(ruleqry, function (arrsts) {
-                                             var updtranqry = `update npss_transactions set  status='${arrsts[0].success_status}',process_status='${arrsts[0].success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
-                                             ExecuteQuery(updtranqry, function (uptranresult) {
-                                                if (uptranresult == 'SUCCESS') {
-                                                   objresponse.status = 'SUCCESS';
-                                                   sendResponse(null, objresponse)
-                                                } else {
-                                                   objresponse.status = 'Failure in Tran Status Update';
-                                                   sendResponse(null, objresponse)
-                                                }
-                                             })
-                                          })
-      
-      
-                                       } else {
-                                          objresponse.status = 'Fail From Pac002';
-                                          reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
-                                          sendResponse(null, objresponse)
-                                       }
-      
-                                    })
-                                 }else{
-                                    objresponse.status = 'No Data Found against Pac007 in Trn Processlog Table';
-                                    sendResponse(null, objresponse)
-                                 }
-                              })
-                              
+                  } else {//for finance house
+                     var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='RCT_REV_CANCEL_REQ' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
+                     ExecuteQuery1(ruleqry, function (arrsts) {
+                        if(arrsts.length > 0){
+                           var updtranqry = `update npss_transactions set  status='${arrsts[0].success_status}',process_status='${arrsts[0].success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
+                           ExecuteQuery(updtranqry, function (uptranresult) {
+                              if (uptranresult == 'SUCCESS') {
+                                 objresponse.status = 'SUCCESS';
+                                 sendResponse(null, objresponse)
+                              } else {
+                                 objresponse.status = 'Failure in Tran Status Update';
+                                 sendResponse(null, objresponse)
+                              }
                            })
-                        } else {
-                           objresponse.status = 'FAILURE';
-                           objresponse.data.msg = 'No data for this Tran Id'
-                           sendResponse(null, objresponse)
+                        }else{
+                           objresponse.status = 'No data found in core nc system setup table';
+                              sendResponse(null, objresponse) 
                         }
+                        
                      })
+
+           
+           
+         
+
                   }
 
 

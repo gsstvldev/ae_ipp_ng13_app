@@ -70,8 +70,8 @@ export class npss_cs_ip_rev_reject_inau_reserve_fundService {
         ClientParams.screenName = screenInstance.wftpa_description
         if (screenInstance.wftpa_description == 's_rct_reversal_non_aed') {
             var CtrlScope1 = screenInstance['reversal_ui'].f_npss_reversal_n_ui.model
-            ClientParams.buy_rate = CtrlScope1.BUY_RATE
-            ClientParams.buy_margin = CtrlScope1.BUY_MARGIN
+            ClientParams.buy_rate = CtrlScope1.BUY_RATE || 0
+            ClientParams.buy_margin = CtrlScope1.BUY_MARGIN || 0
         }else{
             ClientParams.buy_rate = ''
             ClientParams.buy_margin = ''

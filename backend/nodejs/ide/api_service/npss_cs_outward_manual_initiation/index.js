@@ -210,6 +210,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                             objcusTranprslog.MODIFIED_BY_STS_ID = "";
                                                             objcusTranprslog.created_clientip = objSessionLogInfo.CLIENTIP;
                                                             objcusTranprslog.created_tz = objSessionLogInfo.CLIENTTZ;
+                                                            objcusTranprslog.ADDITIONAL_INFO = arrdata[0].uetr || ''
                                                             objcusTranprslog.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
                                                             objcusTranprslog.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
                                                             objcusTranprslog.created_by_sessionid = objSessionLogInfo.SESSION_ID;

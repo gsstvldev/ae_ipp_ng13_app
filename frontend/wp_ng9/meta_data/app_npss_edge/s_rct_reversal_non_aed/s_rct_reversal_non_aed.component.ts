@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29008 
+Build ID        : 29006 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-03 7:11 AM 
+Modified Date   : 2023-Apr-03 11:23 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -95,7 +95,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 	btl_1304_1666856778120 : string = "p_accept_layout"
 	btl_1304_1666856478860 : string = "p_accept_ui_layout"
 	btl_1304_1666856426885 : string = "p_main_layout"
-	forms : any = ["uicgc_32","uicgc_10","uicgc_6","uicgc_34","uicgc_31","uicgc_5","uicgc_26","uicgc_23","uicgc_24","uicgc_35","uicgc_28","uicgc_33","uicgc_20","uicgc_9","uicgc_4","uicgc_25","uicgc_17","uicgc_19","uicgc_15","uicgc_12","uicgc_3"]
+	forms : any = ["uicgc_32","uicgc_31","uicgc_6","uicgc_34","uicgc_5","uicgc_26","uicgc_23","uicgc_24","uicgc_35","uicgc_28","uicgc_33","uicgc_20","uicgc_9","uicgc_4","uicgc_25","uicgc_17","uicgc_19","uicgc_15","uicgc_12","uicgc_10","uicgc_3"]
 	p_change_return_layout__crr_for_spap_showpopup : boolean = false
 	p_remarks_layout__spap_for_error_code_showpopup : boolean = false
 	p_cancel_layout__spap_for_rau_cancel_showpopup : boolean = false
@@ -463,12 +463,12 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		this.remarks_ui.params = {}
 		this.remarks_ui.datasource = {}
 		this.remarks_ui.context_menu = []
-		this.remarks_ui.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Remarks UI","tab_order":0,"tab_name":"","uicgc_description":"Remarks UI","role_description":"default","dtt_description":"NPSS Transactions"}]}}
+		this.remarks_ui.views = {}
 		this.remarks_ui.onChangecomponent = new EventEmitter<any>()
 		this.remarks_ui.show = true
 		this.remarks_ui.dynamic_param = {}
-		this.remarks_ui.f_npss_remarks_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.remarks_ui.form_name = "f_npss_remarks_ui"
+		this.remarks_ui.f_remarks_ui = {"show":true}
+		this.remarks_ui.current_view = "f_remarks_ui"
 		
 		// "Save" Button of "Remarks UI" component
 		this.remarks_ui_save.label_name = "Save"
@@ -767,12 +767,12 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		this.cancel_ui.params = {}
 		this.cancel_ui.datasource = {}
 		this.cancel_ui.context_menu = []
-		this.cancel_ui.views = {"first":"DTT_1304_1665905039255","is_tab_mode":"N","dtt_1304_1665905039255":{"0":[{"dttv_id":"NPSS PL Change Cancel Reason UI","tab_order":0,"tab_name":"","uicgc_description":"Cancel UI","role_description":"default","dtt_description":"NPSS Trn Process Log"}]}}
+		this.cancel_ui.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Remarks UI","tab_order":0,"tab_name":"","uicgc_description":"Cancel UI","role_description":"default","dtt_description":"NPSS Transactions"}]}}
 		this.cancel_ui.onChangecomponent = new EventEmitter<any>()
 		this.cancel_ui.show = true
 		this.cancel_ui.dynamic_param = {}
-		this.cancel_ui.f_npss_pl_change_cancel_reason_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.cancel_ui.form_name = "f_npss_pl_change_cancel_reason_ui"
+		this.cancel_ui.f_npss_remarks_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.cancel_ui.form_name = "f_npss_remarks_ui"
 		
 		// "Save" Button of "Cancel UI" component
 		this.cancel_ui_save.label_name = "Save"

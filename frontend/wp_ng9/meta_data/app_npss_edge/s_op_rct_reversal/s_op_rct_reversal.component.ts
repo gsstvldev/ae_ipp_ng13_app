@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29011 
+Build ID        : 29013 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-03 13:20 PM 
+Modified Date   : 2023-Apr-03 13:55 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -12,10 +12,9 @@ Screen Name     : s_op_rct_reversal
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
-import {npss_set_action_mode_as_searchService} from '../../../custom_widget/npss_set_action_mode_as_search/npss_set_action_mode_as_search.service'
-import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_set_reversal_prd_system_setup_dateService} from '../../../custom_widget/npss_cs_set_reversal_prd_system_setup_date/npss_cs_set_reversal_prd_system_setup_date.service'
+import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_set_action_mode_as_searchService} from '../../../custom_widget/npss_set_action_mode_as_search/npss_set_action_mode_as_search.service'
 import {npss_cs_reversal_initiateService} from '../../../custom_widget/npss_cs_reversal_initiate/npss_cs_reversal_initiate.service'
 import {npss_cs_rct_rev_approveService} from '../../../custom_widget/npss_cs_rct_rev_approve/npss_cs_rct_rev_approve.service'
 import {npss_cs_reversal_send_to_makerService} from '../../../custom_widget/npss_cs_reversal_send_to_maker/npss_cs_reversal_send_to_maker.service'
@@ -24,7 +23,7 @@ import {npss_cs_reversal_send_to_makerService} from '../../../custom_widget/npss
 	selector: 's_op_rct_reversal',
 	templateUrl: './s_op_rct_reversal.component.html',
 	styleUrls: ['./s_op_rct_reversal.component.css'],
-	providers:[torus_cs_change_routingkeyService,npss_set_action_mode_as_searchService,torus_cs_show_hideService,npss_cs_set_reversal_prd_system_setup_dateService,npss_cs_reversal_initiateService,npss_cs_rct_rev_approveService,npss_cs_reversal_send_to_makerService]
+	providers:[npss_cs_set_reversal_prd_system_setup_dateService,torus_cs_show_hideService,npss_set_action_mode_as_searchService,npss_cs_reversal_initiateService,npss_cs_rct_rev_approveService,npss_cs_reversal_send_to_makerService]
 })
     
 // Start of class 
@@ -120,7 +119,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private npss_set_action_mode_as_searchService:npss_set_action_mode_as_searchService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_set_reversal_prd_system_setup_dateService:npss_cs_set_reversal_prd_system_setup_dateService,private npss_cs_reversal_initiateService:npss_cs_reversal_initiateService,private npss_cs_rct_rev_approveService:npss_cs_rct_rev_approveService,private npss_cs_reversal_send_to_makerService:npss_cs_reversal_send_to_makerService) {
+	constructor(private handler:AppHandlerService ,private npss_cs_set_reversal_prd_system_setup_dateService:npss_cs_set_reversal_prd_system_setup_dateService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_set_action_mode_as_searchService:npss_set_action_mode_as_searchService,private npss_cs_reversal_initiateService:npss_cs_reversal_initiateService,private npss_cs_rct_rev_approveService:npss_cs_rct_rev_approveService,private npss_cs_reversal_send_to_makerService:npss_cs_reversal_send_to_makerService) {
     
 	}
     
@@ -604,7 +603,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.page_load__he_for_initiate()
 		this.page_load__de_for_pl_to_vm()
 		this.page_load__de_for_vlh_from_pl()
-		this.page_load__cc_for_routing_key()
+		this.page_load__cc_for_reversal_period_time()
 		this.page_load__de_for_queue()
 		this.page_load__he_for_pl_approve()
 		this.page_load__he_for_stm()
@@ -614,9 +613,9 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.page_load__tbc_on_checker_on_pageload()
 	}
 
-	//Handler for INTERNAL event of "cc for routing key"
-	cc_for_routing_key__internal(parent_event_result){
-		this.cc_for_routing_key__cf_for_routing_key(parent_event_result)
+	//Handler for INTERNAL event of "cc for reversal period time"
+	cc_for_reversal_period_time__internal(parent_event_result){
+		this.cc_for_reversal_period_time__cf_for_routing_key(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "cf for routing key"
@@ -713,7 +712,6 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 	navigation_ui_search__action_button_click(){
 		this.navigation_ui_search__spap_for_search()
 		this.navigation_ui_search__cu_for_seach()
-		this.navigation_ui_search__cc_for_set_reversal_period_date()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "search clear"
@@ -891,6 +889,16 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_checker_on_load_trg__brfq_for_maker(peventcontext)
 	}
 
+	//Handler for INTERNAL event of "brfq for checker queue"
+	brfq_for_checker_queue__internal(parent_event_result){
+		this.brfq_for_checker_queue__sfr_for_checker_on_load_trg_queue(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "brfq for maker"
+	brfq_for_maker__internal(parent_event_result){
+		this.brfq_for_maker__sfr_for_maker_on_load_trg_queue(parent_event_result)
+	}
+
 	//Handler for SELECTION_CHANGED event of "npss mi ui dbtr info memory97"
 	npss_mi_ui_dbtr_info_memory97__selection_changed(){
 		this.npss_mi_ui_dbtr_info_memory97__shc_for_search_ui__search_info_ui()
@@ -961,20 +969,20 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__cc_for_routing_key() { 
+	page_load__cc_for_reversal_period_time() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1669383689672"
-		let event_params={"caller_name":"page_load__cc_for_routing_key","event_desc":"CC for Routing key","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let event_params={"caller_name":"page_load__cc_for_reversal_period_time","event_desc":"CC for Reversal period time","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="custom_connectors"
-		let internals="cc_for_routing_key__cf_for_routing_key,"
+		let internals="cc_for_reversal_period_time__cf_for_routing_key,"
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_change_routingkeyService.fn_torus_cs_change_routingkey(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_set_reversal_prd_system_setup_dateService.fn_npss_cs_set_reversal_prd_system_setup_date(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1128,16 +1136,16 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "cc for routing key"
-	cc_for_routing_key__cf_for_routing_key(parent_event_result) { 
+	//Handler for INTERNAL event of "cc for reversal period time"
+	cc_for_reversal_period_time__cf_for_routing_key(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_for_routing_key"
+		let source_id="cc_for_reversal_period_time"
 		let destn_id=""
 		let parent_source_id="page_load"
 		let event_code="e_1669383717434"
-		let event_params={"caller_name":"cc_for_routing_key__cf_for_routing_key","event_desc":"CF for Routing key","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_reversal_period_time__cf_for_routing_key","event_desc":"CF for Routing key","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""},"parent_event_result":"SUCCESS"}
 		let handler_code="create_form"
 		let internals="cf_for_routing_key__cc_for_show_hide_btn,"
 		let event_data={}
@@ -1157,7 +1165,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="cf_for_routing_key"
 		let destn_id=""
-		let parent_source_id="cc_for_routing_key"
+		let parent_source_id="cc_for_reversal_period_time"
 		let event_code="e_1669383940600"
 		let event_params={"caller_name":"cf_for_routing_key__cc_for_show_hide_btn","event_desc":"CC for Show hide btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
@@ -1165,7 +1173,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_change_routingkeyService.fn_torus_cs_change_routingkey(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1829,27 +1837,6 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui search"
-	navigation_ui_search__cc_for_set_reversal_period_date() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_search"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1671542567068"
-		let event_params={"caller_name":"navigation_ui_search__cc_for_set_reversal_period_date","event_desc":"CC for Set reversal period date","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_search","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_cs_set_reversal_prd_system_setup_dateService.fn_npss_cs_set_reversal_prd_system_setup_date(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2863,7 +2850,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		let event_code="e_1680263966263"
 		let event_params={"caller_name":"navigation_ui_checker_on_load_trg__brfq_for_checker_queue","event_desc":"BRFQ for Checker Queue","event_type":"ACTION_BUTTON_CLICK","caller_event_context":708,"root_source_id":"navigation_ui_checker_on_load_trg","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"eventcontext":["708"]}
 		let handler_code="bind_record_from_query"
-		let internals=""
+		let internals="brfq_for_checker_queue__sfr_for_checker_on_load_trg_queue,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1671187481122","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reversal Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1671186151268","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671186151686","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1675348524994","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS from  (  select   distinct UETR,   NPSSTRRD_REFNO,   PROCESS_TYPE,   CREATED_DATE,   STATUS,   PROCESS_STATUS,   PROCESS_REF_NO,   PROCESSING_SYSTEM,   TENANT_ID,   MODIFIED_DATE,   MODIFIED_DATE_UTC,   TS_ID,   LOCKED_BY,   LOCKED_BY_NAME,   CREATED_BY,   CREATED_BY_NAME,   SYSTEM_ID,   ROLE_ID,   QR_APP_ID,   VPH_APP_CODE,   QR_QUEUE_CODE,   QR_SCREEN_NAME,   QR_MENU_GROUP,   QR_MODULE,   QUEUE_DESC,   QUEUE_CODE,   Q_APP_ID,   QS_SORT_ORDER,   Q_SORT_ORDER,   DEPARTMENT_CODE,   PROCESS_GROUP,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   TRAN_REF_ID,   CLRSYSREF,   PAYMENT_ENDTOEND_ID,   INTRBK_STTLM_AMNT,   REVERSAL_AMOUNT,   CR_ACCT_IDENTIFICATION,   DBTR_IBAN  from   (   select    NTPL.UETR,    NT.PROCESS_TYPE,    NT.CREATED_DATE,    NT.STATUS,    NT.PROCESS_STATUS,    NT.PROCESSING_SYSTEM,    NT.TENANT_ID,    NT.MODIFIED_DATE,    NT.MODIFIED_DATE_UTC,    TS.TS_ID,    TS.LOCKED_BY,    TS.LOCKED_BY_NAME,    NT.CREATED_BY,    NT.CREATED_BY_NAME,    NT.SYSTEM_ID,    QR.ROLE_ID,    QR.VPH_APP_ID as QR_APP_ID,    QR.VPH_APP_CODE,    QR.QUEUE_CODE as QR_QUEUE_CODE,    QR.SCREEN_NAME as QR_SCREEN_NAME,    QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,    QR.SCREEN_MODULE as QR_MODULE,    PQ.QUEUE_DESC,    PQ.QUEUE_CODE,    PQ.VPH_APP_ID as Q_APP_ID,    QR.SORT_ORDER as QS_SORT_ORDER,    PQ.SORT_ORDER as Q_SORT_ORDER,    NT.DEPARTMENT_CODE,    NT.PROCESS_GROUP,    NT.VALUE_DATE,    NT.DBTR_ACCT_NO,    NT.CDTR_ACCT_NO,    NT.CDTR_IBAN,    NT.TRAN_REF_ID,    NT.CLRSYSREF,    NT.PAYMENT_ENDTOEND_ID,    NT.INTRBK_STTLM_AMNT,    NT.REVERSAL_AMOUNT,    NT.CR_ACCT_IDENTIFICATION,    NTPL.REVERSAL_CODE,    NTPL.NPSSTPL_ID,    NTPL.ADDITIONAL_INFO,    ntpl1. PROCESS_REF_NO,    NTPL.NPSSTRRD_REFNO,    NT.DBTR_IBAN   from    NPSS_TRANSACTIONS NT   inner join NPSS_TRN_PROCESS_LOG NTPL on    NTPL.UETR = NT.UETR   left join npss_trn_process_log ntpl1 on   ntpl1.uetr =nt.uetr and  NTPL1.STATUS = 'IP_RCT_POSTING_SUCCESS'    and NTPL1.PROCESS_STATUS = 'RCTCompleted'    left join TRANSACTION_SET TS on    NT.NPSST_ID = TS.TRN_ID    and NT.DTT_CODE = TS.DTT_CODE   inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on    NT.STATUS = QR.PROCESS_QUEUE_STATUS    and NT.PROCESS_STATUS = QR.QUEUE_CODE   inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on    NT.PROCESS_STATUS = PQ.QUEUE_CODE) VW  where   PROCESS_TYPE = 'OP' $AND )V1 order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reversal Queue CCD","filter":[{"filter_name":"CREATED_DATE","binding_name":"CREATED_DATE","binding_value":"","source_name":"MI_LEVEL_CD","source_value":"","source_type":"MI_LEVEL","oprtr":">=","data_type":"DATE","conj_operator":"AND","group_no":""},{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -2885,11 +2872,55 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		let event_code="e_1680525770431"
 		let event_params={"caller_name":"navigation_ui_checker_on_load_trg__brfq_for_maker","event_desc":"BRFQ for maker","event_type":"ACTION_BUTTON_CLICK","caller_event_context":705,"root_source_id":"navigation_ui_checker_on_load_trg","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"eventcontext":["705"]}
 		let handler_code="bind_record_from_query"
-		let internals=""
+		let internals="brfq_for_maker__sfr_for_maker_on_load_trg_queue,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1671187481122","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reversal Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1671186151268","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671186151686","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1675348524994","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS from  (  select   distinct UETR,   NPSSTRRD_REFNO,   PROCESS_TYPE,   CREATED_DATE,   STATUS,   PROCESS_STATUS,   PROCESS_REF_NO,   PROCESSING_SYSTEM,   TENANT_ID,   MODIFIED_DATE,   MODIFIED_DATE_UTC,   TS_ID,   LOCKED_BY,   LOCKED_BY_NAME,   CREATED_BY,   CREATED_BY_NAME,   SYSTEM_ID,   ROLE_ID,   QR_APP_ID,   VPH_APP_CODE,   QR_QUEUE_CODE,   QR_SCREEN_NAME,   QR_MENU_GROUP,   QR_MODULE,   QUEUE_DESC,   QUEUE_CODE,   Q_APP_ID,   QS_SORT_ORDER,   Q_SORT_ORDER,   DEPARTMENT_CODE,   PROCESS_GROUP,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   TRAN_REF_ID,   CLRSYSREF,   PAYMENT_ENDTOEND_ID,   INTRBK_STTLM_AMNT,   REVERSAL_AMOUNT,   CR_ACCT_IDENTIFICATION,   DBTR_IBAN  from   (   select    NTPL.UETR,    NT.PROCESS_TYPE,    NT.CREATED_DATE,    NT.STATUS,    NT.PROCESS_STATUS,    NT.PROCESSING_SYSTEM,    NT.TENANT_ID,    NT.MODIFIED_DATE,    NT.MODIFIED_DATE_UTC,    TS.TS_ID,    TS.LOCKED_BY,    TS.LOCKED_BY_NAME,    NT.CREATED_BY,    NT.CREATED_BY_NAME,    NT.SYSTEM_ID,    QR.ROLE_ID,    QR.VPH_APP_ID as QR_APP_ID,    QR.VPH_APP_CODE,    QR.QUEUE_CODE as QR_QUEUE_CODE,    QR.SCREEN_NAME as QR_SCREEN_NAME,    QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,    QR.SCREEN_MODULE as QR_MODULE,    PQ.QUEUE_DESC,    PQ.QUEUE_CODE,    PQ.VPH_APP_ID as Q_APP_ID,    QR.SORT_ORDER as QS_SORT_ORDER,    PQ.SORT_ORDER as Q_SORT_ORDER,    NT.DEPARTMENT_CODE,    NT.PROCESS_GROUP,    NT.VALUE_DATE,    NT.DBTR_ACCT_NO,    NT.CDTR_ACCT_NO,    NT.CDTR_IBAN,    NT.TRAN_REF_ID,    NT.CLRSYSREF,    NT.PAYMENT_ENDTOEND_ID,    NT.INTRBK_STTLM_AMNT,    NT.REVERSAL_AMOUNT,    NT.CR_ACCT_IDENTIFICATION,    NTPL.REVERSAL_CODE,    NTPL.NPSSTPL_ID,    NTPL.ADDITIONAL_INFO,    ntpl1. PROCESS_REF_NO,    NTPL.NPSSTRRD_REFNO,    NT.DBTR_IBAN   from    NPSS_TRANSACTIONS NT   inner join NPSS_TRN_PROCESS_LOG NTPL on    NTPL.UETR = NT.UETR   left join npss_trn_process_log ntpl1 on   ntpl1.uetr =nt.uetr and  NTPL1.STATUS = 'IP_RCT_POSTING_SUCCESS'    and NTPL1.PROCESS_STATUS = 'RCTCompleted'    left join TRANSACTION_SET TS on    NT.NPSST_ID = TS.TRN_ID    and NT.DTT_CODE = TS.DTT_CODE   inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on    NT.STATUS = QR.PROCESS_QUEUE_STATUS    and NT.PROCESS_STATUS = QR.QUEUE_CODE   inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on    NT.PROCESS_STATUS = PQ.QUEUE_CODE) VW  where   PROCESS_TYPE = 'OP' $AND )V1 order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reversal Queue CCD","filter":[{"filter_name":"CREATED_DATE","binding_name":"CREATED_DATE","binding_value":"","source_name":"MI_LEVEL_CD","source_value":"","source_type":"MI_LEVEL","oprtr":">=","data_type":"DATE","conj_operator":"AND","group_no":""},{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}},"e_1680525770431":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"E_1680525770431","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1680525952924","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reversal Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1671186151268","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671186151686","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1675348524994","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS from  (  select   distinct UETR,   NPSSTRRD_REFNO,   PROCESS_TYPE,   CREATED_DATE,   STATUS,   PROCESS_STATUS,   PROCESS_REF_NO,   PROCESSING_SYSTEM,   TENANT_ID,   MODIFIED_DATE,   MODIFIED_DATE_UTC,   TS_ID,   LOCKED_BY,   LOCKED_BY_NAME,   CREATED_BY,   CREATED_BY_NAME,   SYSTEM_ID,   ROLE_ID,   QR_APP_ID,   VPH_APP_CODE,   QR_QUEUE_CODE,   QR_SCREEN_NAME,   QR_MENU_GROUP,   QR_MODULE,   QUEUE_DESC,   QUEUE_CODE,   Q_APP_ID,   QS_SORT_ORDER,   Q_SORT_ORDER,   DEPARTMENT_CODE,   PROCESS_GROUP,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   TRAN_REF_ID,   CLRSYSREF,   PAYMENT_ENDTOEND_ID,   INTRBK_STTLM_AMNT,   REVERSAL_AMOUNT,   CR_ACCT_IDENTIFICATION,   DBTR_IBAN  from   (   select    NTPL.UETR,    NT.PROCESS_TYPE,    NT.CREATED_DATE,    NT.STATUS,    NT.PROCESS_STATUS,    NT.PROCESSING_SYSTEM,    NT.TENANT_ID,    NT.MODIFIED_DATE,    NT.MODIFIED_DATE_UTC,    TS.TS_ID,    TS.LOCKED_BY,    TS.LOCKED_BY_NAME,    NT.CREATED_BY,    NT.CREATED_BY_NAME,    NT.SYSTEM_ID,    QR.ROLE_ID,    QR.VPH_APP_ID as QR_APP_ID,    QR.VPH_APP_CODE,    QR.QUEUE_CODE as QR_QUEUE_CODE,    QR.SCREEN_NAME as QR_SCREEN_NAME,    QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,    QR.SCREEN_MODULE as QR_MODULE,    PQ.QUEUE_DESC,    PQ.QUEUE_CODE,    PQ.VPH_APP_ID as Q_APP_ID,    QR.SORT_ORDER as QS_SORT_ORDER,    PQ.SORT_ORDER as Q_SORT_ORDER,    NT.DEPARTMENT_CODE,    NT.PROCESS_GROUP,    NT.VALUE_DATE,    NT.DBTR_ACCT_NO,    NT.CDTR_ACCT_NO,    NT.CDTR_IBAN,    NT.TRAN_REF_ID,    NT.CLRSYSREF,    NT.PAYMENT_ENDTOEND_ID,    NT.INTRBK_STTLM_AMNT,    NT.REVERSAL_AMOUNT,    NT.CR_ACCT_IDENTIFICATION,    NTPL.REVERSAL_CODE,    NTPL.NPSSTPL_ID,    NTPL.ADDITIONAL_INFO,    ntpl1. PROCESS_REF_NO,    NTPL.NPSSTRRD_REFNO,    NT.DBTR_IBAN   from    NPSS_TRANSACTIONS NT   inner join NPSS_TRN_PROCESS_LOG NTPL on    NTPL.UETR = NT.UETR   left join npss_trn_process_log ntpl1 on   ntpl1.uetr =nt.uetr and  NTPL1.STATUS = 'IP_RCT_POSTING_SUCCESS'    and NTPL1.PROCESS_STATUS = 'RCTCompleted'    left join TRANSACTION_SET TS on    NT.NPSST_ID = TS.TRN_ID    and NT.DTT_CODE = TS.DTT_CODE   inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on    NT.STATUS = QR.PROCESS_QUEUE_STATUS    and NT.PROCESS_STATUS = QR.QUEUE_CODE   inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on    NT.PROCESS_STATUS = PQ.QUEUE_CODE) VW  where   PROCESS_TYPE = 'OP' $AND )V1 order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reversal Queue CCD","filter":[{"filter_name":"CREATED_DATE","binding_name":"CREATED_DATE","binding_value":"","source_name":"MI_LEVEL_CD","source_value":"","source_type":"MI_LEVEL","oprtr":">=","data_type":"DATE","conj_operator":"","group_no":""},{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"OP_REVERSAL_REQ_REPAIR","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq for checker queue"
+	brfq_for_checker_queue__sfr_for_checker_on_load_trg_queue(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_for_checker_queue"
+		let destn_id="queue"
+		let parent_source_id="navigation_ui_checker_on_load_trg"
+		let event_code="e_1680529862770"
+		let event_params={"caller_name":"brfq_for_checker_queue__sfr_for_checker_on_load_trg_queue","event_desc":"SFR for Checker on load trg queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_checker_on_load_trg","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1671187481122","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reversal Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1671186151268","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671186151686","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1675348524994","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS from  (  select   distinct UETR,   NPSSTRRD_REFNO,   PROCESS_TYPE,   CREATED_DATE,   STATUS,   PROCESS_STATUS,   PROCESS_REF_NO,   PROCESSING_SYSTEM,   TENANT_ID,   MODIFIED_DATE,   MODIFIED_DATE_UTC,   TS_ID,   LOCKED_BY,   LOCKED_BY_NAME,   CREATED_BY,   CREATED_BY_NAME,   SYSTEM_ID,   ROLE_ID,   QR_APP_ID,   VPH_APP_CODE,   QR_QUEUE_CODE,   QR_SCREEN_NAME,   QR_MENU_GROUP,   QR_MODULE,   QUEUE_DESC,   QUEUE_CODE,   Q_APP_ID,   QS_SORT_ORDER,   Q_SORT_ORDER,   DEPARTMENT_CODE,   PROCESS_GROUP,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   TRAN_REF_ID,   CLRSYSREF,   PAYMENT_ENDTOEND_ID,   INTRBK_STTLM_AMNT,   REVERSAL_AMOUNT,   CR_ACCT_IDENTIFICATION,   DBTR_IBAN  from   (   select    NTPL.UETR,    NT.PROCESS_TYPE,    NT.CREATED_DATE,    NT.STATUS,    NT.PROCESS_STATUS,    NT.PROCESSING_SYSTEM,    NT.TENANT_ID,    NT.MODIFIED_DATE,    NT.MODIFIED_DATE_UTC,    TS.TS_ID,    TS.LOCKED_BY,    TS.LOCKED_BY_NAME,    NT.CREATED_BY,    NT.CREATED_BY_NAME,    NT.SYSTEM_ID,    QR.ROLE_ID,    QR.VPH_APP_ID as QR_APP_ID,    QR.VPH_APP_CODE,    QR.QUEUE_CODE as QR_QUEUE_CODE,    QR.SCREEN_NAME as QR_SCREEN_NAME,    QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,    QR.SCREEN_MODULE as QR_MODULE,    PQ.QUEUE_DESC,    PQ.QUEUE_CODE,    PQ.VPH_APP_ID as Q_APP_ID,    QR.SORT_ORDER as QS_SORT_ORDER,    PQ.SORT_ORDER as Q_SORT_ORDER,    NT.DEPARTMENT_CODE,    NT.PROCESS_GROUP,    NT.VALUE_DATE,    NT.DBTR_ACCT_NO,    NT.CDTR_ACCT_NO,    NT.CDTR_IBAN,    NT.TRAN_REF_ID,    NT.CLRSYSREF,    NT.PAYMENT_ENDTOEND_ID,    NT.INTRBK_STTLM_AMNT,    NT.REVERSAL_AMOUNT,    NT.CR_ACCT_IDENTIFICATION,    NTPL.REVERSAL_CODE,    NTPL.NPSSTPL_ID,    NTPL.ADDITIONAL_INFO,    ntpl1. PROCESS_REF_NO,    NTPL.NPSSTRRD_REFNO,    NT.DBTR_IBAN   from    NPSS_TRANSACTIONS NT   inner join NPSS_TRN_PROCESS_LOG NTPL on    NTPL.UETR = NT.UETR   left join npss_trn_process_log ntpl1 on   ntpl1.uetr =nt.uetr and  NTPL1.STATUS = 'IP_RCT_POSTING_SUCCESS'    and NTPL1.PROCESS_STATUS = 'RCTCompleted'    left join TRANSACTION_SET TS on    NT.NPSST_ID = TS.TRN_ID    and NT.DTT_CODE = TS.DTT_CODE   inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on    NT.STATUS = QR.PROCESS_QUEUE_STATUS    and NT.PROCESS_STATUS = QR.QUEUE_CODE   inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on    NT.PROCESS_STATUS = PQ.QUEUE_CODE) VW  where   PROCESS_TYPE = 'OP' $AND )V1 order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reversal Queue CCD","filter":[{"filter_name":"CREATED_DATE","binding_name":"CREATED_DATE","binding_value":"","source_name":"MI_LEVEL_CD","source_value":"","source_type":"MI_LEVEL","oprtr":">=","data_type":"DATE","conj_operator":"AND","group_no":""},{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq for maker"
+	brfq_for_maker__sfr_for_maker_on_load_trg_queue(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_for_maker"
+		let destn_id="queue"
+		let parent_source_id="navigation_ui_checker_on_load_trg"
+		let event_code="e_1680529869380"
+		let event_params={"caller_name":"brfq_for_maker__sfr_for_maker_on_load_trg_queue","event_desc":"SFR for maker on load trg queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_checker_on_load_trg","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1671187481122","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Reversal Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1671186151268","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1671186151686","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1675348524994","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS from  (  select   distinct UETR,   NPSSTRRD_REFNO,   PROCESS_TYPE,   CREATED_DATE,   STATUS,   PROCESS_STATUS,   PROCESS_REF_NO,   PROCESSING_SYSTEM,   TENANT_ID,   MODIFIED_DATE,   MODIFIED_DATE_UTC,   TS_ID,   LOCKED_BY,   LOCKED_BY_NAME,   CREATED_BY,   CREATED_BY_NAME,   SYSTEM_ID,   ROLE_ID,   QR_APP_ID,   VPH_APP_CODE,   QR_QUEUE_CODE,   QR_SCREEN_NAME,   QR_MENU_GROUP,   QR_MODULE,   QUEUE_DESC,   QUEUE_CODE,   Q_APP_ID,   QS_SORT_ORDER,   Q_SORT_ORDER,   DEPARTMENT_CODE,   PROCESS_GROUP,   VALUE_DATE,   DBTR_ACCT_NO,   CDTR_ACCT_NO,   CDTR_IBAN,   TRAN_REF_ID,   CLRSYSREF,   PAYMENT_ENDTOEND_ID,   INTRBK_STTLM_AMNT,   REVERSAL_AMOUNT,   CR_ACCT_IDENTIFICATION,   DBTR_IBAN  from   (   select    NTPL.UETR,    NT.PROCESS_TYPE,    NT.CREATED_DATE,    NT.STATUS,    NT.PROCESS_STATUS,    NT.PROCESSING_SYSTEM,    NT.TENANT_ID,    NT.MODIFIED_DATE,    NT.MODIFIED_DATE_UTC,    TS.TS_ID,    TS.LOCKED_BY,    TS.LOCKED_BY_NAME,    NT.CREATED_BY,    NT.CREATED_BY_NAME,    NT.SYSTEM_ID,    QR.ROLE_ID,    QR.VPH_APP_ID as QR_APP_ID,    QR.VPH_APP_CODE,    QR.QUEUE_CODE as QR_QUEUE_CODE,    QR.SCREEN_NAME as QR_SCREEN_NAME,    QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,    QR.SCREEN_MODULE as QR_MODULE,    PQ.QUEUE_DESC,    PQ.QUEUE_CODE,    PQ.VPH_APP_ID as Q_APP_ID,    QR.SORT_ORDER as QS_SORT_ORDER,    PQ.SORT_ORDER as Q_SORT_ORDER,    NT.DEPARTMENT_CODE,    NT.PROCESS_GROUP,    NT.VALUE_DATE,    NT.DBTR_ACCT_NO,    NT.CDTR_ACCT_NO,    NT.CDTR_IBAN,    NT.TRAN_REF_ID,    NT.CLRSYSREF,    NT.PAYMENT_ENDTOEND_ID,    NT.INTRBK_STTLM_AMNT,    NT.REVERSAL_AMOUNT,    NT.CR_ACCT_IDENTIFICATION,    NTPL.REVERSAL_CODE,    NTPL.NPSSTPL_ID,    NTPL.ADDITIONAL_INFO,    ntpl1. PROCESS_REF_NO,    NTPL.NPSSTRRD_REFNO,    NT.DBTR_IBAN   from    NPSS_TRANSACTIONS NT   inner join NPSS_TRN_PROCESS_LOG NTPL on    NTPL.UETR = NT.UETR   left join npss_trn_process_log ntpl1 on   ntpl1.uetr =nt.uetr and  NTPL1.STATUS = 'IP_RCT_POSTING_SUCCESS'    and NTPL1.PROCESS_STATUS = 'RCTCompleted'    left join TRANSACTION_SET TS on    NT.NPSST_ID = TS.TRN_ID    and NT.DTT_CODE = TS.DTT_CODE   inner join <TRAN_DB>.CORE_Q_STATUS_ROLES QR on    NT.STATUS = QR.PROCESS_QUEUE_STATUS    and NT.PROCESS_STATUS = QR.QUEUE_CODE   inner join <TRAN_DB>.CORE_APP_Q_SETUP PQ on    NT.PROCESS_STATUS = PQ.QUEUE_CODE) VW  where   PROCESS_TYPE = 'OP' $AND )V1 order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Reversal Queue CCD","filter":[{"filter_name":"CREATED_DATE","binding_name":"CREATED_DATE","binding_value":"","source_name":"MI_LEVEL_CD","source_value":"","source_type":"MI_LEVEL","oprtr":">=","data_type":"DATE","conj_operator":"AND","group_no":""},{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

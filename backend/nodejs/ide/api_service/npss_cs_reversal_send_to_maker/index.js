@@ -12,6 +12,9 @@ Created Date :29/12/2022
 Modified By : Siva Harish
 Modified Date : 12/01/2023
 Modifiy by : Remove Trnprslog table 3/3/2023
+Modified By : Siva Harish
+Modified Date : 4/4/2023
+Modifiy by : Removing Insert
  
 */
 var serviceName = 'NPSS (CS) Reversal Send to Maker';
@@ -61,73 +64,29 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                             if (result.length) {
                                 success_process_status = result[0].success_process_status;
                                 success_status = result[0].success_status;
-                                var Taketrnparams = `select * from npss_transactions where npsst_id = '${params.Id}'`
-                                ExecuteQuery1(Taketrnparams, function (arrdata) {
-                                    if (arrdata.length > 0) {
-                                        var arrCusTranInst = [];
-                                        var objCusTranInst = {};
 
-                                        objCusTranInst.MSG_ID = arrdata[0].hdr_msg_id;
-                                        objCusTranInst.PRCT_ID = PRCT_ID;
-                                        objCusTranInst.UETR = arrdata[0].uetr;
-                                        objCusTranInst.NPSSTRRD_REFNO = arrdata[0].tran_ref_id;
-                                        objCusTranInst.PROCESS_NAME = 'Reversal-Send to Maker'
-                                        objCusTranInst.PROCESSING_SYSTEM = result[0].processing_system;
-                                        objCusTranInst.PROCESS_TYPE = result[0].process_type;
-                                        objCusTranInst.PROCESS_STATUS = success_process_status;
-                                        objCusTranInst.STATUS = success_status;
-                                        objCusTranInst.TENANT_ID = params.TENANT_ID;
-                                        objCusTranInst.APP_ID = '215'
-                                        objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
-                                        objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
-                                        objCusTranInst.DT_DESCRIPTION = 'transaction_group'
-                                        objCusTranInst.DTT_DESCRIPTION = 'Transaction'
-                                        objCusTranInst.CREATED_BY = params.CREATED_BY;
-                                        objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
-                                        objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                                        objCusTranInst.MODIFIED_BY = "";
-                                        objCusTranInst.MODIFIED_BY_NAME = "";
-                                        objCusTranInst.MODIFIED_DATE = null;
-                                        objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
-                                        objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
-                                        objCusTranInst.CREATED_BY_STS_ID = "";
-                                        objCusTranInst.MODIFIED_BY_STS_ID = "";
-                                        objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
-                                        objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
-                                        objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
-                                        objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
-                                        objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
-                                        objCusTranInst.routingkey = headers.routingkey;
-                                        arrCusTranInst.push(objCusTranInst)
-                                        _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
-                                            if (CusTranInsertRes.length > 0) {
-                                                var updtranqry = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',remarks = '${params.remarks}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id='${params.Id}' `
-                                                ExecuteQuery(updtranqry, function (tranresult) {
-                                                    if (tranresult == 'SUCCESS') {
-                                                        objresponse.status = 'SUCCESS';
-                                                        sendResponse(null, objresponse);
 
-                                                    } else {
-                                                      
-                                                        objresponse.status = 'No Tran Update in NPSS Transactions Table';
-                                                        sendResponse(null, objresponse)
-                                                    }
-                                                })
-                                            } else {
-                                                objresponse.status = 'Error in insert in npss trn process log table';
-                                                sendResponse(null, objresponse)
-                                            }
-                                        })
+                                var updtranqry = `update npss_transactions set  status='${success_status}',process_status='${success_process_status}',remarks = '${params.remarks}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id='${params.Id}' `
+                                ExecuteQuery(updtranqry, function (tranresult) {
+                                    if (tranresult == 'SUCCESS') {
+                                        objresponse.status = 'SUCCESS';
+                                        sendResponse(null, objresponse);
+
                                     } else {
-                                        objresponse.status = 'No Tran data in NPSS Transactions Table';
+
+                                        objresponse.status = 'No Tran Update in NPSS Transactions Table';
                                         sendResponse(null, objresponse)
                                     }
                                 })
 
 
+
+
+
+
                             }
                             else {
-                               
+
                                 objresponse.status = 'No Rule code found';
                                 sendResponse(null, objresponse)
                             }
@@ -208,13 +167,13 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                 function sendResponse(error, response) {
                     try {
                         if (error) {
-                          
-                                reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-                         
+
+                            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
+
                         } else {
-                           
-                                reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-                         
+
+                            reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
+
                         }
                     } catch (error) {
                         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);

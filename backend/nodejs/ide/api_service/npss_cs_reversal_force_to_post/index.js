@@ -252,16 +252,16 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                             objresponse.status = 'Time Out' + apiName + ' Api Failure'
                                                                                             sendResponse(null, objresponse);
                                                                                         } else {
-                                                                                            if (apicalls == 0) {
-                                                                                                if (apistatus['response']['error']['errorDetails'][0]['message'].includes("Overdraft") || apistatus['response']['error']['errorDetails'][0]['message'].includes("overdraft") || apistatus['response']['error']['errorDetails'][0]['message'].includes("insufficient") || apistatus['response']['error']['errorDetails'][0]['message'].includes("Insufficient")) {
+                                                                                              if (apicalls == 0) {
+                                                                                                // if (apistatus['response']['error']['errorDetails'][0]['message'].includes("Overdraft") || apistatus['response']['error']['errorDetails'][0]['message'].includes("overdraft") || apistatus['response']['error']['errorDetails'][0]['message'].includes("insufficient") || apistatus['response']['error']['errorDetails'][0]['message'].includes("Insufficient")) {
+                                                                                                //     objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
+                                                                                                //     objresponse.flag = 'Y'
+                                                                                                //     sendResponse(null, objresponse);
+                                                                                                // } else {
                                                                                                     objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
-                                                                                                    objresponse.flag = 'Y'
+                                                                                                  //  objresponse.flag = 'N'
                                                                                                     sendResponse(null, objresponse);
-                                                                                                } else {
-                                                                                                    objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
-                                                                                                    objresponse.flag = 'N'
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                }
+                                                                                               //}
 
                                                                                             } else if (apicalls == 1) {
                                                                                                 objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code

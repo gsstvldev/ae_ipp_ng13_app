@@ -67,13 +67,9 @@ export class npss_cs_reversal_force_to_postService {
 
                 }
                 else {                 
-                if(res.data.flag == 'Y'){
-                        screenInstance.reversal_action_ui_force_post.disabled = false;
-                        this.dialogHelper.ShowErrorDialog(res.data.status)
-                    }else{
-                          screenInstance.reversal_action_ui_force_post.disabled = true;
+               
                         this.dialogHelper.ShowErrorDialog(res.data.status) 
-                    }                
+                                    
                 }
             });
     }

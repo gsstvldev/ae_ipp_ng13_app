@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
     try {
         /*   Created By :Daseen
         Created Date :04-11-2022
@@ -41,6 +42,7 @@ app.post('/', function(appRequest, appResponse, next) {
                 Reason for : changes done for 28/03/2023
                  Reason for : ADDING DEALREFNO for reserve fund api 30/03/2023
                  Reason for : ADDING DEALREFNO for reserve fund only for non aed api 31/03/2023
+                  Reason for : Removing overdraft failure handling  4/04/2023
         */
         var serviceName = 'NPSS IP REV Accept INAU Reserve Fund';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -274,24 +276,24 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                             sendResponse(null, objresponse);
                                                                                         } else {
                                                                                             if (apicalls == 0) {
-                                                                                                if (apistatus['response']['error']['errorDetails'][0]['message'].includes("Overdraft") || apistatus['response']['error']['errorDetails'][0]['message'].includes("overdraft") || apistatus['response']['error']['errorDetails'][0]['message'].includes("insufficient") || apistatus['response']['error']['errorDetails'][0]['message'].includes("Insufficient")) {
+                                                                                                // if (apistatus['response']['error']['errorDetails'][0]['message'].includes("Overdraft") || apistatus['response']['error']['errorDetails'][0]['message'].includes("overdraft") || apistatus['response']['error']['errorDetails'][0]['message'].includes("insufficient") || apistatus['response']['error']['errorDetails'][0]['message'].includes("Insufficient")) {
+                                                                                                //     objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
+                                                                                                //     objresponse.flag = 'Y'
+                                                                                                //     sendResponse(null, objresponse);
+                                                                                                // } else {
                                                                                                     objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
-                                                                                                    objresponse.flag = 'Y'
+                                                                                                  
                                                                                                     sendResponse(null, objresponse);
-                                                                                                } else {
-                                                                                                    objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
-                                                                                                    objresponse.flag = 'N'
-                                                                                                    sendResponse(null, objresponse);
-                                                                                                }
+                                                                                               // }
 
                                                                                             } else if (apicalls == 1) {
                                                                                                 objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
-                                                                                                objresponse.flag = 'N'
+                                                                                               
                                                                                                 sendResponse(null, objresponse);
 
                                                                                             } else if (apicalls == 2) {
                                                                                                 objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
-                                                                                                objresponse.flag = 'N'
+                                                                                               
                                                                                                 sendResponse(null, objresponse);
 
                                                                                             }
@@ -1243,6 +1245,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

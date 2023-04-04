@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 try {
     /*   Created By :Siva Harish
     Created Date :02-01-2023
@@ -24,7 +25,7 @@ try {
      Reason for : Adding ext_ident_retry_count 29/03/2023
       Reason for : changing dbtr_iban query changes 31/03/2023
        Reason for : changing done in FH 03/03/2023
-        Reason for : Adding dealRefno for fab 04.04.2023
+        Reason for : Adding dealRefno for fab & unique id generation for pacs008 04.04.2023
    
     */
     var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -40,6 +41,7 @@ try {
     var xml2js = require('xml2js');
     var mTranConn = "";
     var addquery = "";
+   
     var moment = require('moment')
     var Objfiledata
     var Getdata
@@ -491,7 +493,7 @@ try {
                 }
  
  
-                function fn_doPac008apicall(url, arrprocesslog, callbackapi) {
+                 function fn_doPac008apicall(url, arrprocesslog, callbackapi) {
                     try {
                         var category_prty
                         if (arrprocesslog[0].category_purpose_prty == null || arrprocesslog[0].category_purpose_prty == '') {
@@ -508,7 +510,7 @@ try {
                             timeout: 18000000,
                             method: 'POST',
                             json: {
-                                "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
+                                "hdr_msg_id": arrprocesslog[0].hdr_msg_id ? arrprocesslog[0].hdr_msg_id+moment().format("DDMMYYYYhhmmss") :  '',
                                 "hdr_total_amount": arrprocesslog[0].hdr_total_amount || '',
                                 "value_date": moment().format('YYYY-MM-DD'),
                                 "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
@@ -827,6 +829,7 @@ try {
  
  
  
+
 
 
 });

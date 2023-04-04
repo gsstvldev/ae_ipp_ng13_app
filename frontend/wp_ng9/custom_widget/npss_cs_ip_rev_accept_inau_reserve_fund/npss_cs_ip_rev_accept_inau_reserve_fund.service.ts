@@ -74,13 +74,13 @@ export class npss_cs_ip_rev_accept_inau_reserve_fundService {
 
                 }
                 else {
-                   if(res.data.flag == 'Y'){
-                        screenInstance.reversal_action_ui_force_post.disabled = false;
-                        this.dialogHelper.ShowErrorDialog(res.data.status)
-                    }else{
-                        screenInstance.reversal_action_ui_force_post.disabled = true;
+                //   if(res.data.flag == 'Y'){
+                //         screenInstance.reversal_action_ui_force_post.disabled = false;
+                //         this.dialogHelper.ShowErrorDialog(res.data.status)
+                //     }else{
+                       
                         this.dialogHelper.ShowErrorDialog(res.data.status) 
-                    }
+                  //  }
                 }
             });
     }

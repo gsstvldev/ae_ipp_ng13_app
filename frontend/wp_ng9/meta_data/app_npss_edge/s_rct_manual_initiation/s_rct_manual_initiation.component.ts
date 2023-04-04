@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29011 
+Build ID        : 29014 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-03 13:21 PM 
+Modified Date   : 2023-Apr-04 7:30 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -62,7 +62,8 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	uicgc_23 : string = "get_usable_balance_widget"
 	uicgc_24 : string = "get_deal_ui"
 	key_events : any = {}
-	btl_1304_1672489774529 : string = "p_initate_layout"
+	btl_1304_1680586648550 : string = "p_fin_initate_layout"
+	btl_1304_1672489774529 : string = "p_fab_initate_layout"
 	btl_1304_1670245368385 : string = "p_view_req_and_res"
 	btl_1304_1669459620728 : string = "p_view_message_ui_layout"
 	btl_1304_1669459551241 : string = "p_view_message_list_layout"
@@ -754,7 +755,6 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		if(!peventcontext) { 
  			peventcontext = this.navigation_ui_initiate__sec_for_initiate_process()
 		 }
-		this.navigation_ui_initiate__sp_for_initate()
 		this.navigation_ui_initiate__brfq_for_fab_otd(peventcontext)
 		this.navigation_ui_initiate__brfq_for_fab_ppd(peventcontext)
 		this.navigation_ui_initiate__brfq_for_fh_otd(peventcontext)
@@ -768,6 +768,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "brfq for fab ppd"
 	brfq_for_fab_ppd__internal(parent_event_result){
 		this.brfq_for_fab_ppd__sfr_for_ppd_list(parent_event_result)
+		this.brfq_for_fab_ppd__sp_for_fab(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "brfq for fab otd"
@@ -783,6 +784,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "brfq for fh ppd"
 	brfq_for_fh_ppd__internal(parent_event_result){
 		this.brfq_for_fh_ppd__sfr_for_fh_ppd_list(parent_event_result)
+		this.brfq_for_fh_ppd__sp_for_fh(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view tran"
@@ -1737,27 +1739,6 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui initiate"
-	navigation_ui_initiate__sp_for_initate() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_initiate"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1672490084474"
-		let event_params={"caller_name":"navigation_ui_initiate__sp_for_initate","event_desc":"SP for Initate","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{"profile_code":"BTL_1304_1672489774529"}}
-		let handler_code="show_profile"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui initiate"
 	navigation_ui_initiate__brfq_for_fab_otd(peventcontext) { 
 		let Dest_Is_ctrl=true
 		let eventcontext =["NPSS_AEFAB"]
@@ -1790,7 +1771,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let event_code="e_1672490213838"
 		let event_params={"caller_name":"navigation_ui_initiate__brfq_for_fab_ppd","event_desc":"BRFQ for FAB PPD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFAB","root_source_id":"navigation_ui_initiate","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"eventcontext":["NPSS_AEFAB"]}
 		let handler_code="bind_record_from_query"
-		let internals="brfq_for_fab_ppd__sfr_for_ppd_list,"
+		let internals="brfq_for_fab_ppd__sfr_for_ppd_list,brfq_for_fab_ppd__sp_for_fab,"
 		let event_data={}
 		let data_source={"e_1672490213838":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_20","event_code":"E_1672490213838","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1675145021503","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Manual Initiation MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"VALUE_DATE","alias_name":"","mq_id":"MQ_1679508668437","date_format":true},{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1679508668587","date_format":false},{"column_name":"DBTRACCTNAME","alias_name":"","mq_id":"MQ_1679508668731","date_format":false},{"column_name":"DRSORTCODE","alias_name":"","mq_id":"MQ_1679508668891","date_format":false},{"column_name":"CUSTOMER_POSTING_RESTRICTION_CODE","alias_name":"","mq_id":"MQ_1679508669037","date_format":false},{"column_name":"CUSTOMER_POSTING_RESTRICTION_DESCRIPTION","alias_name":"","mq_id":"MQ_1679508669197","date_format":false},{"column_name":"ACCOUNT_NUMBER","alias_name":"","mq_id":"MQ_1679508669341","date_format":false},{"column_name":"ACCOUNT_NAME","alias_name":"","mq_id":"MQ_1679508669501","date_format":false},{"column_name":"DBTR_IBAN","alias_name":"","mq_id":"MQ_1679508669693","date_format":false},{"column_name":"CDTRACCTNAME","alias_name":"","mq_id":"MQ_1679508669837","date_format":false},{"column_name":"CRSORTCODE","alias_name":"","mq_id":"MQ_1679508904192","date_format":false},{"column_name":"BANK_NAME","alias_name":"","mq_id":"MQ_1679508904344","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1679508904512","date_format":false},{"column_name":"CR_ACCT_IDENTIFICATION","alias_name":"","mq_id":"MQ_1679508928063","date_format":false},{"column_name":"DBTR_ACCT_NO","alias_name":"","mq_id":"MQ_1679508928239","date_format":false},{"column_name":"restriction_desc","alias_name":"","mq_id":"MQ_1679508928407","date_format":false},{"column_name":"POSTING_RESTRICTION_CODE","alias_name":"","mq_id":"MQ_1679508928567","date_format":false},{"column_name":"INTRBK_STTLM_CUR","alias_name":"","mq_id":"MQ_1679508962372","date_format":false},{"column_name":"DBTRIBAN","alias_name":"","mq_id":"MQ_1679509875193","date_format":false},{"column_name":"CDTRIBAN","alias_name":"","mq_id":"MQ_1679509885672","date_format":false}],"joins":[]},"eq_text":"select  NPSST_ID,  TNPSST_ID,  VALUE_DATE ,  DBTRIBAN ,  DBTRACCTNAME,  DRSORTCODE,  CLRSYSREF ,  fn_pcidss_decrypt(CR_ACCT_IDENTIFICATION,  $PCIDSS_KEY) as CR_ACCT_IDENTIFICATION,  fn_pcidss_decrypt(DBTR_ACCT_NO,  $PCIDSS_KEY) as DBTR_ACCT_NO,  PAYMENT_ENDTOEND_ID ,  CDTRIBAN,  CDTRACCTNAME,  CRSORTCODE,  BANK_NAME,  CUSTOMER_POSTING_RESTRICTION_CODE,  CUSTOMER_POSTING_RESTRICTION_DESCRIPTION,  ACCOUNT_NUMBER,  ACCOUNT_NAME,  restriction_desc,  POSTING_RESTRICTION_CODE,  INTRBK_STTLM_CUR,  ACCOUNT_CURRENCY from  (  select   NT.NPSST_ID,   NT.VALUE_DATE,   NT.CDTR_IBAN as DBTRIBAN,   NT.CDTR_ACCT_NAME as DBTRACCTNAME,   NT.CR_SORT_CODE as DRSORTCODE,   NT.CLRSYSREF,   NT.INTRBK_STTLM_CUR,   NT.PAYMENT_ENDTOEND_ID,   NT.DBTR_IBAN as CDTRIBAN,   NT.DBTR_ACCT_NAME as CDTRACCTNAME,   NT.DR_SORT_CODE as CRSORTCODE,   NT.CR_ACCT_IDENTIFICATION,   NT.DBTR_ACCT_NO,   NT.ACCOUNT_CURRENCY,   CNCA.CUSTOMER_POSTING_RESTRICTION_DESCRIPTION,   CNCA.CUSTOMER_POSTING_RESTRICTION_CODE,   case    when cnca.alternate_account_type in ('VA.IBAN', 'VA.BBAN') then ACCOUNT_NUMBER    else null   end as account_number,   case    when cnca.alternate_account_type in ('VA.IBAN', 'VA.BBAN') then ACCOUNT_NAME    else null   end as account_name,   CNCA.POSTING_RESTRICTION_CODE ,   CMB.BANK_NAME,   NT.NPSST_ID::text as TNPSST_ID,   cncpr.restriction_id,   cncpr.restriction_desc  from   NPSS_TRANSACTIONS NT  left join <tran_db>.CORE_NC_CBS_ACCOUNTS CNCA on   NT.CDTR_IBAN = CNCA.ALTERNATE_ACCOUNT_ID  inner join <tran_db>.CORE_MEMBER_BANKS CMB on   NT.DR_SORT_CODE = CMB.BIC_CODE   and cmb.need_sync = 'Y'  left join <tran_db>.CORE_NC_POST_RESTRICTIONS cncpr on   cncpr.restriction_id = CNCA.POSTING_RESTRICTION_CODE ) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Manual Initiation CCD","filter":[{"filter_name":"NPSST_ID","binding_name":"NPSST_ID","binding_value":"","source_name":"MI_LEVEL_NPSST_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"","group_no":""}],"databinding":[{"header":"Txn Value Date","target_column":"VALUE_DATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"DR Account Number","target_column":"DBTRIBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr Account Currency","target_column":"INTRBK_STTLM_CUR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"DR Account Name","target_column":"DBTRACCTNAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Posting restriction code","target_column":"POSTING_RESTRICTION_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Posting restriction description","target_column":"restriction_desc","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Real Account No","target_column":"ACCOUNT_NUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Real Account Name","target_column":"ACCOUNT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Account Number","target_column":"CDTRIBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Account Name","target_column":"CDTRACCTNAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Bank Bic","target_column":"CRSORTCODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Bank Name","target_column":"BANK_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Original E2E ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -1834,7 +1815,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let event_code="e_1675144659777"
 		let event_params={"caller_name":"navigation_ui_initiate__brfq_for_fh_ppd","event_desc":"BRFQ for FH PPD","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"navigation_ui_initiate","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"eventcontext":["NPSS_AEFIN"]}
 		let handler_code="bind_record_from_query"
-		let internals="brfq_for_fh_ppd__sfr_for_fh_ppd_list,"
+		let internals="brfq_for_fh_ppd__sfr_for_fh_ppd_list,brfq_for_fh_ppd__sp_for_fh,"
 		let event_data={}
 		let data_source={"e_1675144659777":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_20","event_code":"E_1675144659777","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1675145025455","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS MI FH Process Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"VALUE_DATE","alias_name":"","mq_id":"MQ_1675143336680","date_format":true},{"column_name":"DBTRIBAN","alias_name":"","mq_id":"MQ_1675143336984","date_format":false},{"column_name":"DBTRACCTNAME","alias_name":"","mq_id":"MQ_1675143337144","date_format":false},{"column_name":"DRSORTCODE","alias_name":"","mq_id":"MQ_1675143337464","date_format":false},{"column_name":"CDTRIBAN","alias_name":"","mq_id":"MQ_1675143337608","date_format":false},{"column_name":"CDTRACCTNAME","alias_name":"","mq_id":"MQ_1675143337776","date_format":false},{"column_name":"CRSORTCODE","alias_name":"","mq_id":"MQ_1675143413759","date_format":false},{"column_name":"BANK_NAME","alias_name":"","mq_id":"MQ_1675143413903","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1675144150062","date_format":false}],"joins":[]},"eq_text":"select  NPSST_ID,  TNPSST_ID,  VALUE_DATE ,  DBTRIBAN ,  DBTRACCTNAME,  DRSORTCODE,  CLRSYSREF ,  fn_pcidss_decrypt(CR_ACCT_IDENTIFICATION,$PCIDSS_KEY) as CR_ACCT_IDENTIFICATION,  fn_pcidss_decrypt(DBTR_ACCT_NO,$PCIDSS_KEY) as DBTR_ACCT_NO,  PAYMENT_ENDTOEND_ID ,  CDTRIBAN,  CDTRACCTNAME,  CRSORTCODE,  BANK_NAME from  (  select   NT.NPSST_ID,   NT.VALUE_DATE,   NT.CDTR_IBAN as DBTRIBAN,   NT.CDTR_ACCT_NAME as DBTRACCTNAME,   NT.CR_SORT_CODE as DRSORTCODE,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.DBTR_IBAN as CDTRIBAN,   NT.DBTR_ACCT_NAME as CDTRACCTNAME,   NT.DR_SORT_CODE as CRSORTCODE,   NT.CR_ACCT_IDENTIFICATION,   NT.DBTR_ACCT_NO,   CMB.BANK_NAME,   NT.NPSST_ID::text as TNPSST_ID  from   NPSS_TRANSACTIONS NT  inner join <tran_db>.CORE_MEMBER_BANKS CMB on   NT.DR_SORT_CODE = CMB.BIC_CODE   and cmb.need_sync = 'Y') V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS MI FH Process Tran MQ CCD","filter":[{"filter_name":"NPSST_ID","binding_name":"NPSST_ID","binding_value":"","source_name":"MI_LEVEL_NPSST_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"","group_no":""}],"databinding":[{"header":"DR Account number","target_column":"DBTRIBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"DR Account Name","target_column":"DBTRACCTNAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"DR Bank BIC","target_column":"DRSORTCODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Account Number","target_column":"CDTRIBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Account Name","target_column":"CDTRACCTNAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Bank Bic","target_column":"CRSORTCODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR Bank Name","target_column":"BANK_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Original E2E ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -1951,6 +1932,28 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for INTERNAL event of "brfq for fab ppd"
+	brfq_for_fab_ppd__sp_for_fab(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_for_fab_ppd"
+		let destn_id=""
+		let parent_source_id="navigation_ui_initiate"
+		let event_code="e_1680587487372"
+		let event_params={"caller_name":"brfq_for_fab_ppd__sp_for_fab","event_desc":"SP For FAB","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{"profile_code":"BTL_1304_1672489774529"},"parent_event_result":"SUCCESS"}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "brfq for fab otd"
 	brfq_for_fab_otd__sfr_for_otd_list(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -2011,6 +2014,28 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq for fh ppd"
+	brfq_for_fh_ppd__sp_for_fh(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_for_fh_ppd"
+		let destn_id=""
+		let parent_source_id="navigation_ui_initiate"
+		let event_code="e_1680587468310"
+		let event_params={"caller_name":"brfq_for_fh_ppd__sp_for_fh","event_desc":"SP for FH","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{"profile_code":"BTL_1304_1680586648550"},"parent_event_result":"SUCCESS"}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

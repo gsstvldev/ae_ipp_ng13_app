@@ -62,7 +62,7 @@ export class npss_cs_reversal_send_to_makerService {
         ClientParams.system_type = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "ST_CODE")
         ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
-        ClientParams.RULE_CODE = "RCT_SEND_TO_MAKER";
+        ClientParams.RULE_CODE = "RCT_IP_REV_REJ_SENDTOMAKER";
         ClientParams.tpl_id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSTPL_ID") || '';
         this.CallUrlforGetparamvalue(ClientParams, screenInstance, internals);
     }

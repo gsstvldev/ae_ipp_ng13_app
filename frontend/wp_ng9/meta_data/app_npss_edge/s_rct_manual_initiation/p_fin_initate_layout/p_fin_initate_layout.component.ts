@@ -7,24 +7,24 @@ Modified Date   : 2023-Apr-04 7:30 AM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
-Profile Name    : Vertical Tran Detail Profile--------------------------------------------------------------------------- */
+Profile Name    : FIN Initate Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_vertical_tran_detail_profile',
-  templateUrl: './p_vertical_tran_detail_profile.component.html',
-  styleUrls: ['./p_vertical_tran_detail_profile.component.css']
+  selector: 'p_fin_initate_layout',
+  templateUrl: './p_fin_initate_layout.component.html',
+  styleUrls: ['./p_fin_initate_layout.component.css']
 })
 
 // Start of class 
-export class p_vertical_tran_detail_profileComponent implements OnInit {
+export class p_fin_initate_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	back_ui : any = {}
-	view_dr_cr_details : any = {}
-	view_payment_details : any = {}
+  	original_transaction_details : any = {}
+	payment_processing_details : any = {}
+	payment_processing_details_ui : any = {}
 
 
   // Constructor 
@@ -32,16 +32,16 @@ export class p_vertical_tran_detail_profileComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.back_ui.desc = "Back UI"
-		this.back_ui.need_header = ""
-		this.view_dr_cr_details.desc = "View Dr Cr Details"
-		this.view_dr_cr_details.need_header = true
-		this.view_payment_details.desc = "View Payment Details"
-		this.view_payment_details.need_header = true
+    	this.original_transaction_details.desc = "Original Transaction Details"
+		this.original_transaction_details.need_header = true
+		this.payment_processing_details.desc = "Payment Processing Details"
+		this.payment_processing_details.need_header = true
+		this.payment_processing_details_ui.desc = "Payment Processing Details UI"
+		this.payment_processing_details_ui.need_header = ""
 	
 
-    this.screen_instance['p_vertical_tran_detail_profile'] = {};
-    this.screen_instance['p_vertical_tran_detail_profile']['checkHeader']=(component)=>{
+    this.screen_instance['p_fin_initate_layout'] = {};
+    this.screen_instance['p_fin_initate_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

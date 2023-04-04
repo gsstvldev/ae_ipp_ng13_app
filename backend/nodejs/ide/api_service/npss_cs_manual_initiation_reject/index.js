@@ -208,7 +208,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                               }
                            })
                         }else{
-                           objresponse.status = 'No data found in core nc system setup table';
+                           objresponse.status = 'No data found in core_nc_workflow_setup table';
                               sendResponse(null, objresponse) 
                         }
                         

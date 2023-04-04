@@ -42,9 +42,9 @@ export class npss_cs_ip_rev_reject_inau_reserve_fundService {
         let system = code[0];
 
 
-        var Ctrlscope = screenInstance["remarks_ui"].f_npss_remarks_ui.model
+      //  var Ctrlscope = screenInstance["remarks_ui"].f_npss_remarks_ui.model
         var Ctrlscope1 = screenInstance["reject_ui"].f_npss_reject_ui.model
-        var ResonCode = Ctrlscope.memory90
+       // var ResonCode = Ctrlscope.memory90
         let ClientParams: any = {};
         ///  Prepare input for Server call
         ClientParams.T24_RETURN_CODE = Ctrlscope1.T24_RETURN_CODE || '';
@@ -65,7 +65,7 @@ export class npss_cs_ip_rev_reject_inau_reserve_fundService {
         ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
         ClientParams.RULE_CODE = "RCT_IP_REV_REQ_REJECT";
-        ClientParams.ResonCode = ResonCode
+       // ClientParams.ResonCode = ResonCode
         ClientParams.tpl_id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSTPL_ID") || '';
         ClientParams.screenName = screenInstance.wftpa_description
         if (screenInstance.wftpa_description == 's_rct_reversal_non_aed') {

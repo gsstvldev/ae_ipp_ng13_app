@@ -68,7 +68,7 @@ export class npss_cs_reversal_force_to_postService {
                 }
                 else {                 
                
-                        this.dialogHelper.ShowErrorDialog(res.data.status) 
+                       this.dialogHelper.ShowErrorDialog(res.data.status) 
                                     
                 }
             });

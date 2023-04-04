@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29022 
+Build ID        : 29025 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-04 11:30 AM 
+Modified Date   : 2023-Apr-04 14:36 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -993,7 +993,6 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.navigation_review__he_for_aefin(peventcontext)
 		this.navigation_review__de_for_rev_add_ui()
 		this.navigation_review__bt_for_rev_add_ui()
-		this.navigation_review__de_for_force_post_action()
 		this.navigation_review__he_for_force_post(peventcontext)
 		this.navigation_review__brfq_for_cbc_account()
 		this.navigation_review__he_for_fin(peventcontext)
@@ -1386,11 +1385,6 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.navigation_search__claer_ui()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui force post"
-	reversal_action_ui_force_post__action_button_click(){
-		this.reversal_action_ui_force_post__cc_for_force_post()
-	}
-
 	//Handler for INTERNAL event of "cc for force post"
 	cc_for_force_post__internal(parent_event_result){
 		this.cc_for_force_post__info_for_force_post(parent_event_result)
@@ -1399,6 +1393,16 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "info for force post"
 	info_for_force_post__internal(parent_event_result){
 		this.info_for_force_post__rs_for_fp(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui force post"
+	reversal_action_ui_force_post__action_button_click(){
+		this.reversal_action_ui_force_post__conf_msg_for_fp()
+	}
+
+	//Handler for INTERNAL event of "conf msg for fp"
+	conf_msg_for_fp__internal(parent_event_result){
+		this.conf_msg_for_fp__cc_for_force_post(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2183,27 +2187,6 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
-	navigation_review__de_for_force_post_action() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_review"
-		let destn_id="reversal_action_ui_force_post"
-		let parent_source_id=""
-		let event_code="e_1673498973762"
-		let event_params={"caller_name":"navigation_review__de_for_force_post_action","event_desc":"DE for Force post action","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_review","raiseparam":{}}
-		let handler_code="disable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -4474,27 +4457,6 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui force post"
-	reversal_action_ui_force_post__cc_for_force_post() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="reversal_action_ui_force_post"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1673499000574"
-		let event_params={"caller_name":"reversal_action_ui_force_post__cc_for_force_post","event_desc":"CC for Force post","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_force_post","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals="cc_for_force_post__info_for_force_post,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_cs_reversal_force_to_postService.fn_npss_cs_reversal_force_to_post(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
 	//Handler for INTERNAL event of "cc for force post"
 	cc_for_force_post__info_for_force_post(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -4502,7 +4464,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="cc_for_force_post"
 		let destn_id=""
-		let parent_source_id="reversal_action_ui_force_post"
+		let parent_source_id="conf_msg_for_fp"
 		let event_code="e_1673499029602"
 		let event_params={"caller_name":"cc_for_force_post__info_for_force_post","event_desc":"info for force post","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been forced to post successfully","root_source_id":"reversal_action_ui_force_post","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
@@ -4533,6 +4495,49 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "reversal action ui force post"
+	reversal_action_ui_force_post__conf_msg_for_fp() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="reversal_action_ui_force_post"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1680618047391"
+		let event_params={"caller_name":"reversal_action_ui_force_post__conf_msg_for_fp","event_desc":"conf msg for FP","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","message_text":"Do you want to perform force post ?","root_source_id":"reversal_action_ui_force_post","raiseparam":{"conf_msg":""}}
+		let handler_code="conf_msg"
+		let internals="conf_msg_for_fp__cc_for_force_post,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.conf_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "conf msg for fp"
+	conf_msg_for_fp__cc_for_force_post(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="YES"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="conf_msg_for_fp"
+		let destn_id=""
+		let parent_source_id="reversal_action_ui_force_post"
+		let event_code="e_1673499000574"
+		let event_params={"caller_name":"conf_msg_for_fp__cc_for_force_post","event_desc":"CC for Force post","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"reversal_action_ui_force_post","raiseparam":{},"parent_event_result":"YES"}
+		let handler_code="custom_connectors"
+		let internals="cc_for_force_post__info_for_force_post,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_reversal_force_to_postService.fn_npss_cs_reversal_force_to_post(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

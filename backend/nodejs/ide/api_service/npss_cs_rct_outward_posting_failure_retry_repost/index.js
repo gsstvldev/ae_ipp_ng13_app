@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -16,6 +17,8 @@ app.post('/', function(appRequest, appResponse, next) {
 try {
     /*   Created By : Siva Harish
     Created Date :25-01-2023
+    modified by: Siva Harish
+    modify date : 5/4/2023
   
      
    
@@ -108,7 +111,6 @@ try {
                                             ExecuteQuery1(take_api_params, async function (arrTranparams) {
                                                 if (arrTranparams.length > 0) {
                                                     var Apicalls
-
                                                     if (params.eligible_status == 'OP_AC_REV_POSTING_RETRY' || params.eligible_status == 'OP_P2P_REV_POSTING_RETRY' || params.eligible_status == 'OP_P2B_REV_POSTING_RETRY') { //ORR
                                                         Apicalls = await CallORRAPI(arrTranparams, failcountobj, failcount, arrurl)
                                                     } else if (params.eligible_status == 'OP_AC_RET_POSTING_RETRY' || params.eligible_status == 'OR_P2P_POSTING_RETRY' || params.eligible_status == 'OR_P2B_POSTING_RETRY') { //OR
@@ -120,7 +122,6 @@ try {
                                                         objresponse.errdata = "No Eligible status for checker role"
                                                         sendResponse(null, objresponse)
                                                     }
-
                                                     if (Apicalls == 'SUCCESS') {
                                                         InsertProcess(arrTranparams, final_process_status, final_status, PRCT_ID)
                                                     } else {
@@ -543,13 +544,13 @@ try {
                                                                             "payload": {
                                                                                 "tran_ref_id": arrTranparamsObj.tran_ref_id || '',
                                                                                 "uetr": arrTranparamsObj.uetr || '',
-                                                                                "hdr_msg_id": '',
+                                                                                "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                                 "hdr_total_records": '1' || '',
                                                                                 "x_req_id": arrtakereqjson[0].msg_id || '',
-                                                                                "dbtr_country": '',
+                                                                                "dbtr_country": arrTranparamsObj.dbtr_country || '',
                                                                                 "process_ref_no": arrtakereqjson[0].npsstrrd_refno || '',
                                                                                 "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt || '',
-                                                                                "hdr_total_amount": arrTranparamsObj.intrbk_sttlm_amnt || '',
+                                                                                "hdr_total_amount": arrTranparamsObj.hdr_total_amount || '',
                                                                                 "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
                                                                                 "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
                                                                                 "customer_mobile_number": arrtakeacctinfo[0].customer_mobile_number || '',
@@ -567,25 +568,24 @@ try {
                                                                                 "process_type": "UNFREEZE",
                                                                                 "value_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),
                                                                                 "hdr_created_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),
-                                                                                "dbtr_prvt_id": '',
-                                                                                "ext_org_id_code": '',
-                                                                                "issuer_type_code": '',
-                                                                                "dbtr_document_id": '',
-                                                                                "dbtr_birth_date": '',
-                                                                                "dbtr_city_birth": '',
-                                                                                "ext_person_id_code": 'NIDN',
-                                                                                "dbtr_other_issuer": 'AE',
-                                                                                "cr_acct_identification": '',
-                                                                                "department_code": '',
+                                                                                "dbtr_prvt_id": arrTranparamsObj.dbtr_prvt_id || '',
+                                                                                "ext_org_id_code": arrTranparamsObj.ext_org_id_code || '',
+                                                                                "issuer_type_code": arrTranparamsObj.issuer_type_code || '',
+                                                                                "dbtr_document_id": arrTranparamsObj.dbtr_document_id || '',
+                                                                                "dbtr_birth_date": arrTranparamsObj.dbtr_birth_date || '',
+                                                                                "dbtr_city_birth": arrTranparamsObj.dbtr_city_birth || '',
+                                                                                "ext_person_id_code": arrTranparamsObj.ext_person_id_code || '',
+                                                                                "dbtr_other_issuer": arrTranparamsObj.dbtr_other_issuer || '',
+                                                                                "cr_acct_identification": arrTranparamsObj.cr_acct_identification || '',
+                                                                                "department_code": arrTranparamsObj.department_code || '',
                                                                                 "process": "Pacs.008 Real Time Credit Transfer P2B",
-                                                                                "process_status": '',
-                                                                                "status": '',
+                                                                                "process_status": params.eligible_process_status,
+                                                                                "status": params.eligible_status,
                                                                                 "channel_id": 'IPP',
                                                                                 "channel_refno": arrTranparamsObj.channel_refno || '',
-                                                                                "category_purpose": "IPP",
+                                                                                "category_purpose": arrTranparamsObj.category_purpose || '',
                                                                                 "posting_ref_no": postrefno,
                                                                                 "remittance_information": arrTranparamsObj.remittance_info || '',
-                                                                                "status": '',
                                                                                 "npsstrrd_refno": arrtakereqjson[0].npsstrrd_refno || '',
                                                                                 "AccountInformation": {
                                                                                     "account_number": arrtakeacctinfo[0].account_number || '',
@@ -597,7 +597,7 @@ try {
                                                                                     "account_officer": arrtakeacctinfo[0].account_officer || '',
                                                                                     "curr_rate_segment": arrtakeacctinfo[0].curr_rate_segment || '',
                                                                                     "customer_id": arrtakeacctinfo[0].customer_id || '',
-                                                                                    "department_code": '',
+                                                                                    "department_code":  arrTranparamsObj.department_code,
                                                                                     "tran_type_code": arrtakereqjson[0].tran_type_code || '',
                                                                                     "recipient_bic_code": '',
                                                                                     "birth_date": '',
@@ -704,7 +704,7 @@ try {
                 function AccountInformation(data) {
                     return new Promise((resolve, reject) => {
                         var cbsdata = {}
-                        var cbsaccount = `select inactive_marker,curr_rate_segment,alternate_account_id,currency,account_number,account_officer,company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${data.cdtr_iban}'`
+                        var cbsaccount = `select inactive_marker,curr_rate_segment,alternate_account_id,currency,account_number,account_officer,company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${data.dbtr_iban}'`
                         ExecuteQuery1(cbsaccount, function (arrcbsdata) {
                             if (arrcbsdata.length > 0) {
                                 cbsdata.status = 'SUCCESS'
@@ -824,6 +824,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

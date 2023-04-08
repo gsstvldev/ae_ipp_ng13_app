@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
     
+    
 
 /*  Created By :   Siva Harish
    Created Date :13/1/2023
@@ -17,6 +18,7 @@ app.post('/', function(appRequest, appResponse, next) {
    Reason for : Removing Console log
    Reason for : Handling Enabled Y Siva Harish
    Reason for : Changing  part x availability Query 20/03/2023
+      Reason for : Changing  part x availability select Query  08/04/2023
     
    */
 var serviceName = 'NPSS (S) Send Kafka Participant X Availability Notification';
@@ -81,11 +83,10 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                         var currdate = SplitDtndTim[0] + ' 00:00:00'
                                                         var splitTime = SplitDtndTim[1].split(':')
                                                         var PrepareDate = splitTime[0] +':'+ splitTime[1]
+                                                       // AEFrmtime = await tConvert(splitTime[0] + ':' + splitTime[1])
 
-                                                        
-
-
-                                                        var takeparticipantList = `Select * from core_nc_bank_part_avail where rct_subscription_flag = 'Subscribed' and need_sync = 'Y' and (('${currdate}' not BETWEEN from_date AND to_date) and ('${PrepareDate}' not between cast (from_time as time) and cast (to_time as time) )and( from_date is not null and to_date is not null and from_time is not null and to_time is not null )) or (from_date is null and to_date is null and to_time is null and from_time is null)`
+                                                        // var takeparticipantList = `Select * from core_nc_bank_part_avail where rct_subscription_flag = 'Subscribed' and need_sync = 'Y' and (('${currdate}' not BETWEEN from_date AND to_date) and ('${PrepareDate}' not between cast (from_time as time) and cast (to_time as time) )and( from_date is not null and to_date is not null and from_time is not null and to_time is not null )) or (from_date is null and to_date is null and to_time is null and from_time is null)`
+                                                        var takeparticipantList = `select * from core_nc_bank_part_avail where  to_date <= '${currdate}' and cast (to_time as time) < '${PrepareDate}' and need_sync = 'Y' and availability_flag = 'N'`
                                                         ExecuteQuery1(takeparticipantList, async function (arrresult) {
                                                             if (arrresult.length > 0) {
                                                                 reqAsync.forEachOfSeries(arrresult, function (arrresultObj, i, nextobjctfunc) {
@@ -93,7 +94,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                         var TakeBnkName = `select bank_name from core_nc_bank_part_avail where bank_bic = '${arrresultObj.bank_bic}' and need_sync = 'Y'`
                                                                         ExecuteQuery1(TakeBnkName, async function (arrBankNm) {
                                                                             if (arrBankNm.length > 0) {
-                                                                                var UpdateActFlag = `Update core_nc_bank_part_avail set availability_flag = 'Y' where cncbpa_id = '${arrresultObj.cncbpa_id}'`
+                                                                                var UpdateActFlag = `Update core_nc_bank_part_avail set iv_availability_flag = 'Y',iv_from_date =null,iv_to_date =null,iv_from_time =null,iv_to_time =null where cncbpa_id = '${arrresultObj.cncbpa_id}'`
                                                                                 ExecuteQuery(UpdateActFlag, async function (arrUpdt) {
                                                                                     if (arrUpdt == 'SUCCESS') {
                                                                                         var transferMode
@@ -386,6 +387,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 })
+
 
 
 

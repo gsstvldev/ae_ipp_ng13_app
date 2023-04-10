@@ -18,6 +18,7 @@ app.post('/', function(appRequest, appResponse, next) {
       Reason for : removing core_nc_bank_participation table 15/02/2023
     Reason for : adding update query and changing main query 24/02/2023
     Reason for : Changing time format and removing activation flag logic 02/03/2023
+     Reason for : Changing update coloumn published to ivpublished 10-04-2023
        
       */
     var serviceName = 'NPSS (S) Send Kafka Participant Notification';
@@ -187,7 +188,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                       sendResponse(error, null);
                                                                                   } else {
                                                                                       reqInstanceHelper.PrintInfo(serviceName, "........................-API CALL STATUS FOR ..............." + arrresultObj.cncbp_id + JSON.stringify(responseBody), objSessionLogInfo);
-                                                                                      var Updateprscode = `Update core_nc_bank_part_avail set published = 'Y' ,MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where cncbpa_id = '${arrresultObj.cncbpa_id}'`
+                                                                                      var Updateprscode = `Update core_nc_bank_part_avail set iv_published = 'Y' ,MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where cncbpa_id = '${arrresultObj.cncbpa_id}'`
                                                                                       ExecuteQuery(Updateprscode, function (arrUpdate) {
                                                                                           if (arrUpdate == 'SUCCESS') {
                                                                                               nextobjctfunc()

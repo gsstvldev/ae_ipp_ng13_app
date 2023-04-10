@@ -6,7 +6,8 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
- try {
+
+    try {
         /*   Created By :Daseen
         Created Date :04-11-2022
         Modified By : Siva Harish
@@ -41,6 +42,7 @@ app.post('/', function(appRequest, appResponse, next) {
                  Reason for : ADDING DEALREFNO for reserve fund api 30/03/2023
                  Reason for : ADDING DEALREFNO for reserve fund only for non aed api 31/03/2023
                   Reason for : Removing overdraft failure handling  4/04/2023
+                   Reason for : Adding isiban and credit card sub type  payload for prepaid card 10/04/2023
         */
         var serviceName = 'NPSS IP REV Accept INAU Reserve Fund';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -121,7 +123,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                         var InsertTable = await ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode, arrurlResult)
                                                         if (InsertTable.length > 0) {
-                                                          let runFun = async() => {
+                                                            let runFun = async () => {
                                                                 // chkapicall = 0 --> Resurve Fund api call
                                                                 // chkapicall = 1 --> prepaid card api call
                                                                 // chkapicall = 2 --> credit card api call
@@ -129,32 +131,35 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') { //for checking prepaid or credit only for maker
                                                                     apicalls = await checkprepaidorcredit(arrprocesslog)
                                                                 } else {
-                                                                    apicalls = 0
+                                                                    apicalls = {}
+                                                                    apicalls.apitype = 0
+
                                                                 }
 
-                                                                if (apicalls == 0) {
+                                                                if (apicalls.apitype == 0) {
                                                                     apiName = 'Reserve Fund'
-                                                                } else if (apicalls == 1) {
+                                                                } else if (apicalls.apitype == 1) {
                                                                     apiName = 'Prepaid Card'
-                                                                } else if (apicalls == 2) {
+
+                                                                } else if (apicalls.apitype == 2) {
                                                                     apiName = 'Credit Card'
                                                                 }
 
 
 
 
-                                                                if (apicalls == 0) {// Resurve Fund api call
-                                                                    reverseAcinfparam = await TakereversalIdandActInfm(arrprocesslog)                                                                                                                                                                                                
+                                                                if (apicalls.apitype == 0) {// Resurve Fund api call
+                                                                    reverseAcinfparam = await TakereversalIdandActInfm(arrprocesslog)
                                                                 } else { // for both prepaid card and credit card api calls 
-                                                                    reverseAcinfparam = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
+                                                                    reverseAcinfparam = await ReverseIdFrcdtpdt(arrprocesslog, apicalls.apitype)
                                                                 }
 
 
-                                                                if (apicalls == 0 || apicalls == '0') { // Reserve api call
+                                                                if (apicalls.apitype == 0 || apicalls.apitype == '0') { // Reserve api call
                                                                     take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL' AND need_sync = 'Y'`;
-                                                                } else if (apicalls == 1 || apicalls == '1') { //Prepaid  api Call
+                                                                } else if (apicalls.apitype == 1 || apicalls.apitype == '1') { //Prepaid  api Call
                                                                     take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_PREPAID_CARD' and param_code='URL' AND need_sync = 'Y'`;
-                                                                } else if (apicalls == 2 || apicalls == '2') { // Credit  api call
+                                                                } else if (apicalls.apitype == 2 || apicalls.apitype == '2') { // Credit  api call
                                                                     take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_CREDIT_CARD' and param_code='URL' AND need_sync = 'Y'`;
                                                                 }
 
@@ -163,7 +168,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         var url = arrurl[0].param_detail;
                                                                         var amount
                                                                         var Objfiledata
-                                                                        if (apicalls == 0) {
+                                                                        if (apicalls.apitype == 0) {
                                                                             Objfiledata = await Getorgdata(arrprocesslog)
                                                                         } else {
                                                                             Objfiledata = {}
@@ -171,10 +176,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         //var Objfiledata = await Getorgdata(arrprocesslog)
                                                                         if (params.screenName == 's_rct_reversal_non_aed') {
 
-                                                                            var ContraAmount = await getconamount(arrprocesslog, apicalls)
+                                                                            var ContraAmount = await getconamount(arrprocesslog, apicalls.apitype)
                                                                             amount = ContraAmount
                                                                             var TakegmMargin
-                                                                            if (apicalls == 0) {
+                                                                            if (apicalls.apitype == 0) {
                                                                                 TakegmMargin = await GetgmMargin(arrprocesslog)
                                                                                 dealRefno = await GetDealrefno(arrprocesslog)
                                                                             } else {
@@ -245,7 +250,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 } else {
                                                                                     amount = reversalAmt
 
-                                                                                   let runquery = async() => {
+                                                                                    let runquery = async () => {
                                                                                         var TakegmMargin = {}
                                                                                         var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, Objfiledata, TakegmMargin, params.screenName, extend_retry_value, dealRefno)
 
@@ -279,19 +284,19 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                 //     objresponse.flag = 'Y'
                                                                                                 //     sendResponse(null, objresponse);
                                                                                                 // } else {
-                                                                                                    objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
-                                                                                                  
-                                                                                                    sendResponse(null, objresponse);
-                                                                                               // }
+                                                                                                objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
+
+                                                                                                sendResponse(null, objresponse);
+                                                                                                // }
 
                                                                                             } else if (apicalls == 1) {
                                                                                                 objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
-                                                                                               
+
                                                                                                 sendResponse(null, objresponse);
 
                                                                                             } else if (apicalls == 2) {
                                                                                                 objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
-                                                                                               
+
                                                                                                 sendResponse(null, objresponse);
 
                                                                                             }
@@ -321,8 +326,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 })
 
 
-                                                          }
-                                                          runFun()
+                                                            }
+                                                            runFun()
                                                         } else {
                                                             objresponse.status = "Error in Table Insert"
                                                             sendResponse(null, objresponse)
@@ -559,7 +564,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     // Do Prepaid API Call for Service 
-                    function fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, extend_retry_value, callbackapi) {
+                    function fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, extend_retry_value, apicalls, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV Prepaid Card'
                             var request = require('request');
@@ -608,14 +613,17 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "card_type": "PREPAID_CARD",
                                         "process": "",
                                         "remittance_information": arrprocesslog[0].remittance_info || '',
-                                        "reversal_id": reverseAcinfparam.reverseId
+                                        "reversal_id": reverseAcinfparam.reverseId || '',
+                                        "card_sub_type": apicalls.card_sub_type || ''
                                     }
                                 },
                                 headers: {
                                     'Content-Type': 'application/json'
                                 }
                             }
-
+                            if (apicalls.isiban == 'Y') {
+                                options.json.payload.isiban = 'Y'
+                            }
 
                             var PrintInfo = {}
                             PrintInfo.url = url
@@ -867,14 +875,79 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     //function to check prepaid or credit
+                    // function checkprepaidorcredit(arrprocesslog) { //for checking prepid or credit card
+                    //     return new Promise((resolve, reject) => {
+
+                    //         if (arrprocesslog[0].cdtr_iban) {
+                    //             Iban = arrprocesslog[0].cdtr_iban.slice(-16)
+                    //             FrmIban = Iban.substring(0, 3)
+                    //             if (FrmIban == '564' || FrmIban == 564) {
+                    //                 resolve(1)
+                    //             } else {
+                    //                 if (arrprocesslog[0].cr_acct_identification && arrprocesslog[0].cr_acct_id_code == 'AIIN') {
+                    //                     var TakeacctIden = arrprocesslog[0].cr_acct_identification.substring(0, 6)
+                    //                     var checkCard = `select * from CORE_NC_CARD_BIN_SETUP where bin_number = '${TakeacctIden}' and need_sync = 'Y'`
+                    //                     ExecuteQuery1(checkCard, function (arrCradType) {
+                    //                         if (arrCradType.length) {
+                    //                             if (arrCradType[0].card_type == 'PREPAID_CARD') {
+                    //                                 resolve(1)
+                    //                             } else {
+                    //                                 resolve(2)
+                    //                             }
+                    //                         } else {
+
+                    //                             objresponse.status = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden
+                    //                             sendResponse(null, objresponse)
+                    //                         }
+
+                    //                     })
+                    //                 } else {
+                    //                     resolve(0)
+                    //                 }
+
+                    //             }
+
+                    //         } else {
+                    //             if (arrprocesslog[0].cr_acct_identification && arrprocesslog[0].cr_acct_id_code == 'AIIN') {
+                    //                 var TakeacctIden1 = arrprocesslog[0].cr_acct_identification.substring(0, 6)
+                    //                 var checkCard1 = `select * from CORE_NC_CARD_BIN_SETUP where bin_number = '${TakeacctIden1}' and need_sync = 'Y'`
+                    //                 ExecuteQuery1(checkCard1, function (arrCradType) {
+                    //                     if (arrCradType.length) {
+                    //                         if (arrCradType[0].card_type == 'PREPAID_CARD') {
+                    //                             resolve(1)
+                    //                         } else {
+                    //                             resolve(2)
+                    //                         }
+
+                    //                     } else {
+
+                    //                         objresponse.status = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden
+                    //                         sendResponse(null, objresponse)
+                    //                     }
+
+                    //                 })
+
+                    //             } else {
+                    //                 resolve(0)
+                    //             }
+
+                    //         }
+
+
+                    //     })
+
+                    // }
                     function checkprepaidorcredit(arrprocesslog) { //for checking prepid or credit card
                         return new Promise((resolve, reject) => {
-
+                            let apitype = {}
                             if (arrprocesslog[0].cdtr_iban) {
                                 Iban = arrprocesslog[0].cdtr_iban.slice(-16)
                                 FrmIban = Iban.substring(0, 3)
                                 if (FrmIban == '564' || FrmIban == 564) {
-                                    resolve(1)
+                                    apitype.apitype = 1
+                                    apitype.isiban = 'Y'
+                                    apitype.card_sub_type = 'RATIBI'
+                                    resolve(apitype)
                                 } else {
                                     if (arrprocesslog[0].cr_acct_identification && arrprocesslog[0].cr_acct_id_code == 'AIIN') {
                                         var TakeacctIden = arrprocesslog[0].cr_acct_identification.substring(0, 6)
@@ -882,9 +955,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                         ExecuteQuery1(checkCard, function (arrCradType) {
                                             if (arrCradType.length) {
                                                 if (arrCradType[0].card_type == 'PREPAID_CARD') {
-                                                    resolve(1)
+                                                    apitype.apitype = 1
+                                                    apitype.isiban = 'N'
+                                                    apitype.card_sub_type = arrCradType[0].card_sub_type
+                                                    resolve(apitype)
                                                 } else {
-                                                    resolve(2)
+                                                    apitype.apitype = 2
+                                                    apitype.isiban = 'N'
+                                                    apitype.card_sub_type = arrCradType[0].card_sub_type
+                                                    resolve(apitype)
                                                 }
                                             } else {
 
@@ -894,7 +973,10 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                         })
                                     } else {
-                                        resolve(0)
+                                        apitype.apitype = 0
+                                        apitype.isiban = 'N'
+                                        apitype.card_sub_type = ''
+                                        resolve(apitype)
                                     }
 
                                 }
@@ -906,9 +988,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                     ExecuteQuery1(checkCard1, function (arrCradType) {
                                         if (arrCradType.length) {
                                             if (arrCradType[0].card_type == 'PREPAID_CARD') {
-                                                resolve(1)
+                                                apitype.apitype = 1
+                                                apitype.isiban = 'N'
+                                                apitype.card_sub_type = arrCradType[0].card_sub_type
+                                                resolve(apitype)
                                             } else {
-                                                resolve(2)
+                                                apitype.apitype = 2
+                                                apitype.isiban = 'N'
+                                                apitype.card_sub_type = arrCradType[0].card_sub_type
+                                                resolve(apitype)
                                             }
 
                                         } else {
@@ -920,7 +1008,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                     })
 
                                 } else {
-                                    resolve(0)
+                                    apitype.apitype = 0
+                                    apitype.isiban = 'N'
+                                    apitype.card_sub_type = ''
+                                    resolve(apitype)
                                 }
 
                             }
@@ -929,7 +1020,6 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
 
                     }
-
 
                     function GetRetrycount(uetr) {
                         return new Promise((resolve, reject) => {
@@ -1062,22 +1152,22 @@ app.post('/', function(appRequest, appResponse, next) {
                     //function to call all api calls(reservefund,prepaid,credit)
                     function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, Objfiledata, TakegmMargin, screenName, extend_retry_value, dealRefno) {
                         return new Promise((resolve, reject) => {
-                            if (apicalls == 0 || apicalls == 0) { // reserve fund
+                            if (apicalls.apitype == 0 || apicalls.apitype == 0) { // reserve fund
                                 fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, screenName, extend_retry_value, dealRefno, function (result) {
 
                                     resolve(result)
 
 
                                 })
-                            } else if (apicalls == 1 || apicalls == 1) { // prepaid api call
-                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, extend_retry_value, function (result) {
+                            } else if (apicalls.apitype == 1 || apicalls.apitype == 1) { // prepaid api call
+                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, extend_retry_value, apicalls, function (result) {
 
                                     resolve(result)
 
 
                                 })
 
-                            } else if (apicalls == 2 || apicalls == 2) { // credit api call
+                            } else if (apicalls.apitype == 2 || apicalls.apitype == 2) { // credit api call
                                 fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, extend_retry_value, function (result) {
 
                                     resolve(result)
@@ -1243,6 +1333,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

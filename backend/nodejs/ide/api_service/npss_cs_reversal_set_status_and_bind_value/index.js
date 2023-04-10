@@ -213,6 +213,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                         } else {
                                                             objresponse.status = 'SUCCESS'
+                                                             objresponse.data.status = rulestatus
+                                                            objresponse.data.process_status = process_status
                                                             objresponse.data.process_ref_no = GetProcessRefno
                                                             sendResponse(null, objresponse)
                                                         }

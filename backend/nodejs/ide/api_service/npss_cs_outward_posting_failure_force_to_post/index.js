@@ -14,6 +14,7 @@ try {
     /*   Created By : Siva Harish
     Created Date :27-03-2023
   Changeing acct infm using dbtr_iban and adding role  10/04/2023
+  Changeing rulecode and status  10/04/2023
      
    
     */
@@ -68,7 +69,7 @@ try {
                         var PRCT_ID = prct_id
                         var final_status
                         var final_process_status
-                        var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_OP_POSTING_FAIL_REPOST'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
+                        var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_OP_POSTING_FAIL_FORCE_POST'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                         var take_api_params = `select ns.department_code,ns.channel_refno,ns.channel_id,ns.middleware_ref_no,ns.cbs_ref_no,ns.reversal_amount,ns.npsst_id,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY ) as dbtr_acct_no,ns.dbtr_cust_type,ns.ext_acct_id_code,ns.intrbk_sttlm_amnt,ns.instrument_type,ns.instruction_id,ns.hdr_msg_id,ns.hdr_clearing_system,ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,ns.accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id in ${TempTranID}`;
                         var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL' and need_sync = 'Y'`
                         ExecuteQuery1(TakeStsPsts, async function (arrurlResult) {
@@ -86,11 +87,11 @@ try {
                                                 if (arrTranparams.length > 0) {
                                                     var Apicalls
 
-                                                    if (params.eligible_status == 'OP_AC_REV_POSTING_RETRY' || params.eligible_status == 'OP_P2P_REV_POSTING_RETRY' || params.eligible_status == 'OP_P2B_REV_POSTING_RETRY') { //ORR
+                                                    if (params.eligible_status == 'OP_AC_REV_FP_INITIATED' || params.eligible_status == 'OP_P2P_REV_FP_INITIATED' || params.eligible_status == 'OP_P2B_REV_FP_INITIATED') { //ORR
                                                         Apicalls = await CallORRAPI(arrTranparams, failcountobj, failcount, arrurl)
-                                                    } else if (params.eligible_status == 'OP_AC_RET_POSTING_RETRY' || params.eligible_status == 'OR_P2P_POSTING_RETRY' || params.eligible_status == 'OR_P2B_POSTING_RETRY') { //OR
+                                                    } else if (params.eligible_status == 'OP_AC_RET_FP_INITIATED' || params.eligible_status == 'OR_P2P_FP_INITIATED' || params.eligible_status == 'OR_P2B_FP_INITIATED') { //OR
                                                         Apicalls = await CallORAPI(arrTranparams, failcountobj, failcount, arrurl)
-                                                    } else if (params.eligible_status == 'OP_P2B_FUND_UNFR_RETRY') { //Unfreeze
+                                                    } else if (params.eligible_status == 'OP_P2B_UNFR_FP_INITIATED') { //Unfreeze
                                                         Apicalls = await CallP2B(arrTranparams, failcountobj, failcount, arrurl)
                                                     } else {
                                                         objresponse.status = "FAILURE"

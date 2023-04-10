@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29011 
+Build ID        : 29028 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-03 13:21 PM 
+Modified Date   : 2023-Apr-10 8:4 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_posting_failure
@@ -87,6 +87,7 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	navigation_ui_already_posted : any = {}
 	navigation_ui_force_post : any = {}
 	navigation_ui_trg_btn : any = {}
+	navigation_ui_sec_trg_btn : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -253,6 +254,15 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_trg_btn.dynamic_param = {}
 		this.navigation_ui_trg_btn.role = []
 		this.navigation_ui_trg_btn.action = ""
+		
+		// "SEC TRG BTN" Button of "Navigation UI" component
+		this.navigation_ui_sec_trg_btn.label_name = "SEC TRG BTN"
+		this.navigation_ui_sec_trg_btn.show = true
+		this.navigation_ui_sec_trg_btn.disabled = false
+		this.navigation_ui_sec_trg_btn.params = {"icon_only":false,"uicgcc_style":""}
+		this.navigation_ui_sec_trg_btn.dynamic_param = {}
+		this.navigation_ui_sec_trg_btn.role = []
+		this.navigation_ui_sec_trg_btn.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -611,6 +621,7 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		this.page_load__e_1678108395216()
 		this.page_load__e_1678111965279()
 		this.page_load__e_1679910116639()
+		this.page_load__he_for_sec_trg_btn()
 	}
 
 	//Handler for INTERNAL event of "cf for routing key"
@@ -917,11 +928,31 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "e 1679910145876"
 	e_1679910145876__internal(parent_event_result){
 		this.e_1679910145876__e_1679910161339(parent_event_result)
+		this.e_1679910145876__tbc_for_sec_trg_btn()
 	}
 
 	//Handler for INTERNAL event of "e 1679910161339"
 	e_1679910161339__internal(parent_event_result){
 		this.e_1679910161339__e_1679910170291(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui sec trg btn"
+	navigation_ui_sec_trg_btn__action_button_click(peventcontext){
+		if(!peventcontext) { 
+ 			peventcontext = this.navigation_ui_sec_trg_btn__sec_for_force_post_btn()
+		 }
+		this.navigation_ui_sec_trg_btn__im_for_force_post_checker(peventcontext)
+		this.navigation_ui_sec_trg_btn__im_for_force_post_maker(peventcontext)
+	}
+
+	//Handler for INTERNAL event of "im for force post maker"
+	im_for_force_post_maker__internal(parent_event_result){
+		this.im_for_force_post_maker__rs_for_force_post_maker(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "im for force post checker"
+	im_for_force_post_checker__internal(parent_event_result){
+		this.im_for_force_post_checker__rs_for_force_post_checker(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1044,6 +1075,27 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_sec_trg_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_sec_trg_btn"
+		let parent_source_id=""
+		let event_code="e_1681110435243"
+		let event_params={"caller_name":"page_load__he_for_sec_trg_btn","event_desc":"HE for SEC Trg btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2850,7 +2902,7 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let event_code="e_1679910145878"
 		let event_params={"caller_name":"navigation_ui_force_post__e_1679910145876","event_desc":"E_1679910145876","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_post","raiseparam":{}}
 		let handler_code="custom_connectors"
-		let internals="e_1679910145876__e_1679910161339,"
+		let internals="e_1679910145876__e_1679910161339,e_1679910145876__tbc_for_sec_trg_btn,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -2883,6 +2935,27 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for INTERNAL event of "e 1679910145876"
+	e_1679910145876__tbc_for_sec_trg_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="e_1679910145876"
+		let destn_id="navigation_ui_sec_trg_btn"
+		let parent_source_id="navigation_ui_force_post"
+		let event_code="e_1681110550150"
+		let event_params={"caller_name":"e_1679910145876__tbc_for_sec_trg_btn","event_desc":"TBC for SEC TRG BTN","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_post","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "e 1679910161339"
 	e_1679910161339__e_1679910170291(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -2893,6 +2966,115 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let parent_source_id="e_1679910145876"
 		let event_code="e_1679910170291"
 		let event_params={"caller_name":"e_1679910161339__e_1679910170291","event_desc":"E_1679910170291","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_post","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui sec trg btn"
+	navigation_ui_sec_trg_btn__sec_for_force_post_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_sec_trg_btn"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1681110594638"
+		let event_params={"caller_name":"navigation_ui_sec_trg_btn__sec_for_force_post_btn","event_desc":"SEC for Force Post btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_sec_trg_btn","raiseparam":{}}
+		let handler_code="set_event_context"
+		let internals=""
+		let event_data={"navigation_ui_sec_trg_btn":{"e_1681110594638":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGCC_52","event_code":"E_1681110594638","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[],"get_from_memory":[],"set_event_context":"Y","sec_value":{"type":"SESSION_LEVEL","value":"APP_USER_ROLES"}}}}}}}}}
+		let data_source={}
+		try {
+			return this.handler.set_event_context(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui sec trg btn"
+	navigation_ui_sec_trg_btn__im_for_force_post_checker(peventcontext) { 
+		let Dest_Is_ctrl=true
+		let eventcontext =["708"]
+		if(eventcontext.indexOf(peventcontext)==-1) return true;
+		let source_id="navigation_ui_sec_trg_btn"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1681110636532"
+		let event_params={"caller_name":"navigation_ui_sec_trg_btn__im_for_force_post_checker","event_desc":"IM for force post checker","event_type":"ACTION_BUTTON_CLICK","caller_event_context":708,"message_text":"Transaction(s) has been forced to post successfully","root_source_id":"navigation_ui_sec_trg_btn","raiseparam":{"info_msg":""},"eventcontext":["708"]}
+		let handler_code="info_msg"
+		let internals="im_for_force_post_checker__rs_for_force_post_checker,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui sec trg btn"
+	navigation_ui_sec_trg_btn__im_for_force_post_maker(peventcontext) { 
+		let Dest_Is_ctrl=true
+		let eventcontext =["705"]
+		if(eventcontext.indexOf(peventcontext)==-1) return true;
+		let source_id="navigation_ui_sec_trg_btn"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1681110644560"
+		let event_params={"caller_name":"navigation_ui_sec_trg_btn__im_for_force_post_maker","event_desc":"IM for force post maker","event_type":"ACTION_BUTTON_CLICK","caller_event_context":705,"message_text":"Transaction(s) has been sent to checker successfully","root_source_id":"navigation_ui_sec_trg_btn","raiseparam":{"info_msg":""},"eventcontext":["705"]}
+		let handler_code="info_msg"
+		let internals="im_for_force_post_maker__rs_for_force_post_maker,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "im for force post maker"
+	im_for_force_post_maker__rs_for_force_post_maker(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="im_for_force_post_maker"
+		let destn_id=""
+		let parent_source_id="navigation_ui_sec_trg_btn"
+		let event_code="e_1681110654030"
+		let event_params={"caller_name":"im_for_force_post_maker__rs_for_force_post_maker","event_desc":"RS for force post maker","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_sec_trg_btn","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "im for force post checker"
+	im_for_force_post_checker__rs_for_force_post_checker(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="im_for_force_post_checker"
+		let destn_id=""
+		let parent_source_id="navigation_ui_sec_trg_btn"
+		let event_code="e_1681110663582"
+		let event_params={"caller_name":"im_for_force_post_checker__rs_for_force_post_checker","event_desc":"RS for force post checker","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_sec_trg_btn","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

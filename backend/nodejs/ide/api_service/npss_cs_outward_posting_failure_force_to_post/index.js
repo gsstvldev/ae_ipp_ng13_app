@@ -7,12 +7,13 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 try {
     /*   Created By : Siva Harish
     Created Date :27-03-2023
-  
+  Changeing acct infm using dbtr_iban and adding role  10/04/2023
      
    
     */
@@ -74,9 +75,13 @@ try {
                             if (arrurlResult.length) {
                                 final_process_status = arrurlResult[0].success_process_status
                                 final_status = arrurlResult[0].success_status
-                                ExecuteQuery1(Takekafkaurl,  function (arrurl) {
-                                    if (arrurl.length > 0) {
-                                      
+                                let changeTrnstatus
+                                if (params.roleId == '705') {
+                                    changeTrnstatus = await UpdateTrn(TempTranID, final_process_status, final_status,PRCT_ID)
+                                } else {
+                                    ExecuteQuery1(Takekafkaurl, function (arrurl) {
+                                        if (arrurl.length > 0) {
+
                                             ExecuteQuery1(take_api_params, async function (arrTranparams) {
                                                 if (arrTranparams.length > 0) {
                                                     var Apicalls
@@ -107,14 +112,14 @@ try {
                                                 }
                                             })
 
-                                        
-                                    } else {
-                                        objresponse.status = 'FAILURE';
-                                        objresponse.errdata = "kafka Api url not found"
-                                        sendResponse(null, objresponse)
-                                    }
-                                })
 
+                                        } else {
+                                            objresponse.status = 'FAILURE';
+                                            objresponse.errdata = "kafka Api url not found"
+                                            sendResponse(null, objresponse)
+                                        }
+                                    })
+                                }
 
                             } else {
                                 objresponse.status = "FAILURE"
@@ -142,9 +147,9 @@ try {
 
                 function InsertProcess(arrTranparams, success_process_status, success_status, PRCT_ID) {
                     var processName
-                   
-                        processName = 'Repost - Checker'
-                    
+
+                    processName = 'Repost - Checker'
+
                     var arrCusTranInst = [];
                     for (let i = 0; i < arrTranparams.length; i++) {
                         var objCusTranInst = {}
@@ -487,7 +492,7 @@ try {
                                         var takereqjson = `select npsstpl_id,npsstrrd_refno,msg_id, additional_info as tran_type_code  from npss_trn_process_log where process_name = 'Verify Buyer IBAN'  and uetr='${arrTranparamsObj.uetr}'`
                                         ExecuteQuery1(takereqjson, function (arrtakereqjson) {
                                             if (arrtakereqjson.length > 0) {
-                                                var takeacctinfo = `select account_number,customer_mobile_number, countryofbirth country_of_birth,	company_code,inactive_marker,currency,alternate_account_type,alternate_account_id, account_officer,curr_rate_segment,customer_id,national_id  from  core_nc_cbs_accounts where alternate_account_id ='${arrTranparamsObj.cdtr_iban}'`
+                                                var takeacctinfo = `select account_number,customer_mobile_number, countryofbirth country_of_birth,	company_code,inactive_marker,currency,alternate_account_type,alternate_account_id, account_officer,curr_rate_segment,customer_id,national_id  from  core_nc_cbs_accounts where alternate_account_id ='${arrTranparamsObj.dbtr_iban}'`
                                                 ExecuteQuery1(takeacctinfo, function (arrtakeacctinfo) {
                                                     if (arrtakeacctinfo.length > 0) {
                                                         var seldetqry = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrtakeacctinfo[0].customer_id}'`
@@ -652,7 +657,19 @@ try {
 
 
 
+                function UpdateTrn(TempTranID, final_process_status, final_status,PRCT_ID) {
+                    var UpdateTrnTbl = `update npss_transactions set  status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
+                            ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
+                                if (uptranresult == 'SUCCESS') {
+                                    objresponse.status = 'Success';
+                                    sendResponse(null, objresponse)
+                                } else {
+                                    objresponse.status = 'Error in Transaction Table Update';
+                                    sendResponse(null, objresponse)
 
+                                }
+                            })
+                }
 
 
 
@@ -677,7 +694,7 @@ try {
                 function AccountInformation(data) {
                     return new Promise((resolve, reject) => {
                         var cbsdata = {}
-                        var cbsaccount = `select inactive_marker,curr_rate_segment,alternate_account_id,currency,account_number,account_officer,company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${data.cdtr_iban}'`
+                        var cbsaccount = `select inactive_marker,curr_rate_segment,alternate_account_id,currency,account_number,account_officer,company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${data.dbtr_iban}'`
                         ExecuteQuery1(cbsaccount, function (arrcbsdata) {
                             if (arrcbsdata.length > 0) {
                                 cbsdata.status = 'SUCCESS'
@@ -797,6 +814,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

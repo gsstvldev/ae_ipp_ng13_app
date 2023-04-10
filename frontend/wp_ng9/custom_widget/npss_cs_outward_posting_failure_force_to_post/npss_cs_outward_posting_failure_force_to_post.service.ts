@@ -30,8 +30,8 @@ export class npss_cs_outward_posting_failure_force_to_postService {
         ClientParams.Tran_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID");
         ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS") || '';
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS") || '';
-        ClientParams.Roleid = this.sessionHelper.GetVariable('SESSION_LEVEL', 'APP_USER_ROLES')
         ClientParams.Rule_Code = 'RCT_OP_POSTING_FAIL_REPOST'
+         ClientParams.roleId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES");
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     //Custom validation logics

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29049 
+Build ID        : 29062 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-10 10:15 AM 
+Modified Date   : 2023-Apr-11 6:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_posting_failure
@@ -926,14 +926,8 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	}
 
 	//Handler for INTERNAL event of "e 1679910145876"
-	e_1679910145876__internal(parent_event_result){
-		this.e_1679910145876__e_1679910161339(parent_event_result)
+	e_1679910145876__internal(){
 		this.e_1679910145876__tbc_for_sec_trg_btn()
-	}
-
-	//Handler for INTERNAL event of "e 1679910161339"
-	e_1679910161339__internal(parent_event_result){
-		this.e_1679910161339__e_1679910170291(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui sec trg btn"
@@ -2902,33 +2896,11 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let event_code="e_1679910145878"
 		let event_params={"caller_name":"navigation_ui_force_post__e_1679910145876","event_desc":"E_1679910145876","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_post","raiseparam":{}}
 		let handler_code="custom_connectors"
-		let internals="e_1679910145876__e_1679910161339,e_1679910145876__tbc_for_sec_trg_btn,"
+		let internals="e_1679910145876__tbc_for_sec_trg_btn,"
 		let event_data={}
 		let data_source={}
 		try {
 			this.npss_cs_outward_posting_failure_force_to_postService.fn_npss_cs_outward_posting_failure_force_to_post(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1679910145876"
-	e_1679910145876__e_1679910161339(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1679910145876"
-		let destn_id=""
-		let parent_source_id="navigation_ui_force_post"
-		let event_code="e_1679910161339"
-		let event_params={"caller_name":"e_1679910145876__e_1679910161339","event_desc":"E_1679910161339","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been forced to post successfully","root_source_id":"navigation_ui_force_post","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
-		let handler_code="info_msg"
-		let internals="e_1679910161339__e_1679910170291,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2950,28 +2922,6 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1679910161339"
-	e_1679910161339__e_1679910170291(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1679910161339"
-		let destn_id=""
-		let parent_source_id="e_1679910145876"
-		let event_code="e_1679910170291"
-		let event_params={"caller_name":"e_1679910161339__e_1679910170291","event_desc":"E_1679910170291","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_post","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="refresh_screen"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

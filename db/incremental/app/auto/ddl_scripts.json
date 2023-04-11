@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRN_PROCESS_LOG alter column CBUAE_RETURN_CODE drop not null; update NPSS_TRN_PROCESS_LOG set CBUAE_RETURN_CODE=substr(CBUAE_RETURN_CODE,1,1024);alter table NPSS_TRN_PROCESS_LOG alter column CBUAE_RETURN_CODE type CHARACTER VARYING(1024);","params" : [] }]
+[]

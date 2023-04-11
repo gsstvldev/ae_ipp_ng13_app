@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
     try {
         /*   Created By :Siva Harish
         Created Date :02-01-2023
@@ -25,6 +26,7 @@ app.post('/', function(appRequest, appResponse, next) {
            Reason for : changing done in FH 03/03/2023
             Reason for : Adding dealRefno for fab & unique id generation for pacs008 04.04.2023
              Reason for : handling hdr msg id 6/4/2023
+             Reason for : Adding new payload in pacs008 11/4/2023
        
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -78,7 +80,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var takedealRefno
                             var take_return_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL' and need_sync = 'Y'`;
                             var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.RULE_CODE}'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                            var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,ns.fx_resv_text2,ns.account_currency, ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
+                            var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,ns.fx_resv_text2,ns.account_currency,ns.org_pay_endtoend_id, ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
                             if (params.PROD_CODE == 'NPSS_AEFAB') {
                                 ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
                                     if (arrurlResult.length) {
@@ -421,7 +423,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 } else {
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-                                    var responseData = JSON.parse(responseBodyFromImagingService)
+                                    var responseData = JSON.parse(responseBodyFromImagingService)         
                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseData, objSessionLogInfo);
                                     callbackapi(responseData)
                                 }
@@ -522,9 +524,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                 method: 'POST',
                                 json: {
                                     "hdr_msg_id": hdrmsgid,
-                                        "hdr_total_amount": arrprocesslog[0].hdr_total_amount || '',
+                                    "hdr_total_amount": arrprocesslog[0].hdr_total_amount || '',
                                     "value_date": moment().format('YYYY-MM-DD'),
                                     "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
+                                    "instr_id":arrprocesslog[0].org_pay_endtoend_id || '',
                                     "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
                                     "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
                                     "uetr": arrprocesslog[0].uetr || '',
@@ -827,6 +830,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

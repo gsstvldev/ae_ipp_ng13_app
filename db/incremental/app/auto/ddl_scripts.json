@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRN_PROCESS_LOG alter column ADDITIONAL_INFO drop not null; update NPSS_TRN_PROCESS_LOG set ADDITIONAL_INFO=substr(ADDITIONAL_INFO,1,1024);alter table NPSS_TRN_PROCESS_LOG alter column ADDITIONAL_INFO type CHARACTER VARYING(1024);","params" : [] }]
+[]

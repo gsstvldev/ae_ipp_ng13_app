@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29066 
+Build ID        : 29075 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-11 7:7 AM 
+Modified Date   : 2023-Apr-11 9:52 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -59,7 +59,7 @@ focustoelement(){
 		this.ctrl.cbuae_return_code.uictrl_code = "CBO_LIST"
 		this.ctrl.cbuae_return_code.target_column = "CBUAE_RETURN_CODE"
 		this.ctrl.cbuae_return_code.data_type = "TEXT"
-		this.ctrl.cbuae_return_code.data_length = 128
+		this.ctrl.cbuae_return_code.data_length = 1024
 		this.ctrl.cbuae_return_code.zone_df_code = "DF_1304_1665905157963"
 		this.ctrl.cbuae_return_code.default_value = ""
 		this.ctrl.cbuae_return_code.is_memory_ctrl = ""

@@ -7,10 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-
-
-
+  
 
 
 
@@ -19,7 +16,7 @@ try {
     Created Date :25-01-2023
     modified by: Siva Harish
     modify date : 5/4/2023
-  
+  Reason for : Changing Return code query 12/04/2023
      
    
     */
@@ -81,7 +78,7 @@ try {
                             if (arrurlResult.length) {
                                 final_process_status = arrurlResult[0].success_process_status
                                 final_status = arrurlResult[0].success_status
-                                ExecuteQuery1(Takekafkaurl,  function (arrurl) {
+                                ExecuteQuery1(Takekafkaurl, function (arrurl) {
                                     if (arrurl.length > 0) {
                                         if (params.Roleid == '705' || params.Roleid == 705) {
                                             // var UpdateTrnTbl = `update npss_transactions set  status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
@@ -96,7 +93,7 @@ try {
 
                                             //     }
                                             // })
-                                            ExecuteQuery1(take_api_params,  function (arrTranparams) {
+                                            ExecuteQuery1(take_api_params, function (arrTranparams) {
                                                 if (arrTranparams.length > 0) {
                                                     InsertProcess(arrTranparams, final_process_status, final_status, PRCT_ID)
                                                 } else {
@@ -243,129 +240,120 @@ try {
                             var runfunction = async () => {
                                 var TakeacctInfrm = await AccountInformation(arrTranparamsObj)
                                 if (TakeacctInfrm.status == 'SUCCESS') {
-                                    var Takereturncode = `select cbuae_return_code,npsstrrd_refno from npss_trn_process_log where process_name='Receive Pacs002' and uetr = '${arrTranparamsObj.uetr}'`
-                                    ExecuteQuery1(Takereturncode, function (returncode) {
-                                        if (returncode.length > 0) {
-                                            reason_code = returncode[0].cbuae_return_code;
-                                            npsst_refno = returncode[0].npsstrrd_refno
-                                        } else {
-                                            reason_code = ''
-                                            npsst_refno = ''
-                                        }
-
-                                        var lclinstrm
-                                        if (arrTranparamsObj.message_data !== null) {
-                                            var parser = new xml2js.Parser({ strict: false, trim: true });
-                                            parser.parseString(arrTranparamsObj.message_data, function (err, result) {
-                                                lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
-                                            });
-                                        }
-                                        else {
-                                            lclinstrm = ""
-                                        }
-                                        var request = require('request');
-                                        var options = {
-                                            url: arrurl[0].param_detail,
-                                            timeout: 18000000,
-                                            method: 'POST',
-                                            json: {
-                                                batch_name: "DR-CBS-POSTING-Q",
-                                                data: {
-
-                                                    "payload": {
-                                                        "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
-                                                        "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
-                                                        "hdr_total_records": arrTranparamsObj.hdr_total_records || '1',
-                                                        "hdr_total_amount": arrTranparamsObj.hdr_total_amount || '',
-                                                        "hdr_settlement_date": arrTranparamsObj.hdr_settlement_date || '',
-                                                        "value_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),
-                                                        "hdr_settlement_method": "CLRG",
-                                                        "hdr_clearing_system": arrTranparamsObj.hdr_clearing_system || '',
-                                                        "instruction_id": arrTranparamsObj.instruction_id || '',
-                                                        "channel_id": arrTranparamsObj.channel_id || '',
-                                                        "channel_refno": arrTranparamsObj.channel_refno || '',
-                                                        "dr_sort_code": arrTranparamsObj.dr_sort_code || '',
-                                                        "cr_sort_code": arrTranparamsObj.cr_sort_code || '',
-                                                        "cdtr_acct_name": arrTranparamsObj.cdtr_acct_name || '',
-                                                        "category_purpose": arrTranparamsObj.category_purpose || '',
-                                                        "category_purpose_prty": arrTranparamsObj.category_purpose_prty || '',
-                                                        "ext_purpose_code": arrTranparamsObj.ext_purpose_code || '',
-                                                        "ext_purpose_prty": arrTranparamsObj.ext_purpose_prty || '',
-                                                        "lclinstrm": lclinstrm,
-                                                        "instrument_type": arrTranparamsObj.instrument_type || '',
-                                                        "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
-                                                        "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt || '',
-                                                        "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
-                                                        "dbtr_acct_no": arrTranparamsObj.dbtr_acct_no || '',
-                                                        "ext_acct_id_code": arrTranparamsObj.ext_acct_id_code || '',
-                                                        "charge_code": '',
-                                                        "dbtr_cust_type": arrTranparamsObj.dbtr_cust_type || '',
-                                                        "ext_org_id_code": arrTranparamsObj.ext_org_id_code || '',
-                                                        "issuer_type_code": arrTranparamsObj.issuer_type_code || '',
-                                                        "dbtr_birth_date": arrTranparamsObj.dbtr_birth_date || '',
-                                                        "dbtr_city_birth": arrTranparamsObj.dbtr_city_birth || '',
-                                                        "dbtr_country": arrTranparamsObj.dbtr_country || '',
-                                                        "dbtr_document_id": arrTranparamsObj.dbtr_document_id || '',
-                                                        "ext_person_id_code": arrTranparamsObj.ext_person_id_code || '',
-                                                        "dbtr_other_issuer": arrTranparamsObj.dbtr_other_issuer || '',
-                                                        "dbtr_acct_name": arrTranparamsObj.dbtr_acct_name || '',
-                                                        "cdtr_iban": arrTranparamsObj.cdtr_iban || '',
-                                                        "dbtr_prvt_id": arrTranparamsObj.dbtr_prvt_id || '',
-                                                        "bankuserid": '',
-                                                        "rsn_code": reason_code,
-                                                        "npsstrrd_refno": npsst_refno,
-                                                        "AccountInformation": TakeacctInfrm.AccountInformations,
-                                                        "payment_endtoend_id": arrTranparamsObj.payment_endtoend_id || '',
-                                                        "accp_dt_tm": arrTranparamsObj.accp_dt_tm || '',
-                                                        "charge_bearer": arrTranparamsObj.charge_bearer || '',
-                                                        "tran_ref_id": arrTranparamsObj.tran_ref_id || '',
-                                                        "uetr": arrTranparamsObj.uetr || '',
-                                                        "cbs_ref_no": arrTranparamsObj.cbs_ref_no || '',
-                                                        "middleware_ref_no": arrTranparamsObj.middleware_ref_no || '',
-                                                        "cr_acct_identification": arrTranparamsObj.cr_acct_identification || '',
-                                                        "cr_acct_id_code": arrTranparamsObj.cr_acct_id_code || '',
-                                                        "message_data": arrTranparamsObj.message_data || '',
-                                                        "process_type": 'ORR',
-                                                        "status": arrTranparamsObj.status || '',
-                                                        "process_status": arrTranparamsObj.process_status || '',
-                                                        "remittance_information": arrTranparamsObj.remittance_info || '',
-                                                        "clrsysref": arrTranparamsObj.clrsysref || '',
-                                                        "extIdentifier": arrTranparamsObj.clrsysref || '',
-                                                        "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.0",
-                                                        "payment_processing_method": 'AC_AC_IBAN' || '',
-                                                        "department_code": arrTranparamsObj.department_code || '',
-                                                        "company_code": TakeacctInfrm.AccountInformations.company_code || '',
-                                                        "error_code": ""
-
-                                                    }
-                                                }
-                                            },
-                                            headers: {
-                                                'Content-Type': 'application/json'
-                                            }
-
-                                        }
-
-                                        var PrintInfo = {}
-                                        PrintInfo.url = arrurl[0].param_detail
-                                        PrintInfo.uetr = arrTranparamsObj.uetr || ''
-                                        PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
-
-
-                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
-                                        request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
-                                            if (error) {
-                                                reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
-                                                sendResponse(error, null);
-
-                                            } else {
-                                                reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-                                                nextobjctfunc()
-                                            }
+                                    var TakeRtncode = await Returncode(arrTranparamsObj)
+                                    var lclinstrm
+                                    if (arrTranparamsObj.message_data !== null) {
+                                        var parser = new xml2js.Parser({ strict: false, trim: true });
+                                        parser.parseString(arrTranparamsObj.message_data, function (err, result) {
+                                            lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
                                         });
+                                    }
+                                    else {
+                                        lclinstrm = ""
+                                    }
+                                    var request = require('request');
+                                    var options = {
+                                        url: arrurl[0].param_detail,
+                                        timeout: 18000000,
+                                        method: 'POST',
+                                        json: {
+                                            batch_name: "DR-CBS-POSTING-Q",
+                                            data: {
+
+                                                "payload": {
+                                                    "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
+                                                    "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
+                                                    "hdr_total_records": arrTranparamsObj.hdr_total_records || '1',
+                                                    "hdr_total_amount": arrTranparamsObj.hdr_total_amount || '',
+                                                    "hdr_settlement_date": arrTranparamsObj.hdr_settlement_date || '',
+                                                    "value_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),
+                                                    "hdr_settlement_method": "CLRG",
+                                                    "hdr_clearing_system": arrTranparamsObj.hdr_clearing_system || '',
+                                                    "instruction_id": arrTranparamsObj.instruction_id || '',
+                                                    "channel_id": arrTranparamsObj.channel_id || '',
+                                                    "channel_refno": arrTranparamsObj.channel_refno || '',
+                                                    "dr_sort_code": arrTranparamsObj.dr_sort_code || '',
+                                                    "cr_sort_code": arrTranparamsObj.cr_sort_code || '',
+                                                    "cdtr_acct_name": arrTranparamsObj.cdtr_acct_name || '',
+                                                    "category_purpose": arrTranparamsObj.category_purpose || '',
+                                                    "category_purpose_prty": arrTranparamsObj.category_purpose_prty || '',
+                                                    "ext_purpose_code": arrTranparamsObj.ext_purpose_code || '',
+                                                    "ext_purpose_prty": arrTranparamsObj.ext_purpose_prty || '',
+                                                    "lclinstrm": lclinstrm,
+                                                    "instrument_type": arrTranparamsObj.instrument_type || '',
+                                                    "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
+                                                    "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt || '',
+                                                    "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
+                                                    "dbtr_acct_no": arrTranparamsObj.dbtr_acct_no || '',
+                                                    "ext_acct_id_code": arrTranparamsObj.ext_acct_id_code || '',
+                                                    "charge_code": '',
+                                                    "dbtr_cust_type": arrTranparamsObj.dbtr_cust_type || '',
+                                                    "ext_org_id_code": arrTranparamsObj.ext_org_id_code || '',
+                                                    "issuer_type_code": arrTranparamsObj.issuer_type_code || '',
+                                                    "dbtr_birth_date": arrTranparamsObj.dbtr_birth_date || '',
+                                                    "dbtr_city_birth": arrTranparamsObj.dbtr_city_birth || '',
+                                                    "dbtr_country": arrTranparamsObj.dbtr_country || '',
+                                                    "dbtr_document_id": arrTranparamsObj.dbtr_document_id || '',
+                                                    "ext_person_id_code": arrTranparamsObj.ext_person_id_code || '',
+                                                    "dbtr_other_issuer": arrTranparamsObj.dbtr_other_issuer || '',
+                                                    "dbtr_acct_name": arrTranparamsObj.dbtr_acct_name || '',
+                                                    "cdtr_iban": arrTranparamsObj.cdtr_iban || '',
+                                                    "dbtr_prvt_id": arrTranparamsObj.dbtr_prvt_id || '',
+                                                    "bankuserid": '',
+                                                    "rsn_code": TakeRtncode.reason_code,
+                                                    "npsstrrd_refno": TakeRtncode.npsst_refno,
+                                                    "AccountInformation": TakeacctInfrm.AccountInformations,
+                                                    "payment_endtoend_id": arrTranparamsObj.payment_endtoend_id || '',
+                                                    "accp_dt_tm": arrTranparamsObj.accp_dt_tm || '',
+                                                    "charge_bearer": arrTranparamsObj.charge_bearer || '',
+                                                    "tran_ref_id": arrTranparamsObj.tran_ref_id || '',
+                                                    "uetr": arrTranparamsObj.uetr || '',
+                                                    "cbs_ref_no": arrTranparamsObj.cbs_ref_no || '',
+                                                    "middleware_ref_no": arrTranparamsObj.middleware_ref_no || '',
+                                                    "cr_acct_identification": arrTranparamsObj.cr_acct_identification || '',
+                                                    "cr_acct_id_code": arrTranparamsObj.cr_acct_id_code || '',
+                                                    "message_data": arrTranparamsObj.message_data || '',
+                                                    "process_type": 'ORR',
+                                                    "status": arrTranparamsObj.status || '',
+                                                    "process_status": arrTranparamsObj.process_status || '',
+                                                    "remittance_information": arrTranparamsObj.remittance_info || '',
+                                                    "clrsysref": arrTranparamsObj.clrsysref || '',
+                                                    "extIdentifier": arrTranparamsObj.clrsysref || '',
+                                                    "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.0",
+                                                    "payment_processing_method": 'AC_AC_IBAN' || '',
+                                                    "department_code": arrTranparamsObj.department_code || '',
+                                                    "company_code": TakeacctInfrm.AccountInformations.company_code || '',
+                                                    "error_code": ""
+
+                                                }
+                                            }
+                                        },
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        }
+
+                                    }
+
+                                    var PrintInfo = {}
+                                    PrintInfo.url = arrurl[0].param_detail
+                                    PrintInfo.uetr = arrTranparamsObj.uetr || ''
+                                    PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
 
 
-                                    })
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                                    request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
+                                        if (error) {
+                                            reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
+                                            sendResponse(error, null);
+
+                                        } else {
+                                            reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                            nextobjctfunc()
+                                        }
+                                    });
+
+
+
 
                                 } else {
                                     resolve(TakeacctInfrm.status)
@@ -597,7 +585,7 @@ try {
                                                                                     "account_officer": arrtakeacctinfo[0].account_officer || '',
                                                                                     "curr_rate_segment": arrtakeacctinfo[0].curr_rate_segment || '',
                                                                                     "customer_id": arrtakeacctinfo[0].customer_id || '',
-                                                                                    "department_code":  arrTranparamsObj.department_code,
+                                                                                    "department_code": arrTranparamsObj.department_code,
                                                                                     "tran_type_code": arrtakereqjson[0].tran_type_code || '',
                                                                                     "recipient_bic_code": '',
                                                                                     "birth_date": '',
@@ -677,7 +665,39 @@ try {
 
 
 
+                function Returncode(arrTranparamsObj) {
+                    return new Promise((resolve, reject) => {
+                        var returnCodobj = {}
+                        var Takecode = `select response_code,npsstrrd_refno from npss_trn_process_log where status = 'OP_AC_VAL_FAILED' and process_name = 'Failure' and uetr = '${arrTranparamsObj.uetr}'`
+                        ExecuteQuery1(Takecode, function (arrcode) {
+                            if (arrcode.length > 0) {
+                                if (arrcode.length > 0) {
+                                    returnCodobj.reason_code = arrcode[0].response_code;
+                                    returnCodobj.npsst_refno = arrcode[0].npsstrrd_refno
+                                    resolve(returnCodobj)
+                                } else {
+                                    returnCodobj.reason_code = ''
+                                    returnCodobj.npsst_refno = ''
+                                    resolve(returnCodobj)
+                                }
+                            } else {
+                                var Takereturncode = `select cbuae_return_code,npsstrrd_refno from npss_trn_process_log where process_name='Receive Pacs002' and uetr = '${arrTranparamsObj.uetr}'`
+                                ExecuteQuery1(Takereturncode, function (returncode) {
+                                    if (returncode.length > 0) {
+                                        returnCodobj.reason_code = returncode[0].cbuae_return_code;
+                                        returnCodobj.npsst_refno = returncode[0].npsstrrd_refno
+                                        resolve(returnCodobj)
+                                    } else {
+                                        returnCodobj.reason_code = ''
+                                        returnCodobj.npsst_refno = ''
+                                        resolve(returnCodobj)
+                                    }
+                                })
+                            }
 
+                        })
+                    })
+                }
 
 
 
@@ -824,6 +844,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

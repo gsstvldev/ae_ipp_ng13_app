@@ -7,7 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
+
     try {
         /*   Created By :Siva Harish
         Created Date :02-01-2023
@@ -27,6 +28,7 @@ app.post('/', function(appRequest, appResponse, next) {
             Reason for : Adding dealRefno for fab & unique id generation for pacs008 04.04.2023
              Reason for : handling hdr msg id 6/4/2023
              Reason for : Adding new payload in pacs008 11/4/2023
+               Reason for : checking auth posting done or not 12/04/2023
        
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -87,7 +89,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                         final_process_status = arrurlResult[0].success_process_status
                                         final_status = arrurlResult[0].success_status
-                                        ExecuteQuery1(take_api_params, function (arrprocesslog) {
+                                        ExecuteQuery1(take_api_params, async function (arrprocesslog) {
                                             if (arrprocesslog.length) {
 
                                                 var lclinstrm
@@ -104,101 +106,104 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 else {
                                                     lclinstrm = ""
                                                 }
+                                                let checkAlreadyPosted = await CheckpostingTran(arrprocesslog, final_process_status, final_status)
+                                                if(checkAlreadyPosted == 'CallAuthPosting'){
+                                                    var PreparedData = async () => {
 
-                                                var PreparedData = async () => {
-
-                                                    extend_retry_value = await GetRetrycount(arrprocesslog[0].uetr)
-                                                    // Logic For Taking Reversal Id and Taking PostingRefno and account Information only for auth004 api call
-                                                    reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog)
-
-                                                    Getdata = await GetgmMargin(arrprocesslog, reverandRefno)
-                                                    takedealRefno = await GetRefno(arrprocesslog, reverandRefno)
-                                                    take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_AUTH_PACS004' and param_code='URL' and need_sync = 'Y'`;
-                                                    var amount
-
-                                                    amount = arrprocesslog[0].intrbk_sttlm_amnt
-
-
-                                                    ExecuteQuery1(take_api_url, function (arrurl) {
-                                                        if (arrurl.length) {
-                                                            var url = arrurl[0].param_detail;
-                                                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Objfiledata, Getdata, extend_retry_value, takedealRefno, function (firstapiresult) {
-                                                                if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
-
-                                                                    reqInstanceHelper.PrintInfo(serviceName, '------------fIRST API CALL SUCCESS-------', objSessionLogInfo);
-                                                                    //Call Pac008 Api
-                                                                    var Takepac008url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_MANUAL_INT_PAC008' and param_code='URL' and need_sync = 'Y'`;
-                                                                    ExecuteQuery1(Takepac008url, function (pac008url) {
-                                                                        if (pac008url.length > 0) {
-                                                                            var pacurl = pac008url[0].param_detail
-                                                                            fn_doPac008apicall(pacurl, arrprocesslog, function (pac008api) {
-                                                                                if (pac008api == 'SUCCESS') {
-
-                                                                                    var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-
-                                                                                    ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                                        if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                            objresponse.status = 'SUCCESS';
-                                                                                            sendResponse(null, objresponse);
-
-                                                                                        }
-                                                                                        else {
-
-
-                                                                                            objresponse.status = "FAILURE"
-                                                                                            objresponse.errdata = "No Data Updated in Transaction Table"
-                                                                                            sendResponse(null, objresponse)
-
-                                                                                        }
-
-                                                                                    })
-                                                                                } else {
-                                                                                    objresponse.status = "FAILURE"
-                                                                                    objresponse.errdata = "Failure in Pac008 Api"
-                                                                                    sendResponse(null, objresponse)
-                                                                                }
-
-                                                                            })
-                                                                        } else {
-                                                                            objresponse.status = "FAILURE"
-                                                                            objresponse.errdata = "Pac008 Url Not Found"
-                                                                            sendResponse(null, objresponse)
-                                                                        }
-
-                                                                    })
-
-                                                                } else {
-
-                                                                    objresponse.status = "FAILURE"
-                                                                    objresponse.errdata = 'Auth Api Call Failure  Error Code Found-' + firstapiresult.error_code
-                                                                    sendResponse(null, objresponse);
-
-                                                                }
-                                                            })
-
-
-                                                        }
-                                                        else {
-                                                            reqInstanceHelper.PrintInfo(serviceName, '------------Posting Url Not Found-------', objSessionLogInfo);
-                                                            objresponse.status = "FAILURE"
-                                                            objresponse.errdata = "Posting URL not found workflow table"
-                                                            sendResponse(null, objresponse)
-                                                        }
-                                                    })
-
-
-
-
-
-
+                                                        extend_retry_value = await GetRetrycount(arrprocesslog[0].uetr)
+                                                        // Logic For Taking Reversal Id and Taking PostingRefno and account Information only for auth004 api call
+                                                        reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog)
+    
+                                                        Getdata = await GetgmMargin(arrprocesslog, reverandRefno)
+                                                        takedealRefno = await GetRefno(arrprocesslog, reverandRefno)
+                                                        take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_AUTH_PACS004' and param_code='URL' and need_sync = 'Y'`;
+                                                        var amount
+    
+                                                        amount = arrprocesslog[0].intrbk_sttlm_amnt
+    
+    
+                                                        ExecuteQuery1(take_api_url, function (arrurl) {
+                                                            if (arrurl.length) {
+                                                                var url = arrurl[0].param_detail;
+                                                                fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Objfiledata, Getdata, extend_retry_value, takedealRefno, function (firstapiresult) {
+                                                                    if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
+    
+                                                                        reqInstanceHelper.PrintInfo(serviceName, '------------fIRST API CALL SUCCESS-------', objSessionLogInfo);
+                                                                        //Call Pac008 Api
+                                                                        var Takepac008url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_MANUAL_INT_PAC008' and param_code='URL' and need_sync = 'Y'`;
+                                                                        ExecuteQuery1(Takepac008url, function (pac008url) {
+                                                                            if (pac008url.length > 0) {
+                                                                                var pacurl = pac008url[0].param_detail
+                                                                                fn_doPac008apicall(pacurl, arrprocesslog, function (pac008api) {
+                                                                                    if (pac008api == 'SUCCESS') {
+    
+                                                                                        var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+    
+                                                                                        ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                                            if (arrUpdTranTbl == 'SUCCESS') {
+                                                                                                objresponse.status = 'SUCCESS';
+                                                                                                sendResponse(null, objresponse);
+    
+                                                                                            }
+                                                                                            else {
+    
+    
+                                                                                                objresponse.status = "FAILURE"
+                                                                                                objresponse.errdata = "No Data Updated in Transaction Table"
+                                                                                                sendResponse(null, objresponse)
+    
+                                                                                            }
+    
+                                                                                        })
+                                                                                    } else {
+                                                                                        objresponse.status = "FAILURE"
+                                                                                        objresponse.errdata = "Failure in Pac008 Api"
+                                                                                        sendResponse(null, objresponse)
+                                                                                    }
+    
+                                                                                })
+                                                                            } else {
+                                                                                objresponse.status = "FAILURE"
+                                                                                objresponse.errdata = "Pac008 Url Not Found"
+                                                                                sendResponse(null, objresponse)
+                                                                            }
+    
+                                                                        })
+    
+                                                                    } else {
+    
+                                                                        objresponse.status = "FAILURE"
+                                                                        objresponse.errdata = 'Auth Api Call Failure  Error Code Found-' + firstapiresult.error_code
+                                                                        sendResponse(null, objresponse);
+    
+                                                                    }
+                                                                })
+    
+    
+                                                            }
+                                                            else {
+                                                                reqInstanceHelper.PrintInfo(serviceName, '------------Posting Url Not Found-------', objSessionLogInfo);
+                                                                objresponse.status = "FAILURE"
+                                                                objresponse.errdata = "Posting URL not found workflow table"
+                                                                sendResponse(null, objresponse)
+                                                            }
+                                                        })
+    
+    
+    
+    
+    
+    
+                                                    }
+    
+                                                    PreparedData()
+                                                }else{
+                                                    objresponse.status = "FAILURE"
+                                                    objresponse.errdata = "Checking Auth Posting done error"
+                                                    sendResponse(null, objresponse)    
                                                 }
 
-                                                PreparedData()
-
-
-
-
-
+                                            
 
                                             }
                                             else {
@@ -423,7 +428,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 } else {
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-                                    var responseData = JSON.parse(responseBodyFromImagingService)         
+                                    var responseData = JSON.parse(responseBodyFromImagingService)
                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseData, objSessionLogInfo);
                                     callbackapi(responseData)
                                 }
@@ -435,63 +440,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         }
                     }
 
-                    function fn_doapicall2(url, arrprocesslog, arrreturncode, callbackapi) {
-                        try {
-                            var apiName = 'NPSS IP RETURN PACS004'
-                            var request = require('request');
-                            var apiURL =
-                                apiURL = url // apiURL + apiName
-                            var options = {
-                                url: apiURL,
-                                timeout: 18000000,
-                                method: 'POST',
-                                json: {
 
-                                    "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
-                                    "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date || '',
-                                    "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
-                                    "hdr_settlement_method": arrprocesslog[0].hdr_settlement_method || '',
-                                    "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
-                                    "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
-                                    "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
-                                    "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
-                                    "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
-                                    "uetr": arrprocesslog[0].uetr,
-                                    "hdr_clearing_system": arrprocesslog[0].hdr_clearing_system || '',
-                                    "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
-                                    "post_reason_code": arrreturncode[0].cbuae_return_code || '',
-                                    "clrsysref": arrprocesslog[0].clrsysref
-
-
-                                },
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                }
-                            }
-
-
-
-
-                            reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
-                            request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
-                                if (error) {
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
-                                    sendResponse(error, null);
-
-
-                                } else {
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseFromImagingService, objSessionLogInfo);
-                                    responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-
-                                    callbackapi(responseBodyFromImagingService)
-                                }
-                            });
-
-                        } catch (error) {
-                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
-                            sendResponse(error, null);
-                        }
-                    }
 
 
                     function fn_doPac008apicall(url, arrprocesslog, callbackapi) {
@@ -527,7 +476,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     "hdr_total_amount": arrprocesslog[0].hdr_total_amount || '',
                                     "value_date": moment().format('YYYY-MM-DD'),
                                     "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
-                                    "instr_id":arrprocesslog[0].org_pay_endtoend_id || '',
+                                    "instr_id": arrprocesslog[0].org_pay_endtoend_id || '',
                                     "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
                                     "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
                                     "uetr": arrprocesslog[0].uetr || '',
@@ -771,6 +720,53 @@ app.post('/', function(appRequest, appResponse, next) {
                             })
                         })
                     }
+
+
+                    function CheckpostingTran(arrprocesslog, final_process_status, final_status) {
+                        return new Promise((resolve, reject) => {
+                            var CheckTrnPosted = `select * from npss_trn_process_log where process_name = 'Reversal Fund AUTH Posting' and status = 'IP_RCT_REV_AUTH_POSTING_SUCCESS' and uetr = '${arrprocesslog[0].uetr}'`
+                            ExecuteQuery1(CheckTrnPosted, function (arrTrndetails) {
+                                if (arrTrndetails.length > 0) {
+                                    var Takepac008url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_MANUAL_INT_PAC008' and param_code='URL' and need_sync = 'Y'`;
+                                    ExecuteQuery1(Takepac008url, function (pac008url) {
+                                        if (pac008url.length > 0) {
+                                            var pacurl = pac008url[0].param_detail
+                                            fn_doPac008apicall(pacurl, arrprocesslog, function (pac008api) {
+                                                if (pac008api == 'SUCCESS') {
+                                                    var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                    ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                        if (arrUpdTranTbl == 'SUCCESS') {
+                                                            objresponse.status = 'SUCCESS';
+                                                            sendResponse(null, objresponse);
+                                                        }
+                                                        else {
+                                                            objresponse.status = "FAILURE"
+                                                            objresponse.errdata = "No Data Updated in Transaction Table"
+                                                            sendResponse(null, objresponse)
+                                                        }
+
+                                                    })
+                                                } else {
+                                                    objresponse.status = "FAILURE"
+                                                    objresponse.errdata = "Pacs008 Api Failure"
+                                                    sendResponse(null, objresponse)
+                                                }
+                                            })
+                                        } else {
+                                            objresponse.status = "FAILURE"
+                                            objresponse.errdata = "Pacs008 URL not found workflow table"
+                                            sendResponse(null, objresponse)
+                                        }
+                                    })
+                                } else {
+                                    resolve('CallAuthPosting')
+                                }
+                            })
+                        })
+                    }
+
+
+
                     //Execute Query Function
                     function ExecuteQuery1(query, callback) {
                         reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
@@ -830,6 +826,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

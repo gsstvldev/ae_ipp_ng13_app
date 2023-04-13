@@ -677,7 +677,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     resolve(returnCodobj)
                                 }
                             } else {
-                                var Takereturncode = `select cbuae_return_code,npsstrrd_refno from npss_trn_process_log where process_name='Receive Pacs002' and uetr = '${arrTranparamsObj.uetr}'`
+                             var Takereturncode = `select cbuae_return_code,npsstrrd_refno from npss_trn_process_log where process_name='Receive Pacs002' and status = 'OP_AC_STATUS_REJECTED' and uetr = '${arrTranparamsObj.uetr}'`
+                               // var Takereturncode = `select cbuae_return_code,npsstrrd_refno from npss_trn_process_log where process_name='Receive Pacs002' and uetr = '${arrTranparamsObj.uetr}'`
                                 ExecuteQuery1(Takereturncode, function (returncode) {
                                     if (returncode.length > 0) {
                                         returnCodobj.reason_code = returncode[0].cbuae_return_code;

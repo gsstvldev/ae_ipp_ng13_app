@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29075 
+Build ID        : 29092 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-11 9:52 AM 
+Modified Date   : 2023-Apr-13 7:17 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -155,7 +155,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	trig_action_for_list_ui_trig_tran_list : any = {}
 	get_usable_balance_widget : any = {}
 	cancel_return_ui : any = {}
-	cancel_return_ui_save : any = {}
+	cancel_return_ui_return_to_maker : any = {}
 	reject_ui : any = {}
 	send_to_maker_ui : any = {}
 	send_to_maker_ui_save : any = {}
@@ -780,14 +780,14 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.cancel_return_ui.f_npss_remarks_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
 		this.cancel_return_ui.form_name = "f_npss_remarks_ui"
 		
-		// "Save" Button of "Cancel Return UI" component
-		this.cancel_return_ui_save.label_name = "Save"
-		this.cancel_return_ui_save.show = true
-		this.cancel_return_ui_save.disabled = false
-		this.cancel_return_ui_save.params = {"icon_only":false,"uicgcc_style":"fa fa-floppy-o"}
-		this.cancel_return_ui_save.dynamic_param = {}
-		this.cancel_return_ui_save.role = []
-		this.cancel_return_ui_save.action = ""
+		// "Return to Maker" Button of "Cancel Return UI" component
+		this.cancel_return_ui_return_to_maker.label_name = "Return to Maker"
+		this.cancel_return_ui_return_to_maker.show = true
+		this.cancel_return_ui_return_to_maker.disabled = false
+		this.cancel_return_ui_return_to_maker.params = {"icon_only":false,"uicgcc_style":"fa fa-floppy-o"}
+		this.cancel_return_ui_return_to_maker.dynamic_param = {}
+		this.cancel_return_ui_return_to_maker.role = []
+		this.cancel_return_ui_return_to_maker.action = ""
 	
 		// Component level properties - "Reject UI" 
 		this.reject_ui.uictrl_code = "dynamic_ui"
@@ -1327,9 +1327,9 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.reversal_action_ui_cancel__send_to_maker__spap_for_rau_cancel()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "cancel return ui save"
-	cancel_return_ui_save__action_button_click(){
-		this.cancel_return_ui_save__ve_for_cancel_ui()
+	//Handler for ACTION_BUTTON_CLICK event of "cancel return ui return to maker"
+	cancel_return_ui_return_to_maker__action_button_click(){
+		this.cancel_return_ui_return_to_maker__ve_for_cancel_ui()
 	}
 
 	//Handler for INTERNAL event of "ve for cancel ui"
@@ -4160,15 +4160,15 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "cancel return ui save"
-	cancel_return_ui_save__ve_for_cancel_ui() { 
+	//Handler for ACTION_BUTTON_CLICK event of "cancel return ui return to maker"
+	cancel_return_ui_return_to_maker__ve_for_cancel_ui() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="cancel_return_ui_save"
+		let source_id="cancel_return_ui_return_to_maker"
 		let destn_id="cancel_return_ui"
 		let parent_source_id=""
 		let event_code="e_1671196302975"
-		let event_params={"caller_name":"cancel_return_ui_save__ve_for_cancel_ui","event_desc":"VE for cancel UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cancel_return_ui_save","raiseparam":{}}
+		let event_params={"caller_name":"cancel_return_ui_return_to_maker__ve_for_cancel_ui","event_desc":"VE for cancel UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"cancel_return_ui_return_to_maker","raiseparam":{}}
 		let handler_code="validate_elements"
 		let internals="ve_for_cancel_ui__cc_for_cancel_btn,"
 		let event_data={}
@@ -4188,9 +4188,9 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="ve_for_cancel_ui"
 		let destn_id=""
-		let parent_source_id="cancel_return_ui_save"
+		let parent_source_id="cancel_return_ui_return_to_maker"
 		let event_code="e_1671196599243"
-		let event_params={"caller_name":"ve_for_cancel_ui__cc_for_cancel_btn","event_desc":"CC for Cancel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"cancel_return_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"ve_for_cancel_ui__cc_for_cancel_btn","event_desc":"CC for Cancel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"cancel_return_ui_return_to_maker","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
 		let internals="cc_for_cancel_btn__im_for_cancel_btn,"
 		let event_data={}
@@ -4212,7 +4212,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="ve_for_cancel_ui"
 		let event_code="e_1671196638325"
-		let event_params={"caller_name":"cc_for_cancel_btn__im_for_cancel_btn","event_desc":"IM for cancel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Accepted request has been cancelled successfully.","root_source_id":"cancel_return_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_cancel_btn__im_for_cancel_btn","event_desc":"IM for cancel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Accepted request has been cancelled successfully.","root_source_id":"cancel_return_ui_return_to_maker","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="im_for_cancel_btn__rs_for_cancel_btn,"
 		let event_data={}
@@ -4234,7 +4234,7 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="cc_for_cancel_btn"
 		let event_code="e_1671196665669"
-		let event_params={"caller_name":"im_for_cancel_btn__rs_for_cancel_btn","event_desc":"RS for cancel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"cancel_return_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"im_for_cancel_btn__rs_for_cancel_btn","event_desc":"RS for cancel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"cancel_return_ui_return_to_maker","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

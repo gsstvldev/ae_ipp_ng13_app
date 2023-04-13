@@ -1,0 +1,16 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_send_to_maker_remarks_ui="ngForm">
+<div id="1681387779501" class="row">
+	<div #npss_send_to_maker_remarks_ui_memory90 id="32619c31-0334-4695-8c17-0e031790b6e1_1681387779501" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory90')" >
+				<txt [ctrl_id]="'npss_send_to_maker_remarks_ui_memory90'" [comp_id]="comp_id" [ctrl]="ctrl.memory90" [model]="screen_instance[this.comp_id].f_npss_send_to_maker_remarks_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'send_to_maker_ui_return_to_maker'" [comp_id]="comp_id" [ctrl]="screen_instance.send_to_maker_ui_return_to_maker" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.send_to_maker_ui_return_to_maker.show"></btn>
+ 	</div>
+
+</div>

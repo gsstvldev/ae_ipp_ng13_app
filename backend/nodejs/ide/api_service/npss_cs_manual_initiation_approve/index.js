@@ -724,7 +724,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     function CheckpostingTran(arrprocesslog, final_process_status, final_status) {
                         return new Promise((resolve, reject) => {
-                            var CheckTrnPosted = `select * from npss_trn_process_log where process_name = 'Reversal Fund AUTH Posting' and status = 'IP_RCT_REV_AUTH_POSTING_SUCCESS' and uetr = '${arrprocesslog[0].uetr}'`
+                            var CheckTrnPosted = `select * from npss_trn_process_log where process_name = 'Manual Fund AUTH Posting' and status = 'OP_RCT_MAN_AUTH_POSTING_SUCCESS' and uetr = '${arrprocesslog[0].uetr}'`
                             ExecuteQuery1(CheckTrnPosted, function (arrTrndetails) {
                                 if (arrTrndetails.length > 0) {
                                     var Takepac008url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_MANUAL_INT_PAC008' and param_code='URL' and need_sync = 'Y'`;

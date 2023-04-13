@@ -42,7 +42,7 @@ export class npss_cs_outward_posting_failure_send_to_checkerService {
         let system = code[0];
 
 
-        var Ctrlscope = screenInstance["send_to_maker_ui"].f_npss_send_to_maker_ui.model
+        var Ctrlscope = screenInstance["send_to_maker_ui"].f_npss_send_to_maker_remarks_ui.model
 
 
         let ClientParams: any = {};

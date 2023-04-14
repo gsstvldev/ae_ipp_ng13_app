@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29075 
+Build ID        : 29099 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-11 9:52 AM 
+Modified Date   : 2023-Apr-14 10:25 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -761,8 +761,8 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_initiate__brfq_for_fh_ppd(peventcontext)
 		this.navigation_ui_initiate__cc_for_get_usable_balance_ide()
 		this.navigation_ui_initiate__de_for_get_deal_ui()
-		this.navigation_ui_initiate__e_1679060044182__payment_processing_details_ui()
-		this.navigation_ui_initiate__e_1679060055290__payment_processing_details_ui()
+		this.navigation_ui_initiate__e_1681467635518__payment_processing_details_ui()
+		this.navigation_ui_initiate__e_1681467714443__payment_processing_details_ui()
 	}
 
 	//Handler for INTERNAL event of "brfq for fab ppd"
@@ -1869,14 +1869,14 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui initiate"
-	navigation_ui_initiate__e_1679060044182__payment_processing_details_ui() { 
+	navigation_ui_initiate__e_1681467635518__payment_processing_details_ui() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_ui_initiate"
-		let destn_id="npss_manual_initiation_ui_buy_rate"
+		let destn_id="npss_manual_initiation_ui_memory92"
 		let parent_source_id=""
-		let event_code="e_1679060044182"
-		let event_params={"destn_comp_id":"payment_processing_details_ui","destn_ctrl_id":"buy_rate","caller_name":"navigation_ui_initiate__e_1679060044182__payment_processing_details_ui","event_desc":"E_1679060044182","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{}}
+		let event_code="e_1681467635518"
+		let event_params={"destn_comp_id":"payment_processing_details_ui","destn_ctrl_id":"memory92","caller_name":"navigation_ui_initiate__e_1681467635518__payment_processing_details_ui","event_desc":"E_1681467635518","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -1890,14 +1890,14 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui initiate"
-	navigation_ui_initiate__e_1679060055290__payment_processing_details_ui() { 
+	navigation_ui_initiate__e_1681467714443__payment_processing_details_ui() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_ui_initiate"
-		let destn_id="npss_manual_initiation_ui_buy_margin"
+		let destn_id="npss_manual_initiation_ui_buy_rate"
 		let parent_source_id=""
-		let event_code="e_1679060055290"
-		let event_params={"destn_comp_id":"payment_processing_details_ui","destn_ctrl_id":"buy_margin","caller_name":"navigation_ui_initiate__e_1679060055290__payment_processing_details_ui","event_desc":"E_1679060055290","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{}}
+		let event_code="e_1681467714443"
+		let event_params={"destn_comp_id":"payment_processing_details_ui","destn_ctrl_id":"buy_rate","caller_name":"navigation_ui_initiate__e_1681467714443__payment_processing_details_ui","event_desc":"E_1681467714443","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}

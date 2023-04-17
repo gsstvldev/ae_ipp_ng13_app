@@ -77,7 +77,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                           var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrdata[0].dbtr_iban}'`
                                           ExecuteQuery1(TakeAcctInf, function (arrcbsact) {
                                              if(arrcbsact.length > 0){
-                                                var Takepostrefno = `select * from npss_trn_process_log where status = 'IP_RCT_REV_INAU_POSTING_SUCCESS' and uetr = '${arrdata[0].uetr}'`
+                                                var Takepostrefno = `select * from npss_trn_process_log where status = 'OP_RCT_MAN_INAU_POSTING_SUCCESS' and uetr = '${arrdata[0].uetr}'`
                                                 ExecuteQuery1(Takepostrefno, function (arrpostno) {
                                                  if(arrpostno.length > 0){
                                                      fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno,extend_retry_value, function (apiresult) {

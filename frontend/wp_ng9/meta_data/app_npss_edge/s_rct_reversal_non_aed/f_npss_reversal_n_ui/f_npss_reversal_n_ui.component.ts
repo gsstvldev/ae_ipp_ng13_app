@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29094 
+Build ID        : 29106 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-13 7:21 AM 
+Modified Date   : 2023-Apr-18 5:23 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -199,8 +199,84 @@ focustoelement(){
 		this.ctrl.tran_amount.ctrl_id = "npss_reversal_n_ui_tran_amount"
 		this.ctrl.npss_reversal_n_ui_tran_amount = {}
 		this.ctrl.npss_reversal_n_ui_tran_amount.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.model = {"TRAN_CHARGE":"","BUY_RATE":"","BUY_MARGIN":"","TRAN_AMOUNT":""}
-		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.Meta = [{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_CHARGE"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_RATE"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_MARGIN"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_AMOUNT"}]
+	
+		//Properties of sell_margin
+		this.ctrl.sell_margin = {}
+		this.ctrl.sell_margin.id = "RN01CN5"
+		this.ctrl.sell_margin.desc = "Sell Margin"
+		this.ctrl.sell_margin.visible = true
+		this.ctrl.sell_margin.label_name = "Sell Margin"
+		this.ctrl.sell_margin.df_code = "DF_1304_1665901396659"
+		this.ctrl.sell_margin.df_description = "Column Group 1"
+		this.ctrl.sell_margin.uictrl_code = "TXT"
+		this.ctrl.sell_margin.target_column = "SELL_MARGIN"
+		this.ctrl.sell_margin.data_type = "NUMBER"
+		this.ctrl.sell_margin.data_length = 19
+		this.ctrl.sell_margin.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.sell_margin.default_value = ""
+		this.ctrl.sell_margin.is_memory_ctrl = ""
+		this.ctrl.sell_margin.field_coordinates = ""
+		this.ctrl.sell_margin.sub_details = ""
+		this.ctrl.sell_margin.accept_char = ""
+		this.ctrl.sell_margin.currency_format = ""
+		this.ctrl.sell_margin.data_scale = "6"
+		this.ctrl.sell_margin.hide_label = false
+		this.ctrl.sell_margin.depends_on = ""
+		this.ctrl.sell_margin.placeholder = ""
+		this.ctrl.sell_margin.dynamic_param = ""
+		this.ctrl.sell_margin.style_code = ""
+		this.ctrl.sell_margin.data_source = ""
+		this.ctrl.sell_margin.image_association = ""
+		this.ctrl.sell_margin.show = true
+		this.ctrl.sell_margin.sub_content = ""
+		this.ctrl.sell_margin.required = false
+		this.ctrl.sell_margin.vld_rules = []
+		this.ctrl.sell_margin.targetcolumn_lower = "sell_margin"
+		this.ctrl.sell_margin.disabled = false
+		this.ctrl.sell_margin.view_name = "f_npss_reversal_n_ui"
+		this.ctrl.sell_margin.ctrl_id = "npss_reversal_n_ui_sell_margin"
+		this.ctrl.npss_reversal_n_ui_sell_margin = {}
+		this.ctrl.npss_reversal_n_ui_sell_margin.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of sell_rate
+		this.ctrl.sell_rate = {}
+		this.ctrl.sell_rate.id = "RN01CN6"
+		this.ctrl.sell_rate.desc = "Sell Rate"
+		this.ctrl.sell_rate.visible = true
+		this.ctrl.sell_rate.label_name = "Sell Rate"
+		this.ctrl.sell_rate.df_code = "DF_1304_1665901396659"
+		this.ctrl.sell_rate.df_description = "Column Group 1"
+		this.ctrl.sell_rate.uictrl_code = "TXT"
+		this.ctrl.sell_rate.target_column = "SELL_RATE"
+		this.ctrl.sell_rate.data_type = "NUMBER"
+		this.ctrl.sell_rate.data_length = 19
+		this.ctrl.sell_rate.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.sell_rate.default_value = ""
+		this.ctrl.sell_rate.is_memory_ctrl = ""
+		this.ctrl.sell_rate.field_coordinates = ""
+		this.ctrl.sell_rate.sub_details = ""
+		this.ctrl.sell_rate.accept_char = ""
+		this.ctrl.sell_rate.currency_format = ""
+		this.ctrl.sell_rate.data_scale = "6"
+		this.ctrl.sell_rate.hide_label = false
+		this.ctrl.sell_rate.depends_on = ""
+		this.ctrl.sell_rate.placeholder = ""
+		this.ctrl.sell_rate.dynamic_param = ""
+		this.ctrl.sell_rate.style_code = ""
+		this.ctrl.sell_rate.data_source = ""
+		this.ctrl.sell_rate.image_association = ""
+		this.ctrl.sell_rate.show = true
+		this.ctrl.sell_rate.sub_content = ""
+		this.ctrl.sell_rate.required = false
+		this.ctrl.sell_rate.vld_rules = []
+		this.ctrl.sell_rate.targetcolumn_lower = "sell_rate"
+		this.ctrl.sell_rate.disabled = false
+		this.ctrl.sell_rate.view_name = "f_npss_reversal_n_ui"
+		this.ctrl.sell_rate.ctrl_id = "npss_reversal_n_ui_sell_rate"
+		this.ctrl.npss_reversal_n_ui_sell_rate = {}
+		this.ctrl.npss_reversal_n_ui_sell_rate.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.model = {"TRAN_CHARGE":"","BUY_RATE":"","BUY_MARGIN":"","TRAN_AMOUNT":"","SELL_MARGIN":"","SELL_RATE":""}
+		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.Meta = [{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_CHARGE"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_RATE"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"BUY_MARGIN"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TRAN_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"SELL_MARGIN"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"SELL_RATE"}]
 		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_reversal_n_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

@@ -15,6 +15,12 @@
 	<div  id="RN01CN3" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('tran_amount')" >
 				<cur [ctrl_id]="'npss_reversal_n_ui_tran_amount'" [comp_id]="comp_id" [ctrl]="ctrl.tran_amount" [model]="screen_instance[this.comp_id].f_npss_reversal_n_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></cur>
 	</div>
+	<div  id="RN01CN5" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('sell_margin')" >
+				<txt [ctrl_id]="'npss_reversal_n_ui_sell_margin'" [comp_id]="comp_id" [ctrl]="ctrl.sell_margin" [model]="screen_instance[this.comp_id].f_npss_reversal_n_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN01CN6" class="column col-md-12 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('sell_rate')" >
+				<txt [ctrl_id]="'npss_reversal_n_ui_sell_rate'" [comp_id]="comp_id" [ctrl]="ctrl.sell_rate" [model]="screen_instance[this.comp_id].f_npss_reversal_n_ui.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
 </div>
 	</form>
 </fieldset >

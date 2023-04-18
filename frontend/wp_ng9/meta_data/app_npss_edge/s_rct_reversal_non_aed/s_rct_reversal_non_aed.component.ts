@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29106 
+Build ID        : 29107 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-18 5:23 AM 
+Modified Date   : 2023-Apr-18 6:25 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -1008,8 +1008,6 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		this.navigation_review__e_1677768213736__deal_ui()
 		this.navigation_review__e_1677768229606__deal_ui()
 		this.navigation_review__e_1677768248133__deal_ui()
-		this.navigation_review__de_from_review_button__reversal_ui()
-		this.navigation_review__de_from_review_btn__reversal_ui()
 	}
 
 	//Handler for INTERNAL event of "brfq for cbs accounts"
@@ -2275,48 +2273,6 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1677768248133"
 		let event_params={"destn_comp_id":"deal_ui","destn_ctrl_id":"sell_currency","caller_name":"navigation_review__e_1677768248133__deal_ui","event_desc":"E_1677768248133","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_review","raiseparam":{}}
-		let handler_code="disable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
-	navigation_review__de_from_review_button__reversal_ui() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_review"
-		let destn_id="npss_reversal_n_ui_sell_margin"
-		let parent_source_id=""
-		let event_code="e_1681795208701"
-		let event_params={"destn_comp_id":"reversal_ui","destn_ctrl_id":"sell_margin","caller_name":"navigation_review__de_from_review_button__reversal_ui","event_desc":"de from review button","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_review","raiseparam":{}}
-		let handler_code="disable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
-	navigation_review__de_from_review_btn__reversal_ui() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_review"
-		let destn_id="npss_reversal_n_ui_sell_rate"
-		let parent_source_id=""
-		let event_code="e_1681795232986"
-		let event_params={"destn_comp_id":"reversal_ui","destn_ctrl_id":"sell_rate","caller_name":"navigation_review__de_from_review_btn__reversal_ui","event_desc":"DE from review btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_review","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}

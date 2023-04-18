@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS add column SELL_MARGIN NUMERIC(19,6), add column SELL_RATE NUMERIC(19,6);","params" : [] }]
+[]

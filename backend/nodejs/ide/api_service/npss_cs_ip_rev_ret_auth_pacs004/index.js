@@ -743,7 +743,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     "hdr_clearing_system": arrprocesslog[0].hdr_clearing_system || '',
                                     "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
                                     "post_reason_code": arrreturncode[0].cbuae_return_code || '',
-                                    "clrsysref": arrprocesslog[0].clrsysref
+                                    "clrsysref": arrprocesslog[0].clrsysref,
+                                    "org_intrbk_sttlm_amnt" : arrprocesslog[0].intrbk_sttlm_amnt || ''
 
 
                                 },
@@ -758,7 +759,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             } else {
                                 options.json.intrbk_sttlm_amnt = arrprocesslog[0].intrbk_sttlm_amnt || ''
                             }
-
+                           
                             reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {

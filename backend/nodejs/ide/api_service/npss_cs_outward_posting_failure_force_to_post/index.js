@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
     try {
         /*   Created By : Siva Harish
@@ -14,6 +15,7 @@ app.post('/', function(appRequest, appResponse, next) {
       Changeing acct infm using dbtr_iban and adding role  10/04/2023
       Changeing rulecode and status  10/04/2023
        Reason for : Changing Return code query 13/04/2023
+       Reason for : Adding Insert Query for Maker 18/04/2023
          
        
         */
@@ -77,7 +79,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     final_status = arrurlResult[0].success_status
                                     let changeTrnstatus
                                     if (params.roleId == '705') {
-                                        changeTrnstatus = await UpdateTrn(TempTranID, final_process_status, final_status, PRCT_ID)
+                                        changeTrnstatus = await UpdateTrn(TempTranID, final_process_status, final_status, PRCT_ID,take_api_params)
                                     } else {
                                         ExecuteQuery1(Takekafkaurl, function (arrurl) {
                                             if (arrurl.length > 0) {
@@ -648,12 +650,65 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                    function UpdateTrn(TempTranID, final_process_status, final_status, PRCT_ID) {
+                    function UpdateTrn(TempTranID, final_process_status, final_status, PRCT_ID,take_api_params) {
                         var UpdateTrnTbl = `update npss_transactions set  status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
                         ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
                             if (uptranresult == 'SUCCESS') {
-                                objresponse.status = 'Success';
-                                sendResponse(null, objresponse)
+                                ExecuteQuery1(take_api_params,  function (arrTranparams) {
+                                    if (arrTranparams.length > 0) {
+                                        var arrCusTranInst = [];
+                                        for (let i = 0; i < arrTranparams.length; i++) {
+                                            var objCusTranInst = {}
+                                            objCusTranInst.MSG_ID = arrTranparams[i].hdr_msg_id;
+                                            objCusTranInst.PRCT_ID = PRCT_ID;
+                                            objCusTranInst.UETR = arrTranparams[i].uetr;
+                                            objCusTranInst.NPSSTRRD_REFNO = arrTranparams[i].tran_ref_id;
+                                            objCusTranInst.PROCESS_TYPE = 'OP'
+                                            objCusTranInst.PROCESS_TIME = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                            objCusTranInst.PROCESS_NAME = 'ForcePost - Maker'
+                                            objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
+                                            objCusTranInst.PROCESS_STATUS = final_process_status;
+                                            objCusTranInst.STATUS = final_status;
+                                            objCusTranInst.TENANT_ID = params.TENANT_ID;
+                                            objCusTranInst.APP_ID = '215'
+                                            objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
+                                            objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
+                                            objCusTranInst.DT_DESCRIPTION = 'transaction_group'
+                                            objCusTranInst.DTT_DESCRIPTION = 'Transaction'
+                                            objCusTranInst.CREATED_BY = params.CREATED_BY;
+                                            objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                            objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                            objCusTranInst.MODIFIED_BY = "";
+                                            objCusTranInst.MODIFIED_BY_NAME = "";
+                                            objCusTranInst.MODIFIED_DATE = null;
+                                            objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
+                                            objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
+                                            objCusTranInst.CREATED_BY_STS_ID = "";
+                                            objCusTranInst.MODIFIED_BY_STS_ID = "";
+                                            objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
+                                            objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
+                                            objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                            objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                            objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                            objCusTranInst.routingkey = headers.routingkey;
+                                            arrCusTranInst.push(objCusTranInst)             
+                                        }
+                                        _BulkInsertProcessItem(arrCusTranInst, 'npss_trn_process_log', function callbackInsert(CusTranInsertRes) {
+                                            if (CusTranInsertRes.length > 0) {
+                                                objresponse.status = 'Success';
+                                                sendResponse(null, objresponse)
+                                            }else{
+                                                objresponse.status = 'Error in Transaction Process log Table Insert';
+                                                sendResponse(null, objresponse)
+                                            }
+                                        })
+                                    }else{
+                                        objresponse.status = 'No data found in Tran Table';
+                                        sendResponse(null, objresponse)
+                                    }
+                                })
+
+                              
                             } else {
                                 objresponse.status = 'Error in Transaction Table Update';
                                 sendResponse(null, objresponse)
@@ -838,6 +893,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

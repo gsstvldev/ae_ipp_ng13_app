@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28958 
+Build ID        : 29130 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-29 13:6 PM 
+Modified Date   : 2023-Apr-19 10:25 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_camt052
@@ -69,6 +69,7 @@ focustoelement(){
 		this.ctrl.report_id.currency_format = ""
 		this.ctrl.report_id.data_scale = ""
 		this.ctrl.report_id.binding_name = "REPORT_ID"
+		this.ctrl.report_id.hide_label = false
 		this.ctrl.report_id.depends_on = ""
 		this.ctrl.report_id.placeholder = ""
 		this.ctrl.report_id.dynamic_param = ""
@@ -107,6 +108,7 @@ focustoelement(){
 		this.ctrl.rpt_created_datetime.currency_format = ""
 		this.ctrl.rpt_created_datetime.data_scale = ""
 		this.ctrl.rpt_created_datetime.binding_name = "RPT_CREATED_DATETIME"
+		this.ctrl.rpt_created_datetime.hide_label = false
 		this.ctrl.rpt_created_datetime.depends_on = ""
 		this.ctrl.rpt_created_datetime.placeholder = ""
 		this.ctrl.rpt_created_datetime.dynamic_param = ""
@@ -145,6 +147,7 @@ focustoelement(){
 		this.ctrl.iban.currency_format = ""
 		this.ctrl.iban.data_scale = ""
 		this.ctrl.iban.binding_name = "IBAN"
+		this.ctrl.iban.hide_label = false
 		this.ctrl.iban.depends_on = ""
 		this.ctrl.iban.placeholder = ""
 		this.ctrl.iban.dynamic_param = ""
@@ -183,6 +186,7 @@ focustoelement(){
 		this.ctrl.account_currency.currency_format = ""
 		this.ctrl.account_currency.data_scale = ""
 		this.ctrl.account_currency.binding_name = "ACCOUNT_CURRENCY"
+		this.ctrl.account_currency.hide_label = false
 		this.ctrl.account_currency.depends_on = ""
 		this.ctrl.account_currency.placeholder = ""
 		this.ctrl.account_currency.dynamic_param = ""
@@ -222,6 +226,7 @@ focustoelement(){
 		this.ctrl.memory14.currency_format = ""
 		this.ctrl.memory14.data_scale = ""
 		this.ctrl.memory14.binding_name = "CREATED_DATE"
+		this.ctrl.memory14.hide_label = false
 		this.ctrl.memory14.depends_on = ""
 		this.ctrl.memory14.placeholder = ""
 		this.ctrl.memory14.dynamic_param = ""
@@ -260,6 +265,7 @@ focustoelement(){
 		this.ctrl.bic.currency_format = ""
 		this.ctrl.bic.data_scale = ""
 		this.ctrl.bic.binding_name = "BIC"
+		this.ctrl.bic.hide_label = false
 		this.ctrl.bic.depends_on = ""
 		this.ctrl.bic.placeholder = ""
 		this.ctrl.bic.dynamic_param = ""
@@ -298,6 +304,7 @@ focustoelement(){
 		this.ctrl.cr_dr_indicator.currency_format = ""
 		this.ctrl.cr_dr_indicator.data_scale = ""
 		this.ctrl.cr_dr_indicator.binding_name = "CR_DR_INDICATOR"
+		this.ctrl.cr_dr_indicator.hide_label = false
 		this.ctrl.cr_dr_indicator.depends_on = ""
 		this.ctrl.cr_dr_indicator.placeholder = ""
 		this.ctrl.cr_dr_indicator.dynamic_param = ""

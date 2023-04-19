@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_CAMT_ACCOUNT_REPORT alter column BALANCE_AMOUNT type NUMERIC(18,2);","params" : [] },{"query" : "alter table NPSS_CAMT_ACC_CRDR_NTFN alter column LIMIT_AMOUNT type NUMERIC(18,2);","params" : [] }]

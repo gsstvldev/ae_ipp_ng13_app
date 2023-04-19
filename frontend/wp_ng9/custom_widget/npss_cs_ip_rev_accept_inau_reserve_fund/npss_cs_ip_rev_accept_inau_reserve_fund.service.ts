@@ -37,12 +37,25 @@ export class npss_cs_ip_rev_accept_inau_reserve_fundService {
         ClientParams.TENANT_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
         ClientParams.RULE_CODE = 'RCT_IP_REV_REQ_ACCEPT'
         ClientParams.screenName = screenInstance.wftpa_description
-       if (screenInstance.wftpa_description == 's_rct_reversal_non_aed') {
+    //   if (screenInstance.wftpa_description == 's_rct_reversal_non_aed') {
+    //         var CtrlScope1 = screenInstance['reversal_ui'].f_npss_reversal_n_ui.model
+    //         ClientParams.buy_rate = CtrlScope1.BUY_RATE ? CtrlScope1.BUY_RATE : 0
+    //         ClientParams.buy_margin = CtrlScope1.BUY_MARGIN ? CtrlScope1.BUY_MARGIN : 0
+    //         ClientParams.tran_charge = CtrlScope1.TRAN_CHARGE ? CtrlScope1.TRAN_CHARGE : 0
+    //         ClientParams.tran_amount = CtrlScope1.TRAN_AMOUNT ? CtrlScope1.TRAN_AMOUNT : 0
+    //     }else{
+    //         ClientParams.buy_rate = ''
+    //         ClientParams.buy_margin = ''
+    //     }
+    if (screenInstance.wftpa_description == 's_rct_reversal_non_aed') {
             var CtrlScope1 = screenInstance['reversal_ui'].f_npss_reversal_n_ui.model
+            var CtrlScope2 = screenInstance['process_log_control_ui'].f_npss_reversal_plog_ui.model
             ClientParams.buy_rate = CtrlScope1.BUY_RATE ? CtrlScope1.BUY_RATE : 0
             ClientParams.buy_margin = CtrlScope1.BUY_MARGIN ? CtrlScope1.BUY_MARGIN : 0
             ClientParams.tran_charge = CtrlScope1.TRAN_CHARGE ? CtrlScope1.TRAN_CHARGE : 0
             ClientParams.tran_amount = CtrlScope1.TRAN_AMOUNT ? CtrlScope1.TRAN_AMOUNT : 0
+            ClientParams.sell_margin = CtrlScope2.memory48 ? CtrlScope2.memory48 : 0
+            ClientParams.sell_rate = CtrlScope2.memory49 ? CtrlScope2.memory49 : 0
         }else{
             ClientParams.buy_rate = ''
             ClientParams.buy_margin = ''

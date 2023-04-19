@@ -7,7 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
+
 
 
 try {
@@ -19,7 +20,7 @@ try {
      Modified By : Siva Harish
     Modified Date :17-01-2023  
     Reason for :Remove Console log
-    Reason for changing payload
+    Reason for checking cust spl rate 18/04/2023
    
     */
     var serviceName = ' NPSS_IP_REV_GET_DEAL';
@@ -65,89 +66,92 @@ try {
                         var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_GET_DEAL' and param_code='URL' and need_sync = 'Y'`;
 
                         var take_api_params = `select  ns.intrbk_sttlm_amnt,ns.remittance_info,ns.cr_acct_identification,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method,
-                            ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,
-                            ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,
-                            ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm
-                            from npss_transactions ns  where npsst_id = '${params.Tran_Id}'`;
+                        ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty,
+                        ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,
+                        ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm
+                        from npss_transactions ns  where npsst_id = '${params.Tran_Id}'`;
 
 
                         ExecuteQuery1(take_api_params, function (arrprocesslog) {
                             if (arrprocesslog.length) {
-
-
                                 var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
-                                ExecuteQuery1(TakeAcctInf, function (arrActInf) {
+                                ExecuteQuery1(TakeAcctInf, async function (arrActInf) {
                                     if (arrActInf.length) {
-                                        ExecuteQuery1(take_api_url, async function (arrurl) {
-                                            if (arrurl.length) {
-                                                var url = arrurl[0].param_detail;
-                                                var senddata = {}
-                                                 dealRefno = ''
-                                                var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                ExecuteQuery1(Takeloccur,  function (localcur) {
-                                                    if (localcur.length == 0) {
-                                                        senddata.amount_credited_loc_cur = ''
-                                                       
-                                                        fn_doapicall(url, arrprocesslog, arrActInf, senddata,dealRefno, function (result) {
-                                                            reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
+                                        let Chkrate = await CheckCustomSplrate(arrActInf, arrprocesslog, PRCT_ID)
+                                        if (Chkrate == 'Call Get Deal Api') {
+                                            ExecuteQuery1(take_api_url, async function (arrurl) {
+                                                if (arrurl.length) {
+                                                    var url = arrurl[0].param_detail;
+                                                    var senddata = {}
+                                                    dealRefno = ''
+                                                    var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                                                    ExecuteQuery1(Takeloccur, function (localcur) {
+                                                        if (localcur.length == 0) {
+                                                            senddata.amount_credited_loc_cur = ''
+                                                            fn_doapicall(url, arrprocesslog, arrActInf, senddata, dealRefno, function (result) {
+                                                                reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
 
-                                                            if (result == 'FAILURE') {
-                                                                var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                                ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                    var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_DEAL_FAILURE'`
-                                                                    ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                        if (arrFail.length) {
-                                                                            objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
-                                                                            sendResponse(null, objresponse);
-                                                                        } else {
-                                                                            objresponse.status = 'Api Call Failure No Error Code Found'
-                                                                            sendResponse(null, objresponse);
-                                                                        }
+                                                                if (result == 'FAILURE') {
+                                                                    var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                                                                    ExecuteQuery1(Takeuetr, function (arruetr) {
+                                                                        var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_DEAL_FAILURE'`
+                                                                        ExecuteQuery1(TakeFailureresult, function (arrFail) {
+                                                                            if (arrFail.length) {
+                                                                                objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
+                                                                                sendResponse(null, objresponse);
+                                                                            } else {
+                                                                                objresponse.status = 'Api Call Failure No Error Code Found'
+                                                                                sendResponse(null, objresponse);
+                                                                            }
+                                                                        })
                                                                     })
-                                                                })
-                                                            }
-                                                            else {
-                                                                objresponse.status = 'SUCCESS';
-                                                                objresponse.data = result;
-                                                                sendResponse(null, objresponse);
-                                                            }
-                                                        })
-                                                    } else {
-                                                        senddata.amount_credited_loc_cur = localcur[0].amount_credited_loc_cur || ''
-                                                        fn_doapicall(url, arrprocesslog, arrActInf, senddata,dealRefno, function (result) {
-                                                            reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
+                                                                }
+                                                                else {
+                                                                    objresponse.status = 'SUCCESS';
+                                                                    objresponse.data = result;
+                                                                    objresponse.CustRate = 'YES';
+                                                                    sendResponse(null, objresponse);
+                                                                }
+                                                            })
+                                                        } else {
+                                                            senddata.amount_credited_loc_cur = localcur[0].amount_credited_loc_cur || ''
+                                                            fn_doapicall(url, arrprocesslog, arrActInf, senddata, dealRefno, function (result) {
+                                                                reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
 
-                                                            if (result == 'FAILURE') {
-                                                                var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                                ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                    var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_DEAL_FAILURE'`
-                                                                    ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                        if (arrFail.length) {
-                                                                            objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
-                                                                            sendResponse(null, objresponse);
-                                                                        } else {
-                                                                            objresponse.status = 'Api Call Failure No Error Code Found'
-                                                                            sendResponse(null, objresponse);
-                                                                        }
+                                                                if (result == 'FAILURE') {
+                                                                    var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                                                                    ExecuteQuery1(Takeuetr, function (arruetr) {
+                                                                        var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_DEAL_FAILURE'`
+                                                                        ExecuteQuery1(TakeFailureresult, function (arrFail) {
+                                                                            if (arrFail.length) {
+                                                                                objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
+                                                                                sendResponse(null, objresponse);
+                                                                            } else {
+                                                                                objresponse.status = 'Api Call Failure No Error Code Found'
+                                                                                sendResponse(null, objresponse);
+                                                                            }
+                                                                        })
                                                                     })
-                                                                })
-                                                            }
-                                                            else {
-                                                                objresponse.status = 'SUCCESS';
-                                                                objresponse.data = result;
-                                                                sendResponse(null, objresponse);
-                                                            }
-                                                        })
-                                                    }
-                                                })
+                                                                }
+                                                                else {
+                                                                    objresponse.status = 'SUCCESS';
+                                                                    objresponse.data = result;
+                                                                    objresponse.CustRate = 'YES';
+                                                                    sendResponse(null, objresponse);
+                                                                }
+                                                            })
+                                                        }
+                                                    })
 
-                                            }
-                                            else {
+                                                }
+                                                else {
 
-                                                objresponse.status = "No Data found in workflow table"
-                                                sendResponse(null, objresponse)
-                                            }
-                                        })
+                                                    objresponse.status = "No Data found in workflow table"
+                                                    sendResponse(null, objresponse)
+                                                }
+                                            })
+                                        }
+                                       
                                     }
                                     else {
 
@@ -182,7 +186,7 @@ try {
 
 
                 // Do API Call for Service 
-                function fn_doapicall(url, arrprocesslog, arrActInf, senddata,dealRefno, callbackapi) {
+                function fn_doapicall(url, arrprocesslog, arrActInf, senddata, dealRefno, callbackapi) {
                     try {
                         var apiName = 'NPSS IP REV Get Deal'
                         var request = require('request');
@@ -196,7 +200,7 @@ try {
 
 
                                 "payload": {
-                                   
+
                                     "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date || '',
                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
@@ -254,19 +258,78 @@ try {
                     }
                 }
 
-                function GetdelrefNo(arrprocesslog) {
+
+
+                function CheckCustomSplrate(acctInfm, arrprocesslog, PRCT_ID) {
                     return new Promise((resolve, reject) => {
-                        let TakerefNo = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' and process_type = '${arrprocesslog[0].process_type}'`
-                        ExecuteQuery1(TakerefNo, function (arrrdealNo) {
-                            if (arrrdealNo.length > 0) {
-                                resolve(arrrdealNo[0].process_ref_no)
+                        let TakecustRate = `select sell_rate,sell_margin from core_nc_cust_spl_rate where cif_number = '${acctInfm[0].customer_id}' and currency_code = '${acctInfm[0].currency}'`
+                        ExecuteQuery1(TakecustRate, async function (arrCusRate) {
+                            if (arrCusRate.length > 0) {
+                                if (arrCusRate[0].sell_rate != null && arrCusRate[0].sell_margin != null) {
+                                    var arrCusTranInst = [];
+                                    var objCusTranInst = {};
+                                    objCusTranInst.MSG_ID = arrprocesslog[0].hdr_msg_id;
+                                    objCusTranInst.PRCT_ID = PRCT_ID;
+                                    objCusTranInst.UETR = arrprocesslog[0].uetr;
+                                    objCusTranInst.PROCESS_NAME = 'Customer Spl Rate'
+                                    objCusTranInst.PROCESSING_SYSTEM = 'NPSS'
+                                    objCusTranInst.PROCESS_TYPE = 'IP'
+                                    objCusTranInst.PROCESS_STATUS = 'RCTInProcess'
+                                    objCusTranInst.STATUS = 'IP_RCT_REV_SPL_RATE_MARKED'
+                                    objCusTranInst.TENANT_ID = params.TENANT_ID;
+                                    objCusTranInst.APP_ID = '215'
+                                    objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
+                                    objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
+                                    objCusTranInst.DT_DESCRIPTION = 'transaction_group'
+                                    objCusTranInst.DTT_DESCRIPTION = 'Transaction'
+                                    objCusTranInst.CREATED_BY = params.CREATED_BY;
+                                    objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                    objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                    objCusTranInst.MODIFIED_BY = "";
+                                    objCusTranInst.MODIFIED_BY_NAME = "";
+                                    objCusTranInst.MODIFIED_DATE = null;
+                                    objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
+                                    objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
+                                    objCusTranInst.CREATED_BY_STS_ID = "";
+                                    objCusTranInst.MODIFIED_BY_STS_ID = "";
+                                    objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
+                                    objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
+                                    objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                    objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                    objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                    objCusTranInst.routingkey = headers.routingkey;
+                                    arrCusTranInst.push(objCusTranInst)
+                                    _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
+                                        if (CusTranInsertRes.length > 0) {
+                                            var ResponseBody = {}
+                                            ResponseBody.sell_rate = arrCusRate[0].sell_rate
+                                            ResponseBody.sell_margin = arrCusRate[0].sell_margin
+                                            objresponse.status = 'SUCCESS';
+                                            objresponse.data = ResponseBody;
+                                            objresponse.CustRate = 'YES'
+                                            sendResponse(null, objresponse);
+                                        } else {
+                                            objresponse.status = "Tran Process log Insert Error"
+                                            sendResponse(null, objresponse)
+                                        }
+
+                                    })
+                                } else if (arrCusRate[0].sell_rate == null && arrCusRate[0].sell_margin == null) {
+                                    objresponse.status = "Sell Rate or Sell Margin is Missing"
+                                    sendResponse(null, objresponse)
+                                } else if (arrCusRate[0].sell_rate == null) {
+                                    objresponse.status = "Sell Rate is Missing"
+                                    sendResponse(null, objresponse)
+                                } else {
+                                    objresponse.status = "Sell Margin is Missing"
+                                    sendResponse(null, objresponse)
+                                }
                             } else {
-                                resolve('')
+                                resolve('Call Get Deal Api')
                             }
 
                         })
                     })
-
                 }
                 //Execute Query Function
                 function ExecuteQuery1(query, callback) {
@@ -286,7 +349,30 @@ try {
                         }
                     });
                 }
-
+                function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
+                    try {
+                        reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
+                            try {
+                                if (error) {
+                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
+                                    sendResponse(error)
+                                } else {
+                                    if (result.length > 0) {
+                                        callbackInsert(result);
+                                    } else {
+                                        callbackInsert([]);
+                                    }
+                                }
+                            } catch (error) {
+                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
+                                sendResponse(error)
+                            }
+                        });
+                    } catch (error) {
+                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
+                        sendResponse(error)
+                    }
+                }
                 //Send Response Function Definition
                 function sendResponse(error, response) {
                     try {
@@ -312,6 +398,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

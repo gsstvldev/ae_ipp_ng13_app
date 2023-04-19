@@ -7,8 +7,9 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-    
+
+
+
 
 
     try {
@@ -45,7 +46,8 @@ app.post('/', function(appRequest, appResponse, next) {
                     Reason for : changes Authpac004 13/03/2023
                     Reason for : changes in auth response 25/03/2023
                     Reason for : changes in auth payload and calling pac04 alone 29/03/2023
-                      Reason for : ADDING DEALREFNO in pac04 alone 31/03/2023
+                    Reason for : ADDING DEALREFNO in pac04 alone 31/03/2023
+                    Reason for : Checking Cust Spl Rate 19/04/2023
         */
         var serviceName = 'NPSS IP REV Ret Auth PACS004';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -61,7 +63,7 @@ app.post('/', function(appRequest, appResponse, next) {
         var mTranConn = "";
         var addquery = "";
         var Objfiledata
-
+        var TakecustsplRate
         var objresponse = {
             'status': 'FAILURE',
             'data': '',
@@ -95,7 +97,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var ext_ident_retry_value
                             var take_return_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL' and need_sync = 'Y'`;
                             var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_IP_REV_RETURN_PACS004'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                            var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.department_code, ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
+                            var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.sell_rate,ns.sell_margin,ns.department_code,ns.amount_credited_loc_cur, ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
                             if (params.PROD_CODE == 'NPSS_AEFAB') {
                                 ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
                                     if (arrurlResult.length) {
@@ -133,7 +135,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             }
                                                             if (apicalls == 0) { // Logic For Taking Reversal Id and Taking PostingRefno and account Information only for auth004 api call
                                                                 reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog)
-                                                               
+
                                                             }
                                                             //else { // Taking Reversal ID for Prepaid and Credit Card
                                                             //     reverandRefno = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
@@ -146,7 +148,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             var amount
                                                             var Getdata
                                                             if (apicalls == 0 && params.screenName == 's_rct_reversal_non_aed') {
-                                                                Getdata = await GetgmMargin(arrprocesslog)
+                                                                TakecustsplRate = await GetsplRate(arrprocesslog)
+                                                                if(TakecustsplRate == 'Take GMrate'){
+                                                                    Getdata = await GetgmMargin(arrprocesslog)
+                                                                }                                                      
                                                                 dealRefno = await GetDealrefno(arrprocesslog)
                                                             } else {
                                                                 Getdata = {}
@@ -160,14 +165,14 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                             if (params.screenName == 's_rct_reversal_non_aed') {
 
-                                                                var ContraAmount = await getconamount(arrprocesslog, apicalls)
+                                                                var ContraAmount = await getconamount(arrprocesslog, apicalls,TakecustsplRate)
                                                                 amount = ContraAmount
 
                                                                 ExecuteQuery1(take_api_url, function (arrurl) {
                                                                     if (arrurl.length) {
                                                                         var url = arrurl[0].param_detail;
                                                                         if (apicalls == 0 || apicalls == '0') {
-                                                                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName, Objfiledata,ext_ident_retry_value,dealRefno, function (firstapiresult) {
+                                                                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName, Objfiledata, ext_ident_retry_value, dealRefno,TakecustsplRate, function (firstapiresult) {
                                                                                 if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
 
                                                                                     ExecuteQuery1(take_return_url, function (arrreturnurl) {
@@ -315,7 +320,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 var url = arrurl[0].param_detail;
                                                                                 if (apicalls == 0 || apicalls == '0') {
                                                                                     var Amount
-                                                                                    fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName, Objfiledata,ext_ident_retry_value,dealRefno, function (firstapiresult) {
+                                                                                    fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, params.screenName, Objfiledata, ext_ident_retry_value, dealRefno,TakecustsplRate, function (firstapiresult) {
                                                                                         if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
 
                                                                                             ExecuteQuery1(take_return_url, function (arrreturnurl) {
@@ -606,7 +611,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                     // Do API Call for Service 
-                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, screenName, Objfiledata,ext_ident_retry_value,dealRefno, callbackapi) {
+                    function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Getdata, screenName, Objfiledata, ext_ident_retry_value, dealRefno,TakecustsplRate, callbackapi) {
                         try {
                             var apiName = 'NPSS IP REV RET AUTH PACS004'
                             var request = require('request');
@@ -620,7 +625,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                     "payload": {
-                                       
+
                                         "ext_iden_retry_value": ext_ident_retry_value || '',
                                         "org_field_data": Objfiledata || '',
                                         "department_code": arrprocesslog[0].department_code || '',
@@ -680,10 +685,17 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
 
                             if (screenName == 's_rct_reversal_non_aed') {
-                                options.json.payload.deal_ref_no = dealRefno || '',
-                                options.json.payload.GMMargin = Getdata.GMMargin || '',
+                                options.json.payload.deal_ref_no = dealRefno || ''
+                                if(TakecustsplRate == 'Take GMrate'){
+                                    options.json.payload.GMMargin = Getdata.GMMargin || '',
                                     options.json.payload.GMRate = Getdata.GMRate || '',
                                     options.json.payload.amount_credited_loc_cur = Getdata.amount_credited_loc_cur || ''
+                                }else{
+                                    options.json.payload.sell_rate = arrprocesslog[0].sell_rate || '',
+                                    options.json.payload.sell_margin = arrprocesslog[0].sell_margin || '',
+                                    options.json.payload.amount_credited_loc_cur = arrprocesslog[0].amount_credited_loc_cur || '' 
+                                }
+                                   
                             }
 
                             var PrintInfo = {}
@@ -744,7 +756,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
                                     "post_reason_code": arrreturncode[0].cbuae_return_code || '',
                                     "clrsysref": arrprocesslog[0].clrsysref,
-                                    "org_intrbk_sttlm_amnt" : arrprocesslog[0].intrbk_sttlm_amnt || ''
+                                    "org_intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || ''
 
 
                                 },
@@ -759,7 +771,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             } else {
                                 options.json.intrbk_sttlm_amnt = arrprocesslog[0].intrbk_sttlm_amnt || ''
                             }
-                           
+
                             reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
@@ -914,6 +926,21 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
                     }
 
+                    function GetsplRate(arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'IP_RCT_REV_SPL_RATE_MARKED' and uetr = '${arrprocesslog[0].uetr}'`
+                            ExecuteQuery1(CheckRate, function (arrRate) {
+                                if (arrRate.length > 0) {
+                                    resolve('Take Sellrate')
+                                } else {
+                                    resolve('Take GMrate')
+                                }
+
+                            })
+                        })
+                    }
+
+
                     function Getorgdata(arrprocesslog) {
                         return new Promise((resolve, reject) => {
                             var orgflddata = `select process_ref_no from npss_trn_process_log where process_name = 'Inward Credit Posting' and uetr = '${arrprocesslog[0].uetr}' and status = 'IP_RCT_POSTING_SUCCESS'`
@@ -1028,61 +1055,85 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                    function getconamount(arrprocesslog, apicalls) {
+                    function getconamount(arrprocesslog, apicalls,TakecustsplRate) {
                         return new Promise((resolve, reject) => {
-                            var Takecontraamount = `select contra_amount from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' order by npsstpl_id desc`
-                            ExecuteQuery1(Takecontraamount, function (arramount) {
-                                if (arramount.length > 0) {
-                                    if (arramount[0].contra_amount != null) {
-                                        if (apicalls == '0' || apicalls == 0) {
-                                            var Takecreditamount = `select amount_credited  from npss_trn_process_log WHERE process_name = 'Inward Credit Posting' and status = 'IP_RCT_POSTING_SUCCESS' and uetr = '${arrprocesslog[0].uetr}'`
-                                            ExecuteQuery1(Takecreditamount, function (arrcctamount) {
-                                                if (arrcctamount.length > 0) {
-                                                    if (arrcctamount[0].amount_credited != null) {
-                                                        var creditAmount = arrcctamount[0].amount_credited.slice(3)
-                                                        if (arramount[0].contra_amount && creditAmount) {
-                                                            if (Number(arramount[0].contra_amount) > Number(creditAmount)) {
-                                                                resolve(creditAmount)
-
+                            if(TakecustsplRate == 'Take GMrate'){
+                                var Takecontraamount = `select contra_amount from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' order by npsstpl_id desc`
+                                ExecuteQuery1(Takecontraamount, function (arramount) {
+                                    if (arramount.length > 0) {
+                                        if (arramount[0].contra_amount != null) {
+                                            if (apicalls == '0' || apicalls == 0) {
+                                                var Takecreditamount = `select amount_credited  from npss_trn_process_log WHERE process_name = 'Inward Credit Posting' and status = 'IP_RCT_POSTING_SUCCESS' and uetr = '${arrprocesslog[0].uetr}'`
+                                                ExecuteQuery1(Takecreditamount, function (arrcctamount) {
+                                                    if (arrcctamount.length > 0) {
+                                                        if (arrcctamount[0].amount_credited != null) {
+                                                            var creditAmount = arrcctamount[0].amount_credited.slice(3)
+                                                            if (arramount[0].contra_amount && creditAmount) {
+                                                                if (Number(arramount[0].contra_amount) > Number(creditAmount)) {
+                                                                    resolve(creditAmount)
+    
+                                                                } else {
+                                                                    resolve(arramount[0].contra_amount)
+    
+                                                                }
                                                             } else {
-                                                                resolve(arramount[0].contra_amount)
-
+                                                                objresponse.status = 'FAILURE'
+                                                                objresponse.errdata = 'Inward Credit  Amount or contra amount is Missing'
+                                                                sendResponse(null, objresponse)
                                                             }
+    
                                                         } else {
                                                             objresponse.status = 'FAILURE'
-                                                            objresponse.errdata = 'Inward Credit  Amount or contra amount is Missing'
+                                                            objresponse.errdata = 'Inward Credit  Amount  is Missing'
                                                             sendResponse(null, objresponse)
                                                         }
-
+    
                                                     } else {
                                                         objresponse.status = 'FAILURE'
-                                                        objresponse.errdata = 'Inward Credit  Amount  is Missing'
+                                                        objresponse.errdata = 'Inward Credit  Amount is not found'
                                                         sendResponse(null, objresponse)
                                                     }
-
-                                                } else {
-                                                    objresponse.status = 'FAILURE'
-                                                    objresponse.errdata = 'Inward Credit  Amount is not found'
-                                                    sendResponse(null, objresponse)
-                                                }
-
-                                            })
+    
+                                                })
+                                            } else {
+                                                resolve(arramount[0].contra_amount)
+                                            }
+    
                                         } else {
-                                            resolve(arramount[0].contra_amount)
+                                            objresponse.status = 'FAILURE'
+                                            objresponse.errdata = 'Contra or Reversal Amount is Missing'
+                                            sendResponse(null, objresponse)
+                                        }
+    
+                                    } else {
+                                        objresponse.status = 'FAILURE'
+                                        objresponse.errdata = 'Contra Amount is not found'
+                                        sendResponse(null, objresponse)
+                                    }
+                                })
+                            }else{
+                                var Takecreditamount = `select amount_credited  from npss_trn_process_log WHERE process_name = 'Inward Credit Posting' and status = 'IP_RCT_POSTING_SUCCESS' and uetr = '${arrprocesslog[0].uetr}'`
+                                ExecuteQuery1(Takecreditamount, function (arrcctamount) {
+                                    if (arrcctamount.length > 0) {
+                                        if (arrcctamount[0].amount_credited != null) {
+                                            var creditAmount = arrcctamount[0].amount_credited.slice(3)
+                                           resolve(creditAmount)
+    
+                                        } else {
+                                            objresponse.status = 'FAILURE'
+                                            objresponse.errdata = 'Inward Credit  Amount  is Missing'
+                                            sendResponse(null, objresponse)
                                         }
 
                                     } else {
                                         objresponse.status = 'FAILURE'
-                                        objresponse.errdata = 'Contra or Reversal Amount is Missing'
+                                        objresponse.errdata = 'Inward Credit  Amount is not found'
                                         sendResponse(null, objresponse)
                                     }
 
-                                } else {
-                                    objresponse.status = 'FAILURE'
-                                    objresponse.errdata = 'Contra Amount is not found'
-                                    sendResponse(null, objresponse)
-                                }
-                            })
+                                })
+                            }
+                            
                         })
                     }
 
@@ -1166,7 +1217,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     let creditAmount = screenName == 's_rct_reversal_non_aed' ? await TakecrediAmount(arrprocesslog) : arrprocesslog[0].intrbk_sttlm_amnt
                                     var return_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL' and need_sync = 'Y'`;
                                     ExecuteQuery1(return_url, function (arrreturnurl) {
-                                        if(arrreturnurl.length > 0){
+                                        if (arrreturnurl.length > 0) {
                                             fn_doapicall2(url, arrprocesslog, arrreturncode, creditAmount, screenName, function (result) {
                                                 if (result === "SUCCESS" || result === "Success" || result === "success") {
                                                     var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
@@ -1180,23 +1231,23 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             objresponse.errdata = "No Data Updated in Transaction Table"
                                                             sendResponse(null, objresponse)
                                                         }
-        
+
                                                     }
                                                     )
                                                 } else {
                                                     objresponse.status = "FAILURE"
                                                     objresponse.errdata = "After Auth, Pac004 api call not success"
                                                     sendResponse(null, objresponse)
-        
+
                                                 }
                                             })
-                                        }else{
+                                        } else {
                                             objresponse.status = "FAILURE"
                                             objresponse.errdata = "Pac004 api url not found"
                                             sendResponse(null, objresponse)
                                         }
-                                    
-                                })
+
+                                    })
                                 } else {
                                     resolve('CallAuthPosting')
                                 }
@@ -1240,14 +1291,14 @@ app.post('/', function(appRequest, appResponse, next) {
                             var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where ext_iden_retry_value IS NOT NULL and uetr = '${arrprocesslog[0].uetr}' order by npsstpl_id desc`
                             ExecuteQuery1(TakeretryValue, function (extIdentValue) {
                                 if (extIdentValue.length > 0) {
-                                    if(extIdentValue[0].ext_iden_retry_value != null){
+                                    if (extIdentValue[0].ext_iden_retry_value != null) {
                                         var count = Number(extIdentValue[0].ext_iden_retry_value)
-                                        count ++
+                                        count++
                                         resolve(count)
-                                    }else{
+                                    } else {
                                         resolve(1)
                                     }
-                                                                          
+
                                 } else {
                                     resolve(1)
                                 }
@@ -1339,8 +1390,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                 if (arrdealrefno.length > 0) {
                                     if (arrdealrefno[0].process_ref_no != null) {
                                         resolve(arrdealrefno[0].process_ref_no)
-                                    }else{
-                                        resolve('')  
+                                    } else {
+                                        resolve('')
                                     }
                                 } else {
                                     resolve('')
@@ -1462,6 +1513,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

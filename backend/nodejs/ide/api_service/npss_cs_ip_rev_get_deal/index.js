@@ -105,7 +105,7 @@ try {
                                                                 else {
                                                                     objresponse.status = 'SUCCESS';
                                                                     objresponse.data = result;
-                                                                    objresponse.CustRate = 'YES';
+                                                                    objresponse.CustRate = 'NO';
                                                                     sendResponse(null, objresponse);
                                                                 }
                                                             })
@@ -132,7 +132,7 @@ try {
                                                                 else {
                                                                     objresponse.status = 'SUCCESS';
                                                                     objresponse.data = result;
-                                                                    objresponse.CustRate = 'YES';
+                                                                    objresponse.CustRate = 'NO';
                                                                     sendResponse(null, objresponse);
                                                                 }
                                                             })

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29033 
+Build ID        : 29109 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-05 12:30 PM 
+Modified Date   : 2023-Apr-19 8:19 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_list
@@ -22,7 +22,7 @@ export class p_main_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	api_details : any = {}
+  	input_details : any = {}
 	api_input_ui_actions : any = {}
 	request : any = {}
 	response : any = {}
@@ -33,8 +33,8 @@ export class p_main_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.api_details.desc = "API Details"
-		this.api_details.need_header = true
+    	this.input_details.desc = "Input Details"
+		this.input_details.need_header = true
 		this.api_input_ui_actions.desc = "API Input UI Actions"
 		this.api_input_ui_actions.need_header = ""
 		this.request.desc = "Request"

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29033 
+Build ID        : 29109 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-05 12:30 PM 
+Modified Date   : 2023-Apr-19 8:19 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_find_r_messages
@@ -37,7 +37,7 @@ export class s_find_r_messagesComponent implements OnInit,AfterViewInit {
 	uicgc_1 : string = "api_input_ui_actions"
 	uicgc_2 : string = "search"
 	uicgc_3 : string = "request"
-	uicgc_4 : string = "api_details"
+	uicgc_4 : string = "input_details"
 	uicgc_5 : string = "response"
 	key_events : any = {}
 	btl_1304_1678191374619 : string = "p_search_layout"
@@ -54,7 +54,7 @@ export class s_find_r_messagesComponent implements OnInit,AfterViewInit {
 	search_clear : any = {}
 	search_search : any = {}
 	request : any = {}
-	api_details : any = {}
+	input_details : any = {}
 	response : any = {}
 
 
@@ -168,19 +168,19 @@ export class s_find_r_messagesComponent implements OnInit,AfterViewInit {
 		this.request.show = true
 		this.request.dynamic_param = {}
 	
-		// Component level properties - "API Details" 
-		this.api_details.uictrl_code = "dynamic_ui"
-		this.api_details.uicgc_desc = "API Details"
-		this.api_details.uicgc_code = "uicgc_4"
-		this.api_details.params = {}
-		this.api_details.datasource = {}
-		this.api_details.context_menu = []
-		this.api_details.views = {"first":"DTT_1304_1670589169341","is_tab_mode":"N","dtt_1304_1670589169341":{"0":[{"dttv_id":"NPSS Find R Messages UI","tab_order":0,"tab_name":"","uicgc_description":"API Details","role_description":"default","dtt_description":"Core API Process Log"}]}}
-		this.api_details.onChangecomponent = new EventEmitter<any>()
-		this.api_details.show = true
-		this.api_details.dynamic_param = {}
-		this.api_details.f_npss_find_r_messages_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.api_details.form_name = "f_npss_find_r_messages_ui"
+		// Component level properties - "Input Details" 
+		this.input_details.uictrl_code = "dynamic_ui"
+		this.input_details.uicgc_desc = "Input Details"
+		this.input_details.uicgc_code = "uicgc_4"
+		this.input_details.params = {}
+		this.input_details.datasource = {}
+		this.input_details.context_menu = []
+		this.input_details.views = {"first":"DTT_1304_1670589169341","is_tab_mode":"N","dtt_1304_1670589169341":{"0":[{"dttv_id":"NPSS Find R Messages UI","tab_order":0,"tab_name":"","uicgc_description":"Input Details","role_description":"default","dtt_description":"Core API Process Log"}]}}
+		this.input_details.onChangecomponent = new EventEmitter<any>()
+		this.input_details.show = true
+		this.input_details.dynamic_param = {}
+		this.input_details.f_npss_find_r_messages_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.input_details.form_name = "f_npss_find_r_messages_ui"
 	
 		// Component level properties - "Response" 
 		this.response.uictrl_code = "custom_widget"
@@ -307,7 +307,7 @@ export class s_find_r_messagesComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions trg hide"
 	api_input_ui_actions_trg_hide__action_button_click(){
-		this.api_input_ui_actions_trg_hide__e_1677335398295__api_details()
+		this.api_input_ui_actions_trg_hide__e_1677335398295__input_details()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -570,7 +570,7 @@ export class s_find_r_messagesComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="api_input_ui_actions_clear"
-		let destn_id="api_details"
+		let destn_id="input_details"
 		let parent_source_id=""
 		let event_code="e_1677321303047"
 		let event_params={"caller_name":"api_input_ui_actions_clear__cui_for_api","event_desc":"CUI for API","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_clear","raiseparam":{"need_reset_key_column":"N"}}
@@ -591,7 +591,7 @@ export class s_find_r_messagesComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="api_input_ui_actions_fetch"
-		let destn_id="api_details"
+		let destn_id="input_details"
 		let parent_source_id=""
 		let event_code="e_1677321344128"
 		let event_params={"caller_name":"api_input_ui_actions_fetch__ve_for_save_to_api","event_desc":"VE for Save to API","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_fetch","raiseparam":{}}
@@ -700,7 +700,7 @@ export class s_find_r_messagesComponent implements OnInit,AfterViewInit {
 		let eventcontext =["not call"]
 		if(eventcontext.indexOf(peventcontext)==-1) return true;
 		let source_id="request"
-		let destn_id="api_details"
+		let destn_id="input_details"
 		let parent_source_id=""
 		let event_code="e_1677321518402"
 		let event_params={"caller_name":"request__bt_for_list","event_desc":"BT for LIST","event_type":"CHECKED_CHANGED","caller_event_context":"not call","root_source_id":"request","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""},"eventcontext":["not call"]}
@@ -932,14 +932,14 @@ export class s_find_r_messagesComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions trg hide"
-	api_input_ui_actions_trg_hide__e_1677335398295__api_details() { 
+	api_input_ui_actions_trg_hide__e_1677335398295__input_details() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="api_input_ui_actions_trg_hide"
 		let destn_id="npss_find_r_messages_ui_process_name"
 		let parent_source_id=""
 		let event_code="e_1677335398295"
-		let event_params={"destn_comp_id":"api_details","destn_ctrl_id":"process_name","caller_name":"api_input_ui_actions_trg_hide__e_1677335398295__api_details","event_desc":"E_1677335398295","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_trg_hide","raiseparam":{}}
+		let event_params={"destn_comp_id":"input_details","destn_ctrl_id":"process_name","caller_name":"api_input_ui_actions_trg_hide__e_1677335398295__input_details","event_desc":"E_1677335398295","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"api_input_ui_actions_trg_hide","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}

@@ -686,8 +686,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                     options.json.payload.GMRate = Getdata.GMRate || '',
                                     options.json.payload.amount_credited_loc_cur = Getdata.amount_credited_loc_cur || ''
                                 }else{
-                                    options.json.payload.sell_rate = arrprocesslog[0].sell_rate || '',
-                                    options.json.payload.sell_margin = arrprocesslog[0].sell_margin || '',
+                                   if(arrprocesslog[0].sell_rate != null){
+                                        options.json.payload.sell_rate = arrprocesslog[0].sell_rate || ''
+                                    }
+
+                                    if(arrprocesslog[0].sell_margin != null){
+                                        options.json.payload.sell_margin = arrprocesslog[0].sell_margin || ''
+                                    }
+                                    
+                                    
                                     options.json.payload.amount_credited_loc_cur = arrprocesslog[0].amount_credited_loc_cur || '' 
                                 }
                                    

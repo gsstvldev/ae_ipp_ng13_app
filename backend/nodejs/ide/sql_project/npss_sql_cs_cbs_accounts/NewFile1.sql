@@ -4,8 +4,6 @@ CREATE SEQUENCE IF NOT EXISTS ad_gss_tran.seq_core_nc_cbs_accounts
     MINVALUE 1
     MAXVALUE 9223372036854775807
     CACHE 1;
-ALTER SEQUENCE ad_gss_tran.seq_core_nc_cbs_accounts
-    OWNER TO postgres;
 @SPL@
 CREATE TABLE IF NOT EXISTS CORE_NC_CBS_ACCOUNTS 
 ( 

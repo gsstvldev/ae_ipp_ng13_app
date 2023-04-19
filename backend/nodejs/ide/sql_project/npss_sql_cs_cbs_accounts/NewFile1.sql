@@ -1,15 +1,15 @@
-CREATE SEQUENCE IF NOT EXISTS ad_gss_tran.seq_cbs_accounts
+CREATE SEQUENCE IF NOT EXISTS ad_gss_tran.seq_core_nc_cbs_accounts
     INCREMENT 1
     START 1
     MINVALUE 1
     MAXVALUE 9223372036854775807
     CACHE 1;
-ALTER SEQUENCE ad_gss_tran.seq_cbs_accounts
+ALTER SEQUENCE ad_gss_tran.seq_core_nc_cbs_accounts
     OWNER TO postgres;
 @SPL@
 CREATE TABLE IF NOT EXISTS CORE_NC_CBS_ACCOUNTS 
 ( 
-cncca_id integer NOT NULL DEFAULT nextval('seq_cbs_accounts'::regclass),
+cncca_id integer NOT NULL DEFAULT nextval('seq_core_nc_cbs_accounts'::regclass),
 Account_Number character varying(19) COLLATE pg_catalog."default" , 
 Alternate_Account_ID character varying(36) COLLATE pg_catalog."default", 
 Account_name character varying(256) COLLATE pg_catalog."default", 

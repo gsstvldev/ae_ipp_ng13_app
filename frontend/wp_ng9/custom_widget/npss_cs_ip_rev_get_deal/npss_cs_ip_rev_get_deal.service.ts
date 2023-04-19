@@ -43,7 +43,7 @@ export class npss_cs_ip_rev_get_dealService {
                         var Controls = screenInstance['process_log_control_ui'].f_npss_reversal_plog_ui.model;
                         Controls.memory49 = res.data.data.sell_rate
                         Controls.memory48 = res.data.data.sell_margin
-
+ this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                     } else {
                         var dat = res.data.data;
                         var dat1 = dat.replace(/(\n)/g, "")
@@ -63,7 +63,7 @@ export class npss_cs_ip_rev_get_dealService {
                         var Controls = screenInstance['process_log_control_ui'].f_npss_reversal_plog_ui.model;
                         Controls.memory49 = ''
                         Controls.memory48 = ''
-
+ this.dialogHelper.ShowErrorDialog(res.data.status)
                     } else {
                         var ctrlscope = screenInstance['deal_ui'].f_npss_reversal_deal_plog_ui.model;
                         ctrlscope.BUY_CURRENCY = ''

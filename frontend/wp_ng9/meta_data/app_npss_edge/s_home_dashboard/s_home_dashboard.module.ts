@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29178 
+Build ID        : 29179 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-20 14:21 PM 
+Modified Date   : 2023-Apr-20 14:48 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -52,8 +52,10 @@ import { f_message_back_uiComponent } from './f_message_back_ui/f_message_back_u
 import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss_message_data_ui.component'
 import { p_processlog_layoutComponent } from './p_processlog_layout/p_processlog_layout.component'
 import { f_navigation_plComponent } from './f_navigation_pl/f_navigation_pl.component'
-import { p_pl_req_res_layoutComponent } from './p_pl_req_res_layout/p_pl_req_res_layout.component'
+import { p_pl_view_failure_layoutComponent } from './p_pl_view_failure_layout/p_pl_view_failure_layout.component'
 import { f_single_pl_back_uiComponent } from './f_single_pl_back_ui/f_single_pl_back_ui.component'
+import { f_npss_respose_data_uiComponent } from './f_npss_respose_data_ui/f_npss_respose_data_ui.component'
+import { p_pl_req_res_layoutComponent } from './p_pl_req_res_layout/p_pl_req_res_layout.component'
 
 
 
@@ -70,7 +72,7 @@ import { f_single_pl_back_uiComponent } from './f_single_pl_back_ui/f_single_pl_
     s_home_dashboardRoutingModule,
     npss_cs_dashboard_titleModule,torus_cs_show_hideModule
   ],
-  declarations: [s_home_dashboardComponent,p_default_profileComponent,f_nav_uiComponent,p_transaction_list_layoutComponent,f_navigationComponent,p_view_tran_detail_layoutComponent,f_back_uiComponent,p_process_log_list_history_layoutComponent,f_process_log_uiComponent,p_message_list_layoutComponent,f_message_detail_actionComponent,p_view_req_and_res_ui_profileComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_processlog_layoutComponent,f_navigation_plComponent,p_pl_req_res_layoutComponent,f_single_pl_back_uiComponent,],
+  declarations: [s_home_dashboardComponent,p_default_profileComponent,f_nav_uiComponent,p_transaction_list_layoutComponent,f_navigationComponent,p_view_tran_detail_layoutComponent,f_back_uiComponent,p_process_log_list_history_layoutComponent,f_process_log_uiComponent,p_message_list_layoutComponent,f_message_detail_actionComponent,p_view_req_and_res_ui_profileComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_processlog_layoutComponent,f_navigation_plComponent,p_pl_view_failure_layoutComponent,f_single_pl_back_uiComponent,f_npss_respose_data_uiComponent,p_pl_req_res_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

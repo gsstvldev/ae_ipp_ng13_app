@@ -7,24 +7,23 @@ Modified Date   : 2023-Apr-20 14:48 PM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
-Profile Name    : ProcessLog Layout--------------------------------------------------------------------------- */
+Profile Name    : PL View Failure Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_processlog_layout',
-  templateUrl: './p_processlog_layout.component.html',
-  styleUrls: ['./p_processlog_layout.component.css']
+  selector: 'p_pl_view_failure_layout',
+  templateUrl: './p_pl_view_failure_layout.component.html',
+  styleUrls: ['./p_pl_view_failure_layout.component.css']
 })
 
 // Start of class 
-export class p_processlog_layoutComponent implements OnInit {
+export class p_pl_view_failure_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	navigation_pl : any = {}
-	outward_overlay_failures_chart : any = {}
-	overlay_failure_detail_list : any = {}
+  	single_pl_back_ui : any = {}
+	view_failure_ui : any = {}
 
 
   // Constructor 
@@ -32,16 +31,14 @@ export class p_processlog_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.navigation_pl.desc = "Navigation PL"
-		this.navigation_pl.need_header = ""
-		this.outward_overlay_failures_chart.desc = "OP API Failure"
-		this.outward_overlay_failures_chart.need_header = ""
-		this.overlay_failure_detail_list.desc = "Process Log List"
-		this.overlay_failure_detail_list.need_header = ""
+    	this.single_pl_back_ui.desc = "Single PL Back UI"
+		this.single_pl_back_ui.need_header = ""
+		this.view_failure_ui.desc = "View Failure UI"
+		this.view_failure_ui.need_header = ""
 	
 
-    this.screen_instance['p_processlog_layout'] = {};
-    this.screen_instance['p_processlog_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_pl_view_failure_layout'] = {};
+    this.screen_instance['p_pl_view_failure_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29178 
+Build ID        : 29179 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-20 14:21 PM 
+Modified Date   : 2023-Apr-20 14:48 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -990,6 +990,13 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation pl back"
 	navigation_pl_back__action_button_click(){
 		this.navigation_pl_back__rs_for_nav_pl_back()
+	}
+
+	//Handler for SELECTION_CHANGED event of "overlay failure detail list"
+	overlay_failure_detail_list__selection_changed(){
+		this.overlay_failure_detail_list__e_1682001966794()
+		this.overlay_failure_detail_list__e_1682001997400()
+		this.overlay_failure_detail_list__e_1682002026383()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -3093,7 +3100,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1681988431157"
-		let event_params={"caller_name":"navigation_pl_view_failure__sp_for_pl_view_filure","event_desc":"SP for PL View filure","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_pl_view_failure","raiseparam":{"profile_code":""}}
+		let event_params={"caller_name":"navigation_pl_view_failure__sp_for_pl_view_filure","event_desc":"SP for PL View filure","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_pl_view_failure","raiseparam":{"profile_code":"BTL_1304_1681987916148"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -3205,6 +3212,69 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "overlay failure detail list"
+	overlay_failure_detail_list__e_1682001966794() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="overlay_failure_detail_list"
+		let destn_id="request_ui"
+		let parent_source_id=""
+		let event_code="e_1682001966794"
+		let event_params={"caller_name":"overlay_failure_detail_list__e_1682001966794","event_desc":"E_1682001966794","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"overlay_failure_detail_list","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "overlay failure detail list"
+	overlay_failure_detail_list__e_1682001997400() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="overlay_failure_detail_list"
+		let destn_id="response_ui"
+		let parent_source_id=""
+		let event_code="e_1682001997400"
+		let event_params={"caller_name":"overlay_failure_detail_list__e_1682001997400","event_desc":"E_1682001997400","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"overlay_failure_detail_list","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "overlay failure detail list"
+	overlay_failure_detail_list__e_1682002026383() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="overlay_failure_detail_list"
+		let destn_id="view_failure_ui"
+		let parent_source_id=""
+		let event_code="e_1682002026383"
+		let event_params={"caller_name":"overlay_failure_detail_list__e_1682002026383","event_desc":"E_1682002026383","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"overlay_failure_detail_list","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

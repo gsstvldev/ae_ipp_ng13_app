@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29132 
+Build ID        : 29151 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-20 6:18 AM 
+Modified Date   : 2023-Apr-20 7:46 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
@@ -23,6 +23,7 @@ export class p_view_api_failure_layoutComponent implements OnInit {
 
   // Variables 
   	view_api_failure__action_ui : any = {}
+	api_queue : any = {}
 	view_process_log_list : any = {}
 
 
@@ -33,6 +34,8 @@ export class p_view_api_failure_layoutComponent implements OnInit {
   ngOnInit() {
     	this.view_api_failure__action_ui.desc = "View API Failure  Action UI"
 		this.view_api_failure__action_ui.need_header = ""
+		this.api_queue.desc = "API Queue"
+		this.api_queue.need_header = true
 		this.view_process_log_list.desc = "View Process Log List"
 		this.view_process_log_list.need_header = true
 	

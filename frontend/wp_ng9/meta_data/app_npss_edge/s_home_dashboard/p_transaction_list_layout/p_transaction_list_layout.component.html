@@ -7,27 +7,29 @@
 		</div>
 	</div>
 </div>
-<div id="R11" class="row">
-	<div id="R11C2" class="column col-md-5 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
-<div id="R11C2R0" class="row">
-	<div id="R11C2R0C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+<div id="R31" class="row">
+	<div id="R31C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 		<div class="inward_queue"  [hidden]="!screen_instance['inward_queue'].show" >
 			<chart [comp_id]="'inward_queue'" [screen_instance]="screen_instance" profile_name="p_transaction_list_layout"></chart>
 		</div>
 	</div>
-	<div id="R11C2R0C2" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+</div>
+<div id="R41" class="row">
+	<div id="R41C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 		<div class="outward"  [hidden]="!screen_instance['outward'].show" >
 			<chart [comp_id]="'outward'" [screen_instance]="screen_instance" profile_name="p_transaction_list_layout"></chart>
 		</div>
 	</div>
-	<div id="R11C2R0C2" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+</div>
+<div id="R51" class="row">
+	<div id="R51C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 		<div class="inward"  [hidden]="!screen_instance['inward'].show" >
 			<chart [comp_id]="'inward'" [screen_instance]="screen_instance" profile_name="p_transaction_list_layout"></chart>
 		</div>
 	</div>
 </div>
-	</div>
-	<div id="R11C3" class="column col-md-7 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+<div id="R11" class="row">
+	<div id="R11C3" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
 		<div class="transaction_list"  [hidden]="!screen_instance['transaction_list'].show" >
 			<datatable [comp_id]="'transaction_list'" [screen_instance]="screen_instance" profile_name="p_transaction_list_layout"></datatable>
 		</div>

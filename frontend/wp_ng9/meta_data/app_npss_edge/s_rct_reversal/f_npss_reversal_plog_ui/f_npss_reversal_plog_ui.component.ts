@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29107 
+Build ID        : 29132 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-18 6:25 AM 
+Modified Date   : 2023-Apr-20 6:18 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -26,7 +26,7 @@ export class f_npss_reversal_plog_uiComponent implements OnInit {
   hasHeader:boolean;
   component_header:string;
   @ViewChild('f_npss_reversal_plog_ui') form;
-  @ViewChild('npss_reversal_plog_ui_memory48') element: ElementRef;
+  @ViewChild('npss_reversal_plog_ui_process_ref_no') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -48,82 +48,6 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
-		//Properties of memory48
-		this.ctrl.memory48 = {}
-		this.ctrl.memory48.id = "RN01CN6"
-		this.ctrl.memory48.desc = "Sell Margin"
-		this.ctrl.memory48.visible = true
-		this.ctrl.memory48.label_name = "Sell Margin"
-		this.ctrl.memory48.df_code = "DF_1304_1665905157963"
-		this.ctrl.memory48.df_description = "Column Group 1"
-		this.ctrl.memory48.uictrl_code = "TXT"
-		this.ctrl.memory48.target_column = "memory48"
-		this.ctrl.memory48.data_type = "TEXT"
-		this.ctrl.memory48.data_length = 0
-		this.ctrl.memory48.zone_df_code = "DF_1304_1665905157963"
-		this.ctrl.memory48.default_value = ""
-		this.ctrl.memory48.is_memory_ctrl = "Y"
-		this.ctrl.memory48.field_coordinates = ""
-		this.ctrl.memory48.sub_details = ""
-		this.ctrl.memory48.accept_char = ""
-		this.ctrl.memory48.currency_format = ""
-		this.ctrl.memory48.data_scale = ""
-		this.ctrl.memory48.hide_label = false
-		this.ctrl.memory48.depends_on = ""
-		this.ctrl.memory48.placeholder = ""
-		this.ctrl.memory48.dynamic_param = ""
-		this.ctrl.memory48.style_code = ""
-		this.ctrl.memory48.data_source = ""
-		this.ctrl.memory48.image_association = ""
-		this.ctrl.memory48.show = true
-		this.ctrl.memory48.sub_content = ""
-		this.ctrl.memory48.required = false
-		this.ctrl.memory48.vld_rules = []
-		this.ctrl.memory48.targetcolumn_lower = "memory48"
-		this.ctrl.memory48.disabled = false
-		this.ctrl.memory48.view_name = "f_npss_reversal_plog_ui"
-		this.ctrl.memory48.ctrl_id = "npss_reversal_plog_ui_memory48"
-		this.ctrl.npss_reversal_plog_ui_memory48 = {}
-		this.ctrl.npss_reversal_plog_ui_memory48.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of memory49
-		this.ctrl.memory49 = {}
-		this.ctrl.memory49.id = "RN01CN7"
-		this.ctrl.memory49.desc = "Sell Rate"
-		this.ctrl.memory49.visible = true
-		this.ctrl.memory49.label_name = "Sell Rate"
-		this.ctrl.memory49.df_code = "DF_1304_1665905157963"
-		this.ctrl.memory49.df_description = "Column Group 1"
-		this.ctrl.memory49.uictrl_code = "TXT"
-		this.ctrl.memory49.target_column = "memory49"
-		this.ctrl.memory49.data_type = "TEXT"
-		this.ctrl.memory49.data_length = 0
-		this.ctrl.memory49.zone_df_code = "DF_1304_1665905157963"
-		this.ctrl.memory49.default_value = ""
-		this.ctrl.memory49.is_memory_ctrl = "Y"
-		this.ctrl.memory49.field_coordinates = ""
-		this.ctrl.memory49.sub_details = ""
-		this.ctrl.memory49.accept_char = ""
-		this.ctrl.memory49.currency_format = ""
-		this.ctrl.memory49.data_scale = ""
-		this.ctrl.memory49.hide_label = false
-		this.ctrl.memory49.depends_on = ""
-		this.ctrl.memory49.placeholder = ""
-		this.ctrl.memory49.dynamic_param = ""
-		this.ctrl.memory49.style_code = ""
-		this.ctrl.memory49.data_source = ""
-		this.ctrl.memory49.image_association = ""
-		this.ctrl.memory49.show = true
-		this.ctrl.memory49.sub_content = ""
-		this.ctrl.memory49.required = false
-		this.ctrl.memory49.vld_rules = []
-		this.ctrl.memory49.targetcolumn_lower = "memory49"
-		this.ctrl.memory49.disabled = false
-		this.ctrl.memory49.view_name = "f_npss_reversal_plog_ui"
-		this.ctrl.memory49.ctrl_id = "npss_reversal_plog_ui_memory49"
-		this.ctrl.npss_reversal_plog_ui_memory49 = {}
-		this.ctrl.npss_reversal_plog_ui_memory49.onChangecomponent = new EventEmitter<any>()
-	
 		//Properties of process_ref_no
 		this.ctrl.process_ref_no = {}
 		this.ctrl.process_ref_no.id = "RN01CN4"
@@ -275,7 +199,7 @@ focustoelement(){
 		this.ctrl.charge_amount.ctrl_id = "npss_reversal_plog_ui_charge_amount"
 		this.ctrl.npss_reversal_plog_ui_charge_amount = {}
 		this.ctrl.npss_reversal_plog_ui_charge_amount.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.model = {"MEMORY48":"","MEMORY49":"","PROCESS_REF_NO":"","AMOUNT_CREDITED":"","AMT_CR_LOC_CUR":"","CHARGE_AMOUNT":""}
+		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.model = {"PROCESS_REF_NO":"","AMOUNT_CREDITED":"","AMT_CR_LOC_CUR":"","CHARGE_AMOUNT":""}
 		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"AMOUNT_CREDITED"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMT_CR_LOC_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"}]
 		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_reversal_plog_ui.dtt_code = "dtt_1304_1665905039255"

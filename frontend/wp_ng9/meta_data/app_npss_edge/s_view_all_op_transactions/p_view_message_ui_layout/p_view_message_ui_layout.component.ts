@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29168 
+Build ID        : 29177 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-20 11:19 AM 
+Modified Date   : 2023-Apr-20 13:52 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
@@ -34,7 +34,7 @@ export class p_view_message_ui_layoutComponent implements OnInit {
     	this.message_back_ui.desc = "Message Back UI"
 		this.message_back_ui.need_header = false
 		this.message_detail_ui.desc = "Message Detail UI"
-		this.message_detail_ui.need_header = false
+		this.message_detail_ui.need_header = ""
 	
 
     this.screen_instance['p_view_message_ui_layout'] = {};

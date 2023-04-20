@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29157 
+Build ID        : 29160 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-20 10:5 AM 
+Modified Date   : 2023-Apr-20 13:53 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -55,7 +55,16 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	uicgc_34 : string = "nav_ui"
 	uicgc_37 : string = "home_dashboard_title"
 	uicgc_38 : string = "inward"
+	uicgc_39 : string = "navigation_pl"
+	uicgc_40 : string = "outward_overlay_failures_list"
+	uicgc_41 : string = "outward_overlay_failures_chart"
+	uicgc_42 : string = "overlay_failure_detail_list"
+	uicgc_43 : string = "view_failure_ui"
+	uicgc_45 : string = "single_pl_back_ui"
 	key_events : any = {}
+	btl_1304_1681987916148 : string = "p_pl_view_failure_layout"
+	btl_1304_1681987841934 : string = "p_pl_req_res_layout"
+	btl_1304_1681986243547 : string = "p_processlog_layout"
 	btl_1304_1678973592738 : string = "p_transaction_list_layout"
 	btl_1304_1678876184454 : string = "p_process_log_list_history_layout"
 	btl_1304_1678876095161 : string = "p_view_tran_detail_layout"
@@ -64,7 +73,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	btl_1304_1678803243440 : string = "p_message_list_layout"
 	btl_1408_1598521300065 : string = "p_search_layout"
 	btl_1408_1598521214410 : string = "p_default_profile"
-	forms : any = ["uicgc_22","uicgc_1","uicgc_23","uicgc_24","uicgc_4","uicgc_29","uicgc_28","uicgc_25","uicgc_19","uicgc_21","uicgc_34"]
+	forms : any = ["uicgc_43","uicgc_22","uicgc_1","uicgc_23","uicgc_24","uicgc_45","uicgc_39","uicgc_4","uicgc_29","uicgc_28","uicgc_25","uicgc_19","uicgc_21","uicgc_34"]
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -104,6 +113,18 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	nav_ui_trg_for_hide_tran_list : any = {}
 	home_dashboard_title : any = {}
 	inward : any = {}
+	navigation_pl : any = {}
+	navigation_pl_back : any = {}
+	navigation_pl_view_req_and_res : any = {}
+	navigation_pl_view_failure : any = {}
+	navigation_pl_pie_chart : any = {}
+	navigation_pl_bar_chart : any = {}
+	outward_overlay_failures_list : any = {}
+	outward_overlay_failures_chart : any = {}
+	overlay_failure_detail_list : any = {}
+	view_failure_ui : any = {}
+	single_pl_back_ui : any = {}
+	single_pl_back_ui_back : any = {}
 
 
 	// Constructor 
@@ -149,7 +170,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.outward_list.uictrl_code = "datatable"
 		this.outward_list.uicgc_desc = "Outward List"
 		this.outward_list.uicgc_code = "uicgc_2"
-		this.outward_list.params = {"need_pag_datatable":"Y","need_search":"N","advance_dynamic_search":"N"}
+		this.outward_list.params = {"need_search":"N"}
 		this.outward_list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678780847259","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP Home Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Type","alias_name":"","mq_id":"MQ_1677928433068","date_format":false},{"column_name":"Total","alias_name":"","mq_id":"MQ_1677928433241","date_format":false},{"column_name":"IBMB","alias_name":"","mq_id":"MQ_1677928433417","date_format":false},{"column_name":"RMB","alias_name":"","mq_id":"MQ_1677928433585","date_format":false},{"column_name":"RIB","alias_name":"","mq_id":"MQ_1677928433769","date_format":false},{"column_name":"CMB","alias_name":"","mq_id":"MQ_1677928433945","date_format":false},{"column_name":"CIB","alias_name":"","mq_id":"MQ_1677928434130","date_format":false},{"column_name":"CMS","alias_name":"","mq_id":"MQ_1677928467185","date_format":false},{"column_name":"Manual","alias_name":"","mq_id":"MQ_1677928467361","date_format":false},{"column_name":"Pending_Screening","alias_name":"","mq_id":"MQ_1677928467521","date_format":false},{"column_name":"Pending_Maker","alias_name":"","mq_id":"MQ_1677928484313","date_format":false},{"column_name":"Pending_Checker","alias_name":"","mq_id":"MQ_1677928484473","date_format":false},{"column_name":"Send_to_CB","alias_name":"","mq_id":"MQ_1677928484633","date_format":false},{"column_name":"CBACK","alias_name":"","mq_id":"MQ_1677928498570","date_format":false},{"column_name":"CBNACK","alias_name":"","mq_id":"MQ_1677928498753","date_format":false},{"column_name":"Pending_T_1","alias_name":"","mq_id":"MQ_1677928498969","date_format":false},{"column_name":"Created_Date","alias_name":"","mq_id":"MQ_1677928517681","date_format":true}],"joins":[]},"eq_text":"select  A.type,  B.PTYPE,  case   when A.type = 'pacs.008'   and b.sno is null then 1   when A.type = 'pacs.004'   and b.sno is null then 2   when A.type = 'pacs.007'   and b.sno is null then 3   else b.sno  end sno,  coalesce(b.total, 0) as total,  coalesce(b.IBMB, 0) as IBMB,  coalesce(b.RIB, 0) as RIB,  coalesce(b.RMB, 0) as RMB,  coalesce(b.CIB, 0) as CIB,  coalesce(b.CMS, 0) as CMS,  coalesce(b.CMB, 0) as CMB,  coalesce(b.Manual, 0) as Manual,  coalesce(b.Pending_Screening, 0) as Pending_Screening,  coalesce(b.PENDING_MAKER, 0) as PENDING_MAKER,  coalesce(b.PENDING_CHECKER, 0) as PENDING_CHECKER,  coalesce(b.SEND_TO_CB, 0) as SEND_TO_CB,  coalesce(b.CBACK, 0) as CBACK,  coalesce(b.CBNACK, 0) as CBNACK,  coalesce(b.Pending_T_1, 0) as Pending_T_1,  to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone as created_date from  (  select   'pacs.008' as type union  select   'pacs.004' as type union  select   'pacs.007' as type) A left join (  select   SNO,   PTYPE,   type,   SUM(TOTAL) as Total,   SUM(IBMB) as IBMB,   SUM(RIB) as RIB,   SUM(RMB) as RMB ,   SUM(CIB) as CIB,   SUM(CMS) as CMS,   SUM(CMB) as CMB,   SUM(MANUAL) as Manual,   SUM(PENDING_SCREENING) as Pending_Screening,   SUM(PENDING_MAKER) as Pending_Maker,   SUM(PENDING_CHECKER) as Pending_Checker,   SUM(SEND_TO_CB) as Send_to_CB,   SUM(CBACK) as CBACK,   SUM(CBNACK) as CBNACK,   CREATED_DATE,   SUM(PENDING_T_1) as Pending_T_1  from   (   select    SNO,    type,    Total,    IBMB,    RIB,    RMB ,    CIB,    CMS,    CMB,    MANUAL,    PENDING_SCREENING,    PENDING_MAKER,    PENDING_CHECKER,    SEND_TO_CB,    CBACK,    CBNACK,    CREATED_DATE,    PENDING_T_1,    DEPARTMENT_CODE,    'OP' as PTYPE   from    vw_dashboard_outward_data) as t $WHERE  group by   SNO,   PTYPE,   type,   CREATED_DATE) B on  B.type = A.type order by  sno"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP Home Dashboard MQ CCD","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Type","target_column":"Type","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total","target_column":"Total","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"IBMB","target_column":"IBMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RMB","target_column":"RMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"RIB","target_column":"RIB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CMB","target_column":"CMB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CIB","target_column":"CIB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CMS","target_column":"CMS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Manual","target_column":"Manual","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Screening","target_column":"Pending_Screening","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Maker)","target_column":"Pending_Maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Checker)","target_column":"Pending_Checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Send to CB","target_column":"Send_to_CB","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB ACK","target_column":"CBACK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB NAK","target_column":"CBNACK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (T-1)","target_column":"Pending_T_1","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.outward_list.context_menu = []
 		this.outward_list.views = {}
@@ -229,7 +250,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.inward_list.uictrl_code = "datatable"
 		this.inward_list.uicgc_desc = "Inward List"
 		this.inward_list.uicgc_code = "uicgc_12"
-		this.inward_list.params = {"need_pag_datatable":"Y","need_search":"N","advance_dynamic_search":"N"}
+		this.inward_list.params = {"need_search":"N"}
 		this.inward_list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_12","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678780879597","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS IP Home Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"type","alias_name":"","mq_id":"MQ_1677933613596","date_format":false},{"column_name":"total","alias_name":"","mq_id":"MQ_1678169755516","date_format":false},{"column_name":"pending_maker","alias_name":"","mq_id":"MQ_1678169755682","date_format":false},{"column_name":"pending_checker","alias_name":"","mq_id":"MQ_1678169755850","date_format":false},{"column_name":"pending_screening","alias_name":"","mq_id":"MQ_1678169756042","date_format":false},{"column_name":"successfullyposted","alias_name":"","mq_id":"MQ_1678169756202","date_format":false},{"column_name":"pending_returns_maker","alias_name":"","mq_id":"MQ_1678169780171","date_format":false},{"column_name":"pending_returns_checker","alias_name":"","mq_id":"MQ_1678169780331","date_format":false},{"column_name":"returned","alias_name":"","mq_id":"MQ_1678169780499","date_format":false},{"column_name":"pending_t_1","alias_name":"","mq_id":"MQ_1678169862467","date_format":false},{"column_name":"created_date","alias_name":"","mq_id":"MQ_1678170105508","date_format":true}],"joins":[]},"eq_text":"select  A.type,  B.PTYPE,  case   when A.type = 'pacs.008'   and b.sno is null then 1   when A.type = 'pacs.004'   and b.sno is null then 2   when A.type = 'pacs.007'   and b.sno is null then 3   else b.sno  end sno,  coalesce(b.total, 0) as total,  coalesce(b.Pending_Screening, 0) as Pending_Screening,  coalesce(b.PENDING_MAKER, 0) as PENDING_MAKER,  coalesce(b.PENDING_CHECKER, 0) as PENDING_CHECKER,  coalesce(b.successfullyposted, 0) as successfullyposted,  coalesce(b.pending_returns_maker, 0) as pending_returns_maker,  coalesce(b.pending_returns_checker, 0) as pending_returns_checker,  coalesce(b.returned, 0) as returned,  coalesce(b.Pending_T_1, 0) as Pending_T_1,  to_char(CURRENT_DATE::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone as created_date from  (  select   'pacs.008' as type union  select   'pacs.004' as type union  select   'pacs.007' as type) A left join (  select   sno,   PTYPE,   type,   sum(total) as TOTAL,   sum(pending_maker) as pending_maker,   sum(pending_checker) as pending_checker,   sum(pending_screening) as pending_screening,   sum(successfullyposted) as successfullyposted,   sum(pending_returns_maker) as pending_returns_maker,   sum(pending_returns_checker) as pending_returns_checker,   sum(returned) as returned,   sum(pending_t_1) as pending_t_1,   created_date  from   (   select    sno,    type,    TOTAL,    pending_maker,    pending_checker,    pending_screening,    successfullyposted,    pending_returns_maker,    pending_returns_checker,    returned,    pending_t_1,    created_date,    DEPARTMENT_CODE,    'IP' as PTYPE   from    vw_dashboard_inward_data) T $WHERE  group by   SNO,   ptype,   type,   CREATED_DATE) B on  B.type = A.type order by  sno"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS IP Home Dashboard MQ CCD","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Type","target_column":"type","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Total","target_column":"total","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Maker)","target_column":"pending_maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (Checker)","target_column":"pending_checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Screening","target_column":"pending_screening","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Successfully Posted","target_column":"successfullyposted","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Returns (Maker)","target_column":"pending_returns_maker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending Returns (Checker)","target_column":"pending_returns_checker","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Returned","target_column":"returned","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Pending (T-1)","target_column":"pending_t_1","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.inward_list.context_menu = []
 		this.inward_list.views = {}
@@ -551,6 +572,138 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.inward.onChangecomponent = new EventEmitter<any>()
 		this.inward.show = true
 		this.inward.dynamic_param = {}
+	
+		// Component level properties - "Navigation PL" 
+		this.navigation_pl.uictrl_code = "dynamic_ui"
+		this.navigation_pl.uicgc_desc = "Navigation PL"
+		this.navigation_pl.uicgc_code = "uicgc_39"
+		this.navigation_pl.params = {}
+		this.navigation_pl.datasource = {}
+		this.navigation_pl.context_menu = []
+		this.navigation_pl.views = {}
+		this.navigation_pl.onChangecomponent = new EventEmitter<any>()
+		this.navigation_pl.show = true
+		this.navigation_pl.dynamic_param = {}
+		this.navigation_pl.f_navigation_pl = {"show":true}
+		this.navigation_pl.current_view = "f_navigation_pl"
+		
+		// "Back" Button of "Navigation PL" component
+		this.navigation_pl_back.label_name = "Back"
+		this.navigation_pl_back.show = true
+		this.navigation_pl_back.disabled = false
+		this.navigation_pl_back.params = {"icon_only":false,"uicgcc_style":"fa fa-fast-backward"}
+		this.navigation_pl_back.dynamic_param = {}
+		this.navigation_pl_back.role = []
+		this.navigation_pl_back.action = ""
+		
+		// "View Req and Res" Button of "Navigation PL" component
+		this.navigation_pl_view_req_and_res.label_name = "View Req and Res"
+		this.navigation_pl_view_req_and_res.show = true
+		this.navigation_pl_view_req_and_res.disabled = false
+		this.navigation_pl_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.navigation_pl_view_req_and_res.dynamic_param = {}
+		this.navigation_pl_view_req_and_res.role = []
+		this.navigation_pl_view_req_and_res.action = ""
+		
+		// "View Failure" Button of "Navigation PL" component
+		this.navigation_pl_view_failure.label_name = "View Failure"
+		this.navigation_pl_view_failure.show = true
+		this.navigation_pl_view_failure.disabled = false
+		this.navigation_pl_view_failure.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_pl_view_failure.dynamic_param = {}
+		this.navigation_pl_view_failure.role = []
+		this.navigation_pl_view_failure.action = ""
+		
+		// "Pie Chart" Button of "Navigation PL" component
+		this.navigation_pl_pie_chart.label_name = "Pie Chart"
+		this.navigation_pl_pie_chart.show = true
+		this.navigation_pl_pie_chart.disabled = false
+		this.navigation_pl_pie_chart.params = {"icon_only":false,"uicgcc_style":"fa fa-pie-chart"}
+		this.navigation_pl_pie_chart.dynamic_param = {}
+		this.navigation_pl_pie_chart.role = []
+		this.navigation_pl_pie_chart.action = ""
+		
+		// "Bar Chart" Button of "Navigation PL" component
+		this.navigation_pl_bar_chart.label_name = "Bar Chart"
+		this.navigation_pl_bar_chart.show = true
+		this.navigation_pl_bar_chart.disabled = false
+		this.navigation_pl_bar_chart.params = {"icon_only":false,"uicgcc_style":"fa fa-bar-chart"}
+		this.navigation_pl_bar_chart.dynamic_param = {}
+		this.navigation_pl_bar_chart.role = []
+		this.navigation_pl_bar_chart.action = ""
+	
+		// Component level properties - "Outward Overlay Failures List" 
+		this.outward_overlay_failures_list.uictrl_code = "datatable"
+		this.outward_overlay_failures_list.uicgc_desc = "Outward Overlay Failures List"
+		this.outward_overlay_failures_list.uicgc_code = "uicgc_40"
+		this.outward_overlay_failures_list.params = {"need_search":"N"}
+		this.outward_overlay_failures_list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_40","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1681998367336","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard Overlay List MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"details","alias_name":"","mq_id":"MQ_1681995039310","date_format":false},{"column_name":"IBAN_Failures","alias_name":"","mq_id":"MQ_1681995039657","date_format":false},{"column_name":"P2P_Failures","alias_name":"","mq_id":"MQ_1681995039937","date_format":false},{"column_name":"P2B_Failures","alias_name":"","mq_id":"MQ_1681995040545","date_format":false}],"joins":[]},"eq_text":"select  details,  coalesce(sum(res.IBAN_Failures), 0::numeric) as IBAN_Failures,  coalesce(sum(res.P2P_Failures), 0::numeric) as P2P_Failures,  coalesce(sum(res.P2B_Failures), 0::numeric) as P2B_Failures from  (  select   count (case    when ntpl.status in ('OP_AC_VAL_FAILED', 'OP_AC_MAND_VAL_FAILED', 'OP_AC_DUPL_VAL_FAILED', 'OP_AC_PCODE_VAL_FAILED', 'OP_AC_PBANK_VAL_FAILED') then ntpl.npsstpl_id    else null   end ) as IBAN_Failures,   count (case    when ntpl.status in ('OP_P2P_SENDER_IBAN_FAILED', 'OP_P2P_PAYMENT_FAILED', 'OP_P2P_POSTING_FAILURE', 'OP_P2P_POSTING_SUSPICIOUS') then ntpl.npsstpl_id    else null   end )as P2P_Failures,   count (case    when ntpl.status in ('OP_P2B_FUND_UNFREEZED', 'OP_P2B_PAYMENT_FAILED', 'OP_P2B_FUND_RES_FAILURE', 'OP_P2B_FUND_RES_SUSPICIOUS', 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_FUND_UNFR_SUSPICIOUS', 'OP_P2B_FUND_AUTH_FAILURE', 'OP_P2B_FUND_AUTH_SUSPICIOUS') then ntpl.npsstpl_id    else null   end) as P2B_Failures,   ntpl.status,   ntpl.tenant_id ,   'Overlay Failures' as details  from   npss_trn_process_log ntpl  where   to_date(to_char(ntpl.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE  group by   status,   tenant_id )res   $WHERE group by  res.details"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard Overlay List CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Details","target_column":"details","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"IBAN Failures","target_column":"IBAN_Failures","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"P2P Failures","target_column":"P2P_Failures","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"P2B Failures","target_column":"P2B_Failures","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.outward_overlay_failures_list.context_menu = []
+		this.outward_overlay_failures_list.views = {}
+		this.outward_overlay_failures_list.onChangecomponent = new EventEmitter<any>()
+		this.outward_overlay_failures_list.show = true
+		this.outward_overlay_failures_list.dynamic_param = {}
+	
+		// Component level properties - "Outward Overlay Failures Chart" 
+		this.outward_overlay_failures_chart.uictrl_code = "chart"
+		this.outward_overlay_failures_chart.uicgc_desc = "Outward Overlay Failures Chart"
+		this.outward_overlay_failures_chart.uicgc_code = "uicgc_41"
+		this.outward_overlay_failures_chart.params = {}
+		this.outward_overlay_failures_chart.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_41","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1681998395232","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard Overlay Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Pending_Detais","alias_name":"","mq_id":"MQ_1681995973836","date_format":false},{"column_name":"p_count","alias_name":"","mq_id":"MQ_1681995974187","date_format":false}],"joins":[]},"eq_text":"select  X.Pending_Detais,  x.p_count,  X.Details from  (select  details,  coalesce(sum(res.IBAN_Failures), 0::numeric) as IBAN_Failures,  coalesce(sum(res.P2P_Failures), 0::numeric) as P2P_Failures,  coalesce(sum(res.P2B_Failures), 0::numeric) as P2B_Failures from  (  select   count (case    when ntpl.status in ('OP_AC_VAL_FAILED', 'OP_AC_MAND_VAL_FAILED', 'OP_AC_DUPL_VAL_FAILED', 'OP_AC_PCODE_VAL_FAILED', 'OP_AC_PBANK_VAL_FAILED') then ntpl.npsstpl_id    else null   end ) as IBAN_Failures,   count (case    when ntpl.status in ('OP_P2P_SENDER_IBAN_FAILED', 'OP_P2P_PAYMENT_FAILED', 'OP_P2P_POSTING_FAILURE', 'OP_P2P_POSTING_SUSPICIOUS') then ntpl.npsstpl_id    else null   end )as P2P_Failures,   count (case    when ntpl.status in ('OP_P2B_FUND_UNFREEZED', 'OP_P2B_PAYMENT_FAILED', 'OP_P2B_FUND_RES_FAILURE', 'OP_P2B_FUND_RES_SUSPICIOUS', 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_FUND_UNFR_SUSPICIOUS', 'OP_P2B_FUND_AUTH_FAILURE', 'OP_P2B_FUND_AUTH_SUSPICIOUS') then ntpl.npsstpl_id    else null   end) as P2B_Failures,   ntpl.status,   ntpl.tenant_id ,   'Overlay Failures' as details  from   npss_trn_process_log ntpl  where   to_date(to_char(ntpl.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE  group by   status,   tenant_id )res   $WHERE group by  res.details) AB cross join lateral( values ('IBAN_Failures', AB.IBAN_Failures, AB.Details), ('P2P_Failures', AB.P2P_Failures, AB.Details), ('P2B_Failures', AB.P2B_Failures, AB.Details)) X ( Pending_Detais,  p_count,  Details ) where  p_count not in ('0')"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard Overlay Chart CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Pending_Detais","target_column":"Pending_Detais","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"p_count","target_column":"p_count","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.outward_overlay_failures_chart.context_menu = []
+		this.outward_overlay_failures_chart.views = {}
+		this.outward_overlay_failures_chart.onChangecomponent = new EventEmitter<any>()
+		this.outward_overlay_failures_chart.show = true
+		this.outward_overlay_failures_chart.dynamic_param = {}
+	
+		// Component level properties - "Overlay Failure Detail List" 
+		this.overlay_failure_detail_list.uictrl_code = "datatable"
+		this.overlay_failure_detail_list.uicgc_desc = "Overlay Failure Detail List"
+		this.overlay_failure_detail_list.uicgc_code = "uicgc_42"
+		this.overlay_failure_detail_list.params = {"need_pag_datatable":"Y","need_search":"N"}
+		this.overlay_failure_detail_list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_42","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1681998435687","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard Overlay PLOG MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"CREATEDDATEMILISEC","alias_name":"","mq_id":"MQ_1681997072655","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1681997073103","date_format":false},{"column_name":"V_CODE","alias_name":"","mq_id":"MQ_1681997073327","date_format":false},{"column_name":"RESPONSE_CODE","alias_name":"","mq_id":"MQ_1681997130782","date_format":false},{"column_name":"MSG_ID","alias_name":"","mq_id":"MQ_1681997169493","date_format":false}],"joins":[]},"eq_text":"select Pending_Detais,  REVERSAL_DESCRIPTION,  T24_RETURN_DESCRIPTION,  CBUAE_RETURN_DESCRIPTION,  NPSSTPL_ID,  MSG_ID,  UETR,  NPSSTRRD_REFNO,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESPONSE_CODE,  PROCESS_REF_NO,  RESPONSE_DATA,  CREATED_DATE,  CREATEDDATEMILISEC,  API_PROCESS_STATUS,  API_STATUS,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  T24_RETURN_CODE,  CBUAE_RETURN_CODE,  REVERSAL_CODE,  REVERSAL_DESC,  T24_RETURN_DESC,  CBUAE_RETURN_DESC,  TENANT_ID,  DT_CODE,  DTT_CODE,  V_CODE from  (  select   A.NPSSTPL_ID,   A.MSG_ID,   A.UETR,   A.NPSSTRRD_REFNO,   A.PROCESS_NAME,   A.PROCESSING_SYSTEM,   A.RESPONSE_CODE,   A.PROCESS_REF_NO,   A.RESPONSE_DATA,   TO_CHAR(A.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as CREATEDDATEMILISEC,   A.CREATED_DATE,   A.PROCESS_STATUS as API_PROCESS_STATUS,   A.STATUS as API_STATUS,   A.DT_CODE,   A.DTT_CODE,   A.TENANT_ID,   A.REQUEST_DATA_JSON,   A.RESPONSE_DATA_JSON,   A.T24_RETURN_CODE,   A.ADDITIONAL_INFO,   A.V_CODE,   T24RC.RETURN_DESCRIPTION as T24_RETURN_DESC,   CONCAT(A.T24_RETURN_CODE, '-', T24RC.RETURN_DESCRIPTION) as T24_RETURN_DESCRIPTION,   A.CBUAE_RETURN_CODE,   CBUAERC.RETURN_DESCRIPTION as CBUAE_RETURN_DESC,   CONCAT(A.CBUAE_RETURN_CODE, '-', CBUAERC.RETURN_DESCRIPTION) as CBUAE_RETURN_DESCRIPTION,   A.REVERSAL_CODE,   CCD.CD_DESCRIPTION as REVERSAL_DESC,   CONCAT(A.REVERSAL_CODE, '-', CCD.CD_DESCRIPTION) as REVERSAL_DESCRIPTION,   case    when A.status in ('OP_AC_VAL_FAILED', 'OP_AC_MAND_VAL_FAILED', 'OP_AC_DUPL_VAL_FAILED', 'OP_AC_PCODE_VAL_FAILED', 'OP_AC_PBANK_VAL_FAILED')  and to_date(to_char(A.created_date , 'yyyy-mm-dd' ), 'yyyy-mm-dd' ) = current_date then 'IBAN_Failures'    when A.status in ('OP_P2P_SENDER_IBAN_FAILED', 'OP_P2P_PAYMENT_FAILED', 'OP_P2P_POSTING_FAILURE', 'OP_P2P_POSTING_SUSPICIOUS') and to_date(to_char(A.created_date , 'yyyy-mm-dd' ), 'yyyy-mm-dd' ) = current_date then 'P2P_Failures'    when A.status in ('OP_P2B_FUND_UNFREEZED', 'OP_P2B_PAYMENT_FAILED', 'OP_P2B_FUND_RES_FAILURE', 'OP_P2B_FUND_RES_SUSPICIOUS', 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_FUND_UNFR_SUSPICIOUS', 'OP_P2B_FUND_AUTH_FAILURE', 'OP_P2B_FUND_AUTH_SUSPICIOUS') and to_date(to_char(A.created_date , 'yyyy-mm-dd' ), 'yyyy-mm-dd' ) = current_date then 'P2B_Failures'    else 'OTHER'   end as Pending_Detais  from   NPSS_TRN_PROCESS_LOG A  left join CORE_NC_CODE_DESCRIPTIONS CCD on   CCD.CD_CODE = A.REVERSAL_CODE   and CCD.CD_CATEGORY = 'REVERSAL_REASON_IDENTIFIER_CODE'   and CCD.NEED_SYNC = 'Y'  left join CORE_NC_RETURN_CODES T24RC on   T24RC.RETURN_CODE = A.T24_RETURN_CODE   and T24RC.PROCESSING_SYSTEM = 'T24'   and T24RC.NEED_SYNC = 'Y'  left join CORE_NC_RETURN_CODES CBUAERC on   CBUAERC.RETURN_CODE = A.CBUAE_RETURN_CODE   and CBUAERC.PROCESSING_SYSTEM = 'CBUAE'   and CBUAERC.NEED_SYNC = 'Y'  order by   A.NPSSTPL_ID desc) V where Pending_Detais <> 'OTHER'$AND"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard Overlay PLOG CCD","filter":[{"filter_name":"Pending_Detais","binding_name":"Pending_Detais","binding_value":"","source_name":"Pending_Detais","source_value":"","source_type":"LOCAL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"CREATEDDATEMILISEC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Validation Code","target_column":"V_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Error Code","target_column":"RESPONSE_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Id","target_column":"MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.overlay_failure_detail_list.context_menu = []
+		this.overlay_failure_detail_list.views = {}
+		this.overlay_failure_detail_list.onChangecomponent = new EventEmitter<any>()
+		this.overlay_failure_detail_list.show = true
+		this.overlay_failure_detail_list.dynamic_param = {}
+	
+		// Component level properties - "View Failure UI" 
+		this.view_failure_ui.uictrl_code = "dynamic_ui"
+		this.view_failure_ui.uicgc_desc = "View Failure UI"
+		this.view_failure_ui.uicgc_code = "uicgc_43"
+		this.view_failure_ui.params = {}
+		this.view_failure_ui.datasource = {}
+		this.view_failure_ui.context_menu = []
+		this.view_failure_ui.views = {"first":"DTT_1304_1665905039255","is_tab_mode":"N","dtt_1304_1665905039255":{"0":[{"dttv_id":"NPSS Respose data UI","tab_order":0,"tab_name":"","uicgc_description":"View Failure UI","role_description":"default","dtt_description":"NPSS Trn Process Log"}]}}
+		this.view_failure_ui.onChangecomponent = new EventEmitter<any>()
+		this.view_failure_ui.show = true
+		this.view_failure_ui.dynamic_param = {}
+		this.view_failure_ui.f_npss_respose_data_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.view_failure_ui.form_name = "f_npss_respose_data_ui"
+	
+		// Component level properties - "Single PL Back UI" 
+		this.single_pl_back_ui.uictrl_code = "dynamic_ui"
+		this.single_pl_back_ui.uicgc_desc = "Single PL Back UI"
+		this.single_pl_back_ui.uicgc_code = "uicgc_45"
+		this.single_pl_back_ui.params = {}
+		this.single_pl_back_ui.datasource = {}
+		this.single_pl_back_ui.context_menu = []
+		this.single_pl_back_ui.views = {}
+		this.single_pl_back_ui.onChangecomponent = new EventEmitter<any>()
+		this.single_pl_back_ui.show = true
+		this.single_pl_back_ui.dynamic_param = {}
+		this.single_pl_back_ui.f_single_pl_back_ui = {"show":true}
+		this.single_pl_back_ui.current_view = "f_single_pl_back_ui"
+		
+		// "Back" Button of "Single PL Back UI" component
+		this.single_pl_back_ui_back.label_name = "Back"
+		this.single_pl_back_ui_back.show = true
+		this.single_pl_back_ui_back.disabled = false
+		this.single_pl_back_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-fast-backward"}
+		this.single_pl_back_ui_back.dynamic_param = {}
+		this.single_pl_back_ui_back.role = []
+		this.single_pl_back_ui_back.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -792,6 +945,50 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.navigation_bar_chart__brfq_from_bar_chart_btn_op(peventcontext)
 		this.navigation_bar_chart__brfq_from_bar_chart_btn_ip(peventcontext)
 		this.navigation_bar_chart__brfq_from_bar_chart_btn_ipq(peventcontext)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation pl view req and res"
+	navigation_pl_view_req_and_res__action_button_click(){
+		this.navigation_pl_view_req_and_res__bt_for_pl_req()
+		this.navigation_pl_view_req_and_res__bt_for_pl_res()
+		this.navigation_pl_view_req_and_res__sp_for_pl_req_res()
+	}
+
+	//Handler for SELECTION_CHANGED event of "outward overlay failures list"
+	outward_overlay_failures_list__selection_changed(){
+		this.outward_overlay_failures_list__sp_for_op_api_failure_list()
+		this.outward_overlay_failures_list__tbc_for_pl_pie_chart()
+	}
+
+	//Handler for SELECTION_CHANGED event of "outward overlay failures chart"
+	outward_overlay_failures_chart__selection_changed(){
+		this.outward_overlay_failures_chart__brfq_for_pl_list()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation pl view failure"
+	navigation_pl_view_failure__action_button_click(){
+		this.navigation_pl_view_failure__sp_for_pl_view_filure()
+		this.navigation_pl_view_failure__bt_for_view_failure_ui()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "single pl back ui back"
+	single_pl_back_ui_back__action_button_click(){
+		this.single_pl_back_ui_back__sp_for_single_pl_back_btn()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation pl bar chart"
+	navigation_pl_bar_chart__action_button_click(){
+		this.navigation_pl_bar_chart__brfq_for_op_overlay_failure_pie_chart()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation pl pie chart"
+	navigation_pl_pie_chart__action_button_click(){
+		this.navigation_pl_pie_chart__brfq_for_op_overlay_failure_bar_chart()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation pl back"
+	navigation_pl_back__action_button_click(){
+		this.navigation_pl_back__rs_for_nav_pl_back()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2734,6 +2931,258 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_13","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678787742404","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Queue Dashboard MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESS_STATUS_COUNT","alias_name":"","mq_id":"MQ_1672833641472","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1672833641606","date_format":false}],"joins":[]},"eq_text":"select  COUNT(PROCESS_STATUS) as PROCESS_STATUS_COUNT,  PROCESS_TYPE,  PROCESS_STATUS,  createddate from  (  select   T.CREATED_DATE,   T.PROCESS_TYPE ,   T.TENANT_ID,   case    when T.channel_id is null then UPPER('UNKOWN')    else t.channel_id   end as channel_id,   case    when T.PROCESSING_SYSTEM is null then upper('unknown')    else T.PROCESSING_SYSTEM   end as PROCESSING_SYSTEM,   T.DEPARTMENT_CODE,   case    when T.PROCESS_GROUP is null then UPPER('UNKOWN')    else t.PROCESS_GROUP   end as PROCESS_GROUP,   case    when T.EXHF_ID is null then UPPER('RCT')    else UPPER('BCT')   end as PAYMENT_TYPE,   case    when T.PROCESS_STATUS is null then UPPER('UNKNOWN')    else T.PROCESS_STATUS   end as PROCESS_STATUS,   to_date(to_char(t.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) as createddate  from   NPSS_TRANSACTIONS T where to_date(to_char(T.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = current_date) V $WHERE group by  PROCESS_STATUS,  PROCESS_TYPE,  createddate"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Queue Dashboard CCD","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENENT_ID","binding_name":"TENENT_ID","binding_value":"","source_name":"TENENT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Count","target_column":"PROCESS_STATUS_COUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation pl view req and res"
+	navigation_pl_view_req_and_res__bt_for_pl_req() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_pl_view_req_and_res"
+		let destn_id="request_ui"
+		let parent_source_id=""
+		let event_code="e_1681986810376"
+		let event_params={"caller_name":"navigation_pl_view_req_and_res__bt_for_pl_req","event_desc":"BT for PL REQ","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_pl_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":"","change_detection":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation pl view req and res"
+	navigation_pl_view_req_and_res__bt_for_pl_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_pl_view_req_and_res"
+		let destn_id="response_ui"
+		let parent_source_id=""
+		let event_code="e_1681986861755"
+		let event_params={"caller_name":"navigation_pl_view_req_and_res__bt_for_pl_res","event_desc":"BT for PL RES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_pl_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":"","change_detection":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation pl view req and res"
+	navigation_pl_view_req_and_res__sp_for_pl_req_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_pl_view_req_and_res"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1681988367729"
+		let event_params={"caller_name":"navigation_pl_view_req_and_res__sp_for_pl_req_res","event_desc":"SP for PL req res","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_pl_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1681987841934"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "outward overlay failures list"
+	outward_overlay_failures_list__sp_for_op_api_failure_list() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="outward_overlay_failures_list"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1681988036898"
+		let event_params={"caller_name":"outward_overlay_failures_list__sp_for_op_api_failure_list","event_desc":"SP for OP API Failure list","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"outward_overlay_failures_list","raiseparam":{"profile_code":"BTL_1304_1681986243547"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "outward overlay failures list"
+	outward_overlay_failures_list__tbc_for_pl_pie_chart() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="outward_overlay_failures_list"
+		let destn_id="navigation_pl_pie_chart"
+		let parent_source_id=""
+		let event_code="e_1681990066407"
+		let event_params={"caller_name":"outward_overlay_failures_list__tbc_for_pl_pie_chart","event_desc":"TBC for PL Pie chart","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"outward_overlay_failures_list","raiseparam":{}}
+		let handler_code="trigger_button_click"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "outward overlay failures chart"
+	outward_overlay_failures_chart__brfq_for_pl_list() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="outward_overlay_failures_chart"
+		let destn_id="overlay_failure_detail_list"
+		let parent_source_id=""
+		let event_code="e_1681988309553"
+		let event_params={"caller_name":"outward_overlay_failures_chart__brfq_for_pl_list","event_desc":"BRFQ for PL List","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"outward_overlay_failures_chart","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"}}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_42","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1681998435687","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard Overlay PLOG MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"CREATEDDATEMILISEC","alias_name":"","mq_id":"MQ_1681997072655","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1681997073103","date_format":false},{"column_name":"V_CODE","alias_name":"","mq_id":"MQ_1681997073327","date_format":false},{"column_name":"RESPONSE_CODE","alias_name":"","mq_id":"MQ_1681997130782","date_format":false},{"column_name":"MSG_ID","alias_name":"","mq_id":"MQ_1681997169493","date_format":false}],"joins":[]},"eq_text":"select Pending_Detais,  REVERSAL_DESCRIPTION,  T24_RETURN_DESCRIPTION,  CBUAE_RETURN_DESCRIPTION,  NPSSTPL_ID,  MSG_ID,  UETR,  NPSSTRRD_REFNO,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESPONSE_CODE,  PROCESS_REF_NO,  RESPONSE_DATA,  CREATED_DATE,  CREATEDDATEMILISEC,  API_PROCESS_STATUS,  API_STATUS,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  T24_RETURN_CODE,  CBUAE_RETURN_CODE,  REVERSAL_CODE,  REVERSAL_DESC,  T24_RETURN_DESC,  CBUAE_RETURN_DESC,  TENANT_ID,  DT_CODE,  DTT_CODE,  V_CODE from  (  select   A.NPSSTPL_ID,   A.MSG_ID,   A.UETR,   A.NPSSTRRD_REFNO,   A.PROCESS_NAME,   A.PROCESSING_SYSTEM,   A.RESPONSE_CODE,   A.PROCESS_REF_NO,   A.RESPONSE_DATA,   TO_CHAR(A.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as CREATEDDATEMILISEC,   A.CREATED_DATE,   A.PROCESS_STATUS as API_PROCESS_STATUS,   A.STATUS as API_STATUS,   A.DT_CODE,   A.DTT_CODE,   A.TENANT_ID,   A.REQUEST_DATA_JSON,   A.RESPONSE_DATA_JSON,   A.T24_RETURN_CODE,   A.ADDITIONAL_INFO,   A.V_CODE,   T24RC.RETURN_DESCRIPTION as T24_RETURN_DESC,   CONCAT(A.T24_RETURN_CODE, '-', T24RC.RETURN_DESCRIPTION) as T24_RETURN_DESCRIPTION,   A.CBUAE_RETURN_CODE,   CBUAERC.RETURN_DESCRIPTION as CBUAE_RETURN_DESC,   CONCAT(A.CBUAE_RETURN_CODE, '-', CBUAERC.RETURN_DESCRIPTION) as CBUAE_RETURN_DESCRIPTION,   A.REVERSAL_CODE,   CCD.CD_DESCRIPTION as REVERSAL_DESC,   CONCAT(A.REVERSAL_CODE, '-', CCD.CD_DESCRIPTION) as REVERSAL_DESCRIPTION,   case    when A.status in ('OP_AC_VAL_FAILED', 'OP_AC_MAND_VAL_FAILED', 'OP_AC_DUPL_VAL_FAILED', 'OP_AC_PCODE_VAL_FAILED', 'OP_AC_PBANK_VAL_FAILED')  and to_date(to_char(A.created_date , 'yyyy-mm-dd' ), 'yyyy-mm-dd' ) = current_date then 'IBAN_Failures'    when A.status in ('OP_P2P_SENDER_IBAN_FAILED', 'OP_P2P_PAYMENT_FAILED', 'OP_P2P_POSTING_FAILURE', 'OP_P2P_POSTING_SUSPICIOUS') and to_date(to_char(A.created_date , 'yyyy-mm-dd' ), 'yyyy-mm-dd' ) = current_date then 'P2P_Failures'    when A.status in ('OP_P2B_FUND_UNFREEZED', 'OP_P2B_PAYMENT_FAILED', 'OP_P2B_FUND_RES_FAILURE', 'OP_P2B_FUND_RES_SUSPICIOUS', 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_FUND_UNFR_SUSPICIOUS', 'OP_P2B_FUND_AUTH_FAILURE', 'OP_P2B_FUND_AUTH_SUSPICIOUS') and to_date(to_char(A.created_date , 'yyyy-mm-dd' ), 'yyyy-mm-dd' ) = current_date then 'P2B_Failures'    else 'OTHER'   end as Pending_Detais  from   NPSS_TRN_PROCESS_LOG A  left join CORE_NC_CODE_DESCRIPTIONS CCD on   CCD.CD_CODE = A.REVERSAL_CODE   and CCD.CD_CATEGORY = 'REVERSAL_REASON_IDENTIFIER_CODE'   and CCD.NEED_SYNC = 'Y'  left join CORE_NC_RETURN_CODES T24RC on   T24RC.RETURN_CODE = A.T24_RETURN_CODE   and T24RC.PROCESSING_SYSTEM = 'T24'   and T24RC.NEED_SYNC = 'Y'  left join CORE_NC_RETURN_CODES CBUAERC on   CBUAERC.RETURN_CODE = A.CBUAE_RETURN_CODE   and CBUAERC.PROCESSING_SYSTEM = 'CBUAE'   and CBUAERC.NEED_SYNC = 'Y'  order by   A.NPSSTPL_ID desc) V where Pending_Detais <> 'OTHER'$AND"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard Overlay PLOG CCD","filter":[{"filter_name":"Pending_Detais","binding_name":"Pending_Detais","binding_value":"","source_name":"Pending_Detais","source_value":"","source_type":"LOCAL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"CREATEDDATEMILISEC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Validation Code","target_column":"V_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Error Code","target_column":"RESPONSE_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Id","target_column":"MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation pl view failure"
+	navigation_pl_view_failure__sp_for_pl_view_filure() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_pl_view_failure"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1681988431157"
+		let event_params={"caller_name":"navigation_pl_view_failure__sp_for_pl_view_filure","event_desc":"SP for PL View filure","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_pl_view_failure","raiseparam":{"profile_code":""}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation pl view failure"
+	navigation_pl_view_failure__bt_for_view_failure_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_pl_view_failure"
+		let destn_id="view_failure_ui"
+		let parent_source_id=""
+		let event_code="e_1681988522515"
+		let event_params={"caller_name":"navigation_pl_view_failure__bt_for_view_failure_ui","event_desc":"BT for view failure ui","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_pl_view_failure","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":"","change_detection":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "single pl back ui back"
+	single_pl_back_ui_back__sp_for_single_pl_back_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="single_pl_back_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1681988597472"
+		let event_params={"caller_name":"single_pl_back_ui_back__sp_for_single_pl_back_btn","event_desc":"SP for single pl back btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"single_pl_back_ui_back","raiseparam":{"profile_code":"BTL_1304_1681986243547"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation pl bar chart"
+	navigation_pl_bar_chart__brfq_for_op_overlay_failure_pie_chart() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_pl_bar_chart"
+		let destn_id="outward_overlay_failures_chart"
+		let parent_source_id=""
+		let event_code="e_1681989885362"
+		let event_params={"caller_name":"navigation_pl_bar_chart__brfq_for_op_overlay_failure_pie_chart","event_desc":"BRFQ for OP overlay Failure Pie Chart","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_pl_bar_chart","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"}}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_41","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1681998395232","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard Overlay Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Pending_Detais","alias_name":"","mq_id":"MQ_1681995973836","date_format":false},{"column_name":"p_count","alias_name":"","mq_id":"MQ_1681995974187","date_format":false}],"joins":[]},"eq_text":"select  X.Pending_Detais,  x.p_count,  X.Details from  (select  details,  coalesce(sum(res.IBAN_Failures), 0::numeric) as IBAN_Failures,  coalesce(sum(res.P2P_Failures), 0::numeric) as P2P_Failures,  coalesce(sum(res.P2B_Failures), 0::numeric) as P2B_Failures from  (  select   count (case    when ntpl.status in ('OP_AC_VAL_FAILED', 'OP_AC_MAND_VAL_FAILED', 'OP_AC_DUPL_VAL_FAILED', 'OP_AC_PCODE_VAL_FAILED', 'OP_AC_PBANK_VAL_FAILED') then ntpl.npsstpl_id    else null   end ) as IBAN_Failures,   count (case    when ntpl.status in ('OP_P2P_SENDER_IBAN_FAILED', 'OP_P2P_PAYMENT_FAILED', 'OP_P2P_POSTING_FAILURE', 'OP_P2P_POSTING_SUSPICIOUS') then ntpl.npsstpl_id    else null   end )as P2P_Failures,   count (case    when ntpl.status in ('OP_P2B_FUND_UNFREEZED', 'OP_P2B_PAYMENT_FAILED', 'OP_P2B_FUND_RES_FAILURE', 'OP_P2B_FUND_RES_SUSPICIOUS', 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_FUND_UNFR_SUSPICIOUS', 'OP_P2B_FUND_AUTH_FAILURE', 'OP_P2B_FUND_AUTH_SUSPICIOUS') then ntpl.npsstpl_id    else null   end) as P2B_Failures,   ntpl.status,   ntpl.tenant_id ,   'Overlay Failures' as details  from   npss_trn_process_log ntpl  where   to_date(to_char(ntpl.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE  group by   status,   tenant_id )res   $WHERE group by  res.details) AB cross join lateral( values ('IBAN_Failures', AB.IBAN_Failures, AB.Details), ('P2P_Failures', AB.P2P_Failures, AB.Details), ('P2B_Failures', AB.P2B_Failures, AB.Details)) X ( Pending_Detais,  p_count,  Details ) where  p_count not in ('0')"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard Overlay Chart CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Pending_Detais","target_column":"Pending_Detais","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"p_count","target_column":"p_count","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation pl pie chart"
+	navigation_pl_pie_chart__brfq_for_op_overlay_failure_bar_chart() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_pl_pie_chart"
+		let destn_id="outward_overlay_failures_chart"
+		let parent_source_id=""
+		let event_code="e_1681989935261"
+		let event_params={"caller_name":"navigation_pl_pie_chart__brfq_for_op_overlay_failure_bar_chart","event_desc":"BRFQ for OP overlay Failure Bar Chart","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_pl_pie_chart","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"}}
+		let handler_code="bind_record_from_query"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_41","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1681998395232","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard Overlay Chart MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"Pending_Detais","alias_name":"","mq_id":"MQ_1681995973836","date_format":false},{"column_name":"p_count","alias_name":"","mq_id":"MQ_1681995974187","date_format":false}],"joins":[]},"eq_text":"select  X.Pending_Detais,  x.p_count,  X.Details from  (select  details,  coalesce(sum(res.IBAN_Failures), 0::numeric) as IBAN_Failures,  coalesce(sum(res.P2P_Failures), 0::numeric) as P2P_Failures,  coalesce(sum(res.P2B_Failures), 0::numeric) as P2B_Failures from  (  select   count (case    when ntpl.status in ('OP_AC_VAL_FAILED', 'OP_AC_MAND_VAL_FAILED', 'OP_AC_DUPL_VAL_FAILED', 'OP_AC_PCODE_VAL_FAILED', 'OP_AC_PBANK_VAL_FAILED') then ntpl.npsstpl_id    else null   end ) as IBAN_Failures,   count (case    when ntpl.status in ('OP_P2P_SENDER_IBAN_FAILED', 'OP_P2P_PAYMENT_FAILED', 'OP_P2P_POSTING_FAILURE', 'OP_P2P_POSTING_SUSPICIOUS') then ntpl.npsstpl_id    else null   end )as P2P_Failures,   count (case    when ntpl.status in ('OP_P2B_FUND_UNFREEZED', 'OP_P2B_PAYMENT_FAILED', 'OP_P2B_FUND_RES_FAILURE', 'OP_P2B_FUND_RES_SUSPICIOUS', 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_FUND_UNFR_SUSPICIOUS', 'OP_P2B_FUND_AUTH_FAILURE', 'OP_P2B_FUND_AUTH_SUSPICIOUS') then ntpl.npsstpl_id    else null   end) as P2B_Failures,   ntpl.status,   ntpl.tenant_id ,   'Overlay Failures' as details  from   npss_trn_process_log ntpl  where   to_date(to_char(ntpl.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE  group by   status,   tenant_id )res   $WHERE group by  res.details) AB cross join lateral( values ('IBAN_Failures', AB.IBAN_Failures, AB.Details), ('P2P_Failures', AB.P2P_Failures, AB.Details), ('P2B_Failures', AB.P2B_Failures, AB.Details)) X ( Pending_Detais,  p_count,  Details ) where  p_count not in ('0')"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard Overlay Chart CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Pending_Detais","target_column":"Pending_Detais","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"p_count","target_column":"p_count","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation pl back"
+	navigation_pl_back__rs_for_nav_pl_back() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_pl_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1681990165636"
+		let event_params={"caller_name":"navigation_pl_back__rs_for_nav_pl_back","event_desc":"RS for nav PL Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_pl_back","raiseparam":{}}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -1,4 +1,6 @@
 <div class="s_home_dashboard">
+<p_pl_req_res_layout [screen_instance]="this" [hidden]="!(current_profile=='p_pl_req_res_layout')"></p_pl_req_res_layout>
+<p_processlog_layout [screen_instance]="this" [hidden]="!(current_profile=='p_processlog_layout')"></p_processlog_layout>
 <p_transaction_list_layout [screen_instance]="this" [hidden]="!(current_profile=='p_transaction_list_layout')"></p_transaction_list_layout>
 <p_process_log_list_history_layout [screen_instance]="this" [hidden]="!(current_profile=='p_process_log_list_history_layout')"></p_process_log_list_history_layout>
 <p_view_tran_detail_layout [screen_instance]="this" [hidden]="!(current_profile=='p_view_tran_detail_layout')"></p_view_tran_detail_layout>

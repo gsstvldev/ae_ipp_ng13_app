@@ -7,20 +7,20 @@ Modified Date   : 2023-Apr-20 13:53 PM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
-Form Name       : Message Back UI--------------------------------------------------------------------------- */
+Form Name       : Navigation PL--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_message_back_ui',
-  templateUrl: './f_message_back_ui.component.html',
-  styleUrls: ['./f_message_back_ui.component.css'],
+  selector: 'f_navigation_pl',
+  templateUrl: './f_navigation_pl.component.html',
+  styleUrls: ['./f_navigation_pl.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_message_back_uiComponent implements OnInit {
+export class f_navigation_plComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_message_back_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_message_back_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_message_back_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_navigation_pl[control]==undefined) {
+      this.screen_instance[this.comp_id].f_navigation_pl[control] = {}
     }
-    this.screen_instance[this.comp_id].f_message_back_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_navigation_pl[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

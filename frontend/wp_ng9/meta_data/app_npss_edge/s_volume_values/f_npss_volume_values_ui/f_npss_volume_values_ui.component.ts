@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29109 
+Build ID        : 29190 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-19 8:19 AM 
+Modified Date   : 2023-Apr-21 8:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_volume_values
@@ -230,7 +230,7 @@ focustoelement(){
 		this.ctrl.fromtime.show = true
 		this.ctrl.fromtime.sub_content = ""
 		this.ctrl.fromtime.required = false
-		this.ctrl.fromtime.vld_rules = []
+		this.ctrl.fromtime.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.fromtime.targetcolumn_lower = "fromtime"
 		this.ctrl.fromtime.disabled = false
 		this.ctrl.fromtime.view_name = "f_npss_volume_values_ui"
@@ -268,7 +268,7 @@ focustoelement(){
 		this.ctrl.totime.show = true
 		this.ctrl.totime.sub_content = ""
 		this.ctrl.totime.required = false
-		this.ctrl.totime.vld_rules = []
+		this.ctrl.totime.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Enter the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.totime.targetcolumn_lower = "totime"
 		this.ctrl.totime.disabled = false
 		this.ctrl.totime.view_name = "f_npss_volume_values_ui"

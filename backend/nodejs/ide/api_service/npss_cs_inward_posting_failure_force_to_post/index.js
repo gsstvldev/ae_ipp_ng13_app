@@ -1105,7 +1105,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 var TakepostingRefno = `select  process_ref_no,status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs002'`
                                 ExecuteQuery1(TakepostingRefno, function (arrrefno) {
                                     if (arrrefno.length > 0) {
-                                        var cbsaccount = `select currency,account_number,company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${arrTranparamsObj.cdtr_iban}'`
+                                        var cbsaccount = `select account_officer,currency,account_number,company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${arrTranparamsObj.cdtr_iban}'`
                                         ExecuteQuery1(cbsaccount, function (arrcbsdata) {
                                             if (arrcbsdata.length > 0) {
                                                 var Checkdata = async () => {
@@ -1140,6 +1140,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     data: {
                                                                         "payload": {
                                                                             "force_post_flag": "Y",
+                                                                            "account_officer": arrcbsdata[0].account_officer || '',
                                                                             "ext_iden_retry_value": ext_ident_value || '',
                                                                             "internal_acc_no": arrcbsdata[0].account_number || '',
                                                                             "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',

@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 try {
@@ -156,25 +157,25 @@ try {
                         var hdrmsgid
                         var payment_processing_method 
                                                              
-                        if(arrprocesslog[0].process_group == 'P2P'){
+                        if(arrprocesslog.process_group == 'P2P'){
                             payment_processing_method =  "SCT_INITITATION" 
-                        }else if(arrprocesslog[0].process_group == 'P2B'){
+                        }else if(arrprocesslog.process_group == 'P2B'){
                             payment_processing_method =  "P2B_SCT_INITITATION" 
-                        }else if(arrprocesslog[0].process_group == 'IBAN'){
+                        }else if(arrprocesslog.process_group == 'IBAN'){
                             payment_processing_method = "AC_AC_IBAN"      
                         }else{
                             payment_processing_method = ''
                         }
-                        if (arrprocesslog[0].category_purpose_prty == null || arrprocesslog[0].category_purpose_prty == '') {
+                        if (arrprocesslog.category_purpose_prty == null || arrprocesslog.category_purpose_prty == '') {
                             category_prty = 'MIS'
                         } else {
-                            category_prty = arrprocesslog[0].category_purpose_prty
+                            category_prty = arrprocesslog.category_purpose_prty
                         }
-                        if (arrprocesslog[0].hdr_msg_id != null) {
-                            if (arrprocesslog[0].hdr_msg_id.length > 8) {
-                                hdrmsgid = arrprocesslog[0].hdr_msg_id.slice(0, 8) + moment().format("DDMMYYYYhhmmss")
+                        if (arrprocesslog.hdr_msg_id != null) {
+                            if (arrprocesslog.hdr_msg_id.length > 8) {
+                                hdrmsgid = arrprocesslog.hdr_msg_id.slice(0, 8) + moment().format("DDMMYYYYhhmmss")
                             } else {
-                                hdrmsgid = arrprocesslog[0].hdr_msg_id + moment().format("DDMMYYYYhhmmss")
+                                hdrmsgid = arrprocesslog.hdr_msg_id + moment().format("DDMMYYYYhhmmss")
                             }
                         } else {
                             hdrmsgid = ''
@@ -191,31 +192,31 @@ try {
                             method: 'POST',
                             json: {
                                 "hdr_msg_id": hdrmsgid,
-                                "hdr_total_amount": arrprocesslog[0].hdr_total_amount || '',
+                                "hdr_total_amount": arrprocesslog.hdr_total_amount || '',
                                 "value_date": moment().format('YYYY-MM-DD'),
-                                "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
-                                "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
-                                "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
-                                "uetr": arrprocesslog[0].uetr || '',
-                                "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
-                                "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
-                                "dbtr_prvt_id": arrprocesslog[0].dbtr_prvt_id || '',
-                                "ext_org_id_code": arrprocesslog[0].ext_org_id_code || '',
-                                "issuer_type_code": arrprocesslog[0].issuer_type_code || '',
-                                "dbtr_document_id": arrprocesslog[0].dbtr_document_id || '',
-                                "dbtr_birth_date": arrprocesslog[0].dbtr_birth_date ? moment(arrprocesslog[0].dbtr_birth_date).format('YYYY-MM-DD') : '',
-                                "dbtr_city_birth": arrprocesslog[0].dbtr_city_birth || '',
-                                "dbtr_country": arrprocesslog[0].dbtr_country || '',
-                                "ext_person_id_code": arrprocesslog[0].ext_person_id_code || '',
-                                "dbtr_other_issuer": arrprocesslog[0].dbtr_other_issuer || '',
-                                "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
-                                "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
-                                "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
-                                "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
-                                "remittance_information": arrprocesslog[0].remittance_info || '',
-                                "category_purpose": arrprocesslog[0].category_purpose || '',
-                                "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
+                                "dr_sort_code": arrprocesslog.dr_sort_code || '',
+                                "payment_endtoend_id": arrprocesslog.payment_endtoend_id || '',
+                                "tran_ref_id": arrprocesslog.tran_ref_id || '',
+                                "uetr": arrprocesslog.uetr || '',
+                                "intrbk_sttlm_amnt": arrprocesslog.intrbk_sttlm_amnt || '',
+                                "dbtr_acct_name": arrprocesslog.dbtr_acct_name || '',
+                                "dbtr_prvt_id": arrprocesslog.dbtr_prvt_id || '',
+                                "ext_org_id_code": arrprocesslog.ext_org_id_code || '',
+                                "issuer_type_code": arrprocesslog.issuer_type_code || '',
+                                "dbtr_document_id": arrprocesslog.dbtr_document_id || '',
+                                "dbtr_birth_date": arrprocesslog.dbtr_birth_date ? moment(arrprocesslog.dbtr_birth_date).format('YYYY-MM-DD') : '',
+                                "dbtr_city_birth": arrprocesslog.dbtr_city_birth || '',
+                                "dbtr_country": arrprocesslog.dbtr_country || '',
+                                "ext_person_id_code": arrprocesslog.ext_person_id_code || '',
+                                "dbtr_other_issuer": arrprocesslog.dbtr_other_issuer || '',
+                                "dbtr_iban": arrprocesslog.dbtr_iban || '',
+                                "cr_sort_code": arrprocesslog.cr_sort_code || '',
+                                "cdtr_acct_name": arrprocesslog.cdtr_acct_name || '',
+                                "cdtr_iban": arrprocesslog.cdtr_iban || '',
+                                "cr_acct_identification": arrprocesslog.cr_acct_identification || '',
+                                "remittance_information": arrprocesslog.remittance_info || '',
+                                "category_purpose": arrprocesslog.category_purpose || '',
+                                "dbtr_acct_no": arrprocesslog.dbtr_account_no || '',
                                 "category_purpose_prty": category_prty || '',
                                 "payment_processing_method": payment_processing_method || ''
 
@@ -310,6 +311,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29109 
+Build ID        : 29190 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-19 8:19 AM 
+Modified Date   : 2023-Apr-21 8:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_r_message_detail
@@ -29,7 +29,7 @@ export class s_r_message_detailComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_r_message_detail"
 	wftpa_id : string = "WFT_NPSS_P_1304_1678170595420_0"
 	cg_code : string = "CG_1304_1678175219237"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID"}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []

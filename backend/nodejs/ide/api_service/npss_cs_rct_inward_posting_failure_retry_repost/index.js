@@ -1098,13 +1098,13 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                    function CallT24Posting(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
+                 function CallT24Posting(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var TakepostingRefno = `select  process_ref_no,status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs002'`
                                 ExecuteQuery1(TakepostingRefno, function (arrrefno) {
                                     if (arrrefno.length > 0) {
-                                        var cbsaccount = `select currency,account_number,company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${arrTranparamsObj.cdtr_iban}'`
+                                        var cbsaccount = `select account_officer,currency,account_number,company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${arrTranparamsObj.cdtr_iban}'`
                                         ExecuteQuery1(cbsaccount, function (arrcbsdata) {
                                             if (arrcbsdata.length > 0) {
                                                 var Checkdata = async () => {
@@ -1138,6 +1138,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     batch_name: "CR-CBS-POSTING-Q",
                                                                     data: {
                                                                         "payload": {
+                                                                            "account_officer": arrcbsdata[0].account_officer || '',
                                                                             "ext_iden_retry_value": ext_ident_value || '',
                                                                             "internal_acc_no": arrcbsdata[0].account_number || '',
                                                                             "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',

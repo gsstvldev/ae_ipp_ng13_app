@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
 try {
     /*   Created By :Daseen
@@ -45,7 +46,7 @@ try {
                 Reason for : changes in auth payload and calling pac04 alone 29/03/2023
                 Reason for : ADDING DEALREFNO in pac04 alone 31/03/2023
                 Reason for : Checking Cust Spl Rate 19/04/2023
-                 Reason for : Adding Prepaid and Credit Card implementation 20/04/2023
+                 Reason for : Adding Prepaid and Credit Card implementation 21/04/2023
     */
     var serviceName = 'NPSS IP REV Ret Auth PACS004';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -1242,13 +1243,10 @@ try {
                       if (CheckAlredyApiCalled.Callapi == 'Call ELPASO Posting') {
                          ElpasoApi = await CallPrepaidEplapsoApi(arrprocesslog, arrreturncode, screenName, lclinstrm, extIdentValue, reversalNo, apitype, Amount)
                          if (ElpasoApi.status == 'SUCCESS' || ElpasoApi.status == 'Success') {
-                            T24Api = await CallPrepaidT24Api(arrprocesslog, arrreturncode, screenName, lclinstrm, extIdentValue, reversalNo, apitype, Amount)
-                            if (T24Api.status == 'SUCCESS' || T24Api.status == 'Success') {
+                           
+                           
                                Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url)
-                            } else {
-                               ApiVal = 'Prepaid Card Pool Posting'
-                               Handleerror = await SendErrormsg(T24Api, ApiVal)
-                            }
+                            
                          } else {
                             ApiVal = 'Prepaid Card Posting'
                             Handleerror = await SendErrormsg(ElpasoApi, ApiVal)
@@ -1268,13 +1266,9 @@ try {
                       if (CheckAlredyApiCalled.Callapi == 'Call ELPASO Posting') {
                          ElpasoApi = await CallCreditEplapsoApi(arrprocesslog, arrreturncode, screenName, lclinstrm, extIdentValue, reversalNo, apitype, Amount)
                          if (ElpasoApi.status == 'SUCCESS' || ElpasoApi.status == 'Success') {
-                            T24Api = await CallCreditT24Api(arrprocesslog, arrreturncode, screenName, lclinstrm, extIdentValue, reversalNo, apitype, Amount)
-                            if (T24Api.status == 'SUCCESS' || T24Api.status == 'Success') {
+                          
                                Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status)
-                            } else {
-                               ApiVal = 'Credit Card Pool Posting'
-                               Handleerror = await SendErrormsg(T24Api)
-                            }
+                            
                          } else {
                             ApiVal = 'Credit Card Posting'
                             Handleerror = await SendErrormsg(ElpasoApi, ApiVal)
@@ -1893,6 +1887,7 @@ try {
  
  
  
+
 
 
 });

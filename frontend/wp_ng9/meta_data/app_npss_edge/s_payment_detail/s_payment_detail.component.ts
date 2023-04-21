@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29203 
+Build ID        : 29202 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-21 11:19 AM 
+Modified Date   : 2023-Apr-21 14:6 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_detail
@@ -235,6 +235,7 @@ export class s_payment_detailComponent implements OnInit,AfterViewInit {
 		this.page_load__de_for_call_api_btn_from_pg()
 		this.page_load__he_on_page_laod_to_call_api_btn()
 		this.page_load__he_for_fetch_trg()
+		this.page_load__e_1682080474848()
 	}
 
 	//Handler for INTERNAL event of "cf for pl"
@@ -309,6 +310,7 @@ export class s_payment_detailComponent implements OnInit,AfterViewInit {
 		this.request__svtm_from_list()
 		this.request__ee_for_view_res()
 		this.request__tbc_for_view_res()
+		this.request__e_1682080488160()
 	}
 
 	//Handler for INTERNAL event of "svm for checked change"
@@ -461,6 +463,27 @@ export class s_payment_detailComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1682080474848() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_export_as_pdf"
+		let parent_source_id=""
+		let event_code="e_1682080474848"
+		let event_params={"caller_name":"page_load__e_1682080474848","event_desc":"E_1682080474848","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -847,6 +870,27 @@ export class s_payment_detailComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "request"
+	request__e_1682080488160() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="request"
+		let destn_id="navigation_ui_export_as_pdf"
+		let parent_source_id=""
+		let event_code="e_1682080488160"
+		let event_params={"caller_name":"request__e_1682080488160","event_desc":"E_1682080488160","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"request","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

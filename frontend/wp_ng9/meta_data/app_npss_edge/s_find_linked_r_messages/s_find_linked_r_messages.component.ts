@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29203 
+Build ID        : 29202 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-21 11:19 AM 
+Modified Date   : 2023-Apr-21 14:6 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_find_linked_r_messages
@@ -268,7 +268,7 @@ export class s_find_linked_r_messagesComponent implements OnInit,AfterViewInit {
 
 	//Handler for CHECKED_CHANGED event of "request"
 	request__checked_changed(peventcontext){
-		this.request__svm_for_checked_change()
+		this.request__svm_for_checked_change(peventcontext)
 		this.request__ee_for_call_api_btn(peventcontext)
 	}
 
@@ -694,14 +694,15 @@ export class s_find_linked_r_messagesComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for CHECKED_CHANGED event of "request"
-	request__svm_for_checked_change() { 
+	request__svm_for_checked_change(peventcontext) { 
 		let Dest_Is_ctrl=true
-		
+		let eventcontext =["dont call"]
+		if(eventcontext.indexOf(peventcontext)==-1) return true;
 		let source_id="request"
 		let destn_id="request"
 		let parent_source_id=""
 		let event_code="e_1677321588412"
-		let event_params={"caller_name":"request__svm_for_checked_change","event_desc":"SVM for Checked Change","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"request","raiseparam":{}}
+		let event_params={"caller_name":"request__svm_for_checked_change","event_desc":"SVM for Checked Change","event_type":"CHECKED_CHANGED","caller_event_context":"dont call","root_source_id":"request","raiseparam":{},"eventcontext":["dont call"]}
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_checked_change__cc_for_show_hide_on_list,"
 		let event_data={"request":{"e_1677321588412":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_3","event_code":"E_1677321588412","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"Core API Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"MULTI","column_name":"NPSSCAPL_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSCAPL_ID","setd3name":"NPSSCAPL_ID"},{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"},{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}

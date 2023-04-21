@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 /*  Created By :sIVA hARISH
@@ -74,7 +75,7 @@ try {
                                 if (arrrule.length > 0) {
                                     success_process_status = arrrule[0].success_process_status;
                                     success_status = arrrule[0].success_status;
-                                    var TakedatafrmTrn = `select * from npss_transactions where npsst_id = '${params.Id}'`
+                                    var TakedatafrmTrn = `select fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identi,* from npss_transactions where npsst_id = '${params.Id}'`
 
                                     ExecuteQuery1(TakedatafrmTrn, async function (arrdata) {
                                         if (arrdata.length > 0) {
@@ -420,8 +421,8 @@ try {
                                if (FrmIban == '564' || FrmIban == 564) {
                                   UpdateTranDB(success_process_status,success_status,arrprocesslog,PRCT_ID)
                                } else {
-                                  if (arrprocesslog[0].cr_acct_identification && arrprocesslog[0].cr_acct_id_code == 'AIIN') {
-                                     var TakeacctIden = arrprocesslog[0].cr_acct_identification.substring(0, 6)
+                                  if (arrprocesslog[0].cr_acct_identi && arrprocesslog[0].cr_acct_id_code == 'AIIN') {
+                                     var TakeacctIden = arrprocesslog[0].cr_acct_identi.substring(0, 6)
                                      var checkCard = `select * from CORE_NC_CARD_BIN_SETUP where bin_number = '${TakeacctIden}' and need_sync = 'Y'`
                                      ExecuteQuery1(checkCard, function (arrCradType) {
                                         if (arrCradType.length) {
@@ -440,16 +441,16 @@ try {
                                }
           
                             } else {
-                               if (arrprocesslog[0].cr_acct_identification && arrprocesslog[0].cr_acct_id_code == 'AIIN') {
-                                  var TakeacctIden1 = arrprocesslog[0].cr_acct_identification.substring(0, 6)
+                               if (arrprocesslog[0].cr_acct_identi && arrprocesslog[0].cr_acct_id_code == 'AIIN') {
+                                  var TakeacctIden1 = arrprocesslog[0].cr_acct_identi.substring(0, 6)
                                   var checkCard1 = `select * from CORE_NC_CARD_BIN_SETUP where bin_number = '${TakeacctIden1}' and need_sync = 'Y'`
                                   ExecuteQuery1(checkCard1, function (arrCradType) {
                                      if (arrCradType.length) {
                                         UpdateTranDB(success_process_status,success_status,arrprocesslog,PRCT_ID)
           
                                      } else {
-                                        objresponse.status = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden
-                                        objresponse.errdata = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden
+                                        objresponse.status = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden1
+                                        objresponse.errdata = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden1
                                         sendResponse(null, objresponse)
                                      }
           
@@ -608,6 +609,7 @@ try {
     reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
 }
 })
+
 
 
 

@@ -1309,18 +1309,24 @@ try {
                            Takecount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('IP_RCT_REV_CC_POSTING_SUCCESS','IP_RCT_REV_CC_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
                         }
                         ExecuteQuery1(Takecount, function (arrCount) {
-                           if (arrCount[0].counts.length == 1) {
-                              var count = Number(arrCount[0].counts)
-                              count++
-                              parameter.reverseId = arrRevno[0].process_ref_no + '.0' + count
-                              resolve(parameter)
-                           } else {
-                              var count = Number(arrCount[0].counts)
-                              count++
-                              parameter.reverseId = arrRevno[0].process_ref_no + '.' + count
-                              resolve(parameter)
-                           }
-                        })
+                            if(apicalls == 1 && arrCount[0].counts == 0){
+                                parameter.reverseId = arrRevno[0].process_ref_no
+                                resolve(parameter)
+                            }else{
+                                if (arrCount[0].counts.length == 1) {
+                                    var count = Number(arrCount[0].counts)
+                                    count++
+                                    parameter.reverseId = arrRevno[0].process_ref_no + '.0' + count
+                                    resolve(parameter)
+                                 } else {
+                                    var count = Number(arrCount[0].counts)
+                                    count++
+                                    parameter.reverseId = arrRevno[0].process_ref_no + '.' + count
+                                    resolve(parameter)
+                                 }
+                            }
+                            
+                         })
 
                      } else {
                         objresponse.status = "FAILURE"

@@ -131,14 +131,19 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                           }
 
-
+                                          var InsertTable = await ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode, arrurlResult)
                                           if (apicalls.apitype == 1 || apicalls.apitype == 2) { //For prepaid and credit only state change in maker level
-                                             let Statechange = await Updcrdprd(arrprocesslog,final_process_status,final_status,PRCT_ID)
+                                            if(InsertTable.length > 0){
+                                                    let Statechange = await Updcrdprd(arrprocesslog,final_process_status,final_status,PRCT_ID)
+                                                }else{
+                                                    objresponse.status = "Error in Table Insert"
+                                                    sendResponse(null, objresponse)
+                                                }
                                           }
 
 
 
-                                          var InsertTable = await ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode, arrurlResult)
+                                          
                                           if (InsertTable.length > 0) {
                                              let runFun = async () => {
                                                 // chkapicall = 0 --> Resurve Fund api call

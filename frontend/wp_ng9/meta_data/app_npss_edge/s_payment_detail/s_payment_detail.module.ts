@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29190 
+Build ID        : 29203 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-21 8:9 AM 
+Modified Date   : 2023-Apr-21 11:19 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_detail
@@ -23,6 +23,7 @@ import {npss_cs_daily_liquidity_position_responseModule} from '../../../custom_w
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_cs_payment_detaiModule} from '../../../custom_widget/npss_cs_payment_detai/npss_cs_payment_detai.module'
 import {npss_cs_liquidity_position_responseModule} from '../../../custom_widget/npss_cs_liquidity_position_response/npss_cs_liquidity_position_response.module'
+import {npss_cs_export_pdfModule} from '../../../custom_widget/npss_cs_export_pdf/npss_cs_export_pdf.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -38,6 +39,7 @@ import { s_payment_detailRoutingModule } from './s_payment_detail.routing.module
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_npss_payment_detail_uiComponent } from './f_npss_payment_detail_ui/f_npss_payment_detail_ui.component'
 import { f_api_input_ui_actionsComponent } from './f_api_input_ui_actions/f_api_input_ui_actions.component'
+import { f_navigation_uiComponent } from './f_navigation_ui/f_navigation_ui.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
 import { f_npss_payment_details_srchComponent } from './f_npss_payment_details_srch/f_npss_payment_details_srch.component'
 
@@ -54,9 +56,9 @@ import { f_npss_payment_details_srchComponent } from './f_npss_payment_details_s
     OverlayPanelModule,
     
     s_payment_detailRoutingModule,
-    npss_cs_daily_liquidity_position_responseModule,torus_cs_show_hideModule,npss_cs_payment_detaiModule,npss_cs_liquidity_position_responseModule
+    npss_cs_daily_liquidity_position_responseModule,torus_cs_show_hideModule,npss_cs_payment_detaiModule,npss_cs_liquidity_position_responseModule,npss_cs_export_pdfModule
   ],
-  declarations: [s_payment_detailComponent,p_main_layoutComponent,f_npss_payment_detail_uiComponent,f_api_input_ui_actionsComponent,p_search_layoutComponent,f_npss_payment_details_srchComponent,],
+  declarations: [s_payment_detailComponent,p_main_layoutComponent,f_npss_payment_detail_uiComponent,f_api_input_ui_actionsComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_payment_details_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29190 
+Build ID        : 29203 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-21 8:9 AM 
+Modified Date   : 2023-Apr-21 11:19 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_list
@@ -344,7 +344,7 @@ focustoelement(){
 		this.ctrl.pl_status.show = true
 		this.ctrl.pl_status.sub_content = ""
 		this.ctrl.pl_status.required = false
-		this.ctrl.pl_status.vld_rules = []
+		this.ctrl.pl_status.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Select the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.pl_status.targetcolumn_lower = "pl_status"
 		this.ctrl.pl_status.disabled = false
 		this.ctrl.pl_status.view_name = "f_npss_payment_list_ui"

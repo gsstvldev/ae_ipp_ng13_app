@@ -22,7 +22,7 @@ export class npss_cs_payment_listService {
     //Default calling function
     fn_npss_cs_payment_list(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         var ClientParams: any = {}
-        var CtrlScope = screenInstance['api_details'].f_npss_payment_list_ui.model;
+        var CtrlScope = screenInstance['input_details'].f_npss_payment_list_ui.model;
         ClientParams.PROCESS_NAME = CtrlScope.PROCESS_NAME;
         ClientParams.SENDERBIC = CtrlScope.SENDERBIC;
         ClientParams.FROMDATE = CtrlScope.FROMDATE;

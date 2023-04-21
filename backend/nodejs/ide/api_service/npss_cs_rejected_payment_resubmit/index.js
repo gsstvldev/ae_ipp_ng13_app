@@ -7,12 +7,12 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
 
 try {
     /*   Created By :Siva Harish
     Created Date :20-02-2023
-    
+    Changes for Pacs008 Payload changes 21/04/2023
    
     */
     var serviceName = 'NPSS (CS) Rejected Payment Resubmit';
@@ -29,7 +29,7 @@ try {
     var mTranConn = "";
     var addquery = "";
     var reqAsync = require('async');
-
+    var moment = require('moment')
     var objresponse = {
         'status': 'FAILURE',
         'data': '',
@@ -70,68 +70,68 @@ try {
                         }
                         TempTranID = '(' + "'" + arrTranID.toString().split(',').join("','") + "'" + ')';
                         var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.RULE_CODE}'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                        var take_api_params = `select npsst_id,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no, ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id in ${TempTranID}`;
-                     
-                            ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
-                                if (arrurlResult.length) {
-                                    final_process_status = arrurlResult[0].success_process_status
-                                    final_status = arrurlResult[0].success_status
-                                    ExecuteQuery1(take_api_params, function (arrprocesslog) {
-                                        if (arrprocesslog.length) {
-                                            var Takepac008url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_MANUAL_INT_PAC008' and param_code='URL' and need_sync = 'Y'`;
-                                            ExecuteQuery1(Takepac008url, function (pac008url) {
-                                                if (pac008url.length > 0) {
-                                                    var pacurl = pac008url[0].param_detail
-                                                    reqAsync.forEachOfSeries(arrprocesslog, function (arrprocesslogObj, i, nextobjctfunc) {
-                                                        fn_doPac008apicall(pacurl, arrprocesslogObj, function (pac008api) {
-                                                            if (pac008api == 'SUCCESS') {
-                                                                var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${arrprocesslogObj.npsst_id}'`
-                                                                ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                    if (arrUpdTranTbl == 'SUCCESS') {
-                                                                        nextobjctfunc()
-                                                                    }else {
-                                                                        objresponse.status = "FAILURE"
-                                                                        objresponse.errdata = "No Data Updated in Transaction Table for Tran_Id  "+arrprocesslogObj.npsst_id
-                                                                        sendResponse(null, objresponse)
-            
-                                                                    }
-            
-                                                                })
-                                                            } else {
-                                                                objresponse.status = "FAILURE"
-                                                                objresponse.errdata = "Failure in Pac008 Api for Tran_Id   "+arrprocesslogObj.npsst_id
-                                                                sendResponse(null, objresponse)
-                                                            }
-            
-                                                        })
-                                                    },function(){
-                                                        objresponse.status = 'SUCCESS'
-                                                        sendResponse(null, objresponse)
+                        var take_api_params = `select npsst_id,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,ns.process_group,ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id in ${TempTranID}`;
+
+                        ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
+                            if (arrurlResult.length) {
+                                final_process_status = arrurlResult[0].success_process_status
+                                final_status = arrurlResult[0].success_status
+                                ExecuteQuery1(take_api_params, function (arrprocesslog) {
+                                    if (arrprocesslog.length) {
+                                        var Takepac008url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_MANUAL_INT_PAC008' and param_code='URL' and need_sync = 'Y'`;
+                                        ExecuteQuery1(Takepac008url, function (pac008url) {
+                                            if (pac008url.length > 0) {
+                                                var pacurl = pac008url[0].param_detail
+                                                reqAsync.forEachOfSeries(arrprocesslog, function (arrprocesslogObj, i, nextobjctfunc) {
+                                                    fn_doPac008apicall(pacurl, arrprocesslogObj, function (pac008api) {
+                                                        if (pac008api == 'SUCCESS') {
+                                                            var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${arrprocesslogObj.npsst_id}'`
+                                                            ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                if (arrUpdTranTbl == 'SUCCESS') {
+                                                                    nextobjctfunc()
+                                                                } else {
+                                                                    objresponse.status = "FAILURE"
+                                                                    objresponse.errdata = "No Data Updated in Transaction Table for Tran_Id  " + arrprocesslogObj.npsst_id
+                                                                    sendResponse(null, objresponse)
+
+                                                                }
+
+                                                            })
+                                                        } else {
+                                                            objresponse.status = "FAILURE"
+                                                            objresponse.errdata = "Failure in Pac008 Api for Tran_Id   " + arrprocesslogObj.npsst_id
+                                                            sendResponse(null, objresponse)
+                                                        }
+
                                                     })
-                                                } else {
-                                                    objresponse.status = "FAILURE"
-                                                    objresponse.errdata = "Pac008 Url Not Found"
+                                                }, function () {
+                                                    objresponse.status = 'SUCCESS'
                                                     sendResponse(null, objresponse)
-                                                }
-                                            })
+                                                })
+                                            } else {
+                                                objresponse.status = "FAILURE"
+                                                objresponse.errdata = "Pac008 Url Not Found"
+                                                sendResponse(null, objresponse)
+                                            }
+                                        })
 
 
-                                        } else {
-                                            objresponse.status = "FAILURE"
-                                            objresponse.errdata = "No Data found in Transaction table"
-                                            sendResponse(null, objresponse)
-                                        }
+                                    } else {
+                                        objresponse.status = "FAILURE"
+                                        objresponse.errdata = "No Data found in Transaction table"
+                                        sendResponse(null, objresponse)
+                                    }
 
-                                    })
-                                }
-                                else {
-                                    objresponse.status = "FAILURE"
-                                    objresponse.errdata = "No Data found in Workflow table"
-                                    sendResponse(null, objresponse)
-                                }
+                                })
+                            }
+                            else {
+                                objresponse.status = "FAILURE"
+                                objresponse.errdata = "No Data found in Workflow table"
+                                sendResponse(null, objresponse)
+                            }
 
-                            })
-                        
+                        })
+
 
 
 
@@ -152,6 +152,35 @@ try {
 
                 function fn_doPac008apicall(url, arrprocesslog, callbackapi) {
                     try {
+                        var category_prty
+                        var hdrmsgid
+                        var payment_processing_method 
+                                                             
+                        if(arrprocesslog[0].process_group == 'P2P'){
+                            payment_processing_method =  "SCT_INITITATION" 
+                        }else if(arrprocesslog[0].process_group == 'P2B'){
+                            payment_processing_method =  "P2B_SCT_INITITATION" 
+                        }else if(arrprocesslog[0].process_group == 'IBAN'){
+                            payment_processing_method = "AC_AC_IBAN"      
+                        }else{
+                            payment_processing_method = ''
+                        }
+                        if (arrprocesslog[0].category_purpose_prty == null || arrprocesslog[0].category_purpose_prty == '') {
+                            category_prty = 'MIS'
+                        } else {
+                            category_prty = arrprocesslog[0].category_purpose_prty
+                        }
+                        if (arrprocesslog[0].hdr_msg_id != null) {
+                            if (arrprocesslog[0].hdr_msg_id.length > 8) {
+                                hdrmsgid = arrprocesslog[0].hdr_msg_id.slice(0, 8) + moment().format("DDMMYYYYhhmmss")
+                            } else {
+                                hdrmsgid = arrprocesslog[0].hdr_msg_id + moment().format("DDMMYYYYhhmmss")
+                            }
+                        } else {
+                            hdrmsgid = ''
+                        }
+
+
                         var apiName = 'NPSS Pac008 Api'
                         var request = require('request');
                         var apiURL =
@@ -161,33 +190,34 @@ try {
                             timeout: 18000000,
                             method: 'POST',
                             json: {
-                                "hdr_msg_id": arrprocesslog.hdr_msg_id || '',
-                                "hdr_total_amount": arrprocesslog.hdr_total_amount || '',
-                                "value_date": arrprocesslog.value_date || '',
-                                "dr_sort_code": arrprocesslog.dr_sort_code || '',
-                                "payment_endtoend_id": arrprocesslog.payment_endtoend_id || '',
-                                "tran_ref_id": arrprocesslog.tran_ref_id || '',
-                                "uetr": arrprocesslog.uetr || '',
-                                "intrbk_sttlm_amnt": arrprocesslog.intrbk_sttlm_amnt || '',
-                                "dbtr_acct_name": arrprocesslog.dbtr_acct_name || '',
-                                "dbtr_prvt_id": arrprocesslog.dbtr_prvt_id || '',
-                                "ext_org_id_code": arrprocesslog.ext_org_id_code || '',
-                                "issuer_type_code": arrprocesslog.issuer_type_code || '',
-                                "dbtr_document_id": arrprocesslog.dbtr_document_id || '',
-                                "dbtr_birth_date": arrprocesslog.dbtr_birth_date || '',
-                                "dbtr_city_birth": arrprocesslog.dbtr_city_birth || '',
-                                "dbtr_country": arrprocesslog.dbtr_country || '',
-                                "ext_person_id_code": arrprocesslog.ext_person_id_code || '',
-                                "dbtr_other_issuer": arrprocesslog.dbtr_other_issuer || '',
-                                "dbtr_iban": arrprocesslog.dbtr_iban || '',
-                                "cr_sort_code": arrprocesslog.cr_sort_code || '',
-                                "cdtr_acct_name": arrprocesslog.cdtr_acct_name || '',
-                                "cdtr_iban": arrprocesslog.cdtr_iban || '',
-                                "cr_acct_identification": arrprocesslog.cr_acct_identification || '',
-                                "remittance_information": arrprocesslog.remittance_info || '',
-                                "category_purpose": arrprocesslog.category_purpose || '',
-                                "dbtr_acct_no": arrprocesslog.dbtr_account_no || '',
-                                "category_purpose_prty": arrprocesslog.category_purpose_prty || '',
+                                "hdr_msg_id": hdrmsgid,
+                                "hdr_total_amount": arrprocesslog[0].hdr_total_amount || '',
+                                "value_date": moment().format('YYYY-MM-DD'),
+                                "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
+                                "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
+                                "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
+                                "uetr": arrprocesslog[0].uetr || '',
+                                "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
+                                "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
+                                "dbtr_prvt_id": arrprocesslog[0].dbtr_prvt_id || '',
+                                "ext_org_id_code": arrprocesslog[0].ext_org_id_code || '',
+                                "issuer_type_code": arrprocesslog[0].issuer_type_code || '',
+                                "dbtr_document_id": arrprocesslog[0].dbtr_document_id || '',
+                                "dbtr_birth_date": arrprocesslog[0].dbtr_birth_date ? moment(arrprocesslog[0].dbtr_birth_date).format('YYYY-MM-DD') : '',
+                                "dbtr_city_birth": arrprocesslog[0].dbtr_city_birth || '',
+                                "dbtr_country": arrprocesslog[0].dbtr_country || '',
+                                "ext_person_id_code": arrprocesslog[0].ext_person_id_code || '',
+                                "dbtr_other_issuer": arrprocesslog[0].dbtr_other_issuer || '',
+                                "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
+                                "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
+                                "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
+                                "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
+                                "remittance_information": arrprocesslog[0].remittance_info || '',
+                                "category_purpose": arrprocesslog[0].category_purpose || '',
+                                "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
+                                "category_purpose_prty": category_prty || '',
+                                "payment_processing_method": payment_processing_method || ''
 
                             },
                             headers: {

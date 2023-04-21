@@ -17,7 +17,7 @@ export class npss_cs_find_linked_r_messagesService {
     //Default calling function
     fn_npss_cs_find_linked_r_messages(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         var ClientParams: any = {}
-        var Values = screenInstance['api_details'].f_npss_find_linked_r_message_ui.model;
+        var Values = screenInstance['input_details'].f_npss_find_linked_r_message_ui.model;
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
         ClientParams.PROD_CODE = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "PRODUCT_CODE");

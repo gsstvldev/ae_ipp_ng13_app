@@ -40,9 +40,9 @@ export class npss_cs_ip_rev_get_dealService {
             .subscribe((res: any) => {
                 if (res.data.status == 'SUCCESS') {
                     if (res.data.CustRate == 'YES') {
-                        var Controls = screenInstance['process_log_control_ui'].f_npss_reversal_plog_ui.model;
-                        Controls.memory49 = res.data.data.sell_rate
-                        Controls.memory48 = res.data.data.sell_margin
+                        var Controls = screenInstance['sell_margin_rate_ui'].f_sell_control_uicg.model;
+                        Controls.SELL_RATE = res.data.data.sell_rate
+                        Controls.SELL_MARGIN = res.data.data.sell_margin
  this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                     } else {
                         var dat = res.data.data;
@@ -60,9 +60,9 @@ export class npss_cs_ip_rev_get_dealService {
 
                } else {
                     if (res.data.CustRate == 'YES') {
-                        var Controls = screenInstance['process_log_control_ui'].f_npss_reversal_plog_ui.model;
-                        Controls.memory49 = ''
-                        Controls.memory48 = ''
+                        var Controls = screenInstance['sell_margin_rate_ui'].f_sell_control_uicg.model;
+                        Controls.SELL_RATE = ''
+                        Controls.SELL_MARGIN = ''
  this.dialogHelper.ShowErrorDialog(res.data.status)
                     } else {
                         var ctrlscope = screenInstance['deal_ui'].f_npss_reversal_deal_plog_ui.model;

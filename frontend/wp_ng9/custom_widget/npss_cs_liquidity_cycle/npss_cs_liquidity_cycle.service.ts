@@ -23,7 +23,7 @@ export class npss_cs_liquidity_cycleService {
     //Default calling function
     fn_npss_cs_liquidity_cycle(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         var ClientParams: any = {}
-        var CtrlScope = screenInstance['api_details'].f_npss_liq_cycle_ui.model;
+        var CtrlScope = screenInstance['input_details'].f_npss_liq_cycle_ui.model;
         ClientParams.PROCESS_NAME = CtrlScope.PROCESS_NAME;
         ClientParams.CURRENCY = CtrlScope.CURRENCY;
         ClientParams.ACCOUNTHOLDERBIC = CtrlScope.ACCOUNTHOLDERBIC;

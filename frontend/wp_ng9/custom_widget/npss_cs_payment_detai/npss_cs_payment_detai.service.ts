@@ -15,7 +15,7 @@ export class npss_cs_payment_detaiService {
         public dialogHelper: DialogService) { }
     //Default calling function
     fn_npss_cs_payment_detai(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
-        var CtrlScope = screenInstance['api_details'].f_npss_payment_detail_ui.model
+        var CtrlScope = screenInstance['input_details'].f_npss_payment_detail_ui.model
         var ClientParams: any = {}
         ClientParams.processName = CtrlScope.PROCESS_NAME
         ClientParams.senderbic = CtrlScope.SENDERBIC

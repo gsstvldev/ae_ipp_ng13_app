@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29180 
+Build ID        : 29188 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-21 7:21 AM 
+Modified Date   : 2023-Apr-21 7:55 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -722,8 +722,6 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.page_load__brfq_for_ip_list_from_pl()
 		this.page_load__brfq_for_op_list_from_pl()
 		this.page_load__e_1682000123345()
-		this.page_load__e_1682052606169()
-		this.page_load__e_1682052626849()
 	}
 
 	//Handler for INTERNAL event of "cf from pag load"
@@ -800,6 +798,11 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.navigation_view_tran__sp_for_view_detail_tran()
 		this.navigation_view_tran__brfq_for_vertical_tran_detail()
 		this.navigation_view_tran__brfq_vprdl()
+	}
+
+	//Handler for INTERNAL event of "sp for view detail tran"
+	sp_for_view_detail_tran__internal(){
+		this.sp_for_view_detail_tran__e_1682063584081()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation view process log"
@@ -961,6 +964,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	outward_overlay_failures_list__selection_changed(){
 		this.outward_overlay_failures_list__sp_for_op_api_failure_list()
 		this.outward_overlay_failures_list__tbc_for_pl_pie_chart()
+		this.outward_overlay_failures_list__e_1682063556378()
 	}
 
 	//Handler for SELECTION_CHANGED event of "outward overlay failures chart"
@@ -999,8 +1003,8 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.overlay_failure_detail_list__e_1682001966794()
 		this.overlay_failure_detail_list__e_1682001997400()
 		this.overlay_failure_detail_list__e_1682002026383()
-		this.overlay_failure_detail_list__se_for_pl_view_failure_btn()
-		this.overlay_failure_detail_list__se_for_pl_view_req_res_btn()
+		this.overlay_failure_detail_list__ee_for_pl_view_failure_btn()
+		this.overlay_failure_detail_list__ee_for_pl_view_req_res_btn()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1186,48 +1190,6 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_40","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1681998367336","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Home Dashboard Overlay List MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"details","alias_name":"","mq_id":"MQ_1681995039310","date_format":false},{"column_name":"IBAN_Failures","alias_name":"","mq_id":"MQ_1681995039657","date_format":false},{"column_name":"P2P_Failures","alias_name":"","mq_id":"MQ_1681995039937","date_format":false},{"column_name":"P2B_Failures","alias_name":"","mq_id":"MQ_1681995040545","date_format":false}],"joins":[]},"eq_text":"select  details,  coalesce(sum(res.IBAN_Failures), 0::numeric) as IBAN_Failures,  coalesce(sum(res.P2P_Failures), 0::numeric) as P2P_Failures,  coalesce(sum(res.P2B_Failures), 0::numeric) as P2B_Failures  from  (  select   count (case    when ntpl.status in ('OP_AC_VAL_FAILED', 'OP_AC_MAND_VAL_FAILED', 'OP_AC_DUPL_VAL_FAILED', 'OP_AC_PCODE_VAL_FAILED', 'OP_AC_PBANK_VAL_FAILED') then ntpl.npsstpl_id    else null   end ) as IBAN_Failures,   count (case    when ntpl.status in ('OP_P2P_SENDER_IBAN_FAILED', 'OP_P2P_PAYMENT_FAILED', 'OP_P2P_POSTING_FAILURE', 'OP_P2P_POSTING_SUSPICIOUS') then ntpl.npsstpl_id    else null   end )as P2P_Failures,   count (case    when ntpl.status in ('OP_P2B_FUND_UNFREEZED', 'OP_P2B_PAYMENT_FAILED', 'OP_P2B_FUND_RES_FAILURE', 'OP_P2B_FUND_RES_SUSPICIOUS', 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_FUND_UNFR_SUSPICIOUS', 'OP_P2B_FUND_AUTH_FAILURE', 'OP_P2B_FUND_AUTH_SUSPICIOUS') then ntpl.npsstpl_id    else null   end) as P2B_Failures,   ntpl.status,   ntpl.tenant_id ,   'Overlay Failures' as details  from   npss_trn_process_log ntpl  where   to_date(to_char(ntpl.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE  group by   status,   tenant_id   union all  (select   '0' as IBAN_Failures, '0'as P2P_Failures,  '0' as P2B_Failures,   ntpl.status,   ntpl.tenant_id ,   'Overlay Failures' as details  from   npss_trn_process_log ntpl  group by   status,   tenant_id  ))res $WHERE group by  res.details"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Home Dashboard Overlay List CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Details","target_column":"details","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"IBAN Failures","target_column":"IBAN_Failures","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"P2P Failures","target_column":"P2P_Failures","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"P2B Failures","target_column":"P2B_Failures","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__e_1682052606169() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_pl_view_failure"
-		let parent_source_id=""
-		let event_code="e_1682052606169"
-		let event_params={"caller_name":"page_load__e_1682052606169","event_desc":"E_1682052606169","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__e_1682052626849() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_pl_view_req_and_res"
-		let parent_source_id=""
-		let event_code="e_1682052626849"
-		let event_params={"caller_name":"page_load__e_1682052626849","event_desc":"E_1682052626849","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -1775,7 +1737,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let event_code="e_1678803572113"
 		let event_params={"caller_name":"navigation_view_tran__sp_for_view_detail_tran","event_desc":"SP for View Detail Tran","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_view_tran","raiseparam":{"profile_code":"BTL_1304_1678876095161"}}
 		let handler_code="show_profile"
-		let internals=""
+		let internals="sp_for_view_detail_tran__e_1682063584081,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -1822,6 +1784,27 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_27","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1678866785078","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Decr HST View Transaction MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"VALUE_DATE","alias_name":"","mq_id":"MQ_1673092056492","date_format":true},{"column_name":"CDTR_ACCT_NO","alias_name":"","mq_id":"MQ_1673092056684","date_format":false},{"column_name":"CDTR_ACCT_NAME","alias_name":"","mq_id":"MQ_1673092056908","date_format":false},{"column_name":"INTRBK_STTLM_AMNT","alias_name":"","mq_id":"MQ_1673092057076","date_format":false,"currency_format":true},{"column_name":"DBTR_ACCT_NO","alias_name":"","mq_id":"MQ_1673092057228","date_format":false},{"column_name":"DBTR_ACCT_NAME","alias_name":"","mq_id":"MQ_1673092057420","date_format":false},{"column_name":"DR_SORT_CODE","alias_name":"","mq_id":"MQ_1673092057588","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1673092057748","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1673092057924","date_format":false},{"column_name":"PROCESS_TYPE","alias_name":"","mq_id":"MQ_1673092127114","date_format":false},{"column_name":"HDR_MSG_ID","alias_name":"","mq_id":"MQ_1673092127282","date_format":false},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1673092127458","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1673092127626","date_format":false},{"column_name":"CHANNEL_PRODUCT","alias_name":"","mq_id":"MQ_1673092127778","date_format":false},{"column_name":"DBTR_PHONE_NO","alias_name":"","mq_id":"MQ_1673092127946","date_format":false},{"column_name":"DBTR_EMAIL_ID","alias_name":"","mq_id":"MQ_1673092128266","date_format":false},{"column_name":"DBTR_DOCUMENT_ID","alias_name":"","mq_id":"MQ_1673092128473","date_format":false},{"column_name":"DBTR_IBAN","alias_name":"","mq_id":"MQ_1673092236606","date_format":false},{"column_name":"CDTR_PHONE_NO","alias_name":"","mq_id":"MQ_1673092236782","date_format":false},{"column_name":"CDTR_EMAIL_ID","alias_name":"","mq_id":"MQ_1673092236942","date_format":false},{"column_name":"CDTR_DOCUMENT_ID","alias_name":"","mq_id":"MQ_1673092237110","date_format":false},{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1673092237270","date_format":false},{"column_name":"EXHF_ID","alias_name":"","mq_id":"MQ_1673092237447","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1673092237623","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1673092290325","date_format":false},{"column_name":"NPSST_ID","alias_name":"","mq_id":"MQ_1673092290485","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1673092290653","date_format":true},{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1673092290821","date_format":true},{"column_name":"MODIFIED_DATE_UTC","alias_name":"","mq_id":"MQ_1673092290981","date_format":false},{"column_name":"TENANT_ID","alias_name":"","mq_id":"MQ_1673092291149","date_format":false},{"column_name":"CLRSYSREF","alias_name":"","mq_id":"MQ_1673092291341","date_format":false},{"column_name":"DEPARTMENT_CODE","alias_name":"","mq_id":"MQ_1673092291501","date_format":false},{"column_name":"INTRBK_STTLM_CUR","alias_name":"","mq_id":"MQ_1673092354435","date_format":false},{"column_name":"ACCP_DATE_TIME","alias_name":"","mq_id":"MQ_1673092354603","date_format":false},{"column_name":"REMITTANCE_INFO","alias_name":"","mq_id":"MQ_1673092354779","date_format":false},{"column_name":"category_purpose","alias_name":"","mq_id":"MQ_1673092354947","date_format":false},{"column_name":"issuer_type_code","alias_name":"","mq_id":"MQ_1673092355115","date_format":false},{"column_name":"DBTR_PRVT_ID","alias_name":"","mq_id":"MQ_1673092355283","date_format":false},{"column_name":"DBTR_OTHER_ISSUER","alias_name":"","mq_id":"MQ_1673092355467","date_format":false},{"column_name":"CR_SORT_CODE","alias_name":"","mq_id":"MQ_1673092402433","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1673092402801","date_format":false},{"column_name":"CR_ACCT_IDENTIFICATION","alias_name":"","mq_id":"MQ_1673092403129","date_format":false}],"joins":[]},"eq_text":"select  NPSST_ID,  DATEMI,  ACCP_DATE_TIME,  DEPARTMENT_CODE,  CHANNEL_ID,  CHANNEL_PRODUCT,  CHANNEL_REFNO,  INTRBK_STTLM_CUR,  INTRBK_STTLM_AMNT,  EXHF_ID,  MODIFIED_DATE_UTC,  VALUE_DATE,  CREATED_DATE,  MODIFIED_DATE_UTC,  CDTR_ACCT_NO,  CDTR_ACCT_NAME,  fn_pcidss_decrypt(DBTR_ACCT_NO,$PCIDSS_KEY) as DBTR_ACCT_NO,  DBTR_ACCT_NAME,  DR_SORT_CODE,  CR_SORT_CODE,  UETR,  REMITTANCE_INFO,  category_purpose,  issuer_type_code,  HDR_MSG_ID,  PRODUCT_CODE,  CHANNEL_SUB_PRODUCT,  CHANNEL_TRAN_CODE,  PROCESS_TYPE,  DBTR_PHONE_NO,  DBTR_EMAIL_ID,  DBTR_DOCUMENT_ID,  DBTR_IBAN,  CDTR_PHONE_NO,  CDTR_EMAIL_ID,  CDTR_DOCUMENT_ID,  CDTR_IBAN,  CLRSYSREF,  PAYMENT_ENDTOEND_ID,  PROCESS_STATUS,  STATUS,  DT_CODE,  DTT_CODE,  TENANT_ID,  TS_ID,  LOCKED_BY,  LOCKED_BY_NAME,  VERSION_NO,  DBTR_PRVT_ID,  DBTR_OTHER_ISSUER,  fn_pcidss_decrypt(CR_ACCT_IDENTIFICATION,$PCIDSS_KEY) as CR_ACCT_IDENTIFICATION,  TRAN_REF_ID,  PROCESSING_SYSTEM from  (  select   A.NPSST_ID,   A.VALUE_DATE,   A.MODIFIED_DATE_UTC,   A.CREATED_DATE,   TO_CHAR(A.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   A.CDTR_ACCT_NO,   A.CDTR_ACCT_NAME,   A.INTRBK_STTLM_AMNT,   A.INTRBK_STTLM_CUR,   A.DBTR_ACCT_NO,   A.DBTR_ACCT_NAME,   A.DR_SORT_CODE,   A.CR_SORT_CODE,   A.DEPARTMENT_CODE,   A.UETR,   a.category_purpose,   A.issuer_type_code,   A.HDR_MSG_ID,   A.PRODUCT_CODE,   A.CHANNEL_ID,   A.CHANNEL_REFNO,   A.CHANNEL_PRODUCT,   A.CHANNEL_SUB_PRODUCT,   A.CHANNEL_TRAN_CODE,   A.PROCESS_TYPE,   A.DBTR_PHONE_NO,   A.DBTR_EMAIL_ID,   A.DBTR_DOCUMENT_ID,   A.DBTR_IBAN,   A.CDTR_PHONE_NO,   A.CDTR_EMAIL_ID,   A.CDTR_DOCUMENT_ID,   A.CDTR_IBAN,   A.CLRSYSREF,   A.PAYMENT_ENDTOEND_ID,   A.TRAN_REF_ID,   A.ACCP_DATE_TIME,   A.EXHF_ID,   A.REMITTANCE_INFO,   A.INWARD_FILE_NAME,   A.PROCESS_STATUS,   A.CBS_REF_NO,   A.STATUS,   A.DT_CODE,   A.DTT_CODE,   A.TENANT_ID,   A.VERSION_NO,   A.DBTR_PRVT_ID,   A.DBTR_OTHER_ISSUER,   A.CR_ACCT_IDENTIFICATION,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   A.PROCESSING_SYSTEM  from   NPSS_TRANSACTIONS A  left join TRANSACTION_SET TS on   TS.TRN_ID = A.NPSST_ID   and TS.DTT_CODE = A.DTT_CODE  order by   A.NPSST_ID desc) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Decr Vertical Payment CCD","filter":[{"filter_name":"NPSST_ID","binding_name":"NPSST_ID","binding_value":"","source_name":"MI_LEVEL_NPSST_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Tran Id","target_column":"NPSST_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Txn Value Date","target_column":"VALUE_DATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd-MM-yyyy HH:mm:ss\"","date_format":true},{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Department Code","target_column":"DEPARTMENT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Channel Id","target_column":"CHANNEL_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Channel Product","target_column":"CHANNEL_PRODUCT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Channel Refno","target_column":"CHANNEL_REFNO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount Account Currency","target_column":"INTRBK_STTLM_CUR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"INTRBK_STTLM_AMNT","alias_name":"","alignment":"Left","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Batch Id","target_column":"EXHF_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing System Ref No","target_column":"CLRSYSREF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E reference id","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Category Purpose","target_column":"category_purpose","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Issuer Type Code","target_column":"issuer_type_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Remittance Info","target_column":"REMITTANCE_INFO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Status","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "sp for view detail tran"
+	sp_for_view_detail_tran__e_1682063584081() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="sp_for_view_detail_tran"
+		let destn_id="navigation_pl_view_req_and_res"
+		let parent_source_id="navigation_view_tran"
+		let event_code="e_1682063584081"
+		let event_params={"caller_name":"sp_for_view_detail_tran__e_1682063584081","event_desc":"E_1682063584081","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_view_tran","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -3117,6 +3100,27 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "outward overlay failures list"
+	outward_overlay_failures_list__e_1682063556378() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="outward_overlay_failures_list"
+		let destn_id="navigation_pl_view_failure"
+		let parent_source_id=""
+		let event_code="e_1682063556378"
+		let event_params={"caller_name":"outward_overlay_failures_list__e_1682063556378","event_desc":"E_1682063556378","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"outward_overlay_failures_list","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for SELECTION_CHANGED event of "outward overlay failures chart"
 	outward_overlay_failures_chart__brfq_for_pl_list() { 
 		let Dest_Is_ctrl=true
@@ -3328,20 +3332,20 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "overlay failure detail list"
-	overlay_failure_detail_list__se_for_pl_view_failure_btn() { 
+	overlay_failure_detail_list__ee_for_pl_view_failure_btn() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="overlay_failure_detail_list"
 		let destn_id="navigation_pl_view_failure"
 		let parent_source_id=""
 		let event_code="e_1682052666780"
-		let event_params={"caller_name":"overlay_failure_detail_list__se_for_pl_view_failure_btn","event_desc":"SE for PL View failure btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"overlay_failure_detail_list","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
-		let handler_code="show_element"
+		let event_params={"caller_name":"overlay_failure_detail_list__ee_for_pl_view_failure_btn","event_desc":"EE for PL View failure btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"overlay_failure_detail_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -3349,20 +3353,20 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "overlay failure detail list"
-	overlay_failure_detail_list__se_for_pl_view_req_res_btn() { 
+	overlay_failure_detail_list__ee_for_pl_view_req_res_btn() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="overlay_failure_detail_list"
 		let destn_id="navigation_pl_view_req_and_res"
 		let parent_source_id=""
 		let event_code="e_1682052692336"
-		let event_params={"caller_name":"overlay_failure_detail_list__se_for_pl_view_req_res_btn","event_desc":"SE for PL View req res btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"overlay_failure_detail_list","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
-		let handler_code="show_element"
+		let event_params={"caller_name":"overlay_failure_detail_list__ee_for_pl_view_req_res_btn","event_desc":"EE for PL View req res btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"overlay_failure_detail_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

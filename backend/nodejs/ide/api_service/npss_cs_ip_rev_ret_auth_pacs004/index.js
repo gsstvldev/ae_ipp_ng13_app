@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
     
+    
 
 try {
     /*   Created By :Daseen
@@ -46,7 +47,7 @@ try {
                 Reason for : changes in auth payload and calling pac04 alone 29/03/2023
                 Reason for : ADDING DEALREFNO in pac04 alone 31/03/2023
                 Reason for : Checking Cust Spl Rate 19/04/2023
-                 Reason for : Adding Prepaid and Credit Card implementation 21/04/2023
+                 Reason for : Adding Prepaid and Credit Card implementation 22/04/2023
     */
     var serviceName = 'NPSS IP REV Ret Auth PACS004';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -125,7 +126,7 @@ try {
                                         // apicalls = 1 --> prepaid card api call
                                         // apicalls = 2 --> credit card api call
                                         if (params.roleId == '708' || params.roleId == 708 || params.roleId == '738' || params.roleId == 738) { //for checking prepaid or credit only for checker
-                                           apicalls = await checkprepaidorcredit(arrprocesslog, arrreturncode, params.screenName, lclinstrm, take_return_url,final_status,final_process_status)
+                                           apicalls = await checkprepaidorcredit(arrprocesslog, arrreturncode, params.screenName, lclinstrm, take_return_url,final_status,final_process_status,PRCT_ID)
                                         } else {
                                            apicalls = 0
                                         }
@@ -1133,7 +1134,7 @@ try {
  
  
              //function to check prepaid or credit
-             function checkprepaidorcredit(arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url,final_status,final_process_status) { //for checking prepid or credit card
+             function checkprepaidorcredit(arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url,final_status,final_process_status,PRCT_ID) { //for checking prepid or credit card
                 return new Promise((resolve, reject) => {
                    let apitype = {}
                    if (arrprocesslog[0].cdtr_iban) {
@@ -1142,7 +1143,7 @@ try {
                       if (FrmIban == '564' || FrmIban == 564) {
                          apitype.isiban = 'Y'
                          apitype.card_sub_type = 'RATIBI'
-                         CreditPrepaidApicalls(1, arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url, apitype,final_status,final_process_status)
+                         CreditPrepaidApicalls(1, arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url, apitype,final_status,final_process_status,PRCT_ID)
                       } else {
                          if (arrprocesslog[0].cr_acct_identification && arrprocesslog[0].cr_acct_id_code == 'AIIN') {
                             var TakeacctIden = arrprocesslog[0].cr_acct_identification.substring(0, 6)
@@ -1152,12 +1153,12 @@ try {
                                   if (arrCradType[0].card_type == 'PREPAID_CARD') {
                                      apitype.isiban = 'N'
                                      apitype.card_sub_type = arrCradType[0].card_sub_type
-                                     CreditPrepaidApicalls(1, arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url, apitype,final_status,final_process_status)
+                                     CreditPrepaidApicalls(1, arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url, apitype,final_status,final_process_status,PRCT_ID)
                                   } else {
  
                                      apitype.isiban = 'N'
                                      apitype.card_sub_type = arrCradType[0].card_sub_type
-                                     CreditPrepaidApicalls(2, arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url, apitype,final_status,final_process_status)
+                                     CreditPrepaidApicalls(2, arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url, apitype,final_status,final_process_status,PRCT_ID)
                                   }
                                } else {
                                   objresponse.status = "FAILURE"
@@ -1181,12 +1182,12 @@ try {
                                if (arrCradType[0].card_type == 'PREPAID_CARD') {
                                   apitype.isiban = 'N'
                                   apitype.card_sub_type = arrCradType[0].card_sub_type
-                                  CreditPrepaidApicalls(1, arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url, apitype,final_status,final_process_status)
+                                  CreditPrepaidApicalls(1, arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url, apitype,final_status,final_process_status,PRCT_ID)
                                } else {
  
                                   apitype.isiban = 'N'
                                   apitype.card_sub_type = arrCradType[0].card_sub_type
-                                  CreditPrepaidApicalls(2, arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url, apitype,final_status,final_process_status)
+                                  CreditPrepaidApicalls(2, arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url, apitype,final_status,final_process_status,PRCT_ID)
                                }
  
                             } else {
@@ -1211,7 +1212,7 @@ try {
  
  
              //Function to Handle Credit and prepaid Api Calls 
-             function CreditPrepaidApicalls(apicalls, arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url, apitype,final_status,final_process_status) {
+             function CreditPrepaidApicalls(apicalls, arrprocesslog, arrreturncode, screenName, lclinstrm, take_return_url, apitype,final_status,final_process_status,PRCT_ID) {
                 return new Promise(async (resolve, reject) => {
                    let reversalNo = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
                    let extIdentValue = await GetRetrycount(arrprocesslog)
@@ -1245,7 +1246,7 @@ try {
                          if (ElpasoApi.status == 'SUCCESS' || ElpasoApi.status == 'Success') {
                            
                            
-                               Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url)
+                               Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status,PRCT_ID)
                             
                          } else {
                             ApiVal = 'Prepaid Card Posting'
@@ -1254,20 +1255,20 @@ try {
                       } else if (CheckAlredyApiCalled.Callapi == 'Call T24 Posting') {
                          T24Api = await CallPrepaidT24Api(arrprocesslog, arrreturncode, screenName, lclinstrm, extIdentValue, reversalNo, apitype, Amount)
                          if (T24Api.status == 'SUCCESS' || T24Api.status == 'Success') {
-                            Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status)
+                            Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status,PRCT_ID)
                          } else {
                             ApiVal = 'Prepaid Card Pool Posting'
                             Handleerror = await SendErrormsg(T24Api, ApiVal)
                          }
                       } else {
-                         Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status)
+                         Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status,PRCT_ID)
                       }
                    } else {
                       if (CheckAlredyApiCalled.Callapi == 'Call ELPASO Posting') {
                          ElpasoApi = await CallCreditEplapsoApi(arrprocesslog, arrreturncode, screenName, lclinstrm, extIdentValue, reversalNo, apitype, Amount)
                          if (ElpasoApi.status == 'SUCCESS' || ElpasoApi.status == 'Success') {
                           
-                               Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status)
+                               Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status,PRCT_ID)
                             
                          } else {
                             ApiVal = 'Credit Card Posting'
@@ -1276,13 +1277,13 @@ try {
                       } else if (CheckAlredyApiCalled.Callapi == 'Call T24 Posting') {
                          T24Api = await CallCreditT24Api(arrprocesslog, arrreturncode, screenName, lclinstrm, extIdentValue, reversalNo, apitype, Amount)
                          if (T24Api.status == 'SUCCESS' || T24Api.status == 'Success') {
-                            Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status)
+                            Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status,PRCT_ID)
                          } else {
                             ApiVal = 'Credit Card Pool Posting'
                             Handleerror = await SendErrormsg(T24Api)
                          }
                       } else {
-                         Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status)
+                         Pacs004Api = await CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status,PRCT_ID)
                       }
                    }
  
@@ -1576,7 +1577,7 @@ try {
                 })
              }
  
-             function CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status) {
+             function CallPacs004Api(arrprocesslog, arrreturncode, Amount, screenName, take_return_url,final_status,final_process_status,PRCT_ID) {
                 return new Promise((resolve, reject) => {
                    ExecuteQuery1(take_return_url, function (arrreturnurl) {
                       if (arrreturnurl.length) {
@@ -1887,6 +1888,7 @@ try {
  
  
  
+
 
 
 

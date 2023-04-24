@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column MAKER CHARACTER VARYING(64), add column CHECKER CHARACTER VARYING(64);","params" : [] }]

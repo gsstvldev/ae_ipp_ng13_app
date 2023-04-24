@@ -1,5 +1,5 @@
 
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { npss_cs_rev_get_usable_balanceService } from './npss_cs_rev_get_usable_balance.service';
 import { DialogService } from "../../scripts/fx/dialog.service"; // Dialog box appear
 import { LoaderService } from "../../scripts/fx/loader.service";
@@ -20,67 +20,82 @@ import { SCOPE } from '../../scripts/fx/session.enum'; // get Scope for Session 
     selector: 'npss_cs_rev_get_usable_balance',
     templateUrl: './npss_cs_rev_get_usable_balance.component.html',
     styleUrls: ['./npss_cs_rev_get_usable_balance.component.css'],
-    providers:[npss_cs_rev_get_usable_balanceService]
+    providers: [npss_cs_rev_get_usable_balanceService]
 })
 export class npss_cs_rev_get_usable_balanceComponent implements OnInit {
     @Input() screen_instance: any = {};
     @Input() comp_id: string;
-     subscription: Subscription;
-      postingRestrictCode:any
-      isinactive:any
-      signname:any 
-      usablebalance:any
-      workingbalance:any
-      raccountbalance:any
-      pracctbalance:boolean = true
+    subscription: Subscription;
+    postingRestrictCode: any
+    isinactive: any
+    signname: any
+    usablebalance: any
+    workingbalance: any
+    raccountbalance: any
+    vaAccountType: any
+    //   pracctbalance:boolean = true
       pworkbalance:boolean = true
-      pusbalance:boolean = true
-      psignname:boolean = true
-      pactive:boolean = true
-      pcode:boolean = true
-
-    constructor(private _service:npss_cs_rev_get_usable_balanceService) { }
+    pusbalance: boolean = true
+    //   psignname:boolean = true
+    //   pactive:boolean = true
+    //   pcode:boolean = true
+    showVaccounType: boolean = false
+    constructor(private _service: npss_cs_rev_get_usable_balanceService) { }
     ngOnInit() {
         if (this.screen_instance[this.comp_id].onChangecomponent) {
             this.subscription = this.screen_instance[this.comp_id].onChangecomponent.subscribe({
                 next: (event: any) => {
-                    if(event.param == ""){
+                    if (event.param == "") {
                         this.clearwidget()
-                    }else{
-                        this.loadwidget(event) 
+                    } else {
+                        this.loadwidget(event)
                     }
-                   
-                    
+
+
                 }
             })
         }
     }
 
-    loadwidget(event){
+    loadwidget(event) {
         var data = event.param
-        if(data.status == 'SUCCESS'){
-            this.postingRestrictCode = data.response.dataArea.postingRestrictCode
-            this.isinactive = data.response.dataArea.isInactive
-            this.signname = data.response.dataArea.signeeName
+        if (data.status == 'SUCCESS') {
             this.usablebalance = data.response.dataArea.usableBalance
-            this.workingbalance = data.response.dataArea.workingBalance
-            this.raccountbalance = data.response.dataArea.raAccountBalance
-        }else{
-            this.postingRestrictCode = ''
-            this.isinactive = ''
-            this.signname = ''
+            try {
+                if (data.response.dataArea.vaAccountType) {
+                    this.vaAccountType = data.response.dataArea.vaAccountType
+                    this.showVaccounType = true
+                } else {
+                    this.vaAccountType = ''
+                    this.showVaccounType = false
+                }
+            } catch (error) {
+                this.vaAccountType = ''
+                this.showVaccounType = false
+            }
+
+
+
+        } else {
+            // this.postingRestrictCode = ''
+            // this.isinactive = ''
+            // this.signname = ''
             this.usablebalance = ''
-            this.workingbalance = ''
-            this.raccountbalance = ''
+            this.vaAccountType = ''
+            // this.workingbalance = ''
+            // this.raccountbalance = ''
+            this.showVaccounType = false
         }
     }
-    
-    clearwidget(){
-         this.postingRestrictCode = ''
-            this.isinactive = ''
-            this.signname = ''
-            this.usablebalance = ''
-            this.workingbalance = ''
-            this.raccountbalance = ''
+
+    clearwidget() {
+        //  this.postingRestrictCode = ''
+        //     this.isinactive = ''
+        //     this.signname = ''
+        this.usablebalance = ''
+        // this.workingbalance = ''
+        // this.raccountbalance = ''
+        this.vaAccountType = ''
+        this.showVaccounType = false
     }
 }

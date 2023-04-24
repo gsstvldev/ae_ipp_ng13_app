@@ -814,6 +814,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     "reversal_amount_ccy": arrTranparamsObj.account_currency || '',
                                                                     "reversal_code": "",
                                                                     "reversal_id": "",
+                                                                     "account_officer": arrcbsdata[0].account_officer || '',
                                                                     "hdr_total_amount": arrTranparamsObj.hdr_total_amount || '',
                                                                     "process": "pacs.007 Payment Return Request",
                                                                     "msg_id": arrnpssRefno[0].msg_id || '',

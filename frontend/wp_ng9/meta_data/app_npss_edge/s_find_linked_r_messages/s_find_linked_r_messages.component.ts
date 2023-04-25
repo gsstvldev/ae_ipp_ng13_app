@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29212 
+Build ID        : 29249 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-21 14:48 PM 
+Modified Date   : 2023-Apr-25 11:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_find_linked_r_messages
@@ -15,12 +15,13 @@ import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_find_linked_r_messagesService} from '../../../custom_widget/npss_cs_find_linked_r_messages/npss_cs_find_linked_r_messages.service'
 import {npss_cs_daily_liquidity_position_responseService} from '../../../custom_widget/npss_cs_daily_liquidity_position_response/npss_cs_daily_liquidity_position_response.service'
+import {npss_cs_export_pdfService} from '../../../custom_widget/npss_cs_export_pdf/npss_cs_export_pdf.service'
 
 @Component({
 	selector: 's_find_linked_r_messages',
 	templateUrl: './s_find_linked_r_messages.component.html',
 	styleUrls: ['./s_find_linked_r_messages.component.css'],
-	providers:[torus_cs_show_hideService,npss_cs_find_linked_r_messagesService,npss_cs_daily_liquidity_position_responseService]
+	providers:[torus_cs_show_hideService,npss_cs_find_linked_r_messagesService,npss_cs_daily_liquidity_position_responseService,npss_cs_export_pdfService]
 })
     
 // Start of class 
@@ -39,10 +40,11 @@ export class s_find_linked_r_messagesComponent implements OnInit,AfterViewInit {
 	uicgc_3 : string = "request"
 	uicgc_4 : string = "input_details"
 	uicgc_5 : string = "response"
+	uicgc_6 : string = "navigation_ui"
 	key_events : any = {}
 	btl_1304_1678203548637 : string = "p_main_layout"
 	btl_1304_1678190458589 : string = "p_search_layout"
-	forms : any = ["uicgc_4","uicgc_2","uicgc_1"]
+	forms : any = ["uicgc_4","uicgc_2","uicgc_1","uicgc_6"]
 	p_search_layout__spap_from_list_showpopup : boolean = false
 	api_input_ui_actions : any = {}
 	api_input_ui_actions_clear : any = {}
@@ -56,10 +58,12 @@ export class s_find_linked_r_messagesComponent implements OnInit,AfterViewInit {
 	request : any = {}
 	input_details : any = {}
 	response : any = {}
+	navigation_ui : any = {}
+	navigation_ui_export_as_pdf : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_find_linked_r_messagesService:npss_cs_find_linked_r_messagesService,private npss_cs_daily_liquidity_position_responseService:npss_cs_daily_liquidity_position_responseService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_find_linked_r_messagesService:npss_cs_find_linked_r_messagesService,private npss_cs_daily_liquidity_position_responseService:npss_cs_daily_liquidity_position_responseService,private npss_cs_export_pdfService:npss_cs_export_pdfService) {
     
 	}
     
@@ -193,6 +197,29 @@ export class s_find_linked_r_messagesComponent implements OnInit,AfterViewInit {
 		this.response.onChangecomponent = new EventEmitter<any>()
 		this.response.show = true
 		this.response.dynamic_param = {}
+	
+		// Component level properties - "Navigation UI" 
+		this.navigation_ui.uictrl_code = "dynamic_ui"
+		this.navigation_ui.uicgc_desc = "Navigation UI"
+		this.navigation_ui.uicgc_code = "uicgc_6"
+		this.navigation_ui.params = {}
+		this.navigation_ui.datasource = {}
+		this.navigation_ui.context_menu = []
+		this.navigation_ui.views = {}
+		this.navigation_ui.onChangecomponent = new EventEmitter<any>()
+		this.navigation_ui.show = true
+		this.navigation_ui.dynamic_param = {}
+		this.navigation_ui.f_navigation_ui = {"show":true}
+		this.navigation_ui.current_view = "f_navigation_ui"
+		
+		// "Export as PDF" Button of "Navigation UI" component
+		this.navigation_ui_export_as_pdf.label_name = "Export as PDF"
+		this.navigation_ui_export_as_pdf.show = true
+		this.navigation_ui_export_as_pdf.disabled = false
+		this.navigation_ui_export_as_pdf.params = {"icon_only":false,"uicgcc_style":"fa fa-file-pdf-o"}
+		this.navigation_ui_export_as_pdf.dynamic_param = {}
+		this.navigation_ui_export_as_pdf.role = []
+		this.navigation_ui_export_as_pdf.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -302,6 +329,11 @@ export class s_find_linked_r_messagesComponent implements OnInit,AfterViewInit {
 	svtm_from_selection_change__internal(parent_event_result){
 		this.svtm_from_selection_change__show_hide_ide_call(parent_event_result)
 		this.svtm_from_selection_change__e_1682088424461(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui export as pdf"
+	navigation_ui_export_as_pdf__action_button_click(){
+		this.navigation_ui_export_as_pdf__e_1682420366901()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions trg hide"
@@ -903,6 +935,27 @@ export class s_find_linked_r_messagesComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui export as pdf"
+	navigation_ui_export_as_pdf__e_1682420366901() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_export_as_pdf"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1682420366901"
+		let event_params={"caller_name":"navigation_ui_export_as_pdf__e_1682420366901","event_desc":"E_1682420366901","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_export_as_pdf","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_export_pdfService.fn_npss_cs_export_pdf(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

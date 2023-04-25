@@ -25,6 +25,7 @@ export class npss_cs_ip_rev_accept_inau_reserve_fundService {
         var ClientParams: any = {}
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
+         ClientParams.loginName = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
         // ClientParams.T24_Return_Code = CtrlScope.T24_RETURN_CODE
         // ClientParams.CBUAE_Return_Code = CtrlScope.CBUAE_RETURN_CODE
         ClientParams.Tran_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID");

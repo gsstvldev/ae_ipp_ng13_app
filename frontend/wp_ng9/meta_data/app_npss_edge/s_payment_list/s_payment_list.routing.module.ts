@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29203 
+Build ID        : 29249 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-21 11:19 AM 
+Modified Date   : 2023-Apr-25 11:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_list

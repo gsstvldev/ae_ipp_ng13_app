@@ -57,6 +57,7 @@ export class npss_cs_rct_already_postingService {
         ClientParams.Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_NPSST_ID') || '';       
         ClientParams.system_type = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "ST_CODE")
         ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
+         ClientParams.roleId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES");
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
         ClientParams.UETR = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_UETR') || '';
         ClientParams.RULE_CODE = "RCT_IPIR_SUSP_ALPOST";

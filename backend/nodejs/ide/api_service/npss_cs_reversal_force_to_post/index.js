@@ -8,8 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     try {
-        
-         /*   Created By :Siva Harish
+        /*    Created By :Siva Harish
         Created Date :04-11-2022
         Modified By : Siva Harish
         Modified Date : 18/02/2022    
@@ -18,7 +17,8 @@ app.post('/', function(appRequest, appResponse, next) {
            Reason for Adding ext_retry_count and dealrefno 31/03/2023
            Reason for : Adding isiban and credit card sub type  payload for prepaid card 10/04/2023
             Reason for : checking spl rate 19/04/2023
-        
+            Reason for : Hanfling prepaid and credit card
+                 Reason for : changing update query 25/04/2023
         */
         var serviceName = 'NPSS (CS) Reversal Force to Post';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -66,6 +66,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var final_process_status
                             var extend_retry_value
                             var ChecksplRate
+                            var checkRole
                             var dealRefno = ''
                             var TakeStsPsts = `select success_process_status,success_status,processing_system,process_type from core_nc_workflow_setup where rule_code = 'RCT_IP_REV_REQ_ACCEPT' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
 
@@ -97,20 +98,37 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             lclinstrm = ""
                                                         }
 
+                                                        if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') { //for checking prepaid or credit only for maker
+                                                            checkRole = 'Maker'
+                                                            apicalls = await checkprepaidorcredit(arrprocesslog)
+
+                                                        } else {
+                                                            checkRole = 'Checker'
+                                                            apicalls = {}
+                                                            apicalls.apitype = 0
+
+                                                        }
+
                                                         var InsertTable = await ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode, arrurlResult)
+                                                        if (apicalls.apitype == 1 || apicalls.apitype == 2) { //For prepaid and credit only state change in maker level
+                                                            if (InsertTable.length > 0) {
+                                                                let Statechange = await Updcrdprd(arrprocesslog, final_process_status, final_status, PRCT_ID, checkRole)
+                                                            } else {
+                                                                objresponse.status = "Error in Table Insert"
+                                                                sendResponse(null, objresponse)
+                                                            }
+                                                        }
+
+
+
+
                                                         if (InsertTable.length > 0) {
                                                             let runFun = async () => {
                                                                 // chkapicall = 0 --> Resurve Fund api call
                                                                 // chkapicall = 1 --> prepaid card api call
                                                                 // chkapicall = 2 --> credit card api call
                                                                 extend_retry_value = await GetRetrycount(arrprocesslog[0].uetr)
-                                                                if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') { //for checking prepaid or credit only for maker
-                                                                    apicalls = await checkprepaidorcredit(arrprocesslog)
-                                                                } else {
-                                                                    apicalls = {}
-                                                                    apicalls.apitype = 0
 
-                                                                }
 
                                                                 if (apicalls.apitype == 0) {
                                                                     apiName = 'Reserve Fund'
@@ -152,7 +170,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         //var Objfiledata = await Getorgdata(arrprocesslog)
                                                                         if (params.screenName == 's_rct_reversal_non_aed') {
 
-                                                                          
+
                                                                             var TakegmMargin
                                                                             if (apicalls.apitype == 0) {
                                                                                 ChecksplRate = await CheckspecialRate(arrprocesslog)
@@ -165,12 +183,31 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 TakegmMargin = {}
                                                                             }
 
-                                                                            var ContraAmount = await getconamount(arrprocesslog, apicalls.apitype,ChecksplRate)
+                                                                            var ContraAmount = await getconamount(arrprocesslog, apicalls.apitype, ChecksplRate)
                                                                             amount = ContraAmount
 
                                                                             var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, Objfiledata, TakegmMargin, params.screenName, extend_retry_value, dealRefno, ChecksplRate)
                                                                             if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
-                                                                                var UpdateTrnTble = `Update npss_transactions set sell_rate = '${params.sell_rate}',sell_margin = '${params.sell_margin}', buy_rate = '${params.buy_rate}',buy_margin = '${params.buy_margin}',tran_charge = '${params.tran_charge}',tran_amount = '${params.tran_amount}', status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                var UpdateTrnTble
+                                                                                if (params.sell_margin == 0 || params.sell_margin == '0') {
+                                                                                    if (checkRole == 'Maker') {
+                                                                                        UpdateTrnTble = `Update npss_transactions set maker = '${params.loginName}',sell_rate = '${params.sell_rate}', buy_rate = '${params.buy_rate}',buy_margin = '${params.buy_margin}',tran_charge = '${params.tran_charge}',tran_amount = '${params.tran_amount}', status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                    }else{
+                                                                                        UpdateTrnTble = `Update npss_transactions set checker = '${params.loginName}',sell_rate = '${params.sell_rate}', buy_rate = '${params.buy_rate}',buy_margin = '${params.buy_margin}',tran_charge = '${params.tran_charge}',tran_amount = '${params.tran_amount}', status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                    }
+                                                                                   
+                                                                                } else {
+                                                                                    if (checkRole == 'Maker') {
+                                                                                        UpdateTrnTble = `Update npss_transactions set maker = '${params.loginName}',sell_rate = '${params.sell_rate}',sell_margin = '${params.sell_margin}', buy_rate = '${params.buy_rate}',buy_margin = '${params.buy_margin}',tran_charge = '${params.tran_charge}',tran_amount = '${params.tran_amount}', status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                    }else{
+                                                                                        UpdateTrnTble = `Update npss_transactions set checker = '${params.loginName}',sell_rate = '${params.sell_rate}',sell_margin = '${params.sell_margin}', buy_rate = '${params.buy_rate}',buy_margin = '${params.buy_margin}',tran_charge = '${params.tran_charge}',tran_amount = '${params.tran_amount}', status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                    }
+                                                                                    
+                                                                                }
+
+
+
+                                                                                // var UpdateTrnTble = `Update npss_transactions set sell_rate = '${params.sell_rate}',sell_margin = '${params.sell_margin}', buy_rate = '${params.buy_rate}',buy_margin = '${params.buy_margin}',tran_charge = '${params.tran_charge}',tran_amount = '${params.tran_amount}', status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                                 //var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                                 ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
                                                                                     if (arrUpdTranTbl == 'SUCCESS') {
@@ -237,9 +274,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                         var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, Objfiledata, TakegmMargin, params.screenName, extend_retry_value, dealRefno, ChecksplRate)
 
                                                                                         if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
+                                                                                            var UpdateTrnTble
+                                                                                            if (checkRole == 'Maker') {
+                                                                                                UpdateTrnTble  = `Update npss_transactions set  maker = '${params.loginName}',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                            }else{
+                                                                                                UpdateTrnTble  = `Update npss_transactions set checker = '${params.loginName}',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                            }
 
-
-                                                                                            var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                            
 
                                                                                             ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
                                                                                                 if (arrUpdTranTbl == 'SUCCESS') {
@@ -748,9 +790,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                    function getconamount(arrprocesslog, apicalls,checksplrate) {
+                    function getconamount(arrprocesslog, apicalls, checksplrate) {
                         return new Promise((resolve, reject) => {
-                            if(checksplrate != 'Take GMrate' && apicalls == '0'){
+                            if (checksplrate != 'Take GMrate' && apicalls == '0') {
                                 var Takecreditamount = `select amount_credited  from npss_trn_process_log WHERE process_name = 'Inward Credit Posting' and status = 'IP_RCT_POSTING_SUCCESS' and uetr = '${arrprocesslog[0].uetr}'`
                                 ExecuteQuery1(Takecreditamount, function (arrcctamount) {
                                     if (arrcctamount.length > 0) {
@@ -768,7 +810,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     }
 
                                 })
-                            }else{
+                            } else {
                                 var Takecontraamount = `select contra_amount from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}' order by npsstpl_id desc`
                                 ExecuteQuery1(Takecontraamount, function (arramount) {
                                     if (arramount.length > 0) {
@@ -782,48 +824,48 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             if (arramount[0].contra_amount && creditAmount) {
                                                                 if (Number(arramount[0].contra_amount) > Number(creditAmount)) {
                                                                     resolve(creditAmount)
-    
+
                                                                 } else {
                                                                     resolve(arramount[0].contra_amount)
-    
+
                                                                 }
                                                             } else {
                                                                 objresponse.status = 'Inward Credit  Amount or contra amount is Missing'
                                                                 sendResponse(null, objresponse)
                                                             }
-    
-    
-    
-    
+
+
+
+
                                                         } else {
                                                             objresponse.status = 'Inward Credit  Amount  is Missing'
                                                             sendResponse(null, objresponse)
                                                         }
-    
+
                                                     } else {
                                                         objresponse.status = 'Inward Credit  Amount is not found'
                                                         sendResponse(null, objresponse)
                                                     }
-    
+
                                                 })
                                             } else {
                                                 resolve(arramount[0].contra_amount)
                                             }
-    
+
                                         } else {
-    
+
                                             objresponse.status = 'Contra or Reversal Amount is Missing'
                                             sendResponse(null, objresponse)
                                         }
-    
+
                                     } else {
-    
+
                                         objresponse.status = 'Contra Amount is not found'
                                         sendResponse(null, objresponse)
                                     }
                                 })
                             }
-                           
+
                         })
                     }
 
@@ -1260,6 +1302,29 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
 
+
+                    function Updcrdprd(arrprocesslog, final_process_status, final_status, PRCT_ID, checkRole) {
+                        return new Promise((resolve, reject) => {
+                            var UpdateTrnTble 
+                            if (checkRole == 'Maker') {
+                                UpdateTrnTble = `Update npss_transactions set maker = '${params.loginName}',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                            }else{
+                                UpdateTrnTble = `Update npss_transactions set  checker = '${params.loginName}',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                            }
+                            
+                            ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                if (arrUpdTranTbl == 'SUCCESS') {
+                                    objresponse.status = 'SUCCESS';
+                                    sendResponse(null, objresponse);
+                                } else {
+                                    objresponse.status = 'No Data Updated in Transaction Table';
+                                    sendResponse(null, objresponse);
+
+                                }
+                            })
+                        })
+                    }
+
                     function GetDealrefno(arrprocesslog) {
                         return new Promise((resolve, reject) => {
                             let Takerefno = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${arrprocesslog[0].uetr}'`
@@ -1361,6 +1426,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

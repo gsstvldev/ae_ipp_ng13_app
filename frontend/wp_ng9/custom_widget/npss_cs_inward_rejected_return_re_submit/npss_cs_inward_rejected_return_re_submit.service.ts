@@ -32,7 +32,7 @@ export class npss_cs_inward_rejected_return_re_submitService {
         ClientParams.AppId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");
         ClientParams.TENANT_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
         ClientParams.RULE_CODE = 'IP_RCT_REJ_RET_RESUBMIT'
-       
+        ClientParams.roleId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES");
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     //Custom validation logics

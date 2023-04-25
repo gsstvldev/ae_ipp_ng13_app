@@ -7,15 +7,16 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
 
     /*  Created By :   Daseen
     Created Date : 15/02/2023
-    Modified By : 
-    Modified Date : 
-    Reason for : 
+    Modified By : Siva Harish
+    Modified Date : 25/04/2023
+    Reason for : Update query changes 25/04/2023
     * 
     */
     var serviceName = 'NPSS Inward Rejected Returns Close Logic'; //service name 
@@ -74,7 +75,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                 success_status = arrSts[0].success_status;
                                 success_process_status = arrSts[0].success_process_status;
                                 if (params.Tran_id) {
-                                    var uptTrnqry = `update npss_transactions set remarks='${params.remarks}' ,status='${success_status}',process_status='${success_process_status}' ,MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id in` + TempTranID;
+                                    var uptTrnqry
+                                    if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
+                                        uptTrnqry = `update npss_transactions set maker = '${params.CREATED_BY_NAME}',remarks='${params.remarks}' ,status='${success_status}',process_status='${success_process_status}' ,MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id in` + TempTranID;
+                                    }else{
+                                        uptTrnqry = `update npss_transactions set checker = '${params.CREATED_BY_NAME}',remarks='${params.remarks}' ,status='${success_status}',process_status='${success_process_status}' ,MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id in` + TempTranID;
+                                    }
+                                    
                                     ExecuteQuery(uptTrnqry, function (trnRes) {
                                         if (trnRes == "SUCCESS") {
 
@@ -168,6 +175,7 @@ app.post('/', function(appRequest, appResponse, next) {
         }
 
     })
+
 
 
 

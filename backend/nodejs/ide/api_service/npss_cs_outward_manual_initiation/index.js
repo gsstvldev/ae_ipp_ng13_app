@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     /*  Created By :sIVA hARISH
     Created Date : 31-12-2022
     Modified By : Siva Harish
@@ -22,6 +23,7 @@ app.post('/', function(appRequest, appResponse, next) {
      Modified By : Siva Harish
     Modified Date : 17/03/2023
     Reason for : Adding new function for paymentendtoendId 11/04/2023
+    Reason for : brithdate take from cbs acct table 25/4/2023
      
     */
     var serviceName = ' NPSS (CS) Outward Manual Initiation ';
@@ -37,6 +39,7 @@ app.post('/', function(appRequest, appResponse, next) {
     var mTranConn = "";
     var Payment_Id
     var uetr
+    var moment = require('moment')
     var objresponse = {
         'status': 'FAILURE',
         'data': {},
@@ -76,6 +79,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     uetr = await GetUetr(arruetr)
                                                     Payment_Id = await Getuuid()
                                                     if (arrdata.length > 0) {
+                                                        TakeBrithdate = await BirthDate(arrdata[0].cdtr_iban)
                                                         var arrCusTranInst = [];
                                                         var objCusTranInst = {};
                                                         objCusTranInst.FX_RESV_TEXT2 = orgfiledata
@@ -150,7 +154,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objCusTranInst.CATEGORY_PURPOSE_PRTY = arrdata[0].category_purpose_prty
                                                         objCusTranInst.EXT_ORG_ID_CODE = arrdata[0].ext_org_id_code
                                                         objCusTranInst.ISSUER_TYPE_CODE = arrdata[0].issuer_type_code
-                                                        objCusTranInst.DBTR_BIRTH_DATE = arrdata[0].dbtr_birth_date
+                                                        objCusTranInst.DBTR_BIRTH_DATE = TakeBrithdate
                                                         objCusTranInst.DBTR_CITY_BIRTH = arrdata[0].dbtr_city_birth
                                                         objCusTranInst.DBTR_COUNTRY = arrdata[0].dbtr_country
                                                         objCusTranInst.EXT_PERSON_ID_CODE = arrdata[0].ext_person_id_code
@@ -182,6 +186,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objCusTranInst.REVERSAL_AMOUNT = arrdata[0].reversal_amount
                                                         objCusTranInst.CHARGE_AMOUNT = params.CHARGE_AMOUNT || null
                                                         objCusTranInst.AMOUNT_CREDITED_LOC_CUR = arrdata[0].amount_credited_loc_cur || null
+                                                        if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
+                                                            objCusTranInst.MAKER = params.CREATED_BY_NAME
+                                                        } else {
+                                                            objCusTranInst.CHECKER = params.CREATED_BY_NAME
+                                                        }
                                                         arrCusTranInst.push(objCusTranInst)
                                                         _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRANSACTIONS', function callbackInsert(CusTranInsertRes) {
                                                             if (CusTranInsertRes.length > 0) {
@@ -375,7 +384,20 @@ app.post('/', function(appRequest, appResponse, next) {
 
                         })
                     }
-
+                    function BirthDate(cdtr_iban) {
+                        return new Promise((resolve, reject) => {
+                            var Tkbddate = `select birthdate from core_nc_cbs_accounts where alternate_account_id ='${cdtr_iban}'`
+                            ExecuteQuery1(Tkbddate, async function (arrbdate) {
+                                if (arrbdate.length > 0) {
+                                    let date = moment(arrbdate[0].birthdate, "YYYYMMDD").format("YYYY-MM-DD")
+                                    resolve(date)
+                                } else {
+                                    objresponse.status = 'No data found in core nc cbs account tran table'
+                                    sendResponse(null, objresponse)
+                                }
+                            })
+                        })
+                    }
 
                     function Getuuid() {
                         return new Promise((resolve, reject) => {
@@ -461,6 +483,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

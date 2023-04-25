@@ -33,6 +33,7 @@ export class npss_cs_rejected_payment_closeService {
        ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS") || '';
        ClientParams.Roleid = this.sessionHelper.GetVariable('SESSION_LEVEL', 'APP_USER_ROLES')
        ClientParams.remark = remarks.memory90
+       ClientParams.roleId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES");
        ClientParams.Rule_Code = 'OP_RCT_REJ_PAY_CLOSE'
        this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

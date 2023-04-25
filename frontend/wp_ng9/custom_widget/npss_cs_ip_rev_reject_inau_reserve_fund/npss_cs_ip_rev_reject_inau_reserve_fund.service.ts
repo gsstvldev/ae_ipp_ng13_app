@@ -49,6 +49,7 @@ export class npss_cs_ip_rev_reject_inau_reserve_fundService {
         ///  Prepare input for Server call
         ClientParams.T24_RETURN_CODE = Ctrlscope1.T24_RETURN_CODE || '';
         ClientParams.CBUAE_RETURN_CODE = Ctrlscope1.CBUAE_RETURN_CODE || '';
+        ClientParams.roleId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES");
         ClientParams.PROD_CODE = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "PRODUCT_CODE");
         ClientParams.AppId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");
         ClientParams.TENANT_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");

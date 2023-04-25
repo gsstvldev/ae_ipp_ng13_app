@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29203 
+Build ID        : 29249 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-21 11:19 AM 
+Modified Date   : 2023-Apr-25 11:5 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_find_r_messages
@@ -24,6 +24,7 @@ export class p_main_layoutComponent implements OnInit {
   // Variables 
   	input_details : any = {}
 	api_input_ui_actions : any = {}
+	navigation_ui : any = {}
 	request : any = {}
 	response : any = {}
 
@@ -37,6 +38,8 @@ export class p_main_layoutComponent implements OnInit {
 		this.input_details.need_header = true
 		this.api_input_ui_actions.desc = "API Input UI Actions"
 		this.api_input_ui_actions.need_header = ""
+		this.navigation_ui.desc = "Navigation UI"
+		this.navigation_ui.need_header = ""
 		this.request.desc = "Request"
 		this.request.need_header = true
 		this.response.desc = "Response"

@@ -12,6 +12,7 @@ SELECT res.type,
     COALESCE(sum(res.cib), 0::numeric) AS cib,
     COALESCE(sum(res.cms), 0::numeric) AS cms,
     COALESCE(sum(res.cmb), 0::numeric) AS cmb,
+    COALESCE(sum(res.NAF), 0::numeric) AS NAF,
     COALESCE(sum(res.manual), 0::numeric) AS manual,
     COALESCE(sum(res.pending_screening), 0::numeric) AS pending_screening,
     COALESCE(sum(res.pending_maker), 0::numeric) AS pending_maker,
@@ -92,6 +93,13 @@ SELECT res.type,
                 END) AS cms,
             count(DISTINCT
                 CASE
+                    WHEN nppst.channel_id::text = 'NAF'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'NAF'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'NAF'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    ELSE NULL::integer
+                END) AS NAF,
+            count(DISTINCT
+                CASE
                     WHEN nppst.process_group::text = ANY (ARRAY['Manual'::text, 'MANUAL'::text, 'manual'::text]) THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS manual,
@@ -158,6 +166,7 @@ SELECT res.type,
 	cib,
 	cms,
 	cmb,
+	NAF,
 	manual,
 	pending_screening,
 	pending_maker,
@@ -185,6 +194,7 @@ from
 		0 as cib,
 		0 as cms,
 		0 as cmb,
+		0 as NAF,
 		0 as manual,
 		0 as pending_screening,
 		0 as pending_maker,
@@ -237,6 +247,7 @@ from
 	cib,
 	cms,
 	cmb,
+	NAF,
 	manual,
 	pending_screening,
 	pending_maker,
@@ -264,6 +275,7 @@ from
 		0 as cib,
 		0 as cms,
 		0 as cmb,
+		0 as NAF,
 		0 as manual,
 		0 as pending_screening,
 		0 as pending_maker,
@@ -309,6 +321,7 @@ from
 	cib,
 	cms,
 	cmb,
+	NAF, 
 	manual,
 	pending_screening,
 	pending_maker,
@@ -336,6 +349,7 @@ from
 		0 as cib,
 		0 as cms,
 		0 as cmb,
+		0 as NAF,
 		0 as manual,
 		0 as pending_screening,
 		0 as pending_maker,

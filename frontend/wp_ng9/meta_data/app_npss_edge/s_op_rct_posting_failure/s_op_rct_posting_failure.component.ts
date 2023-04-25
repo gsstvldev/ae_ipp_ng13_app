@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29249 
+Build ID        : 29279 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-25 11:5 AM 
+Modified Date   : 2023-Apr-25 12:48 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_posting_failure
@@ -90,9 +90,10 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 	navigation_ui_already_posted : any = {}
 	navigation_ui_force_post : any = {}
 	navigation_ui_send_to_maker : any = {}
-	navigation_ui_trg_btn : any = {}
 	navigation_ui_view_tran : any = {}
+	navigation_ui_trg_btn : any = {}
 	navigation_ui_sec_trg_btn : any = {}
+	navigation_ui_c_approve : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -253,15 +254,6 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_send_to_maker.role = []
 		this.navigation_ui_send_to_maker.action = ""
 		
-		// "Trg BTN" Button of "Navigation UI" component
-		this.navigation_ui_trg_btn.label_name = "Trg BTN"
-		this.navigation_ui_trg_btn.show = true
-		this.navigation_ui_trg_btn.disabled = false
-		this.navigation_ui_trg_btn.params = {"icon_only":false,"uicgcc_style":""}
-		this.navigation_ui_trg_btn.dynamic_param = {}
-		this.navigation_ui_trg_btn.role = []
-		this.navigation_ui_trg_btn.action = ""
-		
 		// "View Tran" Button of "Navigation UI" component
 		this.navigation_ui_view_tran.label_name = "View Tran"
 		this.navigation_ui_view_tran.show = true
@@ -271,6 +263,15 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_tran.role = []
 		this.navigation_ui_view_tran.action = ""
 		
+		// "Trg BTN" Button of "Navigation UI" component
+		this.navigation_ui_trg_btn.label_name = "Trg BTN"
+		this.navigation_ui_trg_btn.show = true
+		this.navigation_ui_trg_btn.disabled = false
+		this.navigation_ui_trg_btn.params = {"icon_only":false,"uicgcc_style":""}
+		this.navigation_ui_trg_btn.dynamic_param = {}
+		this.navigation_ui_trg_btn.role = []
+		this.navigation_ui_trg_btn.action = ""
+		
 		// "SEC TRG BTN" Button of "Navigation UI" component
 		this.navigation_ui_sec_trg_btn.label_name = "SEC TRG BTN"
 		this.navigation_ui_sec_trg_btn.show = true
@@ -279,6 +280,15 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_sec_trg_btn.dynamic_param = {}
 		this.navigation_ui_sec_trg_btn.role = []
 		this.navigation_ui_sec_trg_btn.action = ""
+		
+		// "C Approve" Button of "Navigation UI" component
+		this.navigation_ui_c_approve.label_name = "C Approve"
+		this.navigation_ui_c_approve.show = true
+		this.navigation_ui_c_approve.disabled = false
+		this.navigation_ui_c_approve.params = {"icon_only":false,"uicgcc_style":"fa fa-chevron-circle-right"}
+		this.navigation_ui_c_approve.dynamic_param = {}
+		this.navigation_ui_c_approve.role = []
+		this.navigation_ui_c_approve.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -662,6 +672,7 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		this.page_load__e_1679910116639()
 		this.page_load__he_for_sec_trg_btn()
 		this.page_load__he_has_been_sent_to_maker_successfully()
+		this.page_load__e_1682426702061()
 	}
 
 	//Handler for INTERNAL event of "cf for routing key"
@@ -1014,6 +1025,21 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		this.im_for_return_to_maker_btn__rs_for_return_to_maker_btn(parent_event_result)
 	}
 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui c approve"
+	navigation_ui_c_approve__action_button_click(){
+		this.navigation_ui_c_approve__e_1682426493960()
+	}
+
+	//Handler for INTERNAL event of "e 1682426493960"
+	e_1682426493960__internal(parent_event_result){
+		this.e_1682426493960__e_1682426527607(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1682426527607"
+	e_1682426527607__internal(parent_event_result){
+		this.e_1682426527607__e_1682426548262(parent_event_result)
+	}
+
 	//Handler for DPSINIT event of "page_load"
 	page_load__he_from_pg_to_view_details() { 
 		let Dest_Is_ctrl=true
@@ -1170,6 +1196,27 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1681387656120"
 		let event_params={"caller_name":"page_load__he_has_been_sent_to_maker_successfully","event_desc":"HE has been sent to maker successfully","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1682426702061() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_c_approve"
+		let parent_source_id=""
+		let event_code="e_1682426702061"
+		let event_params={"caller_name":"page_load__e_1682426702061","event_desc":"E_1682426702061","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -3219,6 +3266,71 @@ export class s_op_rct_posting_failureComponent implements OnInit,AfterViewInit {
 		let parent_source_id="cc_for_return_to_maker_btn"
 		let event_code="e_1681387464015"
 		let event_params={"caller_name":"im_for_return_to_maker_btn__rs_for_return_to_maker_btn","event_desc":"RS for Return to Maker btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"send_to_maker_ui_return_to_maker","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui c approve"
+	navigation_ui_c_approve__e_1682426493960() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_c_approve"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1682426493960"
+		let event_params={"caller_name":"navigation_ui_c_approve__e_1682426493960","event_desc":"E_1682426493960","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_c_approve","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1682426493960__e_1682426527607,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_outward_posting_failure_force_to_postService.fn_npss_cs_outward_posting_failure_force_to_post(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1682426493960"
+	e_1682426493960__e_1682426527607(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1682426493960"
+		let destn_id=""
+		let parent_source_id="navigation_ui_c_approve"
+		let event_code="e_1682426527607"
+		let event_params={"caller_name":"e_1682426493960__e_1682426527607","event_desc":"E_1682426527607","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been approved successfully.","root_source_id":"navigation_ui_c_approve","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1682426527607__e_1682426548262,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1682426527607"
+	e_1682426527607__e_1682426548262(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1682426527607"
+		let destn_id=""
+		let parent_source_id="e_1682426493960"
+		let event_code="e_1682426548262"
+		let event_params={"caller_name":"e_1682426527607__e_1682426548262","event_desc":"E_1682426548262","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_c_approve","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

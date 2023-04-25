@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29276 
+Build ID        : 29277 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-25 12:33 PM 
+Modified Date   : 2023-Apr-25 12:48 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -95,7 +95,6 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	navigation_ui_call_t24_posting : any = {}
 	navigation_ui_call_cc_posting : any = {}
 	navigation_ui_complete : any = {}
-	navigation_ui_capprove : any = {}
 	navigation_ui_force_post : any = {}
 	navigation_ui_send_to_maker : any = {}
 	navigation_ui_trg_btn : any = {}
@@ -283,15 +282,6 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_complete.dynamic_param = {}
 		this.navigation_ui_complete.role = []
 		this.navigation_ui_complete.action = ""
-		
-		// "C-Approve" Button of "Navigation UI" component
-		this.navigation_ui_capprove.label_name = "C-Approve"
-		this.navigation_ui_capprove.show = true
-		this.navigation_ui_capprove.disabled = false
-		this.navigation_ui_capprove.params = {"icon_only":false,"uicgcc_style":"fa fa-check"}
-		this.navigation_ui_capprove.dynamic_param = {}
-		this.navigation_ui_capprove.role = []
-		this.navigation_ui_capprove.action = ""
 		
 		// "Force Post" Button of "Navigation UI" component
 		this.navigation_ui_force_post.label_name = "Force Post"
@@ -682,7 +672,6 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.page_load__he_for_complete_btn()
 		this.page_load__e_1679904187027()
 		this.page_load__he_has_been_sent_to_maker_successfully()
-		this.page_load__e_1682425973360()
 	}
 
 	//Handler for INTERNAL event of "cf for routing key"
@@ -1069,21 +1058,6 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.im_for_return_to_maker_btn__rs_for_return_to_maker_btn(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui capprove"
-	navigation_ui_capprove__action_button_click(){
-		this.navigation_ui_capprove__e_1682419178475()
-	}
-
-	//Handler for INTERNAL event of "e 1682419178475"
-	e_1682419178475__internal(parent_event_result){
-		this.e_1682419178475__e_1682419200327(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "e 1682419200327"
-	e_1682419200327__internal(parent_event_result){
-		this.e_1682419200327__e_1682419246743(parent_event_result)
-	}
-
 	//Handler for DPSINIT event of "page_load"
 	page_load__he_from_pg_to_view_details() { 
 		let Dest_Is_ctrl=true
@@ -1303,27 +1277,6 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1681388870599"
 		let event_params={"caller_name":"page_load__he_has_been_sent_to_maker_successfully","event_desc":"HE has been sent to maker successfully","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__e_1682425973360() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id="navigation_ui_capprove"
-		let parent_source_id=""
-		let event_code="e_1682425973360"
-		let event_params={"caller_name":"page_load__e_1682425973360","event_desc":"E_1682425973360","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -3544,71 +3497,6 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let parent_source_id="cc_for_return_to_maker_btn"
 		let event_code="e_1681389026230"
 		let event_params={"caller_name":"im_for_return_to_maker_btn__rs_for_return_to_maker_btn","event_desc":"RS for Return to Maker btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"send_to_maker_ui_return_to_maker","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="refresh_screen"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui capprove"
-	navigation_ui_capprove__e_1682419178475() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_capprove"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1682419178475"
-		let event_params={"caller_name":"navigation_ui_capprove__e_1682419178475","event_desc":"E_1682419178475","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_capprove","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals="e_1682419178475__e_1682419200327,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.npss_cs_inward_posting_failure_force_to_postService.fn_npss_cs_inward_posting_failure_force_to_post(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1682419178475"
-	e_1682419178475__e_1682419200327(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1682419178475"
-		let destn_id=""
-		let parent_source_id="navigation_ui_capprove"
-		let event_code="e_1682419200327"
-		let event_params={"caller_name":"e_1682419178475__e_1682419200327","event_desc":"E_1682419200327","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been approved successfully","root_source_id":"navigation_ui_capprove","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
-		let handler_code="info_msg"
-		let internals="e_1682419200327__e_1682419246743,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1682419200327"
-	e_1682419200327__e_1682419246743(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1682419200327"
-		let destn_id=""
-		let parent_source_id="e_1682419178475"
-		let event_code="e_1682419246743"
-		let event_params={"caller_name":"e_1682419200327__e_1682419246743","event_desc":"E_1682419246743","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_capprove","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

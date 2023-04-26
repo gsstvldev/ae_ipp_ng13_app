@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29202 
+Build ID        : 29299 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-21 14:6 PM 
+Modified Date   : 2023-Apr-26 10:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_detail
@@ -24,6 +24,7 @@ import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hid
 import {npss_cs_payment_detaiModule} from '../../../custom_widget/npss_cs_payment_detai/npss_cs_payment_detai.module'
 import {npss_cs_liquidity_position_responseModule} from '../../../custom_widget/npss_cs_liquidity_position_response/npss_cs_liquidity_position_response.module'
 import {npss_cs_export_pdfModule} from '../../../custom_widget/npss_cs_export_pdf/npss_cs_export_pdf.module'
+import {npss_cs_export_excel_fileModule} from '../../../custom_widget/npss_cs_export_excel_file/npss_cs_export_excel_file.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -56,7 +57,7 @@ import { f_npss_payment_details_srchComponent } from './f_npss_payment_details_s
     OverlayPanelModule,
     
     s_payment_detailRoutingModule,
-    npss_cs_daily_liquidity_position_responseModule,torus_cs_show_hideModule,npss_cs_payment_detaiModule,npss_cs_liquidity_position_responseModule,npss_cs_export_pdfModule
+    npss_cs_daily_liquidity_position_responseModule,torus_cs_show_hideModule,npss_cs_payment_detaiModule,npss_cs_liquidity_position_responseModule,npss_cs_export_pdfModule,npss_cs_export_excel_fileModule
   ],
   declarations: [s_payment_detailComponent,p_main_layoutComponent,f_npss_payment_detail_uiComponent,f_api_input_ui_actionsComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_payment_details_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]

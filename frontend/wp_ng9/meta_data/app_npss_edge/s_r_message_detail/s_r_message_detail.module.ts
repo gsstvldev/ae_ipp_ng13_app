@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29249 
+Build ID        : 29299 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-25 11:5 AM 
+Modified Date   : 2023-Apr-26 10:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_r_message_detail
@@ -23,6 +23,7 @@ import {npss_cs_liquidity_position_responseModule} from '../../../custom_widget/
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_cs_rmessage_detailsModule} from '../../../custom_widget/npss_cs_rmessage_details/npss_cs_rmessage_details.module'
 import {npss_cs_export_pdfModule} from '../../../custom_widget/npss_cs_export_pdf/npss_cs_export_pdf.module'
+import {npss_cs_export_excel_fileModule} from '../../../custom_widget/npss_cs_export_excel_file/npss_cs_export_excel_file.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -55,7 +56,7 @@ import { f_npss_r_msg_detail_srchComponent } from './f_npss_r_msg_detail_srch/f_
     OverlayPanelModule,
     
     s_r_message_detailRoutingModule,
-    npss_cs_liquidity_position_responseModule,torus_cs_show_hideModule,npss_cs_rmessage_detailsModule,npss_cs_export_pdfModule
+    npss_cs_liquidity_position_responseModule,torus_cs_show_hideModule,npss_cs_rmessage_detailsModule,npss_cs_export_pdfModule,npss_cs_export_excel_fileModule
   ],
   declarations: [s_r_message_detailComponent,p_main_layoutComponent,f_npss_r_msg_detail_uiComponent,f_api_input_ui_actionsComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_r_msg_detail_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]

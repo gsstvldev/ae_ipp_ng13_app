@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29202 
+Build ID        : 29299 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-21 14:6 PM 
+Modified Date   : 2023-Apr-26 10:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_detail
@@ -16,12 +16,13 @@ import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hi
 import {npss_cs_payment_detaiService} from '../../../custom_widget/npss_cs_payment_detai/npss_cs_payment_detai.service'
 import {npss_cs_liquidity_position_responseService} from '../../../custom_widget/npss_cs_liquidity_position_response/npss_cs_liquidity_position_response.service'
 import {npss_cs_export_pdfService} from '../../../custom_widget/npss_cs_export_pdf/npss_cs_export_pdf.service'
+import {npss_cs_export_excel_fileService} from '../../../custom_widget/npss_cs_export_excel_file/npss_cs_export_excel_file.service'
 
 @Component({
 	selector: 's_payment_detail',
 	templateUrl: './s_payment_detail.component.html',
 	styleUrls: ['./s_payment_detail.component.css'],
-	providers:[torus_cs_show_hideService,npss_cs_payment_detaiService,npss_cs_liquidity_position_responseService,npss_cs_export_pdfService]
+	providers:[torus_cs_show_hideService,npss_cs_payment_detaiService,npss_cs_liquidity_position_responseService,npss_cs_export_pdfService,npss_cs_export_excel_fileService]
 })
     
 // Start of class 
@@ -60,10 +61,11 @@ export class s_payment_detailComponent implements OnInit,AfterViewInit {
 	response : any = {}
 	navigation_ui : any = {}
 	navigation_ui_export_as_pdf : any = {}
+	navigation_ui_export_as_excel : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_payment_detaiService:npss_cs_payment_detaiService,private npss_cs_liquidity_position_responseService:npss_cs_liquidity_position_responseService,private npss_cs_export_pdfService:npss_cs_export_pdfService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_payment_detaiService:npss_cs_payment_detaiService,private npss_cs_liquidity_position_responseService:npss_cs_liquidity_position_responseService,private npss_cs_export_pdfService:npss_cs_export_pdfService,private npss_cs_export_excel_fileService:npss_cs_export_excel_fileService) {
     
 	}
     
@@ -220,6 +222,15 @@ export class s_payment_detailComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_export_as_pdf.dynamic_param = {}
 		this.navigation_ui_export_as_pdf.role = []
 		this.navigation_ui_export_as_pdf.action = ""
+		
+		// "Export as Excel" Button of "Navigation UI" component
+		this.navigation_ui_export_as_excel.label_name = "Export as Excel"
+		this.navigation_ui_export_as_excel.show = true
+		this.navigation_ui_export_as_excel.disabled = false
+		this.navigation_ui_export_as_excel.params = {"icon_only":false,"uicgcc_style":"fa fa-file-excel-o"}
+		this.navigation_ui_export_as_excel.dynamic_param = {}
+		this.navigation_ui_export_as_excel.role = []
+		this.navigation_ui_export_as_excel.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -236,6 +247,7 @@ export class s_payment_detailComponent implements OnInit,AfterViewInit {
 		this.page_load__he_on_page_laod_to_call_api_btn()
 		this.page_load__he_for_fetch_trg()
 		this.page_load__e_1682080474848()
+		this.page_load__de_for_excel_btn()
 	}
 
 	//Handler for INTERNAL event of "cf for pl"
@@ -311,6 +323,7 @@ export class s_payment_detailComponent implements OnInit,AfterViewInit {
 		this.request__ee_for_view_res()
 		this.request__tbc_for_view_res()
 		this.request__e_1682080488160()
+		this.request__ee_for_excel_btn()
 	}
 
 	//Handler for INTERNAL event of "svm for checked change"
@@ -336,6 +349,11 @@ export class s_payment_detailComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui export as pdf"
 	navigation_ui_export_as_pdf__action_button_click(){
 		this.navigation_ui_export_as_pdf__e_1682071173411()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui export as excel"
+	navigation_ui_export_as_excel__action_button_click(){
+		this.navigation_ui_export_as_excel__cc_for_excel_btn()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "api input ui actions trg hide"
@@ -478,6 +496,27 @@ export class s_payment_detailComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1682080474848"
 		let event_params={"caller_name":"page_load__e_1682080474848","event_desc":"E_1682080474848","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_excel_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_export_as_excel"
+		let parent_source_id=""
+		let event_code="e_1682505481409"
+		let event_params={"caller_name":"page_load__de_for_excel_btn","event_desc":"DE for excel btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -897,6 +936,27 @@ export class s_payment_detailComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for SELECTION_CHANGED event of "request"
+	request__ee_for_excel_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="request"
+		let destn_id="navigation_ui_export_as_excel"
+		let parent_source_id=""
+		let event_code="e_1682505471377"
+		let event_params={"caller_name":"request__ee_for_excel_btn","event_desc":"EE for excel btn","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"request","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "svm for checked change"
 	svm_for_checked_change__cc_for_shw_hide_on_list(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -999,6 +1059,27 @@ export class s_payment_detailComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.npss_cs_export_pdfService.fn_npss_cs_export_pdf(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui export as excel"
+	navigation_ui_export_as_excel__cc_for_excel_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_export_as_excel"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1682505488450"
+		let event_params={"caller_name":"navigation_ui_export_as_excel__cc_for_excel_btn","event_desc":"CC for excel btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_export_as_excel","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_export_excel_fileService.fn_npss_cs_export_excel_file(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

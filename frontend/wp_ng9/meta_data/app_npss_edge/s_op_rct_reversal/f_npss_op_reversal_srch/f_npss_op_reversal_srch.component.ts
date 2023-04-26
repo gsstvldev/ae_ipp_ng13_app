@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29304 
+Build ID        : 29309 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-26 13:54 PM 
+Modified Date   : 2023-Apr-26 14:40 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -175,7 +175,7 @@ focustoelement(){
 		this.ctrl.memory131.df_description = "Column Group 1"
 		this.ctrl.memory131.uictrl_code = "CDN_CTRL"
 		this.ctrl.memory131.target_column = "memory131"
-		this.ctrl.memory131.data_type = "TEXT"
+		this.ctrl.memory131.data_type = "NUMBER"
 		this.ctrl.memory131.data_length = 0
 		this.ctrl.memory131.zone_df_code = "DF_1304_1665901396659"
 		this.ctrl.memory131.default_value = ""

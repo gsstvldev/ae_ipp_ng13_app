@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29304 
+Build ID        : 29309 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-26 13:54 PM 
+Modified Date   : 2023-Apr-26 14:40 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -78,7 +78,7 @@ focustoelement(){
 		this.ctrl.memory97.show = true
 		this.ctrl.memory97.sub_content = ""
 		this.ctrl.memory97.required = false
-		this.ctrl.memory97.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Select the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
+		this.ctrl.memory97.vld_rules = []
 		this.ctrl.memory97.targetcolumn_lower = "memory97"
 		this.ctrl.memory97.disabled = false
 		this.ctrl.memory97.view_name = "f_npss_mi_ui_dbtr_info"

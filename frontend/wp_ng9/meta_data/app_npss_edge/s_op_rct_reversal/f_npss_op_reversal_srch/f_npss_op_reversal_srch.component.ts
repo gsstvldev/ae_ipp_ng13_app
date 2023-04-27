@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29309 
+Build ID        : 29321 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-26 14:40 PM 
+Modified Date   : 2023-Apr-27 10:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -139,7 +139,7 @@ focustoelement(){
 		this.ctrl.memory132.data_type = "DATETIME"
 		this.ctrl.memory132.data_length = 0
 		this.ctrl.memory132.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory132.default_value = ""
+		this.ctrl.memory132.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory132.is_memory_ctrl = "Y"
 		this.ctrl.memory132.field_coordinates = ""
 		this.ctrl.memory132.sub_details = ""
@@ -517,7 +517,7 @@ focustoelement(){
 		this.ctrl.memory101.ctrl_id = "npss_op_reversal_srch_memory101"
 		this.ctrl.npss_op_reversal_srch_memory101 = {}
 		this.ctrl.npss_op_reversal_srch_memory101.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.model = {"MEMORY130":"","DBTR_ACCT_NO":"","MEMORY132":"","MEMORY131":"","REVERSAL_AMOUNT":"","PAYMENT_ENDTOEND_ID":"","CLRSYSREF":"","MEMORY118":"","UETR":"","MEMORY87":"","MEMORY75":"","MEMORY101":""}
+		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.model = {"MEMORY130":"","DBTR_ACCT_NO":"","MEMORY132":"setcurrentdate(),{}","MEMORY131":"","REVERSAL_AMOUNT":"","PAYMENT_ENDTOEND_ID":"","CLRSYSREF":"","MEMORY118":"","UETR":"","MEMORY87":"","MEMORY75":"","MEMORY101":""}
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"}]
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_op_reversal_srch.dtt_code = "dtt_1304_1665901217208"

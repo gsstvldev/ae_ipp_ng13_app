@@ -76,7 +76,7 @@ try {
                         //  var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_IP_REV_REQ_ACCEPT' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                         var take_status = `Select success_process_status,success_status from core_nc_workflow_setup where rule_code='RCT_OP_REV_APPROVE'`;
                         //var take_batch_name = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='BATCH_NAME'`;
-                        var take_api_params = `select ns.created_date,ns.intrbk_sttlm_amnt,ns.department_code,ns.remittance_info,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
+                        var take_api_params = `select TO_CHAR(ns.created_date, 'YYYY-MM-DD"T"HH24:MI:SS.MSOF') AS created_date,ns.intrbk_sttlm_amnt,ns.department_code,ns.remittance_info,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, value_date,ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
 
                         ExecuteQuery1(take_status, function (arrrule) {
 
@@ -228,6 +228,8 @@ try {
                 // Do API Call for Service 
                 function fn_doapicall(url, arrprocesslog, arrpostrefno, TakeAccountInformation, TakeSellRatemargin, callbackapi) {
                     try {
+                     var crddate = arrprocesslog[0].created_date.split('+')
+                        crddate = crddate[0]+"+4:00"
                         var apiName = 'RCT_OP_REV_APPROVE'
                         var request = require('request');
                         var apiURL =
@@ -253,7 +255,7 @@ try {
                                 "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                 "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
                                 "dr_department_code": arrprocesslog[0].department_code || 'DEFAULT',
-                                "org_created_date": arrprocesslog[0].created_date || ''
+                                "org_created_date": crddate || ''
 
                             },
                             headers: {

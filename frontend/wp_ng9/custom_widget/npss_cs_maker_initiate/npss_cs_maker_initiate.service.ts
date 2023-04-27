@@ -49,7 +49,7 @@ export class npss_cs_maker_initiateService {
         ClientParams.eligible_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_STATUS");
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
         ClientParams.Tran_id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_NPSST_ID') || '';
-        
+         ClientParams.roleId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES");
         ClientParams.system = system
         if(screenInstance.wftpa_description=="s_op_rct_investigation"){
             ClientParams.rule_code = "RCT_OP_INVEST_INITIATE";

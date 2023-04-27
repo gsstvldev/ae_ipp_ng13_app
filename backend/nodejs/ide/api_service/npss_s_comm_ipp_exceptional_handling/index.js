@@ -11,7 +11,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Created Date : 06/01/2023
     Modified By : Siva Harish
     Modified Date : 09/01/2023
-    Reason for : 
+    Reason for : Handling JSON parse 27/4/2023
      
     */
     var serviceName = 'NPSS (S) IPP Exceptional Handling';
@@ -69,7 +69,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     var Value = JSON.parse(insarr[0].message)
                                                     var data = Value['message']
                                                     var DataMsgValue = JSON.parse(data)
-                                                    var MsgValue = JSON.parse(DataMsgValue)
+                                                    //var MsgValue = JSON.parse(DataMsgValue)
+                                                     var MsgValue
+                                                    try{
+                                                        MsgValue = JSON.parse(DataMsgValue)
+                                                    }catch(error){
+                                                        MsgValue = DataMsgValue
+                                                    }
 
                                                     objNoinsert.CHANNEL_ID = MsgValue['OrigChannelID'] || '';
                                                     objNoinsert.AMOUNT = MsgValue['instructedAmount'] || '';

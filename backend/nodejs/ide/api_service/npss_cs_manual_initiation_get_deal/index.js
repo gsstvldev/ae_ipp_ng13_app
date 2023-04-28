@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
     try {
         /*   Created By :  Daseen
@@ -21,6 +22,7 @@ app.post('/', function(appRequest, appResponse, next) {
         Reason for changing payload 29/03/2023
         Reason for changing code 30/03/2023
          Reason for taking acct infm using dbtr_iban 31/03/2023
+          Reason for checking spl Rate 19/04/2023
         */
         var serviceName = ' NPSS (CS) Manual Initiation Get Deal ';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -74,81 +76,84 @@ app.post('/', function(appRequest, appResponse, next) {
 
                             ExecuteQuery1(take_api_params, function (arrprocesslog) {
                                 if (arrprocesslog.length) {
-                                   
-
-                                    var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
-                                    ExecuteQuery1(TakeAcctInf, function (arrActInf) {
+                          var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
+                                    ExecuteQuery1(TakeAcctInf, async function (arrActInf) {
                                         if (arrActInf.length) {
-                                            ExecuteQuery1(take_api_url, async function (arrurl) {
-                                                if (arrurl.length) {
-                                                    var url = arrurl[0].param_detail;
-                                                    var senddata = {}
-                                                    
-                                                    var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                    ExecuteQuery1(Takeloccur,  function (localcur) {
-                                                        if(localcur.length == 0){
-                                                            senddata.amount_credited_loc_cur = ''
-                                                            
-                                                            fn_doapicall(url, arrprocesslog, arrActInf,senddata, function (result) {
-                                                                reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
-        
-                                                                if (result == 'FAILURE') {
-                                                                    var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                                    ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                        var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_DEAL_FAILURE'`
-                                                                        ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                            if (arrFail.length) {
-                                                                                objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
-                                                                                sendResponse(null, objresponse);
-                                                                            } else {
-                                                                                objresponse.status = 'Api Call Failure No Error Code Found'
-                                                                                sendResponse(null, objresponse);
-                                                                            }
+                                            let Chkrate = await CheckCustomSplrate(arrActInf, arrprocesslog, PRCT_ID)
+                                            if (Chkrate == 'Call Get Deal Api') {
+                                                ExecuteQuery1(take_api_url, async function (arrurl) {
+                                                    if (arrurl.length) {
+                                                        var url = arrurl[0].param_detail;
+                                                        var senddata = {}
+                                                        
+                                                        var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                                                        ExecuteQuery1(Takeloccur,  function (localcur) {
+                                                            if(localcur.length == 0){
+                                                                senddata.amount_credited_loc_cur = ''
+                                                                fn_doapicall(url, arrprocesslog, arrActInf,senddata, function (result) {
+                                                                    reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
+            
+                                                                    if (result == 'FAILURE') {
+                                                                        var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                                                                        ExecuteQuery1(Takeuetr, function (arruetr) {
+                                                                            var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_DEAL_FAILURE'`
+                                                                            ExecuteQuery1(TakeFailureresult, function (arrFail) {
+                                                                                if (arrFail.length) {
+                                                                                    objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
+                                                                                    sendResponse(null, objresponse);
+                                                                                } else {
+                                                                                    objresponse.status = 'Api Call Failure No Error Code Found'
+                                                                                    sendResponse(null, objresponse);
+                                                                                }
+                                                                            })
                                                                         })
-                                                                    })
-                                                                }
-                                                                else {
-                                                                    objresponse.status = 'SUCCESS';
-                                                                    objresponse.data = result;
-                                                                    sendResponse(null, objresponse);
-                                                                }
-                                                            })
-                                                        }else{
-                                                            senddata.amount_credited_loc_cur = localcur[0].amount_credited_loc_cur || ''
-                                                            fn_doapicall(url, arrprocesslog, arrActInf,senddata, function (result) {
-                                                                reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
-        
-                                                                if (result == 'FAILURE') {
-                                                                    var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                                                    ExecuteQuery1(Takeuetr, function (arruetr) {
-                                                                        var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_DEAL_FAILURE'`
-                                                                        ExecuteQuery1(TakeFailureresult, function (arrFail) {
-                                                                            if (arrFail.length) {
-                                                                                objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
-                                                                                sendResponse(null, objresponse);
-                                                                            } else {
-                                                                                objresponse.status = 'Api Call Failure No Error Code Found'
-                                                                                sendResponse(null, objresponse);
-                                                                            }
+                                                                    }
+                                                                    else {
+                                                                        objresponse.status = 'SUCCESS';
+                                                                        objresponse.data = result;
+                                                                        objresponse.CustRate = 'NO';
+                                                                        sendResponse(null, objresponse);
+                                                                    }
+                                                                })
+                                                            }else{
+                                                                senddata.amount_credited_loc_cur = localcur[0].amount_credited_loc_cur || ''
+                                                                fn_doapicall(url, arrprocesslog, arrActInf,senddata, function (result) {
+                                                                    reqInstanceHelper.PrintInfo(serviceName, "..API Response... ----->" + result, objSessionLogInfo);
+            
+                                                                    if (result == 'FAILURE') {
+                                                                        var Takeuetr = `select uetr from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                                                                        ExecuteQuery1(Takeuetr, function (arruetr) {
+                                                                            var TakeFailureresult = `select cbuae_return_code from npss_trn_process_log where uetr = '${arruetr[0].uetr}' and status = 'IP_RCT_REV_DEAL_FAILURE'`
+                                                                            ExecuteQuery1(TakeFailureresult, function (arrFail) {
+                                                                                if (arrFail.length) {
+                                                                                    objresponse.status = 'Failure Error Code - ' + arrFail[0].cbuae_return_code
+                                                                                    sendResponse(null, objresponse);
+                                                                                } else {
+                                                                                    objresponse.status = 'Api Call Failure No Error Code Found'
+                                                                                    sendResponse(null, objresponse);
+                                                                                }
+                                                                            })
                                                                         })
-                                                                    })
-                                                                }
-                                                                else {
-                                                                    objresponse.status = 'SUCCESS';
-                                                                    objresponse.data = result;
-                                                                    sendResponse(null, objresponse);
-                                                                }
-                                                            })
-                                                        }
-                                                    })
-                                                   
-                                                }
-                                                else {
-                                                  
-                                                    objresponse.status = "No Data found in workflow table"
-                                                    sendResponse(null, objresponse)
-                                                }
-                                            })
+                                                                    }
+                                                                    else {
+                                                                        objresponse.status = 'SUCCESS';
+                                                                        objresponse.data = result;
+                                                                        objresponse.CustRate = 'NO';
+                                                                        sendResponse(null, objresponse);
+                                                                    }
+                                                                })
+                                                            }
+                                                        })
+                                                       
+                                                    }
+                                                    else {
+                                                      
+                                                        objresponse.status = "No Data found in workflow table"
+                                                        sendResponse(null, objresponse)
+                                                    }
+                                                })
+                                            }
+                                            
                                         }
                                         else {
                                             
@@ -274,6 +279,105 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
     
                     }
+
+
+                    function CheckCustomSplrate(acctInfm, arrprocesslog, PRCT_ID) {
+                        return new Promise((resolve, reject) => {
+                            let TakecustRate = `select sell_rate,sell_margin from core_nc_cust_spl_rate where cif_number = '${acctInfm[0].customer_id}' and currency_code = '${acctInfm[0].currency}'`
+                            ExecuteQuery1(TakecustRate, async function (arrCusRate) {
+                                if (arrCusRate.length > 0) {
+                                    if (arrCusRate[0].sell_rate != null && arrCusRate[0].sell_margin != null) {
+                                        var arrCusTranInst = [];
+                                        var objCusTranInst = {};
+                                        objCusTranInst.MSG_ID = arrprocesslog[0].hdr_msg_id;
+                                        objCusTranInst.PRCT_ID = PRCT_ID;
+                                        objCusTranInst.UETR = arrprocesslog[0].uetr;
+                                        objCusTranInst.PROCESS_NAME = 'Customer Spl Rate'
+                                        objCusTranInst.PROCESSING_SYSTEM = 'NPSS'
+                                        objCusTranInst.PROCESS_TYPE = 'OP'
+                                        objCusTranInst.PROCESS_STATUS = 'RCTInProcess'
+                                        objCusTranInst.STATUS = 'OP_RCT_MAN_SPL_RATE_MARKED'
+                                        objCusTranInst.TENANT_ID = params.TENANT_ID;
+                                        objCusTranInst.APP_ID = '215'
+                                        objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
+                                        objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
+                                        objCusTranInst.DT_DESCRIPTION = 'transaction_group'
+                                        objCusTranInst.DTT_DESCRIPTION = 'Transaction'
+                                        objCusTranInst.CREATED_BY = params.CREATED_BY;
+                                        objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                        objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                        objCusTranInst.MODIFIED_BY = "";
+                                        objCusTranInst.MODIFIED_BY_NAME = "";
+                                        objCusTranInst.MODIFIED_DATE = null;
+                                        objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
+                                        objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
+                                        objCusTranInst.CREATED_BY_STS_ID = "";
+                                        objCusTranInst.MODIFIED_BY_STS_ID = "";
+                                        objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
+                                        objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
+                                        objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                        objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                        objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                        objCusTranInst.routingkey = headers.routingkey;
+                                        arrCusTranInst.push(objCusTranInst)
+                                        _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
+                                            if (CusTranInsertRes.length > 0) {
+                                                var ResponseBody = {}
+                                                ResponseBody.sell_rate = arrCusRate[0].sell_rate || 0
+                                                ResponseBody.sell_margin = arrCusRate[0].sell_margin || 0
+                                                objresponse.status = 'SUCCESS';
+                                                objresponse.data = ResponseBody;
+                                                objresponse.CustRate = 'YES'
+                                                sendResponse(null, objresponse);
+                                            } else {
+                                                objresponse.status = "Tran Process log Insert Error"
+                                                sendResponse(null, objresponse)
+                                            }
+    
+                                        })
+                                    } else if (arrCusRate[0].sell_rate == null && arrCusRate[0].sell_margin == null) {
+                                        objresponse.status = "Sell Rate or Sell Margin is Missing"
+                                        sendResponse(null, objresponse)
+                                    } else if (arrCusRate[0].sell_rate == null) {
+                                        objresponse.status = "Sell Rate is Missing"
+                                        sendResponse(null, objresponse)
+                                    } else {
+                                        objresponse.status = "Sell Margin is Missing"
+                                        sendResponse(null, objresponse)
+                                    }
+                                } else {
+                                    resolve('Call Get Deal Api')
+                                }
+    
+                            })
+                        })
+                    }
+
+                    function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
+                        try {
+                            reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
+                                try {
+                                    if (error) {
+                                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
+                                        sendResponse(error)
+                                    } else {
+                                        if (result.length > 0) {
+                                            callbackInsert(result);
+                                        } else {
+                                            callbackInsert([]);
+                                        }
+                                    }
+                                } catch (error) {
+                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
+                                    sendResponse(error)
+                                }
+                            });
+                        } catch (error) {
+                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
+                            sendResponse(error)
+                        }
+                    }
+
                     //Execute Query Function
                     function ExecuteQuery1(query, callback) {
                         reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
@@ -318,6 +422,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

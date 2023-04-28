@@ -24,13 +24,16 @@ export class npss_cs_outward_manual_initiationService {
     fn_npss_cs_outward_manual_initiation(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         var ClientParams: any = {}
         var CtrlScope = screenInstance['payment_processing_details_ui'].f_npss_manual_initiation_ui.model;
-        ClientParams.VALUE_DATE = CtrlScope.VALUE_DATE;
+         var CtrlScope1 = screenInstance['sell_margin_rate_ui'].f_sell_control_uicg.model;
+         ClientParams.VALUE_DATE = CtrlScope.VALUE_DATE;
          ClientParams.CHARGE_AMOUNT = CtrlScope.CHARGE_AMOUNT;
          ClientParams.INTRBK_STTLM_CUR = CtrlScope.INTRBK_STTLM_CUR;
-        ClientParams.INTRBK_STTLM_AMNT = CtrlScope.memory92;
-       ClientParams.BUY_RATE = CtrlScope.BUY_RATE;
-        ClientParams.BUY_MARGIN = CtrlScope.BUY_MARGIN;
+         ClientParams.INTRBK_STTLM_AMNT = CtrlScope.memory92;
+         ClientParams.BUY_RATE = CtrlScope.BUY_RATE;
+         ClientParams.BUY_MARGIN = CtrlScope.BUY_MARGIN;
          ClientParams.DISPUTE_REF_NO = CtrlScope.DISPUTE_REF_NO;
+         ClientParams.SELL_MARGIN = CtrlScope1.SELL_MARGIN
+         ClientParams.SELL_RATE = CtrlScope1.SELL_RATE
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
         ClientParams.Tran_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID");

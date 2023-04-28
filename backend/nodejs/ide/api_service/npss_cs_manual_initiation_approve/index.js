@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
 
 
@@ -146,7 +147,7 @@ try {
                                                                     ExecuteQuery1(Takepac008url, function (pac008url) {
                                                                         if (pac008url.length > 0) {
                                                                             var pacurl = pac008url[0].param_detail
-                                                                            fn_doPac008apicall(pacurl, arrprocesslog, function (pac008api) {
+                                                                            fn_doPac008apicall(pacurl, arrprocesslog,reverandRefno, function (pac008api) {
                                                                                 if (pac008api == 'SUCCESS') {
 
                                                                                     var UpdateTrnTble
@@ -478,7 +479,7 @@ try {
 
 
 
-                function fn_doPac008apicall(url, arrprocesslog, callbackapi) {
+                function fn_doPac008apicall(url, arrprocesslog,reverandRefno, callbackapi) {
                     try {
                         var category_prty
                         var hdrmsgid
@@ -516,14 +517,15 @@ try {
                                 "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
                                 "uetr": arrprocesslog[0].uetr || '',
                                 "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
-                                "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
+                                "dbtr_acct_name": reverandRefno.account_name || '',
                                 "dbtr_prvt_id": arrprocesslog[0].dbtr_prvt_id || '',
                                 "ext_org_id_code": arrprocesslog[0].ext_org_id_code || '',
                                 "issuer_type_code": arrprocesslog[0].issuer_type_code || '',
-                                "dbtr_document_id": arrprocesslog[0].dbtr_document_id || '',
-                                "dbtr_birth_date": arrprocesslog[0].dbtr_birth_date ? moment(arrprocesslog[0].dbtr_birth_date).format('YYYY-MM-DD') : '',
-                                "dbtr_city_birth": arrprocesslog[0].dbtr_city_birth || '',
-                                "dbtr_country": arrprocesslog[0].dbtr_country || '',
+                                "dbtr_document_id": reverandRefno.emirates_code || '',
+                                // "dbtr_birth_date": arrprocesslog[0].dbtr_birth_date ? moment(arrprocesslog[0].dbtr_birth_date).format('YYYY-MM-DD') : '',
+                                "dbtr_birth_date": reverandRefno.birthdate ? moment(reverandRefno.birthdate).format('YYYY-MM-DD') : '',
+                                "dbtr_city_birth": reverandRefno.cityofbirth || '',
+                                "dbtr_country": reverandRefno.countryofbirth || '',
                                 "ext_person_id_code": arrprocesslog[0].ext_person_id_code || '',
                                 "dbtr_other_issuer": arrprocesslog[0].dbtr_other_issuer || '',
                                 "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
@@ -577,7 +579,7 @@ try {
 
                 function TakeReversalIdandPostRefno(arrprocesslog) {
                     return new Promise((resolve, reject) => {
-                        var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].dbtr_iban}'`
+                        var TakeAcctInf = `select birthdate,cityofbirth,countryofbirth,emirates_code,account_name,Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].dbtr_iban}'`
                         var TakeprssRefno = `select process_ref_no  from npss_trn_process_log  where uetr = '${arrprocesslog[0].uetr}' and status = 'OP_RCT_MAN_INAU_POSTING_SUCCESS'`;
                         var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('OP_RCT_MAN_INAU_POSTING_SUCCESS','OP_RCT_MAN_INAU_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
 
@@ -593,6 +595,12 @@ try {
                                                 parameter.inactive_marker = arrActInf[0].inactive_marker || '',
                                                 parameter.currency = arrActInf[0].currency || '',
                                                 parameter.alternate_account_id = arrActInf[0].alternate_account_id || ''
+
+                                                parameter.account_name = arrActInf[0].account_name || '',
+                                                parameter.emirates_code = arrActInf[0].emirates_code || '',
+                                                parameter.countryofbirth = arrActInf[0].countryofbirth || '',
+                                                parameter.cityofbirth = arrActInf[0].cityofbirth || ''
+                                                parameter.birthdate = arrActInf[0].birthdate || ''
                                             ExecuteQuery1(TakeCount, function (arrCount) {
 
 
@@ -786,7 +794,7 @@ try {
                                 ExecuteQuery1(Takepac008url, function (pac008url) {
                                     if (pac008url.length > 0) {
                                         var pacurl = pac008url[0].param_detail
-                                        fn_doPac008apicall(pacurl, arrprocesslog, function (pac008api) {
+                                        fn_doPac008apicall(pacurl, arrprocesslog,reverandRefno, function (pac008api) {
                                             if (pac008api == 'SUCCESS') {
                                                 var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                 ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
@@ -881,6 +889,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

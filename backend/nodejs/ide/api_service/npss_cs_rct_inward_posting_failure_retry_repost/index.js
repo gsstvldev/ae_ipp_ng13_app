@@ -8,7 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
-    try {
+try {
         /*   Created By :Siva Harish
         Created Date :10-03-2023
         Modified By : Daseen 21-03-2023 for adding retry_count param in T24 inward return api 
@@ -24,7 +24,7 @@ app.post('/', function(appRequest, appResponse, next) {
         var serviceName = 'NPSS (CS) RCT Inward Posting Failure Retry Repost';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
         var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
-        var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
+          var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
         var reqAuditLog = require($REFPATH + 'log/audit/AuditLog');
         var reqDateFormatter = require($REFPATH + 'common/dateconverter/DateFormatter');
         var params = appRequest.body.PARAMS; //  Client input fromm Server

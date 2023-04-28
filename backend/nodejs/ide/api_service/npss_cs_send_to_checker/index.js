@@ -72,6 +72,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var app_id
                             var apicalls
                             var apiName
+                             var TakegmMargin
                             var ChecksplRate
                             var reverseAcinfparam
                             var final_status

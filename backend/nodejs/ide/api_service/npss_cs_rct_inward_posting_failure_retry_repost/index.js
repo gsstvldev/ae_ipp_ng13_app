@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
     try {
         /*   Created By :Siva Harish
         Created Date :10-03-2023
@@ -15,6 +16,7 @@ app.post('/', function(appRequest, appResponse, next) {
          Modified By : Siva Harish-- Changing PAYLOAD for T24posting 24/03/2023
           Modified By : Siva Harish-- Changing PAYLOAD for all apis 25/03/2023
             Modified By : Siva Harish-- Adding ext_iden_rtry_value and department_code in payload for all apis 28/03/2023
+            Siva Harish-- Removing ext_iden_rtry_value and department_code in payload for all apis 28/04/2023
       
          
        
@@ -99,8 +101,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     if (arrTranparams.length > 0) {
                                                         var Apicalls
                                                        
-                                                        let ext_ident_value
-                                                        ext_ident_value = await GetRetrycount(arrTranparams[0].uetr)
+                                                        let ext_ident_value = ''
+                                                        //ext_ident_value = await GetRetrycount(arrTranparams[0].uetr)
                                                         if (params.eligible_status == 'IP_RCT_PC_T24_POSTING_RETRY') { //prepaid                            
                                                             Apicalls = await Callprepaidapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
                                                         } else if (params.eligible_status == 'IP_RCT_CC_T24_POSTING_RETRY') { //credit                                     
@@ -270,7 +272,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             data: {
                                                                 "payload": {
                                                                     "department_code": arrTranparamsObj.department_code || '',
-                                                                    "ext_iden_retry_value": ext_ident_value || '',
+                                                                    //"ext_iden_retry_value": ext_ident_value || '',
                                                                     "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                     "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
                                                                     "hdr_total_records": arrTranparamsObj.hdr_total_records || '',
@@ -443,7 +445,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             data: {
                                                                 "payload": {
                                                                     "department_code": arrTranparamsObj.department_code || '',
-                                                                    "ext_iden_retry_value": ext_ident_value || '',
+                                                                   // "ext_iden_retry_value": ext_ident_value || '',
                                                                     "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                     "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
                                                                     "hdr_total_records": arrTranparamsObj.hdr_total_records || '',
@@ -627,7 +629,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 data: {
                                                                     "payload": {
                                                                         "department_code": arrTranparamsObj.department_code || '',
-                                                                        "ext_iden_retry_value": ext_ident_value || '',
+                                                                       // "ext_iden_retry_value": ext_ident_value || '',
                                                                         "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                         "account_officer": arrcbsdata[0].account_officer || '',
                                                                         "msg_id": arrnpssRefno[0].msg_id || '',
@@ -806,7 +808,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             data: {
                                                                 "payload": {
                                                                     "department_code": arrTranparamsObj.department_code || '',
-                                                                    "ext_iden_retry_value": ext_ident_value || '',
+                                                                    //"ext_iden_retry_value": ext_ident_value || '',
                                                                     "internal_acc_no": arrcbsdata[0].account_number || '',
                                                                     "tran_ref_id": arrTranparamsObj.tran_ref_id || '',
                                                                     "uetr": arrTranparamsObj.uetr || '',
@@ -968,7 +970,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 data: {
                                                                     "payload": {
                                                                         "department_code": arrTranparamsObj.department_code || '',
-                                                                        "ext_iden_retry_value": ext_ident_value || '',
+                                                                        //"ext_iden_retry_value": ext_ident_value || '',
                                                                         "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                         "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
                                                                         "hdr_total_records": arrTranparamsObj.hdr_total_records || '',
@@ -1145,7 +1147,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     data: {
                                                                         "payload": {
                                                                             "account_officer": arrcbsdata[0].account_officer || '',
-                                                                            "ext_iden_retry_value": ext_ident_value || '',
+                                                                            //"ext_iden_retry_value": ext_ident_value || '',
                                                                             "internal_acc_no": arrcbsdata[0].account_number || '',
                                                                             "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                             "department_code": arrTranparamsObj.department_code || '',
@@ -1421,6 +1423,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

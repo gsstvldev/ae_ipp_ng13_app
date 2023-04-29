@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
     try {
         /*   Created By :Daseen
         Created Date :04-11-2022
@@ -46,6 +47,7 @@ app.post('/', function(appRequest, appResponse, next) {
                Reason for : Checking Cust spl rate and adding extra value in reserve fund payload 18/4/2023
                Reason for : Handling prepaid and credit card in maker level 20/04/2023
                  Reason for : changing update query 25/04/2023
+                  Reason for : CHANGING buy margin buy rate 29/04/2023
         */
         var serviceName = 'NPSS IP REV Accept INAU Reserve Fund';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -216,21 +218,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, apicalls, Objfiledata, TakegmMargin, params.screenName, extend_retry_value, dealRefno, ChecksplRate)
                                                                             if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
                                                                                 var UpdateTrnTble
-                                                                                if (params.sell_margin == 0 || params.sell_margin == '0') {
+                                                                                
                                                                                     if (checkRole == 'Maker') {
-                                                                                        UpdateTrnTble = `Update npss_transactions set maker = '${params.loginName}',sell_rate = '${params.sell_rate}', buy_rate = '${params.buy_rate}',buy_margin = '${params.buy_margin}',tran_charge = '${params.tran_charge}',tran_amount = '${params.tran_amount}', status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                        UpdateTrnTble = `Update npss_transactions set maker = '${params.loginName}', buy_rate = '${params.buy_rate}',buy_margin = '${params.buy_margin}',tran_charge = '${params.tran_charge}',tran_amount = '${params.tran_amount}', status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                                     }else{
-                                                                                        UpdateTrnTble = `Update npss_transactions set checker = '${params.loginName}',sell_rate = '${params.sell_rate}', buy_rate = '${params.buy_rate}',buy_margin = '${params.buy_margin}',tran_charge = '${params.tran_charge}',tran_amount = '${params.tran_amount}', status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                        UpdateTrnTble = `Update npss_transactions set checker = '${params.loginName}', buy_rate = '${params.buy_rate}',buy_margin = '${params.buy_margin}',tran_charge = '${params.tran_charge}',tran_amount = '${params.tran_amount}', status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                                     }
                                                                                    
-                                                                                } else {
-                                                                                    if (checkRole == 'Maker') {
-                                                                                        UpdateTrnTble = `Update npss_transactions set maker = '${params.loginName}',sell_rate = '${params.sell_rate}',sell_margin = '${params.sell_margin}', buy_rate = '${params.buy_rate}',buy_margin = '${params.buy_margin}',tran_charge = '${params.tran_charge}',tran_amount = '${params.tran_amount}', status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                                                    }else{
-                                                                                        UpdateTrnTble = `Update npss_transactions set checker = '${params.loginName}',sell_rate = '${params.sell_rate}',sell_margin = '${params.sell_margin}', buy_rate = '${params.buy_rate}',buy_margin = '${params.buy_margin}',tran_charge = '${params.tran_charge}',tran_amount = '${params.tran_amount}', status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                                                    }
-                                                                                    
-                                                                                }
+                                                                                
 
 
 
@@ -584,18 +579,16 @@ app.post('/', function(appRequest, appResponse, next) {
                                         options.json.payload.GMRate = TakegmMargin.GMRate || '',
                                         options.json.payload.amount_credited_loc_cur = TakegmMargin.amount_credited_loc_cur || ''
                                 } else {
-                                    if (params.sell_margin != '' && params.sell_rate != '') {
-                                        options.json.payload.sell_margin = params.sell_margin
-                                        options.json.payload.sell_rate = params.sell_rate
-                                    } else if (params.sell_margin != '') {
-                                        options.json.payload.sell_margin = params.sell_margin
-                                    } else {
-                                        options.json.payload.sell_rate = params.sell_rate
-                                    }
+                                    if (params.buy_rate != 0) {
+                                        options.json.payload.buy_rate = params.buy_rate
+                                    } else if (params.buy_margin != 0) {
+                                        options.json.payload.buy_margin = params.buy_margin
+                                    } 
                                     options.json.payload.amount_credited_loc_cur = arrprocesslog[0].amount_credited_loc_cur || ''
                                 }
 
                             }
+                            
 
                             var PrintInfo = {}
                             PrintInfo.url = url
@@ -1453,6 +1446,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

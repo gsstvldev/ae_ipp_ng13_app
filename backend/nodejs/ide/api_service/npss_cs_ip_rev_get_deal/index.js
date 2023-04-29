@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 try {
     /*   Created By : Daseen
     Created Date :16-12-2022
@@ -17,7 +18,7 @@ try {
     Modified Date :17-01-2023  
     Reason for :Remove Console log
     Reason for checking cust spl rate 18/04/2023
-   
+   Reason for changing checking cust spl rate query 29/04/2023
     */
     var serviceName = ' NPSS_IP_REV_GET_DEAL';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -258,10 +259,10 @@ try {
 
                 function CheckCustomSplrate(acctInfm, arrprocesslog, PRCT_ID) {
                     return new Promise((resolve, reject) => {
-                        let TakecustRate = `select sell_rate,sell_margin from core_nc_cust_spl_rate where cif_number = '${acctInfm[0].customer_id}' and currency_code = '${acctInfm[0].currency}'`
+                        let TakecustRate = `select buy_rate,buy_margin from core_nc_cust_spl_rate where cif_number = '${acctInfm[0].customer_id}' and currency_code = '${acctInfm[0].currency}'`
                         ExecuteQuery1(TakecustRate, async function (arrCusRate) {
                             if (arrCusRate.length > 0) {
-                                if (arrCusRate[0].sell_rate != null) {
+                                if (arrCusRate[0].buy_rate != null && arrCusRate[0].buy_rate != 0) {
                                     var arrCusTranInst = [];
                                     var objCusTranInst = {};
                                     objCusTranInst.MSG_ID = arrprocesslog[0].hdr_msg_id;
@@ -298,8 +299,8 @@ try {
                                     _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
                                         if (CusTranInsertRes.length > 0) {
                                             var ResponseBody = {}
-                                            ResponseBody.sell_rate = arrCusRate[0].sell_rate || 0
-                                            ResponseBody.sell_margin = arrCusRate[0].sell_margin || 0
+                                            ResponseBody.buy_rate = arrCusRate[0].buy_rate || 0
+                                            ResponseBody.buy_margin = arrCusRate[0].buy_margin || 0
                                             objresponse.status = 'SUCCESS';
                                             objresponse.data = ResponseBody;
                                             objresponse.CustRate = 'YES'
@@ -310,9 +311,8 @@ try {
                                         }
 
                                     })
-                                } else if (arrCusRate[0].sell_rate == null) {
-                                    objresponse.status = "Sell Rate is Missing"
-                                    sendResponse(null, objresponse)
+                                } else {
+                                    resolve('Call Get Deal Api')
                                 }
                             } else {
                                 resolve('Call Get Deal Api')
@@ -388,6 +388,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

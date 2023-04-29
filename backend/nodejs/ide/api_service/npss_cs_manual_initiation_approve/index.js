@@ -521,7 +521,7 @@ try {
                                 "dbtr_prvt_id": arrprocesslog[0].dbtr_prvt_id || '',
                                 "ext_org_id_code": arrprocesslog[0].ext_org_id_code || '',
                                 "issuer_type_code": arrprocesslog[0].issuer_type_code || '',
-                                "dbtr_document_id": reverandRefno.emirates_code || '',
+                                "dbtr_document_id": arrprocesslog[0].dbtr_document_id || '',
                                 // "dbtr_birth_date": arrprocesslog[0].dbtr_birth_date ? moment(arrprocesslog[0].dbtr_birth_date).format('YYYY-MM-DD') : '',
                                 "dbtr_birth_date": reverandRefno.birthdate ? moment(reverandRefno.birthdate).format('YYYY-MM-DD') : '',
                                 "dbtr_city_birth": reverandRefno.cityofbirth || '',

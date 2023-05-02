@@ -281,12 +281,13 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
 
+                 
                     function CheckCustomSplrate(acctInfm, arrprocesslog, PRCT_ID) {
                         return new Promise((resolve, reject) => {
-                            let TakecustRate = `select sell_rate,sell_margin from core_nc_cust_spl_rate where cif_number = '${acctInfm[0].customer_id}' and currency_code = '${acctInfm[0].currency}'`
+                            let TakecustRate = `select buy_rate,buy_margin from core_nc_cust_spl_rate where cif_number = '${acctInfm[0].customer_id}' and currency_code = '${acctInfm[0].currency}'`
                             ExecuteQuery1(TakecustRate, async function (arrCusRate) {
                                 if (arrCusRate.length > 0) {
-                                    if (arrCusRate[0].sell_rate != null && arrCusRate[0].sell_margin != null) {
+                                    if (arrCusRate[0].buy_rate != null && arrCusRate[0].buy_rate != 0) {
                                         var arrCusTranInst = [];
                                         var objCusTranInst = {};
                                         objCusTranInst.MSG_ID = arrprocesslog[0].hdr_msg_id;
@@ -323,8 +324,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                         _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
                                             if (CusTranInsertRes.length > 0) {
                                                 var ResponseBody = {}
-                                                ResponseBody.sell_rate = arrCusRate[0].sell_rate || 0
-                                                ResponseBody.sell_margin = arrCusRate[0].sell_margin || 0
+                                                ResponseBody.buy_rate = arrCusRate[0].buy_rate || 0
+                                                ResponseBody.buy_margin = arrCusRate[0].buy_margin || 0
                                                 objresponse.status = 'SUCCESS';
                                                 objresponse.data = ResponseBody;
                                                 objresponse.CustRate = 'YES'
@@ -335,15 +336,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                             }
     
                                         })
-                                    } else if (arrCusRate[0].sell_rate == null && arrCusRate[0].sell_margin == null) {
-                                        objresponse.status = "Sell Rate or Sell Margin is Missing"
-                                        sendResponse(null, objresponse)
-                                    } else if (arrCusRate[0].sell_rate == null) {
-                                        objresponse.status = "Sell Rate is Missing"
-                                        sendResponse(null, objresponse)
-                                    } else {
-                                        objresponse.status = "Sell Margin is Missing"
-                                        sendResponse(null, objresponse)
+                                    } 
+                                     else {
+                                        resolve('Call Get Deal Api')
                                     }
                                 } else {
                                     resolve('Call Get Deal Api')

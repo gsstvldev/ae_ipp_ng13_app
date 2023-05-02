@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29355 
+Build ID        : 29378 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-28 13:1 PM 
+Modified Date   : 2023-May-02 10:27 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of sell_margin
 		this.ctrl.sell_margin = {}
 		this.ctrl.sell_margin.id = "RN01CN1"
-		this.ctrl.sell_margin.desc = "Buy Margin"
+		this.ctrl.sell_margin.desc = "Sell Margin"
 		this.ctrl.sell_margin.visible = true
-		this.ctrl.sell_margin.label_name = "Buy Margin"
+		this.ctrl.sell_margin.label_name = "Sell Margin"
 		this.ctrl.sell_margin.df_code = "DF_1304_1665901396659"
 		this.ctrl.sell_margin.df_description = "Column Group 1"
 		this.ctrl.sell_margin.uictrl_code = "TXT"
@@ -89,9 +89,9 @@ focustoelement(){
 		//Properties of sell_rate
 		this.ctrl.sell_rate = {}
 		this.ctrl.sell_rate.id = "RN01CN2"
-		this.ctrl.sell_rate.desc = "Buy Rate"
+		this.ctrl.sell_rate.desc = "Sell Rate"
 		this.ctrl.sell_rate.visible = true
-		this.ctrl.sell_rate.label_name = "Buy Rate"
+		this.ctrl.sell_rate.label_name = "Sell Rate"
 		this.ctrl.sell_rate.df_code = "DF_1304_1665901396659"
 		this.ctrl.sell_rate.df_description = "Column Group 1"
 		this.ctrl.sell_rate.uictrl_code = "TXT"

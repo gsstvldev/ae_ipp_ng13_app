@@ -7,11 +7,6 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-    
-
-
-
 try {
     /*   Created By :Siva Harish
     Created Date :02-01-2023
@@ -33,6 +28,7 @@ try {
          Reason for : Adding new payload in pacs008 11/4/2023
            Reason for : checking auth posting done or not 12/04/2023
             Reason for : Handling Spl Rate 28/04/2023
+            Reason for remove sel rate and margin And add Buy rate and margin 2/05/2023
    
     */
     var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -87,7 +83,7 @@ try {
                         var GetsellRate
                         var take_return_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL' and need_sync = 'Y'`;
                         var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.RULE_CODE}'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                        var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,ns.amount_credited_loc_cur,ns.sell_margin,ns.sell_rate,ns.department_code,ns.fx_resv_text2,ns.account_currency,ns.org_pay_endtoend_id, ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
+                        var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,ns.amount_credited_loc_cur,ns.buy_margin,ns.buy_rate,ns.department_code,ns.fx_resv_text2,ns.account_currency,ns.org_pay_endtoend_id, ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,clrsysref,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
                         if (params.PROD_CODE == 'NPSS_AEFAB') {
                             ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
                                 if (arrurlResult.length) {
@@ -421,11 +417,11 @@ try {
 
                         if (reverandRefno.currency != 'AED') {
                             if (GetsellRate != 'Take GMrate') {
-                                if(arrprocesslog[0].sell_margin != 0){
-                                    options.json.payload.sell_margin = arrprocesslog[0].sell_margin || ''
+                                if(arrprocesslog[0].buy_margin != 0){
+                                    options.json.payload.buy_margin = arrprocesslog[0].buy_margin || ''
                                 }
-                                if(arrprocesslog[0].sell_rate != 0){
-                                    options.json.payload.sell_rate = arrprocesslog[0].sell_rate || ''
+                                if(arrprocesslog[0].buy_rate != 0){
+                                    options.json.payload.buy_rate = arrprocesslog[0].buy_rate || ''
                                 }
                                
                                 options.json.payload.amount_credited_loc_cur = arrprocesslog[0].amount_credited_loc_cur || ''
@@ -889,6 +885,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

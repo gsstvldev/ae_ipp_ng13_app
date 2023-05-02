@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29355 
+Build ID        : 29378 
 Modified By     : Admin 
-Modified Date   : 2023-Apr-28 13:1 PM 
+Modified Date   : 2023-May-02 10:27 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -652,6 +652,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.page_load__he_for_pl_to_vm()
 		this.page_load__de_for_initiate()
 		this.page_load__e_1681970961613()
+		this.page_load__he_for_sell_rate_ui()
 	}
 
 	//Handler for INTERNAL event of "cf for routing key"
@@ -1043,6 +1044,27 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__he_for_sell_rate_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="sell_margin_rate_ui"
+		let parent_source_id=""
+		let event_code="e_1683023072196"
+		let event_params={"caller_name":"page_load__he_for_sell_rate_ui","event_desc":"HE For Sell Rate UI","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

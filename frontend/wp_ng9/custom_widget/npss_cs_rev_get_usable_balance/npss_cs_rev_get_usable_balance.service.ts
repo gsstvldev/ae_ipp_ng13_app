@@ -35,6 +35,7 @@ export class npss_cs_rev_get_usable_balanceService {
         ClientParams.RULE_CODE = 'NPSS_REVERSE_USABLE_BALANCE'
         // this.CallUrlWithData(ClientParams, screenInstance, internals);
          ClientParams.CDTR_IBAN = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_CDTR_IBAN");
+         ClientParams.screenName = screenInstance.wftpa_description
         if(ClientParams.CDTR_IBAN != ''){
             this.CallUrlWithData(ClientParams, screenInstance, internals);
         }else{

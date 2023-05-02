@@ -88,7 +88,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             }else{
                                                 IBAN = arrprocesslog[0].cdtr_iban
                                             }
-                                            var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].cdtr_iban}'`
+                                            var TakeAcctInf = `select Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id = '${IBAN}'`
                                             ExecuteQuery1(TakeAcctInf, function (arrActInf) {
                                                 if (arrActInf.length) {
                                                     ExecuteQuery1(take_api_url, function (arrurl) {

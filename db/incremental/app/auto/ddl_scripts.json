@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_CORE_API_PROCESS_LOG alter column RESPONSE_DATA_JSON drop not null; update NPSS_CORE_API_PROCESS_LOG set RESPONSE_DATA_JSON=substr(RESPONSE_DATA_JSON,1,300000);alter table NPSS_CORE_API_PROCESS_LOG alter column RESPONSE_DATA_JSON type CHARACTER VARYING(300000);","params" : [] }]
+[]

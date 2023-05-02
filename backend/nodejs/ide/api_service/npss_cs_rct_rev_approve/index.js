@@ -229,7 +229,7 @@ try {
                 function fn_doapicall(url, arrprocesslog, arrpostrefno, TakeAccountInformation, TakeSellRatemargin, callbackapi) {
                     try {
                      var crddate = arrprocesslog[0].created_date.split('+')
-                        crddate = crddate[0]+"+4:00"
+                        crddate = crddate[0]+"+04:00"
                         var apiName = 'RCT_OP_REV_APPROVE'
                         var request = require('request');
                         var apiURL =

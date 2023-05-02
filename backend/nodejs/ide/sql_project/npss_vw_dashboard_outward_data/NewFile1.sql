@@ -12,7 +12,15 @@ SELECT res.type,
     COALESCE(sum(res.cib), 0::numeric) AS cib,
     COALESCE(sum(res.cms), 0::numeric) AS cms,
     COALESCE(sum(res.cmb), 0::numeric) AS cmb,
-    COALESCE(sum(res.NAF), 0::numeric) AS NAF,
+    COALESCE(sum(res.NFR), 0::numeric) AS NFR,
+    COALESCE(sum(res.CMSCMS), 0::numeric) AS CMSCMS,
+    COALESCE(sum(res.IPP), 0::numeric) AS IPP,
+    COALESCE(sum(res.CMSINF), 0::numeric) AS CMSINF,
+    COALESCE(sum(res.MOB), 0::numeric) AS MOB,
+    COALESCE(sum(res.MBL), 0::numeric) AS MBL,
+    COALESCE(sum(res.CMSCMD), 0::numeric) AS CMSCMD,
+    COALESCE(sum(res.IB), 0::numeric) AS IB,
+    COALESCE(sum(res.RIBINF), 0::numeric) AS RIBINF,
     COALESCE(sum(res.manual), 0::numeric) AS manual,
     COALESCE(sum(res.pending_screening), 0::numeric) AS pending_screening,
     COALESCE(sum(res.pending_maker), 0::numeric) AS pending_maker,
@@ -93,11 +101,67 @@ SELECT res.type,
                 END) AS cms,
             count(DISTINCT
                 CASE
-                    WHEN nppst.channel_id::text = 'NAF'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'NAF'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'NAF'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'NFR'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'NFR'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'NFR'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
-                END) AS NAF,
+                END) AS NFR,
+                count(DISTINCT
+                CASE
+                    WHEN nppst.channel_id::text = 'CMSCMS'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'CMSCMS'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'CMSCMS'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    ELSE NULL::integer
+                END) AS CMSCMS,
+                count(DISTINCT
+                CASE
+                    WHEN nppst.channel_id::text = 'IPP'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'IPP'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'IPP'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    ELSE NULL::integer
+                END) AS IPP,
+                count(DISTINCT
+                CASE
+                    WHEN nppst.channel_id::text = 'CMSINF'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'CMSINF'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'CMSINF'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    ELSE NULL::integer
+                END) AS CMSINF,
+                count(DISTINCT
+                CASE
+                    WHEN nppst.channel_id::text = 'MOB'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'MOB'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'MOB'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    ELSE NULL::integer
+                END) AS MOB,
+                count(DISTINCT
+                CASE
+                    WHEN nppst.channel_id::text = 'MBL'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'MBL'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'MBL'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    ELSE NULL::integer
+                END) AS MBL,
+                count(DISTINCT
+                CASE
+                    WHEN nppst.channel_id::text = 'CMSCMD'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'CMSCMD'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'CMSCMD'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    ELSE NULL::integer
+                END) AS CMSCMD,
+                count(DISTINCT
+                CASE
+                    WHEN nppst.channel_id::text = 'IB'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'IB'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'IB'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    ELSE NULL::integer
+                END) AS IB,
+                count(DISTINCT
+                CASE
+                    WHEN nppst.channel_id::text = 'RIBINF'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'RIBINF'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'RIBINF'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    ELSE NULL::integer
+                END) AS RIBINF,
             count(DISTINCT
                 CASE
                     WHEN nppst.process_group::text = ANY (ARRAY['Manual'::text, 'MANUAL'::text, 'manual'::text]) THEN nppst.npsst_id
@@ -166,7 +230,15 @@ SELECT res.type,
 	cib,
 	cms,
 	cmb,
-	NAF,
+	NFR,
+	CMSCMS,
+IPP,
+CMSINF,
+MOB,
+MBL,
+CMSCMD,
+IB,
+RIBINF,
 	manual,
 	pending_screening,
 	pending_maker,
@@ -194,7 +266,15 @@ from
 		0 as cib,
 		0 as cms,
 		0 as cmb,
-		0 as NAF,
+		0 as NFR,
+		0 as CMSCMS,
+		0 as IPP,
+		0 as CMSINF,
+		0 as MOB,
+		0 as MBL,
+		0 as CMSCMD,
+		0 as IB,
+		0 as RIBINF,
 		0 as manual,
 		0 as pending_screening,
 		0 as pending_maker,
@@ -247,7 +327,15 @@ from
 	cib,
 	cms,
 	cmb,
-	NAF,
+	NFR,
+	CMSCMS,
+IPP,
+CMSINF,
+MOB,
+MBL,
+CMSCMD,
+IB,
+RIBINF,
 	manual,
 	pending_screening,
 	pending_maker,
@@ -275,7 +363,15 @@ from
 		0 as cib,
 		0 as cms,
 		0 as cmb,
-		0 as NAF,
+		0 as NFR,
+		0 as CMSCMS,
+		0 as IPP,
+		0 as CMSINF,
+		0 as MOB,
+		0 as MBL,
+		0 as CMSCMD,
+		0 as IB,
+		0 as RIBINF,
 		0 as manual,
 		0 as pending_screening,
 		0 as pending_maker,
@@ -321,7 +417,15 @@ from
 	cib,
 	cms,
 	cmb,
-	NAF, 
+	NFR,
+	CMSCMS,
+IPP,
+CMSINF,
+MOB,
+MBL,
+CMSCMD,
+IB,
+RIBINF,
 	manual,
 	pending_screening,
 	pending_maker,
@@ -349,7 +453,15 @@ from
 		0 as cib,
 		0 as cms,
 		0 as cmb,
-		0 as NAF,
+		0 as NFR,
+		0 as CMSCMS,
+		0 as IPP,
+		0 as CMSINF,
+		0 as MOB,
+		0 as MBL,
+		0 as CMSCMD,
+		0 as IB,
+		0 as RIBINF,
 		0 as manual,
 		0 as pending_screening,
 		0 as pending_maker,

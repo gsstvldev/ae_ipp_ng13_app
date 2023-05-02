@@ -387,6 +387,31 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$DATEOFBIRTH$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CITYOFBIRTH$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$COUNTRYOFBIRTH$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CUSTOMERID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CUSTOMERNAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NCACN_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672471952205$DQ$

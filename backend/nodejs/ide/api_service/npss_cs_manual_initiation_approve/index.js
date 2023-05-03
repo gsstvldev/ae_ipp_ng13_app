@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
 
+
     try {
         /*   Created By :Siva Harish
         Created Date :02-01-2023
@@ -30,7 +31,7 @@ app.post('/', function(appRequest, appResponse, next) {
                Reason for : checking auth posting done or not 12/04/2023
                 Reason for : Handling Spl Rate 28/04/2023
                 Reason for remove sel rate and margin And add Buy rate and margin 2/05/2023
-                 Reason for fixing gmrate and margin 3/05/2023
+                 Reason for fixing gmrate and margin & dptr pvt id and document id 3/05/2023
        
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -127,7 +128,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             }
                                                             takedealRefno = await GetRefno(arrprocesslog, reverandRefno, Ipuetr)
                                                         }
-                                                        
+
                                                         take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_AUTH_PACS004' and param_code='URL' and need_sync = 'Y'`;
                                                         var amount
 
@@ -143,12 +144,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         reqInstanceHelper.PrintInfo(serviceName, '------------fIRST API CALL SUCCESS-------', objSessionLogInfo);
                                                                         //Call Pac008 Api
                                                                         var Takepac008url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_MANUAL_INT_PAC008' and param_code='URL' and need_sync = 'Y'`;
-                                                                        ExecuteQuery1(Takepac008url, function (pac008url) {
+                                                                        ExecuteQuery1(Takepac008url, async function (pac008url) {
                                                                             if (pac008url.length > 0) {
                                                                                 var pacurl = pac008url[0].param_detail
-                                                                                fn_doPac008apicall(pacurl, arrprocesslog, reverandRefno, function (pac008api) {
+                                                                                let CheckorgPvt = await TakeOrgPvt(arrprocesslog)
+                                                                                fn_doPac008apicall(pacurl, arrprocesslog, reverandRefno, CheckorgPvt, function (pac008api) {
                                                                                     if (pac008api == 'SUCCESS') {
-
                                                                                         var UpdateTrnTble
                                                                                         if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
                                                                                             UpdateTrnTble = `Update npss_transactions set maker = '${params.CREATED_BY_NAME}',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
@@ -262,12 +263,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     lclinstrm = ""
                                                 }
 
-
+                                                let CheckorgPvt = ''
                                                 var Takepac008url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_MANUAL_INT_PAC008' and param_code='URL' and need_sync = 'Y'`;
                                                 ExecuteQuery1(Takepac008url, function (arrreturnurl) {
                                                     if (arrreturnurl.length) {
                                                         var pacurl = arrreturnurl[0].param_detail;
-                                                        fn_doPac008apicall(pacurl, arrprocesslog, function (pac008api) {
+                                                        fn_doPac008apicall(pacurl, arrprocesslog,CheckorgPvt, function (pac008api) {
                                                             if (pac008api === "SUCCESS" || pac008api === "Success" || pac008api === "success") {
                                                                 reqInstanceHelper.PrintInfo(serviceName, '------------Second API CALL SUCCESS-------', objSessionLogInfo);
                                                                 var UpdateTrnTble = `Update npss_transactions set status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
@@ -478,8 +479,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                    function fn_doPac008apicall(url, arrprocesslog, reverandRefno, callbackapi) {
+                    function fn_doPac008apicall(url, arrprocesslog, reverandRefno, CheckorgPvt, callbackapi) {
                         try {
+
                             var category_prty
                             var hdrmsgid
                             if (arrprocesslog[0].category_purpose_prty == null || arrprocesslog[0].category_purpose_prty == '') {
@@ -517,11 +519,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                     "uetr": arrprocesslog[0].uetr || '',
                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                     "dbtr_acct_name": reverandRefno.account_name || '',
-                                    "dbtr_prvt_id": arrprocesslog[0].dbtr_prvt_id || '',
+                                   
                                     "ext_org_id_code": arrprocesslog[0].ext_org_id_code || '',
                                     "issuer_type_code": arrprocesslog[0].issuer_type_code || '',
-                                    "dbtr_document_id": arrprocesslog[0].dbtr_document_id || '',
-                                    // "dbtr_birth_date": arrprocesslog[0].dbtr_birth_date ? moment(arrprocesslog[0].dbtr_birth_date).format('YYYY-MM-DD') : '',
+                                   
                                     "dbtr_birth_date": reverandRefno.birthdate ? moment(reverandRefno.birthdate).format('YYYY-MM-DD') : '',
                                     "dbtr_city_birth": reverandRefno.cityofbirth || '',
                                     "dbtr_country": reverandRefno.countryofbirth || '',
@@ -542,13 +543,19 @@ app.post('/', function(appRequest, appResponse, next) {
                                     'Content-Type': 'application/json'
                                 }
                             }
-                            var PrintInfo = {}
-                            PrintInfo.url = url || ''
-                            PrintInfo.uetr = arrprocesslog[0].uetr || ''
-                            PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
-                            PrintInfo.payment_endtoend_id = arrprocesslog[0].payment_endtoend_id || ''
 
-                            reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                            if (CheckorgPvt != '' && CheckorgPvt != null) {
+                                if (CheckorgPvt.type == 'Organisation') {
+                                    options.json.dbtr_prvt_id = CheckorgPvt.code
+                                    options.json.dbtr_document_id = ''
+                                } else {
+                                    options.json.dbtr_prvt_id = ''
+                                    options.json.dbtr_document_id = CheckorgPvt.code
+                                }
+                            }
+
+
+                            reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
 
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
@@ -825,8 +832,96 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
                     }
 
+                    function TakeOrgPvt(arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            let PrepareParam
+                            let FianlData = {}
+                            let TakeCbsAcct = `select * from core_nc_cbs_accounts where alternate_account_id = '${arrprocesslog[0].dbtr_iban}'`
+                            ExecuteQuery1(TakeCbsAcct, function (arrcbsAct) {
+                                if (arrcbsAct.length > 0) {
+                                    let Chkorgorpvt = `select cb_cust_class from core_nc_cust_classif where target_id =  '${arrcbsAct[0].target_code}' and sector_id = '${arrcbsAct[0].sector_code}'`
+                                    ExecuteQuery1(Chkorgorpvt, async function (arcustif) {
+                                        if (arcustif.length > 0 && arcustif[0].cb_cust_class != null) {
+                                            if (arcustif[0].cb_cust_class == 'Organisation') {
+                                                PrepareParam = await PrepareOrgcode(arrcbsAct, arrprocesslog)
+                                                let emiratescode = arrcbsAct[0].emirates_code == null ? 'XXX' : arrcbsAct[0].emirates_code
+                                                let formation = emiratescode + '-' + PrepareParam.cbuae_issur_code + '-' + arrcbsAct[0].trade_license_number + '-' + PrepareParam.destination_economic_activity_code
+                                                FianlData.type = 'Organisation'
+                                                FianlData.code = formation
+                                                resolve(FianlData)
+                                            } else {
+                                                PrepareParam = await PreparePVTcode(arrcbsAct, arrprocesslog)
+                                                FianlData.type = 'Private'
+                                                FianlData.code = PrepareParam
+                                                resolve(FianlData)
+                                            }
+                                        } else {
+                                            objresponse.status = "FAILURE"
+                                            objresponse.errdata = "cb_cust_class value not found"
+                                            sendResponse(null, objresponse)
+                                        }
+                                    })
+
+                                } else {
+                                    objresponse.status = "FAILURE"
+                                    objresponse.errdata = "No data found in core_nc_cbs_accounts"
+                                    sendResponse(null, objresponse)
+                                }
+
+                            })
+                        })
+                    }
 
 
+                    function PrepareOrgcode(arrcbsAct, arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            let OrganParam = {}
+                            let Takecbuisuercode = `select cbuae_issur_code from core_nc_issuer_cd_mapping where UPPER(t24_reg_body)= UPPER('${arrcbsAct[0].issuer_type_code}')`
+                            ExecuteQuery1(Takecbuisuercode, function (cbuissuercode) {
+                                if (cbuissuercode.length > 0 && cbuissuercode[0].cbuae_issur_code != null) {
+                                    let TakeEconCode = `select destination_economic_activity_code from core_nc_eco_actvty_mapping where source_economic_activity_code = '${arrcbsAct[0].industry}'`
+                                    ExecuteQuery1(TakeEconCode, function (economiccode) {
+                                        if (economiccode.length > 0 && economiccode[0].destination_economic_activity_code != null) {
+                                            OrganParam.cbuae_issur_code = cbuissuercode[0].cbuae_issur_code
+                                            OrganParam.destination_economic_activity_code = economiccode[0].destination_economic_activity_code
+                                            resolve(OrganParam)
+                                        } else {
+                                            objresponse.status = "FAILURE"
+                                            objresponse.errdata = "destination_economic_activity_code not found"
+                                            sendResponse(null, objresponse)
+                                        }
+                                    })
+                                } else {
+                                    objresponse.status = "FAILURE"
+                                    objresponse.errdata = "cbuae_issur_code not found"
+                                    sendResponse(null, objresponse)
+                                }
+                            })
+                        })
+                    }
+
+                    function PreparePVTcode(arrcbsAct, arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            let PvtParam = {}
+                            let TakeEconCode = `select destination_economic_activity_code from core_nc_eco_actvty_mapping where source_economic_activity_code = '${arrcbsAct[0].industry}'`
+                            ExecuteQuery1(TakeEconCode, function (economiccode) {
+                                if (economiccode.length > 0 && economiccode[0].destination_economic_activity_code != null) {
+                                    let destination_economic_activity_code = economiccode[0].destination_economic_activity_code
+                                    let IDcode
+                                    if (arrcbsAct[0].resident_flag == 'Y') {
+                                        IDcode = arrcbsAct[0].national_id
+                                    } else {
+                                        IDcode = arrcbsAct[0].legal_id
+                                    }
+                                    resolve(IDcode + '-' + destination_economic_activity_code)
+                                } else {
+                                    objresponse.status = "FAILURE"
+                                    objresponse.errdata = "destination_economic_activity_code not found"
+                                    sendResponse(null, objresponse)
+                                }
+                            })
+                        })
+                    }
                     //Execute Query Function
                     function ExecuteQuery1(query, callback) {
                         reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
@@ -886,6 +981,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

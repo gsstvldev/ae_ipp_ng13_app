@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRN_PROCESS_LOG add column EMIRATESID CHARACTER VARYING(64);","params" : [] }]
+[]

@@ -22,7 +22,8 @@ BUY_MARGIN decimal(16,8),
 SELL_MARGIN decimal(16,8),
 TRAN_STAGE character varying(10) COLLATE pg_catalog."default",
 STATUS character(1) COLLATE pg_catalog."default",
-ENTRY_DATE timestamp without time zone
+ENTRY_DATE timestamp without time zone,
+BACKUP_DATE timestamp without time zone
 )
 TABLESPACE pg_default;
 @SPL@

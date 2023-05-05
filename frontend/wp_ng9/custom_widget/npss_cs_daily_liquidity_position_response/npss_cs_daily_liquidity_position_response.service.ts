@@ -50,7 +50,7 @@ export class npss_cs_daily_liquidity_position_responseService {
                         if (res.data.status == "SUCCESS") {
                           var responsearray = res.data.data
                             try{
-                                responsearray = JSON.parse(responsearray)
+                               
                                var formatarray = []
                                 var data = JSON.parse(responsearray)
                                 if(Array.isArray(data)){

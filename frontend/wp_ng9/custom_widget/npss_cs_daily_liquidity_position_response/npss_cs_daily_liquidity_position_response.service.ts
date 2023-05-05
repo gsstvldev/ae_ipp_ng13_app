@@ -48,26 +48,15 @@ export class npss_cs_daily_liquidity_position_responseService {
                     var event: any
                     if (status == "API_SUCCESS") {
                         if (res.data.status == "SUCCESS") {
-var responsearray = res.data.data
+                          var responsearray = res.data.data
                             try{
                                 responsearray = JSON.parse(responsearray)
-                                var formatarray = []
-                                for (let i = 0; i < responsearray.length; i++) {
-                                    var data = responsearray[i]
-                                    var overall = {}
-                                    for (let j in data) {
-    
-    
-                                        if (typeof data[j] == 'object') {
-                                            for (let k in data[j]) {
-                                                overall[k] = data[j][k]
-                                            }
-                                        } else {
-                                            overall[j] = data[j]
-                                        }
-    
-                                    }
-                                    formatarray.push(overall)
+                               var formatarray = []
+                                var data = JSON.parse(responsearray)
+                                if(Array.isArray(data)){
+                                    formatarray = data
+                                }else{
+                                    formatarray.push(data)
                                 }
                             }catch(error){
                                 this.dialogHelper.ShowInfoDialog('Invalid Json Format')

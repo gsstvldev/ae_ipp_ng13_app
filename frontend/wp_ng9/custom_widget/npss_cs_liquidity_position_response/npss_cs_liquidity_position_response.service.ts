@@ -45,24 +45,13 @@ export class npss_cs_liquidity_position_responseService {
                         if (res.data.status == "SUCCESS") {
 
                             var responsearray = res.data.data
-                            var formatarray = []
-                            for (let i = 0; i < responsearray.length; i++) {
-                                var data = JSON.parse(responsearray[i])
-                                var overall = {}
-                                for (let j in data) {
-
-
-                                    if (typeof data[j] == 'object') {
-                                        for (let k in data[j]) {
-                                            overall[k] = data[j][k]
-                                        }
-                                    } else {
-                                        overall[j] = data[j]
-                                    }
-
+                          var formatarray = []
+                                var data = JSON.parse(responsearray)
+                                if(Array.isArray(data)){
+                                    formatarray = data
+                                }else{
+                                    formatarray.push(data)
                                 }
-                                formatarray.push(overall)
-                            }
 
                             event = { eventId: "custom-connector", param: formatarray, case: 'success', internals: internals }
                             screenInstance["response"].onChangecomponent.emit(event)

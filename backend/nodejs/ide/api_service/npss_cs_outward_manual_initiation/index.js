@@ -7,9 +7,6 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-
-
 
 /*  Created By :sIVA hARISH
 Created Date : 31-12-2022
@@ -26,6 +23,7 @@ Modified Date : 17/03/2023
 Reason for : Adding new function for paymentendtoendId 11/04/2023
 Reason for : brithdate take from cbs acct table 25/4/2023
 Reason for : Including Sell margin and sell rate 28/4/2023
+Reason for : Handling Dbtr birth date 8/5/2023
  
 */
 var serviceName = ' NPSS (CS) Outward Manual Initiation ';
@@ -392,11 +390,10 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         var Tkbddate = `select birthdate from core_nc_cbs_accounts where alternate_account_id ='${cdtr_iban}'`
                         ExecuteQuery1(Tkbddate, async function (arrbdate) {
                             if (arrbdate.length > 0) {
-                                let date = moment(arrbdate[0].birthdate, "YYYYMMDD").format("YYYY-MM-DD")
+                                let date = arrbdate[0].birthdate ? moment(arrbdate[0].birthdate, "YYYYMMDD").format("YYYY-MM-DD") : null
                                 resolve(date)
                             } else {
-                                objresponse.status = 'No data found in core nc cbs account tran table'
-                                sendResponse(null, objresponse)
+                                resolve(null)
                             }
                         })
                     })
@@ -486,6 +483,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 })
+
 
 
 

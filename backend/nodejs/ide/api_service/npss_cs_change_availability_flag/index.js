@@ -8,8 +8,6 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
-    
-
 /*  Created By :   Siva Harish
    Created Date :28/04/2023
   Reason for Adding Status Update 8/05/2023

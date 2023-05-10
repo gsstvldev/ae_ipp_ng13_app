@@ -67,7 +67,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                        var TakeComCat = `select param_value from core_ns_params where process_name = '${params.processName}' and destination_system ='${arrrearrChnlsultObj.destination_system}' and param_name = 'COMM_GROUP' and need_sync = 'Y'`
                                                        ExecuteQuery1(TakeComCat, function (arrComCat) {
                                                            if (arrComCat.length > 0) {
-                                                             //  var TakeOffset = `SELECT setup_json FROM clt_tran.TENANT_SETUP WHERE TENANT_ID ='aefab' AND CATEGORY='TIMEZONE'`
+                                                             //  var TakeOffset = `SELECT setup_json FROM clt_tran.TENANT_SETUP WHERE TENANT_ID ='${params.tenant_id}' AND CATEGORY='TIMEZONE'`
                                                               var TakeOffset = `SELECT setup_json FROM clt_tran.TENANT_SETUP WHERE TENANT_ID ='${params.tenant_id}' AND CATEGORY='TIMEZONE'`
                                                                ExecuteQuery1(TakeOffset, async function (arroffset) {
                                                                    var Taketime = JSON.parse(arroffset[0]['setup_json'])
@@ -108,7 +108,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                    dataobj.fromTime = moment(arrresultObj.from_time, "h:mm:ss A").format("HHmmss")
                                                                                    dataobj.toDate = moment(arrresultObj.to_date).format('DDMMYYYY')
                                                                                    dataobj.toTime = moment(arrresultObj.to_time, "h:mm:ss A").format("HHmmss")
-                                                                                   dataobj.Action = arrresultObj.action
+                                                                                   dataobj.Action = 'M'
    
    
                                                                                    var paramData = dataobj

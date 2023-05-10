@@ -51,7 +51,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqTranDBInstance.GetTranDBConn(headers, false, async function (pSession) {
             mTranConn = pSession; //  assign connection     
             try {
-                var TakeOffset = `SELECT setup_json FROM clt_tran.TENANT_SETUP WHERE TENANT_ID ='aefab' AND CATEGORY='TIMEZONE'`
+                var TakeOffset = `SELECT setup_json FROM clt_tran.TENANT_SETUP WHERE TENANT_ID ='${params.tenant_id}' AND CATEGORY='TIMEZONE'`
                 ExecuteQuery1(TakeOffset, async function (arroffset) {
                     var Taketime = JSON.parse(arroffset[0]['setup_json'])
                     var offset = Number(Taketime['timezone_offset']) / Number(60)

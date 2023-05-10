@@ -169,7 +169,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                             //   }
                                                                                                   
       
-                                                                                              dataobj.Action = arrresultObj.action
+                                                                                              dataobj.Action = 'M'
                                                                                               
       
                                                                                               var paramData = dataobj

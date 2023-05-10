@@ -105,7 +105,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                     var dd = {
                                         pageSize: {
-                                            width: 2000,
+                                            width: 3300,
                                             height: 'auto'
                                         },
                                         content: [

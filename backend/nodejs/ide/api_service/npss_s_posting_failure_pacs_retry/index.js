@@ -8,11 +8,12 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 try {
     /*   Created By : Siva Harish
     Created Date :09-05-2022
-    Modified By : 
-    Modified Date :    
+    Modified By : Siva Harish
+    Modified Date :10-05-2022    
    
     */
     let serviceName = 'NPSS (S) Posting Failure Pacs Retry';
@@ -128,10 +129,12 @@ try {
                                                                 nextuetrobjfun()
                                                             }
                                                         }else{
+                                                            reqInstanceHelper.PrintInfo(serviceName, ".......................Process Status Not Found for status...............",+org_status+".................UETR...........",+arrdistuetrObj.uetr, objSessionLogInfo);
                                                             nextuetrobjfun()
                                                         }
                                                        
                                                     }else{
+                                                        reqInstanceHelper.PrintInfo(serviceName, ".......................Data Not eligible for.................UETR...........", objSessionLogInfo);
                                                         nextuetrobjfun() 
                                                     }
                                                    
@@ -175,16 +178,16 @@ try {
 
                 function GetProcessStatus(org_status) {
                     return new Promise((resolve, reject) => {
-                        if (org_status == 'IP_RCT_CC_POSTING_READY' || org_status == 'IP_RCT_PC_POSTING_READY' || org_status == 'IP_RCT_POSTING_READY' || org_status == 'OP_P2P_FILE_PLACED' || org_status == 'OP_P2B_FILE_PLACED' || org_status == 'OP_MAN_FILE_PLACED') {
+                        if (org_status == 'OP_P2P_FILE_PLACED' || org_status == 'OP_P2B_FILE_PLACED' || org_status == 'OP_AC_FILE_PLACED' || org_status == 'IP_RCT_POSTING_READY' || org_status == 'IP_RCT_CC_POSTING_READY' || org_status == 'IP_RCT_PC_POSTING_READY') {
                             resolve('RCTInProcess')
-                        } else if (org_status == 'IP_RCT_STATUS_REPLIED' || org_status == 'IP_RCT_CC_STATUS_REPLIED' || org_status == 'IP_RCT_REVREQ_REJ_REPLIED') {
-                            resolve('RCTCompleted')
-                        } else if (org_status == 'IP_RCT_PC_STATUS_REPLIED') {
-                            resolve('IAVFailure')
-                        }else if(org_status == 'IP_RCT_RR_RETURNED' || org_status == 'IP_RCT_RETURNED'){ //place pacs 004
-                            resolve('IAVFailure')
-                        }else if(org_status == 'OP_RCT_REVERSAL_PLACED' || org_status == 'IP_RCT_RETURNED'){ //place pacs 007
+                        } else if (org_status == 'IP_RCT_RETURNED' || org_status == 'IP_RCT_RR_FILE_PLACED' || org_status == 'IP_RCT_RR_RETURNED') {
+                            resolve('RCTReturned')
+                        } else if (org_status == 'OP_RCT_REVERSAL_PLACED') {
                             resolve('RCTReversal')
+                        }else if(org_status == 'IP_RCT_PC_STATUS_REPLIED'){ 
+                            resolve('IAVFailure')
+                        }else if(org_status == 'IP_RCT_STATUS_REPLIED' || org_status == 'IP_RCT_CC_STATUS_REPLIED' || org_status == 'IP_RCT_REVREQ_REJ_REPLIED'){ 
+                            resolve('RCTCompleted')
                         }else{
                             resolve('')
                         }
@@ -216,10 +219,10 @@ try {
                                     newMsgId = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]['GRPHDR'][0]['MSGID'][0]
                                 }else if(process_name == 'Place Pacs004'){
                                     newMsgId = result["DOCUMENT"]["PMTRTR"][0]['GRPHDR'][0]['MSGID'][0]
-                                }else if(process_name == 'Place Pacs007'){
+                                }else if(process_name == 'Place Pacs.007'){
                                     newMsgId = result["DOCUMENT"]["FITOFIPMTRVSL"][0]['GRPHDR'][0]['MSGID'][0]
                                 }else if(process_name == 'Place Pacs002'){
-                                    newMsgId = result["DOCUMENT"]["FITOFIPMTRVSL"][0]['GRPHDR'][0]['MSGID'][0]
+                                    newMsgId = result["DOCUMENT"]["FITOFIPMTSTSRPT"][0]['GRPHDR'][0]['MSGID'][0]
                                 }
                             }catch(error){
                                 newMsgId = ''
@@ -354,6 +357,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

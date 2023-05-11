@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29514 
+Build ID        : 29518 
 Modified By     : Admin 
-Modified Date   : 2023-May-11 10:27 AM 
+Modified Date   : 2023-May-11 11:41 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_manual_unfreeze_dashboard
@@ -20,6 +20,9 @@ import {ControlModule} from '../../../widgets/control/control.module';
 import { SharedModule } from '../../../shared/shared.module'
 
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
+import {npss_cs_manual_unfreeze_send_to_makerModule} from '../../../custom_widget/npss_cs_manual_unfreeze_send_to_maker/npss_cs_manual_unfreeze_send_to_maker.module'
+import {npss_cs_manual_unfreeze_send_to_checkerModule} from '../../../custom_widget/npss_cs_manual_unfreeze_send_to_checker/npss_cs_manual_unfreeze_send_to_checker.module'
+import {npss_cs_call_p2b_unfreeze_apiModule} from '../../../custom_widget/npss_cs_call_p2b_unfreeze_api/npss_cs_call_p2b_unfreeze_api.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -56,7 +59,7 @@ import { f_npss_target_response_uiComponent } from './f_npss_target_response_ui/
     OverlayPanelModule,
     
     s_manual_unfreeze_dashboardRoutingModule,
-    torus_cs_show_hideModule
+    torus_cs_show_hideModule,npss_cs_manual_unfreeze_send_to_makerModule,npss_cs_manual_unfreeze_send_to_checkerModule,npss_cs_call_p2b_unfreeze_apiModule
   ],
   declarations: [s_manual_unfreeze_dashboardComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_npss_manual_unfreeze_dashboard_srchComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_api_req_and_res_layoutComponent,f_view_req_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

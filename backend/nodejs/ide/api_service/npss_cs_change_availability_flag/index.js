@@ -12,6 +12,7 @@ app.post('/', function(appRequest, appResponse, next) {
 /*  Created By :   Siva Harish
    Created Date :28/04/2023
   Reason for Adding Status Update 9/05/2023
+  Reason for Changing Update Query 11/5/2023
     
    */
 var serviceName = 'NPSS (CS) Change Availability Flag';
@@ -63,21 +64,14 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     var currdate = SplitDtndTim[0] + ' 00:00:00'
                     var splitTime = SplitDtndTim[1].split(':')
                     var PrepareDate = splitTime[0] + ':' + splitTime[1]
-                    var Updavlflag = `update core_nc_bank_part_avail set status = 'APPROVED' where cncbpa_id in (select cncbpa_id from core_nc_bank_part_avail where  from_date = '${currdate}' and cast (from_time as time) <= '${PrepareDate}' and status = 'NOTIFICATION_SENT' and need_sync = 'Y')`
+                    var Updavlflag = `update core_nc_bank_part_avail set status = 'APPROVED',iv_availability_flag= 'N',availability_flag = 'N' where cncbpa_id in (select cncbpa_id from core_nc_bank_part_avail where  from_date = '${currdate}' and cast (from_time as time) <= '${PrepareDate}' and status = 'NOTIFICATION_SENT' and need_sync = 'Y')`
                     ExecuteQuery(Updavlflag, function (arrresult) {
                         if (arrresult == 'SUCCESS') {
-                            var Updavcorbank = `update core_nc_bank_part_avail set iv_availability_flag = 'N'  where cncbpa_id in (select cncbpa_id from core_nc_bank_part_avail where  from_date = '${currdate}' and cast (from_time as time) <= '${PrepareDate}' and status = 'APPROVED' and need_sync = 'Y')`
-                            ExecuteQuery(Updavcorbank, function (arrresult) {
-                                if (arrresult == 'SUCCESS') {
+                           
                                     objresponse.status = 'SUCCESS'
                                     objresponse.data = 'ALL data move successfully'
                                     sendResponse(null,objresponse)
-                                }else{
-                                    objresponse.status = 'SUCCESS'
-                                    objresponse.data = 'Error in update core_nc_bank_part_avail table or update error'
-                                    sendResponse(null,objresponse)
-                                }
-                            })
+                                
                            
                         } else {
                             objresponse.status = 'SUCCESS'

@@ -76,9 +76,9 @@ SELECT res.sno,
                 END) AS pending_checker,
             count(DISTINCT
                 CASE
-                    WHEN npl.process_name::text = 'Place Pacs002'::text AND nppst.process_status::text = 'RCTCompleted'::text AND nppst.status::text = 'IP_RCT_STATUS_REPLIED'::text THEN nppst.npsst_id::bigint
-                    WHEN npl.process_name::text = 'Place Pacs002'::text AND nppst.process_status::text = 'RCTCompleted'::text AND nppst.status::text = 'IP_RCT_REVREQ_REJ_REPLIED '::text THEN nppst.npsst_id::bigint
-                    WHEN npl.process_name::text = 'Place Pacs002'::text AND nppst.process_status::text = 'RCTReturned'::text AND nppst.status::text = 'IP_RCT_RR_STATUS_REJECTED'::text THEN nppst.npsst_id::bigint
+                    WHEN npl.process_name::text = 'Receive Pacs008' ::text AND nppst.process_status::text = 'RCTCompleted'::text AND nppst.status::text = 'IP_RCT_STATUS_REPLIED'::text THEN nppst.npsst_id::bigint
+                    WHEN npl.process_name::text = 'Place Pacs004'::text AND nppst.process_status::text = 'RCTCompleted'::text AND nppst.status::text = 'IP_RCT_REVREQ_REJ_REPLIED '::text THEN nppst.npsst_id::bigint
+                    WHEN npl.process_name::text = 'Receive Pacs.007'::text AND nppst.process_status::text = 'RCTReturned'::text AND nppst.status::text = 'IP_RCT_RR_STATUS_REJECTED'::text THEN nppst.npsst_id::bigint
                     ELSE NULL::bigint
                 END) AS payment_rejected,
             count(DISTINCT

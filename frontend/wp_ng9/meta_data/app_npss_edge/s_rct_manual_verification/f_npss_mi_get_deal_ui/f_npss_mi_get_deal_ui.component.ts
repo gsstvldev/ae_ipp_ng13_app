@@ -6,7 +6,7 @@ Modified By     : Admin
 Modified Date   : 2023-May-15 10:26 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_rct_manual_initiation
+Screen Name     : s_rct_manual_verification
 Form Name       : NPSS MI Get Deal UI--------------------------------------------------------------------------- */
 
 // Component Definition 

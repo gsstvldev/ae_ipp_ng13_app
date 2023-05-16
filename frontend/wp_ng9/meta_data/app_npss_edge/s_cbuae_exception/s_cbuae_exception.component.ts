@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29561 
+Build ID        : 29566 
 Modified By     : Admin 
-Modified Date   : 2023-May-16 10:43 AM 
+Modified Date   : 2023-May-16 13:19 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_cbuae_exception
@@ -542,6 +542,9 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 		this.page_load__de_for_vlh_from_pl()
 		this.page_load__cc_for_routing_key()
 		this.page_load__he_for_retry_btn()
+		this.page_load__e_1684241610830()
+		this.page_load__e_1684241622282()
+		this.page_load__e_1684241639408()
 	}
 
 	//Handler for INTERNAL event of "cc for routing key"
@@ -870,6 +873,69 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1679581308151"
 		let event_params={"caller_name":"page_load__he_for_retry_btn","event_desc":"HE for Retry Btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1684241610830() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_call_reversal"
+		let parent_source_id=""
+		let event_code="e_1684241610830"
+		let event_params={"caller_name":"page_load__e_1684241610830","event_desc":"E_1684241610830","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1684241622282() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_hold"
+		let parent_source_id=""
+		let event_code="e_1684241622282"
+		let event_params={"caller_name":"page_load__e_1684241622282","event_desc":"E_1684241622282","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1684241639408() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_release"
+		let parent_source_id=""
+		let event_code="e_1684241639408"
+		let event_params={"caller_name":"page_load__e_1684241639408","event_desc":"E_1684241639408","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}

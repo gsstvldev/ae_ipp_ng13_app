@@ -700,7 +700,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 resolve('')
                             } else {
                                 if (reverseAcinfparam.currency != 'AED') {
-                                    var Takedelrefno = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${Ipuetr}'`
+                                    var Takedelrefno = `select process_ref_no from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${Ipuetr}'`
                                     ExecuteQuery1(Takedelrefno, function (dealrefno) {
                                         if (dealrefno.length > 0) {
                                             resolve(dealrefno[0].process_ref_no)

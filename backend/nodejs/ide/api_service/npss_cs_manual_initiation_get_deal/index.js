@@ -208,7 +208,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
-                                        "process_type": "IP",
+                                        "process_type": "OP",
                                         "process": "",
                                         "uetr": arrprocesslog[0].uetr || '',
                                         "deal_process": "GetDeal",

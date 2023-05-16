@@ -22,7 +22,7 @@ export class npss_cs_manual_verification_bind_dataService {
     //Default calling function
     fn_npss_cs_manual_verification_bind_data(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
         var ClientParams: any = {}
-        ClientParams.uetr =  this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "MI_LEVEL_UETR");
+        ClientParams.uetr =  this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_UETR");                          
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     //Custom validation logics

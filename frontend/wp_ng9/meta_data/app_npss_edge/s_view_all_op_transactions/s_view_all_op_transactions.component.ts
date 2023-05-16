@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29555 
+Build ID        : 29558 
 Modified By     : Admin 
-Modified Date   : 2023-May-16 7:35 AM 
+Modified Date   : 2023-May-16 9:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
@@ -100,11 +100,11 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	process_log_ui_back : any = {}
 	process_log_ui_view_response : any = {}
 	process_log_ui_view_request : any = {}
-	process_log_ui_view_req_and_res : any = {}
+	process_log_ui_view_req_and_resp : any = {}
 	message_detail_ui : any = {}
 	message_detail_action : any = {}
 	message_detail_action_back : any = {}
-	message_detail_action_view_message : any = {}
+	message_detail_action_view_messages : any = {}
 	message_detail : any = {}
 	message_back_ui : any = {}
 	message_back_ui_back : any = {}
@@ -416,14 +416,14 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		this.process_log_ui_view_request.role = []
 		this.process_log_ui_view_request.action = ""
 		
-		// "View Req and Res" Button of "Process Log UI" component
-		this.process_log_ui_view_req_and_res.label_name = "View Req and Res"
-		this.process_log_ui_view_req_and_res.show = true
-		this.process_log_ui_view_req_and_res.disabled = true
-		this.process_log_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
-		this.process_log_ui_view_req_and_res.dynamic_param = {}
-		this.process_log_ui_view_req_and_res.role = []
-		this.process_log_ui_view_req_and_res.action = ""
+		// "View Req and Resp" Button of "Process Log UI" component
+		this.process_log_ui_view_req_and_resp.label_name = "View Req and Resp"
+		this.process_log_ui_view_req_and_resp.show = true
+		this.process_log_ui_view_req_and_resp.disabled = true
+		this.process_log_ui_view_req_and_resp.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
+		this.process_log_ui_view_req_and_resp.dynamic_param = {}
+		this.process_log_ui_view_req_and_resp.role = []
+		this.process_log_ui_view_req_and_resp.action = ""
 	
 		// Component level properties - "Message Detail UI" 
 		this.message_detail_ui.uictrl_code = "dynamic_ui"
@@ -462,14 +462,14 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		this.message_detail_action_back.role = []
 		this.message_detail_action_back.action = ""
 		
-		// "View Message" Button of "Message Detail Action" component
-		this.message_detail_action_view_message.label_name = "View Message"
-		this.message_detail_action_view_message.show = true
-		this.message_detail_action_view_message.disabled = true
-		this.message_detail_action_view_message.params = {"icon_only":false,"uicgcc_style":"fa fa-css3"}
-		this.message_detail_action_view_message.dynamic_param = {}
-		this.message_detail_action_view_message.role = []
-		this.message_detail_action_view_message.action = ""
+		// "View Messages" Button of "Message Detail Action" component
+		this.message_detail_action_view_messages.label_name = "View Messages"
+		this.message_detail_action_view_messages.show = true
+		this.message_detail_action_view_messages.disabled = true
+		this.message_detail_action_view_messages.params = {"icon_only":false,"uicgcc_style":"fa fa-css3"}
+		this.message_detail_action_view_messages.dynamic_param = {}
+		this.message_detail_action_view_messages.role = []
+		this.message_detail_action_view_messages.action = ""
 	
 		// Component level properties - "Message Detail" 
 		this.message_detail.uictrl_code = "datatable"
@@ -794,10 +794,10 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		this.message_detail_action_back__sp_for_mda()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message"
-	message_detail_action_view_message__action_button_click(){
-		this.message_detail_action_view_message__bt_for_mgsg()
-		this.message_detail_action_view_message__e_1681998108732()
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view messages"
+	message_detail_action_view_messages__action_button_click(){
+		this.message_detail_action_view_messages__bt_for_mgsg()
+		this.message_detail_action_view_messages__e_1681998108732()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view process log"
@@ -844,11 +844,11 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		this.single_back_ui_back__sp_for_reqres()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
-	process_log_ui_view_req_and_res__action_button_click(){
-		this.process_log_ui_view_req_and_res__bt_vreq()
-		this.process_log_ui_view_req_and_res__bt_vres()
-		this.process_log_ui_view_req_and_res__sp_for_vreq()
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and resp"
+	process_log_ui_view_req_and_resp__action_button_click(){
+		this.process_log_ui_view_req_and_resp__bt_vreq()
+		this.process_log_ui_view_req_and_resp__bt_vres()
+		this.process_log_ui_view_req_and_resp__sp_for_vreq()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view api transactions"
@@ -1912,7 +1912,7 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		let Dest_Is_ctrl=true
 		
 		let source_id="history_detail"
-		let destn_id="process_log_ui_view_req_and_res"
+		let destn_id="process_log_ui_view_req_and_resp"
 		let parent_source_id=""
 		let event_code="e_1670244586967"
 		let event_params={"caller_name":"history_detail__ee_for_vreq_vres","event_desc":"EE for VReq VRes","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1975,7 +1975,7 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		let Dest_Is_ctrl=true
 		
 		let source_id="message_detail"
-		let destn_id="message_detail_action_view_message"
+		let destn_id="message_detail_action_view_messages"
 		let parent_source_id=""
 		let event_code="e_1669459694162"
 		let event_params={"caller_name":"message_detail__ee_from_message_detail_to_show_message","event_desc":"EE from Message Detail to Show Message","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"message_detail","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -2012,15 +2012,15 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message"
-	message_detail_action_view_message__bt_for_mgsg() { 
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view messages"
+	message_detail_action_view_messages__bt_for_mgsg() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="message_detail_action_view_message"
+		let source_id="message_detail_action_view_messages"
 		let destn_id="message_detail_ui"
 		let parent_source_id=""
 		let event_code="e_1669459868306"
-		let event_params={"caller_name":"message_detail_action_view_message__bt_for_mgsg","event_desc":"BT for MGSG","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let event_params={"caller_name":"message_detail_action_view_messages__bt_for_mgsg","event_desc":"BT for MGSG","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_messages","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
 		let handler_code="bind_tran"
 		let internals=""
 		let event_data={}
@@ -2033,15 +2033,15 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "message detail action view message"
-	message_detail_action_view_message__e_1681998108732() { 
+	//Handler for ACTION_BUTTON_CLICK event of "message detail action view messages"
+	message_detail_action_view_messages__e_1681998108732() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="message_detail_action_view_message"
+		let source_id="message_detail_action_view_messages"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1681998108732"
-		let event_params={"caller_name":"message_detail_action_view_message__e_1681998108732","event_desc":"E_1681998108732","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_message","raiseparam":{"profile_code":"BTL_1304_1669458494431"}}
+		let event_params={"caller_name":"message_detail_action_view_messages__e_1681998108732","event_desc":"E_1681998108732","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"message_detail_action_view_messages","raiseparam":{"profile_code":"BTL_1304_1669458494431"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
@@ -2308,15 +2308,15 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
-	process_log_ui_view_req_and_res__bt_vreq() { 
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and resp"
+	process_log_ui_view_req_and_resp__bt_vreq() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="process_log_ui_view_req_and_res"
+		let source_id="process_log_ui_view_req_and_resp"
 		let destn_id="request_ui"
 		let parent_source_id=""
 		let event_code="e_1670244422924"
-		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_vreq","event_desc":"BT VReq","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let event_params={"caller_name":"process_log_ui_view_req_and_resp__bt_vreq","event_desc":"BT VReq","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_resp","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
 		let handler_code="bind_tran"
 		let internals=""
 		let event_data={}
@@ -2329,15 +2329,15 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
-	process_log_ui_view_req_and_res__bt_vres() { 
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and resp"
+	process_log_ui_view_req_and_resp__bt_vres() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="process_log_ui_view_req_and_res"
+		let source_id="process_log_ui_view_req_and_resp"
 		let destn_id="response_ui"
 		let parent_source_id=""
 		let event_code="e_1670244485244"
-		let event_params={"caller_name":"process_log_ui_view_req_and_res__bt_vres","event_desc":"BT VRES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
+		let event_params={"caller_name":"process_log_ui_view_req_and_resp__bt_vres","event_desc":"BT VRES","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_resp","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":""}}
 		let handler_code="bind_tran"
 		let internals=""
 		let event_data={}
@@ -2350,15 +2350,15 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and res"
-	process_log_ui_view_req_and_res__sp_for_vreq() { 
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view req and resp"
+	process_log_ui_view_req_and_resp__sp_for_vreq() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="process_log_ui_view_req_and_res"
+		let source_id="process_log_ui_view_req_and_resp"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1670244529090"
-		let event_params={"caller_name":"process_log_ui_view_req_and_res__sp_for_vreq","event_desc":"SP for vreq","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1670244292991"}}
+		let event_params={"caller_name":"process_log_ui_view_req_and_resp__sp_for_vreq","event_desc":"SP for vreq","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_req_and_resp","raiseparam":{"profile_code":"BTL_1304_1670244292991"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

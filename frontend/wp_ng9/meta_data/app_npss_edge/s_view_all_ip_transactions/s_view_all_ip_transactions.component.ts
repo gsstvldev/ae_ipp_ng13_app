@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29502 
+Build ID        : 29555 
 Modified By     : Admin 
-Modified Date   : 2023-May-11 10:9 AM 
+Modified Date   : 2023-May-16 7:35 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_ip_transactions
@@ -394,8 +394,8 @@ export class s_view_all_ip_transactionsComponent implements OnInit,AfterViewInit
 		this.process_log_ui_view_req_and_res.disabled = true
 		this.process_log_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-expand"}
 		this.process_log_ui_view_req_and_res.dynamic_param = {}
-		this.process_log_ui_view_req_and_res.role = []
-		this.process_log_ui_view_req_and_res.action = ""
+		this.process_log_ui_view_req_and_res.role = ["699"]
+		this.process_log_ui_view_req_and_res.action = "show"
 	
 		// Component level properties - "Message Detail UI" 
 		this.message_detail_ui.uictrl_code = "dynamic_ui"
@@ -440,8 +440,8 @@ export class s_view_all_ip_transactionsComponent implements OnInit,AfterViewInit
 		this.message_detail_action_view_message.disabled = true
 		this.message_detail_action_view_message.params = {"icon_only":false,"uicgcc_style":"fa fa-css3"}
 		this.message_detail_action_view_message.dynamic_param = {}
-		this.message_detail_action_view_message.role = []
-		this.message_detail_action_view_message.action = ""
+		this.message_detail_action_view_message.role = ["699"]
+		this.message_detail_action_view_message.action = "show"
 	
 		// Component level properties - "Message Detail" 
 		this.message_detail.uictrl_code = "datatable"

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29502 
+Build ID        : 29561 
 Modified By     : Admin 
-Modified Date   : 2023-May-11 10:9 AM 
+Modified Date   : 2023-May-16 10:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_cbuae_exception
@@ -73,6 +73,9 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 	navigation_ui_view_process_log : any = {}
 	navigation_ui_view_message_log : any = {}
 	navigation_ui_retry : any = {}
+	navigation_ui_hold : any = {}
+	navigation_ui_release : any = {}
+	navigation_ui_call_reversal : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -191,6 +194,33 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_retry.dynamic_param = {}
 		this.navigation_ui_retry.role = []
 		this.navigation_ui_retry.action = ""
+		
+		// "Hold" Button of "Navigation UI" component
+		this.navigation_ui_hold.label_name = "Hold"
+		this.navigation_ui_hold.show = true
+		this.navigation_ui_hold.disabled = false
+		this.navigation_ui_hold.params = {"icon_only":false,"uicgcc_style":"fa fa-stop"}
+		this.navigation_ui_hold.dynamic_param = {}
+		this.navigation_ui_hold.role = []
+		this.navigation_ui_hold.action = ""
+		
+		// "Release" Button of "Navigation UI" component
+		this.navigation_ui_release.label_name = "Release"
+		this.navigation_ui_release.show = true
+		this.navigation_ui_release.disabled = false
+		this.navigation_ui_release.params = {"icon_only":false,"uicgcc_style":"fa fa-check"}
+		this.navigation_ui_release.dynamic_param = {}
+		this.navigation_ui_release.role = []
+		this.navigation_ui_release.action = ""
+		
+		// "Call Reversal" Button of "Navigation UI" component
+		this.navigation_ui_call_reversal.label_name = "Call Reversal"
+		this.navigation_ui_call_reversal.show = true
+		this.navigation_ui_call_reversal.disabled = false
+		this.navigation_ui_call_reversal.params = {"icon_only":false,"uicgcc_style":"fa fa-phone-square"}
+		this.navigation_ui_call_reversal.dynamic_param = {}
+		this.navigation_ui_call_reversal.role = []
+		this.navigation_ui_call_reversal.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -721,6 +751,51 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "im for retry btn"
 	im_for_retry_btn__internal(parent_event_result){
 		this.im_for_retry_btn__rs_for_retry_btn(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui call reversal"
+	navigation_ui_call_reversal__action_button_click(){
+		this.navigation_ui_call_reversal__e_1684233549219()
+	}
+
+	//Handler for INTERNAL event of "e 1684233549219"
+	e_1684233549219__internal(parent_event_result){
+		this.e_1684233549219__e_1684233562349(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1684233562349"
+	e_1684233562349__internal(parent_event_result){
+		this.e_1684233562349__e_1684233632547(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui hold"
+	navigation_ui_hold__action_button_click(){
+		this.navigation_ui_hold__e_1684233648443()
+	}
+
+	//Handler for INTERNAL event of "e 1684233648443"
+	e_1684233648443__internal(parent_event_result){
+		this.e_1684233648443__e_1684233661724(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1684233661724"
+	e_1684233661724__internal(parent_event_result){
+		this.e_1684233661724__e_1684233676219(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui release"
+	navigation_ui_release__action_button_click(){
+		this.navigation_ui_release__e_1684233707415()
+	}
+
+	//Handler for INTERNAL event of "e 1684233707415"
+	e_1684233707415__internal(parent_event_result){
+		this.e_1684233707415__e_1684233721177(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1684233721177"
+	e_1684233721177__internal(parent_event_result){
+		this.e_1684233721177__e_1684233738960(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2092,6 +2167,201 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 		let parent_source_id="cc_for_for_retry_btn"
 		let event_code="e_1679581429251"
 		let event_params={"caller_name":"im_for_retry_btn__rs_for_retry_btn","event_desc":"RS for Retry Btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_retry","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui call reversal"
+	navigation_ui_call_reversal__e_1684233549219() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_call_reversal"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1684233549219"
+		let event_params={"caller_name":"navigation_ui_call_reversal__e_1684233549219","event_desc":"E_1684233549219","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_call_reversal","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1684233549219__e_1684233562349,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1684233549219"
+	e_1684233549219__e_1684233562349(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1684233549219"
+		let destn_id=""
+		let parent_source_id="navigation_ui_call_reversal"
+		let event_code="e_1684233562349"
+		let event_params={"caller_name":"e_1684233549219__e_1684233562349","event_desc":"E_1684233562349","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been reversal process successfully","root_source_id":"navigation_ui_call_reversal","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1684233562349__e_1684233632547,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1684233562349"
+	e_1684233562349__e_1684233632547(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1684233562349"
+		let destn_id=""
+		let parent_source_id="e_1684233549219"
+		let event_code="e_1684233632547"
+		let event_params={"caller_name":"e_1684233562349__e_1684233632547","event_desc":"E_1684233632547","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_call_reversal","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui hold"
+	navigation_ui_hold__e_1684233648443() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_hold"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1684233648443"
+		let event_params={"caller_name":"navigation_ui_hold__e_1684233648443","event_desc":"E_1684233648443","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_hold","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1684233648443__e_1684233661724,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1684233648443"
+	e_1684233648443__e_1684233661724(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1684233648443"
+		let destn_id=""
+		let parent_source_id="navigation_ui_hold"
+		let event_code="e_1684233661724"
+		let event_params={"caller_name":"e_1684233648443__e_1684233661724","event_desc":"E_1684233661724","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been hold successfully","root_source_id":"navigation_ui_hold","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1684233661724__e_1684233676219,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1684233661724"
+	e_1684233661724__e_1684233676219(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1684233661724"
+		let destn_id=""
+		let parent_source_id="e_1684233648443"
+		let event_code="e_1684233676219"
+		let event_params={"caller_name":"e_1684233661724__e_1684233676219","event_desc":"E_1684233676219","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_hold","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui release"
+	navigation_ui_release__e_1684233707415() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_release"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1684233707415"
+		let event_params={"caller_name":"navigation_ui_release__e_1684233707415","event_desc":"E_1684233707415","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_release","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1684233707415__e_1684233721177,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1684233707415"
+	e_1684233707415__e_1684233721177(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1684233707415"
+		let destn_id=""
+		let parent_source_id="navigation_ui_release"
+		let event_code="e_1684233721177"
+		let event_params={"caller_name":"e_1684233707415__e_1684233721177","event_desc":"E_1684233721177","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction has been released successfully","root_source_id":"navigation_ui_release","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="e_1684233721177__e_1684233738960,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1684233721177"
+	e_1684233721177__e_1684233738960(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1684233721177"
+		let destn_id=""
+		let parent_source_id="e_1684233707415"
+		let event_code="e_1684233738960"
+		let event_params={"caller_name":"e_1684233721177__e_1684233738960","event_desc":"E_1684233738960","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_release","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

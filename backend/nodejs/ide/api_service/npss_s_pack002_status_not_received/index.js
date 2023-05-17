@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
     
+    
 
 
 
@@ -17,8 +18,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
     /*  Created By :Daseen
     Created Date :18/02/2023
-    Modified By : 
-    Modified Date : 
+    Modified By : Siva Harish
+    Modified Date : 17/05/2023
    }
     */
    var serviceName = 'NPSS (S) Pack002 Status Not Received ';
@@ -136,11 +137,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                        }
                                                                                        try {
                                                                                            var frtodata = [{
-                                                                                               TO: arrCometo[0].param_value ? arrCometo[0].param_value : '',
-                                                                                               CC: arrcomcc[0].param_value ? arrcomcc[0].param_value : '',
+                                                                                               TO: arrCometo.length > 0 ? arrCometo[0].param_value : '',
+                                                                                               CC: arrcomcc.length > 0 ? arrcomcc[0].param_value : '',
                                                                                                BCC: '',
-                                                                                               ORIGIN: arrorg[0].param_value ? arrorg[0].param_value : '',
-                                                                                               COMM_GROUP: arrcomgp[0].param_value ? arrcomgp[0].param_value : '',
+                                                                                               ORIGIN: arrorg.length > 0 ? arrorg[0].param_value : '',
+                                                                                               COMM_GROUP: arrcomgp.length > 0? arrcomgp[0].param_value : '',
                                                                                                DATE: arrTrnobj.value_date,
                                                                                                MESSAGETYPE: message_type,
                                                                                                PROCESSTYPE: process_type,
@@ -346,6 +347,7 @@ app.post('/', function(appRequest, appResponse, next) {
            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
        }
    })
+
 
 
 

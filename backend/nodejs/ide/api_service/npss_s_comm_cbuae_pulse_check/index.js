@@ -8,10 +8,11 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
 
+
     /*  Created By :   Daseen
     Created Date :7/1/2022
-    Modified By : 
-    Modified Date : 
+    Modified By : Siva Harish
+    Modified Date : 17/05/2023
     Reason for : 
      
     */
@@ -53,133 +54,169 @@ app.post('/', function(appRequest, appResponse, next) {
                 mTranConn = pSession; //  assign connection     
                 try {
                     var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync = 'Y'`
-                    var TakeprocessNameData = `select param_name,param_value,process_name from core_ns_params where need_sync = 'Y' and  param_name in ('CHECK_FREQ','CHECK_INTERVAL','COMM_CC','COMM_GROUP','COMM_TO','ORIGIN','COM_CATEGORY')and process_name ='CBUAE_NOT_AVAILABLE' order by param_name asc`
-                    ExecuteQuery1(TakeprocessNameData, function (arrprsname) {
-                        if (arrprsname.length == 7) {
-                            var objtrndetail = [{
-
-                                "TO": arrprsname[4]["param_value"],
-                                "CC": arrprsname[2]["param_value"],
-                                 "BCC":'',
-                                "ORIGIN": arrprsname[6]["param_value"],
-                                "COMM_GROUP": arrprsname[3]["param_value"]
-                                // "EMAIL_ID":arrprsname[4]["param_value"],
-                            }]
-                            var checkData = `SELECT CREATED_DATE_UTC ,NOW()::timestamp,NOW()::timestamp - INTERVAL '${arrprsname[1]["param_value"]} ${arrprsname[0]["param_value"]}' before_hour,* FROM npss_trn_process_log   WHERE status='${params.status}'   and CREATED_DATE_UTC between NOW()::timestamp - INTERVAL '${arrprsname[1]["param_value"]} ${arrprsname[0]["param_value"]}' and now()::timestamp  ORDER BY CREATED_DATE_UTC DESC`
-
-                            ExecuteQuery1(checkData, function (trnprslog) {
-                                if (trnprslog.length == 0) {
-                                    ExecuteQuery1(takeurl, function (arrurl) {
-                                        if (arrurl.length) {
-                                            try {
-
-                                                var request = require('request');
-
-                                                var options = {
-                                                    url: arrurl[0].param_detail,
-                                                    timeout: 18000000,
-                                                    method: 'POST',
-                                                    json: {
-                                                        "PARAMS": {
-
-                                                            "WFTPA_ID": "DEFAULT",
-
-                                                            "PRCT_ID": "",
-
-                                                            "EVENT_CODE": "DEFAULT",
-
-                                                            "USER_EMAIL": "",
-
-                                                            "USER_MOBILE": "",
-
-                                                            
-                                                            "TRN_DETAILS": JSON.stringify(objtrndetail),
-
-                                                            "TEMPLATECODE": arrprsname[5]["param_value"],
-
-                                                            "DT_CODE": "",
-
-                                                            "DTT_CODE": "",
-
-                                                            "COMM_INFO": "",
-
-                                                            "SKIP_COMM_FLOW": true
-
-                                                        },
-
-                                                        "PROCESS_INFO": {
-
-                                                            "MODULE": "MODULE",
-
-                                                            "MENU_GROUP": "MENU_GROUP",
-
-                                                            "MENU_ITEM": "MENU_ITEM",
-
-                                                            "PROCESS_NAME": "PROCESS_NAME"
-
-                                                        }
-                                                    },
-                                                    headers: {
-                                                        "session-id": "STATIC-SESSION-NPSS",
-                                                        "routingKey": "CLT-0~APP-0~TNT-0~ENV-0",
-                                                        'Content-Type': 'application/json'
-
-                                                    }
-                                                }
-
-
-
-                                               
-                                                reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
-                                                request(options, function (error, responseFromImagingService, responseBody) {
-
-                                                    if (error) {
-                                                        reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
-                                                        sendResponse(error, null);
+                    var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'COMM_TO' and need_sync = 'Y'`
+                    ExecuteQuery1(TakeCometo, function (arrcomto) {
+                        var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'ORIGIN' and need_sync = 'Y'`
+                        ExecuteQuery1(Takeorg, function (arrorg) {
+                            var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'COMM_GROUP' and need_sync = 'Y'`
+                            ExecuteQuery1(tkcomgp, function (arrcomgp) {
+                                var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'COMM_CC' and need_sync = 'Y'`
+                                ExecuteQuery1(Takecmcc, function (arrcomcc) {
+                                    var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'COM_CATEGORY' and need_sync = 'Y'`
+                                    ExecuteQuery1(TakecomCat, function (arrCatgory) {
+                                        var TakeIntvl = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'CHECK_INTERVAL' and need_sync = 'Y'`
+                                        ExecuteQuery1(TakeIntvl, function (arrintvl) {
+                                            if (arrintvl.length > 0) {
+                                                var Takefrq = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'CHECK_FREQ' and need_sync = 'Y'`
+                                                ExecuteQuery1(Takefrq, function (arrfrq) {
+                                                    if (arrfrq.length > 0) {
+                                                        var objtrndetail = [{
+                                                            TO: arrcomto.length > 0 ? arrcomto[0].param_value : '',
+                                                            CC: arrcomcc.length > 0 ? arrcomcc[0].param_value : '',
+                                                            BCC: '',
+                                                            ORIGIN: arrorg.length > 0 ? arrorg[0].param_value : '',
+                                                            COMM_GROUP: arrcomgp.length > 0 ? arrcomgp[0].param_value : ''
+                                                           
+                                                        }]
+                                                        var checkData = `SELECT CREATED_DATE_UTC ,NOW()::timestamp,NOW()::timestamp - INTERVAL '${arrintvl[0]["param_value"]} ${arrfrq[0]["param_value"]}' before_hour,* FROM npss_trn_process_log   WHERE status='${params.status}'   and CREATED_DATE_UTC between NOW()::timestamp - INTERVAL '${arrintvl[0]["param_value"]} ${arrfrq[0]["param_value"]}' and now()::timestamp  ORDER BY CREATED_DATE_UTC DESC`
+                                
+                                                        ExecuteQuery1(checkData, function (trnprslog) {
+                                                            if (trnprslog.length == 0) {
+                                                                ExecuteQuery1(takeurl, function (arrurl) {
+                                                                    if (arrurl.length) {
+                                                                        try {
+                                
+                                                                            var request = require('request');
+                                
+                                                                            var options = {
+                                                                                url: arrurl[0].param_detail,
+                                                                                timeout: 18000000,
+                                                                                method: 'POST',
+                                                                                json: {
+                                                                                    "PARAMS": {
+                                
+                                                                                        "WFTPA_ID": "DEFAULT",
+                                
+                                                                                        "PRCT_ID": "",
+                                
+                                                                                        "EVENT_CODE": "DEFAULT",
+                                
+                                                                                        "USER_EMAIL": "",
+                                
+                                                                                        "USER_MOBILE": "",
+                                
+                                
+                                                                                        "TRN_DETAILS": JSON.stringify(objtrndetail),
+                                
+                                                                                        "TEMPLATECODE": arrCatgory.length > 0 ? arrCatgory[0]["param_value"] : '',
+                                
+                                                                                        "DT_CODE": "",
+                                
+                                                                                        "DTT_CODE": "",
+                                
+                                                                                        "COMM_INFO": "",
+                                
+                                                                                        "SKIP_COMM_FLOW": true
+                                
+                                                                                    },
+                                
+                                                                                    "PROCESS_INFO": {
+                                
+                                                                                        "MODULE": "MODULE",
+                                
+                                                                                        "MENU_GROUP": "MENU_GROUP",
+                                
+                                                                                        "MENU_ITEM": "MENU_ITEM",
+                                
+                                                                                        "PROCESS_NAME": "PROCESS_NAME"
+                                
+                                                                                    }
+                                                                                },
+                                                                                headers: {
+                                                                                    "session-id": "STATIC-SESSION-NPSS",
+                                                                                    "routingKey": "CLT-0~APP-0~TNT-0~ENV-0",
+                                                                                    'Content-Type': 'application/json'
+                                
+                                                                                }
+                                                                            }
+                                
+                                
+                                
+                                
+                                                                            reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                                                                            request(options, function (error, responseFromImagingService, responseBody) {
+                                
+                                                                                if (error) {
+                                                                                    reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
+                                                                                    sendResponse(error, null);
+                                                                                } else {
+                                
+                                                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBody, objSessionLogInfo);
+                                
+                                                                                    objresponse.status = 'SUCCESS';
+                                
+                                                                                    sendResponse(null, objresponse)
+                                
+                                
+                                                                                }
+                                                                            });
+                                
+                                                                        } catch (error) {
+                                                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
+                                                                            sendResponse(error, null);
+                                                                        }
+                                                                    }
+                                                                    else {
+                                                                        reqInstanceHelper.PrintInfo(serviceName, ".....................NO URL FOUND in Trn process log.................", objSessionLogInfo);
+                                                                        objresponse.status = 'FAILURE';
+                                                                        objresponse.msg = 'NO URL FOUND in table';
+                                                                        sendResponse(null, objresponse)
+                                                                    }
+                                                                })
+                                
+                                                            } else {
+                                                                reqInstanceHelper.PrintInfo(serviceName, ".....................NO Data FOUND in Trn process log.................", objSessionLogInfo);
+                                                                objresponse.status = 'FAILURE';
+                                                                objresponse.msg = 'NO Tran FOUND in table';
+                                                                sendResponse(null, objresponse)
+                                                            }
+                                
+                                                        })
                                                     } else {
-
-                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBody, objSessionLogInfo);
-                                                        
-                                                        objresponse.status = 'SUCCESS';
-
+                                                        reqInstanceHelper.PrintInfo(serviceName, ".....................CHECK_Frequency NO Data FOUND in CORE_NS_PARAMS.................", objSessionLogInfo);
+                                                        objresponse.status = 'FAILURE';
+                                                        objresponse.msg = 'CHECK_Frequency NO Data FOUND in CORE_NS_PARAMS';
                                                         sendResponse(null, objresponse)
-
-
                                                     }
-                                                });
 
-                                            } catch (error) {
-                                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
-                                                sendResponse(error, null);
+                                                })
+                                            } else {
+                                                reqInstanceHelper.PrintInfo(serviceName, ".....................CHECK_INTERVAL NO Data FOUND in CORE_NS_PARAMS.................", objSessionLogInfo);
+                                                objresponse.status = 'FAILURE';
+                                                objresponse.msg = 'CHECK_INTERVAL NO Data FOUND in CORE_NS_PARAMS';
+                                                sendResponse(null, objresponse)
                                             }
-                                        }
-                                        else {
-                                            reqInstanceHelper.PrintInfo(serviceName, ".....................NO URL FOUND in Trn process log.................", objSessionLogInfo);
-                                            objresponse.status = 'FAILURE';
-                                            objresponse.msg = 'NO URL FOUND in table';
-                                            sendResponse(null, objresponse)
-                                        }
+
+                                        })
+
                                     })
-
-                                } else {
-                                    reqInstanceHelper.PrintInfo(serviceName, ".....................NO Data FOUND in Trn process log.................", objSessionLogInfo);
-                                    objresponse.status = 'FAILURE';
-                                    objresponse.msg = 'NO Tran FOUND in table';
-                                    sendResponse(null, objresponse)
-                                }
-
+                                })
                             })
-
-
-
-                        } else {
-                            reqInstanceHelper.PrintInfo(serviceName, "........................ NO FOUND FOR THIS PROCESS NAME...............", objSessionLogInfo);
-                            objresponse.status = 'FAILURE';
-                            objresponse.msg = 'NO FOUND FOR THIS PROCESS NAME';
-                            sendResponse(null, objresponse)
-                        }
-
+                        })
                     })
+
+
+
+
+                
+
+                       
+
+
+
+
+
+                   
 
                     //Execute Query for common
                     function ExecuteQuery(query, callback) {
@@ -234,13 +271,13 @@ app.post('/', function(appRequest, appResponse, next) {
                 function sendResponse(error, response) {
                     try {
                         if (error) {
-                           
-                                reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-                         
+
+                            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
+
                         } else {
-                         
-                                reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-                         
+
+                            reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
+
                         }
                     } catch (error) {
                         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
@@ -252,6 +289,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

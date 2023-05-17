@@ -7,11 +7,12 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
     /*  Created By : Daseen
     Created Date :15/02/2023
-    Modified By : 
-    Modified Date : 
+    Modified By : Siva Harish
+    Modified Date : 17/05/2023
    }
     */
    var serviceName = 'NPSS Inward Reversal Success';
@@ -74,15 +75,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                            ExecuteQuery1(takeTrn, function (arrTrn) {
                                                if (arrTrn.length > 0) {
                                                    reqAsync.forEachOfSeries(arrTrn, function (arrTrnobj, i, nextobjctfunc) {
-                                                       if (arrTrnobj.customer_email_id != null) {
+                                                     
                                                            if (arrTrnobj.cdtr_iban.substring(0, 3) != 'AED') {
                                                                try {
                                                                    var frtodata = [{
-                                                                       TO: arrTrnobj.customer_email_id ? arrTrnobj.customer_email_id : '',
-                                                                       CC: arrcomcc[0].param_value ? arrcomcc[0].param_value : '',
+                                                                       TO: arrTrnobj.length > 0 ? arrTrnobj.customer_email_id : '',
+                                                                       CC: arrcomcc.length > 0 ? arrcomcc[0].param_value : '',
                                                                        BCC: '',
-                                                                       ORIGIN: arrorg[0].param_value ? arrorg[0].param_value : '',
-                                                                       COMM_GROUP: arrcomgp[0].param_value ? arrcomgp[0].param_value : '',
+                                                                       ORIGIN: arrorg.length > 0 ? arrorg[0].param_value : '',
+                                                                       COMM_GROUP: arrcomgp.length > 0 ? arrcomgp[0].param_value : '',
                                                                        CDTRIBAN: 'XXXX' + (arrTrnobj.cdtr_iban).substring(arrTrnobj.cdtr_iban.length - 4),
                                                                        DBTRIBAN: 'XXXX' + (arrTrnobj.dbtr_iban).substring(arrTrnobj.dbtr_iban.length - 4),
                                                                        AMOUNT: arrTrnobj.intrbk_sttlm_amnt,
@@ -180,13 +181,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                failedData.push(fail)
                                                                nextobjctfunc()
                                                            }
-                                                       } else {
-                                                           reqInstanceHelper.PrintInfo(serviceName, '-----------Mail Failure  for-------' + arrTrnobj.cdtr_iban, objSessionLogInfo);
-                                                           var fail = {}
-                                                           fail.updateFaildept = arrTrnobj.cdtr_iban
-                                                           failedData.push(fail)
-                                                           nextobjctfunc()
-                                                       }
+                                                      
 
 
                                                    }, function () {
@@ -290,6 +285,7 @@ app.post('/', function(appRequest, appResponse, next) {
            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
        }
    })
+
 
 
 

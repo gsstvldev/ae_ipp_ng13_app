@@ -7,10 +7,11 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
     /*  Created By :sIVA hARISH
     Created Date :22/02/2023
-    Modified By : 
-    Modified Date : 
+    Modified By : Siva Harish
+    Modified Date : 17/05/2023
    }
     */
    var serviceName = 'NPSS (CS) Proxy Payment Rejected Mail Alert';
@@ -84,7 +85,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                    if (arrData.length > 0) {
                                                        var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name='COMM_TO'  and  need_sync = 'Y'`
                                                        ExecuteQuery1(TakeCometo, function (arrCometo) {
-                                                           if (arrCometo.length > 0) {
+                                                          
                                                                reqAsync.forEachOfSeries(arrData, function (arrDataobj, i, nextobjctfunc) {    
                                                                    var TakenpsstrRefno = `select npsstrrd_refno from npss_trn_process_log where process_name = 'SctInitiation' and uetr = '${arrDataobj.uetr}' and coalesce(additional_info,'') <>'Mail_Sent'`
                                                                    ExecuteQuery1(TakenpsstrRefno, function (arrnpstrefno) {
@@ -94,11 +95,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                if (arrInfrm.length > 0) {
                                                                                    try {
                                                                                        var frtodata = [{
-                                                                                           TO: arrCometo[0].param_value ? arrCometo[0].param_value : '',
-                                                                                           CC: arrcomcc[0].param_value ? arrcomcc[0].param_value : '',
+                                                                                           TO: arrCometo.length > 0 ? arrCometo[0].param_value : '',
+                                                                                           CC: arrcomcc.length > 0 ? arrcomcc[0].param_value : '',
                                                                                            BCC: '',
-                                                                                           ORIGIN: arrorg[0].param_value ? arrorg[0].param_value : '',
-                                                                                           COMM_GROUP: arrcomgp[0].param_value ? arrcomgp[0].param_value : '',
+                                                                                           ORIGIN: arrorg.length > 0? arrorg[0].param_value : '',
+                                                                                           COMM_GROUP: arrcomgp.length > 0 ? arrcomgp[0].param_value : '',
                                                                                            TRANSACTIONID: arrnpstrefno[0].npsstrrd_refno || '',
                                                                                            ENDTOENDID: arrInfrm[0].payment_endtoend_id || '',
                                                                                            PAYERACCOUNTNUMBER: arrInfrm[0].dbtr_iban || '',
@@ -219,10 +220,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                    sendResponse(null, objresponse)
                                                                })
 
-                                                           } else {
-                                                               reqInstanceHelper.PrintInfo(serviceName, '-----------Comm To not found-------', objSessionLogInfo);
-
-                                                           }
+                                                          
                                                        })
 
                                                    } else {
@@ -320,6 +318,7 @@ app.post('/', function(appRequest, appResponse, next) {
            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
        }
    })
+
 
 
 

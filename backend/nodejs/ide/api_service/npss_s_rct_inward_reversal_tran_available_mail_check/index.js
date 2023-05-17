@@ -84,14 +84,14 @@ console.log('arrCatgory');
 
 
                                                        try {
-                                                           var frtodata = [{
-                                                               TO: arrcomto[0].param_value ? arrcomto[0].param_value : '',
-                                                               CC: arrcomcc[0].param_value ? arrcomcc[0].param_value : '',
-                                                               BCC: '',
-                                                               ORIGIN: arrorg[0].param_value ? arrorg[0].param_value : '',
-                                                               COMM_GROUP: arrcomgp[0].param_value ? arrcomgp[0].param_value : '',
-                                                               COUNT:arrCount[0].count
-                                                           }]
+                                                          var frtodata = [{
+                                                                TO: arrcomto.length > 0 ? arrcomto[0].param_value : '',
+                                                                CC: arrcomcc.length > 0 ? arrcomcc[0].param_value : '',
+                                                                BCC: '',
+                                                                ORIGIN: arrorg.length > 0 ? arrorg[0].param_value : '',
+                                                                COMM_GROUP: arrcomgp.length > 0 ? arrcomgp[0].param_value : '',
+                                                                COUNT: arrCount[0].count
+                                                            }]
                                                            var trndetail = JSON.stringify(frtodata)
                                                            var request = require('request');
 

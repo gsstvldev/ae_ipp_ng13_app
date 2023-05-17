@@ -7,13 +7,14 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
     /*  Created By :Daseen
     Created Date :22/02/2023
-    Modified By : 
-    Modified Date : 
+    Modified By : Siva
+    Modified Date : 17/5/2023
    }
     */
    var serviceName = 'NPSS (S) AC to AC using IBAN Rejection pacs002 Mail';
@@ -68,39 +69,31 @@ app.post('/', function(appRequest, appResponse, next) {
                            sendResponse(null, objresponse)
                        }
                        else {
-
                            var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'ORIGIN' and need_sync='Y'`
                            ExecuteQuery1(Takeorg, function (arrorg) {
-
-
                                var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_GROUP' and need_sync='Y'`
                                ExecuteQuery1(tkcomgp, function (arrcomgp) {
-
                                    var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_CC' and need_sync='Y'`
                                    ExecuteQuery1(Takecmcc, function (arrcomcc) {
-
-
                                        var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COM_CATEGORY' and need_sync='Y'`
                                        ExecuteQuery1(TakecomCat, function (arrCatgory) {
                                            ExecuteQuery1(takeCount, function (arrCount) {
-
                                                if (arrCount.length > 0) {
                                                    if (arrCount[0].count == 0) {
                                                        objresponse.status = 'No count found';
                                                        sendResponse(null, objresponse)
-
                                                    } else {
 
                                                        var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name='COMM_TO' and need_sync='Y'`
                                                        ExecuteQuery1(TakeCometo, function (arrCometo) {
-                                                           if (arrCometo.length > 0) {
+                                                          
                                                                try {
                                                                    var frtodata = [{
-                                                                       TO: arrCometo[0].param_value ? arrCometo[0].param_value : '',
-                                                                       CC: arrcomcc[0].param_value ? arrcomcc[0].param_value : '',
+                                                                       TO: arrCometo.length > 0 ? arrCometo[0].param_value : '',
+                                                                       CC: arrcomcc.length > 0 ? arrcomcc[0].param_value : '',
                                                                        BCC: '',
-                                                                       ORIGIN: arrorg[0].param_value ? arrorg[0].param_value : '',
-                                                                       COMM_GROUP: arrcomgp[0].param_value ? arrcomgp[0].param_value : '',
+                                                                       ORIGIN: arrorg.length > 0 ? arrorg[0].param_value : '',
+                                                                       COMM_GROUP: arrcomgp.length > 0 ? arrcomgp[0].param_value : '',
                                                                        COUNT: arrCount[0].count
                                                                    }]
                                                                    var trndetail = JSON.stringify(frtodata)
@@ -177,11 +170,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
                                                                    sendResponse(error, null);
                                                                }
-                                                           } else {
-                                                               reqInstanceHelper.PrintInfo(serviceName, '-----------Mail Id is not mentioned-------', objSessionLogInfo);
-                                                               objresponse.status = 'Failure';
-                                                               sendResponse(null, objresponse)
-                                                           }
+                                                          
                                                        })
                                                    }
 
@@ -282,6 +271,7 @@ app.post('/', function(appRequest, appResponse, next) {
            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
        }
    })
+
 
 
 

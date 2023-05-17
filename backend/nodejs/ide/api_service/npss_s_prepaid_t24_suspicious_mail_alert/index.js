@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -14,6 +15,8 @@ app.post('/', function(appRequest, appResponse, next) {
 Created Date : 14-02-2022
 Modified By : Siva Harish
 Modified Date :15/02/2023
+Modified By : Siva Harish
+Modified Date :17/05/2023
 
 */
 var serviceName = 'NPSS (S) Prepaid Card T24 Posting Suspicious Mail Alert';
@@ -91,11 +94,11 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                       ExecuteQuery1(takeurl, function (arrUrl) {
                                           if (arrUrl.length) {
                                               var frtodata = [{
-                                                  TO: arrcomto[0].param_value ? arrcomto[0].param_value : '',
-                                                  CC: arrcomcc[0].param_value ? arrcomcc[0].param_value : '',
+                                                  TO: arrcomto.length > 0 ? arrcomto[0].param_value : '',
+                                                  CC: arrcomcc.length > 0 ? arrcomcc[0].param_value : '',
                                                   BCC: '',
-                                                  ORIGIN: arrorgin[0].param_value ? arrorgin[0].param_value : '',
-                                                  COMM_GROUP: arrcomgroup[0].param_value ? arrcomgroup[0].param_value : '',
+                                                  ORIGIN: arrorgin.length > 0 ? arrorgin[0].param_value : '',
+                                                  COMM_GROUP: arrcomgroup.length > 0 ? arrcomgroup[0].param_value : '',
                                                   COUNT: StatusCount[0].count
                                               }]
                                               var trndetail = JSON.stringify(frtodata)
@@ -229,6 +232,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
       reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
   }
 })
+
 
 
 

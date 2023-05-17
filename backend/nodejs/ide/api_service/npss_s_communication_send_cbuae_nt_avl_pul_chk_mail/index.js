@@ -7,14 +7,15 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
 
     /*  Created By :   Siva Harish
     Created Date :7/1/2022
-    Modified By : 
-    Modified Date : 
+    Modified By : Siva Harish
+    Modified Date : 17/05/2023
     Reason for : 
      
     */
@@ -76,11 +77,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             if (trnprslog.length) {
                                                                 try {
                                                                     var frtodata = [{
-                                                                        TO: arrcomto[0].param_value ? arrcomto[0].param_value : '',
-                                                                        CC: arrcomcc[0].param_value ? arrcomcc[0].param_value : '',
+                                                                        TO: arrcomto.length > 0 ? arrcomto[0].param_value : '',
+                                                                        CC: arrcomcc.length > 0 ? arrcomcc[0].param_value : '',
                                                                         BCC: '',
-                                                                        ORIGIN: arrorg[0].param_value ? arrorg[0].param_value : '',
-                                                                        COMM_GROUP: arrcomgp[0].param_value ? arrcomgp[0].param_value : ''
+                                                                        ORIGIN: arrorg.length > 0 ? arrorg[0].param_value : '',
+                                                                        COMM_GROUP: arrcomgp.length > 0 ? arrcomgp[0].param_value : ''
                                                                     }]
                                                                     var trndetail = JSON.stringify(frtodata)
                                                                     var request = require('request');
@@ -269,6 +270,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

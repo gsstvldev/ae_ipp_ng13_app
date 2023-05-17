@@ -7,15 +7,15 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
     /*  Created By :Daseen
     Created Date :23/02/2023
-    Modified By : 
-    Modified Date : 
+    Modified By : Siva Harish
+    Modified Date : 17/05/2023
    }
     */
    var serviceName = 'NPSS (S) Outward Return Reversal Posting Failures Mail';
-
    var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
    var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
    var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
@@ -91,9 +91,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                        reqAsync.forEachOfSeries(arrData, function (arrDataobj, i, nextobjctfunc) {
                                                            var takelog = `select * from npss_trn_process_log where uetr='${arrDataobj.uetr}' and status='${arrDataobj.status}'`
                                                            var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system ='${arrDataobj.department_code}' and param_name='COMM_TO' and need_sync='Y'`
-                                                           ExecuteQuery1(TakeCometo, function (arrCometo) {
-                                                               
-                                                               if (arrCometo.length > 0) {
+                                                           ExecuteQuery1(TakeCometo, function (arrCometo) {                                               
                                                                    ExecuteQuery1(takelog, function (arrlog) {
                                                                        if (arrlog.length > 0) {
                                                                            var Takeerr = `select error_code,error_description,cncec_id from core_nc_error_codes where error_code='${arrlog[0].t24_return_code}' and need_sync='Y'`
@@ -104,13 +102,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                        if (arracccur.length > 0) {
                                                                                            try {
                                                                                                var frtodata = [{
-                                                                                                   TO: arrCometo[0].param_value ? arrCometo[0].param_value : '',
-                                                                                                   CC: arrcomcc[0].param_value ? arrcomcc[0].param_value : '',
+                                                                                                   TO: arrCometo.length > 0 ? arrCometo[0].param_value : '',
+                                                                                                   CC: arrcomcc.length > 0  ? arrcomcc[0].param_value : '',
                                                                                                    BCC: '',
-                                                                                                   ORIGIN: arrorg[0].param_value ? arrorg[0].param_value : '',
-                                                                                                   COMM_GROUP: arrcomgp[0].param_value ? arrcomgp[0].param_value : '',
-                                                                                                   POSTINGAPPLICATION: arrlog[0].processing_system ? arrlog[0].processing_system : '',
-                                                                                                   MESSAGETYPE: arrlog[0].process_name ? arrlog[0].process_name : '',
+                                                                                                   ORIGIN: arrorg.length > 0  ? arrorg[0].param_value : '',
+                                                                                                   COMM_GROUP: arrcomgp.length > 0  ? arrcomgp[0].param_value : '',
+                                                                                                   POSTINGAPPLICATION: arrlog.length > 0 ? arrlog[0].processing_system : '',
+                                                                                                   MESSAGETYPE: arrlog.length > 0  ? arrlog[0].process_name : '',
                                                                                                    TXNVALUEDATE: arrDataobj.value_date ? arrDataobj.value_date : '',
                                                                                                    CRACCOUNTNUMBER: arrDataobj.cdtr_iban ? arrDataobj.cdtr_iban : '',
                                                                                                    CRACCOUNTNAME: arrDataobj.cdtr_acct_name ? arrDataobj.cdtr_acct_name : '',
@@ -120,11 +118,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                    DRACCOUNTNUMBER: arrDataobj.dbtr_iban ? arrDataobj.dbtr_iban : '',
                                                                                                    DRACCOUNTNAME: arrDataobj.dbtr_acct_name ? arrDataobj.dbtr_acct_name : '',
                                                                                                    DRBANKNAME: arrDataobj.dr_sort_code ? arrDataobj.dr_sort_code : '',
-                                                                                                   DRACCOUNTCURRENCY: arracccur[0].currency ? arracccur[0].currency : '',
+                                                                                                   DRACCOUNTCURRENCY: arracccur.length > 0  ? arracccur[0].currency : '',
                                                                                                    CLEARINGSYSREFNUMBER: arrDataobj.clrsysref ? arrDataobj.clrsysref : '',
                                                                                                    E2EREFERENCEID: arrDataobj.payment_endtoend_id ? arrDataobj.payment_endtoend_id : '',
-                                                                                                   FAILUREERRORCODE: arrlog[0].t24_return_code ? arrlog[0].t24_return_code : '',
-                                                                                                   ERRORDESCRIPTION: arrerr[0].error_description ? arrerr[0].error_description : ''
+                                                                                                   FAILUREERRORCODE: arrlog.length > 0  ? arrlog[0].t24_return_code : '',
+                                                                                                   ERRORDESCRIPTION: arrerr.length > 0  ? arrerr[0].error_description : ''
                                                                                                }]
                                                                                                var trndetail = JSON.stringify(frtodata)
                                                                                                var request = require('request');
@@ -215,11 +213,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                            nextobjctfunc();
                                                                        }
                                                                    })
-                                                               }
-                                                               else {
-                                                                   reqInstanceHelper.PrintInfo(serviceName, '-----------Comm To not found for depatment code------' + arrDataobj.department_code, objSessionLogInfo);
-                                                                   nextobjctfunc();
-                                                               }
+                                                              
                                                            })
                                                        }, function () {
                                                            objresponse.status = 'SUCCESS';
@@ -323,6 +317,7 @@ app.post('/', function(appRequest, appResponse, next) {
            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
        }
    })
+
 
 
 

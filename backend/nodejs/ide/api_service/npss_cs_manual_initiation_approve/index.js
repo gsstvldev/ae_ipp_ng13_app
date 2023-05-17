@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -34,6 +35,7 @@ app.post('/', function(appRequest, appResponse, next) {
                 Reason for remove sel rate and margin And add Buy rate and margin 2/05/2023
                  Reason for fixing gmrate and margin & dptr pvt id and document id 3/05/2023
                   Reason for Including Prepaid and debit Card 5/05/2023
+                   Reason for Handling Amount Credited for pacs008 17/05/2023
        
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -130,10 +132,34 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 var url = arrurl[0].param_detail;
                                                                 fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Objfiledata, Getdata, extend_retry_value, takedealRefno, GetsellRate, async function (firstapiresult) {
                                                                     if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
+                                                                        let Amount
+                                                                        if (reverandRefno.currency != 'AED') {
+                                                                            if (firstapiresult.amountCredited) {
+                                                                           
+                                                                                try {
+                                                                                    if (firstapiresult.amountCredited && arrprocesslog[0].intrbk_sttlm_amnt) {
+                                                                                        if (Number(firstapiresult.amountCredited) > Number(arrprocesslog[0].intrbk_sttlm_amnt)) {
+                                                                                            Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
+                                                                                        } else {
+                                                                                            Amount = firstapiresult.amountCredited
+                                                                                        }
+                                                                                    } else {
+                                                                                        Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
+                                                                                    }
+                                                                                } catch (error) {
+                                                                                    Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
+                                                                                }
+                                                                            } else {
+                                                                                Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
+                                                                            }
+                                                                        }else{
+                                                                            Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
+                                                                        }
+                                                                        
                                                                         reqInstanceHelper.PrintInfo(serviceName, '------------fIRST API CALL SUCCESS-------', objSessionLogInfo);
                                                                         let CheckorgPvt = await TakeOrgPvt(arrprocesslog)
                                                                         reverandRefno.type = 'IBAN'
-                                                                        let Pacs008 = await fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt)
+                                                                        let Pacs008 = await fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt,Amount)
                                                                         if (Pacs008 == 'SUCCESS') {
                                                                             let UpdateTran = await GetTranUpdate(final_process_status, final_status, PRCT_ID)
                                                                         } else {
@@ -208,7 +234,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     lclinstrm = ""
                                                 }
                                                 let CheckorgPvt = ''
-                                                let Pacs008 = await fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt)
+                                                let Amount = arrprocesslog[0].intrbk_sttlm_amnt
+                                                let Pacs008 = await fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt,Amount)
                                                 if(Pacs008 == 'SUCCESS'){
                                                     GetTranUpdate(final_process_status, final_status, PRCT_ID)
                                                 }else{
@@ -417,7 +444,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                    function fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt) {
+                    function fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt,Amount) {
                         return new Promise((resolve, reject) => {
                             try {
                                 var Takepac008url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_MANUAL_INT_PAC008' and param_code='URL' and need_sync = 'Y'`;
@@ -456,7 +483,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
                                                 "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
                                                 "uetr": arrprocesslog[0].uetr || '',
-                                                "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
+                                                "intrbk_sttlm_amnt": Amount || '',
                                                 "dbtr_acct_name": reverandRefno.account_name || '',
                                                 "dbtr_birth_date": reverandRefno.birthdate ? moment(reverandRefno.birthdate).format('YYYY-MM-DD') : '',
                                                 "dbtr_city_birth": reverandRefno.cityofbirth || '',
@@ -760,6 +787,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     function CheckTranStatus(arrprocesslog, final_process_status, final_status, lclinstrm, PRCT_ID) {
                         return new Promise(async (resolve, reject) => {
+                            let Amount = arrprocesslog[0].intrbk_sttlm_amnt
                             let ChkPrecdtCard = await CheckCreditPrepaid(arrprocesslog, lclinstrm)
                             if (ChkPrecdtCard.apitype == 0) {
                                 let TrnAldposted = await CheckTranAlrdyPosted(arrprocesslog[0].uetr)
@@ -768,7 +796,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 } else {
                                     let revAcctInfrm = await TakeIbanInfm(arrprocesslog)
                                     let CheckorgPvt = await TakeOrgPvt(arrprocesslog)
-                                    let Pacs008 = await fn_doPac008apicall(arrprocesslog, revAcctInfrm, CheckorgPvt)
+                                    let Pacs008 = await fn_doPac008apicall(arrprocesslog, revAcctInfrm, CheckorgPvt,Amount)
                                     if (Pacs008 == 'SUCCESS') {
                                         GetTranUpdate(final_process_status, final_status, PRCT_ID)
                                     } else {
@@ -795,7 +823,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     if (CheckAlredyApiCalled.Callapi == 'Call ELPASO Posting') {
                                         ElpasoApi = await CallPrepaidEplapsoApi(arrprocesslog, lclinstrm, extIdentValue, reversalNo, ChkPrecdtCard)
                                         if (ElpasoApi.status == 'SUCCESS' || ElpasoApi.status == 'Success') {
-                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt)
+                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt,Amount)
                                             if (Pacs008Api == 'SUCCESS') {
                                                 GetTranUpdate(final_process_status, final_status, PRCT_ID)
                                             } else {
@@ -810,7 +838,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     } else if (CheckAlredyApiCalled.Callapi == 'Call T24 Posting') {
                                         T24Api = await CallPrepaidT24Api(arrprocesslog, lclinstrm, extIdentValue, reversalNo, ChkPrecdtCard)
                                         if (T24Api.status == 'SUCCESS' || T24Api.status == 'Success') {
-                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt)
+                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt,Amount)
                                             if (Pacs008Api == 'SUCCESS') {
                                                 GetTranUpdate(final_process_status, final_status, PRCT_ID)
                                             } else {
@@ -823,7 +851,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             Handleerror = await SendErrormsg(T24Api, ApiVal)
                                         }
                                     } else {
-                                        Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt)
+                                        Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt,Amount)
                                         if (Pacs008Api == 'SUCCESS') {
                                             GetTranUpdate(final_process_status, final_status, PRCT_ID)
                                         } else {
@@ -836,7 +864,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     if (CheckAlredyApiCalled.Callapi == 'Call ELPASO Posting') {
                                         ElpasoApi = await CallCreditEplapsoApi(arrprocesslog, lclinstrm, extIdentValue, reversalNo)
                                         if (ElpasoApi.status == 'SUCCESS' || ElpasoApi.status == 'Success') {
-                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt)
+                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt,Amount)
                                             if (Pacs008Api == 'SUCCESS') {
                                                 GetTranUpdate(final_process_status, final_status, PRCT_ID)
                                             } else {
@@ -851,7 +879,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     } else if (CheckAlredyApiCalled.Callapi == 'Call T24 Posting') {
                                         T24Api = await CallCreditT24Api(arrprocesslog, lclinstrm, extIdentValue, reversalNo)
                                         if (T24Api.status == 'SUCCESS' || T24Api.status == 'Success') {
-                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt)
+                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt,Amount)
                                             if (Pacs008Api == 'SUCCESS') {
                                                 GetTranUpdate(final_process_status, final_status, PRCT_ID)
                                             } else {
@@ -864,7 +892,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             Handleerror = await SendErrormsg(T24Api)
                                         }
                                     } else {
-                                        Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt)
+                                        Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt,Amount)
                                         if (Pacs008Api == 'SUCCESS') {
                                             GetTranUpdate(final_process_status, final_status, PRCT_ID)
                                         } else {
@@ -1701,6 +1729,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

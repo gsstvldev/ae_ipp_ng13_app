@@ -237,12 +237,17 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
       },
       {
-        $DQ$NAME$DQ$: $DQ$NPSSTRRD_REFNO$DQ$,
+        $DQ$NAME$DQ$: $DQ$RESPONSE_CODE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
       },
       {
-        $DQ$NAME$DQ$: $DQ$RESPONSE_CODE$DQ$,
+        $DQ$NAME$DQ$: $DQ$TRAN_REF_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$NPSSTRRD_REFNO$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
       },
@@ -378,11 +383,6 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$ORG_STATUS$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$TRAN_REF_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
       },

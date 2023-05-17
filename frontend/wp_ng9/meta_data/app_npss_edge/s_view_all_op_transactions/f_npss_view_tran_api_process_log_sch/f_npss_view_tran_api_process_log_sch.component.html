@@ -1,0 +1,45 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_view_tran_api_process_log_sch="ngForm">
+<div id="RN01" class="row">
+	<div #npss_view_tran_api_process_log_sch_memory9 id="RN01CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory9')" >
+				<cdn_date [ctrl_id]="'npss_view_tran_api_process_log_sch_memory9'" [comp_id]="comp_id" [ctrl]="ctrl.memory9" [model]="screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
+	</div>
+	<div  id="RN01CN3" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('response_code')" >
+				<cdn_ctrl [ctrl_id]="'npss_view_tran_api_process_log_sch_response_code'" [comp_id]="comp_id" [ctrl]="ctrl.response_code" [model]="screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN11CN4" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('msg_id')" >
+				<cdn_ctrl [ctrl_id]="'npss_view_tran_api_process_log_sch_msg_id'" [comp_id]="comp_id" [ctrl]="ctrl.msg_id" [model]="screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN11CN5" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('dbtr_iban')" >
+				<cdn_ctrl [ctrl_id]="'npss_view_tran_api_process_log_sch_dbtr_iban'" [comp_id]="comp_id" [ctrl]="ctrl.dbtr_iban" [model]="screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN21" class="row">
+	<div  id="RN21CN6" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('amount')" >
+				<cdn_ctrl [ctrl_id]="'npss_view_tran_api_process_log_sch_amount'" [comp_id]="comp_id" [ctrl]="ctrl.amount" [model]="screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN21CN7" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('tran_ref_id')" >
+				<cdn_ctrl [ctrl_id]="'npss_view_tran_api_process_log_sch_tran_ref_id'" [comp_id]="comp_id" [ctrl]="ctrl.tran_ref_id" [model]="screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN31" class="row">
+	<div  id="RN31CN8" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('uetr')" >
+				<cdn_ctrl [ctrl_id]="'npss_view_tran_api_process_log_sch_uetr'" [comp_id]="comp_id" [ctrl]="ctrl.uetr" [model]="screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+ 		<div class="col-md-2 col-sm-6 col-xs-6 col-md-offset-8 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.process_log_search_search.show" >
+			<btn [ctrl_id]="'process_log_search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.process_log_search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.process_log_search_search.show"></btn>
+		</div>
+		<div class="col-md-2 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.process_log_search_clear.show" >
+			<btn [ctrl_id]="'process_log_search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.process_log_search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.process_log_search_clear.show"></btn>
+		</div>
+	</div>
+
+</div>

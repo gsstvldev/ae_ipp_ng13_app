@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29558 
+Build ID        : 29581 
 Modified By     : Admin 
-Modified Date   : 2023-May-16 9:57 AM 
+Modified Date   : 2023-May-17 10:23 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
@@ -56,6 +56,8 @@ import { p_view_api_req_layoutComponent } from './p_view_api_req_layout/p_view_a
 import { f_view_req_back_uiComponent } from './f_view_req_back_ui/f_view_req_back_ui.component'
 import { f_npss_respose_data_uiComponent } from './f_npss_respose_data_ui/f_npss_respose_data_ui.component'
 import { p_view_api_req_and_res_layoutComponent } from './p_view_api_req_and_res_layout/p_view_api_req_and_res_layout.component'
+import { p_view_process_log_searchComponent } from './p_view_process_log_search/p_view_process_log_search.component'
+import { f_npss_view_tran_api_process_log_schComponent } from './f_npss_view_tran_api_process_log_sch/f_npss_view_tran_api_process_log_sch.component'
 import { p_view_message_ui_layoutComponent } from './p_view_message_ui_layout/p_view_message_ui_layout.component'
 import { f_message_back_uiComponent } from './f_message_back_ui/f_message_back_ui.component'
 import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss_message_data_ui.component'
@@ -75,7 +77,7 @@ import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss
     s_view_all_op_transactionsRoutingModule,
     torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_rct_already_postingModule
   ],
-  declarations: [s_view_all_op_transactionsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_op_transaction_details_srchComponent,p_view_tran_detail_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,p_view_req_and_res_profileComponent,p_view_api_failure_layoutComponent,f_view_api_failure__action_uiComponent,p_view_api_req_layoutComponent,f_view_req_back_uiComponent,f_npss_respose_data_uiComponent,p_view_api_req_and_res_layoutComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,],
+  declarations: [s_view_all_op_transactionsComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_op_transaction_details_srchComponent,p_view_tran_detail_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,p_view_req_and_res_profileComponent,p_view_api_failure_layoutComponent,f_view_api_failure__action_uiComponent,p_view_api_req_layoutComponent,f_view_req_back_uiComponent,f_npss_respose_data_uiComponent,p_view_api_req_and_res_layoutComponent,p_view_process_log_searchComponent,f_npss_view_tran_api_process_log_schComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

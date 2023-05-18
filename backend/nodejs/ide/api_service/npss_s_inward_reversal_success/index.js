@@ -79,7 +79,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                            if (arrTrnobj.cdtr_iban.substring(0, 3) != 'AED') {
                                                                try {
                                                                    var frtodata = [{
-                                                                       TO: arrTrnobj.length > 0 ? arrTrnobj.customer_email_id : '',
+                                                                       TO:  arrTrnobj.customer_email_id || '',
                                                                        CC: arrcomcc.length > 0 ? arrcomcc[0].param_value : '',
                                                                        BCC: '',
                                                                        ORIGIN: arrorg.length > 0 ? arrorg[0].param_value : '',

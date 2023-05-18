@@ -7,11 +7,6 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-
-
-
-
-
     try {
         /*   Created By :Siva Harish
         Created Date :02-01-2023

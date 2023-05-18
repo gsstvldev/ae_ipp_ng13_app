@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29591 
+Build ID        : 29595 
 Modified By     : Admin 
-Modified Date   : 2023-May-18 5:57 AM 
+Modified Date   : 2023-May-18 8:6 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_cbuae_exception
@@ -14,13 +14,15 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
-import {npss_cs_cbuae_exception_retryService} from '../../../custom_widget/npss_cs_cbuae_exception_retry/npss_cs_cbuae_exception_retry.service'
+import {npss_cs_pacs_retryService} from '../../../custom_widget/npss_cs_pacs_retry/npss_cs_pacs_retry.service'
+import {npss_cs_cbuae_exception_holdService} from '../../../custom_widget/npss_cs_cbuae_exception_hold/npss_cs_cbuae_exception_hold.service'
+import {npss_cs_cbuae_exception_releaseService} from '../../../custom_widget/npss_cs_cbuae_exception_release/npss_cs_cbuae_exception_release.service'
 
 @Component({
 	selector: 's_cbuae_exception',
 	templateUrl: './s_cbuae_exception.component.html',
 	styleUrls: ['./s_cbuae_exception.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_cbuae_exception_retryService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_pacs_retryService,npss_cs_cbuae_exception_holdService,npss_cs_cbuae_exception_releaseService]
 })
     
 // Start of class 
@@ -106,7 +108,7 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_cbuae_exception_retryService:npss_cs_cbuae_exception_retryService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_pacs_retryService:npss_cs_pacs_retryService,private npss_cs_cbuae_exception_holdService:npss_cs_cbuae_exception_holdService,private npss_cs_cbuae_exception_releaseService:npss_cs_cbuae_exception_releaseService) {
     
 	}
     
@@ -1282,7 +1284,7 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 		let event_params={"caller_name":"transaction_list__svm_for_tl","event_desc":"SVM for TL","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_tl__show_hide_ide_link,"
-		let event_data={"transaction_list":{"e_1666857595507":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1666857595507","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS TRN REQ RESP DTLS","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"NPSST_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSST_ID","setd3name":"NPSST_ID"},{"type":"LOCAL","column_name":"UETR","level":"MI_LEVEL","name":"MI_LEVEL_UETR","setd3name":"UETR"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let event_data={"transaction_list":{"e_1666857595507":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1666857595507","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS TRN REQ RESP DTLS","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"NPSSTPL_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSTPL_ID","setd3name":"NPSSTPL_ID"},{"type":"LOCAL","column_name":"UETR","level":"MI_LEVEL","name":"MI_LEVEL_UETR","setd3name":"UETR"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS TRN REQ RESP DTLS","ds_eligible":"DS_1679582835225","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Exception Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"DATEMI","alias_name":"","mq_id":"MQ_1679582409592","date_format":false},{"column_name":"INTRBK_STTLM_AMNT","alias_name":"","mq_id":"MQ_1679582409782","date_format":false},{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1679582409966","date_format":false},{"column_name":"CDTR_ACCT_NAME","alias_name":"","mq_id":"MQ_1679582410150","date_format":false},{"column_name":"DBTR_IBAN","alias_name":"","mq_id":"MQ_1679582447325","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1679582447525","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1679582447701","date_format":false},{"column_name":"CLRSYSREF","alias_name":"","mq_id":"MQ_1679582469341","date_format":false},{"column_name":"DEPARTMENT_CODE","alias_name":"","mq_id":"MQ_1679582469645","date_format":false}],"joins":[]},"eq_text":"select  NPSSTPL_ID,  MSG_ID,  UETR,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESPONSE_CODE,  PROCESS_REF_NO,  CREATED_BY,  CREATED_BY_NAME,  CREATED_DATE,  MODIFIED_BY,  MODIFIED_BY_NAME,  STATUS,  PROCESS_STATUS,  DT_CODE,  DTT_CODE,  APP_ID,  TENANT_ID,  AMOUNT,  DBTR_IBAN,  TRAN_REF_ID,  PROCESS_TYPE,  DATEMI from  (  select   T.NPSSTPL_ID,   T.MSG_ID,   T.UETR,   T.PROCESS_NAME,   T.PROCESSING_SYSTEM,   T.RESPONSE_CODE,   T.PROCESS_REF_NO,   T.CREATED_BY,   T.CREATED_BY_NAME,   T.CREATED_DATE,   TO_CHAR(T.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   T.MODIFIED_BY,   T.MODIFIED_BY_NAME,   T.STATUS,   T.PROCESS_STATUS,   T.DT_CODE,   T.DTT_CODE,   T.APP_ID,   T.TENANT_ID,   T.AMOUNT,   T.DBTR_IBAN,   T.TRAN_REF_ID,   T.PROCESS_TYPE,   T.row_num  from   (   select   A.NPSSTPL_ID,   A.MSG_ID,   A.UETR,   A.PROCESS_NAME,   A.PROCESSING_SYSTEM,   A.RESPONSE_CODE,   A.PROCESS_REF_NO,   A.CREATED_BY,   A.CREATED_BY_NAME,   A.CREATED_DATE,   TO_CHAR(A.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as DATEMI,   A.MODIFIED_BY,   A.MODIFIED_BY_NAME,   A.STATUS,   A.PROCESS_STATUS,   A.DT_CODE,   A.DTT_CODE,   A.APP_ID,   A.TENANT_ID,   A.AMOUNT,   A.DBTR_IBAN,   A.PROCESS_TYPE,   A.TRAN_REF_ID,    row_number() over( partition by a.uetr   order by    a.npsstpl_id desc) as row_num   from    npss_trn_process_log a ) T ) V WHERE row_num = 1 $AND"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Exception Transaction CCD","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"PROCESS_NAME","binding_name":"PROCESS_NAME","binding_value":"","source_name":"MI_LEVEL_PROCESS_NAME","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date and time","target_column":"DATEMI","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"INTRBK_STTLM_AMNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CR IBAN","target_column":"CDTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr Account Name","target_column":"CDTR_ACCT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"DR IBAN","target_column":"DBTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E REF ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing Sys Ref No","target_column":"CLRSYSREF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Department Code","target_column":"DEPARTMENT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
@@ -2194,7 +2196,7 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_cbuae_exception_retryService.fn_npss_cs_cbuae_exception_retry(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_pacs_retryService.fn_npss_cs_pacs_retry(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2259,7 +2261,7 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_pacs_retryService.fn_npss_cs_pacs_retry(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2324,7 +2326,7 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_cbuae_exception_holdService.fn_npss_cs_cbuae_exception_hold(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2389,7 +2391,7 @@ export class s_cbuae_exceptionComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_cbuae_exception_releaseService.fn_npss_cs_cbuae_exception_release(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

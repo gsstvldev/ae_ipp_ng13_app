@@ -502,7 +502,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             method: 'POST',
                                             json: {
                                                 "hdr_msg_id": hdrmsgid,
-                                                "hdr_total_amount": arrprocesslog[0].hdr_total_amount || '',
+                                                "hdr_total_amount": Amount || '',
                                                 "value_date": moment().format('YYYY-MM-DD'),
                                                 "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
                                                 "instr_id": arrprocesslog[0].org_pay_endtoend_id || '',

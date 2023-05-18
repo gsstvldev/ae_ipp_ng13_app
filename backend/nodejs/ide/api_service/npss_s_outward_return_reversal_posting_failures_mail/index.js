@@ -8,11 +8,12 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
     /*  Created By :Daseen
     Created Date :23/02/2023
     Modified By : Siva Harish
-    Modified Date : 17/05/2023
+    Modified Date : 18/05/2023
    }
     */
    var serviceName = 'NPSS (S) Outward Return Reversal Posting Failures Mail';
@@ -82,8 +83,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                ExecuteQuery1(Takeorg, function (arrorg) {
                                    var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_GROUP' and need_sync='Y'`
                                    ExecuteQuery1(tkcomgp, function (arrcomgp) {
-                                       var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COMM_CC' and need_sync='Y'`
-                                       ExecuteQuery1(Takecmcc, function (arrcomcc) {
+                                      
                                            var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COM_CATEGORY' and need_sync='Y'`
                                            ExecuteQuery1(TakecomCat, function (arrCatgory) {
                                                ExecuteQuery1(Takedata, function (arrData) {
@@ -91,128 +91,136 @@ app.post('/', function(appRequest, appResponse, next) {
                                                        reqAsync.forEachOfSeries(arrData, function (arrDataobj, i, nextobjctfunc) {
                                                            var takelog = `select * from npss_trn_process_log where uetr='${arrDataobj.uetr}' and status='${arrDataobj.status}'`
                                                            var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system ='${arrDataobj.department_code}' and param_name='COMM_TO' and need_sync='Y'`
-                                                           ExecuteQuery1(TakeCometo, function (arrCometo) {                                               
-                                                                   ExecuteQuery1(takelog, function (arrlog) {
-                                                                       if (arrlog.length > 0) {
-                                                                           var Takeerr = `select error_code,error_description,cncec_id from core_nc_error_codes where error_code='${arrlog[0].t24_return_code}' and need_sync='Y'`
-                                                                           ExecuteQuery1(Takeerr, function (arrerr) {
-                                                                               if (arrerr.length > 0) {
-                                                                                   var takeacccur = `select currency from core_nc_cbs_accounts  where alternate_account_id='${arrDataobj.dbtr_iban}'`
-                                                                                   ExecuteQuery1(takeacccur, function (arracccur) {
-                                                                                       if (arracccur.length > 0) {
-                                                                                           try {
-                                                                                               var frtodata = [{
-                                                                                                   TO: arrCometo.length > 0 ? arrCometo[0].param_value : '',
-                                                                                                   CC: arrcomcc.length > 0  ? arrcomcc[0].param_value : '',
-                                                                                                   BCC: '',
-                                                                                                   ORIGIN: arrorg.length > 0  ? arrorg[0].param_value : '',
-                                                                                                   COMM_GROUP: arrcomgp.length > 0  ? arrcomgp[0].param_value : '',
-                                                                                                   POSTINGAPPLICATION: arrlog.length > 0 ? arrlog[0].processing_system : '',
-                                                                                                   MESSAGETYPE: arrlog.length > 0  ? arrlog[0].process_name : '',
-                                                                                                   TXNVALUEDATE: arrDataobj.value_date ? arrDataobj.value_date : '',
-                                                                                                   CRACCOUNTNUMBER: arrDataobj.cdtr_iban ? arrDataobj.cdtr_iban : '',
-                                                                                                   CRACCOUNTNAME: arrDataobj.cdtr_acct_name ? arrDataobj.cdtr_acct_name : '',
-                                                                                                   CRACCOUNTCURRENCY: arrDataobj.intrbk_sttlm_cur ? arrDataobj.intrbk_sttlm_cur : '',
-                                                                                                   CRBANKNAME: arrDataobj.cr_sort_code ? arrDataobj.cr_sort_code : '',
-                                                                                                   TRANSACTIONAMOUNT: arrDataobj.intrbk_sttlm_amnt ? arrDataobj.intrbk_sttlm_amnt : '',
-                                                                                                   DRACCOUNTNUMBER: arrDataobj.dbtr_iban ? arrDataobj.dbtr_iban : '',
-                                                                                                   DRACCOUNTNAME: arrDataobj.dbtr_acct_name ? arrDataobj.dbtr_acct_name : '',
-                                                                                                   DRBANKNAME: arrDataobj.dr_sort_code ? arrDataobj.dr_sort_code : '',
-                                                                                                   DRACCOUNTCURRENCY: arracccur.length > 0  ? arracccur[0].currency : '',
-                                                                                                   CLEARINGSYSREFNUMBER: arrDataobj.clrsysref ? arrDataobj.clrsysref : '',
-                                                                                                   E2EREFERENCEID: arrDataobj.payment_endtoend_id ? arrDataobj.payment_endtoend_id : '',
-                                                                                                   FAILUREERRORCODE: arrlog.length > 0  ? arrlog[0].t24_return_code : '',
-                                                                                                   ERRORDESCRIPTION: arrerr.length > 0  ? arrerr[0].error_description : ''
-                                                                                               }]
-                                                                                               var trndetail = JSON.stringify(frtodata)
-                                                                                               var request = require('request');
+                                                           ExecuteQuery1(TakeCometo, function (arrCometo) {  
+                                                            var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system ='${arrDataobj.department_code}' and param_name = 'COMM_CC' and need_sync='Y'`
+                                                            ExecuteQuery1(Takecmcc, function (arrcomcc) {
+                                                                var Takebcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system ='${arrDataobj.department_code}' and param_name = 'COMM_BCC' and need_sync='Y'`
+                                                                ExecuteQuery1(Takebcc, function (arrbcc) {
+                                                                    ExecuteQuery1(takelog, function (arrlog) {
+                                                                        if (arrlog.length > 0) {
+                                                                            var Takeerr = `select error_code,error_description,cncec_id from core_nc_error_codes where error_code='${arrlog[0].t24_return_code}' and need_sync='Y'`
+                                                                            ExecuteQuery1(Takeerr, function (arrerr) {
+                                                                                if (arrerr.length > 0) {
+                                                                                    var takeacccur = `select currency from core_nc_cbs_accounts  where alternate_account_id='${arrDataobj.dbtr_iban}'`
+                                                                                    ExecuteQuery1(takeacccur, function (arracccur) {
+                                                                                        if (arracccur.length > 0) {
+                                                                                            try {
+                                                                                                var frtodata = [{
+                                                                                                    TO: arrCometo.length > 0 ? arrCometo[0].param_value : '',
+                                                                                                    CC: arrcomcc.length > 0  ? arrcomcc[0].param_value : '',
+                                                                                                    BCC: arrbcc.length > 0  ? arrbcc[0].param_value : '',
+                                                                                                    ORIGIN: arrorg.length > 0  ? arrorg[0].param_value : '',
+                                                                                                    COMM_GROUP: arrcomgp.length > 0  ? arrcomgp[0].param_value : '',
+                                                                                                    POSTINGAPPLICATION: arrlog.length > 0 ? arrlog[0].processing_system : '',
+                                                                                                    MESSAGETYPE: arrlog.length > 0  ? arrlog[0].process_name : '',
+                                                                                                    TXNVALUEDATE: arrDataobj.value_date ? arrDataobj.value_date : '',
+                                                                                                    CRACCOUNTNUMBER: arrDataobj.cdtr_iban ? arrDataobj.cdtr_iban : '',
+                                                                                                    CRACCOUNTNAME: arrDataobj.cdtr_acct_name ? arrDataobj.cdtr_acct_name : '',
+                                                                                                    CRACCOUNTCURRENCY: arrDataobj.intrbk_sttlm_cur ? arrDataobj.intrbk_sttlm_cur : '',
+                                                                                                    CRBANKNAME: arrDataobj.cr_sort_code ? arrDataobj.cr_sort_code : '',
+                                                                                                    TRANSACTIONAMOUNT: arrDataobj.intrbk_sttlm_amnt ? arrDataobj.intrbk_sttlm_amnt : '',
+                                                                                                    DRACCOUNTNUMBER: arrDataobj.dbtr_iban ? arrDataobj.dbtr_iban : '',
+                                                                                                    DRACCOUNTNAME: arrDataobj.dbtr_acct_name ? arrDataobj.dbtr_acct_name : '',
+                                                                                                    DRBANKNAME: arrDataobj.dr_sort_code ? arrDataobj.dr_sort_code : '',
+                                                                                                    DRACCOUNTCURRENCY: arracccur.length > 0  ? arracccur[0].currency : '',
+                                                                                                    CLEARINGSYSREFNUMBER: arrDataobj.clrsysref ? arrDataobj.clrsysref : '',
+                                                                                                    E2EREFERENCEID: arrDataobj.payment_endtoend_id ? arrDataobj.payment_endtoend_id : '',
+                                                                                                    FAILUREERRORCODE: arrlog.length > 0  ? arrlog[0].t24_return_code : '',
+                                                                                                    ERRORDESCRIPTION: arrerr.length > 0  ? arrerr[0].error_description : ''
+                                                                                                }]
+                                                                                                var trndetail = JSON.stringify(frtodata)
+                                                                                                var request = require('request');
+ 
+                                                                                                var options = {
+                                                                                                    url: arrUrl[0].param_detail,
+                                                                                                    timeout: 18000000,
+                                                                                                    method: 'POST',
+                                                                                                    json: {
+                                                                                                        "PARAMS": {
+ 
+                                                                                                            "WFTPA_ID": "DEFAULT",
+ 
+                                                                                                            "PRCT_ID": "",
+ 
+                                                                                                            "EVENT_CODE": "DEFAULT",
+ 
+                                                                                                            "USER_EMAIL": "",
+ 
+                                                                                                            "USER_MOBILE": "",
+ 
+                                                                                                            "TRN_DETAILS": trndetail,
+ 
+                                                                                                            "TEMPLATECODE": arrCatgory[0].param_value,
+ 
+                                                                                                            "DT_CODE": "",
+ 
+                                                                                                            "DTT_CODE": "",
+ 
+                                                                                                            "COMM_INFO": "",
+ 
+                                                                                                            "SKIP_COMM_FLOW": true
+ 
+                                                                                                        },
+ 
+                                                                                                        "PROCESS_INFO": {
+ 
+                                                                                                            "MODULE": "MODULE",
+ 
+                                                                                                            "MENU_GROUP": "MENU_GROUP",
+ 
+                                                                                                            "MENU_ITEM": "MENU_ITEM",
+ 
+                                                                                                            "PROCESS_NAME": "PROCESS_NAME"
+ 
+                                                                                                        }
+                                                                                                    },
+                                                                                                    headers: {
+                                                                                                        "session-id": params.session_id,
+                                                                                                        "routingKey": params.routingKey,
+                                                                                                        'Content-Type': 'application/json'
+ 
+                                                                                                    }
+                                                                                                }
+ 
+                                                                                                reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                                                                                                request(options, function (error, responseFromImagingService, responseBody) {
+ 
+                                                                                                    if (error) {
+                                                                                                        reqInstanceHelper.PrintInfo(serviceName, '------------Mail API ERROR-------' + error, objSessionLogInfo);
+                                                                                                        sendResponse(error, null);
+                                                                                                    } else {
+                                                                                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseBody), objSessionLogInfo);
+                                                                                                        reqInstanceHelper.PrintInfo(serviceName, '------------Mail has been sent for -------' + arrDataobj.npsst_id, objSessionLogInfo);
+                                                                                                        nextobjctfunc();
+                                                                                                    }
+                                                                                                });
+ 
+                                                                                            } catch (error) {
+                                                                                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
+                                                                                                sendResponse(error, null);
+                                                                                            }
+                                                                                        }
+                                                                                        else {
+                                                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------Account table entry  not found for npsstl_id------' + arrDataobj.npsstl_id, objSessionLogInfo);
+                                                                                            nextobjctfunc();
+                                                                                        }
+                                                                                    })
+ 
+                                                                                }
+                                                                                else {
+                                                                                    reqInstanceHelper.PrintInfo(serviceName, '-----------Error table entry  not found for npsstpl_id------' + arrlog[0].npsstpl_id, objSessionLogInfo);
+                                                                                    nextobjctfunc();
+                                                                                }
+                                                                            })
+                                                                        } else {
+                                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------Log table entry  not found for npsst_id------' + arrDataobj.npsst_id, objSessionLogInfo);
+                                                                            nextobjctfunc();
+                                                                        }
+                                                                    })
+                                                                })
 
-                                                                                               var options = {
-                                                                                                   url: arrUrl[0].param_detail,
-                                                                                                   timeout: 18000000,
-                                                                                                   method: 'POST',
-                                                                                                   json: {
-                                                                                                       "PARAMS": {
-
-                                                                                                           "WFTPA_ID": "DEFAULT",
-
-                                                                                                           "PRCT_ID": "",
-
-                                                                                                           "EVENT_CODE": "DEFAULT",
-
-                                                                                                           "USER_EMAIL": "",
-
-                                                                                                           "USER_MOBILE": "",
-
-                                                                                                           "TRN_DETAILS": trndetail,
-
-                                                                                                           "TEMPLATECODE": arrCatgory[0].param_value,
-
-                                                                                                           "DT_CODE": "",
-
-                                                                                                           "DTT_CODE": "",
-
-                                                                                                           "COMM_INFO": "",
-
-                                                                                                           "SKIP_COMM_FLOW": true
-
-                                                                                                       },
-
-                                                                                                       "PROCESS_INFO": {
-
-                                                                                                           "MODULE": "MODULE",
-
-                                                                                                           "MENU_GROUP": "MENU_GROUP",
-
-                                                                                                           "MENU_ITEM": "MENU_ITEM",
-
-                                                                                                           "PROCESS_NAME": "PROCESS_NAME"
-
-                                                                                                       }
-                                                                                                   },
-                                                                                                   headers: {
-                                                                                                       "session-id": params.session_id,
-                                                                                                       "routingKey": params.routingKey,
-                                                                                                       'Content-Type': 'application/json'
-
-                                                                                                   }
-                                                                                               }
-
-                                                                                               reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
-                                                                                               request(options, function (error, responseFromImagingService, responseBody) {
-
-                                                                                                   if (error) {
-                                                                                                       reqInstanceHelper.PrintInfo(serviceName, '------------Mail API ERROR-------' + error, objSessionLogInfo);
-                                                                                                       sendResponse(error, null);
-                                                                                                   } else {
-                                                                                                       reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseBody), objSessionLogInfo);
-                                                                                                       reqInstanceHelper.PrintInfo(serviceName, '------------Mail has been sent for -------' + arrDataobj.npsst_id, objSessionLogInfo);
-                                                                                                       nextobjctfunc();
-                                                                                                   }
-                                                                                               });
-
-                                                                                           } catch (error) {
-                                                                                               reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
-                                                                                               sendResponse(error, null);
-                                                                                           }
-                                                                                       }
-                                                                                       else {
-                                                                                           reqInstanceHelper.PrintInfo(serviceName, '-----------Account table entry  not found for npsstl_id------' + arrDataobj.npsstl_id, objSessionLogInfo);
-                                                                                           nextobjctfunc();
-                                                                                       }
-                                                                                   })
-
-                                                                               }
-                                                                               else {
-                                                                                   reqInstanceHelper.PrintInfo(serviceName, '-----------Error table entry  not found for npsstpl_id------' + arrlog[0].npsstpl_id, objSessionLogInfo);
-                                                                                   nextobjctfunc();
-                                                                               }
-                                                                           })
-                                                                       } else {
-                                                                           reqInstanceHelper.PrintInfo(serviceName, '-----------Log table entry  not found for npsst_id------' + arrDataobj.npsst_id, objSessionLogInfo);
-                                                                           nextobjctfunc();
-                                                                       }
-                                                                   })
+                                                            })                                             
+                                                                  
                                                               
                                                            })
                                                        }, function () {
@@ -237,7 +245,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                                       })
+                                      
 
                                    })
                                })
@@ -317,6 +325,7 @@ app.post('/', function(appRequest, appResponse, next) {
            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
        }
    })
+
 
 
 

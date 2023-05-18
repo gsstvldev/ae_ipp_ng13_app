@@ -46,7 +46,7 @@ export class npss_cs_cbuae_exception_holdService {
     //}
     //Service logics
     CallUrlWithData(ClientParams, screenInstance, internals) {
-        this.httpHelper.HttpPost('/microsvc/npss_cs_rct_rev_approve/', ClientParams)
+        this.httpHelper.HttpPost('/microsvc/npss_cs_cbuae_exception_hold/', ClientParams)
             .subscribe((res: any) => {
                 if (res.data.status == 'SUCCESS') {
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");

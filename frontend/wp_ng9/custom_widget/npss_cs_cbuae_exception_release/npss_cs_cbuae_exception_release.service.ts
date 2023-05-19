@@ -51,7 +51,7 @@ export class npss_cs_cbuae_exception_releaseService {
                 if (res.data.status == 'SUCCESS') {
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 } else {
-                    this.dialogHelper.ShowErrorDialog(res.data.status)
+                    this.dialogHelper.ShowErrorDialog(res.data.data.status)
                 }
             });
     }

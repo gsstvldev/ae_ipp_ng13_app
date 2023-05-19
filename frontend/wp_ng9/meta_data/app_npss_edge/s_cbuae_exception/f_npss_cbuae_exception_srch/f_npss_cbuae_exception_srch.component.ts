@@ -6,27 +6,27 @@ Modified By     : Admin
 Modified Date   : 2023-May-19 10:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_manual_unfreeze_dashboard
-Form Name       : NPSS Manual Unfreeze Dashboard SRCH--------------------------------------------------------------------------- */
+Screen Name     : s_cbuae_exception
+Form Name       : NPSS CBUAE Exception SRCH--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_manual_unfreeze_dashboard_srch',
-  templateUrl: './f_npss_manual_unfreeze_dashboard_srch.component.html',
-  styleUrls: ['./f_npss_manual_unfreeze_dashboard_srch.component.css'],
+  selector: 'f_npss_cbuae_exception_srch',
+  templateUrl: './f_npss_cbuae_exception_srch.component.html',
+  styleUrls: ['./f_npss_cbuae_exception_srch.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_manual_unfreeze_dashboard_srchComponent implements OnInit {
+export class f_npss_cbuae_exception_srchComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_manual_unfreeze_dashboard_srch') form;
-  @ViewChild('npss_manual_unfreeze_dashboard_srch_memory9') element: ElementRef;
+  @ViewChild('f_npss_cbuae_exception_srch') form;
+  @ViewChild('npss_cbuae_exception_srch_memory9') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -50,7 +50,7 @@ focustoelement(){
   
 		//Properties of memory9
 		this.ctrl.memory9 = {}
-		this.ctrl.memory9.id = "RN01CN1"
+		this.ctrl.memory9.id = "d672f94d-e17f-4594-89df-078d8a4259fa_1684491413685"
 		this.ctrl.memory9.desc = "Created Date"
 		this.ctrl.memory9.visible = true
 		this.ctrl.memory9.label_name = "Created Date"
@@ -61,7 +61,7 @@ focustoelement(){
 		this.ctrl.memory9.data_type = "DATETIME"
 		this.ctrl.memory9.data_length = 0
 		this.ctrl.memory9.zone_df_code = "DF_1304_1665905157963"
-		this.ctrl.memory9.default_value = ""
+		this.ctrl.memory9.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory9.is_memory_ctrl = "Y"
 		this.ctrl.memory9.field_coordinates = ""
 		this.ctrl.memory9.sub_details = ""
@@ -82,14 +82,14 @@ focustoelement(){
 		this.ctrl.memory9.vld_rules = []
 		this.ctrl.memory9.targetcolumn_lower = "memory9"
 		this.ctrl.memory9.disabled = false
-		this.ctrl.memory9.view_name = "f_npss_manual_unfreeze_dashboard_srch"
-		this.ctrl.memory9.ctrl_id = "npss_manual_unfreeze_dashboard_srch_memory9"
-		this.ctrl.npss_manual_unfreeze_dashboard_srch_memory9 = {}
-		this.ctrl.npss_manual_unfreeze_dashboard_srch_memory9.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.memory9.view_name = "f_npss_cbuae_exception_srch"
+		this.ctrl.memory9.ctrl_id = "npss_cbuae_exception_srch_memory9"
+		this.ctrl.npss_cbuae_exception_srch_memory9 = {}
+		this.ctrl.npss_cbuae_exception_srch_memory9.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of uetr
 		this.ctrl.uetr = {}
-		this.ctrl.uetr.id = "RN01CN1001"
+		this.ctrl.uetr.id = "b39defe0-603c-4ad9-a8ed-b630fa7fcc1d_1684491413685"
 		this.ctrl.uetr.desc = "UETR"
 		this.ctrl.uetr.visible = true
 		this.ctrl.uetr.label_name = "UETR"
@@ -121,14 +121,14 @@ focustoelement(){
 		this.ctrl.uetr.vld_rules = []
 		this.ctrl.uetr.targetcolumn_lower = "uetr"
 		this.ctrl.uetr.disabled = false
-		this.ctrl.uetr.view_name = "f_npss_manual_unfreeze_dashboard_srch"
-		this.ctrl.uetr.ctrl_id = "npss_manual_unfreeze_dashboard_srch_uetr"
-		this.ctrl.npss_manual_unfreeze_dashboard_srch_uetr = {}
-		this.ctrl.npss_manual_unfreeze_dashboard_srch_uetr.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.uetr.view_name = "f_npss_cbuae_exception_srch"
+		this.ctrl.uetr.ctrl_id = "npss_cbuae_exception_srch_uetr"
+		this.ctrl.npss_cbuae_exception_srch_uetr = {}
+		this.ctrl.npss_cbuae_exception_srch_uetr.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of dbtr_iban
 		this.ctrl.dbtr_iban = {}
-		this.ctrl.dbtr_iban.id = "RN11CN3"
+		this.ctrl.dbtr_iban.id = "0365a907-2fb3-4c84-8846-3a55edc6d0c6_1684491413686"
 		this.ctrl.dbtr_iban.desc = "Dr IBAN"
 		this.ctrl.dbtr_iban.visible = true
 		this.ctrl.dbtr_iban.label_name = "Dr IBAN"
@@ -160,14 +160,14 @@ focustoelement(){
 		this.ctrl.dbtr_iban.vld_rules = []
 		this.ctrl.dbtr_iban.targetcolumn_lower = "dbtr_iban"
 		this.ctrl.dbtr_iban.disabled = false
-		this.ctrl.dbtr_iban.view_name = "f_npss_manual_unfreeze_dashboard_srch"
-		this.ctrl.dbtr_iban.ctrl_id = "npss_manual_unfreeze_dashboard_srch_dbtr_iban"
-		this.ctrl.npss_manual_unfreeze_dashboard_srch_dbtr_iban = {}
-		this.ctrl.npss_manual_unfreeze_dashboard_srch_dbtr_iban.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.dbtr_iban.view_name = "f_npss_cbuae_exception_srch"
+		this.ctrl.dbtr_iban.ctrl_id = "npss_cbuae_exception_srch_dbtr_iban"
+		this.ctrl.npss_cbuae_exception_srch_dbtr_iban = {}
+		this.ctrl.npss_cbuae_exception_srch_dbtr_iban.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of msg_id
 		this.ctrl.msg_id = {}
-		this.ctrl.msg_id.id = "RN11CN2"
+		this.ctrl.msg_id.id = "0fdefa8b-7847-4978-8417-62e7e89428a9_1684491413686"
 		this.ctrl.msg_id.desc = "Message ID"
 		this.ctrl.msg_id.visible = true
 		this.ctrl.msg_id.label_name = "Message ID"
@@ -199,14 +199,14 @@ focustoelement(){
 		this.ctrl.msg_id.vld_rules = []
 		this.ctrl.msg_id.targetcolumn_lower = "msg_id"
 		this.ctrl.msg_id.disabled = false
-		this.ctrl.msg_id.view_name = "f_npss_manual_unfreeze_dashboard_srch"
-		this.ctrl.msg_id.ctrl_id = "npss_manual_unfreeze_dashboard_srch_msg_id"
-		this.ctrl.npss_manual_unfreeze_dashboard_srch_msg_id = {}
-		this.ctrl.npss_manual_unfreeze_dashboard_srch_msg_id.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.msg_id.view_name = "f_npss_cbuae_exception_srch"
+		this.ctrl.msg_id.ctrl_id = "npss_cbuae_exception_srch_msg_id"
+		this.ctrl.npss_cbuae_exception_srch_msg_id = {}
+		this.ctrl.npss_cbuae_exception_srch_msg_id.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of amount
 		this.ctrl.amount = {}
-		this.ctrl.amount.id = "RN21CN4"
+		this.ctrl.amount.id = "dfcb7873-57c9-4c3f-a2d2-e6e0114df088_1684491413686"
 		this.ctrl.amount.desc = "Amount"
 		this.ctrl.amount.visible = false
 		this.ctrl.amount.label_name = "Amount"
@@ -238,15 +238,15 @@ focustoelement(){
 		this.ctrl.amount.vld_rules = []
 		this.ctrl.amount.targetcolumn_lower = "amount"
 		this.ctrl.amount.disabled = false
-		this.ctrl.amount.view_name = "f_npss_manual_unfreeze_dashboard_srch"
-		this.ctrl.amount.ctrl_id = "npss_manual_unfreeze_dashboard_srch_amount"
-		this.ctrl.npss_manual_unfreeze_dashboard_srch_amount = {}
-		this.ctrl.npss_manual_unfreeze_dashboard_srch_amount.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_manual_unfreeze_dashboard_srch.model = {"MEMORY9":"","UETR":"","DBTR_IBAN":"","MSG_ID":"","AMOUNT":""}
-		this.screen_instance[this.comp_id].f_npss_manual_unfreeze_dashboard_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MSG_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMOUNT"}]
-		this.screen_instance[this.comp_id].f_npss_manual_unfreeze_dashboard_srch.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_manual_unfreeze_dashboard_srch.dtt_code = "dtt_1304_1665905039255"
-		this.screen_instance[this.comp_id].f_npss_manual_unfreeze_dashboard_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		this.ctrl.amount.view_name = "f_npss_cbuae_exception_srch"
+		this.ctrl.amount.ctrl_id = "npss_cbuae_exception_srch_amount"
+		this.ctrl.npss_cbuae_exception_srch_amount = {}
+		this.ctrl.npss_cbuae_exception_srch_amount.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_cbuae_exception_srch.model = {"MEMORY9":"setcurrentdate(),{}","UETR":"","DBTR_IBAN":"","MSG_ID":"","AMOUNT":""}
+		this.screen_instance[this.comp_id].f_npss_cbuae_exception_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MSG_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMOUNT"}]
+		this.screen_instance[this.comp_id].f_npss_cbuae_exception_srch.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_npss_cbuae_exception_srch.dtt_code = "dtt_1304_1665905039255"
+		this.screen_instance[this.comp_id].f_npss_cbuae_exception_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -293,10 +293,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_manual_unfreeze_dashboard_srch[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_manual_unfreeze_dashboard_srch[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_cbuae_exception_srch[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_cbuae_exception_srch[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_manual_unfreeze_dashboard_srch[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_cbuae_exception_srch[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

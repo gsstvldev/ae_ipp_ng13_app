@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29597 
+Build ID        : 29605 
 Modified By     : Admin 
-Modified Date   : 2023-May-18 11:25 AM 
+Modified Date   : 2023-May-19 10:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_cbuae_exception
@@ -24,7 +24,7 @@ export class p_main_layoutComponent implements OnInit {
   // Variables 
   	navigation_ui : any = {}
 	queue : any = {}
-	transaction_list : any = {}
+	process_log_list : any = {}
 
 
   // Constructor 
@@ -36,8 +36,8 @@ export class p_main_layoutComponent implements OnInit {
 		this.navigation_ui.need_header = ""
 		this.queue.desc = "Queue"
 		this.queue.need_header = true
-		this.transaction_list.desc = "Transaction List"
-		this.transaction_list.need_header = true
+		this.process_log_list.desc = "Process Log List"
+		this.process_log_list.need_header = true
 	
 
     this.screen_instance['p_main_layout'] = {};

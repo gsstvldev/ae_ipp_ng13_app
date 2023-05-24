@@ -22,7 +22,8 @@ export class npss_cs_manual_verification_bind_dataService {
     //Default calling function
     fn_npss_cs_manual_verification_bind_data(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
         var ClientParams: any = {}
-        ClientParams.uetr =  this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_UETR");                          
+        ClientParams.uetr =  this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_UETR");     
+         ClientParams.TranId =  this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID");
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     //Custom validation logics
@@ -36,11 +37,20 @@ CallUrlWithData(ClientParams, screenInstance, internals) {
         .subscribe((res: any) => {
             if (res.data.status == "SUCCESS" || res.data == "SUCCESS") {
                 var CtrlScope1 = screenInstance['get_deal_ui'].f_npss_mi_get_deal_ui.model
-                CtrlScope1.BUY_CURRENCY = res.data.data[0].buy_currency
-                CtrlScope1.SELL_CURRENCY = res.data.data[0].sell_currency
-                CtrlScope1.CONTRA_AMOUNT = res.data.data[0].contra_amount
-                CtrlScope1.DEALT_AMOUNT = res.data.data[0].dealt_amount
-                this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
+                if(res.data.data.length > 0){
+                    CtrlScope1.BUY_CURRENCY = res.data.data[0].buy_currency || ''
+                    CtrlScope1.SELL_CURRENCY = res.data.data[0].sell_currency || ''
+                    CtrlScope1.CONTRA_AMOUNT = res.data.data[0].contra_amount || ''
+                    CtrlScope1.DEALT_AMOUNT = res.data.data[0].dealt_amount || ''
+                    this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
+                }else{
+                    CtrlScope1.BUY_CURRENCY = ''
+                    CtrlScope1.SELL_CURRENCY = ''
+                    CtrlScope1.CONTRA_AMOUNT = ''
+                    CtrlScope1.DEALT_AMOUNT = ''
+                    this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
+                }
+               
             } else {                 
                    this.dialogHelper.ShowErrorDialog(res.data.status)                               
             }

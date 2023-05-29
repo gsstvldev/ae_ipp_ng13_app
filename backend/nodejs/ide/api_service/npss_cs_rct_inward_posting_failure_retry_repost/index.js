@@ -1302,7 +1302,7 @@ try {
 
                     function GetsellRate(arrcbsdata) {
                         return new Promise((resolve, reject) => {
-                            var Takesellrate = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrcbsdata[0].customer_id}'`
+                            var Takesellrate = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrcbsdata[0].customer_id}' and currency_code = '${arrcbsdata[0].currency}'`
                             ExecuteQuery1(Takesellrate, function (arrselldet) {
                                 var selldata = {}
                                 if (arrselldet.length > 0) {

@@ -8,12 +8,14 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
 /*  Created By :   Siva Harish
 Created Date :16/05/2023
   Modified By : Siva Harish
 Modified Date : 24/05/2023
-Reason for : Changes done as per shahul  
+Reason for : Changes done as  
+Reason for : Changes done cust spl rate 29/05/2023 
 * 
 */
 var serviceName = ' NPSS (CS) Manual Verification Bind Data'; //service name 
@@ -43,6 +45,7 @@ var arrTranId
 var objresponse = {
     'status': 'FAILURE',
     'data': '',
+    'errocode': '',
     'msg': ''
 }; // Response to Client
 // Assign function for loginformation and session info
@@ -61,20 +64,32 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                 //get prct id                              
                 try {
                     let CurrencyStatus = await FindCurrency(params.TranId)
-                    if(CurrencyStatus == 'SUCCESS'){
+                    if(CurrencyStatus.status == 'SUCCESS'){
                         let TakeIpuetr = `select additional_info from npss_trn_process_log where uetr = '${params.uetr}' and process_name = 'Initiate Dispute Tran'`;
                         ExecuteQuery1(TakeIpuetr, function (ipuetr) {
                             if (ipuetr.length) {
                                 let Takedata = `select buy_currency,sell_currency,dealt_amount,contra_amount  from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${ipuetr[0].additional_info}'`
                                 ExecuteQuery1(Takedata, function (trnplgdata) {
                                     if (trnplgdata.length > 0) {
+                                        objresponse.errocode = 'Nonspl'
                                         objresponse.status = 'SUCCESS'
                                         objresponse.data = trnplgdata
                                         sendResponse(null, objresponse)
     
                                     } else {
-                                        objresponse.status = 'No data found against IP uetr'
-                                        sendResponse(null, objresponse)
+                                        let TakecustRate = `select buy_rate,buy_margin from core_nc_cust_spl_rate where cif_number = '${CurrencyStatus.customer_id}' and currency_code = '${CurrencyStatus.currency}'`
+                                        ExecuteQuery1(TakecustRate, function (arrsplrate) {
+                                            if(arrsplrate.length > 0){
+                                                objresponse.errocode = 'spl'
+                                                objresponse.status = 'SUCCESS'
+                                                objresponse.data = arrsplrate
+                                                sendResponse(null, objresponse)
+                                            }else{
+                                                objresponse.status = 'No data found against IP uetr'
+                                                sendResponse(null, objresponse)
+                                            }
+
+                                        })
                                     }
     
                                 })
@@ -98,13 +113,18 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                             let TkdbtrIban = `select dbtr_iban from npss_transactions where npsst_id = '${TranId}'`
                             ExecuteQuery1(TkdbtrIban, function (dbtrIban) {
                                 if (dbtrIban.length > 0) {
-                                    let chkcur = `select currency from core_nc_cbs_accounts where alternate_account_id = '${dbtrIban[0].dbtr_iban}'`
+                                    let chkcur = `select currency,customer_id from core_nc_cbs_accounts where alternate_account_id = '${dbtrIban[0].dbtr_iban}'`
                                     ExecuteQuery1(chkcur, function (ibncurrency) {
                                         if (ibncurrency.length > 0) {
+                                            response = {}
                                             if (ibncurrency[0].currency != 'AED') {
-                                                resolve('SUCCESS')
+                                                response.status = 'SUCCESS'
+                                                response.currency = ibncurrency[0].currency || ''
+                                               response.customer_id = ibncurrency[0].customer_id || ''
+                                                resolve(response)
                                             } else {
-                                                resolve('FAILURE')
+                                                response.status = 'FAILURE'
+                                                resolve(response)
                                             }
 
                                         } else {
@@ -187,6 +207,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
     }
 
 })
+
 
 
 

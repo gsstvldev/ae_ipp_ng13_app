@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29694 
+Build ID        : 29743 
 Modified By     : Admin 
-Modified Date   : 2023-May-25 12:32 PM 
+Modified Date   : 2023-May-29 6:8 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
@@ -108,6 +108,7 @@ focustoelement(){
 		this.ctrl.response_code.currency_format = ""
 		this.ctrl.response_code.data_scale = ""
 		this.ctrl.response_code.binding_name = "RESPONSE_CODE"
+		this.ctrl.response_code.hide_label = false
 		this.ctrl.response_code.depends_on = ""
 		this.ctrl.response_code.placeholder = ""
 		this.ctrl.response_code.dynamic_param = ""
@@ -263,6 +264,7 @@ focustoelement(){
 		this.ctrl.tran_ref_id.currency_format = ""
 		this.ctrl.tran_ref_id.data_scale = ""
 		this.ctrl.tran_ref_id.binding_name = "TRAN_REF_ID"
+		this.ctrl.tran_ref_id.hide_label = false
 		this.ctrl.tran_ref_id.depends_on = ""
 		this.ctrl.tran_ref_id.placeholder = ""
 		this.ctrl.tran_ref_id.dynamic_param = ""

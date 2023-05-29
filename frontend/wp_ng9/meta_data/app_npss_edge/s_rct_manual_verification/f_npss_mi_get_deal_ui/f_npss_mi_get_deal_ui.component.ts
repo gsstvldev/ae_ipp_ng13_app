@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29576 
+Build ID        : 29743 
 Modified By     : Admin 
-Modified Date   : 2023-May-17 10:13 AM 
+Modified Date   : 2023-May-29 6:8 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_verification
@@ -199,7 +199,83 @@ focustoelement(){
 		this.ctrl.dealt_amount.ctrl_id = "npss_mi_get_deal_ui_dealt_amount"
 		this.ctrl.npss_mi_get_deal_ui_dealt_amount = {}
 		this.ctrl.npss_mi_get_deal_ui_dealt_amount.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_mi_get_deal_ui.model = {"BUY_CURRENCY":"","SELL_CURRENCY":"","CONTRA_AMOUNT":"","DEALT_AMOUNT":""}
+	
+		//Properties of memory58
+		this.ctrl.memory58 = {}
+		this.ctrl.memory58.id = "r0CN5"
+		this.ctrl.memory58.desc = "Buy Spread"
+		this.ctrl.memory58.visible = true
+		this.ctrl.memory58.label_name = "Buy Spread"
+		this.ctrl.memory58.df_code = "DF_1304_1665905157963"
+		this.ctrl.memory58.df_description = "Column Group 1"
+		this.ctrl.memory58.uictrl_code = "TXT"
+		this.ctrl.memory58.target_column = "memory58"
+		this.ctrl.memory58.data_type = "TEXT"
+		this.ctrl.memory58.data_length = 0
+		this.ctrl.memory58.zone_df_code = "DF_1304_1665905157963"
+		this.ctrl.memory58.default_value = ""
+		this.ctrl.memory58.is_memory_ctrl = "Y"
+		this.ctrl.memory58.field_coordinates = ""
+		this.ctrl.memory58.sub_details = ""
+		this.ctrl.memory58.accept_char = ""
+		this.ctrl.memory58.currency_format = ""
+		this.ctrl.memory58.data_scale = ""
+		this.ctrl.memory58.hide_label = false
+		this.ctrl.memory58.depends_on = ""
+		this.ctrl.memory58.placeholder = ""
+		this.ctrl.memory58.dynamic_param = ""
+		this.ctrl.memory58.style_code = ""
+		this.ctrl.memory58.data_source = ""
+		this.ctrl.memory58.image_association = ""
+		this.ctrl.memory58.show = true
+		this.ctrl.memory58.sub_content = ""
+		this.ctrl.memory58.required = false
+		this.ctrl.memory58.vld_rules = []
+		this.ctrl.memory58.targetcolumn_lower = "memory58"
+		this.ctrl.memory58.disabled = false
+		this.ctrl.memory58.view_name = "f_npss_mi_get_deal_ui"
+		this.ctrl.memory58.ctrl_id = "npss_mi_get_deal_ui_memory58"
+		this.ctrl.npss_mi_get_deal_ui_memory58 = {}
+		this.ctrl.npss_mi_get_deal_ui_memory58.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of memory59
+		this.ctrl.memory59 = {}
+		this.ctrl.memory59.id = "r0CN6"
+		this.ctrl.memory59.desc = "Buy Rate"
+		this.ctrl.memory59.visible = true
+		this.ctrl.memory59.label_name = "Buy Rate"
+		this.ctrl.memory59.df_code = "DF_1304_1665905157963"
+		this.ctrl.memory59.df_description = "Column Group 1"
+		this.ctrl.memory59.uictrl_code = "TXT"
+		this.ctrl.memory59.target_column = "memory59"
+		this.ctrl.memory59.data_type = "TEXT"
+		this.ctrl.memory59.data_length = 0
+		this.ctrl.memory59.zone_df_code = "DF_1304_1665905157963"
+		this.ctrl.memory59.default_value = ""
+		this.ctrl.memory59.is_memory_ctrl = "Y"
+		this.ctrl.memory59.field_coordinates = ""
+		this.ctrl.memory59.sub_details = ""
+		this.ctrl.memory59.accept_char = ""
+		this.ctrl.memory59.currency_format = ""
+		this.ctrl.memory59.data_scale = ""
+		this.ctrl.memory59.hide_label = false
+		this.ctrl.memory59.depends_on = ""
+		this.ctrl.memory59.placeholder = ""
+		this.ctrl.memory59.dynamic_param = ""
+		this.ctrl.memory59.style_code = ""
+		this.ctrl.memory59.data_source = ""
+		this.ctrl.memory59.image_association = ""
+		this.ctrl.memory59.show = true
+		this.ctrl.memory59.sub_content = ""
+		this.ctrl.memory59.required = false
+		this.ctrl.memory59.vld_rules = []
+		this.ctrl.memory59.targetcolumn_lower = "memory59"
+		this.ctrl.memory59.disabled = false
+		this.ctrl.memory59.view_name = "f_npss_mi_get_deal_ui"
+		this.ctrl.memory59.ctrl_id = "npss_mi_get_deal_ui_memory59"
+		this.ctrl.npss_mi_get_deal_ui_memory59 = {}
+		this.ctrl.npss_mi_get_deal_ui_memory59.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_mi_get_deal_ui.model = {"BUY_CURRENCY":"","SELL_CURRENCY":"","CONTRA_AMOUNT":"","DEALT_AMOUNT":"","MEMORY58":"","MEMORY59":""}
 		this.screen_instance[this.comp_id].f_npss_mi_get_deal_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BUY_CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SELL_CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CONTRA_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"DEALT_AMOUNT"}]
 		this.screen_instance[this.comp_id].f_npss_mi_get_deal_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_mi_get_deal_ui.dtt_code = "dtt_1304_1665905039255"

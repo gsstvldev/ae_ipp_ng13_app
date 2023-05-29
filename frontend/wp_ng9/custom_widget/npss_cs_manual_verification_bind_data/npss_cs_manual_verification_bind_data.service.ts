@@ -38,12 +38,20 @@ CallUrlWithData(ClientParams, screenInstance, internals) {
             if (res.data.status == "SUCCESS" || res.data == "SUCCESS") {
                 var CtrlScope1 = screenInstance['get_deal_ui'].f_npss_mi_get_deal_ui.model
                 if(res.data.data.length > 0){
+                    if(res.data.errocode == 'spl'){
+                    CtrlScope1.memory58 = res.data.data[0].buy_margin || ''
+                    CtrlScope1.memory59 = res.data.data[0].buy_rate || ''
+                    }else{
                     CtrlScope1.BUY_CURRENCY = res.data.data[0].buy_currency || ''
                     CtrlScope1.SELL_CURRENCY = res.data.data[0].sell_currency || ''
                     CtrlScope1.CONTRA_AMOUNT = res.data.data[0].contra_amount || ''
-                    CtrlScope1.DEALT_AMOUNT = res.data.data[0].dealt_amount || ''
+                    CtrlScope1.DEALT_AMOUNT = res.data.data[0].dealt_amount || ''   
+                    }
+                   
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 }else{
+                    CtrlScope1.memory58 = ''
+                    CtrlScope1.memory59 =  ''
                     CtrlScope1.BUY_CURRENCY = ''
                     CtrlScope1.SELL_CURRENCY = ''
                     CtrlScope1.CONTRA_AMOUNT = ''

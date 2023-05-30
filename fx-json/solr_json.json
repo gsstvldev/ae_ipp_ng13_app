@@ -1,5 +1,11 @@
 [{
-  $DQ$TRAN_INSERTION$DQ$: [],
+  $DQ$TRAN_INSERTION$DQ$: [
+    {
+      $DQ$NAME$DQ$: $DQ$IDNUMBERCODE$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+    }
+  ],
   $DQ$TRAN_DELETION$DQ$: [],
   $DQ$ATMT_INSERTION$DQ$: []
 }]

@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
     try {
@@ -91,18 +92,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 if (responseBodyFromImagingService == 'SUCCESS') {
                                                                                     reqInstanceHelper.PrintInfo(serviceName, 'Api CaLL Success-------Apiname-----' + apiName + '...status..' + arrdataObj.status + '....uetr.......' + arrdataObj.uetr + ' API Response-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                                                     nextuetrobjfun()
-                                                                                    // let UpdateTran = `update npss_trn_req_resp_dtls set  firco_repush_flag = 'Sent' where npsstrrd_id = '${arrdataObj.npsstrrd_id}'`
-                                                                                    // ExecuteQuery(UpdateTran, function (Tranupdate) {
-                                                                                    //     if (Tranupdate == 'SUCCESS') {
-                                                                                    //         reqInstanceHelper.PrintInfo(serviceName, 'Update Success-------Apiname-----' + apiName + '...status..' + arrdataObj.status + '....uetr.......' + arrdataObj.uetr, objSessionLogInfo);
-                                                                                    //         nextuetrobjfun()
-                                                                                    //     } else {
-                                                                                    //         reqInstanceHelper.PrintInfo(serviceName, 'Update Failure-------Apiname-----' + apiName + '...status..' + arrdataObj.status + '....uetr.......' + arrdataObj.uetr, objSessionLogInfo);
-                                                                                    //         nextuetrobjfun()
-                                                                                    //     }
-
-                                                                                    // })
-
+                                                                                 
 
                                                                                 } else {
 
@@ -121,17 +111,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     sendResponse(null, error);
                                                                 }
                                                             } else {
-                                                                let UpdateTran = `update npss_trn_req_resp_dtls set  firco_repush_flag = 'Missing_field' where npsstrrd_id = '${arrdataObj.npsstrrd_id}'`
-                                                                ExecuteQuery(UpdateTran, function (Tranupdate) {
-                                                                    if (Tranupdate == 'SUCCESS') {
-                                                                        reqInstanceHelper.PrintInfo(serviceName, 'Update Missing filed Success-------...status..' + arrdataObj.status + '....uetr.......' + arrdataObj.uetr, objSessionLogInfo);
-                                                                        nextuetrobjfun()
-                                                                    } else {
-                                                                        reqInstanceHelper.PrintInfo(serviceName, 'Update Missing filed Failure-------...status..' + arrdataObj.status + '....uetr.......' + arrdataObj.uetr, objSessionLogInfo);
-                                                                        nextuetrobjfun()
-                                                                    }
-
-                                                                })
+                                                                nextuetrobjfun()
                                                             }
 
 
@@ -225,21 +205,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                 Parameter.status = requesdata.status || ''
                                 Parameter.process_status = requesdata.process_status || ''
                                 Parameter.respush = 'Y'
-
-                                for (let i in Parameter) {
-                                    if (Parameter[i] == '' || Parameter[i] == null) {
-                                        chkNull = true
-                                        break;
-                                    }
-                                }
-
-                                if (chkNull == true) {
-                                    resolve('FAILURE')
-                                } else {
-                                    resolve(Parameter)
-                                }
-
-
+                                resolve(Parameter)
+                               
 
                             } catch (error) {
                                 reqInstanceHelper.PrintInfo(serviceName, ".......................May be Parsing Error CatchError..............." + error + "......Process Name......." + requesdata.process_name, objSessionLogInfo);
@@ -334,6 +301,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

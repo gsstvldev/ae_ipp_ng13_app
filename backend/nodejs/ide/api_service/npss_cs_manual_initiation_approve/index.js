@@ -442,7 +442,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
                             PrintInfo.currency = reverandRefno.currency || ''
 
-                            reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                            reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
 
 
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {

@@ -35,6 +35,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     Reason for Handling Amount Credited for auth pass pacs008 fail 18/05/2023
                      Reason for Adding channel id and channel refno in pacs008 25/05/2023
                      Reason for Adding force to post flag 30/05/2023
+                      Reason for changing splrate logic 2/6/2023
        
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -117,7 +118,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog)
                                                         if (reverandRefno.currency != 'AED') {
                                                             Ipuetr = await TakeIpUetr(arrprocesslog)
-                                                            GetsellRate = await GetsplRate(arrprocesslog, reverandRefno)
+                                                            GetsellRate = await GetsplRate(arrprocesslog, reverandRefno,Ipuetr)
                                                             if (GetsellRate == 'Take GMrate') {
                                                                 Getdata = await GetgmMargin(arrprocesslog, reverandRefno, Ipuetr)
                                                             }
@@ -737,7 +738,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                 resolve('Take GMrate')
                             } else {
                                 if (reverandRefno.currency != 'AED') {
-                                    var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'OP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${arrprocesslog[0].uetr}'`
+                                 var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'IP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${Ipuetr}'`
+                                   // var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'OP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${arrprocesslog[0].uetr}'`
                                     ExecuteQuery1(CheckRate, function (arrRate) {
                                         if (arrRate.length > 0) {
                                             resolve('Take Sellrate')

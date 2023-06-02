@@ -33,6 +33,7 @@ try {
       Reason for remove sel rate and margin And add Buy rate and margin 2/05/2023
       Reason for issue fixinf for GMrate and Margin 03/05/2023
       Reason for force to post flag 30/05/2023
+       Reason for splrate logic changes 2/6/2023
     */
     var serviceName = 'NPSS (CS) Send To Checker';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -158,7 +159,7 @@ try {
     
                                                                         if (apicalls == 0) {
                                                                             if (reverseAcinfparam.currency != 'AED') {
-                                                                                ChecksplRate = await CheckspecialRate(arrprocesslog)
+                                                                                ChecksplRate = await CheckspecialRate(arrprocesslog,Ipuetr)
                                                                                 if (ChecksplRate == 'Take GMrate') {
                                                                                     TakegmMargin = await GetgmMargin(arrprocesslog, reverseAcinfparam,Ipuetr)
                                                                                 } else {
@@ -784,9 +785,9 @@ try {
                     })
                 }
 
-                function CheckspecialRate(arrprocesslog) {
+                function CheckspecialRate(arrprocesslog,Ipuetr) {
                     return new Promise((resolve, reject) => {
-                        var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'OP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${arrprocesslog[0].uetr}'`
+                        var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'IP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${Ipuetr}'`
                         ExecuteQuery1(CheckRate, function (arrRate) {
                             if (arrRate.length > 0) {
                                 resolve('Take Sellrate')

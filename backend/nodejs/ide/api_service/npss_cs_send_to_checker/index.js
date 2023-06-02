@@ -787,7 +787,7 @@ try {
 
                 function CheckspecialRate(arrprocesslog,Ipuetr) {
                     return new Promise((resolve, reject) => {
-                        var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'IP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${Ipuetr}'`
+                        var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'OP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${Ipuetr}'`
                         ExecuteQuery1(CheckRate, function (arrRate) {
                             if (arrRate.length > 0) {
                                 resolve('Take Sellrate')

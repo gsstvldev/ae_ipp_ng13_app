@@ -732,13 +732,13 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
                     }
 
-                    function GetsplRate(arrprocesslog, reverandRefno) {
+                    function GetsplRate(arrprocesslog, reverandRefno,Ipuetr) {
                         return new Promise((resolve, reject) => {
                             if (reverandRefno.currency == '' || reverandRefno.currency == null) {
                                 resolve('Take GMrate')
                             } else {
                                 if (reverandRefno.currency != 'AED') {
-                                 var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'IP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${Ipuetr}'`
+                                 var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'OP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${Ipuetr}'`
                                    // var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'OP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${arrprocesslog[0].uetr}'`
                                     ExecuteQuery1(CheckRate, function (arrRate) {
                                         if (arrRate.length > 0) {

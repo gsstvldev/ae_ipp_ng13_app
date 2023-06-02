@@ -523,8 +523,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 "category_purpose": arrprocesslog[0].category_purpose || '',
                                                 "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
                                                 "category_purpose_prty": category_prty || '',
-                                                "channel_id": arrprocesslog[0].clrsysref || '',
-                                                "channel_refno": arrprocesslog[0].channel_refno || ''
+                                                "channel_id": 'IPP',
+                                                "channel_refno": arrprocesslog[0].clrsysref || ''
                                                
 
                                             },

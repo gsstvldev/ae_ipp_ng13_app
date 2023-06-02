@@ -360,6 +360,7 @@ try {
                                         "dbtr_acct_name": trndata[0].dbtr_acct_name,
                                         "cdtr_acct_name": trndata[0].cdtr_acct_name,
                                         "process_type": "IP",
+                                         "posted":arrpostno[0].processing_system || ''
 
 
 

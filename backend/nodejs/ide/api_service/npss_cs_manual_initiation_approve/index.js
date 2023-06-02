@@ -36,6 +36,7 @@ app.post('/', function(appRequest, appResponse, next) {
                      Reason for Adding channel id and channel refno in pacs008 25/05/2023
                      Reason for Adding force to post flag 30/05/2023
                       Reason for changing splrate logic 2/6/2023
+                       Reason for handling issertype and extperson code 2/6/2023
        
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -546,7 +547,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         options.json.dbtr_prvt_id = ''
                                                         options.json.dbtr_document_id = CheckorgPvt.code
                                                         options.json.ext_person_id_code = CheckorgPvt.extpersonidcode
-                                                        options.json.issr = 'AE'
+                                                        options.json.issr = CheckorgPvt.issrtype || ''
                                                         options.json.AccountInformation = reverandRefno || ''
                                                     }
 
@@ -1164,6 +1165,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 FianlData.type = 'Private'
                                                 FianlData.extpersonidcode = PrepareParam.extpersonidcode
                                                 FianlData.code = PrepareParam.FormPvtid
+                                                FianlData.issrtype = PrepareParam.issrtype || ''
                                                 resolve(FianlData)
                                             }
                                         } else {
@@ -1219,12 +1221,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                     let destination_economic_activity_code = economiccode[0].destination_economic_activity_code
                                     let IDcode
                                     let extpersonidcode
+                                    let issrtype
                                     if (arrcbsAct[0].resident_flag == 'Y') {
                                         IDcode = arrcbsAct[0].national_id
                                         extpersonidcode = 'NIDN'
+                                        issrtype = 'AE'
                                     } else {
                                         IDcode = arrcbsAct[0].legal_id
-                                        extpersonidcode = arrcbsAct[0].legal_id == 'CCPT' ? arrcbsAct[0].nationality_country_code : arrcbsAct[0].legal_id
+                                        extpersonidcode = 'CCPT' 
+                                        issrtype = arrcbsAct[0].nationality_country_code || ''
                                     }
                                     let Params = {}
                                     Params.FormPvtid = IDcode + '-' + destination_economic_activity_code

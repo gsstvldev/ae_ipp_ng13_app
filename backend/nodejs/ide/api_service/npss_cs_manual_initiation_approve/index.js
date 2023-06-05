@@ -1234,6 +1234,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     let Params = {}
                                     Params.FormPvtid = IDcode + '-' + destination_economic_activity_code
                                     Params.extpersonidcode = extpersonidcode
+                                     Params.issrtype = issrtype || ''
                                     resolve(Params)
                                 } else {
                                     objresponse.status = "FAILURE"

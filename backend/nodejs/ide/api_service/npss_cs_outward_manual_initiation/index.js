@@ -167,7 +167,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                     objCusTranInst.INWARD_FILE_NAME = arrdata[0].inward_file_name
                                                     objCusTranInst.CLRSYSREF = arrdata[0].clrsysref
                                                     objCusTranInst.ACCP_DATE_TIME = arrdata[0].accp_date_time
-                                                    objCusTranInst.DEPARTMENT_CODE = arrdata[0].department_code
+                                                    objCusTranInst.DEPARTMENT_CODE = arrdata[0].department_code || 'DEFAULT'
                                                     objCusTranInst.CBS_REF_NO = arrdata[0].cbs_ref_no
                                                     objCusTranInst.DBTR_PRVT_ID = arrdata[0].dbtr_prvt_id
                                                     objCusTranInst.DBTR_OTHER_ISSUER = arrdata[0].dbtr_other_issuer
@@ -187,6 +187,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                     objCusTranInst.REVERSAL_AMOUNT = arrdata[0].reversal_amount
                                                     objCusTranInst.CHARGE_AMOUNT = params.CHARGE_AMOUNT || null
                                                     objCusTranInst.AMOUNT_CREDITED_LOC_CUR = arrdata[0].amount_credited_loc_cur || null
+                                                    objCusTranInst.PROCESS_GROUP = params.process_group || 'MANUAL'
                                                     if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
                                                         objCusTranInst.MAKER = params.CREATED_BY_NAME
                                                     } else {

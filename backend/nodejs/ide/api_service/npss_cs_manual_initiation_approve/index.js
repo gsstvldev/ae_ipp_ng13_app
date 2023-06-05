@@ -1035,8 +1035,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         AcctInformations.privateId = PvtId.FormPvtid || ''
                                                         if (arractResult[0].resident_flag == 'Y') {
                                                             AcctInformations.extpersonidcode = 'NIDN'
+                                                             AcctInformations.issrtype = 'AE'
                                                         } else {
-                                                            AcctInformations.extpersonidcode = arractResult[0].legal_id == 'CCPT' ? arractResult[0].nationality_country_code : arractResult[0].legal_id
+                                                            AcctInformations.extpersonidcode =  'CCPT' 
+                                                          AcctInformations.issrtype = arractResult[0].nationality_country_code || ''
                                                         }
                                                         resolve(AcctInformations)
                                                     } else {

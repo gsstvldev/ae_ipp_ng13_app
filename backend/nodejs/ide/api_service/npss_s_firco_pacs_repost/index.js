@@ -171,7 +171,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                     reqInstanceHelper.PrintInfo(serviceName, ".........Process Name .............." + requesdata.process_name, objSessionLogInfo);
                                     let PacsName = requesdata.process_name.split(' ')[1].toUpperCase() || ''
                                     reqInstanceHelper.PrintInfo(serviceName, ".........Pacs Name .............." + PacsName, objSessionLogInfo);
-                                    Parameter.message_type = PacsName
+                                    if(PacsName.includes('.')){
+                                        Parameter.message_type = PacsName
+                                    }else{
+                                        Parameter.message_type = PacsName.replace(PacsName.substring(0,4),'PACS.')
+                                    }
                                     if ((PacsName == 'PACS.007' || PacsName == 'PACS007') && requesdata.process_type == 'OP') {
                                         Parameter.sender_reference = requesdata.payment_endtoend_id
                                     } else if ((PacsName == 'PACS.007' || PacsName == 'PACS007') && requesdata.process_type == 'IP') {

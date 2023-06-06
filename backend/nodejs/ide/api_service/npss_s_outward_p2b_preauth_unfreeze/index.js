@@ -216,7 +216,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             Bankcode =   JsonData['merchant']['bankCode'] || ''
                                             cdtr_iban =   JsonData['merchant']['IBAN'] || ''
                                             tran_ref_id = JsonData['transactionId'] || ''
-                                            amount =  JsonData['amount'] || ''
+                                            amount =  JsonData['amount']["requested"] || ''
                                             currency = JsonData['amount']['currency'] || ''
                                             dbtr_iban = JsonData['buyer']['IBAN'] || ''
                                             dbtr_acct_name = JsonData['buyer']['name'] || ''

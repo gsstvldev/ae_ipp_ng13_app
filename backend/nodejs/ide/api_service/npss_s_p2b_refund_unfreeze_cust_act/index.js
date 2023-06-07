@@ -167,7 +167,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                             objCusTranInst.PROCESSING_SYSTEM = 'T24';
                             objCusTranInst.PROCESS_TYPE = arrfundauth.process_type;
                             objCusTranInst.PROCESS_STATUS = 'RCTCancelled';
-                            objCusTranInst.STATUS = 'OP_P2B_FUND_UNFREEZED';
+                            objCusTranInst.STATUS = 'P2B_FUND_RES_CANCELLED';
                             objCusTranInst.TENANT_ID = params.TENANT_ID;
                             objCusTranInst.APP_ID = '215'
                             objCusTranInst.DT_CODE = 'DT_1304_1665901130705'

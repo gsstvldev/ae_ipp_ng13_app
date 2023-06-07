@@ -98,7 +98,8 @@ CallUrlWithData(ClientParams, screenInstance, internals) {
                      ctrlscope.CONTRA_AMOUNT = response.contra_amount
                      
                      var Ctrlscope1 = screenInstance['payment_processing_details_ui'].f_npss_manual_initiation_ui.model
-                      Ctrlscope1.BUY_RATE = response.rate
+                      Ctrlscope1.BUY_RATE = response.GMRate
+                      Ctrlscope1.BUY_MARGIN = response.GMMargin
                      this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                     }
                    
@@ -118,7 +119,8 @@ CallUrlWithData(ClientParams, screenInstance, internals) {
                         ctrlscope.DEALT_AMOUNT = ''
                         ctrlscope.CONTRA_AMOUNT = ''
                         var Ctrlscope1 = screenInstance['payment_processing_details_ui'].f_npss_manual_initiation_ui.model
-                         Ctrlscope1.buy_rate = ''
+                         Ctrlscope1.BUY_RATE = ''
+                          Ctrlscope1.BUY_MARGIN = ''
                             this.dialogHelper.ShowErrorDialog(res.data.status)
                     }
                  

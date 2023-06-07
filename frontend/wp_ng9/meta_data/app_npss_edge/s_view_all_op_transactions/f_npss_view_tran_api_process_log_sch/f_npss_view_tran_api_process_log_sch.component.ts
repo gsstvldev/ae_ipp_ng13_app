@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29905 
+Build ID        : 29973 
 Modified By     : Admin 
-Modified Date   : 2023-Jun-06 12:34 PM 
+Modified Date   : 2023-Jun-07 5:47 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
@@ -61,7 +61,7 @@ focustoelement(){
 		this.ctrl.memory9.data_type = "DATETIME"
 		this.ctrl.memory9.data_length = 0
 		this.ctrl.memory9.zone_df_code = "DF_1304_1665905157963"
-		this.ctrl.memory9.default_value = ""
+		this.ctrl.memory9.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory9.is_memory_ctrl = "Y"
 		this.ctrl.memory9.field_coordinates = ""
 		this.ctrl.memory9.sub_details = ""
@@ -320,7 +320,7 @@ focustoelement(){
 		this.ctrl.uetr.ctrl_id = "npss_view_tran_api_process_log_sch_uetr"
 		this.ctrl.npss_view_tran_api_process_log_sch_uetr = {}
 		this.ctrl.npss_view_tran_api_process_log_sch_uetr.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.model = {"MEMORY9":"","RESPONSE_CODE":"","MSG_ID":"","DBTR_IBAN":"","AMOUNT":"","TRAN_REF_ID":"","UETR":""}
+		this.screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.model = {"MEMORY9":"setcurrentdate(),{}","RESPONSE_CODE":"","MSG_ID":"","DBTR_IBAN":"","AMOUNT":"","TRAN_REF_ID":"","UETR":""}
 		this.screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"RESPONSE_CODE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MSG_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"}]
 		this.screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.dtt_code = "dtt_1304_1665905039255"

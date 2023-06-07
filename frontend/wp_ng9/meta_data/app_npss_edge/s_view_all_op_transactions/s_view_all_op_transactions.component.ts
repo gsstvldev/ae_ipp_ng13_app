@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29973 
+Build ID        : 29982 
 Modified By     : Admin 
-Modified Date   : 2023-Jun-07 5:47 AM 
+Modified Date   : 2023-Jun-07 7:38 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
@@ -947,12 +947,22 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 
 	//Handler for INTERNAL event of "svm for api queue"
 	svm_for_api_queue__internal(parent_event_result){
-		this.svm_for_api_queue__e_1681975088675(parent_event_result)
+		this.svm_for_api_queue__cc_for_api_queue(parent_event_result)
 	}
 
-	//Handler for INTERNAL event of "e 1681975088675"
-	e_1681975088675__internal(parent_event_result){
-		this.e_1681975088675__e_1681975120440(parent_event_result)
+	//Handler for INTERNAL event of "cc for api queue"
+	cc_for_api_queue__internal(parent_event_result){
+		this.cc_for_api_queue__ssp_from_cc_to_processlog_sch(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "ssp from cc to processlog sch"
+	ssp_from_cc_to_processlog_sch__internal(parent_event_result){
+		this.ssp_from_cc_to_processlog_sch__brfq_for_view_process_log_list(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "brfq for view process log list"
+	brfq_for_view_process_log_list__internal(parent_event_result){
+		this.brfq_for_view_process_log_list__sfr_from_brfq_to_view_pro_log_list(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "process log search search"
@@ -2815,7 +2825,7 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		let event_code="e_1681975061939"
 		let event_params={"caller_name":"api_queue__svm_for_api_queue","event_desc":"SVM for API Queue","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"api_queue","raiseparam":{}}
 		let handler_code="set_value_to_memory"
-		let internals="svm_for_api_queue__e_1681975088675,"
+		let internals="svm_for_api_queue__cc_for_api_queue,"
 		let event_data={"api_queue":{"e_1681975061939":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_23","event_code":"E_1681975061939","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"API_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_API_STATUS","setd3name":"API_STATUS"},{"type":"LOCAL","column_name":"API_PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_API_PROCESS_STATUS","setd3name":"API_PROCESS_STATUS"},{"type":"LOCAL","column_name":"API_PROCESSING_SYSTEM","level":"MI_LEVEL","name":"MI_LEVEL_API_PROCESSING_SYSTEM","setd3name":"PROCESSING_SYSTEM"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_23","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1681975219058","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS API Process Log MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1670063504284","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1670063504716","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1670063504948","date_format":false},{"column_name":"API_STATUS","alias_name":"","mq_id":"MQ_1681975635396","date_format":false},{"column_name":"API_PROCESS_STATUS","alias_name":"","mq_id":"MQ_1681975769773","date_format":false},{"column_name":"API_PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1682598244419","date_format":false}],"joins":[]},"eq_text":"select  distinct API_PROCESSING_SYSTEM,  API_PROCESS_STATUS,  API_STATUS,row_num from  (  select   T.CREATED_DATE,   T.STATUS as API_STATUS,   T.PROCESS_STATUS as API_PROCESS_STATUS,   T.UETR,   T.PROCESS_NAME,   T.PROCESSING_SYSTEM as API_PROCESSING_SYSTEM,   T.ADDITIONAL_INFO,   T.TENANT_ID,   T.MODIFIED_DATE,   T.MODIFIED_DATE_UTC,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   T.CREATED_BY,   T.CREATED_BY_NAME,   T.SYSTEM_ID,   row_number() over( partition by t.uetr   order by    t.npsstpl_id desc) as row_num  from   NPSS_TRN_PROCESS_LOG T  left join TRANSACTION_SET TS on   T.NPSSTPL_ID = TS.TRN_ID   and T.DTT_CODE = TS.DTT_CODE) VW where row_num = 1 $AND"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS API Process Log CCD","filter":[{"filter_name":"STATUS","binding_name":"API_STATUS","binding_value":"","source_name":"OP_AC_VAL_FAILED,OP_AC_MAND_VAL_FAILED,OP_AC_DUPL_VAL_FAILED,OP_AC_PCODE_VAL_FAILED,OP_AC_PBANK_VAL_FAILED,OP_P2P_SENDER_IBAN_FAILED,OP_P2P_PAYMENT_FAILED,OP_P2P_POSTING_FAILURE,OP_P2P_POSTING_SUSPICIOUS,OP_P2B_FUND_UNFREEZED,OP_P2B_PAYMENT_FAILED,OP_P2B_FUND_RES_FAILURE,OP_P2B_FUND_RES_SUSPICIOUS,OP_P2B_FUND_UNFR_FAILURE,OP_P2B_FUND_UNFR_SUSPICIOUS,OP_P2B_FUND_AUTH_FAILURE,OP_P2B_FUND_AUTH_SUSPICIOUS,OP_P2B_FUND_RESERVED,OP_P2P_DEBIT_POSTING_SUCCESS,OP_P2B_DEBIT_POSTING_SUCCESS,OP_INAU_DEBIT_POSTING_SUCCESS,OP_AUTH_DEBIT_POSTING_SUCCESS,OP_UNFREEZE_DEBIT_POSTING_SUCCESS,OP_P2P_DEBIT_POSTING_SUSCIPIOUS,OP_P2B_DEBIT_POSTING_SUSCIPIOUS,OP_INAU_DEBIT_POSTING_SUSCIPIOUS,OP_AUTH_DEBIT_POSTING_SUSCIPIOUS,OP_UNFREEZE_DEBIT_POSTING_SUSCIPIOUS,OP_P2P_POSTING_NOT_HAPPENED,OP_P2B_POSTING_NOT_HAPPENED,OP_INAU_POSTING_NOT_HAPPENED,OP_AUTH_POSTING_NOT_HAPPENED,OP_UNFREEZE_POSTING_NOT_HAPPENED","source_value":"","source_type":"HARDCODED","oprtr":"IN","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"API_PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"API_PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"API_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -2827,17 +2837,61 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	} 
 
 	//Handler for INTERNAL event of "svm for api queue"
-	svm_for_api_queue__e_1681975088675(parent_event_result) { 
+	svm_for_api_queue__cc_for_api_queue(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="svm_for_api_queue"
-		let destn_id="view_process_log_list"
+		let destn_id=""
 		let parent_source_id="api_queue"
-		let event_code="e_1681975088675"
-		let event_params={"caller_name":"svm_for_api_queue__e_1681975088675","event_desc":"E_1681975088675","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_queue","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
+		let event_code="e_1686122752509"
+		let event_params={"caller_name":"svm_for_api_queue__cc_for_api_queue","event_desc":"CC for API Queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_queue","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals="cc_for_api_queue__ssp_from_cc_to_processlog_sch,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for api queue"
+	cc_for_api_queue__ssp_from_cc_to_processlog_sch(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_api_queue"
+		let destn_id="process_log_search"
+		let parent_source_id="svm_for_api_queue"
+		let event_code="e_1686122803254"
+		let event_params={"caller_name":"cc_for_api_queue__ssp_from_cc_to_processlog_sch","event_desc":"SSP from CC to Processlog sch","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_queue","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="set_search_params"
+		let internals="ssp_from_cc_to_processlog_sch__brfq_for_view_process_log_list,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ssp from cc to processlog sch"
+	ssp_from_cc_to_processlog_sch__brfq_for_view_process_log_list(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ssp_from_cc_to_processlog_sch"
+		let destn_id="view_process_log_list"
+		let parent_source_id="cc_for_api_queue"
+		let event_code="e_1686123221886"
+		let event_params={"caller_name":"ssp_from_cc_to_processlog_sch__brfq_for_view_process_log_list","event_desc":"BRFQ for View Process log list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_queue","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals="e_1681975088675__e_1681975120440,"
+		let internals="brfq_for_view_process_log_list__sfr_from_brfq_to_view_pro_log_list,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_20","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1681969216071","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS API Process Log Detail MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"NPSSTPL_ID","alias_name":"","mq_id":"MQ_1670064116426","date_format":false},{"column_name":"MSG_ID","alias_name":"","mq_id":"MQ_1670064116672","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1670064116880","date_format":false},{"column_name":"NPSSTRRD_REFNO","alias_name":"","mq_id":"MQ_1670064117056","date_format":false},{"column_name":"REVERSAL_DESCRIPTION","alias_name":"","mq_id":"MQ_1670064149613","date_format":false},{"column_name":"T24_RETURN_DESCRIPTION","alias_name":"","mq_id":"MQ_1670064149805","date_format":false},{"column_name":"CBUAE_RETURN_DESCRIPTION","alias_name":"","mq_id":"MQ_1670064149981","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1670064150149","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1670064177325","date_format":false},{"column_name":"RESPONSE_CODE","alias_name":"","mq_id":"MQ_1670064177533","date_format":false},{"column_name":"PROCESS_REF_NO","alias_name":"","mq_id":"MQ_1670064177885","date_format":false},{"column_name":"RESPONSE_DATA","alias_name":"","mq_id":"MQ_1670064178117","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1670064218603","date_format":true},{"column_name":"CREATEDDATEMILISEC","alias_name":"","mq_id":"MQ_1670064218787","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1670064218971","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1670064286961","date_format":false},{"column_name":"REQUEST_DATA_JSON","alias_name":"","mq_id":"MQ_1670064287161","date_format":false},{"column_name":"RESPONSE_DATA_JSON","alias_name":"","mq_id":"MQ_1670064287345","date_format":false},{"column_name":"T24_RETURN_CODE","alias_name":"","mq_id":"MQ_1670064287537","date_format":false},{"column_name":"CBUAE_RETURN_CODE","alias_name":"","mq_id":"MQ_1670064287721","date_format":false},{"column_name":"REVERSAL_CODE","alias_name":"","mq_id":"MQ_1670064320760","date_format":false},{"column_name":"REVERSAL_DESC","alias_name":"","mq_id":"MQ_1670064320967","date_format":false},{"column_name":"T24_RETURN_DESC","alias_name":"","mq_id":"MQ_1670064321183","date_format":false},{"column_name":"CBUAE_RETURN_DESC","alias_name":"","mq_id":"MQ_1670064344727","date_format":false},{"column_name":"TENANT_ID","alias_name":"","mq_id":"MQ_1670064345223","date_format":false},{"column_name":"DT_CODE","alias_name":"","mq_id":"MQ_1670064359759","date_format":false},{"column_name":"DTT_CODE","alias_name":"","mq_id":"MQ_1670064359975","date_format":false},{"column_name":"V_CODE","alias_name":"","mq_id":"MQ_1677935697826","date_format":false},{"column_name":"DBTR_IBAN","alias_name":"","mq_id":"MQ_1682507278805","date_format":false},{"column_name":"AMOUNT","alias_name":"","mq_id":"MQ_1682507279043","date_format":false,"currency_format":true},{"column_name":"TRAN_REF_ID","alias_name":"","mq_id":"MQ_1682507279243","date_format":false}],"joins":[]},"eq_text":"select  REVERSAL_DESCRIPTION,  T24_RETURN_DESCRIPTION,  CBUAE_RETURN_DESCRIPTION,  NPSSTPL_ID,  MSG_ID,  UETR,  NPSSTRRD_REFNO,  PROCESS_NAME,  API_PROCESSING_SYSTEM,  RESPONSE_CODE,  PROCESS_REF_NO,  RESPONSE_DATA,  CREATED_DATE,  CREATEDDATEMILISEC,  API_PROCESS_STATUS,  API_STATUS,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  T24_RETURN_CODE,  CBUAE_RETURN_CODE,  REVERSAL_CODE,  REVERSAL_DESC,  T24_RETURN_DESC,  CBUAE_RETURN_DESC,  TENANT_ID,  DT_CODE,  DTT_CODE,  V_CODE,  DBTR_IBAN,  AMOUNT,  TRAN_REF_ID,row_num from  (  select   A.NPSSTPL_ID,   A.MSG_ID,   A.UETR,   A.NPSSTRRD_REFNO,   A.PROCESS_NAME,   A.PROCESSING_SYSTEM as API_PROCESSING_SYSTEM,   A.RESPONSE_CODE,   A.PROCESS_REF_NO,   A.RESPONSE_DATA,   TO_CHAR(A.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as CREATEDDATEMILISEC,   A.CREATED_DATE,   A.PROCESS_STATUS as API_PROCESS_STATUS,   A.STATUS as API_STATUS,   A.DT_CODE,   A.DTT_CODE,   A.TENANT_ID,   A.REQUEST_DATA_JSON,   A.RESPONSE_DATA_JSON,   A.T24_RETURN_CODE,   A.ADDITIONAL_INFO,   A.V_CODE,   A.DBTR_IBAN,   A.AMOUNT,   A.TRAN_REF_ID,   T24RC.RETURN_DESCRIPTION as T24_RETURN_DESC,   CONCAT(A.T24_RETURN_CODE, '-', T24RC.RETURN_DESCRIPTION) as T24_RETURN_DESCRIPTION,   A.CBUAE_RETURN_CODE,   CBUAERC.RETURN_DESCRIPTION as CBUAE_RETURN_DESC,   CONCAT(A.CBUAE_RETURN_CODE, '-', CBUAERC.RETURN_DESCRIPTION) as CBUAE_RETURN_DESCRIPTION,   A.REVERSAL_CODE,   CCD.CD_DESCRIPTION as REVERSAL_DESC,   CONCAT(A.REVERSAL_CODE, '-', CCD.CD_DESCRIPTION) as REVERSAL_DESCRIPTION,   row_number() over( partition by a.uetr   order by    a.npsstpl_id desc) as row_num  from   NPSS_TRN_PROCESS_LOG A  left join <tran_db>.CORE_NC_CODE_DESCRIPTIONS CCD on   CCD.CD_CODE = A.REVERSAL_CODE   and CCD.CD_CATEGORY = 'REVERSAL_REASON_IDENTIFIER_CODE'   and CCD.NEED_SYNC = 'Y'  left join <tran_db>.CORE_NC_RETURN_CODES T24RC on   T24RC.RETURN_CODE = A.T24_RETURN_CODE   and T24RC.PROCESSING_SYSTEM = 'T24'   and T24RC.NEED_SYNC = 'Y'  left join <tran_db>.CORE_NC_RETURN_CODES CBUAERC on   CBUAERC.RETURN_CODE = A.CBUAE_RETURN_CODE   and CBUAERC.PROCESSING_SYSTEM = 'CBUAE'   and CBUAERC.NEED_SYNC = 'Y'  order by   A.NPSSTPL_ID desc) V where row_num = 1   $AND"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS API Process Log Detail CCD","filter":[{"filter_name":"API_PROCESS_STATUS","binding_name":"API_PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_API_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESSING_SYSTEM","binding_name":"API_PROCESSING_SYSTEM","binding_value":"","source_name":"MI_LEVEL_API_PROCESSING_SYSTEM","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"STATUS","binding_name":"API_STATUS","binding_value":"","source_name":"MI_LEVEL_API_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"CREATEDDATEMILISEC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Validation Code","target_column":"V_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Error Code","target_column":"RESPONSE_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Id","target_column":"MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr IBAN","target_column":"DBTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"AMOUNT","alias_name":"","alignment":"Right","width":"","format":"","date_format":false,"currency_format":true},{"header":"Tran Ref ID","target_column":"TRAN_REF_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Uetr","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -2848,16 +2902,16 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
-	//Handler for INTERNAL event of "e 1681975088675"
-	e_1681975088675__e_1681975120440(parent_event_result) { 
+	//Handler for INTERNAL event of "brfq for view process log list"
+	brfq_for_view_process_log_list__sfr_from_brfq_to_view_pro_log_list(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1681975088675"
+		let source_id="brfq_for_view_process_log_list"
 		let destn_id="view_process_log_list"
-		let parent_source_id="svm_for_api_queue"
-		let event_code="e_1681975120440"
-		let event_params={"caller_name":"e_1681975088675__e_1681975120440","event_desc":"E_1681975120440","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_queue","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let parent_source_id="ssp_from_cc_to_processlog_sch"
+		let event_code="e_1686123255932"
+		let event_params={"caller_name":"brfq_for_view_process_log_list__sfr_from_brfq_to_view_pro_log_list","event_desc":"SFR from BRFQ to View pro log list","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"api_queue","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""
 		let event_data={}

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30013 
+Build ID        : 30045 
 Modified By     : Admin 
-Modified Date   : 2023-Jun-08 6:8 AM 
+Modified Date   : 2023-Jun-08 13:32 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
@@ -2068,7 +2068,7 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		let event_params={"caller_name":"message_detail__ssr_for_mgsgs","event_desc":"SSR for MGSGS","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"message_detail","raiseparam":{}}
 		let handler_code="set_selected_row"
 		let internals=""
-		let event_data={}
+		let event_data={"message_detail":{"e_1669459657891":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_16","event_code":"E_1669459657891","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"NPSSTRRD_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSTRRD_ID","setd3name":"NPSSTRRD_ID"},{"type":"LOCAL","column_name":"PROCESS_NAME","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_NAME","setd3name":"PROCESS_NAME"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={}
 		try {
 			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)

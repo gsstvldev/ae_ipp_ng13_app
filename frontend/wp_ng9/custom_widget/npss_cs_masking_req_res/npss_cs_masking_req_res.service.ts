@@ -25,6 +25,7 @@ export class npss_cs_masking_req_resService {
         ClientParams.npsstpl_id =  this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSTPL_ID");
         ClientParams.roleId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES");
         ClientParams.processName =  this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_NAME");
+        ClientParams.npsstrrd_id =  this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSTRRD_ID");
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     //Custom validation logics
@@ -37,10 +38,16 @@ CallUrlWithData(ClientParams, screenInstance, internals) {
     this.httpHelper.HttpPost('/microsvc/npss_cs_masking_req_res/', ClientParams)
         .subscribe((res: any) => {
             if (res.data == "SUCCESS" || res.data.status == "SUCCESS") {
+                if(res.data.data.type == 'JSON'){
                 let Ctrlscope = screenInstance['request_ui'].f_npss_target_request_ui.model;
                 let Ctrlscope1 = screenInstance['response_ui'].f_npss_target_response_ui.model;
                Ctrlscope.REQUEST_DATA_JSON = res.data.data.requestjson || ''
-                Ctrlscope1.RESPONSE_DATA_JSON = res.data.data.responsejson || ''
+                Ctrlscope1.RESPONSE_DATA_JSON = res.data.data.responsejson || ''    
+                }else{
+                     let controls = screenInstance['message_detail_ui'].f_npss_message_data_ui.model;
+                      controls.MESSAGE_DATA = res.data.data.requestjson || ''
+                }
+                
                 this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
             } else {
                 this.dialogHelper.ShowInfoDialog(res.data.status);

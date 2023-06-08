@@ -39,8 +39,8 @@ CallUrlWithData(ClientParams, screenInstance, internals) {
             if (res.data == "SUCCESS" || res.data.status == "SUCCESS") {
                 let Ctrlscope = screenInstance['request_ui'].f_npss_target_request_ui.model;
                 let Ctrlscope1 = screenInstance['response_ui'].f_npss_target_response_ui.model;
-                Ctrlscope.request_data_json = res.data.data.requestjson || ''
-                Ctrlscope1.responsejson = res.data.data.responsejson || ''
+               Ctrlscope.REQUEST_DATA_JSON = res.data.data.requestjson || ''
+                Ctrlscope1.RESPONSE_DATA_JSON = res.data.data.responsejson || ''
                 this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
             } else {
                 this.dialogHelper.ShowInfoDialog(res.data.status);

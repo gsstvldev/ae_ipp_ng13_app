@@ -46,6 +46,8 @@ CallUrlWithData(ClientParams, screenInstance, internals) {
                     CtrlScope1.SELL_CURRENCY = res.data.data[0].sell_currency || ''
                     CtrlScope1.CONTRA_AMOUNT = res.data.data[0].contra_amount || ''
                     CtrlScope1.DEALT_AMOUNT = res.data.data[0].dealt_amount || ''   
+                    CtrlScope1.memory58 = res.data.data[0].gm_margin || ''
+                    CtrlScope1.memory59 = res.data.data[0].exchange_rate || ''
                     }
                    
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");

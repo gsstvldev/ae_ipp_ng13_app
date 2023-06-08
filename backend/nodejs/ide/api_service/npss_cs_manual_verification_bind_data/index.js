@@ -68,7 +68,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         let TakeIpuetr = `select additional_info from npss_trn_process_log where uetr = '${params.uetr}' and process_name = 'Initiate Dispute Tran'`;
                         ExecuteQuery1(TakeIpuetr, function (ipuetr) {
                             if (ipuetr.length) {
-                                let Takedata = `select buy_currency,sell_currency,dealt_amount,contra_amount  from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${ipuetr[0].additional_info}'`
+                                let Takedata = `select buy_currency,sell_currency,dealt_amount,contra_amount,exchange_rate,gm_margin from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${ipuetr[0].additional_info}'`
                                 ExecuteQuery1(Takedata, function (trnplgdata) {
                                     if (trnplgdata.length > 0) {
                                         objresponse.errocode = 'Nonspl'

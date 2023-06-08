@@ -7,10 +7,12 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
     /*  Created By :sIVA hARISH
     Created Date : 07-06-2023
-     
+     Modified_by : Siva Harish
+     Modified_date : 08/06/2023
     */
     var serviceName = ' NPSS (CS) Masking Request Response ';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -41,7 +43,7 @@ app.post('/', function(appRequest, appResponse, next) {
             objSessionLogInfo.ACTION = 'ACTION';
             objSessionLogInfo.PROCESS = ' NPSS (CS) Masking Request Response ';
             // Get DB Connection 
-            reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
+            reqTranDBInstance.GetTranDBConn(headers, false, async function (pSession) {
                 mTranConn = pSession; //  assign connection     
                 try {
                     let ProcessDetailjson = [
@@ -112,7 +114,18 @@ app.post('/', function(appRequest, appResponse, next) {
                         }
 
                     ]
-                    var Takedata = `select fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_json,fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY) as response_json from npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
+                    let Gettrndetails = await ProcessDetailjson.filter((x) => {
+                        if (x.process_name.toUpperCase() == params.processName.toUpperCase()) {
+                            return x
+                        }
+                    })
+                    let Takedata
+                    if(Gettrndetails[0].type == 'JSON'){
+                        Takedata  = `select fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_json,fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY) as response_json from npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
+                    }else{
+                        Takedata  = `select fn_pcidss_decrypt(message_data,$PCIDSS_KEY ) as request_json from npss_trn_req_resp_dtls where npsstrrd_id = '${params.npsstrrd_id}'`  
+                    }
+                    
                     ExecuteQuery1(Takedata, async function (arrdata) {
                         try {
                             if (arrdata.length > 0) {
@@ -350,45 +363,6 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

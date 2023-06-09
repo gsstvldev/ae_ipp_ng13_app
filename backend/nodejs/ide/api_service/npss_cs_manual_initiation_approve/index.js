@@ -37,6 +37,7 @@ app.post('/', function(appRequest, appResponse, next) {
                      Reason for Adding force to post flag 30/05/2023
                       Reason for changing splrate logic 2/6/2023
                        Reason for handling issertype and extperson code 2/6/2023
+                        Reason for handling nationalid null case 9/6/2023
        
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -1225,9 +1226,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                     let extpersonidcode
                                     let issrtype
                                     if (arrcbsAct[0].resident_flag == 'Y') {
-                                        IDcode = arrcbsAct[0].national_id
-                                        extpersonidcode = 'NIDN'
-                                        issrtype = 'AE'
+                                       if(arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null){
+                                            IDcode = arrcbsAct[0].national_id
+                                            extpersonidcode = 'NIDN'
+                                            issrtype = 'AE'
+                                        }else{
+                                            IDcode = arrcbsAct[0].legal_id
+                                            extpersonidcode = 'CCPT' 
+                                            issrtype = arrcbsAct[0].nationality_country_code || ''                                       
+                                        }
                                     } else {
                                         IDcode = arrcbsAct[0].legal_id
                                         extpersonidcode = 'CCPT' 

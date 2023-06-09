@@ -7,13 +7,11 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-    
-
     /*  Created By :sIVA hARISH
     Created Date : 07-06-2023
      Modified_by : Siva Harish
      Modified_date : 08/06/2023
+      Modified_date : 09/06/2023
     */
      var serviceName = ' NPSS (CS) Masking Request Response ';
      var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -166,8 +164,9 @@ app.post('/', function(appRequest, appResponse, next) {
                         });
                      }else{
                         let findData
-                        let pacsName = params.processName.toUpperCase()
-                        if(pacsName.includes("PACS")){
+                        let curntBtnName = params.buttonName.toUpperCase()
+                       
+                        if(curntBtnName != "VIEW REQ AND RES"){
                             findData  = `select fn_pcidss_decrypt(message_data,$PCIDSS_KEY ) as request_json from npss_trn_req_resp_dtls where npsstrrd_id = '${params.npsstrrd_id}'`  
                             
                         }else{
@@ -177,7 +176,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         ExecuteQuery1(findData, function (arrnotmskdata) {
                             if (arrnotmskdata.length > 0) {
                                 objresponse.status = 'SUCCESS'
-                                if(pacsName.includes("PACS")){
+                                if(curntBtnName != "VIEW REQ AND RES"){
                                     objresponse.data.type = 'XML'
                                     objresponse.data.responsejson = ''
                                     objresponse.data.requestjson = arrnotmskdata[0].request_json || ''
@@ -189,7 +188,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 
                                 sendResponse(null, objresponse)
                             } else {
-                                if(pacsName.includes("PACS")){
+                                if(curntBtnName != "VIEW REQ AND RES"){
                                     objresponse.data.type = 'XML'
                                 }else{
                                     objresponse.data.type = 'JSON'
@@ -415,6 +414,7 @@ app.post('/', function(appRequest, appResponse, next) {
  
  
  
+
 
 
 });

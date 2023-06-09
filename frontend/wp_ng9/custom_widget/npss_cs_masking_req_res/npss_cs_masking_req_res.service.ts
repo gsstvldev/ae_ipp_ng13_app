@@ -26,6 +26,7 @@ export class npss_cs_masking_req_resService {
         ClientParams.roleId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES");
         ClientParams.processName =  this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_NAME");
         ClientParams.npsstrrd_id =  this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSTRRD_ID");
+        ClientParams.buttonName = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "CURRENT_BTN_LABEL");
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     //Custom validation logics

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30128 
+Build ID        : 30130 
 Modified By     : Admin 
-Modified Date   : 2023-Jun-13 6:33 AM 
+Modified Date   : 2023-Jun-13 7:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
@@ -587,7 +587,7 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		this.view_api_failure__action_ui_view_process_log.label_name = "View Process Log"
 		this.view_api_failure__action_ui_view_process_log.show = true
 		this.view_api_failure__action_ui_view_process_log.disabled = false
-		this.view_api_failure__action_ui_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.view_api_failure__action_ui_view_process_log.params = {"icon_only":false,"uicgcc_style":"fa fa-building"}
 		this.view_api_failure__action_ui_view_process_log.dynamic_param = {}
 		this.view_api_failure__action_ui_view_process_log.role = []
 		this.view_api_failure__action_ui_view_process_log.action = ""
@@ -1064,7 +1064,7 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 
 	//Handler for ACTION_BUTTON_CLICK event of "view process log ui back"
 	view_process_log_ui_back__action_button_click(){
-		this.view_process_log_ui_back__e_1686637217154()
+		this.view_process_log_ui_back__e_1686640338501()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -3276,20 +3276,20 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "view process log ui back"
-	view_process_log_ui_back__e_1686637217154() { 
+	view_process_log_ui_back__e_1686640338501() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="view_process_log_ui_back"
 		let destn_id=""
 		let parent_source_id=""
-		let event_code="e_1686637217154"
-		let event_params={"caller_name":"view_process_log_ui_back__e_1686637217154","event_desc":"E_1686637217154","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"view_process_log_ui_back","raiseparam":{}}
-		let handler_code="refresh_screen"
+		let event_code="e_1686640338501"
+		let event_params={"caller_name":"view_process_log_ui_back__e_1686640338501","event_desc":"E_1686640338501","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"view_process_log_ui_back","raiseparam":{"profile_code":"BTL_1304_1681966202861"}}
+		let handler_code="show_profile"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

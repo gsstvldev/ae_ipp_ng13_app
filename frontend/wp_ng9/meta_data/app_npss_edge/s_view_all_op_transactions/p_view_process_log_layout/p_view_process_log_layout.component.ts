@@ -7,23 +7,23 @@ Modified Date   : 2023-Jun-13 6:33 AM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
-Profile Name    : View Response Layout--------------------------------------------------------------------------- */
+Profile Name    : View Process log Layout--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input } from '@angular/core';
 @Component({
-  selector: 'p_view_response_layout',
-  templateUrl: './p_view_response_layout.component.html',
-  styleUrls: ['./p_view_response_layout.component.css']
+  selector: 'p_view_process_log_layout',
+  templateUrl: './p_view_process_log_layout.component.html',
+  styleUrls: ['./p_view_process_log_layout.component.css']
 })
 
 // Start of class 
-export class p_view_response_layoutComponent implements OnInit {
+export class p_view_process_log_layoutComponent implements OnInit {
   @Input() screen_instance: any;
 
   // Variables 
-  	single_back_ui : any = {}
-	response_ui : any = {}
+  	view_process_log_ui : any = {}
+	history_details : any = {}
 
 
   // Constructor 
@@ -31,14 +31,14 @@ export class p_view_response_layoutComponent implements OnInit {
   
   // Page Init 
   ngOnInit() {
-    	this.single_back_ui.desc = "Single Back UI"
-		this.single_back_ui.need_header = ""
-		this.response_ui.desc = "Response UI"
-		this.response_ui.need_header = ""
+    	this.view_process_log_ui.desc = "View Process log UI"
+		this.view_process_log_ui.need_header = ""
+		this.history_details.desc = "History Details"
+		this.history_details.need_header = true
 	
 
-    this.screen_instance['p_view_response_layout'] = {};
-    this.screen_instance['p_view_response_layout']['checkHeader']=(component)=>{
+    this.screen_instance['p_view_process_log_layout'] = {};
+    this.screen_instance['p_view_process_log_layout']['checkHeader']=(component)=>{
       if(this[component]!=undefined && this[component]["need_header"]!=undefined && (this[component]["need_header"]=="on"||this[component]["need_header"]==true)) {
         return {hidden:false,desc:this[component]["desc"]};
       } else {

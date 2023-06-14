@@ -1,0 +1,18 @@
+<div class="p_view_message_list_layout">
+ <!-- PROFILE HTML - p_view_message_list_layout --> 
+<div id="R11" class="row">
+	<div id="R11C1" class="column col-md-6 col-sm-6 col-xs-6 col-md-offset-6 col-sm-offset-0 col-xs-offset-0" >
+		<div class="message_detail_action" >
+			<f_message_detail_action [comp_id]="'message_detail_action'" [screen_instance]="screen_instance" [hidden]="isHidden('message_detail_action','f_message_detail_action')" profile_name="p_view_message_list_layout"></f_message_detail_action >
+		</div>
+	</div>
+</div>
+<div id="R21" class="row">
+	<div id="R21C1" class="column col-md-12 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" >
+		<div class="message_detail"  [hidden]="!screen_instance['message_detail'].show" >
+			<datatable [comp_id]="'message_detail'" [screen_instance]="screen_instance" profile_name="p_view_message_list_layout"></datatable>
+		</div>
+	</div>
+</div>
+
+</div>

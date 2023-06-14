@@ -55,6 +55,7 @@ issuer_type_code character varying(256) COLLATE pg_catalog."default",
 economic_activity_code character varying(4) COLLATE pg_catalog."default",
 cityofbirth character varying(64) COLLATE pg_catalog."default",
 account_closed character varying(32) COLLATE pg_catalog."default",
+vA_Flag character varying(1) COLLATE pg_catalog."default",
 CREATED_DATE timestamp without time zone,
 MODIFIED_DATE timestamp without time zone
 ) 

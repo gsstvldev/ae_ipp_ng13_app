@@ -70,7 +70,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 if (arrrule.length > 0) {
                                     success_process_status = arrrule[0].success_process_status;
                                     success_status = arrrule[0].success_status;
-                                    var TakedatafrmTrn = `select fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,* from npss_transactions ns where npsst_id = '${params.Tran_Id}'`
+                                    var TakedatafrmTrn = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,* from npss_transactions ns where npsst_id = '${params.Tran_Id}'`
                                     ExecuteQuery1(TakedatafrmTrn, async function (arrdata) {
                                         var takeUetr = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_GET_UETR' and param_code='URL' and NEED_SYNC = 'Y'`
                                         ExecuteQuery1(takeUetr, async function (arruetr) {

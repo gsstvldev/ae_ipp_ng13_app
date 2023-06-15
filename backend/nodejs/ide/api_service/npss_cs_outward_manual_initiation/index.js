@@ -159,7 +159,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                     objCusTranInst.DBTR_CITY_BIRTH = arrdata[0].dbtr_city_birth
                                                     objCusTranInst.DBTR_COUNTRY = arrdata[0].dbtr_country
                                                     objCusTranInst.EXT_PERSON_ID_CODE = arrdata[0].ext_person_id_code
-                                                    objCusTranInst.CR_ACCT_IDENTIFICATION = arrdata[0].dbtr_account_no
+                                                    objCusTranInst.CR_ACCT_IDENTIFICATION = arrdata[0].cr_acct_identification
                                                     objCusTranInst.CR_ACCT_ID_CODE = arrdata[0].cr_acct_id_code
                                                     objCusTranInst.EXT_PURPOSE_PRTY = arrdata[0].ext_purpose_prty
                                                     objCusTranInst.EXT_PURPOSE_CODE = arrdata[0].ext_purpose_code

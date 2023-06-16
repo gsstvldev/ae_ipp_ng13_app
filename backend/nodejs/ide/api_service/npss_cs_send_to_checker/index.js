@@ -565,8 +565,8 @@ try {
                 //function to check prepaid or credit
                 function checkprepaidorcredit(arrprocesslog) { //for checking prepid or credit card
                     return new Promise((resolve, reject) => {
-                        if (arrprocesslog[0].cdtr_iban) {
-                            Iban = arrprocesslog[0].cdtr_iban.slice(-16)
+                        if (arrprocesslog[0].dbtr_iban) {
+                            Iban = arrprocesslog[0].dbtr_iban.slice(-16)
                             FrmIban = Iban.substring(0, 3)
                             if (FrmIban == '564' || FrmIban == 564) {
                                 resolve(1)

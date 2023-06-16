@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30207 
+Build ID        : 30223 
 Modified By     : Admin 
-Modified Date   : 2023-Jun-16 4:47 AM 
+Modified Date   : 2023-Jun-16 14:7 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_ip_arc_transactions
@@ -15,13 +15,13 @@ import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_rct_already_postingService} from '../../../custom_widget/npss_cs_rct_already_posting/npss_cs_rct_already_posting.service'
-import {npss_cs_masking_req_resService} from '../../../custom_widget/npss_cs_masking_req_res/npss_cs_masking_req_res.service'
+import {npss_cs_arc_masking_req_resService} from '../../../custom_widget/npss_cs_arc_masking_req_res/npss_cs_arc_masking_req_res.service'
 
 @Component({
 	selector: 's_view_all_ip_arc_transactions',
 	templateUrl: './s_view_all_ip_arc_transactions.component.html',
 	styleUrls: ['./s_view_all_ip_arc_transactions.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_rct_already_postingService,npss_cs_masking_req_resService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_rct_already_postingService,npss_cs_arc_masking_req_resService]
 })
     
 // Start of class 
@@ -103,7 +103,7 @@ export class s_view_all_ip_arc_transactionsComponent implements OnInit,AfterView
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_rct_already_postingService:npss_cs_rct_already_postingService,private npss_cs_masking_req_resService:npss_cs_masking_req_resService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_rct_already_postingService:npss_cs_rct_already_postingService,private npss_cs_arc_masking_req_resService:npss_cs_arc_masking_req_resService) {
     
 	}
     
@@ -1841,7 +1841,7 @@ export class s_view_all_ip_arc_transactionsComponent implements OnInit,AfterView
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_masking_req_resService.fn_npss_cs_masking_req_res(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_arc_masking_req_resService.fn_npss_cs_arc_masking_req_res(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2137,7 +2137,7 @@ export class s_view_all_ip_arc_transactionsComponent implements OnInit,AfterView
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_masking_req_resService.fn_npss_cs_masking_req_res(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_arc_masking_req_resService.fn_npss_cs_arc_masking_req_res(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

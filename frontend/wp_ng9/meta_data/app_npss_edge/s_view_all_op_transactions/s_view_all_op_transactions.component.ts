@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29153 
+Build ID        : 30219 
 Modified By     : Admin 
-Modified Date   : 2023-Jun-15 5:11 AM 
+Modified Date   : 2023-Jun-16 8:18 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
@@ -61,7 +61,10 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	uicgc_24 : string = "process_log_search"
 	uicgc_25 : string = "view_process_log_ui"
 	uicgc_27 : string = "history_details"
+	uicgc_28 : string = "view_failures_ui"
+	uicgc_29 : string = "view_failures_actions"
 	key_events : any = {}
+	btl_1304_1686902736273 : string = "p_view_failures_layout"
 	btl_1304_1686636346443 : string = "p_view_process_log_layout"
 	btl_1304_1684313489625 : string = "p_view_process_log_search"
 	btl_1304_1681997889274 : string = "p_message_details_layoout"
@@ -78,7 +81,7 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_22","uicgc_4","uicgc_12","uicgc_14","uicgc_24","uicgc_11","uicgc_25","uicgc_17","uicgc_21","uicgc_19","uicgc_10","uicgc_15","uicgc_13","uicgc_7","uicgc_6","uicgc_3"]
+	forms : any = ["uicgc_22","uicgc_4","uicgc_12","uicgc_28","uicgc_14","uicgc_24","uicgc_11","uicgc_29","uicgc_25","uicgc_17","uicgc_21","uicgc_19","uicgc_10","uicgc_15","uicgc_13","uicgc_7","uicgc_6","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	p_view_process_log_search__show_profile_popup_showpopup : boolean = false
 	queue : any = {}
@@ -108,6 +111,7 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	process_log_ui_view_response : any = {}
 	process_log_ui_view_request : any = {}
 	process_log_ui_view_req_and_res : any = {}
+	process_log_ui_view_failures : any = {}
 	message_detail_ui : any = {}
 	message_detail_action : any = {}
 	message_detail_action_back : any = {}
@@ -133,6 +137,9 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	view_process_log_ui : any = {}
 	view_process_log_ui_back : any = {}
 	history_details : any = {}
+	view_failures_ui : any = {}
+	view_failures_actions : any = {}
+	view_failures_actions_back : any = {}
 
 
 	// Constructor 
@@ -439,6 +446,15 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		this.process_log_ui_view_req_and_res.dynamic_param = {}
 		this.process_log_ui_view_req_and_res.role = []
 		this.process_log_ui_view_req_and_res.action = ""
+		
+		// "View Failures" Button of "Process Log UI" component
+		this.process_log_ui_view_failures.label_name = "View Failures"
+		this.process_log_ui_view_failures.show = true
+		this.process_log_ui_view_failures.disabled = false
+		this.process_log_ui_view_failures.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.process_log_ui_view_failures.dynamic_param = {}
+		this.process_log_ui_view_failures.role = []
+		this.process_log_ui_view_failures.action = ""
 	
 		// Component level properties - "Message Detail UI" 
 		this.message_detail_ui.uictrl_code = "dynamic_ui"
@@ -719,6 +735,43 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		this.history_details.onChangecomponent = new EventEmitter<any>()
 		this.history_details.show = true
 		this.history_details.dynamic_param = {}
+	
+		// Component level properties - "View Failures UI" 
+		this.view_failures_ui.uictrl_code = "dynamic_ui"
+		this.view_failures_ui.uicgc_desc = "View Failures UI"
+		this.view_failures_ui.uicgc_code = "uicgc_28"
+		this.view_failures_ui.params = {}
+		this.view_failures_ui.datasource = {}
+		this.view_failures_ui.context_menu = []
+		this.view_failures_ui.views = {"first":"DTT_1304_1665905039255","is_tab_mode":"N","dtt_1304_1665905039255":{"0":[{"dttv_id":"NPSS View Response Data UI","tab_order":0,"tab_name":"","uicgc_description":"View Failures UI","role_description":"default","dtt_description":"NPSS Trn Process Log"}]}}
+		this.view_failures_ui.onChangecomponent = new EventEmitter<any>()
+		this.view_failures_ui.show = true
+		this.view_failures_ui.dynamic_param = {}
+		this.view_failures_ui.f_npss_view_response_data_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.view_failures_ui.form_name = "f_npss_view_response_data_ui"
+	
+		// Component level properties - "View Failures Actions" 
+		this.view_failures_actions.uictrl_code = "dynamic_ui"
+		this.view_failures_actions.uicgc_desc = "View Failures Actions"
+		this.view_failures_actions.uicgc_code = "uicgc_29"
+		this.view_failures_actions.params = {}
+		this.view_failures_actions.datasource = {}
+		this.view_failures_actions.context_menu = []
+		this.view_failures_actions.views = {}
+		this.view_failures_actions.onChangecomponent = new EventEmitter<any>()
+		this.view_failures_actions.show = true
+		this.view_failures_actions.dynamic_param = {}
+		this.view_failures_actions.f_view_failures_actions = {"show":true}
+		this.view_failures_actions.current_view = "f_view_failures_actions"
+		
+		// "Back" Button of "View Failures Actions" component
+		this.view_failures_actions_back.label_name = "Back"
+		this.view_failures_actions_back.show = true
+		this.view_failures_actions_back.disabled = false
+		this.view_failures_actions_back.params = {"icon_only":false,"uicgcc_style":"fa fa-fast-backward"}
+		this.view_failures_actions_back.dynamic_param = {}
+		this.view_failures_actions_back.role = []
+		this.view_failures_actions_back.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -878,6 +931,12 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		this.history_detail__ssr_from_hd_to_req()
 		this.history_detail__ee_for_vreq_vres()
 		this.history_detail__svtm_from_history_detail()
+		this.history_detail__e_1686902863348()
+	}
+
+	//Handler for INTERNAL event of "svtm from history detail"
+	svtm_from_history_detail__internal(parent_event_result){
+		this.svtm_from_history_detail__shwhide(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "message back ui back"
@@ -988,9 +1047,8 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 
 	//Handler for ACTION_BUTTON_CLICK event of "view api failure  action ui view req and res"
 	view_api_failure__action_ui_view_req_and_res__action_button_click(){
-		this.view_api_failure__action_ui_view_req_and_res__e_1681967355207()
-		this.view_api_failure__action_ui_view_req_and_res__e_1681967369196()
 		this.view_api_failure__action_ui_view_req_and_res__e_1681967657665()
+		this.view_api_failure__action_ui_view_req_and_res__e_1686903417624()
 	}
 
 	//Handler for SELECTION_CHANGED event of "api queue"
@@ -1065,6 +1123,17 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	//Handler for ACTION_BUTTON_CLICK event of "view process log ui back"
 	view_process_log_ui_back__action_button_click(){
 		this.view_process_log_ui_back__e_1686640338501()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view failures"
+	process_log_ui_view_failures__action_button_click(){
+		this.process_log_ui_view_failures__e_1686902994353()
+		this.process_log_ui_view_failures__e_1686903057267()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "view failures actions back"
+	view_failures_actions_back__action_button_click(){
+		this.view_failures_actions_back__e_1686903049577()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -2121,11 +2190,54 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		let event_code="e_1685948589446"
 		let event_params={"caller_name":"history_detail__svtm_from_history_detail","event_desc":"SVTM from History Detail","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{}}
 		let handler_code="set_value_to_memory"
-		let internals=""
+		let internals="svtm_from_history_detail__shwhide,"
 		let event_data={"history_detail":{"e_1685948589446":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_18","event_code":"E_1685948589446","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"PROCESS_NAME","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_NAME","setd3name":"PROCESS_NAME"},{"type":"LOCAL","column_name":"NPSSTPL_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSTPL_ID","setd3name":"NPSSTPL_ID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_18","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1681967889801","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS HST Process Log MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"NPSSTPL_ID","alias_name":"","mq_id":"MQ_1666177568065","date_format":false},{"column_name":"MSG_ID","alias_name":"","mq_id":"MQ_1666177568243","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1666177568420","date_format":false},{"column_name":"NPSSTRRD_REFNO","alias_name":"","mq_id":"MQ_1666177568588","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1666177568740","date_format":false},{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1666177568908","date_format":false},{"column_name":"RESPONSE_CODE","alias_name":"","mq_id":"MQ_1666177569084","date_format":false},{"column_name":"PROCESS_REF_NO","alias_name":"","mq_id":"MQ_1666177779261","date_format":false},{"column_name":"RESPONSE_DATA","alias_name":"","mq_id":"MQ_1666177779430","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1666177779582","date_format":true},{"column_name":"RETURN_DESCRIPTION","alias_name":"","mq_id":"MQ_1666177862396","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1666177862551","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1666177873590","date_format":false},{"column_name":"CREATEDDATEMILISEC","alias_name":"","mq_id":"MQ_1666329436524","date_format":true},{"column_name":"T24_RETURN_CODE","alias_name":"","mq_id":"MQ_1666781809408","date_format":false},{"column_name":"CBUAE_RETURN_CODE","alias_name":"","mq_id":"MQ_1666781809610","date_format":false},{"column_name":"REVERSAL_CODE","alias_name":"","mq_id":"MQ_1666781809810","date_format":false},{"column_name":"REVERSAL_DESC","alias_name":"","mq_id":"MQ_1666865255337","date_format":false},{"column_name":"T24_RETURN_DESC","alias_name":"","mq_id":"MQ_1666865255505","date_format":false},{"column_name":"CBUAE_RETURN_DESC","alias_name":"","mq_id":"MQ_1666865255657","date_format":false},{"column_name":"REVERSAL_DESCRIPTION","alias_name":"","mq_id":"MQ_1666936092675","date_format":false},{"column_name":"T24_RETURN_DESCRIPTION","alias_name":"","mq_id":"MQ_1666936093146","date_format":false},{"column_name":"CBUAE_RETURN_DESCRIPTION","alias_name":"","mq_id":"MQ_1666936093458","date_format":false},{"column_name":"TENANT_ID","alias_name":"","mq_id":"MQ_1667544156161","date_format":false}],"joins":[]},"eq_text":"select  REVERSAL_DESCRIPTION,  T24_RETURN_DESCRIPTION,  CBUAE_RETURN_DESCRIPTION,  NPSSTPL_ID,  MSG_ID,  UETR,  NPSSTRRD_REFNO,  PROCESS_NAME,  PROCESSING_SYSTEM,  RESPONSE_CODE,  PROCESS_REF_NO,  RESPONSE_DATA,  CREATED_DATE,  CREATEDDATEMILISEC,  PROCESS_STATUS,  STATUS,  REQUEST_DATA_JSON,  RESPONSE_DATA_JSON,  T24_RETURN_CODE,  CBUAE_RETURN_CODE,  REVERSAL_CODE,  REVERSAL_DESC,  T24_RETURN_DESC,  CBUAE_RETURN_DESC,  TENANT_ID,  DEPARTMENT_CODE,  DT_CODE,  DTT_CODE,  PROCESS_TYPE,  AMOUNT_CREDITED,  AMT_CR_LOC_CUR,  CHARGE_AMOUNT,  BUY_CURRENCY,  SELL_CURRENCY,  DEALT_AMOUNT,  EXCHANGE_RATE,  CONTRA_AMOUNT from  (  select   A.NPSSTPL_ID,   A.MSG_ID,   A.UETR,   NT.PROCESS_TYPE,   A.NPSSTRRD_REFNO,   A.PROCESS_NAME,   A.PROCESSING_SYSTEM,   A.RESPONSE_CODE,   A.PROCESS_REF_NO,   A.RESPONSE_DATA,   TO_CHAR(A.CREATED_DATE, 'YYYY-MM-DD HH:MI:SS:MS AM') as CREATEDDATEMILISEC,   A.CREATED_DATE,   A.PROCESS_STATUS,   A.STATUS,   A.DT_CODE,   A.DTT_CODE,   A.TENANT_ID,   A.REQUEST_DATA_JSON,   A.RESPONSE_DATA_JSON,   A.T24_RETURN_CODE,   NT.DEPARTMENT_CODE,   NT.NPSST_ID,   A.ADDITIONAL_INFO,   A.AMOUNT_CREDITED,   A.AMT_CR_LOC_CUR,   A.CHARGE_AMOUNT,   A.BUY_CURRENCY,   A.SELL_CURRENCY,   A.DEALT_AMOUNT,   A.EXCHANGE_RATE,   A.CONTRA_AMOUNT,   T24RC.ERROR_DESCRIPTION as T24_RETURN_DESC,   CONCAT(A.T24_RETURN_CODE, '-', T24RC.ERROR_DESCRIPTION) as T24_RETURN_DESCRIPTION,   A.CBUAE_RETURN_CODE,   CBUAERC.RETURN_DESCRIPTION as CBUAE_RETURN_DESC,   CONCAT(A.CBUAE_RETURN_CODE, '-', CBUAERC.RETURN_DESCRIPTION) as CBUAE_RETURN_DESCRIPTION,   A.REVERSAL_CODE,   CCD.CD_DESCRIPTION as REVERSAL_DESC,   CONCAT(A.REVERSAL_CODE, '-', CCD.CD_DESCRIPTION) as REVERSAL_DESCRIPTION  from   NPSS_TRN_PROCESS_LOG A  left join <tran_db>.CORE_NC_CODE_DESCRIPTIONS CCD on   CCD.CD_CODE = A.REVERSAL_CODE   and CCD.CD_CATEGORY = 'REVERSAL_REASON_IDENTIFIER_CODE'   and CCD.NEED_SYNC = 'Y'  left join <tran_db>.CORE_NC_ERROR_CODES T24RC on   T24RC.ERROR_CODE = A.T24_RETURN_CODE   and T24RC.PROCESSING_SYSTEM = 'T24'   and T24RC.NEED_SYNC = 'Y'  left join <tran_db>.CORE_NC_RETURN_CODES CBUAERC on   CBUAERC.RETURN_CODE = A.CBUAE_RETURN_CODE   and CBUAERC.PROCESSING_SYSTEM = 'CBUAE'   and CBUAERC.NEED_SYNC = 'Y'  left join NPSS_TRANSACTIONS NT on   NT.UETR = A.UETR  order by   A.NPSSTPL_ID) V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS View All transaction History CCD","filter":[{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"OP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"UETR","binding_name":"UETR","binding_value":"","source_name":"MI_LEVEL_UETR","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Transaction Date & Time","target_column":"CREATEDDATEMILISEC","alias_name":"","alignment":"Left","width":"","format":"","date_format":true},{"header":"Process Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"T24 Return Description","target_column":"T24_RETURN_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CBUAE Return Description","target_column":"CBUAE_RETURN_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Reversal Description","target_column":"REVERSAL_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"FT Number/ProcessRefNo","target_column":"PROCESS_REF_NO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Id","target_column":"MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "history detail"
+	history_detail__e_1686902863348() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="history_detail"
+		let destn_id="view_failures_ui"
+		let parent_source_id=""
+		let event_code="e_1686902863348"
+		let event_params={"caller_name":"history_detail__e_1686902863348","event_desc":"E_1686902863348","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{}}
+		let handler_code="set_selected_row"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_selected_row(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "svtm from history detail"
+	svtm_from_history_detail__shwhide(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="svtm_from_history_detail"
+		let destn_id=""
+		let parent_source_id="history_detail"
+		let event_code="e_1686902157925"
+		let event_params={"caller_name":"svtm_from_history_detail__shwhide","event_desc":"shwhide","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"history_detail","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2849,48 +2961,6 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "view api failure  action ui view req and res"
-	view_api_failure__action_ui_view_req_and_res__e_1681967355207() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="view_api_failure__action_ui_view_req_and_res"
-		let destn_id="response_ui"
-		let parent_source_id=""
-		let event_code="e_1681967355207"
-		let event_params={"caller_name":"view_api_failure__action_ui_view_req_and_res__e_1681967355207","event_desc":"E_1681967355207","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"view_api_failure__action_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":"","change_detection":""}}
-		let handler_code="bind_tran"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "view api failure  action ui view req and res"
-	view_api_failure__action_ui_view_req_and_res__e_1681967369196() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="view_api_failure__action_ui_view_req_and_res"
-		let destn_id="request_ui"
-		let parent_source_id=""
-		let event_code="e_1681967369196"
-		let event_params={"caller_name":"view_api_failure__action_ui_view_req_and_res__e_1681967369196","event_desc":"E_1681967369196","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"view_api_failure__action_ui_view_req_and_res","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":"","change_detection":""}}
-		let handler_code="bind_tran"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "view api failure  action ui view req and res"
 	view_api_failure__action_ui_view_req_and_res__e_1681967657665() { 
 		let Dest_Is_ctrl=true
 		
@@ -2905,6 +2975,27 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "view api failure  action ui view req and res"
+	view_api_failure__action_ui_view_req_and_res__e_1686903417624() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="view_api_failure__action_ui_view_req_and_res"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1686903417624"
+		let event_params={"caller_name":"view_api_failure__action_ui_view_req_and_res__e_1686903417624","event_desc":"E_1686903417624","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"view_api_failure__action_ui_view_req_and_res","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_masking_req_resService.fn_npss_cs_masking_req_res(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -3284,6 +3375,69 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		let parent_source_id=""
 		let event_code="e_1686640338501"
 		let event_params={"caller_name":"view_process_log_ui_back__e_1686640338501","event_desc":"E_1686640338501","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"view_process_log_ui_back","raiseparam":{"profile_code":"BTL_1304_1681966202861"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view failures"
+	process_log_ui_view_failures__e_1686902994353() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_failures"
+		let destn_id="view_failures_ui"
+		let parent_source_id=""
+		let event_code="e_1686902994353"
+		let event_params={"caller_name":"process_log_ui_view_failures__e_1686902994353","event_desc":"E_1686902994353","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_failures","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":"","change_detection":""}}
+		let handler_code="bind_tran"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.bind_tran(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "process log ui view failures"
+	process_log_ui_view_failures__e_1686903057267() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_ui_view_failures"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1686903057267"
+		let event_params={"caller_name":"process_log_ui_view_failures__e_1686903057267","event_desc":"E_1686903057267","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_view_failures","raiseparam":{"profile_code":"BTL_1304_1686902736273"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "view failures actions back"
+	view_failures_actions_back__e_1686903049577() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="view_failures_actions_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1686903049577"
+		let event_params={"caller_name":"view_failures_actions_back__e_1686903049577","event_desc":"E_1686903049577","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"view_failures_actions_back","raiseparam":{"profile_code":"BTL_1304_1669457979784"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

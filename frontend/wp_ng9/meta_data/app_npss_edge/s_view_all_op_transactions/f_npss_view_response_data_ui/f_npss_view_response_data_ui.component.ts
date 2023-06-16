@@ -7,26 +7,26 @@ Modified Date   : 2023-Jun-16 8:18 AM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
-Form Name       : NPSS Respose data UI--------------------------------------------------------------------------- */
+Form Name       : NPSS View Response Data UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_respose_data_ui',
-  templateUrl: './f_npss_respose_data_ui.component.html',
-  styleUrls: ['./f_npss_respose_data_ui.component.css'],
+  selector: 'f_npss_view_response_data_ui',
+  templateUrl: './f_npss_view_response_data_ui.component.html',
+  styleUrls: ['./f_npss_view_response_data_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_respose_data_uiComponent implements OnInit {
+export class f_npss_view_response_data_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_respose_data_ui') form;
-  @ViewChild('npss_respose_data_ui_response_data') element: ElementRef;
+  @ViewChild('f_npss_view_response_data_ui') form;
+  @ViewChild('npss_view_response_data_ui_response_data') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -50,7 +50,7 @@ focustoelement(){
   
 		//Properties of response_data
 		this.ctrl.response_data = {}
-		this.ctrl.response_data.id = "RN01CN1"
+		this.ctrl.response_data.id = "57f7015a-2e13-4eeb-bbab-e304c2dbd578_1686903271765"
 		this.ctrl.response_data.desc = "Response Data"
 		this.ctrl.response_data.visible = false
 		this.ctrl.response_data.label_name = "Response Data"
@@ -81,15 +81,15 @@ focustoelement(){
 		this.ctrl.response_data.vld_rules = []
 		this.ctrl.response_data.targetcolumn_lower = "response_data"
 		this.ctrl.response_data.disabled = false
-		this.ctrl.response_data.view_name = "f_npss_respose_data_ui"
-		this.ctrl.response_data.ctrl_id = "npss_respose_data_ui_response_data"
-		this.ctrl.npss_respose_data_ui_response_data = {}
-		this.ctrl.npss_respose_data_ui_response_data.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_respose_data_ui.model = {"RESPONSE_DATA":""}
-		this.screen_instance[this.comp_id].f_npss_respose_data_ui.Meta = [{"CTLR_CODE":"RICH_TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"RESPONSE_DATA"}]
-		this.screen_instance[this.comp_id].f_npss_respose_data_ui.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_respose_data_ui.dtt_code = "dtt_1304_1665905039255"
-		this.screen_instance[this.comp_id].f_npss_respose_data_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		this.ctrl.response_data.view_name = "f_npss_view_response_data_ui"
+		this.ctrl.response_data.ctrl_id = "npss_view_response_data_ui_response_data"
+		this.ctrl.npss_view_response_data_ui_response_data = {}
+		this.ctrl.npss_view_response_data_ui_response_data.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_view_response_data_ui.model = {"RESPONSE_DATA":""}
+		this.screen_instance[this.comp_id].f_npss_view_response_data_ui.Meta = [{"CTLR_CODE":"RICH_TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"RESPONSE_DATA"}]
+		this.screen_instance[this.comp_id].f_npss_view_response_data_ui.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_npss_view_response_data_ui.dtt_code = "dtt_1304_1665905039255"
+		this.screen_instance[this.comp_id].f_npss_view_response_data_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -136,10 +136,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_respose_data_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_respose_data_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_view_response_data_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_view_response_data_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_respose_data_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_view_response_data_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

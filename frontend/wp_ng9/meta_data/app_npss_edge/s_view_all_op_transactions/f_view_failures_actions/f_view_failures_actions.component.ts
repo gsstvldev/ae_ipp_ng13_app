@@ -7,20 +7,20 @@ Modified Date   : 2023-Jun-16 8:18 AM
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
-Form Name       : Back UI--------------------------------------------------------------------------- */
+Form Name       : View Failures Actions--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_back_ui',
-  templateUrl: './f_back_ui.component.html',
-  styleUrls: ['./f_back_ui.component.css'],
+  selector: 'f_view_failures_actions',
+  templateUrl: './f_view_failures_actions.component.html',
+  styleUrls: ['./f_view_failures_actions.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_back_uiComponent implements OnInit {
+export class f_view_failures_actionsComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
@@ -87,10 +87,10 @@ export class f_back_uiComponent implements OnInit {
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_back_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_back_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_view_failures_actions[control]==undefined) {
+      this.screen_instance[this.comp_id].f_view_failures_actions[control] = {}
     }
-    this.screen_instance[this.comp_id].f_back_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_view_failures_actions[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

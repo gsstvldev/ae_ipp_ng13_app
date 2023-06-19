@@ -71,7 +71,7 @@ CREATE SEQUENCE IF NOT EXISTS ad_gss_tran.seq_core_nc_cbs_accounts_backup
 CREATE TABLE IF NOT EXISTS CORE_NC_CBS_ACCOUNTS_BACKUP 
 ( 
 cnccab_id integer NOT NULL DEFAULT nextval('seq_core_nc_cbs_accounts_backup'::regclass),
-cncca_id integer NOT NULL DEFAULT,
+cncca_id integer NOT NULL,
 Account_Number character varying(19) COLLATE pg_catalog."default" , 
 Alternate_Account_ID character varying(36) COLLATE pg_catalog."default", 
 Account_name character varying(256) COLLATE pg_catalog."default", 

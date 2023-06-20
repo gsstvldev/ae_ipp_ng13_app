@@ -1239,21 +1239,63 @@ try {
                                 let IDcode
                                 let extpersonidcode
                                 let issrtype
+                              //  if (arrcbsAct[0].resident_flag == 'Y') {
+                                    //if (arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null) {
+                                       // IDcode = arrcbsAct[0].national_id
+                                       // extpersonidcode = 'NIDN'
+                                      //  issrtype = 'AE'
+                                   // } else {
+                                      //  IDcode = arrcbsAct[0].legal_id
+                                       // extpersonidcode = 'CCPT'
+                                      //  issrtype = arrcbsAct[0].nationality_country_code || ''
+                                  //  }
+                              //  } else {
+                                  //  IDcode = arrcbsAct[0].legal_id
+                                  //  extpersonidcode = 'CCPT'
+                                   // issrtype = arrcbsAct[0].nationality_country_code || ''
+                                //}
+                                
+                                
                                 if (arrcbsAct[0].resident_flag == 'Y') {
-                                    if (arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null) {
-                                        IDcode = arrcbsAct[0].national_id
-                                        extpersonidcode = 'NIDN'
-                                        issrtype = 'AE'
-                                    } else {
+                                    if((arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null) || (arrcbsAct[0].legal_id != '' && arrcbsAct[0].legal_id != null)){
+                                        if (arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null) {
+                                            IDcode = arrcbsAct[0].national_id
+                                            extpersonidcode = 'NIDN'
+                                            issrtype = 'AE'
+                                        } else {
+                                            IDcode = arrcbsAct[0].legal_id
+                                            extpersonidcode = 'CCPT'
+                                            issrtype = arrcbsAct[0].nationality_country_code || ''
+                                        }
+                                    }else{
+                                        objresponse.status = "FAILURE"
+                                        objresponse.errdata = "National ID or Legal ID is Missing"
+                                        sendResponse(null, objresponse)
+                                    }
+                                   
+                                } else {
+                                    if(arrcbsAct[0].legal_id != '' && arrcbsAct[0].legal_id != null){
                                         IDcode = arrcbsAct[0].legal_id
                                         extpersonidcode = 'CCPT'
                                         issrtype = arrcbsAct[0].nationality_country_code || ''
+                                    }else{
+                                        objresponse.status = "FAILURE"
+                                        objresponse.errdata = "Legal ID is Missing"
+                                        sendResponse(null, objresponse)
                                     }
-                                } else {
-                                    IDcode = arrcbsAct[0].legal_id
-                                    extpersonidcode = 'CCPT'
-                                    issrtype = arrcbsAct[0].nationality_country_code || ''
+                                    
                                 }
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                                 let Params = {}
                                 Params.FormPvtid = IDcode + '-' + destination_economic_activity_code
                                 Params.extpersonidcode = extpersonidcode

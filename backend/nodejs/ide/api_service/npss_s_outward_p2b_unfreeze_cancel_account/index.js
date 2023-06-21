@@ -29,8 +29,6 @@ var objSessionLogInfo = null; // set value is null
 var success_process_status, success_status;
 var reqAsync = require('async');
 var moment = require('moment');
-const { resolve } = require('path/posix');
-const { func } = require('prop-types');
 var mTranConn = "";
 var producer
 var failedData = []

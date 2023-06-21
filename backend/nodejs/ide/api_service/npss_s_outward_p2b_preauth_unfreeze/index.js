@@ -11,6 +11,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Created Date :23/02/2023
     Modified By : 
     Modified Date : 06/06/2023
+     Modified Date : 20/06/2023
     }
     */
     var serviceName = 'NPSS (S) Outward P2B Preauth Unfreeze';
@@ -79,7 +80,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 var utcMoment = moment.utc();
                                 var Formdate = utcMoment.subtract(arrhour[0].param_detail, 'days')
                                 Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss')
-                                takepayver = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,* from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and additional_info  in ${additional_info1} and created_date_utc < '${Formdate}'`
+                                takepayver = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,* from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and additional_info  in ${additional_info1} and created_date_utc < '${Formdate}' and org_status <> 'UNFREEZE_TAKEN'`
                                 ExecuteQuery1(takepayver, function (arrpayver) {
     
                                     if (arrpayver.length > 0) {
@@ -112,8 +113,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                     if (apicallresult == 'SUCCESS') {
                                                                                         var InsertTable = await ProcessInstData(arrpayverobj, PRCT_ID)
                                                                                         if (InsertTable.length > 0) { 
-                                                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------Kafka Insert success-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
-                                                                                            nextobjctfunc()
+                                                                                            var updateTable = await UpdateTran(arrpayverobj, PRCT_ID)
+                                                                                            if(updateTable == 'SUCCESS'){
+                                                                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Kafka Insert success-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
+                                                                                                nextobjctfunc()
+                                                                                            }else{
+                                                                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Kafka Insert success-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
+                                                                                                nextobjctfunc()
+                                                                                            }
+                                                                                          
                                                                                         }
                                                                                         else {
                                                                                             reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Insert -------' + arrpayverobj.npsstpl_id, objSessionLogInfo); 
@@ -432,6 +440,34 @@ app.post('/', function(appRequest, appResponse, next) {
                     })
     
                 }
+
+                
+                function UpdateTran(arrTran, prct_id) {
+                    return new Promise((resolve,reject)=>{
+                        let UpdTrntbl = `update npss_trn_process_log set org_status = 'UNFREEZE_TAKEN' MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${prct_id}' where npsstpl_id = '${arrTran.npsstpl_id}'`
+                        ExecuteQuery(UpdTrntbl, function (arrUpdTranTbl) {
+                            resolve('SUCCESS')
+        
+                        })
+                    })
+                    
+                }
+
+                //Execute Query for common
+            function ExecuteQuery(query, callback) {
+                reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
+                    try {
+                        if (error) {
+                            sendResponse(error)
+                        } else {
+                            callback("SUCCESS");
+
+                        }
+                    } catch (error) {
+                        sendResponse(error)
+                    }
+                });
+            }
                 function ExecuteQuery1(query, callback) {
                     reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
                         try {

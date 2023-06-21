@@ -11,6 +11,7 @@ app.post('/', function(appRequest, appResponse, next) {
 Created Date :23/02/2023
 Modified By : 
 Modified Date : 06/06/2023
+Modified Date : 20/06/2023
 }
 */
 var serviceName = 'NPSS (S) P2B Refund Unfreeze Customer Account';
@@ -27,6 +28,7 @@ var objSessionLogInfo = null; // set value is null
 var success_process_status, success_status;
 var moment = require('moment');
 var reqAsync = require('async');
+const { resolve } = require('path');
 var mTranConn = "";
 var producer
 var failedData = []
@@ -66,7 +68,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                           console.log(utcMoment)
                             var Formdate = utcMoment.subtract(arrTakehrs[0].param_detail, 'hours')
                             Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss')
-                            var Takedata = `select * from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info in ${Firstaddinfo} and created_date_utc < '${Formdate}'`
+                            var Takedata = `select * from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info in ${Firstaddinfo} and created_date_utc < '${Formdate}' and org_status <> 'UNFREEZE_TAKEN'`
                             ExecuteQuery1(Takedata, function (arrData) {
                                 if (arrData.length > 0) {
                                     reqAsync.forEachOfSeries(arrData, function (arrDataobj, i, nextobjctfunc) {
@@ -86,8 +88,15 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                         if (apicallresult == 'SUCCESS') {
                                                                             var InsertTable = await ProcessInstData(arrDataobj, PRCT_ID)
                                                                             if (InsertTable.length > 0) {
-                                                                                reqInstanceHelper.PrintInfo(serviceName, '----------API Success for uetr------' + arrDataobj.uetr, objSessionLogInfo);
-                                                                                nextobjctfunc()
+                                                                                var updateTable = await UpdateTran(arrDataobj, PRCT_ID)
+                                                                                if(updateTable == 'SUCCESS'){
+                                                                                    reqInstanceHelper.PrintInfo(serviceName, '----------API Success for uetr------' + arrDataobj.uetr, objSessionLogInfo);
+                                                                                    nextobjctfunc()
+                                                                                }else{
+                                                                                    reqInstanceHelper.PrintInfo(serviceName, '----------Update Failure for uetr------' + arrDataobj.uetr, objSessionLogInfo);
+                                                                                    nextobjctfunc()
+                                                                                }
+                                                                               
                                                                             } else {
                                                                                 reqInstanceHelper.PrintInfo(serviceName, '----------API Success for uetr------' + arrDataobj.uetr, objSessionLogInfo);
                                                                                 nextobjctfunc()
@@ -200,7 +209,16 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         })
 
                     }
-
+                    function UpdateTran(arrTran, prct_id) {
+                        return new Promise((resolve,reject)=>{
+                            let UpdTrntbl = `update npss_trn_process_log set org_status = 'UNFREEZE_TAKEN' MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${prct_id}' where npsstpl_id = '${arrTran.npsstpl_id}'`
+                            ExecuteQuery(UpdTrntbl, function (arrUpdTranTbl) {
+                                resolve('SUCCESS')
+            
+                            })
+                        })
+                        
+                    }
 
                     function kafkaapi(arrpayverobj, arrurl, process_name1) {
                         var postrefno;

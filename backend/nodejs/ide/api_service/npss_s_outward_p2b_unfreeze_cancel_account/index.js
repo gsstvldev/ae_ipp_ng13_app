@@ -12,6 +12,7 @@ app.post('/', function(appRequest, appResponse, next) {
 Created Date :23/02/2023
 Modified By : 
 Modified Date : 06/06/2023
+Modified Date : 20/06/2023
 }
 */
 var serviceName = 'NPSS(S) P2B UNFREEZE the Cancel Account';
@@ -28,6 +29,8 @@ var objSessionLogInfo = null; // set value is null
 var success_process_status, success_status;
 var reqAsync = require('async');
 var moment = require('moment');
+const { resolve } = require('path/posix');
+const { func } = require('prop-types');
 var mTranConn = "";
 var producer
 var failedData = []
@@ -78,9 +81,9 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     ExecuteQuery1(takehour, function (arrhour) {
                         if (arrhour.length > 0) {
                             var utcMoment = moment.utc();
-                              var Formdate = utcMoment.subtract(arrhour[0].param_detail, 'hours')
-                              Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss')
-                            takepayver = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,* from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  additional_info not in  ${additional_info1} and created_date_utc < '${Formdate}'`
+                            var Formdate = utcMoment.subtract(arrhour[0].param_detail, 'hours')
+                            Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss')
+                            takepayver = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,* from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  additional_info not in  ${additional_info1} and created_date_utc < '${Formdate}' and org_status <> 'UNFREEZE_TAKEN'`
                             ExecuteQuery1(takepayver, function (arrpayver) {
                                 if (arrpayver.length > 0) {
                                     reqAsync.forEachOfSeries(arrpayver, function (arrpayverobj, i, nextobjctfunc) {
@@ -109,8 +112,15 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                     if (apicallresult == 'SUCCESS') {
                                                                         var InsertTable = await ProcessInstData(arrpayverobj, PRCT_ID)
                                                                         if (InsertTable.length > 0) {
-                                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------Kafaka Insert Success-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
-                                                                            nextobjctfunc()
+                                                                            var updateTable = await UpdateTran(arrpayverobj, PRCT_ID)
+                                                                            if(updateTable == 'SUCCESS'){
+                                                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Kafaka Insert Success-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
+                                                                                nextobjctfunc()
+                                                                            }else{
+                                                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Kafaka Insert Success-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
+                                                                                nextobjctfunc()
+                                                                            }
+                                                                           
                                                                         }
                                                                         else {
                                                                             nextobjctfunc()
@@ -195,21 +205,21 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                     var JsonData
                                     var Bankcode
                                     var cdtr_iban
-                                   var tran_ref_id
-                                   var amount 
-                                   var currency
-                                   var dbtr_iban
-                                   var dbtr_acct_name
-                                   var cdtr_acct_name
-                                   var TranTypecode
-                                   var npssrefno
-                                   var reson
+                                    var tran_ref_id
+                                    var amount
+                                    var currency
+                                    var dbtr_iban
+                                    var dbtr_acct_name
+                                    var cdtr_acct_name
+                                    var TranTypecode
+                                    var npssrefno
+                                    var reson
                                     if (arrtakereqjson[0].request_data_json != null) {
                                         JsonData = JSON.parse(arrtakereqjson[0].request_data_json)
-                                        Bankcode =   JsonData['merchant']['bankCode'] || ''
-                                        cdtr_iban =   JsonData['merchant']['IBAN'] || ''
+                                        Bankcode = JsonData['merchant']['bankCode'] || ''
+                                        cdtr_iban = JsonData['merchant']['IBAN'] || ''
                                         tran_ref_id = JsonData['transactionId'] || ''
-                                        amount =  JsonData['amount']["requested"] || ''
+                                        amount = JsonData['amount']["requested"] || ''
                                         currency = JsonData['amount']['currency'] || ''
                                         dbtr_iban = JsonData['buyer']['IBAN'] || ''
                                         dbtr_acct_name = JsonData['buyer']['name'] || ''
@@ -246,10 +256,10 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                             "payload": {
                                                                                 "tran_ref_id": tran_ref_id || '',
                                                                                 "uetr": arrpayverobj.uetr || '',
-                                                                                "hdr_msg_id":  '',
+                                                                                "hdr_msg_id": '',
                                                                                 "hdr_total_records": '1' || '',
                                                                                 "x_req_id": arrtakereqjson[0].msg_id || '',
-                                                                                "dbtr_country":  '',
+                                                                                "dbtr_country": '',
                                                                                 "process_ref_no": arrtakereqjson[0].npsstrrd_refno || '',
                                                                                 "intrbk_sttlm_amnt": amount || '',
                                                                                 "hdr_total_amount": amount || '',
@@ -257,7 +267,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                                 "dbtr_iban": dbtr_iban || '',
                                                                                 "customer_mobile_number": arrtakeacctinfo[0].customer_mobile_number || '',
                                                                                 "dbtr_acct_name": dbtr_acct_name || '',
-                                                                                "dr_sort_code":  '',
+                                                                                "dr_sort_code": '',
                                                                                 "cdtr_iban": cdtr_iban || '',
                                                                                 "cdtr_acct_name": cdtr_acct_name || '',
                                                                                 "cr_sort_code": Bankcode || '',
@@ -270,25 +280,25 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                                 "process_type": "UNFREEZE",
                                                                                 "value_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),
                                                                                 "hdr_created_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),
-                                                                                "dbtr_prvt_id":  '',
-                                                                                "ext_org_id_code":  '',
+                                                                                "dbtr_prvt_id": '',
+                                                                                "ext_org_id_code": '',
                                                                                 "issuer_type_code": '',
-                                                                                "dbtr_document_id":  '',
-                                                                                "dbtr_birth_date":  '',
-                                                                                "dbtr_city_birth":  '',
+                                                                                "dbtr_document_id": '',
+                                                                                "dbtr_birth_date": '',
+                                                                                "dbtr_city_birth": '',
                                                                                 "ext_person_id_code": 'NIDN',
                                                                                 "dbtr_other_issuer": 'AE',
                                                                                 "cr_acct_identification": '',
-                                                                                "department_code":  '',
+                                                                                "department_code": '',
                                                                                 "process": "Pacs.008 Real Time Credit Transfer P2B",
-                                                                                "process_status":  '',
-                                                                                "status":  '',
-                                                                                "channel_id": 'IPP' ,
-                                                                                "channel_refno":  tran_ref_id || '',
-                                                                                "category_purpose":  "IPP",
+                                                                                "process_status": '',
+                                                                                "status": '',
+                                                                                "channel_id": 'IPP',
+                                                                                "channel_refno": tran_ref_id || '',
+                                                                                "category_purpose": "IPP",
                                                                                 "posting_ref_no": postrefno,
                                                                                 "remittance_information": reson || '',
-                                                                                "status":  '',
+                                                                                "status": '',
                                                                                 "npsstrrd_refno": npssrefno || '',
                                                                                 "AccountInformation": {
                                                                                     "account_number": arrtakeacctinfo[0].account_number || '',
@@ -300,7 +310,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                                     "account_officer": arrtakeacctinfo[0].account_officer || '',
                                                                                     "curr_rate_segment": arrtakeacctinfo[0].curr_rate_segment || '',
                                                                                     "customer_id": arrtakeacctinfo[0].customer_id || '',
-                                                                                    "department_code":  '',
+                                                                                    "department_code": '',
                                                                                     "tran_type_code": arrtakereqjson[0].tran_type_code || '',
                                                                                     "recipient_bic_code": arrtakebiccode.biccode || '',
                                                                                     "birth_date": '',
@@ -315,31 +325,31 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                     headers: {
                                                                         'Content-Type': 'application/json'
                                                                     }
-                                                    
+
                                                                 }
-                                                    
+
                                                                 var PrintInfo = {}
                                                                 PrintInfo.url = arrurl[0].param_detail
                                                                 PrintInfo.uetr = arrpayverobj.uetr || ''
-                                                                
-                                                    
+
+
                                                                 reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                                                 request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                                                     if (error) {
                                                                         reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                                         sendResponse(error, null);
-                                                    
+
                                                                     } else {
                                                                         reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                                         if (responseBodyFromImagingService == 'SUCCESS') {
                                                                             resolve(responseBodyFromImagingService);
-                                                    
+
                                                                         } else {
                                                                             resolve(responseBodyFromImagingService);
                                                                         }
                                                                     }
                                                                 });
-                                                    
+
                                                             } catch (error) {
                                                                 reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
                                                                 sendResponse(error, null);
@@ -348,21 +358,21 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                             reqInstanceHelper.PrintInfo(serviceName, '------------Bankcode not found for uetr-------' + arrpayverobj.uetr, objSessionLogInfo);
                                                             resolve('FAILURE')
                                                         }
-                                                    
+
                                                     })
-        
-        
-        
+
+
+
                                                 })
                                             } else {
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------Account Information Not Found-------' + arrpayverobj.uetr, objSessionLogInfo);
                                                 resolve('FAILURE')
                                             }
-        
-        
+
+
                                         })
-                                      
-                            
+
+
                                     } else {
                                         reqInstanceHelper.PrintInfo(serviceName, '------------Request JSON not found for uetr-------' + arrpayverobj.uetr, objSessionLogInfo);
                                         resolve('FAILURE')
@@ -372,7 +382,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                     resolve('FAILURE')
                                 }
                             })
-                          
+
                         } else {
                             reqInstanceHelper.PrintInfo(serviceName, '------------Posting Ref no not found for -------' + arrpayverobj.uetr, objSessionLogInfo);
                             resolve('FAILURE')
@@ -429,6 +439,19 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                 })
 
             }
+
+             function UpdateTran(arrTran, prct_id) {
+                    return new Promise((resolve,reject)=>{
+                        let UpdTrntbl = `update npss_trn_process_log set org_status = 'UNFREEZE_TAKEN' MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${prct_id}' where npsstpl_id = '${arrTran.npsstpl_id}'`
+                        ExecuteQuery(UpdTrntbl, function (arrUpdTranTbl) {
+                            resolve('SUCCESS')
+        
+                        })
+                    })
+                    
+                }
+
+
             function ExecuteQuery1(query, callback) {
                 reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
                     try {
@@ -470,7 +493,21 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     sendResponse(error)
                 }
             }
+            //Execute Query for common
+            function ExecuteQuery(query, callback) {
+                reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
+                    try {
+                        if (error) {
+                            sendResponse(error)
+                        } else {
+                            callback("SUCCESS");
 
+                        }
+                    } catch (error) {
+                        sendResponse(error)
+                    }
+                });
+            }
             //Send Response Function Definition
             function sendResponse(error, response) {
                 try {

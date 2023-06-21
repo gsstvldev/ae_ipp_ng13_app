@@ -74,7 +74,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                             let Takedata = `select * from npss_trn_process_log where npsstpl_id in ${TempTranID}`
                             ExecuteQuery1(Takedata, function (arrprocesslog) {
                                 if (arrprocesslog.length > 0) {
-                            let Takerefno = `select process_ref_no from npss_trn_process_log where status='OP_P2B_FUND_UNFR_FAILURE' and process_name='Fund UNFREEZE Posting'`
+                            let Takerefno = `select process_ref_no from npss_trn_process_log where status='OP_P2B_FUND_UNFR_FAILURE' and process_name='Fund UNFREEZE Posting' and uetr = '${arrprocesslog[0].uetr}'`
                             ExecuteQuery1(Takerefno, function (arrRefno) {
                                 var arrCusTranInst = []
                                 for (let i = 0; i < arrprocesslog.length; i++) {

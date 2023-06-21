@@ -12,8 +12,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
 /*  Created By :   Siva Harish
 Created Date : 12/05/2023
-Modified By : 
-Modified Date : 
+Modified By : Siva Harish
+Modified Date : 21/06/2023
 Reason for : 
 * 
 */
@@ -74,93 +74,97 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                             let Takedata = `select * from npss_trn_process_log where npsstpl_id in ${TempTranID}`
                             ExecuteQuery1(Takedata, function (arrprocesslog) {
                                 if (arrprocesslog.length > 0) {
-                                    var arrCusTranInst = []
-                                    for (let i = 0; i < arrprocesslog.length; i++) {
-                                        var objCusTranInst = {};
-                                        objCusTranInst.MSG_ID = arrprocesslog[i].msg_id || null
-                                        objCusTranInst.PRCT_ID = PRCT_ID;
-                                        objCusTranInst.REVERSAL_CODE = arrprocesslog[i].revrsal_code || null
-                                        objCusTranInst.UETR = arrprocesslog[i].uetr;
-                                        objCusTranInst.NPSSTRRD_REFNO = arrprocesslog[i].tran_ref_id || null
-                                        objCusTranInst.PROCESS_NAME = 'Call Unfreeze API'
-                                        objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
-                                        objCusTranInst.PROCESS_STATUS = success_process_status;
-                                        objCusTranInst.STATUS = success_status;
-                                        objCusTranInst.TENANT_ID = arrprocesslog[i].tenant_id;
-                                        objCusTranInst.PROCESS_TYPE = arrprocesslog[i].process_type || null
-                                        objCusTranInst.APP_ID = '215'
-                                        objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
-                                        objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
-                                        objCusTranInst.DT_DESCRIPTION = 'transaction_group'
-                                        objCusTranInst.DTT_DESCRIPTION = 'Transaction'
-                                        objCusTranInst.CREATED_BY = params.CREATED_BY;
-                                        objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
-                                        objCusTranInst.T24_RETURN_CODE = arrprocesslog[i].t24_return_code || null
-                                        objCusTranInst.CBUAE_RETURN_CODE = arrprocesslog[i].cbuae_return_code || null
-                                        objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                                        objCusTranInst.MODIFIED_BY = "";
-                                        objCusTranInst.MODIFIED_BY_NAME = "";
-                                        objCusTranInst.MODIFIED_DATE = null;
-                                        objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
-                                        objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
-                                        objCusTranInst.CREATED_BY_STS_ID = "";
-                                        objCusTranInst.MODIFIED_BY_STS_ID = "";
-                                        objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
-                                        objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
-                                        objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
-                                        objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
-                                        objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
-                                        objCusTranInst.routingkey = headers.routingkey;
-                                        objCusTranInst.RESPONSE_CODE = arrprocesslog[i].response_code || null
-                                        objCusTranInst.PROCESS_REF_NO = arrprocesslog[i].process_ref_no || null
-                                        objCusTranInst.RESPONSE_DATA = arrprocesslog[i].response_data || null
-                                        objCusTranInst.REQUEST_DATA_JSON = arrprocesslog[i].request_data_json || null
-                                        objCusTranInst.RESPONSE_DATA_JSON = arrprocesslog[i].response_data_json || null
-                                        objCusTranInst.EMIRATESID = arrprocesslog[i].emiratesid || null
-                                        objCusTranInst.CUSTOMERNAME = arrprocesslog[i].customername || null
-                                        objCusTranInst.CUSTOMERID = arrprocesslog[i].customerid || null
-                                        objCusTranInst.COUNTRYOFBIRTH = arrprocesslog[i].countryofbirth || null
-                                        objCusTranInst.CITYOFBIRTH = arrprocesslog[i].cityofbirth || null
-                                        objCusTranInst.DATEOFBIRTH = arrprocesslog[i].dateofbirth || null
-                                        objCusTranInst.AMOUNT = arrprocesslog[i].amount || null
-                                        objCusTranInst.DBTR_IBAN = arrprocesslog[i].dbtr_iban || null
-                                        objCusTranInst.TRAN_REF_ID = arrprocesslog[i].tran_ref_id || null
-                                        objCusTranInst.ORG_STATUS = arrprocesslog[i].org_status || null
-                                        objCusTranInst.EXT_IDEN_RETRY_VALUE = arrprocesslog[i].ext_iden_retry_value || null
-                                        objCusTranInst.SYNC_VERSION = arrprocesslog[i].sync_version || null
-                                        objCusTranInst.GM_MARGIN = arrprocesslog[i].gm_margin || null
-                                        objCusTranInst.STATUS_RESP_AMOUNT = arrprocesslog[i].status_resp_amount || null
-                                        objCusTranInst.STATUS_INTRBKSTTLMDT = arrprocesslog[i].status_intrbksttlmdt || null
-                                        objCusTranInst.STATUS_ACCP_DATE = arrprocesslog[i].status_accp_date || null
-                                        objCusTranInst.PROCESS_TIME = arrprocesslog[i].process_time || null
-                                        objCusTranInst.ADDITIONAL_INFO = arrprocesslog[i].additional_info || null
-                                        objCusTranInst.AMOUNT_CREDITED = arrprocesslog[i].amount_credited || null
-                                        objCusTranInst.AMT_CR_LOC_CUR = arrprocesslog[i].amt_cr_loc_cur || null
-                                        objCusTranInst.CHARGE_AMOUNT = arrprocesslog[i].charge_amount || null
-                                        objCusTranInst.BUY_CURRENCY = arrprocesslog[i].buy_currency || null
-                                        objCusTranInst.SELL_CURRENCY = arrprocesslog[i].sell_currency || null
-                                        objCusTranInst.DEALT_AMOUNT = arrprocesslog[i].dealt_amount || null
-                                        objCusTranInst.EXCHANGE_RATE = arrprocesslog[i].exchange_rate || null
-                                        objCusTranInst.CONTRA_AMOUNT = arrprocesslog[i].contra_amount || null
-                                        arrCusTranInst.push(objCusTranInst)
+                            let Takerefno = `select process_ref_no from npss_trn_process_log where status='OP_P2B_FUND_UNFR_FAILURE' and process_name='Fund UNFREEZE Posting'`
+                            ExecuteQuery1(Takerefno, function (arrRefno) {
+                                var arrCusTranInst = []
+                                for (let i = 0; i < arrprocesslog.length; i++) {
+                                    var objCusTranInst = {};
+                                    objCusTranInst.MSG_ID = arrprocesslog[i].msg_id || null
+                                    objCusTranInst.PRCT_ID = PRCT_ID;
+                                    objCusTranInst.REVERSAL_CODE = arrprocesslog[i].revrsal_code || null
+                                    objCusTranInst.UETR = arrprocesslog[i].uetr;
+                                    objCusTranInst.NPSSTRRD_REFNO = arrprocesslog[i].tran_ref_id || null
+                                    objCusTranInst.PROCESS_NAME = 'Call Unfreeze API'
+                                    objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
+                                    objCusTranInst.PROCESS_STATUS = success_process_status;
+                                    objCusTranInst.STATUS = success_status;
+                                    objCusTranInst.TENANT_ID = arrprocesslog[i].tenant_id;
+                                    objCusTranInst.PROCESS_TYPE = arrprocesslog[i].process_type || null
+                                    objCusTranInst.APP_ID = '215'
+                                    objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
+                                    objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
+                                    objCusTranInst.DT_DESCRIPTION = 'transaction_group'
+                                    objCusTranInst.DTT_DESCRIPTION = 'Transaction'
+                                    objCusTranInst.CREATED_BY = params.CREATED_BY;
+                                    objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                    objCusTranInst.T24_RETURN_CODE = arrprocesslog[i].t24_return_code || null
+                                    objCusTranInst.CBUAE_RETURN_CODE = arrprocesslog[i].cbuae_return_code || null
+                                    objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                    objCusTranInst.MODIFIED_BY = "";
+                                    objCusTranInst.MODIFIED_BY_NAME = "";
+                                    objCusTranInst.MODIFIED_DATE = null;
+                                    objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
+                                    objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
+                                    objCusTranInst.CREATED_BY_STS_ID = "";
+                                    objCusTranInst.MODIFIED_BY_STS_ID = "";
+                                    objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
+                                    objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
+                                    objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                    objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                    objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                    objCusTranInst.routingkey = headers.routingkey;
+                                    objCusTranInst.RESPONSE_CODE = arrprocesslog[i].response_code || null
+                                    objCusTranInst.PROCESS_REF_NO = arrRefno[0].process_ref_no || null
+                                    objCusTranInst.RESPONSE_DATA = arrprocesslog[i].response_data || null
+                                    objCusTranInst.REQUEST_DATA_JSON = arrprocesslog[i].request_data_json || null
+                                    objCusTranInst.RESPONSE_DATA_JSON = arrprocesslog[i].response_data_json || null
+                                    objCusTranInst.EMIRATESID = arrprocesslog[i].emiratesid || null
+                                    objCusTranInst.CUSTOMERNAME = arrprocesslog[i].customername || null
+                                    objCusTranInst.CUSTOMERID = arrprocesslog[i].customerid || null
+                                    objCusTranInst.COUNTRYOFBIRTH = arrprocesslog[i].countryofbirth || null
+                                    objCusTranInst.CITYOFBIRTH = arrprocesslog[i].cityofbirth || null
+                                    objCusTranInst.DATEOFBIRTH = arrprocesslog[i].dateofbirth || null
+                                    objCusTranInst.AMOUNT = arrprocesslog[i].amount || null
+                                    objCusTranInst.DBTR_IBAN = arrprocesslog[i].dbtr_iban || null
+                                    objCusTranInst.TRAN_REF_ID = arrprocesslog[i].tran_ref_id || null
+                                    objCusTranInst.ORG_STATUS = arrprocesslog[i].org_status || null
+                                    objCusTranInst.EXT_IDEN_RETRY_VALUE = arrprocesslog[i].ext_iden_retry_value || null
+                                    objCusTranInst.SYNC_VERSION = arrprocesslog[i].sync_version || null
+                                    objCusTranInst.GM_MARGIN = arrprocesslog[i].gm_margin || null
+                                    objCusTranInst.STATUS_RESP_AMOUNT = arrprocesslog[i].status_resp_amount || null
+                                    objCusTranInst.STATUS_INTRBKSTTLMDT = arrprocesslog[i].status_intrbksttlmdt || null
+                                    objCusTranInst.STATUS_ACCP_DATE = arrprocesslog[i].status_accp_date || null
+                                    objCusTranInst.PROCESS_TIME = arrprocesslog[i].process_time || null
+                                    objCusTranInst.ADDITIONAL_INFO = arrprocesslog[i].additional_info || null
+                                    objCusTranInst.AMOUNT_CREDITED = arrprocesslog[i].amount_credited || null
+                                    objCusTranInst.AMT_CR_LOC_CUR = arrprocesslog[i].amt_cr_loc_cur || null
+                                    objCusTranInst.CHARGE_AMOUNT = arrprocesslog[i].charge_amount || null
+                                    objCusTranInst.BUY_CURRENCY = arrprocesslog[i].buy_currency || null
+                                    objCusTranInst.SELL_CURRENCY = arrprocesslog[i].sell_currency || null
+                                    objCusTranInst.DEALT_AMOUNT = arrprocesslog[i].dealt_amount || null
+                                    objCusTranInst.EXCHANGE_RATE = arrprocesslog[i].exchange_rate || null
+                                    objCusTranInst.CONTRA_AMOUNT = arrprocesslog[i].contra_amount || null
+                                    arrCusTranInst.push(objCusTranInst)
 
-                                    }
-                                    _BulkInsertProcessItem(arrCusTranInst, 'npss_trn_process_log', async function callbackInsert(CusTranInsertRes) {
-                                        try {
-                                            if (CusTranInsertRes.length > 0) {
-                                                let CallUnfreezeApi = await doUnfreezeapiCall(arrprocesslog)
-                                            } else {
-                                                objresponse.status = 'FAILURE'
-                                                objresponse.data = "Error in Table Insert"
-                                                sendResponse(null, objresponse)
-                                            }
-                                        } catch (error) {
+                                }
+                                _BulkInsertProcessItem(arrCusTranInst, 'npss_trn_process_log', async function callbackInsert(CusTranInsertRes) {
+                                    try {
+                                        if (CusTranInsertRes.length > 0) {
+                                            let CallUnfreezeApi = await doUnfreezeapiCall(arrprocesslog,arrRefno)
+                                        } else {
                                             objresponse.status = 'FAILURE'
-                                            objresponse.data = error
+                                            objresponse.data = "Error in Table Insert"
                                             sendResponse(null, objresponse)
                                         }
+                                    } catch (error) {
+                                        objresponse.status = 'FAILURE'
+                                        objresponse.data = error
+                                        sendResponse(null, objresponse)
+                                    }
 
-                                    })
+                                })
+                            })
+                                  
                                 } else {
                                     objresponse.status = 'FAILURE'
                                     objresponse.data = "No data found in npss trn process log table"
@@ -179,7 +183,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     )
 
 
-                    function doUnfreezeapiCall(arrprocesslog) {
+                    function doUnfreezeapiCall(arrprocesslog,arrRefno) {
                         var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL'  and need_sync = 'Y'`
                         ExecuteQuery1(Takekafkaurl, async function (arrurl) {
                             if (arrurl.length) {
@@ -215,7 +219,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                     "hdr_total_records": '1' || '',
                                                                     "x_req_id": arrprocesslogobj.msg_id || '',
                                                                     "dbtr_country":  '',
-                                                                    "process_ref_no": arrprocesslogobj.npsstrrd_refno || '',
+                                                                    "process_ref_no": arrRefno[0].process_ref_no || '',
                                                                     "intrbk_sttlm_amnt": arrprocesslogobj.amount || '',
                                                                     "hdr_total_amount": arrprocesslogobj.amount || '',
                                                                     "intrbk_sttlm_cur": arrtakeacctinfo[0].currency || '',
@@ -251,7 +255,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                                     "channel_id": 'IPP' ,
                                                                     "channel_refno":  arrprocesslogobj.tran_ref_id || '',
                                                                     "category_purpose":  "IPP",
-                                                                    "posting_ref_no": arrprocesslogobj.process_ref_no ,
+                                                                    "posting_ref_no": arrRefno[0].process_ref_no ,
                                                                     "remittance_information":  '',
                                                                     "status":  '',
                                                                     "npsstrrd_refno": arrprocesslogobj.npsstrrd_refno || '',

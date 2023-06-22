@@ -7,8 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-    
+
+
 
 /*  Created By :   Siva Harish
 Created Date :16/05/2023
@@ -16,6 +16,7 @@ Created Date :16/05/2023
 Modified Date : 24/05/2023
 Reason for : Changes done as  
 Reason for : Changes done cust spl rate 29/05/2023 
+Reason for : Changes done cc and pc 22/06/2023 
 * 
 */
 var serviceName = ' NPSS (CS) Manual Verification Bind Data'; //service name 
@@ -63,49 +64,58 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                 var PRCT_ID = prct_id
                 //get prct id                              
                 try {
-                    let CurrencyStatus = await FindCurrency(params.TranId)
-                    if(CurrencyStatus.status == 'SUCCESS'){
-                        let TakeIpuetr = `select additional_info from npss_trn_process_log where uetr = '${params.uetr}' and process_name = 'Initiate Dispute Tran'`;
-                        ExecuteQuery1(TakeIpuetr, function (ipuetr) {
-                            if (ipuetr.length) {
-                                let Takedata = `select buy_currency,sell_currency,dealt_amount,contra_amount,exchange_rate,gm_margin from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${ipuetr[0].additional_info}'`
-                                ExecuteQuery1(Takedata, function (trnplgdata) {
-                                    if (trnplgdata.length > 0) {
-                                        objresponse.errocode = 'Nonspl'
-                                        objresponse.status = 'SUCCESS'
-                                        objresponse.data = trnplgdata
-                                        sendResponse(null, objresponse)
-    
-                                    } else {
-                                        let TakecustRate = `select buy_rate,buy_margin from core_nc_cust_spl_rate where cif_number = '${CurrencyStatus.customer_id}' and currency_code = '${CurrencyStatus.currency}'`
-                                        ExecuteQuery1(TakecustRate, function (arrsplrate) {
-                                            if(arrsplrate.length > 0){
-                                                objresponse.errocode = 'spl'
-                                                objresponse.status = 'SUCCESS'
-                                                objresponse.data = arrsplrate
-                                                sendResponse(null, objresponse)
-                                            }else{
-                                                objresponse.status = 'No data found against IP uetr'
-                                                sendResponse(null, objresponse)
-                                            }
+                    let chckcreditorprepaid = await chkprecred(params.TranId)
+                    if (chckcreditorprepaid == 'IBAN') {
+                        let CurrencyStatus = await FindCurrency(params.TranId)
+                        if (CurrencyStatus.status == 'SUCCESS') {
+                            let TakeIpuetr = `select additional_info from npss_trn_process_log where uetr = '${params.uetr}' and process_name = 'Initiate Dispute Tran'`;
+                            ExecuteQuery1(TakeIpuetr, function (ipuetr) {
+                                if (ipuetr.length) {
+                                    let Takedata = `select buy_currency,sell_currency,dealt_amount,contra_amount,exchange_rate,gm_margin from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${ipuetr[0].additional_info}'`
+                                    ExecuteQuery1(Takedata, function (trnplgdata) {
+                                        if (trnplgdata.length > 0) {
+                                            objresponse.errocode = 'Nonspl'
+                                            objresponse.status = 'SUCCESS'
+                                            objresponse.data = trnplgdata
+                                            sendResponse(null, objresponse)
 
-                                        })
-                                    }
-    
-                                })
-    
-    
-                            } else {
-                                objresponse.status = 'IP Uetr not found'
-                                sendResponse(null, objresponse)
-                            }
-                        })
-                    }else{
+                                        } else {
+                                            let TakecustRate = `select buy_rate,buy_margin from core_nc_cust_spl_rate where cif_number = '${CurrencyStatus.customer_id}' and currency_code = '${CurrencyStatus.currency}'`
+                                            ExecuteQuery1(TakecustRate, function (arrsplrate) {
+                                                if (arrsplrate.length > 0) {
+                                                    objresponse.errocode = 'spl'
+                                                    objresponse.status = 'SUCCESS'
+                                                    objresponse.data = arrsplrate
+                                                    sendResponse(null, objresponse)
+                                                } else {
+                                                    objresponse.status = 'No data found against IP uetr'
+                                                    sendResponse(null, objresponse)
+                                                }
+
+                                            })
+                                        }
+
+                                    })
+
+
+                                } else {
+                                    objresponse.status = 'IP Uetr not found'
+                                    sendResponse(null, objresponse)
+                                }
+                            })
+                        } else {
+                            objresponse.status = 'SUCCESS'
+                            objresponse.data = []
+                            sendResponse(null, objresponse)
+                        }
+                    } else {
+                        objresponse.errocode = 'Credit or Prepaid'
                         objresponse.status = 'SUCCESS'
-                        objresponse.data = []
+                        objresponse.data = ''
                         sendResponse(null, objresponse)
                     }
-                    
+
+
 
 
                     function FindCurrency(TranId) {
@@ -120,7 +130,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                             if (ibncurrency[0].currency != 'AED') {
                                                 response.status = 'SUCCESS'
                                                 response.currency = ibncurrency[0].currency || ''
-                                               response.customer_id = ibncurrency[0].customer_id || ''
+                                                response.customer_id = ibncurrency[0].customer_id || ''
                                                 resolve(response)
                                             } else {
                                                 response.status = 'FAILURE'
@@ -141,6 +151,27 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                             })
                         })
 
+                    }
+
+                    function chkprecred(TranId) {
+                        return new Promise((resolve, reject) => {
+                            let TkTrndata = `select * from npss_transactions where npsst_id = '${TranId}'`
+                            ExecuteQuery1(TkTrndata, function (arrTrandata) {
+                                if (arrTrandata.length > 0) {
+                                    if ((arrTrandata[0].cr_acct_identification != '' && arrTrandata[0].cr_acct_identification != null) && arrTrandata[0].cr_acct_id_code == 'AIIN') {
+                                        resolve('Prepaid or Credit')
+                                    } else {
+
+                                        resolve('IBAN')
+                                    }
+
+                                } else {
+                                    objresponse.status = 'Data Not Found'
+                                    sendResponse(null, objresponse)
+                                }
+
+                            })
+                        })
                     }
                     //Execute Query for common
                     function ExecuteQuery(query, callback) {

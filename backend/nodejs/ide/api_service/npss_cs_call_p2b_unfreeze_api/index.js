@@ -117,8 +117,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                     objCusTranInst.RESPONSE_CODE = arrprocesslog[i].response_code || null
                                     objCusTranInst.PROCESS_REF_NO = arrRefno[0].process_ref_no || null
                                     objCusTranInst.RESPONSE_DATA = arrprocesslog[i].response_data || null
-                                    objCusTranInst.REQUEST_DATA_JSON = arrprocesslog[i].request_data_json || null
-                                    objCusTranInst.RESPONSE_DATA_JSON = arrprocesslog[i].response_data_json || null
+                                    objCusTranInst.REQUEST_DATA_JSON =  null
+                                    objCusTranInst.RESPONSE_DATA_JSON =  null
                                     objCusTranInst.EMIRATESID = arrprocesslog[i].emiratesid || null
                                     objCusTranInst.CUSTOMERNAME = arrprocesslog[i].customername || null
                                     objCusTranInst.CUSTOMERID = arrprocesslog[i].customerid || null

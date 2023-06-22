@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30098 
+Build ID        : 30412 
 Modified By     : Admin 
-Modified Date   : 2023-Jun-12 4:44 AM 
+Modified Date   : 2023-Jun-22 12:13 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -2940,7 +2940,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let event_params={"caller_name":"original_transaction_details__svm_for_otd_list","event_desc":"SVM for OTD List","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"original_transaction_details","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals=""
-		let event_data={}
+		let event_data={"original_transaction_details":{"e_1672492260558":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_19","event_code":"E_1672492260558","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Trn Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"LOCAL","column_name":"DBTR_IBAN","level":"MI_LEVEL","name":"MI_LEVEL_DBTR_IBAN","setd3name":"DBTR_IBAN"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)

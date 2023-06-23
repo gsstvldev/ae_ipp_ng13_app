@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30449 
+Build ID        : 30467 
 Modified By     : Admin 
-Modified Date   : 2023-Jun-23 10:22 AM 
+Modified Date   : 2023-Jun-23 13:54 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_verification
@@ -199,8 +199,46 @@ focustoelement(){
 		this.ctrl.dispute_ref_no.ctrl_id = "npss_manual_verification_ui_dispute_ref_no"
 		this.ctrl.npss_manual_verification_ui_dispute_ref_no = {}
 		this.ctrl.npss_manual_verification_ui_dispute_ref_no.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.model = {"INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":"","CHARGE_AMOUNT":"","DISPUTE_REF_NO":""}
-		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DISPUTE_REF_NO"}]
+	
+		//Properties of force_post_flag
+		this.ctrl.force_post_flag = {}
+		this.ctrl.force_post_flag.id = "RN01CN7"
+		this.ctrl.force_post_flag.desc = "Force Post Flag"
+		this.ctrl.force_post_flag.visible = true
+		this.ctrl.force_post_flag.label_name = "Force Post Flag"
+		this.ctrl.force_post_flag.df_code = "DF_1304_1665901396659"
+		this.ctrl.force_post_flag.df_description = "Column Group 1"
+		this.ctrl.force_post_flag.uictrl_code = "TXT"
+		this.ctrl.force_post_flag.target_column = "FORCE_POST_FLAG"
+		this.ctrl.force_post_flag.data_type = "TEXT"
+		this.ctrl.force_post_flag.data_length = 1
+		this.ctrl.force_post_flag.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.force_post_flag.default_value = ""
+		this.ctrl.force_post_flag.is_memory_ctrl = ""
+		this.ctrl.force_post_flag.field_coordinates = ""
+		this.ctrl.force_post_flag.sub_details = ""
+		this.ctrl.force_post_flag.accept_char = ""
+		this.ctrl.force_post_flag.currency_format = ""
+		this.ctrl.force_post_flag.data_scale = ""
+		this.ctrl.force_post_flag.hide_label = false
+		this.ctrl.force_post_flag.depends_on = ""
+		this.ctrl.force_post_flag.placeholder = ""
+		this.ctrl.force_post_flag.dynamic_param = ""
+		this.ctrl.force_post_flag.style_code = ""
+		this.ctrl.force_post_flag.data_source = ""
+		this.ctrl.force_post_flag.image_association = ""
+		this.ctrl.force_post_flag.show = true
+		this.ctrl.force_post_flag.sub_content = ""
+		this.ctrl.force_post_flag.required = false
+		this.ctrl.force_post_flag.vld_rules = []
+		this.ctrl.force_post_flag.targetcolumn_lower = "force_post_flag"
+		this.ctrl.force_post_flag.disabled = false
+		this.ctrl.force_post_flag.view_name = "f_npss_manual_verification_ui"
+		this.ctrl.force_post_flag.ctrl_id = "npss_manual_verification_ui_force_post_flag"
+		this.ctrl.npss_manual_verification_ui_force_post_flag = {}
+		this.ctrl.npss_manual_verification_ui_force_post_flag.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.model = {"INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":"","CHARGE_AMOUNT":"","DISPUTE_REF_NO":"","FORCE_POST_FLAG":""}
+		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DISPUTE_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"FORCE_POST_FLAG"}]
 		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

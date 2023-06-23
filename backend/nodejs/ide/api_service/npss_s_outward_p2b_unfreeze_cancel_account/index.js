@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
 /*  Created By :Daseen
 Created Date :23/02/2023
@@ -15,6 +16,7 @@ Modified By :
 Modified Date : 06/06/2023
 Modified Date : 20/06/2023
 Modified Date : 22/06/2023
+Modified Date : 23/06/2023
 }
 */
 var serviceName = 'NPSS(S) P2B UNFREEZE the Cancel Account';
@@ -225,11 +227,11 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                     if (arrtakereqjson[0].request_data_json != null) {
                                         JsonData = JSON.parse(arrtakereqjson[0].request_data_json)
                                         Bankcode = JsonData['merchant']['bankCode'] || ''
-                                        cdtr_iban = JsonData['merchant']['IBAN'] || ''
+                                        cdtr_iban =  JsonData['merchant']['iban'] ?  JsonData['merchant']['iban'] : JsonData['merchant']['IBAN'] || ''
                                         tran_ref_id = JsonData['transactionId'] || ''
                                         amount = JsonData['amount']["requested"] || ''
                                         currency = JsonData['amount']['currency'] || ''
-                                        dbtr_iban = JsonData['buyer']['IBAN'] || ''
+                                        dbtr_iban = JsonData['buyer']['iban'] ?  JsonData['buyer']['iban'] : JsonData['buyer']['IBAN'] || ''
                                         dbtr_acct_name = JsonData['buyer']['name'] || ''
                                         cdtr_acct_name = JsonData['merchant']['merchantName'] || ''
                                         TranTypecode = JsonData['transactionType'] || ''
@@ -544,26 +546,6 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
     }
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

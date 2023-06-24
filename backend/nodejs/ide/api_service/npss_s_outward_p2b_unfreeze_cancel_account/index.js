@@ -412,7 +412,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     objCusTranInst.PROCESS_TIME = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
                     objCusTranInst.UETR = arrfundauth.uetr;
                     objCusTranInst.NPSSTRRD_REFNO = arrfundauth.npsstrrd_refno;
-                    objCusTranInst.PROCESS_NAME = 'Fund UNFREEZE Posting'
+                    objCusTranInst.PROCESS_NAME = 'Cancel Reserve'
                     objCusTranInst.PROCESSING_SYSTEM = 'T24';
                     objCusTranInst.PROCESS_TYPE = arrfundauth.process_type;
                     objCusTranInst.PROCESS_STATUS = 'RCTCancelled';

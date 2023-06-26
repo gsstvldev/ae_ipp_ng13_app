@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30414 
+Build ID        : 30531 
 Modified By     : Admin 
-Modified Date   : 2023-Jun-22 12:51 PM 
+Modified Date   : 2023-Jun-26 11:23 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_arc_transactions
@@ -16,12 +16,13 @@ import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_rct_already_postingService} from '../../../custom_widget/npss_cs_rct_already_posting/npss_cs_rct_already_posting.service'
 import {npss_cs_arc_masking_req_resService} from '../../../custom_widget/npss_cs_arc_masking_req_res/npss_cs_arc_masking_req_res.service'
+import {npss_cs_masking_req_resService} from '../../../custom_widget/npss_cs_masking_req_res/npss_cs_masking_req_res.service'
 
 @Component({
 	selector: 's_view_all_op_arc_transactions',
 	templateUrl: './s_view_all_op_arc_transactions.component.html',
 	styleUrls: ['./s_view_all_op_arc_transactions.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_rct_already_postingService,npss_cs_arc_masking_req_resService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_rct_already_postingService,npss_cs_arc_masking_req_resService,npss_cs_masking_req_resService]
 })
     
 // Start of class 
@@ -63,7 +64,9 @@ export class s_view_all_op_arc_transactionsComponent implements OnInit,AfterView
 	uicgc_27 : string = "history_details"
 	uicgc_28 : string = "view_failures_ui"
 	uicgc_29 : string = "view_failures_actions"
+	uicgc_30 : string = "view_pro_log_req_and_res_ui"
 	key_events : any = {}
+	btl_1304_1687778298351 : string = "p_view_process_log_view_req_and_res_layout"
 	btl_1304_1686911652303 : string = "p_view_failures_layout"
 	btl_1304_1686636346443 : string = "p_view_process_log_layout"
 	btl_1304_1684313489625 : string = "p_view_process_log_search"
@@ -81,7 +84,7 @@ export class s_view_all_op_arc_transactionsComponent implements OnInit,AfterView
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_14","uicgc_11","uicgc_4","uicgc_22","uicgc_12","uicgc_24","uicgc_28","uicgc_29","uicgc_25","uicgc_17","uicgc_21","uicgc_19","uicgc_10","uicgc_15","uicgc_13","uicgc_7","uicgc_6","uicgc_3"]
+	forms : any = ["uicgc_14","uicgc_11","uicgc_4","uicgc_22","uicgc_12","uicgc_24","uicgc_28","uicgc_30","uicgc_29","uicgc_25","uicgc_17","uicgc_21","uicgc_19","uicgc_10","uicgc_15","uicgc_13","uicgc_7","uicgc_6","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	p_view_process_log_search__show_profile_popup_showpopup : boolean = false
 	queue : any = {}
@@ -136,14 +139,17 @@ export class s_view_all_op_arc_transactionsComponent implements OnInit,AfterView
 	process_log_search_clear : any = {}
 	view_process_log_ui : any = {}
 	view_process_log_ui_back : any = {}
+	view_process_log_ui_view_req_and_res : any = {}
 	history_details : any = {}
 	view_failures_ui : any = {}
 	view_failures_actions : any = {}
 	view_failures_actions_back : any = {}
+	view_pro_log_req_and_res_ui : any = {}
+	view_pro_log_req_and_res_ui_back : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_rct_already_postingService:npss_cs_rct_already_postingService,private npss_cs_arc_masking_req_resService:npss_cs_arc_masking_req_resService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_rct_already_postingService:npss_cs_rct_already_postingService,private npss_cs_arc_masking_req_resService:npss_cs_arc_masking_req_resService,private npss_cs_masking_req_resService:npss_cs_masking_req_resService) {
     
 	}
     
@@ -723,6 +729,15 @@ export class s_view_all_op_arc_transactionsComponent implements OnInit,AfterView
 		this.view_process_log_ui_back.dynamic_param = {}
 		this.view_process_log_ui_back.role = []
 		this.view_process_log_ui_back.action = ""
+		
+		// "View Req and Res" Button of "View Process log UI" component
+		this.view_process_log_ui_view_req_and_res.label_name = "View Req and Res"
+		this.view_process_log_ui_view_req_and_res.show = true
+		this.view_process_log_ui_view_req_and_res.disabled = false
+		this.view_process_log_ui_view_req_and_res.params = {"icon_only":false,"uicgcc_style":"fa fa-share-square-o"}
+		this.view_process_log_ui_view_req_and_res.dynamic_param = {}
+		this.view_process_log_ui_view_req_and_res.role = []
+		this.view_process_log_ui_view_req_and_res.action = ""
 	
 		// Component level properties - "History Details" 
 		this.history_details.uictrl_code = "datatable"
@@ -772,6 +787,29 @@ export class s_view_all_op_arc_transactionsComponent implements OnInit,AfterView
 		this.view_failures_actions_back.dynamic_param = {}
 		this.view_failures_actions_back.role = []
 		this.view_failures_actions_back.action = ""
+	
+		// Component level properties - "View pro log Req and Res UI" 
+		this.view_pro_log_req_and_res_ui.uictrl_code = "dynamic_ui"
+		this.view_pro_log_req_and_res_ui.uicgc_desc = "View pro log Req and Res UI"
+		this.view_pro_log_req_and_res_ui.uicgc_code = "uicgc_30"
+		this.view_pro_log_req_and_res_ui.params = {}
+		this.view_pro_log_req_and_res_ui.datasource = {}
+		this.view_pro_log_req_and_res_ui.context_menu = []
+		this.view_pro_log_req_and_res_ui.views = {}
+		this.view_pro_log_req_and_res_ui.onChangecomponent = new EventEmitter<any>()
+		this.view_pro_log_req_and_res_ui.show = true
+		this.view_pro_log_req_and_res_ui.dynamic_param = {}
+		this.view_pro_log_req_and_res_ui.f_view_pro_log_req_and_res_ui = {"show":true}
+		this.view_pro_log_req_and_res_ui.current_view = "f_view_pro_log_req_and_res_ui"
+		
+		// "Back" Button of "View pro log Req and Res UI" component
+		this.view_pro_log_req_and_res_ui_back.label_name = "Back"
+		this.view_pro_log_req_and_res_ui_back.show = true
+		this.view_pro_log_req_and_res_ui_back.disabled = false
+		this.view_pro_log_req_and_res_ui_back.params = {"icon_only":false,"uicgcc_style":"fa fa-backward"}
+		this.view_pro_log_req_and_res_ui_back.dynamic_param = {}
+		this.view_pro_log_req_and_res_ui_back.role = []
+		this.view_pro_log_req_and_res_ui_back.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -1135,6 +1173,17 @@ export class s_view_all_op_arc_transactionsComponent implements OnInit,AfterView
 	//Handler for ACTION_BUTTON_CLICK event of "view failures actions back"
 	view_failures_actions_back__action_button_click(){
 		this.view_failures_actions_back__sp_from__back_btn()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "view pro log req and res ui back"
+	view_pro_log_req_and_res_ui_back__action_button_click(){
+		this.view_pro_log_req_and_res_ui_back__sp_for_back_btn()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "view process log ui view req and res"
+	view_process_log_ui_view_req_and_res__action_button_click(){
+		this.view_process_log_ui_view_req_and_res__cc_for_request_response()
+		this.view_process_log_ui_view_req_and_res__sp_from_view_req_and_res()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -3459,6 +3508,69 @@ export class s_view_all_op_arc_transactionsComponent implements OnInit,AfterView
 		let parent_source_id=""
 		let event_code="e_1686912171735"
 		let event_params={"caller_name":"view_failures_actions_back__sp_from__back_btn","event_desc":"SP from  back btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"view_failures_actions_back","raiseparam":{"profile_code":"BTL_1304_1669457979784"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "view pro log req and res ui back"
+	view_pro_log_req_and_res_ui_back__sp_for_back_btn() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="view_pro_log_req_and_res_ui_back"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1687778418835"
+		let event_params={"caller_name":"view_pro_log_req_and_res_ui_back__sp_for_back_btn","event_desc":"SP for back btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"view_pro_log_req_and_res_ui_back","raiseparam":{"profile_code":"BTL_1304_1686636346443"}}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "view process log ui view req and res"
+	view_process_log_ui_view_req_and_res__cc_for_request_response() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="view_process_log_ui_view_req_and_res"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1687778477729"
+		let event_params={"caller_name":"view_process_log_ui_view_req_and_res__cc_for_request_response","event_desc":"CC for request response","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"view_process_log_ui_view_req_and_res","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_masking_req_resService.fn_npss_cs_masking_req_res(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "view process log ui view req and res"
+	view_process_log_ui_view_req_and_res__sp_from_view_req_and_res() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="view_process_log_ui_view_req_and_res"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1687778510401"
+		let event_params={"caller_name":"view_process_log_ui_view_req_and_res__sp_from_view_req_and_res","event_desc":"SP from view req and res","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"view_process_log_ui_view_req_and_res","raiseparam":{"profile_code":"BTL_1304_1687778298351"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

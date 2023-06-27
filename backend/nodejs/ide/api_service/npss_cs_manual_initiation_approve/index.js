@@ -1032,7 +1032,7 @@ try {
                                             let TakAcctData = `select * from core_nc_cbs_accounts where customer_id = '${chkCreditPassedTrn[0].customerid}'`
                                             ExecuteQuery1(TakAcctData, async function (arractResult) {
                                                 if (arractResult.length > 0) {
-                                                    AcctInformations.birthdate = arractResult[0].dateofbirth
+                                                    AcctInformations.birthdate = arractResult[0].birthdate
                                                     AcctInformations.cityofbirth = arractResult[0].cityofbirth
                                                     AcctInformations.countryofbirth = arractResult[0].countryofbirth
                                                     AcctInformations.account_name = arractResult[0].account_name

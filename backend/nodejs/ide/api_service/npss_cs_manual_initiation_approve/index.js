@@ -7,7 +7,6 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
 try {
     /*   Created By :Siva Harish
     Created Date :02-01-2023
@@ -515,8 +514,8 @@ try {
                                             "intrbk_sttlm_amnt": Amount || '',
                                            // "dbtr_acct_name": reverandRefno.account_name || '',
                                            // "dbtr_birth_date": reverandRefno.birthdate ? moment(reverandRefno.birthdate).format('YYYY-MM-DD') : '',
-                                             "dbtr_acct_name": reverandRefno.account_name ? reverandRefno.account_name : arrprocesslog[0].dbtr_acct_name ? arrprocesslog[0].dbtr_acct_name : 'XXXXX',
-                                            "dbtr_birth_date": reverandRefno.birthdate ? moment(reverandRefno.birthdate).format('YYYY-MM-DD') : 'XX-XX-XXXX',
+                                             "dbtr_acct_name": reverandRefno.account_name ? reverandRefno.account_name : arrprocesslog[0].dbtr_acct_name ? arrprocesslog[0].dbtr_acct_name : '',
+                                            "dbtr_birth_date": reverandRefno.birthdate ? moment(reverandRefno.birthdate).format('YYYY-MM-DD') : '',
                                             "dbtr_city_birth": reverandRefno.cityofbirth || 'XXXXX',
                                             "dbtr_country": reverandRefno.countryofbirth || 'XX',
                                             "dbtr_other_issuer": arrprocesslog[0].dbtr_other_issuer || '',

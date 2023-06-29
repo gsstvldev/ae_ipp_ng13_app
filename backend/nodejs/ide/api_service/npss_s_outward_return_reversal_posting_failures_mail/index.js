@@ -8,10 +8,12 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
 
+
     /*  Created By :Daseen
     Created Date :23/02/2023
     Modified By : Siva Harish
     Modified Date : 19/05/2023
+    Modified Date : 29/06/2023
    }
     */
     var serviceName = 'NPSS (S) Outward Return Reversal Posting Failures Mail';
@@ -75,30 +77,31 @@ app.post('/', function(appRequest, appResponse, next) {
                                 var status = await arraytostr(params.status);
                                 var process_status = await arraytostr(params.process_status);
 
-                                var Takedata = `select * from npss_transactions where    status in ${status} and process_status in ${process_status}`
-                                //var Takedata = `select * from npss_trn_process_log where TO_DATE(TO_CHAR(CREATED_DATE, 'DD-MON-YY'),'DD-MON-YY') = CURRENT_DATE  and status in ${Tempdata}`
+                                var Takedata = `select * from npss_transactions where status in ${status} and process_status in ${process_status}`
+                                var TakeTrnid = `select npsst_id from npss_trn_process_log  where status in ${status} and process_status in ${process_status}`
                                 var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'ORIGIN' and need_sync='Y'`
                                 ExecuteQuery1(Takeorg, function (arrorg) {
-
-                                    ExecuteQuery1(Takedata, function (arrData) {
+                                    ExecuteQuery1(Takedata, async function (arrData) {
                                         if (arrData.length > 0) {
-                                            reqAsync.forEachOfSeries(arrData, function (arrDataobj, i, nextobjctfunc) {
-                                                var takelog = `select * from npss_trn_process_log where uetr='${arrDataobj.uetr}' and status='${arrDataobj.status}'`
-                                                var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system ='${arrDataobj.department_code}' and param_name='COMM_TO' and need_sync='Y'`
-                                                ExecuteQuery1(TakeCometo, function (arrCometo) {
-                                                    var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system ='${arrDataobj.department_code}' and param_name = 'COMM_CC' and need_sync='Y'`
-                                                    ExecuteQuery1(Takecmcc, function (arrcomcc) {
-                                                        var Takebcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system ='${arrDataobj.department_code}' and param_name = 'COMM_BCC' and need_sync='Y'`
-                                                        ExecuteQuery1(Takebcc, function (arrbcc) {
-                                                            var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system ='${arrDataobj.department_code}' and param_name = 'COMM_GROUP' and need_sync='Y'`
-                                                            ExecuteQuery1(tkcomgp, function (arrcomgp) {
+                                            let Updatetran = await TakeeliTran(TakeTrnid)
+                                            if(Updatetran == 'SUCCESS'){
+                                                reqAsync.forEachOfSeries(arrData, function (arrDataobj, i, nextobjctfunc) {
+                                                    var takelog = `select * from npss_trn_process_log where uetr='${arrDataobj.uetr}' and status='${arrDataobj.status}'`
+                                                    var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system ='${arrDataobj.department_code}' and param_name='COMM_TO' and need_sync='Y'`
+                                                    ExecuteQuery1(TakeCometo, function (arrCometo) {
+                                                        var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system ='${arrDataobj.department_code}' and param_name = 'COMM_CC' and need_sync='Y'`
+                                                        ExecuteQuery1(Takecmcc, function (arrcomcc) {
+                                                            var Takebcc = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system ='${arrDataobj.department_code}' and param_name = 'COMM_BCC' and need_sync='Y'`
+                                                            ExecuteQuery1(Takebcc, function (arrbcc) {
+                                                                var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system ='${arrDataobj.department_code}' and param_name = 'COMM_GROUP' and need_sync='Y'`
+                                                                ExecuteQuery1(tkcomgp, function (arrcomgp) {
                                                                     var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and destination_system ='${arrDataobj.department_code}' and param_name = 'COM_CATEGORY' and need_sync='Y'`
                                                                     ExecuteQuery1(TakecomCat, function (arrCatgory) {
                                                                         ExecuteQuery1(takelog, function (arrlog) {
                                                                             if (arrlog.length > 0) {
                                                                                 var Takeerr = `select error_code,error_description,cncec_id from core_nc_error_codes where error_code='${arrlog[0].t24_return_code}' and need_sync='Y'`
                                                                                 ExecuteQuery1(Takeerr, function (arrerr) {
-                                                                                    if (arrerr.length > 0) {
+                                                                                  
                                                                                         var takeacccur = `select currency from core_nc_cbs_accounts  where alternate_account_id='${arrDataobj.dbtr_iban}'`
                                                                                         ExecuteQuery1(takeacccur, function (arracccur) {
                                                                                             if (arracccur.length > 0) {
@@ -124,65 +127,65 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                         CLEARINGSYSREFNUMBER: arrDataobj.clrsysref ? arrDataobj.clrsysref : '',
                                                                                                         E2EREFERENCEID: arrDataobj.payment_endtoend_id ? arrDataobj.payment_endtoend_id : '',
                                                                                                         FAILUREERRORCODE: arrlog.length > 0 ? arrlog[0].t24_return_code : '',
-                                                                                                        ERRORDESCRIPTION: arrerr.length > 0 ? arrerr[0].error_description : ''
+                                                                                                        ERRORDESCRIPTION: arrerr.length > 0 ? arrerr[0].error_description : '' || ''
                                                                                                     }]
                                                                                                     var trndetail = JSON.stringify(frtodata)
                                                                                                     var request = require('request');
-                                                            
+    
                                                                                                     var options = {
                                                                                                         url: arrUrl[0].param_detail,
                                                                                                         timeout: 18000000,
                                                                                                         method: 'POST',
                                                                                                         json: {
                                                                                                             "PARAMS": {
-                                                            
+    
                                                                                                                 "WFTPA_ID": "DEFAULT",
-                                                            
+    
                                                                                                                 "PRCT_ID": "",
-                                                            
+    
                                                                                                                 "EVENT_CODE": "DEFAULT",
-                                                            
+    
                                                                                                                 "USER_EMAIL": "",
-                                                            
+    
                                                                                                                 "USER_MOBILE": "",
-                                                            
+    
                                                                                                                 "TRN_DETAILS": trndetail,
-                                                            
+    
                                                                                                                 "TEMPLATECODE": arrCatgory[0].param_value,
-                                                            
+    
                                                                                                                 "DT_CODE": "",
-                                                            
+    
                                                                                                                 "DTT_CODE": "",
-                                                            
+    
                                                                                                                 "COMM_INFO": "",
-                                                            
+    
                                                                                                                 "SKIP_COMM_FLOW": true
-                                                            
+    
                                                                                                             },
-                                                            
+    
                                                                                                             "PROCESS_INFO": {
-                                                            
+    
                                                                                                                 "MODULE": "MODULE",
-                                                            
+    
                                                                                                                 "MENU_GROUP": "MENU_GROUP",
-                                                            
+    
                                                                                                                 "MENU_ITEM": "MENU_ITEM",
-                                                            
+    
                                                                                                                 "PROCESS_NAME": "PROCESS_NAME"
-                                                            
+    
                                                                                                             }
                                                                                                         },
                                                                                                         headers: {
                                                                                                             "session-id": params.session_id,
                                                                                                             "routingKey": params.routingKey,
                                                                                                             'Content-Type': 'application/json'
-                                                            
+    
                                                                                                         }
                                                                                                     }
-                                                            
+    
                                                                                                     reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
                                                                                                     request(options, function (error, responseFromImagingService, responseBody) {
-                                                            
+    
                                                                                                         if (error) {
                                                                                                             reqInstanceHelper.PrintInfo(serviceName, '------------Mail API ERROR-------' + error, objSessionLogInfo);
                                                                                                             sendResponse(error, null);
@@ -192,7 +195,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                             nextobjctfunc();
                                                                                                         }
                                                                                                     });
-                                                            
+    
                                                                                                 } catch (error) {
                                                                                                     reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
                                                                                                     sendResponse(error, null);
@@ -203,12 +206,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                 nextobjctfunc();
                                                                                             }
                                                                                         })
-                                                            
-                                                                                    }
-                                                                                    else {
-                                                                                        reqInstanceHelper.PrintInfo(serviceName, '-----------Error table entry  not found for npsstpl_id------' + arrlog[0].npsstpl_id, objSessionLogInfo);
-                                                                                        nextobjctfunc();
-                                                                                    }
+    
+                                                                                    
                                                                                 })
                                                                             } else {
                                                                                 reqInstanceHelper.PrintInfo(serviceName, '-----------Log table entry  not found for npsst_id------' + arrDataobj.npsst_id, objSessionLogInfo);
@@ -216,17 +215,23 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             }
                                                                         })
                                                                     })
+                                                                })
                                                             })
+    
                                                         })
-
+    
+    
                                                     })
-
-
+                                                }, function () {
+                                                    objresponse.status = 'SUCCESS';
+                                                    sendResponse(null, objresponse)
                                                 })
-                                            }, function () {
-                                                objresponse.status = 'SUCCESS';
+                                            }else{
+                                                reqInstanceHelper.PrintInfo(serviceName, '----------Failure in Tran Update------', objSessionLogInfo);
+                                                objresponse.status = 'Failure in Tran Update';
                                                 sendResponse(null, objresponse)
-                                            })
+                                            }
+                                           
                                         }
                                         else {
                                             reqInstanceHelper.PrintInfo(serviceName, '-----------No data Found in Tran Table------', objSessionLogInfo);
@@ -257,7 +262,18 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
 
 
-
+                        function TakeeliTran(TakeTrnid) {
+                            return new Promise((resolve, reject) => {
+                                let Updtbl = `update npss_transactions set fx_resv_text5 = 'ORR_MAIL_TRIGGERED' where npsst_id in (${TakeTrnid})`
+                                ExecuteQuery(Updtbl,function(result){
+                                    if(result == 'SUCCESS'){
+                                        resolve('SUCCESS')
+                                    }else{
+                                        resolve('FAILURE') 
+                                    }
+                                })
+                            })
+                        }
 
                         //Execute Query for common
                         function ExecuteQuery(query, callback) {
@@ -325,6 +341,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

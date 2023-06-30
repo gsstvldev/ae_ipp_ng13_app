@@ -9,10 +9,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
 try {
     /*   Created By : Siva Harish
-    Created Date :29 -06-2023
-   \
-     
-   
+    Created Date :30 -06-2023
+  
     */
     var serviceName = 'NPSS (S) Posting Retry';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -69,7 +67,7 @@ try {
                                                 Apicalls = await CallORRAPI(arrTranparams, arrurl, stsObj, final_status, PRCT_ID)
                                                 nextobjctstsfunc()
                                             } else {
-                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status-------' + stsObj, objSessionLogInfo);
+                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status or No data found in Trn table-------' + stsObj, objSessionLogInfo);
                                                 nextobjctstsfunc()
                                             }
 
@@ -79,7 +77,7 @@ try {
                                                 Apicalls = await CallORAPI(arrTranparams, arrurl, stsObj, final_status, PRCT_ID)
                                                 nextobjctstsfunc()
                                             } else {
-                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status-------' + stsObj, objSessionLogInfo);
+                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status or No data found in Trn table-------' + stsObj, objSessionLogInfo);
                                                 nextobjctstsfunc()
                                             }
 
@@ -89,7 +87,7 @@ try {
                                                 Apicalls = await Callcreditapi(arrTranparams, arrurl, stsObj, final_status, PRCT_ID)
                                                 nextobjctstsfunc()
                                             } else {
-                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status-------' + stsObj, objSessionLogInfo);
+                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status or No data found in Trn table------' + stsObj, objSessionLogInfo);
                                                 nextobjctstsfunc()
                                             }
 
@@ -99,7 +97,7 @@ try {
                                                 Apicalls = await Callprepaidapi(arrTranparams, arrurl, stsObj, final_status, PRCT_ID)
                                                 nextobjctstsfunc()
                                             } else {
-                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status-------' + stsObj, objSessionLogInfo);
+                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status or No data found in Trn table-------' + stsObj, objSessionLogInfo);
                                                 nextobjctstsfunc()
                                             }
 
@@ -109,7 +107,7 @@ try {
                                                 Apicalls = await CallNostroapi(arrTranparams, arrurl, stsObj, final_status, PRCT_ID)
                                                 nextobjctstsfunc()
                                             } else {
-                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status-------' + stsObj, objSessionLogInfo);
+                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status or No data found in Trn table-------' + stsObj, objSessionLogInfo);
                                                 nextobjctstsfunc()
                                             }
 
@@ -119,7 +117,7 @@ try {
                                                 Apicalls = await CallautoReturn(arrTranparams, arrurl, stsObj, final_status, PRCT_ID)
                                                 nextobjctstsfunc()
                                             } else {
-                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status-------' + stsObj, objSessionLogInfo);
+                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status or No data found in Trn table-------' + stsObj, objSessionLogInfo);
                                                 nextobjctstsfunc()
                                             }
 
@@ -129,7 +127,7 @@ try {
                                                 Apicalls = await CallT24Posting(arrTranparams, arrurl, stsObj, final_status, PRCT_ID)
                                                 nextobjctstsfunc()
                                             } else {
-                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status-------' + stsObj, objSessionLogInfo);
+                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status or No data found in Trn table-------' + stsObj, objSessionLogInfo);
                                                 nextobjctstsfunc()
                                             }
 
@@ -139,7 +137,7 @@ try {
                                                 Apicalls = await CallP2PPosting(arrTranparams, arrurl, stsObj, final_status, PRCT_ID)
                                                 nextobjctstsfunc()
                                             } else {
-                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status-------' + stsObj, objSessionLogInfo);
+                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Error in Iniated Status Udate for status or No data found in Trn table-------' + stsObj, objSessionLogInfo);
                                                 nextobjctstsfunc()
                                             }
 
@@ -187,9 +185,9 @@ try {
 
 
                             } else {
-                                objresponse.status = 'FAILURE'
-                                objresponse.errdata = 'No data in Tran Table for eligible status ' + eligible_status
-                                sendResponse(null, objresponse)
+                                reqInstanceHelper.PrintInfo(serviceName, '-----------No data in Tran Table for eligible status-------'+ eligible_status, objSessionLogInfo);
+                                resolve('Failure')
+                                
                             }
                         })
                     })

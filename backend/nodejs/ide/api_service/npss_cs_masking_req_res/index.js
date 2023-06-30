@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -18,6 +19,7 @@ Created Date : 07-06-2023
   Modified_date : 09/06/2023
   Addding new process Name and handle xml 
   Addding new process 16/06/2023
+  Handling without processName 30/06/2023
 */
 var serviceName = ' NPSS (CS) Masking Request Response ';
 var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -124,57 +126,99 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     }
 
                 ]
-                let Gettrndetails = await ProcessDetailjson.filter((x) => {
-                    if (x.process_name.toUpperCase() == params.processName.toUpperCase()) {
-                        return x
-                    }
-                })
-                if (Gettrndetails.length > 0) {
-                    let Takedata
-                    let dataType
-                    if (Gettrndetails[0].type == 'JSON') {
-                        dataType = 'JSON'
-                        Takedata = `select fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_json,fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY) as response_json from npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
+                if(params.processName && params.processName != ''){
+                    let Gettrndetails = await ProcessDetailjson.filter((x) => {
+                        if (x.process_name.toUpperCase() == params.processName.toUpperCase()) {
+                            return x
+                        }
+                    })
+                    if (Gettrndetails.length > 0) {
+                        let Takedata
+                        let dataType
+                        if (Gettrndetails[0].type == 'JSON') {
+                            dataType = 'JSON'
+                            Takedata = `select fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_json,fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY) as response_json from npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
+                        } else {
+                            dataType = 'XML'
+                            Takedata = `select fn_pcidss_decrypt(message_data,$PCIDSS_KEY ) as request_json from npss_trn_req_resp_dtls where npsstrrd_id = '${params.npsstrrd_id}'`
+                        }
+    
+                        ExecuteQuery1(Takedata, async function (arrdata) {
+                            try {
+                                if (arrdata.length > 0) {
+    
+                                    let Chckmskeli = `select param_category,param_detail from core_nc_system_setup where param_category = 'PROCESS_LOG_MASKING' and param_code = 'ROLE_ID' and param_detail = '${params.roleId}'`
+                                    ExecuteQuery1(Chckmskeli, async function (arrmsk) {
+                                        if (arrmsk.length > 0) {
+                                            let Prepareparam = await PrepareData(arrdata, ProcessDetailjson)
+                                            objresponse.status = 'SUCCESS'
+                                            objresponse.data.type = dataType
+                                            objresponse.data.responsejson = Prepareparam.finalresjson || ''
+                                            objresponse.data.requestjson = Prepareparam.finalreqjson || ''
+                                            sendResponse(null, objresponse)
+                                        } else {
+                                            objresponse.status = 'SUCCESS'
+                                            objresponse.data.type = dataType
+                                            objresponse.data.responsejson = arrdata[0].response_json || ''
+                                            objresponse.data.requestjson = arrdata[0].request_json || ''
+                                            sendResponse(null, objresponse)
+                                        }
+                                    })
+    
+                                } else {
+                                    objresponse.status = 'SUCCESS'
+                                    objresponse.data.type = dataType
+                                    objresponse.data.responsejson = ''
+                                    objresponse.data.requestjson = ''
+                                    sendResponse(null, objresponse)
+                                }
+    
+                            } catch (error) {
+                                sendResponse(error)
+                            }
+                        });
                     } else {
-                        dataType = 'XML'
-                        Takedata = `select fn_pcidss_decrypt(message_data,$PCIDSS_KEY ) as request_json from npss_trn_req_resp_dtls where npsstrrd_id = '${params.npsstrrd_id}'`
-                    }
-
-                    ExecuteQuery1(Takedata, async function (arrdata) {
-                        try {
-                            if (arrdata.length > 0) {
-
-                                let Chckmskeli = `select param_category,param_detail from core_nc_system_setup where param_category = 'PROCESS_LOG_MASKING' and param_code = 'ROLE_ID' and param_detail = '${params.roleId}'`
-                                ExecuteQuery1(Chckmskeli, async function (arrmsk) {
-                                    if (arrmsk.length > 0) {
-                                        let Prepareparam = await PrepareData(arrdata, ProcessDetailjson)
-                                        objresponse.status = 'SUCCESS'
-                                        objresponse.data.type = dataType
-                                        objresponse.data.responsejson = Prepareparam.finalresjson || ''
-                                        objresponse.data.requestjson = Prepareparam.finalreqjson || ''
-                                        sendResponse(null, objresponse)
-                                    } else {
-                                        objresponse.status = 'SUCCESS'
-                                        objresponse.data.type = dataType
-                                        objresponse.data.responsejson = arrdata[0].response_json || ''
-                                        objresponse.data.requestjson = arrdata[0].request_json || ''
-                                        sendResponse(null, objresponse)
-                                    }
-                                })
-
-                            } else {
+                        let findData
+                        let curntBtnName = params.buttonName.toUpperCase()
+    
+                        if (curntBtnName != "VIEW REQ AND RES") {
+                            findData = `select fn_pcidss_decrypt(message_data,$PCIDSS_KEY ) as request_json from npss_trn_req_resp_dtls where npsstrrd_id = '${params.npsstrrd_id}'`
+    
+                        } else {
+                            findData = `select fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_json,fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY) as response_json from npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
+                        }
+    
+                        ExecuteQuery1(findData, function (arrnotmskdata) {
+                            if (arrnotmskdata.length > 0) {
                                 objresponse.status = 'SUCCESS'
-                                objresponse.data.type = dataType
+                                if (curntBtnName != "VIEW REQ AND RES") {
+                                    objresponse.data.type = 'XML'
+                                    objresponse.data.responsejson = ''
+                                    objresponse.data.requestjson = arrnotmskdata[0].request_json || ''
+                                } else {
+                                    objresponse.data.type = 'JSON'
+                                    objresponse.data.responsejson = arrnotmskdata[0].response_json || ''
+                                    objresponse.data.requestjson = arrnotmskdata[0].request_json || ''
+                                }
+    
+                                sendResponse(null, objresponse)
+                            } else {
+                                if (curntBtnName != "VIEW REQ AND RES") {
+                                    objresponse.data.type = 'XML'
+                                } else {
+                                    objresponse.data.type = 'JSON'
+                                }
+                                objresponse.status = 'SUCCESS'
+    
                                 objresponse.data.responsejson = ''
                                 objresponse.data.requestjson = ''
                                 sendResponse(null, objresponse)
                             }
-
-                        } catch (error) {
-                            sendResponse(error)
-                        }
-                    });
-                } else {
+                        })
+    
+                    }
+                }else{
+                  
                     let findData
                     let curntBtnName = params.buttonName.toUpperCase()
 
@@ -213,7 +257,9 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         }
                     })
 
+                  
                 }
+               
 
 
 
@@ -320,9 +366,6 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                 let ReplacePath = Getprsdetail[0].request_name.replaceAll("<", "").split(">");
                                                 ReplacePath.pop();
                                                 ReplacePath.join("/");
-
-                                                //  let regexPattern = new RegExp("<(" + ReplacePath.join("><") + ")>(.*?)<\/" + ReplacePath[ReplacePath.length - 1] + ">", "g");
-                                                //  let formatXML = result.replace(regexPattern, '<$1>' + Formedvalue + '<$3>');
                                                 var valuePath = '</Cdtr><CdtrAcct><Id><Othr><Id>';
                                                 // Define the new value
                                                 var newValue = Formedvalue;
@@ -470,6 +513,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 })
+
 
 
 

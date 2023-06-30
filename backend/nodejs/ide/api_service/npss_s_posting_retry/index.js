@@ -121,7 +121,7 @@ try {
                                                 nextobjctstsfunc()
                                             }
 
-                                        } else if (stsObj == 'IP_RCT_RET_AUTO_POSTING_READY') { //T24 INward 
+                                        } else if (stsObj == 'IP_RCT_AUTO_POSTING_READY') { //T24 INward 
                                             arrTranparams = await GetTranData(stsObj)
                                             if (arrTranparams != 'Failure') {
                                                 Apicalls = await CallT24Posting(arrTranparams, arrurl, stsObj, final_status, PRCT_ID)
@@ -657,14 +657,14 @@ try {
                     return new Promise((resolve, reject) => {
                         reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                             var Checkdata = async () => {
-                                var arrrefno = await getProcesslogdet(arrTranparamsObj.uetr, 'Receive Pacs002')
+                                var arrrefno = await getProcesslogdet(arrTranparamsObj, 'Receive Pacs002')
 
                                 if (arrrefno != '') {
                                     var cbsaccount = `select account_officer,currency,account_number,company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${arrTranparamsObj.cdtr_iban}'`
                                     ExecuteQuery1(cbsaccount, async function (arrcbsdata) {
                                         if (arrcbsdata.length > 0) {
                                             var TakesellRate = await GetsellRate(arrcbsdata)
-                                            var arrnpssRefno = await getProcesslogdet(arrTranparamsObj.uetr, 'Receive Pacs008')
+                                            var arrnpssRefno = await getProcesslogdet(arrTranparamsObj, 'Receive Pacs008')
                                             if (arrnpssRefno != '') {
                                                 var Virtual_account
                                                 if (arrcbsdata[0].alternate_account_type == 'VA.IBAN' || arrcbsdata[0].alternate_account_type == 'VA.BBAN') {
@@ -841,13 +841,13 @@ try {
                         reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                             try {
                                 var runfunction = async () => {
-                                    var arrrefno = await getProcesslogdet(arrTranparamsObj.uetr, 'Receive Pacs002');
+                                    var arrrefno = await getProcesslogdet(arrTranparamsObj, 'Receive Pacs002');
                                     if (arrrefno != '') {
                                         var cbsaccount = `select company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${arrTranparamsObj.cdtr_iban}'`
                                         ExecuteQuery1(cbsaccount, async function (arrcbsdata) {
                                             if (arrcbsdata.length > 0) {
 
-                                                var arrnpssRefno = await getProcesslogdet(arrTranparamsObj.uetr, 'Receive Pacs008');
+                                                var arrnpssRefno = await getProcesslogdet(arrTranparamsObj, 'Receive Pacs008');
 
                                                 if (arrnpssRefno != '') {
                                                     var Virtual_account
@@ -1021,12 +1021,12 @@ try {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var runfunction = async () => {
 
-                                    var arrrefno = await getProcesslogdet(arrTranparamsObj.uetr, 'Receive Pacs002')
+                                    var arrrefno = await getProcesslogdet(arrTranparamsObj, 'Receive Pacs002')
 
                                     if (arrrefno != '') {
                                         if (arrrefno[0].process_ref_no != null) {
 
-                                            var arrnpssRefno = await getProcesslogdet(arrTranparamsObj.uetr, 'Receive Pacs008')
+                                            var arrnpssRefno = await getProcesslogdet(arrTranparamsObj, 'Receive Pacs008')
 
                                             if (arrnpssRefno != '') {
                                                 var lclinstrm

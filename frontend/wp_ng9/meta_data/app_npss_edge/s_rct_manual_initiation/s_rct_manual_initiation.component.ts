@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30684 
+Build ID        : 30807 
 Modified By     : Admin 
-Modified Date   : 2023-Jul-03 6:9 AM 
+Modified Date   : 2023-Jul-03 9:53 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -731,7 +731,6 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.transaction_list__ee_for_vlh()
 		this.transaction_list__ee_for_vm()
 		this.transaction_list__ee_for_initiate()
-		this.transaction_list__e_1679064375033()
 		this.transaction_list__e_1681970993373()
 	}
 
@@ -1625,27 +1624,6 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "transaction list"
-	transaction_list__e_1679064375033() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="transaction_list"
-		let destn_id="payment_processing_details_ui_get_deal"
-		let parent_source_id=""
-		let event_code="e_1679064375033"
-		let event_params={"caller_name":"transaction_list__e_1679064375033","event_desc":"E_1679064375033","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"AED","hide_except":"","hide_column":"ACCOUNT_CURRENCY","expression":""}}
-		let handler_code="show_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

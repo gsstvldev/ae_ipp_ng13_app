@@ -13,7 +13,7 @@ app.post('/', function(appRequest, appResponse, next) {
     modified by: Siva Harish
     modify date : 5/4/2023
   Reason for : Changing Return code query 13/04/2023
-     
+     modify date : 3/7/2023
    
     */
     var serviceName = 'NPSS (CS) RCT Outward Posting Failure Retry Repost';
@@ -378,6 +378,119 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+                // function CallORAPI(arrTranparams, failcountobj, failcount, arrurl) {
+                //     return new Promise((resolve, reject) => {
+                //         reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
+                //             var runapifun = async () => {
+                //                 var TakeacctInfrm = await AccountInformation(arrTranparamsObj)
+                //                 if (TakeacctInfrm.status == 'SUCCESS') {
+                //                     var Takereturncode = `select cbuae_return_code,npsstrrd_refno from npss_trn_process_log where process_name='Receive Pacs004' and uetr = '${arrTranparamsObj.uetr}'`
+                //                     ExecuteQuery1(Takereturncode, function (returncode) {
+                //                         var reason_code
+                //                         var npsst_refno
+                //                         if (returncode.length > 0) {
+                //                             reason_code = returncode[0].cbuae_return_code;
+                //                             npsst_refno = returncode[0].npsstrrd_refno
+                //                         } else {
+                //                             reason_code = ''
+                //                             npsst_refno = ''
+                //                         }
+
+
+                //                         var request = require('request');
+                //                         var options = {
+                //                             url: arrurl[0].param_detail,
+                //                             timeout: 18000000,
+                //                             method: 'POST',
+                //                             json: {
+                //                                 batch_name: "DR-CBS-POSTING-Q",
+                //                                 data: {
+                //                                     "payload": {
+                //                                         "dr_sort_code": arrTranparamsObj.dr_sort_code || '',
+                //                                         "payment_endtoend_id": arrTranparamsObj.payment_endtoend_id || '',
+                //                                         "tran_ref_id": arrTranparamsObj.tran_ref_id || '',
+                //                                         "uetr": arrTranparamsObj.uetr || '',
+                //                                         "clrsysref": arrTranparamsObj.clrsysref || '',
+                //                                         "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt || '',
+                //                                         "reversal_amount": arrTranparamsObj.reversal_amount || '',
+                //                                         "reversal_code": "",
+                //                                         "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
+                //                                         "intrbk_sttlm_dt": arrTranparamsObj.intrbk_sttlm_dt || '',
+                //                                         "AccountInformation": TakeacctInfrm.AccountInformations || '',
+                //                                         "cdtr_iban": arrTranparamsObj.cdtr_iban || '',
+                //                                         "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
+                //                                         "cr_acct_identification": arrTranparamsObj.cr_acct_identification || '',
+                //                                         "post_reason_code": reason_code,
+                //                                         "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
+                //                                         "hdr_settlement_date": arrTranparamsObj.hdr_created_date || '',
+                //                                         "hdr_settlement_method": "CLRG",
+                //                                         "cr_sort_code": arrTranparamsObj.cr_sort_code || '',
+                //                                         "return_id": "",
+                //                                         "hdr_new_settlement_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),
+                //                                         "participant_clearing_system": "CRTLBP.0.0",
+                //                                         "process_type": "OR",
+                //                                         "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.004.001.11",
+                //                                         "originalTrasactionId": "",
+                //                                         "cbuae_return_code": reason_code,
+                //                                         "remittance_information": arrTranparamsObj.remittance_info || '',
+                //                                         "extIdentifier": arrTranparamsObj.clrsysref || '',
+                //                                         "category_purpose": arrTranparamsObj.category_purpose || '',
+                //                                         "category_purpose_prty": arrTranparamsObj.category_purpose_prty || '',
+                //                                         "charge_bearer": arrTranparamsObj.charge_bearer || '',
+                //                                         "company_code": TakeacctInfrm.AccountInformations.company_code || '',
+                //                                         "alternate_account_type": TakeacctInfrm.AccountInformations.alternate_account_type || '',
+                //                                         "currency": TakeacctInfrm.AccountInformations.currency || '',
+                //                                         "charge_bearer": arrTranparamsObj.charge_bearer || '',
+                //                                         "account_number": TakeacctInfrm.AccountInformations.account_number || '',
+                //                                         "cdtr_acct_name": arrTranparamsObj.cdtr_acct_name || '',
+                //                                         "npsstrrd_refno": npsst_refno || '',
+
+
+                //                                     }
+                //                                 }
+                //                             },
+                //                             headers: {
+                //                                 'Content-Type': 'application/json'
+                //                             }
+
+                //                         }
+
+                //                         var PrintInfo = {}
+                //                         PrintInfo.url = arrurl[0].param_detail
+                //                         PrintInfo.uetr = arrTranparamsObj.uetr || ''
+                //                         PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
+
+
+                //                         reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                //                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
+                //                             if (error) {
+                //                                 reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
+                //                                 sendResponse(error, null);
+
+                //                             } else {
+                //                                 reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                //                                 nextobjctfunc()
+                //                             }
+                //                         });
+
+
+                //                     })
+
+                //                 } else {
+                //                     resolve(TakeacctInfrm.status)
+                //                 }
+                //             }
+
+                //             runapifun()
+
+                //         }, function () {
+                //             resolve('SUCCESS')
+                //         })
+                //     })
+
+
+
+                // }
                 function CallORAPI(arrTranparams, failcountobj, failcount, arrurl) {
                     return new Promise((resolve, reject) => {
                         reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
@@ -386,6 +499,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                 if (TakeacctInfrm.status == 'SUCCESS') {
                                     var Takereturncode = `select cbuae_return_code,npsstrrd_refno from npss_trn_process_log where process_name='Receive Pacs004' and uetr = '${arrTranparamsObj.uetr}'`
                                     ExecuteQuery1(Takereturncode, function (returncode) {
+                                    var TakeRtrdIntrBkSttlmAmt  = `select additional_info from npss_trn_process_log where process_name='Place Pacs004' and uetr = '${arrTranparamsObj.uetr}'`
+                                    ExecuteQuery1(TakeRtrdIntrBkSttlmAmt, function (arrAmount) {
                                         var reason_code
                                         var npsst_refno
                                         if (returncode.length > 0) {
@@ -395,8 +510,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                             reason_code = ''
                                             npsst_refno = ''
                                         }
-
-
+                
+                
                                         var request = require('request');
                                         var options = {
                                             url: arrurl[0].param_detail,
@@ -444,54 +559,56 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         "account_number": TakeacctInfrm.AccountInformations.account_number || '',
                                                         "cdtr_acct_name": arrTranparamsObj.cdtr_acct_name || '',
                                                         "npsstrrd_refno": npsst_refno || '',
-
-
+                                                       "RtrdIntrBkSttlmAmt" : arrAmount ? arrAmount[0].additional_info : '' || ''
+                
+                
                                                     }
                                                 }
                                             },
                                             headers: {
                                                 'Content-Type': 'application/json'
                                             }
-
+                
                                         }
-
+                
                                         var PrintInfo = {}
                                         PrintInfo.url = arrurl[0].param_detail
                                         PrintInfo.uetr = arrTranparamsObj.uetr || ''
                                         PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
-
-
+                
+                
                                         reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                             if (error) {
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                 sendResponse(error, null);
-
+                
                                             } else {
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                 nextobjctfunc()
                                             }
                                         });
-
-
+                
                                     })
-
+                                        
+                
+                                    })
+                
                                 } else {
                                     resolve(TakeacctInfrm.status)
                                 }
                             }
-
+                
                             runapifun()
-
+                
                         }, function () {
                             resolve('SUCCESS')
                         })
                     })
-
-
-
+                
+                
+                
                 }
-
 
                 function CallP2B(arrTranparams, failcountobj, failcount, arrurl) {
 

@@ -10,7 +10,7 @@ app.post('/', function(appRequest, appResponse, next) {
 try {
     /*   Created By : Siva Harish
     Created Date :30 -06-2023
-  
+  Modifiy by : 3/7/2023
     */
     var serviceName = 'NPSS (S) Posting Retry';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -544,7 +544,7 @@ try {
                                 if (TakeacctInfrm.status == 'SUCCESS') {
 
                                     var returncode = await getProcesslogdet(arrTranparamsObj, 'Receive Pacs004')
-
+                                    var RtrdIntrBkSttlmAmt   = await getProcesslogdet(arrTranparamsObj, 'Place Pacs004')
                                     var reason_code
                                     var npsst_refno
                                     if (returncode != '') {
@@ -604,6 +604,7 @@ try {
                                                         "account_number": TakeacctInfrm.AccountInformations.account_number || '',
                                                         "cdtr_acct_name": arrTranparamsObj.cdtr_acct_name || '',
                                                         "npsstrrd_refno": npsst_refno || '',
+                                                        "RtrdIntrBkSttlmAmt":RtrdIntrBkSttlmAmt != '' ?  RtrdIntrBkSttlmAmt[0].additional_info : '' || ''
                                                     }
                                                 }
                                             },
@@ -1351,6 +1352,7 @@ try {
                                 }
                                 var CallApi = async () => {
                                     var TakesellRate = await GetsellRate(arrcbsdata)
+                                   
                                     var arrnpssRefno = await getProcesslogdet(arrTranparamsObj, 'Receive Pacs008')
                                     if (arrnpssRefno != '') {
                                         let CheckorgPvt = await TakeOrgPvt(arrTranparamsObj)
@@ -1727,14 +1729,14 @@ try {
 
                 function getProcesslogdet(arrTran, proces_name) {
                     return new Promise((resolve, reject) => {
-                        var Takeprsslog = `select  process_ref_no,msg_id,status_accp_date,status_intrbksttlmdt,status_resp_amount,cbuae_return_code,npsstrrd_refno from npss_trn_process_log where uetr = '${arrTran.uetr}' and process_name = '${proces_name}'`
+                        var Takeprsslog = `select  additional_info,process_ref_no,msg_id,status_accp_date,status_intrbksttlmdt,status_resp_amount,cbuae_return_code,npsstrrd_refno from npss_trn_process_log where uetr = '${arrTran.uetr}' and process_name = '${proces_name}'`
                         ExecuteQuery1(Takeprsslog, function (arrPrssDet) {
                             if (arrPrssDet.length > 0) {
-                                reqInstanceHelper.PrintInfo(serviceName, '-----------Getting Processlog details success(Return Code Found) for tranId-------' + arrTran.npsst_id + '.......ProcessName....' + proces_name, objSessionLogInfo);
+                                reqInstanceHelper.PrintInfo(serviceName, '-----------Getting Processlog details success(process_ref_no,msg_id,status_accp_date,status_intrbksttlmdt,status_resp_amount,cbuae_return_code,npsstrrd_refno) for tranId-------' + arrTran.npsst_id + '.......ProcessName....' + proces_name, objSessionLogInfo);
                                 resolve(arrPrssDet)
                             }
                             else {
-                                reqInstanceHelper.PrintInfo(serviceName, '-----------Getting Processlog details success(Return Code Not found Found) for tranId-------' + arrTran.npsst_id + '.......ProcessName....' + proces_name, objSessionLogInfo);
+                                reqInstanceHelper.PrintInfo(serviceName, '-----------Getting Processlog details success(process_ref_no,msg_id,status_accp_date,status_intrbksttlmdt,status_resp_amount,cbuae_return_code,npsstrrd_refno ------------------ Not found Found) for tranId-------' + arrTran.npsst_id + '.......ProcessName....' + proces_name, objSessionLogInfo);
                                 resolve('')
 
                             }

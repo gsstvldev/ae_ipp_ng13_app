@@ -15,6 +15,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified Date : 20/06/2023
     Modified Date : 22/06/2023
     Modified Date : 27/06/2023
+     Modified Date : 3/07/2023
     }
     */
     var serviceName = 'NPSS(S) P2B UNFREEZE the Cancel Account';
@@ -73,6 +74,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         var additional_info1 = await arraytostr(params.additional_info1);
                         var status2 = await arraytostr(params.status2);
                         var process_name2 = await arraytostr(params.process_name2);
+                        var process_name3 = await arraytostr(params.process_name3);
                         // var additional_info2 = await arraytostr(params.additional_info2);
 
 
@@ -119,7 +121,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                                                                                    var apicallresult = await kafkaapi(arrpayverobj, arrurl, process_name1)
+                                                                                    var apicallresult = await kafkaapi(arrpayverobj, arrurl, process_name1,process_name3)
                                                                                     if (apicallresult == 'SUCCESS') {
                                                                                         var InsertTable = await ProcessInstData(arrpayverobj, PRCT_ID)
                                                                                         if (InsertTable.length > 0) {
@@ -210,14 +212,14 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
                 })
                 //kafka api call
-                function kafkaapi(arrpayverobj, arrurl, process_name1) {
+                function kafkaapi(arrpayverobj, arrurl, process_name1,process_name3) {
                     var postrefno;
                     return new Promise((resolve, reject) => {
                         var TakepostingRefno = `select process_ref_no from npss_trn_process_log where process_name='${params.postingrefnoprocess_name}' and uetr='${arrpayverobj.uetr}'`
                         ExecuteQuery1(TakepostingRefno, function (arrpostrefno) {
                             if (arrpostrefno.length > 0) {
                                 postrefno = arrpostrefno[0].process_ref_no ? arrpostrefno[0].process_ref_no : ''
-                                var takereqjson = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,npsstrrd_refno,msg_id, additional_info as tran_type_code  from npss_trn_process_log where process_name in ${process_name1}  and uetr='${arrpayverobj.uetr}'`
+                                var takereqjson = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,npsstrrd_refno,msg_id, additional_info as tran_type_code  from npss_trn_process_log where process_name in ${process_name3}  and uetr='${arrpayverobj.uetr}'`
                                 ExecuteQuery1(takereqjson, function (arrtakereqjson) {
                                     if (arrtakereqjson.length > 0) {
                                         var JsonData

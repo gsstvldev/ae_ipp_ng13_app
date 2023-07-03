@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 try {
     /*   Created By :Siva Harish
     Created Date :02-01-2023
@@ -39,6 +40,7 @@ try {
                    Reason for handling issertype and extperson code 2/6/2023
                     Reason for handling nationalid null case 9/6/2023
                      Reason for handling count for reverse id for cc and pc 19/06/2023
+                       changes 3/7/2023
    
     */
     var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -121,11 +123,11 @@ try {
                                                     reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog)
                                                     if (reverandRefno.currency != 'AED') {
                                                         Ipuetr = await TakeIpUetr(arrprocesslog)
-                                                        GetsellRate = await GetsplRate(arrprocesslog, reverandRefno, Ipuetr)
+                                                        GetsellRate = await GetsplRate(arrprocesslog, reverandRefno)
                                                         if (GetsellRate == 'Take GMrate') {
-                                                            Getdata = await GetgmMargin(arrprocesslog, reverandRefno, Ipuetr)
+                                                            Getdata = await GetgmMargin(arrprocesslog, reverandRefno)
                                                         }
-                                                        takedealRefno = await GetRefno(arrprocesslog, reverandRefno, Ipuetr)
+                                                        takedealRefno = await GetRefno(arrprocesslog, reverandRefno)
                                                     }
                                                     take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_AUTH_PACS004' and param_code='URL' and need_sync = 'Y'`;
                                                     var amount
@@ -689,13 +691,13 @@ try {
 
 
 
-                function GetgmMargin(arrprocesslog, reverandRefno, Ipuetr) {
+                function GetgmMargin(arrprocesslog, reverandRefno) {
                     return new Promise((resolve, reject) => {
                         if (reverandRefno.currency == '' || reverandRefno.currency == null) {
                             resolve('')
                         } else {
                             if (reverandRefno.currency != 'AED') {
-                                var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${Ipuetr}' order by npsstpl_id desc`
+                                var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
                                 ExecuteQuery1(Takedata, function (arrresponse) {
                                     var senddata = {}
                                     var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
@@ -737,13 +739,13 @@ try {
                     })
                 }
 
-                function GetsplRate(arrprocesslog, reverandRefno, Ipuetr) {
+                function GetsplRate(arrprocesslog, reverandRefno) {
                     return new Promise((resolve, reject) => {
                         if (reverandRefno.currency == '' || reverandRefno.currency == null) {
                             resolve('Take GMrate')
                         } else {
                             if (reverandRefno.currency != 'AED') {
-                                var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'OP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${Ipuetr}'`
+                                var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'OP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${arrprocesslog[0].uetr}'`
                                 // var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'OP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${arrprocesslog[0].uetr}'`
                                 ExecuteQuery1(CheckRate, function (arrRate) {
                                     if (arrRate.length > 0) {
@@ -760,13 +762,13 @@ try {
                     })
                 }
 
-                function GetRefno(arrprocesslog, reverseAcinfparam, Ipuetr) {
+                function GetRefno(arrprocesslog, reverseAcinfparam) {
                     return new Promise((resolve, reject) => {
                         if (reverseAcinfparam.currency == '' || reverseAcinfparam.currency == null) {
                             resolve('')
                         } else {
                             if (reverseAcinfparam.currency != 'AED') {
-                                var Takedelrefno = `select process_ref_no from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${Ipuetr}'`
+                                var Takedelrefno = `select process_ref_no from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED'  and uetr = '${arrprocesslog[0].uetr}'`
                                 ExecuteQuery1(Takedelrefno, function (dealrefno) {
                                     if (dealrefno.length > 0) {
                                         resolve(dealrefno[0].process_ref_no)
@@ -1839,6 +1841,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

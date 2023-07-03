@@ -7,7 +7,6 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
 
 try {
     /*   Created By :Siva Harish
@@ -60,6 +59,7 @@ try {
                         var TakegmMargin
                         let Ipuetr
                         var ChecksplRate
+                        var GetadditionData
                         var reverseAcinfparam
                         var final_status
                         var final_process_status
@@ -140,16 +140,17 @@ try {
 
                                                                         if (apicalls == 0) {
                                                                             if (reverseAcinfparam.currency != 'AED') {
-                                                                                ChecksplRate = await CheckspecialRate(arrprocesslog, Ipuetr)
+                                                                                ChecksplRate = await CheckspecialRate(arrprocesslog)
+                                                                                GetadditionData = await GetaddInfo(arrprocesslog)
                                                                                 if (ChecksplRate == 'Take GMrate') {
-                                                                                    TakegmMargin = await GetgmMargin(arrprocesslog, reverseAcinfparam, Ipuetr)
+                                                                                    TakegmMargin = await GetgmMargin(arrprocesslog, reverseAcinfparam)
                                                                                 } else {
                                                                                     TakegmMargin = ''
                                                                                 }
                                                                             }
 
 
-                                                                            takedealRefno = await GetRefno(arrprocesslog, reverseAcinfparam, Ipuetr)
+                                                                            takedealRefno = await GetRefno(arrprocesslog, reverseAcinfparam)
 
                                                                         } else {
                                                                             TakegmMargin = {}
@@ -157,9 +158,10 @@ try {
 
 
                                                                         var callapi = async () => {
-                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, apicalls, extend_retry_value, takedealRefno, ChecksplRate)
-                                                                            let buyRate = params.BUY_RATE != '' ? params.BUY_RATE : null || null
-                                                                            let buyMargin = params.BUY_MARGIN != '' ? params.BUY_MARGIN : null || null
+                                                                            
+                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, apicalls, extend_retry_value, takedealRefno, ChecksplRate,GetadditionData)
+                                                                            let buyRate = params.BUY_RATE != '' ? params.BUY_RATE : 0 || 0
+                                                                            let buyMargin = params.BUY_MARGIN != '' ? params.BUY_MARGIN : 0 || 0
                                                                             if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
                                                                                 var UpdateTrnTble
                                                                                 if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
@@ -353,7 +355,7 @@ try {
                     }
                 })
                 // Do API Call for Service 
-                function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, extend_retry_value, takedealRefno, ChecksplRate, callbackapi) {
+                function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, extend_retry_value, takedealRefno, ChecksplRate,GetadditionData, callbackapi) {
                     try {
                         var apiName = 'Manual Initiation INAU Reserve Fund'
                         var request = require('request');
@@ -402,9 +404,9 @@ try {
                                     "status": params.eligible_status || '',
                                     "process_status": params.eligible_process_status || '',
                                     "clrsysref": arrprocesslog[0].clrsysref,
-                                     "need_manual_initiation":"Y",
+                                     "need_manual_init_confirm_deal":"Y",
                                     "process": "",
-                                    "remittance_information": arrprocesslog[0].remittance_info || '',
+                                    "need_manual_init_confirm_deal": arrprocesslog[0].remittance_info || '',
                                     "reversal_id": reverseAcinfparam.reverseId
                                 },
                                 "AccountInformation": {
@@ -413,7 +415,10 @@ try {
                                     "inactive_marker": reverseAcinfparam.inactive_marker || '',
                                     "currency": reverseAcinfparam.currency || '',
                                     "alternate_account_type": "OLD.IBAN",
-                                    "alternate_account_id": reverseAcinfparam.alternate_account_id || ''
+                                    "alternate_account_id": reverseAcinfparam.alternate_account_id || '',
+                                    "curr_rate_segment": reverseAcinfparam.curr_rate_segment || '',
+                                    "account_officer":reverseAcinfparam.account_officer || '',
+                                    "customer_id": reverseAcinfparam.customer_id || ''
 
                                 }
                             },
@@ -444,6 +449,16 @@ try {
 
                                 }
                             }
+
+                            if(GetadditionData.length > 0){
+                                options.json.payload.gidId = GetadditionData[0].additional_info || '',
+                                options.json.payload.Rate = GetadditionData[0].fx_resv_text1 || ''
+                               
+                            }
+                            options.json.payload.contraAmount = params.CONTRA_AMOUNT || ''
+                            options.json.payload.buyCurrency = params.BUY_CURRENCY || ''
+                            options.json.payload.sellCurrency = params.SELL_CURRENCY || ''
+                            options.json.payload.dealtAmount = params.DEALT_AMOUNT || ''
                         }
 
 
@@ -507,6 +522,9 @@ try {
                                     parameter.inactive_marker = arrActInf[0].inactive_marker || '',
                                     parameter.currency = arrActInf[0].currency || '',
                                     parameter.alternate_account_id = arrActInf[0].alternate_account_id || ''
+                                    parameter.curr_rate_segment = arrActInf[0].curr_rate_segment || '',
+                                    parameter.account_officer = arrActInf[0].account_officer || '',
+                                    parameter.customer_id = arrActInf[0].customer_id || ''
                                 ExecuteQuery1(TakeCount, function (arrCount) {
                                     if (arrprocesslog[0].clrsysref) {
                                         if (arrCount[0].counts.length == 1) {
@@ -669,14 +687,72 @@ try {
 
 
 
-                function GetgmMargin(arrprocesslog, reverseAcinfparam, Ipuetr) {
+                // function GetgmMargin(arrprocesslog, reverseAcinfparam, Ipuetr) {
+                //     return new Promise(async (resolve, reject) => {
+                //         if (reverseAcinfparam.currency == '' || reverseAcinfparam.currency == null) {
+                //             resolve('')
+                //         } else {
+                //             if (reverseAcinfparam.currency != 'AED') {
+
+                //                 var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${Ipuetr}' order by npsstpl_id desc`
+                //                 ExecuteQuery1(Takedata, function (arrresponse) {
+
+                //                     var senddata = {}
+                //                     var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                //                     ExecuteQuery1(Takeloccur, function (localcur) {
+                //                         if (localcur.length == 0) {
+                //                             senddata.amount_credited_loc_cur = ''
+
+                //                             if (arrresponse.length == 0) {
+                //                                 senddata.GMRate = '',
+                //                                     senddata.GMMargin = ''
+                //                                 resolve(senddata)
+                //                             } else {
+                //                                 senddata.GMRate = arrresponse[0].exchange_rate,
+                //                                     senddata.GMMargin = arrresponse[0].gm_margin
+                //                                 resolve(senddata)
+                //                             }
+                //                         } else {
+
+                //                             senddata.amount_credited_loc_cur = localcur[0].amount_credited_loc_cur
+                //                             if (arrresponse.length == 0) {
+                //                                 senddata.GMRate = '',
+                //                                     senddata.GMMargin = ''
+                //                                 resolve(senddata)
+                //                             } else {
+                //                                 senddata.GMRate = arrresponse[0].exchange_rate,
+                //                                     senddata.GMMargin = arrresponse[0].gm_margin
+                //                                 resolve(senddata)
+                //                             }
+                //                         }
+
+
+                //                     })
+
+
+
+
+                //                 })
+
+
+                //             } else {
+                //                 resolve('')
+                //             }
+                //         }
+
+
+                //     })
+                // }
+
+
+                function GetgmMargin(arrprocesslog, reverseAcinfparam) {
                     return new Promise(async (resolve, reject) => {
                         if (reverseAcinfparam.currency == '' || reverseAcinfparam.currency == null) {
                             resolve('')
                         } else {
                             if (reverseAcinfparam.currency != 'AED') {
 
-                                var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${Ipuetr}' order by npsstpl_id desc`
+                                var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
                                 ExecuteQuery1(Takedata, function (arrresponse) {
 
                                     var senddata = {}
@@ -725,14 +801,17 @@ try {
 
                     })
                 }
-                function GetRefno(arrprocesslog, reverseAcinfparam, Ipuetr) {
+
+
+
+                function GetRefno(arrprocesslog, reverseAcinfparam) {
                     return new Promise(async (resolve, reject) => {
                         if (reverseAcinfparam.currency == '' || reverseAcinfparam.currency == null) {
                             resolve('')
                         } else {
                             if (reverseAcinfparam.currency != 'AED') {
 
-                                var Takedelrefno = `select process_ref_no from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${Ipuetr}'`
+                                var Takedelrefno = `select process_ref_no from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
                                 ExecuteQuery1(Takedelrefno, function (dealrefno) {
                                     if (dealrefno.length > 0) {
                                         resolve(dealrefno[0].process_ref_no)
@@ -767,9 +846,9 @@ try {
                     })
                 }
 
-                function CheckspecialRate(arrprocesslog, Ipuetr) {
+                function CheckspecialRate(arrprocesslog) {
                     return new Promise((resolve, reject) => {
-                        var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'OP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${Ipuetr}'`
+                        var CheckRate = `select * from npss_trn_process_log where process_name = 'Customer Spl Rate' and status = 'OP_RCT_MAN_SPL_RATE_MARKED' and uetr = '${arrprocesslog[0].uetr}'`
                         ExecuteQuery1(CheckRate, function (arrRate) {
                             if (arrRate.length > 0) {
                                 resolve('Take Sellrate')
@@ -780,12 +859,29 @@ try {
                         })
                     })
                 }
+
+                function GetaddInfo(arrprocesslog) {
+                    return new Promise(async (resolve, reject) => {
+                        var tkaddinfo = `select additional_info,fx_resv_text1,fx_resv_text2 from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
+                        ExecuteQuery1(tkaddinfo, function (arrdata) {
+                           
+                                resolve(arrdata)
+                            
+
+                        })
+
+                    })
+                }
+
+
+
+
                 //function to call all api calls(reservefund,prepaid,credit)
-                function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, apicalls, extend_retry_value, takedealRefno, ChecksplRate) {
+                function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, apicalls, extend_retry_value, takedealRefno, ChecksplRate,GetadditionData) {
                     return new Promise((resolve, reject) => {
                         // reserve fund
                         if (apicalls == 0) {
-                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, extend_retry_value, takedealRefno, ChecksplRate, function (result) {
+                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, extend_retry_value, takedealRefno, ChecksplRate,GetadditionData, function (result) {
                                 if (result === "SUCCESS" || result === "Success" || result === "success") {
 
                                     resolve(result)
@@ -1187,6 +1283,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

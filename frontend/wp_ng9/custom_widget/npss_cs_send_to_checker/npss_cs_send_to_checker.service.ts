@@ -28,6 +28,10 @@ export class npss_cs_send_to_checkerService {
          var CtrlScope = screenInstance['verify_get_deal_ui'].f_npss_verification_get_deal_ui.model;
         ClientParams.BUY_RATE = CtrlScope.memory59 || '';
         ClientParams.BUY_MARGIN = CtrlScope.memory58 || '';
+         ClientParams.CONTRA_AMOUNT = CtrlScope.CONTRA_AMOUNT || '';
+         ClientParams.BUY_CURRENCY = CtrlScope.BUY_CURRENCY || ''
+        ClientParams.SELL_CURRENCY = CtrlScope.SELL_CURRENCY || ''
+        ClientParams.DEALT_AMOUNT = CtrlScope.DEALT_AMOUNT || ''
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
         ClientParams.Tran_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID");

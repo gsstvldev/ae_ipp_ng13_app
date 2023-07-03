@@ -23,6 +23,13 @@ export class npss_cs_manual_initiation_force_to_postService {
     //Default calling function
     fn_npss_cs_manual_initiation_force_to_post(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         var ClientParams: any = {}
+         var CtrlScope = screenInstance['verify_get_deal_ui'].f_npss_verification_get_deal_ui.model;
+        ClientParams.BUY_RATE = CtrlScope.memory59 || '';
+        ClientParams.BUY_MARGIN = CtrlScope.memory58 || '';
+         ClientParams.CONTRA_AMOUNT = CtrlScope.CONTRA_AMOUNT || '';
+         ClientParams.BUY_CURRENCY = CtrlScope.BUY_CURRENCY || ''
+        ClientParams.SELL_CURRENCY = CtrlScope.SELL_CURRENCY || ''
+        ClientParams.DEALT_AMOUNT = CtrlScope.DEALT_AMOUNT || ''
         ClientParams.CREATED_BY = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "U_ID");
         ClientParams.CREATED_BY_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME");
         ClientParams.Tran_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID");

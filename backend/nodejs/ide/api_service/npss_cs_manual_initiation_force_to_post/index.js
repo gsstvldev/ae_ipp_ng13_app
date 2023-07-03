@@ -7,19 +7,14 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
 try {
-    /*  Created By :Siva Harish
-    Created Date :17-02-2023
-    mdified_date : 18/02/2023
-    Reason for: Adding extra parameter 22/03/2023
-    Reason for: changing cbs accounts query
-    Reason for: Adding deal ref no 3/4/2023
-     Reason for Handling prepaid and credit & customer spl rate 28/04/2023 
-     Reason for remove sel rate and margin And add Buy rate and margin 2/05/2023 
-     Reason for issue fixing for GMrate and Margin 03/05/2023
-      Reason for Updating force to post flag coloumn 30/05/2023
-        */
+    /*   Created By :Siva Harish
+    Created Date :02-01-2023
+      Reason for force to post flag 30/05/2023
+       Reason for splrate logic changes 2/6/2023
+        Reason for Handling buy rate and buy cur here 3/7/2023
+    */
     var serviceName = 'NPSS (CS) Manual Initiation Force to Post';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
     var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
@@ -64,6 +59,7 @@ try {
                         var TakegmMargin
                         let Ipuetr
                         var ChecksplRate
+                        var GetadditionData
                         var reverseAcinfparam
                         var final_status
                         var final_process_status
@@ -95,7 +91,7 @@ try {
                                                     if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
                                                         apicalls = await checkprepaidorcredit(arrprocesslog)
                                                         if (apicalls != 0) {
-                                                            var UpdateTrnTble = `Update npss_transactions set maker = '${params.CREATED_BY_NAME}',force_post_flag = 'Y',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                            var UpdateTrnTble = `Update npss_transactions set maker = '${params.CREATED_BY_NAME}',force_post_flag = 'N',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                             ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
                                                                 if (arrUpdTranTbl == 'SUCCESS') {
                                                                     objresponse.status = 'SUCCESS';
@@ -114,18 +110,18 @@ try {
                                                     var InsertTable = await ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode, arrurlResult)
                                                     if (InsertTable.length > 0) {
                                                         Ipuetr = await TakeIpUetr(arrprocesslog)
-                                                        if(Ipuetr != null){
+                                                        if (Ipuetr != null) {
                                                             var takedata = async () => {
                                                                 // checkForceTopost = await ForcetoPost(arrprocesslog)
                                                                 // if (checkForceTopost == 'Call_Reserve_Fund_Api') {
-    
+
                                                                 extend_retry_value = await GetRetrycount(arrprocesslog[0].uetr)
                                                                 if (apicalls == 0) {// Resurve Fund api call
                                                                     reverseAcinfparam = await TakereversalIdandActInfm(arrprocesslog)
                                                                 } else { // for both prepaid card and credit card api calls 
                                                                     reverseAcinfparam = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
                                                                 }
-    
+
                                                                 if (apicalls == 0 || apicalls == '0') { // Reserve api call
                                                                     take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL' AND need_sync = 'Y'`;
                                                                 } else if (apicalls == 1 || apicalls == '1') { //Prepaid  api Call
@@ -133,61 +129,64 @@ try {
                                                                 } else if (apicalls == 2 || apicalls == '2') { // Credit  api call
                                                                     take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_CREDIT_CARD' and param_code='URL' AND need_sync = 'Y'`;
                                                                 }
-    
+
                                                                 ExecuteQuery1(take_api_url, async function (arrurl) {
                                                                     if (arrurl.length) {
                                                                         var url = arrurl[0].param_detail;
                                                                         var amount
-    
+
                                                                         amount = arrprocesslog[0].intrbk_sttlm_amnt
-    
-    
+
+
                                                                         if (apicalls == 0) {
                                                                             if (reverseAcinfparam.currency != 'AED') {
                                                                                 ChecksplRate = await CheckspecialRate(arrprocesslog)
+                                                                                GetadditionData = await GetaddInfo(arrprocesslog)
                                                                                 if (ChecksplRate == 'Take GMrate') {
-                                                                                    TakegmMargin = await GetgmMargin(arrprocesslog, reverseAcinfparam,Ipuetr)
+                                                                                    TakegmMargin = await GetgmMargin(arrprocesslog, reverseAcinfparam)
                                                                                 } else {
                                                                                     TakegmMargin = ''
                                                                                 }
                                                                             }
-    
-    
-                                                                            takedealRefno = await GetRefno(arrprocesslog, reverseAcinfparam,Ipuetr)
-    
+
+
+                                                                            takedealRefno = await GetRefno(arrprocesslog, reverseAcinfparam)
+
                                                                         } else {
                                                                             TakegmMargin = {}
                                                                         }
-    
-    
+
+
                                                                         var callapi = async () => {
-                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, apicalls, extend_retry_value, takedealRefno, ChecksplRate)
-    
+                                                                            
+                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, apicalls, extend_retry_value, takedealRefno, ChecksplRate,GetadditionData)
+                                                                            let buyRate = params.BUY_RATE != '' ? params.BUY_RATE : 0 || 0
+                                                                            let buyMargin = params.BUY_MARGIN != '' ? params.BUY_MARGIN : 0 || 0
                                                                             if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
                                                                                 var UpdateTrnTble
                                                                                 if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
-                                                                                    UpdateTrnTble = `Update npss_transactions set maker = '${params.CREATED_BY_NAME}',status ='${final_status}',process_status = '${final_process_status}',force_post_flag = 'Y',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                    UpdateTrnTble = `Update npss_transactions set buy_rate = '${buyRate}',buyMargin = '${buyMargin}',maker = '${params.CREATED_BY_NAME}',force_post_flag = 'N',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                                 } else {
-                                                                                    UpdateTrnTble = `Update npss_transactions set checker = '${params.CREATED_BY_NAME}',status ='${final_status}',process_status = '${final_process_status}',force_post_flag = 'Y',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                    UpdateTrnTble = `Update npss_transactions set buy_rate = '${buyRate}',buyMargin = '${buyMargin}',checker = '${params.CREATED_BY_NAME}',force_post_flag = 'N',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                                 }
                                                                                 ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
                                                                                     if (arrUpdTranTbl == 'SUCCESS') {
                                                                                         objresponse.status = 'SUCCESS';
                                                                                         sendResponse(null, objresponse);
-    
+
                                                                                     } else {
                                                                                         objresponse.status = 'No Data Updated in Transaction Table';
                                                                                         sendResponse(null, objresponse);
-    
+
                                                                                     }
                                                                                 })
-    
-    
-    
-    
-    
+
+
+
+
+
                                                                             } else if (apistatus.status == 'TIMEOUT') {
-    
+
                                                                                 objresponse.status = 'Time Out' + apiName + ' Api Failure'
                                                                                 sendResponse(null, objresponse);
                                                                             } else {
@@ -196,24 +195,24 @@ try {
                                                                                     sendResponse(null, objresponse);
                                                                                 } else if (apicalls == 1) {
                                                                                     objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
-    
+
                                                                                     sendResponse(null, objresponse);
-    
+
                                                                                 } else if (apicalls == 2) {
                                                                                     objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
-    
+
                                                                                     sendResponse(null, objresponse);
-    
+
                                                                                 }
-    
+
                                                                             }
                                                                         }
-    
+
                                                                         callapi()
-    
+
                                                                     }
                                                                     else {
-    
+
                                                                         objresponse.status = "No Data found in workflow table"
                                                                         sendResponse(null, objresponse)
                                                                     }
@@ -222,15 +221,15 @@ try {
                                                                 //     objresponse.status = checkForceTopost
                                                                 //     sendResponse(null, objresponse)
                                                                 // }
-    
+
                                                             }
-    
+
                                                             takedata()
-                                                        }else{
+                                                        } else {
                                                             objresponse.status = "UETR is not found"
                                                             sendResponse(null, objresponse)
                                                         }
-                                                       
+
                                                     } else {
 
 
@@ -356,7 +355,7 @@ try {
                     }
                 })
                 // Do API Call for Service 
-                function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, extend_retry_value, takedealRefno, ChecksplRate, callbackapi) {
+                function fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, extend_retry_value, takedealRefno, ChecksplRate,GetadditionData, callbackapi) {
                     try {
                         var apiName = 'Manual Initiation INAU Reserve Fund'
                         var request = require('request');
@@ -405,9 +404,9 @@ try {
                                     "status": params.eligible_status || '',
                                     "process_status": params.eligible_process_status || '',
                                     "clrsysref": arrprocesslog[0].clrsysref,
-
+                                     "need_manual_init_confirm_deal":"Y",
                                     "process": "",
-                                    "remittance_information": arrprocesslog[0].remittance_info || '',
+                                    "need_manual_init_confirm_deal": arrprocesslog[0].remittance_info || '',
                                     "reversal_id": reverseAcinfparam.reverseId
                                 },
                                 "AccountInformation": {
@@ -416,7 +415,10 @@ try {
                                     "inactive_marker": reverseAcinfparam.inactive_marker || '',
                                     "currency": reverseAcinfparam.currency || '',
                                     "alternate_account_type": "OLD.IBAN",
-                                    "alternate_account_id": reverseAcinfparam.alternate_account_id || ''
+                                    "alternate_account_id": reverseAcinfparam.alternate_account_id || '',
+                                    "curr_rate_segment": reverseAcinfparam.curr_rate_segment || '',
+                                    "account_officer":reverseAcinfparam.account_officer || '',
+                                    "customer_id": reverseAcinfparam.customer_id || ''
 
                                 }
                             },
@@ -427,11 +429,11 @@ try {
                         if (reverseAcinfparam.currency != 'AED') {
                             if (ChecksplRate != 'Take GMrate') {
                                 if (reverseAcinfparam.currency != 'AED') {
-                                    if (arrprocesslog[0].buy_margin != 0) {
-                                        options.json.payload.buy_margin = arrprocesslog[0].buy_margin || ''
+                                    if (params.BUY_MARGIN != 0 && params.BUY_MARGIN != '') {
+                                        options.json.payload.buy_margin = params.BUY_MARGIN || ''
                                     }
-                                    if (arrprocesslog[0].buy_rate != 0) {
-                                        options.json.payload.buy_rate = arrprocesslog[0].buy_rate || ''
+                                    if (params.BUY_RATE != 0 && params.BUY_RATE != '') {
+                                        options.json.payload.buy_rate = params.BUY_RATE || ''
                                     }
 
                                     options.json.payload.amount_credited_loc_cur = arrprocesslog[0].amount_credited_loc_cur || ''
@@ -447,6 +449,16 @@ try {
 
                                 }
                             }
+
+                            if(GetadditionData.length > 0){
+                                options.json.payload.gidId = GetadditionData[0].additional_info || '',
+                                options.json.payload.Rate = GetadditionData[0].fx_resv_text1 || ''
+                               
+                            }
+                            options.json.payload.contraAmount = params.CONTRA_AMOUNT || ''
+                            options.json.payload.buyCurrency = params.BUY_CURRENCY || ''
+                            options.json.payload.sellCurrency = params.SELL_CURRENCY || ''
+                            options.json.payload.dealtAmount = params.DEALT_AMOUNT || ''
                         }
 
 
@@ -459,7 +471,7 @@ try {
                         PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
                         PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
 
-                        reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                        reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                             if (error) {
                                 reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
@@ -510,6 +522,9 @@ try {
                                     parameter.inactive_marker = arrActInf[0].inactive_marker || '',
                                     parameter.currency = arrActInf[0].currency || '',
                                     parameter.alternate_account_id = arrActInf[0].alternate_account_id || ''
+                                    parameter.curr_rate_segment = arrActInf[0].curr_rate_segment || '',
+                                    parameter.account_officer = arrActInf[0].account_officer || '',
+                                    parameter.customer_id = arrActInf[0].customer_id || ''
                                 ExecuteQuery1(TakeCount, function (arrCount) {
                                     if (arrprocesslog[0].clrsysref) {
                                         if (arrCount[0].counts.length == 1) {
@@ -550,8 +565,8 @@ try {
                 //function to check prepaid or credit
                 function checkprepaidorcredit(arrprocesslog) { //for checking prepid or credit card
                     return new Promise((resolve, reject) => {
-                        if (arrprocesslog[0].cdtr_iban) {
-                            Iban = arrprocesslog[0].cdtr_iban.slice(-16)
+                        if (arrprocesslog[0].dbtr_iban) {
+                            Iban = arrprocesslog[0].dbtr_iban.slice(-16)
                             FrmIban = Iban.substring(0, 3)
                             if (FrmIban == '564' || FrmIban == 564) {
                                 resolve(1)
@@ -672,54 +687,112 @@ try {
 
 
 
-                function GetgmMargin(arrprocesslog, reverseAcinfparam,Ipuetr) {
+                // function GetgmMargin(arrprocesslog, reverseAcinfparam, Ipuetr) {
+                //     return new Promise(async (resolve, reject) => {
+                //         if (reverseAcinfparam.currency == '' || reverseAcinfparam.currency == null) {
+                //             resolve('')
+                //         } else {
+                //             if (reverseAcinfparam.currency != 'AED') {
+
+                //                 var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${Ipuetr}' order by npsstpl_id desc`
+                //                 ExecuteQuery1(Takedata, function (arrresponse) {
+
+                //                     var senddata = {}
+                //                     var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                //                     ExecuteQuery1(Takeloccur, function (localcur) {
+                //                         if (localcur.length == 0) {
+                //                             senddata.amount_credited_loc_cur = ''
+
+                //                             if (arrresponse.length == 0) {
+                //                                 senddata.GMRate = '',
+                //                                     senddata.GMMargin = ''
+                //                                 resolve(senddata)
+                //                             } else {
+                //                                 senddata.GMRate = arrresponse[0].exchange_rate,
+                //                                     senddata.GMMargin = arrresponse[0].gm_margin
+                //                                 resolve(senddata)
+                //                             }
+                //                         } else {
+
+                //                             senddata.amount_credited_loc_cur = localcur[0].amount_credited_loc_cur
+                //                             if (arrresponse.length == 0) {
+                //                                 senddata.GMRate = '',
+                //                                     senddata.GMMargin = ''
+                //                                 resolve(senddata)
+                //                             } else {
+                //                                 senddata.GMRate = arrresponse[0].exchange_rate,
+                //                                     senddata.GMMargin = arrresponse[0].gm_margin
+                //                                 resolve(senddata)
+                //                             }
+                //                         }
+
+
+                //                     })
+
+
+
+
+                //                 })
+
+
+                //             } else {
+                //                 resolve('')
+                //             }
+                //         }
+
+
+                //     })
+                // }
+
+
+                function GetgmMargin(arrprocesslog, reverseAcinfparam) {
                     return new Promise(async (resolve, reject) => {
                         if (reverseAcinfparam.currency == '' || reverseAcinfparam.currency == null) {
                             resolve('')
                         } else {
                             if (reverseAcinfparam.currency != 'AED') {
-                               
-                                    var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${Ipuetr}' order by npsstpl_id desc`
-                                    ExecuteQuery1(Takedata, function (arrresponse) {
-    
-                                        var senddata = {}
-                                        var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
-                                        ExecuteQuery1(Takeloccur, function (localcur) {
-                                            if (localcur.length == 0) {
-                                                senddata.amount_credited_loc_cur = ''
-    
-                                                if (arrresponse.length == 0) {
-                                                    senddata.GMRate = '',
-                                                        senddata.GMMargin = ''
-                                                    resolve(senddata)
-                                                } else {
-                                                    senddata.GMRate = arrresponse[0].exchange_rate,
-                                                        senddata.GMMargin = arrresponse[0].gm_margin
-                                                    resolve(senddata)
-                                                }
+
+                                var Takedata = `select exchange_rate,gm_margin from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
+                                ExecuteQuery1(Takedata, function (arrresponse) {
+
+                                    var senddata = {}
+                                    var Takeloccur = `SELECT amount_credited_loc_cur from npss_transactions where npsst_id = '${params.Tran_Id}'`
+                                    ExecuteQuery1(Takeloccur, function (localcur) {
+                                        if (localcur.length == 0) {
+                                            senddata.amount_credited_loc_cur = ''
+
+                                            if (arrresponse.length == 0) {
+                                                senddata.GMRate = '',
+                                                    senddata.GMMargin = ''
+                                                resolve(senddata)
                                             } else {
-    
-                                                senddata.amount_credited_loc_cur = localcur[0].amount_credited_loc_cur
-                                                if (arrresponse.length == 0) {
-                                                    senddata.GMRate = '',
-                                                        senddata.GMMargin = ''
-                                                    resolve(senddata)
-                                                } else {
-                                                    senddata.GMRate = arrresponse[0].exchange_rate,
-                                                        senddata.GMMargin = arrresponse[0].gm_margin
-                                                    resolve(senddata)
-                                                }
+                                                senddata.GMRate = arrresponse[0].exchange_rate,
+                                                    senddata.GMMargin = arrresponse[0].gm_margin
+                                                resolve(senddata)
                                             }
-    
-    
-                                        })
-    
-    
-    
-    
+                                        } else {
+
+                                            senddata.amount_credited_loc_cur = localcur[0].amount_credited_loc_cur
+                                            if (arrresponse.length == 0) {
+                                                senddata.GMRate = '',
+                                                    senddata.GMMargin = ''
+                                                resolve(senddata)
+                                            } else {
+                                                senddata.GMRate = arrresponse[0].exchange_rate,
+                                                    senddata.GMMargin = arrresponse[0].gm_margin
+                                                resolve(senddata)
+                                            }
+                                        }
+
+
                                     })
-                               
-                               
+
+
+
+
+                                })
+
+
                             } else {
                                 resolve('')
                             }
@@ -728,26 +801,29 @@ try {
 
                     })
                 }
-                function GetRefno(arrprocesslog, reverseAcinfparam,Ipuetr) {
-                    return new Promise(async(resolve, reject) => {
+
+
+
+                function GetRefno(arrprocesslog, reverseAcinfparam) {
+                    return new Promise(async (resolve, reject) => {
                         if (reverseAcinfparam.currency == '' || reverseAcinfparam.currency == null) {
                             resolve('')
                         } else {
-                            if (reverseAcinfparam.currency != 'AED') {                         
-                                  
-                                            var Takedelrefno = `select process_ref_no from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${Ipuetr}'`
-                                            ExecuteQuery1(Takedelrefno, function (dealrefno) {
-                                                if (dealrefno.length > 0) {
-                                                    resolve(dealrefno[0].process_ref_no)
-                                                } else {
-                                                    resolve('')
-                                                }
+                            if (reverseAcinfparam.currency != 'AED') {
 
-                                            })
-                                       
-                                    
+                                var Takedelrefno = `select process_ref_no from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
+                                ExecuteQuery1(Takedelrefno, function (dealrefno) {
+                                    if (dealrefno.length > 0) {
+                                        resolve(dealrefno[0].process_ref_no)
+                                    } else {
+                                        resolve('')
+                                    }
 
-                               
+                                })
+
+
+
+
                             } else {
                                 resolve('')
                             }
@@ -783,12 +859,29 @@ try {
                         })
                     })
                 }
+
+                function GetaddInfo(arrprocesslog) {
+                    return new Promise(async (resolve, reject) => {
+                        var tkaddinfo = `select additional_info,fx_resv_text1,fx_resv_text2 from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
+                        ExecuteQuery1(tkaddinfo, function (arrdata) {
+                           
+                                resolve(arrdata)
+                            
+
+                        })
+
+                    })
+                }
+
+
+
+
                 //function to call all api calls(reservefund,prepaid,credit)
-                function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, apicalls, extend_retry_value, takedealRefno, ChecksplRate) {
+                function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, apicalls, extend_retry_value, takedealRefno, ChecksplRate,GetadditionData) {
                     return new Promise((resolve, reject) => {
                         // reserve fund
                         if (apicalls == 0) {
-                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, extend_retry_value, takedealRefno, ChecksplRate, function (result) {
+                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, extend_retry_value, takedealRefno, ChecksplRate,GetadditionData, function (result) {
                                 if (result === "SUCCESS" || result === "Success" || result === "success") {
 
                                     resolve(result)
@@ -1190,6 +1283,8 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
+
 
 
 

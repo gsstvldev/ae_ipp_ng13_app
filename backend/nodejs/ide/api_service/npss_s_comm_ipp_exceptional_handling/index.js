@@ -7,11 +7,12 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    /*  Created By :   Daseen
+      /*  Created By :   Daseen
     Created Date : 06/01/2023
     Modified By : Siva Harish
     Modified Date : 09/01/2023
     Reason for : Handling JSON parse 27/4/2023
+      Modified By :Daseen 03/07/2023 comm_prcs_mesaage
      
     */
     var serviceName = 'NPSS (S) IPP Exceptional Handling';
@@ -49,118 +50,176 @@ app.post('/', function(appRequest, appResponse, next) {
                         var ApitrnId
                         var app_id
                         try {
-                            var takecomg = `select * from core_ns_params where param_name = 'COMM_GROUP' AND process_name = '${params.PROCESS_NAME}' and need_sync = 'Y'`
-                            ExecuteQuery1(takecomg, function (comCatcode) {
-                                if (comCatcode.length) {
-                                    reqAsync.forEachOfSeries(comCatcode, function (comCatcodeObj, i, nextobjctfunc) {
-                                        var CatgoryCode = comCatcodeObj.param_value
-                                        var TakeData = `select i.commmt_code,i.commmg_code,m.status,d.commpd_id,m.commpm_id ,m.attempt_count,i.template_info, m.message from dep_tran.comm_info i inner join comm_process_data d on i.commmg_code=d.commmg_code and d.is_processed='N' and i.commmg_code = '${CatgoryCode}' and i.app_id='${params.appId}' and i.comm_type='kafka' inner join comm_process_message m on i.commmt_code=m.commmt_code and m.type='KAFKA' and m.status='FAILED' and m.message like '%OrigChannelID%' order by commpm_id desc`
-                                        ExecuteQuery1(TakeData, function (insarr) {
-                                            if (insarr.length) {
-                                                var JsonValue = JSON.parse(insarr[0].template_info)
-                                                var temp_info = JsonValue["TEMP_INFO"]
-                                                var partemp = JSON.parse(temp_info)
-                                                var retry_count = partemp["RETRY_COUNT"]
-                                                var arrNoinsert = [];
-
-                                                if (retry_count = insarr[0].attempt_count) {
-
-                                                    var objNoinsert = {};
-                                                    var Value = JSON.parse(insarr[0].message)
-                                                    var data = Value['message']
-                                                    var DataMsgValue = JSON.parse(data)
-                                                    //var MsgValue = JSON.parse(DataMsgValue)
-                                                     var MsgValue
-                                                    try{
-                                                        MsgValue = JSON.parse(DataMsgValue)
-                                                    }catch(error){
-                                                        MsgValue = DataMsgValue
-                                                    }
-
-                                                    objNoinsert.CHANNEL_ID = MsgValue['OrigChannelID'] || '';
-                                                    objNoinsert.AMOUNT = MsgValue['instructedAmount'] || '';
-                                                    objNoinsert.CHANNEL_REF_NO = MsgValue['channelReferenceNo'] || '';
-                                                    objNoinsert.STATUS_CODE = MsgValue['statusCode'] || '';
-                                                    objNoinsert.ORDER_CUST_ACC_NO = MsgValue['orderingCustomerAccount'] || '';
-                                                    objNoinsert.STATUS_DESCRIPTION = MsgValue['statusDesc'] || '';
-                                                    objNoinsert.KAFKA_MESSAGE = insarr[0].message || '';
-                                                    objNoinsert.COMMPD_ID = insarr[0].commpd_id || '';
-                                                    objNoinsert.COMMPM_ID = insarr[0].commpm_id || '';
-                                                    objNoinsert.TENANT_ID = params.TENANT_ID || '';
-                                                    objNoinsert.APP_ID = params.appId || '';
-                                                    objNoinsert.STATUS = 'Created'
-                                                    objNoinsert.PROCESS_STATUS = 'Created'
-                                                    objNoinsert.DT_CODE = 'DT_1304_1665901130705'
-                                                    objNoinsert.DTT_CODE = 'DTT_1304_1672928670076'
-                                                    objNoinsert.DT_DESCRIPTION = 'transaction_group'
-                                                    objNoinsert.DTT_DESCRIPTION = 'Transaction'
-                                                    objNoinsert.CREATED_BY = params.CREATED_BY;
-                                                    objNoinsert.CREATED_BY_NAME = params.CREATED_BY_NAME;
-                                                    objNoinsert.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                                                    objNoinsert.MODIFIED_BY = "";
-                                                    objNoinsert.MODIFIED_BY_NAME = "";
-                                                    objNoinsert.MODIFIED_DATE = null;
-                                                    objNoinsert.SYSTEM_ID = params.SYSTEM_ID;
-                                                    objNoinsert.SYSTEM_NAME = params.SYSTEM_NAME;
-                                                    objNoinsert.CREATED_BY_STS_ID = "";
-                                                    objNoinsert.MODIFIED_BY_STS_ID = "";
-                                                    objNoinsert.PRCT_ID = PRCT_ID;
-                                                    objNoinsert.created_clientip = objSessionLogInfo.CLIENTIP;
-                                                    objNoinsert.created_tz = objSessionLogInfo.CLIENTTZ;
-                                                    objNoinsert.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
-                                                    objNoinsert.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
-                                                    objNoinsert.created_by_sessionid = objSessionLogInfo.SESSION_ID;
-                                                    objNoinsert.routingkey = headers.routingkey;
-                                                    arrNoinsert.push(objNoinsert);
-
-                                                }
+                            /*  var takecomg = `select * from core_ns_params where param_name = 'COMM_GROUP' AND process_name = '${params.PROCESS_NAME}' and need_sync = 'Y'`
+                             ExecuteQuery1(takecomg, function (comCatcode) {
+                                 if (comCatcode.length) {
+                                     reqAsync.forEachOfSeries(comCatcode, function (comCatcodeObj, i, nextobjctfunc) {
+                                         var CatgoryCode = comCatcodeObj.param_value */
+                            var TakeData = `SELECT m.commpm_id,m.message FROM ad_gss_tran.comm_process_message m  WHERE m.STATUS='RETRY_COUNT_EXCEEDED' AND m.type='KAFKA' and m.message  like '%OrigChannelID%' order by commpm_id desc`
+                            ExecuteQuery1(TakeData,async function (insarr) {
+                                if (insarr.length) {
+                                    let updtRes = await doCommprsMsgupdate(TakeData,'RETRY_COUNT_EXCEEDED')
+                                    /* var JsonValue = JSON.parse(insarr[0].template_info)
+                                    var temp_info = JsonValue["TEMP_INFO"]
+                                    var partemp = JSON.parse(temp_info)
+                                    var retry_count = partemp["RETRY_COUNT"]*/
+                                    var arrNoinsert = [];
 
 
+                                    for (let i = 0; i < insarr.length; i++) {
+                                        var objNoinsert = {};
 
-                                                _BulkInsertProcessItem(arrNoinsert, 'npss_notification_logs', function callbackInsert(CusTranInsertRes) {
-                                                    if (CusTranInsertRes.length > 0) {
-                                                        reqInstanceHelper.PrintInfo(serviceName, "........................Inserted Data..............." + CusTranInsertRes[0].npssnl_id, objSessionLogInfo);
-                                                        console.log("........................ Inserted Data..............." + CusTranInsertRes[0].npssnl_id)
-                                                        nextobjctfunc()
-                                                    } else {
+                                      
+                                        var Value = JSON.parse(insarr[i].message)
+                                        var data = Value['message']
+                                       // var MsgValue =await stringtoobject(data)
+                                        var DataMsgValue = JSON.parse(data)
+                                      //  var MsgValue = JSON.parse(DataMsgValue)
+                                        var MsgValue
+                                        try {
+                                            MsgValue = JSON.parse(DataMsgValue)
+                                        } catch (error) {
+                                            MsgValue = DataMsgValue
+                                        } 
 
-                                                        nextobjctfunc()
-                                                    }
+                                        objNoinsert.CHANNEL_ID = MsgValue['OrigChannelID'] || '';
+                                        objNoinsert.AMOUNT = MsgValue['instructedAmount'] || '';
+                                        objNoinsert.CHANNEL_REF_NO = MsgValue['channelReferenceNo'] || '';
+                                        objNoinsert.STATUS_CODE = MsgValue['statusCode'] || '';
+                                        objNoinsert.ORDER_CUST_ACC_NO = MsgValue['orderingCustomerAccount'] || '';
+                                        objNoinsert.STATUS_DESCRIPTION = MsgValue['statusDesc'] || '';
+                                        objNoinsert.KAFKA_MESSAGE = JSON.parse(insarr[i].message )|| '';
+                                        //objNoinsert.COMMPD_ID = insarr[i].commpd_id || '';
+                                        objNoinsert.COMMPM_ID = insarr[i].commpm_id || '';
+                                        objNoinsert.TENANT_ID = params.TENANT_ID || '';
+                                        objNoinsert.APP_ID = params.appId || '';
+                                        objNoinsert.STATUS = 'Created'
+                                        objNoinsert.PROCESS_STATUS = 'Created'
+                                        objNoinsert.DT_CODE = 'DT_1304_1665901130705'
+                                        objNoinsert.DTT_CODE = 'DTT_1304_1672928670076'
+                                        objNoinsert.DT_DESCRIPTION = 'transaction_group'
+                                        objNoinsert.DTT_DESCRIPTION = 'Transaction'
+                                        objNoinsert.CREATED_BY = params.CREATED_BY;
+                                        objNoinsert.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                        objNoinsert.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                        objNoinsert.MODIFIED_BY = "";
+                                        objNoinsert.MODIFIED_BY_NAME = "";
+                                        objNoinsert.MODIFIED_DATE = null;
+                                        objNoinsert.SYSTEM_ID = params.SYSTEM_ID;
+                                        objNoinsert.SYSTEM_NAME = params.SYSTEM_NAME;
+                                        objNoinsert.CREATED_BY_STS_ID = "";
+                                        objNoinsert.MODIFIED_BY_STS_ID = "";
+                                        objNoinsert.PRCT_ID = PRCT_ID;
+                                        objNoinsert.created_clientip = objSessionLogInfo.CLIENTIP;
+                                        objNoinsert.created_tz = objSessionLogInfo.CLIENTTZ;
+                                        objNoinsert.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                        objNoinsert.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                        objNoinsert.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                        objNoinsert.routingkey = headers.routingkey;
+                                        arrNoinsert.push(objNoinsert);
+                                    }
 
-                                                })
 
 
-                                            } else {
 
-                                                reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND in communication table...............", objSessionLogInfo);
-                                                console.log("........................ NO Data FOUND in communication table...............")
-                                                nextobjctfunc()
+
+
+                                    _BulkInsertProcessItem(arrNoinsert, 'npss_notification_logs', async function callbackInsert(CusTranInsertRes) {
+                                        if (CusTranInsertRes.length > 0) {
+                                            let updtRes = await doCommprsMsgupdate(CusTranInsertRes,'')
+                                            if (updtRes == 'SUCCESS') {
+                                                reqInstanceHelper.PrintInfo(serviceName, "........................ All Data Inserted successfully...............", objSessionLogInfo);
+                                                objresponse.status = 'SUCCESS'
+                                                sendResponse(null, objresponse)
+                                            }else{
+                                                reqInstanceHelper.PrintInfo(serviceName, "........................ Update Failed...............", objSessionLogInfo);
+                                                objresponse.status = 'FAILURE'
+                                                sendResponse(null, objresponse)
                                             }
-                                        })
-                                    }, function () {
-                                        reqInstanceHelper.PrintInfo(serviceName, "........................ Process Completed...............", objSessionLogInfo);
-                                        console.log("........................ Process Completed...............")
-                                        objresponse.status = 'SUCCESS'
-                                        sendResponse(null,objresponse)
+
+
+                                        } else {
+
+                                            reqInstanceHelper.PrintInfo(serviceName, "........................ Error  in insert ..............", objSessionLogInfo);
+                                            objresponse.status = 'FAILURE'
+                                            sendResponse(null, objresponse)
+                                        }
+
                                     })
 
 
+                                } else {
 
-
-
-                                }
-                                else {
-                                    reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND in Params table...............", objSessionLogInfo);
-                                    console.log("........................ NO Data FOUND in Params table...............")
-                                    objresponse.status = 'SUCCESS';
-                                    objresponse.msg = 'No data Found in Params table';
+                                    reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND in communication table...............", objSessionLogInfo);
+                                    console.log("........................ NO Data FOUND in communication table...............")
+                                    objresponse.status = 'FAILURE'
                                     sendResponse(null, objresponse)
                                 }
                             })
 
+                            function stringtoobject(arr)
+                            {
+                                return new Promise((resolve, reject) => {
+                                   
+                                    if(typeof (arr)=='string'){
+                                         arr=JSON.parse(arr)
+                                        stringtoobject(arr.message)
+                                    }else{
+                                       resolve(arr)
+                                    }
+                                })
 
+                            }
+                            function arraytostr(arrstr) {
+                                return new Promise((resolve, reject) => {
+                                    if (Array.isArray(arrstr)) {
+                                        arrTranstr = arrstr.map(function (eachTran) { return eachTran.commpm_id.toString(); });
+                                    }
+                                    else {
+                                        arrTranstr = [arrstr.toString()];
+                                    }
+                                    resolve(retstr = '(' + "'" + arrTranstr.toString().split(',').join("','") + "'" + ')');
+                                })
 
+                            }
+                            function doCommprsMsgupdate(arr, type) {
+                                return new Promise(async(resolve, reject) => {
+                                    var updtQry;
+                                    if (type == 'RETRY_COUNT_EXCEEDED') {
+                                        updtQry = `update ad_gss_tran.comm_process_message set status='${type}_INPROGRESS' , modified_by = '${params.CREATED_BY}',modified_date = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',modified_by_name ='${params.CREATED_BY_NAME}',prct_id ='${PRCT_ID}', modified_clientip = '${objSessionLogInfo.CLIENTIP}', modified_tz = '${objSessionLogInfo.CLIENTTZ}', modified_tz_offset = '${objSessionLogInfo.CLIENTTZ_OFFSET}', modified_by_sessionid = '${objSessionLogInfo.SESSION_ID}', modified_date_utc = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where status='${type}' `
 
+                                    } else {
+                                        var comsg_id = await arraytostr(arr);
+                                        updtQry = `update ad_gss_tran.comm_process_message set status='ALREADY_TAKEN' , modified_by = '${params.CREATED_BY}',modified_date = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',modified_by_name ='${params.CREATED_BY_NAME}',prct_id ='${PRCT_ID}', modified_clientip = '${objSessionLogInfo.CLIENTIP}', modified_tz = '${objSessionLogInfo.CLIENTTZ}', modified_tz_offset = '${objSessionLogInfo.CLIENTTZ_OFFSET}', modified_by_sessionid = '${objSessionLogInfo.SESSION_ID}', modified_date_utc = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where commpm_id in ${comsg_id} `
+                                    }
+                                    ExecuteQuery(updtQry, function (result) {
+                                        if (result == 'SUCCESS') {
+                                            reqInstanceHelper.PrintInfo(serviceName, '--------Success in  Transaction update for tran-----' + params.vpht_id, objSessionLogInfo);
+                                            resolve('SUCCESS')
+                                        }
+                                        else {
+                                            reqInstanceHelper.PrintInfo(serviceName, '--------Failure in  Transaction update for tran-----' + params.vpht_id, objSessionLogInfo);
+                                            resolve('FAILURE')
+                                        }
+
+                                    })
+                                })
+
+                            }
+                            function ExecuteQuery(query, callback) {
+                                reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
+                                    try {
+                                        if (error) {
+                                            sendResponse(error)
+                                        } else {
+                                            callback("SUCCESS");
+    
+                                        }
+                                    } catch (error) {
+                                        sendResponse(error)
+                                    }
+                                });
+                            }
                             function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
                                 try {
                                     reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
@@ -253,18 +312,6 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });

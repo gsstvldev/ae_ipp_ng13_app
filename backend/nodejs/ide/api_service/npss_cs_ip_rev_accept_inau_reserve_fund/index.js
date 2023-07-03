@@ -556,7 +556,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                         "process": "",
                                         "remittance_information": arrprocesslog[0].remittance_info || '',
-                                        "reversal_id": reverseAcinfparam.reverseId
+                                        "reversal_id": reverseAcinfparam.reverseId,
+                                         "need_manual_initiation":"N"
                                     },
                                     "AccountInformation": {
                                         "account_number": reverseAcinfparam.account_number || '',

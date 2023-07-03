@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30461 
+Build ID        : 30684 
 Modified By     : Admin 
-Modified Date   : 2023-Jun-26 5:12 AM 
+Modified Date   : 2023-Jul-03 6:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -653,6 +653,8 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.page_load__de_for_initiate()
 		this.page_load__e_1681970961613()
 		this.page_load__he_for_sell_rate_ui()
+		this.page_load__e_1688364440874()
+		this.page_load__e_1688364501971()
 	}
 
 	//Handler for INTERNAL event of "cf for routing key"
@@ -784,8 +786,6 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_initiate__e_1681467635518__payment_processing_details_ui()
 		this.navigation_ui_initiate__e_1681467714443__payment_processing_details_ui()
 		this.navigation_ui_initiate__e_1685338706847__payment_processing_details_ui()
-		this.navigation_ui_initiate__e_1685340136100__get_deal_ui()
-		this.navigation_ui_initiate__e_1685340143283__get_deal_ui()
 	}
 
 	//Handler for INTERNAL event of "brfq for fab ppd"
@@ -1062,6 +1062,48 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1683023072196"
 		let event_params={"caller_name":"page_load__he_for_sell_rate_ui","event_desc":"HE For Sell Rate UI","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1688364440874() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="payment_processing_details_ui_get_deal"
+		let parent_source_id=""
+		let event_code="e_1688364440874"
+		let event_params={"caller_name":"page_load__e_1688364440874","event_desc":"E_1688364440874","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1688364501971() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="get_deal_ui"
+		let parent_source_id=""
+		let event_code="e_1688364501971"
+		let event_params={"caller_name":"page_load__e_1688364501971","event_desc":"E_1688364501971","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -2026,48 +2068,6 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1685338706847"
 		let event_params={"destn_comp_id":"payment_processing_details_ui","destn_ctrl_id":"buy_margin","caller_name":"navigation_ui_initiate__e_1685338706847__payment_processing_details_ui","event_desc":"E_1685338706847","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{}}
-		let handler_code="disable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui initiate"
-	navigation_ui_initiate__e_1685340136100__get_deal_ui() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_initiate"
-		let destn_id="npss_mi_get_deal_ui_memory58"
-		let parent_source_id=""
-		let event_code="e_1685340136100"
-		let event_params={"destn_comp_id":"get_deal_ui","destn_ctrl_id":"memory58","caller_name":"navigation_ui_initiate__e_1685340136100__get_deal_ui","event_desc":"E_1685340136100","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{}}
-		let handler_code="disable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui initiate"
-	navigation_ui_initiate__e_1685340143283__get_deal_ui() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_initiate"
-		let destn_id="npss_mi_get_deal_ui_memory59"
-		let parent_source_id=""
-		let event_code="e_1685340143283"
-		let event_params={"destn_comp_id":"get_deal_ui","destn_ctrl_id":"memory59","caller_name":"navigation_ui_initiate__e_1685340143283__get_deal_ui","event_desc":"E_1685340143283","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}

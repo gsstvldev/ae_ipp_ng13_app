@@ -414,10 +414,10 @@ try {
 
                         if (reverandRefno.currency != 'AED') {
                             if (GetsellRate != 'Take GMrate') {
-                                if (arrprocesslog[0].buy_margin != 0) {
+                                if (arrprocesslog[0].buy_margin != 0 && arrprocesslog[0].buy_margin != null) {
                                     options.json.payload.buy_margin = arrprocesslog[0].buy_margin || ''
                                 }
-                                if (arrprocesslog[0].buy_rate != 0) {
+                                if (arrprocesslog[0].buy_rate != 0 && arrprocesslog[0].buy_rate != null) {
                                     options.json.payload.buy_rate = arrprocesslog[0].buy_rate || ''
                                 }
 

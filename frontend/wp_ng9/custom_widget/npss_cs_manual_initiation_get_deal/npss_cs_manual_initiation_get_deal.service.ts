@@ -82,45 +82,45 @@ CallUrlWithData(ClientParams, screenInstance, internals) {
             .subscribe((res: any) => {
                 if (res.data.status == 'SUCCESS') {
                     if (res.data.CustRate == 'YES') {
-                        var Controls = screenInstance['payment_processing_details_ui'].f_npss_manual_initiation_ui.model;
-                        Controls.BUY_RATE = res.data.data.buy_rate
-                        Controls.BUY_MARGIN = res.data.data.buy_margin
-                        this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
+                        var Controls = screenInstance['verify_get_deal_ui'].f_npss_verification_get_deal_ui.model;
+                        Controls.memory59 = res.data.data.buy_rate
+                        Controls.memory58 = res.data.data.buy_margin
+                         this.dialogHelper.ShowInfoDialog('Get Deal Is Valid for 160 seconds');
                     }else{
                         var dat =res.data.data;
                         var dat1 =dat.replace(/(\n)/g,"")
                      var response =JSON.parse(dat1)
-                     var ctrlscope= screenInstance['get_deal_ui'].f_npss_mi_get_deal_ui.model;
+                     var ctrlscope= screenInstance['verify_get_deal_ui'].f_npss_verification_get_deal_ui.model;
                      ctrlscope.BUY_CURRENCY = response.buy_currency
                      ctrlscope.SELL_CURRENCY = response.sell_currency
                     
                      ctrlscope.DEALT_AMOUNT = response.dealt_amount
                      ctrlscope.CONTRA_AMOUNT = response.contra_amount
                      
-                     var Ctrlscope1 = screenInstance['payment_processing_details_ui'].f_npss_manual_initiation_ui.model
-                      Ctrlscope1.BUY_RATE = response.GMRate
-                      Ctrlscope1.BUY_MARGIN = response.GMMargin
-                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
+                     var Ctrlscope1 = screenInstance['verify_get_deal_ui'].f_npss_verification_get_deal_ui.model
+                      Ctrlscope1.memory59 = response.GMRate
+                      Ctrlscope1.memory58 = response.GMMargin
+                     this.dialogHelper.ShowInfoDialog('Get Deal Is Valid for 160 seconds');
                     }
                    
                 }
                
                 else {
                     if (res.data.CustRate == 'YES') {
-                        var Controls = screenInstance['payment_processing_details_ui'].f_npss_manual_initiation_ui.model;
-                        Controls.BUY_RATE = ''
-                        Controls.BUY_MARGIN = ''
+                        var Controls = screenInstance['verify_get_deal_ui'].f_npss_verification_get_deal_ui.model
+                        Controls.memory59 = ''
+                        Controls.memory58 = ''
                          this.dialogHelper.ShowErrorDialog(res.data.status)
 
                     } else{
-                        var ctrlscope= screenInstance['get_deal_ui'].f_npss_mi_get_deal_ui.model;
+                        var ctrlscope= screenInstance['verify_get_deal_ui'].f_npss_verification_get_deal_ui.model;
                         ctrlscope.BUY_CURRENCY = ''
                         ctrlscope.SELL_CURRENCY = ''
                         ctrlscope.DEALT_AMOUNT = ''
                         ctrlscope.CONTRA_AMOUNT = ''
-                        var Ctrlscope1 = screenInstance['payment_processing_details_ui'].f_npss_manual_initiation_ui.model
-                         Ctrlscope1.BUY_RATE = ''
-                          Ctrlscope1.BUY_MARGIN = ''
+                        var Ctrlscope1 = screenInstance['verify_get_deal_ui'].f_npss_verification_get_deal_ui.model
+                         Ctrlscope1.memory59 = ''
+                          Ctrlscope1.memory58 = ''
                             this.dialogHelper.ShowErrorDialog(res.data.status)
                     }
                  

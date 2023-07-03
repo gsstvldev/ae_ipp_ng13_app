@@ -6,27 +6,27 @@ Modified By     : Admin
 Modified Date   : 2023-Jul-03 6:9 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
-Screen Name     : s_rct_manual_initiation
-Form Name       : NPSS MI Get Deal UI--------------------------------------------------------------------------- */
+Screen Name     : s_rct_manual_verification
+Form Name       : NPSS Verification Get Deal UI--------------------------------------------------------------------------- */
 
 // Component Definition 
 import { Component, OnInit,Input,ViewChild,EventEmitter,ElementRef } from '@angular/core';
 import {ComponenthelperService} from '../../../../scripts/fx/componenthelper.service';
 @Component({
-  selector: 'f_npss_mi_get_deal_ui',
-  templateUrl: './f_npss_mi_get_deal_ui.component.html',
-  styleUrls: ['./f_npss_mi_get_deal_ui.component.css'],
+  selector: 'f_npss_verification_get_deal_ui',
+  templateUrl: './f_npss_verification_get_deal_ui.component.html',
+  styleUrls: ['./f_npss_verification_get_deal_ui.component.css'],
   providers:[ComponenthelperService]
 })
 
 // Start of class 
-export class f_npss_mi_get_deal_uiComponent implements OnInit {
+export class f_npss_verification_get_deal_uiComponent implements OnInit {
   @Input() screen_instance: any;
   @Input() comp_id: any; 
   hasHeader:boolean;
   component_header:string;
-  @ViewChild('f_npss_mi_get_deal_ui') form;
-  @ViewChild('npss_mi_get_deal_ui_buy_currency') element: ElementRef;
+  @ViewChild('f_npss_verification_get_deal_ui') form;
+  @ViewChild('npss_verification_get_deal_ui_buy_currency') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -50,7 +50,7 @@ focustoelement(){
   
 		//Properties of buy_currency
 		this.ctrl.buy_currency = {}
-		this.ctrl.buy_currency.id = "8f2fe708-9d1e-4ccd-a680-653d9ca5c737_1678864936033"
+		this.ctrl.buy_currency.id = "RN01CN1"
 		this.ctrl.buy_currency.desc = "Buy Currency"
 		this.ctrl.buy_currency.visible = true
 		this.ctrl.buy_currency.label_name = "Buy Currency"
@@ -81,14 +81,14 @@ focustoelement(){
 		this.ctrl.buy_currency.vld_rules = []
 		this.ctrl.buy_currency.targetcolumn_lower = "buy_currency"
 		this.ctrl.buy_currency.disabled = false
-		this.ctrl.buy_currency.view_name = "f_npss_mi_get_deal_ui"
-		this.ctrl.buy_currency.ctrl_id = "npss_mi_get_deal_ui_buy_currency"
-		this.ctrl.npss_mi_get_deal_ui_buy_currency = {}
-		this.ctrl.npss_mi_get_deal_ui_buy_currency.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.buy_currency.view_name = "f_npss_verification_get_deal_ui"
+		this.ctrl.buy_currency.ctrl_id = "npss_verification_get_deal_ui_buy_currency"
+		this.ctrl.npss_verification_get_deal_ui_buy_currency = {}
+		this.ctrl.npss_verification_get_deal_ui_buy_currency.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of sell_currency
 		this.ctrl.sell_currency = {}
-		this.ctrl.sell_currency.id = "2a59a568-36f1-439a-b217-bf57e3d886b0_1678864936033"
+		this.ctrl.sell_currency.id = "RN01CN2"
 		this.ctrl.sell_currency.desc = "Sell Currency"
 		this.ctrl.sell_currency.visible = true
 		this.ctrl.sell_currency.label_name = "Sell Currency"
@@ -119,14 +119,14 @@ focustoelement(){
 		this.ctrl.sell_currency.vld_rules = []
 		this.ctrl.sell_currency.targetcolumn_lower = "sell_currency"
 		this.ctrl.sell_currency.disabled = false
-		this.ctrl.sell_currency.view_name = "f_npss_mi_get_deal_ui"
-		this.ctrl.sell_currency.ctrl_id = "npss_mi_get_deal_ui_sell_currency"
-		this.ctrl.npss_mi_get_deal_ui_sell_currency = {}
-		this.ctrl.npss_mi_get_deal_ui_sell_currency.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.sell_currency.view_name = "f_npss_verification_get_deal_ui"
+		this.ctrl.sell_currency.ctrl_id = "npss_verification_get_deal_ui_sell_currency"
+		this.ctrl.npss_verification_get_deal_ui_sell_currency = {}
+		this.ctrl.npss_verification_get_deal_ui_sell_currency.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of contra_amount
 		this.ctrl.contra_amount = {}
-		this.ctrl.contra_amount.id = "a224cb3e-7e4d-4b34-ad18-353b7539d631_1678864936033"
+		this.ctrl.contra_amount.id = "RN01CN3"
 		this.ctrl.contra_amount.desc = "Contra Amount"
 		this.ctrl.contra_amount.visible = true
 		this.ctrl.contra_amount.label_name = "Contra Amount"
@@ -157,14 +157,14 @@ focustoelement(){
 		this.ctrl.contra_amount.vld_rules = []
 		this.ctrl.contra_amount.targetcolumn_lower = "contra_amount"
 		this.ctrl.contra_amount.disabled = false
-		this.ctrl.contra_amount.view_name = "f_npss_mi_get_deal_ui"
-		this.ctrl.contra_amount.ctrl_id = "npss_mi_get_deal_ui_contra_amount"
-		this.ctrl.npss_mi_get_deal_ui_contra_amount = {}
-		this.ctrl.npss_mi_get_deal_ui_contra_amount.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.contra_amount.view_name = "f_npss_verification_get_deal_ui"
+		this.ctrl.contra_amount.ctrl_id = "npss_verification_get_deal_ui_contra_amount"
+		this.ctrl.npss_verification_get_deal_ui_contra_amount = {}
+		this.ctrl.npss_verification_get_deal_ui_contra_amount.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of dealt_amount
 		this.ctrl.dealt_amount = {}
-		this.ctrl.dealt_amount.id = "a3a47179-a615-48e6-a6bf-2f5b862ef830_1678864936033"
+		this.ctrl.dealt_amount.id = "RN01CN4"
 		this.ctrl.dealt_amount.desc = "Dealt Amount"
 		this.ctrl.dealt_amount.visible = true
 		this.ctrl.dealt_amount.label_name = "Dealt Amount"
@@ -195,14 +195,14 @@ focustoelement(){
 		this.ctrl.dealt_amount.vld_rules = []
 		this.ctrl.dealt_amount.targetcolumn_lower = "dealt_amount"
 		this.ctrl.dealt_amount.disabled = false
-		this.ctrl.dealt_amount.view_name = "f_npss_mi_get_deal_ui"
-		this.ctrl.dealt_amount.ctrl_id = "npss_mi_get_deal_ui_dealt_amount"
-		this.ctrl.npss_mi_get_deal_ui_dealt_amount = {}
-		this.ctrl.npss_mi_get_deal_ui_dealt_amount.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.dealt_amount.view_name = "f_npss_verification_get_deal_ui"
+		this.ctrl.dealt_amount.ctrl_id = "npss_verification_get_deal_ui_dealt_amount"
+		this.ctrl.npss_verification_get_deal_ui_dealt_amount = {}
+		this.ctrl.npss_verification_get_deal_ui_dealt_amount.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory58
 		this.ctrl.memory58 = {}
-		this.ctrl.memory58.id = "r0CN5"
+		this.ctrl.memory58.id = "RN01CN5"
 		this.ctrl.memory58.desc = "Buy Spread"
 		this.ctrl.memory58.visible = true
 		this.ctrl.memory58.label_name = "Buy Spread"
@@ -233,14 +233,14 @@ focustoelement(){
 		this.ctrl.memory58.vld_rules = []
 		this.ctrl.memory58.targetcolumn_lower = "memory58"
 		this.ctrl.memory58.disabled = false
-		this.ctrl.memory58.view_name = "f_npss_mi_get_deal_ui"
-		this.ctrl.memory58.ctrl_id = "npss_mi_get_deal_ui_memory58"
-		this.ctrl.npss_mi_get_deal_ui_memory58 = {}
-		this.ctrl.npss_mi_get_deal_ui_memory58.onChangecomponent = new EventEmitter<any>()
+		this.ctrl.memory58.view_name = "f_npss_verification_get_deal_ui"
+		this.ctrl.memory58.ctrl_id = "npss_verification_get_deal_ui_memory58"
+		this.ctrl.npss_verification_get_deal_ui_memory58 = {}
+		this.ctrl.npss_verification_get_deal_ui_memory58.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory59
 		this.ctrl.memory59 = {}
-		this.ctrl.memory59.id = "r0CN6"
+		this.ctrl.memory59.id = "RN01CN6"
 		this.ctrl.memory59.desc = "Buy Rate"
 		this.ctrl.memory59.visible = true
 		this.ctrl.memory59.label_name = "Buy Rate"
@@ -271,15 +271,15 @@ focustoelement(){
 		this.ctrl.memory59.vld_rules = []
 		this.ctrl.memory59.targetcolumn_lower = "memory59"
 		this.ctrl.memory59.disabled = false
-		this.ctrl.memory59.view_name = "f_npss_mi_get_deal_ui"
-		this.ctrl.memory59.ctrl_id = "npss_mi_get_deal_ui_memory59"
-		this.ctrl.npss_mi_get_deal_ui_memory59 = {}
-		this.ctrl.npss_mi_get_deal_ui_memory59.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_mi_get_deal_ui.model = {"BUY_CURRENCY":"","SELL_CURRENCY":"","CONTRA_AMOUNT":"","DEALT_AMOUNT":"","MEMORY58":"","MEMORY59":""}
-		this.screen_instance[this.comp_id].f_npss_mi_get_deal_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BUY_CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SELL_CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CONTRA_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"DEALT_AMOUNT"}]
-		this.screen_instance[this.comp_id].f_npss_mi_get_deal_ui.dt_code = "dt_1304_1665901130705"
-		this.screen_instance[this.comp_id].f_npss_mi_get_deal_ui.dtt_code = "dtt_1304_1665905039255"
-		this.screen_instance[this.comp_id].f_npss_mi_get_deal_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
+		this.ctrl.memory59.view_name = "f_npss_verification_get_deal_ui"
+		this.ctrl.memory59.ctrl_id = "npss_verification_get_deal_ui_memory59"
+		this.ctrl.npss_verification_get_deal_ui_memory59 = {}
+		this.ctrl.npss_verification_get_deal_ui_memory59.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_verification_get_deal_ui.model = {"BUY_CURRENCY":"","SELL_CURRENCY":"","CONTRA_AMOUNT":"","DEALT_AMOUNT":"","MEMORY58":"","MEMORY59":""}
+		this.screen_instance[this.comp_id].f_npss_verification_get_deal_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"BUY_CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SELL_CURRENCY"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CONTRA_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"DEALT_AMOUNT"}]
+		this.screen_instance[this.comp_id].f_npss_verification_get_deal_ui.dt_code = "dt_1304_1665901130705"
+		this.screen_instance[this.comp_id].f_npss_verification_get_deal_ui.dtt_code = "dtt_1304_1665905039255"
+		this.screen_instance[this.comp_id].f_npss_verification_get_deal_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl
 	
     try {
       this.profile_name = this.element_profile.nativeElement.getAttribute("profile_name");
@@ -326,10 +326,10 @@ focustoelement(){
   }
 
   formControlHidden(control,property,value) {
-    if(this.screen_instance[this.comp_id].f_npss_mi_get_deal_ui[control]==undefined) {
-      this.screen_instance[this.comp_id].f_npss_mi_get_deal_ui[control] = {}
+    if(this.screen_instance[this.comp_id].f_npss_verification_get_deal_ui[control]==undefined) {
+      this.screen_instance[this.comp_id].f_npss_verification_get_deal_ui[control] = {}
     }
-    this.screen_instance[this.comp_id].f_npss_mi_get_deal_ui[control][property] = value;
+    this.screen_instance[this.comp_id].f_npss_verification_get_deal_ui[control][property] = value;
   }
 
   handlechangecomponentevent(event) {

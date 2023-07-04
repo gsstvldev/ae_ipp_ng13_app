@@ -7,7 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-      /*  Created By :   Daseen
+      /*  Created By : Daseen
     Created Date : 06/01/2023
     Modified By : Siva Harish
     Modified Date : 09/01/2023
@@ -55,7 +55,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                  if (comCatcode.length) {
                                      reqAsync.forEachOfSeries(comCatcode, function (comCatcodeObj, i, nextobjctfunc) {
                                          var CatgoryCode = comCatcodeObj.param_value */
-                            var TakeData = `SELECT m.commpm_id,m.message FROM ad_gss_tran.comm_process_message m  WHERE m.STATUS='RETRY_COUNT_EXCEEDED' AND m.type='KAFKA' and m.message  like '%OrigChannelID%' order by commpm_id desc`
+                            var TakeData = `SELECT m.commpm_id,m.message FROM ad_gss_tran.comm_process_message m  WHERE m.STATUS in ('RETRY_COUNT_EXCEEDED','SAME_BUSINESS_DAY_EXCEEDED') AND m.type='KAFKA' and m.message  like '%OrigChannelID%' order by commpm_id desc`
                             ExecuteQuery1(TakeData,async function (insarr) {
                                 if (insarr.length) {
                                     let updtRes = await doCommprsMsgupdate(TakeData,'RETRY_COUNT_EXCEEDED')

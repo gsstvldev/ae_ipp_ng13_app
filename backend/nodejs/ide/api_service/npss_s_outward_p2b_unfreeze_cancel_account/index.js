@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
 
+
     /*  Created By :Daseen
     Created Date :23/02/2023
     Modified By : 
@@ -16,6 +17,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified Date : 22/06/2023
     Modified Date : 27/06/2023
      Modified Date : 3/07/2023
+     Modified Date : 4/07/2023 Handled zero hours  by daseen
     }
     */
     var serviceName = 'NPSS(S) P2B UNFREEZE the Cancel Account';
@@ -82,122 +84,129 @@ app.post('/', function(appRequest, appResponse, next) {
                         takehour = `select * from Core_nc_system_setup where param_category='${params.param_category}' and param_code='${params.param_code}' and need_sync = 'Y'`
                         ExecuteQuery1(takehour, function (arrhour) {
                             if (arrhour.length > 0) {
-                                var utcMoment = moment.utc();
-                                var Formdate = utcMoment.subtract(arrhour[0].param_detail, 'hours')
-                                Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss')
-                                // takepayver = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,* from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  additional_info not in  ${additional_info1} and created_date_utc < '${Formdate}' and org_status <> 'UNFREEZE_TAKEN'`
-                                var taketrnId = `select npsstpl_id from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  (additional_info not in  ${additional_info1} or additional_info isnull) and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
-                                var takepayver = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,* from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  (additional_info not in  ${additional_info1} or additional_info isnull) and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
-                                ExecuteQuery1(takepayver, async function (arrpayver) {
-                                    if (arrpayver.length > 0) {
-                                        var updateTable = await UpdateTran(taketrnId, PRCT_ID)
-                                        if (updateTable == 'SUCCESS') {
-                                            reqAsync.forEachOfSeries(arrpayver, function (arrpayverobj, i, nextobjctfunc) {
-                                                if (arrpayverobj.npsstrrd_refno) {
-                                                    let chkprcname = `select * from npss_trn_process_log where uetr = '${arrpayverobj.uetr}' and process_name = 'SctInitiation'`
-                                                    ExecuteQuery1(chkprcname, function (arrvalue) {
-                                                        if (arrvalue.length > 0) {
-                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------Not a eligible tran-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
-                                                            
-                                                            nextobjctfunc()
-                                                        } else {
-                                                            takefundauth = `select npsstpl_id, * from npss_trn_process_log where status in ${status2} and process_name in ${process_name2} and npsstrrd_refno='${arrpayverobj.npsstrrd_refno}'`
-                                                            ExecuteQuery1(takefundauth, async function (arrfundauth) {
-                                                                if (arrfundauth.length > 0) {
-                                                                    reqInstanceHelper.PrintInfo(serviceName, '-----------Not a eligible tran-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
-                                                                    var fail = {}
-                                                                    fail.failid = arrpayverobj.npsstpl_id
-                                                                    failedData.push(fail)
-                                                                    nextobjctfunc()
-                                                                }
-                                                                else {
-                                                                    console.log('Eligible for api call');
-                                                                    var check = `select * from npss_trn_process_log where status = 'OP_P2B_FUND_UNFREEZED' and npsstrrd_refno='${arrpayverobj.npsstrrd_refno}'`
-                                                                    ExecuteQuery1(check, async function (checkdata) {
-                                                                        if (checkdata.length == 0) {
-                                                                            var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL' and need_sync = 'Y'`
-                                                                            ExecuteQuery1(Takekafkaurl, async function (arrurl) {
-                                                                                if (arrurl.length) {
+                                if (arrhour[0].param_detail == '000' || arrhour[0].param_detail == '00' || arrhour[0].param_detail == '0' || arrhour[0].param_detail == 0) {
+                                    reqInstanceHelper.PrintInfo(serviceName, '---------- Core_nc_system_setup Param Detail value is zero ,so unfreeze api called------', objSessionLogInfo);
+                                    objresponse.status = 'FAILURE';
+                                    objresponse.msg = 'Core_nc_system_setup - Param Detail value is Zero';
+                                    sendResponse(null, objresponse)
+                                } else {
+                                    var utcMoment = moment.utc();
+                                    var Formdate = utcMoment.subtract(arrhour[0].param_detail, 'hours')
+                                    Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss')
+                                    // takepayver = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,* from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  additional_info not in  ${additional_info1} and created_date_utc < '${Formdate}' and org_status <> 'UNFREEZE_TAKEN'`
+                                    var taketrnId = `select npsstpl_id from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  (additional_info not in  ${additional_info1} or additional_info isnull) and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
+                                    var takepayver = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,* from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  (additional_info not in  ${additional_info1} or additional_info isnull) and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
+                                    ExecuteQuery1(takepayver, async function (arrpayver) {
+                                        if (arrpayver.length > 0) {
+                                            var updateTable = await UpdateTran(taketrnId, PRCT_ID)
+                                            if (updateTable == 'SUCCESS') {
+                                                reqAsync.forEachOfSeries(arrpayver, function (arrpayverobj, i, nextobjctfunc) {
+                                                    if (arrpayverobj.npsstrrd_refno) {
+                                                        let chkprcname = `select * from npss_trn_process_log where uetr = '${arrpayverobj.uetr}' and process_name = 'SctInitiation'`
+                                                        ExecuteQuery1(chkprcname, function (arrvalue) {
+                                                            if (arrvalue.length > 0) {
+                                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Not a eligible tran-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
+
+                                                                nextobjctfunc()
+                                                            } else {
+                                                                takefundauth = `select npsstpl_id, * from npss_trn_process_log where status in ${status2} and process_name in ${process_name2} and npsstrrd_refno='${arrpayverobj.npsstrrd_refno}'`
+                                                                ExecuteQuery1(takefundauth, async function (arrfundauth) {
+                                                                    if (arrfundauth.length > 0) {
+                                                                        reqInstanceHelper.PrintInfo(serviceName, '-----------Not a eligible tran-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
+                                                                        var fail = {}
+                                                                        fail.failid = arrpayverobj.npsstpl_id
+                                                                        failedData.push(fail)
+                                                                        nextobjctfunc()
+                                                                    }
+                                                                    else {
+                                                                        console.log('Eligible for api call');
+                                                                        var check = `select * from npss_trn_process_log where status = 'OP_P2B_FUND_UNFREEZED' and npsstrrd_refno='${arrpayverobj.npsstrrd_refno}'`
+                                                                        ExecuteQuery1(check, async function (checkdata) {
+                                                                            if (checkdata.length == 0) {
+                                                                                var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL' and need_sync = 'Y'`
+                                                                                ExecuteQuery1(Takekafkaurl, async function (arrurl) {
+                                                                                    if (arrurl.length) {
 
 
 
-                                                                                    var apicallresult = await kafkaapi(arrpayverobj, arrurl, process_name1,process_name3)
-                                                                                    if (apicallresult == 'SUCCESS') {
-                                                                                        var InsertTable = await ProcessInstData(arrpayverobj, PRCT_ID)
-                                                                                        if (InsertTable.length > 0) {
+                                                                                        var apicallresult = await kafkaapi(arrpayverobj, arrurl, process_name1, process_name3)
+                                                                                        if (apicallresult == 'SUCCESS') {
+                                                                                            var InsertTable = await ProcessInstData(arrpayverobj, PRCT_ID)
+                                                                                            if (InsertTable.length > 0) {
 
 
-                                                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------Kafaka Insert Success-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
-                                                                                            nextobjctfunc()
+                                                                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Kafaka Insert Success-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
+                                                                                                nextobjctfunc()
 
+
+                                                                                            }
+                                                                                            else {
+                                                                                                nextobjctfunc()
+                                                                                            }
 
                                                                                         }
                                                                                         else {
+                                                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------Npss transaction not found for-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
                                                                                             nextobjctfunc()
                                                                                         }
 
+
+
+
                                                                                     }
                                                                                     else {
-                                                                                        reqInstanceHelper.PrintInfo(serviceName, '-----------Npss transaction not found for-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
-                                                                                        nextobjctfunc()
+                                                                                        reqInstanceHelper.PrintInfo(serviceName, '----------core_nc_system_setup -URL not found------', objSessionLogInfo);
+                                                                                        objresponse.status = 'FAILURE';
+                                                                                        objresponse.msg = 'No record found in  core_nc_system_setup';
+                                                                                        sendResponse(null, objresponse)
                                                                                     }
+                                                                                })
 
-
-
-
-                                                                                }
-                                                                                else {
-                                                                                    reqInstanceHelper.PrintInfo(serviceName, '----------core_nc_system_setup -URL not found------', objSessionLogInfo);
-                                                                                    objresponse.status = 'FAILURE';
-                                                                                    objresponse.msg = 'No record found in  core_nc_system_setup';
-                                                                                    sendResponse(null, objresponse)
-                                                                                }
-                                                                            })
-
-                                                                        } else {
-                                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------No Eligible Tran-------' + arrpayverobj.npsstrrd_refno, objSessionLogInfo);
-                                                                            nextobjctfunc()
-                                                                        }
-                                                                    })
+                                                                            } else {
+                                                                                reqInstanceHelper.PrintInfo(serviceName, '-----------No Eligible Tran-------' + arrpayverobj.npsstrrd_refno, objSessionLogInfo);
+                                                                                nextobjctfunc()
+                                                                            }
+                                                                        })
 
 
 
 
 
-                                                                }
-                                                            })
-                                                        }
-                                                    })
+                                                                    }
+                                                                })
+                                                            }
+                                                        })
 
 
-                                                }
-                                                else {
-                                                    reqInstanceHelper.PrintInfo(serviceName, '-----------npsstrrd_refno not found for-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
-                                                    var fail = {}
-                                                    fail.failid = arrpayverobj.npsstpl_id
-                                                    failedData.push(fail)
-                                                    nextobjctfunc()
-                                                }
-                                            }, function () {
-                                                objresponse.status = 'SUCCESS';
+                                                    }
+                                                    else {
+                                                        reqInstanceHelper.PrintInfo(serviceName, '-----------npsstrrd_refno not found for-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
+                                                        var fail = {}
+                                                        fail.failid = arrpayverobj.npsstpl_id
+                                                        failedData.push(fail)
+                                                        nextobjctfunc()
+                                                    }
+                                                }, function () {
+                                                    objresponse.status = 'SUCCESS';
+                                                    sendResponse(null, objresponse)
+                                                })
+                                            } else {
+                                                reqInstanceHelper.PrintInfo(serviceName, '----------Failure in Tran Update------', objSessionLogInfo);
+                                                objresponse.status = 'FAILURE';
+                                                objresponse.msg = 'Failure in Tran Update';
                                                 sendResponse(null, objresponse)
-                                            })
-                                        } else {
-                                            reqInstanceHelper.PrintInfo(serviceName, '----------Failure in Tran Update------', objSessionLogInfo);
+                                            }
+
+                                        }
+                                        else {
+                                            reqInstanceHelper.PrintInfo(serviceName, '----------No record found in  npss_trn_process_log------', objSessionLogInfo);
                                             objresponse.status = 'FAILURE';
-                                            objresponse.msg = 'Failure in Tran Update';
+                                            objresponse.msg = 'No record found in  npss_trn_process_log';
                                             sendResponse(null, objresponse)
                                         }
 
-                                    }
-                                    else {
-                                        reqInstanceHelper.PrintInfo(serviceName, '----------No record found in  npss_trn_process_log------', objSessionLogInfo);
-                                        objresponse.status = 'FAILURE';
-                                        objresponse.msg = 'No record found in  npss_trn_process_log';
-                                        sendResponse(null, objresponse)
-                                    }
-
-                                })
+                                    })
+                                }
                             }
                             else {
                                 reqInstanceHelper.PrintInfo(serviceName, '----------No record found in  Core_nc_system_setup------', objSessionLogInfo);
@@ -212,7 +221,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
                 })
                 //kafka api call
-                function kafkaapi(arrpayverobj, arrurl, process_name1,process_name3) {
+                function kafkaapi(arrpayverobj, arrurl, process_name1, process_name3) {
                     var postrefno;
                     return new Promise((resolve, reject) => {
                         var TakepostingRefno = `select process_ref_no from npss_trn_process_log where process_name='${params.postingrefnoprocess_name}' and uetr='${arrpayverobj.uetr}'`
@@ -556,6 +565,7 @@ app.post('/', function(appRequest, appResponse, next) {
         }
 
     })
+
 
 
 

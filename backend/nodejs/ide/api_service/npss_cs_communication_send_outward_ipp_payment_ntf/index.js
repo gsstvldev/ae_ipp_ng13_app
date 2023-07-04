@@ -90,7 +90,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 "DT_CODE": "",
                                                                                 "DTT_CODE": "",
                                                                                 "TOPIC_NAME": TopicName[0].param_value || '',
-                                                                                "STATIC_DATA": arrTranobj.kafka_message || '',
+                                                                                "STATIC_DATA": JSON.parse(arrTranobj.kafka_message) || '',
                                                                                 "SKIP_COMM_FLOW": true
                                                                             },
                                                                             "PROCESS_INFO": {

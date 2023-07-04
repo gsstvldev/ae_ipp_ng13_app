@@ -287,7 +287,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                         }, headers: {
-                                            "X-Request-ID": "0003P4200010463216652012-11-25T23:50:56.193+01:00",
+                                            "X-Request-ID":params.CHANNEL_REFNO,
                                         "language": "EN",
                                         "timestamp":formatdate,
                                         "channel-Id": params.CHANNEL_ID,

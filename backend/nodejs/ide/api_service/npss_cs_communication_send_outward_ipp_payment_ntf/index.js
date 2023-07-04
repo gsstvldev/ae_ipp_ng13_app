@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
     /*  Created By :   Siva Harish
@@ -72,7 +73,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         ExecuteQuery1(TakeCmCategory, function (arrComCategory) {
                                                             if (arrComCategory.length > 0) {
                                                                 try {
-
+                                                                    var par_message= JSON.parse(arrTranobj.kafka_message)
                                                                     var request = require('request');
 
                                                                     var options = {
@@ -90,7 +91,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 "DT_CODE": "",
                                                                                 "DTT_CODE": "",
                                                                                 "TOPIC_NAME": TopicName[0].param_value || '',
-                                                                                "STATIC_DATA": JSON.parse(arrTranobj.kafka_message) || '',
+                                                                                "STATIC_DATA":JSON.parse(par_message.message )|| '',
                                                                                 "SKIP_COMM_FLOW": true
                                                                             },
                                                                             "PROCESS_INFO": {
@@ -271,6 +272,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

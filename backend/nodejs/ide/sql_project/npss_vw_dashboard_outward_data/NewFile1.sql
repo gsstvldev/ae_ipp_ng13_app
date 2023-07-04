@@ -1,8 +1,8 @@
 -- View: ad_gss_tran.vw_dashboard_outward_data
 -- DROP VIEW ad_gss_tran.vw_dashboard_outward_data ;
-drop view if exists vw_dashboard_outward_data;
+drop view if exists npss_vw_dashboard_outward_data;
 @SPL@
-CREATE OR REPLACE VIEW ad_gss_tran.vw_dashboard_outward_data
+CREATE OR REPLACE VIEW ad_gss_tran.npss_vw_dashboard_outward_data
 AS 
 SELECT res.type,
     COALESCE(sum(res.total), 0::numeric) AS total,

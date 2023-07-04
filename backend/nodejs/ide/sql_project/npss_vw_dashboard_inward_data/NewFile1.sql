@@ -1,8 +1,8 @@
 -- View: ad_gss_tran.vw_dashboard_inward_data
 -- DROP VIEW ad_gss_tran.vw_dashboard_inward_data ;
-drop view if exists vw_dashboard_inward_data;
+drop view if exists npss_vw_dashboard_inward_data;
 @SPL@
-CREATE OR REPLACE VIEW vw_dashboard_inward_data
+CREATE OR REPLACE VIEW npss_vw_dashboard_inward_data
 AS
 SELECT res.sno,
     res.type,

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30909 
+Build ID        : 30910 
 Modified By     : Admin 
-Modified Date   : 2023-Jul-05 13:44 PM 
+Modified Date   : 2023-Jul-05 14:18 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_notification_logs

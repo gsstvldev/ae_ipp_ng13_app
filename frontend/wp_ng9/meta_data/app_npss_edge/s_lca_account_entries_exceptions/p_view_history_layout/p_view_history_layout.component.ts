@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30886 
+Build ID        : 30889 
 Modified By     : Admin 
-Modified Date   : 2023-Jul-05 5:39 AM 
+Modified Date   : 2023-Jul-05 9:35 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_lca_account_entries_exceptions

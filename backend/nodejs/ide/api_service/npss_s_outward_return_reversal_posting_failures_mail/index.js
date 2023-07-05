@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
 
     /*  Created By :Daseen
@@ -31,6 +32,7 @@ app.post('/', function(appRequest, appResponse, next) {
    var reqAsync = require('async');
    var mTranConn = "";
    var producer
+   var moment = require('moment');
    var failedData = []
    var objresponse = {
        'status': 'FAILURE',
@@ -78,7 +80,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                var status = await arraytostr(params.status);
                                var process_status = await arraytostr(params.process_status);
 
-                               var Takedata = `select * from npss_transactions where status in ${status} and process_status in ${process_status} and (fx_resv_text5 <> ('ORR_MAIL_TRIGGERED') or fx_resv_text5 isnull)`
+                               var Takedata = `select * from npss_transactions where status in ${status} and process_status in ${process_status} and process_type='OP' and (fx_resv_text5 <> ('ORR_MAIL_TRIGGERED') or fx_resv_text5 isnull)`
                                var TakeTrnid = `select npsst_id from npss_trn_process_log  where status in ${status} and process_status in ${process_status}`
                                var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'ORIGIN' and need_sync='Y'`
                                ExecuteQuery1(Takeorg, function (arrorg) {
@@ -115,7 +117,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                        COMM_GROUP: arrcomgp.length > 0 ? arrcomgp[0].param_value : '',
                                                                                                        POSTINGAPPLICATION: arrlog.length > 0 ? arrlog[0].processing_system : '',
                                                                                                        MESSAGETYPE: arrlog.length > 0 ? arrlog[0].process_name : '',
-                                                                                                       TXNVALUEDATE: arrDataobj.value_date ? arrDataobj.value_date : '',
+                                                                                                       TXNVALUEDATE: arrDataobj.value_date ? moment(arrDataobj.value_date).format('YYYY-MM-DD HH:mm:ss') : '',
                                                                                                        CRACCOUNTNUMBER: arrDataobj.cdtr_iban ? arrDataobj.cdtr_iban : '',
                                                                                                        CRACCOUNTNAME: arrDataobj.cdtr_acct_name ? arrDataobj.cdtr_acct_name : '',
                                                                                                        CRACCOUNTCURRENCY: arrDataobj.intrbk_sttlm_cur ? arrDataobj.intrbk_sttlm_cur : '',
@@ -342,29 +344,6 @@ app.post('/', function(appRequest, appResponse, next) {
            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
        }
    })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

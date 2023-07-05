@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 29504 
+Build ID        : 30909 
 Modified By     : Admin 
-Modified Date   : 2023-May-11 10:2 AM 
+Modified Date   : 2023-Jul-05 13:44 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_notification_logs
@@ -67,7 +67,7 @@ export class s_rct_notification_logsComponent implements OnInit,AfterViewInit {
 		this.process_log_list.uictrl_code = "datatable"
 		this.process_log_list.uicgc_desc = "Process Log List"
 		this.process_log_list.uicgc_code = "uicgc_1"
-		this.process_log_list.params = {"need_pag_datatable":"Y","need_search":"N","advance_dynamic_search":"N"}
+		this.process_log_list.params = {"need_pag_datatable":"Y","need_search":"N","advance_dynamic_search":"N","need_multi_select":"Y"}
 		this.process_log_list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1672928670076":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1672928670076","dtt_desc":"NPSS Notification Logs","ds_eligible":"DS_1672931701910","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Notification Log MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1672930756680","date_format":false},{"column_name":"CHANNEL_REF_NO","alias_name":"","mq_id":"MQ_1672930756904","date_format":false},{"column_name":"ORDER_CUST_ACC_NO","alias_name":"","mq_id":"MQ_1672930772672","date_format":false},{"column_name":"AMOUNT","alias_name":"","mq_id":"MQ_1672930786551","date_format":false,"currency_format":true},{"column_name":"STATUS_CODE","alias_name":"","mq_id":"MQ_1672930787119","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1672930847406","date_format":true},{"column_name":"STATUS_DESCRIPTION","alias_name":"","mq_id":"MQ_1683799139523","date_format":false}],"joins":[]},"eq_text":"select  NPSSNL_ID ,  CHANNEL_ID,  CHANNEL_REF_NO,  ORDER_CUST_ACC_NO ,  AMOUNT,  STATUS_CODE ,  CREATED_DATE ,  DTT_CODE ,  DT_CODE ,  TENANT_ID,Status_Description from  (  select   NPSSNL.NPSSNL_ID,   NPSSNL.CHANNEL_ID,   NPSSNL.CHANNEL_REF_NO,   NPSSNL.STATUS_CODE,   NPSSNL.ORDER_CUST_ACC_NO,   NPSSNL.AMOUNT,   'NOTIFICATION_FAILURE' as STATUS_DESCRIPTION,   NPSSNL.KAFKA_MESSAGE,   NPSSNL.COMMPD_ID,   NPSSNL.COMMPM_ID,   NPSSNL.COMMPML_ID,   NPSSNL.CREATED_DATE,   NPSSNL.DTT_CODE,   NPSSNL.DTT_DESCRIPTION,   NPSSNL.STATUS,   NPSSNL.DT_CODE,   NPSSNL.PROCESS_STATUS,   NPSSNL.TENANT_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   QR.SORT_ORDER as QS_SORT_ORDER     from   NPSS_NOTIFICATION_LOGS NPSSNL  inner join CORE_Q_STATUS_ROLES QR on   NPSSNL.STATUS = QR.PROCESS_QUEUE_STATUS   and NPSSNL.PROCESS_STATUS = QR.QUEUE_CODE)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Notification Log MQ ccd","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel","target_column":"CHANNEL_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Channel Ref No","target_column":"CHANNEL_REF_NO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Ordering Cust Acc No","target_column":"ORDER_CUST_ACC_NO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Status Code","target_column":"STATUS_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status Description","target_column":"STATUS_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date","target_column":"CREATED_DATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
 		this.process_log_list.context_menu = []
 		this.process_log_list.views = {}
@@ -223,8 +223,12 @@ export class s_rct_notification_logsComponent implements OnInit,AfterViewInit {
 	process_log_list__selection_changed(){
 		this.process_log_list__svm_for_queue()
 		this.process_log_list__e_1672933153708()
-		this.process_log_list__e_1672933505907()
-		this.process_log_list__e_1672933512799()
+	}
+
+	//Handler for CHECKED_CHANGED event of "process log list"
+	process_log_list__checked_changed(){
+		this.process_log_list__e_1688564329345()
+		this.process_log_list__e_1688564352225()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui search"
@@ -445,7 +449,7 @@ export class s_rct_notification_logsComponent implements OnInit,AfterViewInit {
 		let event_params={"caller_name":"process_log_list__svm_for_queue","event_desc":"SVM for Queue","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals=""
-		let event_data={}
+		let event_data={"process_log_list":{"e_1666857327033":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_1","event_code":"E_1666857327033","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Notification Logs","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"MULTI","column_name":"NPSSNL_ID","level":"MI_LEVEL","name":"MI_LEVEL_NPSSNL_ID","setd3name":"NPSSNL_ID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1672928670076":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1672928670076","dtt_desc":"NPSS Notification Logs","ds_eligible":"DS_1672931701910","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Notification Log MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1672930756680","date_format":false},{"column_name":"CHANNEL_REF_NO","alias_name":"","mq_id":"MQ_1672930756904","date_format":false},{"column_name":"ORDER_CUST_ACC_NO","alias_name":"","mq_id":"MQ_1672930772672","date_format":false},{"column_name":"AMOUNT","alias_name":"","mq_id":"MQ_1672930786551","date_format":false,"currency_format":true},{"column_name":"STATUS_CODE","alias_name":"","mq_id":"MQ_1672930787119","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1672930847406","date_format":true},{"column_name":"STATUS_DESCRIPTION","alias_name":"","mq_id":"MQ_1683799139523","date_format":false}],"joins":[]},"eq_text":"select  NPSSNL_ID ,  CHANNEL_ID,  CHANNEL_REF_NO,  ORDER_CUST_ACC_NO ,  AMOUNT,  STATUS_CODE ,  CREATED_DATE ,  DTT_CODE ,  DT_CODE ,  TENANT_ID,Status_Description from  (  select   NPSSNL.NPSSNL_ID,   NPSSNL.CHANNEL_ID,   NPSSNL.CHANNEL_REF_NO,   NPSSNL.STATUS_CODE,   NPSSNL.ORDER_CUST_ACC_NO,   NPSSNL.AMOUNT,   'NOTIFICATION_FAILURE' as STATUS_DESCRIPTION,   NPSSNL.KAFKA_MESSAGE,   NPSSNL.COMMPD_ID,   NPSSNL.COMMPM_ID,   NPSSNL.COMMPML_ID,   NPSSNL.CREATED_DATE,   NPSSNL.DTT_CODE,   NPSSNL.DTT_DESCRIPTION,   NPSSNL.STATUS,   NPSSNL.DT_CODE,   NPSSNL.PROCESS_STATUS,   NPSSNL.TENANT_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   QR.SORT_ORDER as QS_SORT_ORDER     from   NPSS_NOTIFICATION_LOGS NPSSNL  inner join CORE_Q_STATUS_ROLES QR on   NPSSNL.STATUS = QR.PROCESS_QUEUE_STATUS   and NPSSNL.PROCESS_STATUS = QR.QUEUE_CODE)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Notification Log MQ ccd","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Channel","target_column":"CHANNEL_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Channel Ref No","target_column":"CHANNEL_REF_NO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Ordering Cust Acc No","target_column":"ORDER_CUST_ACC_NO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Status Code","target_column":"STATUS_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status Description","target_column":"STATUS_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date","target_column":"CREATED_DATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
@@ -476,15 +480,15 @@ export class s_rct_notification_logsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "process log list"
-	process_log_list__e_1672933505907() { 
+	//Handler for CHECKED_CHANGED event of "process log list"
+	process_log_list__e_1688564329345() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="process_log_list"
-		let destn_id="navigation_ui_view_message"
+		let destn_id="navigation_ui_retry"
 		let parent_source_id=""
-		let event_code="e_1672933505907"
-		let event_params={"caller_name":"process_log_list__e_1672933505907","event_desc":"E_1672933505907","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let event_code="e_1688564329345"
+		let event_params={"caller_name":"process_log_list__e_1688564329345","event_desc":"E_1688564329345","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
@@ -497,15 +501,15 @@ export class s_rct_notification_logsComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "process log list"
-	process_log_list__e_1672933512799() { 
+	//Handler for CHECKED_CHANGED event of "process log list"
+	process_log_list__e_1688564352225() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="process_log_list"
-		let destn_id="navigation_ui_retry"
+		let destn_id="navigation_ui_view_message"
 		let parent_source_id=""
-		let event_code="e_1672933512799"
-		let event_params={"caller_name":"process_log_list__e_1672933512799","event_desc":"E_1672933512799","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let event_code="e_1688564352225"
+		let event_params={"caller_name":"process_log_list__e_1688564352225","event_desc":"E_1688564352225","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"process_log_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}

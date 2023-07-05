@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30807 
+Build ID        : 30893 
 Modified By     : Admin 
-Modified Date   : 2023-Jul-03 9:54 AM 
+Modified Date   : 2023-Jul-05 10:54 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_verification
@@ -28,6 +28,7 @@ import {npss_cs_manual_initiation_rejectModule} from '../../../custom_widget/nps
 import {npss_cs_send_to_checkerModule} from '../../../custom_widget/npss_cs_send_to_checker/npss_cs_send_to_checker.module'
 import {npss_cs_manual_initiation_approveModule} from '../../../custom_widget/npss_cs_manual_initiation_approve/npss_cs_manual_initiation_approve.module'
 import {npss_cs_manual_initiation_force_to_postModule} from '../../../custom_widget/npss_cs_manual_initiation_force_to_post/npss_cs_manual_initiation_force_to_post.module'
+import {npss_csget_deal_btn_show_hideModule} from '../../../custom_widget/npss_csget_deal_btn_show_hide/npss_csget_deal_btn_show_hide.module'
 import {npss_cs_manual_initiation_get_dealModule} from '../../../custom_widget/npss_cs_manual_initiation_get_deal/npss_cs_manual_initiation_get_deal.module'
 
 import {DialogModule} from 'primeng/dialog';
@@ -84,7 +85,7 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     OverlayPanelModule,
     
     s_rct_manual_verificationRoutingModule,
-    npss_cs_rev_get_usable_balanceModule,torus_cs_change_routingkeyModule,torus_cs_show_hideModule,torus_cs_set_rule_mi_paramModule,npss_cs_manual_verification_bind_dataModule,npss_cs_manual_initiation_rejectModule,npss_cs_send_to_checkerModule,npss_cs_manual_initiation_approveModule,npss_cs_manual_initiation_force_to_postModule,npss_cs_manual_initiation_get_dealModule
+    npss_cs_rev_get_usable_balanceModule,torus_cs_change_routingkeyModule,torus_cs_show_hideModule,torus_cs_set_rule_mi_paramModule,npss_cs_manual_verification_bind_dataModule,npss_cs_manual_initiation_rejectModule,npss_cs_send_to_checkerModule,npss_cs_manual_initiation_approveModule,npss_cs_manual_initiation_force_to_postModule,npss_csget_deal_btn_show_hideModule,npss_cs_manual_initiation_get_dealModule
   ],
   declarations: [s_rct_manual_verificationComponent,p_main_layoutComponent,f_navigation_uiComponent,f_search_info_uiComponent,p_search_layoutComponent,f_npss_manual_verification_srchComponent,p_fab_initate_layoutComponent,f_npss_mi_get_deal_uiComponent,f_npss_manual_verification_uiComponent,f_payment_processing_details_uiComponent,p_fin_initate_layoutComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_force_post_flag_layoutComponent,f_npss_force_post_flag_uiComponent,p_verify_layoutComponent,f_npss_verification_get_deal_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]

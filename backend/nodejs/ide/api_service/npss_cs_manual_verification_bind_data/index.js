@@ -17,6 +17,7 @@ Modified Date : 24/05/2023
 Reason for : Changes done as  
 Reason for : Changes done cust spl rate 29/05/2023 
 Reason for : Changes done cc and pc 22/06/2023 
+Reason for : Uetr taken from params 22/06/2023 by daseen 
 * 
 */
 var serviceName = ' NPSS (CS) Manual Verification Bind Data'; //service name 
@@ -68,10 +69,10 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                     if (chckcreditorprepaid == 'IBAN') {
                         let CurrencyStatus = await FindCurrency(params.TranId)
                         if (CurrencyStatus.status == 'SUCCESS') {
-                            let TakeIpuetr = `select additional_info from npss_trn_process_log where uetr = '${params.uetr}' and process_name = 'Initiate Dispute Tran'`;
+                            /* let TakeIpuetr = `select additional_info from npss_trn_process_log where uetr = '${params.uetr}' and process_name = 'Initiate Dispute Tran'`;
                             ExecuteQuery1(TakeIpuetr, function (ipuetr) {
-                                if (ipuetr.length) {
-                                    let Takedata = `select buy_currency,sell_currency,dealt_amount,contra_amount,exchange_rate,gm_margin from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${ipuetr[0].additional_info}'`
+                                if (ipuetr.length) { */
+                                    let Takedata = `select buy_currency,sell_currency,dealt_amount,contra_amount,exchange_rate,gm_margin from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and process_name = 'Get Deal' and uetr = '${params.uetr}'`
                                     ExecuteQuery1(Takedata, function (trnplgdata) {
                                         if (trnplgdata.length > 0) {
                                             objresponse.errocode = 'Nonspl'
@@ -98,11 +99,11 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                     })
 
 
-                                } else {
+                               /*  } else {
                                     objresponse.status = 'IP Uetr not found'
                                     sendResponse(null, objresponse)
                                 }
-                            })
+                            }) */
                         } else {
                             objresponse.status = 'SUCCESS'
                             objresponse.data = []

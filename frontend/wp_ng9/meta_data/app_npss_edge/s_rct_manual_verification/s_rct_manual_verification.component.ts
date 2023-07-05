@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30807 
+Build ID        : 30893 
 Modified By     : Admin 
-Modified Date   : 2023-Jul-03 9:54 AM 
+Modified Date   : 2023-Jul-05 10:54 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_verification
@@ -21,13 +21,14 @@ import {npss_cs_manual_initiation_rejectService} from '../../../custom_widget/np
 import {npss_cs_send_to_checkerService} from '../../../custom_widget/npss_cs_send_to_checker/npss_cs_send_to_checker.service'
 import {npss_cs_manual_initiation_approveService} from '../../../custom_widget/npss_cs_manual_initiation_approve/npss_cs_manual_initiation_approve.service'
 import {npss_cs_manual_initiation_force_to_postService} from '../../../custom_widget/npss_cs_manual_initiation_force_to_post/npss_cs_manual_initiation_force_to_post.service'
+import {npss_csget_deal_btn_show_hideService} from '../../../custom_widget/npss_csget_deal_btn_show_hide/npss_csget_deal_btn_show_hide.service'
 import {npss_cs_manual_initiation_get_dealService} from '../../../custom_widget/npss_cs_manual_initiation_get_deal/npss_cs_manual_initiation_get_deal.service'
 
 @Component({
 	selector: 's_rct_manual_verification',
 	templateUrl: './s_rct_manual_verification.component.html',
 	styleUrls: ['./s_rct_manual_verification.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,torus_cs_set_rule_mi_paramService,npss_cs_rev_get_usable_balanceService,npss_cs_manual_verification_bind_dataService,npss_cs_manual_initiation_rejectService,npss_cs_send_to_checkerService,npss_cs_manual_initiation_approveService,npss_cs_manual_initiation_force_to_postService,npss_cs_manual_initiation_get_dealService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,torus_cs_set_rule_mi_paramService,npss_cs_rev_get_usable_balanceService,npss_cs_manual_verification_bind_dataService,npss_cs_manual_initiation_rejectService,npss_cs_send_to_checkerService,npss_cs_manual_initiation_approveService,npss_cs_manual_initiation_force_to_postService,npss_csget_deal_btn_show_hideService,npss_cs_manual_initiation_get_dealService]
 })
     
 // Start of class 
@@ -144,7 +145,7 @@ export class s_rct_manual_verificationComponent implements OnInit,AfterViewInit 
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private torus_cs_set_rule_mi_paramService:torus_cs_set_rule_mi_paramService,private npss_cs_rev_get_usable_balanceService:npss_cs_rev_get_usable_balanceService,private npss_cs_manual_verification_bind_dataService:npss_cs_manual_verification_bind_dataService,private npss_cs_manual_initiation_rejectService:npss_cs_manual_initiation_rejectService,private npss_cs_send_to_checkerService:npss_cs_send_to_checkerService,private npss_cs_manual_initiation_approveService:npss_cs_manual_initiation_approveService,private npss_cs_manual_initiation_force_to_postService:npss_cs_manual_initiation_force_to_postService,private npss_cs_manual_initiation_get_dealService:npss_cs_manual_initiation_get_dealService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private torus_cs_set_rule_mi_paramService:torus_cs_set_rule_mi_paramService,private npss_cs_rev_get_usable_balanceService:npss_cs_rev_get_usable_balanceService,private npss_cs_manual_verification_bind_dataService:npss_cs_manual_verification_bind_dataService,private npss_cs_manual_initiation_rejectService:npss_cs_manual_initiation_rejectService,private npss_cs_send_to_checkerService:npss_cs_send_to_checkerService,private npss_cs_manual_initiation_approveService:npss_cs_manual_initiation_approveService,private npss_cs_manual_initiation_force_to_postService:npss_cs_manual_initiation_force_to_postService,private npss_csget_deal_btn_show_hideService:npss_csget_deal_btn_show_hideService,private npss_cs_manual_initiation_get_dealService:npss_cs_manual_initiation_get_dealService) {
     
 	}
     
@@ -1097,13 +1098,18 @@ export class s_rct_manual_verificationComponent implements OnInit,AfterViewInit 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui verify"
 	navigation_ui_verify__action_button_click(){
-		this.navigation_ui_verify__sp_for_verify_btn_click()
 		this.navigation_ui_verify__brfq_for_otd_list_from_verify_btn()
 		this.navigation_ui_verify__brfq_for_ppd_from_verify_btn()
 		this.navigation_ui_verify__se_for_get_deal_btn_from_verify()
 		this.navigation_ui_verify__se_for_send_to_checker_btn_from_verify()
 		this.navigation_ui_verify__e_1688362577986()
 		this.navigation_ui_verify__e_1688362615843()
+		this.navigation_ui_verify__cc_for_get_deal_show_hide()
+	}
+
+	//Handler for INTERNAL event of "cc for get deal show hide"
+	cc_for_get_deal_show_hide__internal(parent_event_result){
+		this.cc_for_get_deal_show_hide__sp_for_verify_btn_click(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "payment processing details ui get deal"
@@ -3389,27 +3395,6 @@ export class s_rct_manual_verificationComponent implements OnInit,AfterViewInit 
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui verify"
-	navigation_ui_verify__sp_for_verify_btn_click() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_ui_verify"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1688361923928"
-		let event_params={"caller_name":"navigation_ui_verify__sp_for_verify_btn_click","event_desc":"SP for Verify btn click","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_verify","raiseparam":{"profile_code":"BTL_1304_1688361270801"}}
-		let handler_code="show_profile"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui verify"
 	navigation_ui_verify__brfq_for_otd_list_from_verify_btn() { 
 		let Dest_Is_ctrl=true
 		
@@ -3529,6 +3514,49 @@ export class s_rct_manual_verificationComponent implements OnInit,AfterViewInit 
 		let data_source={}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui verify"
+	navigation_ui_verify__cc_for_get_deal_show_hide() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_verify"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1688554306734"
+		let event_params={"caller_name":"navigation_ui_verify__cc_for_get_deal_show_hide","event_desc":"CC for get deal show hide","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_verify","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_get_deal_show_hide__sp_for_verify_btn_click,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_csget_deal_btn_show_hideService.fn_npss_csget_deal_btn_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for get deal show hide"
+	cc_for_get_deal_show_hide__sp_for_verify_btn_click(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_get_deal_show_hide"
+		let destn_id=""
+		let parent_source_id="navigation_ui_verify"
+		let event_code="e_1688554323494"
+		let event_params={"caller_name":"cc_for_get_deal_show_hide__sp_for_verify_btn_click","event_desc":"SP for Verify btn click","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_verify","raiseparam":{"profile_code":"BTL_1304_1688361270801"},"parent_event_result":"SUCCESS"}
+		let handler_code="show_profile"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

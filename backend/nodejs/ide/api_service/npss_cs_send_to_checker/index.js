@@ -406,7 +406,7 @@ try {
                                     "clrsysref": arrprocesslog[0].clrsysref,
                                      "need_manual_init_confirm_deal":"Y",
                                     "process": "",
-                                    "need_manual_init_confirm_deal": arrprocesslog[0].remittance_info || '',
+                                    "remittance_information": arrprocesslog[0].remittance_info || '',
                                     "reversal_id": reverseAcinfparam.reverseId
                                 },
                                 "AccountInformation": {

@@ -21,7 +21,8 @@ export class npss_cs_communication_send_outward_ipp_payment_ntfService {
     fn_npss_cs_communication_send_outward_ipp_payment_ntf(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         let ClientParams: any = {
             "roleId": this.SessionSvc.GetVariable('SESSION_LEVEL', 'APP_USER_ROLES'),
-            "screenName": this.SessionSvc.GetVariable('SESSION_LEVEL', 'MENU_ITEM_CODE')
+            "screenName": this.SessionSvc.GetVariable('SESSION_LEVEL', 'MENU_ITEM_CODE'),
+            "TrnId": this.CoreSvc.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSNL_ID")
 
         }
         this.GetDataFromDb(ClientParams, screenInstance,internals)

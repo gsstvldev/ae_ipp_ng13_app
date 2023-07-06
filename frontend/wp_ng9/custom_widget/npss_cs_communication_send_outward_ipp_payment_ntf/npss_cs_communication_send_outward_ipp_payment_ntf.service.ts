@@ -22,7 +22,7 @@ export class npss_cs_communication_send_outward_ipp_payment_ntfService {
         let ClientParams: any = {
             "roleId": this.SessionSvc.GetVariable('SESSION_LEVEL', 'APP_USER_ROLES'),
             "screenName": this.SessionSvc.GetVariable('SESSION_LEVEL', 'MENU_ITEM_CODE'),
-            "TrnId": this.CoreSvc.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSNL_ID")
+            "TrnId": this.CoreSvc.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSNL_ID")||''
 
         }
         this.GetDataFromDb(ClientParams, screenInstance,internals)

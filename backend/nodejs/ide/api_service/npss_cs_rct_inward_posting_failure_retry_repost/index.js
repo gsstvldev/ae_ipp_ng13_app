@@ -952,7 +952,7 @@ try {
                 function CallELPASOapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value) {
                     return new Promise((resolve, reject) => {
                         reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
-                            var TakeProcessRefno = `select process_ref_no from npss_transactions where process_name = 'Recive Pacs002' and uetr = '${arrTranparamsObj.uetr}'`
+                            var TakeProcessRefno = `select process_ref_no from npss_trn_process_log where process_name = 'Recive Pacs002' and uetr = '${arrTranparamsObj.uetr}'`
                             ExecuteQuery1(TakeProcessRefno, function (arrprsrefno) {
                                 if (arrprsrefno.length > 0) {
                                     var TakenpsstrdRefno = `select npsstrrd_refno from npss_transactions where process_name = 'Recive Pacs008' and uetr = '${arrTranparamsObj.uetr}'`

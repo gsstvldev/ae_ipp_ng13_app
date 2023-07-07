@@ -117,7 +117,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                        COMM_GROUP: arrcomgp.length > 0 ? arrcomgp[0].param_value : '',
                                                                                                        POSTINGAPPLICATION: arrlog.length > 0 ? arrlog[0].processing_system : '',
                                                                                                        MESSAGETYPE: arrlog.length > 0 ? arrlog[0].process_name : '',
-                                                                                                       TXNVALUEDATE: arrDataobj.value_date ? moment(arrDataobj.value_date).format('YYYY-MM-DD HH:mm:ss') : '',
+                                                                                                       TXNVALUEDATE: arrDataobj.value_date ? moment(arrDataobj.value_date).format('YYYY-MM-DD') : '',
                                                                                                        CRACCOUNTNUMBER: arrDataobj.cdtr_iban ? arrDataobj.cdtr_iban : '',
                                                                                                        CRACCOUNTNAME: arrDataobj.cdtr_acct_name ? arrDataobj.cdtr_acct_name : '',
                                                                                                        CRACCOUNTCURRENCY: arrDataobj.intrbk_sttlm_cur ? arrDataobj.intrbk_sttlm_cur : '',

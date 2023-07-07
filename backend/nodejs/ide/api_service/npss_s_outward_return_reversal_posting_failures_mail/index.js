@@ -7,16 +7,13 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-    
-
 
     /*  Created By : Daseen
     Created Date :23/02/2023
     Modified By : Siva Harish
     Modified Date : 19/05/2023
     Modified Date : 29/06/2023
-   }
+   
     */
    var serviceName = 'NPSS (S) Outward Return Reversal Posting Failures Mail';
    var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -81,7 +78,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                var process_status = await arraytostr(params.process_status);
 
                                var Takedata = `select * from npss_transactions where status in ${status} and process_status in ${process_status} and process_type='OP' and (fx_resv_text5 <> ('ORR_MAIL_TRIGGERED') or fx_resv_text5 isnull)`
-                               var TakeTrnid = `select npsst_id from npss_trn_process_log  where status in ${status} and process_status in ${process_status}`
+                               var TakeTrnid = `select npsst_id from npss_transactions where status in ${status} and process_status in ${process_status} and process_type='OP' and (fx_resv_text5 <> ('ORR_MAIL_TRIGGERED') or fx_resv_text5 isnull)`
                                var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'ORIGIN' and need_sync='Y'`
                                ExecuteQuery1(Takeorg, function (arrorg) {
                                    ExecuteQuery1(Takedata, async function (arrData) {

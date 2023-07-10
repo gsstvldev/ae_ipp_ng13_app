@@ -8,9 +8,9 @@ create index if not exists nt_queue on npss_transactions (process_status);
 @SPL@
 create index if not exists nt_status on npss_transactions (status);
 @SPL@
-create index if not exists nt_status on npss_transactions (department_code);
+create index if not exists nt_department_code on npss_transactions (department_code);
 @SPL@
-create index if not exists nt_status on npss_transactions (channel_id);
+create index if not exists nt_channel_id on npss_transactions (channel_id);
 @SPL@
 create index if not exists nt_dbtr_iban on npss_transactions (dbtr_iban);
 @SPL@

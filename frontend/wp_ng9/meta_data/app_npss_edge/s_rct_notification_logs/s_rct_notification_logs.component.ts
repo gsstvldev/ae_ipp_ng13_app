@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30910 
+Build ID        : 31000 
 Modified By     : Admin 
-Modified Date   : 2023-Jul-05 14:18 PM 
+Modified Date   : 2023-Jul-11 12:40 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_notification_logs
@@ -546,7 +546,7 @@ export class s_rct_notification_logsComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="navigation_ui_retry"
 		let event_code="e_1668850767975"
-		let event_params={"caller_name":"cc_for_retry__info_for_retry","event_desc":"INFO for Retry","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"All the notifications have been sent successfully","root_source_id":"navigation_ui_retry","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_retry__info_for_retry","event_desc":"INFO for Retry","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Notifications have been sent successfully","root_source_id":"navigation_ui_retry","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="info_for_retry__rs_for_retry,"
 		let event_data={}

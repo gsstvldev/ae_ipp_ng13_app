@@ -7,14 +7,16 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-      /*  Created By : Daseen
-    Created Date : 06/01/2023
-    Modified By : Siva Harish
-    Modified Date : 09/01/2023
-    Reason for : Handling JSON parse 27/4/2023
-      Modified By :Daseen 03/07/2023 comm_prcs_mesaage
-     
-    */
+
+    /*  Created By : Daseen
+  Created Date : 06/01/2023
+  Modified By : Siva Harish
+  Modified Date : 09/01/2023
+  Reason for : Handling JSON parse 27/4/2023
+    Modified By :Daseen 03/07/2023 comm_prcs_mesaage
+      Modified By :Daseen 11/07/2023 npss_tran_process_log insert
+   
+  */
     var serviceName = 'NPSS (S) IPP Exceptional Handling';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
     var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
@@ -56,31 +58,32 @@ app.post('/', function(appRequest, appResponse, next) {
                                      reqAsync.forEachOfSeries(comCatcode, function (comCatcodeObj, i, nextobjctfunc) {
                                          var CatgoryCode = comCatcodeObj.param_value */
                             var TakeData = `SELECT m.commpm_id,m.message FROM ad_gss_tran.comm_process_message m  WHERE m.STATUS in ('RETRY_COUNT_EXCEEDED','SAME_BUSINESS_DAY_EXCEEDED') AND m.type='KAFKA' and m.message  like '%OrigChannelID%' order by commpm_id desc`
-                            ExecuteQuery1(TakeData,async function (insarr) {
+                            ExecuteQuery1(TakeData, async function (insarr) {
                                 if (insarr.length) {
-                                    let updtRes = await doCommprsMsgupdate(TakeData,'RETRY_COUNT_EXCEEDED')
+                                    let updtRes = await doCommprsMsgupdate(TakeData, 'RETRY_COUNT_EXCEEDED')
                                     /* var JsonValue = JSON.parse(insarr[0].template_info)
                                     var temp_info = JsonValue["TEMP_INFO"]
                                     var partemp = JSON.parse(temp_info)
                                     var retry_count = partemp["RETRY_COUNT"]*/
                                     var arrNoinsert = [];
+                                    var arrloginsert = [];
 
 
                                     for (let i = 0; i < insarr.length; i++) {
                                         var objNoinsert = {};
+                                        var objlogins = {}
 
-                                      
                                         var Value = JSON.parse(insarr[i].message)
                                         var data = Value['message']
-                                       // var MsgValue =await stringtoobject(data)
+                                        // var MsgValue =await stringtoobject(data)
                                         var DataMsgValue = JSON.parse(data)
-                                      //  var MsgValue = JSON.parse(DataMsgValue)
+                                        //  var MsgValue = JSON.parse(DataMsgValue)
                                         var MsgValue
                                         try {
                                             MsgValue = JSON.parse(DataMsgValue)
                                         } catch (error) {
                                             MsgValue = DataMsgValue
-                                        } 
+                                        }
 
                                         objNoinsert.CHANNEL_ID = MsgValue['OrigChannelID'] || '';
                                         objNoinsert.AMOUNT = MsgValue['instructedAmount'] || '';
@@ -88,7 +91,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objNoinsert.STATUS_CODE = MsgValue['statusCode'] || '';
                                         objNoinsert.ORDER_CUST_ACC_NO = MsgValue['orderingCustomerAccount'] || '';
                                         objNoinsert.STATUS_DESCRIPTION = MsgValue['statusDesc'] || '';
-                                        objNoinsert.KAFKA_MESSAGE = JSON.parse(insarr[i].message )|| '';
+                                        objNoinsert.KAFKA_MESSAGE = JSON.parse(insarr[i].message) || '';
                                         //objNoinsert.COMMPD_ID = insarr[i].commpd_id || '';
                                         objNoinsert.COMMPM_ID = insarr[i].commpm_id || '';
                                         objNoinsert.TENANT_ID = params.TENANT_ID || '';
@@ -116,27 +119,76 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objNoinsert.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
                                         objNoinsert.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                         objNoinsert.routingkey = headers.routingkey;
+                                        objlogins.PROCESS_NAME = 'Channel Notification Failure'
+                                        objlogins.UETR = MsgValue['uetr'] || '';
+                                        objlogins.TENANT_ID = params.TENANT_ID || '';
+                                        objlogins.APP_ID = params.appId || '';
+                                        objlogins.STATUS = 'OP_RETRY_COUNT_EXCEEDED'
+                                        objlogins.PROCESS_STATUS = 'RCTNotification'
+                                        objlogins.DT_CODE = 'DT_1304_1665901130705'
+                                        objlogins.DTT_CODE = 'DTT_1304_1665901217208'
+                                        objlogins.DT_DESCRIPTION = 'transaction_group'
+                                        objlogins.DTT_DESCRIPTION = 'Transaction'
+                                        objlogins.CREATED_BY = params.CREATED_BY;
+                                        objlogins.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                        objlogins.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                        objlogins.MODIFIED_BY = "";
+                                        objlogins.MODIFIED_BY_NAME = "";
+                                        objlogins.MODIFIED_DATE = null;
+                                        objlogins.SYSTEM_ID = params.SYSTEM_ID;
+                                        objlogins.SYSTEM_NAME = params.SYSTEM_NAME;
+                                        objlogins.CREATED_BY_STS_ID = "";
+                                        objlogins.MODIFIED_BY_STS_ID = "";
+                                        objlogins.PRCT_ID = PRCT_ID;
+                                        objlogins.created_clientip = objSessionLogInfo.CLIENTIP;
+                                        objlogins.created_tz = objSessionLogInfo.CLIENTTZ;
+                                        objlogins.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                        objlogins.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                        objlogins.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                        objlogins.routingkey = headers.routingkey;
+                                        arrloginsert.push(objlogins);
                                         arrNoinsert.push(objNoinsert);
                                     }
-
-
-
+                                    var selectedFile=[]
+                                   /*  arrNoinsert.forEach(function (item) {
+                                        arrNoinsert.filter(
+                                            (value) => {
+                                                if (value.CHANNEL_REF_NO != item.CHANNEL_REF_NO && value.STATUS_CODE != item.STATUS_CODE ) {
+                                                    selectedFile.push(value)
+                                                }
+                                            }
+                                        )
+                                    }); */
+                  /*                   
+                                    this.selectedFile.push(this.arrNoinsert.filter(
+                                        (value) =>{
+                                            if (value.CHANNEL_REF_NO != item.CHANNEL_REF_NO && value.STATUS_CODE != item.STATUS_CODE ) 
+                                        } ))
+ */
 
 
 
                                     _BulkInsertProcessItem(arrNoinsert, 'npss_notification_logs', async function callbackInsert(CusTranInsertRes) {
                                         if (CusTranInsertRes.length > 0) {
-                                            let updtRes = await doCommprsMsgupdate(CusTranInsertRes,'')
-                                            if (updtRes == 'SUCCESS') {
-                                                reqInstanceHelper.PrintInfo(serviceName, "........................ All Data Inserted successfully...............", objSessionLogInfo);
-                                                objresponse.status = 'SUCCESS'
-                                                sendResponse(null, objresponse)
-                                            }else{
-                                                reqInstanceHelper.PrintInfo(serviceName, "........................ Update Failed...............", objSessionLogInfo);
-                                                objresponse.status = 'FAILURE'
-                                                sendResponse(null, objresponse)
-                                            }
+                                            _BulkInsertProcessItem(arrloginsert, 'npss_trn_process_log', async function callbackInsert(CusTranlogInsertRes) {
+                                                if (CusTranlogInsertRes.length > 0) {
+                                                    let updtRes = await doCommprsMsgupdate(CusTranInsertRes, '')
+                                                    if (updtRes == 'SUCCESS') {
+                                                        reqInstanceHelper.PrintInfo(serviceName, "........................ All Data Inserted successfully...............", objSessionLogInfo);
+                                                        objresponse.status = 'SUCCESS'
+                                                        sendResponse(null, objresponse)
+                                                    } else {
+                                                        reqInstanceHelper.PrintInfo(serviceName, "........................ Update Failed...............", objSessionLogInfo);
+                                                        objresponse.status = 'FAILURE'
+                                                        sendResponse(null, objresponse)
+                                                    }
+                                                } else {
 
+                                                    reqInstanceHelper.PrintInfo(serviceName, "........................ Error  in insert in log table ..............", objSessionLogInfo);
+                                                    objresponse.status = 'FAILURE'
+                                                    sendResponse(null, objresponse)
+                                                }
+                                            })
 
                                         } else {
 
@@ -157,15 +209,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                 }
                             })
 
-                            function stringtoobject(arr)
-                            {
+                            function stringtoobject(arr) {
                                 return new Promise((resolve, reject) => {
-                                   
-                                    if(typeof (arr)=='string'){
-                                         arr=JSON.parse(arr)
+
+                                    if (typeof (arr) == 'string') {
+                                        arr = JSON.parse(arr)
                                         stringtoobject(arr.message)
-                                    }else{
-                                       resolve(arr)
+                                    } else {
+                                        resolve(arr)
                                     }
                                 })
 
@@ -183,7 +234,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                             }
                             function doCommprsMsgupdate(arr, type) {
-                                return new Promise(async(resolve, reject) => {
+                                return new Promise(async (resolve, reject) => {
                                     var updtQry;
                                     if (type == 'RETRY_COUNT_EXCEEDED') {
                                         updtQry = `update ad_gss_tran.comm_process_message set status='${type}_INPROGRESS' , modified_by = '${params.CREATED_BY}',modified_date = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',modified_by_name ='${params.CREATED_BY_NAME}',prct_id ='${PRCT_ID}', modified_clientip = '${objSessionLogInfo.CLIENTIP}', modified_tz = '${objSessionLogInfo.CLIENTTZ}', modified_tz_offset = '${objSessionLogInfo.CLIENTTZ_OFFSET}', modified_by_sessionid = '${objSessionLogInfo.SESSION_ID}', modified_date_utc = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where status='${type}' `
@@ -213,7 +264,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             sendResponse(error)
                                         } else {
                                             callback("SUCCESS");
-    
+
                                         }
                                     } catch (error) {
                                         sendResponse(error)
@@ -275,12 +326,6 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-
-
-
-
-
-
                         } catch (error) {
                             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10003', 'ERROR IN DB CONNECTION FUNCTION', error);
                         }
@@ -312,6 +357,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 });

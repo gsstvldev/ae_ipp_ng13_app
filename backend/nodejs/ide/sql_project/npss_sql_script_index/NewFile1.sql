@@ -40,6 +40,8 @@ create index if not exists cbsa_alternate_account_id on core_nc_cbs_accounts (al
 @SPL@
 create index if not exists cbsa_account_closed on core_nc_cbs_accounts (account_closed);
 @SPL@
+create index if not exists cbsa_customerID on core_nc_cbs_accounts (Customer_ID,account_number);
+@SPL@
 create index if not exists cbsa_inactive_marker on core_nc_cbs_accounts (inactive_marker);
 @SPL@
 create index if not exists cbsa_posting_restriction_code on core_nc_cbs_accounts (posting_restriction_code);

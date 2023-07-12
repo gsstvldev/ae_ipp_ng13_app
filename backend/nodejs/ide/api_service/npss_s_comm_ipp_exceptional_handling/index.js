@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
 
+
     /*  Created By :  Daseen
   Created Date : 06/01/2023
   Modified By : Siva Harish
@@ -52,19 +53,19 @@ app.post('/', function(appRequest, appResponse, next) {
                         var ApitrnId
                         var app_id
                         try {
-                          
+
                             var TakeData = `SELECT m.commpm_id,m.message FROM ad_gss_tran.comm_process_message m  WHERE m.STATUS in ('RETRY_COUNT_EXCEEDED','SAME_BUSINESS_DAY_EXCEEDED') AND m.type='KAFKA' and m.message  like '%OrigChannelID%' order by commpm_id desc`
                             ExecuteQuery1(TakeData, async function (insarr) {
-                                if (insarr.length) {
+                                if (insarr.length>0) {
                                     let updtRes = await doCommprsMsgupdate(TakeData, 'RETRY_COUNT_EXCEEDED')
-                                   
+
                                     var arrNoinsert = [];
                                     var arrloginsert = [];
 
 
                                     for (let i = 0; i < insarr.length; i++) {
                                         var objNoinsert = {};
-                                       
+
 
                                         var Value = JSON.parse(insarr[i].message)
                                         var data = Value['message']
@@ -112,7 +113,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objNoinsert.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
                                         objNoinsert.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                         objNoinsert.routingkey = headers.routingkey;
-                                       
+
                                         arrNoinsert.push(objNoinsert);
                                     }
                                     const removeDup = arrNoinsert.filter((value, index, self) =>
@@ -136,6 +137,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objlogins.PROCESS_NAME = 'Channel Notification Failure'
                                         objlogins.UETR = MsgValuelog['uetr'] || '';
                                         objlogins.TENANT_ID = params.TENANT_ID || '';
+                                        objlogins.MSG_ID = await getMsgId(MsgValuelog['uetr'])
                                         objlogins.APP_ID = params.appId || '';
                                         objlogins.STATUS = 'OP_RETRY_COUNT_EXCEEDED'
                                         objlogins.PROCESS_STATUS = 'RCTNotification'
@@ -164,7 +166,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                     }
 
-                                   
+
                                     _BulkInsertProcessItem(removeDup, 'npss_notification_logs', async function callbackInsert(CusTranInsertRes) {
                                         if (CusTranInsertRes.length > 0) {
                                             _BulkInsertProcessItem(arrloginsert, 'npss_trn_process_log', async function callbackInsert(CusTranlogInsertRes) {
@@ -206,15 +208,19 @@ app.post('/', function(appRequest, appResponse, next) {
                                 }
                             })
 
-                            function stringtoobject(arr) {
+                            function getMsgId(uetr) {
                                 return new Promise((resolve, reject) => {
+                                    var TakeMsgid = `select msg_id from npss_trn_process_log where uetr='${uetr}' and process_name='Place Pacs008' and status='OP_AC_FILE_PLACED'`
+                                    ExecuteQuery1(TakeMsgid, async function (arrmsgID) {
+                                        if (arrmsgID.length>0) {
+                                            resolve(arrmsgID[0].msg_id)
+                                        } else {
+                                            reqInstanceHelper.PrintInfo(serviceName, "........................ NO msg id FOUND in log table for uetr..............."+uetr, objSessionLogInfo);
+                                            console.log("........................ NO msg id FOUND in log table...............")
+                                            resolve('ERROR')
+                                        }
+                                    })
 
-                                    if (typeof (arr) == 'string') {
-                                        arr = JSON.parse(arr)
-                                        stringtoobject(arr.message)
-                                    } else {
-                                        resolve(arr)
-                                    }
                                 })
 
                             }
@@ -354,6 +360,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

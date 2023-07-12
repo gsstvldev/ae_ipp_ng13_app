@@ -8,10 +8,6 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
 
-
-
-
-
 /*  Created By :sIVA hARISH
 Created Date : 02-01-2022
 Modifyed by : Siva Harish
@@ -21,7 +17,7 @@ Reason for Adding Update Query
 Reason for removing update query
 Reason for Adding ext_ident_retry_value 29/03/2023
 Reason for Changes for finance house
-changes 10/07/2023
+Changes for mail 12/07/2023
  
 */
 var serviceName = 'NPSS (CS) Manual Initiation Reject';
@@ -468,10 +464,10 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
 
                         function TakeDealParam(uetr) {
                             return new Promise((resolve, reject) => {
-                                let Takedata = `select  fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_data_json from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${uetr}'`
+                                let Takedata = `select  fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY ) as response_data_json from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${uetr}'`
                                 ExecuteQuery1(Takedata, function (arrdata) {
                                     if(arrdata.length > 0){
-                                        resolve(JSON.parse(arrdata[0]['request_data_json']))
+                                        resolve(JSON.parse(arrdata[0]['response_data_json']))
                                     }else{
                                         resolve('')
                                     }
@@ -567,6 +563,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 })
+
 
 
 

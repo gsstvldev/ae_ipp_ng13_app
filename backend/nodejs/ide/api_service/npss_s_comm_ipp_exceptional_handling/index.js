@@ -8,7 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
 
-    /*  Created By : Daseen
+    /*  Created By :  Daseen
   Created Date : 06/01/2023
   Modified By : Siva Harish
   Modified Date : 09/01/2023
@@ -52,26 +52,19 @@ app.post('/', function(appRequest, appResponse, next) {
                         var ApitrnId
                         var app_id
                         try {
-                            /*  var takecomg = `select * from core_ns_params where param_name = 'COMM_GROUP' AND process_name = '${params.PROCESS_NAME}' and need_sync = 'Y'`
-                             ExecuteQuery1(takecomg, function (comCatcode) {
-                                 if (comCatcode.length) {
-                                     reqAsync.forEachOfSeries(comCatcode, function (comCatcodeObj, i, nextobjctfunc) {
-                                         var CatgoryCode = comCatcodeObj.param_value */
+                          
                             var TakeData = `SELECT m.commpm_id,m.message FROM ad_gss_tran.comm_process_message m  WHERE m.STATUS in ('RETRY_COUNT_EXCEEDED','SAME_BUSINESS_DAY_EXCEEDED') AND m.type='KAFKA' and m.message  like '%OrigChannelID%' order by commpm_id desc`
                             ExecuteQuery1(TakeData, async function (insarr) {
                                 if (insarr.length) {
                                     let updtRes = await doCommprsMsgupdate(TakeData, 'RETRY_COUNT_EXCEEDED')
-                                    /* var JsonValue = JSON.parse(insarr[0].template_info)
-                                    var temp_info = JsonValue["TEMP_INFO"]
-                                    var partemp = JSON.parse(temp_info)
-                                    var retry_count = partemp["RETRY_COUNT"]*/
+                                   
                                     var arrNoinsert = [];
                                     var arrloginsert = [];
 
 
                                     for (let i = 0; i < insarr.length; i++) {
                                         var objNoinsert = {};
-                                        var objlogins = {}
+                                       
 
                                         var Value = JSON.parse(insarr[i].message)
                                         var data = Value['message']
@@ -119,8 +112,29 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objNoinsert.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
                                         objNoinsert.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                         objNoinsert.routingkey = headers.routingkey;
+                                       
+                                        arrNoinsert.push(objNoinsert);
+                                    }
+                                    const removeDup = arrNoinsert.filter((value, index, self) =>
+                                        index === self.findIndex((t) => (
+                                            t.CHANNEL_REF_NO === value.CHANNEL_REF_NO && t.STATUS_CODE === value.STATUS_CODE
+                                        ))
+                                    )
+                                    for (var j = 0; j < removeDup.length; j++) {
+                                        var Valuelog = removeDup[j].KAFKA_MESSAGE
+                                        var datalog = Valuelog['message']
+                                        // var MsgValue =await stringtoobject(data)
+                                        var DataMsgValuelog = JSON.parse(datalog)
+                                        //  var MsgValue = JSON.parse(DataMsgValue)
+                                        var MsgValuelog
+                                        try {
+                                            MsgValuelog = JSON.parse(DataMsgValuelog)
+                                        } catch (error) {
+                                            MsgValuelog = DataMsgValuelog
+                                        }
+                                        var objlogins = {}
                                         objlogins.PROCESS_NAME = 'Channel Notification Failure'
-                                        objlogins.UETR = MsgValue['uetr'] || '';
+                                        objlogins.UETR = MsgValuelog['uetr'] || '';
                                         objlogins.TENANT_ID = params.TENANT_ID || '';
                                         objlogins.APP_ID = params.appId || '';
                                         objlogins.STATUS = 'OP_RETRY_COUNT_EXCEEDED'
@@ -147,28 +161,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objlogins.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                         objlogins.routingkey = headers.routingkey;
                                         arrloginsert.push(objlogins);
-                                        arrNoinsert.push(objNoinsert);
+
                                     }
-                                    var selectedFile=[]
-                                   /*  arrNoinsert.forEach(function (item) {
-                                        arrNoinsert.filter(
-                                            (value) => {
-                                                if (value.CHANNEL_REF_NO != item.CHANNEL_REF_NO && value.STATUS_CODE != item.STATUS_CODE ) {
-                                                    selectedFile.push(value)
-                                                }
-                                            }
-                                        )
-                                    }); */
-                  /*                   
-                                    this.selectedFile.push(this.arrNoinsert.filter(
-                                        (value) =>{
-                                            if (value.CHANNEL_REF_NO != item.CHANNEL_REF_NO && value.STATUS_CODE != item.STATUS_CODE ) 
-                                        } ))
- */
 
-
-
-                                    _BulkInsertProcessItem(arrNoinsert, 'npss_notification_logs', async function callbackInsert(CusTranInsertRes) {
+                                   
+                                    _BulkInsertProcessItem(removeDup, 'npss_notification_logs', async function callbackInsert(CusTranInsertRes) {
                                         if (CusTranInsertRes.length > 0) {
                                             _BulkInsertProcessItem(arrloginsert, 'npss_trn_process_log', async function callbackInsert(CusTranlogInsertRes) {
                                                 if (CusTranlogInsertRes.length > 0) {

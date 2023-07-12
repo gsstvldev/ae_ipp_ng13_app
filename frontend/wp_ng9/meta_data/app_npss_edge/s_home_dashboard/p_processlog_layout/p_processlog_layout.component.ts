@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 31042 
+Build ID        : 31050 
 Modified By     : Admin 
-Modified Date   : 2023-Jul-12 11:5 AM 
+Modified Date   : 2023-Jul-12 13:8 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -34,10 +34,10 @@ export class p_processlog_layoutComponent implements OnInit {
   ngOnInit() {
     	this.navigation_pl.desc = "Navigation PL"
 		this.navigation_pl.need_header = ""
-		this.outward_overlay_failures_chart.desc = "OP API Failure"
-		this.outward_overlay_failures_chart.need_header = ""
-		this.overlay_failure_detail_list.desc = "Process Log List"
-		this.overlay_failure_detail_list.need_header = ""
+		this.outward_overlay_failures_chart.desc = "Outward Overlay Failures Chart"
+		this.outward_overlay_failures_chart.need_header = true
+		this.overlay_failure_detail_list.desc = "Overlay Failure Detail List"
+		this.overlay_failure_detail_list.need_header = true
 	
 
     this.screen_instance['p_processlog_layout'] = {};

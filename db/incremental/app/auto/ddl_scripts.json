@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_NOTIFICATION_LOGS add column UETR CHARACTER VARYING(64);","params" : [] }]
+[]

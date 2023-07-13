@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRN_PROCESS_LOG drop column CBS_RETURN_CODE;","params" : [] }]
+[{"query" : "alter table NPSS_NOTIFICATION_LOGS add column UETR CHARACTER VARYING(64);","params" : [] }]

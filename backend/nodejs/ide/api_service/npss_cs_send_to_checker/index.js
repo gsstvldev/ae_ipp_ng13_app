@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 try {
     /*   Created By :    Siva Harish
@@ -14,6 +15,7 @@ try {
       Reason for force to post flag 30/05/2023
        Reason for splrate logic changes 2/6/2023
         Reason for Handling buy rate and buy cur here 3/7/2023
+        Reason for Handling spl rate 14/7/2023
     */
     var serviceName = 'NPSS (CS) Send To Checker';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -58,7 +60,7 @@ try {
                         var apiName
                         var TakegmMargin
                         let Ipuetr
-                        var ChecksplRate
+                        var ChecksplRate = ''
                         var GetadditionData
                         var reverseAcinfparam
                         var final_status
@@ -164,10 +166,11 @@ try {
                                                                             let buyMargin = params.BUY_MARGIN != '' ? params.BUY_MARGIN : 0 || 0
                                                                             if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
                                                                                 var UpdateTrnTble
+                                                                                var updSplRate = ChecksplRate == 'Take Sellrate' ? 'N' : 'Y'
                                                                                 if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
-                                                                                    UpdateTrnTble = `Update npss_transactions set buy_rate = '${buyRate}',buy_margin = '${buyMargin}',maker = '${params.CREATED_BY_NAME}',force_post_flag = 'N',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                    UpdateTrnTble = `Update npss_transactions set buy_rate = '${buyRate}',buy_margin = '${buyMargin}',maker = '${params.CREATED_BY_NAME}',force_post_flag = 'N',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}',CUST_SPLRATE_FLAG = '${updSplRate}' where npsst_id = '${params.Tran_Id}'`
                                                                                 } else {
-                                                                                    UpdateTrnTble = `Update npss_transactions set buy_rate = '${buyRate}',buy_margin = '${buyMargin}',checker = '${params.CREATED_BY_NAME}',force_post_flag = 'N',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                    UpdateTrnTble = `Update npss_transactions set buy_rate = '${buyRate}',buy_margin = '${buyMargin}',checker = '${params.CREATED_BY_NAME}',force_post_flag = 'N',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}',CUST_SPLRATE_FLAG = '${updSplRate}' where npsst_id = '${params.Tran_Id}'`
                                                                                 }
                                                                                 ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
                                                                                     if (arrUpdTranTbl == 'SUCCESS') {
@@ -404,7 +407,7 @@ try {
                                     "status": params.eligible_status || '',
                                     "process_status": params.eligible_process_status || '',
                                     "clrsysref": arrprocesslog[0].clrsysref,
-                                     "need_manual_init_confirm_deal":"Y",
+                                     "need_manual_init_confirm_deal": ChecksplRate == 'Take Sellrate' ? 'N' : 'Y',
                                     "process": "",
                                     "remittance_information": arrprocesslog[0].remittance_info || '',
                                     "reversal_id": reverseAcinfparam.reverseId
@@ -1283,6 +1286,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

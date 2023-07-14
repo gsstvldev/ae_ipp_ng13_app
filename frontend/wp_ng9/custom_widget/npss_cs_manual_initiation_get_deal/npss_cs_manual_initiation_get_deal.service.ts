@@ -85,7 +85,7 @@ CallUrlWithData(ClientParams, screenInstance, internals) {
                         var Controls = screenInstance['verify_get_deal_ui'].f_npss_verification_get_deal_ui.model;
                         Controls.memory59 = res.data.data.buy_rate
                         Controls.memory58 = res.data.data.buy_margin
-                         this.dialogHelper.ShowInfoDialog('Get Deal Is Valid for 160 seconds');
+                         this.dialogHelper.ShowInfoDialog('Customer special rate has been taken.');
                     }else{
                         var dat =res.data.data;
                         var dat1 =dat.replace(/(\n)/g,"")
@@ -100,7 +100,8 @@ CallUrlWithData(ClientParams, screenInstance, internals) {
                      var Ctrlscope1 = screenInstance['verify_get_deal_ui'].f_npss_verification_get_deal_ui.model
                       Ctrlscope1.memory59 = response.GMRate
                       Ctrlscope1.memory58 = response.GMMargin
-                     this.dialogHelper.ShowInfoDialog('Get Deal Is Valid for 160 seconds');
+                 this.dialogHelper.ShowInfoDialog('Get Deal Is Valid for 160 seconds');
+                     
                     }
                    
                 }

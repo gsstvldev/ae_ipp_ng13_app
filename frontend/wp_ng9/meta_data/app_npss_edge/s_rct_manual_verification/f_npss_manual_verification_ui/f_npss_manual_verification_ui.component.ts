@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 31061 
+Build ID        : 31091 
 Modified By     : Admin 
-Modified Date   : 2023-Jul-13 5:30 AM 
+Modified Date   : 2023-Jul-14 8:0 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_verification
@@ -237,8 +237,46 @@ focustoelement(){
 		this.ctrl.force_post_flag.ctrl_id = "npss_manual_verification_ui_force_post_flag"
 		this.ctrl.npss_manual_verification_ui_force_post_flag = {}
 		this.ctrl.npss_manual_verification_ui_force_post_flag.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.model = {"INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":"","CHARGE_AMOUNT":"","DISPUTE_REF_NO":"","FORCE_POST_FLAG":""}
-		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DISPUTE_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"FORCE_POST_FLAG"}]
+	
+		//Properties of cust_splrate_flag
+		this.ctrl.cust_splrate_flag = {}
+		this.ctrl.cust_splrate_flag.id = "RN11CN6"
+		this.ctrl.cust_splrate_flag.desc = "Cust Spl Rate Flag"
+		this.ctrl.cust_splrate_flag.visible = true
+		this.ctrl.cust_splrate_flag.label_name = "Cust Spl Rate Flag"
+		this.ctrl.cust_splrate_flag.df_code = "DF_1304_1665901396659"
+		this.ctrl.cust_splrate_flag.df_description = "Column Group 1"
+		this.ctrl.cust_splrate_flag.uictrl_code = "TXT"
+		this.ctrl.cust_splrate_flag.target_column = "CUST_SPLRATE_FLAG"
+		this.ctrl.cust_splrate_flag.data_type = "TEXT"
+		this.ctrl.cust_splrate_flag.data_length = 1
+		this.ctrl.cust_splrate_flag.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.cust_splrate_flag.default_value = ""
+		this.ctrl.cust_splrate_flag.is_memory_ctrl = ""
+		this.ctrl.cust_splrate_flag.field_coordinates = ""
+		this.ctrl.cust_splrate_flag.sub_details = ""
+		this.ctrl.cust_splrate_flag.accept_char = ""
+		this.ctrl.cust_splrate_flag.currency_format = ""
+		this.ctrl.cust_splrate_flag.data_scale = ""
+		this.ctrl.cust_splrate_flag.hide_label = false
+		this.ctrl.cust_splrate_flag.depends_on = ""
+		this.ctrl.cust_splrate_flag.placeholder = ""
+		this.ctrl.cust_splrate_flag.dynamic_param = ""
+		this.ctrl.cust_splrate_flag.style_code = ""
+		this.ctrl.cust_splrate_flag.data_source = ""
+		this.ctrl.cust_splrate_flag.image_association = ""
+		this.ctrl.cust_splrate_flag.show = true
+		this.ctrl.cust_splrate_flag.sub_content = ""
+		this.ctrl.cust_splrate_flag.required = false
+		this.ctrl.cust_splrate_flag.vld_rules = []
+		this.ctrl.cust_splrate_flag.targetcolumn_lower = "cust_splrate_flag"
+		this.ctrl.cust_splrate_flag.disabled = false
+		this.ctrl.cust_splrate_flag.view_name = "f_npss_manual_verification_ui"
+		this.ctrl.cust_splrate_flag.ctrl_id = "npss_manual_verification_ui_cust_splrate_flag"
+		this.ctrl.npss_manual_verification_ui_cust_splrate_flag = {}
+		this.ctrl.npss_manual_verification_ui_cust_splrate_flag.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.model = {"INTRBK_STTLM_CUR":"","INTRBK_STTLM_AMNT":"","CHARGE_AMOUNT":"","DISPUTE_REF_NO":"","FORCE_POST_FLAG":"","CUST_SPLRATE_FLAG":""}
+		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"INTRBK_STTLM_CUR"},{"CTLR_CODE":"CUR","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"NUMBER","TARGET_COLUMN":"CHARGE_AMOUNT"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"DISPUTE_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"FORCE_POST_FLAG"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CUST_SPLRATE_FLAG"}]
 		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_manual_verification_ui.controls = this.screen_instance[this.comp_id].form_instance.ctrl

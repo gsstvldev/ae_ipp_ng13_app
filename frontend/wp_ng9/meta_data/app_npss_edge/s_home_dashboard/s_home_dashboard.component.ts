@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 31061 
+Build ID        : 31091 
 Modified By     : Admin 
-Modified Date   : 2023-Jul-13 5:30 AM 
+Modified Date   : 2023-Jul-14 8:0 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -919,7 +919,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation back"
 	navigation_back__action_button_click(){
 		this.navigation_back__tbc_for_back_to_hist_list_trg()
-		this.navigation_back__sp_for_df_profile_on_back()
+		this.navigation_back__rs_for_back_navigation()
 	}
 
 	//Handler for SELECTION_CHANGED event of "inward"
@@ -2734,20 +2734,20 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation back"
-	navigation_back__sp_for_df_profile_on_back() { 
+	navigation_back__rs_for_back_navigation() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_back"
 		let destn_id=""
 		let parent_source_id=""
-		let event_code="e_1679032563370"
-		let event_params={"caller_name":"navigation_back__sp_for_df_profile_on_back","event_desc":"SP for DF Profile on Back","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_back","raiseparam":{"profile_code":"BTL_1408_1598521214410"}}
-		let handler_code="show_profile"
+		let event_code="e_1689226536036"
+		let event_params={"caller_name":"navigation_back__rs_for_back_navigation","event_desc":"RS for Back navigation","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_back","raiseparam":{}}
+		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

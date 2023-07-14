@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 31061 
+Build ID        : 31091 
 Modified By     : Admin 
-Modified Date   : 2023-Jul-13 5:31 AM 
+Modified Date   : 2023-Jul-14 8:0 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -556,85 +556,85 @@ focustoelement(){
 		this.ctrl.npss_rct_ip_posting_failure_srch_memory124.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.memory124 = {}
 	
-		//Properties of memory114
-		this.ctrl.memory114 = {}
-		this.ctrl.memory114.id = "r2CN13"
-		this.ctrl.memory114.desc = "CR Bank Name"
-		this.ctrl.memory114.visible = true
-		this.ctrl.memory114.label_name = "CR Bank Name"
-		this.ctrl.memory114.df_code = "DF_1304_1665901396659"
-		this.ctrl.memory114.df_description = "Column Group 1"
-		this.ctrl.memory114.uictrl_code = "CBO"
-		this.ctrl.memory114.target_column = "memory114"
-		this.ctrl.memory114.data_type = "TEXT"
-		this.ctrl.memory114.data_length = 0
-		this.ctrl.memory114.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory114.default_value = ""
-		this.ctrl.memory114.is_memory_ctrl = "Y"
-		this.ctrl.memory114.field_coordinates = ""
-		this.ctrl.memory114.sub_details = ""
-		this.ctrl.memory114.accept_char = ""
-		this.ctrl.memory114.currency_format = ""
-		this.ctrl.memory114.data_scale = ""
-		this.ctrl.memory114.binding_name = "BIC_CODE"
-		this.ctrl.memory114.hide_label = false
-		this.ctrl.memory114.depends_on = ""
-		this.ctrl.memory114.placeholder = ""
-		this.ctrl.memory114.dynamic_param = ""
-		this.ctrl.memory114.style_code = ""
-		this.ctrl.memory114.data_source = {"ds_code":"UDS_1304_1670483620977","ds_description":"NPSS Bank BIC CDB","rows":[],"type":"DPS_TABLE","value_member":"BIC_CODE","display_member":"BIC_CODE","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_MEMBER_BANKS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1677586337229","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"need_auto_first_record":false,"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
-		this.ctrl.memory114.image_association = ""
-		this.ctrl.memory114.show = true
-		this.ctrl.memory114.sub_content = ""
-		this.ctrl.memory114.required = false
-		this.ctrl.memory114.vld_rules = []
-		this.ctrl.memory114.targetcolumn_lower = "memory114"
-		this.ctrl.memory114.disabled = false
-		this.ctrl.memory114.view_name = "f_npss_rct_ip_posting_failure_srch"
-		this.ctrl.memory114.ctrl_id = "npss_rct_ip_posting_failure_srch_memory114"
-		this.ctrl.npss_rct_ip_posting_failure_srch_memory114 = {}
-		this.ctrl.npss_rct_ip_posting_failure_srch_memory114.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.memory114 = {}
+		//Properties of cr_sort_code
+		this.ctrl.cr_sort_code = {}
+		this.ctrl.cr_sort_code.id = "r2CN13"
+		this.ctrl.cr_sort_code.desc = "CR Bank Name"
+		this.ctrl.cr_sort_code.visible = true
+		this.ctrl.cr_sort_code.label_name = "CR Bank Name"
+		this.ctrl.cr_sort_code.df_code = "DF_1304_1665901396659"
+		this.ctrl.cr_sort_code.df_description = "Column Group 1"
+		this.ctrl.cr_sort_code.uictrl_code = "CBO"
+		this.ctrl.cr_sort_code.target_column = "CR_SORT_CODE"
+		this.ctrl.cr_sort_code.data_type = "TEXT"
+		this.ctrl.cr_sort_code.data_length = 11
+		this.ctrl.cr_sort_code.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.cr_sort_code.default_value = ""
+		this.ctrl.cr_sort_code.is_memory_ctrl = ""
+		this.ctrl.cr_sort_code.field_coordinates = ""
+		this.ctrl.cr_sort_code.sub_details = ""
+		this.ctrl.cr_sort_code.accept_char = ""
+		this.ctrl.cr_sort_code.currency_format = ""
+		this.ctrl.cr_sort_code.data_scale = ""
+		this.ctrl.cr_sort_code.binding_name = "CR_SORT_CODE"
+		this.ctrl.cr_sort_code.hide_label = false
+		this.ctrl.cr_sort_code.depends_on = ""
+		this.ctrl.cr_sort_code.placeholder = ""
+		this.ctrl.cr_sort_code.dynamic_param = ""
+		this.ctrl.cr_sort_code.style_code = ""
+		this.ctrl.cr_sort_code.data_source = {"ds_code":"UDS_1304_1670483620977","ds_description":"NPSS Bank BIC CDB","rows":[],"type":"DPS_TABLE","value_member":"BIC_CODE","display_member":"BIC_CODE","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_MEMBER_BANKS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1677586337229","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"need_auto_first_record":false,"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
+		this.ctrl.cr_sort_code.image_association = ""
+		this.ctrl.cr_sort_code.show = true
+		this.ctrl.cr_sort_code.sub_content = ""
+		this.ctrl.cr_sort_code.required = false
+		this.ctrl.cr_sort_code.vld_rules = []
+		this.ctrl.cr_sort_code.targetcolumn_lower = "cr_sort_code"
+		this.ctrl.cr_sort_code.disabled = false
+		this.ctrl.cr_sort_code.view_name = "f_npss_rct_ip_posting_failure_srch"
+		this.ctrl.cr_sort_code.ctrl_id = "npss_rct_ip_posting_failure_srch_cr_sort_code"
+		this.ctrl.npss_rct_ip_posting_failure_srch_cr_sort_code = {}
+		this.ctrl.npss_rct_ip_posting_failure_srch_cr_sort_code.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.cr_sort_code = {}
 	
-		//Properties of memory109
-		this.ctrl.memory109 = {}
-		this.ctrl.memory109.id = "RN51CN17"
-		this.ctrl.memory109.desc = "Dr Bank Name"
-		this.ctrl.memory109.visible = true
-		this.ctrl.memory109.label_name = "Dr Bank Name"
-		this.ctrl.memory109.df_code = "DF_1304_1665901396659"
-		this.ctrl.memory109.df_description = "Column Group 1"
-		this.ctrl.memory109.uictrl_code = "CBO"
-		this.ctrl.memory109.target_column = "memory109"
-		this.ctrl.memory109.data_type = "TEXT"
-		this.ctrl.memory109.data_length = 0
-		this.ctrl.memory109.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory109.default_value = ""
-		this.ctrl.memory109.is_memory_ctrl = "Y"
-		this.ctrl.memory109.field_coordinates = ""
-		this.ctrl.memory109.sub_details = ""
-		this.ctrl.memory109.accept_char = ""
-		this.ctrl.memory109.currency_format = ""
-		this.ctrl.memory109.data_scale = ""
-		this.ctrl.memory109.binding_name = "BIC_CODE"
-		this.ctrl.memory109.hide_label = false
-		this.ctrl.memory109.depends_on = ""
-		this.ctrl.memory109.placeholder = ""
-		this.ctrl.memory109.dynamic_param = ""
-		this.ctrl.memory109.style_code = ""
-		this.ctrl.memory109.data_source = {"ds_code":"UDS_1304_1670483620977","ds_description":"NPSS Bank BIC CDB","rows":[],"type":"DPS_TABLE","value_member":"BIC_CODE","display_member":"BIC_CODE","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_MEMBER_BANKS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1677586337229","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"need_auto_first_record":false,"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
-		this.ctrl.memory109.image_association = ""
-		this.ctrl.memory109.show = true
-		this.ctrl.memory109.sub_content = ""
-		this.ctrl.memory109.required = false
-		this.ctrl.memory109.vld_rules = []
-		this.ctrl.memory109.targetcolumn_lower = "memory109"
-		this.ctrl.memory109.disabled = false
-		this.ctrl.memory109.view_name = "f_npss_rct_ip_posting_failure_srch"
-		this.ctrl.memory109.ctrl_id = "npss_rct_ip_posting_failure_srch_memory109"
-		this.ctrl.npss_rct_ip_posting_failure_srch_memory109 = {}
-		this.ctrl.npss_rct_ip_posting_failure_srch_memory109.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.memory109 = {}
+		//Properties of dr_sort_code
+		this.ctrl.dr_sort_code = {}
+		this.ctrl.dr_sort_code.id = "RN51CN17"
+		this.ctrl.dr_sort_code.desc = "Dr Bank Name"
+		this.ctrl.dr_sort_code.visible = true
+		this.ctrl.dr_sort_code.label_name = "Dr Bank Name"
+		this.ctrl.dr_sort_code.df_code = "DF_1304_1665901396659"
+		this.ctrl.dr_sort_code.df_description = "Column Group 1"
+		this.ctrl.dr_sort_code.uictrl_code = "CBO"
+		this.ctrl.dr_sort_code.target_column = "DR_SORT_CODE"
+		this.ctrl.dr_sort_code.data_type = "TEXT"
+		this.ctrl.dr_sort_code.data_length = 11
+		this.ctrl.dr_sort_code.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.dr_sort_code.default_value = ""
+		this.ctrl.dr_sort_code.is_memory_ctrl = ""
+		this.ctrl.dr_sort_code.field_coordinates = ""
+		this.ctrl.dr_sort_code.sub_details = ""
+		this.ctrl.dr_sort_code.accept_char = ""
+		this.ctrl.dr_sort_code.currency_format = ""
+		this.ctrl.dr_sort_code.data_scale = ""
+		this.ctrl.dr_sort_code.binding_name = "DR_SORT_CODE"
+		this.ctrl.dr_sort_code.hide_label = false
+		this.ctrl.dr_sort_code.depends_on = ""
+		this.ctrl.dr_sort_code.placeholder = ""
+		this.ctrl.dr_sort_code.dynamic_param = ""
+		this.ctrl.dr_sort_code.style_code = ""
+		this.ctrl.dr_sort_code.data_source = {"ds_code":"UDS_1304_1670483620977","ds_description":"NPSS Bank BIC CDB","rows":[],"type":"DPS_TABLE","value_member":"BIC_CODE","display_member":"BIC_CODE","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_MEMBER_BANKS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1677586337229","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"need_auto_first_record":false,"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
+		this.ctrl.dr_sort_code.image_association = ""
+		this.ctrl.dr_sort_code.show = true
+		this.ctrl.dr_sort_code.sub_content = ""
+		this.ctrl.dr_sort_code.required = false
+		this.ctrl.dr_sort_code.vld_rules = []
+		this.ctrl.dr_sort_code.targetcolumn_lower = "dr_sort_code"
+		this.ctrl.dr_sort_code.disabled = false
+		this.ctrl.dr_sort_code.view_name = "f_npss_rct_ip_posting_failure_srch"
+		this.ctrl.dr_sort_code.ctrl_id = "npss_rct_ip_posting_failure_srch_dr_sort_code"
+		this.ctrl.npss_rct_ip_posting_failure_srch_dr_sort_code = {}
+		this.ctrl.npss_rct_ip_posting_failure_srch_dr_sort_code.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.dr_sort_code = {}
 	
 		//Properties of intrbk_sttlm_amnt
 		this.ctrl.intrbk_sttlm_amnt = {}
@@ -832,8 +832,8 @@ focustoelement(){
 		this.ctrl.npss_rct_ip_posting_failure_srch_memory113 = {}
 		this.ctrl.npss_rct_ip_posting_failure_srch_memory113.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.memory113 = {}
-		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","CDTR_ACCT_NAME":"","DBTR_IBAN":"","UETR":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","PROCESSING_SYSTEM":"","MEMORY108":"","ACCOUNT_CURRENCY":"","MEMORY124":"","MEMORY114":"","MEMORY109":"","INTRBK_STTLM_AMNT":"","MEMORY110":"","MEMORY111":"","MEMORY112":"","MEMORY113":""}
-		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNT_CURRENCY"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
+		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","CDTR_ACCT_NAME":"","DBTR_IBAN":"","UETR":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","PROCESSING_SYSTEM":"","MEMORY108":"","ACCOUNT_CURRENCY":"","MEMORY124":"","CR_SORT_CODE":"","DR_SORT_CODE":"","INTRBK_STTLM_AMNT":"","MEMORY110":"","MEMORY111":"","MEMORY112":"","MEMORY113":""}
+		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCOUNT_CURRENCY"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_SORT_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DR_SORT_CODE"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
 		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_rct_ip_posting_failure_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

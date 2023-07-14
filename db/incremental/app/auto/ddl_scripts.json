@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS add column CUST_SPLRATE_FLAG CHARACTER VARYING(1);","params" : [] }]
+[]

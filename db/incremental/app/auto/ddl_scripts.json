@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS add column AANI_IDENTIFIER_FLAG CHARACTER VARYING(3);","params" : [] }]
+[{"query" : "alter table NPSS_TRANSACTIONS drop column AANI_IDENTIFIER_FLAG;","params" : [] }]

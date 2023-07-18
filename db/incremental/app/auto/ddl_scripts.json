@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS drop column AANI_IDENTIFIER_FLAG;","params" : [] }]
+[]

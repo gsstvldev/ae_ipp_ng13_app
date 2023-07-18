@@ -22,6 +22,7 @@ SELECT res.type,
     COALESCE(sum(res.IB), 0::numeric) AS IB,
     COALESCE(sum(res.RIBINF), 0::numeric) AS RIBINF,
     COALESCE(sum(res.AANI), 0::numeric) AS AANI,
+    COALESCE(sum(res.GCN), 0::numeric) AS GCN,
     COALESCE(sum(res.manual), 0::numeric) AS manual,
     COALESCE(sum(res.pending_screening), 0::numeric) AS pending_screening,
     COALESCE(sum(res.pending_maker), 0::numeric) AS pending_maker,
@@ -170,6 +171,13 @@ SELECT res.type,
                     WHEN nppst.channel_id::text = 'AANI'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS AANI,
+                count(DISTINCT
+                CASE
+                    WHEN nppst.channel_id::text = 'GCN'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'GCN'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'GCN'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    ELSE NULL::integer
+                END) AS GCN,
             count(DISTINCT
                 CASE
                     WHEN nppst.process_group::text = ANY (ARRAY['Manual'::text, 'MANUAL'::text, 'manual'::text]) THEN nppst.npsst_id
@@ -248,6 +256,7 @@ CMSCMD,
 IB,
 RIBINF,
 AANI,
+GCN,
 	manual,
 	pending_screening,
 	pending_maker,
@@ -285,6 +294,7 @@ from
 		0 as IB,
 		0 as RIBINF,
 		0 as AANI,
+		0 as GCN,
 		0 as manual,
 		0 as pending_screening,
 		0 as pending_maker,
@@ -347,6 +357,7 @@ CMSCMD,
 IB,
 RIBINF,
 AANI,
+GCN,
 	manual,
 	pending_screening,
 	pending_maker,
@@ -384,6 +395,7 @@ from
 		0 as IB,
 		0 as RIBINF,
 		0 as AANI,
+		0 as GCN,
 		0 as manual,
 		0 as pending_screening,
 		0 as pending_maker,
@@ -439,6 +451,7 @@ CMSCMD,
 IB,
 RIBINF,
 AANI,
+GCN,
 	manual,
 	pending_screening,
 	pending_maker,
@@ -476,6 +489,7 @@ from
 		0 as IB,
 		0 as RIBINF,
 		0 as AANI,
+		0 as GCN,
 		0 as manual,
 		0 as pending_screening,
 		0 as pending_maker,

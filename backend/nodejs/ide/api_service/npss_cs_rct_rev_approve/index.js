@@ -13,7 +13,7 @@ app.post('/', function(appRequest, appResponse, next) {
 try {
     /*   Created By :Daseen 
     Created Date :18/07/2023
-    Modified By : 
+    Modified By : DAseen  removing Account Info 24/07/2023
     Modified Date : 
     */
     var serviceName = 'NPSS RCT Outward Reversal Approve';
@@ -70,8 +70,10 @@ try {
                                      
                                         var TakeAccountInformation, TakeSellRatemargin;
                                        
-                                            TakeAccountInformation = await GetaccountInfo(arrprocesslog)
-                                            TakeSellRatemargin = await GetsellMarRate(TakeAccountInformation)
+                                           // TakeAccountInformation = await GetaccountInfo(arrprocesslog)
+                                            TakeAccountInformation = ''
+                                          // TakeSellRatemargin = await GetsellMarRate(TakeAccountInformation)
+                                           TakeSellRatemargin =''
                                        
 
                                         var TakepostRefno = `select process_ref_no from npss_trn_process_log where uetr = '${arrprocesslog[0].uetr}' and process_name = 'Receive Pacs002' and status in ('OP_AC_STATUS_ACCEPTED','OP_P2P_STATUS_ACCEPTED', 'OP_P2B_STATUS_ACCEPTED')`
@@ -239,24 +241,7 @@ try {
                             }
 
                         }
-                        if (params.PROD_CODE == 'NPSS_AEFAB') {
-                            if (TakeAccountInformation.currency == 'AED') {
-                                console.log('AED Tran')
-                            } else {
-                                if(TakeSellRatemargin.sell_margin  && TakeSellRatemargin.sell_rate){
-                                    options.json.dr_sell_margin = TakeSellRatemargin.sell_margin
-                                    options.json.dr_sell_rate = TakeSellRatemargin.sell_rate
-                                }else if(TakeSellRatemargin.sell_margin != '' && TakeSellRatemargin.sell_rate == ''){
-                                    options.json.dr_sell_margin = TakeSellRatemargin.sell_margin || ''
-                                    options.json.dr_sell_rate = ''
-                                }else if(TakeSellRatemargin.sell_rate != ''  && TakeSellRatemargin.sell_margin == ''){
-                                    options.json.dr_sell_rate = TakeSellRatemargin.sell_rate || ''
-                                    options.json.dr_sell_margin = ''
-                                }
-                                
-                                   
-                            }
-                        }
+                      
 
 
                         reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 31070 
+Build ID        : 31266 
 Modified By     : Admin 
-Modified Date   : 2023-Jul-13 10:38 AM 
+Modified Date   : 2023-Jul-27 5:52 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_notification_logs
@@ -203,8 +203,46 @@ focustoelement(){
 		this.ctrl.status_code.ctrl_id = "npss_notification_log_srch_status_code"
 		this.ctrl.npss_notification_log_srch_status_code = {}
 		this.ctrl.npss_notification_log_srch_status_code.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_notification_log_srch.model = {"MEMORY12":"setcurrentdate(),{}","CHANNEL_ID":"","CHANNEL_REF_NO":"","STATUS_CODE":""}
-		this.screen_instance[this.comp_id].f_npss_notification_log_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"STATUS_CODE"}]
+	
+		//Properties of uetr
+		this.ctrl.uetr = {}
+		this.ctrl.uetr.id = "RN41CN5"
+		this.ctrl.uetr.desc = "UETR"
+		this.ctrl.uetr.visible = false
+		this.ctrl.uetr.label_name = "UETR"
+		this.ctrl.uetr.df_code = "DF_1304_1672928913148"
+		this.ctrl.uetr.df_description = "Column Group 1"
+		this.ctrl.uetr.uictrl_code = "CDN_CTRL"
+		this.ctrl.uetr.target_column = "UETR"
+		this.ctrl.uetr.data_type = "TEXT"
+		this.ctrl.uetr.data_length = 64
+		this.ctrl.uetr.zone_df_code = "DF_1304_1672928913148"
+		this.ctrl.uetr.default_value = ""
+		this.ctrl.uetr.is_memory_ctrl = ""
+		this.ctrl.uetr.field_coordinates = ""
+		this.ctrl.uetr.sub_details = ""
+		this.ctrl.uetr.accept_char = ""
+		this.ctrl.uetr.currency_format = ""
+		this.ctrl.uetr.data_scale = ""
+		this.ctrl.uetr.binding_name = "UETR"
+		this.ctrl.uetr.depends_on = ""
+		this.ctrl.uetr.placeholder = ""
+		this.ctrl.uetr.dynamic_param = ""
+		this.ctrl.uetr.style_code = ""
+		this.ctrl.uetr.data_source = ""
+		this.ctrl.uetr.image_association = ""
+		this.ctrl.uetr.show = true
+		this.ctrl.uetr.sub_content = ""
+		this.ctrl.uetr.required = false
+		this.ctrl.uetr.vld_rules = []
+		this.ctrl.uetr.targetcolumn_lower = "uetr"
+		this.ctrl.uetr.disabled = false
+		this.ctrl.uetr.view_name = "f_npss_notification_log_srch"
+		this.ctrl.uetr.ctrl_id = "npss_notification_log_srch_uetr"
+		this.ctrl.npss_notification_log_srch_uetr = {}
+		this.ctrl.npss_notification_log_srch_uetr.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_notification_log_srch.model = {"MEMORY12":"setcurrentdate(),{}","CHANNEL_ID":"","CHANNEL_REF_NO":"","STATUS_CODE":"","UETR":""}
+		this.screen_instance[this.comp_id].f_npss_notification_log_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REF_NO"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"STATUS_CODE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"}]
 		this.screen_instance[this.comp_id].f_npss_notification_log_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_notification_log_srch.dtt_code = "dtt_1304_1672928670076"
 		this.screen_instance[this.comp_id].f_npss_notification_log_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

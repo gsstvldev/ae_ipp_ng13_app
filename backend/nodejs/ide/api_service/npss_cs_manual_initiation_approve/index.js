@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -18,6 +19,7 @@ try {
       Reason for handling count for reverse id for cc and pc 19/06/2023
         Reason for handling category pupose for 008 on 12-07-2023 by daseen
         Reason for update intblk amount from pacs008 by harish 14/7/2023
+         Reason for handling prepaid card missing field
    
     */
     var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -990,13 +992,27 @@ try {
                                             return x.status == 'IP_RCT_PC_PASSED' && x.process_name == 'Prepaid Card Validation'
                                         })
                                         if (chkPrepaidPassedTrn.length > 0) {
-                                            AcctInformations.birthdate = chkPrepaidPassedTrn[0].dateofbirth
-                                            AcctInformations.cityofbirth = chkPrepaidPassedTrn[0].cityofbirth
-                                            AcctInformations.countryofbirth = chkPrepaidPassedTrn[0].countryofbirth
-                                            AcctInformations.privateId = chkPrepaidPassedTrn[0].emiratesid
-                                            AcctInformations.account_name = chkPrepaidPassedTrn[0].customername
-                                            AcctInformations.extpersonidcode = 'NIDN'
-                                            resolve(AcctInformations)
+                                            if(chkPrepaidPassedTrn[0].emiratesid == null || chkPrepaidPassedTrn[0].emiratesid == ''){
+                                                objresponse.status = 'FAILURE'
+                                                objresponse.errdata = 'Private Id is Missing for Prepaid Card'
+                                                sendResponse(null, objresponse)
+                                            }else if((chkPrepaidPassedTrn[0].dateofbirth == null || chkPrepaidPassedTrn[0].dateofbirth =='') || (chkPrepaidPassedTrn[0].cityofbirth == null || chkPrepaidPassedTrn[0].cityofbirth =='')
+                                            || (chkPrepaidPassedTrn[0].countryofbirth == null || chkPrepaidPassedTrn[0].countryofbirth == '') || (chkPrepaidPassedTrn[0].customername == null || chkPrepaidPassedTrn[0].customername == '')
+                                            ){
+                                                objresponse.status = 'FAILURE'
+                                                objresponse.errdata = 'Mandatory field is missing'
+                                                sendResponse(null, objresponse)
+                                            }
+                                            else{
+                                                AcctInformations.privateId = chkPrepaidPassedTrn[0].emiratesid
+                                                AcctInformations.birthdate = chkPrepaidPassedTrn[0].dateofbirth
+                                                AcctInformations.cityofbirth = chkPrepaidPassedTrn[0].cityofbirth
+                                                AcctInformations.countryofbirth = chkPrepaidPassedTrn[0].countryofbirth
+                                                AcctInformations.account_name = chkPrepaidPassedTrn[0].customername
+                                                AcctInformations.extpersonidcode = 'NIDN'
+                                                resolve(AcctInformations)
+                                            }
+                                           
 
                                         } else {
                                             objresponse.status = 'FAILURE'
@@ -1828,6 +1844,7 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

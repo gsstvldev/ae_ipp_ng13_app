@@ -10,6 +10,7 @@ app.post('/', function(appRequest, appResponse, next) {
     
 
 
+
     /*  Created By :   Daseen
   Created Date : 06/01/2023
   Modified By : Siva Harish
@@ -30,6 +31,7 @@ app.post('/', function(appRequest, appResponse, next) {
       var objSessionLogInfo = null; // set value is null
       var reqAsync = require('async');
       var mTranConn = "";
+      var moment=require('moment');
       var objresponse = {
           'status': 'FAILURE',
           'data': '',
@@ -57,8 +59,14 @@ app.post('/', function(appRequest, appResponse, next) {
   
                               var TakeData = `SELECT m.commpm_id,m.message FROM ad_gss_tran.comm_process_message m  WHERE m.STATUS in ('RETRY_COUNT_EXCEEDED','SAME_BUSINESS_DAY_EXCEEDED') AND m.type='KAFKA' and m.message  like '%OrigChannelID%' order by commpm_id desc`
                               ExecuteQuery1(TakeData, async function (insarr) {
-                                  if (insarr.length>0) {
+                                  if (insarr.length > 0) {
                                       let updtRes = await doCommprsMsgupdate(TakeData, 'RETRY_COUNT_EXCEEDED')
+                                      if (updtRes != "SUCCESS") {
+                                          reqInstanceHelper.PrintInfo(serviceName, "........................ Update Failed FOR RETRY COUNT EXCEEDED...............", objSessionLogInfo);
+                                          objresponse.status = 'FAILURE'
+                                          sendResponse(null, objresponse)
+  
+                                      }
   
                                       var arrNoinsert = [];
                                       var arrloginsert = [];
@@ -84,7 +92,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                           objNoinsert.AMOUNT = MsgValue['instructedAmount'] || '';
                                           objNoinsert.CHANNEL_REF_NO = MsgValue['channelReferenceNo'] || '';
                                           objNoinsert.STATUS_CODE = MsgValue['statusCode'] || '';
-                                         objNoinsert.UETR = MsgValue['uetr'] || '0';
+                                          objNoinsert.UETR = MsgValue['uetr'] || '0';
                                           objNoinsert.ORDER_CUST_ACC_NO = MsgValue['orderingCustomerAccount'] || '';
                                           objNoinsert.STATUS_DESCRIPTION = MsgValue['statusDesc'] || '';
                                           objNoinsert.KAFKA_MESSAGE = JSON.parse(insarr[i].message) || '';
@@ -118,6 +126,7 @@ app.post('/', function(appRequest, appResponse, next) {
   
                                           arrNoinsert.push(objNoinsert);
                                       }
+                                      //  }
                                       const removeDup = arrNoinsert.filter((value, index, self) =>
                                           index === self.findIndex((t) => (
                                               t.CHANNEL_REF_NO === value.CHANNEL_REF_NO && t.STATUS_CODE === value.STATUS_CODE
@@ -168,38 +177,47 @@ app.post('/', function(appRequest, appResponse, next) {
                                           arrloginsert.push(objlogins);
   
                                       }
+                                      let statusforMail = await sendMail(removeDup)
+                                      if (statusforMail == 'SUCCESS') {
   
-  
-                                      _BulkInsertProcessItem(removeDup, 'npss_notification_logs', async function callbackInsert(CusTranInsertRes) {
-                                          if (CusTranInsertRes.length > 0) {
-                                              _BulkInsertProcessItem(arrloginsert, 'npss_trn_process_log', async function callbackInsert(CusTranlogInsertRes) {
-                                                  if (CusTranlogInsertRes.length > 0) {
-                                                      let updtRes = await doCommprsMsgupdate(CusTranInsertRes, '')
-                                                      if (updtRes == 'SUCCESS') {
-                                                          reqInstanceHelper.PrintInfo(serviceName, "........................ All Data Inserted successfully...............", objSessionLogInfo);
-                                                          objresponse.status = 'SUCCESS'
-                                                          sendResponse(null, objresponse)
+                                          _BulkInsertProcessItem(removeDup, 'npss_notification_logs', async function callbackInsert(CusTranInsertRes) {
+                                              if (CusTranInsertRes.length > 0) {
+                                                  _BulkInsertProcessItem(arrloginsert, 'npss_trn_process_log', async function callbackInsert(CusTranlogInsertRes) {
+                                                      if (CusTranlogInsertRes.length > 0) {
+                                                          let updtRes = await doCommprsMsgupdate(CusTranInsertRes, '')
+                                                          if (updtRes == 'SUCCESS') {
+                                                              reqInstanceHelper.PrintInfo(serviceName, "........................ All Data Inserted successfully...............", objSessionLogInfo);
+                                                              objresponse.status = 'SUCCESS'
+                                                              sendResponse(null, objresponse)
+                                                          } else {
+                                                              reqInstanceHelper.PrintInfo(serviceName, "........................ Update Failed...............", objSessionLogInfo);
+                                                              objresponse.status = 'FAILURE'
+                                                              sendResponse(null, objresponse)
+                                                          }
                                                       } else {
-                                                          reqInstanceHelper.PrintInfo(serviceName, "........................ Update Failed...............", objSessionLogInfo);
+  
+                                                          reqInstanceHelper.PrintInfo(serviceName, "........................ Error  in insert in log table ..............", objSessionLogInfo);
                                                           objresponse.status = 'FAILURE'
                                                           sendResponse(null, objresponse)
                                                       }
-                                                  } else {
+                                                  })
   
-                                                      reqInstanceHelper.PrintInfo(serviceName, "........................ Error  in insert in log table ..............", objSessionLogInfo);
-                                                      objresponse.status = 'FAILURE'
-                                                      sendResponse(null, objresponse)
-                                                  }
-                                              })
+                                              } else {
   
-                                          } else {
+                                                  reqInstanceHelper.PrintInfo(serviceName, "........................ Error  in insert ..............", objSessionLogInfo);
+                                                  objresponse.status = 'FAILURE'
+                                                  sendResponse(null, objresponse)
+                                              }
   
-                                              reqInstanceHelper.PrintInfo(serviceName, "........................ Error  in insert ..............", objSessionLogInfo);
-                                              objresponse.status = 'FAILURE'
-                                              sendResponse(null, objresponse)
-                                          }
-  
-                                      })
+                                          })
+                                      }
+                                      else
+  {
+      reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND in communication table...............", objSessionLogInfo);
+      console.log("........................ NO Data FOUND in communication table...............")
+      objresponse.status = 'FAILURE'
+      sendResponse(null, objresponse)
+  }
   
   
                                   } else {
@@ -215,10 +233,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                   return new Promise((resolve, reject) => {
                                       var TakeMsgid = `select msg_id from npss_trn_process_log where uetr='${uetr}' and process_name='Place Pacs008' and status='OP_AC_FILE_PLACED'`
                                       ExecuteQuery1(TakeMsgid, async function (arrmsgID) {
-                                          if (arrmsgID.length>0) {
+                                          if (arrmsgID.length > 0) {
                                               resolve(arrmsgID[0].msg_id)
                                           } else {
-                                              reqInstanceHelper.PrintInfo(serviceName, "........................ NO msg id FOUND in log table for uetr..............."+uetr, objSessionLogInfo);
+                                              reqInstanceHelper.PrintInfo(serviceName, "........................ NO msg id FOUND in log table for uetr..............." + uetr, objSessionLogInfo);
                                               console.log("........................ NO msg id FOUND in log table...............")
                                               resolve('ERROR')
                                           }
@@ -238,6 +256,165 @@ app.post('/', function(appRequest, appResponse, next) {
                                       resolve(retstr = '(' + "'" + arrTranstr.toString().split(',').join("','") + "'" + ')');
                                   })
   
+                              }
+                              function sendMail(removeDup) {
+                                  return new Promise((resolve, reject) => {
+                                      prcs_name = 'CHANNEL_NOTIFICATION'
+                                      var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync = 'Y'`
+                                      var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${prcs_name}' and param_name = 'COMM_TO' and need_sync = 'Y'`
+                                      ExecuteQuery1(takeurl, function (arrUrl) {
+                                          if (arrUrl.length > 0) {
+                                              ExecuteQuery1(TakeCometo, function (arrcomto) {
+                                                  var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${prcs_name}' and param_name = 'ORIGIN' and need_sync = 'Y'`
+                                                  ExecuteQuery1(Takeorg, function (arrorg) {
+                                                      var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = '${prcs_name}' and param_name = 'COMM_GROUP' and need_sync = 'Y'`
+                                                      ExecuteQuery1(tkcomgp, function (arrcomgp) {
+                                                          var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = '${prcs_name}' and param_name = 'COMM_CC' and need_sync = 'Y'`
+                                                          ExecuteQuery1(Takecmcc, function (arrcomcc) {
+                                                              var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${prcs_name}' and param_name = 'COM_CATEGORY' and need_sync = 'Y'`
+                                                              ExecuteQuery1(TakecomCat, function (arrCatgory) {
+                                                                 /*  let toemail = ''
+                                                                  /* if (arrcompany.length > 0) {
+                                                                      // var checkData = `select * from npss_trn_process_log where status = '${params.status}' and process_status = '${params.process_status}' and uetr = '${arrData[0].uetr}' order by created_date desc`
+                                                                  }*/
+                                                               /*   if (arrcomto.length > 0) {
+                                                                      toemail = arrcomto[0].param_value + ',' + arrdtt_code[0].wc_mail + ',' + arrdtt_code[0].usrtbl_mail
+                                                                  } else {
+                                                                      toemail = arrdtt_code[0].wc_mail + ',' + arrdtt_code[0].usrtbl_mail
+                                                                  } */
+  
+  
+                                                                  reqAsync.forEachOfSeries(removeDup, function (maildataObj, i, nextobjctfunc) {
+  
+  
+                                                                      try {
+                                                                          var frtodata = [{
+                                                                              TO: arrcomto.length > 0 ?arrcomto[0].param_value:'',
+                                                                              CC: arrcomcc.length > 0 ? arrcomcc[0].param_value : '',
+                                                                              BCC: '',
+                                                                              ORIGIN: arrorg.length > 0 ? arrorg[0].param_value : '',
+                                                                              COMM_GROUP: arrcomgp.length > 0 ? arrcomgp[0].param_value : '',
+                                                                              CHANNELID: maildataObj.CHANNEL_ID,
+                                                                              CHANNELREFNO: maildataObj.CHANNEL_REF_NO,
+                                                                              ORDERCUSTNO: maildataObj.ORDER_CUST_ACC_NO,
+                                                                              AMOUNT: maildataObj.AMOUNT,
+                                                                              CODE: maildataObj.STATUS_CODE,
+                                                                              STATUSDESCRIPTION: maildataObj.STATUS_DESCRIPTION,
+                                                                              DATE: moment(maildataObj.CREATED_DATE).format('DD/MM/YYYY'),
+                                                                              UETR: maildataObj.UETR,
+  
+  
+  
+                                                                          }]
+                                                                          let statusValue = "FAILURE"
+                                                                          var trndetail = JSON.stringify(frtodata)
+                                                                          var request = require('request');
+  
+                                                                          var options = {
+                                                                              url: arrUrl[0].param_detail,
+                                                                              timeout: 18000000,
+                                                                              method: 'POST',
+                                                                              json: {
+                                                                                  "PARAMS": {
+  
+                                                                                      "WFTPA_ID": "DEFAULT",
+  
+                                                                                      "PRCT_ID": "",
+  
+                                                                                      "EVENT_CODE": "DEFAULT",
+  
+  
+  
+                                                                                      "TRN_DETAILS": trndetail,
+  
+                                                                                      "TEMPLATECODE": arrCatgory[0].param_value,
+  
+  
+                                                                                      "DTT_CODE": "",
+  
+                                                                                      "DTT_CODE": "",
+  
+                                                                                      "COMM_INFO": "",
+  
+                                                                                      "SKIP_COMM_FLOW": true
+  
+                                                                                  },
+  
+                                                                                  "PROCESS_INFO": {
+  
+                                                                                      "MODULE": "MODULE",
+  
+                                                                                      "MENU_GROUP": "MENU_GROUP",
+  
+                                                                                      "MENU_ITEM": "MENU_ITEM",
+  
+                                                                                      "PROCESS_NAME": "PROCESS_NAME"
+  
+                                                                                  }
+                                                                              },
+                                                                              headers: {
+                                                                                  "session-id": headers["session-id"],
+                                                                                  "routingKey": headers.routingKey,
+                                                                                  'Content-Type': 'application/json'
+  
+                                                                              }
+                                                                          }
+  
+                                                                          reqInstanceHelper.PrintInfo(serviceName, '------------EMail API JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                                                                          request(options, function (error, responseFromImagingService, responseBody) {
+  
+                                                                              if (error) {
+                                                                                  reqInstanceHelper.PrintInfo(serviceName, '------------Email send API ERROR-------' + error, objSessionLogInfo);
+                                                                                  // resolve('ERROR')
+                                                                                  // status="FAILURE"
+                                                                              } else {
+                                                                                  reqInstanceHelper.PrintInfo(serviceName, '----------- Email send-API Response JSON-------' + JSON.stringify(responseBody), objSessionLogInfo);
+                                                                                  if (responseBody.data == 'SUCCESS') {  // resolve('SUCCESS')
+                                                                                      statusValue = "SUCCESS"
+                                                                                      nextobjctfunc(statusValue)
+                                                                                  }
+                                                                                  else {
+                                                                                      reqInstanceHelper.PrintInfo(serviceName, '------------Email send not success -------' + error, objSessionLogInfo);
+                                                                                  }
+                                                                                  //resolve('ERROR')
+                                                                                  //  sendResponse(null, objresponse)
+                                                                              }
+                                                                          });
+  
+                                                                      } catch (error) {
+                                                                          reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
+                                                                          resolve('ERROR')
+                                                                      }
+  
+                                                                  }, async function (statusValue) {
+                                                                      //let documentapiRes = await preparedocapibody(imgdataarr, arrapiparams, arrurl, res, GetFinalStatus, to_be_upld_count)
+                                                                      if (statusValue == 'SUCCESS') {
+                                                                          reqInstanceHelper.PrintInfo(serviceName, '------ MAIL SENT SUCCESSFULLY AFTER KAFKA API CALL----', objSessionLogInfo);
+                                                                          resolve('SUCCESS')
+                                                                      } else {
+                                                                          reqInstanceHelper.PrintInfo(serviceName, '------  FAILURE IN SENDING MAIL  AFTER KAFKA  CALL CHECK YOUR CONFIG----', objSessionLogInfo);
+                                                                          resolve('ERROR')
+                                                                      }
+                                                                  }
+                                                                  )
+  
+  
+                                                                  // })
+  
+                                                              })
+                                                          })
+  
+                                                      })
+                                                  })
+                                              })
+                                          } else {
+  
+                                              reqInstanceHelper.PrintInfo(serviceName, '------------.Send message Url Not Found.-------' + error, objSessionLogInfo);
+                                              resolve('ERROR')
+                                          }
+                                      })
+                                      //  resolve()
+                                  })
                               }
                               function doCommprsMsgupdate(arr, type) {
                                   return new Promise(async (resolve, reject) => {
@@ -363,6 +540,7 @@ app.post('/', function(appRequest, appResponse, next) {
               reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
           }
       })
+  
   
   
   

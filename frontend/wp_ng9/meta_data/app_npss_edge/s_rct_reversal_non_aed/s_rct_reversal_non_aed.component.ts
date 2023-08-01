@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 31193 
+Build ID        : 31337 
 Modified By     : Admin 
-Modified Date   : 2023-Aug-01 11:23 AM 
+Modified Date   : 2023-Aug-01 12:26 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -2062,7 +2062,7 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let event_params={"caller_name":"navigation_review__sec_through_product_code","event_desc":"SEC through Product code","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_review","raiseparam":{}}
 		let handler_code="set_event_context"
 		let internals=""
-		let event_data={}
+		let event_data={"navigation_review":{"e_1690885736368":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGCC_5","event_code":"E_1690885736368","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[],"get_from_memory":[],"set_event_context":"Y","sec_value":{"type":"SESSION_LEVEL","value":"ROOT_SCODE"}}}}}}}}}
 		let data_source={}
 		try {
 			return this.handler.set_event_context(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)

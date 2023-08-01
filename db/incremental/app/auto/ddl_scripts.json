@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRN_PROCESS_LOG add column CHANNEL_ID CHARACTER VARYING(128);","params" : [] }]
+[]

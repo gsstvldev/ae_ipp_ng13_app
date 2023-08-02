@@ -8,6 +8,8 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
+    
 
     try {
         /*   Created By : Siva Harish
@@ -360,13 +362,28 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     }
 
+                    function RtrdIntrBkSttlmAmt(arr){
+                        return new Promise((resolve, reject) => {
+                           
+                            var stlmamt = `select additional_info from npss_trn_process_log where status='IP_RCT_RETUREND' and process_status='RCTReturned' and process_name='Place Pacs004' and uetr='${arr.uetr}'`
+                            ExecuteQuery1(stlmamt, function (arrstlmamt) {
+                                if(arrstlmamt.length>0){
+                                    resolve(arrstlmamt[0].additional_info)
+                                }else{
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------Settle amount Not Found-------' + arr.uetr, objSessionLogInfo); 
+                                    resolve('failure')
+                                }
 
+                            })
+                        })
+                    }
 
                     function CallORAPI(arrTranparams, failcountobj, failcount, arrurl) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var runapifun = async () => {
                                     var TakeacctInfrm = await AccountInformation(arrTranparamsObj)
+                                    var TakeRtrdIntrBkSttlmAmt = await RtrdIntrBkSttlmAmt(arrTranparamsObj)
                                     if (TakeacctInfrm.status == 'SUCCESS') {
                                         var Takereturncode = `select cbuae_return_code,npsstrrd_refno from npss_trn_process_log where process_name='Receive Pacs004' and uetr = '${arrTranparamsObj.uetr}'`
                                         ExecuteQuery1(Takereturncode, function (returncode) {
@@ -429,7 +446,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             "account_number": TakeacctInfrm.AccountInformations.account_number || '',
                                                             "cdtr_acct_name": arrTranparamsObj.cdtr_acct_name || '',
                                                             "npsstrrd_refno": npsst_refno || '',
-
+                                                            "RtrdIntrBkSttlmAmt":TakeRtrdIntrBkSttlmAmt||''
 
                                                         }
                                                     }
@@ -904,6 +921,8 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
+
 
 
 

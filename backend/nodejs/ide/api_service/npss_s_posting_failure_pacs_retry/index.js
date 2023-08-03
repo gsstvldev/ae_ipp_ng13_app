@@ -195,7 +195,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     function GetProcessStatus(org_status) {
                         return new Promise((resolve, reject) => {
-                            if (org_status == 'OP_P2P_FILE_PLACED' || org_status == 'OP_P2B_FILE_PLACED' || org_status == 'OP_AC_FILE_PLACED' || org_status == 'IP_RCT_POSTING_READY' || org_status == 'IP_RCT_CC_POSTING_READY' || org_status == 'IP_RCT_PC_POSTING_READY') {
+                            if (org_status == 'OP_P2P_FILE_PLACED' || org_status == 'OP_P2B_FILE_PLACED'|| org_status == 'OP_MAN_FILE_PLACED'  || org_status == 'OP_AC_FILE_PLACED' || org_status == 'IP_RCT_POSTING_READY' || org_status == 'IP_RCT_CC_POSTING_READY' || org_status == 'IP_RCT_PC_POSTING_READY') {
                                 resolve('RCTInProcess')
                             } else if (org_status == 'IP_RCT_RETURNED' || org_status == 'IP_RCT_RR_FILE_PLACED' || org_status == 'IP_RCT_RR_RETURNED') {
                                 resolve('RCTReturned')

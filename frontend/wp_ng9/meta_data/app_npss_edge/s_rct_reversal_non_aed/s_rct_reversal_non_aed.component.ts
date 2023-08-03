@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 31337 
+Build ID        : 31396 
 Modified By     : Admin 
-Modified Date   : 2023-Aug-01 12:26 PM 
+Modified Date   : 2023-Aug-03 6:36 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -1031,8 +1031,6 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		this.navigation_review__brfq_for_rfd_list_uab(peventcontext)
 		this.navigation_review__brfq_for_otd_list_uab(peventcontext)
 		this.navigation_review__sp_for_fh_uab(peventcontext)
-		this.navigation_review__he_for_force_post_fh_uab(peventcontext)
-		this.navigation_review__he_for_get_deal_fh_uab(peventcontext)
 		this.navigation_review__e_1677768187578__deal_ui()
 		this.navigation_review__e_1677768213736__deal_ui()
 		this.navigation_review__e_1677768229606__deal_ui()
@@ -2409,50 +2407,6 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
-	navigation_review__he_for_force_post_fh_uab(peventcontext) { 
-		let Dest_Is_ctrl=true
-		let eventcontext =["NPSS_AEUAB","NPSS_AEFIN"]
-		if(eventcontext.indexOf(peventcontext)==-1) return true;
-		let source_id="navigation_review"
-		let destn_id="reversal_action_ui_force_post"
-		let parent_source_id=""
-		let event_code="e_1690886889888"
-		let event_params={"caller_name":"navigation_review__he_for_force_post_fh_uab","event_desc":"HE for force post FH UAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEUAB","root_source_id":"navigation_review","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""},"eventcontext":["NPSS_AEUAB","NPSS_AEFIN"]}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
-	navigation_review__he_for_get_deal_fh_uab(peventcontext) { 
-		let Dest_Is_ctrl=true
-		let eventcontext =["NPSS_AEUAB","NPSS_AEFIN"]
-		if(eventcontext.indexOf(peventcontext)==-1) return true;
-		let source_id="navigation_review"
-		let destn_id="reversal_action_ui_get_deal"
-		let parent_source_id=""
-		let event_code="e_1690886922219"
-		let event_params={"caller_name":"navigation_review__he_for_get_deal_fh_uab","event_desc":"HE for get deal FH UAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEUAB","root_source_id":"navigation_review","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""},"eventcontext":["NPSS_AEUAB","NPSS_AEFIN"]}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

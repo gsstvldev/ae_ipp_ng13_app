@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 31193 
+Build ID        : 31396 
 Modified By     : Admin 
-Modified Date   : 2023-Aug-01 11:23 AM 
+Modified Date   : 2023-Aug-03 6:36 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -993,10 +993,8 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.navigation_review__he_for_aefin(peventcontext)
 		this.navigation_review__de_for_rev_add_ui()
 		this.navigation_review__bt_for_rev_add_ui()
-		this.navigation_review__he_for_force_post(peventcontext)
 		this.navigation_review__brfq_for_cbc_account()
 		this.navigation_review__he_for_fin(peventcontext)
-		this.navigation_review__e_1674122143563()
 		this.navigation_review__brfq_for_otd_list_fab(peventcontext)
 		this.navigation_review__brfq_for_rpd_list_fab(peventcontext)
 		this.navigation_review__e_1679293130373()
@@ -2144,13 +2142,13 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
 	navigation_review__he_for_aefin(peventcontext) { 
 		let Dest_Is_ctrl=true
-		let eventcontext =["NPSS_AEFIN"]
+		let eventcontext =["NPSS_AEFIN","NPSS_AEUAB"]
 		if(eventcontext.indexOf(peventcontext)==-1) return true;
 		let source_id="navigation_review"
 		let destn_id="process_log_control_ui"
 		let parent_source_id=""
 		let event_code="e_1671692861445"
-		let event_params={"caller_name":"navigation_review__he_for_aefin","event_desc":"HE for AEFIN","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"navigation_review","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""},"eventcontext":["NPSS_AEFIN"]}
+		let event_params={"caller_name":"navigation_review__he_for_aefin","event_desc":"HE for AEFIN","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"navigation_review","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""},"eventcontext":["NPSS_AEFIN","NPSS_AEUAB"]}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -2206,28 +2204,6 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
-	navigation_review__he_for_force_post(peventcontext) { 
-		let Dest_Is_ctrl=true
-		let eventcontext =["NPSS_AEFIN","NPSS_AEUAB"]
-		if(eventcontext.indexOf(peventcontext)==-1) return true;
-		let source_id="navigation_review"
-		let destn_id="reversal_action_ui_force_post"
-		let parent_source_id=""
-		let event_code="e_1673499885144"
-		let event_params={"caller_name":"navigation_review__he_for_force_post","event_desc":"HE for Force post","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"navigation_review","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""},"eventcontext":["NPSS_AEFIN","NPSS_AEUAB"]}
-		let handler_code="hide_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
 	navigation_review__brfq_for_cbc_account() { 
 		let Dest_Is_ctrl=true
 		
@@ -2251,40 +2227,19 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
 	navigation_review__he_for_fin(peventcontext) { 
 		let Dest_Is_ctrl=true
-		let eventcontext =["NPSS_AEFIN"]
+		let eventcontext =["NPSS_AEFIN","NPSS_AEUAB"]
 		if(eventcontext.indexOf(peventcontext)==-1) return true;
 		let source_id="navigation_review"
 		let destn_id="cbs_accounts"
 		let parent_source_id=""
 		let event_code="e_1674106429480"
-		let event_params={"caller_name":"navigation_review__he_for_fin","event_desc":"HE for FIN","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"navigation_review","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""},"eventcontext":["NPSS_AEFIN"]}
+		let event_params={"caller_name":"navigation_review__he_for_fin","event_desc":"HE for FIN","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"navigation_review","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""},"eventcontext":["NPSS_AEFIN","NPSS_AEUAB"]}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_37","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1674106680765","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Rev CBS Account MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"ACCOUNT_NUMBER","alias_name":"","mq_id":"MQ_1674106327804","date_format":false},{"column_name":"ACCOUNT_NAME","alias_name":"","mq_id":"MQ_1674106327988","date_format":false},{"column_name":"NPSST_ID","alias_name":"","mq_id":"MQ_1674106525607","date_format":false},{"column_name":"TENANT_ID","alias_name":"","mq_id":"MQ_1674106532094","date_format":false}],"joins":[]},"eq_text":"select  ACCOUNT_NUMBER,  NPSST_ID,  ACCOUNT_NAME,  TENANT_ID from  (  select   case when cnca.alternate_account_type in ('VA.IBAN','VA.BBAN') then ACCOUNT_NUMBER         else null         end as account_number,         case when cnca.alternate_account_type in ('VA.IBAN','VA.BBAN') then ACCOUNT_NAME         else null         end as account_name,   CNCA.ALTERNATE_ACCOUNT_ID,   NT.TENANT_ID,   NT.CDTR_IBAN,   NT.NPSST_ID,   NT.DTT_CODE,   NT.DT_CODE  from   <tran_db>.CORE_NC_CBS_ACCOUNTS CNCA  inner join NPSS_TRANSACTIONS NT on   CNCA.ALTERNATE_ACCOUNT_ID = NT.CDTR_IBAN)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Rev CBS Account CCD","filter":[{"filter_name":"NPSST_ID","binding_name":"NPSST_ID","binding_value":"","source_name":"MI_LEVEL_NPSST_ID","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"NUMBER","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Real Account No","target_column":"ACCOUNT_NUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Real Account Name","target_column":"ACCOUNT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
-	navigation_review__e_1674122143563() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="navigation_review"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1674122143563"
-		let event_params={"caller_name":"navigation_review__e_1674122143563","event_desc":"E_1674122143563","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_review","raiseparam":{"profile_code":"BTL_1304_1678258415615"}}
-		let handler_code="show_profile"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -3983,13 +3938,13 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "trig action for list ui trg queue"
 	trig_action_for_list_ui_trg_queue__ssp_for_tri_queue_for_fh(peventcontext) { 
 		let Dest_Is_ctrl=true
-		let eventcontext =["NPSS_AEFIN"]
+		let eventcontext =["NPSS_AEFIN","NPSS_AEUAB"]
 		if(eventcontext.indexOf(peventcontext)==-1) return true;
 		let source_id="trig_action_for_list_ui_trg_queue"
 		let destn_id="search"
 		let parent_source_id=""
 		let event_code="e_1672299345663"
-		let event_params={"caller_name":"trig_action_for_list_ui_trg_queue__ssp_for_tri_queue_for_fh","event_desc":"SSP for Tri queue for FH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"trig_action_for_list_ui_trg_queue","raiseparam":{},"eventcontext":["NPSS_AEFIN"]}
+		let event_params={"caller_name":"trig_action_for_list_ui_trg_queue__ssp_for_tri_queue_for_fh","event_desc":"SSP for Tri queue for FH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"trig_action_for_list_ui_trg_queue","raiseparam":{},"eventcontext":["NPSS_AEFIN","NPSS_AEUAB"]}
 		let handler_code="set_search_params"
 		let internals="ssp_for_tri_queue_for_fh__brfq_for_fhs,"
 		let event_data={}
@@ -4134,13 +4089,13 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "trig action for list ui trig tran list"
 	trig_action_for_list_ui_trig_tran_list__ssp_for_queue_to_tran__fh(peventcontext) { 
 		let Dest_Is_ctrl=true
-		let eventcontext =["NPSS_AEFIN"]
+		let eventcontext =["NPSS_AEFIN","NPSS_AEUAB"]
 		if(eventcontext.indexOf(peventcontext)==-1) return true;
 		let source_id="trig_action_for_list_ui_trig_tran_list"
 		let destn_id="search"
 		let parent_source_id=""
 		let event_code="e_1672295820920"
-		let event_params={"caller_name":"trig_action_for_list_ui_trig_tran_list__ssp_for_queue_to_tran__fh","event_desc":"SSP for Queue to tran  FH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"trig_action_for_list_ui_trig_tran_list","raiseparam":{},"eventcontext":["NPSS_AEFIN"]}
+		let event_params={"caller_name":"trig_action_for_list_ui_trig_tran_list__ssp_for_queue_to_tran__fh","event_desc":"SSP for Queue to tran  FH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"trig_action_for_list_ui_trig_tran_list","raiseparam":{},"eventcontext":["NPSS_AEFIN","NPSS_AEUAB"]}
 		let handler_code="set_search_params"
 		let internals="ssp_for_queue_to_tran__fh__brfq_for_fh_trans,"
 		let event_data={}

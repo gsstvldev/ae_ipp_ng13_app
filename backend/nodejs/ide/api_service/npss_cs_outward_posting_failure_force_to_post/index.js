@@ -365,7 +365,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     function RtrdIntrBkSttlmAmt(arr){
                         return new Promise((resolve, reject) => {
                            
-                            var stlmamt = `select additional_info from npss_trn_process_log where status='IP_RCT_RETUREND' and process_status='RCTReturned' and process_name='Place Pacs004' and uetr='${arr.uetr}'`
+                           var stlmamt = `select additional_info from npss_trn_process_log where status='IP_RCT_RETURNED' and process_status='RCTReturned' and process_name='Place Pacs004' and uetr='${arr.uetr}'`
                             ExecuteQuery1(stlmamt, function (arrstlmamt) {
                                 if(arrstlmamt.length>0){
                                     resolve(arrstlmamt[0].additional_info)

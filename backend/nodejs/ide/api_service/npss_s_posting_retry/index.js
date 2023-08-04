@@ -1361,7 +1361,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 timeout: 18000000,
                                                                 method: 'POST',
                                                                 json: {
-                                                                    batch_name: "CR-CBS-POSTING-Q",
+                                                                    batch_name: "DR-CBS-POSTING-Q",
                                                                     data: {
                                                                         "payload": {
                                                                             "tran_ref_id": arrlogdata[0].tran_ref_id || '',

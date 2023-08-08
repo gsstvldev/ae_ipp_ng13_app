@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
 
+
     /*  Created By :   Daseen
   Created Date : 06/01/2023
   Modified By : Siva Harish
@@ -15,6 +16,7 @@ app.post('/', function(appRequest, appResponse, next) {
   Reason for : Handling JSON parse 27/4/2023
     Modified By :Daseen 03/07/2023 comm_prcs_mesaage
       Modified By :Daseen 11/07/2023 npss_tran_process_log insert
+        Modified By :Daseen 08/08/2023 duplicate removed in  npss_tran_process_log insert
    
   */
     var serviceName = 'NPSS (S) IPP Exceptional Handling';
@@ -143,7 +145,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         }
                                         var objlogins = {}
                                         objlogins.PROCESS_NAME = 'Channel Notification Failure'
-                                        objlogins.UETR = MsgValuelog['uetr'] || '';
+                                        objlogins.UETR = MsgValuelog['uetr'] || '0';
                                         objlogins.TENANT_ID = params.TENANT_ID || '';
                                         objlogins.MSG_ID = await getMsgId(MsgValuelog['uetr'])
                                         objlogins.APP_ID = params.appId || '';
@@ -179,29 +181,44 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                         _BulkInsertProcessItem(removeDup, 'npss_notification_logs', async function callbackInsert(CusTranInsertRes) {
                                             if (CusTranInsertRes.length > 0) {
-                                                _BulkInsertProcessItem(arrloginsert, 'npss_trn_process_log', async function callbackInsert(CusTranlogInsertRes) {
-                                                    if (CusTranlogInsertRes.length > 0) {
-                                                        let updtRes = await doCommprsMsgupdate(CusTranInsertRes, '')
-                                                        if (updtRes == 'SUCCESS') {
-                                                            reqInstanceHelper.PrintInfo(serviceName, "........................ All Data Inserted successfully...............", objSessionLogInfo);
-                                                            objresponse.status = 'SUCCESS'
-                                                            sendResponse(null, objresponse)
-                                                        } else {
-                                                            reqInstanceHelper.PrintInfo(serviceName, "........................ Update Failed...............", objSessionLogInfo);
-                                                            objresponse.status = 'FAILURE'
-                                                            sendResponse(null, objresponse)
-                                                        }
-                                                    } else {
-
-                                                        reqInstanceHelper.PrintInfo(serviceName, "........................ Error  in insert in log table ..............", objSessionLogInfo);
-                                                        objresponse.status = 'FAILURE'
-                                                        sendResponse(null, objresponse)
+                                                var chkalreayexistData = `select uetr,npsstpl_id  from npss_trn_process_log where status='OP_RETRY_COUNT_EXCEEDED' and process_status='RCTNotification' `
+                                                let removeIfExist = []
+                                                ExecuteQuery1(chkalreayexistData, async function (arrexistdata) {
+                                                    if (arrexistdata.length > 0) {
+                                                        removeIfExist = arrloginsert.filter(function (obj) {
+                                                            return !arrexistdata.some(function (obj2) {
+                                                                return obj.UETR == obj2.uetr;
+                                                            });
+                                                        })
+                                                    }else {
+                                                        removeIfExist=arrloginsert
                                                     }
-                                                })
+                                                    console.log(removeIfExist.length)
+                                                    if (removeIfExist.length > 0) {
+                                                        _BulkInsertProcessItem(removeIfExist, 'npss_trn_process_log', async function callbackInsert(CusTranlogInsertRes) {
+                                                            if (CusTranlogInsertRes.length > 0) {
+                                                                reqInstanceHelper.PrintInfo(serviceName, "........................ All Data Inserted successfully in npss_trn_process_log...............", objSessionLogInfo);
+                                                            } else {
+                                                                reqInstanceHelper.PrintInfo(serviceName, "........................ after filter No Data Inserted  in npss_trn_process_log...............", objSessionLogInfo);
+                                                            }
+                                                            let updtRes = await doCommprsMsgupdate(CusTranInsertRes, '')
+                                                            if (updtRes == 'SUCCESS') {
+                                                                reqInstanceHelper.PrintInfo(serviceName, "........................ All Data Inserted successfully...............", objSessionLogInfo);
+                                                                objresponse.status = 'SUCCESS'
+                                                                sendResponse(null, objresponse)
+                                                            } else {
+                                                                reqInstanceHelper.PrintInfo(serviceName, "........................ Update Failed...............", objSessionLogInfo);
+                                                                objresponse.status = 'FAILURE'
+                                                                sendResponse(null, objresponse)
+                                                            }
+                                                        })
+                                                    }
+                                                   
 
+                                                })
                                             } else {
 
-                                                reqInstanceHelper.PrintInfo(serviceName, "........................ Error  in insert ..............", objSessionLogInfo);
+                                                reqInstanceHelper.PrintInfo(serviceName, "........................ Error  in  npss_notification_logs insert ..............", objSessionLogInfo);
                                                 objresponse.status = 'FAILURE'
                                                 sendResponse(null, objresponse)
                                             }
@@ -234,7 +251,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         } else {
                                             reqInstanceHelper.PrintInfo(serviceName, "........................ NO msg id FOUND in log table for uetr..............." + uetr, objSessionLogInfo);
                                             console.log("........................ NO msg id FOUND in log table...............")
-                                            resolve('ERROR')
+                                            resolve('0')
                                         }
                                     })
 
@@ -269,7 +286,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         ExecuteQuery1(Takecmcc, function (arrcomcc) {
                                                             var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${prcs_name}' and param_name = 'COM_CATEGORY' and need_sync = 'Y'`
                                                             ExecuteQuery1(TakecomCat, function (arrCatgory) {
-                                                               
+
                                                                 reqAsync.forEachOfSeries(removeDup, function (maildataObj, i, nextobjctfunc) {
 
                                                                     try {
@@ -297,6 +314,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                         var options = {
                                                                             url: arrUrl[0].param_detail,
+                                                                            // url: 'http://vnpss.tvlgss.com/Communication/SendMessage',
                                                                             timeout: 18000000,
                                                                             method: 'POST',
                                                                             json: {
@@ -351,7 +369,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             if (error) {
                                                                                 reqInstanceHelper.PrintInfo(serviceName, '------------Email send API ERROR-------' + error, objSessionLogInfo);
                                                                                 nextobjctfunc()
-                                                                                
+
                                                                             } else {
                                                                                 reqInstanceHelper.PrintInfo(serviceName, '----------- Email send-API Response JSON-------' + JSON.stringify(responseBody), objSessionLogInfo);
                                                                                 if (responseBody.data == 'SUCCESS') {  // resolve('SUCCESS')
@@ -372,13 +390,13 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                 }, function () {
                                                                     //let documentapiRes = await preparedocapibody(imgdataarr, arrapiparams, arrurl, res, GetFinalStatus, to_be_upld_count)
-                                                                    if (statusValue == 'SUCCESS') {
-                                                                        reqInstanceHelper.PrintInfo(serviceName, '------ MAIL SENT SUCCESSFULLY AFTER KAFKA API CALL----', objSessionLogInfo);
-                                                                        resolve('SUCCESS')
-                                                                    } else {
-                                                                        reqInstanceHelper.PrintInfo(serviceName, '------  FAILURE IN SENDING MAIL  AFTER KAFKA  CALL CHECK YOUR CONFIG----', objSessionLogInfo);
-                                                                        resolve('ERROR')
-                                                                    }
+                                                                    //  if (statusValue == 'SUCCESS') {
+                                                                    reqInstanceHelper.PrintInfo(serviceName, '------ MAIL SENT SUCCESSFULLY AFTER KAFKA API CALL----', objSessionLogInfo);
+                                                                    resolve('SUCCESS')
+                                                                    //    } else {
+                                                                    //     reqInstanceHelper.PrintInfo(serviceName, '------  FAILURE IN SENDING MAIL  AFTER KAFKA  CALL CHECK YOUR CONFIG----', objSessionLogInfo);
+                                                                    //   resolve('ERROR')
+                                                                    //   }
                                                                 }
                                                                 )
 
@@ -524,6 +542,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

@@ -66,7 +66,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     var Takeaddinfotran = `select  npsstpl_id,additional_info   from npss_trn_process_log  where uetr ='${arrTranparamsObj.uetr}' and  status='${params.addinfo_status}' and process_status='${params.addinfo_process_status}' and process_name='${params.addinfo_process_name}'`
                                                     ExecuteQuery1(Takeaddinfotran, async function (arraddinfoTran) {
                                                         if (arraddinfoTran.length > 0) {
-                                                            let updtQry = `update npss_transactions set Process_type ='IP' ,status='IP_RCT_POSTING_SUCCESS',process_status='RCTCompleted' where uetr =${arraddinfoTran[0].additional_info}`
+                                                            let updtQry = `update npss_transactions set status='IP_RCT_POSTING_SUCCESS',process_status='RCTCompleted' where uetr ='${arraddinfoTran[0].additional_info}' and  Process_type ='IP'`
                                                             ExecuteQuery(updtQry, async function (updtRes) {
                                                                 if(updtRes=='SUCCESS'){
                                                                     reqInstanceHelper.PrintInfo(serviceName, '-----------Transaction Status  updated for uetr------' + arraddinfoTran[0].uetr, objSessionLogInfo); 

@@ -499,7 +499,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 if (TakeacctInfrm.status == 'SUCCESS') {
                                     var Takereturncode = `select cbuae_return_code,npsstrrd_refno from npss_trn_process_log where process_name='Receive Pacs004' and uetr = '${arrTranparamsObj.uetr}'`
                                     ExecuteQuery1(Takereturncode, function (returncode) {
-                                    var TakeRtrdIntrBkSttlmAmt  = `select additional_info from npss_trn_process_log where process_name='Place Pacs004' and status='IP_RCT_RETURNED' and process_status='RCTReturned' and uetr = '${arrTranparamsObj.uetr}'`
+                                    var TakeRtrdIntrBkSttlmAmt  = `select additional_info from npss_trn_process_log where process_name='Place Pacs004' and status in ('IP_RCT_RETURNED','IP_RCT_RR_RETURNED') and process_status='RCTReturned' and uetr = '${arrTranparamsObj.uetr}'`
                                     ExecuteQuery1(TakeRtrdIntrBkSttlmAmt, function (arrAmount) {
                                         var reason_code
                                         var npsst_refno

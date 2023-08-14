@@ -13,6 +13,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     /*  Created By :sIVA hARISH
     Created Date : 07-06-2023
      Modified_by : Siva Harish
@@ -21,6 +22,7 @@ app.post('/', function(appRequest, appResponse, next) {
       Addding new process Name and handle xml 
       Addding new process 16/06/2023
       Handling without processName 30/06/2023
+       Modified_by : Daseen on 14/08/2023 Xml chnages in place pack 008 & receive pack 008
     */
     var serviceName = ' NPSS (CS) Masking Request Response ';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -114,17 +116,17 @@ app.post('/', function(appRequest, appResponse, next) {
                             type: "JSON"
                         }, {
                             process_name: "Receive pacs008",
-                            request_name: "<CdtrAcct><Id><Othr><Id>",
+                            request_name: "<CdtrAcct><Id><Othr><Id>",// "<DbtrAcct><Id><Othr><Id>
                             response_name: "",
                             requestEndtag: "Id",
                             type: "XML"
                         }, /* {
-                        process_name: "Place Pacs008",
-                        request_name: "<CdtrAcct><Id><Othr><Id>",
-                        response_name: "",
-                        requestEndtag: "Id",
-                        type: "XML"
-                    } */, {
+                          process_name: "Place Pacs008",
+                          request_name: "<CdtrAcct><Id><Othr><Id>",
+                          response_name: "",
+                          requestEndtag: "Id",
+                          type: "XML"
+                      } , */{
                             process_name: "Place Pacs008",
                             request_name: "",
                             response_name: "",
@@ -268,16 +270,6 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
 
-/* 
-                    function PathDetail(arrdata, Getprsdetail) {
-                        return new Promise(async (resolve, reject) => {
-                            if (arrdata[0].status == 'OP_MAN_FILE_PLACED') {
-                                Getprsdetail.request_name = "<DbtrAcct><Id><Othr><Id>"
-                            } else { 
-                                Getprsdetail.request_name = "<CdtrAcct><Id><Othr><Id>"
-                            }
-                        })
-                    } */
                     function PrepareData(arrdata, ProcessDetailjson) {
                         return new Promise(async (resolve, reject) => {
                             let PrepareResponse = {}
@@ -290,7 +282,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             if (Getprsdetail[0].process_name == 'Place Pacs008') {
                                 if (arrdata[0].status == 'OP_MAN_FILE_PLACED') {
                                     Getprsdetail[0].request_name = "<DbtrAcct><Id><Othr><Id>"
-                                } else { 
+                                } else {
                                     Getprsdetail[0].request_name = "<CdtrAcct><Id><Othr><Id>"
                                 }
 
@@ -330,9 +322,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 var newJsonString = parseagain.replace(regex, function (match, capturedValue) {
                                                     let replacementValue
                                                     if (capturedValue.length > 2) {
-                                                        let FirstValue = capturedValue.substring(0, 2)
-                                                        let secondValue = capturedValue.substring(capturedValue.length - 2)
-                                                        replacementValue = FirstValue + 'XXXXXXXXXXXX' + secondValue
+                                                        let FirstValue = capturedValue.substring(0, 6)
+                                                        let secondValue = capturedValue.substring(capturedValue.length - 4)
+                                                        replacementValue = FirstValue + 'XXXXXX' + secondValue
                                                     } else {
                                                         replacementValue = capturedValue
                                                     }
@@ -386,17 +378,18 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 var result = arrdata[0].request_json.replace(regex, '><');
                                                 let FindTagpathvalue = result.match(xmlpattern)
                                                 if (FindTagpathvalue != null && FindTagpathvalue[1].length > 2) {
-                                                    let Formedvalue = FindTagpathvalue[1].replace(FindTagpathvalue[1].substring(2, FindTagpathvalue[1].length - 2), 'XXXXXXXXXXXX')
+                                                    // let Formedvalue = FindTagpathvalue[1].replace(FindTagpathvalue[1].substring(2, FindTagpathvalue[1].length - 2), 'XXXXXXXXXXXX')
+                                                    let Formedvalue = FindTagpathvalue[1].replace(FindTagpathvalue[1].substring(6, FindTagpathvalue[1].length - 4), 'XXXXXX')
                                                     let ReplacePath = Getprsdetail[0].request_name.replaceAll("<", "").split(">");
                                                     ReplacePath.pop();
                                                     ReplacePath.join("/");
                                                     var valuePath;
-                                                    if (arrdata[0].status == 'OP_MAN_FILE_PLACED') {
+                                                    if (arrdata[0].status == 'OP_MAN_FILE_PLACED' && Getprsdetail[0].process_name == "Place Pacs008") {
                                                         valuePath = '</Dbtr><DbtrAcct><Id><Othr><Id>';
-                                                    } else { 
+                                                    } else {
                                                         valuePath = '</Cdtr><CdtrAcct><Id><Othr><Id>';
                                                     }
-                                                  //   valuePath = '</Cdtr><CdtrAcct><Id><Othr><Id>';
+                                                    //   valuePath = '</Cdtr><CdtrAcct><Id><Othr><Id>';
                                                     // Define the new value
                                                     var newValue = Formedvalue;
 
@@ -411,8 +404,37 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     PrepareResponse.finalreqjson = modifiedXml
                                                     PrepareResponse.finalresjson = ''
                                                 } else {
-                                                    PrepareResponse.finalreqjson = arrdata[0].request_json
-                                                    PrepareResponse.finalresjson = ''
+                                                    if (  Getprsdetail[0].process_name == "Receive pacs008") {
+                                                        Getprsdetail[0].request_name=`<DbtrAcct><Id><Othr><Id>`
+                                                        let xmlpatterns = new RegExp(`<DbtrAcct><Id><Othr><Id>` + "(.*?)(<\/" +Getprsdetail[0].requestEndtag + ">)");
+                                                        let FindTagpathvalue = result.match(xmlpatterns)
+                                                        if (FindTagpathvalue != null && FindTagpathvalue[1].length > 2) {
+                                                            // let Formedvalue = FindTagpathvalue[1].replace(FindTagpathvalue[1].substring(2, FindTagpathvalue[1].length - 2), 'XXXXXXXXXXXX')
+                                                            let Formedvalue = FindTagpathvalue[1].replace(FindTagpathvalue[1].substring(6, FindTagpathvalue[1].length - 4), 'XXXXXX')
+                                                            let ReplacePath = Getprsdetail[0].request_name.replaceAll("<", "").split(">");
+                                                            ReplacePath.pop();
+                                                            ReplacePath.join("/");
+                                                            var valuePath;
+                                                            
+                                                            valuePath = '</Dbtr><DbtrAcct><Id><Othr><Id>';
+                                                            // Define the new value
+                                                            var newValue = Formedvalue;
+
+                                                            // Construct the regular expression pattern
+                                                            var pattern = new RegExp(`(${valuePath})[^<]+(<\\/Id>)`, 'g');
+
+                                                            // Replace the value in the XML string
+                                                            var modifiedXml = result.replace(pattern, `$1${newValue}$2`);
+
+
+                                                            //  let finalxml = formatXML.replace(/(>)(<)(\/*)/g, '$1\n$2$3');
+                                                            PrepareResponse.finalreqjson = modifiedXml
+                                                            PrepareResponse.finalresjson = ''
+                                                        }
+                                                    } else {
+                                                        PrepareResponse.finalreqjson = arrdata[0].request_json
+                                                        PrepareResponse.finalresjson = ''
+                                                    }
                                                 }
                                             } catch (error) {
                                                 PrepareResponse.finalreqjson = arrdata[0].request_json
@@ -483,7 +505,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             let findReqKeyvalue = new RegExp(`"${keyTofind}"\\s*:\\s*"([^"]+)"`);
                             let ReqValue = json.match(findReqKeyvalue);
                             if (ReqValue != null && ReqValue[1].length > 2) {
-                                let FormatValue = ReqValue[1].replace(ReqValue[1].substring(2, ReqValue[1].length - 2), 'XXXXXXXXXXXX')
+                                let FormatValue = ReqValue[1].replace(ReqValue[1].substring(6, ReqValue[1].length - 4), 'XXXXXX')
                                 let pattern = new RegExp(`("${keyTofind}"\\s*:\\s*)"[^"]+"`); //Replace Regex
                                 Response.finaljson = json.replace(pattern, `$1"${FormatValue}"`);
                             } else {
@@ -543,16 +565,6 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
-
-
-
-
-
-
-
-
-
-
 
 
 

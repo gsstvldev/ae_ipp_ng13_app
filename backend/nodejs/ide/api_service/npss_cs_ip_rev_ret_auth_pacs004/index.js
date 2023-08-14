@@ -56,7 +56,7 @@ try {
                 reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
                     try {
                         var take_api_params = `select * from npss_transactions where npsst_id='${params.Tran_Id}'`
-                        var take_finastra_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_FINASTRA' and param_code='URL' and need_sync = 'Y and product_code='${params.PROD_CODE}'`
+                        var take_finastra_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_FINASTRA' and param_code='URL' and need_sync = 'Y' and product_code='${params.PROD_CODE}'`
                         var take_pacs004_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL' and need_sync = 'Y' and product_code='${params.PROD_CODE}'`
                         ExecuteQuery1(take_api_params, function (arrapiParams) {
                             if (arrapiParams.length > 0) {

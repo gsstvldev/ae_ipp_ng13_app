@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By :Siva Harish
         Created Date :02-01-2023
@@ -132,7 +133,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                      Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
                                                                                  } */
                                                                             } else {
-                                                                                Amount =  ''
+                                                                                Amount = ''
                                                                             }
 
 
@@ -1177,11 +1178,17 @@ app.post('/', function(appRequest, appResponse, next) {
                                             if (arcustif[0].cb_cust_class == 'Organisation') {
                                                 PrepareParam = await PrepareOrgcode(arrcbsAct, arrprocesslog)
                                                 let emiratescode = arrcbsAct[0].emirates_code == null ? 'XXX' : arrcbsAct[0].emirates_code
-                                                let formation = emiratescode + '-' + PrepareParam.cbuae_issur_code + '-' + arrcbsAct[0].trade_license_number + '-' + PrepareParam.destination_economic_activity_code
-                                                FianlData.type = 'Organisation'
-                                                FianlData.code = formation
-                                                FianlData.cbuae_issur_code = PrepareParam.cbuae_issur_code
-                                                resolve(FianlData)
+                                                if (arrcbsAct[0].trade_license_number == null || arrcbsAct[0].trade_license_number == undefined || arrcbsAct[0].trade_license_number == '') {
+                                                    objresponse.status = "FAILURE"
+                                                    objresponse.errdata = "trade_license_number  value is not found"
+                                                    sendResponse(null, objresponse)
+                                                } else {
+                                                    let formation = emiratescode + '-' + PrepareParam.cbuae_issur_code + '-' + arrcbsAct[0].trade_license_number + '-' + PrepareParam.destination_economic_activity_code
+                                                    FianlData.type = 'Organisation'
+                                                    FianlData.code = formation
+                                                    FianlData.cbuae_issur_code = PrepareParam.cbuae_issur_code
+                                                    resolve(FianlData)
+                                                }
                                             } else {
                                                 PrepareParam = await PreparePVTcode(arrcbsAct, arrprocesslog)
                                                 FianlData.type = 'Private'
@@ -1843,6 +1850,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

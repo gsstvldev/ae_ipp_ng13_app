@@ -1,5 +1,31 @@
 [{
-  $DQ$TRAN_INSERTION$DQ$: [],
+  $DQ$TRAN_INSERTION$DQ$: [
+    {
+      $DQ$NAME$DQ$: $DQ$AVAILABLE_BALANCE$DQ$,
+      $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$DBTR_LEGAL_ID$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$DBTR_NATIONAL_ID$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$ECO_ACTVTY_CODE$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$TRADE_LICENCE_NO$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+    }
+  ],
   $DQ$TRAN_DELETION$DQ$: [],
   $DQ$ATMT_INSERTION$DQ$: []
 }]

@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     /*  Created By :   Daseen
   Created Date : 06/01/2023
   Modified By : Siva Harish
@@ -190,8 +191,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 return obj.UETR == obj2.uetr;
                                                             });
                                                         })
-                                                    }else {
-                                                        removeIfExist=arrloginsert
+                                                    } else {
+                                                        removeIfExist = arrloginsert
                                                     }
                                                     console.log(removeIfExist.length)
                                                     if (removeIfExist.length > 0) {
@@ -201,7 +202,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             } else {
                                                                 reqInstanceHelper.PrintInfo(serviceName, "........................ after filter No Data Inserted  in npss_trn_process_log...............", objSessionLogInfo);
                                                             }
-                                                            let updtRes = await doCommprsMsgupdate(CusTranInsertRes, '')
+                                                            let updtRes = await doCommprsMsgupdate(insarr, '')
                                                             if (updtRes == 'SUCCESS') {
                                                                 reqInstanceHelper.PrintInfo(serviceName, "........................ All Data Inserted successfully...............", objSessionLogInfo);
                                                                 objresponse.status = 'SUCCESS'
@@ -212,8 +213,20 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 sendResponse(null, objresponse)
                                                             }
                                                         })
+                                                    } else {
+                                                        reqInstanceHelper.PrintInfo(serviceName, "........................ No record found to insert  in npss_trn_process_log...............", objSessionLogInfo);
+                                                        let updtRes = await doCommprsMsgupdate(insarr, '')
+                                                        if (updtRes == 'SUCCESS') {
+                                                            
+                                                            objresponse.status = 'SUCCESS'
+                                                            sendResponse(null, objresponse)
+                                                        } else {
+                                                            reqInstanceHelper.PrintInfo(serviceName, "........................ Update Failed...............", objSessionLogInfo);
+                                                            objresponse.status = 'FAILURE'
+                                                            sendResponse(null, objresponse)
+                                                        }
                                                     }
-                                                   
+
 
                                                 })
                                             } else {
@@ -422,11 +435,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                 return new Promise(async (resolve, reject) => {
                                     var updtQry;
                                     if (type == 'RETRY_COUNT_EXCEEDED') {
-                                        updtQry = `update ad_gss_tran.comm_process_message set status='${type}_INPROGRESS' , modified_by = '${params.CREATED_BY}',modified_date = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',modified_by_name ='${params.CREATED_BY_NAME}',prct_id ='${PRCT_ID}', modified_clientip = '${objSessionLogInfo.CLIENTIP}', modified_tz = '${objSessionLogInfo.CLIENTTZ}', modified_tz_offset = '${objSessionLogInfo.CLIENTTZ_OFFSET}', modified_by_sessionid = '${objSessionLogInfo.SESSION_ID}', modified_date_utc = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where status='${type}' `
+                                        updtQry = `update ad_gss_tran.comm_process_message set status='${type}_INPROGRESS' , modified_by = '${params.CREATED_BY}',modified_date = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',modified_by_name ='${params.CREATED_BY_NAME}',prct_id ='${PRCT_ID}', modified_clientip = '${objSessionLogInfo.CLIENTIP}', modified_tz = '${objSessionLogInfo.CLIENTTZ}', modified_tz_offset = '${objSessionLogInfo.CLIENTTZ_OFFSET}', modified_by_sessionid = '${objSessionLogInfo.SESSION_ID}', modified_date_utc = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where STATUS in ('RETRY_COUNT_EXCEEDED','SAME_BUSINESS_DAY_EXCEEDED') AND type='KAFKA' and message  like '%OrigChannelID%' `
 
                                     } else {
                                         var comsg_id = await arraytostr(arr);
-                                        updtQry = `update ad_gss_tran.comm_process_message set status='ALREADY_TAKEN' , modified_by = '${params.CREATED_BY}',modified_date = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',modified_by_name ='${params.CREATED_BY_NAME}',prct_id ='${PRCT_ID}', modified_clientip = '${objSessionLogInfo.CLIENTIP}', modified_tz = '${objSessionLogInfo.CLIENTTZ}', modified_tz_offset = '${objSessionLogInfo.CLIENTTZ_OFFSET}', modified_by_sessionid = '${objSessionLogInfo.SESSION_ID}', modified_date_utc = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where commpm_id in ${comsg_id} `
+                                        updtQry = `update ad_gss_tran.comm_process_message set status='ALREADY_TAKEN' , modified_by = '${params.CREATED_BY}',modified_date = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',modified_by_name ='${params.CREATED_BY_NAME}',prct_id ='${PRCT_ID}', modified_clientip = '${objSessionLogInfo.CLIENTIP}', modified_tz = '${objSessionLogInfo.CLIENTTZ}', modified_tz_offset = '${objSessionLogInfo.CLIENTTZ_OFFSET}', modified_by_sessionid = '${objSessionLogInfo.SESSION_ID}', modified_date_utc = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where  commpm_id in ${comsg_id} `
                                     }
                                     ExecuteQuery(updtQry, function (result) {
                                         if (result == 'SUCCESS') {
@@ -542,6 +555,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

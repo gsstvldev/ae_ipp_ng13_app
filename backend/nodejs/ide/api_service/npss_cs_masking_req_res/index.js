@@ -14,6 +14,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     /*  Created By :sIVA hARISH
     Created Date : 07-06-2023
      Modified_by : Siva Harish
@@ -121,12 +122,12 @@ app.post('/', function(appRequest, appResponse, next) {
                             requestEndtag: "Id",
                             type: "XML"
                         }, /* {
-                          process_name: "Place Pacs008",
-                          request_name: "<CdtrAcct><Id><Othr><Id>",
-                          response_name: "",
-                          requestEndtag: "Id",
-                          type: "XML"
-                      } , */{
+                             process_name: "Place Pacs008",
+                             request_name: "<CdtrAcct><Id><Othr><Id>",
+                             response_name: "",
+                             requestEndtag: "Id",
+                             type: "XML"
+                         } , */{
                             process_name: "Place Pacs008",
                             request_name: "",
                             response_name: "",
@@ -404,9 +405,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     PrepareResponse.finalreqjson = modifiedXml
                                                     PrepareResponse.finalresjson = ''
                                                 } else {
-                                                    if (  Getprsdetail[0].process_name == "Receive pacs008") {
-                                                        Getprsdetail[0].request_name=`<DbtrAcct><Id><Othr><Id>`
-                                                        let xmlpatterns = new RegExp(`<DbtrAcct><Id><Othr><Id>` + "(.*?)(<\/" +Getprsdetail[0].requestEndtag + ">)");
+                                                    if (Getprsdetail[0].process_name == "Receive pacs008") {
+                                                        Getprsdetail[0].request_name = `<DbtrAcct><Id><Othr><Id>`
+                                                        let xmlpatterns = new RegExp(`<DbtrAcct><Id><Othr><Id>` + "(.*?)(<\/" + Getprsdetail[0].requestEndtag + ">)");
                                                         let FindTagpathvalue = result.match(xmlpatterns)
                                                         if (FindTagpathvalue != null && FindTagpathvalue[1].length > 2) {
                                                             // let Formedvalue = FindTagpathvalue[1].replace(FindTagpathvalue[1].substring(2, FindTagpathvalue[1].length - 2), 'XXXXXXXXXXXX')
@@ -415,7 +416,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             ReplacePath.pop();
                                                             ReplacePath.join("/");
                                                             var valuePath;
-                                                            
+
                                                             valuePath = '</Dbtr><DbtrAcct><Id><Othr><Id>';
                                                             // Define the new value
                                                             var newValue = Formedvalue;
@@ -429,6 +430,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                             //  let finalxml = formatXML.replace(/(>)(<)(\/*)/g, '$1\n$2$3');
                                                             PrepareResponse.finalreqjson = modifiedXml
+                                                            PrepareResponse.finalresjson = ''
+                                                        } else {
+                                                            PrepareResponse.finalreqjson = arrdata[0].request_json
                                                             PrepareResponse.finalresjson = ''
                                                         }
                                                     } else {
@@ -565,6 +569,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

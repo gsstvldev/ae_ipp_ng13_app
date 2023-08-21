@@ -1,1 +1,1 @@
-[{ "key": "215~npss_trg_fn_pci_dss", "target" : "APP_CCI_PROJECTS", "content" :"{ \"query\" : \"delete from app_cci_projects where app_id = ?  and project_name = ?;\", \"params\" : [$DQ$215$DQ$, $DQ$npss_trg_fn_pci_dss$DQ$] }", "qry_type" : "D"  }]
+[]

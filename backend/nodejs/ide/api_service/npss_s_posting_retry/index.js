@@ -1402,7 +1402,10 @@ try {
                                                                         "dr_department_code": (Tkdeptcode !='' )? Tkdeptcode[0].iv_channel_department_code : "DEFAULT",
                                                                         "process": "Pacs.008 Real Time Credit Transfer",
                                                                         "process_status": statusobj,
+                                                                        "category_purpose":"IPP",
+                                                                        "category_purpose_prty": "NOWS",
                                                                         "status": params.eligible_process_status,
+                                                                        
 
                                                                         "AccountInformation": {
                                                                             "account_number": arrcbsdata[0].account_number || '',

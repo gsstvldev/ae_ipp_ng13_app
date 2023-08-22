@@ -50,3 +50,5 @@ create index if not exists cbsa_customer_posting_restriction_code on core_nc_cbs
 @SPL@
 create index if not exists cbsa_productidentifier on core_nc_cbs_accounts (productidentifier);
 @SPL@
+create index if not exists ntpl_tran_ref_id on npss_trn_process_log (tran_Ref_id);
+@SPL@

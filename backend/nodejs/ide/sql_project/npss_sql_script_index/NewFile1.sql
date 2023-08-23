@@ -52,3 +52,13 @@ create index if not exists cbsa_productidentifier on core_nc_cbs_accounts (produ
 @SPL@
 create index if not exists ntpl_tran_ref_id on npss_trn_process_log (tran_Ref_id);
 @SPL@
+create index if not exists nt_process_group on npss_transactions (process_group);
+@SPL@
+create index if not exists nt_prct_id on npss_transactions (prct_id);
+@SPL@
+create index if not exists ntpl_npsstrrd_refno on npss_trn_process_log (npsstrrd_refno);
+@SPL@
+create index if not exists ntpl_process_ref_no on npss_trn_process_log (process_ref_no);
+@SPL@
+create index if not exists ntpl_paymentid on npss_trn_process_log (paymentid);
+@SPL@

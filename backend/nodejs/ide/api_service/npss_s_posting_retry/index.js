@@ -8,6 +8,8 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
+    
 
 try {
     /*   Created By : Siva Harish
@@ -56,6 +58,7 @@ try {
                 reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
                     try {
                         PRCT_ID = prct_id
+                        
                         var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL' and need_sync = 'Y'`
                         ExecuteQuery1(Takekafkaurl, async function (arrurl) {
                             if (arrurl.length > 0) {
@@ -1342,6 +1345,7 @@ try {
                             var logqry = `select *,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_data_json from npss_trn_process_log where uetr='${arrTranparamsObj.uetr}' and process_name ='SctInitiation' and status='OP_P2P_PAYMENT_INITIATED' `
                             ExecuteQuery1(logqry, function (arrlogdata) {
                                 if (arrlogdata.length > 0) {
+
                                     var cbsaccount = `select curr_rate_segment,alternate_account_id,nationality_country_code,resident_flag,national_id,currency,account_number,account_officer,company_code,customer_id,alternate_account_type,customer_mobile_number,countryofbirth,cityofbirth,birthdate from core_nc_cbs_accounts where alternate_account_id ='${arrlogdata[0].dbtr_iban}'`
                                     ExecuteQuery1(cbsaccount, async function (arrcbsdata) {
                                         if (arrcbsdata.length > 0) {
@@ -1353,6 +1357,8 @@ try {
                                             var CallApi = async () => {
                                                 var TakesellRate = await GetsellRate(arrcbsdata)
                                                 let CheckorgPvt = await TakeOrgPvt(arrlogdata[0])
+                                                var crddate = moment(arrlogdata[0].created_date).format ('YYYY-MM-DDThh:mm:ss.ms+04:00')
+                                               
                                                 if (CheckorgPvt != '') {
                                                     let TranInsertProcess = await InsertProcess(arrlogdata[0], statusobj, PRCT_ID, 'OP')
                                                     if (TranInsertProcess == 'SUCCESS') {
@@ -1365,7 +1371,7 @@ try {
                                                                 batch_name: "DR-CBS-POSTING-Q",
                                                                 data: {
                                                                     "payload": {
-                                                                        "tran_ref_id": arrlogdata[0].tran_ref_id || '',
+                                                                        "tran_ref_id": arrlogdata[0].process_ref_no || '',
                                                                         "uetr": arrlogdata[0].uetr || '',
                                                                         "hdr_msg_id": arrlogdata[0].msg_id || '',
                                                                         "hdr_total_records": "01",
@@ -1382,29 +1388,33 @@ try {
                                                                         "cdtr_iban": req_json.recipient.iban || '',
                                                                         "cdtr_acct_name": req_json.recipient.name || '',
                                                                         "cr_sort_code": Tkcdtrbiccode[0].bic_code || '',
-                                                                        "tran_type_code": "",
+                                                                        "tran_type_code": req_json.transactionType,
                                                                         "hdr_settlement_date": moment(arrlogdata[0].created_date, "DDMMYYYY").format("YYYY-MM-DD") || '',
                                                                         "participant_clearing_system": "CRTLBP.0.0",
                                                                         "process_type": "OP",
                                                                         "payment_processing_method": "SCT_INITITATION",
                                                                         "extIdentifier": arrlogdata[0].npsstrrd_refno || '',
                                                                         "value_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD") || '',
-                                                                        "hdr_created_date": moment(arrlogdata[0].created_date, "DDMMYYYY").format("YYYY-MM-DD") || '',
+                                                                        "hdr_created_date":crddate,
                                                                         "dbtr_prvt_id": CheckorgPvt.code || '',
                                                                         "ext_org_id_code": 'BOID',
                                                                         "issuer_type_code": CheckorgPvt.issuer_type_code || '',
+                                                                        "message_format":"urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09",
                                                                         "dbtr_document_id": CheckorgPvt.code || '',
                                                                         "dbtr_birth_date": moment(arrcbsdata[0].birthdate).format('YYYY-MM-DD'),
+                                                                        "birth_date":arrcbsdata[0].birthdate||'',
                                                                         "dbtr_city_birth": arrcbsdata[0].cityofbirth || '',
                                                                         "ext_person_id_code": CheckorgPvt.extpersonidcode || '',
                                                                         "dbtr_other_issuer": (CheckorgPvt.extpersonidcode == 'NIDN') ? 'AE' : arrcbsdata[0].nationality_country_code,
                                                                         "cr_acct_identification": "",
                                                                         "dr_department_code": (Tkdeptcode !='' )? Tkdeptcode[0].iv_channel_department_code : "DEFAULT",
                                                                         "process": "Pacs.008 Real Time Credit Transfer",
-                                                                        "process_status": statusobj,
+                                                                        "process_status": params.eligible_process_status[0],
                                                                         "category_purpose":"IPP",
                                                                         "category_purpose_prty": "NOWS",
-                                                                        "status": params.eligible_process_status,
+                                                                        "status": statusobj,
+                                                                        "account_currency": arrcbsdata[0].currency || '',
+                                                                        "issr":(CheckorgPvt.extpersonidcode == 'NIDN') ? 'AE' : arrcbsdata[0].nationality_country_code,
                                                                         
 
                                                                         "AccountInformation": {
@@ -1948,6 +1958,8 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
+
+
 
 
 

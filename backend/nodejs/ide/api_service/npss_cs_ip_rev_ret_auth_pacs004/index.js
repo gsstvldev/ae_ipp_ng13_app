@@ -963,7 +963,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     var return_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL' and need_sync = 'Y'`;
                                     ExecuteQuery1(return_url, function (arrreturnurl) {
                                         if (arrreturnurl.length > 0) {
-                                            fn_doapicall2(url, arrprocesslog, arrreturncode, creditAmount, screenName, function (result) {
+                                          var returnurl = arrreturnurl[0].param_detail;
+                                            fn_doapicall2(returnurl, arrprocesslog, arrreturncode, creditAmount, screenName, function (result) {
                                                 if (result === "SUCCESS" || result === "Success" || result === "success") {
                                                     var UpdateTrnTble
                                                     if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {

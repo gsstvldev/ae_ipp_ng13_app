@@ -10,6 +10,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By :Siva Harish
         Created Date :02-01-2023
@@ -1219,10 +1220,10 @@ app.post('/', function(appRequest, appResponse, next) {
                             let OrganParam = {}
                             let Takecbuisuercode = `select cbuae_issur_code from core_nc_issuer_cd_mapping where UPPER(t24_reg_body)= UPPER('${arrcbsAct[0].issuer_type_code}')`
                             ExecuteQuery1(Takecbuisuercode, function (cbuissuercode) {
-                                if (cbuissuercode.length > 0 && cbuissuercode[0].cbuae_issur_code != null) {
+                                if (cbuissuercode.length > 0 && (cbuissuercode[0].cbuae_issur_code != null || cbuissuercode[0].cbuae_issur_code != undefined || cbuissuercode[0].cbuae_issur_code != '')) {
                                     let TakeEconCode = `select destination_economic_activity_code from core_nc_eco_actvty_mapping where source_economic_activity_code = '${arrcbsAct[0].industry}'`
                                     ExecuteQuery1(TakeEconCode, function (economiccode) {
-                                        if (economiccode.length > 0 && economiccode[0].destination_economic_activity_code != null) {
+                                        if (economiccode.length > 0 && (economiccode[0].destination_economic_activity_code != null || economiccode[0].destination_economic_activity_code != '' || economiccode[0].destination_economic_activity_code != undefined)) {
                                             OrganParam.cbuae_issur_code = cbuissuercode[0].cbuae_issur_code
                                             OrganParam.destination_economic_activity_code = economiccode[0].destination_economic_activity_code
                                             resolve(OrganParam)
@@ -1246,7 +1247,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             let PvtParam = {}
                             let TakeEconCode = `select destination_economic_activity_code from core_nc_eco_actvty_mapping where source_economic_activity_code = '${arrcbsAct[0].industry}'`
                             ExecuteQuery1(TakeEconCode, function (economiccode) {
-                                if (economiccode.length > 0 && economiccode[0].destination_economic_activity_code != null) {
+                                if (economiccode.length > 0 && (economiccode[0].destination_economic_activity_code != null || economiccode[0].destination_economic_activity_code != undefined || economiccode[0].destination_economic_activity_code != '')) {
                                     let destination_economic_activity_code = economiccode[0].destination_economic_activity_code
                                     let IDcode
                                     let extpersonidcode
@@ -1275,9 +1276,16 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 extpersonidcode = 'NIDN'
                                                 issrtype = 'AE'
                                             } else {
-                                                IDcode = arrcbsAct[0].legal_id
-                                                extpersonidcode = 'CCPT'
-                                                issrtype = arrcbsAct[0].nationality_country_code || ''
+                                                if (arrcbsAct[0].nationality_country_code != '' || arrcbsAct[0].nationality_country_code != null || arrcbsAct[0].nationality_country_code != undefined) {
+                                                    IDcode = arrcbsAct[0].legal_id
+                                                    extpersonidcode = 'CCPT'
+                                                    issrtype = arrcbsAct[0].nationality_country_code || ''
+                                                } else {
+                                                    objresponse.status = "FAILURE"
+                                                    objresponse.errdata = "nationality_country_code is Missing"
+                                                    sendResponse(null, objresponse)
+                                                }
+
                                             }
                                         } else {
                                             objresponse.status = "FAILURE"
@@ -1287,9 +1295,15 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                     } else {
                                         if (arrcbsAct[0].legal_id != '' && arrcbsAct[0].legal_id != null) {
-                                            IDcode = arrcbsAct[0].legal_id
-                                            extpersonidcode = 'CCPT'
-                                            issrtype = arrcbsAct[0].nationality_country_code || ''
+                                            if (arrcbsAct[0].nationality_country_code != '' || arrcbsAct[0].nationality_country_code != null || arrcbsAct[0].nationality_country_code != undefined) {
+                                                IDcode = arrcbsAct[0].legal_id
+                                                extpersonidcode = 'CCPT'
+                                                issrtype = arrcbsAct[0].nationality_country_code || ''
+                                            } else {
+                                                objresponse.status = "FAILURE"
+                                                objresponse.errdata = "nationality_country_code is Missing"
+                                                sendResponse(null, objresponse)
+                                            }
                                         } else {
                                             objresponse.status = "FAILURE"
                                             objresponse.errdata = "Legal ID is Missing"
@@ -1297,15 +1311,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                         }
 
                                     }
-
-
-
-
-
-
-
-
-
 
 
                                     let Params = {}
@@ -1850,6 +1855,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

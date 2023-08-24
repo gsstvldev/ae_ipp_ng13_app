@@ -11,6 +11,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By :Siva Harish
         Created Date :02-01-2023
@@ -614,42 +615,50 @@ app.post('/', function(appRequest, appResponse, next) {
                                     if (arrprssRefno[0].process_ref_no != null) {
                                         parameter.processRefno = arrprssRefno[0].process_ref_no
                                         ExecuteQuery1(TakeAcctInf, function (arrActInf) {
-                                            if (arrActInf.length) {
-                                                parameter.account_number = arrActInf[0].account_number || '',
-                                                    parameter.company_code = arrActInf[0].company_code || '',
-                                                    parameter.inactive_marker = arrActInf[0].inactive_marker || '',
-                                                    parameter.currency = arrActInf[0].currency || '',
-                                                    parameter.alternate_account_id = arrActInf[0].alternate_account_id || ''
-                                                parameter.customer_id = arrActInf[0].customer_id || '',
-                                                    parameter.department_code = arrprocesslog[0].department_code || 'DEFAULT'
-                                                parameter.account_name = arrActInf[0].account_name || '',
-                                                    parameter.emirates_code = arrActInf[0].emirates_code || '',
-                                                    parameter.countryofbirth = arrActInf[0].countryofbirth || '',
-                                                    parameter.cityofbirth = arrActInf[0].cityofbirth || ''
-                                                parameter.birthdate = arrActInf[0].birthdate || ''
-                                                ExecuteQuery1(TakeCount, function (arrCount) {
+                                            if (arrActInf.length > 0) {
+                                                if (arrActInf[0].birthdate != "" && arrActInf[0].birthdate != undefined && arrActInf[0].birthdate != null) {
+                                                    parameter.account_number = arrActInf[0].account_number || '',
+                                                        parameter.company_code = arrActInf[0].company_code || '',
+                                                        parameter.inactive_marker = arrActInf[0].inactive_marker || '',
+                                                        parameter.currency = arrActInf[0].currency || '',
+                                                        parameter.alternate_account_id = arrActInf[0].alternate_account_id || ''
+                                                    parameter.customer_id = arrActInf[0].customer_id || '',
+                                                        parameter.department_code = arrprocesslog[0].department_code || 'DEFAULT'
+                                                    parameter.account_name = arrActInf[0].account_name || '',
+                                                        parameter.emirates_code = arrActInf[0].emirates_code || '',
+                                                        parameter.countryofbirth = arrActInf[0].countryofbirth || '',
+                                                        parameter.cityofbirth = arrActInf[0].cityofbirth || ''
+                                                    parameter.birthdate = arrActInf[0].birthdate || ''
+                                                    ExecuteQuery1(TakeCount, function (arrCount) {
 
 
-                                                    if (arrprocesslog[0].clrsysref) {
-                                                        if (arrCount[0].counts.length == 1) {
-                                                            var count = Number(arrCount[0].counts)
-                                                            count++
-                                                            parameter.reverseId = arrprocesslog[0].clrsysref + '.0' + count
-                                                            resolve(parameter)
+                                                        if (arrprocesslog[0].clrsysref) {
+                                                            if (arrCount[0].counts.length == 1) {
+                                                                var count = Number(arrCount[0].counts)
+                                                                count++
+                                                                parameter.reverseId = arrprocesslog[0].clrsysref + '.0' + count
+                                                                resolve(parameter)
+                                                            } else {
+                                                                var count = Number(arrCount[0].counts)
+                                                                count++
+                                                                parameter.reverseId = arrprocesslog[0].clrsysref + '.' + count
+                                                                resolve(parameter)
+                                                            }
                                                         } else {
-                                                            var count = Number(arrCount[0].counts)
-                                                            count++
-                                                            parameter.reverseId = arrprocesslog[0].clrsysref + '.' + count
-                                                            resolve(parameter)
+                                                            objresponse.status = "FAILURE"
+                                                            objresponse.errdata = "clrsysRef  is Missing"
+                                                            sendResponse(null, objresponse)
                                                         }
-                                                    } else {
-                                                        objresponse.status = "FAILURE"
-                                                        objresponse.errdata = "clrsysRef  is Missing"
-                                                        sendResponse(null, objresponse)
-                                                    }
 
 
-                                                })
+                                                    })
+                                                } else {
+
+                                                    objresponse.status = "FAILURE"
+                                                    objresponse.errdata = "birthdate is missing"
+                                                    sendResponse(null, objresponse)
+                                                }
+
                                             } else {
 
                                                 objresponse.status = "FAILURE"
@@ -677,9 +686,6 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
 
                     }
-
-
-
                     function GetgmMargin(arrprocesslog, reverandRefno) {
                         return new Promise((resolve, reject) => {
                             if (reverandRefno.currency == '' || reverandRefno.currency == null) {
@@ -729,6 +735,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
                     function GetsplRate(arrprocesslog, reverandRefno) {
+                        4
                         return new Promise((resolve, reject) => {
                             if (reverandRefno.currency == '' || reverandRefno.currency == null) {
                                 resolve('Take GMrate')
@@ -952,20 +959,27 @@ app.post('/', function(appRequest, appResponse, next) {
                             let parameter = {}
                             var TakeAcctInf = `select customer_id,birthdate,cityofbirth,countryofbirth,emirates_code,account_name,Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].dbtr_iban}'`
                             ExecuteQuery1(TakeAcctInf, function (arrActInf) {
-                                if (arrActInf.length) {
-                                    parameter.account_number = arrActInf[0].account_number || '',
-                                        parameter.company_code = arrActInf[0].company_code || '',
-                                        parameter.inactive_marker = arrActInf[0].inactive_marker || '',
-                                        parameter.currency = arrActInf[0].currency || '',
-                                        parameter.alternate_account_id = arrActInf[0].alternate_account_id || ''
-                                    parameter.account_name = arrActInf[0].account_name || '',
-                                        parameter.emirates_code = arrActInf[0].emirates_code || '',
-                                        parameter.countryofbirth = arrActInf[0].countryofbirth || '',
-                                        parameter.cityofbirth = arrActInf[0].cityofbirth || ''
-                                    parameter.birthdate = arrActInf[0].birthdate || ''
-                                    parameter.customer_id = arrActInf[0].customer_id || '',
-                                        parameter.department_code = arrprocesslog[0].department_code || 'DEFAULT'
-                                    resolve(parameter)
+                                if (arrActInf.length > 0) {
+                                    if (arrActInf[0].birthdate != "" && arrActInf[0].birthdate != undefined && arrActInf[0].birthdate != null) {
+                                        parameter.account_number = arrActInf[0].account_number || '',
+                                            parameter.company_code = arrActInf[0].company_code || '',
+                                            parameter.inactive_marker = arrActInf[0].inactive_marker || '',
+                                            parameter.currency = arrActInf[0].currency || '',
+                                            parameter.alternate_account_id = arrActInf[0].alternate_account_id || ''
+                                        parameter.account_name = arrActInf[0].account_name || '',
+                                            parameter.emirates_code = arrActInf[0].emirates_code || '',
+                                            parameter.countryofbirth = arrActInf[0].countryofbirth || 'XX',
+                                            parameter.cityofbirth = arrActInf[0].cityofbirth || 'XXXXX'
+                                        parameter.birthdate = arrActInf[0].birthdate || ''
+                                        parameter.customer_id = arrActInf[0].customer_id || '',
+                                            parameter.department_code = arrprocesslog[0].department_code || 'DEFAULT'
+                                        resolve(parameter)
+                                    } else {
+                                        objresponse.status = "FAILURE"
+                                        objresponse.errdata = "birthdate is missing"
+                                        sendResponse(null, objresponse)
+                                    }
+
 
                                 } else {
 
@@ -997,11 +1011,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     objresponse.status = 'FAILURE'
                                                     objresponse.errdata = 'Private Id is Missing for Prepaid Card'
                                                     sendResponse(null, objresponse)
-                                                } else if ((chkPrepaidPassedTrn[0].dateofbirth == null || chkPrepaidPassedTrn[0].dateofbirth == '') || (chkPrepaidPassedTrn[0].cityofbirth == null || chkPrepaidPassedTrn[0].cityofbirth == '')
-                                                    || (chkPrepaidPassedTrn[0].countryofbirth == null || chkPrepaidPassedTrn[0].countryofbirth == '') || (chkPrepaidPassedTrn[0].customername == null || chkPrepaidPassedTrn[0].customername == '')
+                                                } else if ((chkPrepaidPassedTrn[0].dateofbirth == null || chkPrepaidPassedTrn[0].dateofbirth == '')
+                                                    || (chkPrepaidPassedTrn[0].customername == null || chkPrepaidPassedTrn[0].customername == '')
                                                 ) {
                                                     objresponse.status = 'FAILURE'
-                                                    objresponse.errdata = 'Mandatory field is missing'
+                                                    objresponse.errdata = 'dateofbirth/customername field is missing'
                                                     sendResponse(null, objresponse)
                                                 }
                                                 else {
@@ -1039,7 +1053,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     if (arractResult.length > 0) {
                                                         AcctInformations.birthdate = arractResult[0].birthdate
                                                         AcctInformations.cityofbirth = arractResult[0].cityofbirth
-                                                        AcctInformations.countryofbirth = arractResult[0].countryofbirth
+                                                        AcctInformations.countryofbirth = arractResult[0].cityofbirth
                                                         AcctInformations.account_name = arractResult[0].account_name
                                                         let PvtId = await PreparePVTcode(arractResult, arrprocesslog)
                                                         AcctInformations.privateId = PvtId.FormPvtid || ''
@@ -1223,7 +1237,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 if (cbuissuercode.length > 0 && (cbuissuercode[0].cbuae_issur_code != null || cbuissuercode[0].cbuae_issur_code != undefined || cbuissuercode[0].cbuae_issur_code != '')) {
                                     let TakeEconCode = `select destination_economic_activity_code from core_nc_eco_actvty_mapping where source_economic_activity_code = '${arrcbsAct[0].industry}'`
                                     ExecuteQuery1(TakeEconCode, function (economiccode) {
-                                        if (economiccode.length > 0 && (economiccode[0].destination_economic_activity_code != null || economiccode[0].destination_economic_activity_code != '' || economiccode[0].destination_economic_activity_code != undefined)) {
+                                        if (economiccode.length > 0 && (economiccode[0].destination_economic_activity_code != null && economiccode[0].destination_economic_activity_code != '' && economiccode[0].destination_economic_activity_code != undefined)) {
                                             OrganParam.cbuae_issur_code = cbuissuercode[0].cbuae_issur_code
                                             OrganParam.destination_economic_activity_code = economiccode[0].destination_economic_activity_code
                                             resolve(OrganParam)
@@ -1855,6 +1869,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 31058 
+Build ID        : 31410 
 Modified By     : Admin 
-Modified Date   : 2023-Aug-18 4:53 AM 
+Modified Date   : 2023-Aug-26 9:50 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard
@@ -721,12 +721,12 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.page_load__cc_for_widget()
 		this.page_load__brfq_for_ip_list_from_pl()
 		this.page_load__brfq_for_op_list_from_pl()
-		this.page_load__e_1682000123345()
+		this.page_load__pl_to_ofl_for_brfq()
 	}
 
 	//Handler for INTERNAL event of "cf from pag load"
 	cf_from_pag_load__internal(parent_event_result){
-		this.cf_from_pag_load__e_1679038883191(parent_event_result)
+		this.cf_from_pag_load__cf_to_sh_ide_link(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "he for vml"
@@ -897,7 +897,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		this.nav_ui_view_ip_queue__he_to_view_ip_queue_button_to_pending_chart()
 		this.nav_ui_view_ip_queue__he_to_view_ip_queue_button_to_ip_chartd()
 		this.nav_ui_view_ip_queue__se_to_view_ip_queue_button_to_ip_queue()
-		this.nav_ui_view_ip_queue__e_1681984894617()
+		this.nav_ui_view_ip_queue__vip_queue_to_pc_for_brfq()
 		this.nav_ui_view_ip_queue__e_1681974176844__search()
 	}
 
@@ -996,9 +996,9 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 
 	//Handler for SELECTION_CHANGED event of "overlay failure detail list"
 	overlay_failure_detail_list__selection_changed(){
-		this.overlay_failure_detail_list__e_1682001966794()
-		this.overlay_failure_detail_list__e_1682001997400()
-		this.overlay_failure_detail_list__e_1682002026383()
+		this.overlay_failure_detail_list__ofl_to_req_ui_for_ssr()
+		this.overlay_failure_detail_list__ofl_to_res_ui_for_ssr()
+		this.overlay_failure_detail_list__ofl_to_vf_ui_for_ssr()
 		this.overlay_failure_detail_list__ee_for_pl_view_failure_btn()
 		this.overlay_failure_detail_list__ee_for_pl_view_req_res_btn()
 	}
@@ -1013,7 +1013,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let event_code="e_1598521589606"
 		let event_params={"caller_name":"page_load__cf_from_pag_load","event_desc":"CF from pag load","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""}}
 		let handler_code="create_form"
-		let internals="cf_from_pag_load__e_1679038883191,"
+		let internals="cf_from_pag_load__cf_to_sh_ide_link,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -1172,14 +1172,14 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__e_1682000123345() { 
+	page_load__pl_to_ofl_for_brfq() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
 		let destn_id="outward_overlay_failures_list"
 		let parent_source_id=""
 		let event_code="e_1682000123345"
-		let event_params={"caller_name":"page_load__e_1682000123345","event_desc":"E_1682000123345","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"}}
+		let event_params={"caller_name":"page_load__pl_to_ofl_for_brfq","event_desc":"PL to OFL for BRFQ","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
@@ -1193,7 +1193,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "cf from pag load"
-	cf_from_pag_load__e_1679038883191(parent_event_result) { 
+	cf_from_pag_load__cf_to_sh_ide_link(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
@@ -1201,7 +1201,7 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="page_load"
 		let event_code="e_1679038883191"
-		let event_params={"caller_name":"cf_from_pag_load__e_1679038883191","event_desc":"E_1679038883191","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cf_from_pag_load__cf_to_sh_ide_link","event_desc":"CF to SH ide link","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}
@@ -2524,14 +2524,14 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "nav ui view ip queue"
-	nav_ui_view_ip_queue__e_1681984894617() { 
+	nav_ui_view_ip_queue__vip_queue_to_pc_for_brfq() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="nav_ui_view_ip_queue"
 		let destn_id="inward_queue"
 		let parent_source_id=""
 		let event_code="e_1681984894617"
-		let event_params={"caller_name":"nav_ui_view_ip_queue__e_1681984894617","event_desc":"E_1681984894617","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"nav_ui_view_ip_queue","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"BAR","chart_label":"PROCESS_STATUS","chart_series":"","chart_data":"PROCESS_STATUS_COUNT","avoid_parent_search_param":"N","avoid_key_column_filter":"N"}}
+		let event_params={"caller_name":"nav_ui_view_ip_queue__vip_queue_to_pc_for_brfq","event_desc":"VIP Queue to PC for BRFQ","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"nav_ui_view_ip_queue","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"BAR","chart_label":"PROCESS_STATUS","chart_series":"","chart_data":"PROCESS_STATUS_COUNT","avoid_parent_search_param":"N","avoid_key_column_filter":"N"}}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
@@ -3265,14 +3265,14 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "overlay failure detail list"
-	overlay_failure_detail_list__e_1682001966794() { 
+	overlay_failure_detail_list__ofl_to_req_ui_for_ssr() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="overlay_failure_detail_list"
 		let destn_id="request_ui"
 		let parent_source_id=""
 		let event_code="e_1682001966794"
-		let event_params={"caller_name":"overlay_failure_detail_list__e_1682001966794","event_desc":"E_1682001966794","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"overlay_failure_detail_list","raiseparam":{}}
+		let event_params={"caller_name":"overlay_failure_detail_list__ofl_to_req_ui_for_ssr","event_desc":"OFL to Req UI for SSR","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"overlay_failure_detail_list","raiseparam":{}}
 		let handler_code="set_selected_row"
 		let internals=""
 		let event_data={}
@@ -3286,14 +3286,14 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "overlay failure detail list"
-	overlay_failure_detail_list__e_1682001997400() { 
+	overlay_failure_detail_list__ofl_to_res_ui_for_ssr() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="overlay_failure_detail_list"
 		let destn_id="response_ui"
 		let parent_source_id=""
 		let event_code="e_1682001997400"
-		let event_params={"caller_name":"overlay_failure_detail_list__e_1682001997400","event_desc":"E_1682001997400","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"overlay_failure_detail_list","raiseparam":{}}
+		let event_params={"caller_name":"overlay_failure_detail_list__ofl_to_res_ui_for_ssr","event_desc":"OFL to Res UI for SSR","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"overlay_failure_detail_list","raiseparam":{}}
 		let handler_code="set_selected_row"
 		let internals=""
 		let event_data={}
@@ -3307,14 +3307,14 @@ export class s_home_dashboardComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "overlay failure detail list"
-	overlay_failure_detail_list__e_1682002026383() { 
+	overlay_failure_detail_list__ofl_to_vf_ui_for_ssr() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="overlay_failure_detail_list"
 		let destn_id="view_failure_ui"
 		let parent_source_id=""
 		let event_code="e_1682002026383"
-		let event_params={"caller_name":"overlay_failure_detail_list__e_1682002026383","event_desc":"E_1682002026383","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"overlay_failure_detail_list","raiseparam":{}}
+		let event_params={"caller_name":"overlay_failure_detail_list__ofl_to_vf_ui_for_ssr","event_desc":"OFL to VF UI for SSR","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"overlay_failure_detail_list","raiseparam":{}}
 		let handler_code="set_selected_row"
 		let internals=""
 		let event_data={}

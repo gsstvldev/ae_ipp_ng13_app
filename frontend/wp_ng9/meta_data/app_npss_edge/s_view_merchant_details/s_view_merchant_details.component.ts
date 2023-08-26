@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 31109 
+Build ID        : 31410 
 Modified By     : Admin 
-Modified Date   : 2023-Jul-17 12:27 PM 
+Modified Date   : 2023-Aug-26 9:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -456,8 +456,8 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.queue__de_from_queue_to_view_detau()
 		this.queue__de_from_queue_to_cashdesk()
 		this.queue__de_from_queue_to_shop_dtl()
-		this.queue__e_1680256408766()
-		this.queue__e_1680256423639()
+		this.queue__he_for_gm_tag()
+		this.queue__he_for_queue_list_to_generate_qr()
 	}
 
 	//Handler for INTERNAL event of "svm from queue"
@@ -481,7 +481,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 		this.merchant_list__ee_for_view_detail_from_customer_list()
 		this.merchant_list__ee_for_view_shop_dtl()
 		this.merchant_list__ee_for_view_cash_desk_dtl()
-		this.merchant_list__e_1680255222779()
+		this.merchant_list__se_for_gm_tag()
 		this.merchant_list__e_1680255240615()
 	}
 
@@ -886,14 +886,14 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "queue"
-	queue__e_1680256408766() { 
+	queue__he_for_gm_tag() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="queue"
 		let destn_id="navigation_generate_merchant_tag"
 		let parent_source_id=""
 		let event_code="e_1680256408766"
-		let event_params={"caller_name":"queue__e_1680256408766","event_desc":"E_1680256408766","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let event_params={"caller_name":"queue__he_for_gm_tag","event_desc":"HE for GM Tag","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -907,14 +907,14 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "queue"
-	queue__e_1680256423639() { 
+	queue__he_for_queue_list_to_generate_qr() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="queue"
 		let destn_id="navigation_generate_qr"
 		let parent_source_id=""
 		let event_code="e_1680256423639"
-		let event_params={"caller_name":"queue__e_1680256423639","event_desc":"E_1680256423639","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let event_params={"caller_name":"queue__he_for_queue_list_to_generate_qr","event_desc":"HE for Queue list to Generate QR","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
 		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
@@ -1078,14 +1078,14 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for SELECTION_CHANGED event of "merchant list"
-	merchant_list__e_1680255222779() { 
+	merchant_list__se_for_gm_tag() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="merchant_list"
 		let destn_id="navigation_generate_merchant_tag"
 		let parent_source_id=""
 		let event_code="e_1680255222779"
-		let event_params={"caller_name":"merchant_list__e_1680255222779","event_desc":"E_1680255222779","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant_list","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"merchant_list__se_for_gm_tag","event_desc":"SE for GM Tag","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"merchant_list","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}

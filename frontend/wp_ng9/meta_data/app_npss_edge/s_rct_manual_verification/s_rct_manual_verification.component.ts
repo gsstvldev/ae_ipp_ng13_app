@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 31058 
+Build ID        : 31410 
 Modified By     : Admin 
-Modified Date   : 2023-Aug-18 4:53 AM 
+Modified Date   : 2023-Aug-26 9:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_verification
@@ -86,7 +86,7 @@ export class s_rct_manual_verificationComponent implements OnInit,AfterViewInit 
 	btl_1304_1666856599156 : string = "p_main_layout"
 	forms : any = ["uicgc_18","uicgc_14","uicgc_26","uicgc_16","uicgc_6","uicgc_24","uicgc_4","uicgc_25","uicgc_27","uicgc_21","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
-	p_force_post_flag_layout__e_1679466822081_showpopup : boolean = false
+	p_force_post_flag_layout__sp_for_fposts_showpopup : boolean = false
 	p_force_post_flag_layout__spap_for_force_to_post_btn_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
@@ -763,8 +763,8 @@ export class s_rct_manual_verificationComponent implements OnInit,AfterViewInit 
 		this.page_load__he_for_pl_to_vm()
 		this.page_load__de_for_review()
 		this.page_load__de_for_stc()
-		this.page_load__e_1679467158544()
-		this.page_load__e_1679468025125()
+		this.page_load__de_for_pl_to_fps()
+		this.page_load__de_for_pl_to_fpf()
 		this.page_load__he_for_getdeal_btn_from_pl()
 		this.page_load__he_for_send_to_checker_from_pl()
 	}
@@ -1078,7 +1078,7 @@ export class s_rct_manual_verificationComponent implements OnInit,AfterViewInit 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui force posts"
 	navigation_ui_force_posts__action_button_click(){
-		this.navigation_ui_force_posts__e_1679466822081()
+		this.navigation_ui_force_posts__sp_for_fposts()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "force post flag ui save"
@@ -1243,14 +1243,14 @@ export class s_rct_manual_verificationComponent implements OnInit,AfterViewInit 
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__e_1679467158544() { 
+	page_load__de_for_pl_to_fps() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
 		let destn_id="navigation_ui_force_posts"
 		let parent_source_id=""
 		let event_code="e_1679467158544"
-		let event_params={"caller_name":"page_load__e_1679467158544","event_desc":"E_1679467158544","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let event_params={"caller_name":"page_load__de_for_pl_to_fps","event_desc":"DE for PL to FPs","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -1264,14 +1264,14 @@ export class s_rct_manual_verificationComponent implements OnInit,AfterViewInit 
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__e_1679468025125() { 
+	page_load__de_for_pl_to_fpf() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
 		let destn_id="force_post_flag_ui"
 		let parent_source_id=""
 		let event_code="e_1679468025125"
-		let event_params={"caller_name":"page_load__e_1679468025125","event_desc":"E_1679468025125","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let event_params={"caller_name":"page_load__de_for_pl_to_fpf","event_desc":"DE for PL to FPF","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -3309,14 +3309,14 @@ export class s_rct_manual_verificationComponent implements OnInit,AfterViewInit 
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation ui force posts"
-	navigation_ui_force_posts__e_1679466822081() { 
+	navigation_ui_force_posts__sp_for_fposts() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="navigation_ui_force_posts"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1679466822081"
-		let event_params={"caller_name":"navigation_ui_force_posts__e_1679466822081","event_desc":"E_1679466822081","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_posts","raiseparam":{"popup_category":"profile","variable":"p_force_post_flag_layout__e_1679466822081","selector":"p_force_post_flag_layout","profile_code":"BTL_1304_1679466454055","window_title":"Force Post","window_height":300,"window_width":"600px","window_close_icon":"Y","eventdes":"e_1679466822081","eventcode":"E_1679466822081"}}
+		let event_params={"caller_name":"navigation_ui_force_posts__sp_for_fposts","event_desc":"SP for FPosts","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_posts","raiseparam":{"popup_category":"profile","variable":"p_force_post_flag_layout__sp_for_fposts","selector":"p_force_post_flag_layout","profile_code":"BTL_1304_1679466454055","window_title":"Force Post","window_height":300,"window_width":"600px","window_close_icon":"Y","eventdes":"sp_for_fposts","eventcode":"E_1679466822081"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}

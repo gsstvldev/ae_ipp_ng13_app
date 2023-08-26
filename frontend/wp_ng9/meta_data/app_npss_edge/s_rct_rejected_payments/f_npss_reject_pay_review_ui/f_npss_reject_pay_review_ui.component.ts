@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 31058 
+Build ID        : 31410 
 Modified By     : Admin 
-Modified Date   : 2023-Aug-18 4:53 AM 
+Modified Date   : 2023-Aug-26 9:50 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_payments
@@ -135,7 +135,7 @@ focustoelement(){
 		this.ctrl.dbtr_acct_name.uictrl_code = "TXT"
 		this.ctrl.dbtr_acct_name.target_column = "DBTR_ACCT_NAME"
 		this.ctrl.dbtr_acct_name.data_type = "TEXT"
-		this.ctrl.dbtr_acct_name.data_length = 128
+		this.ctrl.dbtr_acct_name.data_length = 256
 		this.ctrl.dbtr_acct_name.zone_df_code = "DF_1304_1665901396659"
 		this.ctrl.dbtr_acct_name.default_value = ""
 		this.ctrl.dbtr_acct_name.is_memory_ctrl = ""

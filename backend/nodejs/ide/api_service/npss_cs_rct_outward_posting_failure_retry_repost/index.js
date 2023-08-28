@@ -230,7 +230,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "uetr": arrTranparamsObj.uetr || '',
                                                     "channel_id": arrTranparamsObj.channel_id || '',
                                                     "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
-                                                    "dbtr_iban":rrTranparamsObj.dbtr_iban || '',
+                                                    "dbtr_iban":arrTranparamsObj.dbtr_iban || '',
                                                     "process_type": 'ORR' ,
                                                 }
                                             }

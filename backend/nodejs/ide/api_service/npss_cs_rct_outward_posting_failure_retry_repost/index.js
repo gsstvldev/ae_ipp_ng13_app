@@ -232,6 +232,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
                                                     "dbtr_iban":arrTranparamsObj.dbtr_iban || '',
                                                     "process_type": 'ORR' ,
+                                                    "channel_refno":arrTranparamsObj.channel_refno||''
                                                 }
                                             }
                                         },
@@ -291,7 +292,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
                                                     "process_type": "OR",
                                                     "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt,
-                                                    "dbtr_iban":arrTranparamsObj.dbtr_iban || ''
+                                                    "dbtr_iban":arrTranparamsObj.dbtr_iban || '',
+                                                    "channel_refno":arrTranparamsObj.channel_refno||''
 
                                                 }
                                             }
@@ -356,7 +358,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                       
                                                         "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
                                                         "process_type": "OP",
-                                                        "dbtr_iban":rrTranparamsObj.dbtr_iban || ''
+                                                        "dbtr_iban":arrTranparamsObj.dbtr_iban || '',
+                                                        "channel_refno":arrTranparamsObj.channel_refno||''
                                                         
                                                     }
                                                 }

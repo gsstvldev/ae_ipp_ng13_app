@@ -241,7 +241,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         }
 
                                     }
-                                    if (arrTranparamsObj.account_currency == 'AED') {
+                                    if (arrTranparamsObj.account_currency == 'AED'|| arrTranparamsObj.account_currency == ''|| arrTranparamsObj.account_currency == undefined || arrTranparamsObj.account_currency == null) {
                                         options.json.data.payload.intrbk_sttlm_amnt = arrTranparamsObj.intrbk_sttlm_amnt || '';
                                     } else {
                                         options.json.data.payload.cdtr_amount = arrTranparamsObj.intrbk_sttlm_amnt || '';
@@ -369,7 +369,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             }
 
                                         }
-                                        if (arrTranparamsObj.account_currency == 'AED') {
+                                        if (arrTranparamsObj.account_currency == 'AED'|| arrTranparamsObj.account_currency == ''|| arrTranparamsObj.account_currency == undefined || arrTranparamsObj.account_currency == null) {
                                             options.json.data.payload.intrbk_sttlm_amnt = arrTranparamsObj.intrbk_sttlm_amnt || '';
                                         } else {
                                             options.json.data.payload.dbtr_amount = arrTranparamsObj.intrbk_sttlm_amnt || '';

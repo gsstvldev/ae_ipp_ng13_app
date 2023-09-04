@@ -15,6 +15,7 @@ try {
     /*   Created By : Siva Harish
     Created Date :30 -06-2023
   Modifiy by : 3/7/2023
+    Modifiy by : Siva Harish 4/9/2023
     */
     var serviceName = 'NPSS (S) Posting Retry';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -233,15 +234,25 @@ try {
 
                                         if (arrnpssRefno != '') {
                                             var lclinstrm
-                                            if (arrTranparamsObj.message_data !== null) {
-                                                var parser = new xml2js.Parser({ strict: false, trim: true });
-                                                parser.parseString(arrTranparamsObj.message_data, function (err, result) {
-                                                    lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
-                                                });
+                                            try{
+                                                if (arrTranparamsObj.message_data !== null) {
+                                                    try{
+                                                        var parser = new xml2js.Parser({ strict: false, trim: true });
+                                                        parser.parseString(arrTranparamsObj.message_data, function (err, result) {
+                                                            lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
+                                                        });
+                                                    }catch(error){
+                                                        lclinstrm = "INST"
+                                                    }
+                                                   
+                                                }
+                                                else {
+                                                    lclinstrm = "INST"
+                                                }
+                                            }catch(error){
+                                                lclinstrm = 'INST'
                                             }
-                                            else {
-                                                lclinstrm = ""
-                                            }
+                                          
                                             let TranInsertProcess = await InsertProcess(arrTranparamsObj, statusobj, PRCT_ID, 'IP')
                                             if (TranInsertProcess == 'SUCCESS') {
                                                 var request = require('request');
@@ -393,16 +404,21 @@ try {
                                     var lclinstrm
                                     try {
                                         if (arrTranparamsObj.message_data !== null) {
-                                            var parser = new xml2js.Parser({ strict: false, trim: true });
-                                            parser.parseString(arrTranparamsObj.message_data, function (err, result) {
-                                                lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
-                                            });
+                                            try{
+                                                var parser = new xml2js.Parser({ strict: false, trim: true });
+                                                parser.parseString(arrTranparamsObj.message_data, function (err, result) {
+                                                    lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
+                                                });
+                                            }catch(error){
+                                                lclinstrm = "INST"
+                                            }
+                                           
                                         }
                                         else {
-                                            lclinstrm = ""
+                                            lclinstrm = "INST"
                                         }
                                     } catch (error) {
-                                        lclinstrm = ""
+                                        lclinstrm = "INST"
                                     }
                                     var payment_processing_method
 
@@ -687,15 +703,26 @@ try {
                                                 }
 
                                                 var lclinstrm
-                                                if (arrTranparamsObj.message_data !== null) {
-                                                    var parser = new xml2js.Parser({ strict: false, trim: true });
-                                                    parser.parseString(arrTranparamsObj.message_data, function (err, result) {
-                                                        lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
-                                                    });
+                                                try{
+                                                    if (arrTranparamsObj.message_data !== null) {
+                                                        try{
+                                                            var parser = new xml2js.Parser({ strict: false, trim: true });
+                                                            parser.parseString(arrTranparamsObj.message_data, function (err, result) {
+                                                                lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
+                                                            });
+                                                        }catch(error){
+                                                            lclinstrm = "INST"
+                                                        }
+                                            
+                                                      
+                                                    }
+                                                    else {
+                                                        lclinstrm = "INST"
+                                                    }
+                                                }catch(error){
+                                                    lclinstrm = "INST"
                                                 }
-                                                else {
-                                                    lclinstrm = ""
-                                                }
+                                             
                                                 let TranInsertProcess = await InsertProcess(arrTranparamsObj, statusobj, PRCT_ID, 'IP')
                                                 if (TranInsertProcess == 'SUCCESS') {
                                                     var request = require('request');
@@ -871,15 +898,25 @@ try {
                                                     }
 
                                                     var lclinstrm
-                                                    if (arrTranparamsObj.message_data !== null) {
-                                                        var parser = new xml2js.Parser({ strict: false, trim: true });
-                                                        parser.parseString(arrTranparamsObj.message_data, function (err, result) {
-                                                            lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
-                                                        });
+                                                    try{
+                                                        if (arrTranparamsObj.message_data !== null) {
+                                                            try{
+                                                                var parser = new xml2js.Parser({ strict: false, trim: true });
+                                                                parser.parseString(arrTranparamsObj.message_data, function (err, result) {
+                                                                    lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
+                                                                });
+                                                            }catch(error){
+                                                                lclinstrm = "INST"
+                                                            }
+                                                           
+                                                        }
+                                                        else {
+                                                            lclinstrm = "INST"
+                                                        }
+                                                    }catch(error){
+                                                        lclinstrm = "INST"
                                                     }
-                                                    else {
-                                                        lclinstrm = ""
-                                                    }
+                                                   
                                                     let TranInsertProcess = await InsertProcess(arrTranparamsObj, statusobj, PRCT_ID, 'IP')
                                                     if (TranInsertProcess == 'SUCCESS') {
                                                         var request = require('request');
@@ -1043,15 +1080,25 @@ try {
 
                                             if (arrnpssRefno != '') {
                                                 var lclinstrm
-                                                if (arrTranparamsObj.message_data !== null) {
-                                                    var parser = new xml2js.Parser({ strict: false, trim: true });
-                                                    parser.parseString(arrTranparamsObj.message_data, function (err, result) {
-                                                        lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
-                                                    });
+                                                try{
+                                                    if (arrTranparamsObj.message_data !== null) {
+                                                        try{
+                                                            var parser = new xml2js.Parser({ strict: false, trim: true });
+                                                            parser.parseString(arrTranparamsObj.message_data, function (err, result) {
+                                                                lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
+                                                            });
+                                                        }catch(error){
+                                                            lclinstrm = "INST"
+                                                        }
+                                                        
+                                                    }
+                                                    else {
+                                                        lclinstrm = "INST"
+                                                    }
+                                                }catch(error){
+                                                    lclinstrm = "INST"
                                                 }
-                                                else {
-                                                    lclinstrm = ""
-                                                }
+                                              
                                                 let TranInsertProcess = await InsertProcess(arrTranparamsObj, statusobj, PRCT_ID, 'IP')
                                                 if (TranInsertProcess == 'SUCCESS') {
                                                     var request = require('request');

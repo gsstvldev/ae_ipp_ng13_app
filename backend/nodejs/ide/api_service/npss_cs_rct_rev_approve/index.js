@@ -31,6 +31,7 @@ try {
               Modified By : Daseen 13/03/2023 -  Handling FH 
                Modified By : payload modified 14/02/2023
                  Modified By : changing update query 25/04/2023
+                  Modified By : Daseen hdr_created_date payload change 05/09/2023
     */
     var serviceName = 'NPSS RCT Outward Reversal Approve';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -255,7 +256,7 @@ try {
                                 "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                 "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
                                 "dr_department_code": arrprocesslog[0].department_code || 'DEFAULT',
-                                "org_created_date": crddate || ''
+                                "org_created_date":arrprocesslog[0]. hdr_created_date || ''
 
                             },
                             headers: {

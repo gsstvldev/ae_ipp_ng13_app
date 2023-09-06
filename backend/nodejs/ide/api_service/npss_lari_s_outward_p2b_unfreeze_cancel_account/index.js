@@ -280,7 +280,7 @@ Created Date :01/09/2023
                                                         "merchantTrxId": arrtakereqjson[0].msg_id || '',
                                                         "hdr_settlement_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),
                                                         "participant_clearing_system": 'CRTLBP.0.o',
-                                                        "process_type": "UNFREEZE",
+                                                        "process_type": "P2BUNFR",
                                                         "payment_processing_method": "P2B_SCT_INITITATION",
                                                         "extIdentifier": tran_ref_id || '',
                                                         "value_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),

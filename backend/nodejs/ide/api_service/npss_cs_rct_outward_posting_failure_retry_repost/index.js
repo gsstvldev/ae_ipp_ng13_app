@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+  
   try {
     /*   Created By : Siva Harish
     Created Date :25-01-2023
@@ -501,6 +502,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                     ExecuteQuery1(Takereturncode, function (returncode) {
                                     var TakeRtrdIntrBkSttlmAmt  = `select additional_info from npss_trn_process_log where process_name='Place Pacs004' and status in ('IP_RCT_RETURNED','IP_RCT_RR_RETURNED') and process_status='RCTReturned' and uetr = '${arrTranparamsObj.uetr}'`
                                     ExecuteQuery1(TakeRtrdIntrBkSttlmAmt, function (arrAmount) {
+                                      let amount='';
+                                      if(arrAmount.length >0  && arrAmount[0].additional_info!=''){
+                                       
+                                        amount=arrAmount[0].additional_info
+                                      }else {
+                                        amount =arrTranparamsObj.intrbk_sttlm_amnt
+                                      }
                                         var reason_code
                                         var npsst_refno
                                         if (returncode.length > 0) {
@@ -559,7 +567,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         "account_number": TakeacctInfrm.AccountInformations.account_number || '',
                                                         "cdtr_acct_name": arrTranparamsObj.cdtr_acct_name || '',
                                                         "npsstrrd_refno": npsst_refno || '',
-                                                       "RtrdIntrBkSttlmAmt" : arrAmount ? arrAmount[0].additional_info : '' || ''
+                                                       "RtrdIntrBkSttlmAmt" : amount
                 
                 
                                                     }
@@ -964,6 +972,7 @@ app.post('/', function(appRequest, appResponse, next) {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

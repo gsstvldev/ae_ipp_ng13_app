@@ -39,7 +39,7 @@ SELECT res.type,
                 CASE
                     WHEN npl.process_name::text = 'Place Pacs008'::text THEN 1
                     WHEN npl.process_name::text = 'Place Pacs.007'::text THEN 3
-                    WHEN npl.process_name::text = 'Receive Pacs004'::text THEN 2
+                    WHEN npl.process_name::text = 'Place Pacs004'::text THEN 2
                     WHEN npl.process_name::text = 'PACS.008'::text THEN 1
                     WHEN npl.process_name::text = 'PACS.007'::text THEN 3
                     ELSE NULL::integer
@@ -47,7 +47,7 @@ SELECT res.type,
                 CASE
                     WHEN npl.process_name::text = 'Place Pacs008'::text THEN 'pacs.008'::text
                     WHEN npl.process_name::text = 'Place Pacs.007'::text THEN 'pacs.007'::text
-                    WHEN npl.process_name::text = 'Receive Pacs004'::text THEN 'pacs.004'::text
+                    WHEN npl.process_name::text = 'Place Pacs004'::text THEN 'pacs.004'::text
                     WHEN npl.process_name::text = 'PACS.008'::text THEN 'pacs.008'::text
                     WHEN npl.process_name::text = 'PACS.007'::text THEN 'pacs.007'::text
                     ELSE NULL::text
@@ -56,126 +56,126 @@ SELECT res.type,
                 CASE
                     WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS total,
             count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'IBMB'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'IBMB'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'IBMB'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'IBMB'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS ibmb,
             count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'RMB'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'RMB'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'RMB'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'RMB'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS rmb,
             count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'RIB'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'RIB'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'RIB'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'RIB'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS rib,
             count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'CMB'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'CMB'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'CMB'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'CMB'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS cmb,
             count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'CIB'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'CIB'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'CIB'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'CIB'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS cib,
             count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'CMS'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'CMS'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'CMS'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'CMS'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS cms,
             count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'NFR'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'NFR'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'NFR'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'NFR'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS NFR,
                 count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'CMSCMS'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'CMSCMS'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'CMSCMS'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'CMSCMS'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS CMSCMS,
                 count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'IPP'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'IPP'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'IPP'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'IPP'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS IPP,
                 count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'CMSINF'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'CMSINF'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'CMSINF'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'CMSINF'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS CMSINF,
                 count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'MOB'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'MOB'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'MOB'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'MOB'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS MOB,
                 count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'MBL'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'MBL'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'MBL'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'MBL'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS MBL,
                 count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'CMSCMD'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'CMSCMD'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'CMSCMD'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'CMSCMD'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS CMSCMD,
                 count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'IB'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'IB'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'IB'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'IB'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS IB,
                 count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'RIBINF'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'RIBINF'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'RIBINF'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'RIBINF'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS RIBINF,
                 count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'AANI'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'AANI'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'AANI'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'AANI'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS AANI,
                 count(DISTINCT
                 CASE
                     WHEN nppst.channel_id::text = 'GCN'::text AND npl.process_name::text = 'Place Pacs008'::text THEN nppst.npsst_id
                     WHEN nppst.channel_id::text = 'GCN'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
-                    WHEN nppst.channel_id::text = 'GCN'::text AND npl.process_name::text = 'Receive Pacs004'::text THEN nppst.npsst_id
+                    WHEN nppst.channel_id::text = 'GCN'::text AND npl.process_name::text = 'Place Pacs004'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS GCN,
             count(DISTINCT
@@ -198,14 +198,14 @@ SELECT res.type,
                 CASE
                     WHEN npl.process_name = 'Place Pacs008' AND nppst.process_status = 'RCTExceptionFailure' AND (nppst.status in ('OP_AC_REV_POSTING_FAILURE','OP_P2P_REV_POSTING_FAILURE','OP_P2B_REV_POSTING_FAILURE')) THEN nppst.npsst_id
                     WHEN npl.process_name = 'Place Pacs.007' AND nppst.status = 'OP_REVERSAL_REQ_REPAIR' THEN nppst.npsst_id
-                    WHEN npl.process_name::text = 'Receive Pacs004'::text AND nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['OR_P2B_POSTING_FAILURE'::character varying::text, 'OR_P2P_POSTING_FAILURE'::character varying::text])) THEN nppst.npsst_id
+                    WHEN npl.process_name = 'Place Pacs004' AND nppst.process_status = 'RCTExceptionFailure' AND (nppst.status = 'IP_RCT_RETURN_POSTING_FAILURE') THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS pending_maker,
             count(DISTINCT
                 CASE
                     WHEN npl.process_name = 'Place Pacs008' AND nppst.process_status = 'RCTExceptionFailure' AND (nppst.status in ('OP_AC_REV_POSTING_RETRY','OP_P2P_REV_POSTING_RETRY','OP_P2B_REV_POSTING_RETRY')) THEN nppst.npsst_id
                     WHEN npl.process_name = 'Place Pacs.007' AND nppst.status = 'OP_REVERSAL_REQ_INITIATED' THEN nppst.npsst_id
-                    WHEN npl.process_name::text = 'Receive Pacs004'::text AND nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['OR_P2P_POSTING_RETRY'::character varying::text, 'OR_P2B_POSTING_RETRY'::character varying::text])) THEN nppst.npsst_id
+                    WHEN npl.process_name = 'Place Pacs004' AND nppst.process_status = 'RCTExceptionFailure' AND (nppst.status = 'IP_RCT_RETURN_POSTING_RETRY') THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS pending_checker,
             count(DISTINCT
@@ -233,7 +233,7 @@ SELECT res.type,
                 nppst.tenant_id
            FROM npss_transactions nppst
              LEFT JOIN npss_trn_process_log npl ON npl.uetr::text = nppst.uetr::text
-          WHERE to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE AND nppst.process_type::text = 'OP'::text AND (npl.process_name::text = ANY (ARRAY['Place Pacs008'::character varying::text, 'Place Pacs.007'::character varying::text, 'Receive Pacs004'::character varying::text, 'PACS.008'::character varying::text, 'PACS.007'::character varying::text]))
+          WHERE to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE  AND (npl.process_name::text = ANY (ARRAY['Place Pacs008'::character varying::text, 'Place Pacs.007'::character varying::text, 'Place Pacs004'::character varying::text, 'PACS.008'::character varying::text, 'PACS.007'::character varying::text]))
           GROUP BY nppst.tenant_id,nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group, npl.status, npl.process_status, nppst.department_code, (to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text))
         UNION ALL (
                  select
@@ -328,8 +328,7 @@ from
 	left join npss_trn_process_log npl on
 				npl.uetr = nppst.uetr
 	where
-				nppst.process_type = 'OP'
-		and (npl.process_name in ('Place Pacs008'))
+		(npl.process_name in ('Place Pacs008'))
 		and nppst.process_status = 'RCTExceptionFailure'
 		and (nppst.status in ('OP_AC_REV_POSTING_FAILURE','OP_P2P_REV_POSTING_FAILURE','OP_P2B_REV_POSTING_FAILURE','OP_AC_REV_POSTING_RETRY','OP_P2P_REV_POSTING_RETRY',
 'OP_P2B_REV_POSTING_RETRY'))
@@ -424,8 +423,7 @@ from
 	left join npss_trn_process_log npl on
 				npl.uetr = nppst.uetr
 	where
-				nppst.process_type = 'OP'
-		and (npl.process_name in ('Place Pacs.007'))
+				 (npl.process_name in ('Place Pacs.007'))
 		and (nppst.status in ('OP_REVERSAL_REQ_REPAIR', 'OP_REVERSAL_REQ_INITIATED'))
 		and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) DA2 group by typed,department_code,tenant_id) D2 on D2.typeD = A2.TYPE
                 UNION
@@ -520,10 +518,9 @@ from
 	left join npss_trn_process_log npl on
 				npl.uetr = nppst.uetr
 	where
-				nppst.process_type = 'OP'
-		and (npl.process_name in ('Receive Pacs004'))
+		(npl.process_name in ('Place Pacs004'))
 		AND nppst.process_status = 'RCTExceptionFailure'
-		and (nppst.status in ('OR_P2B_POSTING_FAILURE', 'OR_P2P_POSTING_FAILURE','OR_P2P_POSTING_RETRY','OR_P2B_POSTING_RETRY'))
+		and (nppst.status in ('IP_RCT_RETURN_POSTING_FAILURE','IP_RCT_RETURN_POSTING_RETRY'))
 		and to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) DA3 group by typed,department_code,tenant_id) D3 on D3.typeD = A3.TYPE                 
         )) res
   GROUP BY res.type, res.created_date, res.sno, res.department_code,RES.pending_t_1,res.tenant_id

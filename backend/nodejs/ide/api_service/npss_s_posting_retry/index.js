@@ -1500,16 +1500,16 @@ app.post('/', function(appRequest, appResponse, next) {
                               }
                               if (CheckorgPvt != '' && CheckorgPvt != null) {
                                 if (CheckorgPvt.type == 'Organisation') {
-                                  options.json.dbtr_prvt_id = CheckorgPvt.code
-                                  options.json.dbtr_document_id = ''
-                                  options.json.ext_org_id_code = 'BOID'
-                                  options.json.issuer_type_code = CheckorgPvt.cbuae_issur_code
+                                  options.json.data.payload.dbtr_prvt_id = CheckorgPvt.code
+                                  options.json.data.payload.dbtr_document_id = ''
+                                  options.json.data.payload.ext_org_id_code = 'BOID'
+                                  options.json.data.payload.issuer_type_code = CheckorgPvt.cbuae_issur_code
                                  
                                 } else {
-                                  options.json.dbtr_prvt_id = ''
-                                  options.json.dbtr_document_id = CheckorgPvt.code
-                                  options.json.ext_person_id_code = CheckorgPvt.extpersonidcode
-                                  options.json.issr = CheckorgPvt.issrtype || ''
+                                  options.json.data.payload.dbtr_prvt_id = ''
+                                  options.json.data.payload.dbtr_document_id = CheckorgPvt.code
+                                  options.json.data.payload.ext_person_id_code = CheckorgPvt.extpersonidcode
+                                  options.json.data.payload.issr = CheckorgPvt.issrtype || ''
                                
                                 }
 

@@ -10,7 +10,7 @@ app.post('/', function(appRequest, appResponse, next) {
     try {
         /*   Created By :Siva Harish
         Created Date :28-03-2023
-        
+        Modified_by : 10/07/2023
       
          
        
@@ -68,7 +68,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var final_process_status
 
                             var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_IP_POSTING_FAIL_REPOST'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                            var take_api_params = `select ns.account_currency,ns.reversal_amount,ns.npsst_id,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY ) as dbtr_acct_no,ns.dbtr_prvt_id,ns.department_code,ns.dbtr_cust_type,ns.ext_acct_id_code,ns.intrbk_sttlm_amnt,ns.instrument_type,ns.instruction_id,ns.hdr_msg_id,ns.hdr_clearing_system,ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,ns.accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id in ${TempTranID}`;
+                            var take_api_params = `select ns.account_currency,ns.reversal_amount,ns.npsst_id,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY ) as dbtr_acct_no,ns.dbtr_prvt_id,ns.department_code,ns.dbtr_cust_type,ns.ext_acct_id_code,ns.intrbk_sttlm_amnt,ns.instrument_type,ns.instruction_id,ns.hdr_msg_id,ns.hdr_clearing_system,ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,fn_pcidss_decrypt(ns.message_data,$PCIDSS_KEY ) as message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,ns.accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id in ${TempTranID}`;
                             var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL' and need_sync = 'Y'`
                             ExecuteQuery1(TakeStsPsts, async function (arrurlResult) {
                                 if (arrurlResult.length) {
@@ -935,16 +935,16 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                    function CallELPASOapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
+                    function CallELPASOapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
-                                var TakeProcessRefno = `select process_ref_no from npss_transactions where process_name = 'Recive Pacs002' and uetr = '${arrTranparamsObj.uetr}'`
+                                var TakeProcessRefno = `select process_ref_no from npss_trn_process_log where process_name = 'Receive Pacs002' and uetr = '${arrTranparamsObj.uetr}'`
                                 ExecuteQuery1(TakeProcessRefno, function (arrprsrefno) {
                                     if (arrprsrefno.length > 0) {
-                                        var TakenpsstrdRefno = `select npsstrrd_refno from npss_transactions where process_name = 'Recive Pacs008' and uetr = '${arrTranparamsObj.uetr}'`
+                                        var TakenpsstrdRefno = `select npsstrrd_refno from npss_trn_process_log where process_name = 'Receive Pacs008' and uetr = '${arrTranparamsObj.uetr}'`
                                         ExecuteQuery1(TakenpsstrdRefno, function (arrnpsstrdrefno) {
                                             if (arrnpsstrdrefno.length > 0) {
-                                                var Takestatusdata = `select status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where process_name = 'Recive Pacs002' and uetr = '${arrTranparamsObj.uetr}'`
+                                                var Takestatusdata = `select status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where process_name = 'Receive Pacs002' and uetr = '${arrTranparamsObj.uetr}'`
                                                 ExecuteQuery1(Takestatusdata, function (arrstatus) {
                                                     if (arrstatus.length > 0) {
                                                         var lclinstrm
@@ -968,7 +968,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     "payload": {
                                                                         "force_post_flag": "Y",
                                                                         "department_code": arrTranparamsObj.department_code || '',
-                                                                        "ext_iden_retry_value": ext_ident_value || '',
+                                                                        //"ext_iden_retry_value": ext_ident_value || '',
                                                                         "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                                         "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
                                                                         "hdr_total_records": arrTranparamsObj.hdr_total_records || '',
@@ -1040,7 +1040,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 'Content-Type': 'application/json'
                                                             }
                                                         }
-
+    
                                                         var PrintInfo = {}
                                                         PrintInfo.ApiName = 'ELPASO API CALL'
                                                         PrintInfo.url = arrurl[0].param_detail
@@ -1048,13 +1048,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
                                                         PrintInfo.msg_id = arrTranparamsObj.hdr_msg_id || ''
                                                         PrintInfo.clrsysref = arrTranparamsObj.clrsysref || ''
-
+    
                                                         reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                                             if (error) {
                                                                 reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                                 sendResponse(error, null);
-
+    
                                                             } else {
                                                                 reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                                 if (responseBodyFromImagingService == 'SUCCESS') {
@@ -1081,7 +1081,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objresponse.errdata = 'status_accp_date,status_intrbksttlmdt Not found for TranId' + arrTranparamsObj.npsst_id + 'for ELPASO Api Call'
                                                         sendResponse(null, objresponse)
                                                     }
-
+    
                                                 })
                                             } else {
                                                 objresponse.status = 'FAILURE'
@@ -1094,7 +1094,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objresponse.errdata = 'Process Refno Not found for TranId' + arrTranparamsObj.npsst_id + 'for ELPASO Api Call'
                                         sendResponse(null, objresponse)
                                     }
-
+    
                                 })
                             }, function () {
                                 resolve('SUCCESS')

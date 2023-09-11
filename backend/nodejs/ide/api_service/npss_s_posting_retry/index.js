@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+  
 
 
 
@@ -183,7 +184,7 @@ app.post('/', function(appRequest, appResponse, next) {
                 take_api_params = `select uetr,* from npss_trn_process_log ns  where status = '${eligible_status}' `;
               }
               else {
-                take_api_params = `select ns.department_code,ns.process_group,ns.channel_refno,ns.channel_id,ns.middleware_ref_no,ns.cbs_ref_no,ns.reversal_amount,ns.npsst_id,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY ) as dbtr_acct_no,ns.dbtr_cust_type,ns.ext_acct_id_code,ns.intrbk_sttlm_amnt,ns.instrument_type,ns.instruction_id,ns.hdr_msg_id,ns.hdr_clearing_system,ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,ns.accp_date_time as accp_dt_tm from npss_transactions ns where status = '${eligible_status}'`;
+                take_api_params = `select ns.department_code,ns.process_group,ns.channel_refno,ns.channel_id,ns.middleware_ref_no,ns.cbs_ref_no,ns.reversal_amount,ns.npsst_id,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY ) as dbtr_acct_no,ns.dbtr_cust_type,ns.ext_acct_id_code,ns.intrbk_sttlm_amnt,ns.instrument_type,ns.instruction_id,ns.hdr_msg_id,ns.hdr_clearing_system,ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,fn_pcidss_decrypt(ns.message_data,$PCIDSS_KEY ) as message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,ns.accp_date_time as accp_dt_tm from npss_transactions ns where status = '${eligible_status}'`;
               }
 
               ExecuteQuery1(take_api_params, async function (arrTranparams) {
@@ -391,7 +392,25 @@ app.post('/', function(appRequest, appResponse, next) {
               })
             })
           }
+          function fngetacctype(arrprocesslog) {
+            return new Promise((resolve, reject) => {
+              try {
+                takeaccttypeqry = `select at.cb_acctype_code,at.cbs_category_id, ac.category_code from core_nc_cbs_accounts ac  inner join core_nc_cbscate_cbacctyp at
+                on at.cbs_category_id = TO_CHAR(ac.category_code,'FM9999999999') where ac.alternate_account_id='${arrprocesslog}'`
+                ExecuteQuery1(takeaccttypeqry, function (accttype) {
+                  
+                  if (accttype.length > 0 && accttype[0].cb_acctype_code != null) {
+                    resolve(accttype[0].cb_acctype_code)
+                  } else {
+                    resolve('OTHR')
+                  }
 
+                })
+              } catch (error) {
+                resolve('OTHR')
+              }
+            })
+          }
           function CallORRAPI(arrTranparams, arrurl, statusobj, final_status, PRCT_ID) {
             return new Promise((resolve, reject) => {
               var reason_code
@@ -437,7 +456,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
                     let TranInsertProcess = await InsertProcess(arrTranparamsObj, statusobj, PRCT_ID, 'OP')
-
+                    var takeaccttypecode = await fngetacctype(arrTranparamsObj.dbtr_iban)
                     if (TranInsertProcess == 'SUCCESS') {
                       var request = require('request');
                       var options = {
@@ -511,7 +530,8 @@ app.post('/', function(appRequest, appResponse, next) {
                               "payment_processing_method": payment_processing_method || '',
                               "department_code": arrTranparamsObj.department_code || '',
                               "company_code": TakeacctInfrm.AccountInformations.company_code || '',
-                              "error_code": ""
+                              "error_code": "",
+                              cb_acctype_code:takeaccttypecode
 
                             }
                           }
@@ -583,7 +603,7 @@ app.post('/', function(appRequest, appResponse, next) {
                       reason_code = ''
                       npsst_refno = ''
                     }
-
+                    var takeaccttypecode = await fngetacctype(arrTranparamsObj.dbtr_iban)
                     let TranInsertProcess = await InsertProcess(arrTranparamsObj, statusobj, PRCT_ID, 'OP')
                     if (TranInsertProcess == 'SUCCESS') {
                       var request = require('request');
@@ -633,7 +653,8 @@ app.post('/', function(appRequest, appResponse, next) {
                               "account_number": TakeacctInfrm.AccountInformations.account_number || '',
                               "cdtr_acct_name": arrTranparamsObj.cdtr_acct_name || '',
                               "npsstrrd_refno": npsst_refno || '',
-                              "RtrdIntrBkSttlmAmt": RtrdIntrBkSttlmAmt != '' ? RtrdIntrBkSttlmAmt[0].additional_info : '' || ''
+                              "RtrdIntrBkSttlmAmt": RtrdIntrBkSttlmAmt != '' ? RtrdIntrBkSttlmAmt[0].additional_info : '' || '',
+                              cb_acctype_code:takeaccttypecode
                             }
                           }
                         },
@@ -1409,6 +1430,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                           if (CheckorgPvt != '') {
                             let TranInsertProcess = await InsertProcess(arrlogdata[0], statusobj, PRCT_ID, 'OP')
+                            var takeaccttypecode = await fngetacctype( req_json.sender.iban )
                             if (TranInsertProcess == 'SUCCESS') {
                               var request = require('request');
                               var options = {
@@ -1462,6 +1484,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                       "category_purpose_prty": "NOWS",
                                       "status": statusobj,
                                       "account_currency": arrcbsdata[0].currency || '',
+                                      cb_acctype_code:takeaccttypecode,
                                       // "issr": (CheckorgPvt.extpersonidcode == 'NIDN') ? 'AE' : arrcbsdata[0].nationality_country_code,
 
 
@@ -2022,6 +2045,7 @@ app.post('/', function(appRequest, appResponse, next) {
   catch (error) {
     sendResponse(error, null);
   }
+
 
 
 

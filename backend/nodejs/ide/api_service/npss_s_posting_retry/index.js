@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
   
+  
 
 
 
@@ -441,16 +442,19 @@ app.post('/', function(appRequest, appResponse, next) {
                       lclinstrm = "INST"
                     }
                     var payment_processing_method
+                    let purp='';
 
                     if (arrTranparamsObj.process_group == 'P2P') {
                       payment_processing_method = "SCT_INITITATION"
+                      purp='MP2P'
 
                     } else if (arrTranparamsObj.process_group == 'P2B') {
                       payment_processing_method = "P2B_SCT_INITITATION"
+                      purp='MP2B'
 
                     } else if (arrTranparamsObj.process_group == 'IBAN') {
                       payment_processing_method = "AC_AC_IBAN"
-
+                      purp='WEBI'
                     } else {
                       payment_processing_method = ''
                     }
@@ -531,7 +535,8 @@ app.post('/', function(appRequest, appResponse, next) {
                               "department_code": arrTranparamsObj.department_code || '',
                               "company_code": TakeacctInfrm.AccountInformations.company_code || '',
                               "error_code": "",
-                              cb_acctype_code:takeaccttypecode
+                              cb_acctype_code:takeaccttypecode,
+                              "purp":purp
 
                             }
                           }
@@ -605,6 +610,14 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
                     var takeaccttypecode = await fngetacctype(arrTranparamsObj.dbtr_iban)
                     let TranInsertProcess = await InsertProcess(arrTranparamsObj, statusobj, PRCT_ID, 'OP')
+                    let purp='';
+                    if(arrTranparamsObj.process_group=="P2P"){
+                      purp='MP2P'
+                    }else if(arrTranparamsObj.process_group=="P2B"){
+                      purp='MP2B'
+                    }else{
+                      purp='WEBI'
+                    }
                     if (TranInsertProcess == 'SUCCESS') {
                       var request = require('request');
                       var options = {
@@ -654,7 +667,8 @@ app.post('/', function(appRequest, appResponse, next) {
                               "cdtr_acct_name": arrTranparamsObj.cdtr_acct_name || '',
                               "npsstrrd_refno": npsst_refno || '',
                               "RtrdIntrBkSttlmAmt": RtrdIntrBkSttlmAmt != '' ? RtrdIntrBkSttlmAmt[0].additional_info : '' || '',
-                              cb_acctype_code:takeaccttypecode
+                              cb_acctype_code:takeaccttypecode,
+                              "purp":purp
                             }
                           }
                         },
@@ -1485,6 +1499,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                       "status": statusobj,
                                       "account_currency": arrcbsdata[0].currency || '',
                                       cb_acctype_code:takeaccttypecode,
+                                         purp:'MP2P',
                                       // "issr": (CheckorgPvt.extpersonidcode == 'NIDN') ? 'AE' : arrcbsdata[0].nationality_country_code,
 
 
@@ -2045,6 +2060,7 @@ app.post('/', function(appRequest, appResponse, next) {
   catch (error) {
     sendResponse(error, null);
   }
+
 
 
 

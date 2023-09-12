@@ -81,6 +81,9 @@ CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_cs_manual_initiation_get_deal/', ClientParams)
             .subscribe((res: any) => {
                 if (res.data.status == 'SUCCESS') {
+                      screenInstance.payment_processing_details_ui_get_deal.show = false
+          
+                      screenInstance.payment_processing_details_ui_send_to_checker.show = true;
                     if (res.data.CustRate == 'YES') {
                         var Controls = screenInstance['verify_get_deal_ui'].f_npss_verification_get_deal_ui.model;
                         Controls.memory59 = res.data.data.buy_rate
@@ -107,6 +110,8 @@ CallUrlWithData(ClientParams, screenInstance, internals) {
                 }
                
                 else {
+                      screenInstance.payment_processing_details_ui_send_to_checker.show = false;
+                       screenInstance.payment_processing_details_ui_get_deal.show = true
                     if (res.data.CustRate == 'YES') {
                         var Controls = screenInstance['verify_get_deal_ui'].f_npss_verification_get_deal_ui.model
                         Controls.memory59 = ''

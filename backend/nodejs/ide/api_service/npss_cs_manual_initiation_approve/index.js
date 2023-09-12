@@ -7,6 +7,9 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+  
+  
+  
 
   try {
     /*   Created By :Siva Harish
@@ -72,7 +75,7 @@ app.post('/', function(appRequest, appResponse, next) {
               var GetsellRate
               var take_return_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL' and need_sync = 'Y'`;
               var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.RULE_CODE}'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-              var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,ns.force_post_flag,ns.channel_id,ns.channel_refno,ns.fx_resv_text3,ns.amount_credited_loc_cur,ns.buy_margin,ns.buy_rate,ns.department_code,ns.fx_resv_text2,ns.account_currency,ns.org_pay_endtoend_id, ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,fn_pcidss_decrypt(ns.message_data,$PCIDSS_KEY ) as message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
+              var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.process_group,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,ns.force_post_flag,ns.channel_id,ns.channel_refno,ns.fx_resv_text3,ns.amount_credited_loc_cur,ns.buy_margin,ns.buy_rate,ns.department_code,ns.fx_resv_text2,ns.account_currency,ns.org_pay_endtoend_id, ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,fn_pcidss_decrypt(ns.message_data,$PCIDSS_KEY ) as message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
               if (params.PROD_CODE == 'NPSS_AEFAB') {
                 ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
                   if (arrurlResult.length) {
@@ -381,7 +384,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     "company_code": reverandRefno.company_code || '',
                     "inactive_marker": reverandRefno.inactive_marker || '',
                     "currency": reverandRefno.currency || '',
-                    "alternate_account_type": "OLD.IBAN",
+                    "alternate_account_type": reverandRefno.alternate_account_type || '',
                     "alternate_account_id": reverandRefno.alternate_account_id || ''
 
                   }
@@ -479,6 +482,14 @@ app.post('/', function(appRequest, appResponse, next) {
                     ExecuteQuery1(TakecatPurpose, async function (arrcatPurpose) {
                       if (arrcatPurpose.length > 0) {
                         var takeaccttypecode = await fngetacctype(arrprocesslog)
+                        let purp='';
+                        if(arrprocesslog[0].process_group=="P2P"){
+                          purp='MP2P'
+                        }else if(arrprocesslog[0].process_group=="P2B"){
+                          purp='MP2B'
+                        }else{
+                          purp='WEBI'
+                        }
                         var category_prty
                         var hdrmsgid
                         if (arrprocesslog[0].category_purpose_prty == null || arrprocesslog[0].category_purpose_prty == '') {
@@ -531,7 +542,8 @@ app.post('/', function(appRequest, appResponse, next) {
                             "category_purpose_prty": category_prty || '',
                             "channel_id": 'IPP',
                             "channel_refno": arrprocesslog[0].clrsysref || '',
-                            "cb_acctype_code":takeaccttypecode
+                            "cb_acctype_code":takeaccttypecode,
+                            "purp":purp
 
                           },
                           headers: {
@@ -621,7 +633,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
           function TakeReversalIdandPostRefno(arrprocesslog) {
             return new Promise((resolve, reject) => {
-              var TakeAcctInf = `select birthdate,cityofbirth,countryofbirth,emirates_code,account_name,Alternate_Account_Type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].dbtr_iban}'`
+              var TakeAcctInf = `select birthdate,cityofbirth,countryofbirth,emirates_code,account_name,alternate_account_type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].dbtr_iban}'`
               var TakeprssRefno = `select process_ref_no  from npss_trn_process_log  where uetr = '${arrprocesslog[0].uetr}' and status = 'OP_RCT_MAN_INAU_POSTING_SUCCESS'`;
               var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('OP_RCT_MAN_INAU_POSTING_SUCCESS','OP_RCT_MAN_INAU_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
 
@@ -645,6 +657,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             parameter.countryofbirth = arrActInf[0].countryofbirth || '',
                             parameter.cityofbirth = arrActInf[0].cityofbirth || ''
                           parameter.birthdate = arrActInf[0].birthdate || ''
+                          parameter. alternate_account_type = arrActInf[0].alternate_account_type || ''
                           ExecuteQuery1(TakeCount, function (arrCount) {
 
 
@@ -1885,6 +1898,9 @@ app.post('/', function(appRequest, appResponse, next) {
   catch (error) {
     sendResponse(error, null);
   }
+
+
+
 
 
 

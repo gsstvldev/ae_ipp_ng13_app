@@ -26,12 +26,14 @@ export class npss_csget_deal_btn_show_hideService {
       .subscribe((res: any) => {
         if (res.data.status == "SUCCESS" || res.data == "SUCCESS") {
           screenInstance.payment_processing_details_ui_get_deal.show = true
+          screenInstance.payment_processing_details_ui_send_to_checker.show = false
 
           this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
         }
 
         else {
-          screenInstance.payment_processing_details_ui_get_deal.show = true
+          screenInstance.payment_processing_details_ui_get_deal.show = false
+          screenInstance.payment_processing_details_ui_send_to_checker.show = true
           //this.dialogHelper.ShowErrorDialog(res.data.data)
           this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
         }

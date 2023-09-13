@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 31058 
+Build ID        : 32156 
 Modified By     : Admin 
-Modified Date   : 2023-Aug-18 4:53 AM 
+Modified Date   : 2023-Sep-13 12:34 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_manual_unfreeze_dashboard

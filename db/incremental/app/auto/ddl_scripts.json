@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS add column REQUEST_DATETIME CHARACTER VARYING(64);","params" : [] }]
+[]

@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRN_PROCESS_LOG add column POSTING_DATE_TIME CHARACTER VARYING(64);","params" : [] }]
+[{"query" : "alter table NPSS_TRANSACTIONS add column REQUEST_DATETIME CHARACTER VARYING(64);","params" : [] }]

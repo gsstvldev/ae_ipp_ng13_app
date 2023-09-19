@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 try {
     /*   Created By :Siva Harish
     Created Date :10-03-2023
@@ -104,7 +105,7 @@ try {
                                                     //ext_ident_value = await GetRetrycount(arrTranparams[0].uetr)
                                                     if (params.eligible_status == 'IP_RCT_PC_T24_POSTING_RETRY') { //prepaid                            
                                                         Apicalls = await Callprepaidapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value)
-                                                    } else if (params.eligible_status == 'IP_RCT_CC_T24_POSTING_RETRY') { //credit                                     
+                                                    } else if (params.eligible_status == 'IP_RCT_CC_T24_POSTING_RETRY' ||params.eligible_status == 'IP_RCT_CC_POSTING_RETRY' ) { //credit                                     
                                                         Apicalls = await Callcreditapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value)
                                                     } else if (params.eligible_status == 'IP_RCT_RETURN_POSTING_RETRY') { //inward return Nostro Posting API                                                                                   
                                                         Apicalls = await CallNostroapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value)
@@ -508,7 +509,7 @@ try {
                                                                 "npsstrrd_refno": arrnpssRefno[0].npsstrrd_refno || '',
                                                                 "process_name": "Pacs.002 Payment Status Report",
                                                                 "request_data_json": "",
-                                                                "NOSTRO_POOL_ACC": "Y",
+                                                               // "NOSTRO_POOL_ACC": "Y",
                                                                 "retry_count": "0",
                                                             }
                                                         }
@@ -517,6 +518,9 @@ try {
                                                         'Content-Type': 'application/json'
                                                     }
 
+                                                }
+                                                if(params.eligible_status=='IP_RCT_CC_T24_POSTING_RETRY'){
+                                                    options.json.data.payload.NOSTRO_POOL_ACC='Y'
                                                 }
 
                                                 var PrintInfo = {}
@@ -1433,22 +1437,6 @@ try {
 catch (error) {
     sendResponse(error, null);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

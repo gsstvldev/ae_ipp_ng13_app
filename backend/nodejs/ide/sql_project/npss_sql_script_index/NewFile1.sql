@@ -62,3 +62,9 @@ create index if not exists ntpl_process_ref_no on npss_trn_process_log (process_
 @SPL@
 create index if not exists ntpl_paymentid on npss_trn_process_log (paymentid);
 @SPL@
+create index if not exists cbsa_national_id on core_nc_cbs_accounts (national_id);
+@SPL@
+create index if not exists cbsa_resident_flag on core_nc_cbs_accounts (resident_flag);
+@SPL@
+create index if not exists cnea_source_economic_activity_code on core_nc_eco_actvty_mapping (source_economic_activity_code);
+@SPL@

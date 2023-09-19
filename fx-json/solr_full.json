@@ -867,6 +867,86 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$NPSSNPPL_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$MSG_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$UETR$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$NPSSTRRD_REFNO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESS_NAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESSING_SYSTEM$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$RESPONSE_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESS_REF_NO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$T24_RETURN_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CBUAE_RETURN_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$REVERSAL_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$RESPONSE_DATA$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$REQUEST_DATA_JSON$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$RESPONSE_DATA_JSON$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$ADDITIONAL_INFO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$V_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695130590062$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NPSSASP_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670492310194$DQ$
@@ -2070,6 +2150,36 @@
         $DQ$NAME$DQ$: $DQ$REQUEST_DATETIME$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$NSVL_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695129574156$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESS_NAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695129574156$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$X_REQ_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695129574156$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$REQUEST_DATA_JSON$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695129574156$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$RESPONSE_DATA_JSON$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695129574156$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$MESSAGE_DATA$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695129574156$DQ$
       },
       {
         $DQ$NAME$DQ$: $DQ$NPSSE_ID$DQ$,

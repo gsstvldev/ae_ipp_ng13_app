@@ -224,7 +224,7 @@ SELECT res.type,
                 END) AS cback,
             count(DISTINCT
                 CASE
-                   WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status in ('OP_AC_STATUS_REJECTED', 'OP_AC_REV_POSTING_SUCCESS','OP_AC_REV_POSTING_FAILURE',  'OP_P2B_STATUS_REJECTED', 'OP_P2P_REV_POSTING_SUCCESS','OP_P2P_REV_POSTING_FAILURE', 'OP_P2B_REV_POSTING_SUCCESS',   'OP_P2B_REV_POSTING_FAILURE') THEN nppst.npsst_id
+                   WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status in ('OP_AC_STATUS_REJECTED', 'OP_AC_REV_POSTING_SUCCESS','OP_AC_REV_POSTING_FAILURE',  'OP_P2B_STATUS_REJECTED', 'OP_P2P_REV_POSTING_SUCCESS','OP_P2P_REV_POSTING_FAILURE', 'OP_P2B_REV_POSTING_SUCCESS',   'OP_P2B_REV_POSTING_FAILURE','OP_P2P_STATUS_REJECTED') THEN nppst.npsst_id
                     WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.status in ('IP_RCT_RETURN_REJECTED') THEN nppst.npsst_id
                     WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text AND nppst.status in ('OP_RCT_REVERSAL_REJECTED' ) THEN nppst.npsst_id
                     ELSE NULL::integer

@@ -218,12 +218,15 @@ SELECT res.type,
                 END) AS send_to_cb,
             count(DISTINCT
                 CASE
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND (nppst.status::text = 'OP_RCT_STATUS_RECEIVED'::text OR nppst.status::text = 'OP_P2P_STATUS_ACCEPTED'::text OR nppst.status::text = 'OP_P2B_STATUS_ACCEPTED'::text) THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status in ('OP_AC_STATUS_ACCEPTED', 'OP_P2P_STATUS_ACCEPTED', 'OP_P2B_STATUS_ACCEPTED', 'OP_REVERSAL_REQ_INITIATED',  'OP_REVERSAL_REQ_REPAIR', 'OP_RCT_REVERSAL_REJECTED', 'OP_RETURNED') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.status in ('IP_RCT_RETURN_COMPLETED', 'IP_RCT_RETURN_POSTING_SUCCESS', 'IP_RCT_RETURN_POSTING_FAILURE') THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS cback,
             count(DISTINCT
                 CASE
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND (nppst.status::text = 'OP_AC_REV_POSTING_SUCCESS'::text OR nppst.status::text = 'OP_AC_REV_POSTING_SUCCESS'::text OR nppst.process_status::text = 'OP_AC_STATUS_REJECTED'::text OR nppst.process_status::text = 'OP_P2P_REV_POSTING_SUCCESS'::text OR nppst.process_status::text = 'OP_P2B_STATUS_REJECTED'::text OR nppst.process_status::text = 'OP_P2B_REV_POSTING_SUCCESS'::text) THEN nppst.npsst_id
+                   WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status in ('OP_AC_STATUS_REJECTED', 'OP_AC_REV_POSTING_SUCCESS','OP_AC_REV_POSTING_FAILURE',  'OP_P2B_STATUS_REJECTED', 'OP_P2P_REV_POSTING_SUCCESS','OP_P2P_REV_POSTING_FAILURE', 'OP_P2B_REV_POSTING_SUCCESS',   'OP_P2B_REV_POSTING_FAILURE') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.status in ('IP_RCT_RETURN_REJECTED') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text AND nppst.status in ('OP_RCT_REVERSAL_REJECTED' ) THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS cbnack,
             to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
@@ -241,7 +244,7 @@ SELECT res.type,
                     z.process_status,
                     z.processing_system
                    FROM npss_trn_process_log z
-                  WHERE to_date(to_char(z.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE AND (z.process_name::text = ANY (ARRAY['Place Pacs008'::character varying, 'Place Pacs.007'::character varying, 'Place Pacs004'::character varying, 'PACS.008'::character varying, 'PACS.007'::character varying]::text[]))) npl ON npl.uetr::text = nppst.uetr::text
+                  WHERE to_date(to_char(z.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE AND (z.process_name::text = ANY (ARRAY['Place Pacs008'::character varying::text, 'Place Pacs.007'::character varying::text, 'Place Pacs004'::character varying::text, 'PACS.008'::character varying::text, 'PACS.007'::character varying::text]))) npl ON npl.uetr::text = nppst.uetr::text
           WHERE to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE AND (npl.process_name::text = ANY (ARRAY['Place Pacs008'::character varying::text, 'Place Pacs.007'::character varying::text, 'Place Pacs004'::character varying::text, 'PACS.008'::character varying::text, 'PACS.007'::character varying::text]))
           GROUP BY nppst.tenant_id, nppst.channel_id, npl.process_name, nppst.process_status, nppst.status, nppst.process_type, nppst.process_group, npl.status, npl.process_status, nppst.department_code, (to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text))
         UNION ALL (

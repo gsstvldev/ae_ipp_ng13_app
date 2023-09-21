@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 32175 
+Build ID        : 32333 
 Modified By     : Admin 
-Modified Date   : 2023-Sep-14 8:3 AM 
+Modified Date   : 2023-Sep-21 10:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -12,6 +12,7 @@ Screen Name     : s_op_rct_reversal
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
+import {npss_c_reversal_amnt_ui_validateService} from '../../../custom_widget/npss_c_reversal_amnt_ui_validate/npss_c_reversal_amnt_ui_validate.service'
 import {npss_cs_set_reversal_prd_system_setup_dateService} from '../../../custom_widget/npss_cs_set_reversal_prd_system_setup_date/npss_cs_set_reversal_prd_system_setup_date.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_set_action_mode_as_searchService} from '../../../custom_widget/npss_set_action_mode_as_search/npss_set_action_mode_as_search.service'
@@ -23,7 +24,7 @@ import {npss_cs_reversal_send_to_makerService} from '../../../custom_widget/npss
 	selector: 's_op_rct_reversal',
 	templateUrl: './s_op_rct_reversal.component.html',
 	styleUrls: ['./s_op_rct_reversal.component.css'],
-	providers:[npss_cs_set_reversal_prd_system_setup_dateService,torus_cs_show_hideService,npss_set_action_mode_as_searchService,npss_cs_reversal_initiateService,npss_cs_rct_rev_approveService,npss_cs_reversal_send_to_makerService]
+	providers:[npss_c_reversal_amnt_ui_validateService,npss_cs_set_reversal_prd_system_setup_dateService,torus_cs_show_hideService,npss_set_action_mode_as_searchService,npss_cs_reversal_initiateService,npss_cs_rct_rev_approveService,npss_cs_reversal_send_to_makerService]
 })
     
 // Start of class 
@@ -32,7 +33,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_op_rct_reversal"
 	wftpa_id : string = "WFT_NPSS_P_1304_1671186714687_0"
 	cg_code : string = "CG_1304_1671185292510"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID"}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID","dtt_1304_1695130590062":"NPSSNPPL_ID","dtt_1304_1695214768145":"NAL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -119,7 +120,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private npss_cs_set_reversal_prd_system_setup_dateService:npss_cs_set_reversal_prd_system_setup_dateService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_set_action_mode_as_searchService:npss_set_action_mode_as_searchService,private npss_cs_reversal_initiateService:npss_cs_reversal_initiateService,private npss_cs_rct_rev_approveService:npss_cs_rct_rev_approveService,private npss_cs_reversal_send_to_makerService:npss_cs_reversal_send_to_makerService) {
+	constructor(private handler:AppHandlerService ,private npss_c_reversal_amnt_ui_validateService:npss_c_reversal_amnt_ui_validateService,private npss_cs_set_reversal_prd_system_setup_dateService:npss_cs_set_reversal_prd_system_setup_dateService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_set_action_mode_as_searchService:npss_set_action_mode_as_searchService,private npss_cs_reversal_initiateService:npss_cs_reversal_initiateService,private npss_cs_rct_rev_approveService:npss_cs_rct_rev_approveService,private npss_cs_reversal_send_to_makerService:npss_cs_reversal_send_to_makerService) {
     
 	}
     

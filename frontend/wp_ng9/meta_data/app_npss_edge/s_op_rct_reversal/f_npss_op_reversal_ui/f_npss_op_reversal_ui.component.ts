@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 32175 
+Build ID        : 32333 
 Modified By     : Admin 
-Modified Date   : 2023-Sep-14 8:3 AM 
+Modified Date   : 2023-Sep-21 10:14 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -154,7 +154,7 @@ focustoelement(){
 		this.ctrl.memory87.show = true
 		this.ctrl.memory87.sub_content = ""
 		this.ctrl.memory87.required = false
-		this.ctrl.memory87.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Select the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
+		this.ctrl.memory87.vld_rules = [{"type":"CV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"","custom_val_message":{"ngmessages":[{"message_key":"RA_P","message_value":"Reversal Amount should not be  greater than the Original Amount"}]},"expression":"","project_code":"CCI_PROJ3031","project_name":"npss_c_reversal_amnt_ui_validate","cv_event":"ON_SUBMIT"},{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Select the value","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
 		this.ctrl.memory87.targetcolumn_lower = "memory87"
 		this.ctrl.memory87.disabled = false
 		this.ctrl.memory87.view_name = "f_npss_op_reversal_ui"

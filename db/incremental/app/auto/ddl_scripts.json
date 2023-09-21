@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_API_LOGS add column API_NAME CHARACTER VARYING(128);","params" : [] },{"query" : "alter table NPSS_API_LOGS drop column PROCESS_NAME;","params" : [] }]
+[]

@@ -1,17 +1,7 @@
 [{
   $DQ$TRAN_INSERTION$DQ$: [
     {
-      $DQ$NAME$DQ$: $DQ$NAL_ID$DQ$,
-      $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
-      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695214768145$DQ$
-    },
-    {
-      $DQ$NAME$DQ$: $DQ$REF_NO$DQ$,
-      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695214768145$DQ$
-    },
-    {
-      $DQ$NAME$DQ$: $DQ$PROCESS_DATE$DQ$,
+      $DQ$NAME$DQ$: $DQ$API_NAME$DQ$,
       $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
       $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695214768145$DQ$
     }

@@ -27,7 +27,9 @@ export class npss_c_reversal_amnt_ui_validateService {
     fn_customValidation(projName, screenInstance, message, callback) {
         let cvResult: any = {};
         let original_amnt = screenInstance["initate_ui"].f_npss_op_reversal_ui.model.INTRBK_STTLM_AMNT;
+        console.log(`-----------------------------orig${original_amnt}`)
         let reversal_amnt = screenInstance["initate_ui"].f_npss_op_reversal_ui.model.REVERSAL_AMOUNT;
+        console.log(`-----------------------------reversal${reversal_amnt}`)
         if(Number(original_amnt)>=Number(reversal_amnt)){
 
             cvResult.MESSAGE_KEY = "RA_PS";

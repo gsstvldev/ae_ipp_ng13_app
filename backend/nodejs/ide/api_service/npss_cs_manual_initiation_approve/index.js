@@ -21,6 +21,7 @@ app.post('/', function(appRequest, appResponse, next) {
         Reason for update intblk amount from pacs008 by harish 14/7/2023
          Reason for handling prepaid card missing field
          Reason for handling cb_acctype_code key for 008 by Daseen 11-09-2023
+         Modified for: to take last inserted record for process refno(reversalid) for authposting
    
     */
     var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -634,7 +635,7 @@ app.post('/', function(appRequest, appResponse, next) {
           function TakeReversalIdandPostRefno(arrprocesslog) {
             return new Promise((resolve, reject) => {
               var TakeAcctInf = `select birthdate,cityofbirth,countryofbirth,emirates_code,account_name,alternate_account_type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].dbtr_iban}'`
-              var TakeprssRefno = `select process_ref_no  from npss_trn_process_log  where uetr = '${arrprocesslog[0].uetr}' and status = 'OP_RCT_MAN_INAU_POSTING_SUCCESS'`;
+             var TakeprssRefno = `select process_ref_no  from npss_trn_process_log  where uetr = '${arrprocesslog[0].uetr}' and status = 'OP_RCT_MAN_INAU_POSTING_SUCCESS' order by created_date desc`;
               var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('OP_RCT_MAN_INAU_POSTING_SUCCESS','OP_RCT_MAN_INAU_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
 
               ExecuteQuery1(TakeprssRefno, function (arrprssRefno) {

@@ -68,3 +68,29 @@ create index if not exists cbsa_resident_flag on core_nc_cbs_accounts (resident_
 @SPL@
 create index if not exists cnea_source_economic_activity_code on core_nc_eco_actvty_mapping (source_economic_activity_code);
 @SPL@
+create index if not exists nt_cpr_cr_flag on npss_transactions (cpr_cr_flag);
+@SPL@
+create index if not exists nt_cpr_dw_flag on npss_transactions (cpr_dw_flag);
+@SPL@
+create index if not exists ntpl_customerid on npss_trn_process_log (customerid);
+@SPL@
+create index if not exists ntpl_process_type on npss_trn_process_log (process_type);
+@SPL@
+create index if not exists cbsa_sector_code on core_nc_cbs_accounts (sector_code);
+@SPL@
+create index if not exists cbsa_target_code on core_nc_cbs_accounts (target_code);
+@SPL@
+create index if not exists cbsa_issuer_type_code on core_nc_cbs_accounts (issuer_type_code);
+@SPL@
+create index if not exists cbsa_industry on core_nc_cbs_accounts (industry);
+@SPL@
+create index if not exists cbsa_category_code on core_nc_cbs_accounts (category_code);
+@SPL@
+create index if not exists cncc_sector_id on core_nc_cust_classif (sector_id);
+@SPL@
+create index if not exists cncc_target_id on core_nc_cust_classif (target_id);
+@SPL@
+create index if not exists cnim_t24_reg_body on core_nc_issuer_cd_mapping (t24_reg_body);
+@SPL@
+create index if not exists ccbs_cbs_category_id on core_nc_cbscate_cbacctyp (cbs_category_id);
+@SPL@

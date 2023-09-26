@@ -19,6 +19,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified Date : 27/06/2023
      Modified Date : 3/07/2023
      Modified Date : 4/07/2023 Handled zero hours  by daseen
+          Modified Date :16/09/2023 Cbs acct value taken from dbtr_iban   by daseen
     }
     */
     var serviceName = 'NPSS(S) P2B UNFREEZE the Cancel Account';
@@ -275,7 +276,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             TranTypecode = JsonData['transactionType'] || ''
                                             npssrefno = JsonData['refTransactionId'] || ''
                                             reson = JsonData['reason']
-                                            var takeacctinfo = `select account_number,customer_mobile_number, countryofbirth country_of_birth,	company_code,inactive_marker,currency,alternate_account_type,alternate_account_id, account_officer,curr_rate_segment,customer_id,national_id  from  core_nc_cbs_accounts where alternate_account_id ='${cdtr_iban}'`
+                                            var takeacctinfo = `select account_number,customer_mobile_number, countryofbirth country_of_birth,	company_code,inactive_marker,currency,alternate_account_type,alternate_account_id, account_officer,curr_rate_segment,customer_id,national_id  from  core_nc_cbs_accounts where alternate_account_id ='${dbtr_iban}'`
                                             ExecuteQuery1(takeacctinfo, function (arrtakeacctinfo) {
                                                 if (arrtakeacctinfo.length > 0) {
                                                     var seldetqry = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrtakeacctinfo[0].customer_id}'`

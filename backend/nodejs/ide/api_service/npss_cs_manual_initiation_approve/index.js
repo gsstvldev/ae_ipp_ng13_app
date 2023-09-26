@@ -340,7 +340,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                   "payload": {
                     "department_code": arrprocesslog[0].department_code || '',
-                    "ext_iden_retry_value": extend_retry_value || '',
+                   //  "ext_iden_retry_value": extend_retry_value || '',
                     "force_post_flag": arrprocesslog[0].force_post_flag,
                     "org_field_data": arrprocesslog[0].fx_resv_text2 || '',
                     "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',

@@ -7,6 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
+    
   
   
   
@@ -22,6 +24,7 @@ app.post('/', function(appRequest, appResponse, next) {
          Reason for handling prepaid card missing field
          Reason for handling cb_acctype_code key for 008 by Daseen 11-09-2023
          Modified for: to take last inserted record for process refno(reversalid) for authposting
+           Modified for: to take last inserted record for channel ref no(reversalid) for 008 after authposting 26 09 2023 by Daseen
    
     */
     var serviceName = 'NPSS (CS) Manual Initiation Approve';
@@ -542,7 +545,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
                             "category_purpose_prty": category_prty || '',
                             "channel_id": 'IPP',
-                            "channel_refno": arrprocesslog[0].clrsysref || '',
+                        
                             "cb_acctype_code":takeaccttypecode,
                             "purp":purp
 
@@ -554,6 +557,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                         if (params.PROD_CODE == 'NPSS_AEFAB') {
                           if (reverandRefno.type == 'IBAN') {
+                            options.json.channel_refno= reverandRefno.reverseId|| ''
                             if (CheckorgPvt != '' && CheckorgPvt != null) {
                               if (CheckorgPvt.type == 'Organisation') {
                                 options.json.dbtr_prvt_id = CheckorgPvt.code
@@ -573,6 +577,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
 
                           } else { //for credit and perpaid
+                            options.json.channel_refno= arrprocesslog[0].clrsysref || '',
                             options.json.dbtr_prvt_id = ''
                             options.json.dbtr_document_id = reverandRefno.privateId || ''
                             options.json.ext_person_id_code = reverandRefno.extpersonidcode || ''
@@ -1899,6 +1904,8 @@ app.post('/', function(appRequest, appResponse, next) {
   catch (error) {
     sendResponse(error, null);
   }
+
+
 
 
 

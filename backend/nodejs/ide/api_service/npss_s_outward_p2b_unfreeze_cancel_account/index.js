@@ -10,6 +10,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     /*  Created By :Daseen
     Created Date :23/02/2023
     Modified By : 
@@ -20,6 +21,7 @@ app.post('/', function(appRequest, appResponse, next) {
      Modified Date : 3/07/2023
      Modified Date : 4/07/2023 Handled zero hours  by daseen
           Modified Date :16/09/2023 Cbs acct value taken from dbtr_iban   by daseen
+            Modified Date :3/10/2023 include status following status in sct initiation 'P2B_SCT_INITIATION_FAILED','OP_P2B_FUND_AUTH_FAILURE' ,'OP_P2B_FUND_AUTH_SUSPICIOUS')   by daseen
     }
     */
     var serviceName = 'NPSS(S) P2B UNFREEZE the Cancel Account';
@@ -96,21 +98,19 @@ app.post('/', function(appRequest, appResponse, next) {
                                     var Formdate = utcMoment.subtract(arrhour[0].param_detail, 'hours')
                                     Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss')
                                     // takepayver = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,* from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  additional_info not in  ${additional_info1} and created_date_utc < '${Formdate}' and org_status <> 'UNFREEZE_TAKEN'`
-                                    var taketrnId = `select npsstpl_id from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  (additional_info not in  ${additional_info1} or additional_info isnull) and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull) `
-                                    var takepayver = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,* from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  (additional_info not in  ${additional_info1} or additional_info isnull) and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull) `
+                                    var taketrnId = `select npsstpl_id from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  (additional_info not in  ${additional_info1} or additional_info isnull) and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull) limit 1 `
+                                    var takepayver = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,* from npss_trn_process_log where  status in ${status1}  and process_name in ${process_name1} and  (additional_info not in  ${additional_info1} or additional_info isnull) and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull) limit 1`
                                     ExecuteQuery1(takepayver, async function (arrpayver) {
                                         if (arrpayver.length > 0) {
                                             var updateTable = await UpdateTran(taketrnId, PRCT_ID)
                                             if (updateTable == 'SUCCESS') {
                                                 reqAsync.forEachOfSeries(arrpayver, function (arrpayverobj, i, nextobjctfunc) {
-                                                    if (arrpayverobj.npsstrrd_refno !=''||arrpayverobj.tran_ref_id!=''||arrpayverobj.fx_resv_text1!='') {
+                                                    if (arrpayverobj.npsstrrd_refno != '' || arrpayverobj.tran_ref_id != '' || arrpayverobj.fx_resv_text1 != '') {
                                                         let chkprcname = `select * from npss_trn_process_log where uetr = '${arrpayverobj.uetr}' and process_name = 'SctInitiation'`
                                                         ExecuteQuery1(chkprcname, function (arrvalue) {
-                                                            if (arrvalue.length > 0) {
-                                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Not a eligible tran-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
+                                                         
+                                                            if (arrvalue.length == 0 || (arrvalue.filter((x) => (x.status == 'P2B_SCT_INITIATION_FAILED' || x.status == 'OP_P2B_FUND_AUTH_FAILURE' || x.status == 'OP_P2B_FUND_AUTH_SUSPICIOUS')).length > 0)) {
 
-                                                                nextobjctfunc()
-                                                            } else {
 
                                                                 let column = ''
                                                                 if ((arrpayverobj.npsstrrd_refno == '' || arrpayverobj.npsstrrd_refno == 'undefined' || arrpayverobj.npsstrrd_refno == null) && arrpayverobj.processing_system == 'T24') {
@@ -124,7 +124,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     column = ''
                                                                 }
                                                                 if (column != '') {
-                                                                 
+
                                                                     takefundauth = `select npsstpl_id, * from npss_trn_process_log where status in ${status2} and process_name in ${process_name2} and ${column}='${arrpayverobj[`${column}`]}'`
                                                                     ExecuteQuery1(takefundauth, async function (arrfundauth) {
                                                                         if (arrfundauth.length > 0) {
@@ -194,6 +194,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     reqInstanceHelper.PrintInfo(serviceName, '-----------Cannot find colum (npsstrrd_refno,tran_ref_id,fx_test_resv1)------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
                                                                     nextobjctfunc()
                                                                 }
+                                                            } else {
+
+                                                                reqInstanceHelper.PrintInfo(serviceName, '-----------Not a eligible tran-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
+
+                                                                nextobjctfunc()
                                                             }
                                                         })
 
@@ -349,6 +354,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                     "remittance_information": reson || '',
                                                                                     "status": '',
                                                                                     "npsstrrd_refno": npssrefno || '',
+                                                                                    "posted":arrpayverobj.processing_system||',
                                                                                     "AccountInformation": {
                                                                                         "account_number": arrtakeacctinfo[0].account_number || '',
                                                                                         "company_code": arrtakeacctinfo[0].company_code || '',
@@ -452,7 +458,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         objCusTranInst.UETR = arrfundauth.uetr;
                         objCusTranInst.NPSSTRRD_REFNO = arrfundauth.npsstrrd_refno;
                         objCusTranInst.PROCESS_NAME = 'Cancel Reserve'
-                        objCusTranInst.PROCESSING_SYSTEM = 'T24';
+                        objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
                         objCusTranInst.PROCESS_TYPE = arrfundauth.process_type;
                         objCusTranInst.PROCESS_STATUS = 'RCTCancelled';
                         objCusTranInst.STATUS = 'P2B_FUND_RES_CANCELLED';
@@ -586,6 +592,7 @@ app.post('/', function(appRequest, appResponse, next) {
         }
 
     })
+
 
 
 

@@ -214,6 +214,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                             batch_name: 'DR-CBS-POSTING-Q',
                                                             data: {
                                                                 "payload": {
+                                                                    "posted":arrprocesslogobj.processing_system||'',
                                                                     "tran_ref_id": arrprocesslogobj.tran_ref_id || '',
                                                                     "uetr": arrprocesslogobj.uetr || '',
                                                                     "hdr_msg_id":  '',

@@ -200,7 +200,8 @@ try {
                                 "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
                                 "post_reason_code": arrreturncode[0].cbuae_return_code || '',
                                 "clrsysref": arrprocesslog[0].clrsysref,
-                                "org_intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || ''
+                                "org_intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
+                                "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || ''
 
 
                             },

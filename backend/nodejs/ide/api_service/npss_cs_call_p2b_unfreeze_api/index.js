@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
 
 /*  Created By :    Siva Harish
@@ -38,6 +39,7 @@ var moment = require('moment');
 var success_status, success_process_status;
 var elgobj = {};
 var arrTranId
+
 //console.log('**************************' + headers['session-id'])
 var objresponse = {
     'status': 'FAILURE',
@@ -72,10 +74,11 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                             success_status = arrSts[0].success_status;
                             success_process_status = arrSts[0].success_process_status;
                             let Takedata = `select * from npss_trn_process_log where npsstpl_id in ${TempTranID}`
-                            ExecuteQuery1(Takedata, function (arrprocesslog) {
+                            ExecuteQuery1(Takedata, async function (arrprocesslog) {
                                 if (arrprocesslog.length > 0) {
+                                    // prcss_name = await getprocess_name (arrprocesslog[0].uetr)
                            // let Takerefno = `select process_ref_no from npss_trn_process_log where status='OP_P2B_FUND_UNFR_FAILURE' and process_name='Fund UNFREEZE Posting' and uetr = '${arrprocesslog[0].uetr}'`
-                            let Takerefno = `select process_ref_no from npss_trn_process_log where status='OP_P2B_FUND_RESERVED' and process_name='Fund Reserve INAU Posting' and uetr = '${arrprocesslog[0].uetr}'`
+                            let Takerefno = `select processing_system,process_ref_no from npss_trn_process_log where status='OP_P2B_FUND_RESERVED'and process_status='RCTInProcess' and process_name='Fund Reserve INAU Posting' and uetr = '${arrprocesslog[0].uetr}'`
                             ExecuteQuery1(Takerefno, function (arrRefno) {
                                 var arrCusTranInst = []
                                 for (let i = 0; i < arrprocesslog.length; i++) {
@@ -214,7 +217,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                             batch_name: 'DR-CBS-POSTING-Q',
                                                             data: {
                                                                 "payload": {
-                                                                    "posted":arrprocesslogobj.processing_system||'',
+                                                                    "posted":arrRefno[0].processing_system,
                                                                     "tran_ref_id": arrprocesslogobj.tran_ref_id || '',
                                                                     "uetr": arrprocesslogobj.uetr || '',
                                                                     "hdr_msg_id":  '',
@@ -332,7 +335,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                         })
                     }
 
-
+                   
                     //Execute Query for common
                     function ExecuteQuery(query, callback) {
                         reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
@@ -421,6 +424,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
     }
 
 })
+
 
 
 

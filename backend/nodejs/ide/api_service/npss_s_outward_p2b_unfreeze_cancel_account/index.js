@@ -11,7 +11,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-    /*  Created By :Daseen
+    /*  Created By : Daseen
     Created Date :23/02/2023
     Modified By : 
     Modified Date : 06/06/2023
@@ -354,7 +354,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                     "remittance_information": reson || '',
                                                                                     "status": '',
                                                                                     "npsstrrd_refno": npssrefno || '',
-                                                                                    "posted":arrpayverobj.processing_system||',
+                                                                                   "posted":arrpayverobj.processing_system||'',
                                                                                     "AccountInformation": {
                                                                                         "account_number": arrtakeacctinfo[0].account_number || '',
                                                                                         "company_code": arrtakeacctinfo[0].company_code || '',

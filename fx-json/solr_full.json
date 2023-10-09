@@ -1517,6 +1517,31 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695214768145$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$PROCESSING_SYSTEM$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695214768145$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695214768145$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$CDTR_IBAN$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695214768145$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$RESPONSE_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695214768145$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$ADDITIONAL_INFO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1695214768145$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NPSSCAPL_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1670589169341$DQ$

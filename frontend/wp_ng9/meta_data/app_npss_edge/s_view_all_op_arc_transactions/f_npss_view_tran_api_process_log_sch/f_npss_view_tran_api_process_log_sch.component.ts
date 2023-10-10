@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 32333 
+Build ID        : 32627 
 Modified By     : Admin 
-Modified Date   : 2023-Sep-21 10:15 AM 
+Modified Date   : 2023-Oct-10 10:22 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_arc_transactions
@@ -26,7 +26,7 @@ export class f_npss_view_tran_api_process_log_schComponent implements OnInit {
   hasHeader:boolean;
   component_header:string;
   @ViewChild('f_npss_view_tran_api_process_log_sch') form;
-  @ViewChild('npss_view_tran_api_process_log_sch_memory9') element: ElementRef;
+  @ViewChild('npss_view_tran_api_process_log_sch_memory79') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -48,44 +48,44 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
-		//Properties of memory9
-		this.ctrl.memory9 = {}
-		this.ctrl.memory9.id = "RN01CN2"
-		this.ctrl.memory9.desc = "Created Date"
-		this.ctrl.memory9.visible = true
-		this.ctrl.memory9.label_name = "Created Date"
-		this.ctrl.memory9.df_code = "DF_1304_1665905157963"
-		this.ctrl.memory9.df_description = "Column Group 1"
-		this.ctrl.memory9.uictrl_code = "CDN_DATE"
-		this.ctrl.memory9.target_column = "memory9"
-		this.ctrl.memory9.data_type = "DATETIME"
-		this.ctrl.memory9.data_length = 0
-		this.ctrl.memory9.zone_df_code = "DF_1304_1665905157963"
-		this.ctrl.memory9.default_value = "setcurrentdate(),{}"
-		this.ctrl.memory9.is_memory_ctrl = "Y"
-		this.ctrl.memory9.field_coordinates = ""
-		this.ctrl.memory9.sub_details = ""
-		this.ctrl.memory9.accept_char = ""
-		this.ctrl.memory9.currency_format = ""
-		this.ctrl.memory9.data_scale = ""
-		this.ctrl.memory9.binding_name = "CREATED_DATE"
-		this.ctrl.memory9.hide_label = false
-		this.ctrl.memory9.depends_on = ""
-		this.ctrl.memory9.placeholder = ""
-		this.ctrl.memory9.dynamic_param = ""
-		this.ctrl.memory9.style_code = ""
-		this.ctrl.memory9.data_source = ""
-		this.ctrl.memory9.image_association = ""
-		this.ctrl.memory9.show = true
-		this.ctrl.memory9.sub_content = ""
-		this.ctrl.memory9.required = false
-		this.ctrl.memory9.vld_rules = []
-		this.ctrl.memory9.targetcolumn_lower = "memory9"
-		this.ctrl.memory9.disabled = false
-		this.ctrl.memory9.view_name = "f_npss_view_tran_api_process_log_sch"
-		this.ctrl.memory9.ctrl_id = "npss_view_tran_api_process_log_sch_memory9"
-		this.ctrl.npss_view_tran_api_process_log_sch_memory9 = {}
-		this.ctrl.npss_view_tran_api_process_log_sch_memory9.onChangecomponent = new EventEmitter<any>()
+		//Properties of memory79
+		this.ctrl.memory79 = {}
+		this.ctrl.memory79.id = "RN01CN2"
+		this.ctrl.memory79.desc = "Created Date"
+		this.ctrl.memory79.visible = true
+		this.ctrl.memory79.label_name = "Created Date"
+		this.ctrl.memory79.df_code = "DF_1304_1665905157963"
+		this.ctrl.memory79.df_description = "Column Group 1"
+		this.ctrl.memory79.uictrl_code = "DTP"
+		this.ctrl.memory79.target_column = "memory79"
+		this.ctrl.memory79.data_type = "DATETIME"
+		this.ctrl.memory79.data_length = 0
+		this.ctrl.memory79.zone_df_code = "DF_1304_1665905157963"
+		this.ctrl.memory79.default_value = "setcurrentdate(),{}"
+		this.ctrl.memory79.is_memory_ctrl = "Y"
+		this.ctrl.memory79.field_coordinates = ""
+		this.ctrl.memory79.sub_details = ""
+		this.ctrl.memory79.accept_char = ""
+		this.ctrl.memory79.currency_format = ""
+		this.ctrl.memory79.data_scale = ""
+		this.ctrl.memory79.binding_name = "CREATED_DATE"
+		this.ctrl.memory79.hide_label = false
+		this.ctrl.memory79.depends_on = ""
+		this.ctrl.memory79.placeholder = ""
+		this.ctrl.memory79.dynamic_param = ""
+		this.ctrl.memory79.style_code = ""
+		this.ctrl.memory79.data_source = ""
+		this.ctrl.memory79.image_association = ""
+		this.ctrl.memory79.show = true
+		this.ctrl.memory79.sub_content = ""
+		this.ctrl.memory79.required = false
+		this.ctrl.memory79.vld_rules = [{"type":"RFV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"NOTEMPTY","click":"Valitem","message":"Select the Date","custom_val_message":"","expression":"required","project_code":"","project_name":"","cv_event":""}]
+		this.ctrl.memory79.targetcolumn_lower = "memory79"
+		this.ctrl.memory79.disabled = false
+		this.ctrl.memory79.view_name = "f_npss_view_tran_api_process_log_sch"
+		this.ctrl.memory79.ctrl_id = "npss_view_tran_api_process_log_sch_memory79"
+		this.ctrl.npss_view_tran_api_process_log_sch_memory79 = {}
+		this.ctrl.npss_view_tran_api_process_log_sch_memory79.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of response_code
 		this.ctrl.response_code = {}
@@ -320,7 +320,7 @@ focustoelement(){
 		this.ctrl.uetr.ctrl_id = "npss_view_tran_api_process_log_sch_uetr"
 		this.ctrl.npss_view_tran_api_process_log_sch_uetr = {}
 		this.ctrl.npss_view_tran_api_process_log_sch_uetr.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.model = {"MEMORY9":"setcurrentdate(),{}","RESPONSE_CODE":"","MSG_ID":"","DBTR_IBAN":"","AMOUNT":"","TRAN_REF_ID":"","UETR":""}
+		this.screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.model = {"MEMORY79":"setcurrentdate(),{}","RESPONSE_CODE":"","MSG_ID":"","DBTR_IBAN":"","AMOUNT":"","TRAN_REF_ID":"","UETR":""}
 		this.screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"RESPONSE_CODE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MSG_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"}]
 		this.screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_view_tran_api_process_log_sch.dtt_code = "dtt_1304_1665905039255"

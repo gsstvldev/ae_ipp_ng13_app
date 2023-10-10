@@ -11,6 +11,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By :    Siva Harish
         Created Date :02-01-2023
@@ -504,10 +505,50 @@ app.post('/', function(appRequest, appResponse, next) {
                         }
                     }
 
+                    function find_restrictionId(arr) {
+                        return new Promise(async (resolve, reject) => {
+                            let pos_res_qry = `select cncpr_id, restriction_type,applicable_dr_ac,restriction_id from core_nc_post_restrictions where restriction_type <> 'CREDIT' and restriction_id in `
+                            let split_id = arr.split('@@')
+                            let remove_empty = split_id.filter((x) => x != '')
+                            let str=remove_empty.map((x)=>`'`+x+`'` )
+                            let res_id = '(' + str + ')'
+                            pos_res_qry = pos_res_qry + res_id
+                            let res_count = 0
+                            ExecuteQuery1(pos_res_qry, function (arrpostres) {
+                                if (arrpostres.length) {
+                                    arrpostres.forEach((x) => {
+                                        if (x.applicable_dr_ac == 'Restrict') {
+                                            res_count++;
+                                        }
+                                    })
+                                }else
+                                resolve('SUCCESS')
+                                if (res_count > 0) {
+                                    resolve('Restrict')
+                                } else
+                                    resolve('SUCCESS')
+                            })
+
+                            
+                        })
+                    }
 
 
+                    function check_posting_restriction_table(arrActInf) {
+                        return new Promise(async (resolve, reject) => {
 
+                            if (arrActInf[0].posting_restriction_code == null || arrActInf[0].posting_restriction_code == undefined || arrActInf[0].posting_restriction_code == '') {
+                                if (arrActInf[0].customer_posting_restriction_code == null || arrActInf[0].customer_posting_restriction_code == undefined || arrActInf[0].customer_posting_restriction_code == '') {
+                                    resolve('SUCCESS')
+                                } else {
+                                    resolve(await find_restrictionId(arrActInf[0].customer_posting_restriction_code))
+                                }
+                            } else {
+                                resolve(await find_restrictionId(arrActInf[0].posting_restriction_code))
+                            }
 
+                        })
+                    }
 
 
                     //function to check logic for reversal Id and Taking acctinfm only for reserver fund
@@ -520,50 +561,48 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                             var parameter = {}
-                            ExecuteQuery1(TakeAcctInf, function (arrActInf) {
+                            ExecuteQuery1(TakeAcctInf, async function (arrActInf) {
                                 if (arrActInf.length) {
-                                    if (arrActInf[0].posting_restriction_code == null || arrActInf[0].posting_restriction_code == undefined || arrActInf[0].posting_restriction_code == '') {
-                                        if (arrActInf[0].customer_posting_restriction_code == null || arrActInf[0].customer_posting_restriction_code == undefined || arrActInf[0].customer_posting_restriction_code == '') {
-                                            parameter.account_number = arrActInf[0].account_number || '',
-                                                parameter.company_code = arrActInf[0].company_code || '',
-                                                parameter.inactive_marker = arrActInf[0].inactive_marker || '',
-                                                parameter.currency = arrActInf[0].currency || '',
-                                                parameter.alternate_account_id = arrActInf[0].alternate_account_id || ''
-                                            parameter.curr_rate_segment = arrActInf[0].curr_rate_segment || '',
-                                                parameter.account_officer = arrActInf[0].account_officer || '',
-                                                parameter.customer_id = arrActInf[0].customer_id || ''
-                                            parameter.alternate_account_type = arrActInf[0].alternate_account_type || ''
+                                    let posting_restriction = await check_posting_restriction_table(arrActInf);
 
-                                            ExecuteQuery1(TakeCount, function (arrCount) {
-                                                if (arrprocesslog[0].clrsysref) {
-                                                    if (arrCount[0].counts.length == 1) {
-                                                        var count = Number(arrCount[0].counts)
-                                                        count++
-                                                        parameter.reverseId = arrprocesslog[0].clrsysref + '.0' + count
-                                                        resolve(parameter)
-                                                    } else {
-                                                        var count = Number(arrCount[0].counts)
-                                                        count++
-                                                        parameter.reverseId = arrprocesslog[0].clrsysref + '.' + count
-                                                        resolve(parameter)
-                                                    }
+                                    if (posting_restriction != 'Restrict') {
+                                        parameter.account_number = arrActInf[0].account_number || '',
+                                            parameter.company_code = arrActInf[0].company_code || '',
+                                            parameter.inactive_marker = arrActInf[0].inactive_marker || '',
+                                            parameter.currency = arrActInf[0].currency || '',
+                                            parameter.alternate_account_id = arrActInf[0].alternate_account_id || ''
+                                        parameter.curr_rate_segment = arrActInf[0].curr_rate_segment || '',
+                                            parameter.account_officer = arrActInf[0].account_officer || '',
+                                            parameter.customer_id = arrActInf[0].customer_id || ''
+                                        parameter.alternate_account_type = arrActInf[0].alternate_account_type || ''
+
+                                        ExecuteQuery1(TakeCount, function (arrCount) {
+                                            if (arrprocesslog[0].clrsysref) {
+                                                if (arrCount[0].counts.length == 1) {
+                                                    var count = Number(arrCount[0].counts)
+                                                    count++
+                                                    parameter.reverseId = arrprocesslog[0].clrsysref + '.0' + count
+                                                    resolve(parameter)
                                                 } else {
-
-                                                    objresponse.status = "Clrsysref is not found in tran"
-                                                    sendResponse(null, objresponse)
+                                                    var count = Number(arrCount[0].counts)
+                                                    count++
+                                                    parameter.reverseId = arrprocesslog[0].clrsysref + '.' + count
+                                                    resolve(parameter)
                                                 }
+                                            } else {
+
+                                                objresponse.status = "Clrsysref is not found in tran"
+                                                sendResponse(null, objresponse)
+                                            }
 
 
 
-                                            })
-                                        } else {
-                                            objresponse.status = "Posting restrictions found on the DR IBAN"
-                                            sendResponse(null, objresponse)
-                                        }
+                                        })
                                     } else {
                                         objresponse.status = "Posting restrictions found on the DR IBAN"
                                         sendResponse(null, objresponse)
                                     }
+
 
                                 } else {
 
@@ -1301,6 +1340,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

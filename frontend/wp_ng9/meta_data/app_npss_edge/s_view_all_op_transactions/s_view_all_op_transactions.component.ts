@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 32631 
+Build ID        : 32633 
 Modified By     : Admin 
-Modified Date   : 2023-Oct-10 12:58 PM 
+Modified Date   : 2023-Oct-10 13:49 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
@@ -1116,9 +1116,14 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 
 	//Handler for ACTION_BUTTON_CLICK event of "process log search search"
 	process_log_search_search__action_button_click(){
-		this.process_log_search_search__ssp_from_search_btn_to_search_component()
 		this.process_log_search_search__close_popup()
 		this.process_log_search_search__e_1686199689330()
+		this.process_log_search_search__ve_from_search_btn_to_search_component()
+	}
+
+	//Handler for INTERNAL event of "ve from search btn to search component"
+	ve_from_search_btn_to_search_component__internal(parent_event_result){
+		this.ve_from_search_btn_to_search_component__ssp_from_search_btn_to_search_component(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "ssp from search btn to search component"
@@ -3182,27 +3187,6 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "process log search search"
-	process_log_search_search__ssp_from_search_btn_to_search_component() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="process_log_search_search"
-		let destn_id="process_log_search"
-		let parent_source_id=""
-		let event_code="e_1684312729984"
-		let event_params={"caller_name":"process_log_search_search__ssp_from_search_btn_to_search_component","event_desc":"SSP from Search btn to Search Component","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_search_search","raiseparam":{}}
-		let handler_code="set_search_params"
-		let internals="ssp_from_search_btn_to_search_component__brfq_from_ssp_to_api_queue,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "process log search search"
 	process_log_search_search__close_popup() { 
 		let Dest_Is_ctrl=true
 		
@@ -3244,6 +3228,49 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "process log search search"
+	process_log_search_search__ve_from_search_btn_to_search_component() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="process_log_search_search"
+		let destn_id="process_log_search"
+		let parent_source_id=""
+		let event_code="e_1696944889089"
+		let event_params={"caller_name":"process_log_search_search__ve_from_search_btn_to_search_component","event_desc":"VE from Search btn to Search Component","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_search_search","raiseparam":{}}
+		let handler_code="validate_elements"
+		let internals="ve_from_search_btn_to_search_component__ssp_from_search_btn_to_search_component,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ve from search btn to search component"
+	ve_from_search_btn_to_search_component__ssp_from_search_btn_to_search_component(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ve_from_search_btn_to_search_component"
+		let destn_id="process_log_search"
+		let parent_source_id="process_log_search_search"
+		let event_code="e_1696945465763"
+		let event_params={"caller_name":"ve_from_search_btn_to_search_component__ssp_from_search_btn_to_search_component","event_desc":"SSP from Search btn to Search Component","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="set_search_params"
+		let internals="ssp_from_search_btn_to_search_component__brfq_from_ssp_to_api_queue,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "ssp from search btn to search component"
 	ssp_from_search_btn_to_search_component__brfq_from_ssp_to_api_queue(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -3251,8 +3278,8 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="ssp_from_search_btn_to_search_component"
 		let destn_id="api_queue"
-		let parent_source_id="process_log_search_search"
-		let event_code="e_1686115610681"
+		let parent_source_id="ve_from_search_btn_to_search_component"
+		let event_code="e_1696945477039"
 		let event_params={"caller_name":"ssp_from_search_btn_to_search_component__brfq_from_ssp_to_api_queue","event_desc":"BRFQ from SSP to API Queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_from_ssp_to_api_queue__sfr_for_api_queue,"
@@ -3274,7 +3301,7 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		let source_id="brfq_from_ssp_to_api_queue"
 		let destn_id="api_queue"
 		let parent_source_id="ssp_from_search_btn_to_search_component"
-		let event_code="e_1686115648530"
+		let event_code="e_1696945488119"
 		let event_params={"caller_name":"brfq_from_ssp_to_api_queue__sfr_for_api_queue","event_desc":"SFR for API Queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="select_first_record"
 		let internals=""

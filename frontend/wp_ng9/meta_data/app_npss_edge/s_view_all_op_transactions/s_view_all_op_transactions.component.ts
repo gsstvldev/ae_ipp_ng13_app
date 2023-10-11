@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 32633 
+Build ID        : 32634 
 Modified By     : Admin 
-Modified Date   : 2023-Oct-10 13:49 PM 
+Modified Date   : 2023-Oct-11 4:24 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
@@ -1116,7 +1116,6 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 
 	//Handler for ACTION_BUTTON_CLICK event of "process log search search"
 	process_log_search_search__action_button_click(){
-		this.process_log_search_search__close_popup()
 		this.process_log_search_search__e_1686199689330()
 		this.process_log_search_search__ve_from_search_btn_to_search_component()
 	}
@@ -1134,6 +1133,7 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	//Handler for INTERNAL event of "brfq from ssp to api queue"
 	brfq_from_ssp_to_api_queue__internal(parent_event_result){
 		this.brfq_from_ssp_to_api_queue__sfr_for_api_queue(parent_event_result)
+		this.brfq_from_ssp_to_api_queue__close_popup(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "process log search clear"
@@ -3187,27 +3187,6 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "process log search search"
-	process_log_search_search__close_popup() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="process_log_search_search"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1684312933857"
-		let event_params={"popup_info":{"context":""},"caller_name":"process_log_search_search__close_popup","event_desc":"Close popup","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_search_search","raiseparam":{}}
-		let handler_code="close_popup"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.close_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "process log search search"
 	process_log_search_search__e_1686199689330() { 
 		let Dest_Is_ctrl=true
 		
@@ -3282,7 +3261,7 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		let event_code="e_1696945477039"
 		let event_params={"caller_name":"ssp_from_search_btn_to_search_component__brfq_from_ssp_to_api_queue","event_desc":"BRFQ from SSP to API Queue","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals="brfq_from_ssp_to_api_queue__sfr_for_api_queue,"
+		let internals="brfq_from_ssp_to_api_queue__sfr_for_api_queue,brfq_from_ssp_to_api_queue__close_popup,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_23","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1681975219058","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP VA API Process Log MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"API_PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1695967040553","date_format":false},{"column_name":"API_PROCESS_STATUS","alias_name":"","mq_id":"MQ_1695967041423","date_format":false},{"column_name":"API_STATUS","alias_name":"","mq_id":"MQ_1695967041895","date_format":false}],"joins":[]},"eq_text":"select   distinct API_PROCESSING_SYSTEM,   API_PROCESS_STATUS,   API_STATUS from    (  select     CREATED_DATE,     API_STATUS,     API_PROCESS_STATUS,     UETR,         PROCESS_NAME,     API_PROCESSING_SYSTEM,     ADDITIONAL_INFO,     TENANT_ID,     MODIFIED_DATE,     MODIFIED_DATE_UTC,     CREATED_BY,     CREATED_BY_NAME,     SYSTEM_ID,     NPSSTPL_ID,DBTR_IBAN  from   (   select     CREATED_DATE,     API_STATUS,     API_PROCESS_STATUS,     UETR,         PROCESS_NAME,     API_PROCESSING_SYSTEM,     ADDITIONAL_INFO,     TENANT_ID,     MODIFIED_DATE,     MODIFIED_DATE_UTC,     CREATED_BY,     CREATED_BY_NAME,     SYSTEM_ID,     NPSSTPL_ID,DBTR_IBAN,     row_number() over(partition by Uetr order by npsstpl_id desc) as row_num   from     (    select      UETR,      NPSSTPL_ID,      CREATED_DATE,      TENANT_ID,      STATUS as API_STATUS,      PROCESS_STATUS as API_PROCESS_STATUS,      PROCESS_NAME,      PROCESSING_SYSTEM as API_PROCESSING_SYSTEM,      ADDITIONAL_INFO,      MODIFIED_DATE,      MODIFIED_DATE_UTC,      CREATED_BY,      CREATED_BY_NAME,      SYSTEM_ID,DBTR_IBAN    from      NPSS_TRN_PROCESS_LOG A $WHERE)A1) A2  where     row_num = 1   and API_STATUS in ('OP_AC_MAND_VAL_FAILED', 'OP_AC_DUPL_VAL_FAILED', 'OP_P2B_FUND_RESERVED', 'OP_AC_PCODE_VAL_FAILED', 'OP_AC_PBANK_VAL_FAILED', 'OP_P2P_SENDER_IBAN_FAILED', 'OP_P2P_PAYMENT_FAILED', 'OP_P2P_POSTING_FAILURE', 'OP_P2P_POSTING_SUSPICIOUS', 'OP_P2B_FUND_UNFREEZED', 'OP_P2B_PAYMENT_FAILED', 'OP_P2B_FUND_RES_FAILURE', 'OP_P2B_FUND_RES_SUSPICIOUS', 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_FUND_UNFR_SUSPICIOUS', 'OP_P2B_FUND_AUTH_FAILURE', 'OP_P2B_FUND_AUTH_SUSPICIOUS', 'OP_P2P_DEBIT_POSTING_SUCCESS', 'OP_P2B_DEBIT_POSTING_SUCCESS', 'OP_INAU_DEBIT_POSTING_SUCCESS', 'OP_AUTH_DEBIT_POSTING_SUCCESS', 'OP_UNFREEZE_DEBIT_POSTING_SUCCESS', 'OP_P2P_DEBIT_POSTING_SUSCIPIOUS', 'OP_P2B_DEBIT_POSTING_SUSCIPIOUS', 'OP_INAU_DEBIT_POSTING_SUSCIPIOUS', 'OP_AUTH_DEBIT_POSTING_SUSCIPIOUS', 'OP_UNFREEZE_DEBIT_POSTING_SUSCIPIOUS', 'OP_P2P_POSTING_NOT_HAPPENED', 'OP_P2B_POSTING_NOT_HAPPENED', 'OP_INAU_POSTING_NOT_HAPPENED', 'OP_AUTH_POSTING_NOT_HAPPENED', 'OP_UNFREEZE_POSTING_NOT_HAPPENED', 'OP_P2B_REV_POSTING_SUCCESS', 'OP_P2P_REV_POSTING_SUCCESS', 'OP_P2P_REV_POSTING_FAILURE', 'OP_P2B_REV_POSTING_FAILURE') union all   select    CREATED_DATE,    STATUS as API_STATUS,    PROCESS_STATUS as API_PROCESS_STATUS,    UETR,    PROCESS_NAME,    PROCESSING_SYSTEM as API_PROCESSING_SYSTEM,    ADDITIONAL_INFO,    TENANT_ID,    MODIFIED_DATE,    MODIFIED_DATE_UTC,    CREATED_BY,    CREATED_BY_NAME,    SYSTEM_ID,    NPSSTPL_ID,DBTR_IBAN   from    NPSS_TRN_PROCESS_LOG T $WHERE) V1"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP VA API Process Log CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Processing System","target_column":"API_PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"API_PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"API_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -3309,6 +3288,28 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665905039255":{"st_ds":{"default":{"uicgc_code":"UICGC_23","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665905039255","dtt_desc":"NPSS Trn Process Log","ds_eligible":"DS_1681975219058","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS OP VA API Process Log MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"API_PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1695967040553","date_format":false},{"column_name":"API_PROCESS_STATUS","alias_name":"","mq_id":"MQ_1695967041423","date_format":false},{"column_name":"API_STATUS","alias_name":"","mq_id":"MQ_1695967041895","date_format":false}],"joins":[]},"eq_text":"select   distinct API_PROCESSING_SYSTEM,   API_PROCESS_STATUS,   API_STATUS from    (  select     CREATED_DATE,     API_STATUS,     API_PROCESS_STATUS,     UETR,         PROCESS_NAME,     API_PROCESSING_SYSTEM,     ADDITIONAL_INFO,     TENANT_ID,     MODIFIED_DATE,     MODIFIED_DATE_UTC,     CREATED_BY,     CREATED_BY_NAME,     SYSTEM_ID,     NPSSTPL_ID,DBTR_IBAN  from   (   select     CREATED_DATE,     API_STATUS,     API_PROCESS_STATUS,     UETR,         PROCESS_NAME,     API_PROCESSING_SYSTEM,     ADDITIONAL_INFO,     TENANT_ID,     MODIFIED_DATE,     MODIFIED_DATE_UTC,     CREATED_BY,     CREATED_BY_NAME,     SYSTEM_ID,     NPSSTPL_ID,DBTR_IBAN,     row_number() over(partition by Uetr order by npsstpl_id desc) as row_num   from     (    select      UETR,      NPSSTPL_ID,      CREATED_DATE,      TENANT_ID,      STATUS as API_STATUS,      PROCESS_STATUS as API_PROCESS_STATUS,      PROCESS_NAME,      PROCESSING_SYSTEM as API_PROCESSING_SYSTEM,      ADDITIONAL_INFO,      MODIFIED_DATE,      MODIFIED_DATE_UTC,      CREATED_BY,      CREATED_BY_NAME,      SYSTEM_ID,DBTR_IBAN    from      NPSS_TRN_PROCESS_LOG A $WHERE)A1) A2  where     row_num = 1   and API_STATUS in ('OP_AC_MAND_VAL_FAILED', 'OP_AC_DUPL_VAL_FAILED', 'OP_P2B_FUND_RESERVED', 'OP_AC_PCODE_VAL_FAILED', 'OP_AC_PBANK_VAL_FAILED', 'OP_P2P_SENDER_IBAN_FAILED', 'OP_P2P_PAYMENT_FAILED', 'OP_P2P_POSTING_FAILURE', 'OP_P2P_POSTING_SUSPICIOUS', 'OP_P2B_FUND_UNFREEZED', 'OP_P2B_PAYMENT_FAILED', 'OP_P2B_FUND_RES_FAILURE', 'OP_P2B_FUND_RES_SUSPICIOUS', 'OP_P2B_FUND_UNFR_FAILURE', 'OP_P2B_FUND_UNFR_SUSPICIOUS', 'OP_P2B_FUND_AUTH_FAILURE', 'OP_P2B_FUND_AUTH_SUSPICIOUS', 'OP_P2P_DEBIT_POSTING_SUCCESS', 'OP_P2B_DEBIT_POSTING_SUCCESS', 'OP_INAU_DEBIT_POSTING_SUCCESS', 'OP_AUTH_DEBIT_POSTING_SUCCESS', 'OP_UNFREEZE_DEBIT_POSTING_SUCCESS', 'OP_P2P_DEBIT_POSTING_SUSCIPIOUS', 'OP_P2B_DEBIT_POSTING_SUSCIPIOUS', 'OP_INAU_DEBIT_POSTING_SUSCIPIOUS', 'OP_AUTH_DEBIT_POSTING_SUSCIPIOUS', 'OP_UNFREEZE_DEBIT_POSTING_SUSCIPIOUS', 'OP_P2P_POSTING_NOT_HAPPENED', 'OP_P2B_POSTING_NOT_HAPPENED', 'OP_INAU_POSTING_NOT_HAPPENED', 'OP_AUTH_POSTING_NOT_HAPPENED', 'OP_UNFREEZE_POSTING_NOT_HAPPENED', 'OP_P2B_REV_POSTING_SUCCESS', 'OP_P2P_REV_POSTING_SUCCESS', 'OP_P2P_REV_POSTING_FAILURE', 'OP_P2B_REV_POSTING_FAILURE') union all   select    CREATED_DATE,    STATUS as API_STATUS,    PROCESS_STATUS as API_PROCESS_STATUS,    UETR,    PROCESS_NAME,    PROCESSING_SYSTEM as API_PROCESSING_SYSTEM,    ADDITIONAL_INFO,    TENANT_ID,    MODIFIED_DATE,    MODIFIED_DATE_UTC,    CREATED_BY,    CREATED_BY_NAME,    SYSTEM_ID,    NPSSTPL_ID,DBTR_IBAN   from    NPSS_TRN_PROCESS_LOG T $WHERE) V1"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS OP VA API Process Log CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Processing System","target_column":"API_PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"API_PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"API_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from ssp to api queue"
+	brfq_from_ssp_to_api_queue__close_popup(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_ssp_to_api_queue"
+		let destn_id=""
+		let parent_source_id="ssp_from_search_btn_to_search_component"
+		let event_code="e_1696998169048"
+		let event_params={"popup_info":{"context":""},"caller_name":"brfq_from_ssp_to_api_queue__close_popup","event_desc":"Close popup","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"process_log_search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="close_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.close_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -180,53 +180,42 @@ SELECT res.type,
                 END) AS gcn,
             count(DISTINCT
                 CASE
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND (nppst.process_group::text = ANY (ARRAY['Manual'::text, 'MANUAL'::text, 'manual'::text])) THEN nppst.npsst_id
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text AND (nppst.process_group::text = ANY (ARRAY['Manual'::text, 'MANUAL'::text, 'manual'::text])) THEN nppst.npsst_id
-                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND (nppst.process_group::text = ANY (ARRAY['Manual'::text, 'MANUAL'::text, 'manual'::text])) THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status in ('OP_P2B_PAYMENT_INITIATED','OP_P2P_PAYMENT_INITIATED') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text AND nppst.status in ('OP_AC_REV_MAN_CLOSED') THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS manual,
+            0 AS pending_screening,
             count(DISTINCT
                 CASE
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND (( SELECT count(*) AS count
-                       FROM npss_trn_process_log
-                      WHERE npss_trn_process_log.process_name::text = 'PACS.008'::text AND npss_trn_process_log.uetr::text = npl.uetr::text)) = 0 THEN nppst.npsst_id::bigint
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text AND (( SELECT count(*) AS count
-                       FROM npss_trn_process_log
-                      WHERE npss_trn_process_log.process_name::text = 'PACS.007'::text AND npss_trn_process_log.uetr::text = npl.uetr::text)) = 0 THEN nppst.npsst_id::bigint
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'PACS.008'::text AND npl.processing_system::text <> 'IBM_MQ'::text OR npl.process_name::text = 'PACS.008'::text AND npl.processing_system::text = 'IBM_MQ'::text AND npl.status::text = 'IP_RCT_EXCEPTION'::text OR npl.process_name::text = 'PACS.007'::text AND npl.processing_system::text <> 'IBM_MQ'::text OR npl.process_name::text = 'PACS.007'::text AND npl.processing_system::text = 'IBM_MQ'::text AND npl.status::text = 'IP_RCT_EXCEPTION'::text THEN nppst.npsst_id::bigint
-                    ELSE NULL::bigint
-                END) AS pending_screening,
-            count(DISTINCT
-                CASE
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['OP_AC_REV_POSTING_FAILURE'::character varying::text, 'OP_P2P_REV_POSTING_FAILURE'::character varying::text, 'OP_P2B_REV_POSTING_FAILURE'::character varying::text])) THEN nppst.npsst_id
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text AND nppst.status::text = 'OP_REVERSAL_REQ_REPAIR'::text THEN nppst.npsst_id
-                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.process_status::text = 'RCTExceptionFailure'::text AND nppst.status::text = 'IP_RCT_RETURN_POSTING_FAILURE'::text THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status in ('OP_P2P_REV_POSTING_FAILURE','OP_P2B_REV_POSTING_FAILURE','OP_AC_REV_POSTING_FAILURE','OP_AC_REQ_INVEST_INITIATED','OP_AC_REQ_RECEIVED') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text AND nppst.status::text in('OP_REVERSAL_REQ_REPAIR','OP_AC_REV_POSTING_SUSPICIOUS','OP_P2P_REV_POSTING_SUSPICIOUS') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text  AND nppst.status::text in('IP_RCT_RETURN_POSTING_FAILURE','IP_RCT_RETURN_POSTING_SUSPICIOUS') THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS pending_maker,
             count(DISTINCT
                 CASE
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['OP_AC_REV_POSTING_RETRY'::character varying::text, 'OP_P2P_REV_POSTING_RETRY'::character varying::text, 'OP_P2B_REV_POSTING_RETRY'::character varying::text])) THEN nppst.npsst_id
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text AND nppst.status::text = 'OP_REVERSAL_REQ_INITIATED'::text THEN nppst.npsst_id
-                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.process_status::text = 'RCTExceptionFailure'::text AND nppst.status::text = 'IP_RCT_RETURN_POSTING_RETRY'::text THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status in ('OP_AC_REV_POSTING_RETRY','OP_P2P_REV_POSTING_RETRY','OP_P2B_REV_POSTING_RETRY','OP_RCT_MAN_APPROVED') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text AND nppst.status in ('OP_REVERSAL_REQ_INITIATED','OP_REVERSAL_REQ_APPROVED','OP_AC_REV_FP_INITIATED','OP_RCT_RET_RESERVED') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.status::text in ('IP_RCT_RETURN_POSTING_RETRY','IP_RCT_REV_REQ_APPROVED','IP_RCT_RR_POSTING_SUCCESS') THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS pending_checker,
             count(DISTINCT
                 CASE
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.process_status::text = 'RCTCompleted'::text THEN nppst.npsst_id
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status::text in ('OP_P2B_FILE_PLACED','OP_AC_FILE_PLACED') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.status in ('IP_RCT_RETURNED','IP_RCT_REVREQ_REJ_REPLIED','IP_RCT_RR_RETURNED') THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS send_to_cb,
             count(DISTINCT
                 CASE
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status in ('OP_AC_STATUS_ACCEPTED', 'OP_P2P_STATUS_ACCEPTED', 'OP_P2B_STATUS_ACCEPTED', 'OP_REVERSAL_REQ_INITIATED',  'OP_REVERSAL_REQ_REPAIR', 'OP_RCT_REVERSAL_REJECTED', 'OP_RETURNED') THEN nppst.npsst_id
-                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.status in ('IP_RCT_RETURN_COMPLETED', 'IP_RCT_RETURN_POSTING_SUCCESS', 'IP_RCT_RETURN_POSTING_FAILURE') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status in ('OP_REVERSAL_REQ_INITIATED','OP_REVERSAL_REQ_REPAIR','OP_RCT_REVERSAL_REJECTED','OP_P2B_STATUS_ACCEPTED','OP_AC_STATUS_ACCEPTED','OP_P2P_STATUS_ACCEPTED','OP_RETURNED') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.status in ('IP_RCT_RETURN_COMPLETED','IP_RCT_RETURN_POSTING_FAILURE','IP_RCT_RETURN_POSTING_SUCCESS') THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS cback,
             count(DISTINCT
                 CASE
-                   WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status in ('OP_AC_STATUS_REJECTED', 'OP_AC_REV_POSTING_SUCCESS','OP_AC_REV_POSTING_FAILURE',  'OP_P2B_STATUS_REJECTED', 'OP_P2P_REV_POSTING_SUCCESS','OP_P2P_REV_POSTING_FAILURE', 'OP_P2B_REV_POSTING_SUCCESS',   'OP_P2B_REV_POSTING_FAILURE','OP_P2P_STATUS_REJECTED') THEN nppst.npsst_id
-                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.status in ('IP_RCT_RETURN_REJECTED') THEN nppst.npsst_id
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text AND nppst.status in ('OP_RCT_REVERSAL_REJECTED' ) THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status in('OP_P2P_REV_POSTING_SUCCESS','OP_P2B_REV_POSTING_SUCCESS','OP_P2P_REV_POSTING_FAILURE','OP_P2B_REV_POSTING_FAILURE','OP_AC_REV_POSTING_FAILURE','OP_AC_STATUS_REJECTED','OP_AC_REV_POSTING_SUCCESS','OP_P2P_STATUS_REJECTED','OP_P2B_STATUS_REJECTED') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.status::text in ('IP_RCT_RETURN_REJECTED','IP_RCT_STATUS_RECEIVED') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text AND nppst.status::text = 'OP_RCT_REVERSAL_REJECTED'::text THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS cbnack,
             to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text)::timestamp without time zone AS created_date,
@@ -338,7 +327,7 @@ END AS department_code,
     z1.processing_system
    FROM npss_trn_process_log z1
   WHERE to_date(to_char(z1.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE AND z1.process_name::text = 'Place Pacs008'::text) npl ON npl.uetr::text = nppst.uetr::text
-                                  WHERE nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['OP_AC_REV_POSTING_FAILURE'::character varying::text, 'OP_P2P_REV_POSTING_FAILURE'::character varying::text, 'OP_P2B_REV_POSTING_FAILURE'::character varying::text, 'OP_AC_REV_POSTING_RETRY'::character varying::text, 'OP_P2P_REV_POSTING_RETRY'::character varying::text, 'OP_P2B_REV_POSTING_RETRY'::character varying::text])) AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) d
+                                  WHERE nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status in('OP_P2P_REV_POSTING_FAILURE','OP_P2B_REV_POSTING_FAILURE','OP_AC_REV_POSTING_FAILURE','OP_AC_REQ_INVEST_INITIATED','OP_AC_REQ_RECEIVED','OP_AC_REV_POSTING_RETRY','OP_P2P_REV_POSTING_RETRY','OP_P2B_REV_POSTING_RETRY','OP_RCT_MAN_APPROVED') AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) d
                           GROUP BY d.typed, d.department_code, d.tenant_id) d1 ON d1.typed = a1.type
                 UNION
                  SELECT a2.sno,
@@ -431,7 +420,7 @@ END AS department_code,
     z1.processing_system
    FROM npss_trn_process_log z1
   WHERE to_date(to_char(z1.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE AND z1.process_name::text = 'Place Pacs.007'::text) npl ON npl.uetr::text = nppst.uetr::text
-                                  WHERE nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text AND (nppst.status::text = ANY (ARRAY['OP_REVERSAL_REQ_REPAIR'::character varying::text, 'OP_REVERSAL_REQ_INITIATED'::character varying::text])) AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) da2
+                                  WHERE nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs.007'::text AND nppst.status in ('OP_REVERSAL_REQ_REPAIR','OP_AC_REV_POSTING_SUSPICIOUS','OP_P2P_REV_POSTING_SUSPICIOUS','OP_REVERSAL_REQ_INITIATED','OP_REVERSAL_REQ_APPROVED','OP_AC_REV_FP_INITIATED','OP_RCT_RET_RESERVED') AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) da2
                           GROUP BY da2.typed, da2.department_code, da2.tenant_id) d2 ON d2.typed = a2.type
                 UNION
                  SELECT a3.sno,
@@ -524,7 +513,7 @@ END AS department_code,
     z1.processing_system
    FROM npss_trn_process_log z1
   WHERE to_date(to_char(z1.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE AND z1.process_name::text = 'Place Pacs004'::text) npl ON npl.uetr::text = nppst.uetr::text
-                                  WHERE nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.process_status::text = 'RCTExceptionFailure'::text AND (nppst.status::text = ANY (ARRAY['IP_RCT_RETURN_POSTING_FAILURE'::character varying::text, 'IP_RCT_RETURN_POSTING_RETRY'::character varying::text])) AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) da3
+                                  WHERE nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.status in ('IP_RCT_RETURN_POSTING_FAILURE','IP_RCT_RETURN_POSTING_SUSPICIOUS','IP_RCT_RETURN_POSTING_RETRY','IP_RCT_REV_REQ_APPROVED','IP_RCT_RR_POSTING_SUCCESS') AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) da3
                           GROUP BY da3.typed, da3.department_code, da3.tenant_id) d3 ON d3.typed = a3.type
         )) res
   GROUP BY res.type, res.created_date, res.sno, res.department_code, res.pending_t_1, res.tenant_id

@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS alter column CDTR_ACCT_NAME type CHARACTER VARYING(256);","params" : [] }]
+[]

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 32627 
+Build ID        : 32699 
 Modified By     : Admin 
-Modified Date   : 2023-Oct-10 10:22 AM 
+Modified Date   : 2023-Oct-13 6:28 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_payments_by_cb
@@ -293,7 +293,7 @@ focustoelement(){
 		this.ctrl.cdtr_acct_name.uictrl_code = "CDN_CTRL"
 		this.ctrl.cdtr_acct_name.target_column = "CDTR_ACCT_NAME"
 		this.ctrl.cdtr_acct_name.data_type = "TEXT"
-		this.ctrl.cdtr_acct_name.data_length = 100
+		this.ctrl.cdtr_acct_name.data_length = 256
 		this.ctrl.cdtr_acct_name.zone_df_code = "DF_1304_1665901396659"
 		this.ctrl.cdtr_acct_name.default_value = ""
 		this.ctrl.cdtr_acct_name.is_memory_ctrl = ""

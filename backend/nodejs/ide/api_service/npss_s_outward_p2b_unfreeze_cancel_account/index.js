@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -137,7 +138,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         }
                                                                         else {
                                                                             console.log('Eligible for api call');
-                                                                            var check = `select * from npss_trn_process_log where status = 'OP_P2B_FUND_UNFREEZED' and ${column}='${arrpayverobj.column}'`
+                                                                            var check = `select * from npss_trn_process_log where status = 'OP_P2B_FUND_UNFREEZED' and ${column}='${arrpayverobj[`${column}`]}'`
                                                                             ExecuteQuery1(check, async function (checkdata) {
                                                                                 if (checkdata.length == 0) {
                                                                                     var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL' and need_sync = 'Y'`
@@ -595,6 +596,7 @@ app.post('/', function(appRequest, appResponse, next) {
         }
 
     })
+
 
 
 

@@ -201,14 +201,14 @@ SELECT res.type,
                 END) AS pending_checker,
             count(DISTINCT
                 CASE
-                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status::text in ('OP_P2B_FILE_PLACED','OP_AC_FILE_PLACED') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status::text in ('OP_P2B_FILE_PLACED','OP_AC_FILE_PLACED','OP_REVERSAL_REQ_INITIATED','OP_REVERSAL_REQ_REPAIR','OP_RCT_REVERSAL_REJECTED','OP_P2B_STATUS_ACCEPTED','OP_AC_STATUS_ACCEPTED','OP_P2P_STATUS_ACCEPTED','OP_RETURNED','OP_P2P_REV_POSTING_SUCCESS','OP_P2B_REV_POSTING_SUCCESS','OP_P2P_REV_POSTING_FAILURE','OP_P2B_REV_POSTING_FAILURE','OP_AC_REV_POSTING_FAILURE','OP_AC_STATUS_REJECTED','OP_AC_REV_POSTING_SUCCESS','OP_P2P_STATUS_REJECTED','OP_P2B_STATUS_REJECTED') THEN nppst.npsst_id
                     WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.status in ('IP_RCT_RETURNED','IP_RCT_REVREQ_REJ_REPLIED','IP_RCT_RR_RETURNED') THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS send_to_cb,
             count(DISTINCT
                 CASE
                     WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Place Pacs008'::text AND nppst.status in ('OP_REVERSAL_REQ_INITIATED','OP_REVERSAL_REQ_REPAIR','OP_RCT_REVERSAL_REJECTED','OP_P2B_STATUS_ACCEPTED','OP_AC_STATUS_ACCEPTED','OP_P2P_STATUS_ACCEPTED','OP_RETURNED') THEN nppst.npsst_id
-                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.status in ('IP_RCT_RETURN_COMPLETED','IP_RCT_RETURN_POSTING_FAILURE','IP_RCT_RETURN_POSTING_SUCCESS') THEN nppst.npsst_id
+                    WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Place Pacs004'::text AND nppst.status in ('IP_RCT_RETURN_COMPLETED','IP_RCT_RETURN_POSTING_FAILURE','IP_RCT_RETURN_POSTING_SUCCESS','IP_RCT_RETURNED','IP_RCT_REVREQ_REJ_REPLIED','IP_RCT_RR_RETURNED') THEN nppst.npsst_id
                     ELSE NULL::integer
                 END) AS cback,
             count(DISTINCT

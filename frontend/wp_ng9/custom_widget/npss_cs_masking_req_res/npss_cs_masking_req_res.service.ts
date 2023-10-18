@@ -28,6 +28,8 @@ export class npss_cs_masking_req_resService {
         ClientParams.npsstrrd_id =  this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSTRRD_ID");
         ClientParams.uetr =  this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_UETR");
         ClientParams.buttonName = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "CURRENT_BTN_LABEL");
+        ClientParams.dbtype = this.sessionHelper.GetVariable(SCOPE.MI_LEVEL, "DB_TYPE");
+
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }
     //Custom validation logics

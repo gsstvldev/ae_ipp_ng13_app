@@ -55,7 +55,13 @@ app.post('/', function(appRequest, appResponse, next) {
             objSessionLogInfo.PROCESS = ' NPSS (CS) Masking Request Response ';
             // Get DB Connection 
             reqTranDBInstance.GetTranDBConn(headers, false, async function (pSession) {
-                mTranConn = pSession; //  assign connection     
+                mTranConn = pSession; //  assign connection    
+                let schema;
+                if (params.dbtype == 'LIVE') {
+                    schema = '<tran_db>'
+                } else if (params.dbtype == 'ARCHIVAL') {
+                    schema = '<arc_tran_db>'
+                }
                 try {
                     let ProcessDetailjson = [
                         {
@@ -147,17 +153,17 @@ app.post('/', function(appRequest, appResponse, next) {
                             let dataType
                             if (Gettrndetails[0].type == 'JSON') {
                                 dataType = 'JSON'
-                                Takedata = `select fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_json,fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY) as response_json from npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
+                                Takedata = `select fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_json,fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY) as response_json from ${schema}.npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
                             } else {
                                 dataType = 'XML'
-                                Takedata = `select status,fn_pcidss_decrypt(message_data,$PCIDSS_KEY ) as request_json from npss_trn_req_resp_dtls where npsstrrd_id = '${params.npsstrrd_id}' and uetr='${params.uetr}'`
+                                Takedata = `select status,fn_pcidss_decrypt(message_data,$PCIDSS_KEY ) as request_json from ${schema}.npss_trn_req_resp_dtls where npsstrrd_id = '${params.npsstrrd_id}' and uetr='${params.uetr}'`
                             }
 
                             ExecuteQuery1(Takedata, async function (arrdata) {
                                 try {
                                     if (arrdata.length > 0) {
 
-                                        let Chckmskeli = `select param_category,param_detail from core_nc_system_setup where param_category = 'PROCESS_LOG_MASKING' and param_code = 'ROLE_ID' and param_detail = '${params.roleId}'`
+                                        let Chckmskeli = `select param_category,param_detail from <tran_db>.core_nc_system_setup where param_category = 'PROCESS_LOG_MASKING' and param_code = 'ROLE_ID' and param_detail = '${params.roleId}'`
                                         ExecuteQuery1(Chckmskeli, async function (arrmsk) {
                                             if (arrmsk.length > 0) {
                                                 let Prepareparam = await PrepareData(arrdata, ProcessDetailjson)
@@ -192,10 +198,10 @@ app.post('/', function(appRequest, appResponse, next) {
                             let curntBtnName = params.buttonName.toUpperCase()
 
                             if (curntBtnName != "VIEW REQ AND RES") {
-                                findData = `select fn_pcidss_decrypt(message_data,$PCIDSS_KEY ) as request_json from npss_trn_req_resp_dtls where npsstrrd_id = '${params.npsstrrd_id}'`
+                                findData = `select fn_pcidss_decrypt(message_data,$PCIDSS_KEY ) as request_json from ${schema}.npss_trn_req_resp_dtls where npsstrrd_id = '${params.npsstrrd_id}'`
 
                             } else {
-                                findData = `select fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_json,fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY) as response_json from npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
+                                findData = `select fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_json,fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY) as response_json from ${schema}.npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
                             }
 
                             ExecuteQuery1(findData, function (arrnotmskdata) {
@@ -233,10 +239,10 @@ app.post('/', function(appRequest, appResponse, next) {
                         let curntBtnName = params.buttonName.toUpperCase()
 
                         if (curntBtnName != "VIEW REQ AND RES") {
-                            findData = `select fn_pcidss_decrypt(message_data,$PCIDSS_KEY ) as request_json from npss_trn_req_resp_dtls where npsstrrd_id = '${params.npsstrrd_id}'`
+                            findData = `select fn_pcidss_decrypt(message_data,$PCIDSS_KEY ) as request_json from ${schema}.npss_trn_req_resp_dtls where npsstrrd_id = '${params.npsstrrd_id}'`
 
                         } else {
-                            findData = `select fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_json,fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY) as response_json from npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
+                            findData = `select fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_json,fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY) as response_json from ${schema}.npss_trn_process_log where npsstpl_id = '${params.npsstpl_id}'`
                         }
 
                         ExecuteQuery1(findData, function (arrnotmskdata) {

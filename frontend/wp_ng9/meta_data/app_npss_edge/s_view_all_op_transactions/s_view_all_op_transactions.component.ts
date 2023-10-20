@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 32813 
+Build ID        : 32839 
 Modified By     : Admin 
-Modified Date   : 2023-Oct-18 13:29 PM 
+Modified Date   : 2023-Oct-20 4:56 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions
@@ -1144,7 +1144,6 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 	//Handler for ACTION_BUTTON_CLICK event of "view api failure  action ui search"
 	view_api_failure__action_ui_search__action_button_click(){
 		this.view_api_failure__action_ui_search__show_profile_popup()
-		this.view_api_failure__action_ui_search__e_1684321183829()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "view api failure  action ui view process log"
@@ -3352,27 +3351,6 @@ export class s_view_all_op_transactionsComponent implements OnInit,AfterViewInit
 		let data_source={}
 		try {
 			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "view api failure  action ui search"
-	view_api_failure__action_ui_search__e_1684321183829() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="view_api_failure__action_ui_search"
-		let destn_id="process_log_search"
-		let parent_source_id=""
-		let event_code="e_1684321183829"
-		let event_params={"caller_name":"view_api_failure__action_ui_search__e_1684321183829","event_desc":"E_1684321183829","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"view_api_failure__action_ui_search","raiseparam":{"need_reset_key_column":"N"}}
-		let handler_code="clear_ui"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -55,7 +55,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     let api_call1 = await fn_doapicall1(take_return_url, arrprocesslog)
                                     if (api_call1.status == 'SUCCESS' || api_call1.status == 'Success' || api_call1.status == 'success') {
                                         let apicall2 = await fn_doapicall2(take_api_url, arrprocesslog)
-                                        if (apicall2.status == 'SUCCESS' || apicall2.status == 'Success' || apicall2.status == 'success') {
+                                        if (apicall2.status == 'SUCCESS' || apicall2 == 'SUCCESS' || apicall2.status == 'success') {
                                             let updte = await update(final_process_status, final_status,PRCT_ID)
                                             if (updte == 'SUCCESS' || updte == 'Success' || updte == 'success') {
                                                 objresponse.status = "SUCCESS"

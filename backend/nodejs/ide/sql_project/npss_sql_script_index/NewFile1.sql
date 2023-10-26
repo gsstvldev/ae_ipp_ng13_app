@@ -94,3 +94,7 @@ create index if not exists cnim_t24_reg_body on core_nc_issuer_cd_mapping (t24_r
 @SPL@
 create index if not exists ccbs_cbs_category_id on core_nc_cbscate_cbacctyp (cbs_category_id);
 @SPL@
+create index if not exists cbsa_va_flag on core_nc_cbs_accounts (va_flag);
+@SPL@
+create index if not exists cbsa_alternate_account_type on core_nc_cbs_accounts (alternate_account_type);
+@SPL@

@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
     /*  Created By :  Daseen
@@ -125,16 +126,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL' and need_sync = 'Y'`
                                                                             ExecuteQuery1(Takekafkaurl, async function (arrurl) {
                                                                                 if (arrurl.length) {
-
-
-
                                                                                     var apicallresult = await kafkaapi(arrpayverobj, arrurl, process_name1, process_name3)
                                                                                     if (apicallresult == 'SUCCESS') {
                                                                                         var InsertTable = await ProcessInstData(arrpayverobj, PRCT_ID)
                                                                                         if (InsertTable.length > 0) {
 
 
-                                                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------Kafaka Insert Success-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
+                                                                                            reqInstanceHelper.PrintInfo(serviceName, '-----------Kafaka Insert Success-- inserted npsstplid is-----' +  InsertTable[0].npsstpl_id, objSessionLogInfo);
                                                                                             nextobjctfunc()
 
 
@@ -148,9 +146,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                         reqInstanceHelper.PrintInfo(serviceName, '-----------Npss transaction not found for-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
                                                                                         nextobjctfunc()
                                                                                     }
-
-
-
 
                                                                                 }
                                                                                 else {
@@ -225,7 +220,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 if (InsertTable.length > 0) {
 
 
-                                                                                    reqInstanceHelper.PrintInfo(serviceName, '-----------Kafaka Insert Success-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
+                                                                                    reqInstanceHelper.PrintInfo(serviceName, '-----------Kafaka Insert Success- inserted npsstplid is------' + InsertTable[0].npsstpl_id, objSessionLogInfo);
                                                                                     nextobjctfunc()
 
 
@@ -654,6 +649,7 @@ app.post('/', function(appRequest, appResponse, next) {
         }
 
     })
+
 
 
 

@@ -158,7 +158,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                 if (InsertTable.length > 0) {
 
 
-                                                                                                    reqInstanceHelper.PrintInfo(serviceName, '-----------Kafaka Insert Success-------' + arrpayverobj.npsstpl_id, objSessionLogInfo);
+                                                                                                    reqInstanceHelper.PrintInfo(serviceName, '-----------Kafaka Insert Success-inserted npsstplid------' + InsertTable[0].npsstpl_id, objSessionLogInfo);
                                                                                                     nextobjctfunc()
 
 

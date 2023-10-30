@@ -50,7 +50,7 @@ SELECT res.sno,
                 END) AS pending_screening,
             count(DISTINCT
                 case
-	                WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Receive Pacs008'::text AND nppst.status in('IP_RCT_RETURN_COMPLETED','IP_BCT_RETURN_FILE_UPLOADED','IP_RCT_MANUAL_RETURNED','IP_RCT_RETURNED') THEN nppst.npsst_id
+	                WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Receive Pacs008'::text AND nppst.status in ('IP_RCT_RETURN_COMPLETED','IP_BCT_RETURN_FILE_UPLOADED','IP_RCT_MANUAL_RETURNED','IP_RCT_RETURNED') THEN nppst.npsst_id
                     WHEN nppst.process_type::text = 'OP'::text AND npl.process_name::text = 'Receive Pacs004'::text AND nppst.status ::text = 'OP_AC_RET_RECEIVED'::text THEN nppst.npsst_id
                     WHEN nppst.process_type::text = 'IP'::text AND npl.process_name::text = 'Receive Pacs.007'::text AND nppst.status::text = 'IP_RCT_RR_RETURNED'::text THEN nppst.npsst_id
                     ELSE NULL::integer
@@ -100,12 +100,8 @@ SELECT res.sno,
             0 AS pending_t_1,
             nppst.tenant_id
            FROM npss_transactions nppst
-             JOIN ( SELECT z.created_date,
-                    z.uetr,
-                    z.process_name,
-                    z.status,
-                    z.process_status,
-                    z.processing_system
+            inner JOIN ( SELECT distinct z.process_name,z.created_date,
+                    z.uetr
                    FROM npss_trn_process_log z
                   WHERE to_date(to_char(z.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE AND (z.process_name::text = ANY (ARRAY['Receive Pacs008'::character varying, 'Receive Pacs.007'::character varying, 'Receive Pacs004'::character varying, 'PACS.008'::character varying, 'PACS.007'::character varying]::text[]))) npl ON npl.uetr::text = nppst.uetr::text
           WHERE to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) = CURRENT_DATE AND (npl.process_name::text = ANY (ARRAY['Receive Pacs008'::character varying::text, 'Receive Pacs.007'::character varying::text, 'Receive Pacs004'::character varying::text, 'PACS.008'::character varying::text, 'PACS.007'::character varying::text]))
@@ -152,24 +148,18 @@ SELECT res.sno,
                             d.typed,
                             d.department_code,
                             d.tenant_id
-                           FROM ( SELECT DISTINCT npl.process_name,
+                           FROM ( SELECT distinct nppst.tenant_id, npl.process_name,
                                     'pacs.008'::text AS typed,
                                     nppst.npsst_id,
 CASE
  WHEN nppst.department_code::text = ''::text OR nppst.department_code IS NULL THEN 'DEFAULT'::character varying
  ELSE nppst.department_code
-END AS department_code,
-                                    nppst.tenant_id
-                                   FROM npss_transactions nppst
-                                     LEFT JOIN ( SELECT z.created_date,
-    z.uetr,
-    z.process_name,
-    z.status,
-    z.process_status,
-    z.processing_system
+END AS department_code       FROM npss_transactions nppst
+                                     INNER JOIN ( SELECT distinct z.process_name,z.created_date,
+    z.uetr
    FROM npss_trn_process_log z
   WHERE to_date(to_char(z.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE AND z.process_name::text = 'Receive Pacs008'::text) npl ON npl.uetr::text = nppst.uetr::text
-                                  WHERE npl.process_name::text = 'Receive Pacs008'::text  AND nppst.status in ('IP_RCT_POSTING_SUSPICIOUS','IP_RCT_CC_POSTING_FAILURE','IP_RCT_CC_T24_POSTING_FAILURE','IP_RCT_CC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUSPICIOUS','IP_RCT_PC_POSTING_FAILURE','IP_RCT_PC_POSTING_SUSPICIOUS','IP_RCT_PC_T24_POSTING_FAILURE','IP_RCT_PC_T24_POSTING_SUSPICIOUS','IP_RCT_POSTING_FAILURE','IP_RCT_POSTING_RETRY','IP_RCT_AUTO_POSTING_INITIATED','IP_RCT_POSTING_REPOST') AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) d
+                                  WHERE nppst.process_type = 'IP' AND npl.process_name::text = 'Receive Pacs008'::text  AND nppst.status in ('IP_RCT_POSTING_SUSPICIOUS','IP_RCT_CC_POSTING_FAILURE','IP_RCT_CC_T24_POSTING_FAILURE','IP_RCT_CC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUSPICIOUS','IP_RCT_PC_POSTING_FAILURE','IP_RCT_PC_POSTING_SUSPICIOUS','IP_RCT_PC_T24_POSTING_FAILURE','IP_RCT_PC_T24_POSTING_SUSPICIOUS','IP_RCT_POSTING_FAILURE','IP_RCT_POSTING_RETRY','IP_RCT_AUTO_POSTING_INITIATED','IP_RCT_POSTING_REPOST') AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) d
                           GROUP BY d.typed, d.department_code, d.tenant_id) d1 ON d1.typed = a1.type
                 UNION
                  SELECT a3.sno,
@@ -211,21 +201,16 @@ END AS department_code,
                             da3.typed,
                             da3.department_code,
                             da3.tenant_id
-                           FROM ( SELECT DISTINCT npl.process_name,
+                           FROM ( SELECT DISTINCT nppst.npsst_id,npl.process_name,
                                     'pacs.004'::text AS typed,
-                                    nppst.npsst_id,
 CASE
  WHEN nppst.department_code::text = ''::text OR nppst.department_code IS NULL THEN 'DEFAULT'::character varying
  ELSE nppst.department_code
 END AS department_code,
                                     nppst.tenant_id
                                    FROM npss_transactions nppst
-                                     LEFT JOIN ( SELECT z.created_date,
-    z.uetr,
-    z.process_name,
-    z.status,
-    z.process_status,
-    z.processing_system
+                                     INNER JOIN ( SELECT distinct z.process_name,z.created_date,
+    z.uetr
    FROM npss_trn_process_log z
   WHERE to_date(to_char(z.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) > CURRENT_DATE AND z.process_name::text = 'Receive Pacs004'::text) npl ON npl.uetr::text = nppst.uetr::text
                                   WHERE npl.process_name::text = 'Receive Pacs004'::text  AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) > CURRENT_DATE) da3
@@ -272,24 +257,18 @@ END AS department_code,
                             da2.typed,
                             da2.department_code,
                             da2.tenant_id
-                           FROM ( SELECT DISTINCT npl.process_name,
+                           FROM ( SELECT DISTINCT nppst.npsst_id,npl.process_name,
                                     'pacs.007'::text AS typed,
-                                    nppst.npsst_id,
 CASE
  WHEN nppst.department_code::text = ''::text OR nppst.department_code IS NULL THEN 'DEFAULT'::character varying
  ELSE nppst.department_code
 END AS department_code,
                                     nppst.tenant_id
                                    FROM npss_transactions nppst
-                                     LEFT JOIN ( SELECT z.created_date,
-    z.uetr,
-    z.process_name,
-    z.status,
-    z.process_status,
-    z.processing_system
-   FROM npss_trn_process_log z
+                                     LEFT JOIN ( SELECT distinct z.process_name,z.created_date,
+    z.uetr   FROM npss_trn_process_log z
   WHERE to_date(to_char(z.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE AND z.process_name::text = 'Receive Pacs.007'::text) npl ON npl.uetr::text = nppst.uetr::text
-                                  WHERE npl.process_name::text = 'Receive Pacs.007'::text AND nppst.status in ('IP_RCT_REVERSAL_REQ_RECEIVED','IP_RCT_REVERSAL_VLD_FAILED','IP_RCT_RR_RETURN_READY','IP_RCT_REV_REQ_APPROVED','IP_RCT_REV_REQ_REJECTED','IP_RCT_RR_POSTING_FAILURE') AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) da2
+                                  WHERE nppst.process_type = 'IP' AND npl.process_name::text = 'Receive Pacs.007'::text AND nppst.status in ('IP_RCT_REVERSAL_REQ_RECEIVED','IP_RCT_REVERSAL_VLD_FAILED','IP_RCT_RR_RETURN_READY','IP_RCT_REV_REQ_APPROVED','IP_RCT_REV_REQ_REJECTED','IP_RCT_RR_POSTING_FAILURE') AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE) da2
                           GROUP BY da2.typed, da2.department_code, da2.tenant_id) d2 ON d2.typed = a2.type
         )) res
   GROUP BY res.type, res.created_date, res.sno, res.department_code, res.pending_t_1, res.tenant_id

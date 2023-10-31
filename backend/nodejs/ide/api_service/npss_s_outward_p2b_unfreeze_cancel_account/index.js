@@ -484,6 +484,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         objCusTranInst.MODIFIED_BY = "";
                         objCusTranInst.MODIFIED_BY_NAME = "";
                         objCusTranInst.MODIFIED_DATE = null;
+                         objCusTranInst.fx_resv_text5='NO SCT';
                         objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
                         objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
                         objCusTranInst.CREATED_BY_STS_ID = "";
@@ -507,7 +508,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                 function UpdateTran(arrTran, prct_id) {
                     return new Promise((resolve, reject) => {
-                        let UpdTrntbl = `update npss_trn_process_log set org_status = 'UNFREEZE_TAKEN', MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${prct_id}' where npsstpl_id in (${arrTran})`
+                        let UpdTrntbl = `update npss_trn_process_log set org_status = 'UNFREEZE_TAKEN', FX_RESV_TEXT4='N' ,MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${prct_id}' where npsstpl_id in (${arrTran})`
                         ExecuteQuery(UpdTrntbl, function (arrUpdTranTbl) {
                             if (arrUpdTranTbl == 'SUCCESS') {
                                 resolve('SUCCESS')

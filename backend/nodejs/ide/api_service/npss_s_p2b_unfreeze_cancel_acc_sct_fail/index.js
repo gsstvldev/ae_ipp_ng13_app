@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
 
     /*  Created By :  Daseen
@@ -530,6 +531,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         objCusTranInst.T24_RETURN_CODE = null;
                         objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
                         objCusTranInst.MODIFIED_BY = "";
+                        objCusTranInst.fx_resv_text5='SCT';
                         objCusTranInst.MODIFIED_BY_NAME = "";
                         objCusTranInst.MODIFIED_DATE = null;
                         objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
@@ -555,7 +557,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                 function UpdateTran(arrTran, prct_id) {
                     return new Promise((resolve, reject) => {
-                        let UpdTrntbl = `update npss_trn_process_log set org_status = 'REQUEST_RECEIVED', MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${prct_id}' where npsstpl_id in (${arrTran})`
+                        let UpdTrntbl = `update npss_trn_process_log set org_status = 'REQUEST_RECEIVED', FX_RESV_TEXT5='Y' ,MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${prct_id}' where npsstpl_id in (${arrTran})`
                         ExecuteQuery(UpdTrntbl, function (arrUpdTranTbl) {
                             if (arrUpdTranTbl == 'SUCCESS') {
                                 resolve('SUCCESS')
@@ -649,6 +651,7 @@ app.post('/', function(appRequest, appResponse, next) {
         }
 
     })
+
 
 
 

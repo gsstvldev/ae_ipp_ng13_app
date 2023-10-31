@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
   try {
     /*   Created By :Daseen
     Created Date :16-12-2022
@@ -16,6 +17,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Reason for : Calling fn_pcidss_decrypt for taking masking cr acct ident code 8/01/2023
     Reason for Remove Console log 18/01/2023
      Reason for Handle Prepaid or Credit Changes 2/03/2023
+     Reason for Handle Rectibi Changes 30/10/2023
     */
     var serviceName = 'NPSS Get Usable Amount';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -85,6 +87,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                         let IBAN
                                             if(params.screenName == 's_rct_manual_verification'){
                                                 IBAN = arrprocesslog[0].dbtr_iban
+                                               let Iban_S = arrprocesslog[0].dbtr_iban.slice(-16)
+                                               let FrmIban = Iban_S.substring(0, 3)
+                                                if (FrmIban == '564' || FrmIban == 564) {
+                                                    objresponse.status = 'Rectibi Iban';
+                                                    objresponse.data = 'Rectibi Tran';
+                                                   sendResponse(null, objresponse);
+                                                }
+                                              
+
                                             }else{
                                                 IBAN = arrprocesslog[0].cdtr_iban
                                             }
@@ -293,6 +304,7 @@ app.post('/', function(appRequest, appResponse, next) {
 catch (error) {
     sendResponse(error, null);
 }
+
 
 
 

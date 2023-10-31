@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -110,7 +111,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                             sendResponse(null, objresponse)
                         }
                     } else {
-                        objresponse.errocode = 'Credit or Prepaid'
+                        objresponse.errocode = chckcreditorprepaid
                         objresponse.status = 'SUCCESS'
                         objresponse.data = ''
                         sendResponse(null, objresponse)
@@ -161,7 +162,14 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                 if (arrTrandata.length > 0) {
                                     if ((arrTrandata[0].cr_acct_identification != '' && arrTrandata[0].cr_acct_identification != null) && arrTrandata[0].cr_acct_id_code == 'AIIN') {
                                         resolve('Prepaid or Credit')
-                                    } else {
+                                    }else if((arrTrandata[0].cr_acct_identification==''||arrTrandata[0].cr_acct_identification==null||arrTrandata[0].cr_acct_identification==undefined )&&  (arrTrandata[0].cr_acct_id_code != 'AIIN')){
+                                        let fromIban=arrTrandata[0].dbtr_iban.slice(-5)
+                                      let isrectibi= fromIban.substring(0,3)
+                                      if(isrectibi=='564' || isrectibi==564){
+                                        resolve('Ratibi')
+                                      }
+                                    }
+                                    else {
 
                                         resolve('IBAN')
                                     }
@@ -239,6 +247,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
     }
 
 })
+
 
 
 

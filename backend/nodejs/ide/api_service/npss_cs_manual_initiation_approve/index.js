@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
     try {
@@ -1504,7 +1505,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "charge_bearer": arrprocesslog[0].charge_bearer || '',
                                                     "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
                                                     "uetr": arrprocesslog[0].uetr || '',
-                                                    "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
+                                                  
                                                     "cr_acct_id_code": arrprocesslog[0].cr_acct_id_code || '',
                                                     "message_data": arrprocesslog[0].message_data || '',
                                                     "accp_dt_tm": arrprocesslog[0].accp_dt_tm || '',
@@ -1525,6 +1526,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                         }
                                         if (apitype.isiban == 'Y') {
                                             options.json.payload.isiban = 'Y'
+                                            options.json.payload.cr_acct_identification= arrprocesslog[0].dbtr_iban || ''
+                                        }else{
+                                            options.json.payload.cr_acct_identification= arrprocesslog[0].cr_acct_identification || ''
                                         }
 
                                         var PrintInfo = {}
@@ -1905,6 +1909,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

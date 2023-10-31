@@ -30,7 +30,7 @@ app.post('/', function(appRequest, appResponse, next) {
             Modified Date :3/10/2023 include status following status in sct initiation 'P2B_SCT_INITIATION_FAILED','OP_P2B_FUND_AUTH_FAILURE' ,'OP_P2B_FUND_AUTH_SUSPICIOUS')   by daseen
     }
     */
-    var serviceName = 'NPSS(S) P2B UNFREEZE the Cancel Account';
+    var serviceName = 'NPSS(S) P2B UNFREEZE the Cancel  Account';
 
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
     var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        

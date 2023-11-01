@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28958 
+Build ID        : 32974 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-29 13:6 PM 
+Modified Date   : 2023-Nov-01 4:39 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_report_viewer
@@ -81,18 +81,18 @@ export class s_report_viewerComponent implements OnInit,AfterViewInit {
   
 	// To handle page_load event
 	page_load(){
-		this.page_load__e_1673000299996()
+		this.page_load__cc_for_change_rey_ide()
 	}
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__e_1673000299996() { 
+	page_load__cc_for_change_rey_ide() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1673000299996"
-		let event_params={"caller_name":"page_load__e_1673000299996","event_desc":"E_1673000299996","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let event_params={"caller_name":"page_load__cc_for_change_rey_ide","event_desc":"CC for Change Rey ide","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}

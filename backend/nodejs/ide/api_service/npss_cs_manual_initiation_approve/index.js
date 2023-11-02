@@ -7,7 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
+
 
 
     try {
@@ -23,6 +24,7 @@ app.post('/', function(appRequest, appResponse, next) {
              Modified for: to take last inserted record for process refno(reversalid) for authposting
                Modified for: to take last inserted record for channel ref no(reversalid) for 008 after authposting 26 09 2023 by Daseen
        Modified for: Handling for validation in private and Organisation on 17/10/2023 by Daseen
+        Modified for: Handling for transaction id chnage in every posting call on 2/11/2023 by Daseen
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -118,10 +120,23 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 var url = arrurl[0].param_detail;
                                                                 fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Objfiledata, Getdata, extend_retry_value, takedealRefno, GetsellRate, async function (firstapiresult) {
                                                                     if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
-                                                                        let Amount
+                                                                        let Amount;
+                                                                        let transactionId = ''
+
+
+                                                                        if (firstapiresult && firstapiresult.response) {
+                                                                            if (firstapiresult.response.header && firstapiresult.response.header.id) {
+                                                                                transactionId = firstapiresult.response.header.id;
+                                                                            } else if (firstapiresult.response.dataArea && firstapiresult.response.dataArea.offlineTransactionReferenceNumber) {
+                                                                                transactionId = firstapiresult.response.dataArea.offlineTransactionReferenceNumber;
+                                                                            } else {
+                                                                                transactionId = ''
+                                                                            }
+                                                                        }
                                                                         if (reverandRefno.currency != 'AED') {
                                                                             if (firstapiresult.amountCredited) {
                                                                                 Amount = firstapiresult.amountCredited
+
                                                                                 /*  try {
                                                                                      if (firstapiresult.amountCredited && arrprocesslog[0].intrbk_sttlm_amnt) {
                                                                                          if (Number(firstapiresult.amountCredited) > Number(arrprocesslog[0].intrbk_sttlm_amnt)) {
@@ -154,7 +169,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         reqInstanceHelper.PrintInfo(serviceName, '------------fIRST API CALL SUCCESS-------', objSessionLogInfo);
                                                                         let CheckorgPvt = await TakeOrgPvt(arrprocesslog)
                                                                         reverandRefno.type = 'IBAN'
-                                                                        let Pacs008 = await fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt, Amount)
+                                                                        let Pacs008 = await fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt, Amount, transactionId)
                                                                         if (Pacs008 == 'SUCCESS') {
                                                                             let UpdateTran = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount)
                                                                         } else {
@@ -231,7 +246,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 let CheckorgPvt = ''
                                                 let Amount = arrprocesslog[0].intrbk_sttlm_amnt
                                                 reverandRefno.type = 'IBAN'
-                                                let Pacs008 = await fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt, Amount)
+                                                let Pacs008 = await fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt, Amount, '')
                                                 if (Pacs008 == 'SUCCESS') {
                                                     GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount)
                                                 } else {
@@ -473,7 +488,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
 
-                    function fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt, Amount) {
+                    function fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt, Amount, transactionId) {
                         return new Promise((resolve, reject) => {
                             try {
                                 var Takepac008url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_MANUAL_INT_PAC008' and param_code='URL' and need_sync = 'Y'`;
@@ -522,7 +537,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
                                                         "instr_id": arrprocesslog[0].org_pay_endtoend_id || '',
                                                         "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
-                                                        "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
+                                                        "tran_ref_id": transactionId || '',
                                                         "uetr": arrprocesslog[0].uetr || '',
                                                         "intrbk_sttlm_amnt": Amount || '',
                                                         // "dbtr_acct_name": reverandRefno.account_name || '',
@@ -863,12 +878,23 @@ app.post('/', function(appRequest, appResponse, next) {
                                 if (TrnAldposted == 'CallAuthPosting') {
                                     resolve('CallAuthPosting')
                                 } else {
+
+                                    let transactionId = ''
+
+                                    if (TrnAldposted.request_data_json.header && TrnAldposted.request_data_json.header.id) {
+                                        transactionId = TrnAldposted.request_data_json.header.id;
+                                    } else if (TrnAldposted.request_data_json.dataArea && TrnAldposted.request_data_json.dataArea.offlineTransactionReferenceNumber) {
+                                        transactionId = TrnAldposted.request_data_json.dataArea.offlineTransactionReferenceNumber;
+                                    } else {
+                                        transactionId = ''
+                                    }
+
                                     let revAcctInfrm = await TakeIbanInfm(arrprocesslog)
                                     let CheckorgPvt = await TakeOrgPvt(arrprocesslog)
 
                                     let Amount = arrprocesslog[0].fx_resv_text3
                                     revAcctInfrm.type = 'IBAN'
-                                    let Pacs008 = await fn_doPac008apicall(arrprocesslog, revAcctInfrm, CheckorgPvt, Amount)
+                                    let Pacs008 = await fn_doPac008apicall(arrprocesslog, revAcctInfrm, CheckorgPvt, Amount, transactionId)
                                     if (Pacs008 == 'SUCCESS') {
                                         GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount)
                                     } else {
@@ -894,8 +920,22 @@ app.post('/', function(appRequest, appResponse, next) {
                                 if (CheckAlredyApiCalled.apicalls == 1) {
                                     if (CheckAlredyApiCalled.Callapi == 'Call ELPASO Posting') {
                                         ElpasoApi = await CallPrepaidEplapsoApi(arrprocesslog, lclinstrm, extIdentValue, reversalNo, ChkPrecdtCard)
+
                                         if (ElpasoApi.status == 'SUCCESS' || ElpasoApi.status == 'Success') {
-                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount)
+                                            // let transactionId = ElpasoApi.response.header.id || ElpasoApi.response.dataArea.offlineTransactionReferenceNumber || '';
+                                            let transactionId = ''
+
+
+                                            if (ElpasoApi && ElpasoApi.response) {
+                                                if (ElpasoApi.response.header && ElpasoApi.response.header.id) {
+                                                    transactionId = ElpasoApi.response.header.id;
+                                                } else if (ElpasoApi.response.dataArea && ElpasoApi.response.dataArea.offlineTransactionReferenceNumber) {
+                                                    transactionId = ElpasoApi.response.dataArea.offlineTransactionReferenceNumber;
+                                                } else {
+                                                    transactionId = ''
+                                                }
+                                            }
+                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                                             if (Pacs008Api == 'SUCCESS') {
                                                 GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount)
                                             } else {
@@ -910,7 +950,20 @@ app.post('/', function(appRequest, appResponse, next) {
                                     } else if (CheckAlredyApiCalled.Callapi == 'Call T24 Posting') {
                                         T24Api = await CallPrepaidT24Api(arrprocesslog, lclinstrm, extIdentValue, reversalNo, ChkPrecdtCard)
                                         if (T24Api.status == 'SUCCESS' || T24Api.status == 'Success') {
-                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount)
+                                            // let transactionId = CheckAlredyApiCalled.request_data_json.response.header.id || CheckAlredyApiCalled.request_data_json.response.dataArea.offlineTransactionReferenceNumber || '';
+                                            let transactionId = ''
+
+
+                                            if (T24Api && T24Api.response) {
+                                                if (T24Api.response.header && T24Api.response.header.id) {
+                                                    transactionId = T24Api.response.header.id;
+                                                } else if (T24Api.response.dataArea && T24Api.response.dataArea.offlineTransactionReferenceNumber) {
+                                                    transactionId = T24Api.response.dataArea.offlineTransactionReferenceNumber;
+                                                } else {
+                                                    transactionId = ''
+                                                }
+                                            }
+                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                                             if (Pacs008Api == 'SUCCESS') {
                                                 GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount)
                                             } else {
@@ -923,7 +976,17 @@ app.post('/', function(appRequest, appResponse, next) {
                                             Handleerror = await SendErrormsg(T24Api, ApiVal)
                                         }
                                     } else {
-                                        Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount)
+                                        //  let transactionId =  response_jsonCheckAlredyApiCalled.request_data_json.response.header.id || CheckAlredyApiCalled.request_data_json.response.dataArea.offlineTransactionReferenceNumber || '';
+                                        let transactionId = ''
+
+                                        if (CheckAlredyApiCalled.response_json.header && CheckAlredyApiCalled.response_json.header.id) {
+                                            transactionId = CheckAlredyApiCalled.response_json.header.id;
+                                        } else if (CheckAlredyApiCalled.response_json.dataArea && CheckAlredyApiCalled.response_json.dataArea.offlineTransactionReferenceNumber) {
+                                            transactionId = CheckAlredyApiCalled.response_json.dataArea.offlineTransactionReferenceNumber;
+                                        } else {
+                                            transactionId = ''
+                                        }
+                                        Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                                         if (Pacs008Api == 'SUCCESS') {
                                             GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount)
                                         } else {
@@ -936,7 +999,18 @@ app.post('/', function(appRequest, appResponse, next) {
                                     if (CheckAlredyApiCalled.Callapi == 'Call ELPASO Posting') {
                                         ElpasoApi = await CallCreditEplapsoApi(arrprocesslog, lclinstrm, extIdentValue, reversalNo)
                                         if (ElpasoApi.status == 'SUCCESS' || ElpasoApi.status == 'Success') {
-                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount)
+                                            //   let transactionId = ElpasoApi.response.header.id || ElpasoApi.response.dataArea.offlineTransactionReferenceNumber || '';
+                                            let transactionId = ''
+                                            if (ElpasoApi && ElpasoApi.response) {
+                                                if (ElpasoApi.response.header && ElpasoApi.response.header.id) {
+                                                    transactionId = ElpasoApi.response.header.id;
+                                                } else if (ElpasoApi.response.dataArea && ElpasoApi.response.dataArea.offlineTransactionReferenceNumber) {
+                                                    transactionId = ElpasoApi.response.dataArea.offlineTransactionReferenceNumber;
+                                                } else {
+                                                    transactionId = ''
+                                                }
+                                            }
+                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                                             if (Pacs008Api == 'SUCCESS') {
                                                 GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount)
                                             } else {
@@ -949,9 +1023,23 @@ app.post('/', function(appRequest, appResponse, next) {
                                             Handleerror = await SendErrormsg(ElpasoApi, ApiVal)
                                         }
                                     } else if (CheckAlredyApiCalled.Callapi == 'Call T24 Posting') {
+
                                         T24Api = await CallCreditT24Api(arrprocesslog, lclinstrm, extIdentValue, reversalNo)
                                         if (T24Api.status == 'SUCCESS' || T24Api.status == 'Success') {
-                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount)
+                                            //   let transactionId = CheckAlredyApiCalled.request_data_json.response.header.id || CheckAlredyApiCalled.request_data_json.response.dataArea.offlineTransactionReferenceNumber || '';
+                                            let transactionId = ''
+
+
+                                            if (T24Api && T24Api.response) {
+                                                if (T24Api.response.header && T24Api.response.header.id) {
+                                                    transactionId = T24Api.response.header.id;
+                                                } else if (T24Api.response.dataArea && T24Api.response.dataArea.offlineTransactionReferenceNumber) {
+                                                    transactionId = T24Api.response.dataArea.offlineTransactionReferenceNumber;
+                                                } else {
+                                                    transactionId = ''
+                                                }
+                                            }
+                                            Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                                             if (Pacs008Api == 'SUCCESS') {
                                                 GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount)
                                             } else {
@@ -964,7 +1052,17 @@ app.post('/', function(appRequest, appResponse, next) {
                                             Handleerror = await SendErrormsg(T24Api)
                                         }
                                     } else {
-                                        Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount)
+                                        // let transactionId = response_jsonCheckAlredyApiCalled.request_data_json.response.header.id || CheckAlredyApiCalled.request_data_json.response.dataArea.offlineTransactionReferenceNumber || '';
+                                        let transactionId = ''
+
+                                        if (CheckAlredyApiCalled.response_json.header && CheckAlredyApiCalled.response_json.header.id) {
+                                            transactionId = CheckAlredyApiCalled.response_json.header.id;
+                                        } else if (CheckAlredyApiCalled.response_json.dataArea && CheckAlredyApiCalled.response_json.dataArea.offlineTransactionReferenceNumber) {
+                                            transactionId = CheckAlredyApiCalled.response_json.dataArea.offlineTransactionReferenceNumber;
+                                        } else {
+                                            transactionId = ''
+                                        }
+                                        Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                                         if (Pacs008Api == 'SUCCESS') {
                                             GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount)
                                         } else {
@@ -1164,7 +1262,10 @@ app.post('/', function(appRequest, appResponse, next) {
                             var CheckTrnPosted = `select * from npss_trn_process_log where process_name = 'Manual Fund AUTH Posting' and status = 'OP_RCT_MAN_AUTH_POSTING_SUCCESS' and uetr = '${uetr}'`
                             ExecuteQuery1(CheckTrnPosted, function (arrTrndetails) {
                                 if (arrTrndetails.length > 0) {
-                                    resolve('CallPacs008')
+                                    let retriveDet = {}
+                                    retriveDet.request_data_json = JSON.parse(arrTrndetails[0].request_data_json)
+                                    retriveDet.status = 'CallPacs008'
+                                    resolve(retriveDet)
                                 } else {
                                     resolve('CallAuthPosting')
                                 }
@@ -1191,10 +1292,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                     }
                                     ExecuteQuery1(checkT24posting, function (arrT24post) {
                                         if (arrT24post.length > 0) {
+                                            RetrnParam.response_json = JSON.parse(checkT24posting[0].response_data_json)
                                             RetrnParam.apicalls = ChkPrecdtCard.apitype
                                             RetrnParam.Callapi = 'Call Pacs004 Api'
                                             resolve(RetrnParam)
                                         } else {
+                                            //RetrnParam.response_json = arrelpaso[0].response_data_json
                                             RetrnParam.apicalls = ChkPrecdtCard.apitype
                                             RetrnParam.Callapi = 'Call T24 Posting'
                                             resolve(RetrnParam)
@@ -1229,7 +1332,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     objresponse.status = "FAILURE"
                                                     objresponse.errdata = "trade_license_number  value is not found"
                                                     sendResponse(null, objresponse)
-                                                }  if (arrcbsAct[0].emirates_code == null || arrcbsAct[0].emirates_code == undefined || arrcbsAct[0].emirates_code == '') {
+                                                } if (arrcbsAct[0].emirates_code == null || arrcbsAct[0].emirates_code == undefined || arrcbsAct[0].emirates_code == '') {
                                                     objresponse.status = "FAILURE"
                                                     objresponse.errdata = "Emirates Code  value is not found"
                                                     sendResponse(null, objresponse)
@@ -1505,7 +1608,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "charge_bearer": arrprocesslog[0].charge_bearer || '',
                                                     "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
                                                     "uetr": arrprocesslog[0].uetr || '',
-                                                  
+
                                                     "cr_acct_id_code": arrprocesslog[0].cr_acct_id_code || '',
                                                     "message_data": arrprocesslog[0].message_data || '',
                                                     "accp_dt_tm": arrprocesslog[0].accp_dt_tm || '',
@@ -1526,9 +1629,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                         }
                                         if (apitype.isiban == 'Y') {
                                             options.json.payload.isiban = 'Y'
-                                            options.json.payload.cr_acct_identification= arrprocesslog[0].dbtr_iban || ''
-                                        }else{
-                                            options.json.payload.cr_acct_identification= arrprocesslog[0].cr_acct_identification || ''
+                                            options.json.payload.cr_acct_identification = arrprocesslog[0].dbtr_iban || ''
+                                        } else {
+                                            options.json.payload.cr_acct_identification = arrprocesslog[0].cr_acct_identification || ''
                                         }
 
                                         var PrintInfo = {}
@@ -1909,6 +2012,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

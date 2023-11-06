@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 33047 
+Build ID        : 33059 
 Modified By     : Admin 
-Modified Date   : 2023-Nov-06 10:36 AM 
+Modified Date   : 2023-Nov-06 14:1 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal
@@ -3938,13 +3938,13 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "trig action for list ui trg queue"
 	trig_action_for_list_ui_trg_queue__ssp_for_tri_queue_for_fh(peventcontext) { 
 		let Dest_Is_ctrl=true
-		let eventcontext =["NPSS_AEFIN","NPSS_AEUAB","NPSS_AELAR"]
+		let eventcontext =["NPSS_AEFIN","NPSS_AEUAB","NPSS_AELAR","NPSS_AEAMB"]
 		if(eventcontext.indexOf(peventcontext)==-1) return true;
 		let source_id="trig_action_for_list_ui_trg_queue"
 		let destn_id="search"
 		let parent_source_id=""
 		let event_code="e_1672299345663"
-		let event_params={"caller_name":"trig_action_for_list_ui_trg_queue__ssp_for_tri_queue_for_fh","event_desc":"SSP for Tri queue for FH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"trig_action_for_list_ui_trg_queue","raiseparam":{},"eventcontext":["NPSS_AEFIN","NPSS_AEUAB","NPSS_AELAR"]}
+		let event_params={"caller_name":"trig_action_for_list_ui_trg_queue__ssp_for_tri_queue_for_fh","event_desc":"SSP for Tri queue for FH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"trig_action_for_list_ui_trg_queue","raiseparam":{},"eventcontext":["NPSS_AEFIN","NPSS_AEUAB","NPSS_AELAR","NPSS_AEAMB"]}
 		let handler_code="set_search_params"
 		let internals="ssp_for_tri_queue_for_fh__brfq_for_fhs,"
 		let event_data={}
@@ -4089,13 +4089,13 @@ export class s_rct_reversalComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "trig action for list ui trig tran list"
 	trig_action_for_list_ui_trig_tran_list__ssp_for_queue_to_tran__fh(peventcontext) { 
 		let Dest_Is_ctrl=true
-		let eventcontext =["NPSS_AEFIN","NPSS_AEUAB","NPSS_AELAR"]
+		let eventcontext =["NPSS_AEFIN","NPSS_AEUAB","NPSS_AELAR","NPSS_AEAMB"]
 		if(eventcontext.indexOf(peventcontext)==-1) return true;
 		let source_id="trig_action_for_list_ui_trig_tran_list"
 		let destn_id="search"
 		let parent_source_id=""
 		let event_code="e_1672295820920"
-		let event_params={"caller_name":"trig_action_for_list_ui_trig_tran_list__ssp_for_queue_to_tran__fh","event_desc":"SSP for Queue to tran  FH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"trig_action_for_list_ui_trig_tran_list","raiseparam":{},"eventcontext":["NPSS_AEFIN","NPSS_AEUAB","NPSS_AELAR"]}
+		let event_params={"caller_name":"trig_action_for_list_ui_trig_tran_list__ssp_for_queue_to_tran__fh","event_desc":"SSP for Queue to tran  FH","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEFIN","root_source_id":"trig_action_for_list_ui_trig_tran_list","raiseparam":{},"eventcontext":["NPSS_AEFIN","NPSS_AEUAB","NPSS_AELAR","NPSS_AEAMB"]}
 		let handler_code="set_search_params"
 		let internals="ssp_for_queue_to_tran__fh__brfq_for_fh_trans,"
 		let event_data={}

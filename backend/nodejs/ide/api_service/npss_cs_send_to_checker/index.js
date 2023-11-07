@@ -19,6 +19,7 @@ app.post('/', function(appRequest, appResponse, next) {
            Reason for splrate logic changes 2/6/2023
             Reason for Handling buy rate and buy cur here 3/7/2023
             Reason for Handling spl rate 14/7/2023
+            Reason for Handling  rateMode,contra_amount for non aed iban flow 07/11/2023 by daseen
         */
         var serviceName = 'NPSS (CS) Send To Checker';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -458,7 +459,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                 if (GetadditionData.length > 0) {
                                     options.json.payload.gidId = GetadditionData[0].additional_info || '',
-                                        options.json.payload.Rate = GetadditionData[0].fx_resv_text1 || ''
+                                        options.json.payload.Rate = GetadditionData[0].fx_resv_text1 || '',
+                                        options.json.payload.rateMode = JSON.parse(GetadditionData[0].response_json).common.rateMode||'',
+                                    options.json.payload.contra_amt = JSON.parse(GetadditionData[0].response_json).dealResponse[0].contraAmount||''
 
                                 }
                                 options.json.payload.contraAmount = params.CONTRA_AMOUNT || ''
@@ -919,7 +922,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     function GetaddInfo(arrprocesslog) {
                         return new Promise(async (resolve, reject) => {
-                            var tkaddinfo = `select additional_info,fx_resv_text1,fx_resv_text2 from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
+                            var tkaddinfo = `select  fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY ) as response_json,additional_info,fx_resv_text1,fx_resv_text2 from npss_trn_process_log where status = 'OP_RCT_REV_DEAL_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
                             ExecuteQuery1(tkaddinfo, function (arrdata) {
 
                                 resolve(arrdata)

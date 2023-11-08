@@ -11,6 +11,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By :Siva Harish
         Created Date :02-01-2023
@@ -25,6 +26,7 @@ app.post('/', function(appRequest, appResponse, next) {
                Modified for: to take last inserted record for channel ref no(reversalid) for 008 after authposting 26 09 2023 by Daseen
        Modified for: Handling for validation in private and Organisation on 17/10/2023 by Daseen
         Modified for: Handling for transaction id chnage in every posting call on 2/11/2023 by Daseen
+          Modified for: Handling for decrypt for response_data_json in every posting call on 8/11/2023 by Daseen
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -1259,11 +1261,11 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     function CheckTranAlrdyPosted(uetr) {
                         return new Promise((resolve, reject) => {
-                            var CheckTrnPosted = `select * from npss_trn_process_log where process_name = 'Manual Fund AUTH Posting' and status = 'OP_RCT_MAN_AUTH_POSTING_SUCCESS' and uetr = '${uetr}'`
+                            var CheckTrnPosted = `select fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY ) as res_data_json,* from npss_trn_process_log where process_name = 'Manual Fund AUTH Posting' and status = 'OP_RCT_MAN_AUTH_POSTING_SUCCESS' and uetr = '${uetr}'`
                             ExecuteQuery1(CheckTrnPosted, function (arrTrndetails) {
                                 if (arrTrndetails.length > 0) {
                                     let retriveDet = {}
-                                    retriveDet.request_data_json = JSON.parse(arrTrndetails[0].request_data_json)
+                                    retriveDet.request_data_json = JSON.parse(arrTrndetails[0].res_data_json)
                                     retriveDet.status = 'CallPacs008'
                                     resolve(retriveDet)
                                 } else {
@@ -1286,13 +1288,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                 if (arrelpaso.length > 0) {
                                     var checkT24posting
                                     if (ChkPrecdtCard.apitype == 1) {
-                                        checkT24posting = `select * from npss_trn_process_log where status = 'IP_RCT_REV_PC_T24_POSTING_SUCCESS' and uetr = '${arrprocesslog[0].uetr}'`
+                                        checkT24posting = `select fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY ) as response_json,* from npss_trn_process_log where status = 'IP_RCT_REV_PC_T24_POSTING_SUCCESS' and uetr = '${arrprocesslog[0].uetr}'`
                                     } else {
-                                        checkT24posting = `select * from npss_trn_process_log where status = 'IP_RCT_REV_CC_T24_POSTING_SUCCESS' and uetr = '${arrprocesslog[0].uetr}'`
+                                        checkT24posting = `select fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY ) as response_json,* from npss_trn_process_log where status = 'IP_RCT_REV_CC_T24_POSTING_SUCCESS' and uetr = '${arrprocesslog[0].uetr}'`
                                     }
                                     ExecuteQuery1(checkT24posting, function (arrT24post) {
                                         if (arrT24post.length > 0) {
-                                            RetrnParam.response_json = JSON.parse(checkT24posting[0].response_data_json)
+                                            RetrnParam.response_json = JSON.parse(checkT24posting[0].response_json)
                                             RetrnParam.apicalls = ChkPrecdtCard.apitype
                                             RetrnParam.Callapi = 'Call Pacs004 Api'
                                             resolve(RetrnParam)
@@ -2012,6 +2014,8 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
+
 
 
 

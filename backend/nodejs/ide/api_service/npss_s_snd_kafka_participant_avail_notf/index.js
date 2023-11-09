@@ -22,7 +22,7 @@ app.post('/', function(appRequest, appResponse, next) {
        Reason for : Changing  part x availability Query 20/03/2023
           Reason for : Changing  part x availability select Query  08/04/2023
             Reason for : Changing  api payload nullify totime,fromtime,fromdate,todate 8/5/2023
-            Reason for: Delete redis key on 09-11-2023 by daseen
+            Reason for: Delete redis key on 09-11-2023 by Daseen
         
        */
             var serviceName = 'NPSS (S) Send Kafka Participant X Availability Notification';

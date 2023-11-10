@@ -42,7 +42,7 @@ app.post('/', function(appRequest, appResponse, next) {
                 mTranConn = pSession; //  assign connection
                 try {
                     var take_pacs004_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL' and need_sync = 'Y' and product_code='${params.PROD_CODE}'`
-                    var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where  status = '${params.eligible_status}' and process_status = '${params.eligible_process_status}' `
+                    var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' `
                     var take_cdtr_iban = `select * from npss_transactions  where npsst_id = '${params.Tran_Id}'`;
                     //TAKE cdtr_iban
                     ExecuteQuery1(TakeStsPsts, async function (arrPsts) {

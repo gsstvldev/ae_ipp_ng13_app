@@ -321,10 +321,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         return new Promise((resolve, reject) => {
                                         
                                             redisSession.del('NPSS_DOWN_TIME');
-                                            redisSession.del('NDT_FROM_DATE');
-                                            redisSession.del('NDT_TO_DATE');
-                                            redisSession.del('NDT_FROM_TIME');
-                                            redisSession.del('NDT_TO_TIME');
+                                           
                                             
         
                                             resolve('SUCCESS');

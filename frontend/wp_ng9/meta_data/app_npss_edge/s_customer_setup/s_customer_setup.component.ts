@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28958 
+Build ID        : 33217 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-29 13:6 PM 
+Modified Date   : 2023-Nov-15 11:18 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_customer_setup
@@ -833,7 +833,7 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 
 	//Handler for ACTION_BUTTON_CLICK event of "process log ui back"
 	process_log_ui_back__action_button_click(){
-		this.process_log_ui_back__e_1671515425817()
+		this.process_log_ui_back__sp_fo_process_log_back_ui()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "single back ui back"
@@ -3051,14 +3051,14 @@ export class s_customer_setupComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "process log ui back"
-	process_log_ui_back__e_1671515425817() { 
+	process_log_ui_back__sp_fo_process_log_back_ui() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="process_log_ui_back"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1671515425817"
-		let event_params={"caller_name":"process_log_ui_back__e_1671515425817","event_desc":"E_1671515425817","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_back","raiseparam":{"profile_code":"BTL_1304_1670996775588"}}
+		let event_params={"caller_name":"process_log_ui_back__sp_fo_process_log_back_ui","event_desc":"SP fo Process log Back UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"process_log_ui_back","raiseparam":{"profile_code":"BTL_1304_1670996775588"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

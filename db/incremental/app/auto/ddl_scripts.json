@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_CUSTOMER_PROXY add column OPERATION_DATE CHARACTER VARYING(64), add column OPERATION_TYPE CHARACTER VARYING(3), add column OPTOUT CHARACTER VARYING(1);","params" : [] },{"query" : "alter table NPSS_CUSTOMER_ACCOUNTS add column ACCOUNT_ID CHARACTER VARYING(64);","params" : [] }]
+[]

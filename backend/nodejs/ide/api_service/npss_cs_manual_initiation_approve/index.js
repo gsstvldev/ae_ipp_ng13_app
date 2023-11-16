@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -27,6 +28,7 @@ app.post('/', function(appRequest, appResponse, next) {
        Modified for: Handling for validation in private and Organisation on 17/10/2023 by Daseen
         Modified for: Handling for transaction id chnage in every posting call on 2/11/2023 by Daseen
           Modified for: Handling for decrypt for response_data_json in every posting call on 8/11/2023 by Daseen
+          Reason for : Adding  dbtr_acct_no in inau and auth posting on 16/11/2023 by daseen
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -80,7 +82,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var GetsellRate
                             var take_return_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL' and need_sync = 'Y'`;
                             var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.RULE_CODE}'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                            var take_api_params = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.process_group,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,ns.force_post_flag,ns.channel_id,ns.channel_refno,ns.fx_resv_text3,ns.amount_credited_loc_cur,ns.buy_margin,ns.buy_rate,ns.department_code,ns.fx_resv_text2,ns.account_currency,ns.org_pay_endtoend_id, ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,fn_pcidss_decrypt(ns.message_data,$PCIDSS_KEY ) as message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
+                            var take_api_params = `select   ns.dbtr_acct_no,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.process_group,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,ns.force_post_flag,ns.channel_id,ns.channel_refno,ns.fx_resv_text3,ns.amount_credited_loc_cur,ns.buy_margin,ns.buy_rate,ns.department_code,ns.fx_resv_text2,ns.account_currency,ns.org_pay_endtoend_id, ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,fn_pcidss_decrypt(ns.message_data,$PCIDSS_KEY ) as message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
                             if (params.PROD_CODE == 'NPSS_AEFAB') {
                                 ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
                                     if (arrurlResult.length) {
@@ -369,11 +371,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "category_purpose": arrprocesslog[0].category_purpose || '',
                                         "category_purpose_prty": arrprocesslog[0].category_purpose_prty || '',
                                         "ext_purpose_code": arrprocesslog[0].ext_purpose_code || '',
-
+                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
                                         "lclinstrm": lclinstrm || '',
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                        
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -550,6 +553,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         "dbtr_country": reverandRefno.countryofbirth || 'XX',
                                                         "dbtr_other_issuer": arrprocesslog[0].dbtr_other_issuer || '',
                                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
                                                         "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
                                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
                                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
@@ -1603,6 +1607,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                                     "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1703,6 +1708,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                                     "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
+                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
                                                     "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
@@ -1799,6 +1805,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                                     "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1894,6 +1901,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                                     "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -2014,6 +2022,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

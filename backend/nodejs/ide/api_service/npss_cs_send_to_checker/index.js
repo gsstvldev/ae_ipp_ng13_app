@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -20,6 +21,7 @@ app.post('/', function(appRequest, appResponse, next) {
             Reason for Handling buy rate and buy cur here 3/7/2023
             Reason for Handling spl rate 14/7/2023
             Reason for Handling  rateMode,contra_amount for non aed iban flow 07/11/2023 by daseen
+            Reason for:Adding dbtr_acct_no in api payload on 16/11/2023
         */
         var serviceName = 'NPSS (CS) Send To Checker';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -396,6 +398,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1005,6 +1008,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1095,6 +1099,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1343,6 +1348,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

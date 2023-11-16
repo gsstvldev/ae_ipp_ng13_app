@@ -28,7 +28,7 @@ app.post('/', function(appRequest, appResponse, next) {
        Modified for: Handling for validation in private and Organisation on 17/10/2023 by Daseen
         Modified for: Handling for transaction id chnage in every posting call on 2/11/2023 by Daseen
           Modified for: Handling for decrypt for response_data_json in every posting call on 8/11/2023 by Daseen
-          Reason for : Adding  dbtr_acct_no in inau and auth posting on 16/11/2023 by daseen
+          Reason for : Adding  dbtr_acct_no in inau and auth posting on 16/11/2023 by  daseen
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 28958 
+Build ID        : 33273 
 Modified By     : Admin 
-Modified Date   : 2023-Mar-29 13:6 PM 
+Modified Date   : 2023-Nov-21 6:39 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_sm_api_failures
@@ -69,6 +69,7 @@ focustoelement(){
 		this.ctrl.memory17.currency_format = ""
 		this.ctrl.memory17.data_scale = ""
 		this.ctrl.memory17.binding_name = "MICREATED_DATE"
+		this.ctrl.memory17.hide_label = false
 		this.ctrl.memory17.depends_on = ""
 		this.ctrl.memory17.placeholder = ""
 		this.ctrl.memory17.dynamic_param = ""
@@ -107,6 +108,7 @@ focustoelement(){
 		this.ctrl.bankuserid.currency_format = ""
 		this.ctrl.bankuserid.data_scale = ""
 		this.ctrl.bankuserid.binding_name = "BANKUSERID"
+		this.ctrl.bankuserid.hide_label = false
 		this.ctrl.bankuserid.depends_on = ""
 		this.ctrl.bankuserid.placeholder = ""
 		this.ctrl.bankuserid.dynamic_param = ""
@@ -145,6 +147,7 @@ focustoelement(){
 		this.ctrl.process_name.currency_format = ""
 		this.ctrl.process_name.data_scale = ""
 		this.ctrl.process_name.binding_name = "PROCESS_NAME"
+		this.ctrl.process_name.hide_label = false
 		this.ctrl.process_name.depends_on = ""
 		this.ctrl.process_name.placeholder = ""
 		this.ctrl.process_name.dynamic_param = ""
@@ -183,6 +186,7 @@ focustoelement(){
 		this.ctrl.processing_system.currency_format = ""
 		this.ctrl.processing_system.data_scale = ""
 		this.ctrl.processing_system.binding_name = "PROCESSING_SYSTEM"
+		this.ctrl.processing_system.hide_label = false
 		this.ctrl.processing_system.depends_on = ""
 		this.ctrl.processing_system.placeholder = ""
 		this.ctrl.processing_system.dynamic_param = ""

@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_API_LOGS alter column API_NAME type CHARACTER VARYING(80000);","params" : [] }]
+[{"query" : "alter table NPSS_SM_TRN_PROCESS_LOG add column REJECT_REASON_CODE CHARACTER VARYING(16), add column REJECT_REASON CHARACTER VARYING(256);","params" : [] }]

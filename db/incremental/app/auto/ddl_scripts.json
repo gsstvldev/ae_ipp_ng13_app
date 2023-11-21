@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_API_LOGS alter column API_NAME type CHARACTER VARYING(80000);","params" : [] }]

@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_API_LOGS add column STATUS_CODE CHARACTER VARYING(256);","params" : [] }]

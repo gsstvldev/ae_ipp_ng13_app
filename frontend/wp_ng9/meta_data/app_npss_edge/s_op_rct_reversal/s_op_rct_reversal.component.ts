@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 33235 
+Build ID        : 33311 
 Modified By     : Admin 
-Modified Date   : 2023-Nov-16 12:39 PM 
+Modified Date   : 2023-Nov-23 11:3 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -33,7 +33,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_op_rct_reversal"
 	wftpa_id : string = "WFT_NPSS_P_1304_1671186714687_0"
 	cg_code : string = "CG_1304_1671185292510"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID","dtt_1304_1695130590062":"NPSSNPPL_ID","dtt_1304_1695214768145":"NAL_ID"}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID","dtt_1304_1695130590062":"NPSSNPPL_ID","dtt_1304_1695214768145":"NAL_ID","dtt_1304_1700459090330":"NPSSPN_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -819,6 +819,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_initiate__sp_for_initate()
 		this.navigation_ui_initiate__bt_for_initate()
 		this.navigation_ui_initiate__de_for_initate__initate_ui()
+		this.navigation_ui_initiate__e_1700737221672__initate_ui()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "initate ui forward to checker"
@@ -2554,6 +2555,27 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui initiate"
+	navigation_ui_initiate__e_1700737221672__initate_ui() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_initiate"
+		let destn_id="npss_op_reversal_ui_remarks"
+		let parent_source_id=""
+		let event_code="e_1700737221672"
+		let event_params={"destn_comp_id":"initate_ui","destn_ctrl_id":"remarks","caller_name":"navigation_ui_initiate__e_1700737221672__initate_ui","event_desc":"E_1700737221672","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_initiate","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

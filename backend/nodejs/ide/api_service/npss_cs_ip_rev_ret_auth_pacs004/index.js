@@ -192,7 +192,7 @@ app.post('/', function(appRequest, appResponse, next) {
                      let logQry = `select virtual_iban from npss_trn_process_log where process_name = 'Inward Account Validation' and processing_system='MWallet' and uetr='${uetr}'`
                      ExecuteQuery1(logQry, async function (arrlog) {
                          if (arrlog.length > 0) { 
-                             resolve(arrlog[0].virttual_iban)
+                             resolve(arrlog[0].virtual_iban)
                          }else{
                              resolve ('ERROR')
                          }

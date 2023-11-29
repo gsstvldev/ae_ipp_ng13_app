@@ -2367,6 +2367,66 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1674198360280$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$NPSSPNB_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1701251364899$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$NPSSPN_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1701251364899$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$NPSST_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1701251364899$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$UETR$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1701251364899$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESS_GROUP$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1701251364899$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$PROCESS_NAME$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1701251364899$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$LOG_CREATED_DATE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1701251364899$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$NOTIFICATION_STATUS$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1701251364899$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$NOTIFICATION_DATA$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1701251364899$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$SORT_ORDER$DQ$,
+        $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1701251364899$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$STATUS_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1701251364899$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$STATUS_DESCRIPTION$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1701251364899$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NPSSCA_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846862798$DQ$

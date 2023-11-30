@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_MERCHANT_PROXY add column OPERATION_DATE CHARACTER VARYING(64), add column OPERATION_TYPE CHARACTER VARYING(3);","params" : [] },{"query" : "alter table NPSS_MERCHANT_ACCOUNTS add column ACCOUNT_ID CHARACTER VARYING(64);","params" : [] },{"query" : "alter table NPSS_MERCHANT_SHOPS add column SHOP_ACCOUNT_ID CHARACTER VARYING(64);","params" : [] }]
+[]

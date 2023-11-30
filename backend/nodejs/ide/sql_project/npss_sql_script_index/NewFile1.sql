@@ -20,6 +20,10 @@ create index if not exists nt_processing_system on npss_transactions (processing
 @SPL@
 create index if not exists nt_process_type on npss_transactions (process_type);
 @SPL@
+create index if not exists nt_npsst_id on npss_transactions (npsst_id);
+@SPL@
+create index if not exists nt_process_group on npss_transactions (process_group);
+@SPL@
 create index if not exists ntpl_created_date on npss_trn_process_log (created_date);
 @SPL@
 create index if not exists ntpl_status on npss_trn_process_log (status);
@@ -97,4 +101,10 @@ create index if not exists ccbs_cbs_category_id on core_nc_cbscate_cbacctyp (cbs
 create index if not exists cbsa_va_flag on core_nc_cbs_accounts (va_flag);
 @SPL@
 create index if not exists cbsa_alternate_account_type on core_nc_cbs_accounts (alternate_account_type);
+@SPL@
+create index if not exists npn_status on npss_pact_notifications (status);
+@SPL@
+create index if not exists npn_process_status on npss_pact_notifications (process_status);
+@SPL@
+create index if not exists npn_npsst_id on npss_pact_notifications (npsst_id);
 @SPL@

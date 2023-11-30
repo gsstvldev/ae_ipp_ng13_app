@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 33273 
+Build ID        : 33480 
 Modified By     : Admin 
-Modified Date   : 2023-Nov-21 6:39 AM 
+Modified Date   : 2023-Nov-30 5:30 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_merchant_setup
@@ -186,6 +186,7 @@ focustoelement(){
 		this.ctrl.surname.currency_format = ""
 		this.ctrl.surname.data_scale = ""
 		this.ctrl.surname.binding_name = "SURNAME"
+		this.ctrl.surname.hide_label = false
 		this.ctrl.surname.depends_on = ""
 		this.ctrl.surname.placeholder = ""
 		this.ctrl.surname.dynamic_param = ""

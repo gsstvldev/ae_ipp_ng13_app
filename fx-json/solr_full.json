@@ -917,6 +917,16 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$OPERATION_DATE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$OPERATION_TYPE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666846129395$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NPSSPN_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1700459090330$DQ$
@@ -1842,6 +1852,11 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$SHOP_ACCOUNT_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847660575$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NPSST_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
@@ -2579,6 +2594,11 @@
       {
         $DQ$NAME$DQ$: $DQ$NPSSMP_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847369565$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$ACCOUNT_ID$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1666847369565$DQ$
       },
       {

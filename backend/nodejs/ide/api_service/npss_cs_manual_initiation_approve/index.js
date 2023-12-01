@@ -29,6 +29,7 @@ app.post('/', function(appRequest, appResponse, next) {
         Modified for: Handling for transaction id chnage in every posting call on 2/11/2023 by Daseen
           Modified for: Handling for decrypt for response_data_json in every posting call on 8/11/2023 by Daseen
           Reason for : Adding  dbtr_acct_no in inau and auth posting on 16/11/2023 by  daseen
+          Reason for : Removing  dbtr_acct_no,dbtr_iban in prepaid and posting on 1/12/2023 by  daseen
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -371,7 +372,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "category_purpose": arrprocesslog[0].category_purpose || '',
                                         "category_purpose_prty": arrprocesslog[0].category_purpose_prty || '',
                                         "ext_purpose_code": arrprocesslog[0].ext_purpose_code || '',
-                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                        "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
                                         "lclinstrm": lclinstrm || '',
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
@@ -553,7 +554,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         "dbtr_country": reverandRefno.countryofbirth || 'XX',
                                                         "dbtr_other_issuer": arrprocesslog[0].dbtr_other_issuer || '',
                                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                                       // "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
                                                         "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
                                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
                                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
@@ -788,7 +789,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
                     function GetsplRate(arrprocesslog, reverandRefno) {
-                        4
+                        
                         return new Promise((resolve, reject) => {
                             if (reverandRefno.currency == '' || reverandRefno.currency == null) {
                                 resolve('Take GMrate')
@@ -1606,8 +1607,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "lclinstrm": lclinstrm || '',
                                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
-                                                    "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                                   
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1708,7 +1708,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                                     "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
-                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
                                                     "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
@@ -1804,8 +1804,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "lclinstrm": lclinstrm || '',
                                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
-                                                    "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                                   
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1901,7 +1900,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                                     "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',

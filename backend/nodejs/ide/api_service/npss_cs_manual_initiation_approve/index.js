@@ -1204,7 +1204,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         resolve(AcctInformations)
                                                     } else {
                                                         objresponse.status = 'FAILURE'
-                                                        objresponse.errdata = 'No data Found in cbs accounts table for prepaid Card   ' + chkCreditPassedTrn[0].customerid
+                                                        objresponse.errdata = 'No data Found in cbs accounts table for credit  Card   ' + chkCreditPassedTrn[0].customerid
                                                         sendResponse(null, objresponse)
                                                     }
                                                 })

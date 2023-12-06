@@ -88,23 +88,27 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                              }
                                                                              else {
                                                                                  objresponse.status = "STATUS PROCESS STATUS UPDATE FAILURE"
+                                                                                 objresponse.errdata = "Update Failure in Transaction"
                                                                                  sendResponse(null, objresponse)
                                                                              }
                                                                          })
                                                                      }
                                                                      else {
                                                                          objresponse.status = " Pac004 API FAILURE"
+                                                                         objresponse.errdata = "Pac004 API FAILURE"
                                                                          sendResponse(null, objresponse)
                                                                      }
                                                                  }
                                                                  else {
                                                                      objresponse.status = "TCS CORE API CALL FAILURE"
+                                                                     objresponse.errdata = "TCS CORE API CALL FAILURE"
                                                                      sendResponse(null, objresponse)
                                                                  }
 
                                                              }
                                                              else {
                                                                  objresponse.status = "TAKE TCSCOREAPI URL NOT FOUND"
+                                                                 objresponse.errdata = "TAKE TCSCOREAPI URL NOT FOUND"
                                                                  sendResponse(null, objresponse)
                                                              }
                                                          })
@@ -132,18 +136,21 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                              }
                                                                              else {
                                                                                  objresponse.status = "STATUS PROCESS STATUS UPDATE FAILURE"
+                                                                                 objresponse.errdata = "STATUS PROCESS STATUS UPDATE FAILURE"
                                                                                  sendResponse(null, objresponse)
                                                                              }
                                                                          })
                                                                      }
                                                                      else {
                                                                          objresponse.status = " Pac004 API FAILURE"
+                                                                         objresponse.errdata = " Pac004 API FAILURE"
                                                                          sendResponse(null, objresponse)
                                                                      }
                                                                  }
                                                              }
                                                              else {
                                                                  objresponse.status = "MWALLET CORE API CALL FAILURE"
+                                                                 objresponse.errdata = "MWALLET CORE API CALL FAILURE"
                                                                  sendResponse(null, objresponse)
                                                              }
                                                          })
@@ -151,31 +158,35 @@ app.post('/', function(appRequest, appResponse, next) {
                                                      }
                                                      else {
                                                          objresponse.status = " Process System Not Find In table"
+                                                         objresponse.errdata = " Process System Not Find In table"
                                                          sendResponse(null, objresponse)
                                                      }
                                                  })
                                              }
                                              else {
                                                  objresponse.status = "NO cbuae_return_code  FOUND"
+                                                 objresponse.errdata = "NO cbuae_return_code  FOUND"
                                                  sendResponse(null, objresponse)
                                              }
                                          })
                                      }
                                      else {
                                          objresponse.status = " No cdtr_iban In table"
+                                         objresponse.errdata = " No cdtr_iban In table"
                                          sendResponse(null, objresponse)
                                      }
                                  })
                              }
                              else {
                                  objresponse.status = "NO URL FOUND IN PAC004"
+                                 objresponse.errdata = "NO URL FOUND IN PAC004"
                                  sendResponse(null, objresponse)
                              }
 
                          })
                      }
                      else {
-
+                        objresponse.status = "eligible Status & p.status not available  "
                          objresponse.errdata = "eligible Status & p.status not available  "
                          sendResponse(null, objresponse)
                      }

@@ -167,6 +167,8 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                       let isrectibi= fromIban.substring(0,3)
                                       if(isrectibi=='564' || isrectibi==564){
                                         resolve('Ratibi')
+                                      } else{
+                                        resolve('IBAN')
                                       }
                                     }
                                     else {

@@ -223,10 +223,10 @@ try {
                             } else {
                                 let res=''
                                 try {
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------004 API Response JSON-------' + JSON.parse(responseBodyFromImagingService), objSessionLogInfo);
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------004 API Response JSON try-------' + JSON.parse(responseBodyFromImagingService), objSessionLogInfo);
                                     res= JSON.parse(responseBodyFromImagingService)
                                 } catch (error) {
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------004 API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------004 API Response JSON cat-------' + responseBodyFromImagingService, objSessionLogInfo);
                                     res= responseBodyFromImagingService
                                 }
 

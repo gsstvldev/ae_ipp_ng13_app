@@ -59,7 +59,7 @@ app.post('/', function(appRequest, appResponse, next) {
                    // var takeTrn = `select l.npsstpl_id,l.additional_info,l.status,l.uetr,nt.cdtr_iban,fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification,nt.intrbk_sttlm_amnt,nt.dbtr_iban ,ac.customer_email_id from npss_trn_process_log l left join npss_transactions nt on l.uetr=nt.uetr left join core_nc_cbs_accounts ac on ac.alternate_account_id in(nt.cdtr_iban,cr_acct_identification)where l.status ='${params.status}'and coalesce(l.additional_info,'') <>'Mail_Triggered'`
                    var takeTrn = `select l.npsstpl_id,l.additional_info,l.status,l.uetr,nt.cdtr_iban,fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification,nt.intrbk_sttlm_amnt,nt.dbtr_iban ,ac.customer_email_id from npss_trn_process_log l left join npss_transactions nt on l.uetr=nt.uetr left join core_nc_cbs_accounts ac on ac.alternate_account_id in(nt.cdtr_iban,cr_acct_identification)where l.status ='${params.status}'and nt.process_type = 'IP' and coalesce(l.additional_info,'') <>'Mail_Triggered'`
                    var takeAllData = `select fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification, nt.created_Date as tran_created_date,nt.modified_date as tran_modified_date,nt.status
-                 as tran_status,nt.issuer_type_code as tran_issuer_type_code,nt.* ,ac.created_Date as acct_created_date,ac.modified_date as acct_modified_date,ac.status
+                 as tran_status,nt.issuer_type_code as tran_issuer_type_code,nt.* ,ac.created_Date as acct_created_date,ac.modified_date as acct_modified_date,nt.status
                  as acct_status,ac.issuer_type_code as acct_issuer_type_code,ac.* from npss_trn_process_log l left join npss_transactions nt on l.uetr=nt.uetr left join core_nc_cbs_accounts ac on ac.alternate_account_id in(nt.cdtr_iban,cr_acct_identification) where l.status ='${params.status}'and nt.process_type = 'IP' and coalesce(l.additional_info,'') <>'Mail_Triggered'`
                    var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync='Y'`
 
@@ -71,7 +71,7 @@ app.post('/', function(appRequest, appResponse, next) {
                            objresponse.msg = 'No URL found';
                            sendResponse(null, objresponse)
                        } else {
-                           ExecuteQuery1(takeAllData, function (arrAllData) {
+                           //ExecuteQuery1(takeAllData, function (arrAllData) {
                                //   for(var i=0;i<=arrCount.length;arrCount++){
                               /* if (arrAllData.length == 0) {
                                    objresponse.status = 'FAILURE';
@@ -88,9 +88,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                            ExecuteQuery1(Takecmcc, function (arrcomcc) {
                                                var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'COM_CATEGORY' and need_sync='Y'`
                                                ExecuteQuery1(TakecomCat, function (arrCatgory) {
-                                                   ExecuteQuery1(takeTrn, function (arrTrn) {
-                                                       if (arrTrn.length > 0) {
-                                                           reqAsync.forEachOfSeries(arrTrn, function (arrTrnobj, i, nextobjctfunc) {
+                                                   ExecuteQuery1(takeAllData, function (arrAllData) {
+                                                       if (arrAllData.length > 0) {
+                                                           reqAsync.forEachOfSeries(arrAllData, function (arrTrnobj, i, nextobjctfunc) {
 
                                                                if (arrTrnobj.cdtr_iban.substring(0, 3) != 'AED') {
                                                                    try {
@@ -104,98 +104,98 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                            DBTRIBAN: 'XXXX' + (arrTrnobj.dbtr_iban).substring(arrTrnobj.dbtr_iban.length - 4),
                                                                            AMOUNT: arrTrnobj.intrbk_sttlm_amnt,
                                                                            CURRENTDATETIME: moment().tz("Asia/Dubai").format('DD/MM/YYYY HH:MM'),
-                                                                           TRAN_NPSSTID: arrAllData[0].npsst_id?arrAllData[0].npsst_id:"",
-                                                                           TRAN_PRODUCTCODE: arrAllData[0].product_code?arrAllData[0].product_code:"",
-                                                                           TRAN_VALUEDATE: arrAllData[0].value_date?arrAllData[0].value_date:""
+                                                                           TRAN_NPSSTID: arrAllData[i].npsst_id?arrAllData[i].npsst_id:"",
+                                                                           TRAN_PRODUCTCODE: arrAllData[i].product_code?arrAllData[i].product_code:"",
+                                                                           TRAN_VALUEDATE: arrAllData[i].value_date?arrAllData[i].value_date:""
                                                                            ,
-                                                                           TRAN_DBTRACCTNO: arrAllData[0].dbtr_acct_no?arrAllData[0].dbtr_acct_no:""
+                                                                           TRAN_DBTRACCTNO: arrAllData[i].dbtr_acct_no?arrAllData[i].dbtr_acct_no:""
                                                                            ,
-                                                                           TRAN_DBTRACCTNAME: arrAllData[0].dbtr_acct_name?arrAllData[0].dbtr_acct_name:""
+                                                                           TRAN_DBTRACCTNAME: arrAllData[i].dbtr_acct_name?arrAllData[i].dbtr_acct_name:""
                                                                            ,
-                                                                           TRAN_DBTRPHONENO: arrAllData[0].dbtr_phone_no?arrAllData[0].dbtr_phone_no:""
+                                                                           TRAN_DBTRPHONENO: arrAllData[i].dbtr_phone_no?arrAllData[i].dbtr_phone_no:""
                                                                            ,
-                                                                           TRAN_DBTREMAILID: arrAllData[0].dbtr_email_id?arrAllData[0].dbtr_email_id:""
+                                                                           TRAN_DBTREMAILID: arrAllData[i].dbtr_email_id?arrAllData[i].dbtr_email_id:""
                                                                            ,
-                                                                           TRAN_DBTRDOCUMENTID: arrAllData[0].dbtr_document_id?arrAllData[0].dbtr_document_id:"",
+                                                                           TRAN_DBTRDOCUMENTID: arrAllData[i].dbtr_document_id?arrAllData[i].dbtr_document_id:"",
 
-                                                                           TRAN_DBTRIBAN: arrAllData[0].dbtr_iban?arrAllData[0].dbtr_iban:""
+                                                                           TRAN_DBTRIBAN: arrAllData[i].dbtr_iban?arrAllData[i].dbtr_iban:""
                                                                            ,
-                                                                           TRAN_BASECURRENCY: arrAllData[0].base_currency?arrAllData[0].base_currency:""
+                                                                           TRAN_BASECURRENCY: arrAllData[i].base_currency?arrAllData[i].base_currency:""
                                                                            ,
-                                                                           TRAN_BASEAMOUNT: arrAllData[0].base_amount?arrAllData[0].base_amount:""
+                                                                           TRAN_BASEAMOUNT: arrAllData[i].base_amount?arrAllData[i].base_amount:""
                                                                            ,
-                                                                           TRAN_CDTRACCTNO: arrAllData[0].cdtr_acct_no?arrAllData[0].cdtr_acct_no:""
+                                                                           TRAN_CDTRACCTNO: arrAllData[i].cdtr_acct_no?arrAllData[i].cdtr_acct_no:""
                                                                            ,
-                                                                           TRAN_CDTRACCTNAME: arrAllData[0].cdtr_acct_name?arrAllData[0].cdtr_acct_name:""
+                                                                           TRAN_CDTRACCTNAME: arrAllData[i].cdtr_acct_name?arrAllData[i].cdtr_acct_name:""
                                                                            ,
-                                                                           TRAN_CDTRPHONENO: arrAllData[0].cdtr_phone_no?arrAllData[0].cdtr_phone_no:""
+                                                                           TRAN_CDTRPHONENO: arrAllData[i].cdtr_phone_no?arrAllData[i].cdtr_phone_no:""
                                                                            ,
-                                                                           TRAN_CDTREMAILID: arrAllData[0].cdtr_email_id?arrAllData[0].cdtr_email_id:""
+                                                                           TRAN_CDTREMAILID: arrAllData[i].cdtr_email_id?arrAllData[i].cdtr_email_id:""
                                                                            ,
-                                                                           TRAN_CDTRDOCUMENTID: arrAllData[0].cdtr_document_id?arrAllData[0].cdtr_document_id:""
+                                                                           TRAN_CDTRDOCUMENTID: arrAllData[i].cdtr_document_id?arrAllData[i].cdtr_document_id:""
                                                                            ,
-                                                                           TRAN_CDTRIBAN: arrAllData[0].cdtr_iban?arrAllData[0].cdtr_iban:""
+                                                                           TRAN_CDTRIBAN: arrAllData[i].cdtr_iban?arrAllData[i].cdtr_iban:""
                                                                            ,
-                                                                           TRAN_DRSORTCODE: arrAllData[0].dr_sort_code?arrAllData[0].dr_sort_code:""
+                                                                           TRAN_DRSORTCODE: arrAllData[i].dr_sort_code?arrAllData[i].dr_sort_code:""
                                                                            ,
-                                                                           TRAN_CRSORTCODE: arrAllData[0].cr_sort_code?arrAllData[0].cr_sort_code:""
+                                                                           TRAN_CRSORTCODE: arrAllData[i].cr_sort_code?arrAllData[i].cr_sort_code:""
                                                                            ,
-                                                                           TRAN_INTRBKSTTLMCUR: arrAllData[0].intrbk_sttlm_cur?arrAllData[0].intrbk_sttlm_cur:""
+                                                                           TRAN_INTRBKSTTLMCUR: arrAllData[i].intrbk_sttlm_cur?arrAllData[i].intrbk_sttlm_cur:""
                                                                            ,
-                                                                           TRAN_INTRBKSTTLMAMNT: arrAllData[0].intrbk_sttlm_amnt?arrAllData[0].intrbk_sttlm_amnt:""
+                                                                           TRAN_INTRBKSTTLMAMNT: arrAllData[i].intrbk_sttlm_amnt?arrAllData[i].intrbk_sttlm_amnt:""
                                                                            ,
-                                                                           TRAN_RATECODE: arrAllData[0].rate_code?arrAllData[0].rate_code:""
+                                                                           TRAN_RATECODE: arrAllData[i].rate_code?arrAllData[i].rate_code:""
                                                                            ,
-                                                                           TRAN_EXCHANGERATE: arrAllData[0].exchange_rate?arrAllData[0].exchange_rate:""
+                                                                           TRAN_EXCHANGERATE: arrAllData[i].exchange_rate?arrAllData[i].exchange_rate:""
                                                                            ,
-                                                                           TRAN_CATEGORYPURPOSE: arrAllData[0].category_purpose?arrAllData[0].category_purpose:""
+                                                                           TRAN_CATEGORYPURPOSE: arrAllData[i].category_purpose?arrAllData[i].category_purpose:""
                                                                            ,
-                                                                           TRAN_HDRMSGID: arrAllData[0].hdr_msg_id?arrAllData[0].hdr_msg_id:""
+                                                                           TRAN_HDRMSGID: arrAllData[i].hdr_msg_id?arrAllData[i].hdr_msg_id:""
                                                                            ,
-                                                                           TRAN_HDRCREATEDDATE: arrAllData[0].hdr_created_date?arrAllData[0].hdr_created_date:""
+                                                                           TRAN_HDRCREATEDDATE: arrAllData[i].hdr_created_date?arrAllData[i].hdr_created_date:""
                                                                            ,
-                                                                           TRAN_HDRTOTALRECORDS: arrAllData[0].hdr_total_records?arrAllData[0].hdr_total_records:""
+                                                                           TRAN_HDRTOTALRECORDS: arrAllData[i].hdr_total_records?arrAllData[i].hdr_total_records:""
                                                                            ,
-                                                                           TRAN_HDRTOTALAMOUNT: arrAllData[0].hdr_total_amount?arrAllData[0].hdr_total_amount:""
+                                                                           TRAN_HDRTOTALAMOUNT: arrAllData[i].hdr_total_amount?arrAllData[i].hdr_total_amount:""
                                                                            ,
-                                                                           TRAN_HDRSETTLEMENTDATE: arrAllData[0].hdr_settlement_date?arrAllData[0].hdr_settlement_date:""
+                                                                           TRAN_HDRSETTLEMENTDATE: arrAllData[i].hdr_settlement_date?arrAllData[i].hdr_settlement_date:""
                                                                            ,
-                                                                           TRAN_HDRSETTLEMENTMETHOD: arrAllData[0].hdr_settlement_method?arrAllData[0].hdr_settlement_method:""
+                                                                           TRAN_HDRSETTLEMENTMETHOD: arrAllData[i].hdr_settlement_method?arrAllData[i].hdr_settlement_method:""
                                                                            ,
-                                                                           TRAN_HDRCLEARINGSYSTEM: arrAllData[0].hdr_clearing_system?arrAllData[0].hdr_clearing_system:""
+                                                                           TRAN_HDRCLEARINGSYSTEM: arrAllData[i].hdr_clearing_system?arrAllData[i].hdr_clearing_system:""
                                                                            ,
-                                                                           TRAN_PAYMENTENDTOENDID: arrAllData[0].payment_endtoend_id?arrAllData[0].payment_endtoend_id:""
+                                                                           TRAN_PAYMENTENDTOENDID: arrAllData[i].payment_endtoend_id?arrAllData[i].payment_endtoend_id:""
                                                                            ,
-                                                                           TRAN_INSTRUMENTTYPE: arrAllData[0].instrument_type?arrAllData[0].instrument_type:""
+                                                                           TRAN_INSTRUMENTTYPE: arrAllData[i].instrument_type?arrAllData[i].instrument_type:""
                                                                            ,
-                                                                           TRAN_CHARGEBEARER: arrAllData[0].charge_bearer?arrAllData[0].charge_bearer:""
+                                                                           TRAN_CHARGEBEARER: arrAllData[i].charge_bearer?arrAllData[i].charge_bearer:""
                                                                            ,
-                                                                           TRAN_UETR: arrAllData[0].uetr?arrAllData[0].uetr:""
+                                                                           TRAN_UETR: arrAllData[i].uetr?arrAllData[i].uetr:""
                                                                            ,
-                                                                           TRAN_MESSAGEDATA: arrAllData[0].message_data?arrAllData[0].message_data:""
+                                                                           TRAN_MESSAGEDATA: arrAllData[i].message_data?arrAllData[i].message_data:""
                                                                            ,
-                                                                           TRAN_EXHFID: arrAllData[0].exhf_id?arrAllData[0].exhf_id:""
+                                                                           TRAN_EXHFID: arrAllData[i].exhf_id?arrAllData[i].exhf_id:""
                                                                            ,
-                                                                           TRAN_PROCESSTYPE: arrAllData[0].process_type?arrAllData[0].process_type:""
+                                                                           TRAN_PROCESSTYPE: arrAllData[i].process_type?arrAllData[i].process_type:""
                                                                            ,
-                                                                           TRAN_DBTRCUSTTYPE: arrAllData[0].dbtr_cust_type?arrAllData[0].dbtr_cust_type:""
+                                                                           TRAN_DBTRCUSTTYPE: arrAllData[i].dbtr_cust_type?arrAllData[i].dbtr_cust_type:""
                                                                            ,
-                                                                           TRAN_CHANNELID: arrAllData[0].channel_id?arrAllData[0].channel_id:""
+                                                                           TRAN_CHANNELID: arrAllData[i].channel_id?arrAllData[i].channel_id:""
                                                                            ,
-                                                                           TRAN_CHANNELREFNO: arrAllData[0].channel_refno?arrAllData[0].channel_refno:""
+                                                                           TRAN_CHANNELREFNO: arrAllData[i].channel_refno?arrAllData[i].channel_refno:""
                                                                            ,
-                                                                           TRAN_CHANNELUSERID: arrAllData[0].channel_userid?arrAllData[0].channel_userid:""
+                                                                           TRAN_CHANNELUSERID: arrAllData[i].channel_userid?arrAllData[i].channel_userid:""
                                                                            ,
-                                                                           TRAN_CHANNELPRODUCT: arrAllData[0].channel_product?arrAllData[0].channel_product:""
+                                                                           TRAN_CHANNELPRODUCT: arrAllData[i].channel_product?arrAllData[i].channel_product:""
                                                                            ,
-                                                                           TRAN_CHANNELSUBPRODUCT: arrAllData[0].channel_sub_product?arrAllData[0].channel_sub_product:""
+                                                                           TRAN_CHANNELSUBPRODUCT: arrAllData[i].channel_sub_product?arrAllData[i].channel_sub_product:""
                                                                            ,
-                                                                           TRAN_CHANNELTRANCODE: arrAllData[0].channel_tran_code?arrAllData[0].channel_tran_code:""
+                                                                           TRAN_CHANNELTRANCODE: arrAllData[i].channel_tran_code?arrAllData[i].channel_tran_code:""
                                                                            ,
                                                                            /* TRAN_CREATEDBY:arrAllData[0]
                                                                            TRAN_CREATEDBYNAME:arrAllData[0] */
-                                                                           TRAN_CREATEDDATE: arrAllData[0].tran_created_date?arrAllData[0].tran_created_date:"",
-                                                                           /* TRAN_MODIFIEDBY:arrAllData[0]
+                                                                           TRAN_CREATEDDATE: arrAllData[i].tran_created_date?arrAllData[i].tran_created_date:"",
+                                                                           /* TRAN_MODIFIEDBY:arrAllData[i]
                                                                            TRAN_MODIFIEDBYNAME:arrAllData[0] 
                                                                            TRAN_MODIFIEDDATE: arrAllData[0].tran_modified_date,
                                                                            TRAN_SYSTEMID: arrAllData[0].system_id
@@ -205,8 +205,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                            /* TRAN_CREATEDBYSTSID:arrAllData[0]
                                                                            TRAN_MODIFIEDBYSTSID:arrAllData[0] */
-                                                                           TRAN_STATUS: arrAllData[0].tran_status?arrAllData[0].tran_status:"",
-                                                                           TRAN_PROCESSSTATUS: arrAllData[0].process_status?arrAllData[0].process_status:""
+                                                                           TRAN_STATUS: arrAllData[i].tran_status?arrAllData[i].tran_status:"",
+                                                                           TRAN_PROCESSSTATUS: arrAllData[i].process_status?arrAllData[i].process_status:""
                                                                            ,/* 
                                                                    TRAN_DTCODE:arrAllData[0]
                                                                    TRAN_DTDESCRIPTION:arrAllData[0]
@@ -222,167 +222,167 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                    TRAN_MODIFIEDBYSESSIONID:arrAllData[0]
                                                                    TRAN_CREATEDDATEUTC:arrAllData[0]
                                                                    TRAN_MODIFIEDDATEUTC:arrAllData[0] */
-                                                                           TRAN_TRANREFID: arrAllData[0].tran_ref_id?arrAllData[0].tran_ref_id:""
+                                                                           TRAN_TRANREFID: arrAllData[i].tran_ref_id?arrAllData[i].tran_ref_id:""
                                                                            ,
-                                                                           TRAN_INSTRUCTIONID: arrAllData[0].instruction_id?arrAllData[0].instruction_id:""
+                                                                           TRAN_INSTRUCTIONID: arrAllData[i].instruction_id?arrAllData[i].instruction_id:""
                                                                            ,
-                                                                           TRAN_CATEGORYPURPOSEPRTY: arrAllData[0].category_purpose_prty?arrAllData[0].category_purpose_prty:""
+                                                                           TRAN_CATEGORYPURPOSEPRTY: arrAllData[i].category_purpose_prty?arrAllData[i].category_purpose_prty:""
                                                                            ,
-                                                                           TRAN_EXTORGIDCODE: arrAllData[0].ext_org_id_code?arrAllData[0].ext_org_id_code:""
+                                                                           TRAN_EXTORGIDCODE: arrAllData[i].ext_org_id_code?arrAllData[i].ext_org_id_code:""
                                                                            ,
-                                                                           TRAN_ISSUERTYPECODE: arrAllData[0].tran_issuer_type_code?arrAllData[0].tran_issuer_type_code:"",
-                                                                           TRAN_DBTRBIRTHDATE: arrAllData[0].dbtr_birth_date?arrAllData[0].dbtr_birth_date:""
+                                                                           TRAN_ISSUERTYPECODE: arrAllData[i].tran_issuer_type_code?arrAllData[i].tran_issuer_type_code:"",
+                                                                           TRAN_DBTRBIRTHDATE: arrAllData[i].dbtr_birth_date?arrAllData[i].dbtr_birth_date:""
                                                                            ,
-                                                                           TRAN_DBTRCITYBIRTH: arrAllData[0].dbtr_city_birth?arrAllData[0].dbtr_city_birth:""
+                                                                           TRAN_DBTRCITYBIRTH: arrAllData[i].dbtr_city_birth?arrAllData[i].dbtr_city_birth:""
                                                                            ,
-                                                                           TRAN_DBTRCOUNTRY: arrAllData[0].dbtr_country?arrAllData[0].dbtr_country:""
+                                                                           TRAN_DBTRCOUNTRY: arrAllData[i].dbtr_country?arrAllData[i].dbtr_country:""
                                                                            ,
-                                                                           TRAN_CRACCTIDENTIFICATION: arrAllData[0].cr_acct_identification?arrAllData[0].cr_acct_identification:""
+                                                                           TRAN_CRACCTIDENTIFICATION: arrAllData[i].cr_acct_identification?arrAllData[i].cr_acct_identification:""
                                                                            ,
-                                                                           TRAN_CRACCTIDCODE: arrAllData[0].cr_acct_id_code?arrAllData[0].cr_acct_id_code:""
+                                                                           TRAN_CRACCTIDCODE: arrAllData[i].cr_acct_id_code?arrAllData[i].cr_acct_id_code:""
                                                                            ,
-                                                                           TRAN_REMITTANCEINFO: arrAllData[0].remittance_info?arrAllData[0].remittance_info:""
+                                                                           TRAN_REMITTANCEINFO: arrAllData[i].remittance_info?arrAllData[i].remittance_info:""
                                                                            ,
-                                                                           TRAN_INWARDFILENAME: arrAllData[0].inward_file_name?arrAllData[0].inward_file_name:""
+                                                                           TRAN_INWARDFILENAME: arrAllData[i].inward_file_name?arrAllData[i].inward_file_name:""
                                                                            ,
-                                                                           TRAN_CLRSYSREF: arrAllData[0].clrsysref?arrAllData[0].clrsysref:""
+                                                                           TRAN_CLRSYSREF: arrAllData[i].clrsysref?arrAllData[i].clrsysref:""
                                                                            ,
-                                                                           TRAN_DEPARTMENTCODE: arrAllData[0].department_code?arrAllData[0].department_code:""
+                                                                           TRAN_DEPARTMENTCODE: arrAllData[i].department_code?arrAllData[i].department_code:""
                                                                            ,
-                                                                           TRAN_CBSREFNO: arrAllData[0].cbs_ref_no?arrAllData[0].cbs_ref_no:""
+                                                                           TRAN_CBSREFNO: arrAllData[i].cbs_ref_no?arrAllData[i].cbs_ref_no:""
                                                                            ,
-                                                                           TRAN_DBTROTHERISSUER: arrAllData[0].dbtr_other_issuer?arrAllData[0].dbtr_other_issuer:""
+                                                                           TRAN_DBTROTHERISSUER: arrAllData[i].dbtr_other_issuer?arrAllData[i].dbtr_other_issuer:""
                                                                            ,
-                                                                           TRAN_ACCOUNTCURRENCY: arrAllData[0].account_currency?arrAllData[0].account_currency:""
+                                                                           TRAN_ACCOUNTCURRENCY: arrAllData[i].account_currency?arrAllData[i].account_currency:""
                                                                            ,
-                                                                           TRAN_CBSPOSTINGFLAG: arrAllData[0].cbs_posting_flag?arrAllData[0].cbs_posting_flag:""
+                                                                           TRAN_CBSPOSTINGFLAG: arrAllData[i].cbs_posting_flag?arrAllData[i].cbs_posting_flag:""
                                                                            ,
-                                                                           TRAN_PROCESSINGSYSTEM: arrAllData[0].processing_system?arrAllData[0].processing_system:""
+                                                                           TRAN_PROCESSINGSYSTEM: arrAllData[i].processing_system?arrAllData[i].processing_system:""
                                                                            ,
-                                                                           TRAN_REVERSALAMOUNT: arrAllData[0].reversal_amount?arrAllData[0].reversal_amount:""
+                                                                           TRAN_REVERSALAMOUNT: arrAllData[i].reversal_amount?arrAllData[i].reversal_amount:""
                                                                            ,
-                                                                           TRAN_CHARGEAMOUNT: arrAllData[0].charge_amount?arrAllData[0].charge_amount:""
+                                                                           TRAN_CHARGEAMOUNT: arrAllData[i].charge_amount?arrAllData[i].charge_amount:""
                                                                            ,
-                                                                           TRAN_PROCESSGROUP: arrAllData[0].process_group?arrAllData[0].process_group:"",
+                                                                           TRAN_PROCESSGROUP: arrAllData[i].process_group?arrAllData[i].process_group:"",
 
-                                                                           TRAN_CUSTSPLRATEFLAG: arrAllData[0].cust_splrate_flag?arrAllData[0].cust_splrate_flag:""
+                                                                           TRAN_CUSTSPLRATEFLAG: arrAllData[i].cust_splrate_flag?arrAllData[i].cust_splrate_flag:""
                                                                            ,
-                                                                           TRAN_CHECKER: arrAllData[0].checker?arrAllData[0].checker:""
+                                                                           TRAN_CHECKER: arrAllData[i].checker?arrAllData[i].checker:""
                                                                            ,
-                                                                           TRAN_MAKER: arrAllData[0].maker?arrAllData[0].maker:""
+                                                                           TRAN_MAKER: arrAllData[i].maker?arrAllData[i].maker:""
                                                                            ,
-                                                                           TRAN_SELLRATE: arrAllData[0].sell_rate?arrAllData[0].sell_rate:""
+                                                                           TRAN_SELLRATE: arrAllData[i].sell_rate?arrAllData[i].sell_rate:""
                                                                            ,
-                                                                           TRAN_SELLMARGIN: arrAllData[0].sell_margin?arrAllData[0].sell_margin:""
+                                                                           TRAN_SELLMARGIN: arrAllData[i].sell_margin?arrAllData[i].sell_margin:""
                                                                            ,
-                                                                           TRAN_ORGPAYENDTOENDID: arrAllData[0].org_pay_endtoend_id?arrAllData[0].org_pay_endtoend_id:""
+                                                                           TRAN_ORGPAYENDTOENDID: arrAllData[i].org_pay_endtoend_id?arrAllData[i].org_pay_endtoend_id:""
                                                                            ,
-                                                                           TRAN_BUYRATE: arrAllData[0].buy_rate?arrAllData[0].buy_rate:""
+                                                                           TRAN_BUYRATE: arrAllData[i].buy_rate?arrAllData[i].buy_rate:""
                                                                            ,
-                                                                           TRAN_AMOUNTCREDITEDLOCCUR: arrAllData[0].amount_credited_loc_cur?arrAllData[0].amount_credited_loc_cur:""
+                                                                           TRAN_AMOUNTCREDITEDLOCCUR: arrAllData[i].amount_credited_loc_cur?arrAllData[i].amount_credited_loc_cur:""
                                                                            ,
-                                                                           TRAN_BUYMARGIN: arrAllData[0].buy_margin?arrAllData[0].buy_margin:""
+                                                                           TRAN_BUYMARGIN: arrAllData[i].buy_margin?arrAllData[i].buy_margin:""
                                                                            ,
-                                                                           TRAN_TRANCHARGE: arrAllData[0].tran_charge?arrAllData[0].tran_charge:""
+                                                                           TRAN_TRANCHARGE: arrAllData[i].tran_charge?arrAllData[i].tran_charge:""
                                                                            ,
-                                                                           TRAN_PROCESSGROUP: arrAllData[0].process_group?arrAllData[0].process_group:""
+                                                                           TRAN_PROCESSGROUP: arrAllData[i].process_group?arrAllData[i].process_group:""
                                                                            ,
-                                                                           TRAN_CHARGEAMOUNT: arrAllData[0].charge_amount?arrAllData[0].charge_amount:"",
-                                                                           ACCT_ACCOUNTNUMBER: arrAllData[0].account_number?arrAllData[0].account_number:""
+                                                                           TRAN_CHARGEAMOUNT: arrAllData[i].charge_amount?arrAllData[i].charge_amount:"",
+                                                                           ACCT_ACCOUNTNUMBER: arrAllData[i].account_number?arrAllData[i].account_number:""
                                                                            ,
-                                                                           ACCT_ALTERNATEACCOUNTID: arrAllData[0].alternate_account_id?arrAllData[0].alternate_account_id:""
+                                                                           ACCT_ALTERNATEACCOUNTID: arrAllData[i].alternate_account_id?arrAllData[i].alternate_account_id:""
                                                                            ,
-                                                                           ACCT_ACCOUNTNAME: arrAllData[0].account_name?arrAllData[0].account_name:""
+                                                                           ACCT_ACCOUNTNAME: arrAllData[i].account_name?arrAllData[i].account_name:""
                                                                            ,
-                                                                           ACCT_POSTINGRESTRICTIONCODE: arrAllData[0].posting_restriction_code?arrAllData[0].posting_restriction_code:""
+                                                                           ACCT_POSTINGRESTRICTIONCODE: arrAllData[i].posting_restriction_code?arrAllData[i].posting_restriction_code:""
                                                                            ,
-                                                                           ACCT_INACTIVEMARKER: arrAllData[0].inactive_marker?arrAllData[0].inactive_marker:""
+                                                                           ACCT_INACTIVEMARKER: arrAllData[i].inactive_marker?arrAllData[i].inactive_marker:""
                                                                            ,
-                                                                           ACCT_CATEGORYCODE: arrAllData[0].category_code?arrAllData[0].category_code:""
+                                                                           ACCT_CATEGORYCODE: arrAllData[i].category_code?arrAllData[i].category_code:""
                                                                            ,
-                                                                           ACCT_CATEGORYDESCRIPTION: arrAllData[0].category_description?arrAllData[0].category_description:""
+                                                                           ACCT_CATEGORYDESCRIPTION: arrAllData[i].category_description?arrAllData[i].category_description:""
                                                                            ,
-                                                                           ACCT_CURRENCY: arrAllData[0].currency?arrAllData[0].currency:""
+                                                                           ACCT_CURRENCY: arrAllData[i].currency?arrAllData[i].currency:""
                                                                            ,
-                                                                           ACCT_CUSTOMERID: arrAllData[0].customer_id?arrAllData[0].customer_id:"",
-                                                                           ACCT_ACCOUNTTITLE2: arrAllData[0].account_title_2?arrAllData[0].account_title_2:""
+                                                                           ACCT_CUSTOMERID: arrAllData[i].customer_id?arrAllData[i].customer_id:"",
+                                                                           ACCT_ACCOUNTTITLE2: arrAllData[i].account_title_2?arrAllData[i].account_title_2:""
                                                                            ,
-                                                                           ACCT_COMPANYCODE: arrAllData[0].company_code?arrAllData[0].company_code:""
+                                                                           ACCT_COMPANYCODE: arrAllData[i].company_code?arrAllData[i].company_code:""
                                                                            ,
-                                                                           ACCT_EMIRATESCODE: arrAllData[0].emirates_code?arrAllData[0].emirates_code:""
+                                                                           ACCT_EMIRATESCODE: arrAllData[i].emirates_code?arrAllData[i].emirates_code:""
                                                                            ,
-                                                                           ACCT_COUNTRYOFBIRTH: arrAllData[0].countryofbirth?arrAllData[0].countryofbirth:"",
-                                                                           ACCT_LETTEROFUNDERTAKING: arrAllData[0].letter_of_undertaking?arrAllData[0].letter_of_undertaking:""
+                                                                           ACCT_COUNTRYOFBIRTH: arrAllData[i].countryofbirth?arrAllData[i].countryofbirth:"",
+                                                                           ACCT_LETTEROFUNDERTAKING: arrAllData[i].letter_of_undertaking?arrAllData[i].letter_of_undertaking:""
                                                                            ,
-                                                                           ACCT_CUSTOMERPOSTINGRESTRICTIONCODE: arrAllData[0].customer_posting_restriction_code?arrAllData[0].customer_posting_restriction_code:""
+                                                                           ACCT_CUSTOMERPOSTINGRESTRICTIONCODE: arrAllData[i].customer_posting_restriction_code?arrAllData[i].customer_posting_restriction_code:""
                                                                            ,
-                                                                           ACCT_TARGETCODE: arrAllData[0].target_code?arrAllData[0].target_code:"",
-                                                                           ACCT_SECTORCODE: arrAllData[0].sector_code?arrAllData[0].sector_code:""
+                                                                           ACCT_TARGETCODE: arrAllData[i].target_code?arrAllData[i].target_code:"",
+                                                                           ACCT_SECTORCODE: arrAllData[i].sector_code?arrAllData[i].sector_code:""
                                                                            ,
-                                                                           ACCT_RESIDENTFLAG: arrAllData[0].resident_flag?arrAllData[0].resident_flag:""
+                                                                           ACCT_RESIDENTFLAG: arrAllData[i].resident_flag?arrAllData[i].resident_flag:""
                                                                            ,
-                                                                           ACCT_NATIONALITYCOUNTRYCODE: arrAllData[0].nationality_country_code?arrAllData[0].nationality_country_code:""
+                                                                           ACCT_NATIONALITYCOUNTRYCODE: arrAllData[i].nationality_country_code?arrAllData[i].nationality_country_code:""
                                                                            ,
-                                                                           ACCT_LEGALID: arrAllData[0].legal_id?arrAllData[0].legal_id:""
+                                                                           ACCT_LEGALID: arrAllData[i].legal_id?arrAllData[i].legal_id:""
                                                                            ,
-                                                                           ACCT_NATIONALID: arrAllData[0].national_id?arrAllData[0].national_id:""
+                                                                           ACCT_NATIONALID: arrAllData[i].national_id?arrAllData[i].national_id:""
                                                                            ,
-                                                                           ACCT_INDUSTRY: arrAllData[0].industry?arrAllData[0].industry:""
+                                                                           ACCT_INDUSTRY: arrAllData[i].industry?arrAllData[i].industry:""
                                                                            ,
-                                                                           ACCT_COMMUNICATIONTYPE: arrAllData[0].communication_type?arrAllData[0].communication_type:""
+                                                                           ACCT_COMMUNICATIONTYPE: arrAllData[i].communication_type?arrAllData[i].communication_type:""
                                                                            ,
-                                                                           ACCT_CUSTOMERMOBILENUMBER: arrAllData[0].customer_mobile_number?arrAllData[0].customer_mobile_number:""
+                                                                           ACCT_CUSTOMERMOBILENUMBER: arrAllData[i].customer_mobile_number?arrAllData[i].customer_mobile_number:""
                                                                            ,
-                                                                           ACCT_ACCOUNTOFFICER: arrAllData[0].account_officer?arrAllData[0].account_officer:""
+                                                                           ACCT_ACCOUNTOFFICER: arrAllData[i].account_officer?arrAllData[i].account_officer:""
                                                                            ,
-                                                                           ACCT_CURRRATESEGMENT: arrAllData[0].curr_rate_segment?arrAllData[0].curr_rate_segment:""
+                                                                           ACCT_CURRRATESEGMENT: arrAllData[i].curr_rate_segment?arrAllData[i].curr_rate_segment:""
                                                                            ,
-                                                                           ACCT_CUSTOMEREMAILID: arrAllData[0].customer_email_id?arrAllData[0].customer_email_id:""
+                                                                           ACCT_CUSTOMEREMAILID: arrAllData[i].customer_email_id?arrAllData[i].customer_email_id:""
                                                                            ,
-                                                                           ACCT_TRADELICENSEFLAG: arrAllData[0].trade_license_flag?arrAllData[0].trade_license_flag:""
+                                                                           ACCT_TRADELICENSEFLAG: arrAllData[i].trade_license_flag?arrAllData[i].trade_license_flag:""
                                                                            ,
-                                                                           ACCT_TRADELICENSENUMBER: arrAllData[0].trade_license_number?arrAllData[0].trade_license_number:""
+                                                                           ACCT_TRADELICENSENUMBER: arrAllData[i].trade_license_number?arrAllData[i].trade_license_number:""
                                                                            ,
-                                                                           ACCT_COMMERCIALREGISTRATIONFLAG: arrAllData[0].commercial_registration_flag?arrAllData[0].commercial_registration_flag:""
+                                                                           ACCT_COMMERCIALREGISTRATIONFLAG: arrAllData[i].commercial_registration_flag?arrAllData[i].commercial_registration_flag:""
                                                                            ,
-                                                                           ACCT_CHAMBERCERTIFICATENUMBER: arrAllData[0].chamber_certificate_number?arrAllData[0].chamber_certificate_number:""
+                                                                           ACCT_CHAMBERCERTIFICATENUMBER: arrAllData[i].chamber_certificate_number?arrAllData[i].chamber_certificate_number:""
                                                                            ,
-                                                                           ACCT_AMIRIDECREEFLAG: arrAllData[0].amiri_decree_flag?arrAllData[0].amiri_decree_flag:""
+                                                                           ACCT_AMIRIDECREEFLAG: arrAllData[i].amiri_decree_flag?arrAllData[i].amiri_decree_flag:""
                                                                            ,
-                                                                           ACCT_ALTERNATEACCOUNTTYPE: arrAllData[0].alternate_account_type?arrAllData[0].alternate_account_type:""
+                                                                           ACCT_ALTERNATEACCOUNTTYPE: arrAllData[i].alternate_account_type?arrAllData[i].alternate_account_type:""
                                                                            ,
-                                                                           ACCT_ACCOUNTPOSTRINGTYPEDESCRIPTION: arrAllData[0].account_postring_type_description?arrAllData[0].account_postring_type_description:""
+                                                                           ACCT_ACCOUNTPOSTRINGTYPEDESCRIPTION: arrAllData[i].account_postring_type_description?arrAllData[i].account_postring_type_description:""
                                                                            ,
-                                                                           ACCT_ACCOUNTPOSTINGRESTRICTTYPE: arrAllData[0].account_posting_restrict_type?arrAllData[0].account_posting_restrict_type:""
+                                                                           ACCT_ACCOUNTPOSTINGRESTRICTTYPE: arrAllData[i].account_posting_restrict_type?arrAllData[i].account_posting_restrict_type:""
                                                                            ,
-                                                                           ACCT_CUSTOMERPOSTINGRESTRICTIONDESCRIPTION: arrAllData[0].customer_posting_restriction_description?arrAllData[0].customer_posting_restriction_description:""
+                                                                           ACCT_CUSTOMERPOSTINGRESTRICTIONDESCRIPTION: arrAllData[i].customer_posting_restriction_description?arrAllData[i].customer_posting_restriction_description:""
                                                                            ,
-                                                                           ACCT_CUSTOMERPOSTINGRESTRICTTYPE: arrAllData[0].customer_posting_restrict_type?arrAllData[0].customer_posting_restrict_type:""
+                                                                           ACCT_CUSTOMERPOSTINGRESTRICTTYPE: arrAllData[i].customer_posting_restrict_type?arrAllData[i].customer_posting_restrict_type:""
                                                                            ,
-                                                                           ACCT_VIRTUALACCOUNTNAME: arrAllData[0].virtual_account_name?arrAllData[0].virtual_account_name:""
+                                                                           ACCT_VIRTUALACCOUNTNAME: arrAllData[i].virtual_account_name?arrAllData[i].virtual_account_name:""
                                                                            ,
-                                                                           ACCT_VACURRENCY: arrAllData[0].va_currency?arrAllData[0].va_currency:""
+                                                                           ACCT_VACURRENCY: arrAllData[i].va_currency?arrAllData[i].va_currency:""
                                                                            ,
-                                                                           ACCT_VATYPE: arrAllData[0].va_type?arrAllData[0].va_type:""
+                                                                           ACCT_VATYPE: arrAllData[i].va_type?arrAllData[i].va_type:""
                                                                            ,
-                                                                           ACCT_VASTATUS: arrAllData[0].va_status?arrAllData[0].va_status:""
+                                                                           ACCT_VASTATUS: arrAllData[i].va_status?arrAllData[i].va_status:""
                                                                            ,
-                                                                           ACCT_BIRTHDATE: arrAllData[0].birthdate?arrAllData[0].birthdate:""
+                                                                           ACCT_BIRTHDATE: arrAllData[i].birthdate?arrAllData[i].birthdate:""
                                                                            ,
-                                                                           ACCT_PRODUCTIDENTIFIER: arrAllData[0].productidentifier?arrAllData[0].productidentifier:""
+                                                                           ACCT_PRODUCTIDENTIFIER: arrAllData[i].productidentifier?arrAllData[i].productidentifier:""
                                                                            ,
-                                                                           ACCT_ISSUERTYPECODE: arrAllData[0].acct_issuer_type_code?arrAllData[0].acct_issuer_type_code:"",
-                                                                           ACCT_ECONOMICACTIVITYCODE: arrAllData[0].economic_activity_code?arrAllData[0].economic_activity_code:""
+                                                                           ACCT_ISSUERTYPECODE: arrAllData[i].acct_issuer_type_code?arrAllData[i].acct_issuer_type_code:"",
+                                                                           ACCT_ECONOMICACTIVITYCODE: arrAllData[i].economic_activity_code?arrAllData[i].economic_activity_code:""
                                                                            ,
-                                                                           ACCT_CITYOFBIRTH: arrAllData[0].cityofbirth?arrAllData[0].cityofbirth:""
+                                                                           ACCT_CITYOFBIRTH: arrAllData[i].cityofbirth?arrAllData[i].cityofbirth:""
                                                                            ,
-                                                                           ACCT_ACCOUNTCLOSED: arrAllData[0].account_closed?arrAllData[0].account_closed:""
+                                                                           ACCT_ACCOUNTCLOSED: arrAllData[i].account_closed?arrAllData[i].account_closed:""
                                                                            ,
-                                                                           ACCT_CNCCAID: arrAllData[0].cncca_id?arrAllData[0].cncca_id:""
+                                                                           ACCT_CNCCAID: arrAllData[i].cncca_id?arrAllData[i].cncca_id:""
                                                                            ,
-                                                                           ACCT_CREATEDDATE: arrAllData[0].acct_created_date?arrAllData[0].acct_created_date:"",
-                                                                           ACCT_MODIFIEDDATE: arrAllData[0].acct_modified_date?arrAllData[0].acct_modified_date:"",
-                                                                           ACCT_VAFLAG: arrAllData[0].va_flag?arrAllData[0].va_flag:""
+                                                                           ACCT_CREATEDDATE: arrAllData[i].acct_created_date?arrAllData[i].acct_created_date:"",
+                                                                           ACCT_MODIFIEDDATE: arrAllData[i].acct_modified_date?arrAllData[i].acct_modified_date:"",
+                                                                           ACCT_VAFLAG: arrAllData[i].va_flag?arrAllData[i].va_flag:""
                                                                            ,
 
 
@@ -514,7 +514,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                           })
+                           //})
 
 
 

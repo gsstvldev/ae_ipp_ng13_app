@@ -7,7 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-
+   
 
     /*  Created By : Daseen
     Created Date :15/02/2023
@@ -59,7 +59,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     // var takeTrn = `select l.npsstpl_id,l.additional_info,l.status,l.uetr,nt.cdtr_iban,fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification,nt.intrbk_sttlm_amnt,nt.dbtr_iban ,ac.customer_email_id from npss_trn_process_log l left join npss_transactions nt on l.uetr=nt.uetr left join core_nc_cbs_accounts ac on ac.alternate_account_id in(nt.cdtr_iban,cr_acct_identification)where l.status ='${params.status}'and coalesce(l.additional_info,'') <>'Mail_Triggered'`
                     var takeTrn = `select l.npsstpl_id,l.additional_info,l.status,l.uetr,nt.cdtr_iban,fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification,nt.intrbk_sttlm_amnt,nt.dbtr_iban ,ac.customer_email_id from npss_trn_process_log l left join npss_transactions nt on l.uetr=nt.uetr left join core_nc_cbs_accounts ac on ac.alternate_account_id in(nt.cdtr_iban,cr_acct_identification)where l.status ='${params.status}'and nt.process_type = 'IP' and coalesce(l.additional_info,'') <>'Mail_Triggered'`
                     var takeAllData = `select fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification, nt.created_Date as tran_created_date,nt.modified_date as tran_modified_date,nt.status
-                  as tran_status,nt.issuer_type_code as tran_issuer_type_code,nt.* ,nt.created_Date as acct_created_date,nt.modified_date as acct_modified_date,nt.status
+                  as tran_status,nt.issuer_type_code as tran_issuer_type_code,nt.* ,ac.created_Date as acct_created_date,ac.modified_date as acct_modified_date,ac.status
                   as acct_status,ac.issuer_type_code as acct_issuer_type_code,ac.* from npss_trn_process_log l left join npss_transactions nt on l.uetr=nt.uetr left join core_nc_cbs_accounts ac on ac.alternate_account_id in(nt.cdtr_iban,cr_acct_identification) where l.status ='${params.status}'and nt.process_type = 'IP' and coalesce(l.additional_info,'') <>'Mail_Triggered'`
                     var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync='Y'`
 

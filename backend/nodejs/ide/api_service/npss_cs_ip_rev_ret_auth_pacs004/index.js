@@ -85,7 +85,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                                                         let pac004Res = await callingpacs004(arriban, pacs004apiURL, postreasoncode)
                                                                         if (pac004Res == 'SUCCESS') {
                                                                             FinalStschange = `Update npss_transactions set maker = '${params.CREATED_BY_NAME}',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}' `
-                                                                            ExecuteQuery1(FinalStschange, async function (FinalUptstatus) {
+                                                                            ExecuteQuery(FinalStschange, async function (FinalUptstatus) {
                                                                                 if (FinalUptstatus == 'SUCCESS') {
                                                                                     objresponse.status = "SUCCESS"
                                                                                     objresponse.data = "SUCCESS"

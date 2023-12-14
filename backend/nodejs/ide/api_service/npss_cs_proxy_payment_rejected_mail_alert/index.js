@@ -11,6 +11,9 @@ app.post('/', function(appRequest, appResponse, next) {
     Created Date :22/02/2023
     Modified By : Siva Harish
     Modified Date : 17/05/2023
+    Modified By : Subramanian
+    Modified Date : 14/12/2023
+    Reason:For Adding all the columns from npss_tran and core_nc_cbs_accts table to mail by using left join
    }
     */
    var serviceName = 'NPSS (CS) Proxy Payment Rejected Mail Alert';

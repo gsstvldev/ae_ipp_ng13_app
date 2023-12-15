@@ -12,8 +12,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
     /*  Created By :  Daseen
     Created Date :12/12/2023
-    Modified By : 
-    Modified Date : 
+    Modified By : Subramanian
+    Modified Date : 15/12/12023
     }
     */
     var serviceName = 'NPSS EOS Inward Credit Posting Payment Success';
@@ -56,7 +56,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     try {
 
-                        var takeTrn = `select npsst_id,cdtr_acct_name,cdtr_iban,value_date,intrbk_sttlm_amnt,dr_sort_code,department_code,nt.fx_resv_text2 from npss_transactions nt  inner join  npss_trn_process_log l on l.uetr =nt.uetr and  ((l.process_name= 'Inward Credit Posting' and l.status= 'IP_RCT_POSTING_SUCCESS')  or (l.process_name= 'Prepaid Card Posting' and l.status = 'IP_RCT_PC_POSTING_SUCCESS')    or (l.process_name ='Credit Card Posting' and l.status ='IP_RCT_CC_POSTING_SUCCESS')) where nt.category_purpose_prty='EOS' and (nt.fx_resv_text2 <>'PSMailInitiated'  or nt.fx_resv_text2 isnull)`
+                        var takeTrn = `select npsst_id,fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification,cdtr_acct_name,cdtr_iban,value_date,intrbk_sttlm_amnt,dr_sort_code,department_code,nt.fx_resv_text2 from npss_transactions nt  inner join  npss_trn_process_log l on l.uetr =nt.uetr and  ((l.process_name= 'Inward Credit Posting' and l.status= 'IP_RCT_POSTING_SUCCESS')  or (l.process_name= 'Prepaid Card Posting' and l.status = 'IP_RCT_PC_POSTING_SUCCESS')    or (l.process_name ='Credit Card Posting' and l.status ='IP_RCT_CC_POSTING_SUCCESS')) where nt.category_purpose_prty='EOS' and (nt.fx_resv_text2 <>'PSMailInitiated'  or nt.fx_resv_text2 isnull)`
                         var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync='Y'`
 
                         var arrTran = await ExecuteQuery1(takeTrn)
@@ -85,7 +85,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 BCC: '',
                                                 ORIGIN: arrorg.length > 0 ? arrorg[0].param_value : '',
                                                 COMM_GROUP: arrcomgp.length > 0 ? arrcomgp[0].param_value : '',
-                                                BENEFICIARYACCOUNT: 'XXXX' + (arrTrnobj.cdtr_iban).substring(arrTrnobj.cdtr_iban.length - 4),
+                                                BENEFICIARYACCOUNT: (arrTrnobj.cdtr_iban)?(arrTrnobj.cdtr_iban).replace(arrTrnobj.cdtr_iban.substring(5,11),'******') : arrTrnobj.cr_acct_identification.replace(arrTrnobj.cr_acct_identification.substring(5,11),'******'),
                                                 AMOUNT: arrTrnobj.intrbk_sttlm_amnt || '',
                                                 BENEFICIARYACCOUNTNAME: arrTrnobj.cdtr_acct_name || '',
                                                 VALUEDATE: arrTrnobj.value_date || '',

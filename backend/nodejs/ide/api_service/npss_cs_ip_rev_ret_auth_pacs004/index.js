@@ -125,7 +125,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                                             var take_mwalletapi_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_TCS_MWALLET' and param_code='URL' and need_sync = 'Y' and product_code='${params.PROD_CODE}'`
                                                             ExecuteQuery1(take_mwalletapi_url, async function (mwalletcoreapi) {
                                                                 if (mwalletcoreapi.length > 0) {
-                                                                    let processname = 'TCB'
+                                                                    let processname = 'TCS'
                                                                     apiURL = mwalletcoreapi[0].param_detail;
                                                                     let MwalletCoreres = await callingapi(arriban, processname, apiURL, '')
                                                                     if (MwalletCoreres == 'SUCCESS') {

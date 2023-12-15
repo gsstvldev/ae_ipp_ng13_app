@@ -12,7 +12,7 @@ import { SCOPE, SESSION } from '../../scripts/fx/session.enum';
 import { SessionService } from '../../scripts/fx/session.service'; // get Session information
 import { DialogService } from '../../scripts/fx/dialog.service'; // Dialog box appear
 import { CoreService } from '../../scripts/fx/core.service';
-                        
+
 @Injectable()
 export class npss_c_reversal_amnt_ui_validateService {
     constructor(private httpHelper: HttphelperService,
@@ -21,8 +21,8 @@ export class npss_c_reversal_amnt_ui_validateService {
         private coreHelper: CoreService,
         public dialogHelper: DialogService) { }
     //Default calling function
-    fn_npss_c_reversal_amnt_ui_validate(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
-       
+    fn_npss_c_reversal_amnt_ui_validate(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
+
     }
     fn_customValidation(projName, screenInstance, message, callback) {
         let cvResult: any = {};
@@ -30,12 +30,18 @@ export class npss_c_reversal_amnt_ui_validateService {
         console.log(`-----------------------------orig${original_amnt}`)
         let reversal_amnt = screenInstance["initate_ui"].f_npss_op_reversal_ui.model.REVERSAL_AMOUNT;
         console.log(`-----------------------------reversal${reversal_amnt}`)
-        if(Number(original_amnt)>=Number(reversal_amnt)){
-
-            cvResult.MESSAGE_KEY = "RA_PS";
-            cvResult.STATUS = "SUCCESS"
-            return callback(message, cvResult);
-        }else{
+        let reversal_code = screenInstance["initate_ui"].f_npss_op_reversal_ui.model.memory87;
+        if (Number(original_amnt) >= Number(reversal_amnt)) {
+            if (reversal_code) {
+                cvResult.MESSAGE_KEY = "RA_PS";
+                cvResult.STATUS = "SUCCESS"
+                return callback(message, cvResult);
+            } else {
+                cvResult.MESSAGE_KEY = "RFV";
+                cvResult.STATUS = "FAILURE";
+                return callback(message, cvResult);
+            }
+        } else {
             cvResult.MESSAGE_KEY = "RA_P";
             cvResult.STATUS = "FAILURE";
             return callback(message, cvResult);
@@ -44,7 +50,7 @@ export class npss_c_reversal_amnt_ui_validateService {
     //Custom validation logics
     //Uncomment below lines when validation is required
     //fn_customValidation(projName,screenInstance,message,callback){
-       // return callback();
+    // return callback();
     //}
-//Service logics
+    //Service logics
 }

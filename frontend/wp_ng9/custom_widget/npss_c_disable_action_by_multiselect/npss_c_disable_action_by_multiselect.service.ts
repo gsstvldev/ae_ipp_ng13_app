@@ -23,7 +23,7 @@ export class npss_c_disable_action_by_multiselectService {
     fn_npss_c_disable_action_by_multiselect(source_id,destn_id,parent_source_id,event_code,event_params,screenInstance,internals,handler_code,event_data,data_source){
     let App_Id = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");
     let Product_Code = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "ROOT_SCODE");
-    if (Product_Code === "NPSS_AEFAB" || Product_Code === "NPSS_AEFIN") {
+    if (Product_Code) {
             if (screenInstance.wftpa_description === "s_rct_posting_failures" || screenInstance.wftpa_description === "s_rct_rejected_returns" || screenInstance.wftpa_description === "s_op_rct_posting_failure" || screenInstance.wftpa_description === "s_lca_account_entries_exceptions") {
                 if (this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSST_ID").length == 1) {
                     if (screenInstance["navigation_ui_view_message_log"]) {

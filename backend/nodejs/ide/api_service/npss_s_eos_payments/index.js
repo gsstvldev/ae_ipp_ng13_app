@@ -88,7 +88,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 BENEFICIARYACCOUNT: (arrTrnobj.cdtr_iban)?(arrTrnobj.cdtr_iban).replace(arrTrnobj.cdtr_iban.substring(5,11),'******') : arrTrnobj.cr_acct_identification.replace(arrTrnobj.cr_acct_identification.substring(5,11),'******'),
                                                 AMOUNT: arrTrnobj.intrbk_sttlm_amnt || '',
                                                 BENEFICIARYACCOUNTNAME: arrTrnobj.cdtr_acct_name || '',
-                                                VALUEDATE: arrTrnobj.value_date || '',
+                                                VALUEDATE: moment( arrTrnobj.value_date).format('DD/MM/YYYY')||'',
                                                 ORDERINGINSTITUTION: arrTrnobj.dr_sort_code || '',
                                                 DEPARTMENT: arrTrnobj.department_code || ''
                                             }]

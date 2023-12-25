@@ -7,8 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-
-
+    
 
 
 
@@ -31,7 +30,6 @@ app.post('/', function(appRequest, appResponse, next) {
           Modified for: Handling for decrypt for response_data_json in every posting call on 8/11/2023 by Daseen
           Reason for : Adding  dbtr_acct_no in inau and auth posting on 16/11/2023 by  daseen
           Reason for : Removing  dbtr_acct_no,dbtr_iban in prepaid and posting on 1/12/2023 by  daseen
-          Reason for : Log table insert before posting on 21/12/2023 by  daseen
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -85,157 +83,143 @@ app.post('/', function(appRequest, appResponse, next) {
                             var GetsellRate
                             var take_return_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL' and need_sync = 'Y'`;
                             var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.RULE_CODE}'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                            var Takeretcode = `select param_code,param_detail from core_nc_system_setup where param_category='REVERSAL RETURN CODE' and product_code = '${params.PROD_CODE}' AND need_sync = 'Y' and status = 'APPROVED'`
                             var take_api_params = `select   ns.dbtr_acct_no,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.process_group,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,ns.force_post_flag,ns.channel_id,ns.channel_refno,ns.fx_resv_text3,ns.amount_credited_loc_cur,ns.buy_margin,ns.buy_rate,ns.department_code,ns.fx_resv_text2,ns.account_currency,ns.org_pay_endtoend_id, ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,fn_pcidss_decrypt(ns.message_data,$PCIDSS_KEY ) as message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
                             if (params.PROD_CODE == 'NPSS_AEFAB') {
                                 ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
                                     if (arrurlResult.length) {
                                         final_process_status = arrurlResult[0].success_process_status
                                         final_status = arrurlResult[0].success_status
-                                        ExecuteQuery1(Takeretcode, function (arrcode) {
-                                            if (arrcode.length > 0) {
-                                                ExecuteQuery1(take_api_params, async function (arrprocesslog) {
-                                                    if (arrprocesslog.length) {
-                                                        var lclinstrm
-                                                        if (arrprocesslog[0].message_data !== null) {
-                                                            var parser = new xml2js.Parser({ strict: false, trim: true });
-                                                            parser.parseString(arrprocesslog[0].message_data, function (err, result) {
-                                                                lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
+                                        ExecuteQuery1(take_api_params, async function (arrprocesslog) {
+                                            if (arrprocesslog.length) {
+                                                var lclinstrm
+                                                if (arrprocesslog[0].message_data !== null) {
+                                                    var parser = new xml2js.Parser({ strict: false, trim: true });
+                                                    parser.parseString(arrprocesslog[0].message_data, function (err, result) {
+                                                        lclinstrm = result["DOCUMENT"]["FITOFICSTMRCDTTRF"][0]["CDTTRFTXINF"][0]["PMTTPINF"][0]["LCLINSTRM"][0]["PRTRY"][0]
 
-                                                            });
+                                                    });
 
+                                                }
+                                                else {
+                                                    lclinstrm = ""
+                                                }
+                                                let checkAlreadyPosted = await CheckTranStatus(arrprocesslog, final_process_status, final_status, lclinstrm, PRCT_ID)
+                                                if (checkAlreadyPosted == 'CallAuthPosting') {
+                                                    var PreparedData = async () => {
+                                                        extend_retry_value = await GetRetrycount(arrprocesslog[0].uetr)
+                                                        // Logic For Taking Reversal Id and Taking PostingRefno and account Information only for auth004 api call
+                                                        reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog)
+                                                        if (reverandRefno.currency != 'AED') {
+                                                            Ipuetr = await TakeIpUetr(arrprocesslog)
+                                                            GetsellRate = await GetsplRate(arrprocesslog, reverandRefno)
+                                                            if (GetsellRate == 'Take GMrate') {
+                                                                Getdata = await GetgmMargin(arrprocesslog, reverandRefno)
+                                                            }
+                                                            takedealRefno = await GetRefno(arrprocesslog, reverandRefno)
                                                         }
-                                                        else {
-                                                            lclinstrm = ""
-                                                        }
-                                                        var InsertTable = await ProcessInstData(arrprocesslog, 'IP_RCT_RR_RETURN_APPROVED ', 'RCTReversal', PRCT_ID, arrcode)
-                                                        if (InsertTable.length > 0) {
-                                                            let checkAlreadyPosted = await CheckTranStatus(arrprocesslog, final_process_status, final_status, lclinstrm, PRCT_ID)
-                                                            if (checkAlreadyPosted == 'CallAuthPosting') {
-                                                                var PreparedData = async () => {
-                                                                    extend_retry_value = await GetRetrycount(arrprocesslog[0].uetr)
-                                                                    // Logic For Taking Reversal Id and Taking PostingRefno and account Information only for auth004 api call
-                                                                    reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog)
-                                                                    if (reverandRefno.currency != 'AED') {
-                                                                        Ipuetr = await TakeIpUetr(arrprocesslog)
-                                                                        GetsellRate = await GetsplRate(arrprocesslog, reverandRefno)
-                                                                        if (GetsellRate == 'Take GMrate') {
-                                                                            Getdata = await GetgmMargin(arrprocesslog, reverandRefno)
+                                                        take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_AUTH_PACS004' and param_code='URL' and need_sync = 'Y'`;
+                                                        var amount
+                                                        amount = arrprocesslog[0].intrbk_sttlm_amnt
+                                                        ExecuteQuery1(take_api_url, function (arrurl) {
+                                                            if (arrurl.length) {
+                                                                var url = arrurl[0].param_detail;
+                                                                fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Objfiledata, Getdata, extend_retry_value, takedealRefno, GetsellRate, async function (firstapiresult) {
+                                                                    if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
+                                                                        let Amount;
+                                                                        let transactionId = ''
+
+
+                                                                        if (firstapiresult && firstapiresult.response) {
+                                                                            if (firstapiresult.response.header && firstapiresult.response.header.id) {
+                                                                                transactionId = firstapiresult.response.header.id;
+                                                                            } else if (firstapiresult.response.dataArea && firstapiresult.response.dataArea.offlineTransactionReferenceNumber) {
+                                                                                transactionId = firstapiresult.response.dataArea.offlineTransactionReferenceNumber;
+                                                                            } else {
+                                                                                transactionId = ''
+                                                                            }
                                                                         }
-                                                                        takedealRefno = await GetRefno(arrprocesslog, reverandRefno)
-                                                                    }
-                                                                    take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_AUTH_PACS004' and param_code='URL' and need_sync = 'Y'`;
-                                                                    var amount
-                                                                    amount = arrprocesslog[0].intrbk_sttlm_amnt
-                                                                    ExecuteQuery1(take_api_url, function (arrurl) {
-                                                                        if (arrurl.length) {
-                                                                            var url = arrurl[0].param_detail;
-                                                                            fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverandRefno, Objfiledata, Getdata, extend_retry_value, takedealRefno, GetsellRate, async function (firstapiresult) {
-                                                                                if (firstapiresult.status === "SUCCESS" || firstapiresult.status === "Success" || firstapiresult.status === "success") {
-                                                                                    let Amount;
-                                                                                    let transactionId = ''
+                                                                        if (reverandRefno.currency != 'AED') {
+                                                                            if (firstapiresult.amountCredited) {
+                                                                                Amount = firstapiresult.amountCredited
 
-
-                                                                                    if (firstapiresult && firstapiresult.response) {
-                                                                                        if (firstapiresult.response.header && firstapiresult.response.header.id) {
-                                                                                            transactionId = firstapiresult.response.header.id;
-                                                                                        } else if (firstapiresult.response.dataArea && firstapiresult.response.dataArea.offlineTransactionReferenceNumber) {
-                                                                                            transactionId = firstapiresult.response.dataArea.offlineTransactionReferenceNumber;
-                                                                                        } else {
-                                                                                            transactionId = ''
-                                                                                        }
-                                                                                    }
-                                                                                    if (reverandRefno.currency != 'AED') {
-                                                                                        if (firstapiresult.amountCredited) {
-                                                                                            Amount = firstapiresult.amountCredited
-
-                                                                                            /*  try {
-                                                                                                 if (firstapiresult.amountCredited && arrprocesslog[0].intrbk_sttlm_amnt) {
-                                                                                                     if (Number(firstapiresult.amountCredited) > Number(arrprocesslog[0].intrbk_sttlm_amnt)) {
-                                                                                                         Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
-                                                                                                     } else {
-                                                                                                         Amount = firstapiresult.amountCredited
-                                                                                                     }
-                                                                                                 } else {
-                                                                                                     Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
-                                                                                                 }
-                                                                                             } catch (error) {
-                                                                                                 Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
-                                                                                             } */
-                                                                                        } else {
-                                                                                            Amount = ''
-                                                                                        }
+                                                                                /*  try {
+                                                                                     if (firstapiresult.amountCredited && arrprocesslog[0].intrbk_sttlm_amnt) {
+                                                                                         if (Number(firstapiresult.amountCredited) > Number(arrprocesslog[0].intrbk_sttlm_amnt)) {
+                                                                                             Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
+                                                                                         } else {
+                                                                                             Amount = firstapiresult.amountCredited
+                                                                                         }
+                                                                                     } else {
+                                                                                         Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
+                                                                                     }
+                                                                                 } catch (error) {
+                                                                                     Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
+                                                                                 } */
+                                                                            } else {
+                                                                                Amount = ''
+                                                                            }
 
 
 
 
-                                                                                    } else {
-                                                                                        Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
-                                                                                    }
-                                                                                    let UpdateAmount = await UpdateCreditAmount(Amount)
-                                                                                    if (UpdateAmount == 'FAILURE') {
-                                                                                        objresponse.status = "FAILURE"
-                                                                                        objresponse.errdata = "Failure in Amount Credited Coloumn in Tran Table"
-                                                                                        sendResponse(null, objresponse)
-                                                                                    }
-                                                                                    reqInstanceHelper.PrintInfo(serviceName, '------------fIRST API CALL SUCCESS-------', objSessionLogInfo);
-                                                                                    let CheckorgPvt = await TakeOrgPvt(arrprocesslog)
-                                                                                    reverandRefno.type = 'IBAN'
-                                                                                    let Pacs008 = await fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt, Amount, transactionId)
-                                                                                    if (Pacs008 == 'SUCCESS') {
-                                                                                        let UpdateTran = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount)
-                                                                                    } else {
-                                                                                        objresponse.status = "FAILURE"
-                                                                                        objresponse.errdata = "Failure in Pac008 Api"
-                                                                                        sendResponse(null, objresponse)
-                                                                                    }
-                                                                                } else {
-                                                                                    objresponse.status = "FAILURE"
-                                                                                    objresponse.errdata = 'Auth Api Call Failure  Error Code Found-' + firstapiresult.error_code
-                                                                                    sendResponse(null, objresponse);
-
-                                                                                }
-                                                                            })
-
-
+                                                                        } else {
+                                                                            Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
                                                                         }
-                                                                        else {
-                                                                            reqInstanceHelper.PrintInfo(serviceName, '------------Posting Url Not Found-------', objSessionLogInfo);
+                                                                        let UpdateAmount = await UpdateCreditAmount(Amount)
+                                                                        if (UpdateAmount == 'FAILURE') {
                                                                             objresponse.status = "FAILURE"
-                                                                            objresponse.errdata = "Posting URL not found workflow table"
+                                                                            objresponse.errdata = "Failure in Amount Credited Coloumn in Tran Table"
                                                                             sendResponse(null, objresponse)
                                                                         }
-                                                                    })
+                                                                        reqInstanceHelper.PrintInfo(serviceName, '------------fIRST API CALL SUCCESS-------', objSessionLogInfo);
+                                                                        let CheckorgPvt = await TakeOrgPvt(arrprocesslog)
+                                                                        reverandRefno.type = 'IBAN'
+                                                                        let Pacs008 = await fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt, Amount, transactionId)
+                                                                        if (Pacs008 == 'SUCCESS') {
+                                                                            let UpdateTran = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount)
+                                                                        } else {
+                                                                            objresponse.status = "FAILURE"
+                                                                            objresponse.errdata = "Failure in Pac008 Api"
+                                                                            sendResponse(null, objresponse)
+                                                                        }
+                                                                    } else {
+                                                                        objresponse.status = "FAILURE"
+                                                                        objresponse.errdata = 'Auth Api Call Failure  Error Code Found-' + firstapiresult.error_code
+                                                                        sendResponse(null, objresponse);
+
+                                                                    }
+                                                                })
 
 
-                                                                }
-
-                                                                PreparedData()
-                                                            } else {
+                                                            }
+                                                            else {
+                                                                reqInstanceHelper.PrintInfo(serviceName, '------------Posting Url Not Found-------', objSessionLogInfo);
                                                                 objresponse.status = "FAILURE"
-                                                                objresponse.errdata = "Checking Auth Posting done error"
+                                                                objresponse.errdata = "Posting URL not found workflow table"
                                                                 sendResponse(null, objresponse)
                                                             }
-                                                        } else {
-                                                            objresponse.status = "FAILURE"
-                                                            objresponse.errdata = "Log Table insert error"
-                                                            sendResponse(null, objresponse)
-                                                        }
+                                                        })
 
 
-                                                    } else {
-
-                                                        objresponse.status = "FAILURE"
-                                                        objresponse.errdata = "No Data found in Transaction table"
-                                                        sendResponse(null, objresponse)
                                                     }
 
-                                                })
-                                            } else {
+                                                    PreparedData()
+                                                } else {
+                                                    objresponse.status = "FAILURE"
+                                                    objresponse.errdata = "Checking Auth Posting done error"
+                                                    sendResponse(null, objresponse)
+                                                }
+
+
+
+                                            }
+                                            else {
+
                                                 objresponse.status = "FAILURE"
-                                                objresponse.errdata = "No Data found in System setup table"
+                                                objresponse.errdata = "No Data found in Transaction table"
                                                 sendResponse(null, objresponse)
                                             }
+
                                         })
                                     }
                                     else {
@@ -309,54 +293,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     })
 
 
-                    function ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID, arrcode) {
-                        return new Promise((resolve, reject) => {
-                            var arrCusTranInst = [];
-                            var objCusTranInst = {};
 
-                            objCusTranInst.MSG_ID = arrprocesslog[0].hdr_msg_id;
-                            objCusTranInst.PRCT_ID = PRCT_ID;
-                            objCusTranInst.REVERSAL_CODE = arrprocesslog[0].revrsal_code
-                            objCusTranInst.UETR = arrprocesslog[0].uetr;
-                            objCusTranInst.NPSSTRRD_REFNO = arrprocesslog[0].tran_ref_id;
-                            objCusTranInst.PROCESS_NAME = 'Checker Approve'
-                            objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
-                            objCusTranInst.PROCESS_TYPE = 'IP';
-                            objCusTranInst.PROCESS_STATUS = final_process_status;
-                            objCusTranInst.STATUS = final_status;
-                            objCusTranInst.TENANT_ID = params.TENANT_ID;
-                            objCusTranInst.APP_ID = '215'
-                            objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
-                            objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
-                            objCusTranInst.DT_DESCRIPTION = 'transaction_group'
-                            objCusTranInst.DTT_DESCRIPTION = 'Transaction'
-                            objCusTranInst.CREATED_BY = params.CREATED_BY;
-                            objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
-                            objCusTranInst.T24_RETURN_CODE = null;
-                            objCusTranInst.CBUAE_RETURN_CODE = arrcode[0].param_code;
-                            objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                            objCusTranInst.MODIFIED_BY = "";
-                            objCusTranInst.MODIFIED_BY_NAME = "";
-                            objCusTranInst.MODIFIED_DATE = null;
-                            objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
-                            objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
-                            objCusTranInst.CREATED_BY_STS_ID = "";
-                            objCusTranInst.MODIFIED_BY_STS_ID = "";
-                            objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
-                            objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
-                            objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
-                            objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
-                            objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
-                            objCusTranInst.routingkey = headers.routingkey;
-                            arrCusTranInst.push(objCusTranInst)
-
-                            _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
-                                resolve(CusTranInsertRes)
-
-                            })
-                        })
-
-                    }
 
 
                     function GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount) {
@@ -379,30 +316,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
                         })
                     }
-                    function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
-                        try {
-                            reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
-                                try {
-                                    if (error) {
-                                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
-                                        sendResponse(error)
-                                    } else {
-                                        if (result.length > 0) {
-                                            callbackInsert(result);
-                                        } else {
-                                            callbackInsert([]);
-                                        }
-                                    }
-                                } catch (error) {
-                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
-                                    sendResponse(error)
-                                }
-                            });
-                        } catch (error) {
-                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
-                            sendResponse(error)
-                        }
-                    }
+
 
                     function UpdateCreditAmount(Amount) {
                         return new Promise((resolve, reject) => {
@@ -458,12 +372,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "category_purpose": arrprocesslog[0].category_purpose || '',
                                         "category_purpose_prty": arrprocesslog[0].category_purpose_prty || '',
                                         "ext_purpose_code": arrprocesslog[0].ext_purpose_code || '',
-                                        "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
+                                        "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
                                         "lclinstrm": lclinstrm || '',
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-
+                                        
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -640,7 +554,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         "dbtr_country": reverandRefno.countryofbirth || 'XX',
                                                         "dbtr_other_issuer": arrprocesslog[0].dbtr_other_issuer || '',
                                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                                        // "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
+                                                       // "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
                                                         "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
                                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
                                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
@@ -875,7 +789,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
                     function GetsplRate(arrprocesslog, reverandRefno) {
-
+                        
                         return new Promise((resolve, reject) => {
                             if (reverandRefno.currency == '' || reverandRefno.currency == null) {
                                 resolve('Take GMrate')
@@ -1693,7 +1607,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "lclinstrm": lclinstrm || '',
                                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
-
+                                                   
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1794,7 +1708,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                                     "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
-                                                    "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
+                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
                                                     "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
@@ -1890,7 +1804,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "lclinstrm": lclinstrm || '',
                                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
-
+                                                   
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1986,7 +1900,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                                     "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                                    "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
+                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -2107,7 +2021,6 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
-
 
 
 

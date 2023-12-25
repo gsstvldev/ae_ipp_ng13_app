@@ -7,7 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
+
 
     try {
         /*   Created By : Daseen
@@ -49,6 +50,7 @@ app.post('/', function(appRequest, appResponse, next) {
                       Reason for :Update query changes 25/04/2023
                        Reason for : Adding Buy rate buy margin 29/04/2023
                        Reason for:Adding dbtr_iban,dbtr_acct_no  in api on 16/11/2023 by daseen
+                         Reason for : Log table insert before posting on 25/12/2023 by  daseen
         */
         var serviceName = 'NPSS IP REV Ret Auth PACS004';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -123,6 +125,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 var takereturncode = `select cbuae_return_code  from npss_trn_process_log  where  status = 'IP_RCT_RR_RETURN_READY' and uetr = '${arrprocesslog[0].uetr}'`;
                                                 ExecuteQuery1(takereturncode, async function (arrreturncode) {
                                                     if (arrreturncode.length > 0) {
+                                                        var InsertTable = await ProcessInstData(arrprocesslog, 'IP_RCT_RR_RETURN_APPROVED ', 'RCTReversal', PRCT_ID)
                                                         // apicalls = 0 --> auth 004 api call
                                                         // apicalls = 1 --> prepaid card api call
                                                         // apicalls = 2 --> credit card api call
@@ -215,10 +218,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                         var UpdateTrnTble
                                                                                                         if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
                                                                                                             UpdateTrnTble = `Update npss_transactions set maker = '${params.CREATED_BY_NAME}',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                                                                                        }else{
+                                                                                                        } else {
                                                                                                             UpdateTrnTble = `Update npss_transactions set checker = '${params.CREATED_BY_NAME}',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                                                         }
-                                                                                                    
+
                                                                                                         ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
                                                                                                             if (arrUpdTranTbl == 'SUCCESS') {
                                                                                                                 objresponse.status = 'SUCCESS';
@@ -348,7 +351,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                                     UpdateTrnTble = `Update npss_transactions set checker = '${params.CREATED_BY_NAME}',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                                                                 }
 
-                                                                                                                
+
 
                                                                                                                 ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
                                                                                                                     if (arrUpdTranTbl == 'SUCCESS') {
@@ -648,7 +651,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                        "dbtr_acct_no": arrprocesslog[0].dbtr_acct_no || '',
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -757,7 +760,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
                                     "hdr_settlement_method": arrprocesslog[0].hdr_settlement_method || '',
                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
-                                    "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                    "dbtr_acct_no": arrprocesslog[0].dbtr_acct_no || '',
                                     "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                     "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
                                     "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
@@ -967,7 +970,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     var return_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL' and need_sync = 'Y'`;
                                     ExecuteQuery1(return_url, function (arrreturnurl) {
                                         if (arrreturnurl.length > 0) {
-                                          var returnurl = arrreturnurl[0].param_detail;
+                                            var returnurl = arrreturnurl[0].param_detail;
                                             fn_doapicall2(returnurl, arrprocesslog, arrreturncode, creditAmount, screenName, function (result) {
                                                 if (result === "SUCCESS" || result === "Success" || result === "success") {
                                                     var UpdateTrnTble
@@ -1362,7 +1365,94 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
 
                     }
+                    function ProcessInstData(arrprocesslog, final_status, final_process_status, PRCT_ID) {
+                        return new Promise((resolve, reject) => {
+                            var Takeretcode = `select param_code,param_detail from core_nc_system_setup where param_category='REVERSAL RETURN CODE' and product_code = '${params.PROD_CODE}' AND need_sync = 'Y' and status = 'APPROVED'`
+                            ExecuteQuery1(Takeretcode, function (arrcode) {
+                                if (arrcode.length > 0) {
+                                    var arrCusTranInst = [];
+                                    var objCusTranInst = {};
 
+                                    objCusTranInst.MSG_ID = arrprocesslog[0].hdr_msg_id;
+                                    objCusTranInst.PRCT_ID = PRCT_ID;
+                                    objCusTranInst.REVERSAL_CODE = arrprocesslog[0].revrsal_code
+                                    objCusTranInst.UETR = arrprocesslog[0].uetr;
+                                    objCusTranInst.NPSSTRRD_REFNO = arrprocesslog[0].tran_ref_id;
+                                    objCusTranInst.PROCESS_NAME = 'Checker Approve'
+                                    objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
+                                    objCusTranInst.PROCESS_TYPE = 'IP';
+                                    objCusTranInst.PROCESS_STATUS = final_process_status;
+                                    objCusTranInst.STATUS = final_status;
+                                    objCusTranInst.TENANT_ID = params.TENANT_ID;
+                                    objCusTranInst.APP_ID = '215'
+                                    objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
+                                    objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
+                                    objCusTranInst.DT_DESCRIPTION = 'transaction_group'
+                                    objCusTranInst.DTT_DESCRIPTION = 'Transaction'
+                                    objCusTranInst.CREATED_BY = params.CREATED_BY;
+                                    objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                    objCusTranInst.T24_RETURN_CODE = null;
+                                    objCusTranInst.CBUAE_RETURN_CODE = arrcode[0].param_code;
+                                    objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                    objCusTranInst.MODIFIED_BY = "";
+                                    objCusTranInst.MODIFIED_BY_NAME = "";
+                                    objCusTranInst.MODIFIED_DATE = null;
+                                    objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
+                                    objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
+                                    objCusTranInst.CREATED_BY_STS_ID = "";
+                                    objCusTranInst.MODIFIED_BY_STS_ID = "";
+                                    objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
+                                    objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
+                                    objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                    objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                    objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                    objCusTranInst.routingkey = headers.routingkey;
+                                    arrCusTranInst.push(objCusTranInst)
+
+                                    _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
+                                        if (CusTranInsertRes.length > 0)
+                                            resolve(CusTranInsertRes)
+                                        else {
+                                            objresponse.status = "FAILURE"
+                                            objresponse.errdata = "Log insert is not success"
+                                            sendResponse(null, objresponse)
+
+                                        }
+
+                                    })
+                                } else {
+                                    objresponse.status = "FAILURE"
+                                    objresponse.errdata = "REVERSAL RETURN CODE entry is missing"
+                                    sendResponse(null, objresponse)
+                                }
+                            })
+                        })
+
+                    }
+                    function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
+                        try {
+                            reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
+                                try {
+                                    if (error) {
+                                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
+                                        sendResponse(error)
+                                    } else {
+                                        if (result.length > 0) {
+                                            callbackInsert(result);
+                                        } else {
+                                            callbackInsert([]);
+                                        }
+                                    }
+                                } catch (error) {
+                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
+                                    sendResponse(error)
+                                }
+                            });
+                        } catch (error) {
+                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
+                            sendResponse(error)
+                        }
+                    }
 
                     // Function to check Api Calls 
                     function CheckAldprcsTran(arrprocesslog, apicalls) {
@@ -1908,6 +1998,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

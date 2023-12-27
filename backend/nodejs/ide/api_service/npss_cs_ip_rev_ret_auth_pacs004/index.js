@@ -125,7 +125,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 var takereturncode = `select cbuae_return_code  from npss_trn_process_log  where  status = 'IP_RCT_RR_RETURN_READY' and uetr = '${arrprocesslog[0].uetr}'`;
                                                 ExecuteQuery1(takereturncode, async function (arrreturncode) {
                                                     if (arrreturncode.length > 0) {
-                                                        var InsertTable = await ProcessInstData(arrprocesslog, 'IP_RCT_RR_RETURN_APPROVED ', 'RCTReversal', PRCT_ID)
+                                                        var InsertTable = await ProcessInstData(arrprocesslog, 'IP_RCT_RR_RETURN_APPROVED', 'RCTReversal', PRCT_ID)
                                                         // apicalls = 0 --> auth 004 api call
                                                         // apicalls = 1 --> prepaid card api call
                                                         // apicalls = 2 --> credit card api call

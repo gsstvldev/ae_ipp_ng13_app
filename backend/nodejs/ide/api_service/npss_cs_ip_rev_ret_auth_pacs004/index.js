@@ -260,7 +260,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                     sendResponse(error, null);
 
                                 } else {
-                                    responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
+                                   // responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
                                     try {
                                         reqInstanceHelper.PrintInfo(serviceName, '------------NPSS_TCS_MWALLET API Response JSON-------' + JSON.stringify(responseBodyFromImagingService), objSessionLogInfo);
                                         Responsedata = JSON.parse(responseBodyFromImagingService)

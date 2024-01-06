@@ -7,13 +7,13 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
     /*  Created By :   Daseen
     Created Date :7/1/2022
     Modified By : Siva Harish
-    Modified Date : 17/05/2023
-    Reason for : 
+    Reason for : Dynamic process name taken on 06/01/2023 by Daseen
      
     */
     var serviceName = 'NPSS (S) Comm CBUAE Pulse Check';
@@ -54,20 +54,20 @@ app.post('/', function(appRequest, appResponse, next) {
                 mTranConn = pSession; //  assign connection     
                 try {
                     var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync = 'Y'`
-                    var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'COMM_TO' and need_sync = 'Y'`
+                    var TakeCometo = `select param_value from CORE_NS_PARAMS  where process_name = '${params.processName}' and param_name = 'COMM_TO' and need_sync = 'Y'`
                     ExecuteQuery1(TakeCometo, function (arrcomto) {
-                        var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'ORIGIN' and need_sync = 'Y'`
+                        var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name =  '${params.processName}'  and param_name = 'ORIGIN' and need_sync = 'Y'`
                         ExecuteQuery1(Takeorg, function (arrorg) {
-                            var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'COMM_GROUP' and need_sync = 'Y'`
+                            var tkcomgp = `select param_value from CORE_NS_PARAMS  where process_name =  '${params.processName}'  and param_name = 'COMM_GROUP' and need_sync = 'Y'`
                             ExecuteQuery1(tkcomgp, function (arrcomgp) {
-                                var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'COMM_CC' and need_sync = 'Y'`
+                                var Takecmcc = `select param_value from CORE_NS_PARAMS  where process_name =  '${params.processName}'  and param_name = 'COMM_CC' and need_sync = 'Y'`
                                 ExecuteQuery1(Takecmcc, function (arrcomcc) {
-                                    var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'COM_CATEGORY' and need_sync = 'Y'`
+                                    var TakecomCat = `select param_value from CORE_NS_PARAMS  where process_name =  '${params.processName}'  and param_name = 'COM_CATEGORY' and need_sync = 'Y'`
                                     ExecuteQuery1(TakecomCat, function (arrCatgory) {
-                                        var TakeIntvl = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'CHECK_INTERVAL' and need_sync = 'Y'`
+                                        var TakeIntvl = `select param_value from CORE_NS_PARAMS  where process_name =  '${params.processName}'  and param_name = 'CHECK_INTERVAL' and need_sync = 'Y'`
                                         ExecuteQuery1(TakeIntvl, function (arrintvl) {
                                             if (arrintvl.length > 0) {
-                                                var Takefrq = `select param_value from CORE_NS_PARAMS  where process_name = 'CBUAE_NOT_AVAILABLE' and param_name = 'CHECK_FREQ' and need_sync = 'Y'`
+                                                var Takefrq = `select param_value from CORE_NS_PARAMS  where process_name =  '${params.processName}'  and param_name = 'CHECK_FREQ' and need_sync = 'Y'`
                                                 ExecuteQuery1(Takefrq, function (arrfrq) {
                                                     if (arrfrq.length > 0) {
                                                         var objtrndetail = [{
@@ -289,6 +289,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

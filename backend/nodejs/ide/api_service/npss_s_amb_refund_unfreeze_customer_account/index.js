@@ -67,8 +67,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                 console.log(utcMoment)
                                 var Formdate = utcMoment.subtract(arrTakehrs[0].param_detail, 'hours')
                                 Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss')
-                                var TakeTrnid = `select distinct npsstrrd_refno  from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info not in ${Firstaddinfo} and created_date_utc < '${Formdate}' limit 1 ` //and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)
-                                var Takedata = `select * from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info not in ${Firstaddinfo} and created_date_utc < '${Formdate}' limit 1` //and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)
+                                var TakeTrnid = `select distinct npsstrrd_refno  from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info not in ${Firstaddinfo} and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
+                                var Takedata = `select * from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info not in ${Firstaddinfo} and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
                                 ExecuteQuery1(Takedata, async function (arrData) {
                                     if (arrData.length > 0) {
                                         var updatetrn = await UpdateTran(TakeTrnid, PRCT_ID)

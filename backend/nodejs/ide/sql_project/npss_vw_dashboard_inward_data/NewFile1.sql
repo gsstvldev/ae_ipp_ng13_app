@@ -212,7 +212,7 @@ END AS department_code,
                                      INNER JOIN ( SELECT distinct z.process_name,z.created_date,
     z.uetr
    FROM npss_trn_process_log z
-  WHERE to_date(to_char(z.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) > CURRENT_DATE AND z.process_name::text = 'Receive Pacs004'::text) npl ON npl.uetr::text = nppst.uetr::text
+  WHERE to_date(to_char(z.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) < CURRENT_DATE AND z.process_name::text = 'Receive Pacs004'::text) npl ON npl.uetr::text = nppst.uetr::text
                                   WHERE npl.process_name::text = 'Receive Pacs004'::text  AND to_date(to_char(nppst.created_date::date::timestamp with time zone, 'yyyy-mm-dd'::text), 'yyyy-mm-dd'::text) > CURRENT_DATE) da3
                           GROUP BY da3.typed, da3.department_code, da3.tenant_id) d3 ON d3.typed = a3.type
                 UNION

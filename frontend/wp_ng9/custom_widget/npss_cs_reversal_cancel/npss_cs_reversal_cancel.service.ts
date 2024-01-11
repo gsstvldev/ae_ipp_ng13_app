@@ -30,6 +30,9 @@ export class npss_cs_reversal_cancelService {
             CtrlScope = screenInstance['cancel_ui'].f_npss_remarks_ui.model
             ClientParams.remarks = CtrlScope.REMARKS
           //  ClientParams.CBUAE_RETURN_CODE = CtrlScope.CBUAE_RETURN_CODE 
+        }else if(screenInstance.wftpa_description == 's_rct_reversal') {
+            CtrlScope = screenInstance['cancel_return_ui'].f_npss_remarks_ui.model
+            ClientParams.remarks = CtrlScope.memory90
         } else {
             CtrlScope = screenInstance['cancel_return_ui'].f_npss_remarks_ui.model
             ClientParams.remarks = CtrlScope.REMARKS

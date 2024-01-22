@@ -7,7 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
+
 
 
 
@@ -30,6 +31,7 @@ app.post('/', function(appRequest, appResponse, next) {
           Modified for: Handling for decrypt for response_data_json in every posting call on 8/11/2023 by Daseen
           Reason for : Adding  dbtr_acct_no in inau and auth posting on 16/11/2023 by  daseen
           Reason for : Removing  dbtr_acct_no,dbtr_iban in prepaid and posting on 1/12/2023 by  daseen
+          Reason for : Changes for BCT flow on 22/1/2024 by  daseen
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -372,12 +374,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "category_purpose": arrprocesslog[0].category_purpose || '',
                                         "category_purpose_prty": arrprocesslog[0].category_purpose_prty || '',
                                         "ext_purpose_code": arrprocesslog[0].ext_purpose_code || '',
-                                        "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
+                                        "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
                                         "lclinstrm": lclinstrm || '',
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                        
+
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -554,7 +556,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         "dbtr_country": reverandRefno.countryofbirth || 'XX',
                                                         "dbtr_other_issuer": arrprocesslog[0].dbtr_other_issuer || '',
                                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                                       // "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
+                                                        // "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
                                                         "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
                                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
                                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
@@ -789,7 +791,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
                     function GetsplRate(arrprocesslog, reverandRefno) {
-                        
+
                         return new Promise((resolve, reject) => {
                             if (reverandRefno.currency == '' || reverandRefno.currency == null) {
                                 resolve('Take GMrate')
@@ -1137,11 +1139,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                 if (arrChkdata.length > 0) {
                                     if (ChkPrecdtCard.apitype == 1) {
                                         let CrfprepaidCard = arrChkdata.filter((x) => {
-                                            return x.status == 'IP_RCT_PC_T24_POSTING_SUCCESS'
+                                            return (x.status == 'IP_RCT_PC_T24_POSTING_SUCCESS' || x.status == 'IP_BCT_PC_T24_POSTING_SUCCESS')
                                         })
                                         if (CrfprepaidCard.length > 0) {
                                             let chkPrepaidPassedTrn = arrChkdata.filter((x) => {
-                                                return x.status == 'IP_RCT_PC_PASSED' && x.process_name == 'Prepaid Card Validation'
+                                                return ((x.status == 'IP_RCT_PC_PASSED' || x.status == 'IP_BCT_PC_PASSED') && x.process_name == 'Prepaid Card Validation')
                                             })
                                             if (chkPrepaidPassedTrn.length > 0) {
                                                 if (chkPrepaidPassedTrn[0].emiratesid == null || chkPrepaidPassedTrn[0].emiratesid == '') {
@@ -1168,7 +1170,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                             } else {
                                                 objresponse.status = 'FAILURE'
-                                                objresponse.errdata = 'No data Found for status IP_RCT_PC_PASSED'
+                                                objresponse.errdata = 'No data Found for status IP_RCT_PC_PASSED or IP_BCT_PC_PASSED'
                                                 sendResponse(null, objresponse)
                                             }
                                         } else {
@@ -1178,11 +1180,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                         }
                                     } else {
                                         let chkCreditTrn = arrChkdata.filter((x) => {
-                                            return x.status == 'IP_RCT_CC_T24_POSTING_SUCCESS'
+                                            return (x.status == 'IP_RCT_CC_T24_POSTING_SUCCESS' || x.status == 'IP_BCT_CC_T24_POSTING_SUCCESS')
                                         })
                                         if (chkCreditTrn.length > 0) {
                                             let chkCreditPassedTrn = arrChkdata.filter((x) => {
-                                                return x.status == 'IP_RCT_CC_POSTING_SUCCESS' && x.process_name == 'Credit Card Posting'
+                                                return ((x.status == 'IP_RCT_CC_POSTING_SUCCESS' || x.status == 'IP_BCT_CC_POSTING_SUCCESS') && (x.process_name == 'Credit Card Posting'))
                                             })
                                             if (chkCreditPassedTrn.length > 0) {
                                                 let TakAcctData = `select * from core_nc_cbs_accounts where customer_id = '${chkCreditPassedTrn[0].customerid}'`
@@ -1210,7 +1212,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 })
                                             } else {
                                                 objresponse.status = 'FAILURE'
-                                                objresponse.errdata = 'No data Found for status IP_RCT_CC_POSTING_SUCCESS'
+                                                objresponse.errdata = 'No data Found for status IP_RCT_CC_POSTING_SUCCESS or IP_BCT_CC_POSTING_SUCCESS'
                                                 sendResponse(null, objresponse)
                                             }
                                         } else {
@@ -1228,39 +1230,65 @@ app.post('/', function(appRequest, appResponse, next) {
                             })
                         })
                     }
-
+                    function findBCTRCT(IpUETR) {
+                        return new Promise((resolve, reject) => {
+                            let chkData = `select * from npss_trn_process_log where uetr = '${IpUETR}'`
+                            ExecuteQuery1(chkData, async function (arrChkdata) {
+                                if (arrChkdata.length > 0) {
+                                    resolve(arrChkdata.every((x) => x.status.includes('BCT')))
+                                }
+                                else {
+                                    objresponse.status = 'FAILURE'
+                                    objresponse.errdata = 'No data Found in Trn Process log Table for IP UETR to find BCT or RCT'
+                                    sendResponse(null, objresponse)
+                                }
+                            })
+                        })
+                    }
 
                     function TakeReversalId(IpUETR, ChkPrecdtCard, arrprocesslog) {
                         return new Promise((resolve, reject) => {
                             let elistatus
                             let reverseId
-                            if (ChkPrecdtCard.apitype == 1) {
-                                elistatus = 'IP_RCT_PC_T24_POSTING_SUCCESS'
-                            } else {
-                                elistatus = 'IP_RCT_CC_T24_POSTING_SUCCESS'
-                            }
-                            var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status = '${elistatus}' and uetr = '${IpUETR}'`
-                            ExecuteQuery1(TakeCount, function (arrCount) {
-                                if (arrprocesslog[0].clrsysref) {
-                                    if (arrCount[0].counts.length == 1) {
-                                        var count = Number(arrCount[0].counts)
-                                        count++
-                                        reverseId = arrprocesslog[0].clrsysref + '.0' + count
-                                        resolve(reverseId)
-                                    } else {
-                                        var count = Number(arrCount[0].counts)
-                                        count++
-                                        reverseId = arrprocesslog[0].clrsysref + '.' + count
-                                        resolve(reverseId)
-                                    }
+                            let call = async () => {
+                                isBCT = await findBCTRCT(IpUETR)
+                                if (ChkPrecdtCard.apitype == 1) {
+                                    if (isBCT)
+                                        elistatus = 'IP_BCT_PC_T24_POSTING_SUCCESS'
+                                    else
+                                        elistatus = 'IP_RCT_PC_T24_POSTING_SUCCESS'
                                 } else {
-                                    objresponse.status = "FAILURE"
-                                    objresponse.errdata = "Prepaid or Credit clrsysRef  is Missing"
-                                    sendResponse(null, objresponse)
+                                    if (isBCT)
+                                        elistatus = 'IP_BCT_CC_T24_POSTING_SUCCESS'
+                                    else
+                                        elistatus = 'IP_RCT_CC_T24_POSTING_SUCCESS'
                                 }
+                                var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status = '${elistatus}' and uetr = '${IpUETR}'`
+                                ExecuteQuery1(TakeCount, function (arrCount) {
+                                    if (arrprocesslog[0].clrsysref) {
+                                        if (arrCount[0].counts.length == 1) {
+                                            var count = Number(arrCount[0].counts)
+                                            count++
+                                            reverseId = arrprocesslog[0].clrsysref + '.0' + count
+                                            resolve(reverseId)
+                                        } else {
+                                            var count = Number(arrCount[0].counts)
+                                            count++
+                                            reverseId = arrprocesslog[0].clrsysref + '.' + count
+                                            resolve(reverseId)
+                                        }
+                                    } else {
+                                        objresponse.status = "FAILURE"
+                                        objresponse.errdata = "Prepaid or Credit clrsysRef  is Missing"
+                                        sendResponse(null, objresponse)
+                                    }
 
 
-                            })
+                                })
+
+                            }
+                            call()
+
                         })
                     }
 
@@ -1607,7 +1635,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "lclinstrm": lclinstrm || '',
                                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
-                                                   
+
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1708,7 +1736,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                                     "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
-                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
+                                                    "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
                                                     "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
@@ -1804,7 +1832,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "lclinstrm": lclinstrm || '',
                                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
-                                                   
+
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1900,7 +1928,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                                     "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                                    "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
+                                                    "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                                     "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -2021,6 +2049,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

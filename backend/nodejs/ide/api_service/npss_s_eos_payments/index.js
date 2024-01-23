@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -14,6 +15,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Created Date :12/12/2023
     Modified By : Subramanian
     Modified Date : 15/12/12023
+    Reason for: instead of fx_resv_text2 wil use eos_mail_status on 23/01/2024 by daseen
     }
     */
     var serviceName = 'NPSS EOS Inward Credit Posting Payment Success';
@@ -56,7 +58,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     try {
 
-                        var takeTrn = `select npsst_id,fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification,cdtr_acct_name,cdtr_iban,value_date,intrbk_sttlm_amnt,dr_sort_code,department_code,nt.fx_resv_text2 from npss_transactions nt  inner join  npss_trn_process_log l on l.uetr =nt.uetr and  ((l.process_name= 'Inward Credit Posting' and l.status= 'IP_RCT_POSTING_SUCCESS')  or (l.process_name= 'Prepaid Card Posting' and l.status = 'IP_RCT_PC_POSTING_SUCCESS')    or (l.process_name ='Credit Card Posting' and l.status ='IP_RCT_CC_POSTING_SUCCESS')) where nt.category_purpose_prty='EOS' and (nt.fx_resv_text2 <>'PSMailInitiated'  or nt.fx_resv_text2 isnull)`
+                        var takeTrn = `select npsst_id,fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification,cdtr_acct_name,cdtr_iban,value_date,intrbk_sttlm_amnt,dr_sort_code,department_code,nt.eos_mail_status from npss_transactions nt  inner join  npss_trn_process_log l on l.uetr =nt.uetr and  ((l.process_name= 'Inward Credit Posting' and l.status= 'IP_RCT_POSTING_SUCCESS')  or (l.process_name= 'Prepaid Card Posting' and l.status = 'IP_RCT_PC_POSTING_SUCCESS')    or (l.process_name ='Credit Card Posting' and l.status ='IP_RCT_CC_POSTING_SUCCESS')) where nt.category_purpose_prty='EOS' and (nt.eos_mail_status <>'PSMailInitiated'  or nt.eos_mail_status isnull)`
                         var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync='Y'`
 
                         var arrTran = await ExecuteQuery1(takeTrn)
@@ -85,7 +87,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 BCC: '',
                                                 ORIGIN: arrorg.length > 0 ? arrorg[0].param_value : '',
                                                 COMM_GROUP: arrcomgp.length > 0 ? arrcomgp[0].param_value : '',
-                                                BENEFICIARYACCOUNT: (arrTrnobj.cdtr_iban)?(arrTrnobj.cdtr_iban).replace(arrTrnobj.cdtr_iban.substring(5,11),'******') : arrTrnobj.cr_acct_identification.replace(arrTrnobj.cr_acct_identification.substring(5,11),'******'),
+                                               // BENEFICIARYACCOUNT: (arrTrnobj.cdtr_iban)?(arrTrnobj.cdtr_iban).replace(arrTrnobj.cdtr_iban.substring(5,11),'******') : arrTrnobj.cr_acct_identification.replace(arrTrnobj.cr_acct_identification.substring(5,11),'******'),
+                                               BENEFICIARYACCOUNT: (arrTrnobj.cdtr_iban)?(arrTrnobj.cdtr_iban): arrTrnobj.cr_acct_identification,
                                                 AMOUNT: arrTrnobj.intrbk_sttlm_amnt || '',
                                                 BENEFICIARYACCOUNTNAME: arrTrnobj.cdtr_acct_name || '',
                                                 VALUEDATE: moment( arrTrnobj.value_date).format('DD/MM/YYYY')||'',
@@ -208,7 +211,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                         function updateEligibleTran(contn) {
                             return new Promise((resolve, reject) => {
-                                let updtQry = `update npss_transactions set  fx_resv_text2 = 'PSMailInitiated' ,MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id in ${contn}`
+                                let updtQry = `update npss_transactions set  eos_mail_status = 'PSMailInitiated' ,MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id in ${contn}`
                                 let callUpdate = async () => {
                                     let res = await ExecuteQuery(updtQry)
 
@@ -274,6 +277,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

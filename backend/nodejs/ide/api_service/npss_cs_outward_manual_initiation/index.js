@@ -33,6 +33,7 @@ Reason for : Changing query 16/6/2023
   Reason for : Changing query 22/6/2023
   Reason for : changes on DBTR NAME from ACCT table  11/01/2024 by Daseen
   Reason for : changes on DBTR NAME,dob from given tran where cdtr_iban= null 19/01/2024 by Daseen
+  Reason for : changes on instruction_id insert  23/01/2024 by Daseen
  
 */
 var serviceName = ' NPSS (CS) Outward Manual Initiation ';
@@ -154,6 +155,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                     objCusTranInst.HDR_CLEARING_SYSTEM = arrdata[0].hdr_clearing_system
                                                     objCusTranInst.PAYMENT_ENDTOEND_ID = Payment_Id || ''
                                                     objCusTranInst.ORG_PAY_ENDTOEND_ID = arrdata[0].payment_endtoend_id
+                                                    objCusTranInst.INSTRUCTION_ID = arrdata[0].payment_endtoend_id
                                                     objCusTranInst.INSTRUMENT_TYPE = arrdata[0].instrument_type
                                                     objCusTranInst.CHARGE_BEARER = arrdata[0].charge_bearer
                                                     objCusTranInst.EXHF_ID = arrdata[0].exhf_id

@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRANSACTIONS add column EOS_MAIL_STATUS CHARACTER VARYING(256);","params" : [] }]
+[]

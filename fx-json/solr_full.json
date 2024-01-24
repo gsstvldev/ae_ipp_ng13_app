@@ -567,6 +567,11 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$REMARKS$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NCACN_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1672471952205$DQ$
@@ -2363,6 +2368,26 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$EOS_MAIL_STATUS$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$BATCH_HDR_TRN_DATE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$DATETIME$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$IND_ID_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$COMPANY_CODE$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$TRAN_TYPE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665901217208$DQ$
       },

@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column BATCH_HDR_TRN_DATE TIMESTAMP WITHOUT TIME ZONE, add column IND_ID_CODE CHARACTER VARYING(4), add column COMPANY_CODE CHARACTER VARYING(30), add column TRAN_TYPE CHARACTER VARYING(100);","params" : [] },{"query" : "alter table NPSS_TRN_PROCESS_LOG add column REMARKS CHARACTER VARYING(64);","params" : [] }]

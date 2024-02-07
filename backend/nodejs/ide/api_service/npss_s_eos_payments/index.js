@@ -19,6 +19,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified By : Subramanian
     Modified Date : 24/1/12024
     Reason:Sending all the column values if exist to the communication api
+    Reason : Removed duplicate entries on 07-02-2024
     }
     */
     var serviceName = 'NPSS EOS Inward Credit Posting Payment Success';
@@ -62,15 +63,17 @@ app.post('/', function(appRequest, appResponse, next) {
                     try {
 
                         var takeTrn = `select npsst_id,fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification,cdtr_acct_name,cdtr_iban,value_date,intrbk_sttlm_amnt,dr_sort_code,department_code,nt.eos_mail_status from npss_transactions nt  inner join  npss_trn_process_log l on l.uetr =nt.uetr and  ((l.process_name= 'Inward Credit Posting' and l.status= 'IP_RCT_POSTING_SUCCESS')  or (l.process_name= 'Prepaid Card Posting' and l.status = 'IP_RCT_PC_POSTING_SUCCESS')    or (l.process_name ='Credit Card Posting' and l.status ='IP_RCT_CC_POSTING_SUCCESS')) where nt.category_purpose_prty='EOS' and (nt.eos_mail_status <>'PSMailInitiated'  or nt.eos_mail_status isnull)`
-                         var takeAllData = `select fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification, nt.created_Date as tran_created_date,nt.modified_date as tran_modified_date,nt.status
-                        as tran_status,nt.issuer_type_code as tran_issuer_type_code,nt.* ,ac.created_Date as acct_created_date,ac.modified_date as acct_modified_date,nt.status
-                        as acct_status,ac.issuer_type_code as acct_issuer_type_code,ac.* from npss_transactions nt  inner join npss_trn_process_log l on l.uetr=nt.uetr left join core_nc_cbs_accounts ac on ac.alternate_account_id in(nt.cdtr_iban,cr_acct_identification) and  ((l.process_name= 'Inward Credit Posting' and l.status= 'IP_RCT_POSTING_SUCCESS')  or (l.process_name= 'Prepaid Card Posting' and l.status = 'IP_RCT_PC_POSTING_SUCCESS')    or (l.process_name ='Credit Card Posting' and l.status ='IP_RCT_CC_POSTING_SUCCESS')) where nt.category_purpose_prty='EOS' and (nt.eos_mail_status <>'PSMailInitiated'  or nt.eos_mail_status isnull)`
+                        var takeAllData = `select fn_pcidss_decrypt(cr_acct_identification,$PCIDSS_KEY) as cr_acct_identification, nt.created_Date as tran_created_date,nt.modified_date as tran_modified_date,nt.status
+                         as tran_status,nt.issuer_type_code as tran_issuer_type_code,nt.* ,ac.created_Date as acct_created_date,ac.modified_date as acct_modified_date,nt.status
+                         as acct_status,ac.issuer_type_code as acct_issuer_type_code,ac.* from npss_transactions nt  inner join npss_trn_process_log l on (l.uetr=nt.uetr and   (((l.process_name= 'Inward Credit Posting' or l.process_name= 'Posting Enquiry' )and l.status= 'IP_RCT_POSTING_SUCCESS')  or (l.process_name= 'Prepaid Card Posting' and l.status = 'IP_RCT_PC_POSTING_SUCCESS')    or (l.process_name ='Credit Card Posting' and l.status ='IP_RCT_CC_POSTING_SUCCESS')) )left join core_nc_cbs_accounts ac on ac.alternate_account_id in(nt.cdtr_iban,cr_acct_identification)  where nt.category_purpose_prty='EOS' and (nt.eos_mail_status <>'PSMailInitiated'  or nt.eos_mail_status isnull)`
                         var takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync='Y'`
 
                         var arrTran = await ExecuteQuery1(takeAllData)
                         if (arrTran.length > 0) {
                             let trnId = arrTran.map((x) => x.npsst_id)
-                            var updateRes = await updateEligibleTran('(' + trnId.join(',') + ')')
+                             let dupRemvTrn=[]
+                                trnId.filter((m)=>{if(!dupRemvTrn.includes(m))dupRemvTrn.push(m)})
+                                var updateRes = await updateEligibleTran('(' + dupRemvTrn.join(',') + ')')
                             if (updateRes == 'SUCCESS') {
                                 var arrUrl = await ExecuteQuery1(takeurl)
                                 if (arrUrl.length > 0) {

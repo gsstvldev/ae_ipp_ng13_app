@@ -120,5 +120,3 @@ create index if not exists ntpl_amount_credited on npss_trn_process_log (amount_
 @SPL@
 create index if not exists ntpl_exchange_rate on npss_trn_process_log (exchange_rate);
 @SPL@
-create index if not exists ntpl_request_data_json on npss_trn_process_log (request_data_json);
-@SPL@

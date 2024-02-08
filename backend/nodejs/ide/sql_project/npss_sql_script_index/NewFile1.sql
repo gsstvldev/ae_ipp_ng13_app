@@ -112,3 +112,13 @@ create index if not exists ntpl_t24_return_code on npss_trn_process_log (t24_ret
 @SPL@
 create index if not exists ntpl_cbuae_return_code on npss_trn_process_log (cbuae_return_code);
 @SPL@
+create index if not exists ntpl_npsstpl_id on npss_trn_process_log (npsstpl_id);
+@SPL@
+create index if not exists ntpl_additional_info on npss_trn_process_log (additional_info);
+@SPL@
+create index if not exists ntpl_amount_credited on npss_trn_process_log (amount_credited);
+@SPL@
+create index if not exists ntpl_exchange_rate on npss_trn_process_log (exchange_rate);
+@SPL@
+create index if not exists ntpl_request_data_json on npss_trn_process_log (request_data_json);
+@SPL@

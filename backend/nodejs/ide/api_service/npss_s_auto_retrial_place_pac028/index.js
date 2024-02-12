@@ -9,11 +9,13 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
     
+    
 
     /*  Created By :SIVA hARISH
     Created Date :22/02/2023
     Modified By : 
     Modified Date : 25/02/2023
+    Reason: Unique msg id generation for api call on 12/02/2024 by daseen
     }
     */
     var serviceName = 'NPSS (S) Auto Retrial Place Pac028';
@@ -34,7 +36,8 @@ app.post('/', function(appRequest, appResponse, next) {
     const { reject } = require('lodash');
     var mTranConn = "";
     var producer
-    var task
+    var task;
+    const { v4: uuidv4 } = require('uuid');
     var failedData = []
     var objresponse = {
         'status': 'FAILURE',
@@ -213,7 +216,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 method: 'POST',
                                                 json: {
                                                     "hdr_created_date": arrresult[0].hdr_created_date,
-                                                    "hdr_msg_id": arrresult[0].hdr_msg_id,
+                                                    "hdr_msg_id": uuidv4().replace(/-/g,''),
                                                     "cr_sort_code": arrresult[0].cr_sort_code,
                                                     "payment_endtoend_id": arrresult[0].payment_endtoend_id,
                                                     "uetr": arrresult[0].uetr,
@@ -396,6 +399,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

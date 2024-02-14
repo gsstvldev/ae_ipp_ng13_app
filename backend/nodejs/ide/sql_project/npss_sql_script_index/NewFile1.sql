@@ -102,12 +102,6 @@ create index if not exists cbsa_va_flag on core_nc_cbs_accounts (va_flag);
 @SPL@
 create index if not exists cbsa_alternate_account_type on core_nc_cbs_accounts (alternate_account_type);
 @SPL@
-create index if not exists npn_status on npss_pact_notifications (status);
-@SPL@
-create index if not exists npn_process_status on npss_pact_notifications (process_status);
-@SPL@
-create index if not exists npn_npsst_id on npss_pact_notifications (npsst_id);
-@SPL@
 create index if not exists ntpl_t24_return_code on npss_trn_process_log (t24_return_code);
 @SPL@
 create index if not exists ntpl_cbuae_return_code on npss_trn_process_log (cbuae_return_code);

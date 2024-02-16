@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34188 
+Build ID        : 34385 
 Modified By     : Admin 
-Modified Date   : 2024-Jan-24 11:3 AM 
+Modified Date   : 2024-Feb-16 7:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_merchant_details
@@ -28,7 +28,7 @@ export class s_view_merchant_detailsComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_view_merchant_details"
 	wftpa_id : string = "WFT_NPSS_P_1304_1666941961881_0"
 	cg_code : string = "CG_1304_1666936639305"
-	key_column : any = {"dtt_1304_1666846129395":"NPSSMP_ID","dtt_1304_1666847369565":"NPSSMA_ID","dtt_1304_1666847660575":"NPSSMS_ID","dtt_1304_1666848298941":"NPSSMC_ID","dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID","dtt_1304_1695130590062":"NPSSNPPL_ID","dtt_1304_1695214768145":"NAL_ID","dtt_1304_1700459090330":"NPSSPN_ID","dtt_1304_1701251364899":"NPSSPNB_ID","dtt_1304_1666847230281":"NPSSSMTPL_ID"}
+	key_column : any = {"dtt_1304_1666846129395":"NPSSMP_ID","dtt_1304_1666847369565":"NPSSMA_ID","dtt_1304_1666847660575":"NPSSMS_ID","dtt_1304_1666848298941":"NPSSMC_ID","dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID","dtt_1304_1695130590062":"NPSSNPPL_ID","dtt_1304_1695214768145":"NAL_ID","dtt_1304_1700459090330":"NPSSPN_ID","dtt_1304_1701251364899":"NPSSPNB_ID","dtt_1304_1707202677013":"NPSSFE_ID","dtt_1304_1666847230281":"NPSSSMTPL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []

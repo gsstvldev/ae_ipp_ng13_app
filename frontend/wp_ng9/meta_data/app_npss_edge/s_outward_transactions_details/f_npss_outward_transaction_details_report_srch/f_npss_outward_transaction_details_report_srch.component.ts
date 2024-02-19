@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34410 
+Build ID        : 34417 
 Modified By     : Admin 
-Modified Date   : 2024-Feb-19 12:28 PM 
+Modified Date   : 2024-Feb-19 13:17 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_transactions_details
@@ -285,84 +285,6 @@ focustoelement(){
 		this.ctrl.npss_outward_transaction_details_report_srch_memory141 = {}
 		this.ctrl.npss_outward_transaction_details_report_srch_memory141.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_outward_transaction_details_report_srch.memory141 = {}
-	
-		//Properties of intrbk_sttlm_amnt
-		this.ctrl.intrbk_sttlm_amnt = {}
-		this.ctrl.intrbk_sttlm_amnt.id = "RN21CN8"
-		this.ctrl.intrbk_sttlm_amnt.desc = "Transaction Amount Range"
-		this.ctrl.intrbk_sttlm_amnt.visible = true
-		this.ctrl.intrbk_sttlm_amnt.label_name = "Transaction Amount Range"
-		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
-		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
-		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CDN_CTRL"
-		this.ctrl.intrbk_sttlm_amnt.target_column = "INTRBK_STTLM_AMNT"
-		this.ctrl.intrbk_sttlm_amnt.data_type = "NUMBER"
-		this.ctrl.intrbk_sttlm_amnt.data_length = 19
-		this.ctrl.intrbk_sttlm_amnt.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.intrbk_sttlm_amnt.default_value = ""
-		this.ctrl.intrbk_sttlm_amnt.is_memory_ctrl = ""
-		this.ctrl.intrbk_sttlm_amnt.field_coordinates = ""
-		this.ctrl.intrbk_sttlm_amnt.sub_details = ""
-		this.ctrl.intrbk_sttlm_amnt.accept_char = ""
-		this.ctrl.intrbk_sttlm_amnt.currency_format = ""
-		this.ctrl.intrbk_sttlm_amnt.data_scale = "2"
-		this.ctrl.intrbk_sttlm_amnt.binding_name = "INTRBK_STTLM_AMNT"
-		this.ctrl.intrbk_sttlm_amnt.hide_label = false
-		this.ctrl.intrbk_sttlm_amnt.depends_on = ""
-		this.ctrl.intrbk_sttlm_amnt.placeholder = ""
-		this.ctrl.intrbk_sttlm_amnt.dynamic_param = ""
-		this.ctrl.intrbk_sttlm_amnt.style_code = ""
-		this.ctrl.intrbk_sttlm_amnt.data_source = ""
-		this.ctrl.intrbk_sttlm_amnt.image_association = ""
-		this.ctrl.intrbk_sttlm_amnt.show = true
-		this.ctrl.intrbk_sttlm_amnt.sub_content = ""
-		this.ctrl.intrbk_sttlm_amnt.required = false
-		this.ctrl.intrbk_sttlm_amnt.vld_rules = []
-		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
-		this.ctrl.intrbk_sttlm_amnt.disabled = false
-		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_outward_transaction_details_report_srch"
-		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_outward_transaction_details_report_srch_intrbk_sttlm_amnt"
-		this.ctrl.npss_outward_transaction_details_report_srch_intrbk_sttlm_amnt = {}
-		this.ctrl.npss_outward_transaction_details_report_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of channel_refno
-		this.ctrl.channel_refno = {}
-		this.ctrl.channel_refno.id = "RN21CN10"
-		this.ctrl.channel_refno.desc = "Sender/Originator Ref Number"
-		this.ctrl.channel_refno.visible = true
-		this.ctrl.channel_refno.label_name = "Sender/Originator Ref Number"
-		this.ctrl.channel_refno.df_code = "DF_1304_1665901396659"
-		this.ctrl.channel_refno.df_description = "Column Group 1"
-		this.ctrl.channel_refno.uictrl_code = "CDN_CTRL"
-		this.ctrl.channel_refno.target_column = "CHANNEL_REFNO"
-		this.ctrl.channel_refno.data_type = "TEXT"
-		this.ctrl.channel_refno.data_length = 128
-		this.ctrl.channel_refno.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.channel_refno.default_value = ""
-		this.ctrl.channel_refno.is_memory_ctrl = ""
-		this.ctrl.channel_refno.field_coordinates = ""
-		this.ctrl.channel_refno.sub_details = ""
-		this.ctrl.channel_refno.accept_char = ""
-		this.ctrl.channel_refno.currency_format = ""
-		this.ctrl.channel_refno.data_scale = ""
-		this.ctrl.channel_refno.binding_name = "CHANNEL_REFNO"
-		this.ctrl.channel_refno.hide_label = false
-		this.ctrl.channel_refno.depends_on = ""
-		this.ctrl.channel_refno.placeholder = ""
-		this.ctrl.channel_refno.dynamic_param = ""
-		this.ctrl.channel_refno.style_code = ""
-		this.ctrl.channel_refno.data_source = ""
-		this.ctrl.channel_refno.image_association = ""
-		this.ctrl.channel_refno.show = true
-		this.ctrl.channel_refno.sub_content = ""
-		this.ctrl.channel_refno.required = false
-		this.ctrl.channel_refno.vld_rules = []
-		this.ctrl.channel_refno.targetcolumn_lower = "channel_refno"
-		this.ctrl.channel_refno.disabled = false
-		this.ctrl.channel_refno.view_name = "f_npss_outward_transaction_details_report_srch"
-		this.ctrl.channel_refno.ctrl_id = "npss_outward_transaction_details_report_srch_channel_refno"
-		this.ctrl.npss_outward_transaction_details_report_srch_channel_refno = {}
-		this.ctrl.npss_outward_transaction_details_report_srch_channel_refno.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of dbtr_iban
 		this.ctrl.dbtr_iban = {}
@@ -716,8 +638,86 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.ctrl_id = "npss_outward_transaction_details_report_srch_payment_endtoend_id"
 		this.ctrl.npss_outward_transaction_details_report_srch_payment_endtoend_id = {}
 		this.ctrl.npss_outward_transaction_details_report_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_outward_transaction_details_report_srch.model = {"MEMORY119":"","MEMORY75":"","DEPARTMENT_CODE":"","MEMORY63":"setcurrentdate(),{}","VALUE_DATE":"","MEMORY141":"","INTRBK_STTLM_AMNT":"","CHANNEL_REFNO":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","PROCESS_GROUP":"","CDTR_IBAN":"","CDTR_ACCT_NAME":"","MEMORY142":"","CHANNEL_ID":"","UETR":"","PAYMENT_ENDTOEND_ID":""}
-		this.screen_instance[this.comp_id].f_npss_outward_transaction_details_report_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REFNO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_GROUP"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"}]
+	
+		//Properties of intrbk_sttlm_amnt
+		this.ctrl.intrbk_sttlm_amnt = {}
+		this.ctrl.intrbk_sttlm_amnt.id = "RN21CN8"
+		this.ctrl.intrbk_sttlm_amnt.desc = "Transaction Amount Range"
+		this.ctrl.intrbk_sttlm_amnt.visible = true
+		this.ctrl.intrbk_sttlm_amnt.label_name = "Transaction Amount Range"
+		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
+		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
+		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CDN_CTRL"
+		this.ctrl.intrbk_sttlm_amnt.target_column = "INTRBK_STTLM_AMNT"
+		this.ctrl.intrbk_sttlm_amnt.data_type = "NUMBER"
+		this.ctrl.intrbk_sttlm_amnt.data_length = 19
+		this.ctrl.intrbk_sttlm_amnt.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.intrbk_sttlm_amnt.default_value = ""
+		this.ctrl.intrbk_sttlm_amnt.is_memory_ctrl = ""
+		this.ctrl.intrbk_sttlm_amnt.field_coordinates = ""
+		this.ctrl.intrbk_sttlm_amnt.sub_details = ""
+		this.ctrl.intrbk_sttlm_amnt.accept_char = ""
+		this.ctrl.intrbk_sttlm_amnt.currency_format = ""
+		this.ctrl.intrbk_sttlm_amnt.data_scale = "2"
+		this.ctrl.intrbk_sttlm_amnt.binding_name = "INTRBK_STTLM_AMNT"
+		this.ctrl.intrbk_sttlm_amnt.hide_label = false
+		this.ctrl.intrbk_sttlm_amnt.depends_on = ""
+		this.ctrl.intrbk_sttlm_amnt.placeholder = ""
+		this.ctrl.intrbk_sttlm_amnt.dynamic_param = ""
+		this.ctrl.intrbk_sttlm_amnt.style_code = ""
+		this.ctrl.intrbk_sttlm_amnt.data_source = ""
+		this.ctrl.intrbk_sttlm_amnt.image_association = ""
+		this.ctrl.intrbk_sttlm_amnt.show = true
+		this.ctrl.intrbk_sttlm_amnt.sub_content = ""
+		this.ctrl.intrbk_sttlm_amnt.required = false
+		this.ctrl.intrbk_sttlm_amnt.vld_rules = []
+		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
+		this.ctrl.intrbk_sttlm_amnt.disabled = false
+		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_outward_transaction_details_report_srch"
+		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_outward_transaction_details_report_srch_intrbk_sttlm_amnt"
+		this.ctrl.npss_outward_transaction_details_report_srch_intrbk_sttlm_amnt = {}
+		this.ctrl.npss_outward_transaction_details_report_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of channel_refno
+		this.ctrl.channel_refno = {}
+		this.ctrl.channel_refno.id = "RN21CN10"
+		this.ctrl.channel_refno.desc = "Sender/Originator Ref Number"
+		this.ctrl.channel_refno.visible = true
+		this.ctrl.channel_refno.label_name = "Sender/Originator Ref Number"
+		this.ctrl.channel_refno.df_code = "DF_1304_1665901396659"
+		this.ctrl.channel_refno.df_description = "Column Group 1"
+		this.ctrl.channel_refno.uictrl_code = "CDN_CTRL"
+		this.ctrl.channel_refno.target_column = "CHANNEL_REFNO"
+		this.ctrl.channel_refno.data_type = "TEXT"
+		this.ctrl.channel_refno.data_length = 128
+		this.ctrl.channel_refno.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.channel_refno.default_value = ""
+		this.ctrl.channel_refno.is_memory_ctrl = ""
+		this.ctrl.channel_refno.field_coordinates = ""
+		this.ctrl.channel_refno.sub_details = ""
+		this.ctrl.channel_refno.accept_char = ""
+		this.ctrl.channel_refno.currency_format = ""
+		this.ctrl.channel_refno.data_scale = ""
+		this.ctrl.channel_refno.binding_name = "CHANNEL_REFNO"
+		this.ctrl.channel_refno.hide_label = false
+		this.ctrl.channel_refno.depends_on = ""
+		this.ctrl.channel_refno.placeholder = ""
+		this.ctrl.channel_refno.dynamic_param = ""
+		this.ctrl.channel_refno.style_code = ""
+		this.ctrl.channel_refno.data_source = ""
+		this.ctrl.channel_refno.image_association = ""
+		this.ctrl.channel_refno.show = true
+		this.ctrl.channel_refno.sub_content = ""
+		this.ctrl.channel_refno.required = false
+		this.ctrl.channel_refno.vld_rules = []
+		this.ctrl.channel_refno.targetcolumn_lower = "channel_refno"
+		this.ctrl.channel_refno.disabled = false
+		this.ctrl.channel_refno.view_name = "f_npss_outward_transaction_details_report_srch"
+		this.ctrl.channel_refno.ctrl_id = "npss_outward_transaction_details_report_srch_channel_refno"
+		this.ctrl.npss_outward_transaction_details_report_srch_channel_refno = {}
+		this.ctrl.npss_outward_transaction_details_report_srch_channel_refno.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_outward_transaction_details_report_srch.model = {"MEMORY119":"","MEMORY75":"","DEPARTMENT_CODE":"","MEMORY63":"setcurrentdate(),{}","VALUE_DATE":"","MEMORY141":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","PROCESS_GROUP":"","CDTR_IBAN":"","CDTR_ACCT_NAME":"","MEMORY142":"","CHANNEL_ID":"","UETR":"","PAYMENT_ENDTOEND_ID":"","INTRBK_STTLM_AMNT":"","CHANNEL_REFNO":""}
+		this.screen_instance[this.comp_id].f_npss_outward_transaction_details_report_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_GROUP"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REFNO"}]
 		this.screen_instance[this.comp_id].f_npss_outward_transaction_details_report_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_outward_transaction_details_report_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_outward_transaction_details_report_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

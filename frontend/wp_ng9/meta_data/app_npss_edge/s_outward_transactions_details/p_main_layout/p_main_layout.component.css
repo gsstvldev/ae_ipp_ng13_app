@@ -1,2 +1,4 @@
 /* CSS */
 :host ::ng-deep .navigation .row.dynamic_action_btn .btn { float: right; }
+.label{border-radius: 15px;
+padding-top: 15px;}

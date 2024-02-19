@@ -7,15 +7,17 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-    
-    
+
+
+
+
 
     /*  Created By :SIVA hARISH
     Created Date :22/02/2023
     Modified By : 
     Modified Date : 25/02/2023
     Reason: Unique msg id generation for api call on 12/02/2024 by daseen
+    Reason: Status change for pack 028 pack retry 19/02/2024 by daseen
     }
     */
     var serviceName = 'NPSS (S) Auto Retrial Place Pac028';
@@ -66,38 +68,38 @@ app.post('/', function(appRequest, appResponse, next) {
                             if (arrUrl.length > 0) {
                                 ExecuteQuery1(Taketime, function (arrTakehrs) {
                                     if (arrTakehrs.length > 0) {
-                                        var Takedata = `select distinct(uetr) from npss_trn_process_log where TO_DATE(TO_CHAR(CREATED_DATE, 'DD-MON-YY'),'DD-MON-YY') = CURRENT_DATE`
+                                        var Takedata = `select distinct(l.uetr) , nt.npsst_id from npss_trn_process_log l inner join npss_transactions nt on l.uetr =nt.uetr where TO_DATE(TO_CHAR(l.CREATED_DATE, 'DD-MON-YY'),'DD-MON-YY') = CURRENT_DATE and (nt.fx_resv_text4 <>'${params.final_status}' or nt.fx_resv_text4 isnull )`
                                         ExecuteQuery1(Takedata, function (arruetrData) {
                                             if (arruetrData.length > 0) {
                                                 reqAsync.forEachOfSeries(arruetrData, function (arruetrDataobj, i, nextobjctfunc) {
-                                                   
+
                                                     var TakeprocessGROUP = `select process_group from npss_transactions where uetr = '${arruetrDataobj.uetr}'`
                                                     var TakeuetrInfm = `select * from npss_trn_process_log where uetr = '${arruetrDataobj.uetr}' order by npsstpl_id desc limit ${arrTakehrs[0].retry_count}`
-                                                    ExecuteQuery1(TakeprocessGROUP, function(processgroup){
-                                                        if(processgroup.length > 0){
-                                                            var payment_processing_method 
-                                                          
-                                                            if(processgroup[0].process_group == 'P2P'){
-                                                                payment_processing_method =  "SCT_INITITATION" 
-                                                              
-                                                            }else if(processgroup[0].process_group == 'P2B'){
-                                                                payment_processing_method =  "P2B_SCT_INITITATION" 
-                                                                
-                                                            }else if(processgroup[0].process_group == 'IBAN'){
-                                                                payment_processing_method = "AC_AC_IBAN" 
-                                                               
-                                                            }else{
+                                                    ExecuteQuery1(TakeprocessGROUP, function (processgroup) {
+                                                        if (processgroup.length > 0) {
+                                                            var payment_processing_method
+
+                                                            if (processgroup[0].process_group == 'P2P') {
+                                                                payment_processing_method = "SCT_INITITATION"
+
+                                                            } else if (processgroup[0].process_group == 'P2B') {
+                                                                payment_processing_method = "P2B_SCT_INITITATION"
+
+                                                            } else if (processgroup[0].process_group == 'IBAN') {
+                                                                payment_processing_method = "AC_AC_IBAN"
+
+                                                            } else {
                                                                 payment_processing_method = ''
                                                             }
 
                                                             ExecuteQuery1(TakeuetrInfm, async function (arruetrInformation) {
-                                                       
+
                                                                 if (arruetrInformation.length > 0) {
                                                                     if (Number(arruetrInformation.length) == Number(arrTakehrs[0].retry_count)) {
-                                                                        if(arruetrInformation[0].process_name == 'Place Pacs028'){
+                                                                        if (arruetrInformation[0].process_name == 'Place Pacs028') {
                                                                             var p028count = 0;
                                                                             var r002count = 0;
-                                                                          
+
                                                                             for (var a = 0; a < arruetrInformation.length; a++) {
                                                                                 if (arruetrInformation[a].process_name == 'Place Pacs028') {
                                                                                     p028count++;
@@ -105,32 +107,43 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 // else if (arruetrInformation[a].process_name == 'Receive Pacs002') {
                                                                                 //     r002count++;
                                                                                 // }
-            
+
                                                                             }
                                                                             if (Number(p028count) == Number(arrTakehrs[0].retry_count)) {
-                                                                                nextobjctfunc();
+                                                                                let updtTran = await updateTran(arruetrDataobj.npsst_id)
+                                                                                if (updtTran == 'SUCCESS') {
+                                                                                    nextobjctfunc();
+                                                                                } else {
+                                                                                    nextobjctfunc();
+                                                                                }
+
                                                                             }
                                                                             else {
-                                                                                var doapicall = await apiCall(arruetrDataobj, arrUrl,payment_processing_method);
+                                                                                var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
                                                                                 if (doapicall == 'SUCCESS') {
                                                                                     nextobjctfunc();
                                                                                 } else {
                                                                                     reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
                                                                                     nextobjctfunc();
                                                                                 }
-            
-            
+
+
                                                                             }
-                                                                        }else{
-                                                                            nextobjctfunc();
+                                                                        } else {
+                                                                            let updtTran = await updateTran(arruetrDataobj.npsst_id)
+                                                                            if (updtTran == 'SUCCESS') {
+                                                                                nextobjctfunc();
+                                                                            } else {
+                                                                                nextobjctfunc();
+                                                                            }
                                                                         }
-                                                                      
+
                                                                     }
                                                                     else {//for less than retry count
-        
-        
-                                                                        if (arruetrInformation[0].process_name == 'Place Pacs028') {
-                                                                            var doapicall = await apiCall(arruetrDataobj, arrUrl,payment_processing_method);
+
+
+                                                                        if ((arruetrInformation[0].process_name == 'Place Pacs028') || (arruetrInformation[0].process_name == 'Receive Pacs002' && (arruetrInformation[0].cbuae_return_code.sustring(0, 4) != 'PDNG'))) {
+                                                                            var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
                                                                             if (doapicall == 'SUCCESS') {
                                                                                 nextobjctfunc();
                                                                             } else {
@@ -138,31 +151,41 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 nextobjctfunc();
                                                                             }
                                                                         }
-                                                                        else if (arruetrInformation[0].process_name == 'Receive Pacs002') {
-                                                                            nextobjctfunc();
+                                                                        else if ((arruetrInformation[0].process_name == 'Receive Pacs002') && ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].cbuae_return_code.sustring(0, 4) == 'PDNG'))) {
+                                                                            let updtTran = await updateTran(arruetrDataobj.npsst_id)
+                                                                            if (updtTran == 'SUCCESS') {
+                                                                                nextobjctfunc();
+                                                                            } else {
+                                                                                nextobjctfunc();
+                                                                            }
                                                                         }
                                                                         else {
-                                                                            nextobjctfunc();
+                                                                            let updtTran = await updateTran(arruetrDataobj.npsst_id)
+                                                                            if (updtTran == 'SUCCESS') {
+                                                                                nextobjctfunc();
+                                                                            } else {
+                                                                                nextobjctfunc();
+                                                                            }
                                                                         }
-        
-        
+
+
                                                                     }
-        
+
                                                                 } else {
                                                                     nextobjctfunc()
                                                                 }
-                                                          
-                                                         
-    
-                                                        })
 
-                                                        }else{
+
+
+                                                            })
+
+                                                        } else {
                                                             reqInstanceHelper.PrintInfo(serviceName, '------------Process Group Not Found  for uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                                            nextobjctfunc();  
+                                                            nextobjctfunc();
                                                         }
-                                                       
+
                                                     })
-                                                   
+
 
                                                 }, function () {
                                                     objresponse.status = 'SUCCESS';
@@ -195,10 +218,20 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
                         })
 
+                        function updateTran(npsst_id) {
+                            return new Promise((resolve, reject) => {
+                                let tranUpdt = `update npss_transactions set fx_resv_text4='OP_AC_REQ_RECEIVED' where npsst_id='${npsst_id}'`
+                                ExecuteQuery(tranUpdt, function (arrresult) {
+                                    if (arrresult == 'SUCCESS')
+                                        resolve('SUCCESS')
+                                    else
+                                        resolve('FAILURE')
+                                })
+                            })
+                        }
 
 
-
-                        function apiCall(arruetrDataobj, arrUrl,payment_processing_method) {
+                        function apiCall(arruetrDataobj, arrUrl, payment_processing_method) {
                             return new Promise((resolve, reject) => {
 
                                 var TakeactInfm = `select uetr,hdr_msg_id,cr_sort_code,hdr_created_date,payment_endtoend_id,tran_ref_id from npss_transactions where uetr = '${arruetrDataobj.uetr}'`
@@ -216,7 +249,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 method: 'POST',
                                                 json: {
                                                     "hdr_created_date": arrresult[0].hdr_created_date,
-                                                    "hdr_msg_id": uuidv4().replace(/-/g,''),
+                                                    "hdr_msg_id": uuidv4().replace(/-/g, ''),
                                                     "cr_sort_code": arrresult[0].cr_sort_code,
                                                     "payment_endtoend_id": arrresult[0].payment_endtoend_id,
                                                     "uetr": arrresult[0].uetr,
@@ -399,6 +432,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

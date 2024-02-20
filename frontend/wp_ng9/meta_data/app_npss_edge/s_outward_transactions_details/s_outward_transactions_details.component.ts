@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34417 
+Build ID        : 34420 
 Modified By     : Admin 
-Modified Date   : 2024-Feb-19 13:17 PM 
+Modified Date   : 2024-Feb-20 4:26 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_transactions_details
@@ -13,12 +13,13 @@ Screen Name     : s_outward_transactions_details
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_cs_export_excel_for_reportService} from '../../../custom_widget/npss_cs_export_excel_for_report/npss_cs_export_excel_for_report.service'
 
 @Component({
 	selector: 's_outward_transactions_details',
 	templateUrl: './s_outward_transactions_details.component.html',
 	styleUrls: ['./s_outward_transactions_details.component.css'],
-	providers:[torus_cs_show_hideService]
+	providers:[torus_cs_show_hideService,npss_cs_export_excel_for_reportService]
 })
     
 // Start of class 
@@ -36,10 +37,11 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 	uicgc_2 : string = "navigation"
 	uicgc_3 : string = "label"
 	uicgc_4 : string = "search"
+	uicgc_5 : string = "header"
 	key_events : any = {}
 	btl_1304_1708326962657 : string = "p_search_layout"
 	btl_1304_1708326855714 : string = "p_main_layout"
-	forms : any = ["uicgc_4","uicgc_2"]
+	forms : any = ["uicgc_4","uicgc_2","uicgc_5"]
 	p_search_layout__spap_from_search_btn_showpopup : boolean = false
 	list : any = {}
 	navigation : any = {}
@@ -50,10 +52,11 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 	search : any = {}
 	search_clear : any = {}
 	search_search : any = {}
+	header : any = {}
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_export_excel_for_reportService:npss_cs_export_excel_for_reportService) {
     
 	}
     
@@ -156,6 +159,20 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 		this.search_search.dynamic_param = {}
 		this.search_search.role = []
 		this.search_search.action = ""
+	
+		// Component level properties - "Header" 
+		this.header.uictrl_code = "dynamic_ui"
+		this.header.uicgc_desc = "Header"
+		this.header.uicgc_code = "uicgc_5"
+		this.header.params = {}
+		this.header.datasource = {}
+		this.header.context_menu = []
+		this.header.views = {}
+		this.header.onChangecomponent = new EventEmitter<any>()
+		this.header.show = true
+		this.header.dynamic_param = {}
+		this.header.f_header = {"show":true}
+		this.header.current_view = "f_header"
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -325,7 +342,7 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 		let event_data={}
 		let data_source={}
 		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_export_excel_for_reportService.fn_npss_cs_export_excel_for_report(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

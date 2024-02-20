@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34451 
+Build ID        : 34453 
 Modified By     : Admin 
-Modified Date   : 2024-Feb-20 10:47 AM 
+Modified Date   : 2024-Feb-20 11:36 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_transactions_details
@@ -167,7 +167,7 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
   
 	// To handle page_load event
 	page_load(){
-		this.page_load__e_1708425163365()
+		this.page_load__dashboard_ides()
 		this.page_load__e_1708425960961()
 	}
 
@@ -383,14 +383,14 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__e_1708425163365() { 
+	page_load__dashboard_ides() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1708425163365"
-		let event_params={"caller_name":"page_load__e_1708425163365","event_desc":"E_1708425163365","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let event_params={"caller_name":"page_load__dashboard_ides","event_desc":"dashboard ides","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals=""
 		let event_data={}

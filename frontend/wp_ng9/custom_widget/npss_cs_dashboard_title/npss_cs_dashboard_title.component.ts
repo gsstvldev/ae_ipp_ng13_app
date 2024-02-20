@@ -12,6 +12,7 @@ export class npss_cs_dashboard_titleComponent implements OnInit {
     @Input() screen_instance: any = {};
     @Input() comp_id: string;
   cdrDate:any;
+  Message:any
        subscription: Subscription;
     constructor(private _service:npss_cs_dashboard_titleService) { }
     ngOnInit() {

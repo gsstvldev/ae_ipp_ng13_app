@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34424 
+Build ID        : 34428 
 Modified By     : Admin 
-Modified Date   : 2024-Feb-20 5:18 AM 
+Modified Date   : 2024-Feb-20 5:48 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_transactions_details
@@ -23,7 +23,7 @@ export class p_main_layoutComponent implements OnInit {
 
   // Variables 
   	navigation : any = {}
-	header : any = {}
+	home_dashboard_title : any = {}
 	list : any = {}
 
 
@@ -34,8 +34,8 @@ export class p_main_layoutComponent implements OnInit {
   ngOnInit() {
     	this.navigation.desc = "Navigation"
 		this.navigation.need_header = ""
-		this.header.desc = "Header"
-		this.header.need_header = ""
+		this.home_dashboard_title.desc = "Home Dashboard Title"
+		this.home_dashboard_title.need_header = ""
 		this.list.desc = "List"
 		this.list.need_header = true
 	

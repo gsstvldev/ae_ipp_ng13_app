@@ -9,8 +9,8 @@
 </div>
 <div id="R41" class="row">
 	<div id="R41C1" class="column col-md-8 col-sm-6 col-xs-6 col-md-offset-2 col-sm-offset-0 col-xs-offset-0" >
-		<div class="header" >
-			<f_npss_report_label_control [comp_id]="'header'" [screen_instance]="screen_instance" [hidden]="isHidden('header','f_npss_report_label_control')" profile_name="p_main_layout"></f_npss_report_label_control >
+		<div class="home_dashboard_title"  [hidden]="!screen_instance['home_dashboard_title'].show" >
+			<npss_cs_dashboard_title [comp_id]="'home_dashboard_title'" [screen_instance]="screen_instance" profile_name="p_main_layout"></npss_cs_dashboard_title>
 		</div>
 	</div>
 </div>

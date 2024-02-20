@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34424 
+Build ID        : 34428 
 Modified By     : Admin 
-Modified Date   : 2024-Feb-20 5:18 AM 
+Modified Date   : 2024-Feb-20 5:48 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_transactions_details
@@ -35,24 +35,22 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 	current_profile : string = "p_main_layout"
 	uicgc_1 : string = "list"
 	uicgc_2 : string = "navigation"
-	uicgc_3 : string = "label"
 	uicgc_4 : string = "search"
-	uicgc_5 : string = "header"
+	uicgc_6 : string = "home_dashboard_title"
 	key_events : any = {}
 	btl_1304_1708326962657 : string = "p_search_layout"
 	btl_1304_1708326855714 : string = "p_main_layout"
-	forms : any = ["uicgc_5","uicgc_4","uicgc_2"]
+	forms : any = ["uicgc_4","uicgc_2"]
 	p_search_layout__spap_from_search_btn_showpopup : boolean = false
 	list : any = {}
 	navigation : any = {}
 	navigation_search : any = {}
 	navigation_export_as_excel : any = {}
 	navigation_export_as_pdf : any = {}
-	label : any = {}
 	search : any = {}
 	search_clear : any = {}
 	search_search : any = {}
-	header : any = {}
+	home_dashboard_title : any = {}
 
 
 	// Constructor 
@@ -115,18 +113,6 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 		this.navigation_export_as_pdf.role = []
 		this.navigation_export_as_pdf.action = ""
 	
-		// Component level properties - "Label" 
-		this.label.uictrl_code = "label"
-		this.label.uicgc_desc = "Label"
-		this.label.uicgc_code = "uicgc_3"
-		this.label.params = {}
-		this.label.datasource = {}
-		this.label.context_menu = []
-		this.label.views = {}
-		this.label.onChangecomponent = new EventEmitter<any>()
-		this.label.show = true
-		this.label.dynamic_param = {}
-	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
 		this.search.uicgc_desc = "Search"
@@ -159,19 +145,17 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 		this.search_search.role = []
 		this.search_search.action = ""
 	
-		// Component level properties - "Header" 
-		this.header.uictrl_code = "dynamic_ui"
-		this.header.uicgc_desc = "Header"
-		this.header.uicgc_code = "uicgc_5"
-		this.header.params = {}
-		this.header.datasource = {}
-		this.header.context_menu = []
-		this.header.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Report Label Control","tab_order":0,"tab_name":"","uicgc_description":"Header","role_description":"default","dtt_description":"NPSS Transactions"}]}}
-		this.header.onChangecomponent = new EventEmitter<any>()
-		this.header.show = true
-		this.header.dynamic_param = {}
-		this.header.f_npss_report_label_control = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.header.form_name = "f_npss_report_label_control"
+		// Component level properties - "Home Dashboard Title" 
+		this.home_dashboard_title.uictrl_code = "custom_widget"
+		this.home_dashboard_title.uicgc_desc = "Home Dashboard Title"
+		this.home_dashboard_title.uicgc_code = "uicgc_6"
+		this.home_dashboard_title.params = {}
+		this.home_dashboard_title.datasource = {}
+		this.home_dashboard_title.context_menu = []
+		this.home_dashboard_title.views = {}
+		this.home_dashboard_title.onChangecomponent = new EventEmitter<any>()
+		this.home_dashboard_title.show = true
+		this.home_dashboard_title.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -182,11 +166,7 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 	// To handle page_load event
 	page_load(){
 		this.page_load__cf_from_pl()
-	}
-
-	//Handler for INTERNAL event of "cf from pl"
-	cf_from_pl__internal(parent_event_result){
-		this.cf_from_pl__tbc_from_pl_to_search_btn(parent_event_result)
+		this.page_load__tbc_from_pl_to_search_btn()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -231,7 +211,7 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 		let event_code="e_1708327020279"
 		let event_params={"caller_name":"page_load__cf_from_pl","event_desc":"CF From PL","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""}}
 		let handler_code="create_form"
-		let internals="cf_from_pl__tbc_from_pl_to_search_btn,"
+		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
@@ -242,16 +222,15 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
  		} 
 	} 
 
-	//Handler for INTERNAL event of "cf from pl"
-	cf_from_pl__tbc_from_pl_to_search_btn(parent_event_result) { 
+	//Handler for DPSINIT event of "page_load"
+	page_load__tbc_from_pl_to_search_btn() { 
 		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cf_from_pl"
+		
+		let source_id="page_load"
 		let destn_id="search_search"
-		let parent_source_id="page_load"
-		let event_code="e_1708340361456"
-		let event_params={"caller_name":"cf_from_pl__tbc_from_pl_to_search_btn","event_desc":"TBC From PL to Search Btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let parent_source_id=""
+		let event_code="e_1708407659647"
+		let event_params={"caller_name":"page_load__tbc_from_pl_to_search_btn","event_desc":"TBC From PL to Search Btn","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="trigger_button_click"
 		let internals=""
 		let event_data={}

@@ -26,7 +26,7 @@ export class npss_cs_dashboard_titleComponent implements OnInit {
                 }
                 else if(this.screen_instance[`wftpa_description`].includes("outward_transactions_details"))
                 {
-                 this.Message=`OUTWARD TRANSACTIONS`
+                 this.Message=`OUTWARD TRANSACTIONS DETAILS`
                 }
 
                 }

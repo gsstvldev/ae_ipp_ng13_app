@@ -19,9 +19,18 @@ export class npss_cs_dashboard_titleComponent implements OnInit {
             this.subscription = this.screen_instance[this.comp_id].onChangecomponent.subscribe({
                 next: (event: any) => {
                 this.cdrDate=event.param;
+                if(this.screen_instance[`wftpa_description`].includes("home_dashboard"))
+                {
+                 this.Message=`SUMMARY OF MESSAGES FOR TODAY (CURRENT BUSINESS DATE in ${this.cdrDate})`
+                }
+                else if(this.screen_instance[`wftpa_description`].includes("outward_transactions_details"))
+                {
+                 this.Message=`OUTWARD TRANSACTIONS`
+                }
 
                 }
             })
+            
         }
     }
 }

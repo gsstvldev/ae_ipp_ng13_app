@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34446 
+Build ID        : 34451 
 Modified By     : Admin 
-Modified Date   : 2024-Feb-20 9:32 AM 
+Modified Date   : 2024-Feb-20 10:47 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_transactions_details
@@ -14,12 +14,14 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {npss_c_export_pdf_for_reportService} from '../../../custom_widget/npss_c_export_pdf_for_report/npss_c_export_pdf_for_report.service'
 import {npss_cs_export_excel_for_reportService} from '../../../custom_widget/npss_cs_export_excel_for_report/npss_cs_export_excel_for_report.service'
+import {npss_cs_dashboard_titleService} from '../../../custom_widget/npss_cs_dashboard_title/npss_cs_dashboard_title.service'
+import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 
 @Component({
 	selector: 's_outward_transactions_details',
 	templateUrl: './s_outward_transactions_details.component.html',
 	styleUrls: ['./s_outward_transactions_details.component.css'],
-	providers:[npss_c_export_pdf_for_reportService,npss_cs_export_excel_for_reportService]
+	providers:[npss_c_export_pdf_for_reportService,npss_cs_export_excel_for_reportService,npss_cs_dashboard_titleService,torus_cs_show_hideService]
 })
     
 // Start of class 
@@ -54,7 +56,7 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private npss_c_export_pdf_for_reportService:npss_c_export_pdf_for_reportService,private npss_cs_export_excel_for_reportService:npss_cs_export_excel_for_reportService) {
+	constructor(private handler:AppHandlerService ,private npss_c_export_pdf_for_reportService:npss_c_export_pdf_for_reportService,private npss_cs_export_excel_for_reportService:npss_cs_export_excel_for_reportService,private npss_cs_dashboard_titleService:npss_cs_dashboard_titleService,private torus_cs_show_hideService:torus_cs_show_hideService) {
     
 	}
     
@@ -165,8 +167,8 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
   
 	// To handle page_load event
 	page_load(){
-		this.page_load__e_1708413760847()
-		this.page_load__e_1708413791366()
+		this.page_load__e_1708425163365()
+		this.page_load__e_1708425960961()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -199,6 +201,16 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 	//Handler for INTERNAL event of "ssp from search btn to search cmnt"
 	ssp_from_search_btn_to_search_cmnt__internal(parent_event_result){
 		this.ssp_from_search_btn_to_search_cmnt__brfq_from_ssp_to_list(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1708425960961"
+	e_1708425960961__internal(parent_event_result){
+		this.e_1708425960961__e_1708425977969(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "e 1708425977969"
+	e_1708425977969__internal(parent_event_result){
+		this.e_1708425977969__e_1708425998864(parent_event_result)
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -371,16 +383,59 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__e_1708413760847() { 
+	page_load__e_1708425163365() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
 		let destn_id=""
 		let parent_source_id=""
-		let event_code="e_1708413760847"
-		let event_params={"caller_name":"page_load__e_1708413760847","event_desc":"E_1708413760847","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""}}
-		let handler_code="create_form"
+		let event_code="e_1708425163365"
+		let event_params={"caller_name":"page_load__e_1708425163365","event_desc":"E_1708425163365","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="custom_connectors"
 		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_cs_dashboard_titleService.fn_npss_cs_dashboard_title(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__e_1708425960961() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1708425960961"
+		let event_params={"caller_name":"page_load__e_1708425960961","event_desc":"E_1708425960961","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="e_1708425960961__e_1708425977969,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "e 1708425960961"
+	e_1708425960961__e_1708425977969(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1708425960961"
+		let destn_id=""
+		let parent_source_id="page_load"
+		let event_code="e_1708425977969"
+		let event_params={"caller_name":"e_1708425960961__e_1708425977969","event_desc":"E_1708425977969","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""},"parent_event_result":"SUCCESS"}
+		let handler_code="create_form"
+		let internals="e_1708425977969__e_1708425998864,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -391,15 +446,16 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
  		} 
 	} 
 
-	//Handler for DPSINIT event of "page_load"
-	page_load__e_1708413791366() { 
+	//Handler for INTERNAL event of "e 1708425977969"
+	e_1708425977969__e_1708425998864(parent_event_result) { 
 		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="e_1708425977969"
 		let destn_id="search_search"
-		let parent_source_id=""
-		let event_code="e_1708413791366"
-		let event_params={"caller_name":"page_load__e_1708413791366","event_desc":"E_1708413791366","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let parent_source_id="e_1708425960961"
+		let event_code="e_1708425998864"
+		let event_params={"caller_name":"e_1708425977969__e_1708425998864","event_desc":"E_1708425998864","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="trigger_button_click"
 		let internals=""
 		let event_data={}

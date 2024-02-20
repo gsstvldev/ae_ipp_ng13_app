@@ -1,8 +1,2 @@
 /* CSS */
 :host ::ng-deep .navigation .row.dynamic_action_btn .btn { float: right; }
-:host ::ng-deep .header #rule_product_param_header_ui_rule_code label{font-size:15px}
-:host ::ng-deep .header #rule_product_param_header_ui_rule_code label:nth-child(3){color:black}
-:host ::ng-deep .header #rule_product_param_header_ui_rule_code label{font-weight:bold;font-size:15px}
-:host ::ng-deep .header #rule_product_param_header_ui_rule_code label:nth-child(3){color:black}
-.label{border-radius: 15px;
-padding-top: 15px;}

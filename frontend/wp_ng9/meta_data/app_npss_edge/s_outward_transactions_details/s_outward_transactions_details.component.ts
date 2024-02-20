@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34420 
+Build ID        : 34424 
 Modified By     : Admin 
-Modified Date   : 2024-Feb-20 4:26 AM 
+Modified Date   : 2024-Feb-20 5:18 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_transactions_details
@@ -41,7 +41,7 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 	key_events : any = {}
 	btl_1304_1708326962657 : string = "p_search_layout"
 	btl_1304_1708326855714 : string = "p_main_layout"
-	forms : any = ["uicgc_4","uicgc_2","uicgc_5"]
+	forms : any = ["uicgc_5","uicgc_4","uicgc_2"]
 	p_search_layout__spap_from_search_btn_showpopup : boolean = false
 	list : any = {}
 	navigation : any = {}
@@ -126,7 +126,6 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 		this.label.onChangecomponent = new EventEmitter<any>()
 		this.label.show = true
 		this.label.dynamic_param = {}
-		this.label.content = "Outward Transactions Details"
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -167,12 +166,12 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 		this.header.params = {}
 		this.header.datasource = {}
 		this.header.context_menu = []
-		this.header.views = {}
+		this.header.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Report Label Control","tab_order":0,"tab_name":"","uicgc_description":"Header","role_description":"default","dtt_description":"NPSS Transactions"}]}}
 		this.header.onChangecomponent = new EventEmitter<any>()
 		this.header.show = true
 		this.header.dynamic_param = {}
-		this.header.f_header = {"show":true}
-		this.header.current_view = "f_header"
+		this.header.f_npss_report_label_control = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.header.form_name = "f_npss_report_label_control"
 	}
 	// Methods
 	ngAfterViewInit() {

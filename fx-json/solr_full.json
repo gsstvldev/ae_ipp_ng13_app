@@ -572,6 +572,11 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$CHANNEL_REFNO$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NPSSFE_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1707202677013$DQ$

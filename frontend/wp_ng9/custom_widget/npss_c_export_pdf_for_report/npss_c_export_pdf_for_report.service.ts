@@ -517,7 +517,7 @@ export class npss_c_export_pdf_for_reportService {
                     let Headersvalue = []
                     for (let k = 0; k < dataBind.length; k++) {
                         let headerCol: any = {}
-                        headerCol.text = dataBind[k]['target_column'].toUpperCase()
+                        headerCol.text = dataBind[k]['header'].toUpperCase()
                         headerCol.style = 'tableheader'
                         Headersvalue.push(headerCol)
                         header.push( dataBind[k]['target_column'].toLowerCase())
@@ -543,6 +543,10 @@ export class npss_c_export_pdf_for_reportService {
                         },
                         content: [
                             {
+                                text: 'OUTWARD TRANSACTIONS DETAILS',
+                                style: 'header'
+                            },
+                            {
                                 table: {
                                     body: bodyContent
                                 }
@@ -553,6 +557,11 @@ export class npss_c_export_pdf_for_reportService {
                             height: 1000
                         },
                         styles: {
+                            header: {
+                                fontSize: 18,
+                                bold: true,
+                                alignment: 'center'
+                            },
                             tableheader: {
                                 fontSize: 15,
                                 align: 'center',

@@ -538,7 +538,7 @@ export class npss_c_export_pdf_for_reportService {
 
                     var dd = {
                         pageSize: {
-                            width: 3300,
+                            width: 3600,
                             height: 'auto'
                         },
                         content: [

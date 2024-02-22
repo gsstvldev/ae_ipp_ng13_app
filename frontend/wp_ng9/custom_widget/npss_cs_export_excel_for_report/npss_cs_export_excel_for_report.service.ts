@@ -17,7 +17,7 @@ import * as ExcelJS from 'exceljs/dist/exceljs.min.js';
 
 @Injectable()
 export class npss_cs_export_excel_for_reportService {
-    constructor(private httpHelper: HttphelperService) { }
+    constructor(private httpHelper: HttphelperService,private dialogHelper: DialogService) { }
     //Default calling function
     fn_npss_cs_export_excel_for_report(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         let databinding: any = []
@@ -581,7 +581,7 @@ export class npss_cs_export_excel_for_reportService {
 
 
                 } else {
-
+  this.dialogHelper.ShowInfoDialog('No Data found to Export');
 
                 }
             });

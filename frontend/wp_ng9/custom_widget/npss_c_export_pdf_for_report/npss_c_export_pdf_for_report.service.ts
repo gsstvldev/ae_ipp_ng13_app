@@ -579,7 +579,7 @@ export class npss_c_export_pdf_for_reportService {
                     pdfmake.createPdf(dd).download(screenName); 
                 } else {
 
-
+  this.dialogHelper.ShowInfoDialog('No Data found to Export');
                 }
             });
     }

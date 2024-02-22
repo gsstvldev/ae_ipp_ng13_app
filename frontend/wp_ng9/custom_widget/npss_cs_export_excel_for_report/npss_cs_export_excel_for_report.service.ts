@@ -534,9 +534,44 @@ export class npss_cs_export_excel_for_reportService {
                     let workbookName = screenInstance.wftpa_description + '_' + moment().format('DDMMYYYY') + '_' + moment().format('HHMMSS') + '.xlsx'
                     let worksheetName = screenInstance.wftpa_description;
                     let ws = wb.addWorksheet(worksheetName);
+                    
+                    const title = 'NPSS Report';
+                    let titleRow = ws.addRow([title]);
                     ws.columns = header
-                    ws.getRow(1).font = { bold: true };
+                    ws.getRow(2).font = { bold: true };
                     ws.addRows(RowValues);
+
+                    let firstRowData = []; // Array to store data from the first row
+
+                    // Read the contents of the first row
+                    ws.eachRow({ includeEmpty: true }, function (row, rowNumber) {
+                        if (rowNumber === 1) {
+                            // Store data from the first row
+                            row.eachCell({ includeEmpty: true }, function (cell, colNumber) {
+                                firstRowData.push(cell.value);
+                            });
+                        } else if (rowNumber === 2) {
+                            // Clear the contents of the second row
+                            row.eachCell(function (cell) {
+                                cell.value = null;
+                            });
+                        } else if (rowNumber > 2) {
+                            // If there are subsequent rows, we can break the loop
+                            return false;
+                        }
+                    });
+                    
+                    // Write the contents of the first row to the second row
+                    ws.getRow(2).values = firstRowData;
+                    ws.getRow(1).values = ['OUTWARD TRANSACTION DETAILS ']
+                    ws.getRow(1).font = { bold: true };
+                    ws.mergeCells('A1:E1');
+
+                    // Set the value and styling for the merged cell
+                    //ws.getCell('A1').value = 'NPSS Report';
+                    ws.getCell('A1').font = { bold: true, size: 16 };
+                    ws.getCell('A1').alignment = { vertical: 'middle', horizontal: 'center' };
+                    
                     wb.xlsx.writeBuffer().then(function (buffer) {
                         saveAs(
                             new Blob([buffer], { type: 'application/octet-stream' }),

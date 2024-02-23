@@ -12,7 +12,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-    /*  Created By :SIVA hARISH
+    /*  Created By :SIVA  hARISH
     Created Date :22/02/2023
     Modified By : 
     Modified Date : 25/02/2023
@@ -142,7 +142,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     else {//for less than retry count
 
 
-                                                                        if ((arruetrInformation[0].process_name == 'Place Pacs028') || (arruetrInformation[0].process_name == 'Receive Pacs002' && (arruetrInformation[0].cbuae_return_code.sustring(0, 4) != 'PDNG'))) {
+                                                                        if ((arruetrInformation[0].process_name == 'Place Pacs028') || (arruetrInformation[0].process_name == 'Receive Pacs002' && (arruetrInformation[0].cbuae_return_code.substring(0, 4) != 'PDNG'))) {
                                                                             var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
                                                                             if (doapicall == 'SUCCESS') {
                                                                                 nextobjctfunc();
@@ -151,7 +151,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 nextobjctfunc();
                                                                             }
                                                                         }
-                                                                        else if ((arruetrInformation[0].process_name == 'Receive Pacs002') && ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].cbuae_return_code.sustring(0, 4) == 'PDNG'))) {
+                                                                        else if ((arruetrInformation[0].process_name == 'Receive Pacs002') && ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].cbuae_return_code.substring(0, 4) == 'PDNG'))) {
                                                                             let updtTran = await updateTran(arruetrDataobj.npsst_id)
                                                                             if (updtTran == 'SUCCESS') {
                                                                                 nextobjctfunc();

@@ -22,7 +22,7 @@ export class npss_cs_dashboard_titleComponent implements OnInit {
                 this.cdrDate=event.param;
                 if(this.screen_instance[`wftpa_description`].includes("home_dashboard"))
                 {
-                 this.Message=`SUMMARY OF MESSAGES FOR TODAY (CURRENT BUSINESS DATE in ${this.cdrDate})`
+                 this.Message=`SUMMARY OF MESSAGES FOR TODAY (${this.cdrDate})`
                 }
                 else if(this.screen_instance[`wftpa_description`].includes("outward_transactions_details"))
                 {

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34531 
+Build ID        : 34533 
 Modified By     : Admin 
-Modified Date   : 2024-Feb-23 7:11 AM 
+Modified Date   : 2024-Feb-23 7:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_transactions_details
@@ -372,7 +372,7 @@ focustoelement(){
 		this.ctrl.memory145.label_name = "Purpose Codes"
 		this.ctrl.memory145.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory145.df_description = "Column Group 1"
-		this.ctrl.memory145.uictrl_code = "TXT"
+		this.ctrl.memory145.uictrl_code = "CBO"
 		this.ctrl.memory145.target_column = "memory145"
 		this.ctrl.memory145.data_type = "TEXT"
 		this.ctrl.memory145.data_length = 0
@@ -390,7 +390,7 @@ focustoelement(){
 		this.ctrl.memory145.placeholder = ""
 		this.ctrl.memory145.dynamic_param = ""
 		this.ctrl.memory145.style_code = ""
-		this.ctrl.memory145.data_source = ""
+		this.ctrl.memory145.data_source = {"ds_code":"UDS_1304_1679550169366","ds_description":"Purpose codes CDB for rpt","rows":[],"type":"DPS_TABLE","value_member":"PURPOSE_CODE","display_member":"PURPOSE_CODE","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_PURPOSE_CODES","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1679550303378","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter2","binding_name":"NEED_SYNC","id":"DF_1679550303378","binding_value":"Y","source_name":"NEED_SYNC","source_value":"Y","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","temp_value":"TENANT_ID","filter_values":"SESSION_LEVEL"},{"operators":"=","data_type":"TEXT","binding_name":"NEED_SYNC","binding_value":"Y","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"Y"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID AND NEED_SYNC = Y)"},"sel_columns":[]}
 		this.ctrl.memory145.image_association = ""
 		this.ctrl.memory145.show = true
 		this.ctrl.memory145.sub_content = ""
@@ -402,6 +402,7 @@ focustoelement(){
 		this.ctrl.memory145.ctrl_id = "npss_outward_transaction_details_report_srch_memory145"
 		this.ctrl.npss_outward_transaction_details_report_srch_memory145 = {}
 		this.ctrl.npss_outward_transaction_details_report_srch_memory145.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_outward_transaction_details_report_srch.memory145 = {}
 	
 		//Properties of cdtr_iban
 		this.ctrl.cdtr_iban = {}
@@ -719,13 +720,13 @@ focustoelement(){
 	
 		//Properties of memory144
 		this.ctrl.memory144 = {}
-		this.ctrl.memory144.id = "RN61CN19"
+		this.ctrl.memory144.id = "RN61CN20"
 		this.ctrl.memory144.desc = "T24 FT Reference Number"
-		this.ctrl.memory144.visible = true
+		this.ctrl.memory144.visible = false
 		this.ctrl.memory144.label_name = "T24 FT Reference Number"
 		this.ctrl.memory144.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory144.df_description = "Column Group 1"
-		this.ctrl.memory144.uictrl_code = "TXT"
+		this.ctrl.memory144.uictrl_code = "CDN_CTRL"
 		this.ctrl.memory144.target_column = "memory144"
 		this.ctrl.memory144.data_type = "TEXT"
 		this.ctrl.memory144.data_length = 0

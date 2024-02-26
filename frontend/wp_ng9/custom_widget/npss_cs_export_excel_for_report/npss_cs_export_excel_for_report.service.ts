@@ -195,7 +195,7 @@ export class npss_cs_export_excel_for_reportService {
                     },
                     {
                         "header": "End to End ID",
-                        "target_column": "END_TO_END_ID",
+                        "target_column": "PAYMENT_ENDTOEND_ID",
                         "alias_name": "",
                         "alignment": "Left",
                         "width": "",
@@ -445,6 +445,18 @@ export class npss_cs_export_excel_for_reportService {
                     "CONTROL_TYPE": "CDN_CTRL"
 
                 }, {
+                    "BINDING_NAME": "CATEGORY_PURPOSE",
+                    //"VALUE":'',
+                    "VALUE": search.CATEGORY_PURPOSE || '',
+                    "TOVALUE": "",
+                    "OPERATOR": "=",
+                    "DATA_TYPE": "TEXT",
+                    "ASSIGN_TOVALUE": "",
+                    "ASSIGN_OPERATOR": "",
+                    "ASSIGN_VALUE": "",
+                    "CONTROL_TYPE": "CBO"
+
+                },{
                     "BINDING_NAME": "INTRBK_STTLM_AMNT",
                     "VALUE": search.INTRBK_STTLM_AMNT .value|| '',
                     "TOVALUE": "",

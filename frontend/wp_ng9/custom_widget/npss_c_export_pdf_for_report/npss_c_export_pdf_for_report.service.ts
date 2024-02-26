@@ -533,9 +533,9 @@ export class npss_c_export_pdf_for_reportService {
                     }
                     let dataBind = JSON.parse(params.DATA_BINDINGS)
                     let header :any = []
-                    let bodyContent = []
+                    let bodyContent:any = []
                     let Header = JSON.parse(result.data.RowData)
-                    let Headersvalue = []
+                    let Headersvalue:any = []
                     for (let k = 0; k < dataBind.length; k++) {
                         let headerCol: any = {}
                         headerCol.text = dataBind[k]['header'].toUpperCase()
@@ -546,7 +546,7 @@ export class npss_c_export_pdf_for_reportService {
                     bodyContent.push(Headersvalue)
 
                     for (let i = 0; i < Header.length; i++) {
-                        let ColValue = []
+                        let ColValue:any = []
                        
                         for (let j = 0; j < header.length; j++) {
                             let Colobj: any = {}
@@ -588,7 +588,7 @@ export class npss_c_export_pdf_for_reportService {
                                 align: 'center',
                                 bold: true,
                                 margin: [0, 0, 0, 10],
-                                fillColor: 'gray'
+                                fillColor: 'lightgray'
                             }, tablcolmn: {
                                 bold: true,
                                 fontSize: 15,

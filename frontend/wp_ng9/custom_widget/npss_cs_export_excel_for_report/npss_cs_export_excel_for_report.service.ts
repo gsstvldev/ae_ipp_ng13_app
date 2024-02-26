@@ -31,7 +31,7 @@ export class npss_cs_export_excel_for_reportService {
                 databinding = [
                     {
                         "header": "Department Name",
-                        "target_column": "DEPARTMENT_NAME",
+                        "target_column": "DEPARTMENT_CODE",
                         "alias_name": "",
                         "alignment": "Left",
                         "width": "",
@@ -75,9 +75,10 @@ export class npss_cs_export_excel_for_reportService {
                         "format": "",
                         "date_format": false
                     },
+                   
                     {
-                        "header": "Debtor Name",
-                        "target_column": "DBTR_ACCT_NAME",
+                        "header": "Debtor Account",
+                        "target_column": "DBTR_IBAN",
                         "alias_name": "",
                         "alignment": "Left",
                         "width": "",
@@ -86,7 +87,16 @@ export class npss_cs_export_excel_for_reportService {
                     },
                     {
                         "header": "Debtor Card Number",
-                        "target_column": "DBTR_IBAN",
+                        "target_column": "DBTR_ACCT_NO",
+                        "alias_name": "",
+                        "alignment": "Left",
+                        "width": "",
+                        "format": "",
+                        "date_format": false
+                    },
+                    {
+                        "header": "Debtor Name",
+                        "target_column": "DBTR_ACCT_NAME",
                         "alias_name": "",
                         "alignment": "Left",
                         "width": "",

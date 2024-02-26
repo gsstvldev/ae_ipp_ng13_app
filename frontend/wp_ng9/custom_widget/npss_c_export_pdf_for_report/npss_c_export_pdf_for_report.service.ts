@@ -38,7 +38,7 @@ export class npss_c_export_pdf_for_reportService {
                 databinding = [
                     {
                         "header": "Department Name",
-                        "target_column": "DEPARTMENT_NAME",
+                        "target_column": "DEPARTMENT_CODE",
                         "alias_name": "",
                         "alignment": "Left",
                         "width": "",
@@ -83,8 +83,8 @@ export class npss_c_export_pdf_for_reportService {
                         "date_format": false
                     },
                     {
-                        "header": "Debtor Name",
-                        "target_column": "DBTR_ACCT_NAME",
+                        "header": "Debtor Account",
+                        "target_column": "DBTR_IBAN",
                         "alias_name": "",
                         "alignment": "Left",
                         "width": "",
@@ -93,7 +93,16 @@ export class npss_c_export_pdf_for_reportService {
                     },
                     {
                         "header": "Debtor Card Number",
-                        "target_column": "DBTR_IBAN",
+                        "target_column": "DBTR_ACCT_NO",
+                        "alias_name": "",
+                        "alignment": "Left",
+                        "width": "",
+                        "format": "",
+                        "date_format": false
+                    },
+                    {
+                        "header": "Debtor Name",
+                        "target_column": "DBTR_ACCT_NAME",
                         "alias_name": "",
                         "alignment": "Left",
                         "width": "",
@@ -490,7 +499,7 @@ export class npss_c_export_pdf_for_reportService {
             "LockingParameter": undefined,
             "MENU_ITEM_DESC": (screenInstance.wftpa_description == 's_reversal_tran_dashboard') ? "S_REVERSAL_TRAN_DASHBOARD" : "S_OUTWARD_TRANSACTIONS_DETAILS",
             "PAGENO": 0,
-            "RECORDS_PER_PAGE": "",
+            "RECORDS_PER_PAGE": "10",
             "ROUTINGKEYELEMENTID": "transactions_list",
             // "SEARCHPARAMS": "[{\"BINDING_NAME\":\"STATUS\",\"VALUE\":\"Initiated\",\"TOVALUE\":\"\",\"OPERATOR\":\"=\",\"DATA_TYPE\":\"TEXT\",\"ASSIGN_TOVALUE\":\"\",\"ASSIGN_OPERATOR\":\"\",\"ASSIGN_VALUE\":\"\",\"CONTROL_TYPE\":\"TXT\"}]",
             "SEARCHPARAMS": JSON.stringify(searchParam),

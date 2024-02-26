@@ -212,7 +212,7 @@ export class npss_cs_export_excel_for_reportService {
                         "date_format": false
                     },
                     {
-                        "header": "FT/CI Reference Number",
+                        "header": "T24 FT Reference Number",
                         "target_column": "FT_CI_REFERENCE_NUMBER",
                         "alias_name": "",
                         "alignment": "Left",

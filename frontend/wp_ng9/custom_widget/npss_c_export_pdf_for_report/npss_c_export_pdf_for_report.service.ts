@@ -544,6 +544,7 @@ export class npss_c_export_pdf_for_reportService {
                         header.push( dataBind[k]['target_column'].toLowerCase())
                     }
                     bodyContent.push(Headersvalue)
+                    //console.log(Headersvalue.length)
 
                     for (let i = 0; i < Header.length; i++) {
                         let ColValue:any = []
@@ -559,7 +560,7 @@ export class npss_c_export_pdf_for_reportService {
 
                     var dd = {
                         pageSize: {
-                            width: 3600,
+                            width: Headersvalue.length*170, 
                             height: 'auto'
                         },
                         content: [

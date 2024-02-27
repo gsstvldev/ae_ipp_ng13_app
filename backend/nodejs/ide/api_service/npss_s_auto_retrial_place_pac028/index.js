@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -109,6 +110,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 // }
 
                                                                             }
+                                                                            reqInstanceHelper.PrintInfo(serviceName, '------------  uetr  Pacs0028 count is------' +p028count+'----------'+ arruetrDataobj.uetr, objSessionLogInfo);
                                                                             if (Number(p028count) == Number(arrTakehrs[0].retry_count)) {
                                                                                 let updtTran = await updateTran(arruetrDataobj.npsst_id)
                                                                                 if (updtTran == 'SUCCESS') {
@@ -119,6 +121,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                                                             }
                                                                             else {
+                                                                                reqInstanceHelper.PrintInfo(serviceName, '------------ uetr eligible for pacs------' + arruetrDataobj.uetr, objSessionLogInfo);
                                                                                 var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
                                                                                 if (doapicall == 'SUCCESS') {
                                                                                     nextobjctfunc();
@@ -142,7 +145,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     else {//for less than retry count
 
 
-                                                                        if ((arruetrInformation[0].process_name == 'Place Pacs028') || (arruetrInformation[0].process_name == 'Receive Pacs002' && (arruetrInformation[0].cbuae_return_code.substring(0, 4) != 'PDNG'))) {
+                                                                        if ((arruetrInformation[0].process_name == 'Place Pacs028') || (arruetrInformation[0].process_name == 'Receive Pacs002' && (arruetrInformation[0].cbuae_return_code.substring(0, 4) == 'PDNG'))) {
+                                                                            reqInstanceHelper.PrintInfo(serviceName, '------------ uetr eligible for pacs------' + arruetrDataobj.uetr, objSessionLogInfo);
                                                                             var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
                                                                             if (doapicall == 'SUCCESS') {
                                                                                 nextobjctfunc();
@@ -151,7 +155,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 nextobjctfunc();
                                                                             }
                                                                         }
-                                                                        else if ((arruetrInformation[0].process_name == 'Receive Pacs002') && ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].cbuae_return_code.substring(0, 4) == 'PDNG'))) {
+                                                                        else if ((arruetrInformation[0].process_name == 'Receive Pacs002') && ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].cbuae_return_code.substring(0, 4) != 'PDNG'))) {
+                                                                            reqInstanceHelper.PrintInfo(serviceName, '------------ Already uetr Receive Pacs002 received------' + arruetrDataobj.uetr, objSessionLogInfo);
                                                                             let updtTran = await updateTran(arruetrDataobj.npsst_id)
                                                                             if (updtTran == 'SUCCESS') {
                                                                                 nextobjctfunc();
@@ -432,6 +437,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

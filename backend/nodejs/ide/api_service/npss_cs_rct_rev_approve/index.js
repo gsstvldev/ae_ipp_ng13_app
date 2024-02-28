@@ -34,7 +34,7 @@ app.post('/', function(appRequest, appResponse, next) {
                    Modified By : payload modified 14/02/2023
                      Modified By : changing update query 25/04/2023
                       Modified By : Daseen hdr_created_date payload change 05/09/2023
-                      Modified By : Daseen Working for clrsysref  in BCT & RCT change 28/02/2024
+                      Modified By : Daseen Working for  clrsysref  in BCT & RCT change 28/02/2024
         */
         var serviceName = 'NPSS RCT Outward Reversal Approve';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -235,7 +235,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             ExecuteQuery1(findBct, function (arrfindBct) {
                                 var TakepostRefno;
                                 if (arrfindBct.length > 0 && arrfindBct[0].process_group == 'BCT') {
-                                    TakepostRefno = `select npsstrrd_refno as process_ref_no from npss_trn_process_log where uetr = '${uetr}' and process_name = 'Receive Pacs002' and status in ('OP_BCT_FILE_ACCEPTED')`
+                                    TakepostRefno = `select npsstrrd_refno as process_ref_no from npss_trn_process_log where uetr = '${uetr}' and process_name =  'Download pacs002' and status in ('OP_BCT_FILE_ACCEPTED')`
                                     
                                 } else {
                                     TakepostRefno = `select process_ref_no from npss_trn_process_log where uetr = '${uetr}' and process_name = 'Receive Pacs002' and status in ('OP_AC_STATUS_ACCEPTED','OP_P2P_STATUS_ACCEPTED', 'OP_P2B_STATUS_ACCEPTED')`

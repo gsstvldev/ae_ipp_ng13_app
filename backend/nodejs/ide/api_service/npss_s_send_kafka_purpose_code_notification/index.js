@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
      /*  Created By :   Siva Harish
      Created Date :31/12/2022
@@ -16,6 +17,8 @@ app.post('/', function(appRequest, appResponse, next) {
      Modified Date : 17/01/2023
      Reason for : Remove Console log
       Modified Date : 23/02/2023
+   Reason for : Added key  batchEnabled  on 28/02/2024 by Daseen
+
      */
       var serviceName = 'NPSS (S) Send Kafka Purpose Code Notification';
       var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -56,7 +59,7 @@ app.post('/', function(appRequest, appResponse, next) {
                      try {
                          var PRCT_ID = prct_id
                          var TakeUrl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_COMMUNICATION_API' and param_code='URL' and need_sync = 'Y'`
-                        var taketrnlist = `select cncpc_id,purpose_code,purpose_description,enable_flag,action_flag from core_nc_purpose_codes where published is null or published = 'N'`
+                        var taketrnlist = `select cncpc_id,purpose_code,purpose_description,enable_flag,action_flag,batch_enabled from core_nc_purpose_codes where published is null or published = 'N'`
                         ExecuteQuery1(TakeUrl, function (arrUrl) {
                             if(arrUrl.length > 0){
                                 ExecuteQuery1(taketrnlist,  function (arrresult) {
@@ -77,6 +80,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             description:arrresultObj.purpose_description,
                                                                             enabled:arrresultObj.enable_flag,
                                                                              Action: arrresultObj.action_flag,
+                                                                             batchEnabled:arrresultObj.batch_enabled,
                                                                         }
                                                                         var paramData = dataobj
                                                                         try {
@@ -288,6 +292,7 @@ app.post('/', function(appRequest, appResponse, next) {
   
   
   
+
 
 
 

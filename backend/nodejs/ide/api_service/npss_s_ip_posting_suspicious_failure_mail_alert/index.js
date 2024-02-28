@@ -68,7 +68,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                         }
                                         resolve(retstr = '(' + "'" + arrTranstr.toString().split(',').join("','") + "'" + ')');
                                     })
-
                                 }
                                 var status = await arraytostr(params.status);
                                 var process_status = await arraytostr(params.process_status);
@@ -124,11 +123,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                         timeout: 18000000,
                                                                                         method: 'POST',
                                                                                         json:
-
                                                                                         {
-
                                                                                             "PARAMS": {
-
                                                                                                 "WFTPA_ID": "DEFAULT",
                                                                                                 "PRCT_ID": "",
                                                                                                 "EVENT_CODE": "DEFAULT",
@@ -140,7 +136,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                 "DTT_CODE": "",
                                                                                                 "COMM_INFO": "",
                                                                                                 "SKIP_COMM_FLOW": true
-
                                                                                             },
 
                                                                                             "PROCESS_INFO": {
@@ -148,20 +143,16 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                 "MENU_GROUP": "MENU_GROUP",
                                                                                                 "MENU_ITEM": "MENU_ITEM",
                                                                                                 "PROCESS_NAME": "PROCESS_NAME"
-
                                                                                             }
                                                                                         },
                                                                                         headers: {
                                                                                             "session-id": params.session_id,
                                                                                             "routingKey": params.routingKey,
                                                                                             'Content-Type': 'application/json'
-
                                                                                         }
                                                                                     }
-
                                                                                     reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
-                                                                                    request(options, function (error, responseFromImagingService, responseBody) {
-
+                                                                                    request(options, async function (error, responseFromImagingService, responseBody) {
                                                                                         if (error) {
                                                                                             reqInstanceHelper.PrintInfo(serviceName, '------------Mail API ERROR-------' + error, objSessionLogInfo);
                                                                                             sendResponse(error, null);
@@ -169,7 +160,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                         else {
                                                                                             reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseBody), objSessionLogInfo);
                                                                                             reqInstanceHelper.PrintInfo(serviceName, '------------Mail has been sent for -------' + arrDataobj.npsst_id, objSessionLogInfo);
-                                                                                            nextobjctfunc();
+
+                                                                                            let Updatetran = await TakeeliTran(arrDataobj.npsst_id)
+                                                                                            if (Updatetran == 'SUCCESS') {
+                                                                                                nextobjctfunc();
+                                                                                            }
+                                                                                            else {
+                                                                                                nextobjctfunc();
+                                                                                            }
                                                                                         }
                                                                                     });
 
@@ -183,40 +181,41 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 nextobjctfunc();
                                                                             }
                                                                         })
-
-
                                                                     })
-
-
-
                                                                 })
                                                             })
                                                         })
-
                                                     })
-
-
                                                 })
                                             }, function () {
                                                 objresponse.status = 'SUCCESS';
                                                 sendResponse(null, objresponse)
                                             })
-
                                         }
                                         else {
                                             reqInstanceHelper.PrintInfo(serviceName, '-----------No data Found in Tran Table------', objSessionLogInfo);
                                             objresponse.status = 'Failure';
                                             sendResponse(null, objresponse)
                                         }
-
                                     })
                                 })
-
                             }
-
                         })
 
-
+                        function TakeeliTran(TakeTrnid) {
+                            return new Promise((resolve, reject) => {
+                                let Updtbl = `update npss_transactions set fx_resv_text5 = 'Mail_Sent' where npsst_id in (${TakeTrnid})`
+                                ExecuteQuery(Updtbl, function (result) {
+                                    if (result == 'SUCCESS') {
+                                        reqInstanceHelper.PrintInfo(serviceName, '-----------Update success for------' + TakeTrnid, objSessionLogInfo);
+                                        resolve('SUCCESS')
+                                    } else {
+                                        reqInstanceHelper.PrintInfo(serviceName, '-----------Update failure for------' + TakeTrnid, objSessionLogInfo);
+                                        resolve('FAILURE')
+                                    }
+                                })
+                            })
+                        }
                         //Execute Query for common
                         function ExecuteQuery(query, callback) {
                             reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
@@ -225,14 +224,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                         sendResponse(error)
                                     } else {
                                         callback("SUCCESS");
-
                                     }
                                 } catch (error) {
                                     sendResponse(error)
                                 }
                             });
                         }
-
                         function ExecuteQuery1(query, callback) {
                             reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
                                 try {
@@ -250,12 +247,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                 }
                             });
                         }
-
                     } catch (error) {
                         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
                     }
                 })
-
                 //Send Response Function Definition
                 function sendResponse(error, response) {
                     try {
@@ -266,19 +261,16 @@ app.post('/', function(appRequest, appResponse, next) {
                         } else {
 
                             reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-
                         }
                     } catch (error) {
                         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
                     }
                 }
-
             })
         } catch (error) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
-
 
 
 

@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
 
 
 
@@ -101,7 +102,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 TakeAccountInformation = '';
                                                 TakeSellRatemargin = '';
                                             }
-                                            var arrpostrefno = await getPostRefNo(arrprocesslog[0].uetr)
+                                            var arrpostrefno = await getPostRefNo(arrprocesslog)
                                           
                                             /*     ExecuteQuery1(TakepostRefno, function (arrpostrefno) {
                                                     if (arrpostrefno.length > 0) { */
@@ -229,24 +230,25 @@ app.post('/', function(appRequest, appResponse, next) {
                         }
 
                     })
-                    function getPostRefNo(uetr) {
+                    function getPostRefNo(arrprocesslog) {
                         return new Promise((resolve, reject) => {
-                            var findBct = `select npsst_id,process_group  from npss_transactions where status ='OP_BCT_FILE_ACCEPTED' and uetr = '${uetr}' `
+                            var findBct = `select npsst_id,process_group  from npss_transactions where status ='OP_BCT_FILE_ACCEPTED' and uetr = '${arrprocesslog[0].uetr}' `
                             ExecuteQuery1(findBct, function (arrfindBct) {
                                 var TakepostRefno;
                                 if (arrfindBct.length > 0 && arrfindBct[0].process_group == 'BCT') {
-                                    TakepostRefno = `select npsstrrd_refno as process_ref_no from npss_trn_process_log where uetr = '${uetr}' and process_name =  'Download pacs002' and status in ('OP_BCT_FILE_ACCEPTED')`
+                                    resolve (arrprocesslog[0].clrsysref)
                                     
                                 } else {
-                                    TakepostRefno = `select process_ref_no from npss_trn_process_log where uetr = '${uetr}' and process_name = 'Receive Pacs002' and status in ('OP_AC_STATUS_ACCEPTED','OP_P2P_STATUS_ACCEPTED', 'OP_P2B_STATUS_ACCEPTED')`
+                                    TakepostRefno = `select process_ref_no from npss_trn_process_log where uetr = '${arrprocesslog[0].uetr}' and process_name = 'Receive Pacs002' and status in ('OP_AC_STATUS_ACCEPTED','OP_P2P_STATUS_ACCEPTED', 'OP_P2B_STATUS_ACCEPTED')`
+                                    ExecuteQuery1(TakepostRefno, function (arpostrefno) {
+                                        if (arpostrefno.length > 0) {
+                                            resolve(arpostrefno[0].process_ref_no)
+                                        } else { 
+                                            resolve("FAILURE")
+                                        }
+                                    })
                                 }
-                                ExecuteQuery1(TakepostRefno, function (arrpostrefno) {
-                                    if (arrpostrefno.length > 0) {
-                                        resolve(arrpostrefno)
-                                    } else { 
-                                        resolve("FAILURE")
-                                    }
-                                })
+                               
                             })
 
 
@@ -271,7 +273,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
                                     "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
                                     "uetr": arrprocesslog[0].uetr || '',
-                                    "clrsysref": arrpostrefno[0].process_ref_no,
+                                    "clrsysref": arrpostrefno,
                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                     "reversal_amount": arrprocesslog[0].reversal_amount || '',
                                     "reversal_code": params.REVERSAL_CODE || '',
@@ -565,6 +567,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

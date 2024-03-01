@@ -569,9 +569,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                                         "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
                                                         "remittance_information": arrprocesslog[0].remittance_info || '',
-                                                        "category_purpose": arrprocesslog[0].category_purpose_prty  || '',
+                                                       // "category_purpose": arrprocesslog[0].category_purpose_prty  || '',
                                                         "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
-                                                        "category_purpose_prty": category_prty || '',
+                                                        "category_purpose_prty": arrprocesslog[0].category_purpose_prty  || '',
                                                         "channel_id": 'IPP',
 
                                                         "cb_acctype_code": takeaccttypecode,

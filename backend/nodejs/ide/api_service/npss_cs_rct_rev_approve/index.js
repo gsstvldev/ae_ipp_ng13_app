@@ -232,11 +232,11 @@ app.post('/', function(appRequest, appResponse, next) {
                     })
                     function getPostRefNo(arrprocesslog) {
                         return new Promise((resolve, reject) => {
-                            var findBct = `select npsst_id,process_group  from npss_transactions where status ='OP_BCT_FILE_ACCEPTED' and uetr = '${arrprocesslog[0].uetr}' `
+                            var findBct = `select npsst_id,process_group,clrsysref  from npss_transactions where process_type='OP' and uetr = '${arrprocesslog[0].uetr}' `
                             ExecuteQuery1(findBct, function (arrfindBct) {
                                 var TakepostRefno;
                                 if (arrfindBct.length > 0 && arrfindBct[0].process_group == 'BCT') {
-                                    resolve (arrprocesslog[0].clrsysref)
+                                    resolve (arrfindBct[0].clrsysref)
                                     
                                 } else {
                                     TakepostRefno = `select process_ref_no from npss_trn_process_log where uetr = '${arrprocesslog[0].uetr}' and process_name = 'Receive Pacs002' and status in ('OP_AC_STATUS_ACCEPTED','OP_P2P_STATUS_ACCEPTED', 'OP_P2B_STATUS_ACCEPTED')`

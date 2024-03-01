@@ -7,7 +7,7 @@ var app = express.Router();
 
 app.post('/', function (appRequest, appResponse, next) {
     
-    var serviceName = 'NPSS INDEX Inward Reversal';
+    var serviceName = 'NPSS IP REV Ret Auth PACS004';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
     var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
     var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
@@ -32,9 +32,9 @@ app.post('/', function (appRequest, appResponse, next) {
     reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInformation) {
         try {
             objSessionLogInfo = objLogInfo; // Assing log information
-            objSessionLogInfo.HANDLER_CODE = 'NPSS INDEX Inward Reversal';
+            objSessionLogInfo.HANDLER_CODE = 'NPSS IP REV Ret Auth PACS004';
             objSessionLogInfo.ACTION = 'ACTION';
-            objSessionLogInfo.PROCESS = 'NPSS INDEX Inward Reversal';
+            objSessionLogInfo.PROCESS = 'NPSS IP REV Ret Auth PACS004';
             reqTranDBInstance.GetTranDBConn(headers, false, async function (pSession) {
                 mTranConn = pSession; //  assign connection
                 try {
@@ -66,7 +66,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                                             //IF PAC004 API SUCCESS AFTER STATUS AND PROCESS STAUS CHANGED
                                                             ExecuteQuery1(take_pacs004_url, async function () {
                                                                 FinalStschange = `Update npss_transactions set maker = '${params.CREATED_BY_NAME}',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}' `
-                                                                ExecuteQuery1(FinalStschange, async function (FinalUptstatus) {
+                                                                ExecuteQuery(FinalStschange, async function (FinalUptstatus) {
                                                                     if (FinalUptstatus == 'SUCCESS') {
                                                                         objresponse.status = "SUCCESS"
                                                                         objresponse.data = "SUCCESS"
@@ -135,13 +135,12 @@ app.post('/', function (appRequest, appResponse, next) {
                                     "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
                                     "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
                                     "uetr": arrprocesslog[0].uetr || '',
-                                    "clrsysref": arrpostrefno[0].process_ref_no,
+                                    "clrsysref": arrprocesslog[0].clrsysref||'',
                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                     "reversal_amount": arrprocesslog[0].reversal_amount || '',
                                     "reversal_code": params.REVERSAL_CODE || '',
                                     "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
                                     "intrbk_sttlm_dt": arrprocesslog[0].hdr_settlement_date || '',
-                                    "AccountInformation": TakeAccountInformation,
                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                     "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                     "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
@@ -154,7 +153,7 @@ app.post('/', function (appRequest, appResponse, next) {
                             }
                             var PrintInfo = {}
                             PrintInfo.url = apiURL || ''
-                            PrintInfo.npsst_id = arrTranparams[0].npsst_id || ''
+                            PrintInfo.npsst_id = arrprocesslog[0].npsst_id || ''
                             reqInstanceHelper.PrintInfo(serviceName, + '------------ API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
@@ -163,6 +162,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                 }
                                 else {
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
+                                    
                                     try {
                                         reqInstanceHelper.PrintInfo(serviceName, '------------ API Response JSON-------' + JSON.stringify(responseBodyFromImagingService), objSessionLogInfo);
                                     }
@@ -180,11 +180,11 @@ app.post('/', function (appRequest, appResponse, next) {
                     })
                 }
                 //CALLING PAC004 API 
-                function callingpacs004(arrprocesslog, pacs004apiURL, arrreturncode) {
+                function callingpacs004(arrprocesslog, pacs004apiURL) {
                     return new Promise((resolve, reject) => {
                         try {
                             var apiURL = pacs004apiURL;
-                            var postreasoncode = arrreturncode;
+                            // var postreasoncode = arrreturncode;
                             var apiName = 'NPSS IP RETURN PACS004'
                             var request = require('request');
                             var options = {
@@ -201,12 +201,11 @@ app.post('/', function (appRequest, appResponse, next) {
                                     "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
                                     "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
                                     "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
-                                    "uetr": arrprocesslog[0].uetr,
+                                    "uetr": arrprocesslog[0].uetr||'',
                                     "hdr_clearing_system": arrprocesslog[0].hdr_clearing_system || '',
                                     "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
-                                    "post_reason_code": arrreturncode[0].cbuae_return_code || '',
-                                    "post_reason_code": postreasoncode || '',
-                                    "clrsysref": arrprocesslog[0].clrsysref,
+                                    "post_reason_code":'MD06',
+                                    "clrsysref": arrprocesslog[0].clrsysref||'',
                                     "org_intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || ''
                                 },
@@ -220,9 +219,13 @@ app.post('/', function (appRequest, appResponse, next) {
                                     reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
                                     sendResponse(error, null);
                                 } else {
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                     responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-
+                                    try {
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------ API Response JSON-------' + JSON.stringify(responseBodyFromImagingService), objSessionLogInfo);
+                                    }
+                                    catch (error) {
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------ API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                    }
                                     resolve(responseBodyFromImagingService)
                                 }
                             });
@@ -232,6 +235,7 @@ app.post('/', function (appRequest, appResponse, next) {
                         }
                     })
                 }
+
                 //Execute Query 1 for common
                 function ExecuteQuery1(query, callback) {
                     reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {

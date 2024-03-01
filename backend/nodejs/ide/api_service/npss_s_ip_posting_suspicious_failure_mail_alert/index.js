@@ -72,7 +72,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                 }
                                 var status = await arraytostr(params.status);
                                 var process_status = await arraytostr(params.process_status);
-                                var Takedata = `SELECT * FROM npss_trn_process_log AS log  INNER JOIN npss_transactions AS trans ON log.uetr = trans.uetr WHERE log.status IN ${status} AND log.process_status IN ${process_status}  AND trans.process_type = 'IP'`
+                                var Takedata=`SELECT * FROM npss_trn_process_log AS log  INNER JOIN npss_transactions AS trans ON log.uetr = trans.uetr WHERE log.status IN ${status} AND log.process_status IN ${process_status} AND trans.process_type = 'IP'  and (trans.fx_resv_text5 <>'Mail_Sent'  or trans.fx_resv_text5 isnull)`
+                               // var Takedata = `SELECT * FROM npss_trn_process_log AS log  INNER JOIN npss_transactions AS trans ON log.uetr = trans.uetr WHERE log.status IN ${status} AND log.process_status IN ${process_status}  AND trans.process_type = 'IP'`
                                 var Takeorg = `select param_value from CORE_NS_PARAMS  where process_name = '${params.process_name}' and param_name = 'ORIGIN' and need_sync='Y'`
                                 ExecuteQuery1(Takeorg, function (arrorg) {
                                     ExecuteQuery1(Takedata, async function (arrAllData) {

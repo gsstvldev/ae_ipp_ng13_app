@@ -8,6 +8,7 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
+    
 
 
 
@@ -34,6 +35,7 @@ Reason for : Changing query 16/6/2023
   Reason for : changes on DBTR NAME from ACCT table  11/01/2024 by Daseen
   Reason for : changes on DBTR NAME,dob from given tran where cdtr_iban= null 19/01/2024 by Daseen
   Reason for : changes on instruction_id insert  23/01/2024 by Daseen
+  Reason for : changes on PAYMENT END TO END  ID insert 01/03/2024 by  Daseen
  
 */
 var serviceName = ' NPSS (CS) Outward Manual Initiation ';
@@ -85,11 +87,17 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                         var takeUetr = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_GET_UETR' and param_code='URL' and NEED_SYNC = 'Y'`
                                         ExecuteQuery1(takeUetr, async function (arruetr) {
                                             if (arruetr.length > 0) {
+                                               
                                                 //  var acctDetails = await getAcctData(arrdata)
                                                 var orgfiledata = await Getorgdata(arrdata)
 
                                                 uetr = await GetUetr(arruetr)
-                                                Payment_Id = await Getuuid()
+                                                if(params.eligible_status=='IP_BCT_POSTING_SUCCESS'|| params.eligible_status=='IP_BCT_PC_T24_POSTING_SUCCESS'|| params.eligible_status=='IP_BCT_CC_T24_POSTING_SUCCESS'){
+                                                    Payment_Id= arrdata[0].payment_endtoend_id
+                                                }else{
+                                                    Payment_Id = await Getuuid()
+                                                }
+                                                
                                                 if (arrdata.length > 0) {
                                                     TakeBrithdate = await BirthDate(arrdata[0].cdtr_iban,arrdata[0].cdtr_acct_name)
                                                     let chkCreditPredpaid = await chkccpcc(arrdata)
@@ -530,6 +538,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
 })
+
 
 
 

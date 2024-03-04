@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+    
   
   try {
     /*   Created By : Siva Harish
@@ -15,6 +16,7 @@ app.post('/', function(appRequest, appResponse, next) {
     modify date : 5/4/2023
   Reason for : Changing Return code query 13/04/2023
      modify date : 3/7/2023
+     Modified for: For BCT process no api call only status change on 04-03-2024
    
     */
     var serviceName = 'NPSS (CS) RCT Outward Posting Failure Retry Repost';
@@ -111,6 +113,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         Apicalls = await CallORAPI(arrTranparams, failcountobj, failcount, arrurl)
                                                     } else if (params.eligible_status == 'OP_P2B_FUND_UNFR_RETRY') { //Unfreeze
                                                         Apicalls = await CallP2B(arrTranparams, failcountobj, failcount, arrurl)
+                                                    } else if (params.eligible_status == 'OP_BCT_REV_POSTING_FAILURE'||params.eligible_status == 'OP_BCT_RTN_POSTING_FAILURE') { //BCT Process
+                                                        Apicalls = 'SUCCESS'
                                                     } else {
                                                         objresponse.status = "FAILURE"
                                                         objresponse.errdata = "No Eligible status for checker role"
@@ -972,20 +976,6 @@ app.post('/', function(appRequest, appResponse, next) {
 catch (error) {
     sendResponse(error, null);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

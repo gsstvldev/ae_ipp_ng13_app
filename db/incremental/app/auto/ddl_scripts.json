@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_TRN_PROCESS_LOG add column PACT_NOTIFY CHARACTER VARYING(1);","params" : [] }]
+[{"query" : "alter table NPSS_TRN_PROCESS_LOG add column PACT_NT_NOTIFY CHARACTER VARYING(1);","params" : [] }]

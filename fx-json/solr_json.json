@@ -1,7 +1,7 @@
 [{
   $DQ$TRAN_INSERTION$DQ$: [
     {
-      $DQ$NAME$DQ$: $DQ$PACT_NOTIFY$DQ$,
+      $DQ$NAME$DQ$: $DQ$PACT_NT_NOTIFY$DQ$,
       $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
       $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1665905039255$DQ$
     }

@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column OUTWARD_FILE_NAME CHARACTER VARYING(256);","params" : [] }]

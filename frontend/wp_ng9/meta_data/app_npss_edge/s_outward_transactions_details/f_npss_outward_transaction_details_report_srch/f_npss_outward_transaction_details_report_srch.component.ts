@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34548 
+Build ID        : 34657 
 Modified By     : Admin 
-Modified Date   : 2024-Feb-26 10:2 AM 
+Modified Date   : 2024-Mar-05 8:13 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_transactions_details
@@ -385,6 +385,7 @@ focustoelement(){
 		this.ctrl.category_purpose.currency_format = ""
 		this.ctrl.category_purpose.data_scale = ""
 		this.ctrl.category_purpose.binding_name = "CATEGORY_PURPOSE"
+		this.ctrl.category_purpose.hide_label = false
 		this.ctrl.category_purpose.depends_on = ""
 		this.ctrl.category_purpose.placeholder = ""
 		this.ctrl.category_purpose.dynamic_param = ""

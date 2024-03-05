@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34646 
+Build ID        : 34657 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-04 11:16 AM 
+Modified Date   : 2024-Mar-05 8:13 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_investigation
@@ -476,7 +476,46 @@ focustoelement(){
 		this.ctrl.processing_system.ctrl_id = "npss_rct_post_plog_srch_processing_system"
 		this.ctrl.npss_rct_post_plog_srch_processing_system = {}
 		this.ctrl.npss_rct_post_plog_srch_processing_system.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.model = {"MEMORY18":"setcurrentdate(),{}","MEMORY9":"setcurrentdate(),{}","MEMORY19":"","UETR":"","MEMORY21":"","MEMORY27":"","MEMORY22":"","MEMORY23":"","MEMORY24":"","MEMORY25":"","PROCESSING_SYSTEM":""}
+	
+		//Properties of memory94
+		this.ctrl.memory94 = {}
+		this.ctrl.memory94.id = "r3CN12"
+		this.ctrl.memory94.desc = "Process Group"
+		this.ctrl.memory94.visible = true
+		this.ctrl.memory94.label_name = "Process Group"
+		this.ctrl.memory94.df_code = "DF_1304_1665905157963"
+		this.ctrl.memory94.df_description = "Column Group 1"
+		this.ctrl.memory94.uictrl_code = "CBO"
+		this.ctrl.memory94.target_column = "memory94"
+		this.ctrl.memory94.data_type = "TEXT"
+		this.ctrl.memory94.data_length = 0
+		this.ctrl.memory94.zone_df_code = "DF_1304_1665905157963"
+		this.ctrl.memory94.default_value = ""
+		this.ctrl.memory94.is_memory_ctrl = "Y"
+		this.ctrl.memory94.field_coordinates = ""
+		this.ctrl.memory94.sub_details = ""
+		this.ctrl.memory94.accept_char = ""
+		this.ctrl.memory94.currency_format = ""
+		this.ctrl.memory94.data_scale = ""
+		this.ctrl.memory94.binding_name = "PROCESS_GROUP"
+		this.ctrl.memory94.depends_on = ""
+		this.ctrl.memory94.placeholder = ""
+		this.ctrl.memory94.dynamic_param = ""
+		this.ctrl.memory94.style_code = ""
+		this.ctrl.memory94.data_source = {"ds_code":"UDS_1304_1707195068242","ds_description":"NPSS Process Group RPT CDB","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"CD_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CODE_DESCRIPTIONS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1707195193895","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter2","binding_name":"CD_CATEGORY","id":"DF_1707195193895","binding_value":"RPT_PRC_GROUP","source_name":"CD_CATEGORY","source_value":"RPT_PRC_GROUP","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","temp_value":"TENANT_ID","filter_values":"SESSION_LEVEL"},{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"RPT_PRC_GROUP","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"RPT_PRC_GROUP"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID AND CD_CATEGORY = RPT_PRC_GROUP)"},"sel_columns":[]}
+		this.ctrl.memory94.image_association = ""
+		this.ctrl.memory94.show = true
+		this.ctrl.memory94.sub_content = ""
+		this.ctrl.memory94.required = false
+		this.ctrl.memory94.vld_rules = []
+		this.ctrl.memory94.targetcolumn_lower = "memory94"
+		this.ctrl.memory94.disabled = false
+		this.ctrl.memory94.view_name = "f_npss_rct_post_plog_srch"
+		this.ctrl.memory94.ctrl_id = "npss_rct_post_plog_srch_memory94"
+		this.ctrl.npss_rct_post_plog_srch_memory94 = {}
+		this.ctrl.npss_rct_post_plog_srch_memory94.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.memory94 = {}
+		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.model = {"MEMORY18":"setcurrentdate(),{}","MEMORY9":"setcurrentdate(),{}","MEMORY19":"","UETR":"","MEMORY21":"","MEMORY27":"","MEMORY22":"","MEMORY23":"","MEMORY24":"","MEMORY25":"","PROCESSING_SYSTEM":"","MEMORY94":""}
 		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"}]
 		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_rct_post_plog_srch.dtt_code = "dtt_1304_1665905039255"

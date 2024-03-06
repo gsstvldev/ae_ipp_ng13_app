@@ -13,10 +13,24 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     /*  Created By :Daseen
     Created Date :27/02/2024
+    Reason : Remarks updated in transaction on 06-03-2024
     
-    }
+    {
+    "PARAMS": {
+        "rule_code": "NPSS_MAN_INITIATION_PACS_RJCT"
+    },
+    "PROCESS_INFO": {
+        "MODULE": "Kafka",
+        "MENU_GROUP": "kafka Participant list",
+        "MENU_ITEM": "Kafka",
+        "PROCESS_NAME": "Participant list"
+    },
+    "session_id": "STATIC-SESSION-NPSS"
+}
+    
     */
     var serviceName = 'NPSS (S) Manual Initiation IP Tran Eligible for Pacs008 Reject Case';
 
@@ -61,16 +75,16 @@ app.post('/', function(appRequest, appResponse, next) {
                     try {
                         var PRCT_ID = prct_id
                         var TakeStsPsts = `select success_process_status,success_status,eligible_status,eligible_process_status from core_nc_workflow_setup where rule_code = '${params.rule_code}' and eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                      
+
                         ExecuteQuery1(TakeStsPsts, function (arrSts) {
                             if (arrSts.length > 0) {
-                                var Takedata =  `SELECT npsst_id,uetr FROM npss_transactions  WHERE process_type = 'IP'   AND uetr IN (   SELECT additional_info     FROM npss_trn_process_log   WHERE uetr IN (   SELECT uetr     FROM npss_transactions WHERE process_status = '${arrSts[0].eligible_process_status}'  AND status = '${arrSts[0].eligible_status}' AND process_group = 'MANUAL'   )    AND process_name = 'Initiate Dispute Tran'  AND status = 'OP_RCT_RET_INITIATED'     )`
-                               
+                                var Takedata = `SELECT npsst_id,uetr FROM npss_transactions  WHERE process_type = 'IP'   AND uetr IN (   SELECT additional_info     FROM npss_trn_process_log   WHERE uetr IN (   SELECT uetr     FROM npss_transactions WHERE process_status = '${arrSts[0].eligible_process_status}'  AND status = '${arrSts[0].eligible_status}' AND process_group = 'MANUAL'  and (remarks <>'TAKEN'  or remarks isnull) )    AND process_name = 'Initiate Dispute Tran'  AND status = 'OP_RCT_RET_INITIATED'     )`
+
 
                                 ExecuteQuery1(Takedata, async function (arruetrData) {
                                     if (arruetrData.length > 0) {
-                                        
-                                        let upadatests = await updateTran('(' + arruetrData.map((x) => x.npsst_id) + ')', arrSts[0].success_status, arrSts[0].success_process_status)
+
+                                        let upadatests = await updateTran('(' + arruetrData.map((x) => x.npsst_id) + ')', arrSts[0].success_status, arrSts[0].success_process_status, '(' + arruetrData.map((x) =>`'`+x.uetr+`'`) + ')')
                                     } else {
                                         reqInstanceHelper.PrintInfo(serviceName, '------------No  data found in Tran IP-------', objSessionLogInfo);
                                         objresponse.status = 'FAILURE';
@@ -88,13 +102,22 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
                         })
 
-                        function updateTran(subquery, final_status, final_process_status) {
+                        function updateTran(subquery, final_status, final_process_status, uetr) {
                             return new Promise((resolve, reject) => {
                                 let tranUpdt = `update npss_transactions set status='${final_status}' ,process_status='${final_process_status}'where npsst_id in ${subquery}`
+                                let updatManul = `update npss_transactions set remarks='TAKEN' where process_group='MANUAL' and uetr in ${uetr}`
                                 ExecuteQuery(tranUpdt, function (arrresult) {
                                     if (arrresult == 'SUCCESS') {
-                                        objresponse.status = 'SUCCESS';
-                                        sendResponse(null, objresponse)
+                                        ExecuteQuery(updatManul, function (arrMan) {
+                                            if (arrMan == 'SUCCESS') {
+                                                objresponse.status = 'SUCCESS';
+                                                sendResponse(null, objresponse)
+                                            } else {
+                                                objresponse.status = 'FAILURE';
+                                                sendResponse(null, objresponse)
+                                            }
+                                        })
+
                                     }
 
                                     else {
@@ -201,6 +224,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

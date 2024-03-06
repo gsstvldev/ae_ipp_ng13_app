@@ -78,7 +78,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                               
                                                 var objCusTranInst = {};
 
-                                                objCusTranInst.MSG_ID = arrprocesslog[i].hdr_msg_id;
+                                                objCusTranInst.MSG_ID = arrprocesslog[i].hdr_msg_id||'0';
                                                 objCusTranInst.PRCT_ID = PRCT_ID;
                                                 objCusTranInst.UETR = arrprocesslog[i].uetr;
                                                 objCusTranInst.NPSSTRRD_REFNO = arrprocesslog[i].tran_ref_id;

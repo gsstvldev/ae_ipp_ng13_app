@@ -112,8 +112,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     } else if (params.eligible_status == 'OP_AC_RET_POSTING_RETRY' || params.eligible_status == 'OR_P2P_POSTING_RETRY' || params.eligible_status == 'OR_P2B_POSTING_RETRY') { //OR
                                                         Apicalls = await CallORAPI(arrTranparams, failcountobj, failcount, arrurl)
                                                     } else if (params.eligible_status == 'OP_P2B_FUND_UNFR_RETRY') { //Unfreeze
-                                                        Apicalls = await CallP2B(arrTranparams, failcountobj, failcount, arrurl)
-                                                    } else if (params.eligible_status == 'OP_BCT_REV_POSTING_FAILURE'||params.eligible_status == 'OP_BCT_RTN_POSTING_FAILURE') { //BCT Process
+                                                        Apicalls = await CallP2B(arrTranparams, failcountobj, failcount, arrurl) 
+                                                    } else if (params.eligible_status == 'OP_BCT_REV_POSTING_RETRY'||params.eligible_status == 'OP_BCT_RTN_POSTING_RETRY') { //BCT Process
                                                         Apicalls = 'SUCCESS'
                                                     } else {
                                                         objresponse.status = "FAILURE"
@@ -177,7 +177,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     var arrCusTranInst = [];
                     for (let i = 0; i < arrTranparams.length; i++) {
                         var objCusTranInst = {}
-                        objCusTranInst.MSG_ID = arrTranparams[i].hdr_msg_id;
+                        objCusTranInst.MSG_ID = arrTranparams[i].hdr_msg_id||'0';
                         objCusTranInst.PRCT_ID = PRCT_ID;
                         objCusTranInst.UETR = arrTranparams[i].uetr;
                         objCusTranInst.NPSSTRRD_REFNO = arrTranparams[i].tran_ref_id;

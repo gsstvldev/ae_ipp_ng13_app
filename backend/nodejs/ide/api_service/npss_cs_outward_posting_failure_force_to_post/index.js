@@ -10,6 +10,7 @@ app.post('/', function(appRequest, appResponse, next) {
     
     
     
+    
 
     try {
         /*   Created By : Siva Harish
@@ -18,6 +19,7 @@ app.post('/', function(appRequest, appResponse, next) {
       Changeing rulecode and status  10/04/2023
        Reason for : Changing Return code query 13/04/2023
        Reason for : Adding Insert Query for Maker 18/04/2023
+       Reason : Handling for BCT change status by daseen on 06/03/2024 
          
        
         */
@@ -96,7 +98,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             Apicalls = await CallORAPI(arrTranparams, failcountobj, failcount, arrurl)
                                                         } else if (params.eligible_status == 'OP_P2B_UNFR_FP_INITIATED') { //Unfreeze
                                                             Apicalls = await CallP2B(arrTranparams, failcountobj, failcount, arrurl)
-                                                        } else {
+                                                        }  else if (params.eligible_status == 'OP_BCT_REV_FP_INITIATED' || params.eligible_status == 'OP_BCT_RTN_FP_INITIATED') { //BCT change status 
+                                                            Apicalls = 'SUCCESS'
+                                                        }else {
                                                             objresponse.status = "FAILURE"
                                                             objresponse.errdata = "No Eligible status for checker role"
                                                             sendResponse(null, objresponse)
@@ -157,7 +161,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         var arrCusTranInst = [];
                         for (let i = 0; i < arrTranparams.length; i++) {
                             var objCusTranInst = {}
-                            objCusTranInst.MSG_ID = arrTranparams[i].hdr_msg_id;
+                            objCusTranInst.MSG_ID = arrTranparams[i].hdr_msg_id||'0';
                             objCusTranInst.PRCT_ID = PRCT_ID;
                             objCusTranInst.UETR = arrTranparams[i].uetr;
                             objCusTranInst.NPSSTRRD_REFNO = arrTranparams[i].tran_ref_id;
@@ -921,6 +925,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

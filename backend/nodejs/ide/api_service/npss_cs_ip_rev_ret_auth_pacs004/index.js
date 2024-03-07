@@ -154,7 +154,8 @@ app.post('/', function (appRequest, appResponse, next) {
                             var PrintInfo = {}
                             PrintInfo.url = apiURL || ''
                             PrintInfo.npsst_id = arrprocesslog[0].npsst_id || ''
-                            reqInstanceHelper.PrintInfo(serviceName, + '------------ API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                           // reqInstanceHelper.PrintInfo(serviceName, + '------------ API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                            reqInstanceHelper.PrintInfo(serviceName, + '------------ API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                 if (error) {
                                     reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);

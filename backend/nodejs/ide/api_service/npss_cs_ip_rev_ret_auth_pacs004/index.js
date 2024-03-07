@@ -131,6 +131,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                 timeout: 18000000,
                                 method: 'POST',
                                 json: {
+                                    "payload":{
                                     "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
                                     "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
                                     "tran_ref_id": arrprocesslog[0].tran_ref_id || '',
@@ -146,7 +147,8 @@ app.post('/', function (appRequest, appResponse, next) {
                                     "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
                                     "dr_department_code": arrprocesslog[0].department_code || 'DEFAULT',
                                     "org_created_date": arrprocesslog[0].hdr_created_date || ''
-                                },
+                                }
+                            },
                                 headers: {
                                     'Content-Type': 'application/json'
                                 }
@@ -193,7 +195,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                 timeout: 18000000,
                                 method: 'POST',
                                 json: {
-
+                                    "payload":{
                                     "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
                                     "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date || '',
                                     "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
@@ -209,7 +211,8 @@ app.post('/', function (appRequest, appResponse, next) {
                                     "clrsysref": arrprocesslog[0].clrsysref||'',
                                     "org_intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || ''
-                                },
+                                }
+                            },
                                 headers: {
                                     'Content-Type': 'application/json'
                                 }

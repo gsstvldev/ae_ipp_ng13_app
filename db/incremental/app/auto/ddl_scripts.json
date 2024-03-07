@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column BATCH_REF_NO CHARACTER VARYING(64);","params" : [] }]

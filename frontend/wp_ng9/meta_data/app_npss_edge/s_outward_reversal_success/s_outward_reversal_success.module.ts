@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34705 
+Build ID        : 34710 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-11 11:25 AM 
+Modified Date   : 2024-Mar-11 13:48 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_reversal_success
@@ -38,7 +38,7 @@ import { s_outward_reversal_successRoutingModule } from './s_outward_reversal_su
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigationComponent } from './f_navigation/f_navigation.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_searchComponent } from './f_search/f_search.component'
+import { f_npss_outward_reversal_success_srchComponent } from './f_npss_outward_reversal_success_srch/f_npss_outward_reversal_success_srch.component'
 
 
 
@@ -55,7 +55,7 @@ import { f_searchComponent } from './f_search/f_search.component'
     s_outward_reversal_successRoutingModule,
     npss_cs_dashboard_titleModule,npss_c_export_pdf_for_reportModule,npss_cs_export_excel_for_reportModule,torus_cs_show_hideModule
   ],
-  declarations: [s_outward_reversal_successComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_searchComponent,],
+  declarations: [s_outward_reversal_successComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_npss_outward_reversal_success_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

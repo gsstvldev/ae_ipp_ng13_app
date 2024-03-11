@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34703 
+Build ID        : 34710 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-11 6:31 AM 
+Modified Date   : 2024-Mar-11 13:48 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_ip_transactions
@@ -539,6 +539,7 @@ focustoelement(){
 		this.ctrl.inward_file_name.currency_format = ""
 		this.ctrl.inward_file_name.data_scale = ""
 		this.ctrl.inward_file_name.binding_name = "INWARD_FILE_NAME"
+		this.ctrl.inward_file_name.hide_label = false
 		this.ctrl.inward_file_name.depends_on = ""
 		this.ctrl.inward_file_name.placeholder = ""
 		this.ctrl.inward_file_name.dynamic_param = ""

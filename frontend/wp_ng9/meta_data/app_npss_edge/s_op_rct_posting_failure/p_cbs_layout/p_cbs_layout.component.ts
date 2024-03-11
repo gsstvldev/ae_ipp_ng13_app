@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34701 
+Build ID        : 34710 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-11 6:27 AM 
+Modified Date   : 2024-Mar-11 13:48 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_posting_failure

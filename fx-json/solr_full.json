@@ -832,6 +832,11 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1681973868376$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$PAYMENT_STATUS$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1681973868376$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$SOURCE$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1681973868376$DQ$
@@ -848,11 +853,6 @@
       },
       {
         $DQ$NAME$DQ$: $DQ$BATCH_REF$DQ$,
-        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
-        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1681973868376$DQ$
-      },
-      {
-        $DQ$NAME$DQ$: $DQ$PAYMENT_STATUS$DQ$,
         $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1681973868376$DQ$
       },

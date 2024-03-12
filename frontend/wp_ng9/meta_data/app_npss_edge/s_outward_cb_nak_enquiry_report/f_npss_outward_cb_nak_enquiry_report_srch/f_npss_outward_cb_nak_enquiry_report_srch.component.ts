@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34719 
+Build ID        : 34731 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-12 10:37 AM 
+Modified Date   : 2024-Mar-12 12:11 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_cb_nak_enquiry_report
@@ -297,7 +297,7 @@ focustoelement(){
 		this.ctrl.memory63.data_type = "DATETIME"
 		this.ctrl.memory63.data_length = 0
 		this.ctrl.memory63.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory63.default_value = ""
+		this.ctrl.memory63.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory63.is_memory_ctrl = "Y"
 		this.ctrl.memory63.field_coordinates = ""
 		this.ctrl.memory63.sub_details = ""
@@ -362,7 +362,7 @@ focustoelement(){
 		this.ctrl.npss_outward_cb_nak_enquiry_report_srch_memory142 = {}
 		this.ctrl.npss_outward_cb_nak_enquiry_report_srch_memory142.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_outward_cb_nak_enquiry_report_srch.memory142 = {}
-		this.screen_instance[this.comp_id].f_npss_outward_cb_nak_enquiry_report_srch.model = {"MEMORY118":"","PAYMENT_ENDTOEND_ID":"","DEPARTMENT_CODE":"","DBTR_IBAN":"","INTRBK_STTLM_AMNT":"","PROCESS_GROUP":"","MEMORY63":"","MEMORY142":""}
+		this.screen_instance[this.comp_id].f_npss_outward_cb_nak_enquiry_report_srch.model = {"MEMORY118":"","PAYMENT_ENDTOEND_ID":"","DEPARTMENT_CODE":"","DBTR_IBAN":"","INTRBK_STTLM_AMNT":"","PROCESS_GROUP":"","MEMORY63":"setcurrentdate(),{}","MEMORY142":""}
 		this.screen_instance[this.comp_id].f_npss_outward_cb_nak_enquiry_report_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_GROUP"}]
 		this.screen_instance[this.comp_id].f_npss_outward_cb_nak_enquiry_report_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_outward_cb_nak_enquiry_report_srch.dtt_code = "dtt_1304_1665901217208"

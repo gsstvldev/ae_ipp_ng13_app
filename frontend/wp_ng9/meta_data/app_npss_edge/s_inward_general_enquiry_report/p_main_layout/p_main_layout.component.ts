@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34719 
+Build ID        : 34731 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-12 10:37 AM 
+Modified Date   : 2024-Mar-12 12:11 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_inward_general_enquiry_report

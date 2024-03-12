@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34725 
+Build ID        : 34726 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-12 8:36 AM 
+Modified Date   : 2024-Mar-12 10:36 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_inward_transactions_details
@@ -91,9 +91,9 @@ focustoelement(){
 		//Properties of memory75
 		this.ctrl.memory75 = {}
 		this.ctrl.memory75.id = "RN01CN2"
-		this.ctrl.memory75.desc = "Status"
+		this.ctrl.memory75.desc = "Transaction Status"
 		this.ctrl.memory75.visible = true
-		this.ctrl.memory75.label_name = "Status"
+		this.ctrl.memory75.label_name = "Transaction Status"
 		this.ctrl.memory75.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory75.df_description = "Column Group 1"
 		this.ctrl.memory75.uictrl_code = "CBO"
@@ -328,9 +328,9 @@ focustoelement(){
 		//Properties of ext_purpose_code
 		this.ctrl.ext_purpose_code = {}
 		this.ctrl.ext_purpose_code.id = "RN21CN8"
-		this.ctrl.ext_purpose_code.desc = "Purpose Code"
+		this.ctrl.ext_purpose_code.desc = "Purpose Codes"
 		this.ctrl.ext_purpose_code.visible = true
-		this.ctrl.ext_purpose_code.label_name = "Purpose Code"
+		this.ctrl.ext_purpose_code.label_name = "Purpose Codes"
 		this.ctrl.ext_purpose_code.df_code = "DF_1304_1665901396659"
 		this.ctrl.ext_purpose_code.df_description = "Column Group 1"
 		this.ctrl.ext_purpose_code.uictrl_code = "CBO"
@@ -568,7 +568,7 @@ focustoelement(){
 		this.ctrl.memory148.label_name = "Sender Bank"
 		this.ctrl.memory148.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory148.df_description = "Column Group 1"
-		this.ctrl.memory148.uictrl_code = "CDN_CTRL"
+		this.ctrl.memory148.uictrl_code = "CBO"
 		this.ctrl.memory148.target_column = "memory148"
 		this.ctrl.memory148.data_type = "TEXT"
 		this.ctrl.memory148.data_length = 0
@@ -586,7 +586,7 @@ focustoelement(){
 		this.ctrl.memory148.placeholder = ""
 		this.ctrl.memory148.dynamic_param = ""
 		this.ctrl.memory148.style_code = ""
-		this.ctrl.memory148.data_source = ""
+		this.ctrl.memory148.data_source = {"ds_code":"UDS_1304_1675679493844","ds_description":"BankName CDB for Report","rows":[],"type":"DPS_TABLE","value_member":"BANK_NAME","display_member":"BANK_NAME","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_MEMBER_BANKS","context":"","filters":[],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[]},"query":"()"},"sel_columns":[]}
 		this.ctrl.memory148.image_association = ""
 		this.ctrl.memory148.show = true
 		this.ctrl.memory148.sub_content = ""
@@ -598,6 +598,7 @@ focustoelement(){
 		this.ctrl.memory148.ctrl_id = "npss_inward_transactions_details_report_srch_memory148"
 		this.ctrl.npss_inward_transactions_details_report_srch_memory148 = {}
 		this.ctrl.npss_inward_transactions_details_report_srch_memory148.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_inward_transactions_details_report_srch.memory148 = {}
 	
 		//Properties of uetr
 		this.ctrl.uetr = {}

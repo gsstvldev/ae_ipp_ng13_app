@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34725 
+Build ID        : 34726 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-12 8:36 AM 
+Modified Date   : 2024-Mar-12 10:36 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_general_enquiry_report
@@ -289,9 +289,9 @@ focustoelement(){
 		//Properties of process_group
 		this.ctrl.process_group = {}
 		this.ctrl.process_group.id = "RN21CN7"
-		this.ctrl.process_group.desc = "Created Date Range"
+		this.ctrl.process_group.desc = "Process Group"
 		this.ctrl.process_group.visible = true
-		this.ctrl.process_group.label_name = "Created Date Range"
+		this.ctrl.process_group.label_name = "Process Group"
 		this.ctrl.process_group.df_code = "DF_1304_1665901396659"
 		this.ctrl.process_group.df_description = "Column Group 1"
 		this.ctrl.process_group.uictrl_code = "CBO"
@@ -641,9 +641,9 @@ focustoelement(){
 		//Properties of channel_id
 		this.ctrl.channel_id = {}
 		this.ctrl.channel_id.id = "RN51CN18"
-		this.ctrl.channel_id.desc = "Channel Id"
+		this.ctrl.channel_id.desc = "Source Channel"
 		this.ctrl.channel_id.visible = true
-		this.ctrl.channel_id.label_name = "Channel Id"
+		this.ctrl.channel_id.label_name = "Source Channel"
 		this.ctrl.channel_id.df_code = "DF_1304_1665901396659"
 		this.ctrl.channel_id.df_description = "Column Group 1"
 		this.ctrl.channel_id.uictrl_code = "CBO"

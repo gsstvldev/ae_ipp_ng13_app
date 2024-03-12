@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34725 
+Build ID        : 34726 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-12 8:36 AM 
+Modified Date   : 2024-Mar-12 10:36 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_reversal_success
@@ -90,9 +90,9 @@ focustoelement(){
 		//Properties of channel_id
 		this.ctrl.channel_id = {}
 		this.ctrl.channel_id.id = "RN01CN3"
-		this.ctrl.channel_id.desc = "Channel ID"
+		this.ctrl.channel_id.desc = "Channel"
 		this.ctrl.channel_id.visible = true
-		this.ctrl.channel_id.label_name = "Channel ID"
+		this.ctrl.channel_id.label_name = "Channel"
 		this.ctrl.channel_id.df_code = "DF_1304_1665901396659"
 		this.ctrl.channel_id.df_description = "Column Group 1"
 		this.ctrl.channel_id.uictrl_code = "CBO"
@@ -363,6 +363,45 @@ focustoelement(){
 		this.ctrl.npss_outward_reversal_success_srch_dbtr_acct_no = {}
 		this.ctrl.npss_outward_reversal_success_srch_dbtr_acct_no.onChangecomponent = new EventEmitter<any>()
 	
+		//Properties of uetr
+		this.ctrl.uetr = {}
+		this.ctrl.uetr.id = "RN31CN11"
+		this.ctrl.uetr.desc = "UETR"
+		this.ctrl.uetr.visible = true
+		this.ctrl.uetr.label_name = "UETR"
+		this.ctrl.uetr.df_code = "DF_1304_1665901396659"
+		this.ctrl.uetr.df_description = "Column Group 1"
+		this.ctrl.uetr.uictrl_code = "CDN_CTRL"
+		this.ctrl.uetr.target_column = "UETR"
+		this.ctrl.uetr.data_type = "TEXT"
+		this.ctrl.uetr.data_length = 64
+		this.ctrl.uetr.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.uetr.default_value = ""
+		this.ctrl.uetr.is_memory_ctrl = ""
+		this.ctrl.uetr.field_coordinates = ""
+		this.ctrl.uetr.sub_details = ""
+		this.ctrl.uetr.accept_char = ""
+		this.ctrl.uetr.currency_format = ""
+		this.ctrl.uetr.data_scale = ""
+		this.ctrl.uetr.binding_name = "UETR"
+		this.ctrl.uetr.hide_label = false
+		this.ctrl.uetr.depends_on = ""
+		this.ctrl.uetr.placeholder = ""
+		this.ctrl.uetr.dynamic_param = ""
+		this.ctrl.uetr.style_code = ""
+		this.ctrl.uetr.data_source = ""
+		this.ctrl.uetr.image_association = ""
+		this.ctrl.uetr.show = true
+		this.ctrl.uetr.sub_content = ""
+		this.ctrl.uetr.required = false
+		this.ctrl.uetr.vld_rules = []
+		this.ctrl.uetr.targetcolumn_lower = "uetr"
+		this.ctrl.uetr.disabled = false
+		this.ctrl.uetr.view_name = "f_npss_outward_reversal_success_srch"
+		this.ctrl.uetr.ctrl_id = "npss_outward_reversal_success_srch_uetr"
+		this.ctrl.npss_outward_reversal_success_srch_uetr = {}
+		this.ctrl.npss_outward_reversal_success_srch_uetr.onChangecomponent = new EventEmitter<any>()
+	
 		//Properties of payment_endtoend_id
 		this.ctrl.payment_endtoend_id = {}
 		this.ctrl.payment_endtoend_id.id = "RN21CN10"
@@ -401,47 +440,8 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.ctrl_id = "npss_outward_reversal_success_srch_payment_endtoend_id"
 		this.ctrl.npss_outward_reversal_success_srch_payment_endtoend_id = {}
 		this.ctrl.npss_outward_reversal_success_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of uetr
-		this.ctrl.uetr = {}
-		this.ctrl.uetr.id = "RN31CN11"
-		this.ctrl.uetr.desc = "UETR"
-		this.ctrl.uetr.visible = false
-		this.ctrl.uetr.label_name = "UETR"
-		this.ctrl.uetr.df_code = "DF_1304_1665901396659"
-		this.ctrl.uetr.df_description = "Column Group 1"
-		this.ctrl.uetr.uictrl_code = "CDN_CTRL"
-		this.ctrl.uetr.target_column = "UETR"
-		this.ctrl.uetr.data_type = "TEXT"
-		this.ctrl.uetr.data_length = 64
-		this.ctrl.uetr.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.uetr.default_value = ""
-		this.ctrl.uetr.is_memory_ctrl = ""
-		this.ctrl.uetr.field_coordinates = ""
-		this.ctrl.uetr.sub_details = ""
-		this.ctrl.uetr.accept_char = ""
-		this.ctrl.uetr.currency_format = ""
-		this.ctrl.uetr.data_scale = ""
-		this.ctrl.uetr.binding_name = "UETR"
-		this.ctrl.uetr.hide_label = false
-		this.ctrl.uetr.depends_on = ""
-		this.ctrl.uetr.placeholder = ""
-		this.ctrl.uetr.dynamic_param = ""
-		this.ctrl.uetr.style_code = ""
-		this.ctrl.uetr.data_source = ""
-		this.ctrl.uetr.image_association = ""
-		this.ctrl.uetr.show = true
-		this.ctrl.uetr.sub_content = ""
-		this.ctrl.uetr.required = false
-		this.ctrl.uetr.vld_rules = []
-		this.ctrl.uetr.targetcolumn_lower = "uetr"
-		this.ctrl.uetr.disabled = false
-		this.ctrl.uetr.view_name = "f_npss_outward_reversal_success_srch"
-		this.ctrl.uetr.ctrl_id = "npss_outward_reversal_success_srch_uetr"
-		this.ctrl.npss_outward_reversal_success_srch_uetr = {}
-		this.ctrl.npss_outward_reversal_success_srch_uetr.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.model = {"MEMORY63":"setcurrentdate(),{}","CHANNEL_ID":"","DEPARTMENT_CODE":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","DBTR_IBAN":"","DBTR_ACCT_NO":"","PAYMENT_ENDTOEND_ID":"","UETR":""}
-		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"}]
+		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.model = {"MEMORY63":"setcurrentdate(),{}","CHANNEL_ID":"","DEPARTMENT_CODE":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","DBTR_IBAN":"","DBTR_ACCT_NO":"","UETR":"","PAYMENT_ENDTOEND_ID":""}
+		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"}]
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

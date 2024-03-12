@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34725 
+Build ID        : 34726 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-12 8:36 AM 
+Modified Date   : 2024-Mar-12 10:36 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_request_details
@@ -365,9 +365,9 @@ focustoelement(){
 		//Properties of channel_id
 		this.ctrl.channel_id = {}
 		this.ctrl.channel_id.id = "RN21CN10"
-		this.ctrl.channel_id.desc = "Channel ID"
+		this.ctrl.channel_id.desc = "Source Channel"
 		this.ctrl.channel_id.visible = true
-		this.ctrl.channel_id.label_name = "Channel ID"
+		this.ctrl.channel_id.label_name = "Source Channel"
 		this.ctrl.channel_id.df_code = "DF_1304_1665901396659"
 		this.ctrl.channel_id.df_description = "Column Group 1"
 		this.ctrl.channel_id.uictrl_code = "CDN_CTRL"
@@ -443,9 +443,9 @@ focustoelement(){
 		//Properties of ext_purpose_code
 		this.ctrl.ext_purpose_code = {}
 		this.ctrl.ext_purpose_code.id = "RN31CN13"
-		this.ctrl.ext_purpose_code.desc = "Ext Purpose Code"
+		this.ctrl.ext_purpose_code.desc = "Purpose Code"
 		this.ctrl.ext_purpose_code.visible = true
-		this.ctrl.ext_purpose_code.label_name = "Ext Purpose Code"
+		this.ctrl.ext_purpose_code.label_name = "Purpose Code"
 		this.ctrl.ext_purpose_code.df_code = "DF_1304_1665901396659"
 		this.ctrl.ext_purpose_code.df_description = "Column Group 1"
 		this.ctrl.ext_purpose_code.uictrl_code = "CDN_CTRL"

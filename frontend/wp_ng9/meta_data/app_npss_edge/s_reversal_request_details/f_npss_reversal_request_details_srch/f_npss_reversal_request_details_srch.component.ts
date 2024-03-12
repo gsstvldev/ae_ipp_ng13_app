@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34715 
+Build ID        : 34720 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-12 5:47 AM 
+Modified Date   : 2024-Mar-12 6:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_request_details
@@ -461,6 +461,7 @@ focustoelement(){
 		this.ctrl.ext_purpose_code.currency_format = ""
 		this.ctrl.ext_purpose_code.data_scale = ""
 		this.ctrl.ext_purpose_code.binding_name = "EXT_PURPOSE_CODE"
+		this.ctrl.ext_purpose_code.hide_label = false
 		this.ctrl.ext_purpose_code.depends_on = ""
 		this.ctrl.ext_purpose_code.placeholder = ""
 		this.ctrl.ext_purpose_code.dynamic_param = ""

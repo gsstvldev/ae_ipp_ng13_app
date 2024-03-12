@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34705 
+Build ID        : 34713 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-11 11:25 AM 
+Modified Date   : 2024-Mar-12 5:45 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_inward_general_enquiry_report
@@ -29,7 +29,7 @@ export class s_inward_general_enquiry_reportComponent implements OnInit,AfterVie
 	// Variables 
   	wftpa_description : string = "s_inward_general_enquiry_report"
 	wftpa_id : string = "WFT_NPSS_P_1304_1710148038193_0"
-	cg_code : string = "CG_1304_1708326278471"
+	cg_code : string = "CG_1304_1710216899390"
 	key_column : any = {}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false

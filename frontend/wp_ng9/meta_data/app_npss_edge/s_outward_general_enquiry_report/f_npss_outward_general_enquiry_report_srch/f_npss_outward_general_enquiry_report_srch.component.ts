@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34720 
+Build ID        : 34725 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-12 6:57 AM 
+Modified Date   : 2024-Mar-12 8:36 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_general_enquiry_report
@@ -260,7 +260,7 @@ focustoelement(){
 		this.ctrl.value_date.data_type = "DATETIME"
 		this.ctrl.value_date.data_length = 0
 		this.ctrl.value_date.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.value_date.default_value = ""
+		this.ctrl.value_date.default_value = "setcurrentdate(),{}"
 		this.ctrl.value_date.is_memory_ctrl = ""
 		this.ctrl.value_date.field_coordinates = ""
 		this.ctrl.value_date.sub_details = ""
@@ -339,7 +339,7 @@ focustoelement(){
 		this.ctrl.memory63.data_type = "DATETIME"
 		this.ctrl.memory63.data_length = 0
 		this.ctrl.memory63.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory63.default_value = ""
+		this.ctrl.memory63.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory63.is_memory_ctrl = "Y"
 		this.ctrl.memory63.field_coordinates = ""
 		this.ctrl.memory63.sub_details = ""
@@ -367,7 +367,7 @@ focustoelement(){
 	
 		//Properties of memory149
 		this.ctrl.memory149 = {}
-		this.ctrl.memory149.id = "RN21CN9"
+		this.ctrl.memory149.id = "RN21CN22"
 		this.ctrl.memory149.desc = "Receiver Reference Number"
 		this.ctrl.memory149.visible = true
 		this.ctrl.memory149.label_name = "Receiver Reference Number"
@@ -385,7 +385,7 @@ focustoelement(){
 		this.ctrl.memory149.accept_char = ""
 		this.ctrl.memory149.currency_format = ""
 		this.ctrl.memory149.data_scale = ""
-		this.ctrl.memory149.binding_name = "RECEIVER_REFERENCE_NUMBER"
+		this.ctrl.memory149.binding_name = "NPSST_ID"
 		this.ctrl.memory149.hide_label = false
 		this.ctrl.memory149.depends_on = ""
 		this.ctrl.memory149.placeholder = ""
@@ -756,7 +756,7 @@ focustoelement(){
 		this.ctrl.tran_ref_id.ctrl_id = "npss_outward_general_enquiry_report_srch_tran_ref_id"
 		this.ctrl.npss_outward_general_enquiry_report_srch_tran_ref_id = {}
 		this.ctrl.npss_outward_general_enquiry_report_srch_tran_ref_id.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_outward_general_enquiry_report_srch.model = {"MEMORY75":"","MEMORY108":"","DEPARTMENT_CODE":"","PROCESS_TYPE":"","PAYMENT_ENDTOEND_ID":"","VALUE_DATE":"","PROCESS_GROUP":"","MEMORY63":"","MEMORY149":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","CDTR_IBAN":"","CDTR_ACCT_NAME":"","INTRBK_STTLM_AMNT":"","CR_SORT_CODE":"","CHANNEL_ID":"","EXT_PURPOSE_CODE":"","TRAN_REF_ID":""}
+		this.screen_instance[this.comp_id].f_npss_outward_general_enquiry_report_srch.model = {"MEMORY75":"","MEMORY108":"","DEPARTMENT_CODE":"","PROCESS_TYPE":"","PAYMENT_ENDTOEND_ID":"","VALUE_DATE":"setcurrentdate(),{}","PROCESS_GROUP":"","MEMORY63":"setcurrentdate(),{}","MEMORY149":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","CDTR_IBAN":"","CDTR_ACCT_NAME":"","INTRBK_STTLM_AMNT":"","CR_SORT_CODE":"","CHANNEL_ID":"","EXT_PURPOSE_CODE":"","TRAN_REF_ID":""}
 		this.screen_instance[this.comp_id].f_npss_outward_general_enquiry_report_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_TYPE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_GROUP"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_SORT_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_CODE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"}]
 		this.screen_instance[this.comp_id].f_npss_outward_general_enquiry_report_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_outward_general_enquiry_report_srch.dtt_code = "dtt_1304_1665901217208"

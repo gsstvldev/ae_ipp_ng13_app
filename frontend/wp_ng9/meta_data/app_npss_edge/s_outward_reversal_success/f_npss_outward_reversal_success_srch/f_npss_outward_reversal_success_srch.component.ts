@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34720 
+Build ID        : 34725 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-12 6:57 AM 
+Modified Date   : 2024-Mar-12 8:36 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_reversal_success
@@ -61,7 +61,7 @@ focustoelement(){
 		this.ctrl.memory63.data_type = "DATETIME"
 		this.ctrl.memory63.data_length = 0
 		this.ctrl.memory63.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory63.default_value = ""
+		this.ctrl.memory63.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory63.is_memory_ctrl = "Y"
 		this.ctrl.memory63.field_coordinates = ""
 		this.ctrl.memory63.sub_details = ""
@@ -440,7 +440,7 @@ focustoelement(){
 		this.ctrl.uetr.ctrl_id = "npss_outward_reversal_success_srch_uetr"
 		this.ctrl.npss_outward_reversal_success_srch_uetr = {}
 		this.ctrl.npss_outward_reversal_success_srch_uetr.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.model = {"MEMORY63":"","CHANNEL_ID":"","DEPARTMENT_CODE":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","DBTR_IBAN":"","DBTR_ACCT_NO":"","PAYMENT_ENDTOEND_ID":"","UETR":""}
+		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.model = {"MEMORY63":"setcurrentdate(),{}","CHANNEL_ID":"","DEPARTMENT_CODE":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","DBTR_IBAN":"","DBTR_ACCT_NO":"","PAYMENT_ENDTOEND_ID":"","UETR":""}
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"}]
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.dtt_code = "dtt_1304_1665901217208"

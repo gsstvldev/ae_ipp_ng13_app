@@ -59,10 +59,10 @@ app.post('/', function (appRequest, appResponse, next) {
                                             ExecuteQuery1(Taketrandata, async function (trandata) {
                                                 if (trandata.length > 0) {
                                                     let cbsapi = await indexcbsapi(trandata, indexapiurl)
-                                                    if (cbsapi == 'SUCCESS') {
+                                                    if (cbsapi.status.toUpperCase() == 'SUCCESS') {
                                                         //IF INDEX CBS API SUCCESS AFTER STATUS AND PROCESS STAUS CHANGED
                                                         let pac004Res = await callingpacs004(trandata, pacs004apiURL)
-                                                        if (pac004Res == 'SUCCESS') {
+                                                        if (pac004Res.toUpperCase() == 'SUCCESS') {
                                                             //IF PAC004 API SUCCESS AFTER STATUS AND PROCESS STAUS CHANGED
                                                             ExecuteQuery1(take_pacs004_url, async function () {
                                                                 FinalStschange = `Update npss_transactions set maker = '${params.CREATED_BY_NAME}',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}' `
@@ -168,11 +168,14 @@ app.post('/', function (appRequest, appResponse, next) {
                                     
                                     try {
                                         reqInstanceHelper.PrintInfo(serviceName, '------------ API Response JSON-------' + JSON.stringify(responseBodyFromImagingService), objSessionLogInfo);
+                                        resolve(JSON.parse(responseBodyFromImagingService))
                                     }
                                     catch (error) {
                                         reqInstanceHelper.PrintInfo(serviceName, '------------ API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
+                                        resolve(responseBodyFromImagingService)
                                     }
-                                    resolve(responseBodyFromImagingService)
+                                   
                                 }
                             });
                         }
@@ -195,7 +198,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                 timeout: 18000000,
                                 method: 'POST',
                                 json: {
-                                    "payload":{
+                                    
                                     "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
                                     "hdr_settlement_date": arrprocesslog[0].hdr_settlement_date || '',
                                     "hdr_created_date": arrprocesslog[0].hdr_created_date || '',
@@ -211,7 +214,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                     "clrsysref": arrprocesslog[0].clrsysref||'',
                                     "org_intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || '',
                                     "intrbk_sttlm_amnt": arrprocesslog[0].intrbk_sttlm_amnt || ''
-                                }
+                                
                             },
                                 headers: {
                                     'Content-Type': 'application/json'

@@ -70,6 +70,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                                                     if (FinalUptstatus == 'SUCCESS') {
                                                                         objresponse.status = "SUCCESS"
                                                                         objresponse.data = "SUCCESS"
+                                                                        sendResponse(null, objresponse)
                                                                     }
                                                                     else {
                                                                         objresponse.errdata = "STATUS PROCESS STATUS UPDATE FAILURE"

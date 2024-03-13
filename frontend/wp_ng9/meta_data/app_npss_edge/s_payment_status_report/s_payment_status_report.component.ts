@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34742 
+Build ID        : 34751 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-13 7:57 AM 
+Modified Date   : 2024-Mar-13 12:57 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_status_report
@@ -29,8 +29,8 @@ export class s_payment_status_reportComponent implements OnInit,AfterViewInit {
 	// Variables 
   	wftpa_description : string = "s_payment_status_report"
 	wftpa_id : string = "WFT_NPSS_P_1304_1710148316577_0"
-	cg_code : string = "CG_1304_1710165810095"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID","dtt_1304_1695130590062":"NPSSNPPL_ID","dtt_1304_1695214768145":"NAL_ID","dtt_1304_1700459090330":"NPSSPN_ID","dtt_1304_1701251364899":"NPSSPNB_ID","dtt_1304_1707202677013":"NPSSFE_ID"}
+	cg_code : string = "CG_1304_1708326278471"
+	key_column : any = {}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -67,7 +67,7 @@ export class s_payment_status_reportComponent implements OnInit,AfterViewInit {
 		this.list.uicgc_desc = "List"
 		this.list.uicgc_code = "uicgc_1"
 		this.list.params = {"need_search":"N","advance_dynamic_search":"N","need_pag_datatable":"Y"}
-		this.list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1681973868376":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1681973868376","dtt_desc":"NPSS PAY STATUS REPORT","ds_eligible":"DS_1710218936671","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Payment Status Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"NPSSPSR_ID","alias_name":"","mq_id":"MQ_1710149868434","date_format":false},{"column_name":"timestamp","alias_name":"","mq_id":"MQ_1710149875426","date_format":true},{"column_name":"ORIGINATOR_REFERENCE","alias_name":"","mq_id":"MQ_1710149884298","date_format":false},{"column_name":"SENDER","alias_name":"","mq_id":"MQ_1710149896770","date_format":false},{"column_name":"PAYER","alias_name":"","mq_id":"MQ_1710149903258","date_format":false},{"column_name":"RECEIVER","alias_name":"","mq_id":"MQ_1710149907698","date_format":false},{"column_name":"BENEFICIARY","alias_name":"","mq_id":"MQ_1710149935386","date_format":false},{"column_name":"AMOUNT","alias_name":"","mq_id":"MQ_1710149940890","date_format":false,"currency_format":true},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1710149953994","date_format":false},{"column_name":"SOURCE","alias_name":"","mq_id":"MQ_1710149957918","date_format":false},{"column_name":"SENDER_REF","alias_name":"","mq_id":"MQ_1710149971846","date_format":false},{"column_name":"SYSTEM_REF","alias_name":"","mq_id":"MQ_1710149972022","date_format":false},{"column_name":"BATCH_REF","alias_name":"","mq_id":"MQ_1710149998902","date_format":false},{"column_name":"RETURN_ID","alias_name":"","mq_id":"MQ_1710150341422","date_format":false},{"column_name":"RETURN_REF","alias_name":"","mq_id":"MQ_1710150351894","date_format":false},{"column_name":"TRANSACTION_ID","alias_name":"","mq_id":"MQ_1710150352110","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1710150384933","date_format":false},{"column_name":"MESSAGE_TYPE","alias_name":"","mq_id":"MQ_1710150409108","date_format":false},{"column_name":"PAYMENT_STATUS","alias_name":"","mq_id":"MQ_1710150409372","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSPSR_ID,  timestamp,  ORIGINATOR_REFERENCE,  SENDER,  PAYER,  RECEIVER,  BENEFICIARY,  AMOUNT,  CURRENCY,  SOURCE,  SENDER_REF,  SYSTEM_REF,  BATCH_REF,  PAYMENT_STATUS,  CREATED_DATE,  RETURN_ID,  RETURN_REF,  TRANSACTION_ID,  UETR,  MESSAGE_TYPE,  TENANT_ID,  DT_CODE,  DTT_CODE,  VERSION_NO FROM  (SELECT P.NPSSPSR_ID,    P.TIMESTAMP,    P.ORIGINATOR_REFERENCE,    P.SENDER,    P.PAYER,    P.RECEIVER,    P.BENEFICIARY,    P.AMOUNT,    P.CURRENCY,    P.SOURCE,    P.SENDER_REF,    P.SYSTEM_REF,    P.BATCH_REF,    P.PAYMENT_STATUS,    P.CREATED_DATE,    P.RETURN_ID,    P.RETURN_REF,    P.TRANSACTION_ID,    P.UETR,    P.MESSAGE_TYPE,    P.TENANT_ID,    P.DT_CODE,  P.DTT_CODE,  P.VERSION_NO   FROM <TRAN_DB>.NPSS_PAY_STATUS_REPORT P)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Payment Status Report MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Tran ID","target_column":"NPSSPSR_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Timestamp","target_column":"timestamp","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"Originator Reference","target_column":"ORIGINATOR_REFERENCE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Sender","target_column":"SENDER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payer","target_column":"PAYER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Receiver","target_column":"RECEIVER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Beneficiary","target_column":"BENEFICIARY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Source","target_column":"SOURCE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Sender Reference","target_column":"SENDER_REF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"System Reference","target_column":"SYSTEM_REF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Batch Reference","target_column":"BATCH_REF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Return ID","target_column":"RETURN_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Return Ref","target_column":"RETURN_REF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction ID","target_column":"TRANSACTION_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Type","target_column":"MESSAGE_TYPE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payment Status","target_column":"PAYMENT_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.list.datasource = {}
 		this.list.context_menu = []
 		this.list.views = {}
 		this.list.onChangecomponent = new EventEmitter<any>()
@@ -122,12 +122,12 @@ export class s_payment_status_reportComponent implements OnInit,AfterViewInit {
 		this.search.params = {}
 		this.search.datasource = {}
 		this.search.context_menu = []
-		this.search.views = {"first":"DTT_1304_1681973868376","is_tab_mode":"N","dtt_1304_1681973868376":{"0":[{"dttv_id":"NPSS Payment Status Report SRCH","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"NPSS PAY STATUS REPORT"}]}}
+		this.search.views = {}
 		this.search.onChangecomponent = new EventEmitter<any>()
 		this.search.show = true
 		this.search.dynamic_param = {}
-		this.search.f_npss_payment_status_report_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.search.form_name = "f_npss_payment_status_report_srch"
+		this.search.f_search = {"show":true}
+		this.search.current_view = "f_search"
 		
 		// "Clear" Button of "Search" component
 		this.search_clear.label_name = "Clear"
@@ -169,6 +169,8 @@ export class s_payment_status_reportComponent implements OnInit,AfterViewInit {
 	page_load(){
 		this.page_load__dashboard_ides()
 		this.page_load__e_1708425960961()
+		this.page_load__de_from_page_load()
+		this.page_load__de_for_pdf()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -211,6 +213,12 @@ export class s_payment_status_reportComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "e 1708425977969"
 	e_1708425977969__internal(parent_event_result){
 		this.e_1708425977969__e_1708425998864(parent_event_result)
+	}
+
+	//Handler for SELECTION_CHANGED event of "list"
+	list__selection_changed(){
+		this.list__ee_for_excel()
+		this.list__ee_for_pdf()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -373,7 +381,7 @@ export class s_payment_status_reportComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1681973868376":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1681973868376","dtt_desc":"NPSS PAY STATUS REPORT","ds_eligible":"DS_1710218936671","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Payment Status Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"NPSSPSR_ID","alias_name":"","mq_id":"MQ_1710149868434","date_format":false},{"column_name":"timestamp","alias_name":"","mq_id":"MQ_1710149875426","date_format":true},{"column_name":"ORIGINATOR_REFERENCE","alias_name":"","mq_id":"MQ_1710149884298","date_format":false},{"column_name":"SENDER","alias_name":"","mq_id":"MQ_1710149896770","date_format":false},{"column_name":"PAYER","alias_name":"","mq_id":"MQ_1710149903258","date_format":false},{"column_name":"RECEIVER","alias_name":"","mq_id":"MQ_1710149907698","date_format":false},{"column_name":"BENEFICIARY","alias_name":"","mq_id":"MQ_1710149935386","date_format":false},{"column_name":"AMOUNT","alias_name":"","mq_id":"MQ_1710149940890","date_format":false,"currency_format":true},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1710149953994","date_format":false},{"column_name":"SOURCE","alias_name":"","mq_id":"MQ_1710149957918","date_format":false},{"column_name":"SENDER_REF","alias_name":"","mq_id":"MQ_1710149971846","date_format":false},{"column_name":"SYSTEM_REF","alias_name":"","mq_id":"MQ_1710149972022","date_format":false},{"column_name":"BATCH_REF","alias_name":"","mq_id":"MQ_1710149998902","date_format":false},{"column_name":"RETURN_ID","alias_name":"","mq_id":"MQ_1710150341422","date_format":false},{"column_name":"RETURN_REF","alias_name":"","mq_id":"MQ_1710150351894","date_format":false},{"column_name":"TRANSACTION_ID","alias_name":"","mq_id":"MQ_1710150352110","date_format":false},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1710150384933","date_format":false},{"column_name":"MESSAGE_TYPE","alias_name":"","mq_id":"MQ_1710150409108","date_format":false},{"column_name":"PAYMENT_STATUS","alias_name":"","mq_id":"MQ_1710150409372","date_format":false}],"joins":[]},"eq_text":"SELECT NPSSPSR_ID,  timestamp,  ORIGINATOR_REFERENCE,  SENDER,  PAYER,  RECEIVER,  BENEFICIARY,  AMOUNT,  CURRENCY,  SOURCE,  SENDER_REF,  SYSTEM_REF,  BATCH_REF,  PAYMENT_STATUS,  CREATED_DATE,  RETURN_ID,  RETURN_REF,  TRANSACTION_ID,  UETR,  MESSAGE_TYPE,  TENANT_ID,  DT_CODE,  DTT_CODE,  VERSION_NO FROM  (SELECT P.NPSSPSR_ID,    P.TIMESTAMP,    P.ORIGINATOR_REFERENCE,    P.SENDER,    P.PAYER,    P.RECEIVER,    P.BENEFICIARY,    P.AMOUNT,    P.CURRENCY,    P.SOURCE,    P.SENDER_REF,    P.SYSTEM_REF,    P.BATCH_REF,    P.PAYMENT_STATUS,    P.CREATED_DATE,    P.RETURN_ID,    P.RETURN_REF,    P.TRANSACTION_ID,    P.UETR,    P.MESSAGE_TYPE,    P.TENANT_ID,    P.DT_CODE,  P.DTT_CODE,  P.VERSION_NO   FROM <TRAN_DB>.NPSS_PAY_STATUS_REPORT P)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Payment Status Report MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Tran ID","target_column":"NPSSPSR_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Timestamp","target_column":"timestamp","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"Originator Reference","target_column":"ORIGINATOR_REFERENCE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Sender","target_column":"SENDER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payer","target_column":"PAYER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Receiver","target_column":"RECEIVER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Beneficiary","target_column":"BENEFICIARY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Source","target_column":"SOURCE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Sender Reference","target_column":"SENDER_REF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"System Reference","target_column":"SYSTEM_REF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Batch Reference","target_column":"BATCH_REF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Return ID","target_column":"RETURN_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Return Ref","target_column":"RETURN_REF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction ID","target_column":"TRANSACTION_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Type","target_column":"MESSAGE_TYPE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payment Status","target_column":"PAYMENT_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -424,6 +432,48 @@ export class s_payment_status_reportComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_from_page_load() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_export_as_excel"
+		let parent_source_id=""
+		let event_code="e_1710332916925"
+		let event_params={"caller_name":"page_load__de_from_page_load","event_desc":"DE From Page load","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_pdf() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_export_as_pdf"
+		let parent_source_id=""
+		let event_code="e_1710332968676"
+		let event_params={"caller_name":"page_load__de_for_pdf","event_desc":"DE For PDF","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__e_1708425977969(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -462,6 +512,48 @@ export class s_payment_status_reportComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "list"
+	list__ee_for_excel() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="list"
+		let destn_id="navigation_export_as_excel"
+		let parent_source_id=""
+		let event_code="e_1710333142998"
+		let event_params={"caller_name":"list__ee_for_excel","event_desc":"EE For Excel","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "list"
+	list__ee_for_pdf() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="list"
+		let destn_id="navigation_export_as_pdf"
+		let parent_source_id=""
+		let event_code="e_1710333190841"
+		let event_params={"caller_name":"list__ee_for_pdf","event_desc":"EE For Pdf","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

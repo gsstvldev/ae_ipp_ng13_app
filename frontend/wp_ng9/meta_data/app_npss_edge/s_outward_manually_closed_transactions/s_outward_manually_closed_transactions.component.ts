@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34744 
+Build ID        : 34751 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-13 7:22 AM 
+Modified Date   : 2024-Mar-13 12:57 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_manually_closed_transactions
@@ -29,8 +29,8 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 	// Variables 
   	wftpa_description : string = "s_outward_manually_closed_transactions"
 	wftpa_id : string = "WFT_NPSS_P_1304_1710147788689_0"
-	cg_code : string = "CG_1304_1710165744936"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID","dtt_1304_1695130590062":"NPSSNPPL_ID","dtt_1304_1695214768145":"NAL_ID","dtt_1304_1700459090330":"NPSSPN_ID","dtt_1304_1701251364899":"NPSSPNB_ID","dtt_1304_1707202677013":"NPSSFE_ID"}
+	cg_code : string = "CG_1304_1708326278471"
+	key_column : any = {}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -67,7 +67,7 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 		this.list.uicgc_desc = "List"
 		this.list.uicgc_code = "uicgc_1"
 		this.list.params = {"need_search":"N","advance_dynamic_search":"N","need_pag_datatable":"Y"}
-		this.list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1710219011696","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Outward Manually Closed Transactions Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"dbtr_iban","alias_name":"","mq_id":"MQ_1710148042697","date_format":false},{"column_name":"Dr_Name","alias_name":"","mq_id":"MQ_1710148050665","date_format":false},{"column_name":"channel_id","alias_name":"","mq_id":"MQ_1710148089254","date_format":false},{"column_name":"CBUAE_RETURN_CODE","alias_name":"","mq_id":"MQ_1710148089462","date_format":false},{"column_name":"cr_sort_code","alias_name":"","mq_id":"MQ_1710148116542","date_format":false},{"column_name":"cdtr_iban","alias_name":"","mq_id":"MQ_1710148147155","date_format":false},{"column_name":"payment_endtoend_id","alias_name":"","mq_id":"MQ_1710148147491","date_format":false},{"column_name":"intrbk_sttlm_amnt","alias_name":"","mq_id":"MQ_1710148193747","date_format":false,"currency_format":true}],"joins":[]},"eq_text":"select value_date,     uetr,     dbtr_iban,     intrbk_sttlm_amnt,     Dr_Name,     CBUAE_RETURN_CODE,     process_group,     channel_id,     cr_sort_code,     cdtr_iban,     payment_endtoend_id,  npsst_id,  npsstpl_id,  datemi,  accp_date_time,  intrbk_sttlm_cur,  exhf_id,  cdtr_acct_no,  dbtr_acct_no,  dr_sort_code,  product_code,  process_type,  cr_acct_identification,  tenant_id,  tran_ref_id,  processing_system,  bank_name,  department_code,  MESSAGE_TYPE,  DEPARTMENT_NAME,  PROCESSED_DATE,  BENEFICIARY_BANK,  PURPOSE_CODE,  IPP_REFERENCE_NUMBER,  T24_FT_REF_NUMBER,  ORIGINATOR_REF_NUMBER,  QUEUE,  TRAN_STATUS from  (  select   a.npsst_id,   a.value_date,   a.created_date as PROCESSED_DATE,   a.cdtr_acct_no,   a.cdtr_acct_name ,    a.intrbk_sttlm_amnt,   a.intrbk_sttlm_cur,   Fn_card_decrypt_and_mask_rpt(a.dbtr_acct_no) as dbtr_acct_no,   Fn_card_decrypt_and_mask_rpt(a.cr_acct_identification) as cr_acct_identification,   a.dbtr_acct_name as Dr_Name,   a.dr_sort_code,   a.cr_sort_code,   a.department_code as DEPARTMENT_NAME,   a.department_code,   a.uetr,   a.ext_purpose_code as PURPOSE_CODE,   a.product_code,   a.channel_id ,   a.process_type,   a.dbtr_iban,   a.cdtr_iban,   a.clrsysref as IPP_REFERENCE_NUMBER,   a.payment_endtoend_id,   a.accp_date_time,   a.exhf_id,   a.tenant_id,   a.processing_system,   a.process_group,   ntpl.npsstpl_id,   ntpl.process_name as MESSAGE_TYPE,   To_char(ntpl.created_date, 'YYYY-MM-DD HH:MI:SS:MS AM') as datemi,   a.process_status as QUEUE,   a.status as TRAN_STATUS,   ntpl.process_ref_no as T24_FT_REF_NUMBER,   a.tran_ref_id,   a.tran_ref_id as ORIGINATOR_REF_NUMBER,   cmb.bank_name,   cmb.bank_name as BENEFICIARY_BANK,   ntpl.T24_RETURN_CODE,   ntpl.CBUAE_RETURN_CODE   from   npss_transactions A  inner join npss_trn_process_log ntpl on a.uetr = ntpl.uetr and a.status = ntpl.status  left join CORE_NC_RETURN_CODES CBUAERC on   CBUAERC.RETURN_CODE = ntpl.CBUAE_RETURN_CODE   and CBUAERC.PROCESSING_SYSTEM = 'CBUAE'   and CBUAERC.NEED_SYNC = 'Y'  left join core_member_banks cmb on cmb.bic_code = a.cr_sort_code   and cmb.NEED_SYNC = 'Y'  inner join  CORE_SYSTEM_EXTN CSE on CSE.department_code  = A.DEPARTMENT_CODE)VW    where process_type = 'OP' and QUEUE in ('RCTCompleted','BCTCompleted','BCTReturned')   and TRAN_STATUS in ('OP_MANUALLY_CLOSED','OP_AC_MAN_CLOSED','OP_BCT_MANUALLY_CLOSED','OP_BCT_RTN_MANUALLY_CLOSED')   $AND order by  npsst_id,npsstpl_id"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Outward Manually Closed Transactions Report MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Dr IBAN","target_column":"dbtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr_Name","target_column":"Dr_Name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Channel ID","target_column":"channel_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Error Code","target_column":"CBUAE_RETURN_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr BIC","target_column":"cr_sort_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr IBAN","target_column":"cdtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E Ref Number","target_column":"payment_endtoend_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"intrbk_sttlm_amnt","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true}]}}}}}}
+		this.list.datasource = {}
 		this.list.context_menu = []
 		this.list.views = {}
 		this.list.onChangecomponent = new EventEmitter<any>()
@@ -122,12 +122,12 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 		this.search.params = {}
 		this.search.datasource = {}
 		this.search.context_menu = []
-		this.search.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS Outward Manually Closed Transactions Report SRCH","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"NPSS Transactions"}]}}
+		this.search.views = {}
 		this.search.onChangecomponent = new EventEmitter<any>()
 		this.search.show = true
 		this.search.dynamic_param = {}
-		this.search.f_npss_outward_manually_closed_transactions_report_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
-		this.search.form_name = "f_npss_outward_manually_closed_transactions_report_srch"
+		this.search.f_search = {"show":true}
+		this.search.current_view = "f_search"
 		
 		// "Clear" Button of "Search" component
 		this.search_clear.label_name = "Clear"
@@ -169,6 +169,8 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 	page_load(){
 		this.page_load__dashboard_ides()
 		this.page_load__e_1708425960961()
+		this.page_load__de_from_page_load()
+		this.page_load__de_for_pdf()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -213,6 +215,12 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 		this.e_1708425977969__e_1708425998864(parent_event_result)
 	}
 
+	//Handler for SELECTION_CHANGED event of "list"
+	list__selection_changed(){
+		this.list__ee_for_excel()
+		this.list__ee_for_pdf()
+	}
+
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
 	navigation_search__spap_from_search_btn() { 
 		let Dest_Is_ctrl=true
@@ -221,7 +229,7 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1708327114228"
-		let event_params={"caller_name":"navigation_search__spap_from_search_btn","event_desc":"SPAP From Search Btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_from_search_btn","selector":"p_search_layout","profile_code":"BTL_1304_1708326962657","window_title":"Search","window_height":450,"window_width":"950px","window_close_icon":"Y","eventdes":"spap_from_search_btn","eventcode":"E_1708327114228"}}
+		let event_params={"caller_name":"navigation_search__spap_from_search_btn","event_desc":"SPAP From Search Btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_from_search_btn","selector":"p_search_layout","profile_code":"BTL_1304_1708326962657","window_title":"Search","window_height":535,"window_width":"950px","window_close_icon":"Y","eventdes":"spap_from_search_btn","eventcode":"E_1708327114228"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}
@@ -373,7 +381,7 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1710219011696","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Outward Manually Closed Transactions Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"dbtr_iban","alias_name":"","mq_id":"MQ_1710148042697","date_format":false},{"column_name":"Dr_Name","alias_name":"","mq_id":"MQ_1710148050665","date_format":false},{"column_name":"channel_id","alias_name":"","mq_id":"MQ_1710148089254","date_format":false},{"column_name":"CBUAE_RETURN_CODE","alias_name":"","mq_id":"MQ_1710148089462","date_format":false},{"column_name":"cr_sort_code","alias_name":"","mq_id":"MQ_1710148116542","date_format":false},{"column_name":"cdtr_iban","alias_name":"","mq_id":"MQ_1710148147155","date_format":false},{"column_name":"payment_endtoend_id","alias_name":"","mq_id":"MQ_1710148147491","date_format":false},{"column_name":"intrbk_sttlm_amnt","alias_name":"","mq_id":"MQ_1710148193747","date_format":false,"currency_format":true}],"joins":[]},"eq_text":"select value_date,     uetr,     dbtr_iban,     intrbk_sttlm_amnt,     Dr_Name,     CBUAE_RETURN_CODE,     process_group,     channel_id,     cr_sort_code,     cdtr_iban,     payment_endtoend_id,  npsst_id,  npsstpl_id,  datemi,  accp_date_time,  intrbk_sttlm_cur,  exhf_id,  cdtr_acct_no,  dbtr_acct_no,  dr_sort_code,  product_code,  process_type,  cr_acct_identification,  tenant_id,  tran_ref_id,  processing_system,  bank_name,  department_code,  MESSAGE_TYPE,  DEPARTMENT_NAME,  PROCESSED_DATE,  BENEFICIARY_BANK,  PURPOSE_CODE,  IPP_REFERENCE_NUMBER,  T24_FT_REF_NUMBER,  ORIGINATOR_REF_NUMBER,  QUEUE,  TRAN_STATUS from  (  select   a.npsst_id,   a.value_date,   a.created_date as PROCESSED_DATE,   a.cdtr_acct_no,   a.cdtr_acct_name ,    a.intrbk_sttlm_amnt,   a.intrbk_sttlm_cur,   Fn_card_decrypt_and_mask_rpt(a.dbtr_acct_no) as dbtr_acct_no,   Fn_card_decrypt_and_mask_rpt(a.cr_acct_identification) as cr_acct_identification,   a.dbtr_acct_name as Dr_Name,   a.dr_sort_code,   a.cr_sort_code,   a.department_code as DEPARTMENT_NAME,   a.department_code,   a.uetr,   a.ext_purpose_code as PURPOSE_CODE,   a.product_code,   a.channel_id ,   a.process_type,   a.dbtr_iban,   a.cdtr_iban,   a.clrsysref as IPP_REFERENCE_NUMBER,   a.payment_endtoend_id,   a.accp_date_time,   a.exhf_id,   a.tenant_id,   a.processing_system,   a.process_group,   ntpl.npsstpl_id,   ntpl.process_name as MESSAGE_TYPE,   To_char(ntpl.created_date, 'YYYY-MM-DD HH:MI:SS:MS AM') as datemi,   a.process_status as QUEUE,   a.status as TRAN_STATUS,   ntpl.process_ref_no as T24_FT_REF_NUMBER,   a.tran_ref_id,   a.tran_ref_id as ORIGINATOR_REF_NUMBER,   cmb.bank_name,   cmb.bank_name as BENEFICIARY_BANK,   ntpl.T24_RETURN_CODE,   ntpl.CBUAE_RETURN_CODE   from   npss_transactions A  inner join npss_trn_process_log ntpl on a.uetr = ntpl.uetr and a.status = ntpl.status  left join CORE_NC_RETURN_CODES CBUAERC on   CBUAERC.RETURN_CODE = ntpl.CBUAE_RETURN_CODE   and CBUAERC.PROCESSING_SYSTEM = 'CBUAE'   and CBUAERC.NEED_SYNC = 'Y'  left join core_member_banks cmb on cmb.bic_code = a.cr_sort_code   and cmb.NEED_SYNC = 'Y'  inner join  CORE_SYSTEM_EXTN CSE on CSE.department_code  = A.DEPARTMENT_CODE)VW    where process_type = 'OP' and QUEUE in ('RCTCompleted','BCTCompleted','BCTReturned')   and TRAN_STATUS in ('OP_MANUALLY_CLOSED','OP_AC_MAN_CLOSED','OP_BCT_MANUALLY_CLOSED','OP_BCT_RTN_MANUALLY_CLOSED')   $AND order by  npsst_id,npsstpl_id"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Outward Manually Closed Transactions Report MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Dr IBAN","target_column":"dbtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Dr_Name","target_column":"Dr_Name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Channel ID","target_column":"channel_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Failure Error Code","target_column":"CBUAE_RETURN_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr BIC","target_column":"cr_sort_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr IBAN","target_column":"cdtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"E2E Ref Number","target_column":"payment_endtoend_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"intrbk_sttlm_amnt","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true}]}}}}}}
+		let data_source={}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -424,6 +432,48 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
  		} 
 	} 
 
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_from_page_load() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_export_as_excel"
+		let parent_source_id=""
+		let event_code="e_1710332916925"
+		let event_params={"caller_name":"page_load__de_from_page_load","event_desc":"DE From Page load","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_pdf() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_export_as_pdf"
+		let parent_source_id=""
+		let event_code="e_1710332968676"
+		let event_params={"caller_name":"page_load__de_for_pdf","event_desc":"DE For PDF","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__e_1708425977969(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -462,6 +512,48 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 		let data_source={}
 		try {
 			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "list"
+	list__ee_for_excel() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="list"
+		let destn_id="navigation_export_as_excel"
+		let parent_source_id=""
+		let event_code="e_1710333142998"
+		let event_params={"caller_name":"list__ee_for_excel","event_desc":"EE For Excel","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "list"
+	list__ee_for_pdf() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="list"
+		let destn_id="navigation_export_as_pdf"
+		let parent_source_id=""
+		let event_code="e_1710333190841"
+		let event_params={"caller_name":"list__ee_for_pdf","event_desc":"EE For Pdf","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

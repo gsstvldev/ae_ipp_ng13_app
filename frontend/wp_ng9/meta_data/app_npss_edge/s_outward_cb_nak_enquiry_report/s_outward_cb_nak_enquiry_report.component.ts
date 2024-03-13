@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34746 
+Build ID        : 34749 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-13 10:18 AM 
+Modified Date   : 2024-Mar-13 13:32 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_cb_nak_enquiry_report
@@ -169,6 +169,8 @@ export class s_outward_cb_nak_enquiry_reportComponent implements OnInit,AfterVie
 	page_load(){
 		this.page_load__dashboard_ides()
 		this.page_load__e_1708425960961()
+		this.page_load__de_from_page_load()
+		this.page_load__de_for_pdf()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -211,6 +213,12 @@ export class s_outward_cb_nak_enquiry_reportComponent implements OnInit,AfterVie
 	//Handler for INTERNAL event of "e 1708425977969"
 	e_1708425977969__internal(parent_event_result){
 		this.e_1708425977969__e_1708425998864(parent_event_result)
+	}
+
+	//Handler for SELECTION_CHANGED event of "list"
+	list__selection_changed(){
+		this.list__ee_for_excel()
+		this.list__ee_for_pdf()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -424,6 +432,48 @@ export class s_outward_cb_nak_enquiry_reportComponent implements OnInit,AfterVie
  		} 
 	} 
 
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_from_page_load() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_export_as_excel"
+		let parent_source_id=""
+		let event_code="e_1710332916925"
+		let event_params={"caller_name":"page_load__de_from_page_load","event_desc":"DE From Page load","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_pdf() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_export_as_pdf"
+		let parent_source_id=""
+		let event_code="e_1710332968676"
+		let event_params={"caller_name":"page_load__de_for_pdf","event_desc":"DE For PDF","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__e_1708425977969(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -462,6 +512,48 @@ export class s_outward_cb_nak_enquiry_reportComponent implements OnInit,AfterVie
 		let data_source={}
 		try {
 			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "list"
+	list__ee_for_excel() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="list"
+		let destn_id="navigation_export_as_excel"
+		let parent_source_id=""
+		let event_code="e_1710333142998"
+		let event_params={"caller_name":"list__ee_for_excel","event_desc":"EE For Excel","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for SELECTION_CHANGED event of "list"
+	list__ee_for_pdf() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="list"
+		let destn_id="navigation_export_as_pdf"
+		let parent_source_id=""
+		let event_code="e_1710333190841"
+		let event_params={"caller_name":"list__ee_for_pdf","event_desc":"EE For Pdf","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

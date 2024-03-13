@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34745 
+Build ID        : 34751 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-13 9:48 AM 
+Modified Date   : 2024-Mar-13 12:57 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_inward_transactions_details
@@ -38,7 +38,7 @@ import { s_inward_transactions_detailsRoutingModule } from './s_inward_transacti
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigationComponent } from './f_navigation/f_navigation.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_npss_inward_transactions_details_report_srchComponent } from './f_npss_inward_transactions_details_report_srch/f_npss_inward_transactions_details_report_srch.component'
+import { f_searchComponent } from './f_search/f_search.component'
 
 
 
@@ -55,7 +55,7 @@ import { f_npss_inward_transactions_details_report_srchComponent } from './f_nps
     s_inward_transactions_detailsRoutingModule,
     npss_cs_dashboard_titleModule,npss_c_export_pdf_for_reportModule,npss_cs_export_excel_for_reportModule,torus_cs_show_hideModule
   ],
-  declarations: [s_inward_transactions_detailsComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_npss_inward_transactions_details_report_srchComponent,],
+  declarations: [s_inward_transactions_detailsComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_searchComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

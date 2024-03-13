@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34744 
+Build ID        : 34751 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-13 7:22 AM 
+Modified Date   : 2024-Mar-13 12:57 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_general_enquiry_report
@@ -291,9 +291,9 @@ focustoelement(){
 		//Properties of payment_endtoend_id
 		this.ctrl.payment_endtoend_id = {}
 		this.ctrl.payment_endtoend_id.id = "RN11CN5"
-		this.ctrl.payment_endtoend_id.desc = "Sender Reference Number"
+		this.ctrl.payment_endtoend_id.desc = "Sender Ref No (E2E ID)"
 		this.ctrl.payment_endtoend_id.visible = true
-		this.ctrl.payment_endtoend_id.label_name = "Sender Reference Number"
+		this.ctrl.payment_endtoend_id.label_name = "Sender Ref No (E2E ID)"
 		this.ctrl.payment_endtoend_id.df_code = "DF_1304_1665901396659"
 		this.ctrl.payment_endtoend_id.df_description = "Column Group 1"
 		this.ctrl.payment_endtoend_id.uictrl_code = "CDN_CTRL"

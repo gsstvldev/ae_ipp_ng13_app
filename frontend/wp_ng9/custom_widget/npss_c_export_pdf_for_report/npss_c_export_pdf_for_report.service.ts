@@ -80,16 +80,19 @@ export class npss_c_export_pdf_for_reportService {
                         PagingData: result.data.PagingData || ""
                     }
                     let dataBind = JSON.parse(params.DATA_BINDINGS)
-                    let header: any = []
+                    let header: any = [{col:'NO',alignment:'right'}]
                     let bodyContent: any = []
                     let Header = JSON.parse(result.data.RowData)
-                    let Headersvalue: any = []
+                let k=1;
+                    Header.forEach((c)=>{c.NO=k;
+                        k++;})
+                    let Headersvalue: any = [{text:'NO',style:'tableheader'}]
                     for (let k = 0; k < dataBind.length; k++) {
                         let headerCol: any = {}
                         headerCol.text = dataBind[k]['header'].toUpperCase()
                         headerCol.style = 'tableheader'
                         Headersvalue.push(headerCol)
-                        header.push(dataBind[k]['target_column'].toLowerCase())
+                        header.push({col:dataBind[k]['target_column'].toLowerCase(),alignment:dataBind[k]['alignment'].toLowerCase()})
                     }
                     bodyContent.push(Headersvalue)
                     //console.log(Headersvalue.length)
@@ -99,8 +102,8 @@ export class npss_c_export_pdf_for_reportService {
 
                         for (let j = 0; j < header.length; j++) {
                             let Colobj: any = {}
-                            Colobj.text = Header[i][header[j]]
-                            Colobj.style = 'tablcolmn'
+                            Colobj.text = Header[i][header[j]['col']]
+                            Colobj.style = header[j]['alignment']
                             ColValue.push(Colobj)
                         }
                         bodyContent.push(ColValue)
@@ -113,7 +116,7 @@ export class npss_c_export_pdf_for_reportService {
                         },
                         content: [
                             {
-                                text:params.ACTION_DESC.split('_').slice(1).join(' '),
+                                text:this.headingName(params),
                                 style: 'header'
                             },
                             {
@@ -138,9 +141,13 @@ export class npss_c_export_pdf_for_reportService {
                                 bold: true,
                                 margin: [0, 0, 0, 10],
                                 fillColor: 'lightgray'
-                            }, tablcolmn: {
+                            }, left: {
                                 bold: true,
                                 fontSize: 15,
+                            },right: {
+                                bold: true,
+                                fontSize: 15,
+                                alignment: 'right'
                             }
                         }
 
@@ -153,7 +160,13 @@ export class npss_c_export_pdf_for_reportService {
                 }
             });
     }
-  
+    //function call for set the header name
+    headingName(params) {
+        const a = params.ACTION_DESC.split('_')
+        const b = a.shift()
+        let c = a.join(' ')
+        return c
+    }
     //Custom validation logics
     //Uncomment below lines when validation is required
     //fn_customValidation(projName,screenInstance,message,callback){

@@ -79,7 +79,7 @@ export class npss_cs_export_excel_for_reportService {
                         headerCol.header = dataBind[i]['header'].toUpperCase()
                         headerCol.width = 30
                         headerCol.style = {
-                            alignment: { vertical: 'top', horizontal: 'top', wrapText: true }
+                            alignment: { vertical: 'top', horizontal: dataBind[i]['alignment'].toLowerCase(), wrapText: true }
                         },
                             header.push(headerCol)
 

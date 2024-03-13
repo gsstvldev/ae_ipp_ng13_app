@@ -26,7 +26,8 @@ export class npss_cs_dashboard_titleComponent implements OnInit {
                 }
                  else
                 {
-                 this.Message=this.screen_instance[`wftpa_description`].toString().split('_').join(' ').toUpperCase()
+                let screenName = this.screen_instance[`wftpa_description`].toString()
+                        this.Message = this.screen_instance[`wftpa_description`].toString().split('_').splice(1, screenName.length).join(' ').toUpperCase()
                 }               }
             })
             

@@ -130,7 +130,7 @@ export class npss_cs_export_excel_for_reportService {
 
                     // Write the contents of the first row to the second row
                     ws.getRow(2).values = firstRowData;
-                    ws.getRow(1).values = [this.headingName(params)]
+                    ws.getRow(1).values = [params.ACTION_DESC.split('_').slice(1).join(' ')]
                     ws.getRow(1).font = { bold: true };
                     ws.mergeCells('A1:E1');
 
@@ -156,13 +156,7 @@ export class npss_cs_export_excel_for_reportService {
             });
 
     }
-       //function call for set the header name
-       headingName(params) {
-        const a = params.ACTION_DESC.split('_')
-        const b = a.shift()
-        let c = a.join(' ')
-        return c
-    }
+      
     //Custom validation logics
     //Uncomment below lines when validation is required
     //fn_customValidation(projName,screenInstance,message,callback){

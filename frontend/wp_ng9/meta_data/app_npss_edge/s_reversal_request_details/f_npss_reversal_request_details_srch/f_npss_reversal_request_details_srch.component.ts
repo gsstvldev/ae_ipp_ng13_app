@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34726 
+Build ID        : 34742 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-12 10:36 AM 
+Modified Date   : 2024-Mar-13 7:59 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_request_details
@@ -26,7 +26,7 @@ export class f_npss_reversal_request_details_srchComponent implements OnInit {
   hasHeader:boolean;
   component_header:string;
   @ViewChild('f_npss_reversal_request_details_srch') form;
-  @ViewChild('npss_reversal_request_details_srch_department_code') element: ElementRef;
+  @ViewChild('npss_reversal_request_details_srch_intrbk_sttlm_amnt') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -48,46 +48,6 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
-		//Properties of department_code
-		this.ctrl.department_code = {}
-		this.ctrl.department_code.id = "RN01CN1"
-		this.ctrl.department_code.desc = "Department Name"
-		this.ctrl.department_code.visible = true
-		this.ctrl.department_code.label_name = "Department Name"
-		this.ctrl.department_code.df_code = "DF_1304_1665901396659"
-		this.ctrl.department_code.df_description = "Column Group 1"
-		this.ctrl.department_code.uictrl_code = "CBO"
-		this.ctrl.department_code.target_column = "DEPARTMENT_CODE"
-		this.ctrl.department_code.data_type = "TEXT"
-		this.ctrl.department_code.data_length = 32
-		this.ctrl.department_code.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.department_code.default_value = ""
-		this.ctrl.department_code.is_memory_ctrl = ""
-		this.ctrl.department_code.field_coordinates = ""
-		this.ctrl.department_code.sub_details = ""
-		this.ctrl.department_code.accept_char = ""
-		this.ctrl.department_code.currency_format = ""
-		this.ctrl.department_code.data_scale = ""
-		this.ctrl.department_code.binding_name = "DEPARTMENT_CODE"
-		this.ctrl.department_code.hide_label = false
-		this.ctrl.department_code.depends_on = ""
-		this.ctrl.department_code.placeholder = ""
-		this.ctrl.department_code.dynamic_param = ""
-		this.ctrl.department_code.style_code = ""
-		this.ctrl.department_code.data_source = {"ds_code":"UDS_1304_1677509056279","ds_description":"NPSS RPT LOGIN SYS AND CUR SYSTEM","rows":[],"type":"BIND_SYSTEMS","value_member":"S_DESCRIPTION","display_member":"S_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"","context":"","filters":[{"filter_name":"Filter1","binding_name":"ST_ID","id":"DF_1678714670799","binding_value":232,"source_name":"ST_ID","source_value":232,"source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding System - Generic","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"ST_ID","binding_value":232,"sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":232}]},"query":"(ST_ID = 232)"},"sel_columns":[],"need_auto_first_record":true,"current_sys":true,"childsys":"ALLOCATED","need_first_item_selection":false,"has_parent":false}
-		this.ctrl.department_code.image_association = ""
-		this.ctrl.department_code.show = true
-		this.ctrl.department_code.sub_content = ""
-		this.ctrl.department_code.required = false
-		this.ctrl.department_code.vld_rules = []
-		this.ctrl.department_code.targetcolumn_lower = "department_code"
-		this.ctrl.department_code.disabled = false
-		this.ctrl.department_code.view_name = "f_npss_reversal_request_details_srch"
-		this.ctrl.department_code.ctrl_id = "npss_reversal_request_details_srch_department_code"
-		this.ctrl.npss_reversal_request_details_srch_department_code = {}
-		this.ctrl.npss_reversal_request_details_srch_department_code.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reversal_request_details_srch.department_code = {}
-	
 		//Properties of intrbk_sttlm_amnt
 		this.ctrl.intrbk_sttlm_amnt = {}
 		this.ctrl.intrbk_sttlm_amnt.id = "RN01CN2"
@@ -165,6 +125,84 @@ focustoelement(){
 		this.ctrl.value_date.ctrl_id = "npss_reversal_request_details_srch_value_date"
 		this.ctrl.npss_reversal_request_details_srch_value_date = {}
 		this.ctrl.npss_reversal_request_details_srch_value_date.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of clrsysref
+		this.ctrl.clrsysref = {}
+		this.ctrl.clrsysref.id = "RN31CN15"
+		this.ctrl.clrsysref.desc = "IPP Reference Number"
+		this.ctrl.clrsysref.visible = true
+		this.ctrl.clrsysref.label_name = "IPP Reference Number"
+		this.ctrl.clrsysref.df_code = "DF_1304_1665901396659"
+		this.ctrl.clrsysref.df_description = "Column Group 1"
+		this.ctrl.clrsysref.uictrl_code = "CDN_CTRL"
+		this.ctrl.clrsysref.target_column = "CLRSYSREF"
+		this.ctrl.clrsysref.data_type = "TEXT"
+		this.ctrl.clrsysref.data_length = 35
+		this.ctrl.clrsysref.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.clrsysref.default_value = ""
+		this.ctrl.clrsysref.is_memory_ctrl = ""
+		this.ctrl.clrsysref.field_coordinates = ""
+		this.ctrl.clrsysref.sub_details = ""
+		this.ctrl.clrsysref.accept_char = ""
+		this.ctrl.clrsysref.currency_format = ""
+		this.ctrl.clrsysref.data_scale = ""
+		this.ctrl.clrsysref.binding_name = "CLRSYSREF"
+		this.ctrl.clrsysref.hide_label = false
+		this.ctrl.clrsysref.depends_on = ""
+		this.ctrl.clrsysref.placeholder = ""
+		this.ctrl.clrsysref.dynamic_param = ""
+		this.ctrl.clrsysref.style_code = ""
+		this.ctrl.clrsysref.data_source = ""
+		this.ctrl.clrsysref.image_association = ""
+		this.ctrl.clrsysref.show = true
+		this.ctrl.clrsysref.sub_content = ""
+		this.ctrl.clrsysref.required = false
+		this.ctrl.clrsysref.vld_rules = []
+		this.ctrl.clrsysref.targetcolumn_lower = "clrsysref"
+		this.ctrl.clrsysref.disabled = false
+		this.ctrl.clrsysref.view_name = "f_npss_reversal_request_details_srch"
+		this.ctrl.clrsysref.ctrl_id = "npss_reversal_request_details_srch_clrsysref"
+		this.ctrl.npss_reversal_request_details_srch_clrsysref = {}
+		this.ctrl.npss_reversal_request_details_srch_clrsysref.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of memory101
+		this.ctrl.memory101 = {}
+		this.ctrl.memory101.id = "RN41CN15"
+		this.ctrl.memory101.desc = "T24 FT Reference Number"
+		this.ctrl.memory101.visible = true
+		this.ctrl.memory101.label_name = "T24 FT Reference Number"
+		this.ctrl.memory101.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory101.df_description = "Column Group 1"
+		this.ctrl.memory101.uictrl_code = "CDN_CTRL"
+		this.ctrl.memory101.target_column = "memory101"
+		this.ctrl.memory101.data_type = "TEXT"
+		this.ctrl.memory101.data_length = 64
+		this.ctrl.memory101.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory101.default_value = ""
+		this.ctrl.memory101.is_memory_ctrl = "Y"
+		this.ctrl.memory101.field_coordinates = ""
+		this.ctrl.memory101.sub_details = ""
+		this.ctrl.memory101.accept_char = ""
+		this.ctrl.memory101.currency_format = ""
+		this.ctrl.memory101.data_scale = ""
+		this.ctrl.memory101.binding_name = "PROCESS_REF_NO"
+		this.ctrl.memory101.hide_label = false
+		this.ctrl.memory101.depends_on = ""
+		this.ctrl.memory101.placeholder = ""
+		this.ctrl.memory101.dynamic_param = ""
+		this.ctrl.memory101.style_code = ""
+		this.ctrl.memory101.data_source = ""
+		this.ctrl.memory101.image_association = ""
+		this.ctrl.memory101.show = true
+		this.ctrl.memory101.sub_content = ""
+		this.ctrl.memory101.required = false
+		this.ctrl.memory101.vld_rules = []
+		this.ctrl.memory101.targetcolumn_lower = "memory101"
+		this.ctrl.memory101.disabled = false
+		this.ctrl.memory101.view_name = "f_npss_reversal_request_details_srch"
+		this.ctrl.memory101.ctrl_id = "npss_reversal_request_details_srch_memory101"
+		this.ctrl.npss_reversal_request_details_srch_memory101 = {}
+		this.ctrl.npss_reversal_request_details_srch_memory101.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of dbtr_iban
 		this.ctrl.dbtr_iban = {}
@@ -322,46 +360,6 @@ focustoelement(){
 		this.ctrl.npss_reversal_request_details_srch_cdtr_acct_name = {}
 		this.ctrl.npss_reversal_request_details_srch_cdtr_acct_name.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of memory142
-		this.ctrl.memory142 = {}
-		this.ctrl.memory142.id = "RN21CN9"
-		this.ctrl.memory142.desc = "Beneficiary Bank"
-		this.ctrl.memory142.visible = true
-		this.ctrl.memory142.label_name = "Beneficiary Bank"
-		this.ctrl.memory142.df_code = "DF_1304_1665901396659"
-		this.ctrl.memory142.df_description = "Column Group 1"
-		this.ctrl.memory142.uictrl_code = "CBO"
-		this.ctrl.memory142.target_column = "memory142"
-		this.ctrl.memory142.data_type = "TEXT"
-		this.ctrl.memory142.data_length = 0
-		this.ctrl.memory142.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory142.default_value = ""
-		this.ctrl.memory142.is_memory_ctrl = "Y"
-		this.ctrl.memory142.field_coordinates = ""
-		this.ctrl.memory142.sub_details = ""
-		this.ctrl.memory142.accept_char = ""
-		this.ctrl.memory142.currency_format = ""
-		this.ctrl.memory142.data_scale = ""
-		this.ctrl.memory142.binding_name = "BENEFICIARY_BANK"
-		this.ctrl.memory142.hide_label = false
-		this.ctrl.memory142.depends_on = ""
-		this.ctrl.memory142.placeholder = ""
-		this.ctrl.memory142.dynamic_param = ""
-		this.ctrl.memory142.style_code = ""
-		this.ctrl.memory142.data_source = {"ds_code":"UDS_1304_1675679493844","ds_description":"BankName CDB for Report","rows":[],"type":"DPS_TABLE","value_member":"BANK_NAME","display_member":"BANK_NAME","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_MEMBER_BANKS","context":"","filters":[],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[]},"query":"()"},"sel_columns":[]}
-		this.ctrl.memory142.image_association = ""
-		this.ctrl.memory142.show = true
-		this.ctrl.memory142.sub_content = ""
-		this.ctrl.memory142.required = false
-		this.ctrl.memory142.vld_rules = []
-		this.ctrl.memory142.targetcolumn_lower = "memory142"
-		this.ctrl.memory142.disabled = false
-		this.ctrl.memory142.view_name = "f_npss_reversal_request_details_srch"
-		this.ctrl.memory142.ctrl_id = "npss_reversal_request_details_srch_memory142"
-		this.ctrl.npss_reversal_request_details_srch_memory142 = {}
-		this.ctrl.npss_reversal_request_details_srch_memory142.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reversal_request_details_srch.memory142 = {}
-	
 		//Properties of channel_id
 		this.ctrl.channel_id = {}
 		this.ctrl.channel_id.id = "RN21CN10"
@@ -479,46 +477,126 @@ focustoelement(){
 		this.ctrl.npss_reversal_request_details_srch_ext_purpose_code = {}
 		this.ctrl.npss_reversal_request_details_srch_ext_purpose_code.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of clrsysref
-		this.ctrl.clrsysref = {}
-		this.ctrl.clrsysref.id = "RN31CN15"
-		this.ctrl.clrsysref.desc = "IPP Reference Number"
-		this.ctrl.clrsysref.visible = true
-		this.ctrl.clrsysref.label_name = "IPP Reference Number"
-		this.ctrl.clrsysref.df_code = "DF_1304_1665901396659"
-		this.ctrl.clrsysref.df_description = "Column Group 1"
-		this.ctrl.clrsysref.uictrl_code = "CDN_CTRL"
-		this.ctrl.clrsysref.target_column = "CLRSYSREF"
-		this.ctrl.clrsysref.data_type = "TEXT"
-		this.ctrl.clrsysref.data_length = 35
-		this.ctrl.clrsysref.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.clrsysref.default_value = ""
-		this.ctrl.clrsysref.is_memory_ctrl = ""
-		this.ctrl.clrsysref.field_coordinates = ""
-		this.ctrl.clrsysref.sub_details = ""
-		this.ctrl.clrsysref.accept_char = ""
-		this.ctrl.clrsysref.currency_format = ""
-		this.ctrl.clrsysref.data_scale = ""
-		this.ctrl.clrsysref.binding_name = "CLRSYSREF"
-		this.ctrl.clrsysref.hide_label = false
-		this.ctrl.clrsysref.depends_on = ""
-		this.ctrl.clrsysref.placeholder = ""
-		this.ctrl.clrsysref.dynamic_param = ""
-		this.ctrl.clrsysref.style_code = ""
-		this.ctrl.clrsysref.data_source = ""
-		this.ctrl.clrsysref.image_association = ""
-		this.ctrl.clrsysref.show = true
-		this.ctrl.clrsysref.sub_content = ""
-		this.ctrl.clrsysref.required = false
-		this.ctrl.clrsysref.vld_rules = []
-		this.ctrl.clrsysref.targetcolumn_lower = "clrsysref"
-		this.ctrl.clrsysref.disabled = false
-		this.ctrl.clrsysref.view_name = "f_npss_reversal_request_details_srch"
-		this.ctrl.clrsysref.ctrl_id = "npss_reversal_request_details_srch_clrsysref"
-		this.ctrl.npss_reversal_request_details_srch_clrsysref = {}
-		this.ctrl.npss_reversal_request_details_srch_clrsysref.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_reversal_request_details_srch.model = {"DEPARTMENT_CODE":"","INTRBK_STTLM_AMNT":"","VALUE_DATE":"setcurrentdate(),{}","DBTR_IBAN":"","DBTR_ACCT_NAME":"","CDTR_IBAN":"","CDTR_ACCT_NAME":"","MEMORY142":"","CHANNEL_ID":"","MEMORY63":"","EXT_PURPOSE_CODE":"","CLRSYSREF":""}
-		this.screen_instance[this.comp_id].f_npss_reversal_request_details_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_CODE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"}]
+		//Properties of uetr
+		this.ctrl.uetr = {}
+		this.ctrl.uetr.id = "RN41CN17"
+		this.ctrl.uetr.desc = "UETR"
+		this.ctrl.uetr.visible = true
+		this.ctrl.uetr.label_name = "UETR"
+		this.ctrl.uetr.df_code = "DF_1304_1665901396659"
+		this.ctrl.uetr.df_description = "Column Group 1"
+		this.ctrl.uetr.uictrl_code = "CDN_CTRL"
+		this.ctrl.uetr.target_column = "UETR"
+		this.ctrl.uetr.data_type = "TEXT"
+		this.ctrl.uetr.data_length = 64
+		this.ctrl.uetr.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.uetr.default_value = ""
+		this.ctrl.uetr.is_memory_ctrl = ""
+		this.ctrl.uetr.field_coordinates = ""
+		this.ctrl.uetr.sub_details = ""
+		this.ctrl.uetr.accept_char = ""
+		this.ctrl.uetr.currency_format = ""
+		this.ctrl.uetr.data_scale = ""
+		this.ctrl.uetr.binding_name = "UETR"
+		this.ctrl.uetr.hide_label = false
+		this.ctrl.uetr.depends_on = ""
+		this.ctrl.uetr.placeholder = ""
+		this.ctrl.uetr.dynamic_param = ""
+		this.ctrl.uetr.style_code = ""
+		this.ctrl.uetr.data_source = ""
+		this.ctrl.uetr.image_association = ""
+		this.ctrl.uetr.show = true
+		this.ctrl.uetr.sub_content = ""
+		this.ctrl.uetr.required = false
+		this.ctrl.uetr.vld_rules = []
+		this.ctrl.uetr.targetcolumn_lower = "uetr"
+		this.ctrl.uetr.disabled = false
+		this.ctrl.uetr.view_name = "f_npss_reversal_request_details_srch"
+		this.ctrl.uetr.ctrl_id = "npss_reversal_request_details_srch_uetr"
+		this.ctrl.npss_reversal_request_details_srch_uetr = {}
+		this.ctrl.npss_reversal_request_details_srch_uetr.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of memory142
+		this.ctrl.memory142 = {}
+		this.ctrl.memory142.id = "RN21CN9"
+		this.ctrl.memory142.desc = "Beneficiary Bank"
+		this.ctrl.memory142.visible = true
+		this.ctrl.memory142.label_name = "Beneficiary Bank"
+		this.ctrl.memory142.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory142.df_description = "Column Group 1"
+		this.ctrl.memory142.uictrl_code = "CBO"
+		this.ctrl.memory142.target_column = "memory142"
+		this.ctrl.memory142.data_type = "TEXT"
+		this.ctrl.memory142.data_length = 0
+		this.ctrl.memory142.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory142.default_value = ""
+		this.ctrl.memory142.is_memory_ctrl = "Y"
+		this.ctrl.memory142.field_coordinates = ""
+		this.ctrl.memory142.sub_details = ""
+		this.ctrl.memory142.accept_char = ""
+		this.ctrl.memory142.currency_format = ""
+		this.ctrl.memory142.data_scale = ""
+		this.ctrl.memory142.binding_name = "BENEFICIARY_BANK"
+		this.ctrl.memory142.hide_label = false
+		this.ctrl.memory142.depends_on = ""
+		this.ctrl.memory142.placeholder = ""
+		this.ctrl.memory142.dynamic_param = ""
+		this.ctrl.memory142.style_code = ""
+		this.ctrl.memory142.data_source = {"ds_code":"UDS_1304_1675679493844","ds_description":"BankName CDB for Report","rows":[],"type":"DPS_TABLE","value_member":"BANK_NAME","display_member":"BANK_NAME","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_MEMBER_BANKS","context":"","filters":[],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[]},"query":"()"},"sel_columns":[]}
+		this.ctrl.memory142.image_association = ""
+		this.ctrl.memory142.show = true
+		this.ctrl.memory142.sub_content = ""
+		this.ctrl.memory142.required = false
+		this.ctrl.memory142.vld_rules = []
+		this.ctrl.memory142.targetcolumn_lower = "memory142"
+		this.ctrl.memory142.disabled = false
+		this.ctrl.memory142.view_name = "f_npss_reversal_request_details_srch"
+		this.ctrl.memory142.ctrl_id = "npss_reversal_request_details_srch_memory142"
+		this.ctrl.npss_reversal_request_details_srch_memory142 = {}
+		this.ctrl.npss_reversal_request_details_srch_memory142.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_reversal_request_details_srch.memory142 = {}
+	
+		//Properties of department_code
+		this.ctrl.department_code = {}
+		this.ctrl.department_code.id = "RN01CN1"
+		this.ctrl.department_code.desc = "Department Name"
+		this.ctrl.department_code.visible = true
+		this.ctrl.department_code.label_name = "Department Name"
+		this.ctrl.department_code.df_code = "DF_1304_1665901396659"
+		this.ctrl.department_code.df_description = "Column Group 1"
+		this.ctrl.department_code.uictrl_code = "CBO"
+		this.ctrl.department_code.target_column = "DEPARTMENT_CODE"
+		this.ctrl.department_code.data_type = "TEXT"
+		this.ctrl.department_code.data_length = 32
+		this.ctrl.department_code.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.department_code.default_value = ""
+		this.ctrl.department_code.is_memory_ctrl = ""
+		this.ctrl.department_code.field_coordinates = ""
+		this.ctrl.department_code.sub_details = ""
+		this.ctrl.department_code.accept_char = ""
+		this.ctrl.department_code.currency_format = ""
+		this.ctrl.department_code.data_scale = ""
+		this.ctrl.department_code.binding_name = "DEPARTMENT_CODE"
+		this.ctrl.department_code.hide_label = false
+		this.ctrl.department_code.depends_on = ""
+		this.ctrl.department_code.placeholder = ""
+		this.ctrl.department_code.dynamic_param = ""
+		this.ctrl.department_code.style_code = ""
+		this.ctrl.department_code.data_source = {"ds_code":"UDS_1304_1677509056279","ds_description":"NPSS RPT LOGIN SYS AND CUR SYSTEM","rows":[],"type":"BIND_SYSTEMS","value_member":"S_DESCRIPTION","display_member":"S_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"","context":"","filters":[{"filter_name":"Filter1","binding_name":"ST_ID","id":"DF_1678714670799","binding_value":232,"source_name":"ST_ID","source_value":232,"source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding System - Generic","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"ST_ID","binding_value":232,"sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":232}]},"query":"(ST_ID = 232)"},"sel_columns":[],"need_auto_first_record":true,"current_sys":true,"childsys":"ALLOCATED","need_first_item_selection":false,"has_parent":false}
+		this.ctrl.department_code.image_association = ""
+		this.ctrl.department_code.show = true
+		this.ctrl.department_code.sub_content = ""
+		this.ctrl.department_code.required = false
+		this.ctrl.department_code.vld_rules = []
+		this.ctrl.department_code.targetcolumn_lower = "department_code"
+		this.ctrl.department_code.disabled = false
+		this.ctrl.department_code.view_name = "f_npss_reversal_request_details_srch"
+		this.ctrl.department_code.ctrl_id = "npss_reversal_request_details_srch_department_code"
+		this.ctrl.npss_reversal_request_details_srch_department_code = {}
+		this.ctrl.npss_reversal_request_details_srch_department_code.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_reversal_request_details_srch.department_code = {}
+		this.screen_instance[this.comp_id].f_npss_reversal_request_details_srch.model = {"INTRBK_STTLM_AMNT":"","VALUE_DATE":"setcurrentdate(),{}","CLRSYSREF":"","MEMORY101":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","CDTR_IBAN":"","CDTR_ACCT_NAME":"","CHANNEL_ID":"","MEMORY63":"","EXT_PURPOSE_CODE":"","UETR":"","MEMORY142":"","DEPARTMENT_CODE":""}
+		this.screen_instance[this.comp_id].f_npss_reversal_request_details_srch.Meta = [{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_CODE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"}]
 		this.screen_instance[this.comp_id].f_npss_reversal_request_details_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_reversal_request_details_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_reversal_request_details_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

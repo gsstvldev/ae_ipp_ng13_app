@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34726 
+Build ID        : 34742 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-12 10:36 AM 
+Modified Date   : 2024-Mar-13 7:58 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_reversal_success
@@ -87,86 +87,6 @@ focustoelement(){
 		this.ctrl.npss_outward_reversal_success_srch_memory63 = {}
 		this.ctrl.npss_outward_reversal_success_srch_memory63.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of channel_id
-		this.ctrl.channel_id = {}
-		this.ctrl.channel_id.id = "RN01CN3"
-		this.ctrl.channel_id.desc = "Channel"
-		this.ctrl.channel_id.visible = true
-		this.ctrl.channel_id.label_name = "Channel"
-		this.ctrl.channel_id.df_code = "DF_1304_1665901396659"
-		this.ctrl.channel_id.df_description = "Column Group 1"
-		this.ctrl.channel_id.uictrl_code = "CBO"
-		this.ctrl.channel_id.target_column = "CHANNEL_ID"
-		this.ctrl.channel_id.data_type = "TEXT"
-		this.ctrl.channel_id.data_length = 128
-		this.ctrl.channel_id.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.channel_id.default_value = ""
-		this.ctrl.channel_id.is_memory_ctrl = ""
-		this.ctrl.channel_id.field_coordinates = ""
-		this.ctrl.channel_id.sub_details = ""
-		this.ctrl.channel_id.accept_char = ""
-		this.ctrl.channel_id.currency_format = ""
-		this.ctrl.channel_id.data_scale = ""
-		this.ctrl.channel_id.binding_name = "CHANNEL_ID"
-		this.ctrl.channel_id.hide_label = false
-		this.ctrl.channel_id.depends_on = ""
-		this.ctrl.channel_id.placeholder = ""
-		this.ctrl.channel_id.dynamic_param = ""
-		this.ctrl.channel_id.style_code = ""
-		this.ctrl.channel_id.data_source = {"ds_code":"UDS_1304_1677062293596","ds_description":"NPSS Channel CDB RPT","rows":[],"type":"DPS_TABLE","value_member":"CHANNEL_CODE","display_member":"CHANNEL_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CHANNELS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1678254844745","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter2","binding_name":"NEED_SYNC","id":"DF_1678254844745","binding_value":"Y","source_name":"NEED_SYNC","source_value":"Y","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"},{"operators":"=","data_type":"TEXT","binding_name":"NEED_SYNC","binding_value":"Y","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"Y"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID AND NEED_SYNC = Y)"},"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
-		this.ctrl.channel_id.image_association = ""
-		this.ctrl.channel_id.show = true
-		this.ctrl.channel_id.sub_content = ""
-		this.ctrl.channel_id.required = false
-		this.ctrl.channel_id.vld_rules = []
-		this.ctrl.channel_id.targetcolumn_lower = "channel_id"
-		this.ctrl.channel_id.disabled = false
-		this.ctrl.channel_id.view_name = "f_npss_outward_reversal_success_srch"
-		this.ctrl.channel_id.ctrl_id = "npss_outward_reversal_success_srch_channel_id"
-		this.ctrl.npss_outward_reversal_success_srch_channel_id = {}
-		this.ctrl.npss_outward_reversal_success_srch_channel_id.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.channel_id = {}
-	
-		//Properties of department_code
-		this.ctrl.department_code = {}
-		this.ctrl.department_code.id = "RN01CN12"
-		this.ctrl.department_code.desc = "Department Code"
-		this.ctrl.department_code.visible = true
-		this.ctrl.department_code.label_name = "Department Code"
-		this.ctrl.department_code.df_code = "DF_1304_1665901396659"
-		this.ctrl.department_code.df_description = "Column Group 1"
-		this.ctrl.department_code.uictrl_code = "CBO"
-		this.ctrl.department_code.target_column = "DEPARTMENT_CODE"
-		this.ctrl.department_code.data_type = "TEXT"
-		this.ctrl.department_code.data_length = 32
-		this.ctrl.department_code.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.department_code.default_value = ""
-		this.ctrl.department_code.is_memory_ctrl = ""
-		this.ctrl.department_code.field_coordinates = ""
-		this.ctrl.department_code.sub_details = ""
-		this.ctrl.department_code.accept_char = ""
-		this.ctrl.department_code.currency_format = ""
-		this.ctrl.department_code.data_scale = ""
-		this.ctrl.department_code.binding_name = "DEPARTMENT_CODE"
-		this.ctrl.department_code.hide_label = false
-		this.ctrl.department_code.depends_on = ""
-		this.ctrl.department_code.placeholder = ""
-		this.ctrl.department_code.dynamic_param = ""
-		this.ctrl.department_code.style_code = ""
-		this.ctrl.department_code.data_source = {"ds_code":"UDS_1304_1677509056279","ds_description":"NPSS RPT LOGIN SYS AND CUR SYSTEM","rows":[],"type":"BIND_SYSTEMS","value_member":"S_DESCRIPTION","display_member":"S_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"","context":"","filters":[{"filter_name":"Filter1","binding_name":"ST_ID","id":"DF_1678714670799","binding_value":232,"source_name":"ST_ID","source_value":232,"source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding System - Generic","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"ST_ID","binding_value":232,"sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":232}]},"query":"(ST_ID = 232)"},"sel_columns":[],"need_auto_first_record":true,"current_sys":true,"childsys":"ALLOCATED","need_first_item_selection":false,"has_parent":false}
-		this.ctrl.department_code.image_association = ""
-		this.ctrl.department_code.show = true
-		this.ctrl.department_code.sub_content = ""
-		this.ctrl.department_code.required = false
-		this.ctrl.department_code.vld_rules = []
-		this.ctrl.department_code.targetcolumn_lower = "department_code"
-		this.ctrl.department_code.disabled = false
-		this.ctrl.department_code.view_name = "f_npss_outward_reversal_success_srch"
-		this.ctrl.department_code.ctrl_id = "npss_outward_reversal_success_srch_department_code"
-		this.ctrl.npss_outward_reversal_success_srch_department_code = {}
-		this.ctrl.npss_outward_reversal_success_srch_department_code.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.department_code = {}
-	
 		//Properties of intrbk_sttlm_amnt
 		this.ctrl.intrbk_sttlm_amnt = {}
 		this.ctrl.intrbk_sttlm_amnt.id = "RN11CN4"
@@ -244,46 +164,6 @@ focustoelement(){
 		this.ctrl.reversal_amount.ctrl_id = "npss_outward_reversal_success_srch_reversal_amount"
 		this.ctrl.npss_outward_reversal_success_srch_reversal_amount = {}
 		this.ctrl.npss_outward_reversal_success_srch_reversal_amount.onChangecomponent = new EventEmitter<any>()
-	
-		//Properties of memory87
-		this.ctrl.memory87 = {}
-		this.ctrl.memory87.id = "RN11CN7"
-		this.ctrl.memory87.desc = "Reversal Code"
-		this.ctrl.memory87.visible = true
-		this.ctrl.memory87.label_name = "Reversal Code"
-		this.ctrl.memory87.df_code = "DF_1304_1665901396659"
-		this.ctrl.memory87.df_description = "Column Group 1"
-		this.ctrl.memory87.uictrl_code = "CBO"
-		this.ctrl.memory87.target_column = "memory87"
-		this.ctrl.memory87.data_type = "TEXT"
-		this.ctrl.memory87.data_length = 0
-		this.ctrl.memory87.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory87.default_value = ""
-		this.ctrl.memory87.is_memory_ctrl = "Y"
-		this.ctrl.memory87.field_coordinates = ""
-		this.ctrl.memory87.sub_details = ""
-		this.ctrl.memory87.accept_char = ""
-		this.ctrl.memory87.currency_format = ""
-		this.ctrl.memory87.data_scale = ""
-		this.ctrl.memory87.binding_name = "REVERSAL_CODE"
-		this.ctrl.memory87.hide_label = false
-		this.ctrl.memory87.depends_on = ""
-		this.ctrl.memory87.placeholder = ""
-		this.ctrl.memory87.dynamic_param = ""
-		this.ctrl.memory87.style_code = ""
-		this.ctrl.memory87.data_source = {"ds_code":"UDS_1304_1677063004752","ds_description":"NPSS Reversal Code CDB RPT","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_VW_NC_CODE_DESCRIPTION","context":"","filters":[{"filter_name":"Filter1","binding_name":"NEED_SYNC","id":"DF_1678253632838","binding_value":"Y","source_name":"NEED_SYNC","source_value":"Y","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1678253632838","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter3","binding_name":"CD_CATEGORY","id":"DF_1678253632838","binding_value":"REVERSAL_REASON_IDENTIFIER_CODE","source_name":"CD_CATEGORY","source_value":"REVERSAL_REASON_IDENTIFIER_CODE","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"NEED_SYNC","binding_value":"Y","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"Y"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"},{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"REVERSAL_REASON_IDENTIFIER_CODE","sort_order":3,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"REVERSAL_REASON_IDENTIFIER_CODE"}]},"query":"(NEED_SYNC = Y AND TENANT_ID = SESSION_LEVEL.TENANT_ID AND CD_CATEGORY = REVERSAL_REASON_IDENTIFIER_CODE)"},"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
-		this.ctrl.memory87.image_association = ""
-		this.ctrl.memory87.show = true
-		this.ctrl.memory87.sub_content = ""
-		this.ctrl.memory87.required = false
-		this.ctrl.memory87.vld_rules = []
-		this.ctrl.memory87.targetcolumn_lower = "memory87"
-		this.ctrl.memory87.disabled = false
-		this.ctrl.memory87.view_name = "f_npss_outward_reversal_success_srch"
-		this.ctrl.memory87.ctrl_id = "npss_outward_reversal_success_srch_memory87"
-		this.ctrl.npss_outward_reversal_success_srch_memory87 = {}
-		this.ctrl.npss_outward_reversal_success_srch_memory87.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.memory87 = {}
 	
 		//Properties of dbtr_iban
 		this.ctrl.dbtr_iban = {}
@@ -363,6 +243,45 @@ focustoelement(){
 		this.ctrl.npss_outward_reversal_success_srch_dbtr_acct_no = {}
 		this.ctrl.npss_outward_reversal_success_srch_dbtr_acct_no.onChangecomponent = new EventEmitter<any>()
 	
+		//Properties of payment_endtoend_id
+		this.ctrl.payment_endtoend_id = {}
+		this.ctrl.payment_endtoend_id.id = "RN21CN10"
+		this.ctrl.payment_endtoend_id.desc = "E2E Ref ID"
+		this.ctrl.payment_endtoend_id.visible = true
+		this.ctrl.payment_endtoend_id.label_name = "E2E Ref ID"
+		this.ctrl.payment_endtoend_id.df_code = "DF_1304_1665901396659"
+		this.ctrl.payment_endtoend_id.df_description = "Column Group 1"
+		this.ctrl.payment_endtoend_id.uictrl_code = "CDN_CTRL"
+		this.ctrl.payment_endtoend_id.target_column = "PAYMENT_ENDTOEND_ID"
+		this.ctrl.payment_endtoend_id.data_type = "TEXT"
+		this.ctrl.payment_endtoend_id.data_length = 64
+		this.ctrl.payment_endtoend_id.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.payment_endtoend_id.default_value = ""
+		this.ctrl.payment_endtoend_id.is_memory_ctrl = ""
+		this.ctrl.payment_endtoend_id.field_coordinates = ""
+		this.ctrl.payment_endtoend_id.sub_details = ""
+		this.ctrl.payment_endtoend_id.accept_char = ""
+		this.ctrl.payment_endtoend_id.currency_format = ""
+		this.ctrl.payment_endtoend_id.data_scale = ""
+		this.ctrl.payment_endtoend_id.binding_name = "PAYMENT_ENDTOEND_ID"
+		this.ctrl.payment_endtoend_id.hide_label = false
+		this.ctrl.payment_endtoend_id.depends_on = ""
+		this.ctrl.payment_endtoend_id.placeholder = ""
+		this.ctrl.payment_endtoend_id.dynamic_param = ""
+		this.ctrl.payment_endtoend_id.style_code = ""
+		this.ctrl.payment_endtoend_id.data_source = ""
+		this.ctrl.payment_endtoend_id.image_association = ""
+		this.ctrl.payment_endtoend_id.show = true
+		this.ctrl.payment_endtoend_id.sub_content = ""
+		this.ctrl.payment_endtoend_id.required = false
+		this.ctrl.payment_endtoend_id.vld_rules = []
+		this.ctrl.payment_endtoend_id.targetcolumn_lower = "payment_endtoend_id"
+		this.ctrl.payment_endtoend_id.disabled = false
+		this.ctrl.payment_endtoend_id.view_name = "f_npss_outward_reversal_success_srch"
+		this.ctrl.payment_endtoend_id.ctrl_id = "npss_outward_reversal_success_srch_payment_endtoend_id"
+		this.ctrl.npss_outward_reversal_success_srch_payment_endtoend_id = {}
+		this.ctrl.npss_outward_reversal_success_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
+	
 		//Properties of uetr
 		this.ctrl.uetr = {}
 		this.ctrl.uetr.id = "RN31CN11"
@@ -402,46 +321,127 @@ focustoelement(){
 		this.ctrl.npss_outward_reversal_success_srch_uetr = {}
 		this.ctrl.npss_outward_reversal_success_srch_uetr.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of payment_endtoend_id
-		this.ctrl.payment_endtoend_id = {}
-		this.ctrl.payment_endtoend_id.id = "RN21CN10"
-		this.ctrl.payment_endtoend_id.desc = "E2E Ref ID"
-		this.ctrl.payment_endtoend_id.visible = true
-		this.ctrl.payment_endtoend_id.label_name = "E2E Ref ID"
-		this.ctrl.payment_endtoend_id.df_code = "DF_1304_1665901396659"
-		this.ctrl.payment_endtoend_id.df_description = "Column Group 1"
-		this.ctrl.payment_endtoend_id.uictrl_code = "CDN_CTRL"
-		this.ctrl.payment_endtoend_id.target_column = "PAYMENT_ENDTOEND_ID"
-		this.ctrl.payment_endtoend_id.data_type = "TEXT"
-		this.ctrl.payment_endtoend_id.data_length = 64
-		this.ctrl.payment_endtoend_id.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.payment_endtoend_id.default_value = ""
-		this.ctrl.payment_endtoend_id.is_memory_ctrl = ""
-		this.ctrl.payment_endtoend_id.field_coordinates = ""
-		this.ctrl.payment_endtoend_id.sub_details = ""
-		this.ctrl.payment_endtoend_id.accept_char = ""
-		this.ctrl.payment_endtoend_id.currency_format = ""
-		this.ctrl.payment_endtoend_id.data_scale = ""
-		this.ctrl.payment_endtoend_id.binding_name = "PAYMENT_ENDTOEND_ID"
-		this.ctrl.payment_endtoend_id.hide_label = false
-		this.ctrl.payment_endtoend_id.depends_on = ""
-		this.ctrl.payment_endtoend_id.placeholder = ""
-		this.ctrl.payment_endtoend_id.dynamic_param = ""
-		this.ctrl.payment_endtoend_id.style_code = ""
-		this.ctrl.payment_endtoend_id.data_source = ""
-		this.ctrl.payment_endtoend_id.image_association = ""
-		this.ctrl.payment_endtoend_id.show = true
-		this.ctrl.payment_endtoend_id.sub_content = ""
-		this.ctrl.payment_endtoend_id.required = false
-		this.ctrl.payment_endtoend_id.vld_rules = []
-		this.ctrl.payment_endtoend_id.targetcolumn_lower = "payment_endtoend_id"
-		this.ctrl.payment_endtoend_id.disabled = false
-		this.ctrl.payment_endtoend_id.view_name = "f_npss_outward_reversal_success_srch"
-		this.ctrl.payment_endtoend_id.ctrl_id = "npss_outward_reversal_success_srch_payment_endtoend_id"
-		this.ctrl.npss_outward_reversal_success_srch_payment_endtoend_id = {}
-		this.ctrl.npss_outward_reversal_success_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.model = {"MEMORY63":"setcurrentdate(),{}","CHANNEL_ID":"","DEPARTMENT_CODE":"","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","MEMORY87":"","DBTR_IBAN":"","DBTR_ACCT_NO":"","UETR":"","PAYMENT_ENDTOEND_ID":""}
-		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"}]
+		//Properties of memory87
+		this.ctrl.memory87 = {}
+		this.ctrl.memory87.id = "RN11CN7"
+		this.ctrl.memory87.desc = "Reversal Code"
+		this.ctrl.memory87.visible = true
+		this.ctrl.memory87.label_name = "Reversal Code"
+		this.ctrl.memory87.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory87.df_description = "Column Group 1"
+		this.ctrl.memory87.uictrl_code = "CBO"
+		this.ctrl.memory87.target_column = "memory87"
+		this.ctrl.memory87.data_type = "TEXT"
+		this.ctrl.memory87.data_length = 0
+		this.ctrl.memory87.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory87.default_value = ""
+		this.ctrl.memory87.is_memory_ctrl = "Y"
+		this.ctrl.memory87.field_coordinates = ""
+		this.ctrl.memory87.sub_details = ""
+		this.ctrl.memory87.accept_char = ""
+		this.ctrl.memory87.currency_format = ""
+		this.ctrl.memory87.data_scale = ""
+		this.ctrl.memory87.binding_name = "REVERSAL_CODE"
+		this.ctrl.memory87.hide_label = false
+		this.ctrl.memory87.depends_on = ""
+		this.ctrl.memory87.placeholder = ""
+		this.ctrl.memory87.dynamic_param = ""
+		this.ctrl.memory87.style_code = ""
+		this.ctrl.memory87.data_source = {"ds_code":"UDS_1304_1677063004752","ds_description":"NPSS Reversal Code CDB RPT","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_VW_NC_CODE_DESCRIPTION","context":"","filters":[{"filter_name":"Filter1","binding_name":"NEED_SYNC","id":"DF_1678253632838","binding_value":"Y","source_name":"NEED_SYNC","source_value":"Y","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter2","binding_name":"TENANT_ID","id":"DF_1678253632838","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter3","binding_name":"CD_CATEGORY","id":"DF_1678253632838","binding_value":"REVERSAL_REASON_IDENTIFIER_CODE","source_name":"CD_CATEGORY","source_value":"REVERSAL_REASON_IDENTIFIER_CODE","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"NEED_SYNC","binding_value":"Y","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"Y"},{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"},{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"REVERSAL_REASON_IDENTIFIER_CODE","sort_order":3,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"REVERSAL_REASON_IDENTIFIER_CODE"}]},"query":"(NEED_SYNC = Y AND TENANT_ID = SESSION_LEVEL.TENANT_ID AND CD_CATEGORY = REVERSAL_REASON_IDENTIFIER_CODE)"},"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
+		this.ctrl.memory87.image_association = ""
+		this.ctrl.memory87.show = true
+		this.ctrl.memory87.sub_content = ""
+		this.ctrl.memory87.required = false
+		this.ctrl.memory87.vld_rules = []
+		this.ctrl.memory87.targetcolumn_lower = "memory87"
+		this.ctrl.memory87.disabled = false
+		this.ctrl.memory87.view_name = "f_npss_outward_reversal_success_srch"
+		this.ctrl.memory87.ctrl_id = "npss_outward_reversal_success_srch_memory87"
+		this.ctrl.npss_outward_reversal_success_srch_memory87 = {}
+		this.ctrl.npss_outward_reversal_success_srch_memory87.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.memory87 = {}
+	
+		//Properties of department_code
+		this.ctrl.department_code = {}
+		this.ctrl.department_code.id = "RN01CN12"
+		this.ctrl.department_code.desc = "Department Code"
+		this.ctrl.department_code.visible = true
+		this.ctrl.department_code.label_name = "Department Code"
+		this.ctrl.department_code.df_code = "DF_1304_1665901396659"
+		this.ctrl.department_code.df_description = "Column Group 1"
+		this.ctrl.department_code.uictrl_code = "CBO"
+		this.ctrl.department_code.target_column = "DEPARTMENT_CODE"
+		this.ctrl.department_code.data_type = "TEXT"
+		this.ctrl.department_code.data_length = 32
+		this.ctrl.department_code.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.department_code.default_value = ""
+		this.ctrl.department_code.is_memory_ctrl = ""
+		this.ctrl.department_code.field_coordinates = ""
+		this.ctrl.department_code.sub_details = ""
+		this.ctrl.department_code.accept_char = ""
+		this.ctrl.department_code.currency_format = ""
+		this.ctrl.department_code.data_scale = ""
+		this.ctrl.department_code.binding_name = "DEPARTMENT_CODE"
+		this.ctrl.department_code.hide_label = false
+		this.ctrl.department_code.depends_on = ""
+		this.ctrl.department_code.placeholder = ""
+		this.ctrl.department_code.dynamic_param = ""
+		this.ctrl.department_code.style_code = ""
+		this.ctrl.department_code.data_source = {"ds_code":"UDS_1304_1677509056279","ds_description":"NPSS RPT LOGIN SYS AND CUR SYSTEM","rows":[],"type":"BIND_SYSTEMS","value_member":"S_DESCRIPTION","display_member":"S_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"","context":"","filters":[{"filter_name":"Filter1","binding_name":"ST_ID","id":"DF_1678714670799","binding_value":232,"source_name":"ST_ID","source_value":232,"source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding System - Generic","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"ST_ID","binding_value":232,"sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":232}]},"query":"(ST_ID = 232)"},"sel_columns":[],"need_auto_first_record":true,"current_sys":true,"childsys":"ALLOCATED","need_first_item_selection":false,"has_parent":false}
+		this.ctrl.department_code.image_association = ""
+		this.ctrl.department_code.show = true
+		this.ctrl.department_code.sub_content = ""
+		this.ctrl.department_code.required = false
+		this.ctrl.department_code.vld_rules = []
+		this.ctrl.department_code.targetcolumn_lower = "department_code"
+		this.ctrl.department_code.disabled = false
+		this.ctrl.department_code.view_name = "f_npss_outward_reversal_success_srch"
+		this.ctrl.department_code.ctrl_id = "npss_outward_reversal_success_srch_department_code"
+		this.ctrl.npss_outward_reversal_success_srch_department_code = {}
+		this.ctrl.npss_outward_reversal_success_srch_department_code.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.department_code = {}
+	
+		//Properties of channel_id
+		this.ctrl.channel_id = {}
+		this.ctrl.channel_id.id = "RN01CN3"
+		this.ctrl.channel_id.desc = "Channel"
+		this.ctrl.channel_id.visible = true
+		this.ctrl.channel_id.label_name = "Channel"
+		this.ctrl.channel_id.df_code = "DF_1304_1665901396659"
+		this.ctrl.channel_id.df_description = "Column Group 1"
+		this.ctrl.channel_id.uictrl_code = "CBO"
+		this.ctrl.channel_id.target_column = "CHANNEL_ID"
+		this.ctrl.channel_id.data_type = "TEXT"
+		this.ctrl.channel_id.data_length = 128
+		this.ctrl.channel_id.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.channel_id.default_value = ""
+		this.ctrl.channel_id.is_memory_ctrl = ""
+		this.ctrl.channel_id.field_coordinates = ""
+		this.ctrl.channel_id.sub_details = ""
+		this.ctrl.channel_id.accept_char = ""
+		this.ctrl.channel_id.currency_format = ""
+		this.ctrl.channel_id.data_scale = ""
+		this.ctrl.channel_id.binding_name = "CHANNEL_ID"
+		this.ctrl.channel_id.hide_label = false
+		this.ctrl.channel_id.depends_on = ""
+		this.ctrl.channel_id.placeholder = ""
+		this.ctrl.channel_id.dynamic_param = ""
+		this.ctrl.channel_id.style_code = ""
+		this.ctrl.channel_id.data_source = {"ds_code":"UDS_1304_1677062293596","ds_description":"NPSS Channel CDB RPT","rows":[],"type":"DPS_TABLE","value_member":"CHANNEL_CODE","display_member":"CHANNEL_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CHANNELS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1678254844745","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter2","binding_name":"NEED_SYNC","id":"DF_1678254844745","binding_value":"Y","source_name":"NEED_SYNC","source_value":"Y","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"SESSION_LEVEL","temp_value":"TENANT_ID"},{"operators":"=","data_type":"TEXT","binding_name":"NEED_SYNC","binding_value":"Y","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"Y"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID AND NEED_SYNC = Y)"},"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
+		this.ctrl.channel_id.image_association = ""
+		this.ctrl.channel_id.show = true
+		this.ctrl.channel_id.sub_content = ""
+		this.ctrl.channel_id.required = false
+		this.ctrl.channel_id.vld_rules = []
+		this.ctrl.channel_id.targetcolumn_lower = "channel_id"
+		this.ctrl.channel_id.disabled = false
+		this.ctrl.channel_id.view_name = "f_npss_outward_reversal_success_srch"
+		this.ctrl.channel_id.ctrl_id = "npss_outward_reversal_success_srch_channel_id"
+		this.ctrl.npss_outward_reversal_success_srch_channel_id = {}
+		this.ctrl.npss_outward_reversal_success_srch_channel_id.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.channel_id = {}
+		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.model = {"MEMORY63":"setcurrentdate(),{}","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","DBTR_IBAN":"","DBTR_ACCT_NO":"","PAYMENT_ENDTOEND_ID":"","UETR":"","MEMORY87":"","DEPARTMENT_CODE":"","CHANNEL_ID":""}
+		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.Meta = [{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"}]
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

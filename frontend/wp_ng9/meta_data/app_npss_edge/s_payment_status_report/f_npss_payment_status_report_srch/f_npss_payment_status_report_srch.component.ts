@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34713 
+Build ID        : 34742 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-12 5:45 AM 
+Modified Date   : 2024-Mar-13 7:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_status_report
@@ -87,45 +87,6 @@ focustoelement(){
 		this.ctrl.npss_payment_status_report_srch_timestamp = {}
 		this.ctrl.npss_payment_status_report_srch_timestamp.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of originator_reference
-		this.ctrl.originator_reference = {}
-		this.ctrl.originator_reference.id = "RN01CN3"
-		this.ctrl.originator_reference.desc = "Originator Reference"
-		this.ctrl.originator_reference.visible = true
-		this.ctrl.originator_reference.label_name = "Originator Reference"
-		this.ctrl.originator_reference.df_code = "DF_1304_1681973942147"
-		this.ctrl.originator_reference.df_description = "Column Group 1"
-		this.ctrl.originator_reference.uictrl_code = "CDN_CTRL"
-		this.ctrl.originator_reference.target_column = "ORIGINATOR_REFERENCE"
-		this.ctrl.originator_reference.data_type = "TEXT"
-		this.ctrl.originator_reference.data_length = 128
-		this.ctrl.originator_reference.zone_df_code = "DF_1304_1681973942147"
-		this.ctrl.originator_reference.default_value = ""
-		this.ctrl.originator_reference.is_memory_ctrl = ""
-		this.ctrl.originator_reference.field_coordinates = ""
-		this.ctrl.originator_reference.sub_details = ""
-		this.ctrl.originator_reference.accept_char = ""
-		this.ctrl.originator_reference.currency_format = ""
-		this.ctrl.originator_reference.data_scale = ""
-		this.ctrl.originator_reference.binding_name = "ORIGINATOR_REFERENCE"
-		this.ctrl.originator_reference.hide_label = false
-		this.ctrl.originator_reference.depends_on = ""
-		this.ctrl.originator_reference.placeholder = ""
-		this.ctrl.originator_reference.dynamic_param = ""
-		this.ctrl.originator_reference.style_code = ""
-		this.ctrl.originator_reference.data_source = ""
-		this.ctrl.originator_reference.image_association = ""
-		this.ctrl.originator_reference.show = true
-		this.ctrl.originator_reference.sub_content = ""
-		this.ctrl.originator_reference.required = false
-		this.ctrl.originator_reference.vld_rules = []
-		this.ctrl.originator_reference.targetcolumn_lower = "originator_reference"
-		this.ctrl.originator_reference.disabled = false
-		this.ctrl.originator_reference.view_name = "f_npss_payment_status_report_srch"
-		this.ctrl.originator_reference.ctrl_id = "npss_payment_status_report_srch_originator_reference"
-		this.ctrl.npss_payment_status_report_srch_originator_reference = {}
-		this.ctrl.npss_payment_status_report_srch_originator_reference.onChangecomponent = new EventEmitter<any>()
-	
 		//Properties of memory20
 		this.ctrl.memory20 = {}
 		this.ctrl.memory20.id = "RN01CN4"
@@ -204,45 +165,6 @@ focustoelement(){
 		this.ctrl.npss_payment_status_report_srch_sender = {}
 		this.ctrl.npss_payment_status_report_srch_sender.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of payer
-		this.ctrl.payer = {}
-		this.ctrl.payer.id = "RN11CN7"
-		this.ctrl.payer.desc = "Payer"
-		this.ctrl.payer.visible = true
-		this.ctrl.payer.label_name = "Payer"
-		this.ctrl.payer.df_code = "DF_1304_1681973942147"
-		this.ctrl.payer.df_description = "Column Group 1"
-		this.ctrl.payer.uictrl_code = "CDN_CTRL"
-		this.ctrl.payer.target_column = "PAYER"
-		this.ctrl.payer.data_type = "TEXT"
-		this.ctrl.payer.data_length = 32
-		this.ctrl.payer.zone_df_code = "DF_1304_1681973942147"
-		this.ctrl.payer.default_value = ""
-		this.ctrl.payer.is_memory_ctrl = ""
-		this.ctrl.payer.field_coordinates = ""
-		this.ctrl.payer.sub_details = ""
-		this.ctrl.payer.accept_char = ""
-		this.ctrl.payer.currency_format = ""
-		this.ctrl.payer.data_scale = ""
-		this.ctrl.payer.binding_name = "PAYER"
-		this.ctrl.payer.hide_label = false
-		this.ctrl.payer.depends_on = ""
-		this.ctrl.payer.placeholder = ""
-		this.ctrl.payer.dynamic_param = ""
-		this.ctrl.payer.style_code = ""
-		this.ctrl.payer.data_source = ""
-		this.ctrl.payer.image_association = ""
-		this.ctrl.payer.show = true
-		this.ctrl.payer.sub_content = ""
-		this.ctrl.payer.required = false
-		this.ctrl.payer.vld_rules = []
-		this.ctrl.payer.targetcolumn_lower = "payer"
-		this.ctrl.payer.disabled = false
-		this.ctrl.payer.view_name = "f_npss_payment_status_report_srch"
-		this.ctrl.payer.ctrl_id = "npss_payment_status_report_srch_payer"
-		this.ctrl.npss_payment_status_report_srch_payer = {}
-		this.ctrl.npss_payment_status_report_srch_payer.onChangecomponent = new EventEmitter<any>()
-	
 		//Properties of receiver
 		this.ctrl.receiver = {}
 		this.ctrl.receiver.id = "RN11CN8"
@@ -320,6 +242,45 @@ focustoelement(){
 		this.ctrl.beneficiary.ctrl_id = "npss_payment_status_report_srch_beneficiary"
 		this.ctrl.npss_payment_status_report_srch_beneficiary = {}
 		this.ctrl.npss_payment_status_report_srch_beneficiary.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of payer
+		this.ctrl.payer = {}
+		this.ctrl.payer.id = "RN11CN7"
+		this.ctrl.payer.desc = "Payer"
+		this.ctrl.payer.visible = true
+		this.ctrl.payer.label_name = "Payer"
+		this.ctrl.payer.df_code = "DF_1304_1681973942147"
+		this.ctrl.payer.df_description = "Column Group 1"
+		this.ctrl.payer.uictrl_code = "CDN_CTRL"
+		this.ctrl.payer.target_column = "PAYER"
+		this.ctrl.payer.data_type = "TEXT"
+		this.ctrl.payer.data_length = 32
+		this.ctrl.payer.zone_df_code = "DF_1304_1681973942147"
+		this.ctrl.payer.default_value = ""
+		this.ctrl.payer.is_memory_ctrl = ""
+		this.ctrl.payer.field_coordinates = ""
+		this.ctrl.payer.sub_details = ""
+		this.ctrl.payer.accept_char = ""
+		this.ctrl.payer.currency_format = ""
+		this.ctrl.payer.data_scale = ""
+		this.ctrl.payer.binding_name = "PAYER"
+		this.ctrl.payer.hide_label = false
+		this.ctrl.payer.depends_on = ""
+		this.ctrl.payer.placeholder = ""
+		this.ctrl.payer.dynamic_param = ""
+		this.ctrl.payer.style_code = ""
+		this.ctrl.payer.data_source = ""
+		this.ctrl.payer.image_association = ""
+		this.ctrl.payer.show = true
+		this.ctrl.payer.sub_content = ""
+		this.ctrl.payer.required = false
+		this.ctrl.payer.vld_rules = []
+		this.ctrl.payer.targetcolumn_lower = "payer"
+		this.ctrl.payer.disabled = false
+		this.ctrl.payer.view_name = "f_npss_payment_status_report_srch"
+		this.ctrl.payer.ctrl_id = "npss_payment_status_report_srch_payer"
+		this.ctrl.npss_payment_status_report_srch_payer = {}
+		this.ctrl.npss_payment_status_report_srch_payer.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of amount
 		this.ctrl.amount = {}
@@ -593,8 +554,47 @@ focustoelement(){
 		this.ctrl.batch_ref.ctrl_id = "npss_payment_status_report_srch_batch_ref"
 		this.ctrl.npss_payment_status_report_srch_batch_ref = {}
 		this.ctrl.npss_payment_status_report_srch_batch_ref.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_payment_status_report_srch.model = {"TIMESTAMP":"","ORIGINATOR_REFERENCE":"","MEMORY20":"setcurrentdate(),{}","SENDER":"","PAYER":"","RECEIVER":"","BENEFICIARY":"","AMOUNT":"","CURRENCY":"","PAYMENT_STATUS":"","SOURCE":"","SENDER_REF":"","SYSTEM_REF":"","BATCH_REF":""}
-		this.screen_instance[this.comp_id].f_npss_payment_status_report_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"TIMESTAMP"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ORIGINATOR_REFERENCE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SENDER"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYER"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"RECEIVER"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"BENEFICIARY"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CURRENCY"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_STATUS"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SOURCE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SENDER_REF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SYSTEM_REF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"BATCH_REF"}]
+	
+		//Properties of originator_reference
+		this.ctrl.originator_reference = {}
+		this.ctrl.originator_reference.id = "RN01CN3"
+		this.ctrl.originator_reference.desc = "Originator Reference"
+		this.ctrl.originator_reference.visible = true
+		this.ctrl.originator_reference.label_name = "Originator Reference"
+		this.ctrl.originator_reference.df_code = "DF_1304_1681973942147"
+		this.ctrl.originator_reference.df_description = "Column Group 1"
+		this.ctrl.originator_reference.uictrl_code = "CDN_CTRL"
+		this.ctrl.originator_reference.target_column = "ORIGINATOR_REFERENCE"
+		this.ctrl.originator_reference.data_type = "TEXT"
+		this.ctrl.originator_reference.data_length = 128
+		this.ctrl.originator_reference.zone_df_code = "DF_1304_1681973942147"
+		this.ctrl.originator_reference.default_value = ""
+		this.ctrl.originator_reference.is_memory_ctrl = ""
+		this.ctrl.originator_reference.field_coordinates = ""
+		this.ctrl.originator_reference.sub_details = ""
+		this.ctrl.originator_reference.accept_char = ""
+		this.ctrl.originator_reference.currency_format = ""
+		this.ctrl.originator_reference.data_scale = ""
+		this.ctrl.originator_reference.binding_name = "ORIGINATOR_REFERENCE"
+		this.ctrl.originator_reference.hide_label = false
+		this.ctrl.originator_reference.depends_on = ""
+		this.ctrl.originator_reference.placeholder = ""
+		this.ctrl.originator_reference.dynamic_param = ""
+		this.ctrl.originator_reference.style_code = ""
+		this.ctrl.originator_reference.data_source = ""
+		this.ctrl.originator_reference.image_association = ""
+		this.ctrl.originator_reference.show = true
+		this.ctrl.originator_reference.sub_content = ""
+		this.ctrl.originator_reference.required = false
+		this.ctrl.originator_reference.vld_rules = []
+		this.ctrl.originator_reference.targetcolumn_lower = "originator_reference"
+		this.ctrl.originator_reference.disabled = false
+		this.ctrl.originator_reference.view_name = "f_npss_payment_status_report_srch"
+		this.ctrl.originator_reference.ctrl_id = "npss_payment_status_report_srch_originator_reference"
+		this.ctrl.npss_payment_status_report_srch_originator_reference = {}
+		this.ctrl.npss_payment_status_report_srch_originator_reference.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_payment_status_report_srch.model = {"TIMESTAMP":"","MEMORY20":"setcurrentdate(),{}","SENDER":"","RECEIVER":"","BENEFICIARY":"","PAYER":"","AMOUNT":"","CURRENCY":"","PAYMENT_STATUS":"","SOURCE":"","SENDER_REF":"","SYSTEM_REF":"","BATCH_REF":"","ORIGINATOR_REFERENCE":""}
+		this.screen_instance[this.comp_id].f_npss_payment_status_report_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"TIMESTAMP"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SENDER"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"RECEIVER"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"BENEFICIARY"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYER"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CURRENCY"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_STATUS"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SOURCE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SENDER_REF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SYSTEM_REF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"BATCH_REF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ORIGINATOR_REFERENCE"}]
 		this.screen_instance[this.comp_id].f_npss_payment_status_report_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_payment_status_report_srch.dtt_code = "dtt_1304_1681973868376"
 		this.screen_instance[this.comp_id].f_npss_payment_status_report_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

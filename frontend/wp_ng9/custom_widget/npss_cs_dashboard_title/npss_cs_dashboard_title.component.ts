@@ -24,48 +24,10 @@ export class npss_cs_dashboard_titleComponent implements OnInit {
                 {
                  this.Message=`SUMMARY OF MESSAGES FOR TODAY (${this.cdrDate})`
                 }
-                else if(this.screen_instance[`wftpa_description`].includes("outward_transactions_details"))
+                 else
                 {
-                 this.Message=`OUTWARD TRANSACTIONS DETAILS`
-                }
-                 else if(this.screen_instance[`wftpa_description`].includes("reversal_request_details"))
-                {
-                 this.Message=`REVERSAL REQUEST DETAILS`
-                }
-                 else if(this.screen_instance[`wftpa_description`].includes("outward_reversal_success"))
-                {
-                 this.Message=`OUTWARD REVERSAL SUCCESS`
-                }
-                 else if(this.screen_instance[`wftpa_description`].includes("outward_general_enquiry_report"))
-                {
-                 this.Message=`OUTWARD GENERAL ENQUIRY REPORT`
-                }
-                 else if(this.screen_instance[`wftpa_description`].includes("inward_general_enquiry_report"))
-                {
-                 this.Message=`INWARD GENERAL ENQUIRY REPORT`
-                }
-                 else if(this.screen_instance[`wftpa_description`].includes("outward_cb_nak_enquiry_report"))
-                {
-                 this.Message=`OUTWARD CB NAK ENQUIRY REPORT`
-                }
-                 else if(this.screen_instance[`wftpa_description`].includes("inward_cb_nak_enquiry_report"))
-                {
-                 this.Message=`INWARD CB NAK ENQUIRY REPORT`
-                }
-                 else if(this.screen_instance[`wftpa_description`].includes("inward_transactions_details"))
-                {
-                 this.Message=`INWARD TRANSACTIONS DETAILS`
-                }
-                 else if(this.screen_instance[`wftpa_description`].includes("payment_status_report"))
-                {
-                 this.Message=`PAYMENT STATUS REPORT`
-                }
-                 else if(this.screen_instance[`wftpa_description`].includes("outward_manually_closed_transactions"))
-                {
-                 this.Message=`OUTWARD MANUALLY CLOSED TRANSACTIONS`
-                }
-
-                }
+                 this.Message=this.screen_instance[`wftpa_description`].toString().split('_').join(' ').toUpperCase()
+                }               }
             })
             
         }

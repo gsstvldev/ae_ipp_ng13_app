@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34731 
+Build ID        : 34744 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-12 12:11 PM 
+Modified Date   : 2024-Mar-13 7:22 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_inward_general_enquiry_report
@@ -312,7 +312,7 @@ focustoelement(){
 		this.ctrl.process_group.placeholder = ""
 		this.ctrl.process_group.dynamic_param = ""
 		this.ctrl.process_group.style_code = ""
-		this.ctrl.process_group.data_source = {"ds_code":"UDS_1304_1707195068242","ds_description":"NPSS Process Group RPT CDB","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"CD_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CODE_DESCRIPTIONS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1707195193895","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter2","binding_name":"CD_CATEGORY","id":"DF_1707195193895","binding_value":"RPT_PRC_GROUP","source_name":"CD_CATEGORY","source_value":"RPT_PRC_GROUP","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","temp_value":"TENANT_ID","filter_values":"SESSION_LEVEL"},{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"RPT_PRC_GROUP","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"RPT_PRC_GROUP"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID AND CD_CATEGORY = RPT_PRC_GROUP)"},"sel_columns":[]}
+		this.ctrl.process_group.data_source = {"ds_code":"UDS_1304_1707195068242","ds_description":"NPSS Process Group RPT CDB","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"CD_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CODE_DESCRIPTIONS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1710314316507","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter2","binding_name":"CD_CATEGORY","id":"DF_1710314316507","binding_value":"RPT_PRC_GROUP","source_name":"CD_CATEGORY","source_value":"RPT_PRC_GROUP","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"},{"filter_name":"Filter3","binding_name":"NEED_SYNC","id":"DF_1710314316507","binding_value":"Y","source_name":"NEED_SYNC","source_value":"Y","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","temp_value":"TENANT_ID","filter_values":"SESSION_LEVEL"},{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"RPT_PRC_GROUP","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"RPT_PRC_GROUP"},{"operators":"=","data_type":"TEXT","binding_name":"NEED_SYNC","binding_value":"Y","sort_order":3,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"Y"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID AND CD_CATEGORY = RPT_PRC_GROUP AND NEED_SYNC = Y)"},"sel_columns":[],"need_first_item_selection":false,"has_parent":false}
 		this.ctrl.process_group.image_association = ""
 		this.ctrl.process_group.show = true
 		this.ctrl.process_group.sub_content = ""
@@ -717,6 +717,84 @@ focustoelement(){
 		this.ctrl.npss_inward_general_enquiry_report_srch_tran_ref_id = {}
 		this.ctrl.npss_inward_general_enquiry_report_srch_tran_ref_id.onChangecomponent = new EventEmitter<any>()
 	
+		//Properties of uetr
+		this.ctrl.uetr = {}
+		this.ctrl.uetr.id = "RN71CN29"
+		this.ctrl.uetr.desc = "UETR"
+		this.ctrl.uetr.visible = true
+		this.ctrl.uetr.label_name = "UETR"
+		this.ctrl.uetr.df_code = "DF_1304_1665901396659"
+		this.ctrl.uetr.df_description = "Column Group 1"
+		this.ctrl.uetr.uictrl_code = "CDN_CTRL"
+		this.ctrl.uetr.target_column = "UETR"
+		this.ctrl.uetr.data_type = "TEXT"
+		this.ctrl.uetr.data_length = 64
+		this.ctrl.uetr.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.uetr.default_value = ""
+		this.ctrl.uetr.is_memory_ctrl = ""
+		this.ctrl.uetr.field_coordinates = ""
+		this.ctrl.uetr.sub_details = ""
+		this.ctrl.uetr.accept_char = ""
+		this.ctrl.uetr.currency_format = ""
+		this.ctrl.uetr.data_scale = ""
+		this.ctrl.uetr.binding_name = "UETR"
+		this.ctrl.uetr.hide_label = false
+		this.ctrl.uetr.depends_on = ""
+		this.ctrl.uetr.placeholder = ""
+		this.ctrl.uetr.dynamic_param = ""
+		this.ctrl.uetr.style_code = ""
+		this.ctrl.uetr.data_source = ""
+		this.ctrl.uetr.image_association = ""
+		this.ctrl.uetr.show = true
+		this.ctrl.uetr.sub_content = ""
+		this.ctrl.uetr.required = false
+		this.ctrl.uetr.vld_rules = []
+		this.ctrl.uetr.targetcolumn_lower = "uetr"
+		this.ctrl.uetr.disabled = false
+		this.ctrl.uetr.view_name = "f_npss_inward_general_enquiry_report_srch"
+		this.ctrl.uetr.ctrl_id = "npss_inward_general_enquiry_report_srch_uetr"
+		this.ctrl.npss_inward_general_enquiry_report_srch_uetr = {}
+		this.ctrl.npss_inward_general_enquiry_report_srch_uetr.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of memory101
+		this.ctrl.memory101 = {}
+		this.ctrl.memory101.id = "RN81CN30"
+		this.ctrl.memory101.desc = "T24 FT Reference Number"
+		this.ctrl.memory101.visible = true
+		this.ctrl.memory101.label_name = "T24 FT Reference Number"
+		this.ctrl.memory101.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory101.df_description = "Column Group 1"
+		this.ctrl.memory101.uictrl_code = "CDN_CTRL"
+		this.ctrl.memory101.target_column = "memory101"
+		this.ctrl.memory101.data_type = "TEXT"
+		this.ctrl.memory101.data_length = 64
+		this.ctrl.memory101.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory101.default_value = ""
+		this.ctrl.memory101.is_memory_ctrl = "Y"
+		this.ctrl.memory101.field_coordinates = ""
+		this.ctrl.memory101.sub_details = ""
+		this.ctrl.memory101.accept_char = ""
+		this.ctrl.memory101.currency_format = ""
+		this.ctrl.memory101.data_scale = ""
+		this.ctrl.memory101.binding_name = "PROCESS_REF_NO"
+		this.ctrl.memory101.hide_label = false
+		this.ctrl.memory101.depends_on = ""
+		this.ctrl.memory101.placeholder = ""
+		this.ctrl.memory101.dynamic_param = ""
+		this.ctrl.memory101.style_code = ""
+		this.ctrl.memory101.data_source = ""
+		this.ctrl.memory101.image_association = ""
+		this.ctrl.memory101.show = true
+		this.ctrl.memory101.sub_content = ""
+		this.ctrl.memory101.required = false
+		this.ctrl.memory101.vld_rules = []
+		this.ctrl.memory101.targetcolumn_lower = "memory101"
+		this.ctrl.memory101.disabled = false
+		this.ctrl.memory101.view_name = "f_npss_inward_general_enquiry_report_srch"
+		this.ctrl.memory101.ctrl_id = "npss_inward_general_enquiry_report_srch_memory101"
+		this.ctrl.npss_inward_general_enquiry_report_srch_memory101 = {}
+		this.ctrl.npss_inward_general_enquiry_report_srch_memory101.onChangecomponent = new EventEmitter<any>()
+	
 		//Properties of ext_purpose_code
 		this.ctrl.ext_purpose_code = {}
 		this.ctrl.ext_purpose_code.id = "RN51CN20"
@@ -756,8 +834,8 @@ focustoelement(){
 		this.ctrl.npss_inward_general_enquiry_report_srch_ext_purpose_code = {}
 		this.ctrl.npss_inward_general_enquiry_report_srch_ext_purpose_code.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_inward_general_enquiry_report_srch.ext_purpose_code = {}
-		this.screen_instance[this.comp_id].f_npss_inward_general_enquiry_report_srch.model = {"MEMORY75":"","MEMORY119":"","DEPARTMENT_CODE":"","PROCESS_TYPE":"","PAYMENT_ENDTOEND_ID":"","VALUE_DATE":"setcurrentdate(),{}","PROCESS_GROUP":"","CHANNEL_ID":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","CDTR_IBAN":"","CDTR_ACCT_NAME":"","INTRBK_STTLM_AMNT":"","DR_SORT_CODE":"","MEMORY63":"setcurrentdate(),{}","MEMORY149":"","TRAN_REF_ID":"","EXT_PURPOSE_CODE":""}
-		this.screen_instance[this.comp_id].f_npss_inward_general_enquiry_report_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_TYPE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_GROUP"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DR_SORT_CODE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_CODE"}]
+		this.screen_instance[this.comp_id].f_npss_inward_general_enquiry_report_srch.model = {"MEMORY75":"","MEMORY119":"","DEPARTMENT_CODE":"","PROCESS_TYPE":"","PAYMENT_ENDTOEND_ID":"","VALUE_DATE":"setcurrentdate(),{}","PROCESS_GROUP":"","CHANNEL_ID":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","CDTR_IBAN":"","CDTR_ACCT_NAME":"","INTRBK_STTLM_AMNT":"","DR_SORT_CODE":"","MEMORY63":"setcurrentdate(),{}","MEMORY149":"","TRAN_REF_ID":"","UETR":"","MEMORY101":"","EXT_PURPOSE_CODE":""}
+		this.screen_instance[this.comp_id].f_npss_inward_general_enquiry_report_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_TYPE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_GROUP"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DR_SORT_CODE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_CODE"}]
 		this.screen_instance[this.comp_id].f_npss_inward_general_enquiry_report_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_inward_general_enquiry_report_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_inward_general_enquiry_report_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

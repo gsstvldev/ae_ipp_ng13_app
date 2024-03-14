@@ -98,8 +98,8 @@ export class npss_cs_export_excel_for_reportService {
                     }
 
                     let wb = new ExcelJS.Workbook();
-                    let workbookName = screenInstance.wftpa_description + '_' + moment().format('DDMMYYYY') + '_' + moment().format('HHMMSS') + '.xlsx'
-                    let worksheetName = screenInstance.wftpa_description;
+                    let workbookName = params.ACTION_DESC.toLowerCase().split('_').slice(1).join('_') + '_' + moment().format('DDMMYYYY') + '_' + moment().format('HHMMSS') + '.xlsx'
+                    let worksheetName = params.ACTION_DESC.toLowerCase().split('_').slice(1).join('_');
                     let ws = wb.addWorksheet(worksheetName);
 
                     const title = 'NPSS Report';

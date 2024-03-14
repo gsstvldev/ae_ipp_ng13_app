@@ -116,7 +116,7 @@ export class npss_c_export_pdf_for_reportService {
                         },
                         content: [
                             {
-                                text:this.headingName(params),
+                                text:params.ACTION_DESC.split('_').slice(1).join(' '),
                                 style: 'header'
                             },
                             {
@@ -152,7 +152,7 @@ export class npss_c_export_pdf_for_reportService {
                         }
 
                     }
-                    let screenName = screenInstance.wftpa_description + '_' + moment().format('DDMMYYYY') + '_' + moment().format('HHMMSS')
+                    let screenName =params.ACTION_DESC.toLowerCase().split('_').slice(1).join('_')+ '_' + moment().format('DDMMYYYY') + '_' + moment().format('HHMMSS')
                     pdfmake.createPdf(dd).download(screenName);
                 } else {
 
@@ -160,13 +160,7 @@ export class npss_c_export_pdf_for_reportService {
                 }
             });
     }
-    //function call for set the header name
-    headingName(params) {
-        const a = params.ACTION_DESC.split('_')
-        const b = a.shift()
-        let c = a.join(' ')
-        return c
-    }
+  
     //Custom validation logics
     //Uncomment below lines when validation is required
     //fn_customValidation(projName,screenInstance,message,callback){

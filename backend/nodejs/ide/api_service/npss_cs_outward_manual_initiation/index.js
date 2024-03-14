@@ -35,7 +35,8 @@ Reason for : Changing query 16/6/2023
   Reason for : changes on DBTR NAME from ACCT table  11/01/2024 by Daseen
   Reason for : changes on DBTR NAME,dob from given tran where cdtr_iban= null 19/01/2024 by Daseen
   Reason for : changes on instruction_id insert  23/01/2024 by Daseen
-  Reason for : changes on PAYMENT END TO END  ID insert 01/03/2024 by  Daseen
+  Reason for : changes on PAYMENT END TO END  ID insert for bct  01/03/2024 by  Daseen
+  Reason for : Reverted changes on PAYMENT END TO END  ID for bct insert  01/03/2024 by  Daseen WI  3553
  
 */
 var serviceName = ' NPSS (CS) Outward Manual Initiation ';
@@ -92,11 +93,11 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                                 var orgfiledata = await Getorgdata(arrdata)
 
                                                 uetr = await GetUetr(arruetr)
-                                                if(params.eligible_status=='IP_BCT_POSTING_SUCCESS'|| params.eligible_status=='IP_BCT_PC_T24_POSTING_SUCCESS'|| params.eligible_status=='IP_BCT_CC_T24_POSTING_SUCCESS'){
-                                                    Payment_Id= arrdata[0].payment_endtoend_id
-                                                }else{
+                                               // if(params.eligible_status=='IP_BCT_POSTING_SUCCESS'|| params.eligible_status=='IP_BCT_PC_T24_POSTING_SUCCESS'|| params.eligible_status=='IP_BCT_CC_T24_POSTING_SUCCESS'){
+                                               //     Payment_Id= arrdata[0].payment_endtoend_id
+                                                //}else{
                                                     Payment_Id = await Getuuid()
-                                                }
+                                               // }
                                                 
                                                 if (arrdata.length > 0) {
                                                     TakeBrithdate = await BirthDate(arrdata[0].cdtr_iban,arrdata[0].cdtr_acct_name)

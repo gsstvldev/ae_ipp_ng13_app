@@ -19,6 +19,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified Date : 25/02/2023
     Reason: Unique msg id generation for api call on 12/02/2024 by daseen
     Reason: Status change for pack 028 pack retry 19/02/2024 by daseen
+    Reason: Status included for receive pace 002 for pack 028 pack retry 14/03/2024 by daseen WI 3087
     }
     */
     var serviceName = 'NPSS (S) Auto Retrial Place Pac028';
@@ -69,7 +70,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             if (arrUrl.length > 0) {
                                 ExecuteQuery1(Taketime, function (arrTakehrs) {
                                     if (arrTakehrs.length > 0) {
-                                        var Takedata = `select distinct(l.uetr) , nt.npsst_id from npss_trn_process_log l inner join npss_transactions nt on l.uetr =nt.uetr where TO_DATE(TO_CHAR(l.CREATED_DATE, 'DD-MON-YY'),'DD-MON-YY') = CURRENT_DATE and (nt.fx_resv_text4 <>'${params.final_status}' or nt.fx_resv_text4 isnull )`
+                                        var Takedata = `select distinct(l.uetr) , nt.npsst_id from npss_trn_process_log l inner join npss_transactions nt on l.uetr =nt.uetr where TO_DATE(TO_CHAR(l.CREATED_DATE, 'DD-MON-YY'),'DD-MON-YY') = CURRENT_DATE and (nt.fx_resv_text4 <>'${params.final_status}' or nt.fx_resv_text4 isnull ) and nt.process_group not in('BCT','MANUAL') `
                                         ExecuteQuery1(Takedata, function (arruetrData) {
                                             if (arruetrData.length > 0) {
                                                 reqAsync.forEachOfSeries(arruetrData, function (arruetrDataobj, i, nextobjctfunc) {
@@ -145,8 +146,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     else {//for less than retry count
 
 
-                                                                        if ((arruetrInformation[0].process_name == 'Place Pacs028') || (arruetrInformation[0].process_name == 'Receive Pacs002' && (arruetrInformation[0].cbuae_return_code.substring(0, 4) == 'PDNG'))) {
-                                                                            reqInstanceHelper.PrintInfo(serviceName, '------------ uetr eligible for pacs------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                                                        if ((arruetrInformation[0].process_name == 'Place Pacs028') || ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].cbuae_return_code.substring(0, 4) == 'PDNG')&&(arruetrInformation[0].status=='OP_AC_STATUS_RECEIVED'||arruetrInformation[0].status=='OP_P2P_STATUS_ACCEPTED'||arruetrInformation[0].status=='OP_P2B_STATUS_ACCEPTED'))) {
+                                                                            reqInstanceHelper.PrintInfo(serviceName, '------------ uetr eligible for pacs 028------' + arruetrDataobj.uetr, objSessionLogInfo);
                                                                             var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
                                                                             if (doapicall == 'SUCCESS') {
                                                                                 nextobjctfunc();

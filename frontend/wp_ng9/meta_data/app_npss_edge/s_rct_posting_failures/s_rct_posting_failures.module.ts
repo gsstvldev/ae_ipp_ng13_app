@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34742 
+Build ID        : 34762 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-13 7:59 AM 
+Modified Date   : 2024-Mar-14 7:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -32,6 +32,8 @@ import {npss_cs_t24_postingModule} from '../../../custom_widget/npss_cs_t24_post
 import {npss_cs_rct_completeModule} from '../../../custom_widget/npss_cs_rct_complete/npss_cs_rct_complete.module'
 import {npss_cs_inward_posting_failure_force_to_postModule} from '../../../custom_widget/npss_cs_inward_posting_failure_force_to_post/npss_cs_inward_posting_failure_force_to_post.module'
 import {npss_cs_outward_posting_failure_send_to_checkerModule} from '../../../custom_widget/npss_cs_outward_posting_failure_send_to_checker/npss_cs_outward_posting_failure_send_to_checker.module'
+import {npss_c_date_validation_for_reportModule} from '../../../custom_widget/npss_c_date_validation_for_report/npss_c_date_validation_for_report.module'
+import {npss_c_cond_ctrl_ui_validationModule} from '../../../custom_widget/npss_c_cond_ctrl_ui_validation/npss_c_cond_ctrl_ui_validation.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -81,7 +83,7 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     OverlayPanelModule,
     
     s_rct_posting_failuresRoutingModule,
-    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_check_uetrModule,npss_cs_rct_inward_posting_failure_retry_repostModule,npss_cs_rct_inward_posting_failure_closeModule,npss_c_disable_action_by_multiselectModule,npss_cs_rct_already_postingModule,npss_cs_cc_postingModule,npss_cs_enquiryModule,npss_cs_t24_postingModule,npss_cs_rct_completeModule,npss_cs_inward_posting_failure_force_to_postModule,npss_cs_outward_posting_failure_send_to_checkerModule
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_check_uetrModule,npss_cs_rct_inward_posting_failure_retry_repostModule,npss_cs_rct_inward_posting_failure_closeModule,npss_c_disable_action_by_multiselectModule,npss_cs_rct_already_postingModule,npss_cs_cc_postingModule,npss_cs_enquiryModule,npss_cs_t24_postingModule,npss_cs_rct_completeModule,npss_cs_inward_posting_failure_force_to_postModule,npss_cs_outward_posting_failure_send_to_checkerModule,npss_c_date_validation_for_reportModule,npss_c_cond_ctrl_ui_validationModule
   ],
   declarations: [s_rct_posting_failuresComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_rct_ip_posting_failure_srchComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_cbs_layoutComponent,f_npss_bct_ref_no_uiComponent,p_send_to_maker_layoutComponent,f_npss_send_to_maker_remarks_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]

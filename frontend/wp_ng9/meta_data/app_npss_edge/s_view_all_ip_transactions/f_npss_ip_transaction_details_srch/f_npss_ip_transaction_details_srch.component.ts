@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34744 
+Build ID        : 34762 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-13 7:21 AM 
+Modified Date   : 2024-Mar-14 7:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_ip_transactions
@@ -79,7 +79,7 @@ focustoelement(){
 		this.ctrl.value_date.show = true
 		this.ctrl.value_date.sub_content = ""
 		this.ctrl.value_date.required = false
-		this.ctrl.value_date.vld_rules = []
+		this.ctrl.value_date.vld_rules = [{"type":"CV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"","custom_val_message":{"ngmessages":[{"message_key":"GT_10_D","message_value":"Select only 10 days"}]},"expression":"","project_code":"CCI_PROJ3207","project_name":"npss_c_date_validation_for_report","cv_event":"ON_SUBMIT"}]
 		this.ctrl.value_date.targetcolumn_lower = "value_date"
 		this.ctrl.value_date.disabled = false
 		this.ctrl.value_date.view_name = "f_npss_ip_transaction_details_srch"
@@ -118,7 +118,7 @@ focustoelement(){
 		this.ctrl.memory63.show = true
 		this.ctrl.memory63.sub_content = ""
 		this.ctrl.memory63.required = false
-		this.ctrl.memory63.vld_rules = []
+		this.ctrl.memory63.vld_rules = [{"type":"CV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"","custom_val_message":{"ngmessages":[{"message_key":"GT_10_D","message_value":"Select only 10 days"}]},"expression":"","project_code":"CCI_PROJ3207","project_name":"npss_c_date_validation_for_report","cv_event":"ON_SUBMIT"}]
 		this.ctrl.memory63.targetcolumn_lower = "memory63"
 		this.ctrl.memory63.disabled = false
 		this.ctrl.memory63.view_name = "f_npss_ip_transaction_details_srch"
@@ -274,7 +274,7 @@ focustoelement(){
 		this.ctrl.uetr.show = true
 		this.ctrl.uetr.sub_content = ""
 		this.ctrl.uetr.required = false
-		this.ctrl.uetr.vld_rules = []
+		this.ctrl.uetr.vld_rules = [{"type":"CV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"","custom_val_message":{"ngmessages":[{"message_key":"GT_10_D","message_value":"Select only 10 days"}]},"expression":"","project_code":"CCI_PROJ3209","project_name":"npss_c_cond_ctrl_ui_validation","cv_event":"ON_SUBMIT"}]
 		this.ctrl.uetr.targetcolumn_lower = "uetr"
 		this.ctrl.uetr.disabled = false
 		this.ctrl.uetr.view_name = "f_npss_ip_transaction_details_srch"
@@ -352,7 +352,7 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.show = true
 		this.ctrl.payment_endtoend_id.sub_content = ""
 		this.ctrl.payment_endtoend_id.required = false
-		this.ctrl.payment_endtoend_id.vld_rules = []
+		this.ctrl.payment_endtoend_id.vld_rules = [{"type":"CV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"","custom_val_message":{"ngmessages":[{"message_key":"GT_10_D","message_value":"Select only 10 days"}]},"expression":"","project_code":"CCI_PROJ3209","project_name":"npss_c_cond_ctrl_ui_validation","cv_event":"ON_SUBMIT"}]
 		this.ctrl.payment_endtoend_id.targetcolumn_lower = "payment_endtoend_id"
 		this.ctrl.payment_endtoend_id.disabled = false
 		this.ctrl.payment_endtoend_id.view_name = "f_npss_ip_transaction_details_srch"
@@ -556,7 +556,47 @@ focustoelement(){
 		this.ctrl.inward_file_name.ctrl_id = "npss_ip_transaction_details_srch_inward_file_name"
 		this.ctrl.npss_ip_transaction_details_srch_inward_file_name = {}
 		this.ctrl.npss_ip_transaction_details_srch_inward_file_name.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","TRAN_REF_ID":"","UETR":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","INTRBK_STTLM_AMNT":"","PROCESSING_SYSTEM":"","PROCESS_GROUP":"","DEPARTMENT_CODE":"","INWARD_FILE_NAME":""}
+	
+		//Properties of memory150
+		this.ctrl.memory150 = {}
+		this.ctrl.memory150.id = "RN51CN14"
+		this.ctrl.memory150.desc = "Payment Flag"
+		this.ctrl.memory150.visible = false
+		this.ctrl.memory150.label_name = "Payment Flag"
+		this.ctrl.memory150.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory150.df_description = "Column Group 1"
+		this.ctrl.memory150.uictrl_code = "CBO"
+		this.ctrl.memory150.target_column = "memory150"
+		this.ctrl.memory150.data_type = "TEXT"
+		this.ctrl.memory150.data_length = 0
+		this.ctrl.memory150.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory150.default_value = ""
+		this.ctrl.memory150.is_memory_ctrl = "Y"
+		this.ctrl.memory150.field_coordinates = ""
+		this.ctrl.memory150.sub_details = ""
+		this.ctrl.memory150.accept_char = ""
+		this.ctrl.memory150.currency_format = ""
+		this.ctrl.memory150.data_scale = ""
+		this.ctrl.memory150.binding_name = "BATCH_PAYMENT_FLAG"
+		this.ctrl.memory150.hide_label = false
+		this.ctrl.memory150.depends_on = ""
+		this.ctrl.memory150.placeholder = ""
+		this.ctrl.memory150.dynamic_param = ""
+		this.ctrl.memory150.style_code = ""
+		this.ctrl.memory150.data_source = {"ds_code":"UDS_1304_1710222049428","ds_description":"NPSS Batch Payment Flag SQL CDB","rows":[],"type":"DPS_TABLE","value_member":"CD_CODE","display_member":"CD_DESCRIPTION","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CODE_DESCRIPTIONS","context":"","filters":[{"filter_name":"Filter1","binding_name":"CD_CATEGORY","id":"DF_1710222178292","binding_value":"BATCH_PAYMENT_FLAG","source_name":"CD_CATEGORY","source_value":"BATCH_PAYMENT_FLAG","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"CD_CATEGORY","binding_value":"BATCH_PAYMENT_FLAG","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"BATCH_PAYMENT_FLAG"}]},"query":"(CD_CATEGORY = BATCH_PAYMENT_FLAG)"},"sel_columns":[]}
+		this.ctrl.memory150.image_association = ""
+		this.ctrl.memory150.show = true
+		this.ctrl.memory150.sub_content = ""
+		this.ctrl.memory150.required = false
+		this.ctrl.memory150.vld_rules = []
+		this.ctrl.memory150.targetcolumn_lower = "memory150"
+		this.ctrl.memory150.disabled = false
+		this.ctrl.memory150.view_name = "f_npss_ip_transaction_details_srch"
+		this.ctrl.memory150.ctrl_id = "npss_ip_transaction_details_srch_memory150"
+		this.ctrl.npss_ip_transaction_details_srch_memory150 = {}
+		this.ctrl.npss_ip_transaction_details_srch_memory150.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.memory150 = {}
+		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","TRAN_REF_ID":"","UETR":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","INTRBK_STTLM_AMNT":"","PROCESSING_SYSTEM":"","PROCESS_GROUP":"","DEPARTMENT_CODE":"","INWARD_FILE_NAME":"","MEMORY150":""}
 		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_GROUP"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"INWARD_FILE_NAME"}]
 		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_ip_transaction_details_srch.dtt_code = "dtt_1304_1665901217208"

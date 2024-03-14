@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34751 
+Build ID        : 34762 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-13 12:57 PM 
+Modified Date   : 2024-Mar-14 7:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_reversal_success
@@ -79,7 +79,7 @@ focustoelement(){
 		this.ctrl.memory63.show = true
 		this.ctrl.memory63.sub_content = ""
 		this.ctrl.memory63.required = false
-		this.ctrl.memory63.vld_rules = []
+		this.ctrl.memory63.vld_rules = [{"type":"CV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"","custom_val_message":{"ngmessages":[{"message_key":"GT_10_D","message_value":"Select only 10 days"}]},"expression":"","project_code":"CCI_PROJ3207","project_name":"npss_c_date_validation_for_report","cv_event":"ON_SUBMIT"}]
 		this.ctrl.memory63.targetcolumn_lower = "memory63"
 		this.ctrl.memory63.disabled = false
 		this.ctrl.memory63.view_name = "f_npss_outward_reversal_success_srch"
@@ -274,7 +274,7 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.show = true
 		this.ctrl.payment_endtoend_id.sub_content = ""
 		this.ctrl.payment_endtoend_id.required = false
-		this.ctrl.payment_endtoend_id.vld_rules = []
+		this.ctrl.payment_endtoend_id.vld_rules = [{"type":"CV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"","custom_val_message":{"ngmessages":[{"message_key":"GT_10_D","message_value":"Select only 10 days"}]},"expression":"","project_code":"CCI_PROJ3209","project_name":"npss_c_cond_ctrl_ui_validation","cv_event":"ON_SUBMIT"}]
 		this.ctrl.payment_endtoend_id.targetcolumn_lower = "payment_endtoend_id"
 		this.ctrl.payment_endtoend_id.disabled = false
 		this.ctrl.payment_endtoend_id.view_name = "f_npss_outward_reversal_success_srch"
@@ -313,7 +313,7 @@ focustoelement(){
 		this.ctrl.uetr.show = true
 		this.ctrl.uetr.sub_content = ""
 		this.ctrl.uetr.required = false
-		this.ctrl.uetr.vld_rules = []
+		this.ctrl.uetr.vld_rules = [{"type":"CV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"","custom_val_message":{"ngmessages":[{"message_key":"GT_10_D","message_value":"Select only 10 days"}]},"expression":"","project_code":"CCI_PROJ3209","project_name":"npss_c_cond_ctrl_ui_validation","cv_event":"ON_SUBMIT"}]
 		this.ctrl.uetr.targetcolumn_lower = "uetr"
 		this.ctrl.uetr.disabled = false
 		this.ctrl.uetr.view_name = "f_npss_outward_reversal_success_srch"
@@ -432,7 +432,7 @@ focustoelement(){
 		this.ctrl.channel_id.show = true
 		this.ctrl.channel_id.sub_content = ""
 		this.ctrl.channel_id.required = false
-		this.ctrl.channel_id.vld_rules = []
+		this.ctrl.channel_id.vld_rules = [{"type":"CV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"","custom_val_message":{"ngmessages":[{"message_key":"GT_10_D","message_value":"Select only 10 days"}]},"expression":"","project_code":"CCI_PROJ3209","project_name":"npss_c_cond_ctrl_ui_validation","cv_event":"ON_SUBMIT"}]
 		this.ctrl.channel_id.targetcolumn_lower = "channel_id"
 		this.ctrl.channel_id.disabled = false
 		this.ctrl.channel_id.view_name = "f_npss_outward_reversal_success_srch"

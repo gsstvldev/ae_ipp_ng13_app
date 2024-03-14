@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34742 
+Build ID        : 34762 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-13 7:58 AM 
+Modified Date   : 2024-Mar-14 7:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_posting_failures
@@ -12,6 +12,8 @@ Screen Name     : s_bct_posting_failures
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
+import {npss_c_date_validation_for_reportService} from '../../../custom_widget/npss_c_date_validation_for_report/npss_c_date_validation_for_report.service'
+import {npss_c_cond_ctrl_ui_validationService} from '../../../custom_widget/npss_c_cond_ctrl_ui_validation/npss_c_cond_ctrl_ui_validation.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_check_uetrService} from '../../../custom_widget/npss_cs_check_uetr/npss_cs_check_uetr.service'
@@ -22,7 +24,7 @@ import {npss_cs_bct_ipir_posting_failure_retryService} from '../../../custom_wid
 	selector: 's_bct_posting_failures',
 	templateUrl: './s_bct_posting_failures.component.html',
 	styleUrls: ['./s_bct_posting_failures.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_check_uetrService,npss_cs_bct_already_postingService,npss_cs_bct_ipir_posting_failure_retryService]
+	providers:[npss_c_date_validation_for_reportService,npss_c_cond_ctrl_ui_validationService,torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_cs_check_uetrService,npss_cs_bct_already_postingService,npss_cs_bct_ipir_posting_failure_retryService]
 })
     
 // Start of class 
@@ -107,7 +109,7 @@ export class s_bct_posting_failuresComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_check_uetrService:npss_cs_check_uetrService,private npss_cs_bct_already_postingService:npss_cs_bct_already_postingService,private npss_cs_bct_ipir_posting_failure_retryService:npss_cs_bct_ipir_posting_failure_retryService) {
+	constructor(private handler:AppHandlerService ,private npss_c_date_validation_for_reportService:npss_c_date_validation_for_reportService,private npss_c_cond_ctrl_ui_validationService:npss_c_cond_ctrl_ui_validationService,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_check_uetrService:npss_cs_check_uetrService,private npss_cs_bct_already_postingService:npss_cs_bct_already_postingService,private npss_cs_bct_ipir_posting_failure_retryService:npss_cs_bct_ipir_posting_failure_retryService) {
     
 	}
     

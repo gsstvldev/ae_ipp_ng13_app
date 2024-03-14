@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34742 
+Build ID        : 34762 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-13 7:58 AM 
+Modified Date   : 2024-Mar-14 7:56 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_returns
@@ -12,6 +12,8 @@ Screen Name     : s_rct_rejected_returns
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
+import {npss_c_date_validation_for_reportService} from '../../../custom_widget/npss_c_date_validation_for_report/npss_c_date_validation_for_report.service'
+import {npss_c_cond_ctrl_ui_validationService} from '../../../custom_widget/npss_c_cond_ctrl_ui_validation/npss_c_cond_ctrl_ui_validation.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_c_disable_action_by_multiselectService} from '../../../custom_widget/npss_c_disable_action_by_multiselect/npss_c_disable_action_by_multiselect.service'
@@ -22,7 +24,7 @@ import {npss_cs_inward_reject_return_closeService} from '../../../custom_widget/
 	selector: 's_rct_rejected_returns',
 	templateUrl: './s_rct_rejected_returns.component.html',
 	styleUrls: ['./s_rct_rejected_returns.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_inward_rejected_return_re_submitService,npss_cs_inward_reject_return_closeService]
+	providers:[npss_c_date_validation_for_reportService,npss_c_cond_ctrl_ui_validationService,torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_inward_rejected_return_re_submitService,npss_cs_inward_reject_return_closeService]
 })
     
 // Start of class 
@@ -111,7 +113,7 @@ export class s_rct_rejected_returnsComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_inward_rejected_return_re_submitService:npss_cs_inward_rejected_return_re_submitService,private npss_cs_inward_reject_return_closeService:npss_cs_inward_reject_return_closeService) {
+	constructor(private handler:AppHandlerService ,private npss_c_date_validation_for_reportService:npss_c_date_validation_for_reportService,private npss_c_cond_ctrl_ui_validationService:npss_c_cond_ctrl_ui_validationService,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_inward_rejected_return_re_submitService:npss_cs_inward_rejected_return_re_submitService,private npss_cs_inward_reject_return_closeService:npss_cs_inward_reject_return_closeService) {
     
 	}
     

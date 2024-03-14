@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34742 
+Build ID        : 34762 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-13 7:58 AM 
+Modified Date   : 2024-Mar-14 7:56 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_verification
@@ -12,6 +12,7 @@ Screen Name     : s_rct_manual_verification
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
+import {npss_c_date_validation_for_reportService} from '../../../custom_widget/npss_c_date_validation_for_report/npss_c_date_validation_for_report.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {torus_cs_set_rule_mi_paramService} from '../../../custom_widget/torus_cs_set_rule_mi_param/torus_cs_set_rule_mi_param.service'
@@ -28,7 +29,7 @@ import {npss_cs_manual_initiation_get_dealService} from '../../../custom_widget/
 	selector: 's_rct_manual_verification',
 	templateUrl: './s_rct_manual_verification.component.html',
 	styleUrls: ['./s_rct_manual_verification.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,torus_cs_set_rule_mi_paramService,npss_cs_rev_get_usable_balanceService,npss_cs_manual_verification_bind_dataService,npss_cs_manual_initiation_rejectService,npss_cs_send_to_checkerService,npss_cs_manual_initiation_approveService,npss_cs_manual_initiation_force_to_postService,npss_csget_deal_btn_show_hideService,npss_cs_manual_initiation_get_dealService]
+	providers:[npss_c_date_validation_for_reportService,torus_cs_change_routingkeyService,torus_cs_show_hideService,torus_cs_set_rule_mi_paramService,npss_cs_rev_get_usable_balanceService,npss_cs_manual_verification_bind_dataService,npss_cs_manual_initiation_rejectService,npss_cs_send_to_checkerService,npss_cs_manual_initiation_approveService,npss_cs_manual_initiation_force_to_postService,npss_csget_deal_btn_show_hideService,npss_cs_manual_initiation_get_dealService]
 })
     
 // Start of class 
@@ -145,7 +146,7 @@ export class s_rct_manual_verificationComponent implements OnInit,AfterViewInit 
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private torus_cs_set_rule_mi_paramService:torus_cs_set_rule_mi_paramService,private npss_cs_rev_get_usable_balanceService:npss_cs_rev_get_usable_balanceService,private npss_cs_manual_verification_bind_dataService:npss_cs_manual_verification_bind_dataService,private npss_cs_manual_initiation_rejectService:npss_cs_manual_initiation_rejectService,private npss_cs_send_to_checkerService:npss_cs_send_to_checkerService,private npss_cs_manual_initiation_approveService:npss_cs_manual_initiation_approveService,private npss_cs_manual_initiation_force_to_postService:npss_cs_manual_initiation_force_to_postService,private npss_csget_deal_btn_show_hideService:npss_csget_deal_btn_show_hideService,private npss_cs_manual_initiation_get_dealService:npss_cs_manual_initiation_get_dealService) {
+	constructor(private handler:AppHandlerService ,private npss_c_date_validation_for_reportService:npss_c_date_validation_for_reportService,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private torus_cs_set_rule_mi_paramService:torus_cs_set_rule_mi_paramService,private npss_cs_rev_get_usable_balanceService:npss_cs_rev_get_usable_balanceService,private npss_cs_manual_verification_bind_dataService:npss_cs_manual_verification_bind_dataService,private npss_cs_manual_initiation_rejectService:npss_cs_manual_initiation_rejectService,private npss_cs_send_to_checkerService:npss_cs_send_to_checkerService,private npss_cs_manual_initiation_approveService:npss_cs_manual_initiation_approveService,private npss_cs_manual_initiation_force_to_postService:npss_cs_manual_initiation_force_to_postService,private npss_csget_deal_btn_show_hideService:npss_csget_deal_btn_show_hideService,private npss_cs_manual_initiation_get_dealService:npss_cs_manual_initiation_get_dealService) {
     
 	}
     

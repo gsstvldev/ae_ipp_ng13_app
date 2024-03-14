@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34752 
+Build ID        : 34762 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-13 14:2 PM 
+Modified Date   : 2024-Mar-14 7:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_cb_nak_enquiry_report
@@ -12,6 +12,8 @@ Screen Name     : s_outward_cb_nak_enquiry_report
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
+import {npss_c_cond_ctrl_ui_validationService} from '../../../custom_widget/npss_c_cond_ctrl_ui_validation/npss_c_cond_ctrl_ui_validation.service'
+import {npss_c_date_validation_for_reportService} from '../../../custom_widget/npss_c_date_validation_for_report/npss_c_date_validation_for_report.service'
 import {npss_c_export_pdf_for_reportService} from '../../../custom_widget/npss_c_export_pdf_for_report/npss_c_export_pdf_for_report.service'
 import {npss_cs_export_excel_for_reportService} from '../../../custom_widget/npss_cs_export_excel_for_report/npss_cs_export_excel_for_report.service'
 import {npss_cs_dashboard_titleService} from '../../../custom_widget/npss_cs_dashboard_title/npss_cs_dashboard_title.service'
@@ -21,7 +23,7 @@ import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hi
 	selector: 's_outward_cb_nak_enquiry_report',
 	templateUrl: './s_outward_cb_nak_enquiry_report.component.html',
 	styleUrls: ['./s_outward_cb_nak_enquiry_report.component.css'],
-	providers:[npss_c_export_pdf_for_reportService,npss_cs_export_excel_for_reportService,npss_cs_dashboard_titleService,torus_cs_show_hideService]
+	providers:[npss_c_cond_ctrl_ui_validationService,npss_c_date_validation_for_reportService,npss_c_export_pdf_for_reportService,npss_cs_export_excel_for_reportService,npss_cs_dashboard_titleService,torus_cs_show_hideService]
 })
     
 // Start of class 
@@ -56,7 +58,7 @@ export class s_outward_cb_nak_enquiry_reportComponent implements OnInit,AfterVie
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private npss_c_export_pdf_for_reportService:npss_c_export_pdf_for_reportService,private npss_cs_export_excel_for_reportService:npss_cs_export_excel_for_reportService,private npss_cs_dashboard_titleService:npss_cs_dashboard_titleService,private torus_cs_show_hideService:torus_cs_show_hideService) {
+	constructor(private handler:AppHandlerService ,private npss_c_cond_ctrl_ui_validationService:npss_c_cond_ctrl_ui_validationService,private npss_c_date_validation_for_reportService:npss_c_date_validation_for_reportService,private npss_c_export_pdf_for_reportService:npss_c_export_pdf_for_reportService,private npss_cs_export_excel_for_reportService:npss_cs_export_excel_for_reportService,private npss_cs_dashboard_titleService:npss_cs_dashboard_titleService,private torus_cs_show_hideService:torus_cs_show_hideService) {
     
 	}
     

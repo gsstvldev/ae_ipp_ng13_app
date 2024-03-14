@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34740 
+Build ID        : 34762 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 4:46 AM 
+Modified Date   : 2024-Mar-14 7:57 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_inward_transactions_details
@@ -23,6 +23,8 @@ import {npss_cs_dashboard_titleModule} from '../../../custom_widget/npss_cs_dash
 import {npss_c_export_pdf_for_reportModule} from '../../../custom_widget/npss_c_export_pdf_for_report/npss_c_export_pdf_for_report.module'
 import {npss_cs_export_excel_for_reportModule} from '../../../custom_widget/npss_cs_export_excel_for_report/npss_cs_export_excel_for_report.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
+import {npss_c_date_validation_for_reportModule} from '../../../custom_widget/npss_c_date_validation_for_report/npss_c_date_validation_for_report.module'
+import {npss_c_cond_ctrl_ui_validationModule} from '../../../custom_widget/npss_c_cond_ctrl_ui_validation/npss_c_cond_ctrl_ui_validation.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -53,7 +55,7 @@ import { f_npss_inward_transactions_details_report_srchComponent } from './f_nps
     OverlayPanelModule,
     
     s_inward_transactions_detailsRoutingModule,
-    npss_cs_dashboard_titleModule,npss_c_export_pdf_for_reportModule,npss_cs_export_excel_for_reportModule,torus_cs_show_hideModule
+    npss_cs_dashboard_titleModule,npss_c_export_pdf_for_reportModule,npss_cs_export_excel_for_reportModule,torus_cs_show_hideModule,npss_c_date_validation_for_reportModule,npss_c_cond_ctrl_ui_validationModule
   ],
   declarations: [s_inward_transactions_detailsComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_npss_inward_transactions_details_report_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34762 
+Build ID        : 34763 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 7:57 AM 
+Modified Date   : 2024-Mar-14 9:56 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_request_details
@@ -198,8 +198,13 @@ export class s_reversal_request_detailsComponent implements OnInit,AfterViewInit
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__action_button_click(){
-		this.search_search__ssp_from_search_btn_to_search_cmnt()
 		this.search_search__cp_from_search_btn()
+		this.search_search__ve_from_search_to_search_cmnt()
+	}
+
+	//Handler for INTERNAL event of "ve from search to search cmnt"
+	ve_from_search_to_search_cmnt__internal(parent_event_result){
+		this.ve_from_search_to_search_cmnt__ssp_from_search_btn_to_search_cmnt(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "ssp from search btn to search cmnt"
@@ -329,27 +334,6 @@ export class s_reversal_request_detailsComponent implements OnInit,AfterViewInit
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
-	search_search__ssp_from_search_btn_to_search_cmnt() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="search_search"
-		let destn_id="search"
-		let parent_source_id=""
-		let event_code="e_1708327533964"
-		let event_params={"caller_name":"search_search__ssp_from_search_btn_to_search_cmnt","event_desc":"SSP From Search btn to Search Cmnt","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
-		let handler_code="set_search_params"
-		let internals="ssp_from_search_btn_to_search_cmnt__brfq_from_ssp_to_list,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__cp_from_search_btn() { 
 		let Dest_Is_ctrl=true
 		
@@ -370,6 +354,49 @@ export class s_reversal_request_detailsComponent implements OnInit,AfterViewInit
  		} 
 	} 
 
+	//Handler for ACTION_BUTTON_CLICK event of "search search"
+	search_search__ve_from_search_to_search_cmnt() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="search_search"
+		let destn_id="search"
+		let parent_source_id=""
+		let event_code="e_1710409995863"
+		let event_params={"caller_name":"search_search__ve_from_search_to_search_cmnt","event_desc":"VE From Search to Search Cmnt","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
+		let handler_code="validate_elements"
+		let internals="ve_from_search_to_search_cmnt__ssp_from_search_btn_to_search_cmnt,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "ve from search to search cmnt"
+	ve_from_search_to_search_cmnt__ssp_from_search_btn_to_search_cmnt(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="ve_from_search_to_search_cmnt"
+		let destn_id="search"
+		let parent_source_id="search_search"
+		let event_code="e_1710410033599"
+		let event_params={"caller_name":"ve_from_search_to_search_cmnt__ssp_from_search_btn_to_search_cmnt","event_desc":"SSP From Search btn to Search Cmnt","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="set_search_params"
+		let internals="ssp_from_search_btn_to_search_cmnt__brfq_from_ssp_to_list,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
 	//Handler for INTERNAL event of "ssp from search btn to search cmnt"
 	ssp_from_search_btn_to_search_cmnt__brfq_from_ssp_to_list(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -377,8 +404,8 @@ export class s_reversal_request_detailsComponent implements OnInit,AfterViewInit
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="ssp_from_search_btn_to_search_cmnt"
 		let destn_id="list"
-		let parent_source_id="search_search"
-		let event_code="e_1708327569159"
+		let parent_source_id="ve_from_search_to_search_cmnt"
+		let event_code="e_1710410059694"
 		let event_params={"caller_name":"ssp_from_search_btn_to_search_cmnt__brfq_from_ssp_to_list","event_desc":"BRFQ From SSP to List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals=""

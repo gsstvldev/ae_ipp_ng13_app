@@ -16,8 +16,8 @@ export class npss_c_cond_ctrl_ui_validationService {
     }
     //Custom validation logics
     //Uncomment below lines when validation is required
-    //fn_customValidation(projName,screenInstance,message,callback){
-       // return callback();
-    //}
+    fn_customValidation(projName,screenInstance,message,callback){
+        return callback(message,{"MESSAGE_KEY":"NT_EQLS",STATUS:"FAILURE"});
+    }
 //Service logics
 }

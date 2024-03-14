@@ -15,9 +15,9 @@ export class npss_c_date_validation_for_reportService {
     console.log('linked')
     }
     //Custom validation logics
-    //Uncomment below lines when validation is required
-    //fn_customValidation(projName,screenInstance,message,callback){
-       // return callback();
-    //}
+   // Uncomment below lines when validation is required
+    fn_customValidation(projName,screenInstance,message,callback){
+        return callback(message,{"MESSAGE_KEY":"GT_10_D",STATUS:"FAILURE"});
+    }
 //Service logics
 }

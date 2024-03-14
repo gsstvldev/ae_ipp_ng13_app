@@ -35,6 +35,7 @@ export class npss_c_date_validation_for_reportService {
             {
                 cvResult.STATUS="FAILURE"
                 cvResult.MESSAGE_KEY="DT_NULL"
+                console.log(cvResult)
                 return callback(message,cvResult)
             }
             else{
@@ -54,6 +55,7 @@ export class npss_c_date_validation_for_reportService {
                 else{
                     cvResult.STATUS="FAILURE"
                 cvResult.MESSAGE_KEY="GT_10_D"
+                console.log(cvResult)
             //    break
             return callback(message,cvResult)
                 }

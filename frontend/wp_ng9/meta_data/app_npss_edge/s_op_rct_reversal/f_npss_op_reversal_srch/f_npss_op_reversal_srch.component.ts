@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34767 
+Build ID        : 34773 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 12:26 PM 
+Modified Date   : 2024-Mar-15 5:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -274,7 +274,7 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.show = true
 		this.ctrl.payment_endtoend_id.sub_content = ""
 		this.ctrl.payment_endtoend_id.required = false
-		this.ctrl.payment_endtoend_id.vld_rules = [{"type":"CV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"","custom_val_message":{"ngmessages":[{"message_key":"GT_10_D","message_value":"Select only 10 days"}]},"expression":"","project_code":"CCI_PROJ3209","project_name":"npss_c_cond_ctrl_ui_validation","cv_event":"ON_SUBMIT"}]
+		this.ctrl.payment_endtoend_id.vld_rules = []
 		this.ctrl.payment_endtoend_id.targetcolumn_lower = "payment_endtoend_id"
 		this.ctrl.payment_endtoend_id.disabled = false
 		this.ctrl.payment_endtoend_id.view_name = "f_npss_op_reversal_srch"
@@ -391,7 +391,7 @@ focustoelement(){
 		this.ctrl.uetr.show = true
 		this.ctrl.uetr.sub_content = ""
 		this.ctrl.uetr.required = false
-		this.ctrl.uetr.vld_rules = [{"type":"CV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"","custom_val_message":{"ngmessages":[{"message_key":"GT_10_D","message_value":"Select only 10 days"}]},"expression":"","project_code":"CCI_PROJ3209","project_name":"npss_c_cond_ctrl_ui_validation","cv_event":"ON_SUBMIT"}]
+		this.ctrl.uetr.vld_rules = []
 		this.ctrl.uetr.targetcolumn_lower = "uetr"
 		this.ctrl.uetr.disabled = false
 		this.ctrl.uetr.view_name = "f_npss_op_reversal_srch"
@@ -510,7 +510,7 @@ focustoelement(){
 		this.ctrl.memory101.show = true
 		this.ctrl.memory101.sub_content = ""
 		this.ctrl.memory101.required = false
-		this.ctrl.memory101.vld_rules = [{"type":"CV","from_value":"","to_value":"","format":"","max_length":"","min_length":"","override":"","ignore_case":"","reference_value":"","click":"Valitem","message":"","custom_val_message":{"ngmessages":[{"message_key":"GT_10_D","message_value":"Select only 10 days"}]},"expression":"","project_code":"CCI_PROJ3209","project_name":"npss_c_cond_ctrl_ui_validation","cv_event":"ON_SUBMIT"}]
+		this.ctrl.memory101.vld_rules = []
 		this.ctrl.memory101.targetcolumn_lower = "memory101"
 		this.ctrl.memory101.disabled = false
 		this.ctrl.memory101.view_name = "f_npss_op_reversal_srch"

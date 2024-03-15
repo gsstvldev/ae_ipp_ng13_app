@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34767 
+Build ID        : 34773 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 12:27 PM 
+Modified Date   : 2024-Mar-15 5:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_master_dashboard
@@ -12,7 +12,6 @@ Screen Name     : s_master_dashboard
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {npss_c_date_validation_for_reportService} from '../../../custom_widget/npss_c_date_validation_for_report/npss_c_date_validation_for_report.service'
 import {npss_cs_dashboard_titleService} from '../../../custom_widget/npss_cs_dashboard_title/npss_cs_dashboard_title.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_masking_req_resService} from '../../../custom_widget/npss_cs_masking_req_res/npss_cs_masking_req_res.service'
@@ -21,7 +20,7 @@ import {npss_cs_masking_req_resService} from '../../../custom_widget/npss_cs_mas
 	selector: 's_master_dashboard',
 	templateUrl: './s_master_dashboard.component.html',
 	styleUrls: ['./s_master_dashboard.component.css'],
-	providers:[npss_c_date_validation_for_reportService,npss_cs_dashboard_titleService,torus_cs_show_hideService,npss_cs_masking_req_resService]
+	providers:[npss_cs_dashboard_titleService,torus_cs_show_hideService,npss_cs_masking_req_resService]
 })
     
 // Start of class 
@@ -106,7 +105,7 @@ export class s_master_dashboardComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private npss_c_date_validation_for_reportService:npss_c_date_validation_for_reportService,private npss_cs_dashboard_titleService:npss_cs_dashboard_titleService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_masking_req_resService:npss_cs_masking_req_resService) {
+	constructor(private handler:AppHandlerService ,private npss_cs_dashboard_titleService:npss_cs_dashboard_titleService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_masking_req_resService:npss_cs_masking_req_resService) {
     
 	}
     

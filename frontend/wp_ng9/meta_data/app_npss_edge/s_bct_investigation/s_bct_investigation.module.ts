@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34767 
+Build ID        : 34773 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 12:26 PM 
+Modified Date   : 2024-Mar-15 5:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_investigation
@@ -25,8 +25,6 @@ import {npss_cs_maker_initiateModule} from '../../../custom_widget/npss_cs_maker
 import {npss_cs_bct_checker_approveModule} from '../../../custom_widget/npss_cs_bct_checker_approve/npss_cs_bct_checker_approve.module'
 import {npss_cs_rev_rejectModule} from '../../../custom_widget/npss_cs_rev_reject/npss_cs_rev_reject.module'
 import {npss_cs_maker_closeModule} from '../../../custom_widget/npss_cs_maker_close/npss_cs_maker_close.module'
-import {npss_c_date_validation_for_reportModule} from '../../../custom_widget/npss_c_date_validation_for_report/npss_c_date_validation_for_report.module'
-import {npss_c_cond_ctrl_ui_validationModule} from '../../../custom_widget/npss_c_cond_ctrl_ui_validation/npss_c_cond_ctrl_ui_validation.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -69,7 +67,7 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     OverlayPanelModule,
     
     s_bct_investigationRoutingModule,
-    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_maker_initiateModule,npss_cs_bct_checker_approveModule,npss_cs_rev_rejectModule,npss_cs_maker_closeModule,npss_c_date_validation_for_reportModule,npss_c_cond_ctrl_ui_validationModule
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_maker_initiateModule,npss_cs_bct_checker_approveModule,npss_cs_rev_rejectModule,npss_cs_maker_closeModule
   ],
   declarations: [s_bct_investigationComponent,p_main_layoutComponent,f_navigation_uiComponent,p_search_layoutComponent,f_npss_tran_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_req_and_res_profileComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_close_layoutComponent,f_npss_remarks_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]

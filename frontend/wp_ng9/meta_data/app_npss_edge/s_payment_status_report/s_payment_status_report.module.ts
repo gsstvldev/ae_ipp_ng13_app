@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34766 
+Build ID        : 34773 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 12:11 PM 
+Modified Date   : 2024-Mar-15 5:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_status_report
@@ -22,6 +22,7 @@ import { SharedModule } from '../../../shared/shared.module'
 import {npss_cs_dashboard_titleModule} from '../../../custom_widget/npss_cs_dashboard_title/npss_cs_dashboard_title.module'
 import {npss_c_export_pdf_for_reportModule} from '../../../custom_widget/npss_c_export_pdf_for_report/npss_c_export_pdf_for_report.module'
 import {npss_cs_export_excel_for_reportModule} from '../../../custom_widget/npss_cs_export_excel_for_report/npss_cs_export_excel_for_report.module'
+import {npss_c_cond_ctrl_validationModule} from '../../../custom_widget/npss_c_cond_ctrl_validation/npss_c_cond_ctrl_validation.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 
 import {DialogModule} from 'primeng/dialog';
@@ -53,7 +54,7 @@ import { f_npss_payment_status_report_srchComponent } from './f_npss_payment_sta
     OverlayPanelModule,
     
     s_payment_status_reportRoutingModule,
-    npss_cs_dashboard_titleModule,npss_c_export_pdf_for_reportModule,npss_cs_export_excel_for_reportModule,torus_cs_show_hideModule
+    npss_cs_dashboard_titleModule,npss_c_export_pdf_for_reportModule,npss_cs_export_excel_for_reportModule,npss_c_cond_ctrl_validationModule,torus_cs_show_hideModule
   ],
   declarations: [s_payment_status_reportComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_npss_payment_status_report_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]

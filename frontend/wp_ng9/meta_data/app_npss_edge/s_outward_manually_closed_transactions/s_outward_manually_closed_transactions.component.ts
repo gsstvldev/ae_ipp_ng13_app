@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34767 
+Build ID        : 34773 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 12:27 PM 
+Modified Date   : 2024-Mar-15 5:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_manually_closed_transactions
@@ -12,10 +12,9 @@ Screen Name     : s_outward_manually_closed_transactions
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {npss_c_date_validation_for_reportService} from '../../../custom_widget/npss_c_date_validation_for_report/npss_c_date_validation_for_report.service'
-import {npss_c_cond_ctrl_ui_validationService} from '../../../custom_widget/npss_c_cond_ctrl_ui_validation/npss_c_cond_ctrl_ui_validation.service'
 import {npss_c_export_pdf_for_reportService} from '../../../custom_widget/npss_c_export_pdf_for_report/npss_c_export_pdf_for_report.service'
 import {npss_cs_export_excel_for_reportService} from '../../../custom_widget/npss_cs_export_excel_for_report/npss_cs_export_excel_for_report.service'
+import {npss_c_cond_ctrl_validationService} from '../../../custom_widget/npss_c_cond_ctrl_validation/npss_c_cond_ctrl_validation.service'
 import {npss_cs_dashboard_titleService} from '../../../custom_widget/npss_cs_dashboard_title/npss_cs_dashboard_title.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 
@@ -23,7 +22,7 @@ import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hi
 	selector: 's_outward_manually_closed_transactions',
 	templateUrl: './s_outward_manually_closed_transactions.component.html',
 	styleUrls: ['./s_outward_manually_closed_transactions.component.css'],
-	providers:[npss_c_date_validation_for_reportService,npss_c_cond_ctrl_ui_validationService,npss_c_export_pdf_for_reportService,npss_cs_export_excel_for_reportService,npss_cs_dashboard_titleService,torus_cs_show_hideService]
+	providers:[npss_c_export_pdf_for_reportService,npss_cs_export_excel_for_reportService,npss_c_cond_ctrl_validationService,npss_cs_dashboard_titleService,torus_cs_show_hideService]
 })
     
 // Start of class 
@@ -58,7 +57,7 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private npss_c_date_validation_for_reportService:npss_c_date_validation_for_reportService,private npss_c_cond_ctrl_ui_validationService:npss_c_cond_ctrl_ui_validationService,private npss_c_export_pdf_for_reportService:npss_c_export_pdf_for_reportService,private npss_cs_export_excel_for_reportService:npss_cs_export_excel_for_reportService,private npss_cs_dashboard_titleService:npss_cs_dashboard_titleService,private torus_cs_show_hideService:torus_cs_show_hideService) {
+	constructor(private handler:AppHandlerService ,private npss_c_export_pdf_for_reportService:npss_c_export_pdf_for_reportService,private npss_cs_export_excel_for_reportService:npss_cs_export_excel_for_reportService,private npss_c_cond_ctrl_validationService:npss_c_cond_ctrl_validationService,private npss_cs_dashboard_titleService:npss_cs_dashboard_titleService,private torus_cs_show_hideService:torus_cs_show_hideService) {
     
 	}
     
@@ -199,17 +198,17 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__action_button_click(){
 		this.search_search__cp_from_search_btn()
-		this.search_search__ve_from_search_to_search_cmnt()
+		this.search_search__cc_for_control()
 	}
 
-	//Handler for INTERNAL event of "ve from search to search cmnt"
-	ve_from_search_to_search_cmnt__internal(parent_event_result){
-		this.ve_from_search_to_search_cmnt__ssp_from_search_btn_to_search_cmnt(parent_event_result)
+	//Handler for INTERNAL event of "cc for control"
+	cc_for_control__internal(parent_event_result){
+		this.cc_for_control__ssp_from_serach(parent_event_result)
 	}
 
-	//Handler for INTERNAL event of "ssp from search btn to search cmnt"
-	ssp_from_search_btn_to_search_cmnt__internal(parent_event_result){
-		this.ssp_from_search_btn_to_search_cmnt__brfq_from_ssp_to_list(parent_event_result)
+	//Handler for INTERNAL event of "ssp from serach"
+	ssp_from_serach__internal(parent_event_result){
+		this.ssp_from_serach__brfq_from_list(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "e 1708425960961"
@@ -355,38 +354,38 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 	} 
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
-	search_search__ve_from_search_to_search_cmnt() { 
+	search_search__cc_for_control() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="search_search"
-		let destn_id="search"
+		let destn_id=""
 		let parent_source_id=""
-		let event_code="e_1710418116951"
-		let event_params={"caller_name":"search_search__ve_from_search_to_search_cmnt","event_desc":"VE from Search to Search Cmnt","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
-		let handler_code="validate_elements"
-		let internals="ve_from_search_to_search_cmnt__ssp_from_search_btn_to_search_cmnt,"
+		let event_code="e_1710480264849"
+		let event_params={"caller_name":"search_search__cc_for_control","event_desc":"CC for control","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_control__ssp_from_serach,"
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.validate_elements(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_c_cond_ctrl_validationService.fn_npss_c_cond_ctrl_validation(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
  		} 
 	} 
 
-	//Handler for INTERNAL event of "ve from search to search cmnt"
-	ve_from_search_to_search_cmnt__ssp_from_search_btn_to_search_cmnt(parent_event_result) { 
+	//Handler for INTERNAL event of "cc for control"
+	cc_for_control__ssp_from_serach(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="ve_from_search_to_search_cmnt"
+		let source_id="cc_for_control"
 		let destn_id="search"
 		let parent_source_id="search_search"
-		let event_code="e_1710418144452"
-		let event_params={"caller_name":"ve_from_search_to_search_cmnt__ssp_from_search_btn_to_search_cmnt","event_desc":"SSP From Search btn to Search Cmnt","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_code="e_1710480365033"
+		let event_params={"caller_name":"cc_for_control__ssp_from_serach","event_desc":"SSP from Serach","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="set_search_params"
-		let internals="ssp_from_search_btn_to_search_cmnt__brfq_from_ssp_to_list,"
+		let internals="ssp_from_serach__brfq_from_list,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -397,16 +396,16 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
  		} 
 	} 
 
-	//Handler for INTERNAL event of "ssp from search btn to search cmnt"
-	ssp_from_search_btn_to_search_cmnt__brfq_from_ssp_to_list(parent_event_result) { 
+	//Handler for INTERNAL event of "ssp from serach"
+	ssp_from_serach__brfq_from_list(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="ssp_from_search_btn_to_search_cmnt"
+		let source_id="ssp_from_serach"
 		let destn_id="list"
-		let parent_source_id="ve_from_search_to_search_cmnt"
-		let event_code="e_1710418162971"
-		let event_params={"caller_name":"ssp_from_search_btn_to_search_cmnt__brfq_from_ssp_to_list","event_desc":"BRFQ From SSP to List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
+		let parent_source_id="cc_for_control"
+		let event_code="e_1710480399724"
+		let event_params={"caller_name":"ssp_from_serach__brfq_from_list","event_desc":"BRFQ from List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}

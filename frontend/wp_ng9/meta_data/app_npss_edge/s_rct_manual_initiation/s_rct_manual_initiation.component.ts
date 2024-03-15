@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34767 
+Build ID        : 34773 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 12:26 PM 
+Modified Date   : 2024-Mar-15 5:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -12,7 +12,6 @@ Screen Name     : s_rct_manual_initiation
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {npss_c_cond_ctrl_ui_validationService} from '../../../custom_widget/npss_c_cond_ctrl_ui_validation/npss_c_cond_ctrl_ui_validation.service'
 import {torus_cs_change_routingkeyService} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {torus_cs_set_rule_mi_paramService} from '../../../custom_widget/torus_cs_set_rule_mi_param/torus_cs_set_rule_mi_param.service'
@@ -24,7 +23,7 @@ import {npss_cs_manual_initiation_get_dealService} from '../../../custom_widget/
 	selector: 's_rct_manual_initiation',
 	templateUrl: './s_rct_manual_initiation.component.html',
 	styleUrls: ['./s_rct_manual_initiation.component.css'],
-	providers:[npss_c_cond_ctrl_ui_validationService,torus_cs_change_routingkeyService,torus_cs_show_hideService,torus_cs_set_rule_mi_paramService,npss_cs_rev_get_usable_balanceService,npss_cs_outward_manual_initiationService,npss_cs_manual_initiation_get_dealService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,torus_cs_set_rule_mi_paramService,npss_cs_rev_get_usable_balanceService,npss_cs_outward_manual_initiationService,npss_cs_manual_initiation_get_dealService]
 })
     
 // Start of class 
@@ -126,7 +125,7 @@ export class s_rct_manual_initiationComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private npss_c_cond_ctrl_ui_validationService:npss_c_cond_ctrl_ui_validationService,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private torus_cs_set_rule_mi_paramService:torus_cs_set_rule_mi_paramService,private npss_cs_rev_get_usable_balanceService:npss_cs_rev_get_usable_balanceService,private npss_cs_outward_manual_initiationService:npss_cs_outward_manual_initiationService,private npss_cs_manual_initiation_get_dealService:npss_cs_manual_initiation_get_dealService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private torus_cs_set_rule_mi_paramService:torus_cs_set_rule_mi_paramService,private npss_cs_rev_get_usable_balanceService:npss_cs_rev_get_usable_balanceService,private npss_cs_outward_manual_initiationService:npss_cs_outward_manual_initiationService,private npss_cs_manual_initiation_get_dealService:npss_cs_manual_initiation_get_dealService) {
     
 	}
     

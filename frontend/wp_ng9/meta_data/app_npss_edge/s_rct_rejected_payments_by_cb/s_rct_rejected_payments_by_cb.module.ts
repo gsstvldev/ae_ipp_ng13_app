@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34767 
+Build ID        : 34773 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 12:26 PM 
+Modified Date   : 2024-Mar-15 5:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_payments_by_cb
@@ -21,8 +21,6 @@ import { SharedModule } from '../../../shared/shared.module'
 
 import {torus_cs_change_routingkeyModule} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
-import {npss_c_cond_ctrl_ui_validationModule} from '../../../custom_widget/npss_c_cond_ctrl_ui_validation/npss_c_cond_ctrl_ui_validation.module'
-import {npss_c_date_validation_for_reportModule} from '../../../custom_widget/npss_c_date_validation_for_report/npss_c_date_validation_for_report.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -67,7 +65,7 @@ import { p_view_req_and_res_profileComponent } from './p_view_req_and_res_profil
     OverlayPanelModule,
     
     s_rct_rejected_payments_by_cbRoutingModule,
-    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_c_cond_ctrl_ui_validationModule,npss_c_date_validation_for_reportModule
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule
   ],
   declarations: [s_rct_rejected_payments_by_cbComponent,p_rejected_payments_layoutComponent,f_navigation_uiComponent,f_npss_rej_pay_by_cb_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_response_layoutComponent,f_single_back_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,],
   providers:[AppHandlerService,ComponenthelperService]

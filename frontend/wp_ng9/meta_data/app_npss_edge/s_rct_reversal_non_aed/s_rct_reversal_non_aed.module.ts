@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34767 
+Build ID        : 34773 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 12:26 PM 
+Modified Date   : 2024-Mar-15 5:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -31,8 +31,6 @@ import {npss_cs_ip_rev_get_dealModule} from '../../../custom_widget/npss_cs_ip_r
 import {npss_cs_reversal_cancelModule} from '../../../custom_widget/npss_cs_reversal_cancel/npss_cs_reversal_cancel.module'
 import {npss_cs_reversal_send_to_makerModule} from '../../../custom_widget/npss_cs_reversal_send_to_maker/npss_cs_reversal_send_to_maker.module'
 import {npss_cs_reversal_force_to_postModule} from '../../../custom_widget/npss_cs_reversal_force_to_post/npss_cs_reversal_force_to_post.module'
-import {npss_c_date_validation_for_reportModule} from '../../../custom_widget/npss_c_date_validation_for_report/npss_c_date_validation_for_report.module'
-import {npss_c_cond_ctrl_ui_validationModule} from '../../../custom_widget/npss_c_cond_ctrl_ui_validation/npss_c_cond_ctrl_ui_validation.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -94,7 +92,7 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     OverlayPanelModule,
     
     s_rct_reversal_non_aedRoutingModule,
-    npss_cs_rev_get_usable_balanceModule,torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_reversal_set_status_and_bind_valueModule,npss_cs_ip_rev_accept_inau_reserve_fundModule,npss_cs_reject_pack002Module,npss_cs_ip_rev_ret_auth_pacs004Module,npss_cs_ip_rev_reject_inau_reserve_fundModule,npss_cs_ip_rev_get_dealModule,npss_cs_reversal_cancelModule,npss_cs_reversal_send_to_makerModule,npss_cs_reversal_force_to_postModule,npss_c_date_validation_for_reportModule,npss_c_cond_ctrl_ui_validationModule
+    npss_cs_rev_get_usable_balanceModule,torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_reversal_set_status_and_bind_valueModule,npss_cs_ip_rev_accept_inau_reserve_fundModule,npss_cs_reject_pack002Module,npss_cs_ip_rev_ret_auth_pacs004Module,npss_cs_ip_rev_reject_inau_reserve_fundModule,npss_cs_ip_rev_get_dealModule,npss_cs_reversal_cancelModule,npss_cs_reversal_send_to_makerModule,npss_cs_reversal_force_to_postModule
   ],
   declarations: [s_rct_reversal_non_aedComponent,p_main_layoutComponent,f_navigationComponent,p_fab_reversal_non_aed_n_layoutComponent,f_npss_reversal_n_uiComponent,f_npss_reversal_deal_plog_uiComponent,f_sell_control_uicgComponent,f_npss_reversal_plog_uiComponent,f_reversal_action_uiComponent,p_uab_layoutComponent,p_change_return_layoutComponent,f_npss_pl_change_rtn_reason_uiComponent,p_remarks_layoutComponent,f_npss_reject_uiComponent,f_remarks_uiComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_res_profileComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_cancel_layoutComponent,f_npss_remarks_uiComponent,p_send_to_maker_layoutComponent,f_npss_send_to_maker_uiComponent,p_search_layoutComponent,f_npss_reversal_srchComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34767 
+Build ID        : 34773 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 12:26 PM 
+Modified Date   : 2024-Mar-15 5:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_manual_initiation
@@ -25,7 +25,6 @@ import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hid
 import {torus_cs_set_rule_mi_paramModule} from '../../../custom_widget/torus_cs_set_rule_mi_param/torus_cs_set_rule_mi_param.module'
 import {npss_cs_outward_manual_initiationModule} from '../../../custom_widget/npss_cs_outward_manual_initiation/npss_cs_outward_manual_initiation.module'
 import {npss_cs_manual_initiation_get_dealModule} from '../../../custom_widget/npss_cs_manual_initiation_get_deal/npss_cs_manual_initiation_get_deal.module'
-import {npss_c_cond_ctrl_ui_validationModule} from '../../../custom_widget/npss_c_cond_ctrl_ui_validation/npss_c_cond_ctrl_ui_validation.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -77,7 +76,7 @@ import { p_view_response_layoutComponent } from './p_view_response_layout/p_view
     OverlayPanelModule,
     
     s_rct_manual_initiationRoutingModule,
-    npss_cs_rev_get_usable_balanceModule,torus_cs_change_routingkeyModule,torus_cs_show_hideModule,torus_cs_set_rule_mi_paramModule,npss_cs_outward_manual_initiationModule,npss_cs_manual_initiation_get_dealModule,npss_c_cond_ctrl_ui_validationModule
+    npss_cs_rev_get_usable_balanceModule,torus_cs_change_routingkeyModule,torus_cs_show_hideModule,torus_cs_set_rule_mi_paramModule,npss_cs_outward_manual_initiationModule,npss_cs_manual_initiation_get_dealModule
   ],
   declarations: [s_rct_manual_initiationComponent,p_main_layoutComponent,f_navigation_uiComponent,f_search_info_uiComponent,p_search_layoutComponent,f_npss_manual_initiation_srchComponent,p_fab_initate_layoutComponent,f_npss_mi_get_deal_uiComponent,f_sell_control_uicgComponent,f_npss_manual_initiation_uiComponent,p_fin_initate_layoutComponent,p_vertical_tran_detail_profileComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_message_list_layoutComponent,f_message_detail_actionComponent,p_view_message_ui_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,p_view_req_and_resComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_request_layoutComponent,p_view_response_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]

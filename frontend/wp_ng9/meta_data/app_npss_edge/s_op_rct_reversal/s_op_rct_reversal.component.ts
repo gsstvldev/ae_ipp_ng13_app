@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34767 
+Build ID        : 34773 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 12:26 PM 
+Modified Date   : 2024-Mar-15 5:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_op_rct_reversal
@@ -12,7 +12,6 @@ Screen Name     : s_op_rct_reversal
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {npss_c_cond_ctrl_ui_validationService} from '../../../custom_widget/npss_c_cond_ctrl_ui_validation/npss_c_cond_ctrl_ui_validation.service'
 import {npss_c_reversal_amnt_ui_validateService} from '../../../custom_widget/npss_c_reversal_amnt_ui_validate/npss_c_reversal_amnt_ui_validate.service'
 import {npss_cs_set_reversal_prd_system_setup_dateService} from '../../../custom_widget/npss_cs_set_reversal_prd_system_setup_date/npss_cs_set_reversal_prd_system_setup_date.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
@@ -25,7 +24,7 @@ import {npss_cs_reversal_send_to_makerService} from '../../../custom_widget/npss
 	selector: 's_op_rct_reversal',
 	templateUrl: './s_op_rct_reversal.component.html',
 	styleUrls: ['./s_op_rct_reversal.component.css'],
-	providers:[npss_c_cond_ctrl_ui_validationService,npss_c_reversal_amnt_ui_validateService,npss_cs_set_reversal_prd_system_setup_dateService,torus_cs_show_hideService,npss_set_action_mode_as_searchService,npss_cs_reversal_initiateService,npss_cs_rct_rev_approveService,npss_cs_reversal_send_to_makerService]
+	providers:[npss_c_reversal_amnt_ui_validateService,npss_cs_set_reversal_prd_system_setup_dateService,torus_cs_show_hideService,npss_set_action_mode_as_searchService,npss_cs_reversal_initiateService,npss_cs_rct_rev_approveService,npss_cs_reversal_send_to_makerService]
 })
     
 // Start of class 
@@ -121,7 +120,7 @@ export class s_op_rct_reversalComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private npss_c_cond_ctrl_ui_validationService:npss_c_cond_ctrl_ui_validationService,private npss_c_reversal_amnt_ui_validateService:npss_c_reversal_amnt_ui_validateService,private npss_cs_set_reversal_prd_system_setup_dateService:npss_cs_set_reversal_prd_system_setup_dateService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_set_action_mode_as_searchService:npss_set_action_mode_as_searchService,private npss_cs_reversal_initiateService:npss_cs_reversal_initiateService,private npss_cs_rct_rev_approveService:npss_cs_rct_rev_approveService,private npss_cs_reversal_send_to_makerService:npss_cs_reversal_send_to_makerService) {
+	constructor(private handler:AppHandlerService ,private npss_c_reversal_amnt_ui_validateService:npss_c_reversal_amnt_ui_validateService,private npss_cs_set_reversal_prd_system_setup_dateService:npss_cs_set_reversal_prd_system_setup_dateService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_set_action_mode_as_searchService:npss_set_action_mode_as_searchService,private npss_cs_reversal_initiateService:npss_cs_reversal_initiateService,private npss_cs_rct_rev_approveService:npss_cs_rct_rev_approveService,private npss_cs_reversal_send_to_makerService:npss_cs_reversal_send_to_makerService) {
     
 	}
     

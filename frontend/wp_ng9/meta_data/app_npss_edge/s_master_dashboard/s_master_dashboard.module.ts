@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34767 
+Build ID        : 34773 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 12:27 PM 
+Modified Date   : 2024-Mar-15 5:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_master_dashboard
@@ -22,7 +22,6 @@ import { SharedModule } from '../../../shared/shared.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_cs_dashboard_titleModule} from '../../../custom_widget/npss_cs_dashboard_title/npss_cs_dashboard_title.module'
 import {npss_cs_masking_req_resModule} from '../../../custom_widget/npss_cs_masking_req_res/npss_cs_masking_req_res.module'
-import {npss_c_date_validation_for_reportModule} from '../../../custom_widget/npss_c_date_validation_for_report/npss_c_date_validation_for_report.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -68,7 +67,7 @@ import { f_npss_message_data_uiComponent } from './f_npss_message_data_ui/f_npss
     OverlayPanelModule,
     
     s_master_dashboardRoutingModule,
-    torus_cs_show_hideModule,npss_cs_dashboard_titleModule,npss_cs_masking_req_resModule,npss_c_date_validation_for_reportModule
+    torus_cs_show_hideModule,npss_cs_dashboard_titleModule,npss_cs_masking_req_resModule
   ],
   declarations: [s_master_dashboardComponent,p_default_profileComponent,f_nav_uiComponent,p_search_layoutComponent,f_npss_master_dashboard_srchComponent,p_transaction_list_layoutComponent,f_navigationComponent,p_view_tran_detail_layoutComponent,f_back_uiComponent,p_process_log_history_list_layoutComponent,f_process_log_uiComponent,p_message_list_layoutComponent,f_message_detail_actionComponent,p_view_req_and_res_profileComponent,f_single_back_uiComponent,f_npss_target_request_uiComponent,f_npss_target_response_uiComponent,p_view_message_data_layoutComponent,f_message_back_uiComponent,f_npss_message_data_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

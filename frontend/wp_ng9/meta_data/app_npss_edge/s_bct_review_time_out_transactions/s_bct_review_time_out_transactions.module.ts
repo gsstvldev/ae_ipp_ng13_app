@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34767 
+Build ID        : 34773 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-14 12:27 PM 
+Modified Date   : 2024-Mar-15 5:43 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_bct_review_time_out_transactions
@@ -22,8 +22,6 @@ import { SharedModule } from '../../../shared/shared.module'
 import {torus_cs_change_routingkeyModule} from '../../../custom_widget/torus_cs_change_routingkey/torus_cs_change_routingkey.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_cs_bct_timeout_retryModule} from '../../../custom_widget/npss_cs_bct_timeout_retry/npss_cs_bct_timeout_retry.module'
-import {npss_c_date_validation_for_reportModule} from '../../../custom_widget/npss_c_date_validation_for_report/npss_c_date_validation_for_report.module'
-import {npss_c_cond_ctrl_ui_validationModule} from '../../../custom_widget/npss_c_cond_ctrl_ui_validation/npss_c_cond_ctrl_ui_validation.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -65,7 +63,7 @@ import { p_view_req_and_res_layoutComponent } from './p_view_req_and_res_layout/
     OverlayPanelModule,
     
     s_bct_review_time_out_transactionsRoutingModule,
-    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_bct_timeout_retryModule,npss_c_date_validation_for_reportModule,npss_c_cond_ctrl_ui_validationModule
+    torus_cs_change_routingkeyModule,torus_cs_show_hideModule,npss_cs_bct_timeout_retryModule
   ],
   declarations: [s_bct_review_time_out_transactionsComponent,p_main_layoutComponent,f_navigation_uiComponent,f_hst_process_log_to_main_backComponent,p_search_layoutComponent,f_npss_tran_srchComponent,p_vertical_layoutComponent,f_back_uiComponent,p_view_history_layoutComponent,f_process_log_uiComponent,p_view_request_layoutComponent,f_npss_target_request_uiComponent,f_single_back_uiComponent,p_view_response_layoutComponent,f_npss_target_response_uiComponent,p_view_req_and_res_layoutComponent,],
   providers:[AppHandlerService,ComponenthelperService]

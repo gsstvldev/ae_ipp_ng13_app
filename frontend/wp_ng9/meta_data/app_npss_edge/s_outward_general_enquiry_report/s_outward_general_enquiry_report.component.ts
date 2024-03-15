@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34773 
+Build ID        : 34776 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-15 5:42 AM 
+Modified Date   : 2024-Mar-15 7:25 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_general_enquiry_report
@@ -197,7 +197,6 @@ export class s_outward_general_enquiry_reportComponent implements OnInit,AfterVi
 
 	//Handler for ACTION_BUTTON_CLICK event of "search search"
 	search_search__action_button_click(){
-		this.search_search__cp_from_search_btn()
 		this.search_search__cc_for_control()
 	}
 
@@ -326,27 +325,6 @@ export class s_outward_general_enquiry_reportComponent implements OnInit,AfterVi
 		let data_source={}
 		try {
 			this.handler.clear_ui(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for ACTION_BUTTON_CLICK event of "search search"
-	search_search__cp_from_search_btn() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="search_search"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1708327611591"
-		let event_params={"popup_info":{"context":""},"caller_name":"search_search__cp_from_search_btn","event_desc":"CP From Search Btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
-		let handler_code="close_popup"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.close_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

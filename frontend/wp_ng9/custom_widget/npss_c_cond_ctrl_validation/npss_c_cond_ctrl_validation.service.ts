@@ -32,7 +32,7 @@ export class npss_c_cond_ctrl_validationService {
         if (screenInstance.wftpa_description.includes('outward_transactions_details')) {
             let comp_id = screenInstance[`comp_id`]|| 'search' 
             let form_name: any = screenInstance[comp_id].form_name
-            let ctrl_Scope = screenInstance[comp_id][form_name].model, contains: any = [], not_eqls: any = [], between: any = [], bt_flag: any = false, ct_flag: any = false, eq_flag: any = false
+            let ctrl_Scope = screenInstance[comp_id][form_name].model, contains: any = [], empty:any=[],not_eqls: any = [], between: any = [], bt_flag: any = false, ct_flag: any = false, eq_flag: any = false,empty_flag:any=false
             let cltr_Scope_obj = Object.keys(ctrl_Scope)
             let ctrls_name: any = Object.keys(screenInstance[comp_id][form_name].controls)
             
@@ -53,6 +53,13 @@ export class npss_c_cond_ctrl_validationService {
 
                         }
                     }
+                     if(ctrl_Scope[cltr_Scope_obj[i]]?.value==null && ctrl_Scope[cltr_Scope_obj[i]]!='')  //&& ctrl_Scope[cltr_Scope_obj[i]]?.operator==""
+                    {
+                        empty.push(screenInstance[comp_id][form_name].controls[ctrl_name.toString()].label_name)
+                        
+                        empty_flag = true
+                    }
+                    empty=[...new Set(empty)]
 
 
                 }
@@ -102,7 +109,14 @@ export class npss_c_cond_ctrl_validationService {
                     info_msg += `<br>${i + 1 + '. ' + not_eqls[i].split('_').join(' ').toString()}`
 
                 }
-                info_msg+=`<br> Please select other option.`
+                info_msg=`<br> Please select other option.`
+            }
+            if(empty_flag)
+            {
+                info_msg += `<br> Date should not be Empty in following Controls` 
+                for (let i = 0; i < empty.length; i++) {
+                    info_msg += `<br>${i + 1 + '. ' + empty[i].split('_').join(' ').toString()}`
+                }
             }
             if (info_msg == '') {
                 

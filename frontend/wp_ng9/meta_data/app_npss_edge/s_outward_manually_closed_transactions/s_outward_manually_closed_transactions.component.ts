@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34776 
+Build ID        : 34778 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-15 7:25 AM 
+Modified Date   : 2024-Mar-15 10:12 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_manually_closed_transactions
@@ -203,6 +203,7 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 	//Handler for INTERNAL event of "cc for control"
 	cc_for_control__internal(parent_event_result){
 		this.cc_for_control__ssp_from_serach(parent_event_result)
+		this.cc_for_control__close_popup(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "ssp from serach"
@@ -341,7 +342,7 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 		let event_code="e_1710480264849"
 		let event_params={"caller_name":"search_search__cc_for_control","event_desc":"CC for control","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
 		let handler_code="custom_connectors"
-		let internals="cc_for_control__ssp_from_serach,"
+		let internals="cc_for_control__ssp_from_serach,cc_for_control__close_popup,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -368,6 +369,28 @@ export class s_outward_manually_closed_transactionsComponent implements OnInit,A
 		let data_source={}
 		try {
 			this.handler.set_search_params(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for control"
+	cc_for_control__close_popup(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_control"
+		let destn_id=""
+		let parent_source_id="search_search"
+		let event_code="e_1710497251127"
+		let event_params={"popup_info":{"context":""},"caller_name":"cc_for_control__close_popup","event_desc":"Close popup","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="close_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.close_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

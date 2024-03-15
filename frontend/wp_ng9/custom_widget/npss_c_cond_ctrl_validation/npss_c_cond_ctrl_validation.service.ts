@@ -29,7 +29,8 @@ export class npss_c_cond_ctrl_validationService {
         }
     //Default calling function
     fn_npss_c_cond_ctrl_validation(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
-        if (screenInstance.wftpa_description.includes('outward_transactions_details')) {
+       // if (screenInstance.wftpa_description.includes('outward_transactions_details')) {
+           // console.log(parent_source_id)
             let comp_id = screenInstance[`comp_id`]|| 'search' 
             let form_name: any = screenInstance[comp_id].form_name
             let ctrl_Scope = screenInstance[comp_id][form_name].model, contains: any = [], empty:any=[],not_eqls: any = [], between: any = [], bt_flag: any = false, ct_flag: any = false, eq_flag: any = false,empty_flag:any=false
@@ -53,7 +54,7 @@ export class npss_c_cond_ctrl_validationService {
 
                         }
                     }
-                     if(ctrl_Scope[cltr_Scope_obj[i]]?.value==null && ctrl_Scope[cltr_Scope_obj[i]]!='')  //&& ctrl_Scope[cltr_Scope_obj[i]]?.operator==""
+                     if(ctrl_Scope[cltr_Scope_obj[i]]?.value==null && !ctrl_Scope[cltr_Scope_obj[i]]?.toString()?.includes('set'))  //&& ctrl_Scope[cltr_Scope_obj[i]]?.operator==""
                     {
                         empty.push(screenInstance[comp_id][form_name].controls[ctrl_name.toString()].label_name)
                         
@@ -89,34 +90,35 @@ export class npss_c_cond_ctrl_validationService {
           //  let source_id=parent_source_id
             let info_msg: any = ''
             if (bt_flag) {
-                info_msg = 'The following Date selection exceeded more than 7 Days\n'
+                info_msg = 'The following Date selection exceeded <b> more than 7 Days</b><br><ol>'
                 for (let i = 0; i < between.length; i++) {
-                    info_msg += `<br>${i + 1 + '. ' + between[i].split('_').join(' ').toString()}`
+                    info_msg += `&nbsp&nbsp &nbsp<li>${ between[i].split('_').join(' ').toString()}</li>` //i + 1 + '. ' +
                 }
             }
             if (ct_flag) {
                 //console.log(`entered ct flag`)
-                info_msg += '<br>The following controls selected as Contains option is restricted by bank '
+                info_msg += '</ol>The following controls selected as <b>Contains option</b> is restricted by bank <ol>'
                 for (let i = 0; i < contains.length; i++) {
-                    info_msg += `<br>${i + 1 + '. ' + contains[i].split('_').join(' ').toString()}`
+                    info_msg += `&nbsp&nbsp &nbsp<li>${ contains[i].split('_').join(' ').toString()}</li>` //i + 1 + '. ' +
                 }
-                info_msg+=` <br> Please select other option.`
+                info_msg+=` </ol> Please select other option.`
             }
             if (eq_flag) {
                 //console.log(`entered eq flag`)
-                info_msg += `<br> The following controls selected as Not Equal to option is restricted by bank`
+                info_msg += `<br>The following controls selected as <b> Not Equal </b> to option is restricted by bank<ol>`
                 for (let i = 0; i < not_eqls.length; i++) {
-                    info_msg += `<br>${i + 1 + '. ' + not_eqls[i].split('_').join(' ').toString()}`
+                    info_msg += `&nbsp&nbsp &nbsp<li>${not_eqls[i].split('_').join(' ').toString()}</li>` //i + 1 + '. ' +
 
                 }
-                info_msg=`<br> Please select other option.`
+                info_msg+=`</ol>Please select other option`
             }
             if(empty_flag)
             {
-                info_msg += `<br> Date should not be Empty in following Controls` 
+                info_msg += `<br> Date should not be Empty in following Controls<ol>` 
                 for (let i = 0; i < empty.length; i++) {
-                    info_msg += `<br>${i + 1 + '. ' + empty[i].split('_').join(' ').toString()}`
+                    info_msg += `&nbsp&nbsp &nbsp<li>${ empty[i].split('_').join(' ').toString()}` //i + 1 + '. ' +
                 }
+                info_msg+=`</ol`
             }
             if (info_msg == '') {
                 
@@ -144,10 +146,10 @@ export class npss_c_cond_ctrl_validationService {
                 this.appHandler.callInternals(internals, screenInstance, "FAILURE")
             }
 
-        }
-        else {
+        //}
+        /* else {
             this.appHandler.callInternals(internals, screenInstance, "SUCCESS")
-        }
+        } */
     }
     getDays(ctrl_Scope: any) {
 

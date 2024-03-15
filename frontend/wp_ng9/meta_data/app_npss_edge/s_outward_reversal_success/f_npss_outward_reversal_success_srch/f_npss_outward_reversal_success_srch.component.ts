@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34760 
+Build ID        : 34785 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-15 11:18 AM 
+Modified Date   : 2024-Mar-15 12:17 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_reversal_success
@@ -134,7 +134,7 @@ focustoelement(){
 		this.ctrl.reversal_amount.label_name = "Reversal Amount"
 		this.ctrl.reversal_amount.df_code = "DF_1304_1665901396659"
 		this.ctrl.reversal_amount.df_description = "Column Group 1"
-		this.ctrl.reversal_amount.uictrl_code = "CDN_CTRL"
+		this.ctrl.reversal_amount.uictrl_code = "CDN_CUR_CTRL"
 		this.ctrl.reversal_amount.target_column = "REVERSAL_AMOUNT"
 		this.ctrl.reversal_amount.data_type = "NUMBER"
 		this.ctrl.reversal_amount.data_length = 19
@@ -441,7 +441,7 @@ focustoelement(){
 		this.ctrl.npss_outward_reversal_success_srch_channel_id.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.channel_id = {}
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.model = {"MEMORY63":"setcurrentdate(),{}","INTRBK_STTLM_AMNT":"","REVERSAL_AMOUNT":"","DBTR_IBAN":"","DBTR_ACCT_NO":"","PAYMENT_ENDTOEND_ID":"","UETR":"","MEMORY87":"","DEPARTMENT_CODE":"","CHANNEL_ID":""}
-		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.Meta = [{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"}]
+		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.Meta = [{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"REVERSAL_AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"}]
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_outward_reversal_success_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

@@ -102,7 +102,7 @@ export class npss_c_cond_ctrl_validationService {
                     info_msg += `<br>${i + 1 + '. ' + not_eqls[i].split('_').join(' ').toString()}`
 
                 }
-                info_msg=`<br> Please select other option.`
+                info_msg+=`<br> Please select other option.`
             }
             if (info_msg == '') {
                 

@@ -31,7 +31,7 @@ export class npss_c_cond_ctrl_validationService {
     fn_npss_c_cond_ctrl_validation(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
        // if (screenInstance.wftpa_description.includes('outward_transactions_details')) {
            // console.log(parent_source_id)
-            let comp_id = screenInstance[`comp_id`]|| 'search' 
+            let comp_id = this.getCompId(screenInstance) || screenInstance[`comp_id`]|| 'search' 
             let form_name: any = screenInstance[comp_id].form_name
             let ctrl_Scope = screenInstance[comp_id][form_name].model, contains: any = [], empty:any=[],not_eqls: any = [], between: any = [], bt_flag: any = false, ct_flag: any = false, eq_flag: any = false,empty_flag:any=false
             let cltr_Scope_obj = Object.keys(ctrl_Scope)
@@ -161,6 +161,20 @@ export class npss_c_cond_ctrl_validationService {
             Math.round
                 (time_Difference / (1000 * 3600 * 24));
         return Difference_In_Days
+    }
+    getCompId(screenInstance)
+    {
+        let search_keys:any=[]
+        search_keys= Object.keys(screenInstance).filter((val)=>
+        {
+            return val.toLowerCase().includes('search')
+        })
+        let index:any=search_keys.findIndex((val)=>
+        {
+            return screenInstance[val]?.current_view!=undefined || screenInstance[val]?.current_view!=null
+        })
+        
+        return search_keys[index].toString()
     }
     //Custom validation logics
     //Uncomment below lines when validation is required

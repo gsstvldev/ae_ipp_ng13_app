@@ -147,7 +147,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                                             sendResponse(error, null);
                                                                         } else {
-                                                       reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBody, objSessionLogInfo);
+                                                       reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseBody), objSessionLogInfo);
                                                                            
                                                                             objresponse.status = 'SUCCESS';
 

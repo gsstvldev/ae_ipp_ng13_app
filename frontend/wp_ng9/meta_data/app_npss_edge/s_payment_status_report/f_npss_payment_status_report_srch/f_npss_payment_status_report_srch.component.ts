@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34778 
+Build ID        : 34791 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-15 10:12 AM 
+Modified Date   : 2024-Mar-18 4:52 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_status_report
@@ -61,7 +61,7 @@ focustoelement(){
 		this.ctrl.timestamp.data_type = "DATETIME"
 		this.ctrl.timestamp.data_length = 0
 		this.ctrl.timestamp.zone_df_code = "DF_1304_1681973942147"
-		this.ctrl.timestamp.default_value = ""
+		this.ctrl.timestamp.default_value = "setcurrentdate(),{}"
 		this.ctrl.timestamp.is_memory_ctrl = ""
 		this.ctrl.timestamp.field_coordinates = ""
 		this.ctrl.timestamp.sub_details = ""
@@ -593,7 +593,7 @@ focustoelement(){
 		this.ctrl.originator_reference.ctrl_id = "npss_payment_status_report_srch_originator_reference"
 		this.ctrl.npss_payment_status_report_srch_originator_reference = {}
 		this.ctrl.npss_payment_status_report_srch_originator_reference.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_payment_status_report_srch.model = {"TIMESTAMP":"","MEMORY20":"setcurrentdate(),{}","SENDER":"","RECEIVER":"","BENEFICIARY":"","PAYER":"","AMOUNT":"","CURRENCY":"","PAYMENT_STATUS":"","SOURCE":"","SENDER_REF":"","SYSTEM_REF":"","BATCH_REF":"","ORIGINATOR_REFERENCE":""}
+		this.screen_instance[this.comp_id].f_npss_payment_status_report_srch.model = {"TIMESTAMP":"setcurrentdate(),{}","MEMORY20":"setcurrentdate(),{}","SENDER":"","RECEIVER":"","BENEFICIARY":"","PAYER":"","AMOUNT":"","CURRENCY":"","PAYMENT_STATUS":"","SOURCE":"","SENDER_REF":"","SYSTEM_REF":"","BATCH_REF":"","ORIGINATOR_REFERENCE":""}
 		this.screen_instance[this.comp_id].f_npss_payment_status_report_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"TIMESTAMP"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SENDER"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"RECEIVER"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"BENEFICIARY"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYER"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMOUNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CURRENCY"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_STATUS"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SOURCE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SENDER_REF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SYSTEM_REF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"BATCH_REF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ORIGINATOR_REFERENCE"}]
 		this.screen_instance[this.comp_id].f_npss_payment_status_report_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_payment_status_report_srch.dtt_code = "dtt_1304_1681973868376"

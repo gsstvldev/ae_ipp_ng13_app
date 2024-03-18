@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34784 
+Build ID        : 34791 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-15 11:48 AM 
+Modified Date   : 2024-Mar-18 4:52 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_inward_transactions_details
@@ -260,7 +260,7 @@ focustoelement(){
 		this.ctrl.value_date.data_type = "DATETIME"
 		this.ctrl.value_date.data_length = 0
 		this.ctrl.value_date.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.value_date.default_value = ""
+		this.ctrl.value_date.default_value = "setcurrentdate(),{}"
 		this.ctrl.value_date.is_memory_ctrl = ""
 		this.ctrl.value_date.field_coordinates = ""
 		this.ctrl.value_date.sub_details = ""
@@ -795,7 +795,7 @@ focustoelement(){
 		this.ctrl.npss_inward_transactions_details_report_srch_ext_purpose_code = {}
 		this.ctrl.npss_inward_transactions_details_report_srch_ext_purpose_code.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_inward_transactions_details_report_srch.ext_purpose_code = {}
-		this.screen_instance[this.comp_id].f_npss_inward_transactions_details_report_srch.model = {"MEMORY119":"","MEMORY75":"","DEPARTMENT_CODE":"","PROCESS_GROUP":"","MEMORY63":"setcurrentdate(),{}","VALUE_DATE":"","INTRBK_STTLM_AMNT":"","TRAN_REF_ID":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","CDTR_IBAN":"","CDTR_ACCT_NAME":"","MEMORY151":"","PAYMENT_ENDTOEND_ID":"","UETR":"","INWARD_FILE_NAME":"","MEMORY150":"","MEMORY148":"","EXT_PURPOSE_CODE":""}
+		this.screen_instance[this.comp_id].f_npss_inward_transactions_details_report_srch.model = {"MEMORY119":"","MEMORY75":"","DEPARTMENT_CODE":"","PROCESS_GROUP":"","MEMORY63":"setcurrentdate(),{}","VALUE_DATE":"setcurrentdate(),{}","INTRBK_STTLM_AMNT":"","TRAN_REF_ID":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","CDTR_IBAN":"","CDTR_ACCT_NAME":"","MEMORY151":"","PAYMENT_ENDTOEND_ID":"","UETR":"","INWARD_FILE_NAME":"","MEMORY150":"","MEMORY148":"","EXT_PURPOSE_CODE":""}
 		this.screen_instance[this.comp_id].f_npss_inward_transactions_details_report_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESS_GROUP"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"TRAN_REF_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"INWARD_FILE_NAME"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_CODE"}]
 		this.screen_instance[this.comp_id].f_npss_inward_transactions_details_report_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_inward_transactions_details_report_srch.dtt_code = "dtt_1304_1665901217208"

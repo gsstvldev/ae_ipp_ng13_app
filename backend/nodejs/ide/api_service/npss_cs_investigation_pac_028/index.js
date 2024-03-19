@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
     
     
+    
 
 
       /*   Created By :   Siva Harish
@@ -18,6 +19,7 @@ app.post('/', function(appRequest, appResponse, next) {
         Reason for change : Daseen 06-03-2023 Status change after api call success
          Reason for change : CHANGING 028 payload siva harish 22/03/2023
          Reason for change : CHANGING 028 process group 19/04/2023
+         Reason for change : handling process ,payment process mthd  for BCT 19/03/2024 by daseen WI 3598
        
       */
          var serviceName = 'NPSS Investigation Pac 028';
@@ -74,7 +76,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                }else if(arrresult[0].process_group == 'P2B'){
                                                                    payment_processing_method =  "P2B_SCT_INITITATION" 
                                                                    
-                                                               }else if(arrresult[0].process_group == 'IBAN'){
+                                                               }else if(arrresult[0].process_group == 'IBAN' || arrresult[0].process_group == 'BCT'){
                                                                    payment_processing_method = "AC_AC_IBAN" 
                                                                   
                                                                }else{
@@ -154,6 +156,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                      'content-type': 'application/json'
                                                  }
                                              };
+                                             if(arrresult[0].process_group == 'BCT'){
+                                                options.json.process='Investigation_pacs028_batch'
+                                             }
      
      
                                              reqInstanceHelper.PrintInfo(serviceName, '------------API JSON-------' + JSON.stringify(options), objSessionLogInfo);
@@ -268,6 +273,7 @@ app.post('/', function(appRequest, appResponse, next) {
      
      
    
+
 
 
 });

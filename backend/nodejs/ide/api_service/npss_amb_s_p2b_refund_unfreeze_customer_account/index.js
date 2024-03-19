@@ -10,8 +10,65 @@ app.post('/', function (appRequest, appResponse, next) {
 
     /*  Created By :Subramanian
     Created Date :22/12/2023
-    Modified By : 
+    Modified By : renga -0- takeapiurl  param_category from hardcode to scheduler params & processing_system change
+     Modified Date : 19-03-24
+
   
+
+sample params:
+
+     {
+    "PARAMS": {
+        "GetTranstatus": [
+            "P2B_PAYMENT_VERIFIED"
+        ],
+        "GetprocessName": [
+            "Verify Buyer IBAN",
+            "Verify Merchant IBAN"
+        ],
+        "topicName": "",
+        "url_param_category":"NPSS_CC_POSTING",
+        "postingrefnoprocess_name": "Create Cash Block",
+        "Getaddinfo": [
+            "P7I1",
+            "P7IN"
+        ],
+        "TCS_ELIGIBLE_STATUS": [
+            "OP_P2B_FUND_AUTHORIZED",
+            "OP_P2B_DELCASHBLOCK_SUCCESS"
+        ],
+        "TCS_PROCESS_NAME": [
+            "Create Booking with Cash Block",
+            "Delete Cash Block"
+        ],
+        "MWALLET_ELIGIBLE_STATUS": [
+            "OP_P2B_PAYMENT_INITIATED"
+        ],
+        "MWALLET_PROCESS_NAME": [
+            "sctInitiation"
+        ],
+        "MWALLET_ADDITIONAL_INFO": [
+            "P7I1",
+            "P7IN"
+        ],
+        "MWALLET_OTPROCESS_NAME": [
+            "Outward Credit Posting"
+        ],
+        "param_category": "P2B_SETUP",
+        "param_code": "UNFREEZE_TIMING_HOURS",
+        "TENANT_ID": "AEFAB",
+        "CREATED_BY": "2109",
+        "CREATED_BY_NAME": "AEXYZMMA",
+        "SYSTEM_ID": "452",
+        "SYSTEM_NAME": "Global Bank"
+    },
+    "PROCESS_INFO": {
+        "MODULE": "Registration",
+        "MENU_GROUP": "Corporate",
+        "MENU_ITEM": "Verify Registration",
+        "PROCESS_NAME": "Return"
+    }
+}
   
     }
     */
@@ -67,8 +124,8 @@ app.post('/', function (appRequest, appResponse, next) {
                                 console.log(utcMoment)
                                 var Formdate = utcMoment.subtract(arrTakehrs[0].param_detail, 'hours')
                                 Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss')
-                                var TakeTrnid = `select distinct npsstrrd_refno  from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info in ${Firstaddinfo} and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
-                                var Takedata = `select * from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info in ${Firstaddinfo} and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
+                                var TakeTrnid = `select distinct npsstrrd_refno  from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info not in ${Firstaddinfo} and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
+                                var Takedata = `select * from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info not in ${Firstaddinfo} and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
                                 ExecuteQuery1(Takedata, async function (arrData) {
                                     if (arrData.length > 0) {
                                         var updatetrn = await UpdateTran(TakeTrnid, PRCT_ID)
@@ -78,8 +135,6 @@ app.post('/', function (appRequest, appResponse, next) {
                                                 ExecuteQuery1(TakedataForiban, async function (ArrNpssdata) {
                                                     if (ArrNpssdata.length > 0) {
 
-
-
                                                         iban_json = JSON.parse(ArrNpssdata[0].req)
                                                         iban = iban_json["buyer"]["iban"]
                                                         arrprcssystem = await SplitIbanGtData(iban)
@@ -88,8 +143,10 @@ app.post('/', function (appRequest, appResponse, next) {
                                                             TCS_ELIGIBLE_STATUS = await Prepareparam(params.TCS_ELIGIBLE_STATUS)
                                                             TCS_PROCESS_NAME = await Prepareparam(params.TCS_PROCESS_NAME)
                                                             elQuery = `select * from npss_trn_process_log where status in ${TCS_ELIGIBLE_STATUS} and process_name in ${TCS_PROCESS_NAME} and npsstrrd_refno='${arrDataobj.npsstrrd_refno}'`
-                                                            param_category = 'TCS_MWALLET'
-                                                            arrprcssystem = (arrprcssystem == undefined) ? { processing_system: "TCS Bancs Core System" } : arrprcssystem
+                                                           // param_category = 'NPSS_TCS_MWALLET'
+                                                            processing_system = 'TCS'
+                                                            Insert_process_system = 'Bancs'
+                                                           // arrprcssystem = (arrprcssystem == undefined) ? { processing_system: "TCS Bancs Core System" } : arrprcssystem
                                                             virtual_iban = ''
                                                         }
                                                         else if (arrprcssystem.processing_system == "Mwallet Core System") {
@@ -97,24 +154,26 @@ app.post('/', function (appRequest, appResponse, next) {
                                                             MWALLET_PROCESS_NAME = await Prepareparam(params.MWALLET_PROCESS_NAME)
                                                             MWALLET_ADDITIONAL_INFO = await Prepareparam(params.MWALLET_ADDITIONAL_INFO)
                                                             MWALLET_OTPROCESS_NAME = await Prepareparam(params.MWALLET_OTPROCESS_NAME)
-                                                            param_category = 'TCS_MWALLET'
-                                                            elQuery = `select * from npss_trn_process_log where status in ${params.MWALLET_ELIGIBLE_STATUS.toString()} and process_name in ${params.MWALLET_PROCESS_NAME} and additional_info in ${MWALLET_ADDITIONAL_INFO} or process_name in ${MWALLET_OTPROCESS_NAME} and npsstrrd_refno='${arrDataobj.npsstrrd_refno}'`
+                                                           // param_category = 'NPSS_TCS_MWALLET'
+                                                            processing_system = 'WALLET'
+                                                            Insert_process_system = 'Mwallet'
+                                                            elQuery = `select * from npss_trn_process_log where ((status in ${MWALLET_ELIGIBLE_STATUS} and process_name in ${MWALLET_PROCESS_NAME}) or  (process_name in ${MWALLET_OTPROCESS_NAME})) and npsstrrd_refno='${arrDataobj.npsstrrd_refno}'`
                                                             virtual_iban = await getVirtualIban(arrDataobj.uetr) || ''
 
                                                         }
                                                         ExecuteQuery1(elQuery, (arrtcsormwallet) => {
                                                             if (arrtcsormwallet.length == 0) {
-                                                                var Takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='${param_category}' and param_code='URL' and need_sync = 'Y'`
+                                                                var Takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='${params.url_param_category}' and param_code='URL' and need_sync = 'Y'`
                                                                 ExecuteQuery1(Takeurl, async function (arrurl) {
                                                                     if (arrurl.length > 0) {
 
                                                                         /* let tcsormwallobj= await PrepareparamsforApiCall(arrDataobj,arrprcssystem.processing_system)
                                                                          var apicallresult = await TcsOrMWallapi(tcsormwallobj, arrurl) */
 
-                                                                        var apicallresult = await kafkaapi(arrDataobj, arrprcssystem.processing_system, arrurl, virtual_iban)
+                                                                        var apicallresult = await kafkaapi(arrDataobj,processing_system, arrurl, virtual_iban)
                                                                         if (apicallresult == 'SUCCESS') {
 
-                                                                            var insertlog = await ProcessInstData(arrDataobj, PRCT_ID, arrprcssystem.processing_system)
+                                                                            var insertlog = await ProcessInstData(arrDataobj, PRCT_ID, Insert_process_system)
                                                                             if (insertlog.length > 0) {
                                                                                 reqInstanceHelper.PrintInfo(serviceName, '----------API Success for uetr------' + arrDataobj.uetr, objSessionLogInfo);
                                                                                 nextobjctfunc()
@@ -193,7 +252,7 @@ app.post('/', function (appRequest, appResponse, next) {
                         }
 
                         //Function for insert in TrnProcess Log Table
-                        function ProcessInstData(arrfundauth, PRCT_ID, processing_system) {
+                        function ProcessInstData(arrfundauth, PRCT_ID, Insert_process_system) {
                             return new Promise((resolve, reject) => {
                                 var arrCusTranInst = [];
                                 var objCusTranInst = {};
@@ -203,7 +262,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                 objCusTranInst.UETR = arrfundauth.uetr;
                                 objCusTranInst.NPSSTRRD_REFNO = arrfundauth.npsstrrd_refno;
                                 objCusTranInst.PROCESS_NAME = 'Fund UNFREEZE Posting'
-                                objCusTranInst.PROCESSING_SYSTEM = processing_system;
+                                objCusTranInst.PROCESSING_SYSTEM = Insert_process_system;
                                 objCusTranInst.PROCESS_TYPE = arrfundauth.process_type;
                                 objCusTranInst.PROCESS_STATUS = 'RCTCancelled';
                                 objCusTranInst.STATUS = 'P2B_FUND_RES_CANCELLED';
@@ -239,6 +298,8 @@ app.post('/', function (appRequest, appResponse, next) {
                             })
 
                         }
+
+
                         function UpdateTran(arrTran, prct_id) {
                             return new Promise((resolve, reject) => {
                                 let UpdTrntbl = `update npss_trn_process_log set org_status = 'UNFREEZE_TAKEN', MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${prct_id}' where npsstrrd_refno in (${arrTran})`
@@ -250,7 +311,9 @@ app.post('/', function (appRequest, appResponse, next) {
                                     }
                                 })
                             })
-                        } function getVirtualIban(uetr) {
+                        }
+                        
+                        function getVirtualIban(uetr) {
                             return new Promise((resolve, reject) => {
                                 let logQry = `select virtual_iban from npss_trn_process_log where process_name = 'Inward Account Validation' and processing_system='MWallet' and uetr='${uetr}'`
                                 ExecuteQuery1(logQry, async function (arrlog) {
@@ -264,7 +327,7 @@ app.post('/', function (appRequest, appResponse, next) {
                             })
                         }
 
-                        function kafkaapi(arrpayverobj, process_name, arrurl, virtual_iban) {
+                        function kafkaapi(arrpayverobj, processing_system, arrurl, virtual_iban) {
                             var postrefno;
                             return new Promise((resolve, reject) => {
                                 var TakepostingRefno = `select process_ref_no from npss_trn_process_log where process_name='${params.postingrefnoprocess_name}' and uetr='${arrpayverobj.uetr}'`
@@ -327,7 +390,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                                                         data: {
                                                                             "payload": {
                                                                                 "cashBlockId": arrtakereqjson[0].npsstrrd_refno || '',
-                                                                                "processing_system": process_name,
+                                                                                "processing_system": processing_system,
                                                                                 "tran_ref_id": tran_ref_id || '',
                                                                                 "uetr": arrpayverobj.uetr || '',
                                                                                 "hdr_msg_id": '',

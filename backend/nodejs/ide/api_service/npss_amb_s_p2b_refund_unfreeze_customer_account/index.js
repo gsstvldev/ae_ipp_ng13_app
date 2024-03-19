@@ -8,7 +8,9 @@ var app = express.Router();
 app.post('/', function (appRequest, appResponse, next) {
 
 
-    /*  Created By :Subramanian
+    /* 
+    work item : 3279
+    Created By :Subramanian
     Created Date :22/12/2023
     Modified By : renga -0- takeapiurl  param_category from hardcode to scheduler params & processing_system change
      Modified Date : 19-03-24
@@ -124,8 +126,8 @@ sample params:
                                 console.log(utcMoment)
                                 var Formdate = utcMoment.subtract(arrTakehrs[0].param_detail, 'hours')
                                 Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss')
-                                var TakeTrnid = `select distinct npsstrrd_refno  from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info not in ${Firstaddinfo} and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
-                                var Takedata = `select * from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info not in ${Firstaddinfo} and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
+                                var TakeTrnid = `select distinct npsstrrd_refno  from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info in ${Firstaddinfo} and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
+                                var Takedata = `select * from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info in ${Firstaddinfo} and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
                                 ExecuteQuery1(Takedata, async function (arrData) {
                                     if (arrData.length > 0) {
                                         var updatetrn = await UpdateTran(TakeTrnid, PRCT_ID)

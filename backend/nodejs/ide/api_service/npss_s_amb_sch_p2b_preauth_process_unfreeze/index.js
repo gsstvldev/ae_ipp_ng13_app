@@ -6,14 +6,67 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function (appRequest, appResponse, next) {
+    /* 
+    work item :3280
+    Created By :Suresh
+  Created Date :22/12/2023
+  Modified By : suresh
+  created Date : 19-03-2024
+  reason : changing Some payload
 
-
-    /*  Created By :Suresh
-    Created Date :22/12/2023
-    Modified By : 
-
+sample
+  {
+    "PARAMS": {
+        "GetTranstatus": [
+            "P2B_PAYMENT_VERIFIED"
+        ],
+        "GetprocessName": [
+            "Verify Buyer IBAN",
+            "Verify Merchant IBAN"
+        ],
+        "topicName": "",
+        "postingrefnoprocess_name": "Create Cash Block",
+        "Getaddinfo": [
+            "BCT"
+        ],
+        "TCS_ELIGIBLE_STATUS": [
+            "OP_P2B_FUND_AUTHORIZED",
+            "OP_P2B_DELCASHBLOCK_SUCCESS"
+        ],
+        "TCS_PROCESS_NAME": [
+            "Create Booking with Cash Block",
+            "Delete Cash Block"
+        ],
+        "MWALLET_ELIGIBLE_STATUS": [
+            "OP_P2B_PAYMENT_INITIATED"
+        ],
+        "MWALLET_PROCESS_NAME": [
+            "sctInitiation"
+        ],
+        "MWALLET_ADDITIONAL_INFO": [
+            "P616"
+        ],
+        "MWALLET_OTPROCESS_NAME": [
+            "Outward Credit Posting"
+        ],
+        "url_param_category": "NPSS_CC_POSTING",
+        "param_category": "",
+        "param_code": "URL",
+        "TENANT_ID": "AEFAB",
+        "CREATED_BY": "2109",
+        "CREATED_BY_NAME": "AEXYZMMA",
+        "SYSTEM_ID": "452",
+        "SYSTEM_NAME": "Global Bank"
+    },
+    "PROCESS_INFO": {
+        "MODULE": "Registration",
+        "MENU_GROUP": "Corporate",
+        "MENU_ITEM": "Verify Registration",
+        "PROCESS_NAME": "Return"
     }
-    */
+}
+  }
+  */
     var serviceName = 'npss P2B Pre-Authorization';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
     var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
@@ -36,10 +89,8 @@ app.post('/', function (appRequest, appResponse, next) {
         'msg': ''
     }; // Response to Client
     // Assign function for loginformation and session info
-
     reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInformation) {
         try {
-
             objSessionLogInfo = objLogInfo; // Assing log information
             // Log Viewer Setup
             objSessionLogInfo.HANDLER_CODE = 'npss P2B Pre-Authorization';
@@ -57,7 +108,6 @@ app.post('/', function (appRequest, appResponse, next) {
                         /* var Secondstatus = await Prepareparam(params.CheckTranstatus)
                         var SecondprocessName = await Prepareparam(params.CheckprocessName)
                         var Secondaddinfo = await Prepareparam(params.checkaddinfo) */
-
                         var Takedays = `select param_detail from core_nc_system_setup where param_category = '${params.param_category}' and param_code = '${params.param_code}' and need_sync = 'Y'`
                         ExecuteQuery1(Takedays, function (arrTakedays) {
                             if (arrTakedays.length > 0) {
@@ -67,7 +117,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                 Formdate = moment(Formdate).format('YYYY-MM-DD HH:mm:ss');
                                 console.log(Formdate)
                                 var TakeTrnid = `select distinct npsstrrd_refno  from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info in ${Firstaddinfo} and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
-                                var Takedata = `select * from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info in ${Firstaddinfo} and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull)`
+                                var Takedata = `select * from npss_trn_process_log where status in ${QueryStatus} and process_name in ${QueryProcessName} and additional_info in ${Firstaddinfo} and created_date_utc < '${Formdate}' and (org_status <> ('UNFREEZE_TAKEN') or org_status isnull) `
                                 ExecuteQuery1(Takedata, async function (arrData) {
                                     if (arrData.length > 0) {
                                         var updatetrn = await UpdateTran(TakeTrnid, PRCT_ID)
@@ -84,8 +134,9 @@ app.post('/', function (appRequest, appResponse, next) {
                                                             TCS_ELIGIBLE_STATUS = await Prepareparam(params.TCS_ELIGIBLE_STATUS)
                                                             TCS_PROCESS_NAME = await Prepareparam(params.TCS_PROCESS_NAME)
                                                             elQuery = `select * from npss_trn_process_log where status in ${TCS_ELIGIBLE_STATUS} and process_name in ${TCS_PROCESS_NAME} and npsstrrd_refno='${arrDataobj.npsstrrd_refno}'`
-                                                            param_category = 'TCS_MWALLET'
-                                                            arrprcssystem = (arrprcssystem == undefined) ? { processing_system: "TCS Bancs Core System" } : arrprcssystem
+                                                            // param_category = 'TCS_MWALLET'
+                                                            processing_system = 'TCS'
+                                                            Insrt_process_system = 'Bancs'
                                                             virtual_iban = ''
                                                         }
                                                         else if (arrprcssystem.processing_system == "Mwallet Core System") {
@@ -93,19 +144,22 @@ app.post('/', function (appRequest, appResponse, next) {
                                                             MWALLET_PROCESS_NAME = await Prepareparam(params.MWALLET_PROCESS_NAME)
                                                             MWALLET_ADDITIONAL_INFO = await Prepareparam(params.MWALLET_ADDITIONAL_INFO)
                                                             MWALLET_OTPROCESS_NAME = await Prepareparam(params.MWALLET_OTPROCESS_NAME)
-                                                            param_category = 'TCS_MWALLET'
-                                                            elQuery = `select * from npss_trn_process_log where status in ${params.MWALLET_ELIGIBLE_STATUS.toString()} and process_name in ${params.MWALLET_PROCESS_NAME} and additional_info in ${MWALLET_ADDITIONAL_INFO} or process_name in ${MWALLET_OTPROCESS_NAME} and npsstrrd_refno='${arrDataobj.npsstrrd_refno}'`
+                                                            // param_category = 'TCS_MWALLET'
+                                                            processing_system = 'WALLET'
+                                                            Insrt_process_system = 'Mwallet'
+                                                            //elQuery = `select * from npss_trn_process_log where status in ${params.MWALLET_ELIGIBLE_STATUS.toString()} and process_name in ${params.MWALLET_PROCESS_NAME} and additional_info in ${MWALLET_ADDITIONAL_INFO} or process_name in ${MWALLET_OTPROCESS_NAME} and npsstrrd_refno='${arrDataobj.npsstrrd_refno}'`
+                                                            elQuery = `select * from npss_trn_process_log where ( (status in ${MWALLET_ELIGIBLE_STATUS}) and (process_name in ${MWALLET_PROCESS_NAME}) and (additional_info in ${MWALLET_ADDITIONAL_INFO})) or ( process_name in ${MWALLET_OTPROCESS_NAME}) and npsstrrd_refno='${arrDataobj.npsstrrd_refno}'`
                                                             virtual_iban = await getVirtualIban(arrDataobj.uetr) || ''
-
                                                         }
                                                         ExecuteQuery1(elQuery, (arrtcsormwallet) => {
                                                             if (arrtcsormwallet.length == 0) {
-                                                                var Takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='${param_category}' and param_code='URL' and need_sync = 'Y'`
+                                                                //  var Takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='${param_category}' and param_code='URL' and need_sync = 'Y'`
+                                                                var Takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='${params.url_param_category}' and param_code='URL' and need_sync = 'Y'`
                                                                 ExecuteQuery1(Takeurl, async function (arrurl) {
                                                                     if (arrurl.length > 0) {
-                                                                        var apicallresult = await kafkaapi(arrDataobj, arrprcssystem.processing_system, arrurl, virtual_iban)
+                                                                        var apicallresult = await kafkaapi(arrDataobj, processing_system, arrurl, virtual_iban)
                                                                         if (apicallresult == 'SUCCESS') {
-                                                                            var insertlog = await ProcessInstData(arrDataobj, PRCT_ID, arrprcssystem.processing_system)
+                                                                            var insertlog = await ProcessInstData(arrDataobj, PRCT_ID, Insrt_process_system)
                                                                             if (insertlog.length > 0) {
                                                                                 reqInstanceHelper.PrintInfo(serviceName, '----------API Success for uetr------' + arrDataobj.uetr, objSessionLogInfo);
                                                                                 nextobjctfunc()
@@ -113,26 +167,20 @@ app.post('/', function (appRequest, appResponse, next) {
                                                                                 reqInstanceHelper.PrintInfo(serviceName, '----------API Success for uetr-Insert fail in logtable------' + arrDataobj.uetr, objSessionLogInfo);
                                                                                 nextobjctfunc()
                                                                             }
-
                                                                         } else {
                                                                             reqInstanceHelper.PrintInfo(serviceName, '----------API Failure for uetr------' + arrDataobj.uetr, objSessionLogInfo);
                                                                             nextobjctfunc()
                                                                         }
-
                                                                     } else {
                                                                         reqInstanceHelper.PrintInfo(serviceName, '----------API Url not found------', objSessionLogInfo);
                                                                         nextobjctfunc()
                                                                     }
-
                                                                 })
-
-
                                                             }
                                                             else {
                                                                 reqInstanceHelper.PrintInfo(serviceName, '------------Not eligible uetr-------' + arrDataobj.uetr, objSessionLogInfo);
                                                                 nextobjctfunc()
                                                             }
-
                                                         })
                                                     }
                                                     else {
@@ -140,8 +188,6 @@ app.post('/', function (appRequest, appResponse, next) {
                                                         nextobjctfunc()
                                                     }
                                                 })
-
-
                                             }, function () {
                                                 objresponse.status = 'SUCCESS';
                                                 sendResponse(null, objresponse)
@@ -149,7 +195,6 @@ app.post('/', function (appRequest, appResponse, next) {
 
                                             //})
                                         }
-
                                         else {
                                             reqInstanceHelper.PrintInfo(serviceName, '------------Update failed in Tran Process log Table-------', objSessionLogInfo);
                                             objresponse.status = 'FAILURE';
@@ -159,7 +204,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                     } else {
                                         reqInstanceHelper.PrintInfo(serviceName, '------------No Data in Tran Porcess log Table-------', objSessionLogInfo);
                                         objresponse.status = 'FAILURE';
-                                        objresponse.msg = 'No date  found in core_nc_system_setup Table';
+                                        objresponse.msg = 'No Time details found in core_nc_system_setup Table';
                                         sendResponse(null, objresponse)
                                     }
                                 })
@@ -171,7 +216,6 @@ app.post('/', function (appRequest, appResponse, next) {
                                 sendResponse(null, objresponse)
                             }
                         })
-
                         function SplitIbanGtData(iban) {
                             return new Promise((resolve, reject) => {
                                 iban_range = iban.substring(7, 16)
@@ -179,12 +223,10 @@ app.post('/', function (appRequest, appResponse, next) {
                                 ExecuteQuery1(TakeIban, (arrIbanData) => {
                                     resolve(arrIbanData[0])
                                 })
-
                             })
                         }
-
                         //Function for insert in TrnProcess Log Table
-                        function ProcessInstData(arrfundauth, PRCT_ID, processing_system) {
+                        function ProcessInstData(arrfundauth, PRCT_ID, Insrt_process_system) {
                             return new Promise((resolve, reject) => {
                                 var arrCusTranInst = [];
                                 var objCusTranInst = {};
@@ -194,7 +236,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                 objCusTranInst.UETR = arrfundauth.uetr;
                                 objCusTranInst.NPSSTRRD_REFNO = arrfundauth.npsstrrd_refno;
                                 objCusTranInst.PROCESS_NAME = 'Fund UNFREEZE Posting'
-                                objCusTranInst.PROCESSING_SYSTEM = processing_system;
+                                objCusTranInst.PROCESSING_SYSTEM = Insrt_process_system;
                                 objCusTranInst.PROCESS_TYPE = arrfundauth.process_type;
                                 objCusTranInst.PROCESS_STATUS = 'RCTCancelled';
                                 objCusTranInst.STATUS = 'P2B_FUND_RES_CANCELLED';
@@ -222,7 +264,6 @@ app.post('/', function (appRequest, appResponse, next) {
                                 objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                 objCusTranInst.routingkey = headers.routingkey;
                                 arrCusTranInst.push(objCusTranInst)
-
                                 _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(logInsertRes) {
                                     resolve(logInsertRes)
 
@@ -255,7 +296,7 @@ app.post('/', function (appRequest, appResponse, next) {
                             })
                         }
 
-                        function kafkaapi(arrpayverobj, process_name, arrurl, virtual_iban) {
+                        function kafkaapi(arrpayverobj, processing_system, arrurl, virtual_iban) {
                             var postrefno;
                             return new Promise((resolve, reject) => {
                                 var TakepostingRefno = `select process_ref_no from npss_trn_process_log where process_name='${params.postingrefnoprocess_name}' and uetr='${arrpayverobj.uetr}'`
@@ -290,20 +331,20 @@ app.post('/', function (appRequest, appResponse, next) {
                                                     TranTypecode = JsonData['transactionType'] || ''
                                                     npssrefno = JsonData['refTransactionId'] || ''
                                                     reson = JsonData['reason']
-                                                    // var takeacctinfo = `select account_number,customer_mobile_number, countryofbirth country_of_birth,	company_code,inactive_marker,currency,alternate_account_type,alternate_account_id, account_officer,curr_rate_segment,customer_id,national_id  from  core_nc_cbs_accounts where alternate_account_id ='${cdtr_iban}'`
-                                                    // ExecuteQuery1(takeacctinfo, function (arrtakeacctinfo) {
-                                                    //     if (arrtakeacctinfo.length > 0) {
-                                                           // var seldetqry = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrtakeacctinfo[0].customer_id}'`
-                                                           // ExecuteQuery1(seldetqry, function (arrselldet) {
-                                                                // var sell_margin
-                                                                // var sell_rate
-                                                                // if (arrselldet.length == 0) {
-                                                                //     sell_margin = ''
-                                                                //     sell_rate = ''
-                                                                // } else {
-                                                                //     sell_margin = arrselldet[0].sell_margin
-                                                                //     sell_rate = arrselldet[0].sell_rate
-                                                                // }
+                                                    var takeacctinfo = `select account_number,customer_mobile_number, countryofbirth country_of_birth,	company_code,inactive_marker,currency,alternate_account_type,alternate_account_id, account_officer,curr_rate_segment,customer_id,national_id  from  core_nc_cbs_accounts where alternate_account_id ='${cdtr_iban}'`
+                                                    ExecuteQuery1(takeacctinfo, function (arrtakeacctinfo) {
+                                                        if (arrtakeacctinfo.length > 0) {
+                                                            var seldetqry = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrtakeacctinfo[0].customer_id}'`
+                                                            ExecuteQuery1(seldetqry, function (arrselldet) {
+                                                                var sell_margin
+                                                                var sell_rate
+                                                                if (arrselldet.length == 0) {
+                                                                    sell_margin = ''
+                                                                    sell_rate = ''
+                                                                } else {
+                                                                    sell_margin = arrselldet[0].sell_margin
+                                                                    sell_rate = arrselldet[0].sell_rate
+                                                                }
                                                                 var takebiccode = `SELECT bic_code as recipient_bic_code FROM core_member_banks WHERE bank_code ='${Bankcode}'`
                                                                 ExecuteQuery1(takebiccode, function (arrtakebiccode) {
                                                                     if (arrtakebiccode.length > 0) {
@@ -318,7 +359,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                                                                     data: {
                                                                                         "payload": {
                                                                                             "cashBlockId": arrtakereqjson[0].npsstrrd_refno || '',
-                                                                                            "processing_system": process_name,
+                                                                                            "processing_system": processing_system,
                                                                                             "tran_ref_id": tran_ref_id || '',
                                                                                             "uetr": arrpayverobj.uetr || '',
                                                                                             "hdr_msg_id": '',
@@ -331,7 +372,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                                                                             "hdr_total_amount": amount || '',
                                                                                             "intrbk_sttlm_cur": currency || '',
                                                                                             "dbtr_iban": dbtr_iban || '',
-                                                                                            //"customer_mobile_number": arrtakeacctinfo[0].customer_mobile_number || '',
+                                                                                            "customer_mobile_number": arrtakeacctinfo[0].customer_mobile_number || '',
                                                                                             "dbtr_acct_name": dbtr_acct_name || '',
                                                                                             "dr_sort_code": '',
                                                                                             "cdtr_iban": cdtr_iban || '',
@@ -343,7 +384,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                                                                             "process_type": "UNFREEZE",
                                                                                             "payment_processing_method": "P2B_SCT_INITITATION",
                                                                                             "extIdentifier": tran_ref_id || '',
-            
+                                                                                            "process_type": "UNFREEZE",
                                                                                             "value_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),
                                                                                             "hdr_created_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),
                                                                                             "dbtr_prvt_id": '',
@@ -364,30 +405,29 @@ app.post('/', function (appRequest, appResponse, next) {
                                                                                             "category_purpose": "IPP",
                                                                                             "posting_ref_no": postrefno,
                                                                                             "remittance_information": reson || '',
-            
+                                                                                            "status": '',
                                                                                             "source": "IBAN",
                                                                                             "sourceRef": dbtr_iban || '',
                                                                                             "sourceNote": reson || '',
                                                                                             "npsstrrd_refno": npssrefno || '',
                                                                                             "AccountInformation": {
-                                                                                                "account_number": '',
-                                                                                                "company_code": '',
-                                                                                                "inactive_marker": '',
-                                                                                                "currency": '',
-                                                                                                "alternate_account_type": '',
-                                                                                                "alternate_account_id": '',
-                                                                                                "account_officer": '',
-                                                                                                "curr_rate_segment": '',
-                                                                                                "customer_id": '',
+                                                                                                "account_number": arrtakeacctinfo[0].account_number || '',
+                                                                                                "company_code": arrtakeacctinfo[0].company_code || '',
+                                                                                                "inactive_marker": arrtakeacctinfo[0].inactive_marker || '',
+                                                                                                "currency": arrtakeacctinfo[0].currency || '',
+                                                                                                "alternate_account_type": arrtakeacctinfo[0].alternate_account_type || '',
+                                                                                                "alternate_account_id": arrtakeacctinfo[0].alternate_account_id || '',
+                                                                                                "account_officer": arrtakeacctinfo[0].account_officer || '',
+                                                                                                "curr_rate_segment": arrtakeacctinfo[0].curr_rate_segment || '',
+                                                                                                "customer_id": arrtakeacctinfo[0].customer_id || '',
                                                                                                 "department_code": '',
                                                                                                 "tran_type_code": arrtakereqjson[0].tran_type_code || '',
                                                                                                 "recipient_bic_code": arrtakebiccode.biccode || '',
                                                                                                 "birth_date": '',
-                                                                                                "country_of_birth": '',
-                                                                                                "national_id": '',
-                                                                                                // "sell_margin": sell_margin || '',
-                                                                                                // "sell_rate": sell_rate || '',
-            
+                                                                                                "country_of_birth": arrtakeacctinfo[0].country_of_birth || '',
+                                                                                                "national_id": arrtakeacctinfo[0].account_number || '',
+                                                                                                "sell_margin": sell_margin || '',
+                                                                                                "sell_rate": sell_rate || '',
                                                                                             }
                                                                                         }
                                                                                     }
@@ -397,12 +437,9 @@ app.post('/', function (appRequest, appResponse, next) {
                                                                                 }
 
                                                                             }
-
                                                                             var PrintInfo = {}
                                                                             PrintInfo.url = arrurl[0].param_detail
                                                                             PrintInfo.uetr = arrpayverobj.uetr || ''
-
-
                                                                             reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                                                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                                                                 if (error) {
@@ -428,20 +465,13 @@ app.post('/', function (appRequest, appResponse, next) {
                                                                         reqInstanceHelper.PrintInfo(serviceName, '------------Bankcode not found for uetr-------' + arrpayverobj.uetr, objSessionLogInfo);
                                                                         resolve('FAILURE')
                                                                     }
-
                                                                 })
-
-
-
-                                                            // })
-                                                    //     } else {
-                                                    //         reqInstanceHelper.PrintInfo(serviceName, '------------Account Information Not Found-------' + arrpayverobj.uetr, objSessionLogInfo);
-                                                    //         resolve('FAILURE')
-                                                    //     }
-
-
-                                                    // })
-
+                                                            })
+                                                        } else {
+                                                            reqInstanceHelper.PrintInfo(serviceName, '------------Account Information Not Found-------' + arrpayverobj.uetr, objSessionLogInfo);
+                                                            resolve('FAILURE')
+                                                        }
+                                                    })
 
                                                 } else {
                                                     reqInstanceHelper.PrintInfo(serviceName, '------------Request JSON not found for uetr-------' + arrpayverobj.uetr, objSessionLogInfo);
@@ -462,9 +492,6 @@ app.post('/', function (appRequest, appResponse, next) {
 
                             })
                         }
-
-
-
                         function Prepareparam(parameter) {
                             return new Promise((resolve, reject) => {
                                 var arrdata
@@ -571,10 +598,6 @@ app.post('/', function (appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
-
-
-
-
 });
 
 module.exports = app;

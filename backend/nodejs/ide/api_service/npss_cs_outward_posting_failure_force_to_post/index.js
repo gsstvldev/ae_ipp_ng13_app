@@ -11,6 +11,7 @@ app.post('/', function(appRequest, appResponse, next) {
     
     
     
+    
 
     try {
         /*   Created By : Siva Harish
@@ -20,6 +21,7 @@ app.post('/', function(appRequest, appResponse, next) {
        Reason for : Changing Return code query 13/04/2023
        Reason for : Adding Insert Query for Maker 18/04/2023
        Reason : Handling for BCT change status by daseen on 06/03/2024 
+       Reason : Update force to post =Y for maker in transaction,msg insrt as 0 in log if not present in given tran on 19/03/2024 WI 3512
          
        
         */
@@ -161,7 +163,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         var arrCusTranInst = [];
                         for (let i = 0; i < arrTranparams.length; i++) {
                             var objCusTranInst = {}
-                            objCusTranInst.MSG_ID = arrTranparams[i].hdr_msg_id||'0';
+                            objCusTranInst.MSG_ID = arrTranparams[i].hdr_msg_id?arrTranparams[i].hdr_msg_id:'0';
                             objCusTranInst.PRCT_ID = PRCT_ID;
                             objCusTranInst.UETR = arrTranparams[i].uetr;
                             objCusTranInst.NPSSTRRD_REFNO = arrTranparams[i].tran_ref_id;
@@ -680,7 +682,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     function UpdateTrn(TempTranID, final_process_status, final_status, PRCT_ID,take_api_params) {
                        var UpdateTrnTbl
                         if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
-                            UpdateTrnTbl = `update npss_transactions set  maker = '${params.CREATED_BY_NAME}',status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
+                            UpdateTrnTbl = `update npss_transactions set  maker = '${params.CREATED_BY_NAME}',status='${final_status}',force_post_flag='Y',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
                         }else{
                             UpdateTrnTbl = `update npss_transactions set  checker = '${params.CREATED_BY_NAME}',status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
                         }
@@ -691,7 +693,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         var arrCusTranInst = [];
                                         for (let i = 0; i < arrTranparams.length; i++) {
                                             var objCusTranInst = {}
-                                            objCusTranInst.MSG_ID = arrTranparams[i].hdr_msg_id;
+                                            objCusTranInst.MSG_ID = arrTranparams[i].hdr_msg_id?arrTranparams[i].hdr_msg_id:'0';
                                             objCusTranInst.PRCT_ID = PRCT_ID;
                                             objCusTranInst.UETR = arrTranparams[i].uetr;
                                             objCusTranInst.NPSSTRRD_REFNO = arrTranparams[i].tran_ref_id;
@@ -925,6 +927,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

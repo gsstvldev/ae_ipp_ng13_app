@@ -27,11 +27,12 @@ sample payload
             "Verify Merchant IBAN"
         ],
         "topicName": "",
-        "url_oparam_category":"NPSS_CC_POSTING",
+        "url_param_category":"NPSS_CC_POSTING",
         "postingrefnoprocess_name": "Create Cash Block",
         "Getaddinfo": [
             "P7I1",
-            "P7IN"
+            "P7IN",
+            "P616"
         ],
         "TCS_ELIGIBLE_STATUS": [
             "OP_P2B_FUND_AUTHORIZED",
@@ -70,7 +71,7 @@ sample payload
         "PROCESS_NAME": "Return"
     }
 }
-    }
+    
     */
     var serviceName = 'npss_s_amb_refund_unfreeze_customer_account';
 
@@ -142,7 +143,7 @@ sample payload
                                                     iban=iban_json["buyer"]["iban"]
                                                     arrprcssystem = await SplitIbanGtData(iban)
                                                     var elQuery = ``,virtual_iban
-                                                    if (arrprcssystem==undefined || arrprcssystem.processing_system== "TCS Bancs Core System") {
+                                                    if (arrprcssystem==undefined || arrprcssystem.processing_system.toLowerCase().startsWith('tcs')) {
                                                         TCS_ELIGIBLE_STATUS= await Prepareparam(params.TCS_ELIGIBLE_STATUS)
                                                         TCS_PROCESS_NAME=await Prepareparam(params.TCS_PROCESS_NAME)
                                                         elQuery = `select * from npss_trn_process_log where status in ${TCS_ELIGIBLE_STATUS} and process_name in ${TCS_PROCESS_NAME} and npsstrrd_refno='${arrDataobj.npsstrrd_refno}'`
@@ -152,7 +153,7 @@ sample payload
                                                        Insert_process_system = 'Bancs'
                                                         virtual_iban=''
                                                     }
-                                                    else if (arrprcssystem.processing_system == "Mwallet Core System") {
+                                                    else if (arrprcssystem.processing_system.toLowerCase().startsWith('mwallet')) {
                                                         MWALLET_ELIGIBLE_STATUS= await Prepareparam(params.MWALLET_ELIGIBLE_STATUS)
                                                         MWALLET_PROCESS_NAME=await Prepareparam(params.MWALLET_PROCESS_NAME)
                                                         MWALLET_ADDITIONAL_INFO=await Prepareparam(params.MWALLET_ADDITIONAL_INFO)

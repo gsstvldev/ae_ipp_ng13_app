@@ -28,7 +28,7 @@ sample payload
         ],
         "topicName": "",
         "url_param_category":"NPSS_CC_POSTING",
-        "postingrefnoprocess_name": "Create Cash Block",
+        "postingrefnoprocess_name": "",
         "Getaddinfo": [
             "P7I1",
             "P7IN",
@@ -334,7 +334,7 @@ sample payload
                                 ExecuteQuery1(TakepostingRefno, function (arrpostrefno) {
                                     if (arrpostrefno.length > 0) {
                                         postrefno = arrpostrefno[0].process_ref_no ? arrpostrefno[0].process_ref_no : ''
-                                        var takereqjson = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,npsstrrd_refno,msg_id, additional_info as tran_type_code  from npss_trn_process_log where uetr='${arrpayverobj.uetr}'`
+                                        var takereqjson = `select npsstpl_id,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY) as request_data_json,npsstrrd_refno,msg_id, additional_info as tran_type_code  from npss_trn_process_log where  process_name in ${QueryProcessName} and uetr='${arrpayverobj.uetr}'`
                                         ExecuteQuery1(takereqjson, function (arrtakereqjson) {
                                             if (arrtakereqjson.length > 0) {
                                                 var JsonData
@@ -352,11 +352,11 @@ sample payload
                                                 if (arrtakereqjson[0].request_data_json != null) {
                                                     JsonData = JSON.parse(arrtakereqjson[0].request_data_json)
                                                     Bankcode = JsonData['merchant']['bankCode'] || ''
-                                                    cdtr_iban = JsonData['merchant']['IBAN'] || ''
+                                                    cdtr_iban = JsonData['merchant']['iban'] || ''
                                                     tran_ref_id = JsonData['transactionId'] || ''
                                                     amount = JsonData['amount']["requested"] || ''
                                                     currency = JsonData['amount']['currency'] || ''
-                                                    dbtr_iban = JsonData['buyer']['IBAN'] || ''
+                                                    dbtr_iban = JsonData['buyer']['iban'] || ''
                                                     dbtr_acct_name = JsonData['buyer']['name'] || ''
                                                     cdtr_acct_name = JsonData['merchant']['merchantName'] || ''
                                                     TranTypecode = JsonData['transactionType'] || ''

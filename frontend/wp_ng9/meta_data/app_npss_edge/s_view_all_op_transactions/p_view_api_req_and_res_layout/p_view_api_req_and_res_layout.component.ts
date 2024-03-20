@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34815 
+Build ID        : 34825 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-19 10:30 AM 
+Modified Date   : 2024-Mar-20 4:45 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_transactions

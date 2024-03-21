@@ -12,8 +12,11 @@ app.post('/', function(appRequest, appResponse, next) {
       Modified By : Siva Harish
     Modified Date :25/04/2023 
     Reason for : 
-    * 
+       Modified By : Suresh
+    Modified Date :21/03/2024 
+    Reason for : new insert NPSS_TRN_PROCESS_LOG
     */
+    var uuid = require('uuid');
     var serviceName = ' NPSS (CS) Maker Close'; //service name 
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
     var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
@@ -27,7 +30,6 @@ app.post('/', function(appRequest, appResponse, next) {
     var headers = appRequest.headers; // header details 
     // headers["session-id"] = "STATIC-SESSION-KEEQB-4";
     console.log("headers after adding session id ========>", headers);
-
     var objSessionLogInfo = null; // set value is null
     var mTranConn = "";
     var request = require('request');
@@ -64,24 +66,34 @@ app.post('/', function(appRequest, appResponse, next) {
                             arrTranID = [params.Tran_id.toString()];
                         }
                         TempTranID = '(' + "'" + arrTranID.toString().split(',').join("','") + "'" + ')';
-                       // TempTranID = '('  + arrTranID.toString().split(',').join("','")  + ')';
+                        // TempTranID = '('  + arrTranID.toString().split(',').join("','")  + ')';
                         ExecuteQuery1(take_status, function (arrSts) {
                             if (arrSts.length) {
                                 success_status = arrSts[0].success_status;
                                 success_process_status = arrSts[0].success_process_status;
+                                msg_id =uuid.v1()
                                 if (params.Tran_id) {
                                     var uptTrnqry
                                     if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
                                         uptTrnqry = `update npss_transactions set maker = '${params.CREATED_BY_NAME}',status='${success_status}',process_status='${success_process_status}',remarks = '${params.remarks}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id in` + TempTranID;
-                                    }else{
+                                    } else {
                                         uptTrnqry = `update npss_transactions set checker = '${params.CREATED_BY_NAME}',status='${success_status}',process_status='${success_process_status}',remarks = '${params.remarks}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id in` + TempTranID;
                                     }
-                                    
-                                    ExecuteQuery(uptTrnqry, function (trnRes) {
+                                    ExecuteQuery(uptTrnqry, async function (trnRes) {
                                         if (trnRes == "SUCCESS") {
-
-                                            objresponse.status = 'SUCCESS';
-                                            sendResponse(null, objresponse);
+                                            //objresponse.status = 'SUCCESS';
+                                            //sendResponse(null, objresponse);
+                                            var insertlog = await ProcessInstData(success_status, success_process_status,msg_id)
+                                            if (insertlog.length > 0) {
+                                                objresponse.data = 'SUCCESS';
+                                                objresponse.status = 'SUCCESS';
+                                                sendResponse(null, objresponse);
+                                            }
+                                            else {
+                                                objresponse.data = 'FAILURE';
+                                                objresponse.status = ' Error in NPSS_TRN_PROCESS_LOG Table insert';
+                                                sendResponse(null, objresponse);
+                                            }
                                         }
                                         else {
                                             objresponse.status = 'Error in Transaction  Table update';
@@ -120,7 +132,44 @@ app.post('/', function(appRequest, appResponse, next) {
                                 }
                             });
                         }
-
+                        function ProcessInstData(success_status, success_process_status,msg_id) {
+                            return new Promise((resolve, reject) => {
+                                var arrCusTranInst = [];
+                                var objCusTranInst = {};
+                                objCusTranInst.MSG_ID = msg_id;
+                                objCusTranInst.PRCT_ID = PRCT_ID;
+                                objCusTranInst.PROCESS_TIME = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                objCusTranInst.PROCESS_NAME = ''
+                                objCusTranInst.PROCESS_STATUS = success_process_status;
+                                objCusTranInst.STATUS = success_status;
+                                objCusTranInst.TENANT_ID = params.TENANT_ID;
+                                objCusTranInst.APP_ID = params.APP_ID
+                                objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
+                                objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
+                                objCusTranInst.DT_DESCRIPTION = ''
+                                objCusTranInst.DTT_DESCRIPTION = ''
+                                objCusTranInst.CREATED_BY = params.CREATED_BY;
+                                objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                objCusTranInst.MODIFIED_BY = "";
+                                objCusTranInst.MODIFIED_BY_NAME = "";
+                                objCusTranInst.MODIFIED_DATE = null;
+                                objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
+                                objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
+                                objCusTranInst.CREATED_BY_STS_ID = "";
+                                objCusTranInst.MODIFIED_BY_STS_ID = "";
+                                objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
+                                objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
+                                objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                objCusTranInst.routingkey = headers.routingkey;
+                                arrCusTranInst.push(objCusTranInst)
+                                _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(logInsertRes) {
+                                    resolve(logInsertRes)
+                                })
+                            })
+                        }
                         //fucntion to execute select query
                         function ExecuteQuery1(query, callback) {
                             reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
@@ -141,8 +190,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                 }
                             });
                         }
-
-
                     } catch (error) {
                         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10003', 'ERROR IN DB CONNECTION FUNCTION', error);
                     }
@@ -163,6 +210,30 @@ app.post('/', function(appRequest, appResponse, next) {
                         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
                     }
                 }
+                function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
+                    try {
+                        reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
+                            try {
+                                if (error) {
+                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
+                                    sendResponse(error)
+                                } else {
+                                    if (result.length > 0) {
+                                        callbackInsert(result);
+                                    } else {
+                                        callbackInsert([]);
+                                    }
+                                }
+                            } catch (error) {
+                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
+                                sendResponse(error)
+                            }
+                        });
+                    } catch (error) {
+                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
+                        sendResponse(error)
+                    }
+                }
 
             });
         } catch (error) {
@@ -170,7 +241,6 @@ app.post('/', function(appRequest, appResponse, next) {
         }
 
     })
-
 
 
 });

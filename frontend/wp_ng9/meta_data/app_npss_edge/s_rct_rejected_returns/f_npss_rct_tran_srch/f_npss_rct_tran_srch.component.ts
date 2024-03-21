@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34784 
+Build ID        : 34839 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-15 11:47 AM 
+Modified Date   : 2024-Mar-21 7:23 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_rejected_returns
@@ -437,8 +437,47 @@ focustoelement(){
 		this.ctrl.processing_system.ctrl_id = "npss_rct_tran_srch_processing_system"
 		this.ctrl.npss_rct_tran_srch_processing_system = {}
 		this.ctrl.npss_rct_tran_srch_processing_system.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_rct_tran_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","CDTR_ACCT_NAME":"","DBTR_IBAN":"","UETR":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","PROCESSING_SYSTEM":""}
-		this.screen_instance[this.comp_id].f_npss_rct_tran_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"}]
+	
+		//Properties of intrbk_sttlm_amnt
+		this.ctrl.intrbk_sttlm_amnt = {}
+		this.ctrl.intrbk_sttlm_amnt.id = "RN51CN11"
+		this.ctrl.intrbk_sttlm_amnt.desc = "Transaction Amount"
+		this.ctrl.intrbk_sttlm_amnt.visible = false
+		this.ctrl.intrbk_sttlm_amnt.label_name = "Transaction Amount"
+		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
+		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
+		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CDN_CUR_CTRL"
+		this.ctrl.intrbk_sttlm_amnt.target_column = "INTRBK_STTLM_AMNT"
+		this.ctrl.intrbk_sttlm_amnt.data_type = "NUMBER"
+		this.ctrl.intrbk_sttlm_amnt.data_length = 19
+		this.ctrl.intrbk_sttlm_amnt.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.intrbk_sttlm_amnt.default_value = ""
+		this.ctrl.intrbk_sttlm_amnt.is_memory_ctrl = ""
+		this.ctrl.intrbk_sttlm_amnt.field_coordinates = ""
+		this.ctrl.intrbk_sttlm_amnt.sub_details = ""
+		this.ctrl.intrbk_sttlm_amnt.accept_char = ""
+		this.ctrl.intrbk_sttlm_amnt.currency_format = ""
+		this.ctrl.intrbk_sttlm_amnt.data_scale = "2"
+		this.ctrl.intrbk_sttlm_amnt.binding_name = "INTRBK_STTLM_AMNT"
+		this.ctrl.intrbk_sttlm_amnt.hide_label = false
+		this.ctrl.intrbk_sttlm_amnt.depends_on = ""
+		this.ctrl.intrbk_sttlm_amnt.placeholder = ""
+		this.ctrl.intrbk_sttlm_amnt.dynamic_param = ""
+		this.ctrl.intrbk_sttlm_amnt.style_code = ""
+		this.ctrl.intrbk_sttlm_amnt.data_source = ""
+		this.ctrl.intrbk_sttlm_amnt.image_association = ""
+		this.ctrl.intrbk_sttlm_amnt.show = true
+		this.ctrl.intrbk_sttlm_amnt.sub_content = ""
+		this.ctrl.intrbk_sttlm_amnt.required = false
+		this.ctrl.intrbk_sttlm_amnt.vld_rules = []
+		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
+		this.ctrl.intrbk_sttlm_amnt.disabled = false
+		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_rct_tran_srch"
+		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_rct_tran_srch_intrbk_sttlm_amnt"
+		this.ctrl.npss_rct_tran_srch_intrbk_sttlm_amnt = {}
+		this.ctrl.npss_rct_tran_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_rct_tran_srch.model = {"VALUE_DATE":"setcurrentdate(),{}","MEMORY63":"setcurrentdate(),{}","CDTR_IBAN":"","CR_ACCT_IDENTIFICATION":"","CDTR_ACCT_NAME":"","DBTR_IBAN":"","UETR":"","CLRSYSREF":"","PAYMENT_ENDTOEND_ID":"","PROCESSING_SYSTEM":"","INTRBK_STTLM_AMNT":""}
+		this.screen_instance[this.comp_id].f_npss_rct_tran_srch.Meta = [{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_ACCT_IDENTIFICATION"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CLRSYSREF"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PROCESSING_SYSTEM"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"}]
 		this.screen_instance[this.comp_id].f_npss_rct_tran_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_rct_tran_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_rct_tran_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

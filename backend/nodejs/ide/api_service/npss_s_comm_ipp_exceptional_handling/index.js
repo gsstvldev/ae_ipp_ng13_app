@@ -10,6 +10,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     /*  Created By :   Daseen
   Created Date : 06/01/2023
   Modified By : Siva Harish
@@ -18,6 +19,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified By :Daseen 03/07/2023 comm_prcs_mesaage
       Modified By :Daseen 11/07/2023 npss_tran_process_log insert
         Modified By :Daseen 08/08/2023 duplicate removed in  npss_tran_process_log insert
+        Modified By :Daseen 22/03/2024 duplicate removed in mail sent based on channel WI 3646
    
   */
     var serviceName = 'NPSS (S) IPP Exceptional Handling';
@@ -57,7 +59,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         var app_id
                         try {
 
-                            var TakeData = `SELECT m.commpm_id,m.message FROM ad_gss_tran.comm_process_message m  WHERE m.STATUS in ('RETRY_COUNT_EXCEEDED','SAME_BUSINESS_DAY_EXCEEDED') AND m.type='KAFKA' and m.message  like '%OrigChannelID%' order by commpm_id desc`
+                            var TakeData = `SELECT m.commpm_id,m.message,m.comments FROM ad_gss_tran.comm_process_message m  WHERE m.STATUS in ('RETRY_COUNT_EXCEEDED','SAME_BUSINESS_DAY_EXCEEDED') AND m.type='KAFKA' and m.message  like '%OrigChannelID%' order by commpm_id desc`
                             ExecuteQuery1(TakeData, async function (insarr) {
                                 if (insarr.length > 0) {
                                     let updtRes = await doCommprsMsgupdate(TakeData, 'RETRY_COUNT_EXCEEDED')
@@ -123,6 +125,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objNoinsert.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
                                         objNoinsert.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                                         objNoinsert.routingkey = headers.routingkey;
+                                        objNoinsert.comments = insarr[i].comments || '';
 
                                         arrNoinsert.push(objNoinsert);
                                     }
@@ -130,6 +133,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                     const removeDup = arrNoinsert.filter((value, index, self) =>
                                         index === self.findIndex((t) => (
                                             t.CHANNEL_REF_NO === value.CHANNEL_REF_NO && t.STATUS_CODE === value.STATUS_CODE
+                                        ))
+                                    )
+                                    removeDup.forEach((x)=>{
+                                        delete x.comments; 
+                                 })
+                                   
+                                    const removeDupCha = arrNoinsert.filter((value, index, self) =>
+                                        index === self.findIndex((t) => (
+                                            t.CHANNEL_ID === value.CHANNEL_ID
                                         ))
                                     )
                                     for (var j = 0; j < removeDup.length; j++) {
@@ -177,7 +189,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                         arrloginsert.push(objlogins);
 
                                     }
-                                    let statusforMail = await sendMail(removeDup)
+                                    //let statusforMail = await sendMail(removeDup)
+                                    //Mail send based channel 
+                                    let statusforMail = await sendMail(removeDupCha)
                                     if (statusforMail == 'SUCCESS') {
 
                                         _BulkInsertProcessItem(removeDup, 'npss_notification_logs', async function callbackInsert(CusTranInsertRes) {
@@ -217,7 +231,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         reqInstanceHelper.PrintInfo(serviceName, "........................ No record found to insert  in npss_trn_process_log...............", objSessionLogInfo);
                                                         let updtRes = await doCommprsMsgupdate(insarr, '')
                                                         if (updtRes == 'SUCCESS') {
-                                                            
+
                                                             objresponse.status = 'SUCCESS'
                                                             sendResponse(null, objresponse)
                                                         } else {
@@ -309,7 +323,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             BCC: '',
                                                                             ORIGIN: arrorg.length > 0 ? arrorg[0].param_value : '',
                                                                             COMM_GROUP: arrcomgp.length > 0 ? arrcomgp[0].param_value : '',
-                                                                            CHANNELID: maildataObj.CHANNEL_ID,
+                                                                            CHANNELNAME: maildataObj.CHANNEL_ID,
                                                                             CHANNELREFNO: maildataObj.CHANNEL_REF_NO,
                                                                             ORDERCUSTNO: maildataObj.ORDER_CUST_ACC_NO,
                                                                             AMOUNT: maildataObj.AMOUNT,
@@ -317,6 +331,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             STATUSDESCRIPTION: maildataObj.STATUS_DESCRIPTION,
                                                                             DATE: moment(maildataObj.CREATED_DATE).format('DD/MM/YYYY'),
                                                                             UETR: maildataObj.UETR,
+                                                                            ERRORDESCRIPTION:maildataObj.comments
 
 
 
@@ -555,6 +570,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

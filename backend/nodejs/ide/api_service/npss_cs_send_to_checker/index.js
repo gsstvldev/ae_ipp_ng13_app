@@ -7,7 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
+
 
 
 
@@ -22,6 +23,7 @@ app.post('/', function(appRequest, appResponse, next) {
             Reason for Handling spl rate 14/7/2023
             Reason for Handling  rateMode,contra_amount for non aed iban flow 07/11/2023 by daseen
             Reason for:Adding dbtr_acct_no in api payload on 16/11/2023
+            Reason for:Validate api before posting on 22/03/2024
         */
         var serviceName = 'NPSS (CS) Send To Checker';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -38,6 +40,7 @@ app.post('/', function(appRequest, appResponse, next) {
         var addquery = "";
         var Objfiledata
         var checkForceTopost
+        var moment = require('moment');
         var objresponse = {
             'status': 'FAILURE',
             'data': '',
@@ -398,7 +401,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                        "dbtr_acct_no": arrprocesslog[0].dbtr_acct_no || '',
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -463,8 +466,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                 if (GetadditionData.length > 0) {
                                     options.json.payload.gidId = GetadditionData[0].additional_info || '',
                                         options.json.payload.Rate = GetadditionData[0].fx_resv_text1 || '',
-                                        options.json.payload.rateMode = JSON.parse(GetadditionData[0].response_json).common.rateMode||'',
-                                    options.json.payload.contra_amt = JSON.parse(GetadditionData[0].response_json).dealResponse[0].contraAmount||''
+                                        options.json.payload.rateMode = JSON.parse(GetadditionData[0].response_json).common.rateMode || '',
+                                        options.json.payload.contra_amt = JSON.parse(GetadditionData[0].response_json).dealResponse[0].contraAmount || ''
 
                                 }
                                 options.json.payload.contraAmount = params.CONTRA_AMOUNT || ''
@@ -516,7 +519,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             let pos_res_qry = `select cncpr_id, restriction_type,applicable_dr_ac,restriction_id from core_nc_post_restrictions where restriction_type <> 'CREDIT' and restriction_id in `
                             let split_id = arr.split('@@')
                             let remove_empty = split_id.filter((x) => x != '')
-                            let str=remove_empty.map((x)=>`'`+x+`'` )
+                            let str = remove_empty.map((x) => `'` + x + `'`)
                             let res_id = '(' + str + ')'
                             pos_res_qry = pos_res_qry + res_id
                             let res_count = 0
@@ -527,15 +530,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                             res_count++;
                                         }
                                     })
-                                }else
-                                resolve('SUCCESS')
+                                } else
+                                    resolve('SUCCESS')
                                 if (res_count > 0) {
                                     resolve('Restrict')
                                 } else
                                     resolve('SUCCESS')
                             })
 
-                            
+
                         })
                     }
 
@@ -936,40 +939,126 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
                     }
 
+                    function validateApi(arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            let take_valapi_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_VALIDATE_API' and param_code='URL' AND need_sync = 'Y'`;
+                            ExecuteQuery1(take_valapi_url, async function (arrurl) {
+                                if (arrurl.length) {
+                                    var url = arrurl[0].param_detail;
+                                    try {
+                                        var apiName = 'Validate Api'
+                                        var request = require('request');
+                                        var apiURL =
+                                            apiURL = url // apiURL + apiName
+                                        var options = {
+                                            url: apiURL,
+                                            timeout: 18000000,
+                                            method: 'POST',
+                                            json: {
+                                                "payload": {
+                                                    "process_type": arrprocesslog[0].process_type || '',
+                                                    "uetr": arrprocesslog[0].uetr || '',
+                                                    "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
+                                                    "cbs_ref_no": arrprocesslog[0].cbs_ref_no || '',
+                                                    "instrument_type": arrprocesslog[0].instrument_type || '',
+                                                    "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                                    "dbtr_acct_no": arrprocesslog[0].dbtr_acct_no || '',
+                                                    "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
+                                                    "cdtr_acct_no": arrprocesslog[0].cdtr_acct_no || '',
+                                                    "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
+                                                    "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
+                                                    "dbtr_birth_date": moment(arrprocesslog[0].dbtr_birth_date).format('YYYY-MM-DD 00:00:00.000'),
+                                                    "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
+                                                    "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
+                                                    "category_purpose": arrprocesslog[0].category_purpose || ''
+                                                }
+                                            },
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            }
+                                        }
 
+                                        var PrintInfo = {}
+                                        PrintInfo.url = url || ''
+                                        PrintInfo.uetr = arrprocesslog[0].uetr || ''
+
+                                        PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
+                                        PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
+
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                                        request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
+                                            if (error) {
+                                                reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
+                                                objresponse.status = error
+                                                sendResponse(null, objresponse)
+
+
+                                            } else {
+                                                try {
+
+                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseBodyFromImagingService), objSessionLogInfo);
+                                                    var responseData = JSON.parse(responseBodyFromImagingService)
+                                                    if (responseData.status == 'SUCCESS') {
+                                                        resolve('SUCCESS')
+                                                    } else
+                                                        resolve('FAILURE')
+                                                } catch (error) {
+                                                    objresponse.status = error
+                                                    sendResponse(null, objresponse)
+                                                }
+
+                                            }
+                                        });
+
+                                    } catch (error) {
+                                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
+                                        sendResponse(error, null);
+                                    }
+
+                                } else {
+                                    objresponse.status = "No Data found in validate apiurl"
+                                    sendResponse(null, objresponse)
+                                }
+                            })
+                        })
+                    }
 
 
                     //function to call all api calls(reservefund,prepaid,credit)
                     function checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, apicalls, extend_retry_value, takedealRefno, ChecksplRate, GetadditionData) {
                         return new Promise((resolve, reject) => {
-                            // reserve fund
-                            if (apicalls == 0) {
-                                fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, extend_retry_value, takedealRefno, ChecksplRate, GetadditionData, function (result) {
-                                    if (result === "SUCCESS" || result === "Success" || result === "success") {
+                            let callValidate = async () => {
+                                let validateapiRes = await validateApi(arrprocesslog)
+                                if (validateapiRes == "SUCCESS") {
+                                    // reserve fund
+                                    if (apicalls == 0) {
+                                        fn_doapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, extend_retry_value, takedealRefno, ChecksplRate, GetadditionData, function (result) {
+                                            if (result === "SUCCESS" || result === "Success" || result === "success") {
+                                                resolve(result)
+                                            } else {
+                                                resolve(result)
+                                            }
+                                        })
+                                    } else if (apicalls == 1 || apicalls == 1) { // prepaid api call
+                                        fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, extend_retry_value, function (result) {
+                                            resolve(result)
+                                        })
 
-                                        resolve(result)
-                                    } else {
-                                        resolve(result)
+                                    } else if (apicalls == 2 || apicalls == 2) { // credit api call
+                                        fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, extend_retry_value, function (result) {
+                                            resolve(result)
+                                        })
 
                                     }
-                                })
-                            } else if (apicalls == 1 || apicalls == 1) { // prepaid api call
-                                fn_doPrepaidapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, extend_retry_value, function (result) {
+                                } else {
+                                    objresponse.status = 'Mandatory fields are missing for Pacs008 message, hence we cannot proceed further.'
+                                    sendResponse(nul, objresponse)
 
-                                    resolve(result)
-
-
-                                })
-
-                            } else if (apicalls == 2 || apicalls == 2) { // credit api call
-                                fn_doCreditapicall(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, extend_retry_value, function (result) {
-
-                                    resolve(result)
-
-
-                                })
+                                }
 
                             }
+                            callValidate()
+
 
 
                         })
@@ -1008,7 +1097,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                        "dbtr_acct_no": arrprocesslog[0].dbtr_acct_no || '',
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1099,7 +1188,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                        "dbtr_acct_no": arrprocesslog[0].dbtr_acct_no || '',
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1348,6 +1437,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

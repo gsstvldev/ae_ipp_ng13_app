@@ -49,7 +49,7 @@ sample
         "MWALLET_OTPROCESS_NAME": [
             "Outward Credit Posting"
         ],
-        "url_param_category": "NPSS_CC_POSTING",
+        "url_param_category": "",
         "param_category": "",
         "param_code": "URL",
         "TENANT_ID": "AEFAB",
@@ -314,6 +314,7 @@ sample
                                                 var currency
                                                 var dbtr_iban
                                                 var dbtr_acct_name
+
                                                 var cdtr_acct_name
                                                 var TranTypecode
                                                 var npssrefno
@@ -331,20 +332,20 @@ sample
                                                     TranTypecode = JsonData['transactionType'] || ''
                                                     npssrefno = JsonData['refTransactionId'] || ''
                                                     reson = JsonData['reason']
-                                                    var takeacctinfo = `select account_number,customer_mobile_number, countryofbirth country_of_birth,	company_code,inactive_marker,currency,alternate_account_type,alternate_account_id, account_officer,curr_rate_segment,customer_id,national_id  from  core_nc_cbs_accounts where alternate_account_id ='${cdtr_iban}'`
-                                                    ExecuteQuery1(takeacctinfo, function (arrtakeacctinfo) {
-                                                        if (arrtakeacctinfo.length > 0) {
-                                                            var seldetqry = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrtakeacctinfo[0].customer_id}'`
-                                                            ExecuteQuery1(seldetqry, function (arrselldet) {
-                                                                var sell_margin
-                                                                var sell_rate
-                                                                if (arrselldet.length == 0) {
-                                                                    sell_margin = ''
-                                                                    sell_rate = ''
-                                                                } else {
-                                                                    sell_margin = arrselldet[0].sell_margin
-                                                                    sell_rate = arrselldet[0].sell_rate
-                                                                }
+                                                   // var takeacctinfo = `select account_number,customer_mobile_number, countryofbirth country_of_birth,	company_code,inactive_marker,currency,alternate_account_type,alternate_account_id, account_officer,curr_rate_segment,customer_id,national_id  from  core_nc_cbs_accounts where alternate_account_id ='${cdtr_iban}'`
+                                                  //  ExecuteQuery1(takeacctinfo, function (arrtakeacctinfo) {
+                                                       // if (arrtakeacctinfo.length > 0) {
+                                                         //   var seldetqry = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrtakeacctinfo[0].customer_id}'`
+                                                          //  ExecuteQuery1(seldetqry, function (arrselldet) {
+                                                                // var sell_margin
+                                                                // var sell_rate
+                                                                // if (arrselldet.length == 0) {
+                                                                //     sell_margin = ''
+                                                                //     sell_rate = ''
+                                                                // } else {
+                                                                //     sell_margin = arrselldet[0].sell_margin
+                                                                //     sell_rate = arrselldet[0].sell_rate
+                                                                // }
                                                                 var takebiccode = `SELECT bic_code as recipient_bic_code FROM core_member_banks WHERE bank_code ='${Bankcode}'`
                                                                 ExecuteQuery1(takebiccode, function (arrtakebiccode) {
                                                                     if (arrtakebiccode.length > 0) {
@@ -372,7 +373,7 @@ sample
                                                                                             "hdr_total_amount": amount || '',
                                                                                             "intrbk_sttlm_cur": currency || '',
                                                                                             "dbtr_iban": dbtr_iban || '',
-                                                                                            "customer_mobile_number": arrtakeacctinfo[0].customer_mobile_number || '',
+                                                                                           // "customer_mobile_number": arrtakeacctinfo[0].customer_mobile_number || '',
                                                                                             "dbtr_acct_name": dbtr_acct_name || '',
                                                                                             "dr_sort_code": '',
                                                                                             "cdtr_iban": cdtr_iban || '',
@@ -411,23 +412,23 @@ sample
                                                                                             "sourceNote": reson || '',
                                                                                             "npsstrrd_refno": npssrefno || '',
                                                                                             "AccountInformation": {
-                                                                                                "account_number": arrtakeacctinfo[0].account_number || '',
-                                                                                                "company_code": arrtakeacctinfo[0].company_code || '',
-                                                                                                "inactive_marker": arrtakeacctinfo[0].inactive_marker || '',
-                                                                                                "currency": arrtakeacctinfo[0].currency || '',
-                                                                                                "alternate_account_type": arrtakeacctinfo[0].alternate_account_type || '',
-                                                                                                "alternate_account_id": arrtakeacctinfo[0].alternate_account_id || '',
-                                                                                                "account_officer": arrtakeacctinfo[0].account_officer || '',
-                                                                                                "curr_rate_segment": arrtakeacctinfo[0].curr_rate_segment || '',
-                                                                                                "customer_id": arrtakeacctinfo[0].customer_id || '',
+                                                                                                "account_number":'',
+                                                                                                "company_code":  '',
+                                                                                                "inactive_marker":  '',
+                                                                                                "currency":  '',
+                                                                                                "alternate_account_type": '',
+                                                                                                "alternate_account_id":  '',
+                                                                                                "account_officer":  '',
+                                                                                                "curr_rate_segment": '',
+                                                                                                "customer_id":  '',
                                                                                                 "department_code": '',
                                                                                                 "tran_type_code": arrtakereqjson[0].tran_type_code || '',
                                                                                                 "recipient_bic_code": arrtakebiccode.biccode || '',
                                                                                                 "birth_date": '',
-                                                                                                "country_of_birth": arrtakeacctinfo[0].country_of_birth || '',
-                                                                                                "national_id": arrtakeacctinfo[0].account_number || '',
-                                                                                                "sell_margin": sell_margin || '',
-                                                                                                "sell_rate": sell_rate || '',
+                                                                                                "country_of_birth":  '',
+                                                                                                "national_id": '',
+                                                                                                // "sell_margin": sell_margin || '',
+                                                                                                // "sell_rate": sell_rate || '',
                                                                                             }
                                                                                         }
                                                                                     }
@@ -466,12 +467,12 @@ sample
                                                                         resolve('FAILURE')
                                                                     }
                                                                 })
-                                                            })
-                                                        } else {
-                                                            reqInstanceHelper.PrintInfo(serviceName, '------------Account Information Not Found-------' + arrpayverobj.uetr, objSessionLogInfo);
-                                                            resolve('FAILURE')
-                                                        }
-                                                    })
+                                                           // })
+                                                        // } else {
+                                                        //     reqInstanceHelper.PrintInfo(serviceName, '------------Account Information Not Found-------' + arrpayverobj.uetr, objSessionLogInfo);
+                                                        //     resolve('FAILURE')
+                                                        // }
+                                                   // })
 
                                                 } else {
                                                     reqInstanceHelper.PrintInfo(serviceName, '------------Request JSON not found for uetr-------' + arrpayverobj.uetr, objSessionLogInfo);

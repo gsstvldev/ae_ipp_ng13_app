@@ -15,6 +15,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     /*  Created By :sIVA hARISH
     Created Date : 31-12-2022
     Modified By : Siva Harish
@@ -337,259 +338,263 @@ app.post('/', function(appRequest, appResponse, next) {
                             function checkEligible() {
                                 return new Promise((resolve, reject) => {
                                     if (params.eligible_status == 'IP_BCT_POSTING_SUCCESS' || params.eligible_status == 'IP_BCT_CC_T24_POSTING_SUCCESS' || params.eligible_status == 'IP_BCT_PC_T24_POSTING_SUCCESS') {
-                                        var Taketime = `select param_category,param_code,param_detail from Core_nc_system_setup where param_category='CUTOFF_SETUP' and  param_code in('CHANNEL_END_TIME_PM ','CB_START_TIME_AM ') order by param_code`
+                                        var Taketime = `select param_category,param_code,param_detail from Core_nc_system_setup where param_category='CUTOFF_SETUP' and  param_code in('CHANNEL_END_TIME_PM','CB_START_TIME_AM') order by param_code`
                                         ExecuteQuery1(Taketime, function (arrtakeTime) {
                                             if (arrtakeTime.length == 2) {
                                                 let currentTime = moment().format('hh:mm A')
                                                 let curr = currentTime.split(' ')[0].replace(':', '.')
                                                 if (currentTime.split(' ')[1] == 'AM') {
-                                                    if (Number(curr) < Number(arrtakeTime[0].param_detail))
-                                                        resolve('SUCCESS')
-                                                    else {
+                                                    if (parseFloat(curr) < parseFloat(arrtakeTime[0].param_detail)){
                                                         objresponse.data.status = 'The Channel cutoff time is passed, please initiate the payment by next day.'
-                                                        sendResponse(null, objresponse)
-                                                    }
-
-                                                } else if (currentTime.split(' ')[1] == 'PM') {
-                                                    if (Number(curr) > Number(arrtakeTime[1].param_detail))
-                                                        resolve('SUCCESS')
-                                                    else {
-                                                        objresponse.data.status = 'The Channel cutoff time is passed, please initiate the payment by next day.'
-                                                        sendResponse(null, objresponse)
-                                                    }
+                                                    sendResponse(null, objresponse)
+                                                }
+                                                else {
+                                                    resolve('SUCCESS')
                                                 }
 
+                                            } else if (currentTime.split(' ')[1] == 'PM') {
+                                                if (parseFloat(curr) > parseFloat(arrtakeTime[1].param_detail)) {
+                                                    objresponse.data.status = 'The Channel cutoff time is passed, please initiate the payment by next day.'
+                                                    sendResponse(null, objresponse)
+                                                }
+
+                                                else {
+                                                    resolve('SUCCESS')
+                                                }
                                             }
-                                            else {
+
+                                        }
+                                              else {
                                                 objresponse.data.status = 'No data found in Core_nc_system_setup'
-                                                sendResponse(null, objresponse)
+                                                  sendResponse(null, objresponse)
                                             }
-                                        })
-                                    } else {
-                                        resolve('SUCCESS')
-                                    }
-                                })
+                                          })
+                            } else {
+                                resolve('SUCCESS')
                             }
+                        })
+            }
 
-                            //Execute Query for common
-                            function ExecuteQuery(query, callback) {
-                                reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
-                                    try {
-                                        if (error) {
-                                            sendResponse(error)
-                                        } else {
-                                            callback("SUCCESS");
+                              //Execute Query for common
+                              function ExecuteQuery(query, callback) {
+                    reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
+                        try {
+                            if (error) {
+                                sendResponse(error)
+                            } else {
+                                callback("SUCCESS");
 
-                                        }
-                                    } catch (error) {
-                                        sendResponse(error)
-                                    }
-                                });
                             }
-
-                            function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
-                                try {
-                                    reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
-                                        try {
-                                            if (error) {
-                                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
-                                                sendResponse(error)
-                                            } else {
-                                                if (result.length > 0) {
-                                                    callbackInsert(result);
-                                                } else {
-                                                    callbackInsert([]);
-                                                }
-                                            }
-                                        } catch (error) {
-                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
-                                            sendResponse(error)
-                                        }
-                                    });
-                                } catch (error) {
-                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
-                                    sendResponse(error)
-                                }
-                            }
-
                         } catch (error) {
                             sendResponse(error)
                         }
-                    }
-
-
-                    function GetUetr(arruetr) {
-                        return new Promise((resolve, reject) => {
+                    });
+                }
+  
+                              function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
+                    try {
+                        reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
                             try {
-                                var apiName = 'Get Uetr'
-                                var request = require('request');
-                                var apiURL =
-                                    apiURL = arruetr[0].param_detail // apiURL + apiName
-                                var options = {
-                                    url: apiURL,
-                                    timeout: 18000000,
-                                    method: 'GET',
-                                    json: {},
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    }
-                                }
-
-                                reqInstanceHelper.PrintInfo(serviceName, '------------Calling Get Uetr Api-------', objSessionLogInfo);
-                                request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
-                                    if (error) {
-                                        reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
-                                        sendResponse(error, null);
-
-                                    } else {
-
-                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-
-                                        resolve(responseBodyFromImagingService)
-                                    }
-                                });
-
-                            } catch (error) {
-                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
-                                sendResponse(error, null);
-                            }
-
-                        })
-                    }
-                    function BirthDate(cdtr_iban, cdtr_acct_name) {
-                        return new Promise((resolve, reject) => {
-                            if (cdtr_iban != '' && cdtr_iban != undefined && cdtr_iban != null) {
-                                var Tkbddate = `select birthdate,account_name from core_nc_cbs_accounts where alternate_account_id ='${cdtr_iban}'`
-                                ExecuteQuery1(Tkbddate, async function (arrbdate) {
-                                    if (arrbdate.length > 0) {
-                                        let obj = {}
-                                        obj.date = arrbdate[0].birthdate ? moment(arrbdate[0].birthdate, "YYYYMMDD").format("YYYY-MM-DD") : null
-                                        obj.account_name = arrbdate[0].account_name
-                                        resolve(obj)
-                                    } else {
-                                        objresponse.data.status = 'No data found in core_nc_cbs_accounts'
-                                        sendResponse(null, objresponse)
-                                    }
-                                })
-                            } else {
-                                let obj = {}
-                                obj.date = null
-                                obj.account_name = cdtr_acct_name
-                                resolve(obj)
-                            }
-
-                        })
-                    }
-
-                    function Getuuid() {
-                        return new Promise((resolve, reject) => {
-                            try {
-                                var Takeuuid = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_GET_UUID' and param_code='URL' and NEED_SYNC = 'Y'`
-                                ExecuteQuery1(Takeuuid, async function (arruuid) {
-                                    if (arruuid.length > 0) {
-                                        var apiName = 'Get UUID'
-                                        var request = require('request');
-                                        var apiURL =
-                                            apiURL = arruuid[0].param_detail // apiURL + apiName
-                                        var options = {
-                                            url: apiURL,
-                                            timeout: 18000000,
-                                            method: 'GET',
-                                            json: {},
-                                            headers: {
-                                                'Content-Type': 'application/json'
-                                            }
-                                        }
-                                        reqInstanceHelper.PrintInfo(serviceName, '------------Calling Get UUID Api-------', objSessionLogInfo);
-                                        request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
-                                            if (error) {
-                                                reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
-                                                sendResponse(error, null);
-
-                                            } else {
-                                                reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-                                                resolve(responseBodyFromImagingService)
-                                            }
-                                        });
-                                    } else {
-                                        objresponse.status = 'UUID Api Url not found'
-                                        sendResponse(null, objresponse)
-                                    }
-
-                                })
-
-
-                            } catch (error) {
-                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
-                                sendResponse(error, null);
-                            }
-
-                        })
-                    }
-
-
-
-                    function Getorgdata(arrprocesslog) {
-                        return new Promise((resolve, reject) => {
-                            //var orgflddata = `select process_ref_no from npss_trn_process_log where process_name = 'Inward Credit Posting' and uetr = '${arrprocesslog[0].uetr}' and status = 'IP_RCT_POSTING_SUCCESS'`
-                            // var orgflddata = `select process_ref_no from npss_trn_process_log where process_name in ('Inward Credit Posting','Prepaid Card Ac Posting','Credit Card Pool Ac Posting') and uetr = '${arrprocesslog[0].uetr}' and status in ('IP_RCT_POSTING_SUCCESS','IP_RCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS')`
-                            var orgflddata = `select process_ref_no from npss_trn_process_log where  uetr = '${arrprocesslog[0].uetr}' and status in ('IP_RCT_POSTING_SUCCESS','IP_RCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS','IP_BCT_CC_T24_POSTING_SUCCESS','IP_BCT_PC_T24_POSTING_SUCCESS')`
-                            ExecuteQuery1(orgflddata, function (arrflddata) {
-                                if (arrflddata.length > 0) {
-                                    resolve(arrflddata[0].process_ref_no)
+                                if (error) {
+                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
+                                    sendResponse(error)
                                 } else {
-                                    objresponse.status = "ORG Field Data is Not Found"
-                                    sendResponse(null, objresponse)
+                                    if (result.length > 0) {
+                                        callbackInsert(result);
+                                    } else {
+                                        callbackInsert([]);
+                                    }
                                 }
-
-                            })
-                        })
-                    }
-
-
-                    function chkccpcc(arrdata) {
-                        return new Promise((resolve, reject) => {
-                            if ((arrdata[0].cr_acct_identification != '' && arrdata[0].cr_acct_identification != null) && arrdata[0].cr_acct_id_code == 'AIIN') {
-                                resolve('Credit_Or_Prepaid')
-                            } else {
-                                resolve('IBAN')
+                            } catch (error) {
+                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
+                                sendResponse(error)
                             }
-                        })
+                        });
+                    } catch (error) {
+                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
+                        sendResponse(error)
                     }
-
-
-
-
-                    //Send Response Function Definition
-                    function sendResponse(error, response) {
-                        try {
-                            if (error) {
-
-                                reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-
-                            } else {
-
-                                reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-
-                            }
-                        } catch (error) {
-                            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
+                }
+  
+                          } catch (error) {
+            sendResponse(error)
+        }
+    }
+  
+  
+                      function GetUetr(arruetr) {
+            return new Promise((resolve, reject) => {
+                try {
+                    var apiName = 'Get Uetr'
+                    var request = require('request');
+                    var apiURL =
+                        apiURL = arruetr[0].param_detail // apiURL + apiName
+                    var options = {
+                        url: apiURL,
+                        timeout: 18000000,
+                        method: 'GET',
+                        json: {},
+                        headers: {
+                            'Content-Type': 'application/json'
                         }
                     }
+
+                    reqInstanceHelper.PrintInfo(serviceName, '------------Calling Get Uetr Api-------', objSessionLogInfo);
+                    request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
+                        if (error) {
+                            reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
+                            sendResponse(error, null);
+
+                        } else {
+
+                            reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+
+                            resolve(responseBodyFromImagingService)
+                        }
+                    });
+
+                } catch (error) {
+                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
+                    sendResponse(error, null);
+                }
+
+            })
+        }
+                      function BirthDate(cdtr_iban, cdtr_acct_name) {
+            return new Promise((resolve, reject) => {
+                if (cdtr_iban != '' && cdtr_iban != undefined && cdtr_iban != null) {
+                    var Tkbddate = `select birthdate,account_name from core_nc_cbs_accounts where alternate_account_id ='${cdtr_iban}'`
+                    ExecuteQuery1(Tkbddate, async function (arrbdate) {
+                        if (arrbdate.length > 0) {
+                            let obj = {}
+                            obj.date = arrbdate[0].birthdate ? moment(arrbdate[0].birthdate, "YYYYMMDD").format("YYYY-MM-DD") : null
+                            obj.account_name = arrbdate[0].account_name
+                            resolve(obj)
+                        } else {
+                            objresponse.data.status = 'No data found in core_nc_cbs_accounts'
+                            sendResponse(null, objresponse)
+                        }
+                    })
+                } else {
+                    let obj = {}
+                    obj.date = null
+                    obj.account_name = cdtr_acct_name
+                    resolve(obj)
+                }
+
+            })
+        }
+  
+                      function Getuuid() {
+            return new Promise((resolve, reject) => {
+                try {
+                    var Takeuuid = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_GET_UUID' and param_code='URL' and NEED_SYNC = 'Y'`
+                    ExecuteQuery1(Takeuuid, async function (arruuid) {
+                        if (arruuid.length > 0) {
+                            var apiName = 'Get UUID'
+                            var request = require('request');
+                            var apiURL =
+                                apiURL = arruuid[0].param_detail // apiURL + apiName
+                            var options = {
+                                url: apiURL,
+                                timeout: 18000000,
+                                method: 'GET',
+                                json: {},
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            }
+                            reqInstanceHelper.PrintInfo(serviceName, '------------Calling Get UUID Api-------', objSessionLogInfo);
+                            request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
+                                if (error) {
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
+                                    sendResponse(error, null);
+
+                                } else {
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                    resolve(responseBodyFromImagingService)
+                                }
+                            });
+                        } else {
+                            objresponse.status = 'UUID Api Url not found'
+                            sendResponse(null, objresponse)
+                        }
+
+                    })
+
+
+                } catch (error) {
+                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
+                    sendResponse(error, null);
+                }
+
+            })
+        }
+  
+  
+  
+                      function Getorgdata(arrprocesslog) {
+            return new Promise((resolve, reject) => {
+                //var orgflddata = `select process_ref_no from npss_trn_process_log where process_name = 'Inward Credit Posting' and uetr = '${arrprocesslog[0].uetr}' and status = 'IP_RCT_POSTING_SUCCESS'`
+                // var orgflddata = `select process_ref_no from npss_trn_process_log where process_name in ('Inward Credit Posting','Prepaid Card Ac Posting','Credit Card Pool Ac Posting') and uetr = '${arrprocesslog[0].uetr}' and status in ('IP_RCT_POSTING_SUCCESS','IP_RCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS')`
+                var orgflddata = `select process_ref_no from npss_trn_process_log where  uetr = '${arrprocesslog[0].uetr}' and status in ('IP_RCT_POSTING_SUCCESS','IP_RCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS','IP_BCT_CC_T24_POSTING_SUCCESS','IP_BCT_PC_T24_POSTING_SUCCESS')`
+                ExecuteQuery1(orgflddata, function (arrflddata) {
+                    if (arrflddata.length > 0) {
+                        resolve(arrflddata[0].process_ref_no)
+                    } else {
+                        objresponse.status = "ORG Field Data is Not Found"
+                        sendResponse(null, objresponse)
+                    }
+
                 })
             })
-        } catch (error) {
-            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
-    })
+  
+  
+                      function chkccpcc(arrdata) {
+            return new Promise((resolve, reject) => {
+                if ((arrdata[0].cr_acct_identification != '' && arrdata[0].cr_acct_identification != null) && arrdata[0].cr_acct_id_code == 'AIIN') {
+                    resolve('Credit_Or_Prepaid')
+                } else {
+                    resolve('IBAN')
+                }
+            })
+        }
 
 
 
 
+                      //Send Response Function Definition
+                      function sendResponse(error, response) {
+            try {
+                if (error) {
 
+                    reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
 
+                } else {
 
+                    reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
 
+                }
+            } catch (error) {
+                reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
+            }
+        }
+                  })
+              })
+          } catch (error) {
+    reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
+}
+      })
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
 });

@@ -63,7 +63,7 @@ export class npss_cs_outward_manual_initiationService {
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                 }
                 else {
-                    this.dialogHelper.ShowErrorDialog(res.data.status)
+                    this.dialogHelper.ShowErrorDialog(res.data.data.status)
                 }
             });
     }

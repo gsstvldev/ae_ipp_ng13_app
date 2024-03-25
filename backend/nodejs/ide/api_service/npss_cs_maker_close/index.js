@@ -137,6 +137,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 var arrCusTranInst = [];
                                 var objCusTranInst = {};
                                 objCusTranInst.MSG_ID = msg_id;
+                                objCusTranInst.uetr=params.uetr||''
                                 objCusTranInst.PRCT_ID = PRCT_ID;
                                 objCusTranInst.PROCESS_TIME = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
                                 objCusTranInst.PROCESS_NAME = ''

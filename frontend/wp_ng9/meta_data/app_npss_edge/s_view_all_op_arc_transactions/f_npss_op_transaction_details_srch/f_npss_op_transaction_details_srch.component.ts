@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34878 
+Build ID        : 34883 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-25 7:50 AM 
+Modified Date   : 2024-Mar-25 12:57 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_op_arc_transactions
@@ -560,9 +560,9 @@ focustoelement(){
 		//Properties of memory150
 		this.ctrl.memory150 = {}
 		this.ctrl.memory150.id = "RN51CN14"
-		this.ctrl.memory150.desc = "Payment Flag"
+		this.ctrl.memory150.desc = "Batch Payment Flag"
 		this.ctrl.memory150.visible = false
-		this.ctrl.memory150.label_name = "Payment Flag"
+		this.ctrl.memory150.label_name = "Batch Payment Flag"
 		this.ctrl.memory150.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory150.df_description = "Column Group 1"
 		this.ctrl.memory150.uictrl_code = "CBO"

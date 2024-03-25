@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34784 
+Build ID        : 34878 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-15 11:48 AM 
+Modified Date   : 2024-Mar-25 7:50 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_all_ip_arc_transactions

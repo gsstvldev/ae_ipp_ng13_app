@@ -72,18 +72,21 @@ app.post('/', function(appRequest, appResponse, next) {
                                 success_status = arrSts[0].success_status;
                                 success_process_status = arrSts[0].success_process_status;
                                 msg_id =uuid.v1()
+                                let process_name=''
                                 if (params.Tran_id) {
                                     var uptTrnqry
                                     if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
                                         uptTrnqry = `update npss_transactions set maker = '${params.CREATED_BY_NAME}',status='${success_status}',process_status='${success_process_status}',remarks = '${params.remarks}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id in` + TempTranID;
+                                        process_name='Place Pacs028'
                                     } else {
                                         uptTrnqry = `update npss_transactions set checker = '${params.CREATED_BY_NAME}',status='${success_status}',process_status='${success_process_status}',remarks = '${params.remarks}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id in` + TempTranID;
+                                        process_name='Manually Closed Tran'
                                     }
                                     ExecuteQuery(uptTrnqry, async function (trnRes) {
                                         if (trnRes == "SUCCESS") {
                                             //objresponse.status = 'SUCCESS';
                                             //sendResponse(null, objresponse);
-                                            var insertlog = await ProcessInstData(success_status, success_process_status,msg_id)
+                                            var insertlog = await ProcessInstData(success_status, success_process_status,msg_id,process_name)
                                             if (insertlog.length > 0) {
                                                 objresponse.data = 'SUCCESS';
                                                 objresponse.status = 'SUCCESS';
@@ -132,7 +135,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 }
                             });
                         }
-                        function ProcessInstData(success_status, success_process_status,msg_id) {
+                        function ProcessInstData(success_status, success_process_status,msg_id,process_name) {
                             return new Promise((resolve, reject) => {
                                 var arrCusTranInst = [];
                                 var objCusTranInst = {};
@@ -140,7 +143,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 objCusTranInst.uetr=params.uetr||''
                                 objCusTranInst.PRCT_ID = PRCT_ID;
                                 objCusTranInst.PROCESS_TIME = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                                objCusTranInst.PROCESS_NAME = params.process_name|| ''
+                                objCusTranInst.PROCESS_NAME = process_name
                                 objCusTranInst.PROCESS_STATUS = success_process_status;
                                 objCusTranInst.STATUS = success_status;
                                 objCusTranInst.TENANT_ID = params.TENANT_ID;

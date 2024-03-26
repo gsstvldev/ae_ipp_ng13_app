@@ -941,14 +941,23 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                         // var stringifyData = JSON.stringify(responseBodyFromImagingService)
                                                         // var replceData = stringifyData.replace(/(\n)/g,"")
+                                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON in try-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                                   
                                                        var responseData = responseBodyFromImagingService
                                                         if (responseData.status == 'SUCCESS') {
                                                             resolve('SUCCESS')
                                                         } else
                                                             resolve('FAILURE')
                                                     } catch (error) {
-                                                        objresponse.status = error
-                                                        sendResponse(null, objresponse)
+
+                                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON in catch-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                                        let dat=responseData.replace(/(\n)/g,"")
+                                                        var dat1=JSON.parse(dat)
+                 
+                                                        if (dat1.status == 'SUCCESS') {
+                                                            resolve('SUCCESS')
+                                                        } else
+                                                            resolve('FAILURE')
                                                     }
                                                 }
                                             });

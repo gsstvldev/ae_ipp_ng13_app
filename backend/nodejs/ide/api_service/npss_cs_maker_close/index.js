@@ -140,7 +140,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 objCusTranInst.uetr=params.uetr||''
                                 objCusTranInst.PRCT_ID = PRCT_ID;
                                 objCusTranInst.PROCESS_TIME = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                                objCusTranInst.PROCESS_NAME = ''
+                                objCusTranInst.PROCESS_NAME = params.process_name|| ''
                                 objCusTranInst.PROCESS_STATUS = success_process_status;
                                 objCusTranInst.STATUS = success_status;
                                 objCusTranInst.TENANT_ID = params.TENANT_ID;

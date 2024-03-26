@@ -51,6 +51,7 @@ export class npss_cs_maker_closeService {
         ClientParams.eligible_process_status = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_PROCESS_STATUS");
         ClientParams.Tran_id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_NPSST_ID') || '';
         ClientParams.uetr = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", 'MI_LEVEL_UETR') || '';
+        ClientParams.process_name = 'Manually Closed Tran'
         ClientParams.system = system
         ClientParams.rule_code = "RCT_INVEST_CLOSE";
         this.CallUrlWithData(ClientParams, screenInstance, internals);

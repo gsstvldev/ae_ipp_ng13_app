@@ -951,8 +951,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     } catch (error) {
 
                                                         reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON in catch-------' + responseBodyFromImagingService, objSessionLogInfo);
-                                                        let dat=responseData.replace(/(\n)/g,"")
-                                                        var dat1=JSON.parse(dat)
+                                                       
+                                                        var dat1=JSON.parse(responseBodyFromImagingService)
                  
                                                         if (dat1.status == 'SUCCESS') {
                                                             resolve('SUCCESS')

@@ -944,80 +944,86 @@ app.post('/', function(appRequest, appResponse, next) {
                             let take_valapi_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_VALIDATE_API' and param_code='URL' AND need_sync = 'Y'`;
                             ExecuteQuery1(take_valapi_url, async function (arrurl) {
                                 if (arrurl.length) {
-                                    var url = arrurl[0].param_detail;
-                                    try {
-                                        var apiName = 'Validate Api'
-                                        var request = require('request');
-                                        var apiURL =
-                                            apiURL = url // apiURL + apiName
-                                        var options = {
-                                            url: apiURL,
-                                            timeout: 18000000,
-                                            method: 'POST',
-                                            json: {
-                                                "payload": {
-                                                    "process_type": arrprocesslog[0].process_type || '',
-                                                    "uetr": arrprocesslog[0].uetr || '',
-                                                    "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
-                                                    "cbs_ref_no": arrprocesslog[0].cbs_ref_no || '',
-                                                    "instrument_type": arrprocesslog[0].instrument_type ? arrprocesslog[0].instrument_type : 'INST',
-                                                    "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                                    "dbtr_acct_no": arrprocesslog[0].dbtr_acct_no || '',
-                                                    "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
-                                                    "cdtr_acct_no": arrprocesslog[0].cdtr_acct_no ? arrprocesslog[0].cdtr_acct_no : arrprocesslog[0].cr_acct_identification,
-                                                    "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
-                                                    "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
-                                                    "dbtr_birth_date": moment(arrprocesslog[0].dbtr_birth_date).format('YYYY-MM-DD 00:00:00.000'),
-                                                    "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
-                                                    "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
-                                                    "category_purpose": arrprocesslog[0].category_purpose || ''
+                                    var TakecatPurpose = `select param_detail from core_nc_system_setup where param_category ='MANUAL_INITATION' and param_code='MANUAL_INITATION_PURPOSE_CODE'`;
+                                        ExecuteQuery1(TakecatPurpose, async function (arrcatPurpose) {
+
+
+                                            var url = arrurl[0].param_detail;
+                                            try {
+                                                var apiName = 'Validate Api'
+                                                var request = require('request');
+                                                var apiURL =
+                                                    apiURL = url // apiURL + apiName
+                                                var options = {
+                                                    url: apiURL,
+                                                    timeout: 18000000,
+                                                    method: 'POST',
+                                                    json: {
+                                                        "payload": {
+                                                            "process_type": arrprocesslog[0].process_type || '',
+                                                            "uetr": arrprocesslog[0].uetr || '',
+                                                            "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
+                                                            "cbs_ref_no": arrprocesslog[0].cbs_ref_no || '',
+                                                            "instrument_type": arrprocesslog[0].instrument_type ? arrprocesslog[0].instrument_type : 'INST',
+                                                            "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                                            "dbtr_acct_no": arrprocesslog[0].dbtr_acct_no || '',
+                                                            "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
+                                                            "cdtr_acct_no": arrprocesslog[0].cdtr_acct_no ? arrprocesslog[0].cdtr_acct_no : arrprocesslog[0].cr_acct_identification,
+                                                            "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
+                                                            "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
+                                                            "dbtr_birth_date": moment(arrprocesslog[0].dbtr_birth_date).format('YYYY-MM-DD 00:00:00.000'),
+                                                            "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
+                                                            "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
+                                                            "category_purpose": arrcatPurpose[0].param_detail ? arrcatPurpose[0].param_detail : 'IPP'
+                                                        }
+                                                    },
+                                                    headers: {
+                                                        'Content-Type': 'application/json'
+                                                    }
                                                 }
-                                            },
-                                            headers: {
-                                                'Content-Type': 'application/json'
+        
+                                                var PrintInfo = {}
+                                                PrintInfo.url = url || ''
+                                                PrintInfo.uetr = arrprocesslog[0].uetr || ''
+        
+                                                PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
+                                                PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
+        
+                                                reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                                                request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
+                                                    if (error) {
+                                                        reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
+                                                        objresponse.status = error
+                                                        sendResponse(null, objresponse)
+        
+        
+                                                    } else {
+                                                        try {
+        
+                                                            reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseBodyFromImagingService), objSessionLogInfo);
+                                                           //reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' +  JSON.parse(responseBodyFromImagingService), objSessionLogInfo);
+                                                            reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                                             var stringifyData = JSON.stringify(responseBodyFromImagingService)
+                                                             var replceData = stringifyData.replace(/(\n)/g,"")
+                                                            var responseData = replceData
+                                                            if (responseData.status == 'SUCCESS') {
+                                                                resolve('SUCCESS')
+                                                            } else
+                                                                resolve('FAILURE')
+                                                        } catch (error) {
+                                                            objresponse.status = error
+                                                            sendResponse(null, objresponse)
+                                                        }
+        
+                                                    }
+                                                });
+        
+                                            } catch (error) {
+                                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
+                                                sendResponse(error, null);
                                             }
-                                        }
-
-                                        var PrintInfo = {}
-                                        PrintInfo.url = url || ''
-                                        PrintInfo.uetr = arrprocesslog[0].uetr || ''
-
-                                        PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
-                                        PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
-
-                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
-                                        request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
-                                            if (error) {
-                                                reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
-                                                objresponse.status = error
-                                                sendResponse(null, objresponse)
-
-
-                                            } else {
-                                                try {
-
-                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseBodyFromImagingService), objSessionLogInfo);
-                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' +  JSON.parse(responseBodyFromImagingService), objSessionLogInfo);
-                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-                                                    var stringifyData = JSON.stringify(responseBodyFromImagingService)
-                                                    var replceData = stringifyData.replace(/(\n)/g,"")
-                                                    var responseData = JSON.parse(replceData)
-                                                    if (responseData.status == 'SUCCESS') {
-                                                        resolve('SUCCESS')
-                                                    } else
-                                                        resolve('FAILURE')
-                                                } catch (error) {
-                                                    objresponse.status = error
-                                                    sendResponse(null, objresponse)
-                                                }
-
-                                            }
-                                        });
-
-                                    } catch (error) {
-                                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
-                                        sendResponse(error, null);
-                                    }
+                                        })
+                                  
 
                                 } else {
                                     objresponse.status = "No Data found in validate apiurl"
@@ -1056,7 +1062,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     }
                                 } else {
                                     objresponse.status = 'Mandatory fields are missing for Pacs008 message, hence we cannot proceed further.'
-                                    sendResponse(nul, objresponse)
+                                    sendResponse(null, objresponse)
 
                                 }
 

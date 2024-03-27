@@ -36,7 +36,7 @@ export class npss_c_export_pdf_for_reportService {
         let Searchparam: any = []
         let Filter: any = []
         Databinding = JSON.stringify(screenInstance.list.bind_param.dsInfo.databinding),
-            Searchparam = JSON.stringify(screenInstance.search_search.search_params),
+            Searchparam = JSON.stringify(screenInstance.cc_for_control.search_params),
             Filter = JSON.stringify(screenInstance.list.bind_param.dsInfo.filter)
 
 

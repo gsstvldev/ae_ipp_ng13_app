@@ -27,7 +27,7 @@ export class npss_cs_export_excel_for_reportService {
         let wftrpDesc = screenInstance.wftpa_description
 
         databinding = JSON.stringify(screenInstance.list.bind_param.dsInfo.databinding),
-            searchParam = JSON.stringify(screenInstance.search_search.search_params),
+            searchParam =JSON.stringify(screenInstance.cc_for_control.search_params),
             filter = JSON.stringify(screenInstance.list.bind_param.dsInfo.filter)
 
         let params = {

@@ -941,9 +941,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                         // var stringifyData = JSON.stringify(responseBodyFromImagingService)
                                                         // var replceData = stringifyData.replace(/(\n)/g,"")
-                                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON in try-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON in try-------' +JSON.parse( responseBodyFromImagingService), objSessionLogInfo);
                                                    
-                                                       var responseData = responseBodyFromImagingService
+                                                      var responseData =JSON.parse(responseBodyFromImagingService) 
                                                         if (responseData.status == 'SUCCESS') {
                                                             resolve('SUCCESS')
                                                         } else

@@ -14,6 +14,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By :     Siva Harish
         Created Date :02-01-2023
@@ -23,7 +24,8 @@ app.post('/', function(appRequest, appResponse, next) {
             Reason for Handling spl rate 14/7/2023
             Reason for Handling  rateMode,contra_amount for non aed iban flow 07/11/2023 by daseen
             Reason for:Adding dbtr_acct_no in api payload on 16/11/2023
-            Reason for:Adding try catch for issues 04/1/2024
+            Reason for:Adding try catch for issues by subramani 01/4/2024
+              Reason for:Duplicate posting in retry count  by daseen 01/04/2024
         */
         var serviceName = 'NPSS (CS) Send To Checker';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -132,7 +134,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         if (apicalls == 0) {// Resurve Fund api call
                                                                             reverseAcinfparam = await TakereversalIdandActInfm(arrprocesslog)
                                                                         } else { // for both prepaid card and credit card api calls 
-                                                                            reverseAcinfparam = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
+                                                                            reverseAcinfparam = await ReverseIdFrcdtpdt(arrprocesslog, apicalls, Ipuetr)
                                                                         }
 
                                                                         if (apicalls == 0 || apicalls == '0') { // Reserve api call
@@ -728,7 +730,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     function GetRetrycount(ipuetr) {
                         return new Promise((resolve, reject) => {
 
-                            var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where   uetr ='${ipuetr}' and  status='${params.eligible_status}'`
+                            var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where   uetr ='${ipuetr}' and  status in  ('IP_RCT_PC_T24_POSTING_SUCCESS','IP_BCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS','IP_BCT_CC_T24_POSTING_SUCCESS','IP_RCT_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS')`
                             ExecuteQuery1(TakeretryValue, function (extIdentValue) {
                                 if (extIdentValue.length > 0) {
                                     if (extIdentValue[0].ext_iden_retry_value != null) {
@@ -741,14 +743,15 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                 } else {
-                                    resolve(1)
+                                    objresponse.status = "No Data in ext_iden_retry_value"
+                                    sendResponse(null, objresponse)
                                 }
 
                             })
                         })
                     }
                     //function find reversal Id for credit and debit card api calls
-                    function ReverseIdFrcdtpdt(arrprocesslog, apicalls) {
+                    function ReverseIdFrcdtpdt(arrprocesslog, apicalls, ipUetr) {
                         return new Promise((resolve, reject) => {
                             parameter = {}
                             var TakeReversePrsno = `select process_ref_no from npss_trn_process_log where status = 'IP_RCT_REVERSAL_REQ_RECEIVED' and uetr = '${arrprocesslog[0].uetr}'`
@@ -757,21 +760,32 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                     var Takecount
                                     if (apicalls == 1) { //prepaid
-                                        Takecount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('IP_RCT_PC_POSTING_SUCCESS','IP_RCT_PC_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
+                                        //  Takecount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('IP_RCT_PC_POSTING_SUCCESS','IP_RCT_PC_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
+                                        Takecount = `select ext_iden_retry_value  from npss_trn_process_log where status in ('IP_RCT_PC_T24_POSTING_SUCCESS','IP_BCT_PC_T24_POSTING_SUCCESS') and uetr = '${ipUetr}'`
                                     } else if (apicalls == 2) { //credit
-                                        Takecount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('IP_RCT_CC_POSTING_SUCCESS','IP_RCT_CC_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
+                                        // Takecount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('IP_RCT_CC_POSTING_SUCCESS','IP_RCT_CC_POSTING_FAILURE','IP_BCT_CC_T24_POSTING_SUCCESS') and uetr = '${ipUetr}'`
+                                        Takecount = `select ext_iden_retry_value  from npss_trn_process_log where status in ('IP_RCT_CC_T24_POSTING_SUCCESS','IP_BCT_CC_T24_POSTING_SUCCESS') and uetr = '${ipUetr}'`
                                     }
                                     ExecuteQuery1(Takecount, function (arrCount) {
-                                        if (arrCount[0].counts.length == 1) {
-                                            var count = Number(arrCount[0].counts)
-                                            count++
-                                            parameter.reverseId = arrRevno[0].process_ref_no + '.0' + count
-                                            resolve(parameter)
+                                        if (arrCount.length > 0) {
+                                            if ((Number(arrCount[0].ext_iden_retry_value) < 10) || (arrCount[0].ext_iden_retry_value == null)) {
+                                                var count = Number(arrCount[0].ext_iden_retry_value)
+                                                count++
+                                                parameter.retryCount = count
+                                                parameter.reverseId = arrprocesslog[0].clrsysref + '.0' + count
+                                                resolve(parameter)
+                                            } else {
+                                                var count = Number(arrCount[0].ext_iden_retry_value)
+                                                count++
+                                                parameter.retryCount = count
+                                                parameter.reverseId = arrprocesslog[0].clrsysref + '.' + count
+                                                resolve(parameter)
+                                            }
+
                                         } else {
-                                            var count = Number(arrCount[0].counts)
-                                            count++
-                                            parameter.reverseId = arrRevno[0].process_ref_no + '.' + count
-                                            resolve(parameter)
+                                            objresponse.status = "FAILURE"
+                                            objresponse.errdata = "ext_iden_retry_value  is Missing"
+                                            sendResponse(null, objresponse)
                                         }
                                     })
 
@@ -977,7 +991,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     function fnupdateOlduetr(ipuetr, extend_retry_value) {
                         return new Promise((resolve, reject) => {
-                            let updtQry = `update npss_trn_process_log set ext_iden_retry_value = ${extend_retry_value} where uetr ='${ipuetr}' and status='${params.eligible_status}'`
+                            let updtQry = `update npss_trn_process_log set ext_iden_retry_value = ${extend_retry_value} where uetr ='${ipuetr}' and  status in  ('IP_RCT_PC_T24_POSTING_SUCCESS','IP_BCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS','IP_BCT_CC_T24_POSTING_SUCCESS','IP_RCT_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS')`
                             ExecuteQuery(updtQry, function (arrUetr) {
                                 if (arrUetr == 'SUCCESS') {
                                     resolve('SUCCESS')
@@ -1401,6 +1415,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

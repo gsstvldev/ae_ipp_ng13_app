@@ -8,7 +8,9 @@ var app = express.Router();
 app.post('/', function(appRequest, appResponse, next) {
 
     
-    
+
+
+
 
 
 
@@ -39,6 +41,7 @@ app.post('/', function(appRequest, appResponse, next) {
           Reason : changes for category_purpose_prty in 008 call on 06-03-2024
           Reason : changes for BCT -cbs ref no update in transaction after auth posting in 008 call on 11-03-2024
           Reason : changes for BCT -remarks update in transaction on 20-03-2024 by daseen on 20-03-2024 WI 3399
+           Reason : Duplicate retry value for second time in ext_iden_retry_value   on 01-04-2024 by daseen  WI 3472
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -115,11 +118,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 let checkAlreadyPosted = await CheckTranStatus(arrprocesslog, final_process_status, final_status, lclinstrm, PRCT_ID)
                                                 if (checkAlreadyPosted == 'CallAuthPosting') {
                                                     var PreparedData = async () => {
-                                                        extend_retry_value = await GetRetrycount(arrprocesslog[0].uetr)
+                                                        Ipuetr = await TakeIpUetr(arrprocesslog)
+                                                        extend_retry_value = await GetRetrycount(arrprocesslog[0].uetr, Ipuetr)
                                                         // Logic For Taking Reversal Id and Taking PostingRefno and account Information only for auth004 api call
-                                                        reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog)
+                                                        reverandRefno = await TakeReversalIdandPostRefno(arrprocesslog, Ipuetr)
                                                         if (reverandRefno.currency != 'AED') {
-                                                            Ipuetr = await TakeIpUetr(arrprocesslog)
+
                                                             GetsellRate = await GetsplRate(arrprocesslog, reverandRefno)
                                                             if (GetsellRate == 'Take GMrate') {
                                                                 Getdata = await GetgmMargin(arrprocesslog, reverandRefno)
@@ -174,7 +178,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         } else {
                                                                             Amount = arrprocesslog[0].intrbk_sttlm_amnt || ''
                                                                         }
-                                                                        let UpdateAmount = await UpdateCreditAmount(Amount)
+                                                                        let UpdateAmount = await UpdateCreditAmount(Amount, reverandRefno.retryCount, Ipuetr)
                                                                         if (UpdateAmount == 'FAILURE') {
                                                                             objresponse.status = "FAILURE"
                                                                             objresponse.errdata = "Failure in Amount Credited Coloumn in Tran Table"
@@ -186,14 +190,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             reverandRefno.type = 'IBAN'
                                                                             let Pacs008 = await fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt, Amount, transactionId)
                                                                             if (Pacs008 == 'SUCCESS') {
-                                                                                let UpdateTran = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','')
+                                                                                let UpdateTran = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
                                                                             } else {
                                                                                 objresponse.status = "FAILURE"
                                                                                 objresponse.errdata = "Failure in Pac008 Api"
                                                                                 sendResponse(null, objresponse)
                                                                             }
                                                                         } else {
-                                                                            let UpdateTran = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,transactionId,'BCT')
+                                                                            let UpdateTran = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, 'BCT')
                                                                         }
 
                                                                     } else {
@@ -267,7 +271,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 reverandRefno.type = 'IBAN'
                                                 let Pacs008 = await fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt, Amount, '')
                                                 if (Pacs008 == 'SUCCESS') {
-                                                    GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','')
+                                                    GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
                                                 } else {
                                                     objresponse.status = "FAILURE"
                                                     objresponse.errdata = "Pacs008 Api Failure"
@@ -310,7 +314,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                    function GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,transactionId,remarks) {
+                    function GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, remarks) {
                         var UpdateTrnTble
                         if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
                             UpdateTrnTble = `Update npss_transactions set maker = '${params.CREATED_BY_NAME}',cbs_ref_no='${transactionId}',remarks='${remarks}',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}',intrbk_sttlm_amnt = '${Amount}' where npsst_id = '${params.Tran_Id}'`
@@ -332,12 +336,21 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
 
-                    function UpdateCreditAmount(Amount) {
+                    function UpdateCreditAmount(Amount, extend_retry_value, ipuetr) {
                         return new Promise((resolve, reject) => {
                             let UpdateColumn = `update npss_transactions set fx_resv_text3 = '${Amount}' where npsst_id = '${params.Tran_Id}'`
+                            let updtQry = `update npss_trn_process_log set ext_iden_retry_value = ${extend_retry_value} where uetr ='${ipuetr}' and status in('IP_BCT_POSTING_SUCCESS','IP_RCT_POSTING_SUCCESS')`
                             ExecuteQuery(UpdateColumn, function (arrcolmn) {
                                 if (arrcolmn == 'SUCCESS') {
-                                    resolve('SUCCESS')
+                                    ExecuteQuery(updtQry, function (arrUetr) {
+                                        if (arrUetr == 'SUCCESS') {
+                                            resolve('SUCCESS')
+                                        } else {
+                                            objresponse.status = "ext_iden_retry_value update Failed "
+                                            sendResponse(null, objresponse)
+                                        }
+                                    })
+
                                 }
                                 else {
                                     resolve("FAILURE")
@@ -350,7 +363,24 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+                    function fnupdateoldIPUetr( extend_retry_value, ipuetr) {
+                        return new Promise((resolve, reject) => {
 
+                            let updtQry = `update npss_trn_process_log set ext_iden_retry_value = ${extend_retry_value} where uetr ='${ipuetr}' and status in ('IP_RCT_PC_T24_POSTING_SUCCESS','IP_BCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS','IP_BCT_CC_T24_POSTING_SUCCESS')`
+
+                            ExecuteQuery(updtQry, function (arrUetr) {
+                                if (arrUetr == 'SUCCESS') {
+                                    resolve('SUCCESS')
+                                } else {
+                                    objresponse.status = "ext_iden_retry_value update Failed "
+                                    sendResponse(null, objresponse)
+                                }
+                            })
+
+
+                        })
+
+                    }
 
 
 
@@ -473,11 +503,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                     sendResponse(error, null);
 
                                 } else {
-                                    responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-                                    var responseData = JSON.parse(responseBodyFromImagingService)
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseData, objSessionLogInfo);
-                                    callbackapi(responseData)
+                                   // callbackapi('SUCCESS')
+                                      responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
+                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                     var responseData = JSON.parse(responseBodyFromImagingService)
+                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseData, objSessionLogInfo);
+                                     callbackapi(responseData) 
                                 }
                             });
 
@@ -516,138 +547,138 @@ app.post('/', function(appRequest, appResponse, next) {
                                     if (pac008url.length > 0) {
                                         var TakecatPurpose = `select param_detail from core_nc_system_setup where param_category ='MANUAL_INITATION' and param_code='MANUAL_INITATION_PURPOSE_CODE'`;
                                         ExecuteQuery1(TakecatPurpose, async function (arrcatPurpose) {
-                                         //   if (arrcatPurpose.length > 0) {
-                                                var takeaccttypecode = await fngetacctype(arrprocesslog)
-                                                let purp = '';
-                                                if (arrprocesslog[0].process_group == "P2P") {
-                                                    purp = 'MP2P'
-                                                } else if (arrprocesslog[0].process_group == "P2B") {
-                                                    purp = 'MP2B'
+                                            //   if (arrcatPurpose.length > 0) {
+                                            var takeaccttypecode = await fngetacctype(arrprocesslog)
+                                            let purp = '';
+                                            if (arrprocesslog[0].process_group == "P2P") {
+                                                purp = 'MP2P'
+                                            } else if (arrprocesslog[0].process_group == "P2B") {
+                                                purp = 'MP2B'
+                                            } else {
+                                                purp = 'WEBI'
+                                            }
+                                            var category_prty
+                                            var hdrmsgid
+                                            if (arrprocesslog[0].category_purpose_prty == null || arrprocesslog[0].category_purpose_prty == '') {
+                                                category_prty = 'MIS'
+                                            } else {
+                                                category_prty = arrprocesslog[0].category_purpose_prty
+                                            }
+                                            if (arrprocesslog[0].hdr_msg_id != null) {
+                                                if (arrprocesslog[0].hdr_msg_id.length > 8) {
+                                                    hdrmsgid = arrprocesslog[0].hdr_msg_id.slice(0, 8) + moment().format("DDMMYYYYhhmmss")
                                                 } else {
-                                                    purp = 'WEBI'
+                                                    hdrmsgid = arrprocesslog[0].hdr_msg_id + moment().format("DDMMYYYYhhmmss")
                                                 }
-                                                var category_prty
-                                                var hdrmsgid
-                                                if (arrprocesslog[0].category_purpose_prty == null || arrprocesslog[0].category_purpose_prty == '') {
-                                                    category_prty = 'MIS'
-                                                } else {
-                                                    category_prty = arrprocesslog[0].category_purpose_prty
-                                                }
-                                                if (arrprocesslog[0].hdr_msg_id != null) {
-                                                    if (arrprocesslog[0].hdr_msg_id.length > 8) {
-                                                        hdrmsgid = arrprocesslog[0].hdr_msg_id.slice(0, 8) + moment().format("DDMMYYYYhhmmss")
-                                                    } else {
-                                                        hdrmsgid = arrprocesslog[0].hdr_msg_id + moment().format("DDMMYYYYhhmmss")
-                                                    }
-                                                } else {
-                                                    hdrmsgid = ''
-                                                }
-                                                var apiName = 'NPSS Pac008 Api'
-                                                var request = require('request');
-                                                var apiURL =
-                                                    apiURL = pac008url[0].param_detail // apiURL + apiName
-                                                var options = {
-                                                    url: apiURL,
-                                                    timeout: 18000000,
-                                                    method: 'POST',
-                                                    json: {
-                                                        "hdr_msg_id": hdrmsgid,
-                                                        "hdr_total_amount": Amount || '',
-                                                        "value_date": moment().format('YYYY-MM-DD'),
-                                                        "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
-                                                        "instr_id": arrprocesslog[0].org_pay_endtoend_id || '',
-                                                        "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
-                                                        "tran_ref_id": transactionId || '',
-                                                        "uetr": arrprocesslog[0].uetr || '',
-                                                        "intrbk_sttlm_amnt": Amount || '',
-                                                        // "dbtr_acct_name": reverandRefno.account_name || '',
-                                                        // "dbtr_birth_date": reverandRefno.birthdate ? moment(reverandRefno.birthdate).format('YYYY-MM-DD') : '',
-                                                        "dbtr_acct_name": reverandRefno.account_name ? reverandRefno.account_name : arrprocesslog[0].dbtr_acct_name ? arrprocesslog[0].dbtr_acct_name : '',
-                                                        "dbtr_birth_date": reverandRefno.birthdate ? moment(reverandRefno.birthdate).format('YYYY-MM-DD') : '',
-                                                        "dbtr_city_birth": reverandRefno.cityofbirth || 'XXXXX',
-                                                        "dbtr_country": reverandRefno.countryofbirth || 'XX',
-                                                        "dbtr_other_issuer": arrprocesslog[0].dbtr_other_issuer || '',
-                                                        "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                                        // "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
-                                                        "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
-                                                        "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
-                                                        "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
-                                                        "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
-                                                        "remittance_information": arrprocesslog[0].remittance_info || '',
-                                                       // "category_purpose": arrprocesslog[0].category_purpose_prty  || '',
-                                                        "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
-                                                        "category_purpose_prty": arrcatPurpose[0].param_detail  || 'IPP',
-                                                        "channel_id": 'IPP',
+                                            } else {
+                                                hdrmsgid = ''
+                                            }
+                                            var apiName = 'NPSS Pac008 Api'
+                                            var request = require('request');
+                                            var apiURL =
+                                                apiURL = pac008url[0].param_detail // apiURL + apiName
+                                            var options = {
+                                                url: apiURL,
+                                                timeout: 18000000,
+                                                method: 'POST',
+                                                json: {
+                                                    "hdr_msg_id": hdrmsgid,
+                                                    "hdr_total_amount": Amount || '',
+                                                    "value_date": moment().format('YYYY-MM-DD'),
+                                                    "dr_sort_code": arrprocesslog[0].dr_sort_code || '',
+                                                    "instr_id": arrprocesslog[0].org_pay_endtoend_id || '',
+                                                    "payment_endtoend_id": arrprocesslog[0].payment_endtoend_id || '',
+                                                    "tran_ref_id": transactionId || '',
+                                                    "uetr": arrprocesslog[0].uetr || '',
+                                                    "intrbk_sttlm_amnt": Amount || '',
+                                                    // "dbtr_acct_name": reverandRefno.account_name || '',
+                                                    // "dbtr_birth_date": reverandRefno.birthdate ? moment(reverandRefno.birthdate).format('YYYY-MM-DD') : '',
+                                                    "dbtr_acct_name": reverandRefno.account_name ? reverandRefno.account_name : arrprocesslog[0].dbtr_acct_name ? arrprocesslog[0].dbtr_acct_name : '',
+                                                    "dbtr_birth_date": reverandRefno.birthdate ? moment(reverandRefno.birthdate).format('YYYY-MM-DD') : '',
+                                                    "dbtr_city_birth": reverandRefno.cityofbirth || 'XXXXX',
+                                                    "dbtr_country": reverandRefno.countryofbirth || 'XX',
+                                                    "dbtr_other_issuer": arrprocesslog[0].dbtr_other_issuer || '',
+                                                    "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
+                                                    // "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
+                                                    "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
+                                                    "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
+                                                    "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
+                                                    "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
+                                                    "remittance_information": arrprocesslog[0].remittance_info || '',
+                                                    // "category_purpose": arrprocesslog[0].category_purpose_prty  || '',
+                                                    "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
+                                                    "category_purpose_prty": arrcatPurpose[0].param_detail || 'IPP',
+                                                    "channel_id": 'IPP',
 
-                                                        "cb_acctype_code": takeaccttypecode,
-                                                        "purp": purp
+                                                    "cb_acctype_code": takeaccttypecode,
+                                                    "purp": purp
 
-                                                    },
-                                                    headers: {
-                                                        'Content-Type': 'application/json'
-                                                    }
+                                                },
+                                                headers: {
+                                                    'Content-Type': 'application/json'
                                                 }
+                                            }
 
-                                                if (params.PROD_CODE == 'NPSS_AEFAB') {
-                                                    if (reverandRefno.type == 'IBAN') {
-                                                        options.json.channel_refno = reverandRefno.reverseId || ''
-                                                        if (CheckorgPvt != '' && CheckorgPvt != null) {
-                                                            if (CheckorgPvt.type == 'Organisation') {
-                                                                options.json.dbtr_prvt_id = CheckorgPvt.code
-                                                                options.json.dbtr_document_id = ''
-                                                                options.json.ext_org_id_code = 'BOID'
-                                                                options.json.issuer_type_code = CheckorgPvt.cbuae_issur_code,
-                                                                    options.json.AccountInformation = reverandRefno || ''
-                                                            } else {
-                                                                options.json.dbtr_prvt_id = ''
-                                                                options.json.dbtr_document_id = CheckorgPvt.code
-                                                                options.json.ext_person_id_code = CheckorgPvt.extpersonidcode
-                                                                options.json.issr = CheckorgPvt.issrtype || ''
+                                            if (params.PROD_CODE == 'NPSS_AEFAB') {
+                                                if (reverandRefno.type == 'IBAN') {
+                                                    options.json.channel_refno = reverandRefno.reverseId || ''
+                                                    if (CheckorgPvt != '' && CheckorgPvt != null) {
+                                                        if (CheckorgPvt.type == 'Organisation') {
+                                                            options.json.dbtr_prvt_id = CheckorgPvt.code
+                                                            options.json.dbtr_document_id = ''
+                                                            options.json.ext_org_id_code = 'BOID'
+                                                            options.json.issuer_type_code = CheckorgPvt.cbuae_issur_code,
                                                                 options.json.AccountInformation = reverandRefno || ''
-                                                            }
-
-
+                                                        } else {
+                                                            options.json.dbtr_prvt_id = ''
+                                                            options.json.dbtr_document_id = CheckorgPvt.code
+                                                            options.json.ext_person_id_code = CheckorgPvt.extpersonidcode
+                                                            options.json.issr = CheckorgPvt.issrtype || ''
+                                                            options.json.AccountInformation = reverandRefno || ''
                                                         }
 
-                                                    } else { //for credit and perpaid
-                                                        options.json.channel_refno = arrprocesslog[0].clrsysref || '',
-                                                            options.json.dbtr_prvt_id = ''
-                                                        options.json.dbtr_document_id = reverandRefno.privateId || ''
-                                                        options.json.ext_person_id_code = reverandRefno.extpersonidcode || ''
-                                                        options.json.issr = 'AE',
-                                                            options.json.AccountInformation = {}
+
                                                     }
 
-
-                                                } else {
-                                                    options.json.dbtr_prvt_id = arrprocesslog[0].dbtr_prvt_id
-                                                    options.json.dbtr_document_id = arrprocesslog[0].dbtr_document_id
-                                                    options.json.ext_org_id_code = arrprocesslog[0].ext_org_id_code
-                                                    options.json.issuer_type_code = arrprocesslog[0].issuer_type_code
-                                                    options.json.ext_person_id_code = arrprocesslog[0].ext_person_id_code
+                                                } else { //for credit and perpaid
+                                                    options.json.channel_refno = arrprocesslog[0].clrsysref || '',
+                                                        options.json.dbtr_prvt_id = ''
+                                                    options.json.dbtr_document_id = reverandRefno.privateId || ''
+                                                    options.json.ext_person_id_code = reverandRefno.extpersonidcode || ''
+                                                    options.json.issr = 'AE',
+                                                        options.json.AccountInformation = {}
                                                 }
 
 
-                                                reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
-                                                request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
-                                                    if (error) {
-                                                        reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
-                                                        sendResponse(error, null);
+                                            } else {
+                                                options.json.dbtr_prvt_id = arrprocesslog[0].dbtr_prvt_id
+                                                options.json.dbtr_document_id = arrprocesslog[0].dbtr_document_id
+                                                options.json.ext_org_id_code = arrprocesslog[0].ext_org_id_code
+                                                options.json.issuer_type_code = arrprocesslog[0].issuer_type_code
+                                                options.json.ext_person_id_code = arrprocesslog[0].ext_person_id_code
+                                            }
 
 
-                                                    } else {
-                                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-                                                        responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
+                                            reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
+                                            request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
+                                                if (error) {
+                                                    reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
+                                                    sendResponse(error, null);
 
-                                                        resolve(responseBodyFromImagingService)
-                                                    }
-                                                });
-                                          /*  }
-                                            else {
-                                                objresponse.status = "FAILURE"
-                                                objresponse.errdata = "Category Purpose value not found"
-                                                sendResponse(null, objresponse)
-                                            } */
+
+                                                } else {
+                                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                                    responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
+
+                                                    resolve(responseBodyFromImagingService)
+                                                }
+                                            });
+                                            /*  }
+                                              else {
+                                                  objresponse.status = "FAILURE"
+                                                  objresponse.errdata = "Category Purpose value not found"
+                                                  sendResponse(null, objresponse)
+                                              } */
                                         })
                                     } else {
                                         objresponse.status = "FAILURE"
@@ -670,12 +701,12 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     //function to check logic for reversal Id and Taking PostingRefno only for auth004
 
-                    function TakeReversalIdandPostRefno(arrprocesslog) {
+                    function TakeReversalIdandPostRefno(arrprocesslog, ipuetr) {
                         return new Promise((resolve, reject) => {
                             var TakeAcctInf = `select birthdate,cityofbirth,countryofbirth,emirates_code,account_name,alternate_account_type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].dbtr_iban}'`
                             var TakeprssRefno = `select process_ref_no  from npss_trn_process_log  where uetr = '${arrprocesslog[0].uetr}' and status = 'OP_RCT_MAN_INAU_POSTING_SUCCESS' order by created_date desc`;
-                            var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('OP_RCT_MAN_INAU_POSTING_SUCCESS','OP_RCT_MAN_INAU_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
-
+                            // var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('OP_RCT_MAN_INAU_POSTING_SUCCESS','OP_RCT_MAN_INAU_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
+                            var TakeCount = `select CAST(ext_iden_retry_value AS INTEGER) from npss_trn_process_log where   uetr ='${ipuetr}' and  status in ('IP_RCT_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS')`
                             ExecuteQuery1(TakeprssRefno, function (arrprssRefno) {
                                 if (arrprssRefno.length > 0) {
                                     var parameter = {}
@@ -701,16 +732,25 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                                         if (arrprocesslog[0].clrsysref) {
-                                                            if (arrCount[0].counts.length == 1) {
-                                                                var count = Number(arrCount[0].counts)
-                                                                count++
-                                                                parameter.reverseId = arrprocesslog[0].clrsysref + '.0' + count
-                                                                resolve(parameter)
+                                                            if (arrCount.length > 0) {
+                                                                if ((Number(arrCount[0].ext_iden_retry_value) < 10) || (arrCount[0].ext_iden_retry_value == null)) {
+                                                                    var count = Number(arrCount[0].ext_iden_retry_value)
+                                                                    count++
+                                                                    parameter.retryCount = count
+                                                                    parameter.reverseId = arrprocesslog[0].clrsysref + '.0' + count
+                                                                    resolve(parameter)
+                                                                } else {
+                                                                    var count = Number(arrCount[0].ext_iden_retry_value)
+                                                                    count++
+                                                                    parameter.retryCount = count
+                                                                    parameter.reverseId = arrprocesslog[0].clrsysref + '.' + count
+                                                                    resolve(parameter)
+                                                                }
+
                                                             } else {
-                                                                var count = Number(arrCount[0].counts)
-                                                                count++
-                                                                parameter.reverseId = arrprocesslog[0].clrsysref + '.' + count
-                                                                resolve(parameter)
+                                                                objresponse.status = "FAILURE"
+                                                                objresponse.errdata = "ext_iden_retry_value  is Missing"
+                                                                sendResponse(null, objresponse)
                                                             }
                                                         } else {
                                                             objresponse.status = "FAILURE"
@@ -850,8 +890,11 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
                     }
 
-                    function GetRetrycount(uetr) {
+                    function GetRetrycount(uetr, ipuetr) {
                         return new Promise((resolve, reject) => {
+
+                            //var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where   uetr ='${ipuetr}' and  status='${params.eligible_status}'`
+
                             var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where ext_iden_retry_value IS NOT NULL and uetr = '${uetr}' order by npsstpl_id desc`
                             ExecuteQuery1(TakeretryValue, function (extIdentValue) {
                                 if (extIdentValue.length > 0) {
@@ -918,14 +961,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                         revAcctInfrm.type = 'IBAN'
                                         let Pacs008 = await fn_doPac008apicall(arrprocesslog, revAcctInfrm, CheckorgPvt, Amount, transactionId)
                                         if (Pacs008 == 'SUCCESS') {
-                                            GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','')
+                                            GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
                                         } else {
                                             objresponse.status = "FAILURE"
                                             objresponse.errdata = "Pacs008 api call not success"
                                             sendResponse(null, objresponse)
                                         }
                                     } else {
-                                        let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','BCT')
+                                        let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
                                     }
 
                                 }
@@ -938,7 +981,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 let Pacs008Api
                                 let ApiVal
                                 let Handleerror
-                                let extIdentValue = 5
+                                let extIdentValue =5
                                 let CheckAlredyApiCalled = await CheckAldprcsTran(arrprocesslog, ChkPrecdtCard)
                                 let reversalNo = await TakeReversalId(IpUETR, ChkPrecdtCard, arrprocesslog)
                                 let TakeActcountInformation = await PreCrediAcctInfm(arrprocesslog, ChkPrecdtCard, IpUETR)
@@ -961,17 +1004,18 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     transactionId = ''
                                                 }
                                             }
+                                            let updateoldIPUetr = await fnupdateoldIPUetr(reversalNo.retryCount,IpUETR)
                                             if (params.eligible_status != 'OP_BCT_RET_RESERVED' && params.eligible_process_status != 'BCTOutwardReturnReserved') {
                                                 Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                                                 if (Pacs008Api == 'SUCCESS') {
-                                                    GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','')
+                                                    GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
                                                 } else {
                                                     objresponse.status = "FAILURE"
                                                     objresponse.errdata = "Pacs008 api call not success"
                                                     sendResponse(null, objresponse)
                                                 }
                                             } else {
-                                                let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','BCT')
+                                                let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
                                             }
 
 
@@ -998,14 +1042,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                             if (params.eligible_status != 'OP_BCT_RET_RESERVED' && params.eligible_process_status != 'BCTOutwardReturnReserved') {
                                                 Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                                                 if (Pacs008Api == 'SUCCESS') {
-                                                    GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','')
+                                                    GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
                                                 } else {
                                                     objresponse.status = "FAILURE"
                                                     objresponse.errdata = "Pacs008 api call not success"
                                                     sendResponse(null, objresponse)
                                                 }
                                             } else {
-                                                let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','BCT')
+                                                let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
                                             }
 
                                         } else {
@@ -1026,14 +1070,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                         if (params.eligible_status != 'OP_BCT_RET_RESERVED' && params.eligible_process_status != 'BCTOutwardReturnReserved') {
                                             Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                                             if (Pacs008Api == 'SUCCESS') {
-                                                GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','')
+                                                GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
                                             } else {
                                                 objresponse.status = "FAILURE"
                                                 objresponse.errdata = "Pacs008 api call not success"
                                                 sendResponse(null, objresponse)
                                             }
                                         } else {
-                                            let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','BCT')
+                                            let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
                                         }
 
                                     }
@@ -1041,6 +1085,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     if (CheckAlredyApiCalled.Callapi == 'Call ELPASO Posting') {
                                         ElpasoApi = await CallCreditEplapsoApi(arrprocesslog, lclinstrm, extIdentValue, reversalNo)
                                         if (ElpasoApi.status == 'SUCCESS' || ElpasoApi.status == 'Success') {
+                                            let updateoldIPUetr = await fnupdateoldIPUetr(reversalNo.retryCount,IpUETR)
                                             //   let transactionId = ElpasoApi.response.header.id || ElpasoApi.response.dataArea.offlineTransactionReferenceNumber || '';
                                             let transactionId = ''
                                             if (ElpasoApi && ElpasoApi.response) {
@@ -1055,14 +1100,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                             if (params.eligible_status != 'OP_BCT_RET_RESERVED' && params.eligible_process_status != 'BCTOutwardReturnReserved') {
                                                 Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                                                 if (Pacs008Api == 'SUCCESS') {
-                                                    GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','')
+                                                    GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
                                                 } else {
                                                     objresponse.status = "FAILURE"
                                                     objresponse.errdata = "Pacs008 api call not success"
                                                     sendResponse(null, objresponse)
                                                 }
                                             } else {
-                                                let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','BCT')
+                                                let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
                                             }
 
                                         } else {
@@ -1089,14 +1134,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                             if (params.eligible_status != 'OP_BCT_RET_RESERVED' && params.eligible_process_status != 'BCTOutwardReturnReserved') {
                                                 Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                                                 if (Pacs008Api == 'SUCCESS') {
-                                                    GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','')
+                                                    GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
                                                 } else {
                                                     objresponse.status = "FAILURE"
                                                     objresponse.errdata = "Pacs008 api call not success"
                                                     sendResponse(null, objresponse)
                                                 }
                                             } else {
-                                                let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','BCT')
+                                                let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
                                             }
 
                                         } else {
@@ -1117,14 +1162,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                         if (params.eligible_status != 'OP_BCT_RET_RESERVED' && params.eligible_process_status != 'BCTOutwardReturnReserved') {
                                             Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                                             if (Pacs008Api == 'SUCCESS') {
-                                                GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','')
+                                                GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
                                             } else {
                                                 objresponse.status = "FAILURE"
                                                 objresponse.errdata = "Pacs008 api call not success"
                                                 sendResponse(null, objresponse)
                                             }
                                         } else {
-                                            let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount,'','BCT')
+                                            let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
                                         }
 
                                     }
@@ -1206,7 +1251,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     sendResponse(null, objresponse)
                                                 }
                                                 else {
-                                                    AcctInformationprivates.Id = chkPrepaidPassedTrn[0].emiratesid
+                                                    AcctInformations.privatesId = chkPrepaidPassedTrn[0].emiratesid
                                                     AcctInformations.birthdate = chkPrepaidPassedTrn[0].dateofbirth
                                                     AcctInformations.cityofbirth = chkPrepaidPassedTrn[0].cityofbirth
                                                     AcctInformations.countryofbirth = chkPrepaidPassedTrn[0].countryofbirth
@@ -1297,7 +1342,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     function TakeReversalId(IpUETR, ChkPrecdtCard, arrprocesslog) {
                         return new Promise((resolve, reject) => {
                             let elistatus
-                            let reverseId
+                            let parameter={}
                             let call = async () => {
                                 isBCT = await findBCTRCT(IpUETR)
                                 if (ChkPrecdtCard.apitype == 1) {
@@ -1311,19 +1356,29 @@ app.post('/', function(appRequest, appResponse, next) {
                                     else
                                         elistatus = 'IP_RCT_CC_T24_POSTING_SUCCESS'
                                 }
-                                var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status = '${elistatus}' and uetr = '${IpUETR}'`
+                                var TakeCount = `select CAST(ext_iden_retry_value AS INTEGER) from npss_trn_process_log where   uetr ='${IpUETR}' and  status='${elistatus}'`
+                                //  var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status = '${elistatus}' and uetr = '${IpUETR}'`
                                 ExecuteQuery1(TakeCount, function (arrCount) {
                                     if (arrprocesslog[0].clrsysref) {
-                                        if (arrCount[0].counts.length == 1) {
-                                            var count = Number(arrCount[0].counts)
-                                            count++
-                                            reverseId = arrprocesslog[0].clrsysref + '.0' + count
-                                            resolve(reverseId)
+                                        if (arrCount.length > 0) {
+                                            if ((Number(arrCount[0].ext_iden_retry_value) < 10) || (arrCount[0].ext_iden_retry_value == null)) {
+                                                var count = Number(arrCount[0].ext_iden_retry_value)
+                                                count++
+                                                parameter.retryCount = count
+                                                parameter.reverseId = arrprocesslog[0].clrsysref + '.0' + count
+                                                resolve(parameter)
+                                            } else {
+                                                var count = Number(arrCount[0].ext_iden_retry_value)
+                                                count++
+                                                parameter.retryCount = count
+                                                parameter.reverseId = arrprocesslog[0].clrsysref + '.' + count
+                                                resolve(parameter)
+                                            }
+
                                         } else {
-                                            var count = Number(arrCount[0].counts)
-                                            count++
-                                            reverseId = arrprocesslog[0].clrsysref + '.' + count
-                                            resolve(reverseId)
+                                            objresponse.status = "FAILURE"
+                                            objresponse.errdata = "ext_iden_retry_value  is Missing"
+                                            sendResponse(null, objresponse)
                                         }
                                     } else {
                                         objresponse.status = "FAILURE"
@@ -1702,7 +1757,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "card_type": "PREPAID_CARD",
                                                     "process": "",
                                                     "remittance_information": arrprocesslog[0].remittance_info || '',
-                                                    "reversal_id": reversalNo || '',
+                                                    "reversal_id": reversalNo.reverseId || '',
                                                     "card_sub_type": apitype.card_sub_type || ''
                                                 }
                                             },
@@ -1802,7 +1857,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "card_type": "PREPAID_CARD",
                                                     "process": "",
                                                     "remittance_information": arrprocesslog[0].remittance_info || '',
-                                                    "reversal_id": reversalNo || '',
+                                                    "reversal_id": reversalNo.reverseId || '',
                                                     "card_sub_type": apitype.card_sub_type || ''
                                                 }
                                             },
@@ -1899,7 +1954,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "card_type": "CREDIT_CARD",
                                                     "process": "",
                                                     "remittance_information": arrprocesslog[0].remittance_info || '',
-                                                    "reversal_id": reversalNo || '',
+                                                    "reversal_id": reversalNo.reverseId || '',
 
                                                 }
                                             },
@@ -1995,7 +2050,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "card_type": "CREDIT_CARD",
                                                     "process": "",
                                                     "remittance_information": arrprocesslog[0].remittance_info || '',
-                                                    "reversal_id": reversalNo || '',
+                                                    "reversal_id": reversalNo.reverseId || '',
 
                                                 }
                                             },
@@ -2097,6 +2152,8 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
+
 
 
 

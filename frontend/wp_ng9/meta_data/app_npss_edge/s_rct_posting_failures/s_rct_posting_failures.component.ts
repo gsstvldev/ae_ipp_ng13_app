@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34784 
+Build ID        : 35051 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-15 11:48 AM 
+Modified Date   : 2024-Apr-01 12:12 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -39,7 +39,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_rct_posting_failures"
 	wftpa_id : string = "WFT_NPSS_P_1304_1669011155960_0"
 	cg_code : string = "CG_1304_1669009928225"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID","dtt_1304_1695130590062":"NPSSNPPL_ID","dtt_1304_1695214768145":"NAL_ID","dtt_1304_1700459090330":"NPSSPN_ID","dtt_1304_1701251364899":"NPSSPNB_ID","dtt_1304_1707202677013":"NPSSFE_ID"}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID","dtt_1304_1695130590062":"NPSSNPPL_ID","dtt_1304_1695214768145":"NAL_ID","dtt_1304_1700459090330":"NPSSPN_ID","dtt_1304_1701251364899":"NPSSPNB_ID","dtt_1304_1707202677013":"NPSSFE_ID","dtt_1304_1711696447765":"NPSSFL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -64,7 +64,10 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	uicgc_18 : string = "response_ui"
 	uicgc_19 : string = "failure_list"
 	uicgc_20 : string = "send_to_maker_ui"
+	uicgc_21 : string = "return_ui"
+	uicgc_22 : string = "save_ui"
 	key_events : any = {}
+	btl_1304_1711969155321 : string = "p_return_layout"
 	btl_1304_1681388723692 : string = "p_send_to_maker_layout"
 	btl_1304_1670245368385 : string = "p_view_req_and_res"
 	btl_1304_1669459620728 : string = "p_view_message_ui_layout"
@@ -76,10 +79,11 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_14","uicgc_4","uicgc_18","uicgc_6","uicgc_16","uicgc_20","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
+	forms : any = ["uicgc_14","uicgc_4","uicgc_18","uicgc_6","uicgc_16","uicgc_20","uicgc_21","uicgc_22","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	p_cbs_layout__spap_for_cbs_ui_showpopup : boolean = false
 	p_send_to_maker_layout__spap_has_been_sent_to_maker_successfully_showpopup : boolean = false
+	p_return_layout__spap_for_return_showpopup : boolean = false
 	queue : any = {}
 	transaction_list : any = {}
 	navigation_ui : any = {}
@@ -98,6 +102,8 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	navigation_ui_force_post : any = {}
 	navigation_ui_send_to_maker : any = {}
 	navigation_ui_trg_btn : any = {}
+	navigation_ui_return : any = {}
+	navigation_ui_rapprove : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -128,6 +134,9 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	failure_list : any = {}
 	send_to_maker_ui : any = {}
 	send_to_maker_ui_return_to_maker : any = {}
+	return_ui : any = {}
+	save_ui : any = {}
+	save_ui_save : any = {}
 
 
 	// Constructor 
@@ -142,7 +151,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.queue.uicgc_desc = "Queue"
 		this.queue.uicgc_code = "uicgc_1"
 		this.queue.params = {"need_pag_datatable":"Y","need_search":"N","advance_dynamic_search":"N"}
-		this.queue.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1670660153211","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"RCT IP Posting Failure Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1677558886041","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1677558886198","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1677558886620","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS,  processgroup from  (  select   NT.CREATED_DATE,   NT.STATUS,   NT.PROCESS_STATUS,   NT.UETR,   NT.PROCESSING_SYSTEM,   NT.TENANT_ID,   NT.MODIFIED_DATE,   NT.MODIFIED_DATE_UTC,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   NT.CREATED_BY,   NT.CREATED_BY_NAME,   NT.SYSTEM_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER,   NT.DEPARTMENT_CODE,   NT.VALUE_DATE,   NT.DBTR_ACCT_NO,   NT.DBTR_ACCT_NAME,   NT.CDTR_ACCT_NO,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.PROCESS_TYPE,   NT.DBTR_IBAN,   NT.INTRBK_STTLM_CUR,   NT.INTRBK_STTLM_AMNT,   NTPL.PROCESS_NAME,   CNEC.error_description,   ntpl.cbuae_return_code,   cnca.customer_posting_restriction_code,   cnca.account_postring_type_description,   NT.account_currency,   NT.CR_SORT_CODE,   NT.DR_SORT_CODE,   ntpl.T24_return_code,nt.CR_ACCT_IDENTIFICATION,nt.CDTR_ACCT_NAME,   case    when nt.process_status like upper('RCT%') then 'Online'    when nt.process_status like upper('BCT%') then 'Batch'   end as processgroup  from   NPSS_TRANSACTIONS NT  inner join TRANSACTION_SET TS on   NT.NPSST_ID = TS.TRN_ID   and NT.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NT.STATUS = QR.PROCESS_QUEUE_STATUS   and NT.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NT.PROCESS_STATUS = PQ.QUEUE_CODE  inner join NPSS_TRN_PROCESS_LOG NTPL on   NTPL.UETR = NT.UETR  left join <tran_db>.core_nc_cbs_accounts cnca on   cnca.alternate_account_id = NT.CDTR_IBAN  left join <tran_db>.core_member_banks cmb1 on   cmb1.bic_code = NT.CR_SORT_CODE   and cmb1.need_sync = 'Y'  left join <tran_db>.core_member_banks cmb2 on   cmb2.bic_code = NT.DR_SORT_CODE   and cmb2.need_sync = 'Y'  left join <tran_db>.core_nc_error_codes cnec on   CNEC.error_code = ntpl.T24_return_code   and cnec.need_sync = 'Y'  left join <tran_db>.core_nc_post_restrictions cnpr on   cnpr.restriction_id = cnca.customer_posting_restriction_code   and cnpr.need_sync = 'Y' ) VW $WHERE order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS RCT IP Posting Failure Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.queue.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1670660153211","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"RCT IP Posting Failure Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1677558886041","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1677558886198","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1677558886620","date_format":false}],"joins":[]},"eq_text":"SELECT DISTINCT PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS,  PROCESSGROUP FROM  (SELECT NT.CREATED_DATE,    NT.STATUS,    NT.PROCESS_STATUS,    NT.UETR,    NT.PROCESSING_SYSTEM,    NT.TENANT_ID,    NT.MODIFIED_DATE,    NT.MODIFIED_DATE_UTC,    TS.TS_ID,    TS.LOCKED_BY,    TS.LOCKED_BY_NAME,    NT.CREATED_BY,    NT.CREATED_BY_NAME,    NT.SYSTEM_ID,    QR.ROLE_ID,    QR.VPH_APP_ID AS QR_APP_ID,    QR.VPH_APP_CODE,    QR.QUEUE_CODE,    QR.SCREEN_NAME AS QR_SCREEN_NAME,    QR.SCREEN_MENU_GROUP AS QR_MENU_GROUP,    QR.SCREEN_MODULE AS QR_MODULE,    PQ.QUEUE_DESC,    PQ.QUEUE_CODE,    PQ.VPH_APP_ID AS Q_APP_ID,    QR.SORT_ORDER AS QS_SORT_ORDER,    PQ.SORT_ORDER AS Q_SORT_ORDER,    NT.DEPARTMENT_CODE,    NT.VALUE_DATE,    NT.DBTR_ACCT_NO,    NT.DBTR_ACCT_NAME,    NT.CDTR_ACCT_NO,    NT.CDTR_IBAN,    NT.TRAN_REF_ID,    NT.CLRSYSREF,    NT.PAYMENT_ENDTOEND_ID,    NT.PROCESS_TYPE,    NT.DBTR_IBAN,    NT.INTRBK_STTLM_CUR,    NT.INTRBK_STTLM_AMNT,    NTPL.PROCESS_NAME,    CNEC.ERROR_DESCRIPTION,    NTPL.CBUAE_RETURN_CODE,    CNCA.CUSTOMER_POSTING_RESTRICTION_CODE,    CNCA.ACCOUNT_POSTRING_TYPE_DESCRIPTION,    NT.ACCOUNT_CURRENCY,    NT.CR_SORT_CODE,    NT.DR_SORT_CODE,    NTPL.T24_RETURN_CODE,    NT.CR_ACCT_IDENTIFICATION,    NT.CDTR_ACCT_NAME,    CASE        WHEN NT.PROCESS_STATUS like UPPER('RCT%') THEN 'Online'        WHEN NT.PROCESS_STATUS like UPPER('BCT%') THEN 'Batch'    END AS PROCESSGROUP   FROM NPSS_TRANSACTIONS NT   INNER JOIN TRANSACTION_SET TS ON NT.NPSST_ID = TS.TRN_ID   AND NT.DTT_CODE = TS.DTT_CODE   INNER JOIN CORE_Q_STATUS_ROLES QR ON NT.STATUS = QR.PROCESS_QUEUE_STATUS   AND NT.PROCESS_STATUS = QR.QUEUE_CODE   INNER JOIN CORE_APP_Q_SETUP PQ ON NT.PROCESS_STATUS = PQ.QUEUE_CODE   INNER JOIN NPSS_TRN_PROCESS_LOG NTPL ON NTPL.UETR = NT.UETR   LEFT JOIN CORE_NC_CBS_ACCOUNTS CNCA ON CNCA.ALTERNATE_ACCOUNT_ID = NT.CDTR_IBAN   LEFT JOIN CORE_MEMBER_BANKS CMB1 ON CMB1.BIC_CODE = NT.CR_SORT_CODE   AND CMB1.NEED_SYNC = 'Y'   LEFT JOIN CORE_MEMBER_BANKS CMB2 ON CMB2.BIC_CODE = NT.DR_SORT_CODE   AND CMB2.NEED_SYNC = 'Y'   LEFT JOIN CORE_NC_ERROR_CODES CNEC ON CNEC.ERROR_CODE = NTPL.T24_RETURN_CODE   AND CNEC.NEED_SYNC = 'Y'   LEFT JOIN CORE_NC_POST_RESTRICTIONS CNPR ON CNPR.RESTRICTION_ID = CNCA.CUSTOMER_POSTING_RESTRICTION_CODE   AND CNPR.NEED_SYNC = 'Y') VW $WHERE ORDER BY PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS RCT IP Posting Failure Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.queue.context_menu = []
 		this.queue.views = {}
 		this.queue.onChangecomponent = new EventEmitter<any>()
@@ -309,6 +318,24 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_trg_btn.dynamic_param = {}
 		this.navigation_ui_trg_btn.role = []
 		this.navigation_ui_trg_btn.action = ""
+		
+		// "Return" Button of "Navigation UI" component
+		this.navigation_ui_return.label_name = "Return"
+		this.navigation_ui_return.show = true
+		this.navigation_ui_return.disabled = false
+		this.navigation_ui_return.params = {"icon_only":false,"uicgcc_style":"fa fa-undo"}
+		this.navigation_ui_return.dynamic_param = {}
+		this.navigation_ui_return.role = []
+		this.navigation_ui_return.action = ""
+		
+		// "R-Approve" Button of "Navigation UI" component
+		this.navigation_ui_rapprove.label_name = "R-Approve"
+		this.navigation_ui_rapprove.show = true
+		this.navigation_ui_rapprove.disabled = false
+		this.navigation_ui_rapprove.params = {"icon_only":false,"uicgcc_style":"fa fa-check"}
+		this.navigation_ui_rapprove.dynamic_param = {}
+		this.navigation_ui_rapprove.role = []
+		this.navigation_ui_rapprove.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -652,6 +679,43 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.send_to_maker_ui_return_to_maker.dynamic_param = {}
 		this.send_to_maker_ui_return_to_maker.role = []
 		this.send_to_maker_ui_return_to_maker.action = ""
+	
+		// Component level properties - "Return UI" 
+		this.return_ui.uictrl_code = "dynamic_ui"
+		this.return_ui.uicgc_desc = "Return UI"
+		this.return_ui.uicgc_code = "uicgc_21"
+		this.return_ui.params = {}
+		this.return_ui.datasource = {}
+		this.return_ui.context_menu = []
+		this.return_ui.views = {}
+		this.return_ui.onChangecomponent = new EventEmitter<any>()
+		this.return_ui.show = true
+		this.return_ui.dynamic_param = {}
+		this.return_ui.f_return_ui = {"show":true}
+		this.return_ui.current_view = "f_return_ui"
+	
+		// Component level properties - "Save UI" 
+		this.save_ui.uictrl_code = "dynamic_ui"
+		this.save_ui.uicgc_desc = "Save UI"
+		this.save_ui.uicgc_code = "uicgc_22"
+		this.save_ui.params = {}
+		this.save_ui.datasource = {}
+		this.save_ui.context_menu = []
+		this.save_ui.views = {}
+		this.save_ui.onChangecomponent = new EventEmitter<any>()
+		this.save_ui.show = true
+		this.save_ui.dynamic_param = {}
+		this.save_ui.f_save_ui = {"show":true}
+		this.save_ui.current_view = "f_save_ui"
+		
+		// "Save" Button of "Save UI" component
+		this.save_ui_save.label_name = "Save"
+		this.save_ui_save.show = true
+		this.save_ui_save.disabled = false
+		this.save_ui_save.params = {"icon_only":false,"uicgcc_style":"fa fa-save"}
+		this.save_ui_save.dynamic_param = {}
+		this.save_ui_save.role = []
+		this.save_ui_save.action = ""
 	}
 	// Methods
 	ngAfterViewInit() {
@@ -1056,6 +1120,41 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "im for return to maker btn"
 	im_for_return_to_maker_btn__internal(parent_event_result){
 		this.im_for_return_to_maker_btn__rs_for_return_to_maker_btn(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui return"
+	navigation_ui_return__action_button_click(){
+		this.navigation_ui_return__spap_for_return()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "save ui save"
+	save_ui_save__action_button_click(){
+		this.save_ui_save__cc_for_save()
+	}
+
+	//Handler for INTERNAL event of "cc for save"
+	cc_for_save__internal(parent_event_result){
+		this.cc_for_save__im_for_save(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "im for save"
+	im_for_save__internal(parent_event_result){
+		this.im_for_save__rs_for_save(parent_event_result)
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui rapprove"
+	navigation_ui_rapprove__action_button_click(){
+		this.navigation_ui_rapprove__cc_for_r_approve()
+	}
+
+	//Handler for INTERNAL event of "cc for r approve"
+	cc_for_r_approve__internal(parent_event_result){
+		this.cc_for_r_approve__im_for_r_approve(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "im for r approve"
+	im_for_r_approve__internal(parent_event_result){
+		this.im_for_r_approve__rs_for_r_approve(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -1493,7 +1592,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1670660153211","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"RCT IP Posting Failure Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1677558886041","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1677558886198","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1677558886620","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS,  processgroup from  (  select   NT.CREATED_DATE,   NT.STATUS,   NT.PROCESS_STATUS,   NT.UETR,   NT.PROCESSING_SYSTEM,   NT.TENANT_ID,   NT.MODIFIED_DATE,   NT.MODIFIED_DATE_UTC,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   NT.CREATED_BY,   NT.CREATED_BY_NAME,   NT.SYSTEM_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER,   NT.DEPARTMENT_CODE,   NT.VALUE_DATE,   NT.DBTR_ACCT_NO,   NT.DBTR_ACCT_NAME,   NT.CDTR_ACCT_NO,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.PROCESS_TYPE,   NT.DBTR_IBAN,   NT.INTRBK_STTLM_CUR,   NT.INTRBK_STTLM_AMNT,   NTPL.PROCESS_NAME,   CNEC.error_description,   ntpl.cbuae_return_code,   cnca.customer_posting_restriction_code,   cnca.account_postring_type_description,   NT.account_currency,   NT.CR_SORT_CODE,   NT.DR_SORT_CODE,   ntpl.T24_return_code,nt.CR_ACCT_IDENTIFICATION,nt.CDTR_ACCT_NAME,   case    when nt.process_status like upper('RCT%') then 'Online'    when nt.process_status like upper('BCT%') then 'Batch'   end as processgroup  from   NPSS_TRANSACTIONS NT  inner join TRANSACTION_SET TS on   NT.NPSST_ID = TS.TRN_ID   and NT.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NT.STATUS = QR.PROCESS_QUEUE_STATUS   and NT.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NT.PROCESS_STATUS = PQ.QUEUE_CODE  inner join NPSS_TRN_PROCESS_LOG NTPL on   NTPL.UETR = NT.UETR  left join <tran_db>.core_nc_cbs_accounts cnca on   cnca.alternate_account_id = NT.CDTR_IBAN  left join <tran_db>.core_member_banks cmb1 on   cmb1.bic_code = NT.CR_SORT_CODE   and cmb1.need_sync = 'Y'  left join <tran_db>.core_member_banks cmb2 on   cmb2.bic_code = NT.DR_SORT_CODE   and cmb2.need_sync = 'Y'  left join <tran_db>.core_nc_error_codes cnec on   CNEC.error_code = ntpl.T24_return_code   and cnec.need_sync = 'Y'  left join <tran_db>.core_nc_post_restrictions cnpr on   cnpr.restriction_id = cnca.customer_posting_restriction_code   and cnpr.need_sync = 'Y' ) VW $WHERE order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS RCT IP Posting Failure Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1670660153211","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"RCT IP Posting Failure Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1677558886041","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1677558886198","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1677558886620","date_format":false}],"joins":[]},"eq_text":"SELECT DISTINCT PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS,  PROCESSGROUP FROM  (SELECT NT.CREATED_DATE,    NT.STATUS,    NT.PROCESS_STATUS,    NT.UETR,    NT.PROCESSING_SYSTEM,    NT.TENANT_ID,    NT.MODIFIED_DATE,    NT.MODIFIED_DATE_UTC,    TS.TS_ID,    TS.LOCKED_BY,    TS.LOCKED_BY_NAME,    NT.CREATED_BY,    NT.CREATED_BY_NAME,    NT.SYSTEM_ID,    QR.ROLE_ID,    QR.VPH_APP_ID AS QR_APP_ID,    QR.VPH_APP_CODE,    QR.QUEUE_CODE,    QR.SCREEN_NAME AS QR_SCREEN_NAME,    QR.SCREEN_MENU_GROUP AS QR_MENU_GROUP,    QR.SCREEN_MODULE AS QR_MODULE,    PQ.QUEUE_DESC,    PQ.QUEUE_CODE,    PQ.VPH_APP_ID AS Q_APP_ID,    QR.SORT_ORDER AS QS_SORT_ORDER,    PQ.SORT_ORDER AS Q_SORT_ORDER,    NT.DEPARTMENT_CODE,    NT.VALUE_DATE,    NT.DBTR_ACCT_NO,    NT.DBTR_ACCT_NAME,    NT.CDTR_ACCT_NO,    NT.CDTR_IBAN,    NT.TRAN_REF_ID,    NT.CLRSYSREF,    NT.PAYMENT_ENDTOEND_ID,    NT.PROCESS_TYPE,    NT.DBTR_IBAN,    NT.INTRBK_STTLM_CUR,    NT.INTRBK_STTLM_AMNT,    NTPL.PROCESS_NAME,    CNEC.ERROR_DESCRIPTION,    NTPL.CBUAE_RETURN_CODE,    CNCA.CUSTOMER_POSTING_RESTRICTION_CODE,    CNCA.ACCOUNT_POSTRING_TYPE_DESCRIPTION,    NT.ACCOUNT_CURRENCY,    NT.CR_SORT_CODE,    NT.DR_SORT_CODE,    NTPL.T24_RETURN_CODE,    NT.CR_ACCT_IDENTIFICATION,    NT.CDTR_ACCT_NAME,    CASE        WHEN NT.PROCESS_STATUS like UPPER('RCT%') THEN 'Online'        WHEN NT.PROCESS_STATUS like UPPER('BCT%') THEN 'Batch'    END AS PROCESSGROUP   FROM NPSS_TRANSACTIONS NT   INNER JOIN TRANSACTION_SET TS ON NT.NPSST_ID = TS.TRN_ID   AND NT.DTT_CODE = TS.DTT_CODE   INNER JOIN CORE_Q_STATUS_ROLES QR ON NT.STATUS = QR.PROCESS_QUEUE_STATUS   AND NT.PROCESS_STATUS = QR.QUEUE_CODE   INNER JOIN CORE_APP_Q_SETUP PQ ON NT.PROCESS_STATUS = PQ.QUEUE_CODE   INNER JOIN NPSS_TRN_PROCESS_LOG NTPL ON NTPL.UETR = NT.UETR   LEFT JOIN CORE_NC_CBS_ACCOUNTS CNCA ON CNCA.ALTERNATE_ACCOUNT_ID = NT.CDTR_IBAN   LEFT JOIN CORE_MEMBER_BANKS CMB1 ON CMB1.BIC_CODE = NT.CR_SORT_CODE   AND CMB1.NEED_SYNC = 'Y'   LEFT JOIN CORE_MEMBER_BANKS CMB2 ON CMB2.BIC_CODE = NT.DR_SORT_CODE   AND CMB2.NEED_SYNC = 'Y'   LEFT JOIN CORE_NC_ERROR_CODES CNEC ON CNEC.ERROR_CODE = NTPL.T24_RETURN_CODE   AND CNEC.NEED_SYNC = 'Y'   LEFT JOIN CORE_NC_POST_RESTRICTIONS CNPR ON CNPR.RESTRICTION_ID = CNCA.CUSTOMER_POSTING_RESTRICTION_CODE   AND CNPR.NEED_SYNC = 'Y') VW $WHERE ORDER BY PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS RCT IP Posting Failure Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -1514,7 +1613,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_queue__cc_for_queue,"
 		let event_data={"queue":{"e_1666857327033":{"dts":{"dt_1304_1665901130705":{"dtts":{"":{"uicgc_code":"UICGC_1","event_code":"E_1666857327033","dt_code":"DT_1304_1665901130705","dtt_code":"","dt_desc":"NPSS EDGE Transactions Group","dtt_desc":"NPSS Transactions","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"BULK","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"LOCAL","column_name":"PROCESS_STATUS","level":"MI_LEVEL","name":"MI_LEVEL_PROCESS_STATUS","setd3name":"PROCESS_STATUS"},{"type":"LOCAL","column_name":"STATUS","level":"MI_LEVEL","name":"MI_LEVEL_STATUS","setd3name":"STATUS"},{"type":"LOCAL","column_name":"PROCESSING_SYSTEM","level":"MI_LEVEL","name":"MI_LEVEL_PROCESSING_SYSTEM","setd3name":"PROCESSING_SYSTEM"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1670660153211","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"RCT IP Posting Failure Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1677558886041","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1677558886198","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1677558886620","date_format":false}],"joins":[]},"eq_text":"select  distinct PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS,  processgroup from  (  select   NT.CREATED_DATE,   NT.STATUS,   NT.PROCESS_STATUS,   NT.UETR,   NT.PROCESSING_SYSTEM,   NT.TENANT_ID,   NT.MODIFIED_DATE,   NT.MODIFIED_DATE_UTC,   TS.TS_ID,   TS.LOCKED_BY,   TS.LOCKED_BY_NAME,   NT.CREATED_BY,   NT.CREATED_BY_NAME,   NT.SYSTEM_ID,   QR.ROLE_ID,   QR.VPH_APP_ID as QR_APP_ID,   QR.VPH_APP_CODE,   QR.QUEUE_CODE,   QR.SCREEN_NAME as QR_SCREEN_NAME,   QR.SCREEN_MENU_GROUP as QR_MENU_GROUP,   QR.SCREEN_MODULE as QR_MODULE,   PQ.QUEUE_DESC,   PQ.QUEUE_CODE,   PQ.VPH_APP_ID as Q_APP_ID,   QR.SORT_ORDER as QS_SORT_ORDER,   PQ.SORT_ORDER as Q_SORT_ORDER,   NT.DEPARTMENT_CODE,   NT.VALUE_DATE,   NT.DBTR_ACCT_NO,   NT.DBTR_ACCT_NAME,   NT.CDTR_ACCT_NO,   NT.CDTR_IBAN,   NT.TRAN_REF_ID,   NT.CLRSYSREF,   NT.PAYMENT_ENDTOEND_ID,   NT.PROCESS_TYPE,   NT.DBTR_IBAN,   NT.INTRBK_STTLM_CUR,   NT.INTRBK_STTLM_AMNT,   NTPL.PROCESS_NAME,   CNEC.error_description,   ntpl.cbuae_return_code,   cnca.customer_posting_restriction_code,   cnca.account_postring_type_description,   NT.account_currency,   NT.CR_SORT_CODE,   NT.DR_SORT_CODE,   ntpl.T24_return_code,nt.CR_ACCT_IDENTIFICATION,nt.CDTR_ACCT_NAME,   case    when nt.process_status like upper('RCT%') then 'Online'    when nt.process_status like upper('BCT%') then 'Batch'   end as processgroup  from   NPSS_TRANSACTIONS NT  inner join TRANSACTION_SET TS on   NT.NPSST_ID = TS.TRN_ID   and NT.DTT_CODE = TS.DTT_CODE  inner join <tran_db>.CORE_Q_STATUS_ROLES QR on   NT.STATUS = QR.PROCESS_QUEUE_STATUS   and NT.PROCESS_STATUS = QR.QUEUE_CODE  inner join <tran_db>.CORE_APP_Q_SETUP PQ on   NT.PROCESS_STATUS = PQ.QUEUE_CODE  inner join NPSS_TRN_PROCESS_LOG NTPL on   NTPL.UETR = NT.UETR  left join <tran_db>.core_nc_cbs_accounts cnca on   cnca.alternate_account_id = NT.CDTR_IBAN  left join <tran_db>.core_member_banks cmb1 on   cmb1.bic_code = NT.CR_SORT_CODE   and cmb1.need_sync = 'Y'  left join <tran_db>.core_member_banks cmb2 on   cmb2.bic_code = NT.DR_SORT_CODE   and cmb2.need_sync = 'Y'  left join <tran_db>.core_nc_error_codes cnec on   CNEC.error_code = ntpl.T24_return_code   and cnec.need_sync = 'Y'  left join <tran_db>.core_nc_post_restrictions cnpr on   cnpr.restriction_id = cnca.customer_posting_restriction_code   and cnpr.need_sync = 'Y' ) VW $WHERE order by  PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS RCT IP Posting Failure Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1670660153211","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"RCT IP Posting Failure Queue MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"PROCESSING_SYSTEM","alias_name":"","mq_id":"MQ_1677558886041","date_format":false},{"column_name":"PROCESS_STATUS","alias_name":"","mq_id":"MQ_1677558886198","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1677558886620","date_format":false}],"joins":[]},"eq_text":"SELECT DISTINCT PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS,  PROCESSGROUP FROM  (SELECT NT.CREATED_DATE,    NT.STATUS,    NT.PROCESS_STATUS,    NT.UETR,    NT.PROCESSING_SYSTEM,    NT.TENANT_ID,    NT.MODIFIED_DATE,    NT.MODIFIED_DATE_UTC,    TS.TS_ID,    TS.LOCKED_BY,    TS.LOCKED_BY_NAME,    NT.CREATED_BY,    NT.CREATED_BY_NAME,    NT.SYSTEM_ID,    QR.ROLE_ID,    QR.VPH_APP_ID AS QR_APP_ID,    QR.VPH_APP_CODE,    QR.QUEUE_CODE,    QR.SCREEN_NAME AS QR_SCREEN_NAME,    QR.SCREEN_MENU_GROUP AS QR_MENU_GROUP,    QR.SCREEN_MODULE AS QR_MODULE,    PQ.QUEUE_DESC,    PQ.QUEUE_CODE,    PQ.VPH_APP_ID AS Q_APP_ID,    QR.SORT_ORDER AS QS_SORT_ORDER,    PQ.SORT_ORDER AS Q_SORT_ORDER,    NT.DEPARTMENT_CODE,    NT.VALUE_DATE,    NT.DBTR_ACCT_NO,    NT.DBTR_ACCT_NAME,    NT.CDTR_ACCT_NO,    NT.CDTR_IBAN,    NT.TRAN_REF_ID,    NT.CLRSYSREF,    NT.PAYMENT_ENDTOEND_ID,    NT.PROCESS_TYPE,    NT.DBTR_IBAN,    NT.INTRBK_STTLM_CUR,    NT.INTRBK_STTLM_AMNT,    NTPL.PROCESS_NAME,    CNEC.ERROR_DESCRIPTION,    NTPL.CBUAE_RETURN_CODE,    CNCA.CUSTOMER_POSTING_RESTRICTION_CODE,    CNCA.ACCOUNT_POSTRING_TYPE_DESCRIPTION,    NT.ACCOUNT_CURRENCY,    NT.CR_SORT_CODE,    NT.DR_SORT_CODE,    NTPL.T24_RETURN_CODE,    NT.CR_ACCT_IDENTIFICATION,    NT.CDTR_ACCT_NAME,    CASE        WHEN NT.PROCESS_STATUS like UPPER('RCT%') THEN 'Online'        WHEN NT.PROCESS_STATUS like UPPER('BCT%') THEN 'Batch'    END AS PROCESSGROUP   FROM NPSS_TRANSACTIONS NT   INNER JOIN TRANSACTION_SET TS ON NT.NPSST_ID = TS.TRN_ID   AND NT.DTT_CODE = TS.DTT_CODE   INNER JOIN CORE_Q_STATUS_ROLES QR ON NT.STATUS = QR.PROCESS_QUEUE_STATUS   AND NT.PROCESS_STATUS = QR.QUEUE_CODE   INNER JOIN CORE_APP_Q_SETUP PQ ON NT.PROCESS_STATUS = PQ.QUEUE_CODE   INNER JOIN NPSS_TRN_PROCESS_LOG NTPL ON NTPL.UETR = NT.UETR   LEFT JOIN CORE_NC_CBS_ACCOUNTS CNCA ON CNCA.ALTERNATE_ACCOUNT_ID = NT.CDTR_IBAN   LEFT JOIN CORE_MEMBER_BANKS CMB1 ON CMB1.BIC_CODE = NT.CR_SORT_CODE   AND CMB1.NEED_SYNC = 'Y'   LEFT JOIN CORE_MEMBER_BANKS CMB2 ON CMB2.BIC_CODE = NT.DR_SORT_CODE   AND CMB2.NEED_SYNC = 'Y'   LEFT JOIN CORE_NC_ERROR_CODES CNEC ON CNEC.ERROR_CODE = NTPL.T24_RETURN_CODE   AND CNEC.NEED_SYNC = 'Y'   LEFT JOIN CORE_NC_POST_RESTRICTIONS CNPR ON CNPR.RESTRICTION_ID = CNCA.CUSTOMER_POSTING_RESTRICTION_CODE   AND CNPR.NEED_SYNC = 'Y') VW $WHERE ORDER BY PROCESSING_SYSTEM,  PROCESS_STATUS,  STATUS"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS RCT IP Posting Failure Queue CCD","filter":[{"filter_name":"CURRENT_MODULE_NAME","binding_name":"QR_MODULE","binding_value":"","source_name":"CURRENT_MODULE_NAME","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"MENU_GROUP","binding_name":"QR_MENU_GROUP","binding_value":"","source_name":"MENU_GROUP","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"PROCESS_TYPE","binding_name":"PROCESS_TYPE","binding_value":"","source_name":"IP","source_value":"","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"Q_APP_ID","binding_name":"Q_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"QR_APP_ID","binding_name":"QR_APP_ID","binding_value":"","source_name":"APP_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"ROLE_ID","binding_name":"ROLE_ID","binding_value":"","source_name":"APP_USER_ROLES","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"SCREEN_NAME","binding_name":"QR_SCREEN_NAME","binding_value":"","source_name":"MENU_ITEM_CODE","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Processing System","target_column":"PROCESSING_SYSTEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Queue","target_column":"PROCESS_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
@@ -3497,6 +3596,157 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		let parent_source_id="cc_for_return_to_maker_btn"
 		let event_code="e_1681389026230"
 		let event_params={"caller_name":"im_for_return_to_maker_btn__rs_for_return_to_maker_btn","event_desc":"RS for Return to Maker btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"send_to_maker_ui_return_to_maker","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui return"
+	navigation_ui_return__spap_for_return() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_return"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1711969338066"
+		let event_params={"caller_name":"navigation_ui_return__spap_for_return","event_desc":"SPAP for Return","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_return","raiseparam":{"popup_category":"profile","variable":"p_return_layout__spap_for_return","selector":"p_return_layout","profile_code":"BTL_1304_1711969155321","window_title":"Return","window_height":300,"window_width":"500px","window_close_icon":"Y","eventdes":"spap_for_return","eventcode":"E_1711969338066"}}
+		let handler_code="show_profile_as_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.show_profile_as_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "save ui save"
+	save_ui_save__cc_for_save() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="save_ui_save"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1711970176057"
+		let event_params={"caller_name":"save_ui_save__cc_for_save","event_desc":"CC for Save","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"save_ui_save","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_save__im_for_save,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for save"
+	cc_for_save__im_for_save(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_save"
+		let destn_id=""
+		let parent_source_id="save_ui_save"
+		let event_code="e_1711970237222"
+		let event_params={"caller_name":"cc_for_save__im_for_save","event_desc":"IM for Save","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction return request has been initiated successfully.","root_source_id":"save_ui_save","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="im_for_save__rs_for_save,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "im for save"
+	im_for_save__rs_for_save(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="im_for_save"
+		let destn_id=""
+		let parent_source_id="cc_for_save"
+		let event_code="e_1711970273632"
+		let event_params={"caller_name":"im_for_save__rs_for_save","event_desc":"RS For Save","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"save_ui_save","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="refresh_screen"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.refresh_screen(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui rapprove"
+	navigation_ui_rapprove__cc_for_r_approve() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_rapprove"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1711970411497"
+		let event_params={"caller_name":"navigation_ui_rapprove__cc_for_r_approve","event_desc":"CC for R Approve","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_rapprove","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals="cc_for_r_approve__im_for_r_approve,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for r approve"
+	cc_for_r_approve__im_for_r_approve(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_r_approve"
+		let destn_id=""
+		let parent_source_id="navigation_ui_rapprove"
+		let event_code="e_1711970445037"
+		let event_params={"caller_name":"cc_for_r_approve__im_for_r_approve","event_desc":"IM for R Approve","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction return request has been approved and sent to CB successfully.","root_source_id":"navigation_ui_rapprove","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let handler_code="info_msg"
+		let internals="im_for_r_approve__rs_for_r_approve,"
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.info_msg(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "im for r approve"
+	im_for_r_approve__rs_for_r_approve(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="im_for_r_approve"
+		let destn_id=""
+		let parent_source_id="cc_for_r_approve"
+		let event_code="e_1711970491245"
+		let event_params={"caller_name":"im_for_r_approve__rs_for_r_approve","event_desc":"RS for R Approve","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_rapprove","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}

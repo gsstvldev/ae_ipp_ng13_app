@@ -16,6 +16,9 @@
 
 <p-dialog header="{{'' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_send_to_maker_layout__spap_has_been_sent_to_maker_successfully_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '170px','width': '600px'}" [draggable]="true" [modal]="true">
 	<p_send_to_maker_layout [screen_instance]="this" ></p_send_to_maker_layout></p-dialog>
+
+<p-dialog header="{{'Return' | translate }}"  [closable]="true" (onHide)="closePopup()" responsive="true" breakpoint=600 styleClass="show-popup " [(visible)]="p_return_layout__spap_for_return_showpopup" [contentStyle]="{'overflow-y': 'auto','height': '300px','width': '500px'}" [draggable]="true" [modal]="true">
+	<p_return_layout [screen_instance]="this" ></p_return_layout></p-dialog>
 <app-dialog [screen_instance]="this" ></app-dialog>
 <div style="display:none">
 	<datatable [comp_id]="'process_log_list'" [screen_instance]="this"></datatable>

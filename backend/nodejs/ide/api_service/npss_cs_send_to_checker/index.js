@@ -7,7 +7,8 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
+
 
 
 
@@ -22,6 +23,7 @@ app.post('/', function(appRequest, appResponse, next) {
             Reason for Handling spl rate 14/7/2023
             Reason for Handling  rateMode,contra_amount for non aed iban flow 07/11/2023 by daseen
             Reason for:Adding dbtr_acct_no in api payload on 16/11/2023
+            Reason for:Adding try catch for issues 04/1/2024
         */
         var serviceName = 'NPSS (CS) Send To Checker';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -120,116 +122,152 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             Ipuetr = await TakeIpUetr(arrprocesslog)
                                                             if (Ipuetr != null) {
                                                                 var takedata = async () => {
-                                                                    // checkForceTopost = await ForcetoPost(arrprocesslog)
-                                                                    // if (checkForceTopost == 'Call_Reserve_Fund_Api') {
-
-                                                                    extend_retry_value = await GetRetrycount(arrprocesslog[0].uetr)
-                                                                    if (apicalls == 0) {// Resurve Fund api call
-                                                                        reverseAcinfparam = await TakereversalIdandActInfm(arrprocesslog)
-                                                                    } else { // for both prepaid card and credit card api calls 
-                                                                        reverseAcinfparam = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
-                                                                    }
-
-                                                                    if (apicalls == 0 || apicalls == '0') { // Reserve api call
-                                                                        take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL' AND need_sync = 'Y'`;
-                                                                    } else if (apicalls == 1 || apicalls == '1') { //Prepaid  api Call
-                                                                        take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_PREPAID_CARD' and param_code='URL' AND need_sync = 'Y'`;
-                                                                    } else if (apicalls == 2 || apicalls == '2') { // Credit  api call
-                                                                        take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_CREDIT_CARD' and param_code='URL' AND need_sync = 'Y'`;
-                                                                    }
-
-                                                                    ExecuteQuery1(take_api_url, async function (arrurl) {
-                                                                        if (arrurl.length) {
-                                                                            var url = arrurl[0].param_detail;
-                                                                            var amount
-
-                                                                            amount = arrprocesslog[0].intrbk_sttlm_amnt
+                                                                    try {
 
 
-                                                                            if (apicalls == 0) {
-                                                                                if (reverseAcinfparam.currency != 'AED') {
-                                                                                    ChecksplRate = await CheckspecialRate(arrprocesslog)
-                                                                                    GetadditionData = await GetaddInfo(arrprocesslog)
-                                                                                    if (ChecksplRate == 'Take GMrate') {
-                                                                                        TakegmMargin = await GetgmMargin(arrprocesslog, reverseAcinfparam)
-                                                                                    } else {
-                                                                                        TakegmMargin = ''
-                                                                                    }
-                                                                                }
+                                                                        // checkForceTopost = await ForcetoPost(arrprocesslog)
+                                                                        // if (checkForceTopost == 'Call_Reserve_Fund_Api') {
+
+                                                                        extend_retry_value = await GetRetrycount(Ipuetr)
+                                                                        if (apicalls == 0) {// Resurve Fund api call
+                                                                            reverseAcinfparam = await TakereversalIdandActInfm(arrprocesslog)
+                                                                        } else { // for both prepaid card and credit card api calls 
+                                                                            reverseAcinfparam = await ReverseIdFrcdtpdt(arrprocesslog, apicalls)
+                                                                        }
+
+                                                                        if (apicalls == 0 || apicalls == '0') { // Reserve api call
+                                                                            take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INAU_RESERVE_ACCEPT' and param_code='URL' AND need_sync = 'Y'`;
+                                                                        } else if (apicalls == 1 || apicalls == '1') { //Prepaid  api Call
+                                                                            take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_PREPAID_CARD' and param_code='URL' AND need_sync = 'Y'`;
+                                                                        } else if (apicalls == 2 || apicalls == '2') { // Credit  api call
+                                                                            take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_IP_REV_RET_CREDIT_CARD' and param_code='URL' AND need_sync = 'Y'`;
+                                                                        }
+
+                                                                        ExecuteQuery1(take_api_url, async function (arrurl) {
+                                                                            try {
 
 
-                                                                                takedealRefno = await GetRefno(arrprocesslog, reverseAcinfparam)
+                                                                                if (arrurl.length) {
+                                                                                    var url = arrurl[0].param_detail;
+                                                                                    var amount
 
-                                                                            } else {
-                                                                                TakegmMargin = {}
-                                                                            }
-
-
-                                                                            var callapi = async () => {
-
-                                                                                var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, apicalls, extend_retry_value, takedealRefno, ChecksplRate, GetadditionData)
-                                                                                let buyRate = params.BUY_RATE != '' ? params.BUY_RATE : 0 || 0
-                                                                                let buyMargin = params.BUY_MARGIN != '' ? params.BUY_MARGIN : 0 || 0
-                                                                                if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
-                                                                                    var UpdateTrnTble
-                                                                                    var updSplRate = ChecksplRate == 'Take Sellrate' ? 'Y' : 'N'
-                                                                                    if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
-                                                                                        UpdateTrnTble = `Update npss_transactions set buy_rate = '${buyRate}',buy_margin = '${buyMargin}',maker = '${params.CREATED_BY_NAME}',force_post_flag = 'N',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}',CUST_SPLRATE_FLAG = '${updSplRate}' where npsst_id = '${params.Tran_Id}'`
-                                                                                    } else {
-                                                                                        UpdateTrnTble = `Update npss_transactions set buy_rate = '${buyRate}',buy_margin = '${buyMargin}',checker = '${params.CREATED_BY_NAME}',force_post_flag = 'N',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}',CUST_SPLRATE_FLAG = '${updSplRate}' where npsst_id = '${params.Tran_Id}'`
-                                                                                    }
-                                                                                    ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
-                                                                                        if (arrUpdTranTbl == 'SUCCESS') {
-                                                                                            objresponse.status = 'SUCCESS';
-                                                                                            sendResponse(null, objresponse);
-
-                                                                                        } else {
-                                                                                            objresponse.status = 'No Data Updated in Transaction Table';
-                                                                                            sendResponse(null, objresponse);
-
-                                                                                        }
-                                                                                    })
+                                                                                    amount = arrprocesslog[0].intrbk_sttlm_amnt
 
 
-
-
-
-                                                                                } else if (apistatus.status == 'TIMEOUT') {
-
-                                                                                    objresponse.status = 'Time Out' + apiName + ' Api Failure'
-                                                                                    sendResponse(null, objresponse);
-                                                                                } else {
                                                                                     if (apicalls == 0) {
-                                                                                        objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
-                                                                                        sendResponse(null, objresponse);
-                                                                                    } else if (apicalls == 1) {
-                                                                                        objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
+                                                                                        if (reverseAcinfparam.currency != 'AED') {
+                                                                                            ChecksplRate = await CheckspecialRate(arrprocesslog)
+                                                                                            GetadditionData = await GetaddInfo(arrprocesslog)
+                                                                                            if (ChecksplRate == 'Take GMrate') {
+                                                                                                TakegmMargin = await GetgmMargin(arrprocesslog, reverseAcinfparam)
+                                                                                            } else {
+                                                                                                TakegmMargin = ''
+                                                                                            }
+                                                                                        }
 
-                                                                                        sendResponse(null, objresponse);
 
-                                                                                    } else if (apicalls == 2) {
-                                                                                        objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
+                                                                                        takedealRefno = await GetRefno(arrprocesslog, reverseAcinfparam)
 
-                                                                                        sendResponse(null, objresponse);
-
+                                                                                    } else {
+                                                                                        TakegmMargin = {}
                                                                                     }
 
+
+                                                                                    var callapi = async () => {
+                                                                                        try {
+
+
+
+                                                                                            var apistatus = await checkapiCalls(url, arrprocesslog, lclinstrm, amount, reverseAcinfparam, Objfiledata, TakegmMargin, apicalls, extend_retry_value, takedealRefno, ChecksplRate, GetadditionData)
+                                                                                            let buyRate = params.BUY_RATE != '' ? params.BUY_RATE : 0 || 0
+                                                                                            let buyMargin = params.BUY_MARGIN != '' ? params.BUY_MARGIN : 0 || 0
+                                                                                            if (apistatus.status == 'SUCCESS' || apistatus.status == 'Success') {
+                                                                                                var updateOlduetr = await fnupdateOlduetr(Ipuetr, extend_retry_value)
+                                                                                                var UpdateTrnTble
+                                                                                                var updSplRate = ChecksplRate == 'Take Sellrate' ? 'Y' : 'N'
+                                                                                                if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
+                                                                                                    UpdateTrnTble = `Update npss_transactions set buy_rate = '${buyRate}',buy_margin = '${buyMargin}',maker = '${params.CREATED_BY_NAME}',force_post_flag = 'N',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}',CUST_SPLRATE_FLAG = '${updSplRate}' where npsst_id = '${params.Tran_Id}'`
+                                                                                                } else {
+                                                                                                    UpdateTrnTble = `Update npss_transactions set buy_rate = '${buyRate}',buy_margin = '${buyMargin}',checker = '${params.CREATED_BY_NAME}',force_post_flag = 'N',status ='${final_status}',process_status = '${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}',CUST_SPLRATE_FLAG = '${updSplRate}' where npsst_id = '${params.Tran_Id}'`
+                                                                                                }
+                                                                                                ExecuteQuery(UpdateTrnTble, function (arrUpdTranTbl) {
+                                                                                                    try {
+                                                                                                        if (arrUpdTranTbl == 'SUCCESS') {
+                                                                                                            objresponse.status = 'SUCCESS';
+                                                                                                            sendResponse(null, objresponse);
+
+                                                                                                        } else {
+                                                                                                            objresponse.status = 'No Data Updated in Transaction Table';
+                                                                                                            sendResponse(null, objresponse);
+
+                                                                                                        }
+                                                                                                    }
+                                                                                                    catch (error) {
+                                                                                                        reqInstanceHelper.PrintInfo(serviceName, error, objSessionLogInfo, 'IDE-SERVICE-ERROR')
+                                                                                                        SendResponse(null, { status: "Failure" })
+                                                                                                        //SendResponse(error)
+                                                                                                    }
+                                                                                                })
+
+
+
+
+
+                                                                                            } else if (apistatus.status == 'TIMEOUT') {
+
+                                                                                                objresponse.status = 'Time Out' + apiName + ' Api Failure'
+                                                                                                sendResponse(null, objresponse);
+                                                                                            } else {
+                                                                                                if (apicalls == 0) {
+                                                                                                    objresponse.status = apistatus['response']['error']['errorDetails'][0]['message']
+                                                                                                    sendResponse(null, objresponse);
+                                                                                                } else if (apicalls == 1) {
+                                                                                                    objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
+
+                                                                                                    sendResponse(null, objresponse);
+
+                                                                                                } else if (apicalls == 2) {
+                                                                                                    objresponse.status = apiName + 'Fail Error Code' + apistatus.error_code
+
+                                                                                                    sendResponse(null, objresponse);
+
+                                                                                                }
+
+                                                                                            }
+                                                                                        }
+                                                                                        catch (error) {
+                                                                                            reqInstanceHelper.PrintInfo(serviceName, error, objSessionLogInfo, 'IDE-SERVICE-ERROR')
+                                                                                            SendResponse(null, { status: "Failure" })
+                                                                                        }
+                                                                                    }
+
+                                                                                    callapi()
+
+                                                                                }
+                                                                                else {
+
+                                                                                    objresponse.status = "No Data found in workflow table"
+                                                                                    sendResponse(null, objresponse)
                                                                                 }
                                                                             }
 
-                                                                            callapi()
+                                                                            catch (error) {
+                                                                                reqInstanceHelper.PrintInfo(serviceName, error, objSessionLogInfo, 'IDE-SERVICE-ERROR')
+                                                                                SendResponse(null, { status: "Failure" })
+                                                                                //SendResponse(error)
+                                                                            }
+                                                                        })
+                                                                        // } else {
+                                                                        //     objresponse.status = checkForceTopost
+                                                                        //     sendResponse(null, objresponse)
+                                                                        // }
+                                                                    }
 
-                                                                        }
-                                                                        else {
-
-                                                                            objresponse.status = "No Data found in workflow table"
-                                                                            sendResponse(null, objresponse)
-                                                                        }
-                                                                    })
-                                                                    // } else {
-                                                                    //     objresponse.status = checkForceTopost
-                                                                    //     sendResponse(null, objresponse)
-                                                                    // }
+                                                                    catch (error) {
+                                                                        reqInstanceHelper.PrintInfo(serviceName, error, objSessionLogInfo, 'IDE-SERVICE-ERROR')
+                                                                        SendResponse(null, { status: "Failure" })
+                                                                        //SendResponse(error)
+                                                                    }
 
                                                                 }
 
@@ -398,7 +436,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                        "dbtr_acct_no": arrprocesslog[0].dbtr_acct_no || '',
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -463,8 +501,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                 if (GetadditionData.length > 0) {
                                     options.json.payload.gidId = GetadditionData[0].additional_info || '',
                                         options.json.payload.Rate = GetadditionData[0].fx_resv_text1 || '',
-                                        options.json.payload.rateMode = JSON.parse(GetadditionData[0].response_json).common.rateMode||'',
-                                    options.json.payload.contra_amt = JSON.parse(GetadditionData[0].response_json).dealResponse[0].contraAmount||''
+                                        options.json.payload.rateMode = JSON.parse(GetadditionData[0].response_json).common.rateMode || '',
+                                        options.json.payload.contra_amt = JSON.parse(GetadditionData[0].response_json).dealResponse[0].contraAmount || ''
 
                                 }
                                 options.json.payload.contraAmount = params.CONTRA_AMOUNT || ''
@@ -516,7 +554,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             let pos_res_qry = `select cncpr_id, restriction_type,applicable_dr_ac,restriction_id from core_nc_post_restrictions where restriction_type <> 'CREDIT' and restriction_id in `
                             let split_id = arr.split('@@')
                             let remove_empty = split_id.filter((x) => x != '')
-                            let str=remove_empty.map((x)=>`'`+x+`'` )
+                            let str = remove_empty.map((x) => `'` + x + `'`)
                             let res_id = '(' + str + ')'
                             pos_res_qry = pos_res_qry + res_id
                             let res_count = 0
@@ -527,15 +565,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                             res_count++;
                                         }
                                     })
-                                }else
-                                resolve('SUCCESS')
+                                } else
+                                    resolve('SUCCESS')
                                 if (res_count > 0) {
                                     resolve('Restrict')
                                 } else
                                     resolve('SUCCESS')
                             })
 
-                            
+
                         })
                     }
 
@@ -687,9 +725,10 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
 
                     }
-                    function GetRetrycount(uetr) {
+                    function GetRetrycount(ipuetr) {
                         return new Promise((resolve, reject) => {
-                            var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where ext_iden_retry_value IS NOT NULL and uetr = '${uetr}' order by npsstpl_id desc`
+
+                            var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where   uetr ='${ipuetr}' and  status='${params.eligible_status}'`
                             ExecuteQuery1(TakeretryValue, function (extIdentValue) {
                                 if (extIdentValue.length > 0) {
                                     if (extIdentValue[0].ext_iden_retry_value != null) {
@@ -936,7 +975,21 @@ app.post('/', function(appRequest, appResponse, next) {
                         })
                     }
 
+                    function fnupdateOlduetr(ipuetr, extend_retry_value) {
+                        return new Promise((resolve, reject) => {
+                            let updtQry = `update npss_trn_process_log set ext_iden_retry_value = ${extend_retry_value} where uetr ='${ipuetr}' and status='${params.eligible_status}'`
+                            ExecuteQuery(updtQry, function (arrUetr) {
+                                if (arrUetr == 'SUCCESS') {
+                                    resolve('SUCCESS')
+                                } else {
+                                    objresponse.status = "ext_iden_retry_value update Failed "
+                                    sendResponse(null, objresponse)
+                                }
+                            })
 
+
+                        })
+                    }
 
 
                     //function to call all api calls(reservefund,prepaid,credit)
@@ -1008,7 +1061,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                        "dbtr_acct_no": arrprocesslog[0].dbtr_acct_no || '',
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1099,7 +1152,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "intrbk_sttlm_cur": arrprocesslog[0].intrbk_sttlm_cur || '',
                                         "intrbk_sttlm_amnt": amount || '',
                                         "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
-                                        "dbtr_acct_no":arrprocesslog[0].dbtr_acct_no || '',
+                                        "dbtr_acct_no": arrprocesslog[0].dbtr_acct_no || '',
                                         "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
                                         "dbtr_acct_name": arrprocesslog[0].dbtr_acct_name || '',
                                         "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
@@ -1348,6 +1401,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

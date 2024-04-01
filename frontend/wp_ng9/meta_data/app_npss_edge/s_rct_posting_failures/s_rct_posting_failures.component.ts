@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35051 
+Build ID        : 35054 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-01 12:12 PM 
+Modified Date   : 2024-Apr-01 12:41 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_posting_failures
@@ -79,7 +79,7 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 	btl_1304_1668850424944 : string = "p_cbs_layout"
 	btl_1304_1666856790983 : string = "p_search_layout"
 	btl_1304_1666856599156 : string = "p_main_layout"
-	forms : any = ["uicgc_14","uicgc_4","uicgc_18","uicgc_6","uicgc_16","uicgc_20","uicgc_21","uicgc_22","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
+	forms : any = ["uicgc_21","uicgc_14","uicgc_4","uicgc_18","uicgc_6","uicgc_16","uicgc_20","uicgc_22","uicgc_17","uicgc_12","uicgc_13","uicgc_15","uicgc_8","uicgc_3"]
 	p_search_layout__spap_for_search_showpopup : boolean = false
 	p_cbs_layout__spap_for_cbs_ui_showpopup : boolean = false
 	p_send_to_maker_layout__spap_has_been_sent_to_maker_successfully_showpopup : boolean = false
@@ -687,12 +687,12 @@ export class s_rct_posting_failuresComponent implements OnInit,AfterViewInit {
 		this.return_ui.params = {}
 		this.return_ui.datasource = {}
 		this.return_ui.context_menu = []
-		this.return_ui.views = {}
+		this.return_ui.views = {"first":"DTT_1304_1665905039255","is_tab_mode":"N","dtt_1304_1665905039255":{"0":[{"dttv_id":"NPSS Posting Failures Return UI","tab_order":0,"tab_name":"","uicgc_description":"Return UI","role_description":"default","dtt_description":"NPSS Trn Process Log"}]}}
 		this.return_ui.onChangecomponent = new EventEmitter<any>()
 		this.return_ui.show = true
 		this.return_ui.dynamic_param = {}
-		this.return_ui.f_return_ui = {"show":true}
-		this.return_ui.current_view = "f_return_ui"
+		this.return_ui.f_npss_posting_failures_return_ui = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.return_ui.form_name = "f_npss_posting_failures_return_ui"
 	
 		// Component level properties - "Save UI" 
 		this.save_ui.uictrl_code = "dynamic_ui"

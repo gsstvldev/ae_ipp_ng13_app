@@ -899,7 +899,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                     function Getorgdata(arrprocesslog) {
                         return new Promise((resolve, reject) => {
-                            var orgflddata = `select process_ref_no from npss_trn_process_log where process_name = 'Inward Credit Posting' and uetr = '${arrprocesslog[0].uetr}' and status in ('IP_RCT_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS','IP_BCT_CC_POSTING_SUCCESS','IP_BCT_PC_POSTING_SUCCESS')`
+                            var orgflddata = `select process_ref_no from npss_trn_process_log where process_name = 'Inward Credit Posting' and uetr = '${arrprocesslog[0].uetr}' and status in ('IP_RCT_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS','IP_BCT_CC_T24_POSTING_SUCCESS','IP_BCT_PC_T24_POSTING_SUCCESS')`
                             ExecuteQuery1(orgflddata, function (arrflddata) {
                                 if (arrflddata.length > 0) {
                                     resolve(arrflddata[0].process_ref_no)

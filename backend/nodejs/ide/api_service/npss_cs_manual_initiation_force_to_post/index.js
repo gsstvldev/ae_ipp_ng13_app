@@ -406,7 +406,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
                                         "cr_acct_id_code": arrprocesslog[0].cr_acct_id_code || '',
                                         "message_data": arrprocesslog[0].message_data || '',
-
+"remittance_information": arrprocesslog[0].remittance_info || '',
                                         "process_type": arrprocesslog[0].process_type || '',
                                         "status": params.eligible_status || '',
                                         "process_status": params.eligible_process_status || '',

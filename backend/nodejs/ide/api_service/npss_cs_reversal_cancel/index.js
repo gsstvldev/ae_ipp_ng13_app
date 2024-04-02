@@ -353,7 +353,7 @@ try {
                                         "intrbk_sttlm_amnt": trndata[0].intrbk_sttlm_amnt,
                                         "dbtr_iban": trndata[0].dbtr_iban,
                                         "cdtr_iban": trndata[0].cdtr_iban,
-
+                                         "remittance_information": trndata[0].remittance_info || '',
                                         "uetr": trndata[0].uetr,
 
                                         "posting_ref_no": arrpostno[0].process_ref_no,

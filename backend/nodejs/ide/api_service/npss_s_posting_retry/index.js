@@ -1464,7 +1464,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                       "intrbk_sttlm_amnt": req_json.amount.requested || '',
                                       "hdr_total_amount": req_json.amount.requested || '',
                                       "intrbk_sttlm_cur": req_json.amount.currency || '',
-                                      "remittance_information": "",
+                                       "remittance_information": req_json.reason||'',
                                       "dbtr_iban": req_json.sender.iban || '',
                                       "customer_mobile_number": arrcbsdata[0].customer_mobile_number,
                                       "dbtr_acct_name": req_json.sender.name || '',

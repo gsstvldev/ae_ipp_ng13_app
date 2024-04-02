@@ -260,7 +260,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 "cdtr_iban": trndata[0].cdtr_iban,
 
                                                 "uetr": trndata[0].uetr,
-
+                                                 "remittance_information": trndata[0].remittance_info || '',
                                                 "posting_ref_no": arrpostno[0].process_ref_no,
                                                 "dbtr_acct_name": trndata[0].dbtr_acct_name,
                                                 "cdtr_acct_name": trndata[0].cdtr_acct_name,

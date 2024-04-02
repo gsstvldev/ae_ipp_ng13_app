@@ -30,6 +30,8 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified Date : 17/03/2023
       Modified By : Renga
     Modified Date : 25/03/2024
+      Modified By : Renga
+    Modified Date : 02/04/2024
     Reason for : Adding new function for paymentendtoendId 11/04/2023
     Reason for : brithdate take from cbs acct table 25/4/2023
     Reason for : Including Sell margin and sell rate 28/4/2023
@@ -43,7 +45,7 @@ app.post('/', function(appRequest, appResponse, next) {
       Reason for : Reverted changes on PAYMENT END TO END  ID for bct insert  01/03/2024 by  Daseen WI  3553
       Reason for : channel cut off time checking for BCT  22/03/2024 by  Daseen WI  3553
        Reason for : channel cut off time checking for BCT  
-
+ Reason for : SCHEMA DEFINED BASED ON THE LIVE OR ARCHIVAL
 
      
     */
@@ -84,6 +86,12 @@ app.post('/', function(appRequest, appResponse, next) {
                         var PRCT_ID = prct_id
                         var success_process_status
                         var success_status
+                        var schema;
+                        if (params.DB_TYPE == 'LIVE') {
+                            schema = 'ad_gss_tran'
+                        } else if (params.DB_TYPE == 'ARCHIVAL') {
+                            schema = 'arc_ad_gss_tran'
+                        }
                         try {
                             var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                             let eligibleChkRes = await checkEligible()
@@ -94,7 +102,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         if (arrrule.length > 0) {
                                             success_process_status = arrrule[0].success_process_status;
                                             success_status = arrrule[0].success_status;
-                                            var TakedatafrmTrn = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY) as cr_acct_iden,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,* from npss_transactions ns where npsst_id = '${params.Tran_Id}'`
+                                            var TakedatafrmTrn = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY) as cr_acct_iden,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,* from ${schema}.npss_transactions ns where npsst_id = '${params.Tran_Id}'`
                                             ExecuteQuery1(TakedatafrmTrn, async function (arrdata) {
                                                 var takeUetr = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_GET_UETR' and param_code='URL' and NEED_SYNC = 'Y'`
                                                 ExecuteQuery1(takeUetr, async function (arruetr) {
@@ -269,7 +277,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     arrTrnPrslog.push(objcusTranprslog)
                                                                     _BulkInsertProcessItem(arrTrnPrslog, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTrnPrslog) {
                                                                         if (CusTrnPrslog.length > 0) {
-                                                                            var UpdateTrnProcessLog = `Update npss_transactions set status ='IP_RCT_MANUAL_RETURNED',process_status = 'RCTCompleted',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                            var UpdateTrnProcessLog = `Update ${schema}.npss_transactions set status ='IP_RCT_MANUAL_RETURNED',process_status = 'RCTCompleted',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                             // var UpdateTrnProcessLog = `Update npss_transactions set status ='${success_status}',process_status = '${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
                                                                             ExecuteQuery(UpdateTrnProcessLog, function (arrUpdPrsLog) {
                                                                                 if (arrUpdPrsLog == 'SUCCESS') {

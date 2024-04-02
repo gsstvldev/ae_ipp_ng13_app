@@ -17,6 +17,8 @@ app.post('/', function(appRequest, appResponse, next) {
     /*  Created By :Daseen
     Created Date :27/02/2024
     Reason : Remarks updated in transaction on 06-03-2024
+    Modified Date:2/4/2024
+    Reason:Updated arc_ad_gss_tran.npss_transactions same as the existing 
     
     {
     "PARAMS": {
@@ -84,11 +86,21 @@ app.post('/', function(appRequest, appResponse, next) {
                                 ExecuteQuery1(Takedata, async function (arruetrData) {
                                     if (arruetrData.length > 0) {
 
-                                        let upadatests = await updateTran('(' + arruetrData.map((x) => x.npsst_id) + ')', arrSts[0].success_status, arrSts[0].success_process_status, '(' + arruetrData.map((x) =>`'`+x.uetr+`'`) + ')')
+                                        let upadatests = await updateTran('(' + arruetrData.map((x) => x.npsst_id) + ')', arrSts[0].success_status, arrSts[0].success_process_status, '(' + arruetrData.map((x) =>`'`+x.uetr+`'`) + ')','npss_transactions')
                                     } else {
-                                        reqInstanceHelper.PrintInfo(serviceName, '------------No  data found in Tran IP-------', objSessionLogInfo);
-                                        objresponse.status = 'FAILURE';
-                                        sendResponse(null, objresponse)
+                                        var Takedata = `SELECT npsst_id,uetr FROM arc_ad_gss_tran.npss_transactions  WHERE process_type = 'IP'   AND uetr IN (   SELECT additional_info     FROM npss_trn_process_log   WHERE uetr IN (   SELECT uetr     FROM npss_transactions WHERE process_status = '${arrSts[0].eligible_process_status}'  AND status = '${arrSts[0].eligible_status}' AND process_group = 'MANUAL'  and (remarks <>'TAKEN'  or remarks isnull) )    AND process_name = 'Initiate Dispute Tran'  AND status = 'OP_RCT_RET_INITIATED'     )`
+                                        ExecuteQuery1(Takedata, async function (arruetrData) {
+                                            if (arruetrData.length > 0) {
+        
+                                                let upadatests = await updateTran('(' + arruetrData.map((x) => x.npsst_id) + ')', arrSts[0].success_status, arrSts[0].success_process_status, '(' + arruetrData.map((x) =>`'`+x.uetr+`'`) + ')','arc_ad_gss_tran.npss_transactions')
+                                            }
+                                            else{
+                                                reqInstanceHelper.PrintInfo(serviceName, '------------No  data found in Tran IP-------', objSessionLogInfo);
+                                                objresponse.status = 'FAILURE';
+                                                sendResponse(null, objresponse)
+                                            }
+                                        })
+                                        
                                     }
 
                                 })
@@ -102,10 +114,10 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
                         })
 
-                        function updateTran(subquery, final_status, final_process_status, uetr) {
+                        function updateTran(subquery, final_status, final_process_status, uetr,tbl_name) {
                             return new Promise((resolve, reject) => {
-                                let tranUpdt = `update npss_transactions set status='${final_status}' ,process_status='${final_process_status}'where npsst_id in ${subquery}`
-                                let updatManul = `update npss_transactions set remarks='TAKEN' where process_group='MANUAL' and uetr in ${uetr}`
+                                let tranUpdt = `update ${tbl_name} set status='${final_status}' ,process_status='${final_process_status}'where npsst_id in ${subquery}`
+                                let updatManul = `update ${tbl_name} set remarks='TAKEN' where process_group='MANUAL' and uetr in ${uetr}`
                                 ExecuteQuery(tranUpdt, function (arrresult) {
                                     if (arrresult == 'SUCCESS') {
                                         ExecuteQuery(updatManul, function (arrMan) {

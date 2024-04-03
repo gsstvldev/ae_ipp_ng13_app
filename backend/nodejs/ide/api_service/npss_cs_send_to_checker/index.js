@@ -25,7 +25,7 @@ app.post('/', function(appRequest, appResponse, next) {
             Reason for Handling  rateMode,contra_amount for non aed iban flow 07/11/2023 by daseen
             Reason for:Adding dbtr_acct_no in api payload on 16/11/2023
             Reason for:Adding try catch for issues by subramani 01/4/2024
-              Reason for:Duplicate posting in retry count  by daseen 01/04/2024
+              Reason for:Duplicate posting in retry count  by daseen 01/04/2024  WI 3472
         */
         var serviceName = 'NPSS (CS) Send To Checker';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        

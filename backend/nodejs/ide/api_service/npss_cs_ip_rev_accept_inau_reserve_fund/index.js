@@ -50,6 +50,7 @@ try {
              Reason for : changing update query 25/04/2023
               Reason for : CHANGING buy margin buy rate 29/04/2023
               Reason for : Adding  dbtr_acct_no in inau and auth posting on 16/11/2023 by daseen wi:3679 NPSS
+                Reason for : ORG Data eligible status update on 02-04-2024 by subramani wi:3683 NPSS
     */
     var serviceName = 'NPSS IP REV Accept INAU Reserve Fund';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        

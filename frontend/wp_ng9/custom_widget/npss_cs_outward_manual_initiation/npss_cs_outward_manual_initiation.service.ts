@@ -47,7 +47,7 @@ export class npss_cs_outward_manual_initiationService {
         ClientParams.SYSTEM_NAME = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "S_DESC");
         ClientParams.RULE_CODE = 'OUTWARD_MANUAL_INITIATION'
         ClientParams.NPSSTPL_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSTPL_ID") || '';
-        ClientParams.DB_TYPE = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "DB_TYPE") || '';
+        ClientParams.DB_TYPE = this.sessionHelper.GetVariable(SCOPE.MI_LEVEL, "DB_TYPE");
 
         ClientParams.screenName = screenInstance.wftpa_description
         this.CallUrlWithData(ClientParams, screenInstance, internals);

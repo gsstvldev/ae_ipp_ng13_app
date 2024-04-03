@@ -45,7 +45,7 @@ app.post('/', function(appRequest, appResponse, next) {
       Reason for : Reverted changes on PAYMENT END TO END  ID for bct insert  01/03/2024 by  Daseen WI  3553
       Reason for : channel cut off time checking for BCT  22/03/2024 by  Daseen WI  3553
        Reason for : channel cut off time checking for BCT  
- Reason for : SCHEMA DEFINED BASED ON THE LIVE OR ARCHIVAL
+ Reason for : SCHEMA DEFINED BASED ON THE LIVE OR ARCHIVAL WI 3683
 
      
     */
@@ -88,9 +88,9 @@ app.post('/', function(appRequest, appResponse, next) {
                         var success_status
                         var schema;
                         if (params.DB_TYPE == 'LIVE') {
-                            schema = 'ad_gss_tran'
+                            schema = '<tran_db>'
                         } else if (params.DB_TYPE == 'ARCHIVAL') {
-                            schema = 'arc_ad_gss_tran'
+                            schema = '<arc_tran_db>'
                         }
                         try {
                             var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`

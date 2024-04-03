@@ -19,6 +19,8 @@ app.post('/', function(appRequest, appResponse, next) {
     Reason : Remarks updated in transaction on 06-03-2024
     Modified Date:2/4/2024
     Reason:Updated arc_ad_gss_tran.npss_transactions same as the existing 
+    Modified Date:3/4/2024
+    Reason:Updated arc_ad_gss_tran.npss_transactions schema based on the enviromemnt wi:3684
     
     {
     "PARAMS": {
@@ -88,11 +90,11 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                         let upadatests = await updateTran('(' + arruetrData.map((x) => x.npsst_id) + ')', arrSts[0].success_status, arrSts[0].success_process_status, '(' + arruetrData.map((x) =>`'`+x.uetr+`'`) + ')','npss_transactions')
                                     } else {
-                                        var Takedata = `SELECT npsst_id,uetr FROM arc_ad_gss_tran.npss_transactions  WHERE process_type = 'IP'   AND uetr IN (   SELECT additional_info     FROM npss_trn_process_log   WHERE uetr IN (   SELECT uetr     FROM npss_transactions WHERE process_status = '${arrSts[0].eligible_process_status}'  AND status = '${arrSts[0].eligible_status}' AND process_group = 'MANUAL'  and (remarks <>'TAKEN'  or remarks isnull) )    AND process_name = 'Initiate Dispute Tran'  AND status = 'OP_RCT_RET_INITIATED'     )`
+                                        var Takedata = `SELECT npsst_id,uetr FROM <arc_tran_db>.npss_transactions  WHERE process_type = 'IP'   AND uetr IN (   SELECT additional_info     FROM npss_trn_process_log   WHERE uetr IN (   SELECT uetr     FROM npss_transactions WHERE process_status = '${arrSts[0].eligible_process_status}'  AND status = '${arrSts[0].eligible_status}' AND process_group = 'MANUAL'  and (remarks <>'TAKEN'  or remarks isnull) )    AND process_name = 'Initiate Dispute Tran'  AND status = 'OP_RCT_RET_INITIATED'     )`
                                         ExecuteQuery1(Takedata, async function (arruetrData) {
                                             if (arruetrData.length > 0) {
         
-                                                let upadatests = await updateTran('(' + arruetrData.map((x) => x.npsst_id) + ')', arrSts[0].success_status, arrSts[0].success_process_status, '(' + arruetrData.map((x) =>`'`+x.uetr+`'`) + ')','arc_ad_gss_tran.npss_transactions')
+                                                let upadatests = await updateTran('(' + arruetrData.map((x) => x.npsst_id) + ')', arrSts[0].success_status, arrSts[0].success_process_status, '(' + arruetrData.map((x) =>`'`+x.uetr+`'`) + ')','<arc_tran_db>.npss_transactions')
                                             }
                                             else{
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------No  data found in Tran IP-------', objSessionLogInfo);

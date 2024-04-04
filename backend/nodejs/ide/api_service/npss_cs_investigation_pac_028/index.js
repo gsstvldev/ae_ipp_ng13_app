@@ -21,7 +21,7 @@ app.post('/', function(appRequest, appResponse, next) {
          Reason for change : CHANGING 028 payload siva harish 22/03/2023
          Reason for change : CHANGING 028 process group 19/04/2023
          Reason for change : handling process ,payment process mthd  for BCT 19/03/2024 by daseen WI 3598
-           Reason for change : handling hdr_msg_is,message_format  for OP_BCT_RTN_STAT_PENDING 04/04/2024 by daseen WI 3693
+           Reason for change : handling hdr_msg_is,message_format  for OP_BCT_RTN_STAT_PENDING 04/04/2024 by daseen WI 3704
        
       */
          var serviceName = 'NPSS Investigation Pac 028';

@@ -1,0 +1,33 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_pacs004_unmatched_transactions_srch="ngForm">
+<div id="RN01" class="row">
+	<div #pacs004_unmatched_transactions_srch_memory63 id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory63')" >
+				<cdn_date [ctrl_id]="'pacs004_unmatched_transactions_srch_memory63'" [comp_id]="comp_id" [ctrl]="ctrl.memory63" [model]="screen_instance[this.comp_id].f_pacs004_unmatched_transactions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
+	</div>
+	<div  id="RN01CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('intrbk_sttlm_amnt')" >
+				<cdn_cur_ctrl [ctrl_id]="'pacs004_unmatched_transactions_srch_intrbk_sttlm_amnt'" [comp_id]="comp_id" [ctrl]="ctrl.intrbk_sttlm_amnt" [model]="screen_instance[this.comp_id].f_pacs004_unmatched_transactions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_cur_ctrl>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN11CN4" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('dbtr_iban')" >
+				<cdn_ctrl [ctrl_id]="'pacs004_unmatched_transactions_srch_dbtr_iban'" [comp_id]="comp_id" [ctrl]="ctrl.dbtr_iban" [model]="screen_instance[this.comp_id].f_pacs004_unmatched_transactions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN21" class="row">
+	<div  id="RN21CN5" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('uetr')" >
+				<cdn_ctrl [ctrl_id]="'pacs004_unmatched_transactions_srch_uetr'" [comp_id]="comp_id" [ctrl]="ctrl.uetr" [model]="screen_instance[this.comp_id].f_pacs004_unmatched_transactions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN21CN6" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('payment_endtoend_id')" >
+				<cdn_ctrl [ctrl_id]="'pacs004_unmatched_transactions_srch_payment_endtoend_id'" [comp_id]="comp_id" [ctrl]="ctrl.payment_endtoend_id" [model]="screen_instance[this.comp_id].f_pacs004_unmatched_transactions_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+ 	</div>
+
+</div>

@@ -229,7 +229,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     objlogins.UETR = '0';
                                     objlogins.TENANT_ID = params.TENANT_ID || '';
                                     objlogins.MSG_ID = '0'
-                                    objlogins.APP_ID = params.appId || '';
+                                    objlogins.APP_ID = params.AppId || '';
                                     objlogins.REQUEST_DATA_JSON = options || '';
                                     objlogins.STATUS = 'OP_CHN_NOTIFIED'
                                     objlogins.PROCESS_STATUS = 'CHNNotification'

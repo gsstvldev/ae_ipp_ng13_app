@@ -22,10 +22,16 @@ export class npss_cs_communication_send_outward_ipp_payment_ntfService {
         let ClientParams: any = {
             "roleId": this.SessionSvc.GetVariable('SESSION_LEVEL', 'APP_USER_ROLES'),
             "screenName": this.SessionSvc.GetVariable('SESSION_LEVEL', 'MENU_ITEM_CODE'),
-            "TrnId": this.CoreSvc.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSNL_ID")||''
+            "TrnId": this.CoreSvc.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NPSSNL_ID") || '',
+            "SYSTEM_ID": this.SessionSvc.GetVariable(SCOPE.SESSION_LEVEL, "S_ID"),
+            "SYSTEM_NAME": this.SessionSvc.GetVariable(SCOPE.SESSION_LEVEL, "S_DESC"),
+            "CREATED_BY": this.SessionSvc.GetVariable(SCOPE.SESSION_LEVEL, "U_ID"),
+            "CREATED_BY_NAME": this.SessionSvc.GetVariable(SCOPE.SESSION_LEVEL, "LOGIN_NAME"),
+            "TENANT_ID": this.SessionSvc.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID"),
+            "AppId": this.SessionSvc.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID")
 
         }
-        this.GetDataFromDb(ClientParams, screenInstance,internals)
+        this.GetDataFromDb(ClientParams, screenInstance, internals)
 
     }
     //Custom validation logics
@@ -34,17 +40,17 @@ export class npss_cs_communication_send_outward_ipp_payment_ntfService {
     // return callback();
     //}
     //Service logics
-    GetDataFromDb(ClientParams, screenInstance,internals) {
-      
-            this.httpHelper.HttpPost('/microsvc/npss_cs_communication_send_outward_ipp_payment_ntf/', ClientParams)
-                .subscribe((res: any) => {
-                    if (res.data.status == 'SUCCESS') {
-                        this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
-                    }else{
-                        this.dialogHelper.ShowInfoDialog(res.data.msg);
-                    }
+    GetDataFromDb(ClientParams, screenInstance, internals) {
 
-                })
-        
+        this.httpHelper.HttpPost('/microsvc/npss_cs_communication_send_outward_ipp_payment_ntf/', ClientParams)
+            .subscribe((res: any) => {
+                if (res.data.status == 'SUCCESS') {
+                    this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
+                } else {
+                    this.dialogHelper.ShowInfoDialog(res.data.msg);
+                }
+
+            })
+
     }
 }

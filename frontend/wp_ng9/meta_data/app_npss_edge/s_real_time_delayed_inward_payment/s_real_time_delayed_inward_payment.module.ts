@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35080 
+Build ID        : 35083 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-04 9:39 AM 
+Modified Date   : 2024-Apr-04 11:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_real_time_delayed_inward_payment
@@ -39,7 +39,7 @@ import { s_real_time_delayed_inward_paymentRoutingModule } from './s_real_time_d
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigationComponent } from './f_navigation/f_navigation.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_searchComponent } from './f_search/f_search.component'
+import { f_npss_real_time_delayed_inward_payment_srchComponent } from './f_npss_real_time_delayed_inward_payment_srch/f_npss_real_time_delayed_inward_payment_srch.component'
 
 
 
@@ -56,7 +56,7 @@ import { f_searchComponent } from './f_search/f_search.component'
     s_real_time_delayed_inward_paymentRoutingModule,
     npss_cs_dashboard_titleModule,npss_c_export_pdf_for_reportModule,npss_cs_export_excel_for_reportModule,npss_c_cond_ctrl_validationModule,torus_cs_show_hideModule
   ],
-  declarations: [s_real_time_delayed_inward_paymentComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_searchComponent,],
+  declarations: [s_real_time_delayed_inward_paymentComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_npss_real_time_delayed_inward_payment_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

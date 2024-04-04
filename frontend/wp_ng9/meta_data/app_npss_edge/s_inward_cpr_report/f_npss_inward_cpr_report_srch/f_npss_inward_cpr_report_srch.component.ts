@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35078 
+Build ID        : 35083 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-04 9:47 AM 
+Modified Date   : 2024-Apr-04 11:11 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_inward_cpr_report
@@ -61,7 +61,7 @@ focustoelement(){
 		this.ctrl.memory63.data_type = "DATETIME"
 		this.ctrl.memory63.data_length = 0
 		this.ctrl.memory63.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory63.default_value = ""
+		this.ctrl.memory63.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory63.is_memory_ctrl = "Y"
 		this.ctrl.memory63.field_coordinates = ""
 		this.ctrl.memory63.sub_details = ""
@@ -86,7 +86,7 @@ focustoelement(){
 		this.ctrl.memory63.ctrl_id = "npss_inward_cpr_report_srch_memory63"
 		this.ctrl.npss_inward_cpr_report_srch_memory63 = {}
 		this.ctrl.npss_inward_cpr_report_srch_memory63.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_inward_cpr_report_srch.model = {"MEMORY63":""}
+		this.screen_instance[this.comp_id].f_npss_inward_cpr_report_srch.model = {"MEMORY63":"setcurrentdate(),{}"}
 		this.screen_instance[this.comp_id].f_npss_inward_cpr_report_srch.Meta = []
 		this.screen_instance[this.comp_id].f_npss_inward_cpr_report_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_inward_cpr_report_srch.dtt_code = "dtt_1304_1665901217208"

@@ -1,0 +1,20 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_real_time_delayed_inward_payment_srch="ngForm">
+<div id="RN01" class="row">
+	<div #npss_real_time_delayed_inward_payment_srch_memory152 id="RN01CN3" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory152')" >
+				<cdn_date [ctrl_id]="'npss_real_time_delayed_inward_payment_srch_memory152'" [comp_id]="comp_id" [ctrl]="ctrl.memory152" [model]="screen_instance[this.comp_id].f_npss_real_time_delayed_inward_payment_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
+	</div>
+	<div  id="RN01CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('department_code')" >
+				<cbo [ctrl_id]="'npss_real_time_delayed_inward_payment_srch_department_code'" [comp_id]="comp_id" [ctrl]="ctrl.department_code" [model]="screen_instance[this.comp_id].f_npss_real_time_delayed_inward_payment_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cbo>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+ 	</div>
+
+</div>

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35080 
+Build ID        : 35083 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-04 9:39 AM 
+Modified Date   : 2024-Apr-04 11:10 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_sessions_report
@@ -68,7 +68,7 @@ export class s_user_sessions_reportComponent implements OnInit,AfterViewInit {
 		this.list.uicgc_desc = "List"
 		this.list.uicgc_code = "uicgc_1"
 		this.list.params = {"need_search":"N","advance_dynamic_search":"N","need_pag_datatable":"Y"}
-		this.list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dtt_code":"DTT_1304_1665901217208","ds_eligible":"DS_1712214850733","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS User Sessions Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"USER_NAME","alias_name":"","mq_id":"MQ_1712214644571","date_format":false},{"column_name":"LOGON_TIME","alias_name":"","mq_id":"MQ_1712214644786","date_format":false},{"column_name":"LOGOUT_TIME","alias_name":"","mq_id":"MQ_1712214644978","date_format":false}],"joins":[]},"eq_text":"SELECT USER_NAME,  U_ID,  LOGIN_IP,  LOGON_TIME,  LOGOUT_TIME FROM  (SELECT HUS.LOGIN_NAME AS USER_NAME,    HUS.U_ID,    HUS.LOGIN_IP,    HUS.LOGON_TIME,    HUS.LOGOUT_TIME,    HUS.CREATED_DATE   FROM <CLT_TRAN>.HST_USER_SESSIONS HUS   INNER JOIN <CLT_TRAN>.USERS U ON HUS.U_ID = U.U_ID)V $WHERE GROUP BY USER_NAME,  U_ID,  LOGIN_IP,  LOGON_TIME,  LOGOUT_TIME ORDER BY LOGON_TIME ASC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS User Sessions Report MQ CCD","filter":[],"databinding":[{"header":"User Name","target_column":"USER_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Login Time","target_column":"LOGON_TIME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Logout Time","target_column":"LOGOUT_TIME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		this.list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712214850733","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS User Sessions Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"USER_NAME","alias_name":"","mq_id":"MQ_1712214644571","date_format":false},{"column_name":"LOGON_TIME","alias_name":"","mq_id":"MQ_1712214644786","date_format":false},{"column_name":"LOGOUT_TIME","alias_name":"","mq_id":"MQ_1712214644978","date_format":false}],"joins":[]},"eq_text":"SELECT USER_NAME,  U_ID,  LOGIN_IP,  LOGON_TIME,  LOGOUT_TIME FROM  (SELECT HUS.LOGIN_NAME AS USER_NAME,    HUS.U_ID,    HUS.LOGIN_IP,    HUS.LOGON_TIME,    HUS.LOGOUT_TIME,    HUS.CREATED_DATE   FROM <CLT_TRAN>.HST_USER_SESSIONS HUS   INNER JOIN <CLT_TRAN>.USERS U ON HUS.U_ID = U.U_ID)V $WHERE GROUP BY USER_NAME,  U_ID,  LOGIN_IP,  LOGON_TIME,  LOGOUT_TIME ORDER BY LOGON_TIME ASC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS User Sessions Report MQ CCD","filter":[],"databinding":[{"header":"User Name","target_column":"USER_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Login Time","target_column":"LOGON_TIME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Logout Time","target_column":"LOGOUT_TIME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.list.context_menu = []
 		this.list.views = {}
 		this.list.onChangecomponent = new EventEmitter<any>()
@@ -123,12 +123,12 @@ export class s_user_sessions_reportComponent implements OnInit,AfterViewInit {
 		this.search.params = {}
 		this.search.datasource = {}
 		this.search.context_menu = []
-		this.search.views = {}
+		this.search.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"NPSS User Session Report SRCH","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"NPSS Transactions"}]}}
 		this.search.onChangecomponent = new EventEmitter<any>()
 		this.search.show = true
 		this.search.dynamic_param = {}
-		this.search.f_search = {"show":true}
-		this.search.current_view = "f_search"
+		this.search.f_npss_user_session_report_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.search.form_name = "f_npss_user_session_report_srch"
 		
 		// "Clear" Button of "Search" component
 		this.search_clear.label_name = "Clear"
@@ -410,7 +410,7 @@ export class s_user_sessions_reportComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dtt_code":"DTT_1304_1665901217208","ds_eligible":"DS_1712214850733","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS User Sessions Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"USER_NAME","alias_name":"","mq_id":"MQ_1712214644571","date_format":false},{"column_name":"LOGON_TIME","alias_name":"","mq_id":"MQ_1712214644786","date_format":false},{"column_name":"LOGOUT_TIME","alias_name":"","mq_id":"MQ_1712214644978","date_format":false}],"joins":[]},"eq_text":"SELECT USER_NAME,  U_ID,  LOGIN_IP,  LOGON_TIME,  LOGOUT_TIME FROM  (SELECT HUS.LOGIN_NAME AS USER_NAME,    HUS.U_ID,    HUS.LOGIN_IP,    HUS.LOGON_TIME,    HUS.LOGOUT_TIME,    HUS.CREATED_DATE   FROM <CLT_TRAN>.HST_USER_SESSIONS HUS   INNER JOIN <CLT_TRAN>.USERS U ON HUS.U_ID = U.U_ID)V $WHERE GROUP BY USER_NAME,  U_ID,  LOGIN_IP,  LOGON_TIME,  LOGOUT_TIME ORDER BY LOGON_TIME ASC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS User Sessions Report MQ CCD","filter":[],"databinding":[{"header":"User Name","target_column":"USER_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Login Time","target_column":"LOGON_TIME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Logout Time","target_column":"LOGOUT_TIME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712214850733","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS User Sessions Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"USER_NAME","alias_name":"","mq_id":"MQ_1712214644571","date_format":false},{"column_name":"LOGON_TIME","alias_name":"","mq_id":"MQ_1712214644786","date_format":false},{"column_name":"LOGOUT_TIME","alias_name":"","mq_id":"MQ_1712214644978","date_format":false}],"joins":[]},"eq_text":"SELECT USER_NAME,  U_ID,  LOGIN_IP,  LOGON_TIME,  LOGOUT_TIME FROM  (SELECT HUS.LOGIN_NAME AS USER_NAME,    HUS.U_ID,    HUS.LOGIN_IP,    HUS.LOGON_TIME,    HUS.LOGOUT_TIME,    HUS.CREATED_DATE   FROM <CLT_TRAN>.HST_USER_SESSIONS HUS   INNER JOIN <CLT_TRAN>.USERS U ON HUS.U_ID = U.U_ID)V $WHERE GROUP BY USER_NAME,  U_ID,  LOGIN_IP,  LOGON_TIME,  LOGOUT_TIME ORDER BY LOGON_TIME ASC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS User Sessions Report MQ CCD","filter":[],"databinding":[{"header":"User Name","target_column":"USER_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Login Time","target_column":"LOGON_TIME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Logout Time","target_column":"LOGOUT_TIME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {

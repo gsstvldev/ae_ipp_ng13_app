@@ -161,7 +161,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                              if(arrresult[0].process_group == 'BCT'){
                                                 options.json.process='Investigation_pacs028_batch'
                                              }
-                                             if(arrresult[0].status=='OP_BCT_RTN_STAT_PENDING' && arrresult[0].process_type =='OP' ){
+                                             if(arrresult[0].status.includes(params.eligible_status) && arrresult[0].process_type =='OP' ){
                                                 options.json.hdr_msg_id=arrresult[0].fx_resv_text5;
                                                 options.json. message_format='urn:iso:std:iso:20022:tech:xsd:pacs.004.001.11'
 

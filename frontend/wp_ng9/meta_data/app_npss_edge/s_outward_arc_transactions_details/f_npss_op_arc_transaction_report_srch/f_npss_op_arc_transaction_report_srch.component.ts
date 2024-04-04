@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35084 
+Build ID        : 35087 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-04 11:55 AM 
+Modified Date   : 2024-Apr-04 13:7 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_arc_transactions_details
@@ -91,9 +91,9 @@ focustoelement(){
 		//Properties of memory75
 		this.ctrl.memory75 = {}
 		this.ctrl.memory75.id = "RN01CN3"
-		this.ctrl.memory75.desc = "Trn status"
+		this.ctrl.memory75.desc = "Transaction Status"
 		this.ctrl.memory75.visible = true
-		this.ctrl.memory75.label_name = "Trn status"
+		this.ctrl.memory75.label_name = "Transaction Status"
 		this.ctrl.memory75.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory75.df_description = "Column Group 1"
 		this.ctrl.memory75.uictrl_code = "CBO"
@@ -131,9 +131,9 @@ focustoelement(){
 		//Properties of department_code
 		this.ctrl.department_code = {}
 		this.ctrl.department_code.id = "RN01CN4"
-		this.ctrl.department_code.desc = "Department Code"
+		this.ctrl.department_code.desc = "Department Name"
 		this.ctrl.department_code.visible = true
-		this.ctrl.department_code.label_name = "Department Code"
+		this.ctrl.department_code.label_name = "Department Name"
 		this.ctrl.department_code.df_code = "DF_1304_1665901396659"
 		this.ctrl.department_code.df_description = "Column Group 1"
 		this.ctrl.department_code.uictrl_code = "CBO"
@@ -167,6 +167,46 @@ focustoelement(){
 		this.ctrl.npss_op_arc_transaction_report_srch_department_code = {}
 		this.ctrl.npss_op_arc_transaction_report_srch_department_code.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.department_code = {}
+	
+		//Properties of memory141
+		this.ctrl.memory141 = {}
+		this.ctrl.memory141.id = "RN01CN12"
+		this.ctrl.memory141.desc = "API Success Failure"
+		this.ctrl.memory141.visible = true
+		this.ctrl.memory141.label_name = "API Success Failure"
+		this.ctrl.memory141.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory141.df_description = "Column Group 1"
+		this.ctrl.memory141.uictrl_code = "CBO"
+		this.ctrl.memory141.target_column = "memory141"
+		this.ctrl.memory141.data_type = "TEXT"
+		this.ctrl.memory141.data_length = 0
+		this.ctrl.memory141.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory141.default_value = ""
+		this.ctrl.memory141.is_memory_ctrl = "Y"
+		this.ctrl.memory141.field_coordinates = ""
+		this.ctrl.memory141.sub_details = ""
+		this.ctrl.memory141.accept_char = ""
+		this.ctrl.memory141.currency_format = ""
+		this.ctrl.memory141.data_scale = ""
+		this.ctrl.memory141.binding_name = "API_SUCCESS_FAILURE"
+		this.ctrl.memory141.hide_label = false
+		this.ctrl.memory141.depends_on = ""
+		this.ctrl.memory141.placeholder = ""
+		this.ctrl.memory141.dynamic_param = ""
+		this.ctrl.memory141.style_code = ""
+		this.ctrl.memory141.data_source = {"ds_code":"UDS_1304_1679471398193","ds_description":"NPSS Process Sts CDB for RPT","rows":[],"type":"DPS_TABLE","value_member":"API_SUCCESS_FAILURE","display_member":"API_SUCCESS_FAILURE","first_record_display":"Select","column_list":"","order_by":"","target_table":"NPSS_VW_RPT_PROCESS_STATUS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1679471550118","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","temp_value":"TENANT_ID","filter_values":"SESSION_LEVEL"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID)"},"sel_columns":[]}
+		this.ctrl.memory141.image_association = ""
+		this.ctrl.memory141.show = true
+		this.ctrl.memory141.sub_content = ""
+		this.ctrl.memory141.required = false
+		this.ctrl.memory141.vld_rules = []
+		this.ctrl.memory141.targetcolumn_lower = "memory141"
+		this.ctrl.memory141.disabled = false
+		this.ctrl.memory141.view_name = "f_npss_op_arc_transaction_report_srch"
+		this.ctrl.memory141.ctrl_id = "npss_op_arc_transaction_report_srch_memory141"
+		this.ctrl.npss_op_arc_transaction_report_srch_memory141 = {}
+		this.ctrl.npss_op_arc_transaction_report_srch_memory141.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.memory141 = {}
 	
 		//Properties of memory63
 		this.ctrl.memory63 = {}
@@ -206,6 +246,45 @@ focustoelement(){
 		this.ctrl.memory63.ctrl_id = "npss_op_arc_transaction_report_srch_memory63"
 		this.ctrl.npss_op_arc_transaction_report_srch_memory63 = {}
 		this.ctrl.npss_op_arc_transaction_report_srch_memory63.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of value_date
+		this.ctrl.value_date = {}
+		this.ctrl.value_date.id = "RN11CN13"
+		this.ctrl.value_date.desc = "Processed Date"
+		this.ctrl.value_date.visible = true
+		this.ctrl.value_date.label_name = "Processed Date"
+		this.ctrl.value_date.df_code = "DF_1304_1665901396659"
+		this.ctrl.value_date.df_description = "Column Group 1"
+		this.ctrl.value_date.uictrl_code = "CDN_DATE"
+		this.ctrl.value_date.target_column = "VALUE_DATE"
+		this.ctrl.value_date.data_type = "DATETIME"
+		this.ctrl.value_date.data_length = 0
+		this.ctrl.value_date.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.value_date.default_value = "setcurrentdate(),{}"
+		this.ctrl.value_date.is_memory_ctrl = ""
+		this.ctrl.value_date.field_coordinates = ""
+		this.ctrl.value_date.sub_details = ""
+		this.ctrl.value_date.accept_char = ""
+		this.ctrl.value_date.currency_format = ""
+		this.ctrl.value_date.data_scale = ""
+		this.ctrl.value_date.binding_name = "VALUE_DATE"
+		this.ctrl.value_date.hide_label = false
+		this.ctrl.value_date.depends_on = ""
+		this.ctrl.value_date.placeholder = ""
+		this.ctrl.value_date.dynamic_param = ""
+		this.ctrl.value_date.style_code = ""
+		this.ctrl.value_date.data_source = ""
+		this.ctrl.value_date.image_association = ""
+		this.ctrl.value_date.show = true
+		this.ctrl.value_date.sub_content = ""
+		this.ctrl.value_date.required = false
+		this.ctrl.value_date.vld_rules = []
+		this.ctrl.value_date.targetcolumn_lower = "value_date"
+		this.ctrl.value_date.disabled = false
+		this.ctrl.value_date.view_name = "f_npss_op_arc_transaction_report_srch"
+		this.ctrl.value_date.ctrl_id = "npss_op_arc_transaction_report_srch_value_date"
+		this.ctrl.npss_op_arc_transaction_report_srch_value_date = {}
+		this.ctrl.npss_op_arc_transaction_report_srch_value_date.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of channel_refno
 		this.ctrl.channel_refno = {}
@@ -441,46 +520,244 @@ focustoelement(){
 		this.ctrl.npss_op_arc_transaction_report_srch_uetr = {}
 		this.ctrl.npss_op_arc_transaction_report_srch_uetr.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of memory109
-		this.ctrl.memory109 = {}
-		this.ctrl.memory109.id = "RN51CN13"
-		this.ctrl.memory109.desc = "Bank Name"
-		this.ctrl.memory109.visible = false
-		this.ctrl.memory109.label_name = "Bank Name"
-		this.ctrl.memory109.df_code = "DF_1304_1665901396659"
-		this.ctrl.memory109.df_description = "Column Group 1"
-		this.ctrl.memory109.uictrl_code = "TXT"
-		this.ctrl.memory109.target_column = "memory109"
-		this.ctrl.memory109.data_type = "TEXT"
-		this.ctrl.memory109.data_length = 0
-		this.ctrl.memory109.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory109.default_value = ""
-		this.ctrl.memory109.is_memory_ctrl = "Y"
-		this.ctrl.memory109.field_coordinates = ""
-		this.ctrl.memory109.sub_details = ""
-		this.ctrl.memory109.accept_char = ""
-		this.ctrl.memory109.currency_format = ""
-		this.ctrl.memory109.data_scale = ""
-		this.ctrl.memory109.binding_name = "BIC_CODE"
-		this.ctrl.memory109.hide_label = false
-		this.ctrl.memory109.depends_on = ""
-		this.ctrl.memory109.placeholder = ""
-		this.ctrl.memory109.dynamic_param = ""
-		this.ctrl.memory109.style_code = ""
-		this.ctrl.memory109.data_source = ""
-		this.ctrl.memory109.image_association = ""
-		this.ctrl.memory109.show = true
-		this.ctrl.memory109.sub_content = ""
-		this.ctrl.memory109.required = false
-		this.ctrl.memory109.vld_rules = []
-		this.ctrl.memory109.targetcolumn_lower = "memory109"
-		this.ctrl.memory109.disabled = false
-		this.ctrl.memory109.view_name = "f_npss_op_arc_transaction_report_srch"
-		this.ctrl.memory109.ctrl_id = "npss_op_arc_transaction_report_srch_memory109"
-		this.ctrl.npss_op_arc_transaction_report_srch_memory109 = {}
-		this.ctrl.npss_op_arc_transaction_report_srch_memory109.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.model = {"MEMORY119":"","MEMORY75":"","DEPARTMENT_CODE":"","MEMORY63":"setcurrentdate(),{}","CHANNEL_REFNO":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","CDTR_IBAN":"","CDTR_ACCT_NO":"","UETR":"","MEMORY109":""}
-		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REFNO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"}]
+		//Properties of memory155
+		this.ctrl.memory155 = {}
+		this.ctrl.memory155.id = "RN51CN13"
+		this.ctrl.memory155.desc = "T24 FT Reference Number"
+		this.ctrl.memory155.visible = true
+		this.ctrl.memory155.label_name = "T24 FT Reference Number"
+		this.ctrl.memory155.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory155.df_description = "Column Group 1"
+		this.ctrl.memory155.uictrl_code = "CDN_CTRL"
+		this.ctrl.memory155.target_column = "memory155"
+		this.ctrl.memory155.data_type = "TEXT"
+		this.ctrl.memory155.data_length = 32
+		this.ctrl.memory155.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory155.default_value = ""
+		this.ctrl.memory155.is_memory_ctrl = "Y"
+		this.ctrl.memory155.field_coordinates = ""
+		this.ctrl.memory155.sub_details = ""
+		this.ctrl.memory155.accept_char = ""
+		this.ctrl.memory155.currency_format = ""
+		this.ctrl.memory155.data_scale = ""
+		this.ctrl.memory155.binding_name = "T24_FT_REFERENCE_NUMBER"
+		this.ctrl.memory155.hide_label = false
+		this.ctrl.memory155.depends_on = ""
+		this.ctrl.memory155.placeholder = ""
+		this.ctrl.memory155.dynamic_param = ""
+		this.ctrl.memory155.style_code = ""
+		this.ctrl.memory155.data_source = ""
+		this.ctrl.memory155.image_association = ""
+		this.ctrl.memory155.show = true
+		this.ctrl.memory155.sub_content = ""
+		this.ctrl.memory155.required = false
+		this.ctrl.memory155.vld_rules = []
+		this.ctrl.memory155.targetcolumn_lower = "memory155"
+		this.ctrl.memory155.disabled = false
+		this.ctrl.memory155.view_name = "f_npss_op_arc_transaction_report_srch"
+		this.ctrl.memory155.ctrl_id = "npss_op_arc_transaction_report_srch_memory155"
+		this.ctrl.npss_op_arc_transaction_report_srch_memory155 = {}
+		this.ctrl.npss_op_arc_transaction_report_srch_memory155.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of intrbk_sttlm_amnt
+		this.ctrl.intrbk_sttlm_amnt = {}
+		this.ctrl.intrbk_sttlm_amnt.id = "RN51CN14"
+		this.ctrl.intrbk_sttlm_amnt.desc = "Transaction Amount Range"
+		this.ctrl.intrbk_sttlm_amnt.visible = true
+		this.ctrl.intrbk_sttlm_amnt.label_name = "Transaction Amount Range"
+		this.ctrl.intrbk_sttlm_amnt.df_code = "DF_1304_1665901396659"
+		this.ctrl.intrbk_sttlm_amnt.df_description = "Column Group 1"
+		this.ctrl.intrbk_sttlm_amnt.uictrl_code = "CDN_CUR_CTRL"
+		this.ctrl.intrbk_sttlm_amnt.target_column = "INTRBK_STTLM_AMNT"
+		this.ctrl.intrbk_sttlm_amnt.data_type = "NUMBER"
+		this.ctrl.intrbk_sttlm_amnt.data_length = 19
+		this.ctrl.intrbk_sttlm_amnt.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.intrbk_sttlm_amnt.default_value = ""
+		this.ctrl.intrbk_sttlm_amnt.is_memory_ctrl = ""
+		this.ctrl.intrbk_sttlm_amnt.field_coordinates = ""
+		this.ctrl.intrbk_sttlm_amnt.sub_details = ""
+		this.ctrl.intrbk_sttlm_amnt.accept_char = ""
+		this.ctrl.intrbk_sttlm_amnt.currency_format = ""
+		this.ctrl.intrbk_sttlm_amnt.data_scale = "2"
+		this.ctrl.intrbk_sttlm_amnt.binding_name = "INTRBK_STTLM_AMNT"
+		this.ctrl.intrbk_sttlm_amnt.hide_label = false
+		this.ctrl.intrbk_sttlm_amnt.depends_on = ""
+		this.ctrl.intrbk_sttlm_amnt.placeholder = ""
+		this.ctrl.intrbk_sttlm_amnt.dynamic_param = ""
+		this.ctrl.intrbk_sttlm_amnt.style_code = ""
+		this.ctrl.intrbk_sttlm_amnt.data_source = ""
+		this.ctrl.intrbk_sttlm_amnt.image_association = ""
+		this.ctrl.intrbk_sttlm_amnt.show = true
+		this.ctrl.intrbk_sttlm_amnt.sub_content = ""
+		this.ctrl.intrbk_sttlm_amnt.required = false
+		this.ctrl.intrbk_sttlm_amnt.vld_rules = []
+		this.ctrl.intrbk_sttlm_amnt.targetcolumn_lower = "intrbk_sttlm_amnt"
+		this.ctrl.intrbk_sttlm_amnt.disabled = false
+		this.ctrl.intrbk_sttlm_amnt.view_name = "f_npss_op_arc_transaction_report_srch"
+		this.ctrl.intrbk_sttlm_amnt.ctrl_id = "npss_op_arc_transaction_report_srch_intrbk_sttlm_amnt"
+		this.ctrl.npss_op_arc_transaction_report_srch_intrbk_sttlm_amnt = {}
+		this.ctrl.npss_op_arc_transaction_report_srch_intrbk_sttlm_amnt.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of payment_endtoend_id
+		this.ctrl.payment_endtoend_id = {}
+		this.ctrl.payment_endtoend_id.id = "RN71CN19"
+		this.ctrl.payment_endtoend_id.desc = "Payment Endtoend Id"
+		this.ctrl.payment_endtoend_id.visible = false
+		this.ctrl.payment_endtoend_id.label_name = "Payment Endtoend Id"
+		this.ctrl.payment_endtoend_id.df_code = "DF_1304_1665901396659"
+		this.ctrl.payment_endtoend_id.df_description = "Column Group 1"
+		this.ctrl.payment_endtoend_id.uictrl_code = "CDN_CTRL"
+		this.ctrl.payment_endtoend_id.target_column = "PAYMENT_ENDTOEND_ID"
+		this.ctrl.payment_endtoend_id.data_type = "TEXT"
+		this.ctrl.payment_endtoend_id.data_length = 64
+		this.ctrl.payment_endtoend_id.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.payment_endtoend_id.default_value = ""
+		this.ctrl.payment_endtoend_id.is_memory_ctrl = ""
+		this.ctrl.payment_endtoend_id.field_coordinates = ""
+		this.ctrl.payment_endtoend_id.sub_details = ""
+		this.ctrl.payment_endtoend_id.accept_char = ""
+		this.ctrl.payment_endtoend_id.currency_format = ""
+		this.ctrl.payment_endtoend_id.data_scale = ""
+		this.ctrl.payment_endtoend_id.binding_name = "PAYMENT_ENDTOEND_ID"
+		this.ctrl.payment_endtoend_id.hide_label = false
+		this.ctrl.payment_endtoend_id.depends_on = ""
+		this.ctrl.payment_endtoend_id.placeholder = ""
+		this.ctrl.payment_endtoend_id.dynamic_param = ""
+		this.ctrl.payment_endtoend_id.style_code = ""
+		this.ctrl.payment_endtoend_id.data_source = ""
+		this.ctrl.payment_endtoend_id.image_association = ""
+		this.ctrl.payment_endtoend_id.show = true
+		this.ctrl.payment_endtoend_id.sub_content = ""
+		this.ctrl.payment_endtoend_id.required = false
+		this.ctrl.payment_endtoend_id.vld_rules = []
+		this.ctrl.payment_endtoend_id.targetcolumn_lower = "payment_endtoend_id"
+		this.ctrl.payment_endtoend_id.disabled = false
+		this.ctrl.payment_endtoend_id.view_name = "f_npss_op_arc_transaction_report_srch"
+		this.ctrl.payment_endtoend_id.ctrl_id = "npss_op_arc_transaction_report_srch_payment_endtoend_id"
+		this.ctrl.npss_op_arc_transaction_report_srch_payment_endtoend_id = {}
+		this.ctrl.npss_op_arc_transaction_report_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
+	
+		//Properties of ext_purpose_code
+		this.ctrl.ext_purpose_code = {}
+		this.ctrl.ext_purpose_code.id = "RN61CN15"
+		this.ctrl.ext_purpose_code.desc = "Purpose codes"
+		this.ctrl.ext_purpose_code.visible = true
+		this.ctrl.ext_purpose_code.label_name = "Purpose codes"
+		this.ctrl.ext_purpose_code.df_code = "DF_1304_1665901396659"
+		this.ctrl.ext_purpose_code.df_description = "Column Group 1"
+		this.ctrl.ext_purpose_code.uictrl_code = "CBO"
+		this.ctrl.ext_purpose_code.target_column = "EXT_PURPOSE_CODE"
+		this.ctrl.ext_purpose_code.data_type = "TEXT"
+		this.ctrl.ext_purpose_code.data_length = 4
+		this.ctrl.ext_purpose_code.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.ext_purpose_code.default_value = ""
+		this.ctrl.ext_purpose_code.is_memory_ctrl = ""
+		this.ctrl.ext_purpose_code.field_coordinates = ""
+		this.ctrl.ext_purpose_code.sub_details = ""
+		this.ctrl.ext_purpose_code.accept_char = ""
+		this.ctrl.ext_purpose_code.currency_format = ""
+		this.ctrl.ext_purpose_code.data_scale = ""
+		this.ctrl.ext_purpose_code.binding_name = "EXT_PURPOSE_CODE"
+		this.ctrl.ext_purpose_code.hide_label = false
+		this.ctrl.ext_purpose_code.depends_on = ""
+		this.ctrl.ext_purpose_code.placeholder = ""
+		this.ctrl.ext_purpose_code.dynamic_param = ""
+		this.ctrl.ext_purpose_code.style_code = ""
+		this.ctrl.ext_purpose_code.data_source = {"ds_code":"UDS_1304_1679550169366","ds_description":"Purpose codes CDB for rpt","rows":[],"type":"DPS_TABLE","value_member":"PURPOSE_CODE","display_member":"PURPOSE_CODE","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_PURPOSE_CODES","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1679550303378","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter2","binding_name":"NEED_SYNC","id":"DF_1679550303378","binding_value":"Y","source_name":"NEED_SYNC","source_value":"Y","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","temp_value":"TENANT_ID","filter_values":"SESSION_LEVEL"},{"operators":"=","data_type":"TEXT","binding_name":"NEED_SYNC","binding_value":"Y","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"Y"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID AND NEED_SYNC = Y)"},"sel_columns":[]}
+		this.ctrl.ext_purpose_code.image_association = ""
+		this.ctrl.ext_purpose_code.show = true
+		this.ctrl.ext_purpose_code.sub_content = ""
+		this.ctrl.ext_purpose_code.required = false
+		this.ctrl.ext_purpose_code.vld_rules = []
+		this.ctrl.ext_purpose_code.targetcolumn_lower = "ext_purpose_code"
+		this.ctrl.ext_purpose_code.disabled = false
+		this.ctrl.ext_purpose_code.view_name = "f_npss_op_arc_transaction_report_srch"
+		this.ctrl.ext_purpose_code.ctrl_id = "npss_op_arc_transaction_report_srch_ext_purpose_code"
+		this.ctrl.npss_op_arc_transaction_report_srch_ext_purpose_code = {}
+		this.ctrl.npss_op_arc_transaction_report_srch_ext_purpose_code.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.ext_purpose_code = {}
+	
+		//Properties of memory142
+		this.ctrl.memory142 = {}
+		this.ctrl.memory142.id = "RN61CN16"
+		this.ctrl.memory142.desc = "Beneficiary Bank"
+		this.ctrl.memory142.visible = true
+		this.ctrl.memory142.label_name = "Beneficiary Bank"
+		this.ctrl.memory142.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory142.df_description = "Column Group 1"
+		this.ctrl.memory142.uictrl_code = "CBO"
+		this.ctrl.memory142.target_column = "memory142"
+		this.ctrl.memory142.data_type = "TEXT"
+		this.ctrl.memory142.data_length = 0
+		this.ctrl.memory142.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory142.default_value = ""
+		this.ctrl.memory142.is_memory_ctrl = "Y"
+		this.ctrl.memory142.field_coordinates = ""
+		this.ctrl.memory142.sub_details = ""
+		this.ctrl.memory142.accept_char = ""
+		this.ctrl.memory142.currency_format = ""
+		this.ctrl.memory142.data_scale = ""
+		this.ctrl.memory142.binding_name = "BENEFICIARY_BANK"
+		this.ctrl.memory142.hide_label = false
+		this.ctrl.memory142.depends_on = ""
+		this.ctrl.memory142.placeholder = ""
+		this.ctrl.memory142.dynamic_param = ""
+		this.ctrl.memory142.style_code = ""
+		this.ctrl.memory142.data_source = {"ds_code":"UDS_1304_1675679493844","ds_description":"BankName CDB for Report","rows":[],"type":"DPS_TABLE","value_member":"BANK_NAME","display_member":"BANK_NAME","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_MEMBER_BANKS","context":"","filters":[],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[]},"query":"()"},"sel_columns":[]}
+		this.ctrl.memory142.image_association = ""
+		this.ctrl.memory142.show = true
+		this.ctrl.memory142.sub_content = ""
+		this.ctrl.memory142.required = false
+		this.ctrl.memory142.vld_rules = []
+		this.ctrl.memory142.targetcolumn_lower = "memory142"
+		this.ctrl.memory142.disabled = false
+		this.ctrl.memory142.view_name = "f_npss_op_arc_transaction_report_srch"
+		this.ctrl.memory142.ctrl_id = "npss_op_arc_transaction_report_srch_memory142"
+		this.ctrl.npss_op_arc_transaction_report_srch_memory142 = {}
+		this.ctrl.npss_op_arc_transaction_report_srch_memory142.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.memory142 = {}
+	
+		//Properties of channel_id
+		this.ctrl.channel_id = {}
+		this.ctrl.channel_id.id = "RN61CN17"
+		this.ctrl.channel_id.desc = "Channel Id"
+		this.ctrl.channel_id.visible = true
+		this.ctrl.channel_id.label_name = "Channel Id"
+		this.ctrl.channel_id.df_code = "DF_1304_1665901396659"
+		this.ctrl.channel_id.df_description = "Column Group 1"
+		this.ctrl.channel_id.uictrl_code = "CBO"
+		this.ctrl.channel_id.target_column = "CHANNEL_ID"
+		this.ctrl.channel_id.data_type = "TEXT"
+		this.ctrl.channel_id.data_length = 128
+		this.ctrl.channel_id.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.channel_id.default_value = ""
+		this.ctrl.channel_id.is_memory_ctrl = ""
+		this.ctrl.channel_id.field_coordinates = ""
+		this.ctrl.channel_id.sub_details = ""
+		this.ctrl.channel_id.accept_char = ""
+		this.ctrl.channel_id.currency_format = ""
+		this.ctrl.channel_id.data_scale = ""
+		this.ctrl.channel_id.binding_name = "CHANNEL_ID"
+		this.ctrl.channel_id.hide_label = false
+		this.ctrl.channel_id.depends_on = ""
+		this.ctrl.channel_id.placeholder = ""
+		this.ctrl.channel_id.dynamic_param = ""
+		this.ctrl.channel_id.style_code = ""
+		this.ctrl.channel_id.data_source = {"ds_code":"UDS_1304_1679564668451","ds_description":"Channel code cdb for rpt","rows":[],"type":"DPS_TABLE","value_member":"CHANNEL_CODE","display_member":"CHANNEL_CODE","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_NC_CHANNELS","context":"","filters":[{"filter_name":"Filter1","binding_name":"TENANT_ID","id":"DF_1679564748046","binding_value":"SESSION_LEVEL.TENANT_ID","source_name":"TENANT_ID","source_value":"SESSION_LEVEL.TENANT_ID","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"F.BINDING_VALUE = global.SessionInfo['undefined']","is_cluster_key":"N","filter_values":"SESSION_LEVEL"},{"filter_name":"Filter2","binding_name":"NEED_SYNC","id":"DF_1679564748046","binding_value":"Y","source_name":"NEED_SYNC","source_value":"Y","source_type":"HARDCODED","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":"","assign_binding_value":"","is_cluster_key":"N","filter_values":"HARDCODED"}],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[{"operators":"=","data_type":"TEXT","binding_name":"TENANT_ID","binding_value":"SESSION_LEVEL.TENANT_ID","sort_order":1,"conjuction_operator":"","is_cluster_key":"N","temp_value":"TENANT_ID","filter_values":"SESSION_LEVEL"},{"operators":"=","data_type":"TEXT","binding_name":"NEED_SYNC","binding_value":"Y","sort_order":2,"conjuction_operator":"","is_cluster_key":"N","filter_values":"HARDCODED","temp_value":"Y"}]},"query":"(TENANT_ID = SESSION_LEVEL.TENANT_ID AND NEED_SYNC = Y)"},"sel_columns":[]}
+		this.ctrl.channel_id.image_association = ""
+		this.ctrl.channel_id.show = true
+		this.ctrl.channel_id.sub_content = ""
+		this.ctrl.channel_id.required = false
+		this.ctrl.channel_id.vld_rules = []
+		this.ctrl.channel_id.targetcolumn_lower = "channel_id"
+		this.ctrl.channel_id.disabled = false
+		this.ctrl.channel_id.view_name = "f_npss_op_arc_transaction_report_srch"
+		this.ctrl.channel_id.ctrl_id = "npss_op_arc_transaction_report_srch_channel_id"
+		this.ctrl.npss_op_arc_transaction_report_srch_channel_id = {}
+		this.ctrl.npss_op_arc_transaction_report_srch_channel_id.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.channel_id = {}
+		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.model = {"MEMORY119":"","MEMORY75":"","DEPARTMENT_CODE":"","MEMORY141":"","MEMORY63":"setcurrentdate(),{}","VALUE_DATE":"setcurrentdate(),{}","CHANNEL_REFNO":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","CDTR_IBAN":"","CDTR_ACCT_NO":"","UETR":"","MEMORY155":"","INTRBK_STTLM_AMNT":"","PAYMENT_ENDTOEND_ID":"","EXT_PURPOSE_CODE":"","MEMORY142":"","CHANNEL_ID":""}
+		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REFNO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"}]
 		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

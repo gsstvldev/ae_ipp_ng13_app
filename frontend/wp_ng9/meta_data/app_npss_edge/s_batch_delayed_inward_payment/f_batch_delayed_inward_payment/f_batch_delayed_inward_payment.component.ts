@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35084 
+Build ID        : 35086 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-04 11:55 AM 
+Modified Date   : 2024-Apr-04 13:7 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_batch_delayed_inward_payment
@@ -61,7 +61,7 @@ focustoelement(){
 		this.ctrl.memory63.data_type = "DATETIME"
 		this.ctrl.memory63.data_length = 0
 		this.ctrl.memory63.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory63.default_value = ""
+		this.ctrl.memory63.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory63.is_memory_ctrl = "Y"
 		this.ctrl.memory63.field_coordinates = ""
 		this.ctrl.memory63.sub_details = ""
@@ -126,7 +126,7 @@ focustoelement(){
 		this.ctrl.batch_delayed_inward_payment_department_code = {}
 		this.ctrl.batch_delayed_inward_payment_department_code.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_batch_delayed_inward_payment.department_code = {}
-		this.screen_instance[this.comp_id].f_batch_delayed_inward_payment.model = {"MEMORY63":"","DEPARTMENT_CODE":""}
+		this.screen_instance[this.comp_id].f_batch_delayed_inward_payment.model = {"MEMORY63":"setcurrentdate(),{}","DEPARTMENT_CODE":""}
 		this.screen_instance[this.comp_id].f_batch_delayed_inward_payment.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"}]
 		this.screen_instance[this.comp_id].f_batch_delayed_inward_payment.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_batch_delayed_inward_payment.dtt_code = "dtt_1304_1665901217208"

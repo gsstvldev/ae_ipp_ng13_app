@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35084 
+Build ID        : 35086 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-04 11:56 AM 
+Modified Date   : 2024-Apr-04 13:8 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_pacs004_unmatched_transactions
@@ -61,7 +61,7 @@ focustoelement(){
 		this.ctrl.memory63.data_type = "DATETIME"
 		this.ctrl.memory63.data_length = 0
 		this.ctrl.memory63.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory63.default_value = ""
+		this.ctrl.memory63.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory63.is_memory_ctrl = "Y"
 		this.ctrl.memory63.field_coordinates = ""
 		this.ctrl.memory63.sub_details = ""
@@ -165,6 +165,46 @@ focustoelement(){
 		this.ctrl.pacs004_unmatched_transactions_srch_dbtr_iban = {}
 		this.ctrl.pacs004_unmatched_transactions_srch_dbtr_iban.onChangecomponent = new EventEmitter<any>()
 	
+		//Properties of memory154
+		this.ctrl.memory154 = {}
+		this.ctrl.memory154.id = "RN11CN6"
+		this.ctrl.memory154.desc = "Beneficiary Bank"
+		this.ctrl.memory154.visible = true
+		this.ctrl.memory154.label_name = "Beneficiary Bank"
+		this.ctrl.memory154.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory154.df_description = "Column Group 1"
+		this.ctrl.memory154.uictrl_code = "CBO"
+		this.ctrl.memory154.target_column = "memory154"
+		this.ctrl.memory154.data_type = "TEXT"
+		this.ctrl.memory154.data_length = 32
+		this.ctrl.memory154.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory154.default_value = ""
+		this.ctrl.memory154.is_memory_ctrl = "Y"
+		this.ctrl.memory154.field_coordinates = ""
+		this.ctrl.memory154.sub_details = ""
+		this.ctrl.memory154.accept_char = ""
+		this.ctrl.memory154.currency_format = ""
+		this.ctrl.memory154.data_scale = ""
+		this.ctrl.memory154.binding_name = "BANK_NAME"
+		this.ctrl.memory154.hide_label = false
+		this.ctrl.memory154.depends_on = ""
+		this.ctrl.memory154.placeholder = ""
+		this.ctrl.memory154.dynamic_param = ""
+		this.ctrl.memory154.style_code = ""
+		this.ctrl.memory154.data_source = {"ds_code":"UDS_1304_1675679493844","ds_description":"BankName CDB for Report","rows":[],"type":"DPS_TABLE","value_member":"BANK_NAME","display_member":"BANK_NAME","first_record_display":"Select","column_list":"","order_by":"","target_table":"CORE_MEMBER_BANKS","context":"","filters":[],"type_desc":"Combo Binding SQL","conditional_operator":"CONTAINS","rules":{"group":{"operator":"AND","rules":[]},"query":"()"},"sel_columns":[]}
+		this.ctrl.memory154.image_association = ""
+		this.ctrl.memory154.show = true
+		this.ctrl.memory154.sub_content = ""
+		this.ctrl.memory154.required = false
+		this.ctrl.memory154.vld_rules = []
+		this.ctrl.memory154.targetcolumn_lower = "memory154"
+		this.ctrl.memory154.disabled = false
+		this.ctrl.memory154.view_name = "f_pacs004_unmatched_transactions_srch"
+		this.ctrl.memory154.ctrl_id = "pacs004_unmatched_transactions_srch_memory154"
+		this.ctrl.pacs004_unmatched_transactions_srch_memory154 = {}
+		this.ctrl.pacs004_unmatched_transactions_srch_memory154.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_pacs004_unmatched_transactions_srch.memory154 = {}
+	
 		//Properties of uetr
 		this.ctrl.uetr = {}
 		this.ctrl.uetr.id = "RN21CN5"
@@ -242,7 +282,7 @@ focustoelement(){
 		this.ctrl.payment_endtoend_id.ctrl_id = "pacs004_unmatched_transactions_srch_payment_endtoend_id"
 		this.ctrl.pacs004_unmatched_transactions_srch_payment_endtoend_id = {}
 		this.ctrl.pacs004_unmatched_transactions_srch_payment_endtoend_id.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_pacs004_unmatched_transactions_srch.model = {"MEMORY63":"","INTRBK_STTLM_AMNT":"","DBTR_IBAN":"","UETR":"","PAYMENT_ENDTOEND_ID":""}
+		this.screen_instance[this.comp_id].f_pacs004_unmatched_transactions_srch.model = {"MEMORY63":"setcurrentdate(),{}","INTRBK_STTLM_AMNT":"","DBTR_IBAN":"","MEMORY154":"","UETR":"","PAYMENT_ENDTOEND_ID":""}
 		this.screen_instance[this.comp_id].f_pacs004_unmatched_transactions_srch.Meta = [{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"}]
 		this.screen_instance[this.comp_id].f_pacs004_unmatched_transactions_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_pacs004_unmatched_transactions_srch.dtt_code = "dtt_1304_1665901217208"

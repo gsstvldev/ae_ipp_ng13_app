@@ -1,0 +1,52 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_batch_file_status_report_srch="ngForm">
+<div id="RN01" class="row">
+	<div #npss_batch_file_status_report_srch_batch_reference id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('batch_reference')" >
+				<cdn_ctrl [ctrl_id]="'npss_batch_file_status_report_srch_batch_reference'" [comp_id]="comp_id" [ctrl]="ctrl.batch_reference" [model]="screen_instance[this.comp_id].f_npss_batch_file_status_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN01CN2" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cycle_number')" >
+				<cdn_ctrl [ctrl_id]="'npss_batch_file_status_report_srch_cycle_number'" [comp_id]="comp_id" [ctrl]="ctrl.cycle_number" [model]="screen_instance[this.comp_id].f_npss_batch_file_status_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN11CN3" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory10')" >
+				<cdn_date [ctrl_id]="'npss_batch_file_status_report_srch_memory10'" [comp_id]="comp_id" [ctrl]="ctrl.memory10" [model]="screen_instance[this.comp_id].f_npss_batch_file_status_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
+	</div>
+	<div  id="RN11CN4" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('fsvd')" >
+				<cdn_ctrl [ctrl_id]="'npss_batch_file_status_report_srch_fsvd'" [comp_id]="comp_id" [ctrl]="ctrl.fsvd" [model]="screen_instance[this.comp_id].f_npss_batch_file_status_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN21" class="row">
+	<div  id="RN21CN7" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('submission_time')" >
+				<cdn_ctrl [ctrl_id]="'npss_batch_file_status_report_srch_submission_time'" [comp_id]="comp_id" [ctrl]="ctrl.submission_time" [model]="screen_instance[this.comp_id].f_npss_batch_file_status_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN21CN5" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('completion_time')" >
+				<cdn_ctrl [ctrl_id]="'npss_batch_file_status_report_srch_completion_time'" [comp_id]="comp_id" [ctrl]="ctrl.completion_time" [model]="screen_instance[this.comp_id].f_npss_batch_file_status_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN31" class="row">
+	<div  id="RN31CN9" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('number_of_fsis')" >
+				<cdn_ctrl [ctrl_id]="'npss_batch_file_status_report_srch_number_of_fsis'" [comp_id]="comp_id" [ctrl]="ctrl.number_of_fsis" [model]="screen_instance[this.comp_id].f_npss_batch_file_status_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN31CN8" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('number_of_payments')" >
+				<cdn_ctrl [ctrl_id]="'npss_batch_file_status_report_srch_number_of_payments'" [comp_id]="comp_id" [ctrl]="ctrl.number_of_payments" [model]="screen_instance[this.comp_id].f_npss_batch_file_status_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN41" class="row">
+	<div  id="RN41CN10" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('amount')" >
+				<cdn_ctrl [ctrl_id]="'npss_batch_file_status_report_srch_amount'" [comp_id]="comp_id" [ctrl]="ctrl.amount" [model]="screen_instance[this.comp_id].f_npss_batch_file_status_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN41CN11" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('batch_file_status')" >
+				<cdn_ctrl [ctrl_id]="'npss_batch_file_status_report_srch_batch_file_status'" [comp_id]="comp_id" [ctrl]="ctrl.batch_file_status" [model]="screen_instance[this.comp_id].f_npss_batch_file_status_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+ 	</div>
+
+</div>

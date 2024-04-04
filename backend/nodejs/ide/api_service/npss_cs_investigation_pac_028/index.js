@@ -10,6 +10,7 @@ app.post('/', function(appRequest, appResponse, next) {
     
     
     
+    
 
 
       /*   Created By :   Siva Harish
@@ -20,6 +21,7 @@ app.post('/', function(appRequest, appResponse, next) {
          Reason for change : CHANGING 028 payload siva harish 22/03/2023
          Reason for change : CHANGING 028 process group 19/04/2023
          Reason for change : handling process ,payment process mthd  for BCT 19/03/2024 by daseen WI 3598
+           Reason for change : handling hdr_msg_is,message_format  for OP_BCT_RTN_STAT_PENDING 04/04/2024 by daseen WI 3693
        
       */
          var serviceName = 'NPSS Investigation Pac 028';
@@ -69,6 +71,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                                  try {
                                                      if (arrresult.length > 0) {
                                                        var payment_processing_method 
+                                                  
+                                                     
                                                              
                                                                if(arrresult[0].process_group == 'P2P'){
                                                                    payment_processing_method =  "SCT_INITITATION" 
@@ -142,12 +146,10 @@ app.post('/', function(appRequest, appResponse, next) {
                                                  method: 'POST',
                                                  json: {
                                                      "hdr_created_date": arrresult[0].hdr_created_date,
-                                                     "hdr_msg_id": arrresult[0].hdr_msg_id,
-                                                     "cr_sort_code": arrresult[0].cr_sort_code,
+                                                      "cr_sort_code": arrresult[0].cr_sort_code,
                                                      "payment_endtoend_id": arrresult[0].payment_endtoend_id,
                                                      "uetr": arrresult[0].uetr,
                                                      "tran_ref_id": arrresult[0].tran_ref_id,
-                                                     "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09",
                                                      "payment_processing_method": payment_processing_method,
                                                      "process_type": arrresult[0].process_type || ''
      
@@ -158,6 +160,15 @@ app.post('/', function(appRequest, appResponse, next) {
                                              };
                                              if(arrresult[0].process_group == 'BCT'){
                                                 options.json.process='Investigation_pacs028_batch'
+                                             }
+                                             if(arrresult[0].status=='OP_BCT_RTN_STAT_PENDING' && arrresult[0].process_type =='OP' ){
+                                                options.json.hdr_msg_id=arrresult[0].fx_resv_text5;
+                                                options.json. message_format='urn:iso:std:iso:20022:tech:xsd:pacs.004.001.11'
+
+                                             }else{
+                                                options.json.hdr_msg_id=arrresult[0].hdr_msg_id;
+                                                options.json. message_format='urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09'
+
                                              }
      
      
@@ -273,6 +284,7 @@ app.post('/', function(appRequest, appResponse, next) {
      
      
    
+
 
 
 

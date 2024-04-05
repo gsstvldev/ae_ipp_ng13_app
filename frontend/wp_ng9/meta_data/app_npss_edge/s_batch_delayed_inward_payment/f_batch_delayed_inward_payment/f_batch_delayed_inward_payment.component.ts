@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35086 
+Build ID        : 35093 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-04 13:7 PM 
+Modified Date   : 2024-Apr-05 5:39 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_batch_delayed_inward_payment
@@ -26,7 +26,7 @@ export class f_batch_delayed_inward_paymentComponent implements OnInit {
   hasHeader:boolean;
   component_header:string;
   @ViewChild('f_batch_delayed_inward_payment') form;
-  @ViewChild('batch_delayed_inward_payment_memory63') element: ElementRef;
+  @ViewChild('batch_delayed_inward_payment_memory152') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -48,44 +48,44 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
-		//Properties of memory63
-		this.ctrl.memory63 = {}
-		this.ctrl.memory63.id = "RN01CN3"
-		this.ctrl.memory63.desc = "Processed Date"
-		this.ctrl.memory63.visible = true
-		this.ctrl.memory63.label_name = "Processed Date"
-		this.ctrl.memory63.df_code = "DF_1304_1665901396659"
-		this.ctrl.memory63.df_description = "Column Group 1"
-		this.ctrl.memory63.uictrl_code = "CDN_DATE"
-		this.ctrl.memory63.target_column = "memory63"
-		this.ctrl.memory63.data_type = "DATETIME"
-		this.ctrl.memory63.data_length = 0
-		this.ctrl.memory63.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory63.default_value = "setcurrentdate(),{}"
-		this.ctrl.memory63.is_memory_ctrl = "Y"
-		this.ctrl.memory63.field_coordinates = ""
-		this.ctrl.memory63.sub_details = ""
-		this.ctrl.memory63.accept_char = ""
-		this.ctrl.memory63.currency_format = ""
-		this.ctrl.memory63.data_scale = ""
-		this.ctrl.memory63.binding_name = "CREATED_DATE"
-		this.ctrl.memory63.hide_label = false
-		this.ctrl.memory63.depends_on = ""
-		this.ctrl.memory63.placeholder = ""
-		this.ctrl.memory63.dynamic_param = ""
-		this.ctrl.memory63.style_code = ""
-		this.ctrl.memory63.data_source = ""
-		this.ctrl.memory63.image_association = ""
-		this.ctrl.memory63.show = true
-		this.ctrl.memory63.sub_content = ""
-		this.ctrl.memory63.required = false
-		this.ctrl.memory63.vld_rules = []
-		this.ctrl.memory63.targetcolumn_lower = "memory63"
-		this.ctrl.memory63.disabled = false
-		this.ctrl.memory63.view_name = "f_batch_delayed_inward_payment"
-		this.ctrl.memory63.ctrl_id = "batch_delayed_inward_payment_memory63"
-		this.ctrl.batch_delayed_inward_payment_memory63 = {}
-		this.ctrl.batch_delayed_inward_payment_memory63.onChangecomponent = new EventEmitter<any>()
+		//Properties of memory152
+		this.ctrl.memory152 = {}
+		this.ctrl.memory152.id = "RN01CN3"
+		this.ctrl.memory152.desc = "Processed Date"
+		this.ctrl.memory152.visible = true
+		this.ctrl.memory152.label_name = "Processed Date"
+		this.ctrl.memory152.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory152.df_description = "Column Group 1"
+		this.ctrl.memory152.uictrl_code = "CDN_DATE"
+		this.ctrl.memory152.target_column = "memory152"
+		this.ctrl.memory152.data_type = "DATETIME"
+		this.ctrl.memory152.data_length = 0
+		this.ctrl.memory152.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory152.default_value = ""
+		this.ctrl.memory152.is_memory_ctrl = "Y"
+		this.ctrl.memory152.field_coordinates = ""
+		this.ctrl.memory152.sub_details = ""
+		this.ctrl.memory152.accept_char = ""
+		this.ctrl.memory152.currency_format = ""
+		this.ctrl.memory152.data_scale = ""
+		this.ctrl.memory152.binding_name = "PROCESSED_DATE"
+		this.ctrl.memory152.hide_label = false
+		this.ctrl.memory152.depends_on = ""
+		this.ctrl.memory152.placeholder = ""
+		this.ctrl.memory152.dynamic_param = ""
+		this.ctrl.memory152.style_code = ""
+		this.ctrl.memory152.data_source = ""
+		this.ctrl.memory152.image_association = ""
+		this.ctrl.memory152.show = true
+		this.ctrl.memory152.sub_content = ""
+		this.ctrl.memory152.required = false
+		this.ctrl.memory152.vld_rules = []
+		this.ctrl.memory152.targetcolumn_lower = "memory152"
+		this.ctrl.memory152.disabled = false
+		this.ctrl.memory152.view_name = "f_batch_delayed_inward_payment"
+		this.ctrl.memory152.ctrl_id = "batch_delayed_inward_payment_memory152"
+		this.ctrl.batch_delayed_inward_payment_memory152 = {}
+		this.ctrl.batch_delayed_inward_payment_memory152.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of department_code
 		this.ctrl.department_code = {}
@@ -126,7 +126,7 @@ focustoelement(){
 		this.ctrl.batch_delayed_inward_payment_department_code = {}
 		this.ctrl.batch_delayed_inward_payment_department_code.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_batch_delayed_inward_payment.department_code = {}
-		this.screen_instance[this.comp_id].f_batch_delayed_inward_payment.model = {"MEMORY63":"setcurrentdate(),{}","DEPARTMENT_CODE":""}
+		this.screen_instance[this.comp_id].f_batch_delayed_inward_payment.model = {"MEMORY152":"","DEPARTMENT_CODE":""}
 		this.screen_instance[this.comp_id].f_batch_delayed_inward_payment.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"}]
 		this.screen_instance[this.comp_id].f_batch_delayed_inward_payment.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_batch_delayed_inward_payment.dtt_code = "dtt_1304_1665901217208"

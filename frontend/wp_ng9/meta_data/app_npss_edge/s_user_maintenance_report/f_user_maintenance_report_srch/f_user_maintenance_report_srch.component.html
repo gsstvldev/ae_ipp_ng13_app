@@ -1,0 +1,36 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_user_maintenance_report_srch="ngForm">
+<div id="RN01" class="row">
+	<div #user_maintenance_report_srch_memory156 id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory156')" >
+				<cdn_ctrl [ctrl_id]="'user_maintenance_report_srch_memory156'" [comp_id]="comp_id" [ctrl]="ctrl.memory156" [model]="screen_instance[this.comp_id].f_user_maintenance_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN01CN5" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory160')" >
+				<cdn_ctrl [ctrl_id]="'user_maintenance_report_srch_memory160'" [comp_id]="comp_id" [ctrl]="ctrl.memory160" [model]="screen_instance[this.comp_id].f_user_maintenance_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN11" class="row">
+	<div  id="RN11CN6" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory161')" >
+				<cdn_ctrl [ctrl_id]="'user_maintenance_report_srch_memory161'" [comp_id]="comp_id" [ctrl]="ctrl.memory161" [model]="screen_instance[this.comp_id].f_user_maintenance_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="RN11CN7" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory162')" >
+				<cdn_ctrl [ctrl_id]="'user_maintenance_report_srch_memory162'" [comp_id]="comp_id" [ctrl]="ctrl.memory162" [model]="screen_instance[this.comp_id].f_user_maintenance_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN21" class="row">
+	<div  id="RN21CN8" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory163')" >
+				<txt [ctrl_id]="'user_maintenance_report_srch_memory163'" [comp_id]="comp_id" [ctrl]="ctrl.memory163" [model]="screen_instance[this.comp_id].f_user_maintenance_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+	</div>
+	<div  id="RN21CN9" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory75')" >
+				<cdn_ctrl [ctrl_id]="'user_maintenance_report_srch_memory75'" [comp_id]="comp_id" [ctrl]="ctrl.memory75" [model]="screen_instance[this.comp_id].f_user_maintenance_report_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+ 	</div>
+
+</div>

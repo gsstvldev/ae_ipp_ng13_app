@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35086 
+Build ID        : 35093 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-04 13:8 PM 
+Modified Date   : 2024-Apr-05 5:39 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_service_billing_report
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of service_name
 		this.ctrl.service_name = {}
 		this.ctrl.service_name.id = "RN01CN1"
-		this.ctrl.service_name.desc = "Service Name"
+		this.ctrl.service_name.desc = "service name"
 		this.ctrl.service_name.visible = true
-		this.ctrl.service_name.label_name = "Service Name"
+		this.ctrl.service_name.label_name = "service name"
 		this.ctrl.service_name.df_code = "DF_1304_1681974847836"
 		this.ctrl.service_name.df_description = "Column Group 1"
 		this.ctrl.service_name.uictrl_code = "TXT"
@@ -99,7 +99,7 @@ focustoelement(){
 		this.ctrl.memory5.data_type = "DATETIME"
 		this.ctrl.memory5.data_length = 0
 		this.ctrl.memory5.zone_df_code = "DF_1304_1681974847836"
-		this.ctrl.memory5.default_value = ""
+		this.ctrl.memory5.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory5.is_memory_ctrl = "Y"
 		this.ctrl.memory5.field_coordinates = ""
 		this.ctrl.memory5.sub_details = ""
@@ -199,7 +199,7 @@ focustoelement(){
 		this.ctrl.total_charge_amount.ctrl_id = "npss_service_billing_srch_total_charge_amount"
 		this.ctrl.npss_service_billing_srch_total_charge_amount = {}
 		this.ctrl.npss_service_billing_srch_total_charge_amount.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_service_billing_srch.model = {"SERVICE_NAME":"","MEMORY5":"","VOLUME_VALUE_SIZE":"","TOTAL_CHARGE_AMOUNT":""}
+		this.screen_instance[this.comp_id].f_npss_service_billing_srch.model = {"SERVICE_NAME":"","MEMORY5":"setcurrentdate(),{}","VOLUME_VALUE_SIZE":"","TOTAL_CHARGE_AMOUNT":""}
 		this.screen_instance[this.comp_id].f_npss_service_billing_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SERVICE_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"VOLUME_VALUE_SIZE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TOTAL_CHARGE_AMOUNT"}]
 		this.screen_instance[this.comp_id].f_npss_service_billing_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_service_billing_srch.dtt_code = "dtt_1304_1681974712398"

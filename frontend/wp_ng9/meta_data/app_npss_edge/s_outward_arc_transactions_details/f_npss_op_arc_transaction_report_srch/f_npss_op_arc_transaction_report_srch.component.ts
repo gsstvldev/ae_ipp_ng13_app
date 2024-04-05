@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35087 
+Build ID        : 35090 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-04 13:7 PM 
+Modified Date   : 2024-Apr-05 5:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_arc_transactions_details
@@ -601,9 +601,9 @@ focustoelement(){
 		//Properties of payment_endtoend_id
 		this.ctrl.payment_endtoend_id = {}
 		this.ctrl.payment_endtoend_id.id = "RN71CN19"
-		this.ctrl.payment_endtoend_id.desc = "Payment Endtoend Id"
-		this.ctrl.payment_endtoend_id.visible = false
-		this.ctrl.payment_endtoend_id.label_name = "Payment Endtoend Id"
+		this.ctrl.payment_endtoend_id.desc = "Sender/Originator Ref Number"
+		this.ctrl.payment_endtoend_id.visible = true
+		this.ctrl.payment_endtoend_id.label_name = "Sender/Originator Ref Number"
 		this.ctrl.payment_endtoend_id.df_code = "DF_1304_1665901396659"
 		this.ctrl.payment_endtoend_id.df_description = "Column Group 1"
 		this.ctrl.payment_endtoend_id.uictrl_code = "CDN_CTRL"
@@ -720,9 +720,9 @@ focustoelement(){
 		//Properties of channel_id
 		this.ctrl.channel_id = {}
 		this.ctrl.channel_id.id = "RN61CN17"
-		this.ctrl.channel_id.desc = "Channel Id"
+		this.ctrl.channel_id.desc = "Source Channel/Channel ID"
 		this.ctrl.channel_id.visible = true
-		this.ctrl.channel_id.label_name = "Channel Id"
+		this.ctrl.channel_id.label_name = "Source Channel/Channel ID"
 		this.ctrl.channel_id.df_code = "DF_1304_1665901396659"
 		this.ctrl.channel_id.df_description = "Column Group 1"
 		this.ctrl.channel_id.uictrl_code = "CBO"

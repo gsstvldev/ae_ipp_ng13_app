@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35072 
+Build ID        : 35089 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-04 9:30 AM 
+Modified Date   : 2024-Apr-05 5:39 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_maintenance_report
@@ -39,7 +39,7 @@ import { s_user_maintenance_reportRoutingModule } from './s_user_maintenance_rep
 import { p_main_layoutComponent } from './p_main_layout/p_main_layout.component'
 import { f_navigationComponent } from './f_navigation/f_navigation.component'
 import { p_search_layoutComponent } from './p_search_layout/p_search_layout.component'
-import { f_searchComponent } from './f_search/f_search.component'
+import { f_user_maintenance_report_srchComponent } from './f_user_maintenance_report_srch/f_user_maintenance_report_srch.component'
 
 
 
@@ -56,7 +56,7 @@ import { f_searchComponent } from './f_search/f_search.component'
     s_user_maintenance_reportRoutingModule,
     npss_cs_dashboard_titleModule,npss_c_export_pdf_for_reportModule,npss_cs_export_excel_for_reportModule,npss_c_cond_ctrl_validationModule,torus_cs_show_hideModule
   ],
-  declarations: [s_user_maintenance_reportComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_searchComponent,],
+  declarations: [s_user_maintenance_reportComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_user_maintenance_report_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]
 })
 

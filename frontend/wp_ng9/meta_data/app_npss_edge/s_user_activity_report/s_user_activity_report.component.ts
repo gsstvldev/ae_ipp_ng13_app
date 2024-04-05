@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35072 
+Build ID        : 35089 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-04 9:30 AM 
+Modified Date   : 2024-Apr-05 5:39 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_activity_report
@@ -31,7 +31,7 @@ export class s_user_activity_reportComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_user_activity_report"
 	wftpa_id : string = "WFT_NPSS_P_1304_1712150624723_0"
 	cg_code : string = "CG_1304_1708326278471"
-	key_column : any = {}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID","dtt_1304_1695130590062":"NPSSNPPL_ID","dtt_1304_1695214768145":"NAL_ID","dtt_1304_1700459090330":"NPSSPN_ID","dtt_1304_1701251364899":"NPSSPNB_ID","dtt_1304_1707202677013":"NPSSFE_ID","dtt_1304_1711696447765":"NPSSFL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -68,7 +68,7 @@ export class s_user_activity_reportComponent implements OnInit,AfterViewInit {
 		this.list.uicgc_desc = "List"
 		this.list.uicgc_code = "uicgc_1"
 		this.list.params = {"need_search":"N","advance_dynamic_search":"N","need_pag_datatable":"Y"}
-		this.list.datasource = {}
+		this.list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712295394766","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"User Activity Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"APP_DESCRIPTION","alias_name":"","mq_id":"MQ_1712223435151","date_format":false},{"column_name":"USER_NAME","alias_name":"","mq_id":"MQ_1712223435502","date_format":false},{"column_name":"ACTIVITY_DATE","alias_name":"","mq_id":"MQ_1712223435669","date_format":false},{"column_name":"MODULE","alias_name":"","mq_id":"MQ_1712223436022","date_format":false},{"column_name":"MENU_GROUP","alias_name":"","mq_id":"MQ_1712223436214","date_format":false},{"column_name":"MENU_ITEM","alias_name":"","mq_id":"MQ_1712223492293","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1712223492533","date_format":false},{"column_name":"CLIENTIP","alias_name":"","mq_id":"MQ_1712223492757","date_format":false},{"column_name":"SESSIONID","alias_name":"","mq_id":"MQ_1712223532903","date_format":false}],"joins":[]},"eq_text":"SELECT U_ID,  APP_CODE,  APP_DESCRIPTION,  MODULE,  MENU_GROUP,  MENU_ITEM,  PROCESS_NAME,  TENANT_ID,  ACTIVITY_DATE,  USER_NAME,  CLIENTIP,  SESSIONID FROM  (SELECT U.U_ID,    A.APP_ID,    A.APP_CODE,    A.APP_DESCRIPTION,    T.MODULE,    T.MENU_GROUP,    T.MENU_ITEM,    T.PROCESS_NAME,    T.TENANT_ID,    T.CREATED_DATE as ACTIVITY_DATE,    U.LOGIN_NAME as USER_NAME,     T.CREATED_CLIENTIP as CLIENTIP,     T.CREATED_BY_SESSIONID as SESSIONID   FROM PRC_TOKENS T   INNER JOIN <CLT_CAS>.USERS U ON T.CREATED_BY = U.U_ID   INNER JOIN <CLT_CAS>.APPLICATIONS A ON A.APP_ID = T.APP_ID  AND A.APP_ID IN ('210','215')  )V $WHERE   GROUP BY    ACTIVITY_DATE,  APP_DESCRIPTION,  APP_CODE,  USER_NAME,  U_ID,  MODULE,  MENU_GROUP,  MENU_ITEM,  PROCESS_NAME,  TENANT_ID,  CLIENTIP,  SESSIONID ORDER BY ACTIVITY_DATE DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"User Activity Report","filter":[],"databinding":[{"header":"App Desc","target_column":"APP_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"User Name","target_column":"USER_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Activity Date","target_column":"ACTIVITY_DATE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Module","target_column":"MODULE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Group","target_column":"MENU_GROUP","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Screen Name","target_column":"MENU_ITEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Activity Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Client IP","target_column":"CLIENTIP","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Session ID","target_column":"SESSIONID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.list.context_menu = []
 		this.list.views = {}
 		this.list.onChangecomponent = new EventEmitter<any>()
@@ -123,12 +123,12 @@ export class s_user_activity_reportComponent implements OnInit,AfterViewInit {
 		this.search.params = {}
 		this.search.datasource = {}
 		this.search.context_menu = []
-		this.search.views = {}
+		this.search.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"User Activity Report SRCH","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"NPSS Transactions"}]}}
 		this.search.onChangecomponent = new EventEmitter<any>()
 		this.search.show = true
 		this.search.dynamic_param = {}
-		this.search.f_search = {"show":true}
-		this.search.current_view = "f_search"
+		this.search.f_user_activity_report_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.search.form_name = "f_user_activity_report_srch"
 		
 		// "Clear" Button of "Search" component
 		this.search_clear.label_name = "Clear"
@@ -410,7 +410,7 @@ export class s_user_activity_reportComponent implements OnInit,AfterViewInit {
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712295394766","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"User Activity Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"APP_DESCRIPTION","alias_name":"","mq_id":"MQ_1712223435151","date_format":false},{"column_name":"USER_NAME","alias_name":"","mq_id":"MQ_1712223435502","date_format":false},{"column_name":"ACTIVITY_DATE","alias_name":"","mq_id":"MQ_1712223435669","date_format":false},{"column_name":"MODULE","alias_name":"","mq_id":"MQ_1712223436022","date_format":false},{"column_name":"MENU_GROUP","alias_name":"","mq_id":"MQ_1712223436214","date_format":false},{"column_name":"MENU_ITEM","alias_name":"","mq_id":"MQ_1712223492293","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1712223492533","date_format":false},{"column_name":"CLIENTIP","alias_name":"","mq_id":"MQ_1712223492757","date_format":false},{"column_name":"SESSIONID","alias_name":"","mq_id":"MQ_1712223532903","date_format":false}],"joins":[]},"eq_text":"SELECT U_ID,  APP_CODE,  APP_DESCRIPTION,  MODULE,  MENU_GROUP,  MENU_ITEM,  PROCESS_NAME,  TENANT_ID,  ACTIVITY_DATE,  USER_NAME,  CLIENTIP,  SESSIONID FROM  (SELECT U.U_ID,    A.APP_ID,    A.APP_CODE,    A.APP_DESCRIPTION,    T.MODULE,    T.MENU_GROUP,    T.MENU_ITEM,    T.PROCESS_NAME,    T.TENANT_ID,    T.CREATED_DATE as ACTIVITY_DATE,    U.LOGIN_NAME as USER_NAME,     T.CREATED_CLIENTIP as CLIENTIP,     T.CREATED_BY_SESSIONID as SESSIONID   FROM PRC_TOKENS T   INNER JOIN <CLT_CAS>.USERS U ON T.CREATED_BY = U.U_ID   INNER JOIN <CLT_CAS>.APPLICATIONS A ON A.APP_ID = T.APP_ID  AND A.APP_ID IN ('210','215')  )V $WHERE   GROUP BY    ACTIVITY_DATE,  APP_DESCRIPTION,  APP_CODE,  USER_NAME,  U_ID,  MODULE,  MENU_GROUP,  MENU_ITEM,  PROCESS_NAME,  TENANT_ID,  CLIENTIP,  SESSIONID ORDER BY ACTIVITY_DATE DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"User Activity Report","filter":[],"databinding":[{"header":"App Desc","target_column":"APP_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"User Name","target_column":"USER_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Activity Date","target_column":"ACTIVITY_DATE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Module","target_column":"MODULE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Group","target_column":"MENU_GROUP","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Screen Name","target_column":"MENU_ITEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Activity Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Client IP","target_column":"CLIENTIP","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Session ID","target_column":"SESSIONID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {

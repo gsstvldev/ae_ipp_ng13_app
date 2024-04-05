@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35072 
+Build ID        : 35089 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-04 9:30 AM 
+Modified Date   : 2024-Apr-05 5:39 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_access_matrix_report
@@ -31,7 +31,7 @@ export class s_user_access_matrix_reportComponent implements OnInit,AfterViewIni
   	wftpa_description : string = "s_user_access_matrix_report"
 	wftpa_id : string = "WFT_NPSS_P_1304_1712150194087_0"
 	cg_code : string = "CG_1304_1708326278471"
-	key_column : any = {}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID","dtt_1304_1695130590062":"NPSSNPPL_ID","dtt_1304_1695214768145":"NAL_ID","dtt_1304_1700459090330":"NPSSPN_ID","dtt_1304_1701251364899":"NPSSPNB_ID","dtt_1304_1707202677013":"NPSSFE_ID","dtt_1304_1711696447765":"NPSSFL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -68,7 +68,7 @@ export class s_user_access_matrix_reportComponent implements OnInit,AfterViewIni
 		this.list.uicgc_desc = "List"
 		this.list.uicgc_code = "uicgc_1"
 		this.list.params = {"need_search":"N","advance_dynamic_search":"N","need_pag_datatable":"Y"}
-		this.list.datasource = {}
+		this.list.datasource = {"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712295271212","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"User Access Matrix Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"app_description","alias_name":"","mq_id":"MQ_1712215333863","date_format":false},{"column_name":"user_name","alias_name":"","mq_id":"MQ_1712215334205","date_format":false},{"column_name":"ROLE_DESCRIPTION","alias_name":"","mq_id":"MQ_1712215334373","date_format":false},{"column_name":"MODULE_NAME","alias_name":"","mq_id":"MQ_1712215334509","date_format":false},{"column_name":"MENU_GROUP_NAME","alias_name":"","mq_id":"MQ_1712215334653","date_format":false},{"column_name":"MENU_ITEM_NAME","alias_name":"","mq_id":"MQ_1712215334829","date_format":false}],"joins":[]},"eq_text":"select   APP_CODE,  app_description,  user_name,  appr_id,  ROLE_DESCRIPTION,  MODULE_NAME,  MENU_GROUP_NAME,  MENU_ITEM_NAME from (select  APP_CODE,  app_description,  user_name,  appr_id,  ROLE_DESCRIPTION,  MODULE_NAME,  MENU_GROUP_NAME,  MENU_ITEM_NAME from vw_user_access_matrix  where appr_id not in ('697','709','731','711','710','681','679'))v $WHERE group by  APP_CODE, app_description, user_name, ROLE_DESCRIPTION, appr_id, MODULE_NAME, MENU_GROUP_NAME, MENU_ITEM_NAME"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"User Access Matrix Report CCD","filter":[],"databinding":[{"header":"App Name","target_column":"app_description","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"User Name","target_column":"user_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Role Name","target_column":"ROLE_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Module Name","target_column":"MODULE_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Group Name","target_column":"MENU_GROUP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Item Name","target_column":"MENU_ITEM_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		this.list.context_menu = []
 		this.list.views = {}
 		this.list.onChangecomponent = new EventEmitter<any>()
@@ -123,12 +123,12 @@ export class s_user_access_matrix_reportComponent implements OnInit,AfterViewIni
 		this.search.params = {}
 		this.search.datasource = {}
 		this.search.context_menu = []
-		this.search.views = {}
+		this.search.views = {"first":"DTT_1304_1665901217208","is_tab_mode":"N","dtt_1304_1665901217208":{"0":[{"dttv_id":"User Access Matrix Report SRCH","tab_order":0,"tab_name":"","uicgc_description":"Search","role_description":"default","dtt_description":"NPSS Transactions"}]}}
 		this.search.onChangecomponent = new EventEmitter<any>()
 		this.search.show = true
 		this.search.dynamic_param = {}
-		this.search.f_search = {"show":true}
-		this.search.current_view = "f_search"
+		this.search.f_user_access_matrix_report_srch = {"show":false,"form_instance":{"ctrl":{},"dt_code":"","dtt_code":"","meta":[]}}
+		this.search.form_name = "f_user_access_matrix_report_srch"
 		
 		// "Clear" Button of "Search" component
 		this.search_clear.label_name = "Clear"
@@ -410,7 +410,7 @@ export class s_user_access_matrix_reportComponent implements OnInit,AfterViewIni
 		let handler_code="bind_record_from_query"
 		let internals=""
 		let event_data={}
-		let data_source={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712295271212","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"User Access Matrix Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"app_description","alias_name":"","mq_id":"MQ_1712215333863","date_format":false},{"column_name":"user_name","alias_name":"","mq_id":"MQ_1712215334205","date_format":false},{"column_name":"ROLE_DESCRIPTION","alias_name":"","mq_id":"MQ_1712215334373","date_format":false},{"column_name":"MODULE_NAME","alias_name":"","mq_id":"MQ_1712215334509","date_format":false},{"column_name":"MENU_GROUP_NAME","alias_name":"","mq_id":"MQ_1712215334653","date_format":false},{"column_name":"MENU_ITEM_NAME","alias_name":"","mq_id":"MQ_1712215334829","date_format":false}],"joins":[]},"eq_text":"select   APP_CODE,  app_description,  user_name,  appr_id,  ROLE_DESCRIPTION,  MODULE_NAME,  MENU_GROUP_NAME,  MENU_ITEM_NAME from (select  APP_CODE,  app_description,  user_name,  appr_id,  ROLE_DESCRIPTION,  MODULE_NAME,  MENU_GROUP_NAME,  MENU_ITEM_NAME from vw_user_access_matrix  where appr_id not in ('697','709','731','711','710','681','679'))v $WHERE group by  APP_CODE, app_description, user_name, ROLE_DESCRIPTION, appr_id, MODULE_NAME, MENU_GROUP_NAME, MENU_ITEM_NAME"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"User Access Matrix Report CCD","filter":[],"databinding":[{"header":"App Name","target_column":"app_description","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"User Name","target_column":"user_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Role Name","target_column":"ROLE_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Module Name","target_column":"MODULE_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Group Name","target_column":"MENU_GROUP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Item Name","target_column":"MENU_ITEM_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {

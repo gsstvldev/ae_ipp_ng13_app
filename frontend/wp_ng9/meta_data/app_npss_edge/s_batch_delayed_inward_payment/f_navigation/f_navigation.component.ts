@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35093 
+Build ID        : 35098 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-05 5:39 AM 
+Modified Date   : 2024-Apr-05 6:40 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_batch_delayed_inward_payment

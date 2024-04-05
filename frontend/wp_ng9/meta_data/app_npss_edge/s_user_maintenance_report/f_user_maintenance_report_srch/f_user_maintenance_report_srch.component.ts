@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35089 
+Build ID        : 35098 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-05 5:39 AM 
+Modified Date   : 2024-Apr-05 6:40 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_maintenance_report
@@ -212,12 +212,12 @@ focustoelement(){
 		this.ctrl.memory163.label_name = "Start Active Date"
 		this.ctrl.memory163.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory163.df_description = "Column Group 1"
-		this.ctrl.memory163.uictrl_code = "TXT"
+		this.ctrl.memory163.uictrl_code = "CDN_DATE"
 		this.ctrl.memory163.target_column = "memory163"
 		this.ctrl.memory163.data_type = "DATETIME"
 		this.ctrl.memory163.data_length = 0
 		this.ctrl.memory163.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory163.default_value = ""
+		this.ctrl.memory163.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory163.is_memory_ctrl = "Y"
 		this.ctrl.memory163.field_coordinates = ""
 		this.ctrl.memory163.sub_details = ""
@@ -281,7 +281,7 @@ focustoelement(){
 		this.ctrl.memory75.ctrl_id = "user_maintenance_report_srch_memory75"
 		this.ctrl.user_maintenance_report_srch_memory75 = {}
 		this.ctrl.user_maintenance_report_srch_memory75.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_user_maintenance_report_srch.model = {"MEMORY156":"","MEMORY160":"","MEMORY161":"","MEMORY162":"","MEMORY163":"","MEMORY75":""}
+		this.screen_instance[this.comp_id].f_user_maintenance_report_srch.model = {"MEMORY156":"","MEMORY160":"","MEMORY161":"","MEMORY162":"","MEMORY163":"setcurrentdate(),{}","MEMORY75":""}
 		this.screen_instance[this.comp_id].f_user_maintenance_report_srch.Meta = []
 		this.screen_instance[this.comp_id].f_user_maintenance_report_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_user_maintenance_report_srch.dtt_code = "dtt_1304_1665901217208"

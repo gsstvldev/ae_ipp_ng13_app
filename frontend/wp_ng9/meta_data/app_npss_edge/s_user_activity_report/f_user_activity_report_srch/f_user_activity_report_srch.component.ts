@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35089 
+Build ID        : 35098 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-05 5:39 AM 
+Modified Date   : 2024-Apr-05 6:40 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_activity_report
@@ -131,16 +131,16 @@ focustoelement(){
 		this.ctrl.memory165 = {}
 		this.ctrl.memory165.id = "RN11CN3"
 		this.ctrl.memory165.desc = "Activity Date"
-		this.ctrl.memory165.visible = false
+		this.ctrl.memory165.visible = true
 		this.ctrl.memory165.label_name = "Activity Date"
 		this.ctrl.memory165.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory165.df_description = "Column Group 1"
-		this.ctrl.memory165.uictrl_code = "TXT"
+		this.ctrl.memory165.uictrl_code = "CDN_DATE"
 		this.ctrl.memory165.target_column = "memory165"
 		this.ctrl.memory165.data_type = "DATETIME"
 		this.ctrl.memory165.data_length = 0
 		this.ctrl.memory165.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory165.default_value = ""
+		this.ctrl.memory165.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory165.is_memory_ctrl = "Y"
 		this.ctrl.memory165.field_coordinates = ""
 		this.ctrl.memory165.sub_details = ""
@@ -165,7 +165,7 @@ focustoelement(){
 		this.ctrl.memory165.ctrl_id = "user_activity_report_srch_memory165"
 		this.ctrl.user_activity_report_srch_memory165 = {}
 		this.ctrl.user_activity_report_srch_memory165.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_user_activity_report_srch.model = {"MEMORY164":"","MEMORY153":"","MEMORY165":""}
+		this.screen_instance[this.comp_id].f_user_activity_report_srch.model = {"MEMORY164":"","MEMORY153":"","MEMORY165":"setcurrentdate(),{}"}
 		this.screen_instance[this.comp_id].f_user_activity_report_srch.Meta = []
 		this.screen_instance[this.comp_id].f_user_activity_report_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_user_activity_report_srch.dtt_code = "dtt_1304_1665901217208"

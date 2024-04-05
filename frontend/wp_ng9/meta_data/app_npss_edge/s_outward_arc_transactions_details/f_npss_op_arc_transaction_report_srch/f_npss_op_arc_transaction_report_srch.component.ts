@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35090 
+Build ID        : 35095 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-05 5:42 AM 
+Modified Date   : 2024-Apr-05 6:19 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_arc_transactions_details
@@ -442,44 +442,44 @@ focustoelement(){
 		this.ctrl.npss_op_arc_transaction_report_srch_cdtr_iban = {}
 		this.ctrl.npss_op_arc_transaction_report_srch_cdtr_iban.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of cdtr_acct_no
-		this.ctrl.cdtr_acct_no = {}
-		this.ctrl.cdtr_acct_no.id = "RN41CN11"
-		this.ctrl.cdtr_acct_no.desc = "Creditor Name"
-		this.ctrl.cdtr_acct_no.visible = true
-		this.ctrl.cdtr_acct_no.label_name = "Creditor Name"
-		this.ctrl.cdtr_acct_no.df_code = "DF_1304_1665901396659"
-		this.ctrl.cdtr_acct_no.df_description = "Column Group 1"
-		this.ctrl.cdtr_acct_no.uictrl_code = "CDN_CTRL"
-		this.ctrl.cdtr_acct_no.target_column = "CDTR_ACCT_NO"
-		this.ctrl.cdtr_acct_no.data_type = "TEXT"
-		this.ctrl.cdtr_acct_no.data_length = 20
-		this.ctrl.cdtr_acct_no.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.cdtr_acct_no.default_value = ""
-		this.ctrl.cdtr_acct_no.is_memory_ctrl = ""
-		this.ctrl.cdtr_acct_no.field_coordinates = ""
-		this.ctrl.cdtr_acct_no.sub_details = ""
-		this.ctrl.cdtr_acct_no.accept_char = ""
-		this.ctrl.cdtr_acct_no.currency_format = ""
-		this.ctrl.cdtr_acct_no.data_scale = ""
-		this.ctrl.cdtr_acct_no.binding_name = "CDTR_ACCT_NO"
-		this.ctrl.cdtr_acct_no.hide_label = false
-		this.ctrl.cdtr_acct_no.depends_on = ""
-		this.ctrl.cdtr_acct_no.placeholder = ""
-		this.ctrl.cdtr_acct_no.dynamic_param = ""
-		this.ctrl.cdtr_acct_no.style_code = ""
-		this.ctrl.cdtr_acct_no.data_source = ""
-		this.ctrl.cdtr_acct_no.image_association = ""
-		this.ctrl.cdtr_acct_no.show = true
-		this.ctrl.cdtr_acct_no.sub_content = ""
-		this.ctrl.cdtr_acct_no.required = false
-		this.ctrl.cdtr_acct_no.vld_rules = []
-		this.ctrl.cdtr_acct_no.targetcolumn_lower = "cdtr_acct_no"
-		this.ctrl.cdtr_acct_no.disabled = false
-		this.ctrl.cdtr_acct_no.view_name = "f_npss_op_arc_transaction_report_srch"
-		this.ctrl.cdtr_acct_no.ctrl_id = "npss_op_arc_transaction_report_srch_cdtr_acct_no"
-		this.ctrl.npss_op_arc_transaction_report_srch_cdtr_acct_no = {}
-		this.ctrl.npss_op_arc_transaction_report_srch_cdtr_acct_no.onChangecomponent = new EventEmitter<any>()
+		//Properties of cdtr_acct_name
+		this.ctrl.cdtr_acct_name = {}
+		this.ctrl.cdtr_acct_name.id = "RN41CN11"
+		this.ctrl.cdtr_acct_name.desc = "Creditor Name"
+		this.ctrl.cdtr_acct_name.visible = true
+		this.ctrl.cdtr_acct_name.label_name = "Creditor Name"
+		this.ctrl.cdtr_acct_name.df_code = "DF_1304_1665901396659"
+		this.ctrl.cdtr_acct_name.df_description = "Column Group 1"
+		this.ctrl.cdtr_acct_name.uictrl_code = "CDN_CTRL"
+		this.ctrl.cdtr_acct_name.target_column = "CDTR_ACCT_NAME"
+		this.ctrl.cdtr_acct_name.data_type = "TEXT"
+		this.ctrl.cdtr_acct_name.data_length = 256
+		this.ctrl.cdtr_acct_name.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.cdtr_acct_name.default_value = ""
+		this.ctrl.cdtr_acct_name.is_memory_ctrl = ""
+		this.ctrl.cdtr_acct_name.field_coordinates = ""
+		this.ctrl.cdtr_acct_name.sub_details = ""
+		this.ctrl.cdtr_acct_name.accept_char = ""
+		this.ctrl.cdtr_acct_name.currency_format = ""
+		this.ctrl.cdtr_acct_name.data_scale = ""
+		this.ctrl.cdtr_acct_name.binding_name = "CDTR_ACCT_NAME"
+		this.ctrl.cdtr_acct_name.hide_label = false
+		this.ctrl.cdtr_acct_name.depends_on = ""
+		this.ctrl.cdtr_acct_name.placeholder = ""
+		this.ctrl.cdtr_acct_name.dynamic_param = ""
+		this.ctrl.cdtr_acct_name.style_code = ""
+		this.ctrl.cdtr_acct_name.data_source = ""
+		this.ctrl.cdtr_acct_name.image_association = ""
+		this.ctrl.cdtr_acct_name.show = true
+		this.ctrl.cdtr_acct_name.sub_content = ""
+		this.ctrl.cdtr_acct_name.required = false
+		this.ctrl.cdtr_acct_name.vld_rules = []
+		this.ctrl.cdtr_acct_name.targetcolumn_lower = "cdtr_acct_name"
+		this.ctrl.cdtr_acct_name.disabled = false
+		this.ctrl.cdtr_acct_name.view_name = "f_npss_op_arc_transaction_report_srch"
+		this.ctrl.cdtr_acct_name.ctrl_id = "npss_op_arc_transaction_report_srch_cdtr_acct_name"
+		this.ctrl.npss_op_arc_transaction_report_srch_cdtr_acct_name = {}
+		this.ctrl.npss_op_arc_transaction_report_srch_cdtr_acct_name.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of uetr
 		this.ctrl.uetr = {}
@@ -756,8 +756,8 @@ focustoelement(){
 		this.ctrl.npss_op_arc_transaction_report_srch_channel_id = {}
 		this.ctrl.npss_op_arc_transaction_report_srch_channel_id.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.channel_id = {}
-		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.model = {"MEMORY119":"","MEMORY75":"","DEPARTMENT_CODE":"","MEMORY141":"","MEMORY63":"setcurrentdate(),{}","VALUE_DATE":"setcurrentdate(),{}","CHANNEL_REFNO":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","CDTR_IBAN":"","CDTR_ACCT_NO":"","UETR":"","MEMORY155":"","INTRBK_STTLM_AMNT":"","PAYMENT_ENDTOEND_ID":"","EXT_PURPOSE_CODE":"","MEMORY142":"","CHANNEL_ID":""}
-		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REFNO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"}]
+		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.model = {"MEMORY119":"","MEMORY75":"","DEPARTMENT_CODE":"","MEMORY141":"","MEMORY63":"setcurrentdate(),{}","VALUE_DATE":"setcurrentdate(),{}","CHANNEL_REFNO":"","DBTR_IBAN":"","DBTR_ACCT_NAME":"","CDTR_IBAN":"","CDTR_ACCT_NAME":"","UETR":"","MEMORY155":"","INTRBK_STTLM_AMNT":"","PAYMENT_ENDTOEND_ID":"","EXT_PURPOSE_CODE":"","MEMORY142":"","CHANNEL_ID":""}
+		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.Meta = [{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"DEPARTMENT_CODE"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"VALUE_DATE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_REFNO"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CDTR_ACCT_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CUR_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"INTRBK_STTLM_AMNT"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"PAYMENT_ENDTOEND_ID"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"EXT_PURPOSE_CODE"},{"CTLR_CODE":"CBO","DATA_TYPE":"TEXT","TARGET_COLUMN":"CHANNEL_ID"}]
 		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.dtt_code = "dtt_1304_1665901217208"
 		this.screen_instance[this.comp_id].f_npss_op_arc_transaction_report_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

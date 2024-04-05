@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35093 
+Build ID        : 35097 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-05 5:39 AM 
+Modified Date   : 2024-Apr-05 6:51 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_service_billing_report
@@ -51,12 +51,12 @@ focustoelement(){
 		//Properties of service_name
 		this.ctrl.service_name = {}
 		this.ctrl.service_name.id = "RN01CN1"
-		this.ctrl.service_name.desc = "service name"
+		this.ctrl.service_name.desc = "Service Name"
 		this.ctrl.service_name.visible = true
-		this.ctrl.service_name.label_name = "service name"
+		this.ctrl.service_name.label_name = "Service Name"
 		this.ctrl.service_name.df_code = "DF_1304_1681974847836"
 		this.ctrl.service_name.df_description = "Column Group 1"
-		this.ctrl.service_name.uictrl_code = "TXT"
+		this.ctrl.service_name.uictrl_code = "CDN_CTRL"
 		this.ctrl.service_name.target_column = "SERVICE_NAME"
 		this.ctrl.service_name.data_type = "TEXT"
 		this.ctrl.service_name.data_length = 256
@@ -200,7 +200,7 @@ focustoelement(){
 		this.ctrl.npss_service_billing_srch_total_charge_amount = {}
 		this.ctrl.npss_service_billing_srch_total_charge_amount.onChangecomponent = new EventEmitter<any>()
 		this.screen_instance[this.comp_id].f_npss_service_billing_srch.model = {"SERVICE_NAME":"","MEMORY5":"setcurrentdate(),{}","VOLUME_VALUE_SIZE":"","TOTAL_CHARGE_AMOUNT":""}
-		this.screen_instance[this.comp_id].f_npss_service_billing_srch.Meta = [{"CTLR_CODE":"TXT","DATA_TYPE":"TEXT","TARGET_COLUMN":"SERVICE_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"VOLUME_VALUE_SIZE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TOTAL_CHARGE_AMOUNT"}]
+		this.screen_instance[this.comp_id].f_npss_service_billing_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"SERVICE_NAME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"VOLUME_VALUE_SIZE"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"TOTAL_CHARGE_AMOUNT"}]
 		this.screen_instance[this.comp_id].f_npss_service_billing_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_service_billing_srch.dtt_code = "dtt_1304_1681974712398"
 		this.screen_instance[this.comp_id].f_npss_service_billing_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

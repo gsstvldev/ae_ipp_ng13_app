@@ -4,7 +4,7 @@
 	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_service_billing_srch="ngForm">
 <div id="RN01" class="row">
 	<div #npss_service_billing_srch_service_name id="RN01CN1" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('service_name')" >
-				<txt [ctrl_id]="'npss_service_billing_srch_service_name'" [comp_id]="comp_id" [ctrl]="ctrl.service_name" [model]="screen_instance[this.comp_id].f_npss_service_billing_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></txt>
+				<cdn_ctrl [ctrl_id]="'npss_service_billing_srch_service_name'" [comp_id]="comp_id" [ctrl]="ctrl.service_name" [model]="screen_instance[this.comp_id].f_npss_service_billing_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
 	</div>
 	<div  id="RN01CN1001" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory5')" >
 				<cdn_date [ctrl_id]="'npss_service_billing_srch_memory5'" [comp_id]="comp_id" [ctrl]="ctrl.memory5" [model]="screen_instance[this.comp_id].f_npss_service_billing_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>

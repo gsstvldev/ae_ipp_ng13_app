@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35107 
+Build ID        : 35108 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-05 9:39 AM 
+Modified Date   : 2024-Apr-05 9:47 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_sessions_report
@@ -26,7 +26,7 @@ export class f_npss_user_session_report_srchComponent implements OnInit {
   hasHeader:boolean;
   component_header:string;
   @ViewChild('f_npss_user_session_report_srch') form;
-  @ViewChild('npss_user_session_report_srch_memory156') element: ElementRef;
+  @ViewChild('npss_user_session_report_srch_memory153') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -48,44 +48,44 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
-		//Properties of memory156
-		this.ctrl.memory156 = {}
-		this.ctrl.memory156.id = "RN01CN1"
-		this.ctrl.memory156.desc = "Login Name"
-		this.ctrl.memory156.visible = true
-		this.ctrl.memory156.label_name = "Login Name"
-		this.ctrl.memory156.df_code = "DF_1304_1665901396659"
-		this.ctrl.memory156.df_description = "Column Group 1"
-		this.ctrl.memory156.uictrl_code = "CDN_CTRL"
-		this.ctrl.memory156.target_column = "memory156"
-		this.ctrl.memory156.data_type = "TEXT"
-		this.ctrl.memory156.data_length = 32
-		this.ctrl.memory156.zone_df_code = "DF_1304_1665901396659"
-		this.ctrl.memory156.default_value = ""
-		this.ctrl.memory156.is_memory_ctrl = "Y"
-		this.ctrl.memory156.field_coordinates = ""
-		this.ctrl.memory156.sub_details = ""
-		this.ctrl.memory156.accept_char = ""
-		this.ctrl.memory156.currency_format = ""
-		this.ctrl.memory156.data_scale = ""
-		this.ctrl.memory156.binding_name = "LOGIN_NAME"
-		this.ctrl.memory156.hide_label = false
-		this.ctrl.memory156.depends_on = ""
-		this.ctrl.memory156.placeholder = ""
-		this.ctrl.memory156.dynamic_param = ""
-		this.ctrl.memory156.style_code = ""
-		this.ctrl.memory156.data_source = ""
-		this.ctrl.memory156.image_association = ""
-		this.ctrl.memory156.show = true
-		this.ctrl.memory156.sub_content = ""
-		this.ctrl.memory156.required = false
-		this.ctrl.memory156.vld_rules = []
-		this.ctrl.memory156.targetcolumn_lower = "memory156"
-		this.ctrl.memory156.disabled = false
-		this.ctrl.memory156.view_name = "f_npss_user_session_report_srch"
-		this.ctrl.memory156.ctrl_id = "npss_user_session_report_srch_memory156"
-		this.ctrl.npss_user_session_report_srch_memory156 = {}
-		this.ctrl.npss_user_session_report_srch_memory156.onChangecomponent = new EventEmitter<any>()
+		//Properties of memory153
+		this.ctrl.memory153 = {}
+		this.ctrl.memory153.id = "RN01CN1"
+		this.ctrl.memory153.desc = "User Name"
+		this.ctrl.memory153.visible = true
+		this.ctrl.memory153.label_name = "User Name"
+		this.ctrl.memory153.df_code = "DF_1304_1665901396659"
+		this.ctrl.memory153.df_description = "Column Group 1"
+		this.ctrl.memory153.uictrl_code = "CDN_CTRL"
+		this.ctrl.memory153.target_column = "memory153"
+		this.ctrl.memory153.data_type = "TEXT"
+		this.ctrl.memory153.data_length = 32
+		this.ctrl.memory153.zone_df_code = "DF_1304_1665901396659"
+		this.ctrl.memory153.default_value = ""
+		this.ctrl.memory153.is_memory_ctrl = "Y"
+		this.ctrl.memory153.field_coordinates = ""
+		this.ctrl.memory153.sub_details = ""
+		this.ctrl.memory153.accept_char = ""
+		this.ctrl.memory153.currency_format = ""
+		this.ctrl.memory153.data_scale = ""
+		this.ctrl.memory153.binding_name = "USER_NAME"
+		this.ctrl.memory153.hide_label = false
+		this.ctrl.memory153.depends_on = ""
+		this.ctrl.memory153.placeholder = ""
+		this.ctrl.memory153.dynamic_param = ""
+		this.ctrl.memory153.style_code = ""
+		this.ctrl.memory153.data_source = ""
+		this.ctrl.memory153.image_association = ""
+		this.ctrl.memory153.show = true
+		this.ctrl.memory153.sub_content = ""
+		this.ctrl.memory153.required = false
+		this.ctrl.memory153.vld_rules = []
+		this.ctrl.memory153.targetcolumn_lower = "memory153"
+		this.ctrl.memory153.disabled = false
+		this.ctrl.memory153.view_name = "f_npss_user_session_report_srch"
+		this.ctrl.memory153.ctrl_id = "npss_user_session_report_srch_memory153"
+		this.ctrl.npss_user_session_report_srch_memory153 = {}
+		this.ctrl.npss_user_session_report_srch_memory153.onChangecomponent = new EventEmitter<any>()
 	
 		//Properties of memory63
 		this.ctrl.memory63 = {}
@@ -125,7 +125,7 @@ focustoelement(){
 		this.ctrl.memory63.ctrl_id = "npss_user_session_report_srch_memory63"
 		this.ctrl.npss_user_session_report_srch_memory63 = {}
 		this.ctrl.npss_user_session_report_srch_memory63.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_user_session_report_srch.model = {"MEMORY156":"","MEMORY63":"setcurrentdate(),{}"}
+		this.screen_instance[this.comp_id].f_npss_user_session_report_srch.model = {"MEMORY153":"","MEMORY63":"setcurrentdate(),{}"}
 		this.screen_instance[this.comp_id].f_npss_user_session_report_srch.Meta = []
 		this.screen_instance[this.comp_id].f_npss_user_session_report_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_user_session_report_srch.dtt_code = "dtt_1304_1665901217208"

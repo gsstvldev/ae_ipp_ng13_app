@@ -19,6 +19,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Modified Date : 09/1/2023
      Modified By :Daseen 04-07-2023 Kafka Message parsing
      Modified By :Daseen 03-04-2024 insert in trn process log WI 3693
+     Modified By :Subramanian 05-04-2024 modified uetr data in trn process log WI 3693
      
     */
     var serviceName = 'NPSS (CS) Communication Send Outward IPP Payment Notifications';
@@ -80,7 +81,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                             else {
                                                 var trnid = await arraytostr(params.TrnId);
-                                                TakedatafrmntfTbl = `select npssnl_id,kafka_message,channel_id from npss_notification_logs  where npssnl_id in ${trnid} `
+                                                TakedatafrmntfTbl = `select npssnl_id,kafka_message,channel_id,* from npss_notification_logs  where npssnl_id in ${trnid} `
                                             }
                                             ExecuteQuery1(TakedatafrmntfTbl, function (arrTran) {
                                                 if (arrTran.length > 0) {
@@ -143,7 +144,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBody, objSessionLogInfo);
 
                                                                                     if (responseBody.data == 'SUCCESS') {
-                                                                                        let logInsert = await fnlogInsert(options)
+                                                                                        let logInsert = await fnlogInsert(options, arrTranobj)
                                                                                         var UpdtTrnTbl = `update npss_notification_logs set status = 'Success', process_status = 'Success' where npssnl_id = '${arrTranobj.npssnl_id}'`
                                                                                         ExecuteQuery(UpdtTrnTbl, function (arrUpdTranTbl) {
                                                                                             if (arrUpdTranTbl == 'SUCCESS') {
@@ -192,7 +193,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                                                    },  function () {
+                                                    }, function () {
 
                                                         objresponse.status = 'SUCCESS';
                                                         objresponse.FailedData = failedData || '';
@@ -221,12 +222,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                 }
 
                             })
-                            function fnlogInsert(options) {
+                            function fnlogInsert(options, arrTranobj) {
                                 return new Promise((resolve, reject) => {
                                     var arrloginsert = []
                                     var objlogins = {}
                                     objlogins.PROCESS_NAME = 'Channel Notification Retry'
-                                    objlogins.UETR = '0';
+                                    objlogins.UETR = arrTranobj.uetr || '0';
                                     objlogins.TENANT_ID = params.TENANT_ID || '';
                                     objlogins.MSG_ID = '0'
                                     objlogins.APP_ID = params.AppId || '';

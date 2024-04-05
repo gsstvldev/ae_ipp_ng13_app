@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35102 
+Build ID        : 35107 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-05 7:38 AM 
+Modified Date   : 2024-Apr-05 9:39 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_maintenance_report
@@ -168,15 +168,15 @@ focustoelement(){
 		//Properties of memory162
 		this.ctrl.memory162 = {}
 		this.ctrl.memory162.id = "RN11CN7"
-		this.ctrl.memory162.desc = "Mobile Number"
+		this.ctrl.memory162.desc = "Mobile No"
 		this.ctrl.memory162.visible = true
-		this.ctrl.memory162.label_name = "Mobile Number"
+		this.ctrl.memory162.label_name = "Mobile No"
 		this.ctrl.memory162.df_code = "DF_1304_1665901396659"
 		this.ctrl.memory162.df_description = "Column Group 1"
 		this.ctrl.memory162.uictrl_code = "CDN_CTRL"
 		this.ctrl.memory162.target_column = "memory162"
-		this.ctrl.memory162.data_type = "NUMBER"
-		this.ctrl.memory162.data_length = 10
+		this.ctrl.memory162.data_type = "TEXT"
+		this.ctrl.memory162.data_length = 0
 		this.ctrl.memory162.zone_df_code = "DF_1304_1665901396659"
 		this.ctrl.memory162.default_value = ""
 		this.ctrl.memory162.is_memory_ctrl = "Y"

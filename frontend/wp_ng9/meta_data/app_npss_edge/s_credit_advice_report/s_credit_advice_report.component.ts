@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35112 
+Build ID        : 35114 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-08 6:38 AM 
+Modified Date   : 2024-Apr-08 7:37 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_advice_report
@@ -39,6 +39,7 @@ export class s_credit_advice_reportComponent implements OnInit,AfterViewInit {
 	uicgc_1 : string = "navigation"
 	uicgc_2 : string = "search"
 	uicgc_3 : string = "npss_credit_debit_widget"
+	uicgc_4 : string = "home_dashboard_title"
 	key_events : any = {}
 	btl_1304_1712323847533 : string = "p_search_layout"
 	btl_1304_1712323696653 : string = "p_main_layout"
@@ -51,6 +52,7 @@ export class s_credit_advice_reportComponent implements OnInit,AfterViewInit {
 	search_clear : any = {}
 	search_search : any = {}
 	npss_credit_debit_widget : any = {}
+	home_dashboard_title : any = {}
 
 
 	// Constructor 
@@ -135,6 +137,18 @@ export class s_credit_advice_reportComponent implements OnInit,AfterViewInit {
 		this.npss_credit_debit_widget.onChangecomponent = new EventEmitter<any>()
 		this.npss_credit_debit_widget.show = true
 		this.npss_credit_debit_widget.dynamic_param = {}
+	
+		// Component level properties - "Home Dashboard Title" 
+		this.home_dashboard_title.uictrl_code = "custom_widget"
+		this.home_dashboard_title.uicgc_desc = "Home Dashboard Title"
+		this.home_dashboard_title.uicgc_code = "uicgc_4"
+		this.home_dashboard_title.params = {}
+		this.home_dashboard_title.datasource = {}
+		this.home_dashboard_title.context_menu = []
+		this.home_dashboard_title.views = {}
+		this.home_dashboard_title.onChangecomponent = new EventEmitter<any>()
+		this.home_dashboard_title.show = true
+		this.home_dashboard_title.dynamic_param = {}
 	}
 	// Methods
 	ngAfterViewInit() {

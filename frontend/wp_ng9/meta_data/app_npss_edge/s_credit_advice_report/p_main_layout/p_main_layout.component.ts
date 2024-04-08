@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35107 
+Build ID        : 35110 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-05 9:39 AM 
+Modified Date   : 2024-Apr-08 6:6 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_advice_report
@@ -23,8 +23,7 @@ export class p_main_layoutComponent implements OnInit {
 
   // Variables 
   	navigation : any = {}
-	home_dashboard_title : any = {}
-	list : any = {}
+	npss_credit_debit_widget : any = {}
 
 
   // Constructor 
@@ -34,10 +33,8 @@ export class p_main_layoutComponent implements OnInit {
   ngOnInit() {
     	this.navigation.desc = "Navigation"
 		this.navigation.need_header = ""
-		this.home_dashboard_title.desc = "Home Dashboard Title"
-		this.home_dashboard_title.need_header = ""
-		this.list.desc = "List"
-		this.list.need_header = true
+		this.npss_credit_debit_widget.desc = "NPSS Credit Debit Widget"
+		this.npss_credit_debit_widget.need_header = ""
 	
 
     this.screen_instance['p_main_layout'] = {};

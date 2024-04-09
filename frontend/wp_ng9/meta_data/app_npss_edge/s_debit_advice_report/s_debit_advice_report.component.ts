@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35117 
+Build ID        : 35120 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-08 10:33 AM 
+Modified Date   : 2024-Apr-09 9:33 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_debit_advice_report
@@ -14,15 +14,14 @@ import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_dashboard_titleService} from '../../../custom_widget/npss_cs_dashboard_title/npss_cs_dashboard_title.service'
-import {npss_c_export_pdf_for_reportService} from '../../../custom_widget/npss_c_export_pdf_for_report/npss_c_export_pdf_for_report.service'
-import {npss_c_cond_ctrl_validationService} from '../../../custom_widget/npss_c_cond_ctrl_validation/npss_c_cond_ctrl_validation.service'
 import {npss_cs_credit_debit_reportService} from '../../../custom_widget/npss_cs_credit_debit_report/npss_cs_credit_debit_report.service'
+import {npss_c_cond_ctrl_validationService} from '../../../custom_widget/npss_c_cond_ctrl_validation/npss_c_cond_ctrl_validation.service'
 
 @Component({
 	selector: 's_debit_advice_report',
 	templateUrl: './s_debit_advice_report.component.html',
 	styleUrls: ['./s_debit_advice_report.component.css'],
-	providers:[torus_cs_show_hideService,npss_cs_dashboard_titleService,npss_c_export_pdf_for_reportService,npss_c_cond_ctrl_validationService,npss_cs_credit_debit_reportService]
+	providers:[torus_cs_show_hideService,npss_cs_dashboard_titleService,npss_cs_credit_debit_reportService,npss_c_cond_ctrl_validationService]
 })
     
 // Start of class 
@@ -56,7 +55,7 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_dashboard_titleService:npss_cs_dashboard_titleService,private npss_c_export_pdf_for_reportService:npss_c_export_pdf_for_reportService,private npss_c_cond_ctrl_validationService:npss_c_cond_ctrl_validationService,private npss_cs_credit_debit_reportService:npss_cs_credit_debit_reportService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_dashboard_titleService:npss_cs_dashboard_titleService,private npss_cs_credit_debit_reportService:npss_cs_credit_debit_reportService,private npss_c_cond_ctrl_validationService:npss_c_cond_ctrl_validationService) {
     
 	}
     
@@ -358,7 +357,7 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_c_export_pdf_for_reportService.fn_npss_c_export_pdf_for_report(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_cs_credit_debit_reportService.fn_npss_cs_credit_debit_report(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

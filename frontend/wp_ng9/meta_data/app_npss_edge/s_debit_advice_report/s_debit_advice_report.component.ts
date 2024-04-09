@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35123 
+Build ID        : 35125 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-09 13:7 PM 
+Modified Date   : 2024-Apr-09 13:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_debit_advice_report
@@ -12,7 +12,6 @@ Screen Name     : s_debit_advice_report
 // Component Definition 
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
-import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_cs_dashboard_titleService} from '../../../custom_widget/npss_cs_dashboard_title/npss_cs_dashboard_title.service'
 import {npss_cs_credit_debit_reportService} from '../../../custom_widget/npss_cs_credit_debit_report/npss_cs_credit_debit_report.service'
 import {npss_c_cond_ctrl_validationService} from '../../../custom_widget/npss_c_cond_ctrl_validation/npss_c_cond_ctrl_validation.service'
@@ -21,7 +20,7 @@ import {npss_c_cond_ctrl_validationService} from '../../../custom_widget/npss_c_
 	selector: 's_debit_advice_report',
 	templateUrl: './s_debit_advice_report.component.html',
 	styleUrls: ['./s_debit_advice_report.component.css'],
-	providers:[torus_cs_show_hideService,npss_cs_dashboard_titleService,npss_cs_credit_debit_reportService,npss_c_cond_ctrl_validationService]
+	providers:[npss_cs_dashboard_titleService,npss_cs_credit_debit_reportService,npss_c_cond_ctrl_validationService]
 })
     
 // Start of class 
@@ -55,7 +54,7 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_cs_dashboard_titleService:npss_cs_dashboard_titleService,private npss_cs_credit_debit_reportService:npss_cs_credit_debit_reportService,private npss_c_cond_ctrl_validationService:npss_c_cond_ctrl_validationService) {
+	constructor(private handler:AppHandlerService ,private npss_cs_dashboard_titleService:npss_cs_dashboard_titleService,private npss_cs_credit_debit_reportService:npss_cs_credit_debit_reportService,private npss_c_cond_ctrl_validationService:npss_c_cond_ctrl_validationService) {
     
 	}
     
@@ -157,14 +156,9 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
   
 	// To handle page_load event
 	page_load(){
-		this.page_load__cc_from_pg()
 		this.page_load__cc_for_dashboard()
-		this.page_load__de_for_pdf()
-	}
-
-	//Handler for INTERNAL event of "cc from pg"
-	cc_from_pg__internal(parent_event_result){
-		this.cc_from_pg__e_1712324135107(parent_event_result)
+		this.page_load__he_for_pdf()
+		this.page_load__cf_from_pg()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -196,30 +190,9 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 	}
 
 	//Handler for INTERNAL event of "cc form debit"
-	cc_form_debit__internal(parent_event_result){
-		this.cc_form_debit__ee_for_export_as_pdf_btn(parent_event_result)
+	cc_form_debit__internal(){
+		this.cc_form_debit__se_for_pdf_btn()
 	}
-
-	//Handler for DPSINIT event of "page_load"
-	page_load__cc_from_pg() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="page_load"
-		let destn_id=""
-		let parent_source_id=""
-		let event_code="e_1712323994468"
-		let event_params={"caller_name":"page_load__cc_from_pg","event_desc":"CC From PG","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
-		let handler_code="custom_connectors"
-		let internals="cc_from_pg__e_1712324135107,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.torus_cs_show_hideService.fn_torus_cs_show_hide(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
 
 	//Handler for DPSINIT event of "page_load"
 	page_load__cc_for_dashboard() { 
@@ -243,36 +216,35 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for DPSINIT event of "page_load"
-	page_load__de_for_pdf() { 
+	page_load__he_for_pdf() { 
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
 		let destn_id="navigation_export_as_pdf"
 		let parent_source_id=""
 		let event_code="e_1712324211347"
-		let event_params={"caller_name":"page_load__de_for_pdf","event_desc":"DE For PDF","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
-		let handler_code="disable_element"
+		let event_params={"caller_name":"page_load__he_for_pdf","event_desc":"HE For PDF","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
+		let handler_code="hide_element"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.hide_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
  		} 
 	} 
 
-	//Handler for INTERNAL event of "cc from pg"
-	cc_from_pg__e_1712324135107(parent_event_result) { 
+	//Handler for DPSINIT event of "page_load"
+	page_load__cf_from_pg() { 
 		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_from_pg"
+		
+		let source_id="page_load"
 		let destn_id=""
-		let parent_source_id="page_load"
-		let event_code="e_1712324135107"
-		let event_params={"caller_name":"cc_from_pg__e_1712324135107","event_desc":"E_1712324135107","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""},"parent_event_result":"SUCCESS"}
+		let parent_source_id=""
+		let event_code="e_1712669632737"
+		let event_params={"caller_name":"page_load__cf_from_pg","event_desc":"CF From PG","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""}}
 		let handler_code="create_form"
 		let internals=""
 		let event_data={}
@@ -445,7 +417,7 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 		let event_code="e_1712555940346"
 		let event_params={"caller_name":"cc_from_search__cc_form_debit","event_desc":"CC Form debit","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals="cc_form_debit__ee_for_export_as_pdf_btn,"
+		let internals="cc_form_debit__se_for_pdf_btn,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -457,21 +429,20 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "cc form debit"
-	cc_form_debit__ee_for_export_as_pdf_btn(parent_event_result) { 
+	cc_form_debit__se_for_pdf_btn() { 
 		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
+		
 		let source_id="cc_form_debit"
 		let destn_id="navigation_export_as_pdf"
 		let parent_source_id="cc_from_search"
-		let event_code="e_1712667935311"
-		let event_params={"caller_name":"cc_form_debit__ee_for_export_as_pdf_btn","event_desc":"EE For Export as pdf btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
-		let handler_code="enable_element"
+		let event_code="e_1712669698316"
+		let event_params={"caller_name":"cc_form_debit__se_for_pdf_btn","event_desc":"SE For Pdf btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let handler_code="show_element"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

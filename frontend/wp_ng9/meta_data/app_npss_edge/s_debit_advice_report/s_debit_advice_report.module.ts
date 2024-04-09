@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35123 
+Build ID        : 35125 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-09 13:7 PM 
+Modified Date   : 2024-Apr-09 13:37 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_debit_advice_report
@@ -21,7 +21,6 @@ import { SharedModule } from '../../../shared/shared.module'
 
 import {npss_cs_credit_debit_reportModule} from '../../../custom_widget/npss_cs_credit_debit_report/npss_cs_credit_debit_report.module'
 import {npss_cs_dashboard_titleModule} from '../../../custom_widget/npss_cs_dashboard_title/npss_cs_dashboard_title.module'
-import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_c_cond_ctrl_validationModule} from '../../../custom_widget/npss_c_cond_ctrl_validation/npss_c_cond_ctrl_validation.module'
 
 import {DialogModule} from 'primeng/dialog';
@@ -53,7 +52,7 @@ import { f_debit_advice_report_srchComponent } from './f_debit_advice_report_src
     OverlayPanelModule,
     
     s_debit_advice_reportRoutingModule,
-    npss_cs_credit_debit_reportModule,npss_cs_dashboard_titleModule,torus_cs_show_hideModule,npss_c_cond_ctrl_validationModule
+    npss_cs_credit_debit_reportModule,npss_cs_dashboard_titleModule,npss_c_cond_ctrl_validationModule
   ],
   declarations: [s_debit_advice_reportComponent,p_main_layoutComponent,f_navigationComponent,p_search_layoutComponent,f_debit_advice_report_srchComponent,],
   providers:[AppHandlerService,ComponenthelperService]

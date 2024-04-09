@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35120 
+Build ID        : 35123 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-09 9:33 AM 
+Modified Date   : 2024-Apr-09 13:7 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_debit_advice_report
@@ -193,6 +193,11 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 		this.cc_from_search__cp_from_nav_search(parent_event_result)
 		this.cc_from_search__ssp_for_search(parent_event_result)
 		this.cc_from_search__cc_form_debit(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "cc form debit"
+	cc_form_debit__internal(parent_event_result){
+		this.cc_form_debit__ee_for_export_as_pdf_btn(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -440,11 +445,33 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 		let event_code="e_1712555940346"
 		let event_params={"caller_name":"cc_from_search__cc_form_debit","event_desc":"CC Form debit","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals=""
+		let internals="cc_form_debit__ee_for_export_as_pdf_btn,"
 		let event_data={}
 		let data_source={}
 		try {
 			this.npss_cs_credit_debit_reportService.fn_npss_cs_credit_debit_report(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc form debit"
+	cc_form_debit__ee_for_export_as_pdf_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_form_debit"
+		let destn_id="navigation_export_as_pdf"
+		let parent_source_id="cc_from_search"
+		let event_code="e_1712667935311"
+		let event_params={"caller_name":"cc_form_debit__ee_for_export_as_pdf_btn","event_desc":"EE For Export as pdf btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

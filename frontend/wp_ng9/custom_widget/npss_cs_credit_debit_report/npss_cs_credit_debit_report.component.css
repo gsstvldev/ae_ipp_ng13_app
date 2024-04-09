@@ -1,1 +1,6 @@
-/*CSS FILE*/
+.scrollable-div::-webkit-scrollbar
+{
+  width:2px;
+  background-color: grey;max-height:200px;
+  overflow:auto;
+}

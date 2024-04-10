@@ -27,6 +27,7 @@ app.post('/', function(appRequest, appResponse, next) {
             Reason for:Adding dbtr_acct_no in api payload on 16/11/2023
             Reason for:Adding try catch for issues by subramani 01/4/2024
               Reason for:Duplicate posting in retry count  by daseen 01/04/2024  WI 3472
+              reason for: ipuetr dta not available in live then qry from archival date 10-4-2024 - renga
         */
         var serviceName = 'NPSS (CS) Send To Checker';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -732,7 +733,9 @@ app.post('/', function(appRequest, appResponse, next) {
                     function GetRetrycount(ipuetr) {
                         return new Promise((resolve, reject) => {
 
-                            var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where   uetr ='${ipuetr}' and  status in  ('IP_RCT_PC_T24_POSTING_SUCCESS','IP_BCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS','IP_BCT_CC_T24_POSTING_SUCCESS','IP_RCT_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS')`
+                            var TakeretryValue = `select ext_iden_retry_value from <tran_db>.npss_trn_process_log where uetr ='${ipuetr}' and  status in  ('IP_RCT_PC_T24_POSTING_SUCCESS','IP_BCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS','IP_BCT_CC_T24_POSTING_SUCCESS','IP_RCT_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS')`
+
+                           var TakeretryValueArc = `select ext_iden_retry_value from <arc_tran_db>.npss_trn_process_log where uetr ='${ipuetr}' and  status in  ('IP_RCT_PC_T24_POSTING_SUCCESS','IP_BCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS','IP_BCT_CC_T24_POSTING_SUCCESS','IP_RCT_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS')`
                             ExecuteQuery1(TakeretryValue, function (extIdentValue) {
                                 if (extIdentValue.length > 0) {
                                     if (extIdentValue[0].ext_iden_retry_value != null) {
@@ -743,10 +746,21 @@ app.post('/', function(appRequest, appResponse, next) {
                                         resolve(1)
                                     }
 
-
                                 } else {
-                                    objresponse.status = "No Data in ext_iden_retry_value"
-                                    sendResponse(null, objresponse)
+                                    ExecuteQuery1(TakeretryValueArc, function (extIdentValueArc){
+                                        if(extIdentValueArc.length>0){
+                                            if (extIdentValueArc[0].ext_iden_retry_value != null) {
+                                                var count = Number(extIdentValueArc[0].ext_iden_retry_value)
+                                                count++
+                                                resolve(count)
+                                            }else{
+                                                resolve(1)  
+                                            }  
+                                        }else{
+                                            objresponse.status = "No Data in ext_iden_retry_value"
+                                            sendResponse(null, objresponse)
+                                        }
+                                    })
                                 }
 
                             })
@@ -985,7 +999,6 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                 resolve(arrdata)
 
-
                             })
 
                         })
@@ -1002,7 +1015,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                     sendResponse(null, objresponse)
                                 }
                             })
-
 
                         })
                     }
@@ -1524,14 +1536,6 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
-
-
-
-
-
-
-
-
 
 
 

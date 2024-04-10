@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35125 
+Build ID        : 35126 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-09 13:37 PM 
+Modified Date   : 2024-Apr-10 4:24 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_debit_advice_report
@@ -190,8 +190,8 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 	}
 
 	//Handler for INTERNAL event of "cc form debit"
-	cc_form_debit__internal(){
-		this.cc_form_debit__se_for_pdf_btn()
+	cc_form_debit__internal(parent_event_result){
+		this.cc_form_debit__se_for_pdf_btn(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -286,7 +286,7 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1712324496499"
-		let event_params={"caller_name":"navigation_search__spap_from_search_btn","event_desc":"SPAP From Search Btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_from_search_btn","selector":"p_search_layout","profile_code":"BTL_1304_1712323847533","window_title":"Search","window_height":535,"window_width":"950px","window_close_icon":"Y","eventdes":"spap_from_search_btn","eventcode":"E_1712324496499"}}
+		let event_params={"caller_name":"navigation_search__spap_from_search_btn","event_desc":"SPAP From Search Btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_search","raiseparam":{"popup_category":"profile","variable":"p_search_layout__spap_from_search_btn","selector":"p_search_layout","profile_code":"BTL_1304_1712323847533","window_title":"Search","window_height":"","window_width":"auto","window_close_icon":"Y","eventdes":"spap_from_search_btn","eventcode":"E_1712324496499"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}
@@ -429,14 +429,15 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "cc form debit"
-	cc_form_debit__se_for_pdf_btn() { 
+	cc_form_debit__se_for_pdf_btn(parent_event_result) { 
 		let Dest_Is_ctrl=true
-		
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
 		let source_id="cc_form_debit"
 		let destn_id="navigation_export_as_pdf"
 		let parent_source_id="cc_from_search"
 		let event_code="e_1712669698316"
-		let event_params={"caller_name":"cc_form_debit__se_for_pdf_btn","event_desc":"SE For Pdf btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"cc_form_debit__se_for_pdf_btn","event_desc":"SE For Pdf btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""},"parent_event_result":"SUCCESS"}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}

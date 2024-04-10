@@ -63,107 +63,21 @@ if(curr_btn.toLowerCase().includes('pdf'))
                 if (res.data.status == "SUCCESS") {
 
                     let bodyContent: any = [],result: any = []
-                    result = res.data.data[0]
+                    result = res.data.data
                     //  let keys=(screenInstance.wftpa_description.includes('debit'))?['Ordering','Beneficiary']:['Beneficiary','Ordering']
 
                     let Report_keys :any=[]
-                     Object.keys(result).forEach((val) => {
+                     Object.keys(result[0]).forEach((val) => {
                         if((val.toLowerCase()!='clrsysref' && val.toLowerCase()!='report_icon_data' && val.toLowerCase()!='t24_ft_reference_number' && val.toLowerCase()!='process_type' && val.toLowerCase()!='api_success_failure' && val.toLowerCase()!='purpose_codes' && val.toLowerCase()!='channel_refno' && val.toLowerCase()!='beneficiary_bank' && val.toLowerCase()!='purpose_codes' && val.toLowerCase()!='source_channel' && val.toLowerCase()!='account_number' && val.toLowerCase()!='account_number'&& !val.toLowerCase().includes('tenant') && val.toLowerCase()!='sender_bank' && !val.toLowerCase().includes('department') && !val.toLowerCase().includes('tran_ref') && !val.toLowerCase().includes('remittance')))
                             {
                                 Report_keys.push(val)
                                 
                             }
                     })
-                    let  column = '',title=''
+                    let  column = '',title='',res_index=0,overallbodyContent:any=[]
                    // result = res.data.data[0]
                     //bodyContent.push([])
-
-                    for (let i = 1; i < Report_keys.length; i++) {
-                        let key:any,val:any
-                        if(Report_keys[i]!=null || Report_keys[i]!=undefined)
-                                key=this.CamelCase(Report_keys[i].split('_'))
-
-                        //key=key.splice(0).toUpperCase()+key.splice(1,key.length)
-                                
-                        if (i == 1) {
-                            //column=''
-                            if (screenInstance.wftpa_description.includes('debit')) {
-                                column = 'Ordering Customer'
-                                title='Customer Debit Advice'
-                            }
-                            else {column = 'Beneficiary Customer'
-                                title='Customer Credit Advice'
-
-                            }
-                            bodyContent.push([{ text: column, colSpan: 2,  style: 'tableHeader' }, {}]);
-
-                            //bodyContent.push('Ordering Customer')        
-                        }
-                        else if (i == 4) {
-                            if (screenInstance.wftpa_description.includes('debit')) {
-                                column = 'Beneficiary Customer'
-                            }
-                            else {
-                                column = 'Ordering Customer'
-                            }
-                            bodyContent.push([{ text: column, colSpan: 2, style: 'tableHeader' }, {}]);
-                            //bodyContent.push('Beneficiary Customer')        
-                        }
-                        else if (i == 7) {
-                            if (screenInstance.wftpa_description.includes('debit')) {
-                                column = 'Transaction'
-                            }
-                            else {
-                                column = 'Transaction'
-                            }
-                            bodyContent.push([{ text: column, colSpan: 2, style: 'tableHeader' }, {}]);
-                            //bodyContent.push('Transaction')        
-                        }
-                        else if (i == 12) {
-                            if (screenInstance.wftpa_description.includes('debit')) {
-                                column = 'References'
-                            }
-                            else {
-                                column = 'References'
-                            }
-                            bodyContent.push([{ text: column, colSpan: 2,  style: 'tableHeader' }, {}]);
-                            //bodyContent.push('References')        
-                        }
-                        else if (i == 13) {
-                            bodyContent.push([{text:Report_keys[0]?.toUpperCase()?.toString(),style: 'tablcolmn'},{text:result[Report_keys[0]]?.toUpperCase()?.toString(),style: 'tablcolmn'}])
-                            
-                                //bodyContent.push()
-                                
-
-                        }
-                        if(Report_keys[i].includes('amount'))
-                            {
-                                key='Amount(AED)'
-                                val=(result[Report_keys[i]]?.toString())?result[Report_keys[i]]?.toString():result[Report_keys[i]]
-                                bodyContent.push([{text:key,style: 'tablcolmn'},{text:val,style: 'tablcolmn'}])
-                            }
-                       else if(Report_keys[i].includes('end_to'))
-                            {
-                                let key:any='End-to-End ID'
-                                let val:any=(result[Report_keys[i]]?.toString())?result[Report_keys[i]]?.toString():result[Report_keys[i]]
-                                bodyContent.push([{text:key,style: 'tablcolmn'},{text:val,style: 'tablcolmn'}])
-                                //bodyContent.push()         
-                            }
-                            else{
-                                /* let key:any=Report_keys[i]*/
-                                let val:any=(result[Report_keys[i]]?.toString())?result[Report_keys[i]]?.toString():result[Report_keys[i]]
-                                //bodyContent.push([key,val])
-                                bodyContent.push([{text:key,style: 'tablcolmn'},{text:val,style: 'tablcolmn'}])
-                                //bodyContent.push()
-                            }
-                        
-                    }
-                    //bodyContent.push(['Customer Debit Service'],['Ordering Customer'],[' Ordering Customer Name',`${result.Debtor_Name}`],['Ordering Account',`${result.Debtor_Account}`],['Ordering Customer IBAN',`${}`],[' Beneficiary Customer'],['Beneficiary Customer Name',`${result.Creditor_Name}`],[' Beneficiary Customer IBAN',`${result.Creditor_Account}`],['Beneficiary Bank Code',`${result.creditor_account}`],['Transaction'],['Transaction Ref',`${result.payment_endtoend_id}`],['Amount (AED)',`${result.transaction_amount_range}`],['Transaction Code',`${result.categorypurpose}`],['Transaction Code',`${result.categorypurpose}`],['Received Time',`${result.created_date}`],['Status',`${result.status}`],['End-to-End ID',`${result.payment_endtoend_id}`],['UETR',`${result.uetr}`],['Transaction Reference',`${result.t24_ft_reference_number}`],['Clearing Reference',''],['Other Reference',`${result.otherreference}`])
-                    // let Header =(screenInstance.wftpa_description=='Debit Advice Report')? ['Ordering Customer','','','']:['','','','']//Object.keys(Jsonbody[0])
-                    //let Headersvalue:any= []
-
-
-                    var dd = {
+                    var dd :any= {
                         pageSize: {
                             width: 900,
                             height: 'auto',
@@ -172,21 +86,14 @@ if(curr_btn.toLowerCase().includes('pdf'))
                             
                     {
                                 
-                                 image:`data:image/jpeg;base64${result['report_icon_data']}`,
+                                 image:`data:image/jpeg;base64${result[0]['report_icon_data']}`,
                         width:100,
                         height: 100 ,
                         alignment:'right'
                         //margin: [0, 10, 0, 0]
                     },
                     {text:title,style:"head"},
-                            {
-                                table: {
-                                    body: bodyContent,
-                                    alignment:'center',
-                                    heights: 50,
-                                    widths: [400, '*'],
-                                }
-                            },
+                            
                         ],
                         pageStyle: {
                             width: 1200,
@@ -217,6 +124,115 @@ if(curr_btn.toLowerCase().includes('pdf'))
                         }
 
                     }
+result.forEach((res)=>
+{
+
+
+    
+        for (let i = 1; i < Report_keys.length; i++) {
+            let key:any,val:any
+            if(Report_keys[i]!=null || Report_keys[i]!=undefined)
+                    key=this.CamelCase(Report_keys[i].split('_'))
+
+            
+
+            //key=key.splice(0).toUpperCase()+key.splice(1,key.length)
+                    
+            if (i == 1) {
+                //column=''
+                if (screenInstance.wftpa_description.includes('debit')) {
+                    column = 'Ordering Customer'
+                    title='Customer Debit Advice'
+                }
+                else {column = 'Beneficiary Customer'
+                    title='Customer Credit Advice'
+
+                }
+                bodyContent.push([{ text: column, colSpan: 2,  style: 'tableHeader' }, {}]);
+
+                //bodyContent.push('Ordering Customer')        
+            }
+            else if (i == 4) {
+                if (screenInstance.wftpa_description.includes('debit')) {
+                    column = 'Beneficiary Customer'
+                }
+                else {
+                    column = 'Ordering Customer'
+                }
+                bodyContent.push([{ text: column, colSpan: 2, style: 'tableHeader' }, {}]);
+                //bodyContent.push('Beneficiary Customer')        
+            }
+            else if (i == 7) {
+                if (screenInstance.wftpa_description.includes('debit')) {
+                    column = 'Transaction'
+                }
+                else {
+                    column = 'Transaction'
+                }
+                bodyContent.push([{ text: column, colSpan: 2, style: 'tableHeader' }, {}]);
+                //bodyContent.push('Transaction')        
+            }
+            else if (i == 12) {
+                if (screenInstance.wftpa_description.includes('debit')) {
+                    column = 'References'
+                }
+                else {
+                    column = 'References'
+                }
+                bodyContent.push([{ text: column, colSpan: 2,  style: 'tableHeader' }, {}]);
+                //bodyContent.push('References')        
+            }
+            else if (i == 13) {
+                bodyContent.push([{text:Report_keys[0]?.toUpperCase()?.toString(),style: 'tablcolmn'},{text:result[Report_keys[0]]?.toUpperCase()?.toString(),style: 'tablcolmn'}])
+                
+                    //bodyContent.push()
+                    
+
+            }
+            if(Report_keys[i].includes('amount'))
+                {
+                    key='Amount(AED)'
+                    val=(res[Report_keys[i]]?.toString())?res[Report_keys[i]]?.toString():res[Report_keys[i]]
+                    bodyContent.push([{text:key,style: 'tablcolmn'},{text:val,style: 'tablcolmn'}])
+                }
+           else if(Report_keys[i].includes('end_to'))
+                {
+                    let key:any='End-to-End ID'
+                    let val:any=(res[Report_keys[i]]?.toString())?res[Report_keys[i]]?.toString():res[Report_keys[i]]
+                    bodyContent.push([{text:key,style: 'tablcolmn'},{text:val,style: 'tablcolmn'}])
+                    //bodyContent.push()         
+                }
+                else{
+                    /* let key:any=Report_keys[i]*/
+                    let val:any=(res[Report_keys[i]]?.toString())?res[Report_keys[i]]?.toString():res[Report_keys[i]]
+                    //bodyContent.push([key,val])
+                    
+                        
+                        bodyContent.push([{text:key,style: 'tablcolmn'},{text:val,style: 'tablcolmn'}])
+                        
+                    
+                    //bodyContent.push()
+                }
+
+            
+        }
+        res_index+=1
+        //bodyContent.push({text:"",style:"tablcolmn",pageBreak:"before"})
+        dd.content.push({table:{body: bodyContent,
+            alignment:'center',
+            heights: 50,
+            widths: [400, '*'],
+        }})
+        if(res_index<result.length)
+        dd.content.push({text:"",pageBreak:"before"})
+        bodyContent=[]
+        
+        
+    })
+                    
+                    
+
+                    
                     //let dd_copy=dd
                     //dd_copy.pageStyle.width=100
                     //dd_copy.pageStyle.height=200

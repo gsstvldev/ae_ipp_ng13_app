@@ -34,6 +34,7 @@ export class npss_cs_credit_debit_reportComponent implements OnInit {
         }
         handlechangecomponentevent(event) {
           this.pdfSrc=event.data
+          event.appHandler.callInternals(event.internals,this.screen_instance,'SUCCESS')
 
 
         }

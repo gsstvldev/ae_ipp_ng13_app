@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35136 
+Build ID        : 35139 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-10 8:0 AM 
+Modified Date   : 2024-Apr-10 9:58 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_advice_report
@@ -194,8 +194,8 @@ export class s_credit_advice_reportComponent implements OnInit,AfterViewInit {
 	}
 
 	//Handler for INTERNAL event of "cc for pdf btn"
-	cc_for_pdf_btn__internal(){
-		this.cc_for_pdf_btn__se_for_pdf()
+	cc_for_pdf_btn__internal(parent_event_result){
+		this.cc_for_pdf_btn__se_for_pdf(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -433,14 +433,15 @@ export class s_credit_advice_reportComponent implements OnInit,AfterViewInit {
 	} 
 
 	//Handler for INTERNAL event of "cc for pdf btn"
-	cc_for_pdf_btn__se_for_pdf() { 
+	cc_for_pdf_btn__se_for_pdf(parent_event_result) { 
 		let Dest_Is_ctrl=true
-		
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
 		let source_id="cc_for_pdf_btn"
 		let destn_id="navigation_export_as_pdf"
 		let parent_source_id="ssp_from_search"
 		let event_code="e_1712732966748"
-		let event_params={"caller_name":"cc_for_pdf_btn__se_for_pdf","event_desc":"SE For Pdf","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""}}
+		let event_params={"caller_name":"cc_for_pdf_btn__se_for_pdf","event_desc":"SE For Pdf","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""},"parent_event_result":"SUCCESS"}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}

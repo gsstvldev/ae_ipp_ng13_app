@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35126 
+Build ID        : 31399 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-10 4:24 AM 
+Modified Date   : 2024-Apr-10 7:20 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_debit_advice_report
@@ -186,12 +186,16 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 	cc_from_search__internal(parent_event_result){
 		this.cc_from_search__cp_from_nav_search(parent_event_result)
 		this.cc_from_search__ssp_for_search(parent_event_result)
-		this.cc_from_search__cc_form_debit(parent_event_result)
 	}
 
-	//Handler for INTERNAL event of "cc form debit"
-	cc_form_debit__internal(parent_event_result){
-		this.cc_form_debit__se_for_pdf_btn(parent_event_result)
+	//Handler for INTERNAL event of "ssp for search"
+	ssp_for_search__internal(parent_event_result){
+		this.ssp_for_search__cc_for_debit(parent_event_result)
+	}
+
+	//Handler for INTERNAL event of "cc for debit"
+	cc_for_debit__internal(parent_event_result){
+		this.cc_for_debit__se_from_cc_success(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -351,7 +355,7 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 		let event_code="e_1712549407860"
 		let event_params={"caller_name":"search_search__cc_from_search","event_desc":"CC From Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
 		let handler_code="custom_connectors"
-		let internals="cc_from_search__cp_from_nav_search,cc_from_search__ssp_for_search,cc_from_search__cc_form_debit,"
+		let internals="cc_from_search__cp_from_nav_search,cc_from_search__ssp_for_search,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -395,7 +399,7 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
 		let event_code="e_1712552862194"
 		let event_params={"caller_name":"cc_from_search__ssp_for_search","event_desc":"SSP For Search","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="set_search_params"
-		let internals=""
+		let internals="ssp_for_search__cc_for_debit,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -406,18 +410,18 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "cc from search"
-	cc_from_search__cc_form_debit(parent_event_result) { 
+	//Handler for INTERNAL event of "ssp for search"
+	ssp_for_search__cc_for_debit(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_from_search"
+		let source_id="ssp_for_search"
 		let destn_id=""
-		let parent_source_id="search_search"
-		let event_code="e_1712555940346"
-		let event_params={"caller_name":"cc_from_search__cc_form_debit","event_desc":"CC Form debit","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let parent_source_id="cc_from_search"
+		let event_code="e_1712733073974"
+		let event_params={"caller_name":"ssp_for_search__cc_for_debit","event_desc":"CC For Debit","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals="cc_form_debit__se_for_pdf_btn,"
+		let internals="cc_for_debit__se_from_cc_success,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -428,16 +432,16 @@ export class s_debit_advice_reportComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "cc form debit"
-	cc_form_debit__se_for_pdf_btn(parent_event_result) { 
+	//Handler for INTERNAL event of "cc for debit"
+	cc_for_debit__se_from_cc_success(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_form_debit"
+		let source_id="cc_for_debit"
 		let destn_id="navigation_export_as_pdf"
-		let parent_source_id="cc_from_search"
-		let event_code="e_1712669698316"
-		let event_params={"caller_name":"cc_form_debit__se_for_pdf_btn","event_desc":"SE For Pdf btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let parent_source_id="ssp_for_search"
+		let event_code="e_1712733130023"
+		let event_params={"caller_name":"cc_for_debit__se_from_cc_success","event_desc":"SE From CC Success","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":"","hide_for":"","hide_except":"","hide_column":"","expression":""},"parent_event_result":"SUCCESS"}
 		let handler_code="show_element"
 		let internals=""
 		let event_data={}

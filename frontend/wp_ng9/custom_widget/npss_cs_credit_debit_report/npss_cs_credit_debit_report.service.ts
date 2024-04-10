@@ -52,7 +52,8 @@ if(pdf_data)
     //}
     //Service logics
     CallUrlforGetparamvalue(ClientParams, screenInstance, internals) {
-        this.httpHelper.HttpPost('/microsvc/npss_cs_credit_debit_report/', ClientParams)
+
+        this.httpHelper.HttpPost('/microsvc/npss_cs_credit_debit_report/', (ClientParams))
             .subscribe((res: any) => {
                 if (res.data.status == "SUCCESS") {
 
@@ -75,7 +76,7 @@ if(pdf_data)
                     for (let i = 1; i < Report_keys.length; i++) {
                         let key:any,val:any
                         if(Report_keys[i]!=null || Report_keys[i]!=undefined)
-                                key=this.CamelCase(Report_keys[i].split('_').join(' '))
+                                key=this.CamelCase(Report_keys[i].split('_'))
 
                         //key=key.splice(0).toUpperCase()+key.splice(1,key.length)
                                 
@@ -124,7 +125,7 @@ if(pdf_data)
                             //bodyContent.push('References')        
                         }
                         else if (i == 13) {
-                            bodyContent.push([{text:Report_keys[0]?.toString(),style: 'tablcolmn'},{text:result[Report_keys[0]]?.toString(),style: 'tablcolmn'}])
+                            bodyContent.push([{text:Report_keys[0]?.toUpperCase()?.toString(),style: 'tablcolmn'},{text:result[Report_keys[0]]?.toUpperCase()?.toString(),style: 'tablcolmn'}])
                             
                                 //bodyContent.push()
                                 
@@ -167,9 +168,10 @@ if(pdf_data)
                     {
                                 
                                  image:`data:image/jpeg;base64${result['report_icon_data']}`,
-                        width:50,
-                        height: 50 ,
+                        width:100,
+                        height: 100 ,
                         alignment:'right'
+                        //margin: [0, 10, 0, 0]
                     },
                     {text:title,style:"head"},
                             {
@@ -190,7 +192,7 @@ if(pdf_data)
                             head:{
                                 fontSize: 30,
                                 color:'#285BB0',
-                                margin: [10, 0, 0, 10]
+                                margin: [5, 0, 0, 10]
                             },
                             tableHeader: {
                                 fontSize: 20,
@@ -233,8 +235,12 @@ if(pdf_data)
     }
     CamelCase(str:any)
     {
-        return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-            return index == 0 ? word.toLowerCase() : word.toUpperCase();
-        }).replace(/\s+/g, '');
+        
+        let key_string_concat:any=''
+        str.forEach((val)=>
+        {
+            key_string_concat+=val.charAt(0).toUpperCase()+val.slice(1)+' '
+        })
+        return key_string_concat
     }
 }

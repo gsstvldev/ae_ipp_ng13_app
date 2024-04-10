@@ -7,14 +7,6 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
-
-
-
-
-
-
-
 
 
 
@@ -42,7 +34,7 @@ app.post('/', function(appRequest, appResponse, next) {
           Reason : changes for BCT -cbs ref no update in transaction after auth posting in 008 call on 11-03-2024
           Reason : changes for BCT -remarks update in transaction on 20-03-2024 by daseen on 20-03-2024 WI 3399
            Reason : Duplicate retry value for second time in ext_iden_retry_value   on 01-04-2024 by daseen  WI 3472
-           reason : getcount qry based on schema(live or archival) 10-4-24 -renga
+           reason : getcount,select query for IPUETR  based on schema(live or archival) 10-4-24 -renga WI 3683
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -364,7 +356,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-                    function fnupdateoldIPUetr( extend_retry_value, ipuetr) {
+                    function fnupdateoldIPUetr(extend_retry_value, ipuetr) {
                         return new Promise((resolve, reject) => {
 
                             let updtQry = `update npss_trn_process_log set ext_iden_retry_value = ${extend_retry_value} where uetr ='${ipuetr}' and status in ('IP_RCT_PC_T24_POSTING_SUCCESS','IP_BCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS','IP_BCT_CC_T24_POSTING_SUCCESS')`
@@ -504,12 +496,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                     sendResponse(error, null);
 
                                 } else {
-                                   // callbackapi('SUCCESS')
-                                      responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
-                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-                                     var responseData = JSON.parse(responseBodyFromImagingService)
-                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseData, objSessionLogInfo);
-                                     callbackapi(responseData) 
+                                    // callbackapi('SUCCESS')
+                                    responseBodyFromImagingService.statuscode = responseFromImagingService.statusCode
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                    var responseData = JSON.parse(responseBodyFromImagingService)
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseData, objSessionLogInfo);
+                                    callbackapi(responseData)
                                 }
                             });
 
@@ -707,7 +699,8 @@ app.post('/', function(appRequest, appResponse, next) {
                             var TakeAcctInf = `select birthdate,cityofbirth,countryofbirth,emirates_code,account_name,alternate_account_type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer from core_nc_cbs_accounts where alternate_account_id= '${arrprocesslog[0].dbtr_iban}'`
                             var TakeprssRefno = `select process_ref_no  from npss_trn_process_log  where uetr = '${arrprocesslog[0].uetr}' and status = 'OP_RCT_MAN_INAU_POSTING_SUCCESS' order by created_date desc`;
                             // var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status in ('OP_RCT_MAN_INAU_POSTING_SUCCESS','OP_RCT_MAN_INAU_POSTING_FAILURE') and uetr = '${arrprocesslog[0].uetr}'`
-                            var TakeCount = `select CAST(ext_iden_retry_value AS INTEGER) from npss_trn_process_log where   uetr ='${ipuetr}' and  status in ('IP_RCT_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS')`
+                            var TakeCount = `select CAST(ext_iden_retry_value AS INTEGER) from <tran_db>.npss_trn_process_log where   uetr ='${ipuetr}' and  status in ('IP_RCT_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS')`
+                            var TakeCountArc = `select CAST(ext_iden_retry_value AS INTEGER) from <arc_tran_db>.npss_trn_process_log where   uetr ='${ipuetr}' and  status in ('IP_RCT_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS')`
                             ExecuteQuery1(TakeprssRefno, function (arrprssRefno) {
                                 if (arrprssRefno.length > 0) {
                                     var parameter = {}
@@ -749,9 +742,30 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 }
 
                                                             } else {
-                                                                objresponse.status = "FAILURE"
-                                                                objresponse.errdata = "ext_iden_retry_value  is Missing"
-                                                                sendResponse(null, objresponse)
+                                                                ExecuteQuery1(TakeCountArc, function (arrCount) {
+                                                                    if (arrCount.length > 0) {
+                                                                        if ((Number(arrCount[0].ext_iden_retry_value) < 10) || (arrCount[0].ext_iden_retry_value == null)) {
+                                                                            var count = Number(arrCount[0].ext_iden_retry_value)
+                                                                            count++
+                                                                            parameter.retryCount = count
+                                                                            parameter.reverseId = arrprocesslog[0].clrsysref + '.0' + count
+                                                                            resolve(parameter)
+                                                                        } else {
+                                                                            var count = Number(arrCount[0].ext_iden_retry_value)
+                                                                            count++
+                                                                            parameter.retryCount = count
+                                                                            parameter.reverseId = arrprocesslog[0].clrsysref + '.' + count
+                                                                            resolve(parameter)
+                                                                        }
+
+                                                                    } else {
+                                                                        objresponse.status = "FAILURE"
+                                                                        objresponse.errdata = "ext_iden_retry_value  is Missing"
+                                                                        sendResponse(null, objresponse)
+                                                                    }
+
+                                                                })
+
                                                             }
                                                         } else {
                                                             objresponse.status = "FAILURE"
@@ -910,7 +924,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     }
 
                                 } else {
-                                    ExecuteQuery1(TakeretryValueArc, function (extIdentValueArc){
+                                    ExecuteQuery1(TakeretryValueArc, function (extIdentValueArc) {
                                         if (extIdentValueArc.length > 0) {
                                             if (extIdentValueArc[0].ext_iden_retry_value != null) {
                                                 var count = Number(extIdentValueArc[0].ext_iden_retry_value)
@@ -919,11 +933,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                             } else {
                                                 resolve(1)
                                             }
-                                        }else{
-                                            resolve(1) 
+                                        } else {
+                                            resolve(1)
                                         }
                                     })
-                                    
+
                                 }
 
                             })
@@ -996,7 +1010,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 let Pacs008Api
                                 let ApiVal
                                 let Handleerror
-                                let extIdentValue =5
+                                let extIdentValue = 5
                                 let CheckAlredyApiCalled = await CheckAldprcsTran(arrprocesslog, ChkPrecdtCard)
                                 let reversalNo = await TakeReversalId(IpUETR, ChkPrecdtCard, arrprocesslog)
                                 let TakeActcountInformation = await PreCrediAcctInfm(arrprocesslog, ChkPrecdtCard, IpUETR)
@@ -1019,7 +1033,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     transactionId = ''
                                                 }
                                             }
-                                            let updateoldIPUetr = await fnupdateoldIPUetr(reversalNo.retryCount,IpUETR)
+                                            let updateoldIPUetr = await fnupdateoldIPUetr(reversalNo.retryCount, IpUETR)
                                             if (params.eligible_status != 'OP_BCT_RET_RESERVED' && params.eligible_process_status != 'BCTOutwardReturnReserved') {
                                                 Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                                                 if (Pacs008Api == 'SUCCESS') {
@@ -1100,7 +1114,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     if (CheckAlredyApiCalled.Callapi == 'Call ELPASO Posting') {
                                         ElpasoApi = await CallCreditEplapsoApi(arrprocesslog, lclinstrm, extIdentValue, reversalNo)
                                         if (ElpasoApi.status == 'SUCCESS' || ElpasoApi.status == 'Success') {
-                                            let updateoldIPUetr = await fnupdateoldIPUetr(reversalNo.retryCount,IpUETR)
+                                            let updateoldIPUetr = await fnupdateoldIPUetr(reversalNo.retryCount, IpUETR)
                                             //   let transactionId = ElpasoApi.response.header.id || ElpasoApi.response.dataArea.offlineTransactionReferenceNumber || '';
                                             let transactionId = ''
                                             if (ElpasoApi && ElpasoApi.response) {
@@ -1242,7 +1256,8 @@ app.post('/', function(appRequest, appResponse, next) {
                     function PreCrediAcctInfm(arrprocesslog, ChkPrecdtCard, IpUETR) {
                         return new Promise(async (resolve, reject) => {
                             let AcctInformations = {}
-                            let chkData = `select * from npss_trn_process_log where uetr = '${IpUETR}'`
+                            let chkData = `select * from <tran_db>.npss_trn_process_log where uetr = '${IpUETR}'`
+                            let chkDataArc = `select * from <arc_tran_db>.npss_trn_process_log where uetr = '${IpUETR}'`
                             ExecuteQuery1(chkData, async function (arrChkdata) {
                                 if (arrChkdata.length > 0) {
                                     if (ChkPrecdtCard.apitype == 1) {
@@ -1330,9 +1345,103 @@ app.post('/', function(appRequest, appResponse, next) {
                                         }
                                     }
                                 } else {
-                                    objresponse.status = 'FAILURE'
-                                    objresponse.errdata = 'No data Found in Trn Process log Table for IP UETR'
-                                    sendResponse(null, objresponse)
+                                    ExecuteQuery1(chkDataArc, async function (arrChkdata) {
+                                        if (arrChkdata.length > 0) {
+                                            if (ChkPrecdtCard.apitype == 1) {
+                                                let CrfprepaidCard = arrChkdata.filter((x) => {
+                                                    return (x.status == 'IP_RCT_PC_T24_POSTING_SUCCESS' || x.status == 'IP_BCT_PC_T24_POSTING_SUCCESS')
+                                                })
+                                                if (CrfprepaidCard.length > 0) {
+                                                    let chkPrepaidPassedTrn = arrChkdata.filter((x) => {
+                                                        return ((x.status == 'IP_RCT_PC_PASSED' || x.status == 'IP_BCT_PC_PASSED') && x.process_name == 'Prepaid Card Validation')
+                                                    })
+                                                    if (chkPrepaidPassedTrn.length > 0) {
+                                                        if (chkPrepaidPassedTrn[0].emiratesid == null || chkPrepaidPassedTrn[0].emiratesid == '') {
+                                                            objresponse.status = 'FAILURE'
+                                                            objresponse.errdata = 'Private Id is Missing for Prepaid Card'
+                                                            sendResponse(null, objresponse)
+                                                        } else if ((chkPrepaidPassedTrn[0].dateofbirth == null || chkPrepaidPassedTrn[0].dateofbirth == '')
+                                                            || (chkPrepaidPassedTrn[0].customername == null || chkPrepaidPassedTrn[0].customername == '')
+                                                        ) {
+                                                            objresponse.status = 'FAILURE'
+                                                            objresponse.errdata = 'dateofbirth/customername field is missing'
+                                                            sendResponse(null, objresponse)
+                                                        }
+                                                        else {
+                                                            AcctInformations.privatesId = chkPrepaidPassedTrn[0].emiratesid
+                                                            AcctInformations.birthdate = chkPrepaidPassedTrn[0].dateofbirth
+                                                            AcctInformations.cityofbirth = chkPrepaidPassedTrn[0].cityofbirth
+                                                            AcctInformations.countryofbirth = chkPrepaidPassedTrn[0].countryofbirth
+                                                            AcctInformations.account_name = chkPrepaidPassedTrn[0].customername
+                                                            AcctInformations.extpersonidcode = 'NIDN'
+                                                            resolve(AcctInformations)
+                                                        }
+
+
+                                                    } else {
+                                                        objresponse.status = 'FAILURE'
+                                                        objresponse.errdata = 'No data Found for status IP_RCT_PC_PASSED or IP_BCT_PC_PASSED'
+                                                        sendResponse(null, objresponse)
+                                                    }
+                                                } else {
+                                                    objresponse.status = 'FAILURE'
+                                                    objresponse.errdata = 'No data Found in Trn Process log Table for IP UETR'
+                                                    sendResponse(null, objresponse)
+                                                }
+                                            } else {
+                                                let chkCreditTrn = arrChkdata.filter((x) => {
+                                                    return (x.status == 'IP_RCT_CC_T24_POSTING_SUCCESS' || x.status == 'IP_BCT_CC_T24_POSTING_SUCCESS')
+                                                })
+                                                if (chkCreditTrn.length > 0) {
+                                                    let chkCreditPassedTrn = arrChkdata.filter((x) => {
+                                                        return ((x.status == 'IP_RCT_CC_POSTING_SUCCESS' || x.status == 'IP_BCT_CC_POSTING_SUCCESS') && (x.process_name == 'Credit Card Posting'))
+                                                    })
+                                                    if (chkCreditPassedTrn.length > 0) {
+                                                        let TakAcctData = `select * from core_nc_cbs_accounts where customer_id = '${chkCreditPassedTrn[0].customerid}'`
+                                                        ExecuteQuery1(TakAcctData, async function (arractResult) {
+                                                            if (arractResult.length > 0) {
+                                                                AcctInformations.birthdate = arractResult[0].birthdate
+                                                                AcctInformations.cityofbirth = arractResult[0].cityofbirth
+                                                                AcctInformations.countryofbirth = arractResult[0].cityofbirth
+                                                                AcctInformations.account_name = arractResult[0].account_name
+                                                                let PvtId = await PreparePVTcode(arractResult, arrprocesslog)
+                                                                AcctInformations.privateId = PvtId.FormPvtid || ''
+                                                                if (arractResult[0].resident_flag == 'Y') {
+                                                                    AcctInformations.extpersonidcode = 'NIDN'
+                                                                    AcctInformations.issrtype = 'AE'
+                                                                } else {
+                                                                    AcctInformations.extpersonidcode = 'CCPT'
+                                                                    AcctInformations.issrtype = arractResult[0].nationality_country_code || ''
+                                                                }
+                                                                resolve(AcctInformations)
+                                                            } else {
+                                                                objresponse.status = 'FAILURE'
+                                                                objresponse.errdata = 'No data Found in cbs accounts table for credit  Card   ' + chkCreditPassedTrn[0].customerid
+                                                                sendResponse(null, objresponse)
+                                                            }
+                                                        })
+                                                    } else {
+                                                        objresponse.status = 'FAILURE'
+                                                        objresponse.errdata = 'No data Found for status IP_RCT_CC_POSTING_SUCCESS or IP_BCT_CC_POSTING_SUCCESS'
+                                                        sendResponse(null, objresponse)
+                                                    }
+                                                } else {
+                                                    objresponse.status = 'FAILURE'
+                                                    objresponse.errdata = 'No data Found in Trn Process log Table for IP UETR'
+                                                    sendResponse(null, objresponse)
+                                                }
+                                            }
+                                        } else {
+                                            objresponse.status = 'FAILURE'
+                                            objresponse.errdata = 'No data Found in Trn Process log Table for IP UETR'
+                                            sendResponse(null, objresponse)
+                                        }
+
+
+                                    })
+
+
+
                                 }
 
                             })
@@ -1340,15 +1449,23 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
                     function findBCTRCT(IpUETR) {
                         return new Promise((resolve, reject) => {
-                            let chkData = `select * from npss_trn_process_log where uetr = '${IpUETR}'`
+                            let chkData = `select * from <tran_db>.npss_trn_process_log where uetr = '${IpUETR}'`
+                            let chkDataArc = `select * from <arc_tran_db>.npss_trn_process_log where uetr = '${IpUETR}'`
                             ExecuteQuery1(chkData, async function (arrChkdata) {
                                 if (arrChkdata.length > 0) {
                                     resolve(arrChkdata.every((x) => x.status.includes('BCT')))
                                 }
                                 else {
-                                    objresponse.status = 'FAILURE'
-                                    objresponse.errdata = 'No data Found in Trn Process log Table for IP UETR to find BCT or RCT'
-                                    sendResponse(null, objresponse)
+                                    ExecuteQuery1(chkDataArc, async function (arrChkdata) {
+                                        if (arrChkdata.length > 0) {
+                                            resolve(arrChkdata.every((x) => x.status.includes('BCT')))
+                                        } else {
+                                            objresponse.status = 'FAILURE'
+                                            objresponse.errdata = 'No data Found in Trn Process log Table for IP UETR to find BCT or RCT'
+                                            sendResponse(null, objresponse)
+                                        }
+                                    })
+
                                 }
                             })
                         })
@@ -1357,7 +1474,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     function TakeReversalId(IpUETR, ChkPrecdtCard, arrprocesslog) {
                         return new Promise((resolve, reject) => {
                             let elistatus
-                            let parameter={}
+                            let parameter = {}
                             let call = async () => {
                                 isBCT = await findBCTRCT(IpUETR)
                                 if (ChkPrecdtCard.apitype == 1) {
@@ -1371,7 +1488,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     else
                                         elistatus = 'IP_RCT_CC_T24_POSTING_SUCCESS'
                                 }
-                                var TakeCount = `select CAST(ext_iden_retry_value AS INTEGER) from npss_trn_process_log where   uetr ='${IpUETR}' and  status='${elistatus}'`
+                                var TakeCount = `select CAST(ext_iden_retry_value AS INTEGER) from <tran_db>.npss_trn_process_log where   uetr ='${IpUETR}' and  status='${elistatus}'`
+                                var TakeCountArc = `select CAST(ext_iden_retry_value AS INTEGER) from <arc_tran_db>.npss_trn_process_log where   uetr ='${IpUETR}' and  status='${elistatus}'`
                                 //  var TakeCount = `select COUNT(npsstpl_id) as counts from npss_trn_process_log where status = '${elistatus}' and uetr = '${IpUETR}'`
                                 ExecuteQuery1(TakeCount, function (arrCount) {
                                     if (arrprocesslog[0].clrsysref) {
@@ -1391,9 +1509,29 @@ app.post('/', function(appRequest, appResponse, next) {
                                             }
 
                                         } else {
-                                            objresponse.status = "FAILURE"
-                                            objresponse.errdata = "ext_iden_retry_value  is Missing"
-                                            sendResponse(null, objresponse)
+                                            ExecuteQuery1(TakeCountArc, function (arrCount) {
+                                                if (arrCount.length > 0) {
+                                                    if ((Number(arrCount[0].ext_iden_retry_value) < 10) || (arrCount[0].ext_iden_retry_value == null)) {
+                                                        var count = Number(arrCount[0].ext_iden_retry_value)
+                                                        count++
+                                                        parameter.retryCount = count
+                                                        parameter.reverseId = arrprocesslog[0].clrsysref + '.0' + count
+                                                        resolve(parameter)
+                                                    } else {
+                                                        var count = Number(arrCount[0].ext_iden_retry_value)
+                                                        count++
+                                                        parameter.retryCount = count
+                                                        parameter.reverseId = arrprocesslog[0].clrsysref + '.' + count
+                                                        resolve(parameter)
+                                                    }
+                                                } else {
+                                                    objresponse.status = "FAILURE"
+                                                    objresponse.errdata = "ext_iden_retry_value  is Missing"
+                                                    sendResponse(null, objresponse)
+                                                }
+
+                                            })
+
                                         }
                                     } else {
                                         objresponse.status = "FAILURE"

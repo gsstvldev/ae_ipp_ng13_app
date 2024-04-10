@@ -42,6 +42,7 @@ app.post('/', function(appRequest, appResponse, next) {
           Reason : changes for BCT -cbs ref no update in transaction after auth posting in 008 call on 11-03-2024
           Reason : changes for BCT -remarks update in transaction on 20-03-2024 by daseen on 20-03-2024 WI 3399
            Reason : Duplicate retry value for second time in ext_iden_retry_value   on 01-04-2024 by daseen  WI 3472
+           reason : getcount qry based on schema(live or archival) 10-4-24 -renga
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -895,7 +896,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
                             //var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where   uetr ='${ipuetr}' and  status='${params.eligible_status}'`
 
-                            var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where ext_iden_retry_value IS NOT NULL and uetr = '${uetr}' order by npsstpl_id desc`
+                            var TakeretryValue = `select ext_iden_retry_value from <tran_db>.npss_trn_process_log where ext_iden_retry_value IS NOT NULL and uetr = '${uetr}' order by npsstpl_id desc`
+
+                            var TakeretryValueArc = `select ext_iden_retry_value from <arc_tran_db>.npss_trn_process_log where ext_iden_retry_value IS NOT NULL and uetr = '${uetr}' order by npsstpl_id desc`
                             ExecuteQuery1(TakeretryValue, function (extIdentValue) {
                                 if (extIdentValue.length > 0) {
                                     if (extIdentValue[0].ext_iden_retry_value != null) {
@@ -906,9 +909,21 @@ app.post('/', function(appRequest, appResponse, next) {
                                         resolve(1)
                                     }
 
-
                                 } else {
-                                    resolve(1)
+                                    ExecuteQuery1(TakeretryValueArc, function (extIdentValueArc){
+                                        if (extIdentValueArc.length > 0) {
+                                            if (extIdentValueArc[0].ext_iden_retry_value != null) {
+                                                var count = Number(extIdentValueArc[0].ext_iden_retry_value)
+                                                count++
+                                                resolve(count)
+                                            } else {
+                                                resolve(1)
+                                            }
+                                        }else{
+                                            resolve(1) 
+                                        }
+                                    })
+                                    
                                 }
 
                             })
@@ -2152,25 +2167,6 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

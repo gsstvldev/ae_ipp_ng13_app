@@ -34,7 +34,7 @@ export class npss_cs_credit_debit_reportService {
 if(curr_btn.toLowerCase().includes('pdf'))
     {
         let pdf_data=this.coreHelper.get_value_from_memory('MEMORY_VARIABLES','MI_LVEL_PF_D')||null
-        pdf_data=JSON.parse(window.atob(pdf_data))
+      //  pdf_data=JSON.parse(window.atob(pdf_data))
         let file_name=screenInstance.wftpa_description.toUpperCase().split('_')
                     file_name.shift()
                     file_name.unshift('NPSS')
@@ -74,7 +74,16 @@ if(curr_btn.toLowerCase().includes('pdf'))
                                 
                             }
                     })
-                    let  column = '',title='',res_index=0,overallbodyContent:any=[]
+                    let  column = '',title='',res_index=0
+                    if (screenInstance.wftpa_description.includes('debit')) {
+                        //column = 'Ordering Customer'
+                        title='Customer Debit Advice'
+                    }
+                    else {
+                        //column = 'Beneficiary Customer'
+                        title='Customer Credit Advice'
+    
+                    }
                    // result = res.data.data[0]
                     //bodyContent.push([])
                     var dd :any= {
@@ -239,7 +248,7 @@ result.forEach((res)=>
                     
                     
                     let pdfResult=pdfmake.createPdf(dd)
-                    this.coreHelper.set_value_to_memory('MEMORY_VARIABLES',"MI_LVEL_PF_D",window.btoa(JSON.stringify(dd)))
+                    this.coreHelper.set_value_to_memory('MEMORY_VARIABLES',"MI_LVEL_PF_D",dd)
                     
                     
                     

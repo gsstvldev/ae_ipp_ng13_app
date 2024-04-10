@@ -7,7 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
-    
+
 
 
 
@@ -26,6 +26,8 @@ app.post('/', function(appRequest, appResponse, next) {
     var reqAuditLog = require($REFPATH + 'log/audit/AuditLog');
     var reqDateFormatter = require($REFPATH + 'common/dateconverter/DateFormatter');
     var params = appRequest.body.PARAMS; //  Client input fromm Server
+    console.log(params)
+
     var headers = appRequest.headers; // header details 
     var objSessionLogInfo = null; // set value is null
     var fs = require("fs");
@@ -55,7 +57,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     if (error) {
                         sendResponse(error);
                     } else {
-                        
+
                         try {
 
                             /* if (Array.isArray(params.Tran_Id)) {
@@ -66,10 +68,21 @@ app.post('/', function(appRequest, appResponse, next) {
                                 arrTranID = [params.Tran_Id.toString()];
                             }
                             tranid = '(' + "'" + arrTranID.toString().split(',').join("','") + "'" + ')'; */
-                            var Taketran=''
-                            if(params.screenName.includes('debit'))
-                          {
-Taketran=`select
+                            var Taketran = '', cond_params = '', operator = '', value = ''
+                            params.search_params.forEach((val) => {
+                                if (val.OPERATOR == '=' || val.OPERATOR.toLowerCase().includes('equal')) {
+                                    operator = '='
+                                    value = val.VALUE
+                                }
+                                else if (val.OPERATOR.toLowerCase().includes('start')) {
+                                    operator = 'like'
+                                    value = val.VALUE + '%'
+                                } if (value != '')
+                                    cond_params += `and ${val.BINDING_NAME} ${operator} '${value}' `
+                            })
+                            if (params.screenName.includes('debit')) {
+
+                                Taketran = `select
 distinct uetr as UETR,
 Debtor_Name as  ordering_customer_name,
 Debtor_Account as  ordering_account,
@@ -172,10 +185,10 @@ left join core_member_banks cmb on
     cmb.bic_code = nt.cr_sort_code
     and cmb.NEED_SYNC = 'Y' )v
 where
-process_type = 'OP'    limit 1`
-                          }
-                          else{
-                            Taketran = `select
+process_type = 'OP'  ${cond_params}`
+                            }
+                            else {
+                                Taketran = `select
                             distinct uetr as UETR,
                             Creditor_Name as  Beneficiary_Customer_Name,
                             Creditor_Account as  Benificiary_Account,
@@ -252,15 +265,15 @@ process_type = 'OP'    limit 1`
                                 or ntpl.process_name = 'Inward Credit Posting'
                                 and ntpl.status = 'IP_RCT_POSTING_SUCCESS' )v
                         where
-                            process_type = 'IP' limit 1`
-                          }
-                            
-                           
+                            process_type = 'IP'  ${cond_params}`
+                            }
+
+
                             ExecuteQuery1(Taketran, function (arrdata) {
                                 if (arrdata.length) {
-                                    
+
                                     objresponse.status = 'SUCCESS'
-                                    objresponse.screenName = params.screenName+'_'+ moment().format('DDMMYYYY')+'_'+moment().format('HHMMSS')
+                                    objresponse.screenName = params.screenName + '_' + moment().format('DDMMYYYY') + '_' + moment().format('HHMMSS')
                                     objresponse.data = arrdata
                                     sendResponse(null, objresponse)
                                 }

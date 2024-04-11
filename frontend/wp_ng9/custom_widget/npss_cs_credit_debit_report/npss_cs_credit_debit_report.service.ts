@@ -281,6 +281,7 @@ result.forEach((res)=>
                     //
                 }
                 else {
+                    this.dialogHelper.ShowErrorDialog('No Data Found')
                     this.appHandler.callInternals(internals,screenInstance,'FAILURE')
 
                 }

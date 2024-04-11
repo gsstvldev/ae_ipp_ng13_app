@@ -25,13 +25,25 @@ export class npss_cs_credit_debit_reportService {
         private dialogHelper: DialogService) { }
     //Default calling function
     fn_npss_cs_credit_debit_report(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
-        let ClientParams: any = {};
+        let ClientParams: any = {},search_null_flag:any=false;
         ClientParams.screenName = screenInstance.wftpa_description
         ClientParams.search_params=screenInstance['cc_from_search'].search_params
         let curr_btn:any=this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL,'CURRENT_BTN_LABEL')
-        //this.coreHelper.get_value_from_memory('MEMORY_VARIABLES','MI_LVEL_PF_D')||null
-       // pdf_data=window.atob(pdf_data)
-if(curr_btn.toLowerCase().includes('pdf'))
+        ClientParams.search_params.forEach((val)=>
+        {
+            if(val.OPERATOR=='=' && val.VALUE=='')
+                {
+                    search_null_flag=true
+                }
+
+        })
+        if(search_null_flag)
+            {
+this.dialogHelper.ShowErrorDialog('Please input atleast (1) Parameters')
+            }
+            else
+            {
+                if(curr_btn.toLowerCase().includes('pdf'))
     {
         let pdf_data=this.coreHelper.get_value_from_memory('MEMORY_VARIABLES','MI_LVEL_PF_D')||null
       //  pdf_data=JSON.parse(window.atob(pdf_data))
@@ -46,6 +58,12 @@ if(curr_btn.toLowerCase().includes('pdf'))
         
         this.CallUrlforGetparamvalue(ClientParams, screenInstance, internals);
     }
+
+            }
+            
+        
+        //this.coreHelper.get_value_from_memory('MEMORY_VARIABLES','MI_LVEL_PF_D')||null
+       // pdf_data=window.atob(pdf_data)
         
     }
     //Custom validation logics
@@ -192,7 +210,7 @@ result.forEach((res)=>
                 //bodyContent.push('References')        
             }
             else if (i == 13) {
-                bodyContent.push([{text:Report_keys[0]?.toUpperCase()?.toString(),style: 'tablcolmn'},{text:result[Report_keys[0]]?.toUpperCase()?.toString(),style: 'tablcolmn'}])
+                bodyContent.push([{text:Report_keys[0]?.toUpperCase()?.toString(),style: 'tablcolmn'},{text:res[Report_keys[0]]?.toUpperCase()?.toString(),style: 'tablcolmn'}])
                 
                     //bodyContent.push()
                     

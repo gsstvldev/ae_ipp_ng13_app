@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35139 
+Build ID        : 35147 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-10 9:58 AM 
+Modified Date   : 2024-Apr-11 6:35 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_advice_report

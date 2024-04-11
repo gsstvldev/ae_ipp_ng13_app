@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35139 
+Build ID        : 35147 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-10 9:58 AM 
+Modified Date   : 2024-Apr-11 6:35 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_advice_report
@@ -185,7 +185,6 @@ export class s_credit_advice_reportComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "cc from search"
 	cc_from_search__internal(parent_event_result){
 		this.cc_from_search__ssp_from_search(parent_event_result)
-		this.cc_from_search__cp_from_nav_search(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "ssp from search"
@@ -196,6 +195,7 @@ export class s_credit_advice_reportComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "cc for pdf btn"
 	cc_for_pdf_btn__internal(parent_event_result){
 		this.cc_for_pdf_btn__se_for_pdf(parent_event_result)
+		this.cc_for_pdf_btn__cp_for_pdf_btn(parent_event_result)
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -355,7 +355,7 @@ export class s_credit_advice_reportComponent implements OnInit,AfterViewInit {
 		let event_code="e_1712549407860"
 		let event_params={"caller_name":"search_search__cc_from_search","event_desc":"CC From Search","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{}}
 		let handler_code="custom_connectors"
-		let internals="cc_from_search__ssp_from_search,cc_from_search__cp_from_nav_search,"
+		let internals="cc_from_search__ssp_from_search,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -388,28 +388,6 @@ export class s_credit_advice_reportComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for INTERNAL event of "cc from search"
-	cc_from_search__cp_from_nav_search(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="cc_from_search"
-		let destn_id=""
-		let parent_source_id="search_search"
-		let event_code="e_1712549572643"
-		let event_params={"popup_info":{"context":""},"caller_name":"cc_from_search__cp_from_nav_search","event_desc":"CP From Nav Search","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="close_popup"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.close_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
 	//Handler for INTERNAL event of "ssp from search"
 	ssp_from_search__cc_for_pdf_btn(parent_event_result) { 
 		let Dest_Is_ctrl=true
@@ -421,7 +399,7 @@ export class s_credit_advice_reportComponent implements OnInit,AfterViewInit {
 		let event_code="e_1712732909116"
 		let event_params={"caller_name":"ssp_from_search__cc_for_pdf_btn","event_desc":"CC For Pdf btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="custom_connectors"
-		let internals="cc_for_pdf_btn__se_for_pdf,"
+		let internals="cc_for_pdf_btn__se_for_pdf,cc_for_pdf_btn__cp_for_pdf_btn,"
 		let event_data={}
 		let data_source={}
 		try {
@@ -448,6 +426,28 @@ export class s_credit_advice_reportComponent implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "cc for pdf btn"
+	cc_for_pdf_btn__cp_for_pdf_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="cc_for_pdf_btn"
+		let destn_id=""
+		let parent_source_id="ssp_from_search"
+		let event_code="e_1712816997303"
+		let event_params={"popup_info":{"context":""},"caller_name":"cc_for_pdf_btn__cp_for_pdf_btn","event_desc":"CP For Pdf btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="close_popup"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.close_popup(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

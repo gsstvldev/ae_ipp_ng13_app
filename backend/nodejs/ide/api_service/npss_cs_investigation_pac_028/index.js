@@ -146,7 +146,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             timeout: 99999999,
                                             method: 'POST',
                                             json: {
-                                                "hdr_created_date": (arrresult[0].status.includes('OP_BCT_RTN_INVEST_INITIATED') && arrresult[0].process_type == 'OP') ? arrresult[0].fx_resv_text1 : arrresult[0].hdr_created_date,
+                                                "hdr_created_date": (arrresult[0].status.includes('OP_BCT_RTN_STAT_PENDING') && arrresult[0].process_type == 'OP') ? arrresult[0].fx_resv_text1 : arrresult[0].hdr_created_date,
                                                 "cr_sort_code": arrresult[0].cr_sort_code,
                                                 "payment_endtoend_id": arrresult[0].payment_endtoend_id,
                                                 "uetr": arrresult[0].uetr,

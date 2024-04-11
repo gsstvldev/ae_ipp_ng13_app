@@ -25,21 +25,22 @@ export class npss_cs_credit_debit_reportService {
         private dialogHelper: DialogService) { }
     //Default calling function
     fn_npss_cs_credit_debit_report(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
-        let ClientParams: any = {},search_null_flag:any=false;
+        let ClientParams: any = {},search_null_flag:any=[];
         ClientParams.screenName = screenInstance.wftpa_description
         ClientParams.search_params=screenInstance['cc_from_search'].search_params
         let curr_btn:any=this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL,'CURRENT_BTN_LABEL')
-        ClientParams.search_params.forEach((val)=>
-        {
-            if(val.OPERATOR=='=' && val.VALUE=='')
+        
+                search_null_flag=(ClientParams.search_params).filter((val)=>
                 {
-                    search_null_flag=true
-                }
+                    return  val.VALUE!='' 
+                })
+                
 
-        })
-        if(search_null_flag)
+        //}
+        if(search_null_flag.length==0)
             {
 this.dialogHelper.ShowErrorDialog('Please input atleast (1) Parameters')
+this.appHandler.callInternals(internals,screenInstance,'FAILURE')
             }
             else
             {

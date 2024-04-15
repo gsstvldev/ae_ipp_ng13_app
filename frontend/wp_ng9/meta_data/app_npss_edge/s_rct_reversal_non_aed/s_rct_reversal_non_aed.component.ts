@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35107 
+Build ID        : 35151 
 Modified By     : Admin 
-Modified Date   : 2024-Apr-05 9:39 AM 
+Modified Date   : 2024-Apr-15 7:15 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_rct_reversal_non_aed
@@ -2350,13 +2350,13 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
 	navigation_review__brfq_for_rfd_list_uab(peventcontext) { 
 		let Dest_Is_ctrl=true
-		let eventcontext =["NPSS_AEUAB","NPSS_AEFIN","NPSS_AELAR","NPSS_AEAMB","NPSS_AEINX","NPSS_AELUX"]
+		let eventcontext =["NPSS_AEUAB","NPSS_AEFIN","NPSS_AELAR","NPSS_AEAMB","NPSS_AEINX","NPSS_AELUX","NPSS_AEDMF"]
 		if(eventcontext.indexOf(peventcontext)==-1) return true;
 		let source_id="navigation_review"
 		let destn_id="refund_processing_details"
 		let parent_source_id=""
 		let event_code="e_1690885863532"
-		let event_params={"caller_name":"navigation_review__brfq_for_rfd_list_uab","event_desc":"BRFQ for RFD list UAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEUAB","root_source_id":"navigation_review","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"eventcontext":["NPSS_AEUAB","NPSS_AEFIN","NPSS_AELAR","NPSS_AEAMB","NPSS_AEINX","NPSS_AELUX"]}
+		let event_params={"caller_name":"navigation_review__brfq_for_rfd_list_uab","event_desc":"BRFQ for RFD list UAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEUAB","root_source_id":"navigation_review","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"eventcontext":["NPSS_AEUAB","NPSS_AEFIN","NPSS_AELAR","NPSS_AEAMB","NPSS_AEINX","NPSS_AELUX","NPSS_AEDMF"]}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_rfd_list_uab__sfr_for_rfd_list_uab,"
 		let event_data={}
@@ -2372,13 +2372,13 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
 	navigation_review__brfq_for_otd_list_uab(peventcontext) { 
 		let Dest_Is_ctrl=true
-		let eventcontext =["NPSS_AEUAB","NPSS_AEFIN","NPSS_AELAR","NPSS_AEAMB","NPSS_AEINX","NPSS_AELUX"]
+		let eventcontext =["NPSS_AEUAB","NPSS_AEFIN","NPSS_AELAR","NPSS_AEAMB","NPSS_AEINX","NPSS_AELUX","NPSS_AEDMF"]
 		if(eventcontext.indexOf(peventcontext)==-1) return true;
 		let source_id="navigation_review"
 		let destn_id="original_transaction_details"
 		let parent_source_id=""
 		let event_code="e_1690886017883"
-		let event_params={"caller_name":"navigation_review__brfq_for_otd_list_uab","event_desc":"BRFQ for OTD list UAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEUAB","root_source_id":"navigation_review","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"eventcontext":["NPSS_AEUAB","NPSS_AEFIN","NPSS_AELAR","NPSS_AEAMB","NPSS_AEINX","NPSS_AELUX"]}
+		let event_params={"caller_name":"navigation_review__brfq_for_otd_list_uab","event_desc":"BRFQ for OTD list UAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEUAB","root_source_id":"navigation_review","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"eventcontext":["NPSS_AEUAB","NPSS_AEFIN","NPSS_AELAR","NPSS_AEAMB","NPSS_AEINX","NPSS_AELUX","NPSS_AEDMF"]}
 		let handler_code="bind_record_from_query"
 		let internals="brfq_for_otd_list_uab__sfr_for_otd_list_uab,"
 		let event_data={}
@@ -2394,13 +2394,13 @@ export class s_rct_reversal_non_aedComponent implements OnInit,AfterViewInit {
 	//Handler for ACTION_BUTTON_CLICK event of "navigation review"
 	navigation_review__sp_for_fh_uab(peventcontext) { 
 		let Dest_Is_ctrl=true
-		let eventcontext =["NPSS_AEUAB","NPSS_AELAR","NPSS_AEAMB","NPSS_AEINX","NPSS_AELUX"]
+		let eventcontext =["NPSS_AEUAB","NPSS_AELAR","NPSS_AEAMB","NPSS_AEINX","NPSS_AELUX","NPSS_AEDMF"]
 		if(eventcontext.indexOf(peventcontext)==-1) return true;
 		let source_id="navigation_review"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1690886774283"
-		let event_params={"caller_name":"navigation_review__sp_for_fh_uab","event_desc":"SP for FH UAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEUAB","root_source_id":"navigation_review","raiseparam":{"profile_code":"BTL_1304_1690886122427"},"eventcontext":["NPSS_AEUAB","NPSS_AELAR","NPSS_AEAMB","NPSS_AEINX","NPSS_AELUX"]}
+		let event_params={"caller_name":"navigation_review__sp_for_fh_uab","event_desc":"SP for FH UAB","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"NPSS_AEUAB","root_source_id":"navigation_review","raiseparam":{"profile_code":"BTL_1304_1690886122427"},"eventcontext":["NPSS_AEUAB","NPSS_AELAR","NPSS_AEAMB","NPSS_AEINX","NPSS_AELUX","NPSS_AEDMF"]}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

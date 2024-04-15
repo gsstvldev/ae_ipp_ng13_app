@@ -20,6 +20,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Reason: Unique msg id generation for api call on 12/02/2024 by daseen
     Reason: Status change for pack 028 pack retry 19/02/2024 by daseen
     Reason: Status included for receive pace 002 for pack 028 pack retry 14/03/2024 by daseen WI 3087
+    Reason: cbuae_retuen_code to response_code 15/04/2024 by daseen WI 3703
     }
     */
     var serviceName = 'NPSS (S) Auto Retrial Place Pac028';
@@ -146,7 +147,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                     else {//for less than retry count
 
 
-                                                                        if ((arruetrInformation[0].process_name == 'Place Pacs028') || ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].cbuae_return_code.substring(0, 4) == 'PDNG')&&(arruetrInformation[0].status=='OP_AC_STATUS_RECEIVED'||arruetrInformation[0].status=='OP_P2P_STATUS_ACCEPTED'||arruetrInformation[0].status=='OP_P2B_STATUS_ACCEPTED'))) {
+                                                                        if ((arruetrInformation[0].process_name == 'Place Pacs028') || ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].response_code == 'PDNG')&&(arruetrInformation[0].status=='OP_AC_STATUS_RECEIVED'||arruetrInformation[0].status=='OP_P2P_STATUS_ACCEPTED'||arruetrInformation[0].status=='OP_P2B_STATUS_ACCEPTED'))) {
                                                                             reqInstanceHelper.PrintInfo(serviceName, '------------ uetr eligible for pacs 028------' + arruetrDataobj.uetr, objSessionLogInfo);
                                                                             var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
                                                                             if (doapicall == 'SUCCESS') {
@@ -156,7 +157,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 nextobjctfunc();
                                                                             }
                                                                         }
-                                                                        else if ((arruetrInformation[0].process_name == 'Receive Pacs002') && ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].cbuae_return_code.substring(0, 4) != 'PDNG'))) {
+                                                                        else if ((arruetrInformation[0].process_name == 'Receive Pacs002') && ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].response_code != 'PDNG'||arruetrInformation[0].response_code ==null))) {
                                                                             reqInstanceHelper.PrintInfo(serviceName, '------------ Already uetr Receive Pacs002 received------' + arruetrDataobj.uetr, objSessionLogInfo);
                                                                             let updtTran = await updateTran(arruetrDataobj.npsst_id)
                                                                             if (updtTran == 'SUCCESS') {

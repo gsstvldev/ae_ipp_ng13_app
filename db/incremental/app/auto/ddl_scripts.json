@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_TRANSACTIONS add column OP_PACS004_FILE_NAME CHARACTER VARYING(256), add column IP_PACS004_FILE_NAME CHARACTER VARYING(256);","params" : [] }]

@@ -84,7 +84,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                             ExecuteQuery1(TakedatafrmTrn, async function (arrdata) {
                                                 if (arrdata.length > 0) {
-                                                    let CheckCreditPredpaid = await CheckTrn(success_process_status, success_status, arrdata, PRCT_ID, arrdata)
+                                                    let CheckCreditPredpaid = await CheckTrn(success_process_status, success_status, arrdata, PRCT_ID, arrdata, arrrule)
                                                     if (CheckCreditPredpaid == 0 || CheckCreditPredpaid == '0') {
                                                         extend_retry_value = await GetRetrycount(arrdata[0].uetr)
                                                         ExecuteQuery1(take_api_url, function (arrUrl) {
@@ -221,26 +221,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         })
 
                                                     }
-                                                    else {
 
-                                                        try {
-                                                            let InstRes = await doInsertInProcessLog(await doFormParamsForPrcloginsert(arrdata, success_process_status, success_status, arrrule))
-                                                            if (InstRes.length) {
-                                                                objresponse.status = 'SUCCESS';
-                                                                sendResponse(null, objresponse)
-                                                            }
-                                                            else {
-                                                                objresponse.status = 'Failure';
-                                                                objresponse.data = 'Failure in inserting processlog'
-                                                                sendResponse(null, objresponse)
-
-                                                            }
-                                                        }
-                                                        catch (error) {
-                                                            reqInstanceHelper.PrintError(serviceName, error, objSessionLogInfo)
-                                                            sendResponse(null, { status: "Failure", data: error })
-                                                        }
-                                                    }
 
 
 
@@ -452,20 +433,20 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                             //check perpaid or credit or iban
-                            function CheckTrn(success_process_status, success_status, arrprocesslog, PRCT_ID, arrdata) {
+                            function CheckTrn(success_process_status, success_status, arrprocesslog, PRCT_ID, arrdata, arrrule) {
                                 return new Promise((resolve, reject) => {
                                     if (arrprocesslog[0].cdtr_iban) {
                                         Iban = arrprocesslog[0].cdtr_iban.slice(-16)
                                         FrmIban = Iban.substring(0, 3)
                                         if (FrmIban == '564' || FrmIban == 564) {
-                                            UpdateTranDB(success_process_status, success_status, arrprocesslog, PRCT_ID)
+                                            UpdateTranDB(success_process_status, success_status, arrprocesslog, PRCT_ID, arrrule, arrdata)
                                         } else {
                                             if (arrprocesslog[0].cr_acct_identi && arrprocesslog[0].cr_acct_id_code == 'AIIN') {
                                                 var TakeacctIden = arrprocesslog[0].cr_acct_identi.substring(0, 6)
                                                 var checkCard = `select * from CORE_NC_CARD_BIN_SETUP where bin_number = '${TakeacctIden}' and need_sync = 'Y'`
                                                 ExecuteQuery1(checkCard, function (arrCradType) {
                                                     if (arrCradType.length) {
-                                                        UpdateTranDB(success_process_status, success_status, arrprocesslog, PRCT_ID)
+                                                        UpdateTranDB(success_process_status, success_status, arrprocesslog, PRCT_ID, arrrule, arrdata)
                                                     } else {
                                                         objresponse.status = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden
                                                         objresponse.errdata = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden
@@ -485,7 +466,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             var checkCard1 = `select * from CORE_NC_CARD_BIN_SETUP where bin_number = '${TakeacctIden1}' and need_sync = 'Y'`
                                             ExecuteQuery1(checkCard1, function (arrCradType) {
                                                 if (arrCradType.length) {
-                                                    UpdateTranDB(success_process_status, success_status, arrprocesslog, PRCT_ID)
+                                                    UpdateTranDB(success_process_status, success_status, arrprocesslog, PRCT_ID, arrrule, arrdata)
 
                                                 } else {
                                                     objresponse.status = "No Data in CORE_NC_CARD_BIN_SETUP for this Bin Number" + TakeacctIden1
@@ -503,7 +484,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 })
                             }
 
-                            function UpdateTranDB(success_process_status, success_status, arrdata, PRCT_ID) {
+                            function UpdateTranDB(success_process_status, success_status, arrdata, PRCT_ID, arrrule, arrdata) {
                                 var updtranqry
                                 if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
                                     updtranqry = `update npss_transactions set maker = '${params.CREATED_BY_NAME}', status='${success_status}',process_status='${success_process_status}',remarks = '${params.remarks}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
@@ -514,9 +495,27 @@ app.post('/', function(appRequest, appResponse, next) {
                                 ExecuteQuery(updtranqry, async function (uptranresult) {
                                     try {
                                         if (uptranresult == 'SUCCESS') {
+                                            try {
+                                                let InstRes = await doInsertInProcessLog(await doFormParamsForPrcloginsert(arrdata, success_process_status, success_status, arrrule))
+                                                if (InstRes.length) {
+                                                    objresponse.status = 'SUCCESS';
+                                                    sendResponse(null, objresponse)
+                                                }
+                                                else {
+                                                    objresponse.status = 'Failure';
+                                                    objresponse.data = 'Failure in inserting processlog'
+                                                    sendResponse(null, objresponse)
 
-                                            objresponse.status = 'SUCCESS';
-                                            sendResponse(null, objresponse)
+                                                }
+                                            }
+                                            catch (error) {
+                                                reqInstanceHelper.PrintError(serviceName, error, objSessionLogInfo)
+                                                sendResponse(null, { status: "Failure", data: error })
+                                            }
+
+
+                                            /* objresponse.status = 'SUCCESS';
+                                            sendResponse(null, objresponse) */
 
 
                                         } else {
@@ -569,7 +568,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objCusTranInst.REVERSAL_CODE = params.reversalcode
                                         objCusTranInst.UETR = arrdata[0].uetr;
                                         objCusTranInst.NPSSTRRD_REFNO = arrdata[0].tran_ref_id;
-                                        objCusTranInst.PROCESS_NAME = 'RCTInProcess'
+                                        objCusTranInst.PROCESS_NAME = 'Cancel Reversal'
                                         objCusTranInst.PROCESSING_SYSTEM = arrrule[0].processing_system;
                                         objCusTranInst.PROCESS_TYPE = arrrule[0].process_type;
                                         objCusTranInst.PROCESS_STATUS = success_process_status;

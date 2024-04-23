@@ -14,6 +14,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
   /*  Created By :SIVA  hARISH
   Created Date :22/02/2023
   Modified By : 
@@ -22,7 +23,7 @@ app.post('/', function(appRequest, appResponse, next) {
   Reason: Status change for pack 028 pack retry 19/02/2024 by daseen
   Reason: Status included for receive pace 002 for pack 028 pack retry 14/03/2024 by daseen WI 3087
   Reason: cbuae_retuen_code to response_code 15/04/2024 by daseen WI 3703
-  Reason:  Handled pacs 028 call for pacs 008 after given interval time  18/04/2024 by daseen WI 3087
+  Reason:  Handled pacs 028 call for pacs 008 after given interval time  18/04/2024 ,23/04/2024 by daseen WI 3087
   }
   */
   var serviceName = 'NPSS (S) Auto Retrial Place Pac028';
@@ -137,7 +138,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                       }
                                     } else if (arruetrInformation[0].process_name == 'Place Pacs008') {
-                                      let reacTime = await fnReachdTime(arruetrInformation, arrTakehrs)
+                                      let reacTime = await fnReachdTime(arruetrInformation[0].created_date, arrTakehrs)
                                       if (reacTime == 'SUCCESS') {
                                         reqInstanceHelper.PrintInfo(serviceName, '------------ uetr eligible for pacs------' + arruetrDataobj.uetr, objSessionLogInfo);
                                         var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
@@ -147,7 +148,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                           reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
                                           nextobjctfunc();
                                         }
-                                      }else {
+                                      } else {
                                         reqInstanceHelper.PrintInfo(serviceName, '------------Retry time not reached-------' + arruetrDataobj.uetr, objSessionLogInfo);
                                         nextobjctfunc();
                                       }
@@ -165,15 +166,40 @@ app.post('/', function(appRequest, appResponse, next) {
                                   else {//for less than retry count
 
 
-                                    if ((arruetrInformation[0].process_name == 'Place Pacs028') || ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].response_code == 'PDNG') && (arruetrInformation[0].status == 'OP_AC_STATUS_RECEIVED' || arruetrInformation[0].status == 'OP_P2P_STATUS_ACCEPTED' || arruetrInformation[0].status == 'OP_P2B_STATUS_ACCEPTED'))) {
-                                      reqInstanceHelper.PrintInfo(serviceName, '------------ uetr eligible for pacs 028------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                      var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
-                                      if (doapicall == 'SUCCESS') {
-                                        nextobjctfunc();
-                                      } else {
-                                        reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                        nextobjctfunc();
+                                    if ((arruetrInformation[0].process_name == 'Place Pacs028') || (arruetrInformation[0].process_name == 'Place Pacs008') || ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].response_code == 'PDNG') && (arruetrInformation[0].status == 'OP_AC_STATUS_RECEIVED' || arruetrInformation[0].status == 'OP_P2P_STATUS_ACCEPTED' || arruetrInformation[0].status == 'OP_P2B_STATUS_ACCEPTED'))) {
+                                      if ((arruetrInformation[0].process_name == 'Place Pacs008') || (arruetrInformation[0].process_name == 'Place Pacs028' && arruetrInformation[1].process_name == 'Place Pacs008')) {
+                                        if (arruetrInformation[0].process_name == 'Place Pacs008') {
+                                          let reacTime = ''
+                                          reacTime = await fnReachdTime(arruetrInformation[0].created_date, arrTakehrs)
+                                        } else {
+                                          reacTime = await fnReachdTime(arruetrInformation[1].created_date, arrTakehrs)
+                                        }
+
+                                        if (reacTime == 'SUCCESS') {
+                                          reqInstanceHelper.PrintInfo(serviceName, '------------ Pacs008  or Pacs028 uetr eligible for pacs 028------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                          var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
+                                          if (doapicall == 'SUCCESS') {
+                                            nextobjctfunc();
+                                          } else {
+                                            reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                            nextobjctfunc();
+                                          }
+                                        } else {
+                                          reqInstanceHelper.PrintInfo(serviceName, '------------Retry time not reached-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                          nextobjctfunc();
+                                        }
                                       }
+                                      else {
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------ uetr eligible for pacs 028------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                        var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
+                                        if (doapicall == 'SUCCESS') {
+                                          nextobjctfunc();
+                                        } else {
+                                          reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                          nextobjctfunc();
+                                        }
+                                      }
+
                                     }
                                     else if ((arruetrInformation[0].process_name == 'Receive Pacs002') && ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].response_code != 'PDNG' || arruetrInformation[0].response_code == null))) {
                                       reqInstanceHelper.PrintInfo(serviceName, '------------ Already uetr Receive Pacs002 received------' + arruetrDataobj.uetr, objSessionLogInfo);
@@ -257,11 +283,14 @@ app.post('/', function(appRequest, appResponse, next) {
 
             function fnReachdTime(uetrinfo, arrTakehrs) {
               return new Promise((resolve, reject) => {
-                let startTime = moment(uetrinfo[0].created_date)
+                let startTime = moment(uetrinfo)
                 let end = moment(new Date());
 
                 var minutesDifference = end.diff(startTime, arrTakehrs[0].retry_frequency);
-                if (minutesDifference >= arrTakehrs[0].retry_interval) { resolve('SUCCESS') }
+                if (minutesDifference >= arrTakehrs[0].retry_interval) {
+                  reqInstanceHelper.PrintInfo(serviceName, '------------Minutes differ-------' + minutesDifference, objSessionLogInfo);
+                  resolve('SUCCESS')
+                }
                 else resolve('FAILURE')
               })
             }
@@ -466,6 +495,7 @@ app.post('/', function(appRequest, appResponse, next) {
       reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
   })
+
 
 
 

@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
 
+  
 
 
 
@@ -168,8 +169,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                     if ((arruetrInformation[0].process_name == 'Place Pacs028') || (arruetrInformation[0].process_name == 'Place Pacs008') || ((arruetrInformation[0].process_name == 'Receive Pacs002') && (arruetrInformation[0].response_code == 'PDNG') && (arruetrInformation[0].status == 'OP_AC_STATUS_RECEIVED' || arruetrInformation[0].status == 'OP_P2P_STATUS_ACCEPTED' || arruetrInformation[0].status == 'OP_P2B_STATUS_ACCEPTED'))) {
                                       if ((arruetrInformation[0].process_name == 'Place Pacs008') || (arruetrInformation[0].process_name == 'Place Pacs028' && arruetrInformation[1].process_name == 'Place Pacs008')) {
+                                        let reacTime = ''
                                         if (arruetrInformation[0].process_name == 'Place Pacs008') {
-                                          let reacTime = ''
+                                        
                                           reacTime = await fnReachdTime(arruetrInformation[0].created_date, arrTakehrs)
                                         } else {
                                           reacTime = await fnReachdTime(arruetrInformation[1].created_date, arrTakehrs)
@@ -285,8 +287,10 @@ app.post('/', function(appRequest, appResponse, next) {
               return new Promise((resolve, reject) => {
                 let startTime = moment(uetrinfo)
                 let end = moment(new Date());
-
+                reqInstanceHelper.PrintInfo(serviceName, '------------Start Time -------' + startTime, objSessionLogInfo);
+                reqInstanceHelper.PrintInfo(serviceName, '------------End Time-------' + end, objSessionLogInfo);
                 var minutesDifference = end.diff(startTime, arrTakehrs[0].retry_frequency);
+                reqInstanceHelper.PrintInfo(serviceName, '------------Time differ-------' + minutesDifference, objSessionLogInfo);
                 if (minutesDifference >= arrTakehrs[0].retry_interval) {
                   reqInstanceHelper.PrintInfo(serviceName, '------------Minutes differ-------' + minutesDifference, objSessionLogInfo);
                   resolve('SUCCESS')
@@ -495,6 +499,7 @@ app.post('/', function(appRequest, appResponse, next) {
       reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
     }
   })
+
 
 
 

@@ -30,6 +30,7 @@ app.post('/', function(appRequest, appResponse, next) {
   Reason:  Handled pacs 028 call for recv2 with PDNG  for if retry count reached on  25/04/2024  by daseen WI 3087
    Reason:  Handled pacs 028 based ob retry frequncy reached -on  26/04/2024  by daseen WI 3087
    Reason:  Handled pacs 028 api call based on the necessary status taken from uetr -on  29/04/2024  by Subramanian WI 3087
+   Reason:Changed status for eligible queue recv_002 call on 29/04/2024 by Subramanian Wi:3087
   }
   */
   var serviceName = 'NPSS (S) Auto Retrial Place Pac028';
@@ -109,7 +110,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 if (arruetrInformation.length > 0) {
 
                                   let recv_002_arr = arruetrInformation.filter((val) => {
-                                    return (((val.process_name == 'Receive Pacs002') && (val.response_code != 'PDNG')) || ((val.process_name == 'Receive Pacs002') && (val.response_code == 'PDNG') && ((val.status != 'OP_AC_STATUS_RECEIVED' && val.status != 'OP_P2P_STATUS_ACCEPTED' && val.status != 'OP_P2B_STATUS_ACCEPTED'))))
+                                    return (((val.process_name == 'Receive Pacs002') && (val.response_code != 'PDNG')) || ((val.process_name == 'Receive Pacs002') && (val.response_code == 'PDNG') && ((val.status != 'OP_AC_STATUS_RECEIVED' && val.status != 'OP_P2B_STATUS_RECEIVED' && val.status != 'OP_P2P_STATUS_RECEIVED'))))
                                   })
                                   let place_pacs028_arr = arruetrInformation.filter((val) => {
                                     return val.process_name == 'Place Pacs028'

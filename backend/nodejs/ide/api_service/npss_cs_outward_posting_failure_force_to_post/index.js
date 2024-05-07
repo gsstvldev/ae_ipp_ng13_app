@@ -22,6 +22,7 @@ app.post('/', function(appRequest, appResponse, next) {
        Reason for : Adding Insert Query for Maker 18/04/2023
        Reason : Handling for BCT change status by daseen on 06/03/2024 
        Reason : Update force to post =Y for maker in transaction,msg insrt as 0 in log if not present in given tran on 19/03/2024 WI 3512
+       Reason : Added retry count for ORR,OR and P2B API on 05/07/2024 WI 
          
        
         */
@@ -262,6 +263,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         "hdr_settlement_date": arrTranparamsObj.hdr_settlement_date || '',
                                                         "value_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),
                                                         "hdr_settlement_method": "CLRG",
+                                                        "retry_count": "0",
                                                         "hdr_clearing_system": arrTranparamsObj.hdr_clearing_system || '',
                                                         "instruction_id": arrTranparamsObj.instruction_id || '',
                                                         "channel_id": arrTranparamsObj.channel_id || '',
@@ -433,6 +435,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             "hdr_settlement_date": arrTranparamsObj.hdr_created_date || '',
                                                             "hdr_settlement_method": "CLRG",
                                                             "cr_sort_code": arrTranparamsObj.cr_sort_code || '',
+                                                            "retry_count": "0",
                                                             "return_id": "",
                                                             "hdr_new_settlement_date": moment(new Date(), "DDMMYYYY").format("YYYY-MM-DD"),
                                                             "participant_clearing_system": "CRTLBP.0.0",
@@ -547,6 +550,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                     "hdr_total_records": '1' || '',
                                                                                     "x_req_id": arrtakereqjson[0].msg_id || '',
                                                                                     "dbtr_country": '',
+                                                                                    "retry_count": "0",
                                                                                     "process_ref_no": arrtakereqjson[0].npsstrrd_refno || '',
                                                                                     "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt || '',
                                                                                     "hdr_total_amount": arrTranparamsObj.intrbk_sttlm_amnt || '',

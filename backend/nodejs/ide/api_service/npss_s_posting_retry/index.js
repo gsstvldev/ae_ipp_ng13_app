@@ -19,6 +19,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Created Date :30 -06-2023
   Modifiy by : 3/7/2023
     Modifiy by : Siva Harish 4/9/2023
+    Modifiy by : Subramanian Added retry count for all apis 05/07/2024 
     */
     var serviceName = 'NPSS (S) Posting Retry';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -525,6 +526,7 @@ app.post('/', function(appRequest, appResponse, next) {
                               "cr_acct_id_code": arrTranparamsObj.cr_acct_id_code || '',
                               "message_data": arrTranparamsObj.message_data || '',
                               "process_type": 'ORR',
+                              "retry_count": "0",
                               "status": arrTranparamsObj.status || '',
                               "process_status": arrTranparamsObj.process_status || '',
                               "remittance_information": arrTranparamsObj.remittance_info || '',
@@ -653,6 +655,7 @@ app.post('/', function(appRequest, appResponse, next) {
                               "process_type": "OR",
                               "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.004.001.11",
                               "originalTrasactionId": "",
+                              "retry_count": "0",
                               "cbuae_return_code": reason_code,
                               "remittance_information": arrTranparamsObj.remittance_info || '',
                               "extIdentifier": arrTranparamsObj.clrsysref || '',

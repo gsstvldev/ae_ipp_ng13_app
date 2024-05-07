@@ -17,6 +17,7 @@ app.post('/', function(appRequest, appResponse, next) {
   Reason for : Changing Return code query 13/04/2023
      modify date : 3/7/2023
      Modified for: For BCT process no api call only status change on 04-03-2024
+     Modified for: Added retry_count for ORR,OR and P2B API  07-05-2024
    
     */
     var serviceName = 'NPSS (CS) RCT Outward Posting Failure Retry Repost';
@@ -268,6 +269,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                             data: {
 
                                                 "payload": {
+                                                    "retry_count": "0",
                                                     "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
                                                     "hdr_created_date": arrTranparamsObj.hdr_created_date || '',
                                                     "hdr_total_records": arrTranparamsObj.hdr_total_records || '1',
@@ -533,6 +535,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 batch_name: "DR-CBS-POSTING-Q",
                                                 data: {
                                                     "payload": {
+                                                        "retry_count": "0",
                                                         "dr_sort_code": arrTranparamsObj.dr_sort_code || '',
                                                         "payment_endtoend_id": arrTranparamsObj.payment_endtoend_id || '',
                                                         "tran_ref_id": arrTranparamsObj.tran_ref_id || '',
@@ -661,6 +664,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         batch_name: 'DR-CBS-POSTING-Q',
                                                                         data: {
                                                                             "payload": {
+                                                                                "retry_count": "0",
                                                                                 "tran_ref_id": arrTranparamsObj.tran_ref_id || '',
                                                                                 "uetr": arrTranparamsObj.uetr || '',
                                                                                 "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',

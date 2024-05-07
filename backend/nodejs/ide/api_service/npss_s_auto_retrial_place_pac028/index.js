@@ -31,6 +31,7 @@ app.post('/', function(appRequest, appResponse, next) {
    Reason:  Handled pacs 028 based ob retry frequncy reached -on  26/04/2024  by daseen WI 3087
    Reason:  Handled pacs 028 api call based on the necessary status taken from uetr -on  29/04/2024  by Subramanian WI 3087
    Reason:Changed status for eligible queue recv_002 call on 29/04/2024 by Subramanian Wi:3087
+   Reason:Changed query for taking distinct values and updated with uetr by Subramanian wi:3087
   }
   */
   var serviceName = 'NPSS (S) Auto Retrial Place Pac028';
@@ -81,7 +82,7 @@ app.post('/', function(appRequest, appResponse, next) {
               if (arrUrl.length > 0) {
                 ExecuteQuery1(Taketime, function (arrTakehrs) {
                   if (arrTakehrs.length > 0) {
-                    var Takedata = `select distinct(l.uetr) , nt.npsst_id from npss_trn_process_log l inner join npss_transactions nt on l.uetr =nt.uetr where TO_DATE(TO_CHAR(l.CREATED_DATE, 'DD-MON-YY'),'DD-MON-YY') = CURRENT_DATE and (nt.fx_resv_text4 <>'${params.final_status}' or nt.fx_resv_text4 isnull ) and nt.process_group not in('BCT','MANUAL') `
+                    var Takedata = `select distinct(l.uetr) from npss_trn_process_log l inner join npss_transactions nt on l.uetr =nt.uetr where TO_DATE(TO_CHAR(l.CREATED_DATE, 'DD-MON-YY'),'DD-MON-YY') = CURRENT_DATE and (nt.fx_resv_text4 <>'${params.final_status}' or nt.fx_resv_text4 isnull ) and nt.process_group not in('BCT','MANUAL') `
                     ExecuteQuery1(Takedata, function (arruetrData) {
                       if (arruetrData.length > 0) {
                         reqAsync.forEachOfSeries(arruetrData, function (arruetrDataobj, i, nextobjctfunc) {
@@ -117,7 +118,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                   })
                                   if ((recv_002_arr.length > 0) || (place_pacs028_arr.length >= Number(arrTakehrs[0].retry_count))) {
                                     reqInstanceHelper.PrintInfo(serviceName, '------------ Already uetr Receive Pacs002 received or retry_count count reached ------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                    let updtTran = await updateTran(arruetrDataobj.npsst_id)
+                                    let updtTran = await updateTran(arruetrDataobj.uetr)
                                     if (updtTran == 'SUCCESS') {
                                       nextobjctfunc();
                                     } else {
@@ -206,9 +207,9 @@ app.post('/', function(appRequest, appResponse, next) {
               }
             })
 
-            function updateTran(npsst_id) {
+            function updateTran(uetr) {
               return new Promise((resolve, reject) => {
-                let tranUpdt = `update npss_transactions set fx_resv_text4='OP_AC_REQ_RECEIVED' where npsst_id='${npsst_id}'`
+                let tranUpdt = `update npss_transactions set fx_resv_text4='OP_AC_REQ_RECEIVED' where uetr='${uetr}'`
                 ExecuteQuery(tranUpdt, function (arrresult) {
                   if (arrresult == 'SUCCESS')
                     resolve('SUCCESS')

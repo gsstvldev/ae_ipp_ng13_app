@@ -209,7 +209,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
             function updateTran(uetr) {
               return new Promise((resolve, reject) => {
-                let tranUpdt = `update npss_transactions set fx_resv_text4='OP_AC_REQ_RECEIVED' where uetr='${uetr}'`
+                let tranUpdt = `update npss_transactions set fx_resv_text4='OP_AC_REQ_RECEIVED' where uetr='${uetr}' and process_type='OP'`
                 ExecuteQuery(tranUpdt, function (arrresult) {
                   if (arrresult == 'SUCCESS')
                     resolve('SUCCESS')

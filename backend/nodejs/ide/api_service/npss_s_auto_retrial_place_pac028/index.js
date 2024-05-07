@@ -31,7 +31,7 @@ app.post('/', function(appRequest, appResponse, next) {
    Reason:  Handled pacs 028 based ob retry frequncy reached -on  26/04/2024  by daseen WI 3087
    Reason:  Handled pacs 028 api call based on the necessary status taken from uetr -on  29/04/2024  by Subramanian WI 3087
    Reason:Changed status for eligible queue recv_002 call on 29/04/2024 by Subramanian Wi:3087
-   Reason:Changed query for taking distinct values and updated with uetr by Subramanian wi:3087
+   Reason:Changed query for taking distinct values and updated with uetr by Subramanian wi:3087 , taken process group for api call only
   }
   */
   var serviceName = 'NPSS (S) Auto Retrial Place Pac028';
@@ -89,94 +89,130 @@ app.post('/', function(appRequest, appResponse, next) {
 
                           var TakeprocessGROUP = `select process_group from npss_transactions where uetr = '${arruetrDataobj.uetr}'`
                           var TakeuetrInfm = `select * from npss_trn_process_log where uetr = '${arruetrDataobj.uetr}' and (process_name in ( 'Place Pacs028', 'Place Pacs008','Receive Pacs002') ) order by npsstpl_id desc `
-                          ExecuteQuery1(TakeprocessGROUP, function (processgroup) {
-                            if (processgroup.length > 0) {
-                              var payment_processing_method
+                          /* ExecuteQuery1(TakeprocessGROUP, function (processgroup) {
+                            if (processgroup.length > 0) { */
+                          //                              var payment_processing_method
 
-                              if (processgroup[0].process_group == 'P2P') {
-                                payment_processing_method = "SCT_INITITATION"
 
-                              } else if (processgroup[0].process_group == 'P2B') {
-                                payment_processing_method = "P2B_SCT_INITITATION"
+                          ExecuteQuery1(TakeuetrInfm, async function (arruetrInformation) {
 
-                              } else if (processgroup[0].process_group == 'IBAN') {
-                                payment_processing_method = "AC_AC_IBAN"
+                            if (arruetrInformation.length > 0) {
 
-                              } else {
-                                payment_processing_method = ''
-                              }
-
-                              ExecuteQuery1(TakeuetrInfm, async function (arruetrInformation) {
-
-                                if (arruetrInformation.length > 0) {
-
-                                  let recv_002_arr = arruetrInformation.filter((val) => {
-                                    return (((val.process_name == 'Receive Pacs002') && (val.response_code != 'PDNG')) || ((val.process_name == 'Receive Pacs002') && (val.response_code == 'PDNG') && ((val.status != 'OP_AC_STATUS_RECEIVED' && val.status != 'OP_P2B_STATUS_RECEIVED' && val.status != 'OP_P2P_STATUS_RECEIVED'))))
-                                  })
-                                  let place_pacs028_arr = arruetrInformation.filter((val) => {
-                                    return val.process_name == 'Place Pacs028'
-                                  })
-                                  if ((recv_002_arr.length > 0) || (place_pacs028_arr.length >= Number(arrTakehrs[0].retry_count))) {
-                                    reqInstanceHelper.PrintInfo(serviceName, '------------ Already uetr Receive Pacs002 received or retry_count count reached ------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                    let updtTran = await updateTran(arruetrDataobj.uetr)
-                                    if (updtTran == 'SUCCESS') {
-                                      nextobjctfunc();
-                                    } else {
-                                      nextobjctfunc();
-                                    }
-                                  } else if (place_pacs028_arr.length < Number(arrTakehrs[0].retry_count)) {
-                                    if ((arruetrInformation[0].process_name == 'Place Pacs008') || (arruetrInformation[0].process_name == 'Place Pacs028' && arruetrInformation[1].process_name == 'Place Pacs008')) {
-                                      if (arruetrInformation[0].process_name == 'Place Pacs008') {
-
-                                        reacTime = await fnReachdTime(arruetrInformation[0].created_date, arrTakehrs)
-                                      } else {
-                                        reacTime = await fnReachdTime(arruetrInformation[1].created_date, arrTakehrs)
-                                      }
-                                      if (reacTime == 'SUCCESS') {
-                                        reqInstanceHelper.PrintInfo(serviceName, '------------ Pacs008  or Pacs028 uetr eligible for pacs 028------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                        var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
-                                        if (doapicall == 'SUCCESS') {
-                                          nextobjctfunc();
-                                        } else {
-                                          reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                          nextobjctfunc();
-                                        }
-                                      } else {
-                                        reqInstanceHelper.PrintInfo(serviceName, '------------Retry time not reached-------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                        nextobjctfunc();
-                                      }
-                                    } else {
-                                      reqInstanceHelper.PrintInfo(serviceName, '------------ uetr eligible for pacs 028------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                      let reacTime = await fnReachdTime(arruetrInformation[0].created_date, arrTakehrs)
-                                      if (reacTime == 'SUCCESS') {
-                                        reqInstanceHelper.PrintInfo(serviceName, '------------ uetr eligible for pacs------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                        var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
-                                        if (doapicall == 'SUCCESS') {
-                                          nextobjctfunc();
-                                        } else {
-                                          reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                          nextobjctfunc();
-                                        }
-                                      } else {
-                                        reqInstanceHelper.PrintInfo(serviceName, '------------Retry time not reached-------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                        nextobjctfunc();
-                                      }
-                                    }
-                                  }
-
+                              let recv_002_arr = arruetrInformation.filter((val) => {
+                                return (((val.process_name == 'Receive Pacs002') && (val.response_code != 'PDNG')) || ((val.process_name == 'Receive Pacs002') && (val.response_code == 'PDNG') && ((val.status != 'OP_AC_STATUS_RECEIVED' && val.status != 'OP_P2B_STATUS_RECEIVED' && val.status != 'OP_P2P_STATUS_RECEIVED'))))
+                              })
+                              let place_pacs028_arr = arruetrInformation.filter((val) => {
+                                return val.process_name == 'Place Pacs028'
+                              })
+                              if ((recv_002_arr.length > 0) || (place_pacs028_arr.length >= Number(arrTakehrs[0].retry_count))) {
+                                reqInstanceHelper.PrintInfo(serviceName, '------------ Already uetr Receive Pacs002 received or retry_count count reached ------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                let updtTran = await updateTran(arruetrDataobj.uetr)
+                                if (updtTran == 'SUCCESS') {
+                                  nextobjctfunc();
                                 } else {
-                                  reqInstanceHelper.PrintInfo(serviceName, '------------Process Log Not Found  for uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
                                   nextobjctfunc();
                                 }
+                              } else if (place_pacs028_arr.length < Number(arrTakehrs[0].retry_count)) {
+                                if ((arruetrInformation[0].process_name == 'Place Pacs008') || (arruetrInformation[0].process_name == 'Place Pacs028' && arruetrInformation[1].process_name == 'Place Pacs008')) {
+                                  if (arruetrInformation[0].process_name == 'Place Pacs008') {
 
-                              })
+                                    reacTime = await fnReachdTime(arruetrInformation[0].created_date, arrTakehrs)
+                                  } else {
+                                    reacTime = await fnReachdTime(arruetrInformation[1].created_date, arrTakehrs)
+                                  }
+                                  if (reacTime == 'SUCCESS') {
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------ Pacs008  or Pacs028 uetr eligible for pacs 028------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                    ExecuteQuery1(TakeprocessGROUP, async function (processgroup) {
+                                      if (processgroup.length > 0) {
+
+                                        var payment_processing_method
+
+                                        if (processgroup[0].process_group == 'P2P') {
+                                          payment_processing_method = "SCT_INITITATION"
+
+                                        } else if (processgroup[0].process_group == 'P2B') {
+                                          payment_processing_method = "P2B_SCT_INITITATION"
+
+                                        } else if (processgroup[0].process_group == 'IBAN') {
+                                          payment_processing_method = "AC_AC_IBAN"
+
+                                        } else {
+                                          payment_processing_method = ''
+                                        }
+                                        var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
+                                        if (doapicall == 'SUCCESS') {
+                                          nextobjctfunc();
+                                        } else {
+                                          reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                          nextobjctfunc();
+                                        }
+
+                                      } else {
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------Process Group Not Found  for uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                        nextobjctfunc();
+                                      }
+                                    })
+
+                                  } else {
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------Retry time not reached-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                    nextobjctfunc();
+                                  }
+                                } else {
+                                  reqInstanceHelper.PrintInfo(serviceName, '------------ uetr eligible for pacs 028------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                  let reacTime = await fnReachdTime(arruetrInformation[0].created_date, arrTakehrs)
+                                  if (reacTime == 'SUCCESS') {
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------ uetr eligible for pacs------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                    ExecuteQuery1(TakeprocessGROUP, async function (processgroup) {
+                                      if (processgroup.length > 0) {
+
+                                        var payment_processing_method
+
+                                        if (processgroup[0].process_group == 'P2P') {
+                                          payment_processing_method = "SCT_INITITATION"
+
+                                        } else if (processgroup[0].process_group == 'P2B') {
+                                          payment_processing_method = "P2B_SCT_INITITATION"
+
+                                        } else if (processgroup[0].process_group == 'IBAN') {
+                                          payment_processing_method = "AC_AC_IBAN"
+
+                                        } else {
+                                          payment_processing_method = ''
+                                        }
+                                        var doapicall = await apiCall(arruetrDataobj, arrUrl, payment_processing_method);
+                                        if (doapicall == 'SUCCESS') {
+                                          nextobjctfunc();
+                                        } else {
+                                          reqInstanceHelper.PrintInfo(serviceName, '------------Failed uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                          nextobjctfunc();
+                                        }
+                                      }
+                                      else {
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------Process Group Not Found  for uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                        nextobjctfunc();
+                                      }
+                                    })
+
+                                  } else {
+                                    reqInstanceHelper.PrintInfo(serviceName, '------------Retry time not reached-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                                    nextobjctfunc();
+                                  }
+                                }
+                              }
 
                             } else {
-                              reqInstanceHelper.PrintInfo(serviceName, '------------Process Group Not Found  for uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                              reqInstanceHelper.PrintInfo(serviceName, '------------Process Log Not Found  for uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
                               nextobjctfunc();
                             }
 
                           })
+
+                          /* } else {
+                            reqInstanceHelper.PrintInfo(serviceName, '------------Process Group Not Found  for uetr-------' + arruetrDataobj.uetr, objSessionLogInfo);
+                            nextobjctfunc();
+                          } 
+
+                        })*/
 
                         }, function () {
                           objresponse.status = 'SUCCESS';

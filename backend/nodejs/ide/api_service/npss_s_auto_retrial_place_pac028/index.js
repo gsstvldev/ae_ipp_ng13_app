@@ -245,7 +245,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
             function updateTran(uetr) {
               return new Promise((resolve, reject) => {
-                let tranUpdt = `update npss_transactions set fx_resv_text4='OP_AC_REQ_RECEIVED' where uetr='${uetr}' and process_type='OP'`
+                let tranUpdt = `update npss_transactions set fx_resv_text4='OP_AC_REQ_RECEIVED' ,MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where uetr='${uetr}' and process_type='OP'`
                 ExecuteQuery(tranUpdt, function (arrresult) {
                   if (arrresult == 'SUCCESS')
                     resolve('SUCCESS')

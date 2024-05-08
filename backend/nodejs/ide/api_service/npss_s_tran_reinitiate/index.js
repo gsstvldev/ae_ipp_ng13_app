@@ -11,6 +11,9 @@ app.post('/', function(appRequest, appResponse, next) {
     try {
         /*   Created By : Daseen
         Created Date :04-08-2023
+          Modified By : Subramanian
+        Modified Date :05-08-2024
+
       
         */
         var serviceName = 'NPSS (S) Tran Reinitiate';
@@ -52,12 +55,16 @@ app.post('/', function(appRequest, appResponse, next) {
                 // Get DB Connection                                                                                                                                      
                 reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
                     mTranConn = pSession; //  assign connection     
-                    reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
+                  //  reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
                         try {
                             var TakeeligTran = `select npsstpl_id,uetr from npss_trn_process_log  where status='${params.eligible_status}' and process_status='${params.eligible_process_status}' and process_name='${params.eligible_process_name}'`
                             ExecuteQuery1(TakeeligTran, async function (arrTran) {
                                 if (arrTran.length > 0) {
-                                    var intiateUpdtRes = await doInitiate(params.eligible_status, params.eligible_process_status,params.eligible_process_name)
+                                    reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
+                                        try{
+
+                                        
+                                    var intiateUpdtRes = await doInitiate(params.eligible_status, params.eligible_process_status,params.eligible_process_name,prct_id)
                                     if (intiateUpdtRes == 'Success') {
                                         reqAsync.forEachOfSeries(arrTran, function (arrTranparamsObj, i, nextobjctfunc) {
                                             var Takeorrtran = `select uetr from npss_trn_process_log  where uetr ='${arrTranparamsObj.uetr}' and status='${params.orr_status}' and process_status='${params.orr_process_status}' and process_name='${params.orr_process_name}'`
@@ -97,6 +104,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                         })
                                     }
                                 }
+                                catch(error)
+                                {
+                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN Something", error);
+                                    sendResponse(error, null);
+
+                                }
+                            })}
                                 else {
                                     reqInstanceHelper.PrintInfo(serviceName, '------------No record  found in npss_trn_process_log------', objSessionLogInfo);
                                     objresponse.status = 'FAILURE';
@@ -109,16 +123,16 @@ app.post('/', function(appRequest, appResponse, next) {
                             reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
                             sendResponse(error, null);
                         }
-                    })
+                   // })
 
 
-                    function doInitiate(eligible_status, eligible_process_status, eligible_process_name) {
+                    function doInitiate(eligible_status, eligible_process_status, eligible_process_name,prct_id) {
                         return new Promise(async (resolve, reject) => {
                             final_status = eligible_status + '_TAKEN'
 
                             let updtqry;
 
-                            updtqry = `update npss_trn_process_log set  status='${final_status}',process_status='${eligible_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where status='${eligible_status}' and process_status = '${params.eligible_process_status}'  and process_name='${eligible_process_name}' `
+                            updtqry =`update npss_trn_process_log set  status='${final_status}',process_status='${eligible_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${prct_id}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where status='${eligible_status}' and process_status = '${params.eligible_process_status}'  and process_name='${eligible_process_name}' `
 
 
                             ExecuteQuery(updtqry, function (uptranresult) {

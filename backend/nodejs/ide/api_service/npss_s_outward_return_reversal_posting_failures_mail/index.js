@@ -559,7 +559,8 @@ app.post('/', function(appRequest, appResponse, next) {
 
                        function TakeeliTran(TakeTrnid) {
                            return new Promise((resolve, reject) => {
-                               let Updtbl = `update npss_transactions set fx_resv_text5 = 'ORR_MAIL_TRIGGERED' where npsst_id in (${TakeTrnid})`
+                               //let  Updtbl = `update npss_transactions set fx_resv_text5 = 'ORR_MAIL_TRIGGERED' where npsst_id in (${TakeTrnid})`
+                                  let Updtbl = `update npss_transactions set fx_resv_text5 = 'ORR_MAIL_TRIGGERED' ,MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id in (${TakeTrnid})`
                                ExecuteQuery(Updtbl,function(result){
                                    if(result == 'SUCCESS'){
                                        resolve('SUCCESS')

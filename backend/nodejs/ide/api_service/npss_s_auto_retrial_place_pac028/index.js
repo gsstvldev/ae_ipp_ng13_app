@@ -32,6 +32,7 @@ app.post('/', function(appRequest, appResponse, next) {
    Reason:  Handled pacs 028 api call based on the necessary status taken from uetr -on  29/04/2024  by Subramanian WI 3087
    Reason:Changed status for eligible queue recv_002 call on 29/04/2024 by Subramanian Wi:3087
    Reason:Changed query for taking distinct values and updated with uetr by Subramanian wi:3087 , taken process group for api call only
+   Reason : changed eligible query for restrict lot of unwanted updates --renga,old query commented
   }
   */
   var serviceName = 'NPSS (S) Auto Retrial Place Pac028';
@@ -82,7 +83,8 @@ app.post('/', function(appRequest, appResponse, next) {
               if (arrUrl.length > 0) {
                 ExecuteQuery1(Taketime, function (arrTakehrs) {
                   if (arrTakehrs.length > 0) {
-                    var Takedata = `select distinct(l.uetr) from npss_trn_process_log l inner join npss_transactions nt on l.uetr =nt.uetr where TO_DATE(TO_CHAR(l.CREATED_DATE, 'DD-MON-YY'),'DD-MON-YY') = CURRENT_DATE and (nt.fx_resv_text4 <>'${params.final_status}' or nt.fx_resv_text4 isnull ) and nt.process_group not in('BCT','MANUAL') `
+                    // var Takedata = `select distinct(l.uetr) from npss_trn_process_log l inner join npss_transactions nt on l.uetr =nt.uetr where TO_DATE(TO_CHAR(l.CREATED_DATE, 'DD-MON-YY'),'DD-MON-YY') = CURRENT_DATE and (nt.fx_resv_text4 <>'${params.final_status}' or nt.fx_resv_text4 isnull ) and nt.process_group not in('BCT','MANUAL') `
+                    var Takedata = `SELECT distinct l.uetr  FROM npss_trn_process_log l inner join npss_transactions nt on l.uetr = nt.uetr WHERE l.process_name in('Place Pacs008','Place Pacs028', 'Receive Pacs002')  and (nt.fx_resv_text4 <>'OP_AC_REQ_RECEIVED' or nt.fx_resv_text4 is null)  and nt.process_group not in('BCT','MANUAL') AND DATE(L.CREATED_DATE) = CURRENT_DATE AND NOT EXISTS (SELECT 1 FROM npss_trn_process_log  WHERE uetr = l.uetr  AND PROCESS_NAME = 'Receive Pacs002'  AND RESPONSE_CODE IN ('ACCP', 'RJCT'));`
                     ExecuteQuery1(Takedata, function (arruetrData) {
                       if (arruetrData.length > 0) {
                         reqAsync.forEachOfSeries(arruetrData, function (arruetrDataobj, i, nextobjctfunc) {

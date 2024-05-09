@@ -32,7 +32,7 @@ app.post('/', function(appRequest, appResponse, next) {
    Reason:  Handled pacs 028 api call based on the necessary status taken from uetr -on  29/04/2024  by Subramanian WI 3087
    Reason:Changed status for eligible queue recv_002 call on 29/04/2024 by Subramanian Wi:3087
    Reason:Changed query for taking distinct values and updated with uetr by Subramanian wi:3087 , taken process group for api call only
-   Reason : changed eligible query for restrict lot of unwanted updates --renga,old query commented
+   Reason : changed eligible query for restrict lot of unwanted updates --renga,old query commented and prct token generation change after get eligible tran 
   }
   */
   var serviceName = 'NPSS (S) Auto Retrial Place Pac028';
@@ -74,9 +74,9 @@ app.post('/', function(appRequest, appResponse, next) {
       // Get DB Connection 
       reqTranDBInstance.GetTranDBConn(headers, false, async function (pSession) {
         mTranConn = pSession; //  assign connection     
-        reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
+        // reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
           try {
-            var PRCT_ID = prct_id
+          
             var Takeurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_INVESTIGATION_PAC_028' and param_code='URL' and need_sync = 'Y'`
             var Taketime = `select * from core_nc_rule_book_setup where rule_code = '${params.rule_code}' and processing_system = '${params.process_system}' and need_sync = 'Y'`
             ExecuteQuery1(Takeurl, function (arrUrl) {
@@ -87,6 +87,8 @@ app.post('/', function(appRequest, appResponse, next) {
                     var Takedata = `SELECT distinct l.uetr  FROM npss_trn_process_log l inner join npss_transactions nt on l.uetr = nt.uetr WHERE l.process_name in('Place Pacs008','Place Pacs028', 'Receive Pacs002')  and (nt.fx_resv_text4 <>'OP_AC_REQ_RECEIVED' or nt.fx_resv_text4 is null)  and nt.process_group not in('BCT','MANUAL') AND DATE(L.CREATED_DATE) = CURRENT_DATE AND NOT EXISTS (SELECT 1 FROM npss_trn_process_log  WHERE uetr = l.uetr  AND PROCESS_NAME = 'Receive Pacs002'  AND RESPONSE_CODE IN ('ACCP', 'RJCT'));`
                     ExecuteQuery1(Takedata, function (arruetrData) {
                       if (arruetrData.length > 0) {
+                         reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
+                          var PRCT_ID = prct_id
                         reqAsync.forEachOfSeries(arruetrData, function (arruetrDataobj, i, nextobjctfunc) {
 
                           var TakeprocessGROUP = `select process_group from npss_transactions where uetr = '${arruetrDataobj.uetr}'`
@@ -108,7 +110,7 @@ app.post('/', function(appRequest, appResponse, next) {
                               })
                               if ((recv_002_arr.length > 0) || (place_pacs028_arr.length >= Number(arrTakehrs[0].retry_count))) {
                                 reqInstanceHelper.PrintInfo(serviceName, '------------ Already uetr Receive Pacs002 received or retry_count count reached ------' + arruetrDataobj.uetr, objSessionLogInfo);
-                                let updtTran = await updateTran(arruetrDataobj.uetr)
+                                let updtTran = await updateTran(arruetrDataobj.uetr,PRCT_ID)
                                 if (updtTran == 'SUCCESS') {
                                   nextobjctfunc();
                                 } else {
@@ -221,6 +223,7 @@ app.post('/', function(appRequest, appResponse, next) {
                           sendResponse(null, objresponse)
                         }
                         )
+                      })
                       } else {
                         reqInstanceHelper.PrintInfo(serviceName, '------------No uetr data found in Tran Process log for currentData-------', objSessionLogInfo);
                         objresponse.status = 'FAILURE';
@@ -245,7 +248,7 @@ app.post('/', function(appRequest, appResponse, next) {
               }
             })
 
-            function updateTran(uetr) {
+            function updateTran(uetr,PRCT_ID) {
               return new Promise((resolve, reject) => {
                 let tranUpdt = `update npss_transactions set fx_resv_text4='OP_AC_REQ_RECEIVED' ,MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where uetr='${uetr}' and process_type='OP'`
                 ExecuteQuery(tranUpdt, function (arrresult) {
@@ -398,7 +401,7 @@ app.post('/', function(appRequest, appResponse, next) {
           } catch (error) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
           }
-        })
+        // })
 
 
 

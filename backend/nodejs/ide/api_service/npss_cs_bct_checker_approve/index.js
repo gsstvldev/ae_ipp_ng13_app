@@ -116,7 +116,7 @@ try {
               for (let i = 0; i < arrNpssTrnReusult.length; i++) {
                 let arrdata = []
                 // }
-                if ((arrNpssTrnReusult[i].status.includes('IP_BCT_INVEST_INITIATED') || arrNpssTrnReusult[i].status.includes('IP_BCT_RTN_INVEST_INITIATED') || arrNpssTrnReusult[i].status.includes('IP_BCT_INVEST_APPROVED'))) {
+                if ((arrNpssTrnReusult[i].status.includes('IP_BCT_INVEST_INITIATED') || arrNpssTrnReusult[i].status.includes('IP_BCT_RTN_INVEST_INITIATED') )) {
                   arrdata = arrNpssTrnReusult[i]
                   let apicalRes = await fn_callApi(arrdata, arrUrlValue)
                   if (apicalRes == 'SUCCESS') {

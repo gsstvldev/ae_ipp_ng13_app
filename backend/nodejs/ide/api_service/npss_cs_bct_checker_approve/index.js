@@ -201,11 +201,12 @@ try {
               }
               if (arrresult.status.includes('IP_BCT_INVEST_INITIATED') && arrresult.process_type == 'IP') {
                 options.json.hdr_msg_id = arrresult.hdr_msg_id;
-                options.json.message_format = 'urn:iso:std:iso:20022:tech:xsd:pacs.004.001.11'
-
+                //options.json.message_format = 'urn:iso:std:iso:20022:tech:xsd:pacs.004.001.11'
+                options.json.message_format = 'urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09'
               } else if (arrresult.status.includes('IP_BCT_RTN_INVEST_INITIATED') && arrresult.process_type == 'IP') {
                 options.json.hdr_msg_id = arrresult.fx_resv_text5;
-                options.json.message_format = 'urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09'
+               // options.json.message_format = 'urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09'
+                options.json.message_format = 'urn:iso:std:iso:20022:tech:xsd:pacs.004.001.11'
               }
               else {
                 options.json.hdr_msg_id = ''

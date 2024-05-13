@@ -38,6 +38,7 @@ app.post('/', function(appRequest, appResponse, next) {
        reason : getcount,select query for IPUETR  based on schema(live or archival) 10-4-24 -renga WI 3683
        reason : added key in accountnumber for prepaid posting 27-4-24 -Daseen WI 3771
        Reason for : for checking prepaid or credit iban taken from core_nc_system_setup on 30/04/2024 by  Subramanian wi:3771
+       reason for :  for prepaid  process group check from transaction table --renga  Wi 3771 13-05-24 function name : findBCTRCT
     */
     var serviceName = 'NPSS (CS) Manual Initiation Approve';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -1236,6 +1237,7 @@ app.post('/', function(appRequest, appResponse, next) {
               })
             })
           }
+
           function TakeIbanInfm(arrprocesslog) {
             return new Promise((resolve, reject) => {
               let parameter = {}
@@ -1473,23 +1475,22 @@ app.post('/', function(appRequest, appResponse, next) {
 
           function findBCTRCT(IpUETR) {
             return new Promise((resolve, reject) => {
-              let chkData = `select * from <tran_db>.npss_trn_process_log where uetr = '${IpUETR}'`
-              let chkDataArc = `select * from <arc_tran_db>.npss_trn_process_log where uetr = '${IpUETR}'`
+              let chkData = `select process_group from <tran_db>.npss_transactions where uetr = '${IpUETR}'`
+              let chkDataArc = `select process_group from <arc_tran_db>.npss_transactions where uetr = '${IpUETR}'`
               ExecuteQuery1(chkData, async function (arrChkdata) {
                 if (arrChkdata.length > 0) {
-                  resolve(arrChkdata.every((x) => x.status.includes('BCT')))
+                  resolve(arrChkdata[0].process_group =='BCT')
                 }
                 else {
                   ExecuteQuery1(chkDataArc, async function (arrChkdata) {
                     if (arrChkdata.length > 0) {
-                      resolve(arrChkdata.every((x) => x.status.includes('BCT')))
+                      resolve(arrChkdata[0].process_group =='BCT')
                     } else {
                       objresponse.status = 'FAILURE'
                       objresponse.errdata = 'No data Found in Trn Process log Table for IP UETR to find BCT or RCT'
                       sendResponse(null, objresponse)
                     }
                   })
-
                 }
               })
             })

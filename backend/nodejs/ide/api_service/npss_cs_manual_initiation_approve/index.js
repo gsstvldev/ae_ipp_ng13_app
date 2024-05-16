@@ -6,6 +6,8 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
+  
+    
 
 
 
@@ -17,10 +19,7 @@ app.post('/', function(appRequest, appResponse, next) {
     Created Date :02-01-2023
     Modified_by:Siva Harish
       Modified Date :03-01-2023
-      Reason for handling count for reverse id for cc and pc 19/06/2023
-        Reason for handling category pupose for 008 on 12-07-2023 by daseen
-        Reason for update intblk amount from pacs008 by harish 14/7/2023
-         Reason for handling prepaid card missing field
+      
          Reason for handling cb_acctype_code key for 008 by Daseen 11-09-2023
          Modified for: to take last inserted record for process refno(reversalid) for authposting
            Modified for: to take last inserted record for channel ref no(reversalid) for 008 after authposting 26 09 2023 by Daseen
@@ -39,6 +38,7 @@ app.post('/', function(appRequest, appResponse, next) {
        reason : added key in accountnumber for prepaid posting 27-4-24 -Daseen WI 3771
        Reason for : for checking prepaid or credit iban taken from core_nc_system_setup on 30/04/2024 by  Subramanian wi:3771
        reason for :  for prepaid  process group check from transaction table --renga  Wi 3771 13-05-24 function name : findBCTRCT
+        reason for :  for RATIBI prepaid  008  --Daseen  Wi 3771 16-05-24  in elp
     */
     var serviceName = 'NPSS (CS) Manual Initiation Approve';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -965,7 +965,7 @@ app.post('/', function(appRequest, appResponse, next) {
           function CheckTranStatus(arrprocesslog, final_process_status, final_status, lclinstrm, PRCT_ID) {
             return new Promise(async (resolve, reject) => {
               let Amount = arrprocesslog[0].intrbk_sttlm_amnt
-              let selIbanParamQry = `select * from core_nc_system_setup where param_category='ELPASO_PREPAID_CARD' and param_Code='BRANCH_CODES'`
+              let selIbanParamQry = `select param_detail from core_nc_system_setup where param_category='ELPASO_PREPAID_CARD' and param_Code='BRANCH_CODES'`
               let ChkPrecdtCard = await CheckCreditPrepaid(await getIbanParams(selIbanParamQry), arrprocesslog, lclinstrm)
               if (ChkPrecdtCard.apitype == 0) {
                 let TrnAldposted = await CheckTranAlrdyPosted(arrprocesslog[0].uetr)
@@ -1608,7 +1608,7 @@ app.post('/', function(appRequest, appResponse, next) {
                   }
                   ExecuteQuery1(checkT24posting, function (arrT24post) {
                     if (arrT24post.length > 0) {
-                      RetrnParam.response_json = JSON.parse(checkT24posting[0].response_json)
+                      RetrnParam.response_json = JSON.parse(arrT24post[0].response_json)
                       RetrnParam.apicalls = ChkPrecdtCard.apitype
                       RetrnParam.Callapi = 'Call Pacs004 Api'
                       resolve(RetrnParam)
@@ -1803,10 +1803,9 @@ app.post('/', function(appRequest, appResponse, next) {
               let apitype = {}
               if (arrprocesslog[0].dbtr_iban) {
                 Iban = arrprocesslog[0].dbtr_iban.slice(-16)
-                FrmIban = Iban.substring(0, 3)
-                if ((arrIbanParamDetails.filter((val) => {
-                  return val.param_detail == (FrmIban)
-                })).length > 0) {
+                FrmIban = Iban.substring(0, 3)  
+                let verIban = arrIbanParamDetails.filter((x)=>x.param_detail==FrmIban)
+                if (verIban.length > 0) {
                   apitype.apitype = 1
                   apitype.isiban = 'Y'
                   apitype.card_sub_type = 'RATIBI'
@@ -2333,6 +2332,8 @@ app.post('/', function(appRequest, appResponse, next) {
   catch (error) {
     sendResponse(error, null);
   }
+
+
 
 
 

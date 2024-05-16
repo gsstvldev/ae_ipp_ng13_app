@@ -1398,13 +1398,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                         })
                                         if (chkPrepaidPassedTrn.length > 0) {
                                             if (chkPrepaidPassedTrn[0].emiratesid == null || chkPrepaidPassedTrn[0].emiratesid == '') {
-                                                objresponse.status = 'FAILURE'
+                                                objresponse.status = 'Private Id is Missing for Prepaid Card'
                                                 objresponse.errdata = 'Private Id is Missing for Prepaid Card'
                                                 sendResponse(null, objresponse)
                                             } else if ((chkPrepaidPassedTrn[0].dateofbirth == null || chkPrepaidPassedTrn[0].dateofbirth == '')
                                                 || (chkPrepaidPassedTrn[0].customername == null || chkPrepaidPassedTrn[0].customername == '')
                                             ) {
-                                                objresponse.status = 'FAILURE'
+                                                objresponse.status = 'dateofbirth/customername field is missing'
                                                 objresponse.errdata = 'dateofbirth/customername field is missing'
                                                 sendResponse(null, objresponse)
                                             }
@@ -1517,7 +1517,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 throw new Error('emirates id Value is Missing')
                             }
                             if (TakeActcountInformation.birthdate == undefined || TakeActcountInformation.birthdate == null) {
-                                throw new Error('emirates id Value is Missing')
+                                throw new Error('birthdate Value is Missing')
                             }
 
                             /* if (arrprocesslog[0].hdr_settlement_date == undefined || arrprocesslog[0].hdr_settlement_date == null || arrprocesslog[0].hdr_settlement_date == '') {

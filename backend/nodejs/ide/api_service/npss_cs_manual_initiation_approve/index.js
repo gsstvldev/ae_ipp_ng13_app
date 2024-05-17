@@ -7,6 +7,7 @@ var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
   
+  
     
 
 
@@ -39,6 +40,7 @@ app.post('/', function(appRequest, appResponse, next) {
        Reason for : for checking prepaid or credit iban taken from core_nc_system_setup on 30/04/2024 by  Subramanian wi:3771
        reason for :  for prepaid  process group check from transaction table --renga  Wi 3771 13-05-24 function name : findBCTRCT
         reason for :  for RATIBI prepaid  008  --Daseen  Wi 3771 16-05-24  in elp
+          reason for :  ELPASOACCOUNTNO for  t24prepaiD POSTING--Daseen  Wi 3771 17-05-24  in elp
     */
     var serviceName = 'NPSS (CS) Manual Initiation Approve';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -1056,7 +1058,7 @@ app.post('/', function(appRequest, appResponse, next) {
                       Handleerror = await SendErrormsg(ElpasoApi, ApiVal)
                     }
                   } else if (CheckAlredyApiCalled.Callapi == 'Call T24 Posting') {
-                    T24Api = await CallPrepaidT24Api(arrprocesslog, lclinstrm, extIdentValue, reversalNo, ChkPrecdtCard)
+                    T24Api = await CallPrepaidT24Api(arrprocesslog, lclinstrm, extIdentValue, reversalNo, ChkPrecdtCard,ppActNo)
                     if (T24Api.status == 'SUCCESS' || T24Api.status == 'Success') {
                       // let transactionId = CheckAlredyApiCalled.request_data_json.response.header.id || CheckAlredyApiCalled.request_data_json.response.dataArea.offlineTransactionReferenceNumber || '';
                       let transactionId = ''
@@ -1985,7 +1987,7 @@ app.post('/', function(appRequest, appResponse, next) {
             })
           }
 
-          function CallPrepaidT24Api(arrprocesslog, lclinstrm, extIdentValue, reversalNo, apitype) {
+          function CallPrepaidT24Api(arrprocesslog, lclinstrm, extIdentValue, reversalNo, apitype,ppActNo) {
             return new Promise((resolve, reject) => {
               try {
                 let Apiurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CALL_PC_T24_POSTING' and param_code='URL' and need_sync = 'Y'`;
@@ -2038,7 +2040,9 @@ app.post('/', function(appRequest, appResponse, next) {
                           "process": "",
                           "remittance_information": arrprocesslog[0].remittance_info || '',
                           "reversal_id": reversalNo.reverseId || '',
-                          "card_sub_type": apitype.card_sub_type || ''
+                          "card_sub_type": apitype.card_sub_type || '', 
+                          "elpaso_account_number": ppActNo
+                          
                         }
                       },
                       headers: {
@@ -2332,6 +2336,7 @@ app.post('/', function(appRequest, appResponse, next) {
   catch (error) {
     sendResponse(error, null);
   }
+
 
 
 

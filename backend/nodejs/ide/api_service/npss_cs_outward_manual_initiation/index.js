@@ -47,7 +47,7 @@ app.post('/', function(appRequest, appResponse, next) {
       Reason for : channel cut off time checking for BCT  22/03/2024 by  Daseen WI  3553
        Reason for : channel cut off time checking for BCT  
  Reason for : SCHEMA DEFINED BASED ON THE LIVE OR ARCHIVAL WI 3683 -- renga
- Reason for : inserted new column fx_resv_text with created_date npss_transactions  WI  -- subramanian
+ Reason for : inserted new column fx_resv_text with created_date npss_transactions  WI 3818  -- subramanian
 
      
     */

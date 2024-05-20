@@ -632,7 +632,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         } else { //for credit and perpaid
                           options.json.channel_refno = arrprocesslog[0].clrsysref || '',
                             options.json.dbtr_prvt_id = ''
-                          options.json.dbtr_document_id = reverandRefno.privateId || ''
+                          options.json.dbtr_document_id = reverandRefno.privatesId || ''
                           options.json.ext_person_id_code = reverandRefno.extpersonidcode || ''
                           options.json.issr = 'AE',
                             options.json.AccountInformation = {}

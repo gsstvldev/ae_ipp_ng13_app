@@ -47,6 +47,7 @@ app.post('/', function(appRequest, appResponse, next) {
       Reason for : channel cut off time checking for BCT  22/03/2024 by  Daseen WI  3553
        Reason for : channel cut off time checking for BCT  
  Reason for : SCHEMA DEFINED BASED ON THE LIVE OR ARCHIVAL WI 3683 -- renga
+ Reason for : inserted new column fx_resv_text with created_date npss_transactions  WI  -- subramanian
 
      
     */
@@ -220,6 +221,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             objCusTranInst.ACCOUNT_CURRENCY = arrdata[0].account_currency
                                                             objCusTranInst.CPR_STATUS = arrdata[0].cpr_status
                                                             objCusTranInst.PROCESSING_SYSTEM = arrdata[0].processing_system
+                                                            objCusTranInst.FX_RESV_TEXT4=arrdata[0].created_date
                                                             objCusTranInst.CPR_CR_FLAG = arrdata[0].cpr_cr_flag
                                                             objCusTranInst.CPR_DW_FLAG = arrdata[0].cpr_dw_flag
                                                             objCusTranInst.CPR_CR_FILE_NAME = arrdata[0].cpr_cr_file_name

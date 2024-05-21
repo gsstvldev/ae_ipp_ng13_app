@@ -295,8 +295,8 @@ app.post('/', function(appRequest, appResponse, next) {
     
                             // privateKeyFormation = await fs.readFileSync(`D:\\SQL-Postgresql\\N16 backend pack (unmodified)\\N16 backend pack\\sftp_with_pass.pem`, { encoding: 'utf8', flag: 'r' }); //UNCMMENT WHENEVER RUNNING THE CODE IN LOCAL 
     
-                            privateKeyFormation = await fs.readFileSync(process.env.SFTP_PATH, { encoding: 'utf8', flag: 'r' });
-                            connectObj.privateKey = Buffer.from(privateKeyFormation);
+                           // privateKeyFormation = await fs.readFileSync(process.env.SFTP_PATH, { encoding: 'utf8', flag: 'r' });
+                          //  connectObj.privateKey = Buffer.from(privateKeyFormation);
                             var filename = appRequest.body.sftp_filename + moment().format('DDMMYYYY_HHMMSS')
                             //tempfilenamearr = filename.split(',')
                             let sftp = new Client();

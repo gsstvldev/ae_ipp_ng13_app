@@ -189,7 +189,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                       reverandRefno.type = 'IBAN'
                                       let Pacs008 = await fn_doPac008apicall(arrprocesslog, reverandRefno, CheckorgPvt, Amount, transactionId)
                                       if (Pacs008 == 'SUCCESS') {
-                                        let UpdateTran = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
+                                        let UpdateTran = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, '')
                                       } else {
                                         objresponse.status = "FAILURE"
                                         objresponse.errdata = "Failure in Pac008 Api"
@@ -993,14 +993,14 @@ app.post('/', function(appRequest, appResponse, next) {
                     revAcctInfrm.type = 'IBAN'
                     let Pacs008 = await fn_doPac008apicall(arrprocesslog, revAcctInfrm, CheckorgPvt, Amount, transactionId)
                     if (Pacs008 == 'SUCCESS') {
-                      GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
+                      GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, '')
                     } else {
                       objresponse.status = "FAILURE"
                       objresponse.errdata = "Pacs008 api call not success"
                       sendResponse(null, objresponse)
                     }
                   } else {
-                    let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
+                    let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, 'BCT')
                   }
 
                 }
@@ -1042,14 +1042,14 @@ app.post('/', function(appRequest, appResponse, next) {
                       if (params.eligible_status != 'OP_BCT_RET_RESERVED' && params.eligible_process_status != 'BCTOutwardReturnReserved') {
                         Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                         if (Pacs008Api == 'SUCCESS') {
-                          GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
+                          GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, '')
                         } else {
                           objresponse.status = "FAILURE"
                           objresponse.errdata = "Pacs008 api call not success"
                           sendResponse(null, objresponse)
                         }
                       } else {
-                        let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
+                        let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, 'BCT')
                       }
 
 
@@ -1076,14 +1076,14 @@ app.post('/', function(appRequest, appResponse, next) {
                       if (params.eligible_status != 'OP_BCT_RET_RESERVED' && params.eligible_process_status != 'BCTOutwardReturnReserved') {
                         Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                         if (Pacs008Api == 'SUCCESS') {
-                          GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
+                          GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, '')
                         } else {
                           objresponse.status = "FAILURE"
                           objresponse.errdata = "Pacs008 api call not success"
                           sendResponse(null, objresponse)
                         }
                       } else {
-                        let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
+                        let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, 'BCT')
                       }
 
                     } else {
@@ -1104,14 +1104,14 @@ app.post('/', function(appRequest, appResponse, next) {
                     if (params.eligible_status != 'OP_BCT_RET_RESERVED' && params.eligible_process_status != 'BCTOutwardReturnReserved') {
                       Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                       if (Pacs008Api == 'SUCCESS') {
-                        GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
+                        GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, '')
                       } else {
                         objresponse.status = "FAILURE"
                         objresponse.errdata = "Pacs008 api call not success"
                         sendResponse(null, objresponse)
                       }
                     } else {
-                      let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
+                      let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, 'BCT')
                     }
 
                   }
@@ -1134,14 +1134,14 @@ app.post('/', function(appRequest, appResponse, next) {
                       if (params.eligible_status != 'OP_BCT_RET_RESERVED' && params.eligible_process_status != 'BCTOutwardReturnReserved') {
                         Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                         if (Pacs008Api == 'SUCCESS') {
-                          GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
+                          GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, '')
                         } else {
                           objresponse.status = "FAILURE"
                           objresponse.errdata = "Pacs008 api call not success"
                           sendResponse(null, objresponse)
                         }
                       } else {
-                        let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
+                        let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, 'BCT')
                       }
 
                     } else {
@@ -1168,14 +1168,14 @@ app.post('/', function(appRequest, appResponse, next) {
                       if (params.eligible_status != 'OP_BCT_RET_RESERVED' && params.eligible_process_status != 'BCTOutwardReturnReserved') {
                         Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                         if (Pacs008Api == 'SUCCESS') {
-                          GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
+                          GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, '')
                         } else {
                           objresponse.status = "FAILURE"
                           objresponse.errdata = "Pacs008 api call not success"
                           sendResponse(null, objresponse)
                         }
                       } else {
-                        let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
+                        let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, 'BCT')
                       }
 
                     } else {
@@ -1196,14 +1196,14 @@ app.post('/', function(appRequest, appResponse, next) {
                     if (params.eligible_status != 'OP_BCT_RET_RESERVED' && params.eligible_process_status != 'BCTOutwardReturnReserved') {
                       Pacs008Api = await fn_doPac008apicall(arrprocesslog, TakeActcountInformation, CheckorgPvt, Amount, transactionId)
                       if (Pacs008Api == 'SUCCESS') {
-                        GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', '')
+                        GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, '')
                       } else {
                         objresponse.status = "FAILURE"
                         objresponse.errdata = "Pacs008 api call not success"
                         sendResponse(null, objresponse)
                       }
                     } else {
-                      let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, '', 'BCT')
+                      let tranUpdateStatus = await GetTranUpdate(final_process_status, final_status, PRCT_ID, Amount, transactionId, 'BCT')
                     }
 
                   }

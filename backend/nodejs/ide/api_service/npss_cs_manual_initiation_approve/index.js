@@ -41,6 +41,7 @@ app.post('/', function(appRequest, appResponse, next) {
        reason for :  for prepaid  process group check from transaction table --renga  Wi 3771 13-05-24 function name : findBCTRCT
         reason for :  for RATIBI prepaid  008  --Daseen  Wi 3771 16-05-24  in elp
           reason for :  ELPASOACCOUNTNO for  t24prepaiD POSTING--Daseen  Wi 3771 17-05-24  in elp
+          reason for :  Transaction id update  for  iban credit prepaid /RCT and BCT -Daseen  Wi 3806 22-05-24  in elp
     */
     var serviceName = 'NPSS (CS) Manual Initiation Approve';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        

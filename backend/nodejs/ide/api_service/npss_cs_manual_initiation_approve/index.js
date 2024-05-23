@@ -648,7 +648,7 @@ app.post('/', function(appRequest, appResponse, next) {
                         options.json.ext_person_id_code = arrprocesslog[0].ext_person_id_code
                       }
 
-
+                      
                       reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
                       request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                         if (error) {
@@ -1344,7 +1344,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             AcctInformations.countryofbirth = arractResult[0].cityofbirth
                             AcctInformations.account_name = arractResult[0].account_name
                             let PvtId = await PreparePVTcode(arractResult, arrprocesslog)
-                            AcctInformations.privateId = PvtId.FormPvtid || ''
+                            AcctInformations.privatesId = PvtId.FormPvtid || ''
                             if (arractResult[0].resident_flag == 'Y') {
                               AcctInformations.extpersonidcode = 'NIDN'
                               AcctInformations.issrtype = 'AE'
@@ -1951,6 +1951,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     if (apitype.isiban == 'Y') {
                       options.json.payload.isiban = 'Y'
                       options.json.payload.cr_acct_identification = arrprocesslog[0].dbtr_iban || ''
+                      options.json.payload.dbtr_iban = arrprocesslog[0].dbtr_iban || ''
                     } else {
                       options.json.payload.cr_acct_identification = arrprocesslog[0].cr_acct_identification || ''
                     }
@@ -1962,7 +1963,8 @@ app.post('/', function(appRequest, appResponse, next) {
                     PrintInfo.reversal_id = reversalNo.reverseId || ''
                     PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
                     PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
-                    reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                    //reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                    reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                       if (error) {
                         reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
@@ -2061,7 +2063,8 @@ app.post('/', function(appRequest, appResponse, next) {
                     PrintInfo.reversal_id = reversalNo.reverseId || ''
                     PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
                     PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
-                    reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                    //reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                    reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                       if (error) {
                         reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
@@ -2156,7 +2159,8 @@ app.post('/', function(appRequest, appResponse, next) {
                     PrintInfo.reversal_id = reversalNo.reverseId || ''
                     PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
                     PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
-                    reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                    //reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                    reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                       if (error) {
                         reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
@@ -2252,7 +2256,8 @@ app.post('/', function(appRequest, appResponse, next) {
                     PrintInfo.reversal_id = reversalNo.reverseId || ''
                     PrintInfo.txid = arrprocesslog[0].tran_ref_id || ''
                     PrintInfo.clrsysref = arrprocesslog[0].clrsysref || ''
-                    reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                    //reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
+                    reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(options), objSessionLogInfo);
                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                       if (error) {
                         reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);

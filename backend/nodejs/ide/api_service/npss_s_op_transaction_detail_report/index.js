@@ -57,230 +57,202 @@ app.post('/', function(appRequest, appResponse, next) {
     
                 try {
     
-                    var TakeData = `select
-                        distinct UETR,
-                        PROCESS_STATUS,
-                        STATUS,
-                        CREATED_DATE,
-                        VALUE_DATE,
-                        DEPARTMENT_CODE,
-                        DBTR_IBAN,
-                        DBTR_ACCT_NAME,
-                        CDTR_IBAN,
-                        CDTR_ACCT_NAME,
-                        CR_SORT_CODE,
-                        CHANNEL_ID,
-                        BENEFICIARY_BANK,
-                        API_SUCCESS_FAILURE,
-                        INTRBK_STTLM_AMNT,
-                        PURPOSE_CODES,
-                        CHANNEL_REFNO,
-                        FN_CARD_DECRYPT_AND_MASK_RPT(CR_ACCT_IDENTIFICATION) as CR_ACCT_IDENTIFICATION,
-                        FN_CARD_DECRYPT_AND_MASK_RPT(DBTR_ACCT_NO) as DBTR_ACCT_NO,
-                        CB_ERRORS,
-                        CORE_BANK_ERRORS,
-                        MAKER,
-                        CHECKER,
-                        PROCESS_GROUP,
-                        TRANSACTION_ID,
-                        CATEGORY_PURPOSE,
-                        FT_CI_REFERENCE_NUMBER,
-                        PROCESS_TYPE,
-                        CLRSYSREF,
-                        PAYMENT_ENDTOEND_ID,
-                        Batch_Payment_Flag,
-                        OUTWARD_FILE_NAME
-                    from
-                        (
-                        select
-                            NTPL.UETR,
-                            NT.PROCESS_STATUS,
-                            NT.STATUS,
-                            NT.CREATED_DATE,
-                            NT.VALUE_DATE,
-                            NT.DEPARTMENT_CODE,
-                            NT.OUTWARD_FILE_NAME,
-                            case
-                                when NT.process_group = 'BCT' then 'Y'
-                                else 'N'
-                            end as Batch_Payment_Flag,
-                            case
-                                when NT.PROCESS_GROUP = 'IBAN' then 'WEBI'
-                                when NT.PROCESS_GROUP = 'P2P' then 'MP2P'
-                                when NT.PROCESS_GROUP = 'P2B' then 'MP2B'
-                                when NT.PROCESS_GROUP = 'MANUAL' then 'WEBI'
-                            end as PURPOSE_CODES,
-                            NT.PAYMENT_ENDTOEND_ID,
-                            NT.DBTR_IBAN,
-                            NT.DBTR_ACCT_NAME,
-                            NT.CDTR_IBAN,
-                            NT.CDTR_ACCT_NAME,
-                            NT.CR_SORT_CODE,
-                            NT.CHANNEL_ID,
-                            NT.CHANNEL_REFNO,
-                            NT.PROCESS_TYPE,
-                            NT.TENANT_ID,
-                            NT.DT_CODE,
-                            NT.DTT_CODE,
-                            NT.MAKER,
-                            NT.CHECKER,
-                            NT.CR_ACCT_IDENTIFICATION,
-                            NT.DBTR_ACCT_NO,
-                            NT.PROCESS_GROUP,
-                            NT.CATEGORY_PURPOSE,
-                            NT.INTRBK_STTLM_AMNT,
-                            A13.CBUAERETURNCODE as CB_ERRORS,
-                            A11.T24RETURNCODE as CORE_BANK_ERRORS,
-                            A15.PROCESS_REF_NO as CLRSYSREF,
-                            CMB.BANK_NAME as BENEFICIARY_BANK,
-                            CSE.S_DESCRIPTION,
-                            NTPL.PROCESS_NAME,
-                            case
-                                when NT.PROCESS_GROUP in ('P2B', 'P2P') then NT.TRAN_REF_ID
-                                when NT.PROCESS_GROUP in ('IBAN') then NT.MIDDLEWARE_REF_NO
-                            end as TRANSACTION_ID,
-                            case
-                                when NT.PROCESS_GROUP in ('IBAN') then NT.TRAN_REF_ID
-                                when NT.PROCESS_GROUP in ('P2B', 'P2P') then NT.PAYMENT_ENDTOEND_ID
-                            end as FT_CI_REFERENCE_NUMBER,
-                            case
-                                when NT.PROCESS_STATUS not in ('RCTRejected') then 'Success'
-                                when NT.PROCESS_STATUS = 'RCTRejected' then 'Failure'
-                            end as API_SUCCESS_FAILURE
-                        from
-                            <TRAN_DB>.NPSS_TRANSACTIONS NT
-                        inner join <TRAN_DB>.NPSS_TRN_PROCESS_LOG NTPL on
-                            NT.UETR = NTPL.UETR
-                        left join (
-                            select
-                                NPSSTPL_ID,
-                                UETR,
-                                CBUAERETURNCODE
-                            from
-                                (
-                                select
-                                    A3.NPSSTPL_ID,
-                                    A3.UETR,
-                                    A3.STATUS,
+                    var TakeData = `SELECT
+                    DISTINCT UETR,
+                    process_status,
+                    status,
+                    created_date,
+                    value_date,
+                    DEPARTMENT_NAME,
+                    payment_endtoend_id,
+                    Debtor_Account,
+                    Debtor_Name,
+                    Creditor_Account,
+                    Creditor_Name,
+                    cr_sort_code,
+                    SOURCE_CHANNEL,
+                    BENEFICIARY_BANK,
+                    API_Success_Failure,
+                    TRANSACTION_AMOUNT_RANGE,
+                    Purpose_codes,
+                    SENDER_REFERENCE_NUMBER,
+                    FN_CARD_DECRYPT_AND_MASK_RPT(CR_ACCT_IDENTIFICATION) AS CR_ACCT_IDENTIFICATION,
+                    FN_CARD_DECRYPT_AND_MASK_RPT(DBTR_ACCT_NO) AS DBTR_ACCT_NO,
+                    CB_ERRORS,
+                    Core_Bank_Errors,
+                    maker,
+                    checker,
+                    process_group,
+                    Transaction_id,
+                    CATEGORY_PURPOSE,
+                    OUTWARD_FILE_NAME,
+                    T24_FT_REFERENCE_NUMBER,
+                        End_to_End_ID,
+                    process_type,clrsysref,
+                    Batch_Payment_Flag
+                FROM (
+                    SELECT
+                        NTPL.UETR,
+                        NT.process_status,
+                        NT.status,
+                        NT.created_date,
+                        NT.value_date,
+                        nt.department_code AS DEPARTMENT_NAME,
+                        case when NT.process_group='IBAN' then 'WEBI'
+                             when NT.process_group='P2P' then 'MP2P'
+                             when NT.process_group='P2B' then 'MP2B'
+                             when NT.process_group='MANUAL' then 'WEBI'
+                             end AS Purpose_codes,
+                        NT.payment_endtoend_id,
+                        NT.dbtr_iban AS Debtor_Account,
+                        NT.dbtr_acct_name AS Debtor_Name,
+                        NT.cdtr_iban AS Creditor_Account,
+                        NT.cdtr_acct_name AS Creditor_Name,
+                        NT.cr_sort_code,
+                        NT.channel_id AS SOURCE_CHANNEL,
+                        NT.channel_refno AS SENDER_REFERENCE_NUMBER,
+                        NT.process_type,
+                        NT.tenant_id,
+                        NT.maker,
+                        NT.checker,
+                        NT.cr_acct_identification,
+                        NT.dbtr_acct_no,
+                        NT.process_group,
+                        NT.CATEGORY_PURPOSE,
+                        NT.OUTWARD_FILE_NAME,
+                        NT.intrbk_sttlm_amnt AS TRANSACTION_AMOUNT_RANGE,
+                        a13.CBUAERETURNCODE AS CB_ERRORS,
+                        a11.T24RETURNCODE AS Core_Bank_Errors,
+                        a15.PROCESS_REF_NO as clrsysref, 
+                        nt.PAYMENT_ENDTOEND_ID AS End_to_End_ID,
+                        cmb.bank_name AS BENEFICIARY_BANK,
+                        cse.s_description,
+                        ntpl.process_name,
+                        CASE
+                            when NT.process_group ='BCT' THEN 'Y'
+                      else 'N'
+                        END AS Batch_Payment_Flag,
+                        CASE
+                            WHEN NT.process_group IN ('P2B', 'P2P') THEN nt.TRAN_REF_ID
+                            WHEN NT.process_group IN ('IBAN') THEN nt.MIDDLEWARE_REF_NO
+                        END AS Transaction_id,
+                        CASE
+                            WHEN NT.process_group IN ('IBAN','BCT') THEN nt.TRAN_REF_ID
+                            WHEN NT.process_group IN ('P2B', 'P2P') THEN nt.PAYMENT_ENDTOEND_ID
+                        END AS T24_FT_REFERENCE_NUMBER,
+                        CASE
+                            WHEN nt.process_status NOT IN ('RCTRejected') THEN 'Success'
+                            WHEN nt.process_status = 'RCTRejected' THEN 'Failure'
+                        END AS API_Success_Failure
+                    FROM
+                       npss_transactions nt
+                    INNER JOIN NPSS_TRN_PROCESS_LOG NTPL ON NT.UETR = NTPL.uetr
+                    LEFT JOIN (
+                        SELECT
+                            npsstpl_id,
+                            uetr,
+                            CBUAERETURNCODE
+                        FROM
+                            (
+                                SELECT
+                                    A3.npsstpl_id,
+                                    A3.uetr,
+                                    A3.status,
                                     A3.CBUAE_RETURN_CODE,
-                                    CONCAT(A3.CBUAE_RETURN_CODE,
-                                    '-',
-                                    CNEC1.ERROR_DESCRIPTION) as CBUAERETURNCODE
-                                from
-                                    (
-                                    select
-                                        NPSSTPL_ID,
-                                        STATUS,
-                                        UETR,
+                                    CONCAT(a3.CBUAE_RETURN_CODE, '-', cnec1.error_description) AS CBUAERETURNCODE
+                                FROM (
+                                    SELECT
+                                        npsstpl_id,
+                                        status,
+                                        uetr,
                                         CBUAE_RETURN_CODE,
                                         ROW_NUM
-                                    from
-                                        (
-                                        select
-                                            NPSSTPL_ID,
-                                            UETR,
-                                            STATUS,
+                                    FROM (
+                                        SELECT
+                                            npsstpl_id,
+                                            uetr,
+                                            status,
                                             CBUAE_RETURN_CODE,
-                                            row_number() over (partition by UETR
-                                        order by
-                                            NPSSTPL_ID desc) as ROW_NUM
-                                        from
-                                            <TRAN_DB>.NPSS_TRN_PROCESS_LOG A01) F
-                                    where
-                                        ROW_NUM = 1 ) A3
-                                left join CORE_NC_ERROR_CODES CNEC1 on
-                                    CNEC1.ERROR_CODE = A3.CBUAE_RETURN_CODE
-                                    and CNEC1.PROCESSING_SYSTEM = 'CBUAE'
-                                where
-                                    A3.STATUS in ('OP_AC_REV_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE', 'OP_P2B_REV_POSTING_FAILURE', 'OP_AC_STATUS_REJECTED', 'OP_P2P_STATUS_REJECTED', 'OP_P2B_STATUS_REJECTED', 'OP_AC_RET_POSTING_FAILURE')
-                                order by
-                                    NPSSTPL_ID desc) A13) A13 on
-                            A13.UETR = NT.UETR
-                        left join (
-                            select
-                                NPSSTPL_ID,
-                                UETR,
-                                T24RETURNCODE
-                            from
-                                (
-                                select
-                                    A2.NPSSTPL_ID,
-                                    A2.UETR,
+                                            ROW_NUMBER() OVER (PARTITION BY uetr ORDER BY npsstpl_id DESC) AS row_num
+                                        FROM
+                                             npss_trn_process_log a01
+                                    ) F
+                                    WHERE ROW_NUM = 1
+                                ) A3
+                                LEFT JOIN core_nc_error_codes cnec1 ON cnec1.error_code = A3.CBUAE_RETURN_CODE and cnec1.processing_system='CBUAE'
+                                WHERE A3.status IN ('OP_AC_REV_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE', 'OP_P2B_REV_POSTING_FAILURE', 'OP_AC_STATUS_REJECTED', 'OP_P2P_STATUS_REJECTED', 'OP_P2B_STATUS_REJECTED', 'OP_AC_RET_POSTING_FAILURE')
+                                ORDER BY npsstpl_id DESC
+                            ) a13
+                    ) a13 ON a13.uetr = nt.uetr
+                    LEFT JOIN (
+                        SELECT
+                            npsstpl_id,
+                            uetr,
+                            T24RETURNCODE
+                        FROM
+                            (
+                                SELECT
+                                    A2.npsstpl_id,
+                                    A2.uetr,
                                     A2.T24_RETURN_CODE,
-                                    CONCAT(A2.T24_RETURN_CODE,
-                                    '-',
-                                    CNEC.ERROR_DESCRIPTION) as T24RETURNCODE
-                                from
-                                    (
-                                    select
-                                        NPSSTPL_ID,
-                                        UETR,
+                                    CONCAT(A2.T24_RETURN_CODE, '-', cnec.error_description) AS T24RETURNCODE
+                                FROM (
+                                    SELECT
+                                        npsstpl_id,
+                                        uetr,
                                         T24_RETURN_CODE,
                                         ROW_NUM
-                                    from
-                                        (
-                                        select
-                                            NPSSTPL_ID,
-                                            UETR,
+                                    FROM (
+                                        SELECT
+                                            npsstpl_id,
+                                            uetr,
                                             T24_RETURN_CODE,
-                                            row_number() over (partition by UETR
-                                        order by
-                                            NPSSTPL_ID desc) as ROW_NUM
-                                        from
-                                            <TRAN_DB>.NPSS_TRN_PROCESS_LOG A1) F
-                                    where
-                                        ROW_NUM = 1 ) A2
-                                left join CORE_NC_ERROR_CODES CNEC on
-                                    CNEC.ERROR_CODE = A2.T24_RETURN_CODE
-                                where
-                                    A2.T24_RETURN_CODE is not null
-                                order by
-                                    NPSSTPL_ID desc) A12) A11 on
-                            A11.UETR = NT.UETR
-                        left join CORE_MEMBER_BANKS CMB on
-                            CMB.BIC_CODE = NT.CR_SORT_CODE
-                            and CMB.NEED_SYNC = 'Y'
-                        left join (
-                            select
-                                A15.NPSSTPL_ID,
-                                A15.UETR,
-                                A15.PROCESS_REF_NO
-                            from
-                                (
-                                select
-                                    A5.NPSSTPL_ID,
-                                    A5.UETR,
-                                    A5.PROCESS_REF_NO
-                                from
-                                    (
-                                    select
-                                        NPSSTPL_ID,
-                                        UETR,
+                                            ROW_NUMBER() OVER (PARTITION BY uetr ORDER BY npsstpl_id DESC) AS row_num
+                                        FROM
+                                            npss_trn_process_log a1
+                                    ) F
+                                    WHERE ROW_NUM = 1
+                                ) A2
+                                LEFT JOIN core_nc_error_codes cnec ON cnec.error_code = A2.T24_RETURN_CODE
+                                WHERE A2.T24_RETURN_CODE IS NOT NULL
+                                ORDER BY npsstpl_id DESC
+                            ) a12
+                    ) a11 ON a11.uetr = nt.uetr
+                    LEFT JOIN core_member_banks cmb ON cmb.bic_code = nt.cr_sort_code AND cmb.NEED_SYNC = 'Y'
+                    LEFT JOIN (
+                        SELECT
+                            A15.npsstpl_id,
+                            A15.uetr,
+                            A15.PROCESS_REF_NO
+                        FROM (
+                            SELECT
+                                A5.npsstpl_id,
+                                A5.uetr,
+                                A5.PROCESS_REF_NO
+                            FROM (
+                                SELECT
+                                    npsstpl_id,
+                                    uetr,
+                                    PROCESS_REF_NO,
+                                    ROW_NUM
+                                FROM (
+                                    SELECT
+                                        npsstpl_id,
+                                        uetr,
                                         PROCESS_REF_NO,
-                                        ROW_NUM
-                                    from
-                                        (
-                                        select
-                                            NPSSTPL_ID,
-                                            UETR,
-                                            PROCESS_REF_NO,
-                                            row_number() over (partition by UETR
-                                        order by
-                                            NPSSTPL_ID desc) as ROW_NUM
-                                        from
-                                            <TRAN_DB>.NPSS_TRN_PROCESS_LOG A05
-                                        where
-                                            A05.PROCESS_NAME = 'Receive Pacs002'
-                                            and A05.PROCESS_TYPE = 'OP' ) F
-                                    where
-                                        F.ROW_NUM = 1 ) A5
-                                order by
-                                    A5.NPSSTPL_ID desc) A15) A15 on
-                            A15.UETR = NT.UETR
-                        inner join CORE_SYSTEM_EXTN CSE on
-                            CSE.DEPARTMENT_CODE = NT.DEPARTMENT_CODE) V1
-                    where
-                        PROCESS_TYPE = 'OP'  and Date(created_date)=CURRENT_DATE `
+                                        ROW_NUMBER() OVER (PARTITION BY uetr ORDER BY npsstpl_id DESC) AS row_num
+                                    FROM
+                                      npss_trn_process_log A05
+                                    WHERE A05.process_name = 'Receive Pacs002' AND A05.process_type = 'OP'
+                                ) F
+                                WHERE F.row_num = 1
+                            ) A5
+                            ORDER BY A5.npsstpl_id DESC
+                        ) A15
+                    ) a15 ON a15.uetr = nt.uetr
+                    INNER JOIN CORE_SYSTEM_EXTN CSE ON CSE.department_code = nt.DEPARTMENT_CODE
+                ) V1
+                WHERE process_type = 'OP' and Date(created_date)<current_date - INTERVAL'${params.onOrBefore} days'`
                     ExecuteQuery1(TakeData, async function (insarr) {
                         if (insarr.length > 0) {
                             let Header = await findHeader(insarr)

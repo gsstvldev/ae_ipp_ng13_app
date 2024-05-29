@@ -214,7 +214,7 @@ app.post('/', function(appRequest, appResponse, next) {
                   ORDER BY A5.npsstpl_id DESC
               ) A15
           ) a15 ON a15.uetr = nt.uetr
-          inner join  CORE_SYSTEM_EXTN CSE on CSE.department_code  = nt.DEPARTMENT_CODE) V where process_type = 'IP'  and  Date(created_date)<CURRENT_DATE- INTERVAL '${params.onOrBefore} days' `
+          inner join  CORE_SYSTEM_EXTN CSE on CSE.department_code  = nt.DEPARTMENT_CODE) V where process_type = 'IP'  and  Date(created_date)=CURRENT_DATE- INTERVAL '${params.onOrBefore} days' `
           ExecuteQuery1(TakeData, async function (insarr) {
             if (insarr.length > 0) {
               let Header = await findHeader(insarr)

@@ -155,7 +155,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     left join core_member_banks cmb on cmb.bic_code = a.cr_sort_code
                         and cmb.NEED_SYNC = 'Y'
                     inner join npss_trn_process_log pl on a.uetr = pl.uetr and pl.process_name = 'Receive Pacs004')VW  where process_type = 'OP'and
-                TRANSACTION_DATE<current_date - INTERVAL '${params.onOrBefore} days'    
+                TRANSACTION_DATE=current_date - INTERVAL '${params.onOrBefore} days'    
                 order by
                     npsst_id,npsstpl_id`
                     ExecuteQuery1(TakeData, async function (insarr) {

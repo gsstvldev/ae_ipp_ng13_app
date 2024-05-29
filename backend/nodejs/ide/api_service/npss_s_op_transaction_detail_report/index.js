@@ -252,7 +252,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     ) a15 ON a15.uetr = nt.uetr
                     INNER JOIN CORE_SYSTEM_EXTN CSE ON CSE.department_code = nt.DEPARTMENT_CODE
                 ) V1
-                WHERE process_type = 'OP' and Date(created_date)<current_date - INTERVAL'${params.onOrBefore} days'`
+                WHERE process_type = 'OP' and Date(created_date)=current_date - INTERVAL'${params.onOrBefore} days'`
                     ExecuteQuery1(TakeData, async function (insarr) {
                         if (insarr.length > 0) {
                             let Header = await findHeader(insarr)

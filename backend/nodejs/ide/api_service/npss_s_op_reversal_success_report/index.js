@@ -39,7 +39,7 @@ app.post('/', function(appRequest, appResponse, next) {
         'data': '',
         'msg': ''
     }; // Response to Client
-    
+
     // Assign function for loginformation and session info
     reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInformation) {
         try {
@@ -53,10 +53,10 @@ app.post('/', function(appRequest, appResponse, next) {
             // Get DB Connection 
             reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
                 mTranConn = pSession; //  assign connection     
-    
-    
+
+
                 try {
-    
+
                     var TakeData = `select TXN_VALUE_DATE,
                     uetr,
                     DR_IBAN,
@@ -155,7 +155,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     left join core_member_banks cmb on cmb.bic_code = a.cr_sort_code
                         and cmb.NEED_SYNC = 'Y'
                     inner join npss_trn_process_log pl on a.uetr = pl.uetr and pl.process_name = 'Receive Pacs004')VW  where process_type = 'OP'and
-                TRANSACTION_DATE=current_date - INTERVAL '${params.onOrBefore} days'    
+                    TRANSACTION_DATE::Date = current_date - INTERVAL '${params.onOrBefore} days'    
                 order by
                     npsst_id,npsstpl_id`
                     ExecuteQuery1(TakeData, async function (insarr) {
@@ -163,21 +163,21 @@ app.post('/', function(appRequest, appResponse, next) {
                             let Header = await findHeader(insarr)
                             let csvContent = await getCSVStream(insarr, Header)
                             await FTPconnection(csvContent, function (result) {
-    
+
                                 if (result == 'SUCCESS') {
                                     objresponse.status = 'SUCCESS'
                                     sendResponse(null, objresponse)
                                 } else {
-    
+
                                     objresponse.status = 'FAILURE'
                                     sendResponse(null, objresponse)
                                 }
                             })
-    
-    
-    
+
+
+
                         } else {
-    
+
                             reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND infor Inward Tran...............", objSessionLogInfo);
                             console.log("........................ NO Data FOUND for Inward Tran...............")
                             objresponse.status = 'FAILURE'
@@ -185,10 +185,11 @@ app.post('/', function(appRequest, appResponse, next) {
                         }
                     })
                     async function findHeader(arr) {
-                        return new Promise((resolve, reject) => {
+                        return new Promise(async (resolve, reject) => {
                             let b = Object.keys(arr[0])
+                            let capitalKey = await convertCapital(b)
                             let hdr = [];
-                            b.forEach((x) => {
+                            capitalKey.forEach((x) => {
                                 let obj = {
                                     'id': x,
                                     'title': x
@@ -201,37 +202,37 @@ app.post('/', function(appRequest, appResponse, next) {
                     async function getCSVStream(arr, header) {
                         return new Promise((resolve, reject) => {
                             try {
-    
-    
+
+
                                 const csvStringifier = createObjectCsvStringifier({
                                     header: header
                                 });
                                 // Create a writable stream to capture CSV content in memory
                                 const writableStream = new Writable();
                                 let csvContent = '';
-    
+
                                 writableStream._write = (chunk, encoding, next) => {
                                     csvContent += chunk.toString();
                                     next();
                                 };
-    
+
                                 // Write header
                                 csvContent += csvStringifier.getHeaderString();
-    
+
                                 // Write records
                                 csvContent += csvStringifier.stringifyRecords(arr);
-    
+
                                 // Output CSV content
                                 resolve(csvContent);
                             } catch (err) {
                                 reqInstanceHelper.PrintInfo(serviceName, "........................Error in csv content preparation..............." + err, objSessionLogInfo);
                                 reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN CSV FILE Creation ', error);
-    
+
                             }
-    
+
                         })
                     }
-    
+
                     async function FTPconnection(csvContent, callbackapi) {
                         try {
                             var ip = params.sftp_ip;
@@ -241,24 +242,24 @@ app.post('/', function(appRequest, appResponse, next) {
                             //  var filename = filepassword[0].sftp_filename.trim();
                             var file_content = csvContent
                             console.log('............................', filepath)
-    
+
                             var connectObj = {
                                 "host": ip,
                                 "port": port,
                                 "user": username,
                                 "passphrase": params.sftp_passphrase
                             }
-    
-    
+
+
                             connectObj.password = params.sftp_password;
-    
+
                             var privateKeyFormation;
                             //without pem file password in Welcome100 ,with pem file password in Welcome@100 for 210
-    
+
                             // privateKeyFormation = await fs.readFileSync(`D:\\SQL-Postgresql\\N16 backend pack (unmodified)\\N16 backend pack\\sftp_with_pass.pem`, { encoding: 'utf8', flag: 'r' }); //UNCMMENT WHENEVER RUNNING THE CODE IN LOCAL 
-    
-                           // privateKeyFormation = await fs.readFileSync(process.env.SFTP_PATH, { encoding: 'utf8', flag: 'r' });
-                          //  connectObj.privateKey = Buffer.from(privateKeyFormation);
+
+                            // privateKeyFormation = await fs.readFileSync(process.env.SFTP_PATH, { encoding: 'utf8', flag: 'r' });
+                            //  connectObj.privateKey = Buffer.from(privateKeyFormation);
                             var filename = appRequest.body.sftp_filename + moment().format('DDMMYYYY_HHMMSS')
                             //tempfilenamearr = filename.split(',')
                             let sftp = new Client();
@@ -267,19 +268,19 @@ app.post('/', function(appRequest, appResponse, next) {
                                     //   sftp.put(Buffer.from(file_content), `${filepath}`).then(res => {
                                     reqInstanceHelper.PrintInfo(serviceName, "........................given file written...............", objSessionLogInfo);
                                     callbackapi('SUCCESS')
-    
+
                                     //* /   nextobjctfunc(); */
                                 }).catch(err => {
                                     console.log(err, 'Error in file upload for the file ' + filename);
-    
+
                                 });
-    
-    
+
+
                             });
                         } catch (error) {
                             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN FILE UPLOAD ', error);
                         }
-    
+
                     }
                     function ExecuteQuery(query, callback) {
                         reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
@@ -288,13 +289,41 @@ app.post('/', function(appRequest, appResponse, next) {
                                     sendResponse(error)
                                 } else {
                                     callback("SUCCESS");
-    
+
                                 }
                             } catch (error) {
                                 sendResponse(error)
                             }
                         });
                     }
+
+                    // first letter capital for header data               
+                    function convertCapital(b) {
+                        return new Promise((resolve, reject) => {
+                            let c = []
+                            b.forEach((x) => c.push((x.replaceAll('_', " "))))
+                            let response = []
+                            for (let key in c) {
+                                if (c[key].includes(" ")) {
+                                    let newarr = c[key].split(" ")
+                                    let res = []
+                                    for (let val in newarr) {
+                                        if (val == newarr.length - 1) {
+                                            res += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1)))
+                                        } else {
+                                            res += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1) + " "))
+                                        }
+                                    }
+                                    response.push(res)
+                                } else {
+                                    response.push(c[key].charAt(0).toUpperCase() + c[key].slice(1))
+                                }
+                            }
+                            resolve(response)
+                        })
+                    }
+
+
                     function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
                         try {
                             reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
@@ -319,14 +348,14 @@ app.post('/', function(appRequest, appResponse, next) {
                             sendResponse(error)
                         }
                     }
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
                     //fucntion to execute select query
                     function ExecuteQuery1(query, callback) {
                         reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
@@ -347,18 +376,18 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
                         });
                     }
-    
-    
-    
+
+
+
                 } catch (error) {
                     reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10003', 'ERROR IN DB CONNECTION FUNCTION', error);
                 }
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
                 //Send Response Function Definition
                 function sendResponse(error, response) {
                     try {
@@ -375,24 +404,24 @@ app.post('/', function(appRequest, appResponse, next) {
                         reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
                     }
                 }
-    
+
             })
         } catch (error) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    });
+
+
+
+
+
+
+
+
+
+
+
+
+});
 
 module.exports = app;

@@ -35,29 +35,29 @@ app.post('/', function(appRequest, appResponse, next) {
   const { createObjectCsvStringifier } = require('csv-writer');
   const { Writable } = require('stream');
   var objresponse = {
-    'status': 'FAILURE',
-    'data': '',
-    'msg': ''
+      'status': 'FAILURE',
+      'data': '',
+      'msg': ''
   }; // Response to Client
-  
+
   // Assign function for loginformation and session info
   reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInformation) {
-    try {
-      objSessionLogInfo = objLogInfo; // Assing log information
-      // Log Viewer Setup
-      objSessionLogInfo.HANDLER_CODE = 'NPSS AMB Inward csv';
-      objSessionLogInfo.ACTION = 'ACTION';
-      objSessionLogInfo.PROCESS = 'NPSS AMB Inward csv';
-      reqInstanceHelper.PrintInfo(serviceName, "........................ api request body..............." + JSON.stringify(params), objSessionLogInfo);
-      //reqInstanceHelper.PrintInfo(serviceName, "........................ api request headers..............."+JSON.stringify(headers), objSessionLogInfo);
-      // Get DB Connection 
-      reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
-        mTranConn = pSession; //  assign connection     
-  
-  
-        try {
-  
-          var TakeData = `select 
+      try {
+          objSessionLogInfo = objLogInfo; // Assing log information
+          // Log Viewer Setup
+          objSessionLogInfo.HANDLER_CODE = 'NPSS AMB Inward csv';
+          objSessionLogInfo.ACTION = 'ACTION';
+          objSessionLogInfo.PROCESS = 'NPSS AMB Inward csv';
+          reqInstanceHelper.PrintInfo(serviceName, "........................ api request body..............." + JSON.stringify(params), objSessionLogInfo);
+          //reqInstanceHelper.PrintInfo(serviceName, "........................ api request headers..............."+JSON.stringify(headers), objSessionLogInfo);
+          // Get DB Connection 
+          reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
+              mTranConn = pSession; //  assign connection     
+
+
+              try {
+
+                  var TakeData = `select 
           distinct UETR,	
           process_status ,
           status ,
@@ -215,219 +215,247 @@ app.post('/', function(appRequest, appResponse, next) {
               ) A15
           ) a15 ON a15.uetr = nt.uetr
           inner join  CORE_SYSTEM_EXTN CSE on CSE.department_code  = nt.DEPARTMENT_CODE) V where process_type = 'IP'  and  Date(created_date)=CURRENT_DATE- INTERVAL '${params.onOrBefore} days' `
-          ExecuteQuery1(TakeData, async function (insarr) {
-            if (insarr.length > 0) {
-              let Header = await findHeader(insarr)
-              let csvContent = await getCSVStream(insarr, Header)
-              await FTPconnection(csvContent, function (result) {
-  
-                if (result == 'SUCCESS') {
-                  objresponse.status = 'SUCCESS'
-                  sendResponse(null, objresponse)
-                } else {
-                  objresponse.status = 'FAILURE'
-                  sendResponse(null, objresponse)
-                }
-              })
-            } else {
-              reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND infor Inward Tran...............", objSessionLogInfo);
-              console.log("........................ NO Data FOUND for Inward Tran...............")
-              objresponse.status = 'FAILURE'
-              sendResponse(null, objresponse)
-            }
+                  ExecuteQuery1(TakeData, async function (insarr) {
+                      if (insarr.length > 0) {
+                          let Header = await findHeader(insarr)
+                          let csvContent = await getCSVStream(insarr, Header)
+                          await FTPconnection(csvContent, function (result) {
+
+                              if (result == 'SUCCESS') {
+                                  objresponse.status = 'SUCCESS'
+                                  sendResponse(null, objresponse)
+                              } else {
+                                  objresponse.status = 'FAILURE'
+                                  sendResponse(null, objresponse)
+                              }
+                          })
+                      } else {
+                          reqInstanceHelper.PrintInfo(serviceName, "........................ NO Data FOUND infor Inward Tran...............", objSessionLogInfo);
+                          console.log("........................ NO Data FOUND for Inward Tran...............")
+                          objresponse.status = 'FAILURE'
+                          sendResponse(null, objresponse)
+                      }
+                  })
+                  async function findHeader(arr) {
+                      return new Promise(async (resolve, reject) => {
+                          let b = Object.keys(arr[0])
+                          let capitalKey = await convertCapital(b)
+                          let hdr = [];
+                          capitalKey.forEach((x) => {
+                              let obj = {
+                                  'id': x,
+                                  'title': x
+                              }
+                              hdr.push(obj)
+                          })
+                          resolve(hdr)
+                      })
+                  }
+                  async function getCSVStream(arr, header) {
+                      return new Promise((resolve, reject) => {
+                          try {
+
+
+                              const csvStringifier = createObjectCsvStringifier({
+                                  header: header
+                              });
+                              // Create a writable stream to capture CSV content in memory
+                              const writableStream = new Writable();
+                              let csvContent = '';
+
+                              writableStream._write = (chunk, encoding, next) => {
+                                  csvContent += chunk.toString();
+                                  next();
+                              };
+
+                              // Write header
+                              csvContent += csvStringifier.getHeaderString();
+
+                              // Write records
+                              csvContent += csvStringifier.stringifyRecords(arr);
+
+                              // Output CSV content
+                              resolve(csvContent);
+                          } catch (err) {
+                              reqInstanceHelper.PrintInfo(serviceName, "........................Error in csv content preparation..............." + err, objSessionLogInfo);
+                              reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN CSV FILE Creation ', error);
+
+                          }
+
+                      })
+                  }
+
+                  async function FTPconnection(csvContent, callbackapi) {
+                      try {
+                          var ip = params.sftp_ip;
+                          var port = params.sftp_port;
+                          var username = params.sftp_username;
+                          var filepath = params.sftp_path.trim() + params.sftp_filename + moment().format('DDMMYYYY_HHMMSS') + '.csv'
+                          //  var filename = filepassword[0].sftp_filename.trim();
+                          var file_content = csvContent
+                          console.log('............................', filepath)
+
+                          var connectObj = {
+                              "host": ip,
+                              "port": port,
+                              "user": username,
+                              "passphrase": params.sftp_passphrase
+                          }
+
+
+                          connectObj.password = params.sftp_password;
+
+                          var privateKeyFormation;
+                          //without pem file password in Welcome100 ,with pem file password in Welcome@100 for 210
+
+                          // privateKeyFormation = await fs.readFileSync(`D:\\N16 backend pack\\torus-services\\api\\transaction\\routes\\sftp_with_pass.pem`, { encoding: 'utf8', flag: 'r' }); //UNCMMENT WHENEVER RUNNING THE CODE IN LOCAL 
+
+                          //privateKeyFormation = await fs.readFileSync(process.env.SFTP_PATH, { encoding: 'utf8', flag: 'r' });
+                          // connectObj.privateKey = Buffer.from(privateKeyFormation);
+                          var filename = appRequest.body.sftp_filename + moment().format('DDMMYYYY_HHMMSS')
+                          //tempfilenamearr = filename.split(',')
+                          let sftp = new Client();
+                          sftp.connect(connectObj).then(function (serverMessage) {
+                              sftp.put(Buffer.from(file_content), `${filepath}`).then(res => {
+                                  //   sftp.put(Buffer.from(file_content), `${filepath}`).then(res => {
+                                  reqInstanceHelper.PrintInfo(serviceName, "........................given file written...............", objSessionLogInfo);
+                                  callbackapi('SUCCESS')
+
+                                  //* /   nextobjctfunc(); */
+                              }).catch(err => {
+                                  console.log(err, 'Error in file upload for the file ' + filename);
+
+                              });
+
+
+                          });
+                      } catch (error) {
+                          reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN FILE UPLOAD ', error);
+                      }
+
+                  }
+
+
+                  function ExecuteQuery(query, callback) {
+                      reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
+                          try {
+                              if (error) {
+                                  sendResponse(error)
+                              } else {
+                                  callback("SUCCESS");
+
+                              }
+                          } catch (error) {
+                              sendResponse(error)
+                          }
+                      });
+                  }
+
+                  // first letter capital for header data               
+                  function convertCapital(b) {
+                      return new Promise((resolve, reject) => {
+                          let c = []
+                          b.forEach((x) => c.push((x.replaceAll('_', " "))))
+                          let response = []
+                          for (let key in c) {
+                              if (c[key].includes(" ")) {
+                                  let newarr = c[key].split(" ")
+                                  let res = []
+                                  for (let val in newarr) {
+                                      if (val == newarr.length - 1) {
+                                          res += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1)))
+                                      } else {
+                                          res += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1) + " "))
+                                      }
+                                  }
+                                  response.push(res)
+                              } else {
+                                  response.push(c[key].charAt(0).toUpperCase() + c[key].slice(1))
+                              }
+                          }
+                          resolve(response)
+                      })
+                  }
+
+
+
+                  function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
+                      try {
+                          reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
+                              try {
+                                  if (error) {
+                                      reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
+                                      sendResponse(error)
+                                  } else {
+                                      if (result.length > 0) {
+                                          callbackInsert(result);
+                                      } else {
+                                          callbackInsert([]);
+                                      }
+                                  }
+                              } catch (error) {
+                                  reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
+                                  sendResponse(error)
+                              }
+                          });
+                      } catch (error) {
+                          reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
+                          sendResponse(error)
+                      }
+                  }
+
+
+                  //fucntion to execute select query
+                  function ExecuteQuery1(query, callback) {
+                      reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
+                          try {
+                              if (error) {
+                                  //reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, "IDE_SERVICE_10005", "ERROR IN EXECUTE QUERY EXECUTION FUNCTION", error);
+                                  sendResponse(error);
+                              } else {
+                                  if (result.rows.length > 0) {
+                                      callback(result.rows);
+                                  } else {
+                                      callback([]);
+                                  }
+                              }
+                          } catch (error) {
+                              //reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, "IDE_SERVICE_10004", "ERROR IN EXECUTE QUERY FUNCTION", error);
+                              sendResponse(error);
+                          }
+                      });
+                  }
+
+              } catch (error) {
+                  reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10003', 'ERROR IN DB CONNECTION FUNCTION', error);
+              }
+
+
+              //Send Response Function Definition
+              function sendResponse(error, response) {
+                  try {
+                      if (error) {
+                          reqTranDBInstance.Commit(mTranConn, false, function callbackres(res) {
+                              reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
+                          });
+                      } else {
+                          reqTranDBInstance.Commit(mTranConn, true, function callbackres(res) {
+                              reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
+                          });
+                      }
+                  } catch (error) {
+                      reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
+                  }
+              }
+
           })
-          async function findHeader(arr) {
-            return new Promise((resolve, reject) => {
-              let b = Object.keys(arr[0])
-              let hdr = [];
-              b.forEach((x) => {
-                let obj = {
-                  'id': x,
-                  'title': x
-                }
-                hdr.push(obj)
-              })
-              resolve(hdr)
-            })
-          }
-          async function getCSVStream(arr, header) {
-            return new Promise((resolve, reject) => {
-              try {
-  
-  
-                const csvStringifier = createObjectCsvStringifier({
-                  header: header
-                });
-                // Create a writable stream to capture CSV content in memory
-                const writableStream = new Writable();
-                let csvContent = '';
-  
-                writableStream._write = (chunk, encoding, next) => {
-                  csvContent += chunk.toString();
-                  next();
-                };
-  
-                // Write header
-                csvContent += csvStringifier.getHeaderString();
-  
-                // Write records
-                csvContent += csvStringifier.stringifyRecords(arr);
-  
-                // Output CSV content
-                resolve(csvContent);
-              } catch (err) {
-                reqInstanceHelper.PrintInfo(serviceName, "........................Error in csv content preparation..............." + err, objSessionLogInfo);
-                reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN CSV FILE Creation ', error);
-  
-              }
-  
-            })
-          }
-  
-          async function FTPconnection(csvContent, callbackapi) {
-            try {
-              var ip = params.sftp_ip;
-              var port = params.sftp_port;
-              var username = params.sftp_username;
-              var filepath = params.sftp_path.trim() + params.sftp_filename + moment().format('DDMMYYYY_HHMMSS') + '.csv'
-              //  var filename = filepassword[0].sftp_filename.trim();
-              var file_content = csvContent
-              console.log('............................', filepath)
-  
-              var connectObj = {
-                "host": ip,
-                "port": port,
-                "user": username,
-                "passphrase": params.sftp_passphrase
-              }
-  
-  
-              connectObj.password = params.sftp_password;
-  
-              var privateKeyFormation;
-              //without pem file password in Welcome100 ,with pem file password in Welcome@100 for 210
-  
-             // privateKeyFormation = await fs.readFileSync(`D:\\N16 backend pack\\torus-services\\api\\transaction\\routes\\sftp_with_pass.pem`, { encoding: 'utf8', flag: 'r' }); //UNCMMENT WHENEVER RUNNING THE CODE IN LOCAL 
-  
-               //privateKeyFormation = await fs.readFileSync(process.env.SFTP_PATH, { encoding: 'utf8', flag: 'r' });
-             // connectObj.privateKey = Buffer.from(privateKeyFormation);
-              var filename = appRequest.body.sftp_filename + moment().format('DDMMYYYY_HHMMSS')
-              //tempfilenamearr = filename.split(',')
-              let sftp = new Client();
-              sftp.connect(connectObj).then(function (serverMessage) {
-                sftp.put(Buffer.from(file_content), `${filepath}`).then(res => {
-                  //   sftp.put(Buffer.from(file_content), `${filepath}`).then(res => {
-                  reqInstanceHelper.PrintInfo(serviceName, "........................given file written...............", objSessionLogInfo);
-                  callbackapi('SUCCESS')
-  
-                  //* /   nextobjctfunc(); */
-                }).catch(err => {
-                  console.log(err, 'Error in file upload for the file ' + filename);
-  
-                });
-  
-  
-              });
-            } catch (error) {
-              reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN FILE UPLOAD ', error);
-            }
-  
-          }
-
-
-          function ExecuteQuery(query, callback) {
-            reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
-              try {
-                if (error) {
-                  sendResponse(error)
-                } else {
-                  callback("SUCCESS");
-  
-                }
-              } catch (error) {
-                sendResponse(error)
-              }
-            });
-          }
-
-
-          function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
-            try {
-              reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
-                try {
-                  if (error) {
-                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
-                    sendResponse(error)
-                  } else {
-                    if (result.length > 0) {
-                      callbackInsert(result);
-                    } else {
-                      callbackInsert([]);
-                    }
-                  }
-                } catch (error) {
-                  reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
-                  sendResponse(error)
-                }
-              });
-            } catch (error) {
-              reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
-              sendResponse(error)
-            }
-          }
-  
-  
-          //fucntion to execute select query
-          function ExecuteQuery1(query, callback) {
-            reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
-              try {
-                if (error) {
-                  //reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, "IDE_SERVICE_10005", "ERROR IN EXECUTE QUERY EXECUTION FUNCTION", error);
-                  sendResponse(error);
-                } else {
-                  if (result.rows.length > 0) {
-                    callback(result.rows);
-                  } else {
-                    callback([]);
-                  }
-                }
-              } catch (error) {
-                //reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, "IDE_SERVICE_10004", "ERROR IN EXECUTE QUERY FUNCTION", error);
-                sendResponse(error);
-              }
-            });
-          }
-  
-        } catch (error) {
-          reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10003', 'ERROR IN DB CONNECTION FUNCTION', error);
-        }
-  
-  
-        //Send Response Function Definition
-        function sendResponse(error, response) {
-          try {
-            if (error) {
-              reqTranDBInstance.Commit(mTranConn, false, function callbackres(res) {
-                reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-              });
-            } else {
-              reqTranDBInstance.Commit(mTranConn, true, function callbackres(res) {
-                reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-              });
-            }
-          } catch (error) {
-            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
-          }
-        }
-  
-      })
-    } catch (error) {
-      reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
-    }
+      } catch (error) {
+          reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
+      }
   })
-  
-  
-  
-  });
+
+
+
+});
 
 module.exports = app;

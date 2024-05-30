@@ -60,9 +60,9 @@ app.post('/', function (appRequest, appResponse, next) {
                     var TakeData = `SELECT
                     DISTINCT UETR,
                     process_status,
-                    status,
-                    created_date,
-                    value_date,
+                    Transaction_status,
+                    Transaction_Date_Range,
+                    transaction_date,
                     DEPARTMENT_NAME,
                     payment_endtoend_id,
                     Debtor_Account,
@@ -74,35 +74,35 @@ app.post('/', function (appRequest, appResponse, next) {
                     BENEFICIARY_BANK,
                     API_Success_Failure,
                     TRANSACTION_AMOUNT_RANGE,
-                    Purpose_codes,
+                    Purpose_code,
                     SENDER_REFERENCE_NUMBER,
-                    FN_CARD_DECRYPT_AND_MASK_RPT(CR_ACCT_IDENTIFICATION) AS CR_ACCT_IDENTIFICATION,
-                    FN_CARD_DECRYPT_AND_MASK_RPT(DBTR_ACCT_NO) AS DBTR_ACCT_NO,
-                    CB_ERRORS,
-                    Core_Bank_Errors,
+                    FN_CARD_DECRYPT_AND_MASK_RPT(CR_ACCT_IDENTIFICATION) AS Creditor_card_number,
+                    FN_CARD_DECRYPT_AND_MASK_RPT(DBTR_ACCT_NO) AS Debtor_card_number,
+                    CB_ERROR,
+                    Core_Bank_Error,
                     maker,
                     checker,
                     process_group,
                     Transaction_id,
-                    CATEGORY_PURPOSE,
+                    CATEGORY_PURPOSE_CODE,
                     OUTWARD_FILE_NAME,
-                    T24_FT_REFERENCE_NUMBER,
+                    FT_CI_Reference_Number,
                         End_to_End_ID,
-                    process_type,clrsysref,
+                    process_type,clrsysrefno,
                     Batch_Payment_Flag
                 FROM (
                     SELECT
                         NTPL.UETR,
                         NT.process_status,
-                        NT.status,
-                        NT.created_date,
-                        NT.value_date,
+                        NT.status as Transaction_status,
+                        NT.created_date as Transaction_Date_Range,
+                        NT.value_date as transaction_date,
                         nt.department_code AS DEPARTMENT_NAME,
                         case when NT.process_group='IBAN' then 'WEBI'
                              when NT.process_group='P2P' then 'MP2P'
                              when NT.process_group='P2B' then 'MP2B'
                              when NT.process_group='MANUAL' then 'WEBI'
-                             end AS Purpose_codes,
+                             end AS Purpose_code,
                         NT.payment_endtoend_id,
                         NT.dbtr_iban AS Debtor_Account,
                         NT.dbtr_acct_name AS Debtor_Name,
@@ -118,19 +118,19 @@ app.post('/', function (appRequest, appResponse, next) {
                         NT.cr_acct_identification,
                         NT.dbtr_acct_no,
                         NT.process_group,
-                        NT.CATEGORY_PURPOSE,
+                        NT.CATEGORY_PURPOSE as CATEGORY_PURPOSE_CODE ,
                         NT.OUTWARD_FILE_NAME,
                         NT.intrbk_sttlm_amnt AS TRANSACTION_AMOUNT_RANGE,
-                        a13.CBUAERETURNCODE AS CB_ERRORS,
-                        a11.T24RETURNCODE AS Core_Bank_Errors,
-                        a15.PROCESS_REF_NO as clrsysref, 
+                        a13.CBUAERETURNCODE AS CB_ERROR,
+                        a11.T24RETURNCODE AS Core_Bank_Error,
+                        a15.PROCESS_REF_NO as clrsysrefno, 
                         nt.PAYMENT_ENDTOEND_ID AS End_to_End_ID,
                         cmb.bank_name AS BENEFICIARY_BANK,
                         cse.s_description,
                         ntpl.process_name,
                         CASE
                             when NT.process_group ='BCT' THEN 'Y'
-                      else 'N'
+                            else 'N'
                         END AS Batch_Payment_Flag,
                         CASE
                             WHEN NT.process_group IN ('P2B', 'P2P') THEN nt.TRAN_REF_ID
@@ -139,13 +139,13 @@ app.post('/', function (appRequest, appResponse, next) {
                         CASE
                             WHEN NT.process_group IN ('IBAN','BCT') THEN nt.TRAN_REF_ID
                             WHEN NT.process_group IN ('P2B', 'P2P') THEN nt.PAYMENT_ENDTOEND_ID
-                        END AS T24_FT_REFERENCE_NUMBER,
+                        END AS FT_CI_Reference_Number,
                         CASE
                             WHEN nt.process_status NOT IN ('RCTRejected') THEN 'Success'
                             WHEN nt.process_status = 'RCTRejected' THEN 'Failure'
                         END AS API_Success_Failure
                     FROM
-                       npss_transactions nt
+                        npss_transactions nt
                     INNER JOIN NPSS_TRN_PROCESS_LOG NTPL ON NT.UETR = NTPL.uetr
                     LEFT JOIN (
                         SELECT
@@ -175,7 +175,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                             CBUAE_RETURN_CODE,
                                             ROW_NUMBER() OVER (PARTITION BY uetr ORDER BY npsstpl_id DESC) AS row_num
                                         FROM
-                                             npss_trn_process_log a01
+                                           npss_trn_process_log a01
                                     ) F
                                     WHERE ROW_NUM = 1
                                 ) A3
@@ -209,7 +209,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                             T24_RETURN_CODE,
                                             ROW_NUMBER() OVER (PARTITION BY uetr ORDER BY npsstpl_id DESC) AS row_num
                                         FROM
-                                            npss_trn_process_log a1
+                                             npss_trn_process_log a1
                                     ) F
                                     WHERE ROW_NUM = 1
                                 ) A2
@@ -252,7 +252,7 @@ app.post('/', function (appRequest, appResponse, next) {
                     ) a15 ON a15.uetr = nt.uetr
                     INNER JOIN CORE_SYSTEM_EXTN CSE ON CSE.department_code = nt.DEPARTMENT_CODE
                 ) V1
-                WHERE process_type = 'OP' and Date(created_date)=current_date - INTERVAL'${params.onOrBefore} days'`
+                WHERE process_type = 'OP' and Date(Transaction_Date_Range)=current_date - INTERVAL'${params.onOrBefore} days'`
                     ExecuteQuery1(TakeData, async function (insarr) {
                         if (insarr.length > 0) {
                             let Header = await findHeader(insarr)
@@ -287,8 +287,8 @@ app.post('/', function (appRequest, appResponse, next) {
                             let hdr = [];
                             capitalKey.forEach((x) => {
                                 let obj = {
-                                    'id': x.actval,
-                                    'title': x.capval
+                                    'id': x.replaceAll(' ', "_").toLowerCase(),
+                                    'title': x
                                 }
                                 hdr.push(obj)
                             })
@@ -380,36 +380,16 @@ app.post('/', function (appRequest, appResponse, next) {
                     }
 
 
-                     // first letter capital for header data               
-                     function convertCapital(b) {
+                    // first letter capital for header data               
+                    function convertCapital(b) {
                         return new Promise((resolve, reject) => {
 
                             let c = []
                             b.forEach((x) => c.push((x.replaceAll('_', " "))))
                             let response = []
-                            let objres = {}
-
-                            for (let key in c) {
-
-                                if (c[key].includes(" ")) {
-                                    let newarr = c[key].split(" ")
-                                    let res = {}
-                                    res.capval = ""
-                                    for (let val in newarr) {
-                                        if (val == newarr.length - 1) {
-                                            res.capval += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1)))
-                                        } else {
-                                            res.capval += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1) + " "))
-                                        }
-                                    }
-                                    res.actval = c[key].replaceAll(" ", "_")
-                                    response.push(res)
-                                } else {
-                                    objres.capval = c[key].charAt(0).toUpperCase() + c[key].slice(1)
-                                    objres.actval = c[key]
-                                    response.push(objres)
-                                }
-                            }
+                            c.forEach((str) => response.push((str.replace(/\b[a-z]/g, char => char.toUpperCase())))
+                            )
+                            console.log(response)
                             resolve(response)
                         })
                     }

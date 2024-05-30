@@ -57,105 +57,124 @@ app.post('/', function(appRequest, appResponse, next) {
 
                 try {
 
-                    var TakeData = `select TXN_VALUE_DATE,
-                    uetr,
-                    DR_IBAN,
-                    ORIGINAL_AMOUNT,
-                    Dr_Name,
-                    process_group,
-                    CHANNEL,
-                    CR_BIC,
-                    CR_IBAN,
-                    E2E_REF_ID,
+                    var TakeData = `select
                     npsst_id,
                     npsstpl_id,
-                    datemi,
+                    Processed_date,
+                    process_time,
                     accp_date_time,
+                    channel_id,
                     intrbk_sttlm_cur,
+                    reversal_amount,
                     exhf_id,
+                    value_date,
                     cdtr_acct_no,
-                    DR_ACCOUNT_IDENTIFICATION,
+                    dbtr_acct_no,
                     dr_sort_code,
+                    cr_sort_code,
+                    uetr,
                     product_code,
                     process_type,
                     cr_acct_identification,
+                    QUEUE,
+                    TRAN_STATUS,
                     tenant_id,
-                    tran_ref_id,
                     processing_system,
+                    payment_type,
                     process_group,
-                    bank_name,
-                    department_code,
+                    T24_RETURN_CODE,
+                    T24_RETURN_DESC,
+                    CBUAE_RETURN_CODE,
+                    CBUAE_RETURN_DESC,
                     REVERSAL_CODE,
                     REVERSAL_DESC,
-                    process_name,
-                    processname,
+                    MESSAGE_TYPE,
                     DEPARTMENT_NAME,
-                    TRANSACTION_DATE,
+                    TRAN_AMOUNT,
+                    reversalamount,
+                    SENDER_REFERENCE_NUMBER,
+                    DEBTOR_ACCOUNT,
+                    DEBTOR_NAME,
+                    CREDITOR_ACCOUNT,
+                    CREDITOR_NAME,
                     BENEFICIARY_BANK,
                     PURPOSE_CODE,
                     IPP_REFERENCE_NUMBER,
                     T24_FT_REF_NUMBER,
-                    ORIGINATOR_REF_NUMBER,
-                    QUEUE,
-                    TRAN_STATUS,
-                    reversal_amount,
-                    TRANSACTION_DATE
+                    created_date,
+                    SOURCE_CHANNEL,
+                    ORIGINATOR_REF_NUMBER
                 from
                     (
                     select
                         a.npsst_id,
-                        a.value_date as TXN_VALUE_DATE,
-                        a.created_date as TRANSACTION_DATE,
+                        a.value_date ,
+                        a.created_date ,		
                         a.cdtr_acct_no,
-                        a.cdtr_acct_name , 
-                        a.intrbk_sttlm_amnt as ORIGINAL_AMOUNT,
+                        a.cdtr_acct_name as CREDITOR_NAME,		
+                        A.INTRBK_STTLM_AMNT as TRAN_AMOUNT,
+                        b.INTRBK_STTLM_AMNT as reversal_amount,
+                        a.reversal_amount as reversalamount,
                         a.intrbk_sttlm_cur,
-                        Fn_card_decrypt_and_mask_rpt(a.dbtr_acct_no) as DR_ACCOUNT_IDENTIFICATION,
+                        Fn_card_decrypt_and_mask_rpt(a.dbtr_acct_no) as dbtr_acct_no,
                         Fn_card_decrypt_and_mask_rpt(a.cr_acct_identification) as cr_acct_identification,
-                        a.dbtr_acct_name as Dr_Name,
+                        a.dbtr_acct_name as DEBTOR_NAME,		
                         a.dr_sort_code,
-                        a.cr_sort_code as CR_BIC,
-                        a.department_code as DEPARTMENT_NAME,
-                        a.department_code,
+                        a.cr_sort_code,
+                        A.DEPARTMENT_CODE as DEPARTMENT_NAME,
                         a.uetr,
                         a.ext_purpose_code as PURPOSE_CODE,
                         a.product_code,
-                        a.channel_id AS CHANNEL ,
+                        a.channel_id,
+                        a.channel_id as SOURCE_CHANNEL ,
                         a.process_type,
-                        a.dbtr_iban as DR_IBAN,
-                        a.cdtr_iban as CR_IBAN,
+                        a.dbtr_iban as DEBTOR_ACCOUNT,		
+                        a.cdtr_iban as CREDITOR_ACCOUNT,		
                         a.clrsysref as IPP_REFERENCE_NUMBER,
-                        a.payment_endtoend_id as E2E_REF_ID,
+                        a.payment_endtoend_id as SENDER_REFERENCE_NUMBER,
                         a.accp_date_time,
                         a.exhf_id,
                         a.tenant_id,
                         a.processing_system,
+                        a.TRAN_REF_ID as ORIGINATOR_REF_NUMBER,
+                        case
+                            when a.exhf_id is null then Upper('RCT')
+                            else Upper('BCT')
+                        end as payment_type,
                         a.process_group,
                         ntpl.npsstpl_id,
-                        ntpl.process_name,
-                        pl.process_name as processname,
-                        To_char(ntpl.created_date, 'YYYY-MM-DD HH:MI:SS:MS AM') as datemi,
-                        a.process_status as QUEUE,
-                        a.status as TRAN_STATUS,
-                        ntpl.process_ref_no as T24_FT_REF_NUMBER,
-                        a.tran_ref_id,
-                        a.tran_ref_id as ORIGINATOR_REF_NUMBER,
-                        a.reversal_amount,
-                        cmb.bank_name,
+                        NTPL.process_name as MESSAGE_TYPE,
+                        NTPL.PROCESS_REF_NO as T24_FT_REF_NUMBER,
+                        To_char(a.created_date, 'YYYY-MM-DD HH:MI:SS:MS AM') as Processed_date,
+                        ntpl.process_status as QUEUE,
+                        ntpl.status as TRAN_STATUS,
                         cmb.bank_name as BENEFICIARY_BANK,
+                        ntpl.T24_RETURN_CODE,
+                        CONCAT(ntpl.T24_RETURN_CODE, '-', T24RC.RETURN_DESCRIPTION) as T24_RETURN_DESC,
+                        ntpl.CBUAE_RETURN_CODE,
+                        CONCAT(ntpl.CBUAE_RETURN_CODE, '-', CBUAERC.RETURN_DESCRIPTION) as CBUAE_RETURN_DESC,
                         ntpl.REVERSAL_CODE,
-                        CCD.CD_DESCRIPTION as REVERSAL_DESC
+                        CONCAT(ntpl.REVERSAL_CODE, '-', CCD.CD_DESCRIPTION) as REVERSAL_DESC,
+                        ntpl.process_time 
                     from
                         npss_transactions A
-                    inner join npss_trn_process_log ntpl on a.uetr = ntpl.uetr and ntpl.process_name = 'Place Pacs.007' 
+                    inner join npss_transactions b on a.uetr = b.uetr 	
+                    inner join npss_trn_process_log ntpl on a.uetr = ntpl.uetr 
                     left join CORE_NC_CODE_DESCRIPTIONS CCD on
                         CCD.CD_CODE = ntpl.REVERSAL_CODE
                         and CCD.CD_CATEGORY = 'REVERSAL_REASON_IDENTIFIER_CODE'
                         and CCD.NEED_SYNC = 'Y'
-                    left join core_member_banks cmb on cmb.bic_code = a.cr_sort_code
+                    left join CORE_NC_RETURN_CODES T24RC on
+                        T24RC.RETURN_CODE = ntpl.T24_RETURN_CODE
+                        and T24RC.PROCESSING_SYSTEM = 'T24'
+                        and T24RC.NEED_SYNC = 'Y'
+                    left join CORE_NC_RETURN_CODES CBUAERC on
+                        CBUAERC.RETURN_CODE = ntpl.CBUAE_RETURN_CODE
+                        and CBUAERC.PROCESSING_SYSTEM = 'CBUAE'
+                        and CBUAERC.NEED_SYNC = 'Y'
+                    left join core_member_banks cmb on cmb.bic_code = a.cr_sort_code 
                         and cmb.NEED_SYNC = 'Y'
-                    inner join npss_trn_process_log pl on a.uetr = pl.uetr and pl.process_name = 'Receive Pacs004')VW  where process_type = 'OP'and
-                    TRANSACTION_DATE::Date = current_date - INTERVAL '${params.onOrBefore} days'    
+                        and ntpl.process_name = 'Place pacs.007' )VW where process_type = 'OP' and Date(created_date)=CURRENT_DATE- INTERVAL '${params.onOrBefore} days'
                 order by
                     npsst_id,npsstpl_id`
                     ExecuteQuery1(TakeData, async function (insarr) {
@@ -191,8 +210,8 @@ app.post('/', function(appRequest, appResponse, next) {
                             let hdr = [];
                             capitalKey.forEach((x) => {
                                 let obj = {
-                                    'id': x.actval,
-                                    'title': x.capval
+                                    'id': x.replaceAll(' ', "_").toLowerCase(),
+                                    'title': x
                                 }
                                 hdr.push(obj)
                             })
@@ -297,36 +316,17 @@ app.post('/', function(appRequest, appResponse, next) {
                         });
                     }
 
-                    // first letter capital for header data               
-                    function convertCapital(b) {
+                  
+                     // first letter capital for header data               
+                     function convertCapital(b) {
                         return new Promise((resolve, reject) => {
 
                             let c = []
                             b.forEach((x) => c.push((x.replaceAll('_', " "))))
                             let response = []
-                            let objres = {}
-
-                            for (let key in c) {
-
-                                if (c[key].includes(" ")) {
-                                    let newarr = c[key].split(" ")
-                                    let res = {}
-                                    res.capval = ""
-                                    for (let val in newarr) {
-                                        if (val == newarr.length - 1) {
-                                            res.capval += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1)))
-                                        } else {
-                                            res.capval += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1) + " "))
-                                        }
-                                    }
-                                    res.actval = c[key].replaceAll(" ", "_")
-                                    response.push(res)
-                                } else {
-                                    objres.capval = c[key].charAt(0).toUpperCase() + c[key].slice(1)
-                                    objres.actval = c[key]
-                                    response.push(objres)
-                                }
-                            }
+                           c.forEach( (str) =>response.push((str.replace(/\b[a-z]/g, char => char.toUpperCase())))
+                           )
+                           console.log(response)
                             resolve(response)
                         })
                     }

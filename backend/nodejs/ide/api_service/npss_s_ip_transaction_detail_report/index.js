@@ -58,163 +58,163 @@ app.post('/', function(appRequest, appResponse, next) {
                 try {
   
                     var TakeData = `select 
-            distinct UETR,	
-            process_status ,
-            status ,
-            created_date ,
-            value_date ,
-            DEPARTMENT_NAME ,
-            TRANSACTION_AMOUNT_RANGE ,
-            Purpose_codes,
-            E2E_REFERENCE_NUMBER ,
-            Debtor_Account ,
-            FN_CARD_DECRYPT_AND_MASK_RPT(CR_ACCT_IDENTIFICATION) AS CR_ACCT_IDENTIFICATION,  
-            FN_CARD_DECRYPT_AND_MASK_RPT(DBTR_ACCT_NO) AS DBTR_ACCT_NO,
-            Debtor_Name ,
-            Creditor_Account ,
-            clrsysref,
-            hdr_msg_id,
-            category_purpose_prty,
-            fx_resv_text1,
-            Creditor_Name ,
-            dr_sort_code ,
-            SOURCE_CHANNEL,
-            SENDER_BANK,
-            CB_ERRORS,
-            Core_Bank_Errors,
-            tran_ref_id,
-            SENDER_REFERENCE_NUMBER,
-            maker,
-            PROCESS_GROUP,
-            INWARD_FILE_NAME,
-            Batch_Payment_Flag,
-            checker
-            from (select
-            NTPL.UETR as UETR,	
-            NT.process_status ,
-            NT.status ,
-            NT.created_date ,
-            NT.value_date ,
-            NT.hdr_msg_id,
-            NT.category_purpose_prty,
-            NT.fx_resv_text1,
-            nt.department_code as DEPARTMENT_NAME,
-            NT.intrbk_sttlm_amnt as TRANSACTION_AMOUNT_RANGE,
-            NT.ext_purpose_code as Purpose_codes,
-            NT.payment_endtoend_id as E2E_REFERENCE_NUMBER ,
-            NT.dbtr_iban as Debtor_Account,
-            NT.dbtr_acct_name as Debtor_Name,
-            NT.cdtr_iban as Creditor_Account,
-            NT.cdtr_acct_name as Creditor_Name,
-            NT.dr_sort_code ,
-            NT.channel_id as SOURCE_CHANNEL ,
-            NT.tran_ref_id as SENDER_REFERENCE_NUMBER,
-            NT.tran_ref_id,
-            NT.channel_refno,
-            a15.PROCESS_REF_NO as clrsysref,
-            NT.process_type ,
-            NT.tenant_id ,
-            NT.PROCESS_GROUP,
-            NT.maker,
-            NT.checker,
-            NT.cr_acct_identification,
-            NT.dbtr_acct_no,
-            NT.INWARD_FILE_NAME,
-            NTPL.process_name ,
-            plcduae.CBUAERETURNCODE as CB_ERRORS,
-            plc.T24RETURNCODE as Core_Bank_Errors,
-            cmb.bank_name as SENDER_BANK,
-            cse.s_description,
-            CASE
-                    when NT.process_group ='BCT' THEN 'Y'
-                    else 'N'
-                END AS Batch_Payment_Flag,
-             case 
-                  when 
-                  ntpl.process_name = 'Inward Credit Posting' and ntpl.status in('IP_BCT_POSTING_SUCCESS','IP_RCT_POSTING_SUCCESS')  and ntpl.process_type = 'IP' then ntpl.PROCESS_REF_NO
-                  when 
-                  ntpl.process_name = 'Credit Card Posting' and ntpl.status in('IP_BCT_CC_POSTING_SUCCESS', 'IP_RCT_CC_POSTING_SUCCESS')  and ntpl.process_type = 'IP' then ntpl.PROCESS_REF_NO
-                  when 
-                  ntpl.process_name = 'Prepaid Card Posting' and ntpl.status in('IP_BCT_PC_POSTING_SUCCESS', 'IP_RCT_PC_POSTING_SUCCESS')  and ntpl.process_type = 'IP' then ntpl.PROCESS_REF_NO
-                  else 'Others'
-                  end as T24_FT_REFERENCE_NUMBER
-        from
-             npss_transactions nt
-            inner join NPSS_TRN_PROCESS_LOG NTPL on NT.UETR = NTPL.uetr
-            left join (select
-            plr.npsstpl_id,
-            plr.uetr,
-            plr.CBUAE_RETURN_CODE,
-            plr.CBUAERETURNCODE,
-            plr.row_num
-        from
-            (
-            select
-                a.npsstpl_id,
-                a.uetr,
-                a.CBUAE_RETURN_CODE,
-                CONCAT (a.CBUAE_RETURN_CODE,'-',cnec.error_description) AS CBUAERETURNCODE,
-                row_number() over( partition by a.uetr
-            order by
-                a.npsstpl_id desc) as row_num
-            from
-                npss_trn_process_log a
-                left join core_nc_error_codes cnec on a.CBUAE_RETURN_CODE = cnec.error_code and cnec.processing_system='CBUAE'  where A.CBUAE_RETURN_CODE is not null and A.status in ('IP_RCT_POSTING_FAILURE','IP_RCT_RR_POSTING_FAILURE') and A.process_name in ('Inward Credit Posting','IR Return Reversal Posting') ) plr
-        where
-            plr.row_num = 1) plcduae on plcduae.uetr = nt.uetr
-            left join (select
-            pl.npsstpl_id,
-            pl.uetr,
-            pl.T24_RETURN_CODE,
-            pl.T24RETURNCODE,
-            pl.row_num
-        from
-            (
-            select
-                                    a1.npsstpl_id,
-                                    a1.uetr,
-                                    a1.T24_RETURN_CODE,
-                             CONCAT(A1.T24_RETURN_CODE, '-', cnec.error_description ) AS T24RETURNCODE,
-                                    ROW_NUMBER() OVER (PARTITION BY uetr ORDER BY a1.npsstpl_id DESC) AS row_num
-            from
-                npss_trn_process_log a1
-                        LEFT JOIN core_nc_error_codes cnec ON cnec.error_code = A1.T24_RETURN_CODE
-                        WHERE A1.T24_RETURN_CODE IS NOT null and A1.status in ('IP_RCT_POSTING_FAILURE','IP_RCT_RR_POSTING_FAILURE') and A1.process_name in ('Inward Credit Posting','IR Return Reversal Posting')) pl
-         where
-            pl.row_num = 1) plc on plc.uetr = nt.uetr
-            left join core_member_banks cmb on cmb.bic_code = nt.dr_sort_code and cmb.NEED_SYNC = 'Y'
-            LEFT JOIN (
-                SELECT
-                    A15.npsstpl_id,
-                    A15.uetr,
-                    A15.PROCESS_REF_NO
-                FROM (
-                    SELECT
-                        A5.npsstpl_id,
-                        A5.uetr,
-                        A5.PROCESS_REF_NO
-                    FROM (
+                    distinct UETR,	
+                    process_status ,
+                    transaction_status ,
+                    transaction_date_range ,
+                    transaction_date ,
+                    DEPARTMENT_NAME ,
+                    TRANSACTION_AMOUNT_RANGE ,
+                    Purpose_code,
+                    E2E_REFERENCE_ID ,
+                    Debtor_Account ,
+                    FN_CARD_DECRYPT_AND_MASK_RPT(CR_ACCT_IDENTIFICATION) AS Creditor_Card_Number,  
+                    FN_CARD_DECRYPT_AND_MASK_RPT(DBTR_ACCT_NO) AS Debtor_Card_Number,
+                    Debtor_Name ,
+                    Creditor_Account ,
+                    clrsysrefno,
+                    Msg_Id,
+                    category_purpose_code,
+                    FT_CI_Reference_Number,
+                    Creditor_Name ,
+                    dr_sort_code ,
+                    SOURCE_CHANNEL,
+                    SENDER_BANK,
+                    central_bank_error,
+                    Core_Bank_Error,
+                    transaction_Id,
+                    SENDER_REFERENCE_NUMBER,
+                    maker,
+                    PROCESS_GROUP,
+                    INWARD_FILE_NAME,
+                    Batch_Payment_Flag,
+                    checker
+                    from (select
+                    NTPL.UETR as UETR,	
+                    NT.process_status ,
+                    NT.status as transaction_status,
+                    NT.created_date as transaction_date_range,
+                    NT.value_date as transaction_date,
+                    NT.hdr_msg_id as Msg_Id,
+                    NT.category_purpose_prty as category_purpose_code,
+                    NT.fx_resv_text1 as FT_CI_Reference_Number,
+                    nt.department_code as DEPARTMENT_NAME,
+                    NT.intrbk_sttlm_amnt as TRANSACTION_AMOUNT_RANGE,
+                    NT.ext_purpose_code as Purpose_code,
+                    NT.payment_endtoend_id as E2E_REFERENCE_ID ,
+                    NT.dbtr_iban as Debtor_Account,
+                    NT.dbtr_acct_name as Debtor_Name,
+                    NT.cdtr_iban as Creditor_Account,
+                    NT.cdtr_acct_name as Creditor_Name,
+                    NT.dr_sort_code,
+                    NT.channel_id as SOURCE_CHANNEL ,
+                    NT.tran_ref_id as SENDER_REFERENCE_NUMBER,
+                    NT.tran_ref_id as transaction_Id,
+                    NT.channel_refno,
+                    a15.PROCESS_REF_NO as clrsysrefno,
+                    NT.process_type ,
+                    NT.tenant_id ,
+                    NT.PROCESS_GROUP,
+                    NT.maker,
+                    NT.checker,
+                    NT.cr_acct_identification,
+                    NT.dbtr_acct_no ,
+                    NT.INWARD_FILE_NAME,
+                    NTPL.process_name ,
+                    plcduae.CBUAERETURNCODE as central_bank_error,
+                    plc.T24RETURNCODE as Core_Bank_Error,
+                    cmb.bank_name as SENDER_BANK,
+                    cse.s_description,
+                    CASE
+                            when NT.process_group ='BCT' THEN 'Y'
+                            else 'N'
+                        END AS Batch_Payment_Flag,
+                     case 
+                          when 
+                          ntpl.process_name = 'Inward Credit Posting' and ntpl.status in('IP_BCT_POSTING_SUCCESS','IP_RCT_POSTING_SUCCESS')  and ntpl.process_type = 'IP' then ntpl.PROCESS_REF_NO
+                          when 
+                          ntpl.process_name = 'Credit Card Posting' and ntpl.status in('IP_BCT_CC_POSTING_SUCCESS', 'IP_RCT_CC_POSTING_SUCCESS')  and ntpl.process_type = 'IP' then ntpl.PROCESS_REF_NO
+                          when 
+                          ntpl.process_name = 'Prepaid Card Posting' and ntpl.status in('IP_BCT_PC_POSTING_SUCCESS', 'IP_RCT_PC_POSTING_SUCCESS')  and ntpl.process_type = 'IP' then ntpl.PROCESS_REF_NO
+                          else 'Others'
+                          end as T24_FT_REFERENCE_NUMBER
+                from
+                     npss_transactions nt
+                    inner join NPSS_TRN_PROCESS_LOG NTPL on NT.UETR = NTPL.uetr
+                    left join (select
+                    plr.npsstpl_id,
+                    plr.uetr,
+                    plr.CBUAE_RETURN_CODE,
+                    plr.CBUAERETURNCODE,
+                    plr.row_num
+                from
+                    (
+                    select
+                        a.npsstpl_id,
+                        a.uetr,
+                        a.CBUAE_RETURN_CODE,
+                        CONCAT (a.CBUAE_RETURN_CODE,'-',cnec.error_description) AS CBUAERETURNCODE,
+                        row_number() over( partition by a.uetr
+                    order by
+                        a.npsstpl_id desc) as row_num
+                    from
+                        npss_trn_process_log a
+                        left join core_nc_error_codes cnec on a.CBUAE_RETURN_CODE = cnec.error_code and cnec.processing_system='CBUAE'  where A.CBUAE_RETURN_CODE is not null and A.status in ('IP_RCT_POSTING_FAILURE','IP_RCT_RR_POSTING_FAILURE') and A.process_name in ('Inward Credit Posting','IR Return Reversal Posting') ) plr
+                where
+                    plr.row_num = 1) plcduae on plcduae.uetr = nt.uetr
+                    left join (select
+                    pl.npsstpl_id,
+                    pl.uetr,
+                    pl.T24_RETURN_CODE,
+                    pl.T24RETURNCODE,
+                    pl.row_num
+                from
+                    (
+                    select
+                                            a1.npsstpl_id,
+                                            a1.uetr,
+                                            a1.T24_RETURN_CODE,
+                                     CONCAT(A1.T24_RETURN_CODE, '-', cnec.error_description ) AS T24RETURNCODE,
+                                            ROW_NUMBER() OVER (PARTITION BY uetr ORDER BY a1.npsstpl_id DESC) AS row_num
+                    from
+                        npss_trn_process_log a1
+                                LEFT JOIN core_nc_error_codes cnec ON cnec.error_code = A1.T24_RETURN_CODE
+                                WHERE A1.T24_RETURN_CODE IS NOT null and A1.status in ('IP_RCT_POSTING_FAILURE','IP_RCT_RR_POSTING_FAILURE') and A1.process_name in ('Inward Credit Posting','IR Return Reversal Posting')) pl
+                 where
+                    pl.row_num = 1) plc on plc.uetr = nt.uetr
+                    left join core_member_banks cmb on cmb.bic_code = nt.dr_sort_code and cmb.NEED_SYNC = 'Y'
+                    LEFT JOIN (
                         SELECT
-                            npsstpl_id,
-                            uetr,
-                            PROCESS_REF_NO,
-                            ROW_NUM
+                            A15.npsstpl_id,
+                            A15.uetr,
+                            A15.PROCESS_REF_NO
                         FROM (
                             SELECT
-                                npsstpl_id,
-                                uetr,
-                                PROCESS_REF_NO,
-                                ROW_NUMBER() OVER (PARTITION BY uetr ORDER BY npsstpl_id DESC) AS row_num
-                            FROM
-                            npss_trn_process_log A05
-                            WHERE A05.process_name = 'Receive Pacs002' AND A05.process_type = 'IP'
-                        ) F
-                        WHERE F.row_num = 1
-                    ) A5
-                    ORDER BY A5.npsstpl_id DESC
-                ) A15
-            ) a15 ON a15.uetr = nt.uetr
-            inner join  CORE_SYSTEM_EXTN CSE on CSE.department_code  = nt.DEPARTMENT_CODE) V where process_type = 'IP'  and  Date(created_date)=CURRENT_DATE- INTERVAL '${params.onOrBefore} days' `
+                                A5.npsstpl_id,
+                                A5.uetr,
+                                A5.PROCESS_REF_NO
+                            FROM (
+                                SELECT
+                                    npsstpl_id,
+                                    uetr,
+                                    PROCESS_REF_NO,
+                                    ROW_NUM
+                                FROM (
+                                    SELECT
+                                        npsstpl_id,
+                                        uetr,
+                                        PROCESS_REF_NO,
+                                        ROW_NUMBER() OVER (PARTITION BY uetr ORDER BY npsstpl_id DESC) AS row_num
+                                    FROM
+                                     npss_trn_process_log A05
+                                    WHERE A05.process_name = 'Receive Pacs002' AND A05.process_type = 'IP'
+                                ) F
+                                WHERE F.row_num = 1
+                            ) A5
+                            ORDER BY A5.npsstpl_id DESC
+                        ) A15
+                    ) a15 ON a15.uetr = nt.uetr
+                    inner join  CORE_SYSTEM_EXTN CSE on CSE.department_code  = nt.DEPARTMENT_CODE) V where process_type = 'IP' and  Date(transaction_date_range)=CURRENT_DATE- INTERVAL '${params.onOrBefore} days' `
                     ExecuteQuery1(TakeData, async function (insarr) {
                         if (insarr.length > 0) {
                             let Header = await findHeader(insarr)
@@ -243,8 +243,8 @@ app.post('/', function(appRequest, appResponse, next) {
                             let hdr = [];
                             capitalKey.forEach((x) => {
                                 let obj = {
-                                    'id': x.actval,
-                                    'title': x.capval
+                                    'id': x.replaceAll(' ', "_").toLowerCase(),
+                                    'title': x
                                 }
                                 hdr.push(obj)
                             })
@@ -351,39 +351,20 @@ app.post('/', function(appRequest, appResponse, next) {
                         });
                     }
   
-                   // first letter capital for header data               
-                   function convertCapital(b) {
-                    return new Promise((resolve, reject) => {
+                
+                     // first letter capital for header data               
+                     function convertCapital(b) {
+                        return new Promise((resolve, reject) => {
 
-                        let c = []
-                        b.forEach((x) => c.push((x.replaceAll('_', " "))))
-                        let response = []
-                        let objres = {}
-
-                        for (let key in c) {
-
-                            if (c[key].includes(" ")) {
-                                let newarr = c[key].split(" ")
-                                let res = {}
-                                res.capval = ""
-                                for (let val in newarr) {
-                                    if (val == newarr.length - 1) {
-                                        res.capval += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1)))
-                                    } else {
-                                        res.capval += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1) + " "))
-                                    }
-                                }
-                                res.actval = c[key].replaceAll(" ", "_")
-                                response.push(res)
-                            } else {
-                                objres.capval = c[key].charAt(0).toUpperCase() + c[key].slice(1)
-                                objres.actval = c[key]
-                                response.push(objres)
-                            }
-                        }
-                        resolve(response)
-                    })
-                }
+                            let c = []
+                            b.forEach((x) => c.push((x.replaceAll('_', " "))))
+                            let response = []
+                           c.forEach( (str) =>response.push((str.replace(/\b[a-z]/g, char => char.toUpperCase())))
+                           )
+                           console.log(response)
+                            resolve(response)
+                        })
+                    }
 
   
   

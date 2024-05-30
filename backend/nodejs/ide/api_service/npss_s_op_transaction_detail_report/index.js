@@ -287,8 +287,8 @@ app.post('/', function (appRequest, appResponse, next) {
                             let hdr = [];
                             capitalKey.forEach((x) => {
                                 let obj = {
-                                    'id': x,
-                                    'title': x
+                                    'id': x.actval,
+                                    'title': x.capval
                                 }
                                 hdr.push(obj)
                             })
@@ -380,26 +380,34 @@ app.post('/', function (appRequest, appResponse, next) {
                     }
 
 
-                    // first letter capital for header data               
-                    function convertCapital(b) {
+                     // first letter capital for header data               
+                     function convertCapital(b) {
                         return new Promise((resolve, reject) => {
+
                             let c = []
                             b.forEach((x) => c.push((x.replaceAll('_', " "))))
                             let response = []
+                            let objres = {}
+
                             for (let key in c) {
+
                                 if (c[key].includes(" ")) {
                                     let newarr = c[key].split(" ")
-                                    let res = []
+                                    let res = {}
+                                    res.capval = ""
                                     for (let val in newarr) {
                                         if (val == newarr.length - 1) {
-                                            res += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1)))
+                                            res.capval += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1)))
                                         } else {
-                                            res += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1) + " "))
+                                            res.capval += ((newarr[val].charAt(0).toUpperCase() + newarr[val].slice(1) + " "))
                                         }
                                     }
+                                    res.actval = c[key].replaceAll(" ", "_")
                                     response.push(res)
                                 } else {
-                                    response.push(c[key].charAt(0).toUpperCase() + c[key].slice(1))
+                                    objres.capval = c[key].charAt(0).toUpperCase() + c[key].slice(1)
+                                    objres.actval = c[key]
+                                    response.push(objres)
                                 }
                             }
                             resolve(response)

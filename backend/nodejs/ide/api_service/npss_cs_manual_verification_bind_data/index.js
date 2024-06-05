@@ -5,7 +5,7 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 
 var app = express.Router();
 
-app.post('/', function(appRequest, appResponse, next) { /*  Created By :    Siva Harish
+app.post('/', function (appRequest, appResponse, next) { /*  Created By :    Siva Harish
 Created Date :16/05/2023
   Modified By : Siva Harish
 Modified Date : 24/05/2023
@@ -14,6 +14,7 @@ Reason for : Changes done cust spl rate 29/05/2023
 Reason for : Changes done cc and pc 22/06/2023
 Reason for : Uetr taken from params 22/06/2023 by daseen
 Reason for : for fabelp process -- iban checking new logic last three digits includes in param_detail dated 10-04-2024 by renga
+Reason for : for fabelp process -- Removed prepaid condition in else case on 5/6/2024
 *
 */
   var serviceName = ' NPSS (CS) Manual Verification Bind Data'; //service name
@@ -123,7 +124,7 @@ Reason for : for fabelp process -- iban checking new logic last three digits inc
                   const res = arresult.map((ele) =>
                     ele.param_detail
                   )
-                    reqInstanceHelper.PrintInfo('iban param details:' + res)
+                  reqInstanceHelper.PrintInfo('iban param details:' + res)
                   resolve(res)
                 })
 
@@ -182,7 +183,7 @@ Reason for : for fabelp process -- iban checking new logic last three digits inc
                       if (ibanParams.includes(isrectibi)) {
                         resolve('Ratibi')
                       } else {
-                        resolve('PREPAID')
+                        resolve('IBAN')
                       }
                     }
                     else {

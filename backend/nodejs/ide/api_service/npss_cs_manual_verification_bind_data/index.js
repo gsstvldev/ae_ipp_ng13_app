@@ -15,6 +15,7 @@ Reason for : Changes done cc and pc 22/06/2023
 Reason for : Uetr taken from params 22/06/2023 by daseen
 Reason for : for fabelp process -- iban checking new logic last three digits includes in param_detail dated 10-04-2024 by renga
 Reason for : for fabelp process -- Removed prepaid condition in else case on 5/6/2024
+Reason for : for fabelp process -- Removed prepaid condition  slice debitor iban change (-5) to(-16) case on 6/6/2024 by renga
 *
 */
   var serviceName = ' NPSS (CS) Manual Verification Bind Data'; //service name
@@ -177,7 +178,7 @@ Reason for : for fabelp process -- Removed prepaid condition in else case on 5/6
                     if ((arrTrandata[0].cr_acct_identification != '' && arrTrandata[0].cr_acct_identification != null) && arrTrandata[0].cr_acct_id_code == 'AIIN') {
                       resolve('Prepaid or Credit')
                     } else if ((arrTrandata[0].cr_acct_identification == '' || arrTrandata[0].cr_acct_identification == null || arrTrandata[0].cr_acct_identification == undefined) && (arrTrandata[0].cr_acct_id_code != 'AIIN')) {
-                      let fromIban = arrTrandata[0].dbtr_iban.slice(-5)
+                      let fromIban = arrTrandata[0].dbtr_iban.slice(-16)
                       let isrectibi = fromIban.substring(0, 3)
 
                       if (ibanParams.includes(isrectibi)) {

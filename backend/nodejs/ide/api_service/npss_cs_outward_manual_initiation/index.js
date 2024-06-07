@@ -48,6 +48,7 @@ app.post('/', function(appRequest, appResponse, next) {
        Reason for : channel cut off time checking for BCT  
  Reason for : SCHEMA DEFINED BASED ON THE LIVE OR ARCHIVAL WI 3683 -- renga
  Reason for : inserted new column fx_resv_text with created_date npss_transactions  WI 3818  -- subramanian
+  Reason for : CHECK BIRTHDATE IN CDTR_IBAN INCLUDE 564 LOGIC CHANGE   WI 3848  -- RENGA --7/06/2024
 
      
     */
@@ -121,7 +122,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         // }
 
                                                         if (arrdata.length > 0) {
-                                                            TakeBrithdate = await BirthDate(arrdata[0].cdtr_iban, arrdata[0].cdtr_acct_name)
+                                                            TakeBrithdate = await BirthDate(arrdata[0].cdtr_iban, arrdata[0].cdtr_acct_name, arrdata[0].uetr)
                                                             let chkCreditPredpaid = await chkccpcc(arrdata)
                                                             var arrCusTranInst = [];
                                                             var objCusTranInst = {};
@@ -170,7 +171,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             objCusTranInst.INTRBK_STTLM_AMNT = params.INTRBK_STTLM_AMNT || null
                                                             objCusTranInst.INTRBK_STTLM_CUR = params.INTRBK_STTLM_CUR || null
                                                             objCusTranInst.VALUE_DATE = reqDateFormatter.GetDateAt12AM(headers, objSessionLogInfo, params.VALUE_DATE)
-                                                            objCusTranInst.DBTR_ACCT_NO = chkCreditPredpaid ? chkCreditPredpaid == 'IBAN' ? arrdata[0].cdtr_acct_no : arrdata[0].cr_acct_iden : null
+                                                            objCusTranInst.DBTR_ACCT_NO =  chkCreditPredpaid == 'IBAN' ? arrdata[0].cdtr_acct_no :  null
                                                             objCusTranInst.CDTR_ACCT_NO = arrdata[0].dbtr_acct_no || null
                                                             objCusTranInst.BASE_AMOUNT = arrdata[0].base_amount
                                                             objCusTranInst.SELL_MARGIN = params.SELL_MARGIN || 0
@@ -221,7 +222,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             objCusTranInst.ACCOUNT_CURRENCY = arrdata[0].account_currency
                                                             objCusTranInst.CPR_STATUS = arrdata[0].cpr_status
                                                             objCusTranInst.PROCESSING_SYSTEM = arrdata[0].processing_system
-                                                            objCusTranInst.FX_RESV_TEXT4=arrdata[0].created_date
+                                                            objCusTranInst.FX_RESV_TEXT4 = arrdata[0].created_date
                                                             objCusTranInst.CPR_CR_FLAG = arrdata[0].cpr_cr_flag
                                                             objCusTranInst.CPR_DW_FLAG = arrdata[0].cpr_dw_flag
                                                             objCusTranInst.CPR_CR_FILE_NAME = arrdata[0].cpr_cr_file_name
@@ -482,21 +483,37 @@ app.post('/', function(appRequest, appResponse, next) {
 
                         })
                     }
-                    function BirthDate(cdtr_iban, cdtr_acct_name) {
+                    function BirthDate(cdtr_iban, cdtr_acct_name, uetr) {
                         return new Promise((resolve, reject) => {
                             if (cdtr_iban != '' && cdtr_iban != undefined && cdtr_iban != null) {
-                                var Tkbddate = `select birthdate,account_name from core_nc_cbs_accounts where alternate_account_id ='${cdtr_iban}'`
-                                ExecuteQuery1(Tkbddate, async function (arrbdate) {
-                                    if (arrbdate.length > 0) {
-                                        let obj = {}
-                                        obj.date = arrbdate[0].birthdate ? moment(arrbdate[0].birthdate, "YYYYMMDD").format("YYYY-MM-DD") : null
-                                        obj.account_name = arrbdate[0].account_name
-                                        resolve(obj)
-                                    } else {
-                                        objresponse.data.status = 'No data found in core_nc_cbs_accounts'
-                                        sendResponse(null, objresponse)
-                                    }
-                                })
+                                if ((cdtr_iban.slice(-16).substring(0, 3)) != 564) {
+                                    var Tkbddate = `select birthdate,account_name from core_nc_cbs_accounts where alternate_account_id ='${cdtr_iban}'`
+                                    ExecuteQuery1(Tkbddate, async function (arrbdate) {
+                                        if (arrbdate.length > 0) {
+                                            let obj = {}
+                                            obj.date = arrbdate[0].birthdate ? moment(arrbdate[0].birthdate, "YYYYMMDD").format("YYYY-MM-DD") : null
+                                            obj.account_name = arrbdate[0].account_name
+                                            resolve(obj)
+                                        } else {
+                                            objresponse.data.status = 'No data found in core_nc_cbs_accounts'
+                                            sendResponse(null, objresponse)
+                                        }
+                                    })
+                                } else {
+                                    var Takebirthdata = `select * from npss_trn_process_log  where process_name='Prepaid Card Validation' and uetr = '${uetr}'`
+                                    ExecuteQuery1(Takebirthdata, async function (arrbdate) {
+                                        if (arrbdate.length > 0) {
+                                            let obj = {}
+                                            obj.date = arrbdate[0].dateofbirth ? moment(arrbdate[0].dateofbirth, "YYYYMMDD").format("YYYY-MM-DD") : null
+                                            obj.account_name = arrbdate[0].customername
+                                            resolve(obj)
+                                        } else {
+                                            objresponse.data.status = ' birthdate,customer data not found in log table'
+                                            sendResponse(null, objresponse)
+                                        }
+                                    })
+                                }
+
                             } else {
                                 let obj = {}
                                 obj.date = null

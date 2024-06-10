@@ -19,6 +19,7 @@ Reason for : Changes done as
 Reason for : Changes done cust spl rate 29/05/2023 
 Reason for : Changes done cc and pc 22/06/2023 
 Reason for : Uetr taken from params 22/06/2023 by daseen 
+Reason for : for fabelp process -- Removed prepaid condition  slice debitor iban change (-5) to(-16) case on 10/6/2024 by Subramanian
 * 
 */
 var serviceName = ' NPSS (CS) Manual Verification Bind Data'; //service name 

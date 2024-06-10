@@ -37,6 +37,7 @@ app.post('/', function(appRequest, appResponse, next) {
            Reason : Duplicate retry value for second time in ext_iden_retry_value   on 01-04-2024 by daseen  WI 3472
            reason : getcount,select query for IPUETR  based on schema(live or archival) 10-4-24 -renga WI 3683
            reason : Removed and replaced with privatesid with private id 6-6-24
+           reason : For credit/prepaid cr_Acct_identification value to be taken from dbtr_acct_no or cr_acct_identifiation based on dbtr_iban and cdtr_ibans 10-06-2024 Subramanian
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -593,15 +594,17 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "dbtr_city_birth": reverandRefno.cityofbirth || 'XXXXX',
                                                     "dbtr_country": reverandRefno.countryofbirth || 'XX',
                                                     "dbtr_other_issuer": arrprocesslog[0].dbtr_other_issuer || '',
+
                                                     "dbtr_iban": arrprocesslog[0].dbtr_iban || '',
                                                     // "dbtr_acct_no":arrprocesslog[0].dbtr_account_no || '',
                                                     "cr_sort_code": arrprocesslog[0].cr_sort_code || '',
                                                     "cdtr_acct_name": arrprocesslog[0].cdtr_acct_name || '',
                                                     "cdtr_iban": arrprocesslog[0].cdtr_iban || '',
-                                                    "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
+                                                    //
+                                                    // "cr_acct_identification": arrprocesslog[0].cr_acct_identification || '',
                                                     "remittance_information": arrprocesslog[0].remittance_info || '',
                                                     // "category_purpose": arrprocesslog[0].category_purpose_prty  || '',
-                                                    "dbtr_acct_no": arrprocesslog[0].dbtr_account_no || '',
+
                                                     "category_purpose_prty": arrcatPurpose[0].param_detail || 'IPP',
                                                     "channel_id": 'IPP',
 
@@ -616,7 +619,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                             if (params.PROD_CODE == 'NPSS_AEFAB') {
                                                 if (reverandRefno.type == 'IBAN') {
-                                                    options.json.channel_refno = reverandRefno.reverseId || ''
+                                                    options.json.cr_acct_identification = arrprocesslog[0].cr_acct_identification || ''
+                                                    options.json["dbtr_acct_no"] = arrprocesslog[0].dbtr_account_no || '',
+                                                        options.json.channel_refno = reverandRefno.reverseId || ''
                                                     if (CheckorgPvt != '' && CheckorgPvt != null) {
                                                         if (CheckorgPvt.type == 'Organisation') {
                                                             options.json.dbtr_prvt_id = CheckorgPvt.code
@@ -636,6 +641,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     }
 
                                                 } else { //for credit and perpaid
+                                                    if (arrprocesslog[0].dbtr_iban == null || arrprocesslog[0].dbtr_iban == undefined || arrprocesslog[0].dbtr_iban == '') {
+                                                        options.json.dbtr_acct_no = arrprocesslog[0].cr_acct_identification || ''
+                                                    }
+                                                    if (arrprocesslog[0]["cdtr_iban"] == undefined || arrprocesslog[0]["cdtr_iban"] == null || arrprocesslog[0]["cdtr_iban"] == '') {
+                                                        options.json.cr_acct_identification = arrprocesslog[0].cr_acct_identification || ''
+                                                    }
+
                                                     options.json.channel_refno = arrprocesslog[0].clrsysref || '',
                                                         options.json.dbtr_prvt_id = ''
                                                     options.json.dbtr_document_id = reverandRefno.privateId || ''
@@ -646,7 +658,9 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                             } else {
-                                                options.json.dbtr_prvt_id = arrprocesslog[0].dbtr_prvt_id
+                                                options.json.cr_acct_identification = arrprocesslog[0].cr_acct_identification || ''
+                                                options.json["dbtr_acct_no"] = arrprocesslog[0].dbtr_account_no || '',
+                                                    options.json.dbtr_prvt_id = arrprocesslog[0].dbtr_prvt_id
                                                 options.json.dbtr_document_id = arrprocesslog[0].dbtr_document_id
                                                 options.json.ext_org_id_code = arrprocesslog[0].ext_org_id_code
                                                 options.json.issuer_type_code = arrprocesslog[0].issuer_type_code

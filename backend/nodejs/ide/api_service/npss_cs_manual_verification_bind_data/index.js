@@ -163,7 +163,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                                     if ((arrTrandata[0].cr_acct_identification != '' && arrTrandata[0].cr_acct_identification != null) && arrTrandata[0].cr_acct_id_code == 'AIIN') {
                                         resolve('Prepaid or Credit')
                                     }else if((arrTrandata[0].cr_acct_identification==''||arrTrandata[0].cr_acct_identification==null||arrTrandata[0].cr_acct_identification==undefined )&&  (arrTrandata[0].cr_acct_id_code != 'AIIN')){
-                                        let fromIban=arrTrandata[0].dbtr_iban.slice(-5)
+                                        let fromIban=arrTrandata[0].dbtr_iban.slice(-16)
                                       let isrectibi= fromIban.substring(0,3)
                                       if(isrectibi=='564' || isrectibi==564){
                                         resolve('Ratibi')

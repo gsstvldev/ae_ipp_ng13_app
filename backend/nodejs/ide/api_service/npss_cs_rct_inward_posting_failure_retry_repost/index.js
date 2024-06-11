@@ -253,7 +253,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     })
                                 } else {
                                     objresponse.status = 'FAILURE'
-                                    objresponse.errdata = 'Failure in Insert Process for TranId' + arrTranparamsObj.npsst_id
+                                    objresponse.errdata = 'Failure in Insert Process for TranId' + arrTranparams.npsst_id
                                     sendResponse(null, objresponse)
                                 }
                             })

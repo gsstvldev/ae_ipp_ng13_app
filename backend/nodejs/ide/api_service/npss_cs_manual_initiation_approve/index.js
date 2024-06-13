@@ -1460,7 +1460,7 @@ app.post('/', function(appRequest, appResponse, next) {
                               if (arractResult.length > 0) {
                                 AcctInformations.birthdate = arractResult[0].birthdate
                                 AcctInformations.cityofbirth = arractResult[0].cityofbirth
-                                AcctInformations.countryofbirth = arractResult[0].cityofbirth
+                                AcctInformations.countryofbirth = arractResult[0].countryofbirth
                                 AcctInformations.account_name = arractResult[0].account_name
                                 let PvtId = await PreparePVTcode(arractResult, arrprocesslog)
                                 AcctInformations.privateId = PvtId.FormPvtid || ''

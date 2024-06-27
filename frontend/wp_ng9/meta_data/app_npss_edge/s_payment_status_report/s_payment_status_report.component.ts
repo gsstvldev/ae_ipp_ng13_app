@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 34791 
+Build ID        : 35865 
 Modified By     : Admin 
-Modified Date   : 2024-Mar-18 4:52 AM 
+Modified Date   : 2024-Jun-27 7:13 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_payment_status_report
@@ -31,7 +31,7 @@ export class s_payment_status_reportComponent implements OnInit,AfterViewInit {
   	wftpa_description : string = "s_payment_status_report"
 	wftpa_id : string = "WFT_NPSS_P_1304_1710148316577_0"
 	cg_code : string = "CG_1304_1708326278471"
-	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID","dtt_1304_1695130590062":"NPSSNPPL_ID","dtt_1304_1695214768145":"NAL_ID","dtt_1304_1700459090330":"NPSSPN_ID","dtt_1304_1701251364899":"NPSSPNB_ID","dtt_1304_1707202677013":"NPSSFE_ID"}
+	key_column : any = {"dtt_1304_1665901217208":"NPSST_ID","dtt_1304_1665903906193":"NPSSTRRD_ID","dtt_1304_1665905039255":"NPSSTPL_ID","dtt_1304_1670492310194":"NPSSASP_ID","dtt_1304_1670589169341":"NPSSCAPL_ID","dtt_1304_1672928670076":"NPSSNL_ID","dtt_1304_1674198360280":"NPSSE_ID","dtt_1304_1681973868376":"NPSSPSR_ID","dtt_1304_1681974712398":"NPSSSBR_ID","dtt_1304_1681974988885":"NPSSBFSR_ID","dtt_1304_1695130590062":"NPSSNPPL_ID","dtt_1304_1695214768145":"NAL_ID","dtt_1304_1700459090330":"NPSSPN_ID","dtt_1304_1701251364899":"NPSSPNB_ID","dtt_1304_1707202677013":"NPSSFE_ID","dtt_1304_1711696447765":"NPSSFL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []
@@ -214,11 +214,6 @@ export class s_payment_status_reportComponent implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__internal(parent_event_result){
 		this.e_1708425960961__e_1708425977969(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "e 1708425977969"
-	e_1708425977969__internal(parent_event_result){
-		this.e_1708425977969__e_1708425998864(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "list"
@@ -514,33 +509,11 @@ export class s_payment_status_reportComponent implements OnInit,AfterViewInit {
 		let event_code="e_1708425977969"
 		let event_params={"caller_name":"e_1708425960961__e_1708425977969","event_desc":"E_1708425977969","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""},"parent_event_result":"SUCCESS"}
 		let handler_code="create_form"
-		let internals="e_1708425977969__e_1708425998864,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1708425977969"
-	e_1708425977969__e_1708425998864(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1708425977969"
-		let destn_id="search_search"
-		let parent_source_id="e_1708425960961"
-		let event_code="e_1708425998864"
-		let event_params={"caller_name":"e_1708425977969__e_1708425998864","event_desc":"E_1708425998864","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="trigger_button_click"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

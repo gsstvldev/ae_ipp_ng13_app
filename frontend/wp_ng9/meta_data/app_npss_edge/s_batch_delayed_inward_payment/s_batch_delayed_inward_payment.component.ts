@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35834 
+Build ID        : 35865 
 Modified By     : Admin 
-Modified Date   : 2024-Jun-24 10:29 AM 
+Modified Date   : 2024-Jun-27 7:13 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_batch_delayed_inward_payment
@@ -214,11 +214,6 @@ export class s_batch_delayed_inward_paymentComponent implements OnInit,AfterView
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__internal(parent_event_result){
 		this.e_1708425960961__e_1708425977969(parent_event_result)
-	}
-
-	//Handler for INTERNAL event of "e 1708425977969"
-	e_1708425977969__internal(parent_event_result){
-		this.e_1708425977969__e_1708425998864(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "list"
@@ -514,33 +509,11 @@ export class s_batch_delayed_inward_paymentComponent implements OnInit,AfterView
 		let event_code="e_1708425977969"
 		let event_params={"caller_name":"e_1708425960961__e_1708425977969","event_desc":"E_1708425977969","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"uicgc_code":""},"parent_event_result":"SUCCESS"}
 		let handler_code="create_form"
-		let internals="e_1708425977969__e_1708425998864,"
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for INTERNAL event of "e 1708425977969"
-	e_1708425977969__e_1708425998864(parent_event_result) { 
-		let Dest_Is_ctrl=true
-		let parentEventResult ="SUCCESS"
-	if(parentEventResult!=parent_event_result) return true;
-		let source_id="e_1708425977969"
-		let destn_id="search_search"
-		let parent_source_id="e_1708425960961"
-		let event_code="e_1708425998864"
-		let event_params={"caller_name":"e_1708425977969__e_1708425998864","event_desc":"E_1708425998864","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="trigger_button_click"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.trigger_button_click(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35837 
+Build ID        : 35865 
 Modified By     : Admin 
-Modified Date   : 2024-Jun-24 10:40 AM 
+Modified Date   : 2024-Jun-27 7:13 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_menu_access_report

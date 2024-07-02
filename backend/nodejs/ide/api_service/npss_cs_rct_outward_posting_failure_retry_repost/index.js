@@ -5,15 +5,14 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 
 var app = express.Router();
 
-app.post('/', function(appRequest, appResponse, next) {
-    
-    
+app.post('/', function (appRequest, appResponse, next) {
 
     try {
         /*   Created By : Daseen
         Created Date :11-08-2023
-      
-       
+        modified by : Suresh
+        WI - 3902 / 02-07-2024
+        modified reason : payload changes for return and reversal btn
         */
         var serviceName = 'NPSS (CS) RCT Outward Posting Failure Retry Repost';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -41,7 +40,6 @@ app.post('/', function(appRequest, appResponse, next) {
             'msg': ''
         }; // Response to Client
         // Assign function for loginformation and session info
-
         reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInformation) {
             try {
                 objSessionLogInfo = objLogInfo; // Assing log information
@@ -76,7 +74,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                     ExecuteQuery1(Takekafkaurl, function (arrurl) {
                                         if (arrurl.length > 0) {
                                             if (params.Roleid == '705' || params.Roleid == 705) {
-                                             
                                                 ExecuteQuery1(take_api_params, function (arrTranparams) {
                                                     if (arrTranparams.length > 0) {
                                                         InsertProcess(arrTranparams, final_process_status, final_status, PRCT_ID)
@@ -86,14 +83,24 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         sendResponse(null, objresponse)
                                                     }
                                                 })
-
-
                                             } else { //checker for repost
                                                 ExecuteQuery1(take_api_params, async function (arrTranparams) {
                                                     if (arrTranparams.length > 0) {
+                                                        let uetr = arrTranparams[0].uetr
                                                         var Apicalls
                                                         if (params.eligible_status == 'OP_AC_REV_POSTING_RETRY' || params.eligible_status == 'OP_P2P_REV_POSTING_RETRY') { //ORR
-                                                            Apicalls = await CallORRAPI(arrTranparams, failcountobj, failcount, arrurl)
+                                                            var takecbreturncode = `Select * from Npss_trn_process_log where  uetr ='${uetr}'`
+                                                            ExecuteQuery1(takecbreturncode, async function (arrreturncode) {
+                                                                if (arrreturncode.length > 0) {
+                                                                    let c_return_code = arrreturncode[0].cbuae_return_code
+                                                                    Apicalls = await CallORRAPI(arrTranparams, failcountobj, failcount, arrurl, c_return_code)
+                                                                } else {
+                                                                    objresponse.status = "FAILURE"
+                                                                    objresponse.errdata = "No cbuae_return_code found in log table"
+                                                                    sendResponse(null, objresponse)
+                                                                }
+                                                            })
+
                                                         } else if (params.eligible_status == 'OP_AC_RET_POSTING_RETRY' || params.eligible_status == 'OR_P2P_POSTING_RETRY') { //OR
                                                             Apicalls = await CallORAPI(arrTranparams, failcountobj, failcount, arrurl)
                                                         } else if (params.eligible_status == 'OP_P2P_DBT_POSTING_RETRY' || params.eligible_status == 'OP_AC_DBT_POSTING_RETRY') { //Unfreeze
@@ -135,9 +142,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             sendResponse(error, null);
                         }
                     })
-
                     // Do API Call for Service 
-
                     function InsertProcess(arrTranparams, success_process_status, success_status, PRCT_ID) {
                         var processName
                         if (params.Roleid == '705' || params.Roleid == 705) {
@@ -181,9 +186,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
                             objCusTranInst.routingkey = headers.routingkey;
                             arrCusTranInst.push(objCusTranInst)
-
                         }
-
                         _BulkInsertProcessItem(arrCusTranInst, 'npss_trn_process_log', function callbackInsert(CusTranInsertRes) {
                             if (CusTranInsertRes.length > 0) {
                                 var UpdateTrnTbl
@@ -192,7 +195,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                 } else {
                                     UpdateTrnTbl = `update npss_transactions set  checker = '${params.CREATED_BY_NAME}',status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
                                 }
-
                                 ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
                                     if (uptranresult == 'SUCCESS') {
                                         objresponse.status = 'Success';
@@ -200,23 +202,17 @@ app.post('/', function(appRequest, appResponse, next) {
                                     } else {
                                         objresponse.status = 'Error in NPSS_TRN_PROCESS_LOG Table Update';
                                         sendResponse(null, objresponse)
-
                                     }
                                 })
                             }
                         })
                     }
-
-
-
-                    function CallORRAPI(arrTranparams, failcountobj, failcount, arrurl) {
+                    function CallORRAPI(arrTranparams, failcountobj, failcount, arrurl, c_return_code) {
                         return new Promise((resolve, reject) => {
                             var reason_code
                             var npsst_refno
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
-
                                 var runfunction = async () => {
-
                                     var request = require('request');
                                     var options = {
                                         url: arrurl[0].param_detail,
@@ -225,35 +221,45 @@ app.post('/', function(appRequest, appResponse, next) {
                                         json: {
                                             batch_name: "DR-CBS-POSTING-Q",
                                             data: {
-
                                                 "payload": {
-                                                    "uetr": arrTranparamsObj.uetr || '',
+                                                    //ORR- REVERSAL BTN
+                                                    // "uetr": arrTranparamsObj.uetr || '',
+                                                    // "channel_id": arrTranparamsObj.channel_id || '',
+                                                    // "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
+                                                    // "dbtr_iban":arrTranparamsObj.dbtr_iban || '',
+                                                    // "process_type": 'ORR' ,
+                                                    // "channel_refno":arrTranparamsObj.channel_refno||''
                                                     "channel_id": arrTranparamsObj.channel_id || '',
-                                                    "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
-                                                    "dbtr_iban":arrTranparamsObj.dbtr_iban || '',
-                                                    "process_type": 'ORR' ,
-                                                    "channel_refno":arrTranparamsObj.channel_refno||''
+                                                    "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
+                                                    "process_type": 'ORR',
+                                                    "cbuae_return_code": c_return_code,
+                                                    "account_currency": arrTranparamsObj.account_currency || '',
+                                                    "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt || '',
+                                                    "cdtr_acct_name": arrTranparamsObj.cdtr_acct_name || '',
+                                                    "cdtr_iban": arrTranparamsObj.dbtr_acct_name || '',//"AE210230000001002364XXX",
+                                                    "payment_endtoend_id": arrTranparamsObj.payment_endtoend_id || '',
+                                                    "channel_refno": arrTranparamsObj.channel_refno || '',
+                                                    "cr_sort_code": arrTranparamsObj.cr_sort_code || '',
+                                                    "uetr": arrTranparamsObj.uetr || '',
+                                                    "amount_credited_loc_cur": arrTranparamsObj.amount_credited_loc_cur || '',
+                                                    "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || ''
                                                 }
                                             }
                                         },
                                         headers: {
                                             'Content-Type': 'application/json'
                                         }
-
                                     }
-                                    if (arrTranparamsObj.account_currency == 'AED'|| arrTranparamsObj.account_currency == ''|| arrTranparamsObj.account_currency == undefined || arrTranparamsObj.account_currency == null) {
+                                    if (arrTranparamsObj.account_currency == 'AED' || arrTranparamsObj.account_currency == '' || arrTranparamsObj.account_currency == undefined || arrTranparamsObj.account_currency == null) {
                                         options.json.data.payload.intrbk_sttlm_amnt = arrTranparamsObj.intrbk_sttlm_amnt || '';
                                     } else {
                                         options.json.data.payload.cdtr_amount = arrTranparamsObj.intrbk_sttlm_amnt || '';
                                         options.json.data.payload.dbtr_amount = ''
                                     }
-
                                     var PrintInfo = {}
                                     PrintInfo.url = arrurl[0].param_detail
                                     PrintInfo.uetr = arrTranparamsObj.uetr || ''
                                     PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
-
-
                                     reqInstanceHelper.PrintInfo(serviceName, '------------ORR API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                         if (error) {
@@ -275,9 +281,6 @@ app.post('/', function(appRequest, appResponse, next) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var runapifun = async () => {
-                                   
-
-
                                     var request = require('request');
                                     var options = {
                                         url: arrurl[0].param_detail,
@@ -287,14 +290,26 @@ app.post('/', function(appRequest, appResponse, next) {
                                             batch_name: "DR-CBS-POSTING-Q",
                                             data: {
                                                 "payload": {
+                                                    //OR - RETURN BTN
+                                                    // "uetr": arrTranparamsObj.uetr || '',
+                                                    // "channel_id": arrTranparamsObj.channel_id || '',
+                                                    // "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
+                                                    // "process_type": "OR",
+                                                    // "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt,
+                                                    // "dbtr_iban":arrTranparamsObj.dbtr_iban || '',
+                                                    // "channel_refno":arrTranparamsObj.channel_refno||''
+                                                    "process_type": 'OR' || '',
+                                                    "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
                                                     "uetr": arrTranparamsObj.uetr || '',
                                                     "channel_id": arrTranparamsObj.channel_id || '',
-                                                    "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
-                                                    "process_type": "OR",
-                                                    "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt,
-                                                    "dbtr_iban":arrTranparamsObj.dbtr_iban || '',
-                                                    "channel_refno":arrTranparamsObj.channel_refno||''
-
+                                                    "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
+                                                    "account_currency": arrTranparamsObj.account_currency || '',
+                                                    "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt || '',
+                                                    "hdr_settlement_date": arrTranparamsObj.hdr_settlement_date || '',
+                                                    "amount_credited_loc_cur": arrTranparamsObj.amount_credited_loc_cur || '',
+                                                    "dbtr_acct_name": arrTranparamsObj.dbtr_acct_name || '',//vinoh XXXX
+                                                    "dr_sort_code": arrTranparamsObj.dr_sort_code || '',
+                                                    "channel_refno": arrTranparamsObj.channel_refno || '',
                                                 }
                                             }
                                         },
@@ -305,40 +320,28 @@ app.post('/', function(appRequest, appResponse, next) {
                                     if (arrTranparamsObj.account_currency != 'AED') {
                                         options.json.data.payload.RtrdIntrBkSttlmAmt = arrTranparamsObj.intrbk_sttlm_amnt || '';
                                     }
-
                                     var PrintInfo = {}
                                     PrintInfo.url = arrurl[0].param_detail
                                     PrintInfo.uetr = arrTranparamsObj.uetr || ''
                                     PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
-
-
                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                         if (error) {
                                             reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                             sendResponse(error, null);
-
                                         } else {
                                             reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                             nextobjctfunc()
                                         }
                                     });
-
                                 }
-
                                 runapifun()
-
                             }, function () {
                                 resolve('SUCCESS')
                             })
                         })
-
-
-
                     }
-
                     function CallP2P(arrTranparams, failcountobj, failcount, arrurl) {
-
                         return new Promise((resolve, reject) => {
                             var runquery = async () => {
                                 var postrefno;
@@ -355,62 +358,47 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     "payload": {
                                                         "channel_id": arrTranparamsObj.channel_id || '',
                                                         "uetr": arrTranparamsObj.uetr || '',
-                                                      
                                                         "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
                                                         "process_type": "OP",
-                                                        "dbtr_iban":arrTranparamsObj.dbtr_iban || '',
-                                                        "channel_refno":arrTranparamsObj.channel_refno||''
-                                                        
+                                                        "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
+                                                        "channel_refno": arrTranparamsObj.channel_refno || ''
                                                     }
                                                 }
                                             },
                                             headers: {
                                                 'Content-Type': 'application/json'
                                             }
-
                                         }
-                                        if (arrTranparamsObj.account_currency == 'AED'|| arrTranparamsObj.account_currency == ''|| arrTranparamsObj.account_currency == undefined || arrTranparamsObj.account_currency == null) {
+                                        if (arrTranparamsObj.account_currency == 'AED' || arrTranparamsObj.account_currency == '' || arrTranparamsObj.account_currency == undefined || arrTranparamsObj.account_currency == null) {
                                             options.json.data.payload.intrbk_sttlm_amnt = arrTranparamsObj.intrbk_sttlm_amnt || '';
                                         } else {
                                             options.json.data.payload.dbtr_amount = arrTranparamsObj.intrbk_sttlm_amnt || '';
                                             options.json.data.payload.cdtr_amount = ''
                                         }
-
                                         var PrintInfo = {}
                                         PrintInfo.url = arrurl[0].param_detail
                                         PrintInfo.uetr = arrTranparamsObj.uetr || ''
-
-
                                         reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                             if (error) {
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                 sendResponse(error, null);
-
                                             } else {
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                 nextobjctfunc()
                                             }
                                         });
-
                                     } catch (error) {
                                         reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
                                         sendResponse(error, null);
                                     }
-                                 
                                 }, function () {
                                     resolve('SUCCESS')
                                 })
                             }
-
                             runquery()
-
                         })
                     }
-
-
-
-
                     //Execute Query Function
                     function ExecuteQuery1(query, callback) {
                         reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
@@ -437,7 +425,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                     sendResponse(error)
                                 } else {
                                     callback("SUCCESS");
-
                                 }
                             } catch (error) {
                                 sendResponse(error)
@@ -494,23 +481,6 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 });
 

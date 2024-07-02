@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35872 
+Build ID        : 35909 
 Modified By     : Admin 
-Modified Date   : 2024-Jun-27 12:29 PM 
+Modified Date   : 2024-Jul-01 12:58 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_transactions_details

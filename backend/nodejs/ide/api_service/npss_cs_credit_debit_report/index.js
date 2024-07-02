@@ -185,7 +185,7 @@ left join core_member_banks cmb on
     cmb.bic_code = nt.cr_sort_code
     and cmb.NEED_SYNC = 'Y' )v
 where
-process_type = 'OP'  ${cond_params} and department_code='${params.department_code}'`
+process_type = 'OP'  ${cond_params} and DEPARTMENT_NAME='${params.department_code}'`
                             }
                             else {
                                 Taketran = `select
@@ -265,7 +265,7 @@ process_type = 'OP'  ${cond_params} and department_code='${params.department_cod
                                 or ntpl.process_name = 'Inward Credit Posting'
                                 and ntpl.status = 'IP_RCT_POSTING_SUCCESS' )v
                         where
-                            process_type = 'IP'  ${cond_params} and department_code='${params.department_code}'`
+                            process_type = 'IP'  ${cond_params} and DEPARTMENT_NAME='${params.department_code}'`
                             }
 
 

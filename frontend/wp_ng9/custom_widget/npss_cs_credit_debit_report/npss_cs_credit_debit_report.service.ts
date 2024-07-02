@@ -9,7 +9,7 @@ import { HttphelperService } from '../../scripts/fx/httphelper.service'; // for 
 import { CoreService } from '../../scripts/fx/core.service'; //core services used for get screen values from memory variables
 import { AppHandlerService } from '../../scripts/fx/app.handler.service'; //Show for Dialog for Screen
 import { SessionService } from '../../scripts/fx/session.service'; // get Session information
-import { SCOPE } from '../../scripts/fx/session.enum'; // get Scope for Session level
+import { SCOPE, SESSION } from '../../scripts/fx/session.enum'; // get Scope for Session level
 import { DialogService } from '../../scripts/fx/dialog.service'; // Dialog box appear
 import pdfmake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -28,7 +28,7 @@ export class npss_cs_credit_debit_reportService {
         let ClientParams: any = {}, search_null_flag: any = [];
         ClientParams.screenName = screenInstance.wftpa_description
         ClientParams.search_params = screenInstance['cc_from_search'].search_params
-        ClientParams.department_code = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, 'SYSTEM_EXTENDED_INFO.department_code')||""
+        ClientParams.department_code = this.sessionHelper.GetVariable(SESSION.SYSTEM_EXTENDED_INFO, 'department_code') || ""
         let curr_btn: any = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, 'CURRENT_BTN_LABEL')
 
         search_null_flag = (ClientParams.search_params).filter((val) => {

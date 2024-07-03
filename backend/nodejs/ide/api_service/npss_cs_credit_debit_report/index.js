@@ -12,6 +12,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     /*  Created By : Subramanian
     Created Date : 8/4/2024
     For: Credit Debit jasper report replacement
@@ -185,7 +186,7 @@ left join core_member_banks cmb on
     cmb.bic_code = nt.cr_sort_code
     and cmb.NEED_SYNC = 'Y' )v
 where
-process_type = 'OP'  ${cond_params} and DEPARTMENT_NAME='${params.department_code}'`
+process_type = 'OP'  ${cond_params}`
                             }
                             else {
                                 Taketran = `select
@@ -265,7 +266,11 @@ process_type = 'OP'  ${cond_params} and DEPARTMENT_NAME='${params.department_cod
                                 or ntpl.process_name = 'Inward Credit Posting'
                                 and ntpl.status = 'IP_RCT_POSTING_SUCCESS' )v
                         where
-                            process_type = 'IP'  ${cond_params} and DEPARTMENT_NAME='${params.department_code}'`
+                            process_type = 'IP'  ${cond_params} `
+                            }
+                            if(params.department_code!='' && params.department_code!=null && params.department_code!=undefined)
+                            {
+                               Taketran+=`and DEPARTMENT_NAME='${params.department_code}'`
                             }
 
 
@@ -375,6 +380,8 @@ process_type = 'OP'  ${cond_params} and DEPARTMENT_NAME='${params.department_cod
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
+
 
 
 

@@ -94,6 +94,14 @@ app.post('/', function (appRequest, appResponse, next) {
                                                                 if (arrreturncode.length > 0) {
                                                                     let c_return_code = arrreturncode[0].cbuae_return_code
                                                                     Apicalls = await CallORRAPI(arrTranparams, failcountobj, failcount, arrurl, c_return_code)
+                                                                    if (Apicalls.toUpperCase() == 'SUCCESS') {
+                                                                        InsertProcess(arrTranparams, final_process_status, final_status, PRCT_ID)
+                                                                    }
+                                                                    else {
+                                                                        objresponse.status = "API call FAILURE"
+                                                                        objresponse.errdata = Apicalls
+                                                                        sendResponse(null, objresponse)
+                                                                    }
                                                                 } else {
                                                                     objresponse.status = "FAILURE"
                                                                     objresponse.errdata = "No cbuae_return_code found in log table"

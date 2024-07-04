@@ -28,6 +28,7 @@ export class npss_cs_credit_debit_reportService {
         let ClientParams: any = {},search_null_flag:any=[];
         ClientParams.screenName = screenInstance.wftpa_description
         ClientParams.db_type = this.sessionHelper.GetVariable(SCOPE.MI_LEVEL,'DB_TYPE')
+        ClientParams.department_code = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, 'SYSTEM_EXTENDED_INFO.department_code') || ""
         ClientParams.search_params=screenInstance['cc_from_search'].search_params
         let curr_btn:any=this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL,'CURRENT_BTN_LABEL')
         

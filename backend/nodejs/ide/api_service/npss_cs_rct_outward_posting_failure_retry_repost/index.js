@@ -2,18 +2,15 @@ var $MODULEPATH = '../../node_modules/';
 var express = require('express');
 var Path = require('path');
 var $REFPATH = Path.join(__dirname, '../../torus-references/');
-
 var app = express.Router();
-
 app.post('/', function (appRequest, appResponse, next) {
-
     try {
         /*   Created By : Daseen
-        Created Date :11-08-2023
-        modified by : Suresh
-        WI - 3902 / 02-07-2024
-        modified reason : payload changes for return and reversal btn
-        */
+            Created Date : 11-08-2023
+            modified for : Suresh 
+            modified reason : payload changes for return/reversal btn
+            wi -3902
+           */
         var serviceName = 'NPSS (CS) RCT Outward Posting Failure Retry Repost';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
         var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
@@ -40,6 +37,7 @@ app.post('/', function (appRequest, appResponse, next) {
             'msg': ''
         }; // Response to Client
         // Assign function for loginformation and session info
+
         reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInformation) {
             try {
                 objSessionLogInfo = objLogInfo; // Assing log information
@@ -61,11 +59,13 @@ app.post('/', function (appRequest, appResponse, next) {
                                 arrTranID = [params.Tran_Id.toString()];
                             }
                             TempTranID = '(' + "'" + arrTranID.toString().split(',').join("','") + "'" + ')';
+                            //  TempTranID = '242033'
                             var PRCT_ID = prct_id
                             var final_status
                             var final_process_status
                             var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_OP_POSTING_FAIL_REPOST'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' and product_code='${params.PROD_CODE}'`
                             var take_api_params = `select ns.account_currency,ns.department_code,ns.channel_refno,ns.channel_id,ns.middleware_ref_no,ns.cbs_ref_no,ns.reversal_amount,ns.npsst_id,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY ) as dbtr_acct_no,ns.dbtr_cust_type,ns.ext_acct_id_code,ns.intrbk_sttlm_amnt,ns.instrument_type,ns.instruction_id,ns.hdr_msg_id,ns.hdr_clearing_system,ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,ns.accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id in ${TempTranID}`;
+                            //var take_api_params = `select * from npss_transactions where npsst_id in (${TempTranID})`;
                             var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL' and need_sync = 'Y'`
                             ExecuteQuery1(TakeStsPsts, async function (arrurlResult) {
                                 if (arrurlResult.length) {
@@ -86,29 +86,23 @@ app.post('/', function (appRequest, appResponse, next) {
                                             } else { //checker for repost
                                                 ExecuteQuery1(take_api_params, async function (arrTranparams) {
                                                     if (arrTranparams.length > 0) {
-                                                        let uetr = arrTranparams[0].uetr
                                                         var Apicalls
                                                         if (params.eligible_status == 'OP_AC_REV_POSTING_RETRY' || params.eligible_status == 'OP_P2P_REV_POSTING_RETRY') { //ORR
+                                                            let uetr = arrTranparams[0].uetr
+                                                            reqInstanceHelper.PrintInfo.uetr = arrTranparams[0].uetr
+                                                            console.log(uetr)
                                                             var takecbreturncode = `Select * from Npss_trn_process_log where  uetr ='${uetr}'`
-                                                            ExecuteQuery1(takecbreturncode, async function (arrreturncode) {
-                                                                if (arrreturncode.length > 0) {
-                                                                    let c_return_code = arrreturncode[0].cbuae_return_code
-                                                                    Apicalls = await CallORRAPI(arrTranparams, failcountobj, failcount, arrurl, c_return_code)
-                                                                    if (Apicalls.toUpperCase() == 'SUCCESS') {
-                                                                        InsertProcess(arrTranparams, final_process_status, final_status, PRCT_ID)
-                                                                    }
-                                                                    else {
-                                                                        objresponse.status = "API call FAILURE"
-                                                                        objresponse.errdata = Apicalls
-                                                                        sendResponse(null, objresponse)
-                                                                    }
-                                                                } else {
-                                                                    objresponse.status = "FAILURE"
-                                                                    objresponse.errdata = "No cbuae_return_code found in log table"
-                                                                    sendResponse(null, objresponse)
-                                                                }
-                                                            })
-
+                                                            let arrreturncode = await select(takecbreturncode)
+                                                            if (arrreturncode.length > 0) {
+                                                                let c_return_code = arrreturncode[0].cbuae_return_code
+                                                                Apicalls = await CallORRAPI(arrTranparams, failcountobj, failcount, arrurl, c_return_code)
+                                                            }
+                                                            else {
+                                                                objresponse.status = "FAILURE"
+                                                                objresponse.errdata = "No cbuae_return_code found in log table"
+                                                                sendResponse(null, objresponse)
+                                                            }
+                                                            // Apicalls = await CallORRAPI(arrTranparams, failcountobj, failcount, arrurl)
                                                         } else if (params.eligible_status == 'OP_AC_RET_POSTING_RETRY' || params.eligible_status == 'OR_P2P_POSTING_RETRY') { //OR
                                                             Apicalls = await CallORAPI(arrTranparams, failcountobj, failcount, arrurl)
                                                         } else if (params.eligible_status == 'OP_P2P_DBT_POSTING_RETRY' || params.eligible_status == 'OP_AC_DBT_POSTING_RETRY') { //Unfreeze
@@ -150,7 +144,9 @@ app.post('/', function (appRequest, appResponse, next) {
                             sendResponse(error, null);
                         }
                     })
+
                     // Do API Call for Service 
+
                     function InsertProcess(arrTranparams, success_process_status, success_status, PRCT_ID) {
                         var processName
                         if (params.Roleid == '705' || params.Roleid == 705) {
@@ -195,6 +191,7 @@ app.post('/', function (appRequest, appResponse, next) {
                             objCusTranInst.routingkey = headers.routingkey;
                             arrCusTranInst.push(objCusTranInst)
                         }
+
                         _BulkInsertProcessItem(arrCusTranInst, 'npss_trn_process_log', function callbackInsert(CusTranInsertRes) {
                             if (CusTranInsertRes.length > 0) {
                                 var UpdateTrnTbl
@@ -203,6 +200,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                 } else {
                                     UpdateTrnTbl = `update npss_transactions set  checker = '${params.CREATED_BY_NAME}',status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
                                 }
+
                                 ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
                                     if (uptranresult == 'SUCCESS') {
                                         objresponse.status = 'Success';
@@ -210,6 +208,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                     } else {
                                         objresponse.status = 'Error in NPSS_TRN_PROCESS_LOG Table Update';
                                         sendResponse(null, objresponse)
+
                                     }
                                 })
                             }
@@ -229,14 +228,14 @@ app.post('/', function (appRequest, appResponse, next) {
                                         json: {
                                             batch_name: "DR-CBS-POSTING-Q",
                                             data: {
+                                                //ORR- REVERSAL BTN
                                                 "payload": {
-                                                    //ORR- REVERSAL BTN
                                                     // "uetr": arrTranparamsObj.uetr || '',
                                                     // "channel_id": arrTranparamsObj.channel_id || '',
                                                     // "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
-                                                    // "dbtr_iban":arrTranparamsObj.dbtr_iban || '',
-                                                    // "process_type": 'ORR' ,
-                                                    // "channel_refno":arrTranparamsObj.channel_refno||''
+                                                    // "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
+                                                    // "process_type": 'ORR',
+                                                    // "channel_refno": arrTranparamsObj.channel_refno || ''
                                                     "channel_id": arrTranparamsObj.channel_id || '',
                                                     "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
                                                     "process_type": 'ORR',
@@ -257,6 +256,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                         headers: {
                                             'Content-Type': 'application/json'
                                         }
+
                                     }
                                     if (arrTranparamsObj.account_currency == 'AED' || arrTranparamsObj.account_currency == '' || arrTranparamsObj.account_currency == undefined || arrTranparamsObj.account_currency == null) {
                                         options.json.data.payload.intrbk_sttlm_amnt = arrTranparamsObj.intrbk_sttlm_amnt || '';
@@ -264,17 +264,20 @@ app.post('/', function (appRequest, appResponse, next) {
                                         options.json.data.payload.cdtr_amount = arrTranparamsObj.intrbk_sttlm_amnt || '';
                                         options.json.data.payload.dbtr_amount = ''
                                     }
+
                                     var PrintInfo = {}
                                     PrintInfo.url = arrurl[0].param_detail
                                     PrintInfo.uetr = arrTranparamsObj.uetr || ''
                                     PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
+
+
                                     reqInstanceHelper.PrintInfo(serviceName, '------------ORR API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                         if (error) {
-                                            reqInstanceHelper.PrintInfo(serviceName, '------------ ORR API ERROR-------' + error, objSessionLogInfo);
+                                            reqInstanceHelper.PrintInfo(serviceName, '------------ ORR API ERROR-------' + JSON.stringify(error), objSessionLogInfo);
                                             sendResponse(error, null);
                                         } else {
-                                            reqInstanceHelper.PrintInfo(serviceName, '------------ORR API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                            reqInstanceHelper.PrintInfo(serviceName, '------------ORR API Response JSON-------' + JSON.stringify(responseBodyFromImagingService), objSessionLogInfo);
                                             nextobjctfunc()
                                         }
                                     });
@@ -289,6 +292,9 @@ app.post('/', function (appRequest, appResponse, next) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var runapifun = async () => {
+
+
+
                                     var request = require('request');
                                     var options = {
                                         url: arrurl[0].param_detail,
@@ -298,14 +304,14 @@ app.post('/', function (appRequest, appResponse, next) {
                                             batch_name: "DR-CBS-POSTING-Q",
                                             data: {
                                                 "payload": {
-                                                    //OR - RETURN BTN
+                                                    //OR- RETURN BTN
                                                     // "uetr": arrTranparamsObj.uetr || '',
                                                     // "channel_id": arrTranparamsObj.channel_id || '',
                                                     // "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
                                                     // "process_type": "OR",
                                                     // "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt,
-                                                    // "dbtr_iban":arrTranparamsObj.dbtr_iban || '',
-                                                    // "channel_refno":arrTranparamsObj.channel_refno||''
+                                                    // "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
+                                                    // "channel_refno": arrTranparamsObj.channel_refno || ''
                                                     "process_type": 'OR' || '',
                                                     "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
                                                     "uetr": arrTranparamsObj.uetr || '',
@@ -328,28 +334,40 @@ app.post('/', function (appRequest, appResponse, next) {
                                     if (arrTranparamsObj.account_currency != 'AED') {
                                         options.json.data.payload.RtrdIntrBkSttlmAmt = arrTranparamsObj.intrbk_sttlm_amnt || '';
                                     }
+
                                     var PrintInfo = {}
                                     PrintInfo.url = arrurl[0].param_detail
                                     PrintInfo.uetr = arrTranparamsObj.uetr || ''
                                     PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
+
+
                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                         if (error) {
                                             reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                             sendResponse(error, null);
+
                                         } else {
                                             reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                             nextobjctfunc()
                                         }
                                     });
+
                                 }
+
                                 runapifun()
+
                             }, function () {
                                 resolve('SUCCESS')
                             })
                         })
+
+
+
                     }
+
                     function CallP2P(arrTranparams, failcountobj, failcount, arrurl) {
+
                         return new Promise((resolve, reject) => {
                             var runquery = async () => {
                                 var postrefno;
@@ -366,16 +384,19 @@ app.post('/', function (appRequest, appResponse, next) {
                                                     "payload": {
                                                         "channel_id": arrTranparamsObj.channel_id || '',
                                                         "uetr": arrTranparamsObj.uetr || '',
+
                                                         "intrbk_sttlm_cur": arrTranparamsObj.intrbk_sttlm_cur || '',
                                                         "process_type": "OP",
                                                         "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
                                                         "channel_refno": arrTranparamsObj.channel_refno || ''
+
                                                     }
                                                 }
                                             },
                                             headers: {
                                                 'Content-Type': 'application/json'
                                             }
+
                                         }
                                         if (arrTranparamsObj.account_currency == 'AED' || arrTranparamsObj.account_currency == '' || arrTranparamsObj.account_currency == undefined || arrTranparamsObj.account_currency == null) {
                                             options.json.data.payload.intrbk_sttlm_amnt = arrTranparamsObj.intrbk_sttlm_amnt || '';
@@ -383,28 +404,36 @@ app.post('/', function (appRequest, appResponse, next) {
                                             options.json.data.payload.dbtr_amount = arrTranparamsObj.intrbk_sttlm_amnt || '';
                                             options.json.data.payload.cdtr_amount = ''
                                         }
+
                                         var PrintInfo = {}
                                         PrintInfo.url = arrurl[0].param_detail
                                         PrintInfo.uetr = arrTranparamsObj.uetr || ''
+
+
                                         reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                             if (error) {
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                 sendResponse(error, null);
+
                                             } else {
                                                 reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                 nextobjctfunc()
                                             }
                                         });
+
                                     } catch (error) {
                                         reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
                                         sendResponse(error, null);
                                     }
+
                                 }, function () {
                                     resolve('SUCCESS')
                                 })
                             }
+
                             runquery()
+
                         })
                     }
                     //Execute Query Function
@@ -433,11 +462,31 @@ app.post('/', function (appRequest, appResponse, next) {
                                     sendResponse(error)
                                 } else {
                                     callback("SUCCESS");
+
                                 }
                             } catch (error) {
                                 sendResponse(error)
                             }
                         });
+                    }
+                    function select(query) {
+                        return new Promise((resolve, reject) => {
+                            reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
+                                try {
+                                    if (error) {
+                                        sendResponse(error, null);
+                                    } else {
+                                        if (result.rows.length > 0) {
+                                            resolve(result.rows);
+                                        } else {
+                                            resolve([]);
+                                        }
+                                    }
+                                } catch (error) {
+                                    sendResponse(error, null);
+                                }
+                            });
+                        })
                     }
 
                     function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
@@ -489,7 +538,6 @@ app.post('/', function (appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
-
 });
 
 module.exports = app;
